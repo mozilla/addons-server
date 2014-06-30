@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:02-0700\n"
+"POT-Creation-Date: 2014-06-30 09:46-0700\n"
 "PO-Revision-Date: 2013-11-08 06:01+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,8 +63,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;และอื่นๆ {0}"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:349 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:166
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
 msgstr "ดูรายงานการตรวจสอบ"
 
@@ -72,37 +71,33 @@ msgstr "ดูรายงานการตรวจสอบ"
 msgid "Validating {0}"
 msgstr "กำลังตรวจสอบ {0}"
 
-#: media/js/common/upload-addon.js:248
-msgid "Try again"
-msgstr ""
-
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
 
-#: media/js/common/upload-addon.js:283 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "ข้อผิดพลาดของแม่ข่ายที่ไม่คาดคิดขณะกำลังทำการตรวจสอบ"
 
-#: media/js/common/upload-addon.js:321 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "เสร็จสิ้นการตรวจสอบ {0}"
 
-#: media/js/common/upload-addon.js:327
+#: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
 
-#: media/js/common/upload-addon.js:332
+#: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr ""
 
-#: media/js/common/upload-addon.js:383
+#: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
 msgstr "ส่วนเสริมชนิดนี้ไม่สามารถใช้งานได้บนบางแพลตฟอร์ม"
 
-#: media/js/common/upload-addon.js:385
+#: media/js/common/upload-addon.js:365
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -126,7 +121,7 @@ msgstr "วิดีโอต้องเป็นแบบ WebM"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr ""
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
+#: media/js/common/upload-packaged-app.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "แอพของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
@@ -139,433 +134,6 @@ msgstr[0] "แอพของคุณได้ผ่านการตรวจ
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
 msgstr ""
-
-#: media/js/devreg/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr ""
-
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr ""
-
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr ""
-
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr ""
-
-#: media/js/devreg/apps.js:96
-msgid "App is already installed."
-msgstr "แอพถูกติดตั้งแล้ว"
-
-#: media/js/devreg/apps.js:100
-msgid "Internal server error."
-msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
-
-#: media/js/devreg/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "ข้อผิดพลาดภายในเซอร์เวอร์บนการติดตั้งแอพ"
-
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "การติดตั้งล้มเหลว โปรดลองอีกครั้ง"
-
-#: media/js/devreg/devhub.js:186
-msgid "Your app failed validation with {0} error and {1} message(s)."
-msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
-msgid "Your app passed validation with no errors and {0} message."
-msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} คำเตือน"
-
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
-msgid "Your app passed validation with no errors or messages."
-msgstr "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือน"
-
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
-msgid "Changes Saved"
-msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
-
-#: media/js/devreg/devhub.js:435
-msgid "Enter a new team member's email address"
-msgstr ""
-
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr ""
-
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
-msgid "There was an error uploading your file."
-msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
-
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:942
-msgid "Learn more"
-msgstr "เรียนรู้เพิ่มเติม"
-
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:946
-msgid "Example"
-msgstr "ตัวอย่าง"
-
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1302
-msgid "Image changes being processed"
-msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
-
-#: media/js/devreg/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "วิดีโอนี้ต้องการเบราว์เซอร์ที่รองรับ open video "
-
-#: media/js/devreg/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "หรือ <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-
-#: media/js/devreg/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Flash Player</a>"
-
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
-
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "ลบการแปลนี้"
-
-#: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-
-#: media/js/devreg/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr ""
-
-#: media/js/devreg/lookup-tool.js:65
-msgid "Show All Results"
-msgstr ""
-
-#: media/js/devreg/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr ""
-
-#: media/js/devreg/manifest.js:46
-msgid "Requested Permissions:"
-msgstr ""
-
-#: media/js/devreg/manifest.js:54
-msgid "Certified"
-msgstr ""
-
-#: media/js/devreg/manifest.js:57
-msgid "Privileged"
-msgstr ""
-
-#: media/js/devreg/manifest.js:60
-msgid "Unprivileged"
-msgstr ""
-
-#: media/js/devreg/manifest.js:66
-msgid "No reason given"
-msgstr ""
-
-#: media/js/devreg/overlay.js:41
-msgid "OK"
-msgstr "ตกลง"
-
-#: media/js/devreg/payments-enroll.js:9
-msgid "Spanish Banking Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:11
-msgid "Irish Sort Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:13
-msgid "Belgian Sort Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:15
-msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:17
-msgid "Dutch/US Sort Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:19
-msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:21
-msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:23
-msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:25
-msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:27
-msgid "Austrian/Swiss Bank Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:29
-msgid "Danish/Swiss Bank Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:31
-msgid "Swiss/Iraqi Bank Code"
-msgstr ""
-
-#: media/js/devreg/payments-enroll.js:33
-msgid "Iraqi Bank Code"
-msgstr ""
-
-#. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:136
-msgid "Detected: {0}"
-msgstr ""
-
-#. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
-msgid "Error"
-msgstr "ข้อผิดพลาด"
-
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
-msgid "There was a problem contacting the payment server."
-msgstr ""
-
-#: media/js/devreg/payments-manage.js:85
-msgid "Authentication error"
-msgstr ""
-
-#: media/js/devreg/payments-manage.js:131
-msgid "You do not currently have any payment accounts."
-msgstr ""
-
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/devreg/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "เหลือ {0} ตัวอักษร"
-
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
-msgid "All tests passed successfully."
-msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
-
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
-msgid "These tests were not run."
-msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
-
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
-msgid "Tests"
-msgstr "ทดสอบ"
-
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
-msgid "Warning"
-msgstr "คำเตือน"
-
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
-msgid "Compatibility Tests"
-msgstr "การทดสอบความเข้ากันได้"
-
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
-msgid "App failed validation."
-msgstr "แอพไม่ผ่านการตรวจสอบ"
-
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
-msgid "App passed validation."
-msgstr "แอพได้ผ่านการตรวจสอบ"
-
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} ข้อผิดพลาด"
-
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} คำเตือน"
-
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
-msgid "Validation task could not complete or completed with errors"
-msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
-
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
-msgid "Internal server error"
-msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
-
-#: media/js/devreg/reviewers/buttons.js:38
-msgid "Purchasing"
-msgstr "กำลังซื้อ"
-
-#: media/js/devreg/reviewers/buttons.js:44
-msgid "Purchased"
-msgstr "ซื้อแล้ว"
-
-#: media/js/devreg/reviewers/buttons.js:70
-msgid "Launch"
-msgstr "เริ่ม"
-
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{name} ดูหน้านี้เป็นคนแรก"
-
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
-
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
-
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr ""
-
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "กำลังโหลด&hellip;"
-
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "บันทึกประจำรุ่น"
-
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "หมายเหตุสำหรับนักวิจารณ์"
-
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "ไม่พบบันทึกประจำรุ่น"
-
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1455 media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "เลือกแอพพลิเคชั่นก่อน"
-
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr ""
-
-#: media/js/devreg/reviewers/expandable.js:15
-msgid "more..."
-msgstr ""
-
-#: media/js/devreg/reviewers/expandable.js:18
-msgid "less..."
-msgstr ""
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr ""
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "ลบคำวิจารณ์"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr ""
-
-#: media/js/devreg/reviewers/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:104
-msgid "Packaged App"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:108
-msgid "Privileged App"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:111
-msgid "More Information Requested"
-msgstr "ต้องการข้อมูลเพิ่มเติม"
-
-#: media/js/devreg/reviewers/reviewers.js:114
-msgid "Contains Editor Comment"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:118
-msgid "Premium App"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:121
-msgid "Escalated"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:126
-msgid "Free"
-msgstr "ฟรี"
-
-#: media/js/devreg/reviewers/reviewers.js:234
-msgid "Any"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:261
-msgid "Approved app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:264
-msgid "Rejected app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:270
-msgid "Error approving app: {app}"
-msgstr ""
-
-#: media/js/devreg/reviewers/reviewers.js:271
-msgid "Error rejecting app: {app}"
-msgstr ""
-
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
-msgid "By {0} on {1}"
-msgstr ""
-
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "ข้อมูลที่ร้องขอ"
-
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "ถูกปักธง"
-
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "ซ้ำ"
-
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "ถูกปฏิเสธ"
-
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "อนุมัติแล้ว"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -635,6 +203,18 @@ msgstr "กำลังปรับปรุงผลลัพธ์&hellip;"
 #: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "หมวดหมู่"
+
+#: media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr ""
+
+#: media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
 
 #: media/js/impala/users.js:33
 msgid "use original"
@@ -1154,6 +734,10 @@ msgstr "วันที่"
 msgid "Other"
 msgstr "อื่น ๆ"
 
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333 media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "เลือกแอพพลิเคชั่นก่อน"
+
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -1171,6 +755,22 @@ msgstr "การติดตั้งแอพไม่ได้รับอน
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
 msgstr ""
+
+#: media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr ""
+
+#: media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr ""
+
+#: media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr ""
+
+#: media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "การติดตั้งล้มเหลว โปรดลองอีกครั้ง"
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1315,37 +915,57 @@ msgstr "หยุดการติดตาม"
 msgid "Install App"
 msgstr "ติดตั้งแอพ"
 
-#: media/js/zamboni/devhub.js:246
+#: media/js/zamboni/devhub.js:124
 msgid "Your browser does not support the video tag"
 msgstr "เบราว์เซอร์ของคุณไม่รองรับวิดีโอแท็ก"
 
-#: media/js/zamboni/devhub.js:517
+#: media/js/zamboni/devhub.js:379
+msgid "Changes Saved"
+msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
+
+#: media/js/zamboni/devhub.js:395
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: media/js/zamboni/devhub.js:809
+#: media/js/zamboni/devhub.js:542
+msgid "There was an error uploading your file."
+msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
+
+#: media/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ไฟล์"
 
-#: media/js/zamboni/devhub.js:812
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} คำวิจารณ์"
+#: media/js/zamboni/devhub.js:690
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:820
+msgid "Learn more"
+msgstr "เรียนรู้เพิ่มเติม"
+
+#: media/js/zamboni/devhub.js:824
+msgid "Example"
+msgstr "ตัวอย่าง"
+
+#: media/js/zamboni/devhub.js:1180
+msgid "Image changes being processed"
+msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
+
+#: media/js/zamboni/devhub.js:1361
 msgid "Starting tests..."
 msgstr "เริ่มการทดสอบ…"
 
-#: media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1368
 msgid "Waiting for test results..."
 msgstr "กำลังรอผลการทดสอบ…"
 
-#: media/js/zamboni/devhub.js:1492 media/js/zamboni/devhub.js:1497
+#: media/js/zamboni/devhub.js:1370 media/js/zamboni/devhub.js:1375
 msgid "Internal Server Error"
 msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
 
-#: media/js/zamboni/devhub.js:1532
+#: media/js/zamboni/devhub.js:1410
 msgid "Must be a valid e-mail address."
 msgstr "ต้องเป็นที่อยู่อีเมลที่ถูกต้อง"
 
@@ -1365,6 +985,38 @@ msgstr "กำลังค้นหารายการแนะนำ&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "กำลังอัพเดตรายการแนะนำ&hellip;"
 
+#: media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{name} ดูหน้านี้เป็นคนแรก"
+
+#: media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
+
+#: media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
+
+#: media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr ""
+
+#: media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "กำลังโหลด&hellip;"
+
+#: media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "บันทึกประจำรุ่น"
+
+#: media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "หมายเหตุสำหรับนักวิจารณ์"
+
+#: media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "ไม่พบบันทึกประจำรุ่น"
+
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "คำวิจารณ์โดยเฉลี่ย"
@@ -1372,6 +1024,10 @@ msgstr "คำวิจารณ์โดยเฉลี่ย"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "จำนวนคำวิจารณ์"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr ""
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1382,6 +1038,14 @@ msgstr "กำลังโหลด…"
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
+
+#: media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
+
+#: media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "ลบการแปลนี้"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1401,6 +1065,58 @@ msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ต�
 msgid "All"
 msgstr "ทั้งหมด"
 
+#: media/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "ข้อมูลที่ร้องขอ"
+
+#: media/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "ถูกปักธง"
+
+#: media/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "ซ้ำ"
+
+#: media/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "ถูกปฏิเสธ"
+
+#: media/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "อนุมัติแล้ว"
+
+#: media/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
+
+#: media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
+
+#: media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "ทดสอบ"
+
+#: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: media/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "คำเตือน"
+
+#: media/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "การทดสอบความเข้ากันได้"
+
+#: media/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "แอพไม่ผ่านการตรวจสอบ"
+
+#: media/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "แอพได้ผ่านการตรวจสอบ"
+
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบ"
@@ -1409,10 +1125,28 @@ msgstr "ส่วนเสริมของคุณไม่ผ่านกา
 msgid "Add-on passed validation."
 msgstr "ส่วนเสริมของคุณได้ผ่านการตรวจสอบ"
 
+#: media/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ข้อผิดพลาด"
+
+#: media/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} คำเตือน"
+
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
+
+#: media/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
+
+#: media/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

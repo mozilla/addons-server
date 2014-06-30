@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:02-0700\n"
+"POT-Creation-Date: 2014-06-30 09:46-0700\n"
 "PO-Revision-Date: 2014-05-27 15:09+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -69,8 +69,7 @@ msgstr[0] "&hellip;a {0} další"
 msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} další"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:349 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:166
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
 msgstr "Zobrazit podrobný report"
 
@@ -78,39 +77,35 @@ msgstr "Zobrazit podrobný report"
 msgid "Validating {0}"
 msgstr "Probíhá kontrola {0}"
 
-#: media/js/common/upload-addon.js:248
-msgid "Try again"
-msgstr "Zkusit znovu"
-
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
 
-#: media/js/common/upload-addon.js:283 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Při kontrole nastala neočekávaná chyba serveru."
 
-#: media/js/common/upload-addon.js:321 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Dokončena kontrola {0}"
 
-#: media/js/common/upload-addon.js:327
+#: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávou."
 msgstr[1] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
 msgstr[2] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
 
-#: media/js/common/upload-addon.js:332
+#: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
 
-#: media/js/common/upload-addon.js:383
+#: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Některé platformy nejsou pro tento typ doplňků dostupné."
 
-#: media/js/common/upload-addon.js:385
+#: media/js/common/upload-addon.js:365
 msgid "Sorry, no supported platform has been found."
 msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
 
@@ -134,7 +129,7 @@ msgstr "Videa musí být ve formátu WebM"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Vaše zabalená aplikace musí mít koncovku <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
+#: media/js/common/upload-packaged-app.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Kontrola vaší aplikace skončila s {0} chybou."
@@ -151,445 +146,6 @@ msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováními."
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Vaše aplikace prošla kontrolou bez chyby či varování."
-
-#: media/js/devreg/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "Manifest nebyl na uvedeném místě nalezen."
-
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "K umístění aplikace se nebylo možné připojit."
-
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Manifest aplikace je nezpracovatelný."
-
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Manifest aplikace je nevalidní."
-
-#: media/js/devreg/apps.js:96
-msgid "App is already installed."
-msgstr "Aplikace je již nainstalována."
-
-#: media/js/devreg/apps.js:100
-msgid "Internal server error."
-msgstr "Interní chyba serveru."
-
-#: media/js/devreg/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "Při instalaci aplikace nastala interní chyba serveru."
-
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Instalace selhala. Zkuste to prosím později."
-
-#: media/js/devreg/devhub.js:186
-msgid "Your app failed validation with {0} error and {1} message(s)."
-msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "U vaší aplikace selhala kontrola s {0} chybou. Počet zpráv: {1}"
-msgstr[1] "U vaší aplikace selhala kontrola s {0} chybami. Počet zpráv: {1}"
-msgstr[2] "U vaší aplikace selhala kontrola s {0} chybami. Počet zpráv: {1}"
-
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
-msgid "Your app passed validation with no errors and {0} message."
-msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Vaše aplikace prošla kontrolou bez chyby a {0} informační zprávou."
-msgstr[1] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprávami."
-msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprávami."
-
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
-msgid "Your app passed validation with no errors or messages."
-msgstr "Vaše aplikace prošla kontrolou bez chyby či informační zprávy."
-
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
-msgid "Changes Saved"
-msgstr "Změny uloženy"
-
-#: media/js/devreg/devhub.js:435
-msgid "Enter a new team member's email address"
-msgstr "Vložte e-mailovou adresu nového člena týmu"
-
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "Obnoveno"
-
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
-msgid "There was an error uploading your file."
-msgstr "Při nahrávání vašeho souboru se vyskytl problém."
-
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:942
-msgid "Learn more"
-msgstr "Dozvědět se více"
-
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:946
-msgid "Example"
-msgstr "Příklad"
-
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1302
-msgid "Image changes being processed"
-msgstr "Jsou prováděny změny obrázku."
-
-#: media/js/devreg/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "Toto video vyžaduje webový prohlížeč s podporou otevřeného videa"
-
-#: media/js/devreg/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "nebo <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-
-#: media/js/devreg/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Flash Player</a>."
-
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
-
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "Odebrat lokalizaci"
-
-#: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Přihlášení pomocí Persona selhalo. Možná pod touto e-mailovou adresou nemáte účet?"
-
-#: media/js/devreg/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "Přihlášení pomocí Persona selhalo. Nastala chyba serveru."
-
-#: media/js/devreg/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "Zobrazit všechny výsledky"
-
-#: media/js/devreg/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "Nalezeno více než {0} výsledků. Zvažte přeformulování svého dotazu."
-
-#: media/js/devreg/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "Vyžadovaná oprávnění:"
-
-#: media/js/devreg/manifest.js:54
-msgid "Certified"
-msgstr "Certifikované"
-
-#: media/js/devreg/manifest.js:57
-msgid "Privileged"
-msgstr "Privilegované"
-
-#: media/js/devreg/manifest.js:60
-msgid "Unprivileged"
-msgstr "Neprivilegované"
-
-#: media/js/devreg/manifest.js:66
-msgid "No reason given"
-msgstr "Bez udání důvodu"
-
-#: media/js/devreg/overlay.js:41
-msgid "OK"
-msgstr "OK"
-
-#: media/js/devreg/payments-enroll.js:9
-msgid "Spanish Banking Code"
-msgstr "Španělský kód banky"
-
-#: media/js/devreg/payments-enroll.js:11
-msgid "Irish Sort Code"
-msgstr "Sort Code (Irsko)"
-
-#: media/js/devreg/payments-enroll.js:13
-msgid "Belgian Sort Code"
-msgstr "Sort Code (Belgie)"
-
-#: media/js/devreg/payments-enroll.js:15
-msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr "Kód banky (Španělsko/Francie/Itálie/Dánsko)"
-
-#: media/js/devreg/payments-enroll.js:17
-msgid "Dutch/US Sort Code"
-msgstr "Sort Code (Dánsko/USA)"
-
-#: media/js/devreg/payments-enroll.js:19
-msgid "Canadian Transit Number/German Routing Code"
-msgstr "Canadian Transit Number/German Routing Code"
-
-#: media/js/devreg/payments-enroll.js:21
-msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "Bankovní číslo pro banky v Korei či Branch/Indonézii"
-
-#: media/js/devreg/payments-enroll.js:23
-msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr "Řecký HEBIC/Indonéský bankovní kód"
-
-#: media/js/devreg/payments-enroll.js:25
-msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Sort Code (Británie/Irsko), prefix účtu NZ nebo australský BSB kód"
-
-#: media/js/devreg/payments-enroll.js:27
-msgid "Austrian/Swiss Bank Code"
-msgstr "Bankovní kód (Rakousko/Švýcarsko)"
-
-#: media/js/devreg/payments-enroll.js:29
-msgid "Danish/Swiss Bank Code"
-msgstr "Bankovní kód (Dánsko/Švýcarsko)"
-
-#: media/js/devreg/payments-enroll.js:31
-msgid "Swiss/Iraqi Bank Code"
-msgstr "Bankovní kód (Švýcarsko/Irák)"
-
-#: media/js/devreg/payments-enroll.js:33
-msgid "Iraqi Bank Code"
-msgstr "Bankovní kód Iráku"
-
-#. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:136
-msgid "Detected: {0}"
-msgstr "Rozpoznáno: {0}"
-
-#. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] "Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociovanou aplikaci do nekompletního stavu a již nebude dostupná k prodeji:"
-msgstr[1] "Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do nekompletního stavu a již nebudou dostupné k prodeji:"
-msgstr[2] "Upozornění: smazáním účtu pro platby \"{0}\" přesunete asociované aplikace do nekompletního stavu a již nebudou dostupné k prodeji:"
-
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
-msgid "Error"
-msgstr "Chyba"
-
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
-msgid "There was a problem contacting the payment server."
-msgstr "Vyskytl se problém při kontaktování platebního serveru."
-
-#: media/js/devreg/payments-manage.js:85
-msgid "Authentication error"
-msgstr "Chyba autentizace"
-
-#: media/js/devreg/payments-manage.js:131
-msgid "You do not currently have any payment accounts."
-msgstr "Aktuálně nemáte žádný účet pro platby."
-
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "Vyhledávání motivů dle <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "Vyhledávání aplikací pro <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Vyhledávání doplňků pro <b>{0}</b>"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/devreg/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "Zbývá {0} znak."
-msgstr[1] "Zbývají {0} znaky."
-msgstr[2] "Zbývá {0} znaků"
-
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
-msgid "All tests passed successfully."
-msgstr "Všechny testy prošly úspěšně."
-
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
-msgid "These tests were not run."
-msgstr "Testy nebyly spuštěny."
-
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
-msgid "Tests"
-msgstr "Testy"
-
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
-msgid "Warning"
-msgstr "Varování"
-
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
-msgid "Compatibility Tests"
-msgstr "Testy kompatibility"
-
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
-msgid "App failed validation."
-msgstr "Aplikace neprošla kontrolou."
-
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
-msgid "App passed validation."
-msgstr "Aplikace prošla kontrolou."
-
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} chyba"
-msgstr[1] "{0} chyby"
-msgstr[2] "{0} chyb"
-
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} varování"
-msgstr[1] "{0} varování"
-msgstr[2] "{0} varování"
-
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
-msgid "Validation task could not complete or completed with errors"
-msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
-
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
-msgid "Internal server error"
-msgstr "Interní chyba serveru."
-
-#: media/js/devreg/reviewers/buttons.js:38
-msgid "Purchasing"
-msgstr "Probíhá zakoupení"
-
-#: media/js/devreg/reviewers/buttons.js:44
-msgid "Purchased"
-msgstr "Zakoupeno"
-
-#: media/js/devreg/reviewers/buttons.js:70
-msgid "Launch"
-msgstr "Spustit"
-
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "Uživatel {name} shlédl tuto stránku jako první."
-
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "Potvrzení bylo aplikací zkontrolováno."
-
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "Potvrzení nebylo aplikací zkontrolováno."
-
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{name} prohlédl tento doplněk jako první"
-
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "Načítání&hellip;"
-
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "Poznámky k verzi"
-
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "Poznámky pro redaktory"
-
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "Nebyla nalezena žádná verze poznámek."
-
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1455 media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "Prvně zvolte aplikaci"
-
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr "Chyba při načítání překladu"
-
-#: media/js/devreg/reviewers/expandable.js:15
-msgid "more..."
-msgstr "více..."
-
-#: media/js/devreg/reviewers/expandable.js:18
-msgid "less..."
-msgstr "méně..."
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Ponechat recenzi, označit příznaky"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "Smazat recenzi"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "Nyní přeskočit"
-
-#: media/js/devreg/reviewers/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "Platba selhala. Zkuste to prosím později."
-
-#: media/js/devreg/reviewers/reviewers.js:104
-msgid "Packaged App"
-msgstr "Zabalená aplikace"
-
-#: media/js/devreg/reviewers/reviewers.js:108
-msgid "Privileged App"
-msgstr "Privilegovaná aplikace"
-
-#: media/js/devreg/reviewers/reviewers.js:111
-msgid "More Information Requested"
-msgstr "Požadováno více informací"
-
-#: media/js/devreg/reviewers/reviewers.js:114
-msgid "Contains Editor Comment"
-msgstr "Obsahuje komentář redaktora"
-
-#: media/js/devreg/reviewers/reviewers.js:118
-msgid "Premium App"
-msgstr "Placená aplikace"
-
-#: media/js/devreg/reviewers/reviewers.js:121
-msgid "Escalated"
-msgstr "Detailní kontrola"
-
-#: media/js/devreg/reviewers/reviewers.js:126
-msgid "Free"
-msgstr "Zdarma"
-
-#: media/js/devreg/reviewers/reviewers.js:234
-msgid "Any"
-msgstr "Libovolné"
-
-#: media/js/devreg/reviewers/reviewers.js:261
-msgid "Approved app: {app}"
-msgstr "Schválená aplikace: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:264
-msgid "Rejected app: {app}"
-msgstr "Zamítnutá aplikace: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:270
-msgid "Error approving app: {app}"
-msgstr "Chyba při schválení aplikace: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:271
-msgid "Error rejecting app: {app}"
-msgstr "Chyba při zamítnutí aplikace: {app}"
-
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
-msgid "By {0} on {1}"
-msgstr "Od {0} dne {1}"
-
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Požadovány informace"
-
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Označené"
-
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Duplicitní"
-
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Zamítnuto"
-
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Schváleno"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -659,6 +215,18 @@ msgstr "Probíhá aktualizace výsledků..."
 #: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Kategorie"
+
+#: media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Vyhledávání motivů dle <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Vyhledávání aplikací pro <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Vyhledávání doplňků pro <b>{0}</b>"
 
 #: media/js/impala/users.js:33
 msgid "use original"
@@ -1178,6 +746,10 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Jiné"
 
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333 media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "Prvně zvolte aplikaci"
+
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -1199,6 +771,22 @@ msgstr "Instalace aplikace není povolena."
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
 msgstr "Manifest aplikace je poškozený."
+
+#: media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "K umístění aplikace se nebylo možné připojit."
+
+#: media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Manifest aplikace je nezpracovatelný."
+
+#: media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Manifest aplikace je nevalidní."
+
+#: media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Instalace selhala. Zkuste to prosím později."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1343,41 +931,61 @@ msgstr "Ukončit sledování"
 msgid "Install App"
 msgstr "Instalace aplikace"
 
-#: media/js/zamboni/devhub.js:246
+#: media/js/zamboni/devhub.js:124
 msgid "Your browser does not support the video tag"
 msgstr "Váš prohlížeč nepodporuje značku video."
 
-#: media/js/zamboni/devhub.js:517
+#: media/js/zamboni/devhub.js:379
+msgid "Changes Saved"
+msgstr "Změny uloženy"
+
+#: media/js/zamboni/devhub.js:395
 msgid "Enter a new author's email address"
 msgstr "Vložte novou e-mailovou adresu autora"
 
-#: media/js/zamboni/devhub.js:809
+#: media/js/zamboni/devhub.js:542
+msgid "There was an error uploading your file."
+msgstr "Při nahrávání vašeho souboru se vyskytl problém."
+
+#: media/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} soubor"
 msgstr[1] "{files} soubory"
 msgstr[2] "{files} souborů"
 
-#: media/js/zamboni/devhub.js:812
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} recenze"
-msgstr[1] "{reviews} recenze"
-msgstr[2] "{reviews} recenzí"
+#: media/js/zamboni/devhub.js:690
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:820
+msgid "Learn more"
+msgstr "Dozvědět se více"
+
+#: media/js/zamboni/devhub.js:824
+msgid "Example"
+msgstr "Příklad"
+
+#: media/js/zamboni/devhub.js:1180
+msgid "Image changes being processed"
+msgstr "Jsou prováděny změny obrázku."
+
+#: media/js/zamboni/devhub.js:1361
 msgid "Starting tests..."
 msgstr "Probíhá zahájení testů..."
 
-#: media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1368
 msgid "Waiting for test results..."
 msgstr "Probíhá čekání na výsledky testů..."
 
-#: media/js/zamboni/devhub.js:1492 media/js/zamboni/devhub.js:1497
+#: media/js/zamboni/devhub.js:1370 media/js/zamboni/devhub.js:1375
 msgid "Internal Server Error"
 msgstr "Interní chyba serveru"
 
-#: media/js/zamboni/devhub.js:1532
+#: media/js/zamboni/devhub.js:1410
 msgid "Must be a valid e-mail address."
 msgstr "Musí se jednat o platnou e-mailovou adresu."
 
@@ -1397,6 +1005,38 @@ msgstr "Nalézt doporučení&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Aktualizovat doporučení&hellip;"
 
+#: media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "Uživatel {name} shlédl tuto stránku jako první."
+
+#: media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "Potvrzení bylo aplikací zkontrolováno."
+
+#: media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "Potvrzení nebylo aplikací zkontrolováno."
+
+#: media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{name} prohlédl tento doplněk jako první"
+
+#: media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "Načítání&hellip;"
+
+#: media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "Poznámky k verzi"
+
+#: media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "Poznámky pro redaktory"
+
+#: media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "Nebyla nalezena žádná verze poznámek."
+
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Průměrný počet kontrol"
@@ -1404,6 +1044,10 @@ msgstr "Průměrný počet kontrol"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Počet kontrol"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "Chyba při načítání překladu"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1416,6 +1060,14 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Zbývá <b>{0}</b> znak."
 msgstr[1] "Zbývají <b>{0}</b> znaky."
 msgstr[2] "Zbývá <b>{0}</b> znaků."
+
+#: media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
+
+#: media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Odebrat lokalizaci"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1437,6 +1089,58 @@ msgstr[2] "Zbývá {0} znaků"
 msgid "All"
 msgstr "Vše"
 
+#: media/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Požadovány informace"
+
+#: media/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Označené"
+
+#: media/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Duplicitní"
+
+#: media/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Zamítnuto"
+
+#: media/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Schváleno"
+
+#: media/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "Všechny testy prošly úspěšně."
+
+#: media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "Testy nebyly spuštěny."
+
+#: media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "Testy"
+
+#: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "Chyba"
+
+#: media/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "Varování"
+
+#: media/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "Testy kompatibility"
+
+#: media/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "Aplikace neprošla kontrolou."
+
+#: media/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "Aplikace prošla kontrolou."
+
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "Doplněk prošel kontrolou s chybami."
@@ -1445,12 +1149,34 @@ msgstr "Doplněk prošel kontrolou s chybami."
 msgid "Add-on passed validation."
 msgstr "Doplněk úspěšně prošel kontrolou."
 
+#: media/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} chyba"
+msgstr[1] "{0} chyby"
+msgstr[2] "{0} chyb"
+
+#: media/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} varování"
+msgstr[1] "{0} varování"
+msgstr[2] "{0} varování"
+
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} upozornění"
 msgstr[1] "{0} upozornění"
 msgstr[2] "{0} upozornění"
+
+#: media/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
+
+#: media/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "Interní chyba serveru."
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

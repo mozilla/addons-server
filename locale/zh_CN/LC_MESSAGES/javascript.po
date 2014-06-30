@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:02-0700\n"
+"POT-Creation-Date: 2014-06-30 09:46-0700\n"
 "PO-Revision-Date: 2014-05-22 08:11+0000\n"
 "Last-Translator: Jack_No1 <jack.xtx@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -63,8 +63,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;还有 {0} 个"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:349 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:166
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
 msgstr "查看完整的验证报告"
 
@@ -72,37 +71,33 @@ msgstr "查看完整的验证报告"
 msgid "Validating {0}"
 msgstr "正在验证 {0}"
 
-#: media/js/common/upload-addon.js:248
-msgid "Try again"
-msgstr "重试"
-
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"
 
-#: media/js/common/upload-addon.js:283 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "验证时发生了意外的服务器错误。"
 
-#: media/js/common/upload-addon.js:321 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "已完成验证 {0}"
 
-#: media/js/common/upload-addon.js:327
+#: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "附加组件通过了验证，没有错误，{0} 个提示信息。附加组件通过了验证，没有错误，{0} 个提示信息。"
 
-#: media/js/common/upload-addon.js:332
+#: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "您的附加组件通过了验证，没有错误或警告。"
 
-#: media/js/common/upload-addon.js:383
+#: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
 msgstr "此类型的附加组件在某些平台上无法使用。"
 
-#: media/js/common/upload-addon.js:385
+#: media/js/common/upload-addon.js:365
 msgid "Sorry, no supported platform has been found."
 msgstr "抱歉，找不到支持的平台。"
 
@@ -126,7 +121,7 @@ msgstr "视频必须是 WebM 格式。"
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "你的封装应用文件应该以 <code>.zip</code>结尾。"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
+#: media/js/common/upload-packaged-app.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "您的应用验证失败，有 {0} 个错误。"
@@ -139,433 +134,6 @@ msgstr[0] "你的应用通过了验证，没有错误，{0} 个警告。"
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
 msgstr "你的应用通过了验证，没有错误和警告。"
-
-#: media/js/devreg/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "在指定的位置无法找到清单。"
-
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "应用的主机无法连接。"
-
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "应用清单无法解析。"
-
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "应用清单无效。"
-
-#: media/js/devreg/apps.js:96
-msgid "App is already installed."
-msgstr "应用已成功安装。"
-
-#: media/js/devreg/apps.js:100
-msgid "Internal server error."
-msgstr "内部服务器错误。"
-
-#: media/js/devreg/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "应用安装时发生内部服务器错误。"
-
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "安装失败。请稍后重试。"
-
-#: media/js/devreg/devhub.js:186
-msgid "Your app failed validation with {0} error and {1} message(s)."
-msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "您的应用程序验证失败，有 {0} 个错误以及 {1} 条信息。"
-
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
-msgid "Your app passed validation with no errors and {0} message."
-msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "您的应用通过了验证，没有错误，{0} 个信息。"
-
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
-msgid "Your app passed validation with no errors or messages."
-msgstr "您的应用通过了验证，没有错误或信息。"
-
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
-msgid "Changes Saved"
-msgstr "更改已保存"
-
-#: media/js/devreg/devhub.js:435
-msgid "Enter a new team member's email address"
-msgstr "输入新的团队成员的电子邮件地址"
-
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "已刷新"
-
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
-msgid "There was an error uploading your file."
-msgstr "上传您的文件时发生错误。"
-
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:942
-msgid "Learn more"
-msgstr "详细了解"
-
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:946
-msgid "Example"
-msgstr "示例"
-
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1302
-msgid "Image changes being processed"
-msgstr "正在处理图像更改"
-
-#: media/js/devreg/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "此视频需要支持开放视频格式的浏览器。"
-
-#: media/js/devreg/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "或者<a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-
-#: media/js/devreg/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Flash Player</a>。"
-
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
-
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "移除此本地化"
-
-#: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Persona 登录失败。或许您并没有这个邮件地址下的账户？"
-
-#: media/js/devreg/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "Persona 登录失败。服务器发生错误。"
-
-#: media/js/devreg/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "显示全部结果"
-
-#: media/js/devreg/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "找到超过 {0} 个结果，请考虑使用更精确的搜索条件。"
-
-#: media/js/devreg/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "请求的权限："
-
-#: media/js/devreg/manifest.js:54
-msgid "Certified"
-msgstr "已验证的"
-
-#: media/js/devreg/manifest.js:57
-msgid "Privileged"
-msgstr "特殊权限"
-
-#: media/js/devreg/manifest.js:60
-msgid "Unprivileged"
-msgstr "无特殊权限"
-
-#: media/js/devreg/manifest.js:66
-msgid "No reason given"
-msgstr "没有理由"
-
-#: media/js/devreg/overlay.js:41
-msgid "OK"
-msgstr "确定"
-
-#: media/js/devreg/payments-enroll.js:9
-msgid "Spanish Banking Code"
-msgstr "西班牙银行码"
-
-#: media/js/devreg/payments-enroll.js:11
-msgid "Irish Sort Code"
-msgstr "爱尔兰序列码"
-
-#: media/js/devreg/payments-enroll.js:13
-msgid "Belgian Sort Code"
-msgstr "比利时序列码"
-
-#: media/js/devreg/payments-enroll.js:15
-msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr "西班牙/法国/意大利/荷兰银行码"
-
-#: media/js/devreg/payments-enroll.js:17
-msgid "Dutch/US Sort Code"
-msgstr "荷兰/美国序列码"
-
-#: media/js/devreg/payments-enroll.js:19
-msgid "Canadian Transit Number/German Routing Code"
-msgstr "加拿大全顺号码/德国路由代码"
-
-#: media/js/devreg/payments-enroll.js:21
-msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "韩国银行和分行/印尼银行代码"
-
-#: media/js/devreg/payments-enroll.js:23
-msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr "希腊HEBIC/印尼银行代码"
-
-#: media/js/devreg/payments-enroll.js:25
-msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "英国/爱尔兰的排序代码或新西兰的账户前缀或澳大利亚BSB代码"
-
-#: media/js/devreg/payments-enroll.js:27
-msgid "Austrian/Swiss Bank Code"
-msgstr "奥地利/瑞士银行代码"
-
-#: media/js/devreg/payments-enroll.js:29
-msgid "Danish/Swiss Bank Code"
-msgstr "丹麦/瑞士银行代码"
-
-#: media/js/devreg/payments-enroll.js:31
-msgid "Swiss/Iraqi Bank Code"
-msgstr "瑞士/伊拉克银行代码"
-
-#: media/js/devreg/payments-enroll.js:33
-msgid "Iraqi Bank Code"
-msgstr "伊拉克银行代码"
-
-#. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:136
-msgid "Detected: {0}"
-msgstr "已删除：{0}"
-
-#. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] "警告：删除支付账户 \"{0}\" 会导致相关联的应用变成未完成状态而不能销售：警告：删除支付账户 \"{0}\" 会导致相关联的应用变成未完成状态而不能销售："
-
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
-msgid "Error"
-msgstr "错误"
-
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
-msgid "There was a problem contacting the payment server."
-msgstr "联系支付服务器时遇到问题。"
-
-#: media/js/devreg/payments-manage.js:85
-msgid "Authentication error"
-msgstr "认证错误"
-
-#: media/js/devreg/payments-manage.js:131
-msgid "You do not currently have any payment accounts."
-msgstr "你还没有支付账号。"
-
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "搜索匹配 <b>{0}</b> 的主题"
-
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "搜索包含关键字 <b>{0}</b> 的应用"
-
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/devreg/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "还有 {0} 个字符。"
-
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
-msgid "All tests passed successfully."
-msgstr "成功通过全部测试。"
-
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
-msgid "These tests were not run."
-msgstr "这些测试没有运行。"
-
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
-msgid "Tests"
-msgstr "测试"
-
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
-msgid "Warning"
-msgstr "警告"
-
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
-msgid "Compatibility Tests"
-msgstr "兼容性测试"
-
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
-msgid "App failed validation."
-msgstr "应用验证失败。"
-
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
-msgid "App passed validation."
-msgstr "应用通过验证。"
-
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} 个错误"
-
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} 个警告"
-
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
-msgid "Validation task could not complete or completed with errors"
-msgstr "验证任务无法完成或完成时发生错误"
-
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
-msgid "Internal server error"
-msgstr "内部服务器错误"
-
-#: media/js/devreg/reviewers/buttons.js:38
-msgid "Purchasing"
-msgstr "正在购买"
-
-#: media/js/devreg/reviewers/buttons.js:44
-msgid "Purchased"
-msgstr "已购买"
-
-#: media/js/devreg/reviewers/buttons.js:70
-msgid "Launch"
-msgstr "启动"
-
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{name} 第一个查看了这个页面。"
-
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "交易收据已经应用核实。"
-
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "交易收据未经应用核实。"
-
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{name} 第一个查看了这个附加组件。"
-
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "正在加载&hellip;"
-
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "版本说明"
-
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "给审核员的备注"
-
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "没有找到版本说明"
-
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1455 media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "首先选择一个应用程序"
-
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr "载入翻译出错"
-
-#: media/js/devreg/reviewers/expandable.js:15
-msgid "more..."
-msgstr "更多..."
-
-#: media/js/devreg/reviewers/expandable.js:18
-msgid "less..."
-msgstr "更少..."
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "保留评论; 移除标志"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "删除评论"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "暂时跳过"
-
-#: media/js/devreg/reviewers/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "支付失败。稍后再试一次。"
-
-#: media/js/devreg/reviewers/reviewers.js:104
-msgid "Packaged App"
-msgstr "封装应用"
-
-#: media/js/devreg/reviewers/reviewers.js:108
-msgid "Privileged App"
-msgstr "特权应用"
-
-#: media/js/devreg/reviewers/reviewers.js:111
-msgid "More Information Requested"
-msgstr "已要求提供更多信息"
-
-#: media/js/devreg/reviewers/reviewers.js:114
-msgid "Contains Editor Comment"
-msgstr "包含编辑注解"
-
-#: media/js/devreg/reviewers/reviewers.js:118
-msgid "Premium App"
-msgstr "收费应用程序"
-
-#: media/js/devreg/reviewers/reviewers.js:121
-msgid "Escalated"
-msgstr "已上报"
-
-#: media/js/devreg/reviewers/reviewers.js:126
-msgid "Free"
-msgstr "免费版"
-
-#: media/js/devreg/reviewers/reviewers.js:234
-msgid "Any"
-msgstr "一切"
-
-#: media/js/devreg/reviewers/reviewers.js:261
-msgid "Approved app: {app}"
-msgstr "已审核应用：{app}"
-
-#: media/js/devreg/reviewers/reviewers.js:264
-msgid "Rejected app: {app}"
-msgstr "已拒绝应用：{app}"
-
-#: media/js/devreg/reviewers/reviewers.js:270
-msgid "Error approving app: {app}"
-msgstr "审核出错应用：{app}"
-
-#: media/js/devreg/reviewers/reviewers.js:271
-msgid "Error rejecting app: {app}"
-msgstr "拒绝出错应用：{app}"
-
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
-msgid "By {0} on {1}"
-msgstr "由 {0} 于 {1}"
-
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "请求的信息"
-
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "已标记"
-
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "重复"
-
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "已被退回"
-
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "已同意"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -635,6 +203,18 @@ msgstr "正在更新结果&hellip;"
 #: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "分类"
+
+#: media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "搜索匹配 <b>{0}</b> 的主题"
+
+#: media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "搜索包含关键字 <b>{0}</b> 的应用"
+
+#: media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
 
 #: media/js/impala/users.js:33
 msgid "use original"
@@ -1154,6 +734,10 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333 media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "首先选择一个应用程序"
+
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -1171,6 +755,22 @@ msgstr "不被允许安装应用。"
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
 msgstr "应用清单不合规范。"
+
+#: media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "应用的主机无法连接。"
+
+#: media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "应用清单无法解析。"
+
+#: media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "应用清单无效。"
+
+#: media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "安装失败。请稍后重试。"
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1315,37 +915,57 @@ msgstr "停止关注"
 msgid "Install App"
 msgstr "安装应用"
 
-#: media/js/zamboni/devhub.js:246
+#: media/js/zamboni/devhub.js:124
 msgid "Your browser does not support the video tag"
 msgstr "您的浏览器不支持此视频标签"
 
-#: media/js/zamboni/devhub.js:517
+#: media/js/zamboni/devhub.js:379
+msgid "Changes Saved"
+msgstr "更改已保存"
+
+#: media/js/zamboni/devhub.js:395
 msgid "Enter a new author's email address"
 msgstr "输入新作者的电子邮件地址"
 
-#: media/js/zamboni/devhub.js:809
+#: media/js/zamboni/devhub.js:542
+msgid "There was an error uploading your file."
+msgstr "上传您的文件时发生错误。"
+
+#: media/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 个文件"
 
-#: media/js/zamboni/devhub.js:812
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} 条评论"
+#: media/js/zamboni/devhub.js:690
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:820
+msgid "Learn more"
+msgstr "详细了解"
+
+#: media/js/zamboni/devhub.js:824
+msgid "Example"
+msgstr "示例"
+
+#: media/js/zamboni/devhub.js:1180
+msgid "Image changes being processed"
+msgstr "正在处理图像更改"
+
+#: media/js/zamboni/devhub.js:1361
 msgid "Starting tests..."
 msgstr "开始测试..."
 
-#: media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1368
 msgid "Waiting for test results..."
 msgstr "正在等待测试结果..."
 
-#: media/js/zamboni/devhub.js:1492 media/js/zamboni/devhub.js:1497
+#: media/js/zamboni/devhub.js:1370 media/js/zamboni/devhub.js:1375
 msgid "Internal Server Error"
 msgstr "内部服务器错误"
 
-#: media/js/zamboni/devhub.js:1532
+#: media/js/zamboni/devhub.js:1410
 msgid "Must be a valid e-mail address."
 msgstr "必须是一个有效的电子邮件地址。"
 
@@ -1365,6 +985,38 @@ msgstr "正在查找推荐内容&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "正在更新推荐内容&hellip;"
 
+#: media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{name} 第一个查看了这个页面。"
+
+#: media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "交易收据已经应用核实。"
+
+#: media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "交易收据未经应用核实。"
+
+#: media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{name} 第一个查看了这个附加组件。"
+
+#: media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "正在加载&hellip;"
+
+#: media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "版本说明"
+
+#: media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "给审核员的备注"
+
+#: media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "没有找到版本说明"
+
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "平均评价"
@@ -1372,6 +1024,10 @@ msgstr "平均评价"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "评论数"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "载入翻译出错"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1382,6 +1038,14 @@ msgstr "正在加载..."
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "剩余 <b>{0}</b> 个字符。"
+
+#: media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
+
+#: media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "移除此本地化"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1401,6 +1065,58 @@ msgstr[0] "至少还需要输入 {0} 个字符。"
 msgid "All"
 msgstr "全部"
 
+#: media/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "请求的信息"
+
+#: media/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "已标记"
+
+#: media/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "重复"
+
+#: media/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "已被退回"
+
+#: media/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "已同意"
+
+#: media/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "成功通过全部测试。"
+
+#: media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "这些测试没有运行。"
+
+#: media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "测试"
+
+#: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "错误"
+
+#: media/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "警告"
+
+#: media/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "兼容性测试"
+
+#: media/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "应用验证失败。"
+
+#: media/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "应用通过验证。"
+
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "附加组件验证失败。"
@@ -1409,10 +1125,28 @@ msgstr "附加组件验证失败。"
 msgid "Add-on passed validation."
 msgstr "附加组件通过验证。"
 
+#: media/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} 个错误"
+
+#: media/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} 个警告"
+
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} 个提醒{0} 个提醒"
+
+#: media/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "验证任务无法完成或完成时发生错误"
+
+#: media/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "内部服务器错误"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

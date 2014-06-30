@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:02-0700\n"
+"POT-Creation-Date: 2014-06-30 09:46-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,11 +73,9 @@ msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 
 #: media/js/common/upload-addon.js:202
-#: media/js/common/upload-addon.js:349
+#: media/js/common/upload-addon.js:329
 #: media/js/common/upload-packaged-app.js:197
 #: media/js/common/upload-packaged-app.js:323
-#: media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:166
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
@@ -86,41 +84,37 @@ msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 msgid "Validating {0}"
 msgstr "Ṽȧŀīḓȧŧīƞɠ {0}"
 
-#: media/js/common/upload-addon.js:248
-msgid "Try again"
-msgstr "Ŧřẏ ȧɠȧīƞ"
-
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:272
+#: media/js/common/upload-addon.js:252
 #: media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Řḗƈḗīṽḗḓ ȧƞ ḗḿƥŧẏ řḗşƥǿƞşḗ ƒřǿḿ ŧħḗ şḗřṽḗř; şŧȧŧŭş: {0}"
 
-#: media/js/common/upload-addon.js:283
+#: media/js/common/upload-addon.js:263
 #: media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Ŭƞḗẋƥḗƈŧḗḓ şḗřṽḗř ḗřřǿř ẇħīŀḗ ṽȧŀīḓȧŧīƞɠ."
 
-#: media/js/common/upload-addon.js:321
+#: media/js/common/upload-addon.js:301
 #: media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Ƒīƞīşħḗḓ ṽȧŀīḓȧŧīƞɠ {0}"
 
-#: media/js/common/upload-addon.js:327
+#: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Ẏǿŭř ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
 msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
 
-#: media/js/common/upload-addon.js:332
+#: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ẇȧřƞīƞɠş."
 
-#: media/js/common/upload-addon.js:383
+#: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Şǿḿḗ ƥŀȧŧƒǿřḿş ȧřḗ ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿƞ."
 
-#: media/js/common/upload-addon.js:385
+#: media/js/common/upload-addon.js:365
 msgid "Sorry, no supported platform has been found."
 msgstr "Şǿřřẏ, ƞǿ şŭƥƥǿřŧḗḓ ƥŀȧŧƒǿřḿ ħȧş ƀḗḗƞ ƒǿŭƞḓ."
 
@@ -146,8 +140,6 @@ msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Ẏǿŭř ƥȧƈķȧɠḗḓ ȧƥƥ şħǿŭŀḓ ḗƞḓ ẇīŧħ <code>.zīƥ</code>."
 
 #: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:181
-#: media/js/zamboni/devhub.js:173
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř."
@@ -162,512 +154,6 @@ msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ẇȧřƞīƞɠş."
-
-#: media/js/devreg/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "Ŧħḗ ḿȧƞīƒḗşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ ƒǿŭƞḓ ȧŧ ŧħḗ ɠīṽḗƞ ŀǿƈȧŧīǿƞ."
-
-#: media/js/devreg/apps.js:87
-#: media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Ȧƥƥ ħǿşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ řḗȧƈħḗḓ."
-
-#: media/js/devreg/apps.js:90
-#: media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ŭƞƥȧřşȧƀŀḗ."
-
-#: media/js/devreg/apps.js:93
-#: media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş īƞṽȧŀīḓ."
-
-#: media/js/devreg/apps.js:96
-msgid "App is already installed."
-msgstr "Ȧƥƥ īş ȧŀřḗȧḓẏ īƞşŧȧŀŀḗḓ."
-
-#: media/js/devreg/apps.js:100
-msgid "Internal server error."
-msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř."
-
-#: media/js/devreg/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř ǿƞ ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ."
-
-#: media/js/devreg/apps.js:106
-#: media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: media/js/devreg/devhub.js:186
-msgid "Your app failed validation with {0} error and {1} message(s)."
-msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř ȧƞḓ {1} ḿḗşşȧɠḗ(ş)."
-msgstr[1] "Ẏǿŭř ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿřş ȧƞḓ {1} ḿḗşşȧɠḗ(ş)."
-
-#: media/js/devreg/devhub.js:200
-#: media/js/zamboni/devhub.js:187
-msgid "Your app passed validation with no errors and {0} message."
-msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
-msgstr[1] "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
-
-#: media/js/devreg/devhub.js:205
-#: media/js/zamboni/devhub.js:192
-msgid "Your app passed validation with no errors or messages."
-msgstr "Ẏǿŭř ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ḿḗşşȧɠḗş."
-
-#: media/js/devreg/devhub.js:419
-#: media/js/zamboni/devhub.js:501
-msgid "Changes Saved"
-msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
-
-#: media/js/devreg/devhub.js:435
-msgid "Enter a new team member's email address"
-msgstr "Ḗƞŧḗř ȧ ƞḗẇ ŧḗȧḿ ḿḗḿƀḗř'ş ḗḿȧīŀ ȧḓḓřḗşş"
-
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "Řḗƒřḗşħḗḓ"
-
-#: media/js/devreg/devhub.js:616
-#: media/js/zamboni/devhub.js:664
-msgid "There was an error uploading your file."
-msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
-
-#: media/js/devreg/devhub.js:886
-#: media/js/zamboni/devhub.js:942
-msgid "Learn more"
-msgstr "Ŀḗȧřƞ ḿǿřḗ"
-
-#: media/js/devreg/devhub.js:890
-#: media/js/zamboni/devhub.js:946
-msgid "Example"
-msgstr "Ḗẋȧḿƥŀḗ"
-
-#: media/js/devreg/devhub.js:1192
-#: media/js/zamboni/devhub.js:1302
-msgid "Image changes being processed"
-msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
-
-#: media/js/devreg/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "Ŧħīş ṽīḓḗǿ řḗɋŭīřḗş ȧ ƀřǿẇşḗř ẇīŧħ şŭƥƥǿřŧ ƒǿř ǿƥḗƞ ṽīḓḗǿ "
-
-#: media/js/devreg/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "ǿř ŧħḗ <a href=\"http://www.adobe.com/go/getflashplayer\">Ȧḓǿƀḗ "
-
-#: media/js/devreg/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Ƒŀȧşħ Ƥŀȧẏḗř</a>."
-
-#: media/js/devreg/init.js:35
-#: media/js/zamboni/init.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. "
-"Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
-
-#: media/js/devreg/l10n.js:45
-#: media/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
-
-#: media/js/devreg/login.js:73
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ḿȧẏƀḗ ẏǿŭ ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ ŭƞḓḗř ŧħȧŧ ḗḿȧīŀ "
-"ȧḓḓřḗşş?"
-
-#: media/js/devreg/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "Ƥḗřşǿƞȧ ŀǿɠīƞ ƒȧīŀḗḓ. Ȧ şḗřṽḗř ḗřřǿř ẇȧş ḗƞƈǿŭƞŧḗřḗḓ."
-
-#: media/js/devreg/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "Şħǿẇ Ȧŀŀ Řḗşŭŀŧş"
-
-#: media/js/devreg/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "Ǿṽḗř {0} řḗşŭŀŧş ƒǿŭƞḓ, ƈǿƞşīḓḗř řḗƒīƞīƞɠ ẏǿŭř şḗȧřƈħ."
-
-#: media/js/devreg/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "Řḗɋŭḗşŧḗḓ Ƥḗřḿīşşīǿƞş:"
-
-#: media/js/devreg/manifest.js:54
-msgid "Certified"
-msgstr "Ƈḗřŧīƒīḗḓ"
-
-#: media/js/devreg/manifest.js:57
-msgid "Privileged"
-msgstr "Ƥřīṽīŀḗɠḗḓ"
-
-#: media/js/devreg/manifest.js:60
-msgid "Unprivileged"
-msgstr "Ŭƞƥřīṽīŀḗɠḗḓ"
-
-#: media/js/devreg/manifest.js:66
-msgid "No reason given"
-msgstr "Ƞǿ řḗȧşǿƞ ɠīṽḗƞ"
-
-#: media/js/devreg/overlay.js:41
-msgid "OK"
-msgstr "ǾĶ"
-
-#: media/js/devreg/payments-enroll.js:9
-msgid "Spanish Banking Code"
-msgstr "Şƥȧƞīşħ Ɓȧƞķīƞɠ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:11
-msgid "Irish Sort Code"
-msgstr "Īřīşħ Şǿřŧ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:13
-msgid "Belgian Sort Code"
-msgstr "Ɓḗŀɠīȧƞ Şǿřŧ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:15
-msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr "Şƥȧƞīşħ/French/Italian/Dutch Ɓȧƞķīƞɠ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:17
-msgid "Dutch/US Sort Code"
-msgstr "Ḓŭŧƈħ/ŬŞ Şǿřŧ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:19
-msgid "Canadian Transit Number/German Routing Code"
-msgstr "Ƈȧƞȧḓīȧƞ Ŧřȧƞşīŧ Ƞŭḿƀḗř/German Řǿŭŧīƞɠ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:21
-msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "Ķǿřḗȧƞ Ɓȧƞķ ȧƞḓ Ɓřȧƞƈħ/Indonesian Ɓȧƞķ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:23
-msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr "Ɠřḗḗķ ĦḖƁĪƇ/Indonesian Ɓȧƞķ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:25
-msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "ŬĶ/Irish Şǿřŧ Ƈǿḓḗ ǿř ȠẐ Ȧƈƈǿŭƞŧ Ƥřḗƒīẋ ǿř Ȧŭşŧřȧŀīȧƞ ƁŞƁ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:27
-msgid "Austrian/Swiss Bank Code"
-msgstr "Ȧŭşŧřīȧƞ/Swiss Ɓȧƞķ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:29
-msgid "Danish/Swiss Bank Code"
-msgstr "Ḓȧƞīşħ/Swiss Ɓȧƞķ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:31
-msgid "Swiss/Iraqi Bank Code"
-msgstr "Şẇīşş/Iraqi Ɓȧƞķ Ƈǿḓḗ"
-
-#: media/js/devreg/payments-enroll.js:33
-msgid "Iraqi Bank Code"
-msgstr "Īřȧɋī Ɓȧƞķ Ƈǿḓḗ"
-
-#. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:136
-msgid "Detected: {0}"
-msgstr "Ḓḗŧḗƈŧḗḓ: {0}"
-
-#. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
-msgid ""
-"Warning: deleting payment account \"{0}\" will move that associated app to "
-"an incomplete status and it will no longer be available for sale:"
-msgid_plural ""
-"Warning: deleting payment account \"{0}\" will move those associated apps to "
-"an incomplete status and they will no longer be available for sale:"
-msgstr[0] ""
-"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħȧŧ ȧşşǿƈīȧŧḗḓ ȧƥƥ ŧǿ "
-"ȧƞ īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ īŧ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
-msgstr[1] ""
-"Ẇȧřƞīƞɠ: ḓḗŀḗŧīƞɠ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ \"{0}\" ẇīŀŀ ḿǿṽḗ ŧħǿşḗ ȧşşǿƈīȧŧḗḓ ȧƥƥş ŧǿ "
-"ȧƞ īƞƈǿḿƥŀḗŧḗ şŧȧŧŭş ȧƞḓ ŧħḗẏ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧṽȧīŀȧƀŀḗ ƒǿř şȧŀḗ:"
-
-#: media/js/devreg/payments-manage.js:58
-#: media/js/devreg/payments-manage.js:107
-#: media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437
-#: media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
-#: media/js/zamboni/validator.js:194
-#: media/js/zamboni/validator.js:449
-#: media/js/zamboni/validator.js:468
-msgid "Error"
-msgstr "Ḗřřǿř"
-
-#: media/js/devreg/payments-manage.js:59
-#: media/js/devreg/payments-manage.js:108
-msgid "There was a problem contacting the payment server."
-msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ ƥȧẏḿḗƞŧ şḗřṽḗř."
-
-#: media/js/devreg/payments-manage.js:85
-msgid "Authentication error"
-msgstr "Ȧŭŧħḗƞŧīƈȧŧīǿƞ ḗřřǿř"
-
-#: media/js/devreg/payments-manage.js:131
-msgid "You do not currently have any payment accounts."
-msgstr "Ẏǿŭ ḓǿ ƞǿŧ ƈŭřřḗƞŧŀẏ ħȧṽḗ ȧƞẏ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧş."
-
-#: media/js/devreg/suggestions.js:66
-#: media/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:68
-#: media/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:70
-#: media/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/devreg/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "{0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
-msgstr[1] "{0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
-
-#: media/js/devreg/validator.js:71
-#: media/js/zamboni/validator.js:71
-msgid "All tests passed successfully."
-msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
-
-#: media/js/devreg/validator.js:74
-#: media/js/devreg/validator.js:356
-#: media/js/zamboni/validator.js:74
-#: media/js/zamboni/validator.js:367
-msgid "These tests were not run."
-msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
-
-#: media/js/devreg/validator.js:117
-#: media/js/devreg/validator.js:130
-#: media/js/zamboni/validator.js:120
-#: media/js/zamboni/validator.js:133
-msgid "Tests"
-msgstr "Ŧḗşŧş"
-
-#: media/js/devreg/validator.js:192
-#: media/js/zamboni/validator.js:195
-msgid "Warning"
-msgstr "Ẇȧřƞīƞɠ"
-
-#: media/js/devreg/validator.js:279
-#: media/js/zamboni/validator.js:282
-msgid "Compatibility Tests"
-msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Ŧḗşŧş"
-
-#: media/js/devreg/validator.js:327
-#: media/js/zamboni/validator.js:331
-msgid "App failed validation."
-msgstr "Ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
-
-#: media/js/devreg/validator.js:329
-#: media/js/zamboni/validator.js:333
-msgid "App passed validation."
-msgstr "Ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
-
-#: media/js/devreg/validator.js:359
-#: media/js/zamboni/validator.js:370
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} ḗřřǿř"
-msgstr[1] "{0} ḗřřǿřş"
-
-#: media/js/devreg/validator.js:361
-#: media/js/zamboni/validator.js:372
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} ẇȧřƞīƞɠ"
-msgstr[1] "{0} ẇȧřƞīƞɠş"
-
-#: media/js/devreg/validator.js:439
-#: media/js/zamboni/validator.js:451
-msgid "Validation task could not complete or completed with errors"
-msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ ǿř ƈǿḿƥŀḗŧḗḓ ẇīŧħ ḗřřǿřş"
-
-#: media/js/devreg/validator.js:457
-#: media/js/zamboni/validator.js:469
-msgid "Internal server error"
-msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"
-
-#: media/js/devreg/reviewers/buttons.js:38
-msgid "Purchasing"
-msgstr "Ƥŭřƈħȧşīƞɠ"
-
-#: media/js/devreg/reviewers/buttons.js:44
-msgid "Purchased"
-msgstr "Ƥŭřƈħȧşḗḓ"
-
-#: media/js/devreg/reviewers/buttons.js:70
-msgid "Launch"
-msgstr "Ŀȧŭƞƈħ"
-
-#: media/js/devreg/reviewers/editors.js:141
-#: media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
-
-#: media/js/devreg/reviewers/editors.js:191
-#: media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
-
-#: media/js/devreg/reviewers/editors.js:193
-#: media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
-
-#: media/js/devreg/reviewers/editors.js:264
-#: media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
-
-#: media/js/devreg/reviewers/editors.js:275
-#: media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "Ŀǿȧḓīƞɠ&hellip;"
-
-#: media/js/devreg/reviewers/editors.js:280
-#: media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
-
-#: media/js/devreg/reviewers/editors.js:285
-#: media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
-
-#: media/js/devreg/reviewers/editors.js:290
-#: media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
-
-#: media/js/devreg/reviewers/editors.js:315
-#: media/js/zamboni/admin_validation.js:24
-#: media/js/zamboni/devhub.js:1455
-#: media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
-
-#: media/js/devreg/reviewers/editors.js:379
-#: media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
-
-#: media/js/devreg/reviewers/expandable.js:15
-msgid "more..."
-msgstr "ḿǿřḗ..."
-
-#: media/js/devreg/reviewers/expandable.js:18
-msgid "less..."
-msgstr "ŀḗşş..."
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "Şķīƥ ƒǿř ƞǿẇ"
-
-#: media/js/devreg/reviewers/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "Ƥȧẏḿḗƞŧ ƒȧīŀḗḓ. Ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: media/js/devreg/reviewers/reviewers.js:104
-msgid "Packaged App"
-msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ"
-
-#: media/js/devreg/reviewers/reviewers.js:108
-msgid "Privileged App"
-msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ"
-
-#: media/js/devreg/reviewers/reviewers.js:111
-msgid "More Information Requested"
-msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ Řḗɋŭḗşŧḗḓ"
-
-#: media/js/devreg/reviewers/reviewers.js:114
-msgid "Contains Editor Comment"
-msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
-
-#: media/js/devreg/reviewers/reviewers.js:118
-msgid "Premium App"
-msgstr "Ƥřḗḿīŭḿ Ȧƥƥ"
-
-#: media/js/devreg/reviewers/reviewers.js:121
-msgid "Escalated"
-msgstr "Ḗşƈȧŀȧŧḗḓ"
-
-#: media/js/devreg/reviewers/reviewers.js:126
-msgid "Free"
-msgstr "Ƒřḗḗ"
-
-#: media/js/devreg/reviewers/reviewers.js:234
-msgid "Any"
-msgstr "Ȧƞẏ"
-
-#: media/js/devreg/reviewers/reviewers.js:261
-msgid "Approved app: {app}"
-msgstr "Ȧƥƥřǿṽḗḓ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/devreg/reviewers/reviewers.js:264
-msgid "Rejected app: {app}"
-msgstr "Řḗĵḗƈŧḗḓ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/devreg/reviewers/reviewers.js:270
-msgid "Error approving app: {app}"
-msgstr "Ḗřřǿř ȧƥƥřǿṽīƞɠ ȧƥƥ: {ȧƥƥ}"
-
-#: media/js/devreg/reviewers/reviewers.js:271
-msgid "Error rejecting app: {app}"
-msgstr "Ḗřřǿř řḗĵḗƈŧīƞɠ ȧƥƥ: {ȧƥƥ}"
-
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
-msgid "By {0} on {1}"
-msgstr "Ɓẏ {0} ǿƞ {1}"
-
-#: media/js/devreg/reviewers/themes_review.js:174
-#: media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
-
-#: media/js/devreg/reviewers/themes_review.js:175
-#: media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Ƒŀȧɠɠḗḓ"
-
-#: media/js/devreg/reviewers/themes_review.js:176
-#: media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Ḓŭƥŀīƈȧŧḗ"
-
-#: media/js/devreg/reviewers/themes_review.js:177
-#: media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Řḗĵḗƈŧḗḓ"
-
-#: media/js/devreg/reviewers/themes_review.js:178
-#: media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Ȧƥƥřǿṽḗḓ"
 
 #: media/js/impala/collections.js:10
 #: media/js/zamboni/collections.js:729
@@ -742,6 +228,18 @@ msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&hellip;"
 #: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Ƈȧŧḗɠǿřẏ"
+
+#: media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
 
 #: media/js/impala/users.js:33
 msgid "use original"
@@ -1292,6 +790,12 @@ msgstr "Ḓȧŧḗ"
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
+#: media/js/zamboni/admin_validation.js:24
+#: media/js/zamboni/devhub.js:1333
+#: media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
+
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -1311,6 +815,22 @@ msgstr "Ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ ƞǿŧ ȧŀŀǿẇḗḓ."
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
 msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ḿȧŀƒǿřḿḗḓ."
+
+#: media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Ȧƥƥ ħǿşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ řḗȧƈħḗḓ."
+
+#: media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ŭƞƥȧřşȧƀŀḗ."
+
+#: media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş īƞṽȧŀīḓ."
+
+#: media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1468,40 +988,60 @@ msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 msgid "Install App"
 msgstr "Īƞşŧȧŀŀ Ȧƥƥ"
 
-#: media/js/zamboni/devhub.js:246
+#: media/js/zamboni/devhub.js:124
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: media/js/zamboni/devhub.js:517
+#: media/js/zamboni/devhub.js:379
+msgid "Changes Saved"
+msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
+
+#: media/js/zamboni/devhub.js:395
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: media/js/zamboni/devhub.js:809
+#: media/js/zamboni/devhub.js:542
+msgid "There was an error uploading your file."
+msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
+
+#: media/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
 msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
 
-#: media/js/zamboni/devhub.js:812
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{řḗṽīḗẇş} řḗṽīḗẇ"
-msgstr[1] "{řḗṽīḗẇş} řḗṽīḗẇş"
+#: media/js/zamboni/devhub.js:690
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇ"
+msgstr[1] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇş"
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:820
+msgid "Learn more"
+msgstr "Ŀḗȧřƞ ḿǿřḗ"
+
+#: media/js/zamboni/devhub.js:824
+msgid "Example"
+msgstr "Ḗẋȧḿƥŀḗ"
+
+#: media/js/zamboni/devhub.js:1180
+msgid "Image changes being processed"
+msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
+
+#: media/js/zamboni/devhub.js:1361
 msgid "Starting tests..."
 msgstr "Şŧȧřŧīƞɠ ŧḗşŧş..."
 
-#: media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1368
 msgid "Waiting for test results..."
 msgstr "Ẇȧīŧīƞɠ ƒǿř ŧḗşŧ řḗşŭŀŧş..."
 
-#: media/js/zamboni/devhub.js:1492
-#: media/js/zamboni/devhub.js:1497
+#: media/js/zamboni/devhub.js:1370
+#: media/js/zamboni/devhub.js:1375
 msgid "Internal Server Error"
 msgstr "Īƞŧḗřƞȧŀ Şḗřṽḗř Ḗřřǿř"
 
-#: media/js/zamboni/devhub.js:1532
+#: media/js/zamboni/devhub.js:1410
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 
@@ -1525,6 +1065,38 @@ msgstr "Ƒīƞḓīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Ŭƥḓȧŧīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 
+#: media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
+
+#: media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
+
+#: media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
+
+#: media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
+
+#: media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "Ŀǿȧḓīƞɠ&hellip;"
+
+#: media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
+
+#: media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
+
+#: media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
+
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
@@ -1532,6 +1104,10 @@ msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1543,6 +1119,18 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
 msgstr[1] "<b>{0}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ."
+
+#: media/js/zamboni/init.js:32
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. "
+"Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
+
+#: media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1564,6 +1152,62 @@ msgstr[1] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 msgid "All"
 msgstr "Ȧŀŀ"
 
+#: media/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
+
+#: media/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Ƒŀȧɠɠḗḓ"
+
+#: media/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Ḓŭƥŀīƈȧŧḗ"
+
+#: media/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Řḗĵḗƈŧḗḓ"
+
+#: media/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Ȧƥƥřǿṽḗḓ"
+
+#: media/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
+
+#: media/js/zamboni/validator.js:74
+#: media/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
+
+#: media/js/zamboni/validator.js:120
+#: media/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "Ŧḗşŧş"
+
+#: media/js/zamboni/validator.js:194
+#: media/js/zamboni/validator.js:449
+#: media/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "Ḗřřǿř"
+
+#: media/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "Ẇȧřƞīƞɠ"
+
+#: media/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Ŧḗşŧş"
+
+#: media/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "Ȧƥƥ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
+
+#: media/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "Ȧƥƥ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
+
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "Ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
@@ -1572,11 +1216,31 @@ msgstr "Ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 msgid "Add-on passed validation."
 msgstr "Ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
 
+#: media/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ḗřřǿř"
+msgstr[1] "{0} ḗřřǿřş"
+
+#: media/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} ẇȧřƞīƞɠ"
+msgstr[1] "{0} ẇȧřƞīƞɠş"
+
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} ƞǿŧīƈḗ"
 msgstr[1] "{0} ƞǿŧīƈḗş"
+
+#: media/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ ǿř ƈǿḿƥŀḗŧḗḓ ẇīŧħ ḗřřǿřş"
+
+#: media/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

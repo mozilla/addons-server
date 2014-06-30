@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:02-0700\n"
+"POT-Creation-Date: 2014-06-30 09:46-0700\n"
 "PO-Revision-Date: 2014-05-22 20:20+0000\n"
 "Last-Translator: Andrej <ofimaestro.legenda@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,8 +69,7 @@ msgstr[0] "&hellip;i još {0}"
 msgstr[1] "&hellip;i još {0}"
 msgstr[2] "&hellip;i još {0}"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:349 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323 media/js/devreg/devhub.js:143
-#: media/js/zamboni/devhub.js:166
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
 msgstr "Pogledajte potpuni izveštaj pregleda"
 
@@ -78,39 +77,35 @@ msgstr "Pogledajte potpuni izveštaj pregleda"
 msgid "Validating {0}"
 msgstr "Proveravam {0}"
 
-#: media/js/common/upload-addon.js:248
-msgid "Try again"
-msgstr "Pokušajte ponovo"
-
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:272 media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Dobijen je prazan odgovor od servera; status: {0}"
 
-#: media/js/common/upload-addon.js:283 media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Neočekivana greška na serveru tokom provere."
 
-#: media/js/common/upload-addon.js:321 media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Završena provera {0}"
 
-#: media/js/common/upload-addon.js:327
+#: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Vaš dodatak je prošao proveru bez grešaka i {0} porukom."
 msgstr[1] "Vaš dodatak je prošao proveru bez grešaka i {0} poruke."
 msgstr[2] "Vaš dodatak je prošao proveru bez grešaka i {0} poruka."
 
-#: media/js/common/upload-addon.js:332
+#: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Vaš dodatak je prošao proveru bez grešaka ili upozorenja."
 
-#: media/js/common/upload-addon.js:383
+#: media/js/common/upload-addon.js:363
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Neke platforme nisu dostupne za ovaj tip dodatka."
 
-#: media/js/common/upload-addon.js:385
+#: media/js/common/upload-addon.js:365
 msgid "Sorry, no supported platform has been found."
 msgstr "Nažalost nije nađena ni jedna podržana platforma."
 
@@ -134,7 +129,7 @@ msgstr "Video snimci moraju biti u WebM formatu."
 msgid "Your packaged app should end with <code>.zip</code>."
 msgstr "Vaša upakovana aplikacija se mora završavati sa <code>.zip</code>."
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:181 media/js/zamboni/devhub.js:173
+#: media/js/common/upload-packaged-app.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Vaša aplikacija nije prošla proveru zbog {0} greške."
@@ -151,445 +146,6 @@ msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenja."
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
 msgstr "Vaša aplikacija je prošla proveru bez grešaka ili upozorenja."
-
-#: media/js/devreg/apps.js:84
-msgid "The manifest could not be found at the given location."
-msgstr "Manifest nije nađen na izabranoj lokaciji."
-
-#: media/js/devreg/apps.js:87 media/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Host aplikacije nije dostupan."
-
-#: media/js/devreg/apps.js:90 media/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Manifest aplikacije se ne može uporediti."
-
-#: media/js/devreg/apps.js:93 media/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Manifest aplikacije je neispravan."
-
-#: media/js/devreg/apps.js:96
-msgid "App is already installed."
-msgstr "Aplikacija je već instalirana."
-
-#: media/js/devreg/apps.js:100
-msgid "Internal server error."
-msgstr "Serverska greška."
-
-#: media/js/devreg/apps.js:103
-msgid "Internal server error on app installation."
-msgstr "Serverska greška tokom instalacije aplikacije."
-
-#: media/js/devreg/apps.js:106 media/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Instalacija neuspešna. Molimo Vas pokušajte kasnije."
-
-#: media/js/devreg/devhub.js:186
-msgid "Your app failed validation with {0} error and {1} message(s)."
-msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Vaša aplikacija nije prošla proveru - {0} greška i {1} poruka."
-msgstr[1] "Vaša aplikacija nije prošla proveru - {0} greške i {1} poruke."
-msgstr[2] "Vaša aplikacija nije prošla proveru - {0} grešaka i {1} poruka."
-
-#: media/js/devreg/devhub.js:200 media/js/zamboni/devhub.js:187
-msgid "Your app passed validation with no errors and {0} message."
-msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} porukom."
-msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruke."
-msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} poruka."
-
-#: media/js/devreg/devhub.js:205 media/js/zamboni/devhub.js:192
-msgid "Your app passed validation with no errors or messages."
-msgstr "Vaša aplikacija je prošla proveru bez grešaka ili poruka."
-
-#: media/js/devreg/devhub.js:419 media/js/zamboni/devhub.js:501
-msgid "Changes Saved"
-msgstr "Izmene sačuvane"
-
-#: media/js/devreg/devhub.js:435
-msgid "Enter a new team member's email address"
-msgstr "Unesite adresu e-pošte novog člana tima"
-
-#: media/js/devreg/devhub.js:443
-msgid "Refreshed"
-msgstr "Osveženo"
-
-#: media/js/devreg/devhub.js:616 media/js/zamboni/devhub.js:664
-msgid "There was an error uploading your file."
-msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
-
-#: media/js/devreg/devhub.js:886 media/js/zamboni/devhub.js:942
-msgid "Learn more"
-msgstr "Saznajte više"
-
-#: media/js/devreg/devhub.js:890 media/js/zamboni/devhub.js:946
-msgid "Example"
-msgstr "Primer"
-
-#: media/js/devreg/devhub.js:1192 media/js/zamboni/devhub.js:1302
-msgid "Image changes being processed"
-msgstr "Izmene na slici se obrađuju"
-
-#: media/js/devreg/ecosystem.js:26
-msgid "This video requires a browser with support for open video "
-msgstr "Ovaj video zahteva pregledač koji podržava otvorene video snimke "
-
-#: media/js/devreg/ecosystem.js:27
-msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr "ili <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe"
-
-#: media/js/devreg/ecosystem.js:28
-msgid "Flash Player</a>."
-msgstr "Flash Player</a>."
-
-#: media/js/devreg/init.js:35 media/js/zamboni/init.js:32
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
-
-#: media/js/devreg/l10n.js:45 media/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "Ukloni ovu lokalizaciju"
-
-#: media/js/devreg/login.js:73
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Prijava putem Persona sistema je neuspešna. Možda nemate nalog pod tom adresom e-pošte? "
-
-#: media/js/devreg/login.js:78
-msgid "Persona login failed. A server error was encountered."
-msgstr "Prijava putem Persona sistema je neuspešna. Došlo je do greške na serveru."
-
-#: media/js/devreg/lookup-tool.js:65
-msgid "Show All Results"
-msgstr "Prikaži sve rezultate"
-
-#: media/js/devreg/lookup-tool.js:68
-msgid "Over {0} results found, consider refining your search."
-msgstr "Preko {0} rezultata je nađeno, tačnije definišite Bašu pretragu."
-
-#: media/js/devreg/manifest.js:46
-msgid "Requested Permissions:"
-msgstr "Neophodne dozvole:"
-
-#: media/js/devreg/manifest.js:54
-msgid "Certified"
-msgstr "Sertifikovano"
-
-#: media/js/devreg/manifest.js:57
-msgid "Privileged"
-msgstr "Ovlašćeno"
-
-#: media/js/devreg/manifest.js:60
-msgid "Unprivileged"
-msgstr "Neovlašćeno"
-
-#: media/js/devreg/manifest.js:66
-msgid "No reason given"
-msgstr "Nije dat razlog"
-
-#: media/js/devreg/overlay.js:41
-msgid "OK"
-msgstr "U redu"
-
-#: media/js/devreg/payments-enroll.js:9
-msgid "Spanish Banking Code"
-msgstr "Kod banke Španije"
-
-#: media/js/devreg/payments-enroll.js:11
-msgid "Irish Sort Code"
-msgstr "Kod banke Irske"
-
-#: media/js/devreg/payments-enroll.js:13
-msgid "Belgian Sort Code"
-msgstr "Kod banke Belgije"
-
-#: media/js/devreg/payments-enroll.js:15
-msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr "Kod banke Španije/Francuske/Italije/Holandije"
-
-#: media/js/devreg/payments-enroll.js:17
-msgid "Dutch/US Sort Code"
-msgstr "Kod banke Holandije/SAD"
-
-#: media/js/devreg/payments-enroll.js:19
-msgid "Canadian Transit Number/German Routing Code"
-msgstr "Tranzitni broj Kanade/Ruting kod (kod usmeravanja) Nemačke"
-
-#: media/js/devreg/payments-enroll.js:21
-msgid "Korean Bank and Branch/Indonesian Bank Code"
-msgstr "Banka Koreje i kod filijale/Indonezijske banke"
-
-#: media/js/devreg/payments-enroll.js:23
-msgid "Greek HEBIC/Indonesian Bank Code"
-msgstr "HEBIC Grčke/Kod banke Indonezije"
-
-#: media/js/devreg/payments-enroll.js:25
-msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Kod banke Ujedinjenog Kraljevstva/Irske ili prefiks novozelandskog naloga ili Australijski BSB kod"
-
-#: media/js/devreg/payments-enroll.js:27
-msgid "Austrian/Swiss Bank Code"
-msgstr "Kod banke Austrije/Švajcarske"
-
-#: media/js/devreg/payments-enroll.js:29
-msgid "Danish/Swiss Bank Code"
-msgstr "Kod banke Danske/Švajcarske"
-
-#: media/js/devreg/payments-enroll.js:31
-msgid "Swiss/Iraqi Bank Code"
-msgstr "Kod banke Švajcarske/Iraka"
-
-#: media/js/devreg/payments-enroll.js:33
-msgid "Iraqi Bank Code"
-msgstr "Kod banke Iraka"
-
-#. L10n: {0} is the name of a bank detected from the bank account code.
-#: media/js/devreg/payments-enroll.js:136
-msgid "Detected: {0}"
-msgstr "Otkriveno: {0}"
-
-#. L10n: This sentence introduces a list of applications.
-#: media/js/devreg/payments-manage.js:24
-msgid "Warning: deleting payment account \"{0}\" will move that associated app to an incomplete status and it will no longer be available for sale:"
-msgid_plural "Warning: deleting payment account \"{0}\" will move those associated apps to an incomplete status and they will no longer be available for sale:"
-msgstr[0] "Upozorenje: brisanje platnog naloga \"{0}\" će premestiti povezane aplikacije u nedovršeno stanje i više neće biti dostupne za prodaju:"
-msgstr[1] "Upozorenje: brisanje platnog naloga \"{0}\" će premestiti povezane aplikacije u nedovršeno stanje i više neće biti dostupne za prodaju:"
-msgstr[2] "Upozorenje: brisanje platnog naloga \"{0}\" će premestiti povezane aplikacije u nedovršeno stanje i više neće biti dostupne za prodaju:"
-
-#: media/js/devreg/payments-manage.js:58 media/js/devreg/payments-manage.js:107 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94 media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
-msgid "Error"
-msgstr "Greška"
-
-#: media/js/devreg/payments-manage.js:59 media/js/devreg/payments-manage.js:108
-msgid "There was a problem contacting the payment server."
-msgstr "Došlo je do greške prilikom kontaktiranja servera za plaćanje."
-
-#: media/js/devreg/payments-manage.js:85
-msgid "Authentication error"
-msgstr "Greška tokom autentifikacije"
-
-#: media/js/devreg/payments-manage.js:131
-msgid "You do not currently have any payment accounts."
-msgstr "Trenutno nemate ni jedan nalog za plaćanje."
-
-#: media/js/devreg/suggestions.js:66 media/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "Pretraži teme za termin <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:68 media/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "Pretraži aplikacije za termin <b>{0}</b>"
-
-#: media/js/devreg/suggestions.js:70 media/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Pretraži dodatke za termin <b>{0}</b>"
-
-#. L10n: {0} is the number of characters left.
-#: media/js/devreg/utils.js:89
-msgid "{0} character left."
-msgid_plural "{0} characters left."
-msgstr[0] "{0} preostao karakter."
-msgstr[1] "{0} preostala karaktera."
-msgstr[2] "{0} preostalih karaktera."
-
-#: media/js/devreg/validator.js:71 media/js/zamboni/validator.js:71
-msgid "All tests passed successfully."
-msgstr "Svi testovi su uspešno završeni."
-
-#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356 media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
-msgid "These tests were not run."
-msgstr "Ovi testovi nisu izvršeni."
-
-#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130 media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
-msgid "Tests"
-msgstr "Testovi"
-
-#: media/js/devreg/validator.js:192 media/js/zamboni/validator.js:195
-msgid "Warning"
-msgstr "Upozorenje"
-
-#: media/js/devreg/validator.js:279 media/js/zamboni/validator.js:282
-msgid "Compatibility Tests"
-msgstr "Testovi kompatibilnosti"
-
-#: media/js/devreg/validator.js:327 media/js/zamboni/validator.js:331
-msgid "App failed validation."
-msgstr "Aplikacija nije prošla validaciju."
-
-#: media/js/devreg/validator.js:329 media/js/zamboni/validator.js:333
-msgid "App passed validation."
-msgstr "Aplikacija je prošla validaciju."
-
-#: media/js/devreg/validator.js:359 media/js/zamboni/validator.js:370
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} greška"
-msgstr[1] "{0} greške"
-msgstr[2] "{0} grešaka"
-
-#: media/js/devreg/validator.js:361 media/js/zamboni/validator.js:372
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} upozorenje"
-msgstr[1] "{0} upozorenja"
-msgstr[2] "{0} upozorenja"
-
-#: media/js/devreg/validator.js:439 media/js/zamboni/validator.js:451
-msgid "Validation task could not complete or completed with errors"
-msgstr "Zadatak provere nije mogao biti završen ili je završen sa greškama"
-
-#: media/js/devreg/validator.js:457 media/js/zamboni/validator.js:469
-msgid "Internal server error"
-msgstr "Greška na serveru"
-
-#: media/js/devreg/reviewers/buttons.js:38
-msgid "Purchasing"
-msgstr "Kupujem"
-
-#: media/js/devreg/reviewers/buttons.js:44
-msgid "Purchased"
-msgstr "Kupljeno"
-
-#: media/js/devreg/reviewers/buttons.js:70
-msgid "Launch"
-msgstr "Pokreni"
-
-#: media/js/devreg/reviewers/editors.js:141 media/js/zamboni/editors.js:162
-msgid "{name} was viewing this page first."
-msgstr "{name} je prvi gledao ovu stranicu."
-
-#: media/js/devreg/reviewers/editors.js:191 media/js/zamboni/editors.js:212
-msgid "Receipt checked by app."
-msgstr "Potvrda proverena od strane aplikacije."
-
-#: media/js/devreg/reviewers/editors.js:193 media/js/zamboni/editors.js:214
-msgid "Receipt was not checked by app."
-msgstr "Potvrda nije proverena od strane aplikacije."
-
-#: media/js/devreg/reviewers/editors.js:264 media/js/zamboni/editors.js:285
-msgid "{name} was viewing this add-on first."
-msgstr "{name} je prvi pregledavao ovaj dodatak."
-
-#: media/js/devreg/reviewers/editors.js:275 media/js/zamboni/editors.js:296
-msgid "Loading&hellip;"
-msgstr "Učitavam&hellip;"
-
-#: media/js/devreg/reviewers/editors.js:280 media/js/zamboni/editors.js:301
-msgid "Version Notes"
-msgstr "Beleške o verziji"
-
-#: media/js/devreg/reviewers/editors.js:285 media/js/zamboni/editors.js:306
-msgid "Notes for Reviewers"
-msgstr "Beleške za recenzente"
-
-#: media/js/devreg/reviewers/editors.js:290 media/js/zamboni/editors.js:311
-msgid "No version notes found"
-msgstr "Nije nađena ni jedna beleška o verziji"
-
-#: media/js/devreg/reviewers/editors.js:315 media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1455 media/js/zamboni/editors.js:336
-msgid "Select an application first"
-msgstr "Prvo izaberite aplikaciju"
-
-#: media/js/devreg/reviewers/editors.js:379 media/js/zamboni/editors.js:486
-msgid "Error loading translation"
-msgstr "Greška pri učitavanju prevoda"
-
-#: media/js/devreg/reviewers/expandable.js:15
-msgid "more..."
-msgstr "još..."
-
-#: media/js/devreg/reviewers/expandable.js:18
-msgid "less..."
-msgstr "manje..."
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:6
-msgid "Keep review; remove flags"
-msgstr "Zadrži recenziju; ukloni oznake"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:8
-msgid "Delete review"
-msgstr "Obriši recenziju"
-
-#: media/js/devreg/reviewers/mobile_review_actions.js:9
-msgid "Skip for now"
-msgstr "Preskoči za sada"
-
-#: media/js/devreg/reviewers/payments.js:69
-msgid "Payment failed. Try again later."
-msgstr "Plaćanje neuspešno. Pokušajte kasnije."
-
-#: media/js/devreg/reviewers/reviewers.js:104
-msgid "Packaged App"
-msgstr "Spakovana aplikacija"
-
-#: media/js/devreg/reviewers/reviewers.js:108
-msgid "Privileged App"
-msgstr "Ovlašćena aplikacija"
-
-#: media/js/devreg/reviewers/reviewers.js:111
-msgid "More Information Requested"
-msgstr "Zahteva se više informacija"
-
-#: media/js/devreg/reviewers/reviewers.js:114
-msgid "Contains Editor Comment"
-msgstr "Sadrži komentar urednika"
-
-#: media/js/devreg/reviewers/reviewers.js:118
-msgid "Premium App"
-msgstr "Premijum aplikacija"
-
-#: media/js/devreg/reviewers/reviewers.js:121
-msgid "Escalated"
-msgstr "Eskalirano"
-
-#: media/js/devreg/reviewers/reviewers.js:126
-msgid "Free"
-msgstr "Besplatno"
-
-#: media/js/devreg/reviewers/reviewers.js:234
-msgid "Any"
-msgstr "Bilo koju"
-
-#: media/js/devreg/reviewers/reviewers.js:261
-msgid "Approved app: {app}"
-msgstr "Odobrena aplikacija: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:264
-msgid "Rejected app: {app}"
-msgstr "Odbijena aplikacija: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:270
-msgid "Error approving app: {app}"
-msgstr "Greška prilikom odobravanja aplikacije: {app}"
-
-#: media/js/devreg/reviewers/reviewers.js:271
-msgid "Error rejecting app: {app}"
-msgstr "Greška prilikom odbijanja aplikacije: {app} "
-
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
-#: media/js/devreg/reviewers/reviewers_commbadge.js:63
-msgid "By {0} on {1}"
-msgstr "Od {0} dana {1}"
-
-#: media/js/devreg/reviewers/themes_review.js:174 media/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Zahtevane informacije"
-
-#: media/js/devreg/reviewers/themes_review.js:175 media/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Označeno"
-
-#: media/js/devreg/reviewers/themes_review.js:176 media/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Duplikat"
-
-#: media/js/devreg/reviewers/themes_review.js:177 media/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Odbijeno"
-
-#: media/js/devreg/reviewers/themes_review.js:178 media/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Odobreno"
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -659,6 +215,18 @@ msgstr "Ažuriram rezultate&hellip;"
 #: media/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Kategorija"
+
+#: media/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Pretraži teme za termin <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Pretraži aplikacije za termin <b>{0}</b>"
+
+#: media/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Pretraži dodatke za termin <b>{0}</b>"
 
 #: media/js/impala/users.js:33
 msgid "use original"
@@ -1178,6 +746,10 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostali"
 
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333 media/js/zamboni/editors.js:336
+msgid "Select an application first"
+msgstr "Prvo izaberite aplikaciju"
+
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -1199,6 +771,22 @@ msgstr "Nije dozvoljena instalacija aplikacije."
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
 msgstr "Manifest aplikacije je u pogrešnom formatu."
+
+#: media/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Host aplikacije nije dostupan."
+
+#: media/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Manifest aplikacije se ne može uporediti."
+
+#: media/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Manifest aplikacije je neispravan."
+
+#: media/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Instalacija neuspešna. Molimo Vas pokušajte kasnije."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
@@ -1343,41 +931,61 @@ msgstr "Prekini praćenje"
 msgid "Install App"
 msgstr "Instaliraj aplikaciju"
 
-#: media/js/zamboni/devhub.js:246
+#: media/js/zamboni/devhub.js:124
 msgid "Your browser does not support the video tag"
 msgstr "Vaš pregledač ne podržava oznake video snimaka"
 
-#: media/js/zamboni/devhub.js:517
+#: media/js/zamboni/devhub.js:379
+msgid "Changes Saved"
+msgstr "Izmene sačuvane"
+
+#: media/js/zamboni/devhub.js:395
 msgid "Enter a new author's email address"
 msgstr "Unesite adresu e-pošte novog autora"
 
-#: media/js/zamboni/devhub.js:809
+#: media/js/zamboni/devhub.js:542
+msgid "There was an error uploading your file."
+msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
+
+#: media/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} datoteka"
 msgstr[1] "{files} datoteke"
 msgstr[2] "{files} datoteka"
 
-#: media/js/zamboni/devhub.js:812
-msgid "{reviews} review"
-msgid_plural "{reviews} reviews"
-msgstr[0] "{reviews} recenzija"
-msgstr[1] "{reviews} recenzije"
-msgstr[2] "{reviews} recenzija"
+#: media/js/zamboni/devhub.js:690
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-#: media/js/zamboni/devhub.js:1483
+#: media/js/zamboni/devhub.js:820
+msgid "Learn more"
+msgstr "Saznajte više"
+
+#: media/js/zamboni/devhub.js:824
+msgid "Example"
+msgstr "Primer"
+
+#: media/js/zamboni/devhub.js:1180
+msgid "Image changes being processed"
+msgstr "Izmene na slici se obrađuju"
+
+#: media/js/zamboni/devhub.js:1361
 msgid "Starting tests..."
 msgstr "Pokrećem testova..."
 
-#: media/js/zamboni/devhub.js:1490
+#: media/js/zamboni/devhub.js:1368
 msgid "Waiting for test results..."
 msgstr "Čekam rezultate testova..."
 
-#: media/js/zamboni/devhub.js:1492 media/js/zamboni/devhub.js:1497
+#: media/js/zamboni/devhub.js:1370 media/js/zamboni/devhub.js:1375
 msgid "Internal Server Error"
 msgstr "Serverska greška"
 
-#: media/js/zamboni/devhub.js:1532
+#: media/js/zamboni/devhub.js:1410
 msgid "Must be a valid e-mail address."
 msgstr "Adresa e-pošte mora biti ispravna."
 
@@ -1397,6 +1005,38 @@ msgstr "Tražim preporuke&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Ažuriram preporuke&hellip;"
 
+#: media/js/zamboni/editors.js:162
+msgid "{name} was viewing this page first."
+msgstr "{name} je prvi gledao ovu stranicu."
+
+#: media/js/zamboni/editors.js:212
+msgid "Receipt checked by app."
+msgstr "Potvrda proverena od strane aplikacije."
+
+#: media/js/zamboni/editors.js:214
+msgid "Receipt was not checked by app."
+msgstr "Potvrda nije proverena od strane aplikacije."
+
+#: media/js/zamboni/editors.js:285
+msgid "{name} was viewing this add-on first."
+msgstr "{name} je prvi pregledavao ovaj dodatak."
+
+#: media/js/zamboni/editors.js:296
+msgid "Loading&hellip;"
+msgstr "Učitavam&hellip;"
+
+#: media/js/zamboni/editors.js:301
+msgid "Version Notes"
+msgstr "Beleške o verziji"
+
+#: media/js/zamboni/editors.js:306
+msgid "Notes for Reviewers"
+msgstr "Beleške za recenzente"
+
+#: media/js/zamboni/editors.js:311
+msgid "No version notes found"
+msgstr "Nije nađena ni jedna beleška o verziji"
+
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
 msgstr "Prosečne recenzije"
@@ -1404,6 +1044,10 @@ msgstr "Prosečne recenzije"
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
 msgstr "Broj recenzija"
+
+#: media/js/zamboni/editors.js:486
+msgid "Error loading translation"
+msgstr "Greška pri učitavanju prevoda"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1416,6 +1060,14 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Još <b>{0}</b> karakter."
 msgstr[1] "Još <b>{0}</b> karaktera."
 msgstr[2] "Još <b>{0}</b> karaktera."
+
+#: media/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
+
+#: media/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Ukloni ovu lokalizaciju"
 
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
@@ -1437,6 +1089,58 @@ msgstr[2] "Ostalo je još najmanje {0} karatera."
 msgid "All"
 msgstr "Sve"
 
+#: media/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Zahtevane informacije"
+
+#: media/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Označeno"
+
+#: media/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Duplikat"
+
+#: media/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Odbijeno"
+
+#: media/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Odobreno"
+
+#: media/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "Svi testovi su uspešno završeni."
+
+#: media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "Ovi testovi nisu izvršeni."
+
+#: media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "Testovi"
+
+#: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "Greška"
+
+#: media/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "Upozorenje"
+
+#: media/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "Testovi kompatibilnosti"
+
+#: media/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "Aplikacija nije prošla validaciju."
+
+#: media/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "Aplikacija je prošla validaciju."
+
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
 msgstr "Dodatak nije prošao proveru."
@@ -1445,12 +1149,34 @@ msgstr "Dodatak nije prošao proveru."
 msgid "Add-on passed validation."
 msgstr "Dodatak je prošao proveru."
 
+#: media/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} greška"
+msgstr[1] "{0} greške"
+msgstr[2] "{0} grešaka"
+
+#: media/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} upozorenje"
+msgstr[1] "{0} upozorenja"
+msgstr[2] "{0} upozorenja"
+
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} obaveštenje"
 msgstr[1] "{0} obaveštenja"
 msgstr[2] "{0} obaveštenja"
+
+#: media/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "Zadatak provere nije mogao biti završen ili je završen sa greškama"
+
+#: media/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "Greška na serveru"
 
 #: media/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"

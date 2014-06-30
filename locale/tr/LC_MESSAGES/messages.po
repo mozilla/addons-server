@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 17:02-0700\n"
+"POT-Creation-Date: 2014-06-30 09:46-0700\n"
 "PO-Revision-Date: 2013-12-10 07:51+0000\n"
 "Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -24,7 +24,7 @@ msgstr "Şimdi İndir"
 
 # 88%
 # 100%
-#: apps/addons/buttons.py:187 templates/global/menu_links.html:19
+#: apps/addons/buttons.py:187
 msgid "Download"
 msgstr "İndirme"
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Not Reviewed"
 msgstr "İncelenmemiş"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:119 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:230 apps/browse/views.py:439
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -158,7 +158,7 @@ msgstr "Son Eklenenler"
 
 # 75%
 # 100%
-#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:18 apps/search/forms.py:95
+#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:17 apps/search/forms.py:92
 msgid "Recently Updated"
 msgstr "Son Güncellenenler"
 
@@ -262,7 +262,7 @@ msgstr "İhtiyaçlarınızı karşılaması için Firefox'u özelleştiren ve ge
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:166 apps/devhub/templates/devhub/nav.html:45
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
 #: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
-#: apps/search/templates/search/personas.html:39 templates/menu_links.html:9 templates/global/menu_links.html:38
+#: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Temalar"
 
@@ -465,8 +465,7 @@ msgstr "Suistimal Raporları"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/global/copyright.html:5 templates/mobile/base_addons.html:82
-#: templates/mobile/base_apps.html:71
+#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:76
 msgid "Privacy Policy"
 msgstr "Gizlilik Politikası"
 
@@ -493,7 +492,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Geliştiricinin Yorumu"
 
-#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:268
+#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
 msgstr "Geliştirme Kanalı"
 
@@ -505,7 +504,7 @@ msgstr ""
 "Geliştirme Kanalı, bu ekletinin deneysel bir yeni sürümünü, genel kullanıcılara açılmadan önce test etmenize olanak tanır. Geliştirme sürümünü bir kez yükledikten sonra bu kanaldaki güncellemeleri "
 "almaya devam edersiniz."
 
-#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:278
+#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
 msgstr "Geliştirme sürümünü yükle"
 
@@ -517,7 +516,7 @@ msgstr ""
 "<strong>Uyarı:</strong> Bu eklentinin geliştirme sürümleri Mozilla tarafından incelenmemiştir. Geliştirme sürümünü bir kez yükledikten sonra bu geliştiricinin geliştirme güncellemelerini almaya "
 "devam edeceksiniz. Gelişme güncellemelerini durdurmak için, yukarıki linkten varsayılan sürümü tekrar yükleyin."
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:287
+#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "Sürüm {0}:"
 
@@ -530,7 +529,7 @@ msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr ""
 
-#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:111
+#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78
 msgid "by"
@@ -552,7 +551,7 @@ msgstr "Bu eklenti, bir yönetici tarafından devre dışı bırakılmıştır."
 msgid "End-User License Agreement for {0}"
 msgstr "{0} Son Kullanıcı Lisans Anlaşması"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Son Kullanıcı Lisans Anlaşması"
@@ -871,7 +870,7 @@ msgstr ""
 "Mobil Firefox'unuzda {0} olsun ister misiniz? Doğrudan telefonunuza yüklemek için bu QR kodunu tarayın. (Bir QR okuyucusuna ihtiyacınız olacak. Yüklü bir tane yoksa telefonunuz marketinde arayın.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:332
+#: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
 msgstr "Suistimal rapor et"
 
@@ -1016,84 +1015,84 @@ msgstr[0] ""
 msgid "View statistics"
 msgstr "İstatistikleri göster"
 
-#: apps/addons/templates/addons/impala/details.html:89
+#: apps/addons/templates/addons/impala/details.html:87
 msgid "Manage"
 msgstr "Yönet"
 
 #. {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:101
+#: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:108 apps/addons/templates/addons/impala/listing/items.html:14
+#: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "Yeniden Başlatmasız"
 
-#: apps/addons/templates/addons/impala/details.html:136
+#: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Geliştiriciyle Tanışın: <a href=\"%(url)s\">%(name)s</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:146
+#: apps/addons/templates/addons/impala/details.html:144
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "{0} neden geliştirildi? Bu eklentiyi gelecekte neler bekliyor?"
 
 #. {0} is an index.
-#: apps/addons/templates/addons/impala/details.html:165
+#: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:191
+#: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
 msgstr "Eklentinin web sitesi"
 
-#: apps/addons/templates/addons/impala/details.html:194
+#: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
 msgstr "Destek sitesi"
 
-#: apps/addons/templates/addons/impala/details.html:198
+#: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
 msgstr "E-posta desteği"
 
-#: apps/addons/templates/addons/impala/details.html:203 apps/devhub/models.py:373
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
 msgid "Version {0}"
 msgstr "Sürüm {0}"
 
-#: apps/addons/templates/addons/impala/details.html:203
+#: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
 msgstr "Bilgi"
 
-#: apps/addons/templates/addons/impala/details.html:209
+#: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> altında yayımlanmıştır"
 
-#: apps/addons/templates/addons/impala/details.html:210 apps/addons/templates/addons/impala/details.html:215 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:402 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Özel Lisans"
 
-#: apps/addons/templates/addons/impala/details.html:214
+#: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
 
-#: apps/addons/templates/addons/impala/details.html:226
+#: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
 msgstr "Bu eklenti hakkında"
 
-#: apps/addons/templates/addons/impala/details.html:242
+#: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
 msgstr "Geliştiricinin Yorumları"
 
-#: apps/addons/templates/addons/impala/details.html:252
+#: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
 msgstr "Sürüm Bilgisi"
 
-#: apps/addons/templates/addons/impala/details.html:259
+#: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
 msgstr "Tüm sürüm geçmişini görüntüle"
 
-#: apps/addons/templates/addons/impala/details.html:271
+#: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1101,11 +1100,11 @@ msgstr ""
 "Geliştirme Kanalı, bu eklentinin deneysel bir yeni sürümünü genel kullamına açılmadan önce test etmenizi sağlar. Geliştirme sürümünü bir kez kurduktan sonra bu kanaldaki güncellemeleri almaya devam "
 "edeceksiniz. Geliştirme güncellemelerini almayı durdurmak için yukarıdaki bağlantıdan varsayılan sürümü tekrar yükleyin."
 
-#: apps/addons/templates/addons/impala/details.html:282
+#: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Uyarı:</strong> Bu eklentinin geliştirme sürümleri Mozilla tarafından incelenmemiştir."
 
-#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
+#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -1256,7 +1255,7 @@ msgstr "Devamını Oku"
 msgid "Users"
 msgstr "Kullanıcı"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:94
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:91
 msgid "Weekly Downloads"
 msgstr "Haftalık İndirme"
 
@@ -1301,7 +1300,7 @@ msgstr "%(name)s kurulumuna devam etmek için aşağıdaki Son Kullanıcı Lisan
 msgid "Accept"
 msgstr "Kabul ediyorum"
 
-#: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:53
+#: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:47
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr "Eklentileri kurmak için Firefox'a ihtiyacınız var. <a href=\"http://mozilla.com/mobile\">Daha fazla bilgi alın&nbsp;&raquo;</a>"
 
@@ -1311,8 +1310,8 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} Eklentileri ana sayfasına dön"
 
 #: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
-#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/global/menu_links.html:33 templates/global/mobile/header.html:6
-#: templates/impala/header_title.html:9 templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:47
+#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
+#: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:42
 msgid "Add-ons"
 msgstr "Eklentiler"
 
@@ -1349,13 +1348,13 @@ msgstr "Tüm popüler eklentileri göster"
 msgid "More Add-ons"
 msgstr "Daha Fazla Eklenti"
 
-#: apps/addons/templates/addons/mobile/home.html:68 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:16
+#: apps/addons/templates/addons/mobile/home.html:68 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:15
 msgid "Highest Rated"
 msgstr "En Yüksek Puanlı"
 
 # 100%
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:89
-#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:17 apps/search/forms.py:91
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:88
 msgid "Newest"
 msgstr "En Yeni"
 
@@ -1379,45 +1378,45 @@ msgstr "Profilim"
 msgid "Account Settings"
 msgstr "Hesap Ayarları"
 
-#: apps/amo/context_processors.py:73 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
+#: apps/amo/context_processors.py:72 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "Koleksiyonlarım"
 
-#: apps/amo/context_processors.py:78 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
+#: apps/amo/context_processors.py:77 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
 msgstr "Favorilerim"
 
-#: apps/amo/context_processors.py:83 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
+#: apps/amo/context_processors.py:82 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
 msgstr "Çıkış yap"
 
-#: apps/amo/context_processors.py:88 apps/devhub/templates/devhub/addons/dashboard.html:4
+#: apps/amo/context_processors.py:87 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
 msgstr ""
 
-#: apps/amo/context_processors.py:91 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
+#: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
 msgstr "Yeni Eklenti Gönder"
 
-#: apps/amo/context_processors.py:93 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
+#: apps/amo/context_processors.py:92 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr ""
 
-#: apps/amo/context_processors.py:95 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
-#: templates/menu_links.html:14 templates/global/menu_links.html:44
+#: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
+#: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "Geliştirici Merkezi"
 
-#: apps/amo/context_processors.py:100 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:99 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Editör Araçları"
 
-#: apps/amo/context_processors.py:103
+#: apps/amo/context_processors.py:102
 msgid "Localizer Tools"
 msgstr "Çevirmen Araçları"
 
-#: apps/amo/context_processors.py:107
+#: apps/amo/context_processors.py:106
 msgid "Admin Tools"
 msgstr "Yönetici Araçları"
 
@@ -1435,7 +1434,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:24 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2 apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3 apps/stats/templates/stats/stats.html:77
-#: templates/menu_links.html:12 templates/global/menu_links.html:42
+#: templates/menu_links.html:12
 msgid "Collections"
 msgstr "Koleksiyonlar"
 
@@ -1943,7 +1942,7 @@ msgid ""
 msgstr ""
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
-#: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:90
+#: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
 msgid "Top Rated"
 msgstr "Yüksek Puanlılar"
 
@@ -1953,7 +1952,7 @@ msgstr "Keşfedin"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:160 templates/menu_links.html:8 templates/global/menu_links.html:37
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:160 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "Uzantılar"
 
@@ -1984,7 +1983,6 @@ msgid "Add-ons for Mobile"
 msgstr "Mobil Eklentiler"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:163 templates/menu_links.html:10
-#: templates/global/menu_links.html:40
 msgid "Search Tools"
 msgstr "Arama Araçları"
 
@@ -2176,11 +2174,11 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1086
+#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1081
 msgid "Icons must be either PNG or JPG."
 msgstr "Simgeler PNG veya JPG olmalıdır."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1104 apps/users/forms.py:391
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1099 apps/users/forms.py:391
 msgid "Please use images smaller than %dMB."
 msgstr "Lütfen %d MB'tan küçük resimler kullanın."
 
@@ -2225,8 +2223,8 @@ msgid "Remove from favorites"
 msgstr "Favorilerden kaldır"
 
 #: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:68
-#: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:19
-#: apps/search/forms.py:93 apps/users/templates/users/vcard.html:5
+#: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
+#: apps/search/forms.py:90 apps/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr "İsim"
 
@@ -2313,11 +2311,11 @@ msgstr "veya <a id=\"collections-new-cancel\" href=\"#\">iptal et</a>"
 msgid "To rate collections, you must have an add-ons account."
 msgstr "Koleksiyonları puanlamak için eklentiler hesabınız olmalı."
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:19 templates/base.html:134 templates/impala/base.html:178
+#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:134 templates/impala/base.html:178
 msgid "Create an Add-ons Account"
 msgstr "Eklentiler hesabı oluştur"
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:23 templates/base.html:137 templates/impala/base.html:181
+#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:137 templates/impala/base.html:181
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "veya <a href=\"%(login)s\">hesabınıza giriş yapın</a>"
 
@@ -2806,12 +2804,12 @@ msgstr "Arama araçları ve aramayla ilgili uzantılar"
 msgid "Search tools"
 msgstr "Arama araçları"
 
-#: apps/browse/views.py:54 apps/browse/views.py:64 apps/search/forms.py:89
+#: apps/browse/views.py:54 apps/browse/views.py:64 apps/search/forms.py:86
 msgid "Most Users"
 msgstr ""
 
 #: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:286 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
-#: apps/search/forms.py:96
+#: apps/search/forms.py:93
 msgid "Up & Coming"
 msgstr "Yükselişte"
 
@@ -2838,7 +2836,7 @@ msgstr "{0}: Öne Çıkan Eklentiler"
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
-#: templates/menu_links.html:7 templates/global/menu_links.html:36
+#: templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "Öne Çıkan Eklentiler"
 
@@ -3233,7 +3231,7 @@ msgstr "Sorun"
 msgid "No reports found."
 msgstr "Rapor bulunamadı."
 
-#: apps/constants/applications.py:18 templates/global/header.html:9
+#: apps/constants/applications.py:18
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3249,7 +3247,7 @@ msgstr "SeaMonkey"
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: apps/constants/applications.py:89 templates/global/menu_links.html:17
+#: apps/constants/applications.py:89
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -3265,7 +3263,7 @@ msgstr "Mozilla"
 msgid "Unknown"
 msgstr ""
 
-#: apps/constants/applications.py:154 templates/global/menu_links.html:3 templates/global/mobile/header.html:5 templates/mobile/header.html:5
+#: apps/constants/applications.py:154 templates/mobile/header.html:5
 msgid "Desktop"
 msgstr "Masaüstü"
 
@@ -3351,7 +3349,7 @@ msgstr "Geliştirici"
 msgid "Viewer"
 msgstr "Viewer"
 
-#: apps/constants/base.py:124 templates/global/menu_links.html:49 templates/global/mobile/header.html:7 templates/mobile/header.html:7
+#: apps/constants/base.py:124 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Destek"
 
@@ -3999,123 +3997,123 @@ msgstr ""
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: apps/devhub/views.py:170
+#: apps/devhub/views.py:167
 msgid "All My Add-ons"
 msgstr "Tüm Eklentilerim"
 
-#: apps/devhub/views.py:197
+#: apps/devhub/views.py:194
 msgid "All Activity"
 msgstr ""
 
-#: apps/devhub/views.py:198
+#: apps/devhub/views.py:195
 msgid "Add-on Updates"
 msgstr "Eklenti Güncellemeleri"
 
-#: apps/devhub/views.py:199
+#: apps/devhub/views.py:196
 msgid "Add-on Status"
 msgstr "Eklenti Durumu"
 
 # 75%
 # 100%
-#: apps/devhub/views.py:200
+#: apps/devhub/views.py:197
 #, fuzzy
 msgid "User Collections"
 msgstr "My Collections"
 
-#: apps/devhub/views.py:201 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+#: apps/devhub/views.py:198 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
 msgstr "Kullanıcı İncelemeleri"
 
-#: apps/devhub/views.py:314 apps/devhub/views.py:318 apps/devhub/views.py:428 apps/devhub/views.py:457 apps/devhub/views.py:508 apps/devhub/views.py:1176
+#: apps/devhub/views.py:311 apps/devhub/views.py:315 apps/devhub/views.py:425 apps/devhub/views.py:454 apps/devhub/views.py:505 apps/devhub/views.py:1171
 msgid "Changes successfully saved."
 msgstr "Değişiklikler başarıyla kaydedildi."
 
-#: apps/devhub/views.py:321 apps/devhub/views.py:1561
+#: apps/devhub/views.py:318 apps/devhub/views.py:1556
 msgid "Please check the form for errors."
 msgstr ""
 
-#: apps/devhub/views.py:333
+#: apps/devhub/views.py:330
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
-#: apps/devhub/views.py:342
+#: apps/devhub/views.py:339
 msgid "Theme deleted."
 msgstr ""
 
-#: apps/devhub/views.py:342
+#: apps/devhub/views.py:339
 msgid "Add-on deleted."
 msgstr "Eklenti silindi."
 
-#: apps/devhub/views.py:347
+#: apps/devhub/views.py:344
 msgid "Password was incorrect. Theme was not deleted."
 msgstr ""
 
-#: apps/devhub/views.py:351
+#: apps/devhub/views.py:348
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr ""
 
-#: apps/devhub/views.py:463
+#: apps/devhub/views.py:460
 msgid "There were errors in your submission."
 msgstr ""
 
-#: apps/devhub/views.py:527
+#: apps/devhub/views.py:524
 msgid "Validate Add-on"
 msgstr "Eklentiyi doğrula"
 
-#: apps/devhub/views.py:536
+#: apps/devhub/views.py:533
 msgid "Check Add-on Compatibility"
 msgstr "Eklenti uyumluluğunu denetle"
 
-#: apps/devhub/views.py:658
+#: apps/devhub/views.py:653
 msgid "There was an error with the submission."
 msgstr "Gönderimde bir hata oluştu."
 
-#: apps/devhub/views.py:752
+#: apps/devhub/views.py:747
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-#: apps/devhub/views.py:1088 apps/users/forms.py:386
+#: apps/devhub/views.py:1083 apps/users/forms.py:386
 msgid "Images must be either PNG or JPG."
 msgstr "Resimler PNG veya JPG formatında olmalıdır."
 
-#: apps/devhub/views.py:1092
+#: apps/devhub/views.py:1087
 msgid "Icons cannot be animated."
 msgstr "Simgeler hareketli olamaz."
 
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1089
 msgid "Images cannot be animated."
 msgstr "Resimler hareketli olamaz."
 
-#: apps/devhub/views.py:1107
+#: apps/devhub/views.py:1102
 msgid "Images cannot be larger than %dKB."
 msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1117
+#: apps/devhub/views.py:1112
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
 
-#: apps/devhub/views.py:1121
+#: apps/devhub/views.py:1116
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: apps/devhub/views.py:1215
+#: apps/devhub/views.py:1210
 msgid "Version %s disabled."
 msgstr ""
 
-#: apps/devhub/views.py:1218
+#: apps/devhub/views.py:1213
 msgid "Version %s deleted."
 msgstr "%s sürümü silindi."
 
-#: apps/devhub/views.py:1228
+#: apps/devhub/views.py:1223
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1607
+#: apps/devhub/views.py:1602
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1608
+#: apps/devhub/views.py:1603
 msgid "Full Review Requested."
 msgstr ""
 
@@ -5680,7 +5678,7 @@ msgid "This blog post describes what a bad first-run experience means for users,
 msgstr ""
 
 # This is the name/category for a group of tests
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77 templates/global/menu_links.html:6
+#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
 #, fuzzy
 msgid "Security"
 msgstr "Security"
@@ -8233,7 +8231,7 @@ msgid "Validation"
 msgstr "Validation"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
-#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6 templates/global/menu_links.html:7
+#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
 #, fuzzy
 msgid "Performance"
 msgstr "Performance"
@@ -11034,7 +11032,7 @@ msgstr ""
 # 75%
 # 78%
 # 100%
-#: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13 templates/global/menu_links.html:43 templates/impala/header_title.html:13
+#: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13 templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
 msgstr "Mobil Eklentiler"
 
@@ -11526,45 +11524,45 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] ""
 
-#: apps/search/forms.py:13
+#: apps/search/forms.py:12
 #, fuzzy
 msgid "Most popular this week"
 msgstr "Most popular this week"
 
-#: apps/search/forms.py:14
+#: apps/search/forms.py:13
 #, fuzzy
 msgid "Most popular this month"
 msgstr "Most popular this month"
 
-#: apps/search/forms.py:15
+#: apps/search/forms.py:14
 #, fuzzy
 msgid "Most popular all time"
 msgstr "Most popular all time"
 
-#: apps/search/forms.py:25
+#: apps/search/forms.py:24
 #, fuzzy
 msgid "search for add-ons"
 msgstr "search for add-ons"
 
-#: apps/search/forms.py:26
+#: apps/search/forms.py:25
 #, fuzzy
 msgid "search for collections"
 msgstr "search for collections"
 
-#: apps/search/forms.py:27
+#: apps/search/forms.py:26
 msgid "search for themes"
 msgstr ""
 
-#: apps/search/forms.py:28
+#: apps/search/forms.py:27
 msgid "search for apps"
 msgstr ""
 
-#: apps/search/forms.py:53
+#: apps/search/forms.py:50
 #, fuzzy
 msgid "Sort By"
 msgstr "Sort By"
 
-#: apps/search/forms.py:88
+#: apps/search/forms.py:85
 msgid "Relevance"
 msgstr ""
 
@@ -11807,7 +11805,7 @@ msgstr "Bu eklentiyi paylaş"
 msgid "Share this Collection"
 msgstr "Bu koleksiyonu paylaş"
 
-#: apps/stats/models.py:227
+#: apps/stats/models.py:266
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 
@@ -12364,124 +12362,124 @@ msgstr ""
 msgid "User Notifications"
 msgstr "Kullanıcı Bildirimleri"
 
-#: apps/users/views.py:89
+#: apps/users/views.py:88
 msgid "An email address is required."
 msgstr ""
 
-#: apps/users/views.py:94
+#: apps/users/views.py:93
 msgid "A user with that email address does not exist."
 msgstr ""
 
-#: apps/users/views.py:111
+#: apps/users/views.py:110
 msgid "Invalid confirmation code!"
 msgstr "Geçersiz onay kodu!"
 
-#: apps/users/views.py:116
+#: apps/users/views.py:115
 msgid "Successfully verified!"
 msgstr "Başarıyla doğrulandı!"
 
 # %1 is the user's email address
-#: apps/users/views.py:132 apps/users/views.py:649
+#: apps/users/views.py:131 apps/users/views.py:641
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "{0} adresinize hesabınızı doğrulamak için bir e-posta gönderildi. Oturum açmadan önce e-postanıza gelen bağlantıya tıklayarak hesabınızı etkinleştirmeniz gerekmektedir."
 
-#: apps/users/views.py:136 apps/users/views.py:653
+#: apps/users/views.py:135 apps/users/views.py:645
 msgid "Confirmation Email Sent"
 msgstr "Onay e-postası gönderildi"
 
-#: apps/users/views.py:147
+#: apps/users/views.py:146
 msgid "Profile Deleted"
 msgstr "Profil silindi"
 
-#: apps/users/views.py:168
+#: apps/users/views.py:167
 msgid "Photo Deleted"
 msgstr "Fotoğraf silindi"
 
-#: apps/users/views.py:187 apps/users/views.py:247
+#: apps/users/views.py:186 apps/users/views.py:239
 msgid "Profile Updated"
 msgstr "Profil güncellendi"
 
-#: apps/users/views.py:202
+#: apps/users/views.py:194
 msgid "Email Confirmation Sent"
 msgstr "E-posta doğrulaması gönderildi"
 
-#: apps/users/views.py:203
+#: apps/users/views.py:195
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 msgstr ""
 
-#: apps/users/views.py:215
+#: apps/users/views.py:207
 msgid "Please confirm your email address change at %s"
 msgstr ""
 
-#: apps/users/views.py:227
+#: apps/users/views.py:219
 msgid "Errors Found"
 msgstr "Hata oluştu"
 
-#: apps/users/views.py:228
+#: apps/users/views.py:220
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Yaptığınız değişikliklerde hatalar bulunmaktadır. Lütfen düzeltip yeniden gönderin."
 
-#: apps/users/views.py:275
+#: apps/users/views.py:267
 msgid "Your email address was changed successfully"
 msgstr "E-posta adresiniz başarıyla değiştirildi"
 
-#: apps/users/views.py:276
+#: apps/users/views.py:268
 msgid "From now on, please use {0} to log in."
 msgstr "Bundan sonra oturum açmak için lütfen {0} adresini kullanın"
 
-#: apps/users/views.py:325
+#: apps/users/views.py:317
 msgid "Persona authentication failure."
 msgstr ""
 
-#: apps/users/views.py:345
+#: apps/users/views.py:337
 msgid "Please use the verified email for this account."
 msgstr ""
 
-#: apps/users/views.py:456
+#: apps/users/views.py:448
 msgid "Wrong email address or password!"
 msgstr "Yanlış e-posta adresi veya parola!"
 
-#: apps/users/views.py:468
+#: apps/users/views.py:460
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr ""
 
-#: apps/users/views.py:473
+#: apps/users/views.py:465
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
 
-#: apps/users/views.py:478
+#: apps/users/views.py:470
 msgid "Activation Email Sent"
 msgstr ""
 
-#: apps/users/views.py:479
+#: apps/users/views.py:471
 msgid "Having Trouble?"
 msgstr "Sorun mu yaşıyorsunuz?"
 
-#: apps/users/views.py:623
+#: apps/users/views.py:615
 msgid "You are already logged in to an account."
 msgstr ""
 
-#: apps/users/views.py:645
+#: apps/users/views.py:637
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Tebrikler! Kullanıcı hesabınız başarıyla oluşturuldu."
 
-#: apps/users/views.py:669
+#: apps/users/views.py:661
 msgid "You already have an account."
 msgstr ""
 
-#: apps/users/views.py:679
+#: apps/users/views.py:671
 msgid "There are errors in this form"
 msgstr "Bu formda hatalar var"
 
-#: apps/users/views.py:680
+#: apps/users/views.py:672
 msgid "Please correct them and resubmit."
 msgstr "Lütfen onları düzeltip tekrar gönderin."
 
-#: apps/users/views.py:695
+#: apps/users/views.py:687
 msgid "User reported."
 msgstr ""
 
@@ -12517,7 +12515,7 @@ msgid "Confirm account deletion"
 msgstr "Confirm account deletion"
 
 #: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:56 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
-#: apps/users/templates/users/mobile/login.html:52
+#: apps/users/templates/users/mobile/login.html:45
 msgid "Password"
 msgstr "Parola"
 
@@ -12671,7 +12669,7 @@ msgstr "hepsi"
 msgid "User Login"
 msgstr "Kullanıcı Girişi"
 
-#: apps/users/templates/users/login.html:18 apps/users/templates/users/mobile/login.html:32
+#: apps/users/templates/users/login.html:18 apps/users/templates/users/mobile/login.html:25
 msgid "Log In"
 msgstr "Giriş"
 
@@ -12679,32 +12677,32 @@ msgstr "Giriş"
 msgid "<a href=\"#\" id=\"show-normal-login\">Are you an admin or editor?</a>"
 msgstr ""
 
-#: apps/users/templates/users/login_form.html:31 apps/users/templates/users/vcard.html:29 apps/users/templates/users/mobile/login.html:47
+#: apps/users/templates/users/login_form.html:31 apps/users/templates/users/vcard.html:29 apps/users/templates/users/mobile/login.html:40
 msgid "Email address"
 msgstr "E-posta adresi"
 
-#: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:59
+#: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:52
 msgid "Remember me on this device"
 msgstr ""
 
 # 83%
 # 100%
-#: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:70 templates/mobile/header_auth.html:15
+#: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:63 templates/mobile/header_auth.html:12
 msgid "Log in"
 msgstr "Giriş"
 
 # This is a header for additional help options
-#: apps/users/templates/users/login_help.html:3 apps/users/templates/users/mobile/login.html:79
+#: apps/users/templates/users/login_help.html:3 apps/users/templates/users/mobile/login.html:70
 #, fuzzy
 msgid "Login Problems?"
 msgstr "Login Problems?"
 
-#: apps/users/templates/users/login_help.html:5 apps/users/templates/users/mobile/login.html:81
+#: apps/users/templates/users/login_help.html:5 apps/users/templates/users/mobile/login.html:72
 #, fuzzy
 msgid "I don't have an account."
 msgstr "I don't have an account."
 
-#: apps/users/templates/users/login_help.html:6 apps/users/templates/users/mobile/login.html:82
+#: apps/users/templates/users/login_help.html:6 apps/users/templates/users/mobile/login.html:73
 #, fuzzy
 msgid "I forgot my password."
 msgstr "I forgot my password."
@@ -12856,7 +12854,7 @@ msgstr ""
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
 
-#: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:13
+#: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
 msgstr "Kaydol"
 
@@ -12946,7 +12944,7 @@ msgstr[0] ""
 msgid "Average rating of developer's add-ons"
 msgstr ""
 
-#: apps/users/templates/users/mobile/login.html:38
+#: apps/users/templates/users/mobile/login.html:31
 msgid "Log in with BrowserID"
 msgstr ""
 
@@ -13056,10 +13054,6 @@ msgstr "E-postaları göndermek yerine kaydet"
 msgid "Other languages"
 msgstr "Diğer diller"
 
-#: templates/base.html:9 templates/impala/base.html:9
-msgid "Firefox Marketplace"
-msgstr ""
-
 # 75%
 # 78%
 # 80%
@@ -13099,17 +13093,17 @@ msgstr "Mobil siteyi görüntüle"
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>eklentileri</b> tanıyın"
 
-#: templates/footer.html:4 templates/menu_links.html:20 templates/global/menu_links.html:58
+#: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
 msgstr "Hakkında"
 
 # Link text to the AMO blog.
-#: templates/footer.html:5 templates/menu_links.html:32 templates/global/menu_links.html:26 templates/global/menu_links.html:69
+#: templates/footer.html:5 templates/menu_links.html:32
 msgid "Blog"
 msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
-#: templates/footer.html:7 templates/global/menu_links.html:25
+#: templates/footer.html:7
 msgid "FAQ"
 msgstr "S.S.S."
 
@@ -13137,47 +13131,47 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> EKLENTİLER"
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> EKLENTİLER"
 
-#: templates/menu_links.html:6 templates/global/menu_links.html:35
+#: templates/menu_links.html:6
 msgid "Firefox Add-ons"
 msgstr "Firefox Eklentileri"
 
-#: templates/menu_links.html:11 templates/global/menu_links.html:41
+#: templates/menu_links.html:11
 msgid "Language Support"
 msgstr "Dil Desteği"
 
-#: templates/menu_links.html:22 templates/global/menu_links.html:60
+#: templates/menu_links.html:22
 msgid "About Firefox"
 msgstr "Firefox Hakkında"
 
-#: templates/menu_links.html:23 templates/global/menu_links.html:61
+#: templates/menu_links.html:23
 msgid "Join Mozilla"
 msgstr ""
 
-#: templates/menu_links.html:24 templates/global/menu_links.html:62
+#: templates/menu_links.html:24
 msgid "Participate"
 msgstr "Katılın"
 
-#: templates/menu_links.html:26 templates/global/menu_links.html:63
+#: templates/menu_links.html:26
 msgid "Press Center"
 msgstr ""
 
-#: templates/menu_links.html:27 templates/global/menu_links.html:64
+#: templates/menu_links.html:27
 msgid "Brand Toolkit"
 msgstr ""
 
-#: templates/menu_links.html:28 templates/global/menu_links.html:65
+#: templates/menu_links.html:28
 msgid "Careers"
 msgstr "Kariyer"
 
-#: templates/menu_links.html:29 templates/global/menu_links.html:66
+#: templates/menu_links.html:29
 msgid "Partnerships"
 msgstr "Ortaklıklar"
 
-#: templates/menu_links.html:30 templates/global/menu_links.html:67
+#: templates/menu_links.html:30
 msgid "Legal"
 msgstr "Yasal Bilgiler"
 
-#: templates/menu_links.html:31 templates/global/menu_links.html:68
+#: templates/menu_links.html:31
 msgid "Contact Us"
 msgstr "Bize Ulaşın"
 
@@ -13188,104 +13182,6 @@ msgstr "Hoş geldin {0}"
 #: templates/user_login.html:41 templates/impala/user_login.html:26
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Kaydol</a> veya <a href=\"%(login)s\">oturum aç</a>"
-
-#: templates/global/copyright.html:8 templates/mobile/base_addons.html:83 templates/mobile/base_apps.html:72
-msgid "Legal Notices"
-msgstr "Yasal uyarılar"
-
-#: templates/global/copyright.html:11
-msgid "Report Trademark Abuse"
-msgstr ""
-
-#: templates/global/copyright.html:17
-msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-
-#: templates/global/header.html:3
-msgid "skip to navigation"
-msgstr ""
-
-#: templates/global/header.html:4
-msgid "switch language"
-msgstr ""
-
-#: templates/global/header.html:9
-msgid "Back to Mozilla.com"
-msgstr ""
-
-#: templates/global/header.html:12 templates/global/minimal-header.html:2
-msgid "visit <span>mozilla.org</span>"
-msgstr ""
-
-#: templates/global/menu_links.html:5 templates/global/menu_links.html:20 templates/global/mobile/header.html:4 templates/mobile/header.html:4
-msgid "Features"
-msgstr "Özellikler"
-
-#: templates/global/menu_links.html:8
-msgid "Customization"
-msgstr ""
-
-#: templates/global/menu_links.html:9
-msgid "Technology"
-msgstr ""
-
-#: templates/global/menu_links.html:10 templates/global/menu_links.html:27
-msgid "Videos"
-msgstr ""
-
-#: templates/global/menu_links.html:11
-msgid "Tour"
-msgstr ""
-
-#: templates/global/menu_links.html:12 templates/global/menu_links.html:28
-msgid "Future Releases"
-msgstr ""
-
-#: templates/global/menu_links.html:21
-msgid "Customize"
-msgstr ""
-
-#: templates/global/menu_links.html:22
-msgid "Sync"
-msgstr ""
-
-#: templates/global/menu_links.html:23
-msgid "Develop"
-msgstr ""
-
-#: templates/global/menu_links.html:24
-msgid "Get Involved"
-msgstr ""
-
-#: templates/global/menu_links.html:39
-msgid "Personas"
-msgstr ""
-
-#: templates/global/menu_links.html:51
-msgid "Firefox Support"
-msgstr ""
-
-#: templates/global/menu_links.html:52
-msgid "Mobile Support"
-msgstr ""
-
-#: templates/global/menu_links.html:53
-msgid "Thunderbird Support"
-msgstr ""
-
-#: templates/global/mobile/header.html:3 templates/mobile/header.html:3
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: templates/global/mobile/header.html:8 templates/mobile/header.html:8
-msgid "Visit Mozilla"
-msgstr "Mozilla'yı Ziyaret Et"
-
-#: templates/global/mobile/header.html:10
-msgid "Menu"
-msgstr ""
 
 #: templates/impala/base.html:117
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -13328,25 +13224,33 @@ msgstr "gerekli"
 msgid "Required fields"
 msgstr "Gerekli alanlar"
 
-#: templates/mobile/base_addons.html:61
+#: templates/mobile/base_addons.html:55
 msgid "Mobile Home"
 msgstr "Mobil Ana Sayfa"
 
-#: templates/mobile/base_addons.html:80 templates/mobile/base_apps.html:69
+#: templates/mobile/base_addons.html:74
 msgid "View full site"
 msgstr "Tam siteyi gör"
 
-#: templates/mobile/base_apps.html:37
-msgid "Return to the Apps homepage"
-msgstr "Uygulamalar ana sayfasına geri dön"
+#: templates/mobile/base_addons.html:77
+msgid "Legal Notices"
+msgstr "Yasal uyarılar"
 
-#: templates/mobile/base_apps.html:38
-msgid "Apps"
-msgstr "Uygulamalar"
+#: templates/mobile/header.html:3
+msgid "Mozilla Firefox"
+msgstr "Mozilla Firefox"
+
+#: templates/mobile/header.html:4
+msgid "Features"
+msgstr "Özellikler"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
 msgstr "Eklentiler"
+
+#: templates/mobile/header.html:8
+msgid "Visit Mozilla"
+msgstr "Mozilla'yı Ziyaret Et"
 
 #. a link
 #: templates/mobile/header.html:10
