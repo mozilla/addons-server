@@ -770,19 +770,22 @@ class TestSiteQuery(amo.tests.TestCase):
     def test_day_grouping(self):
         res = views._site_query('date', self.start, self.end)[0]
         eq_(len(res), 14)
-        eq_(res[0]['data']['addons_created'], Decimal(14))
+        eq_(res[0]['data']['addons_created'], 14)
+        # Make sure we are returning counts as integers, otherwise
+        # DjangoJSONSerializer will map them to strings.
+        eq_(type(res[0]['data']['addons_created']), int)
         eq_(res[0]['date'], '2012-01-15')
 
     def test_week_grouping(self):
         res = views._site_query('week', self.start, self.end)[0]
         eq_(len(res), 3)
-        eq_(res[1]['data']['addons_created'], Decimal(70))
+        eq_(res[1]['data']['addons_created'], 70)
         eq_(res[1]['date'], '2012-01-08')
 
     def test_month_grouping(self):
         res = views._site_query('month', self.start, self.end)[0]
         eq_(len(res), 1)
-        eq_(res[0]['data']['addons_created'], Decimal((14 * (14 + 1)) / 2))
+        eq_(res[0]['data']['addons_created'], (14 * (14 + 1)) / 2)
         eq_(res[0]['date'], '2012-01-02')
 
     def test_period(self):

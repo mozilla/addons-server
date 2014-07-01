@@ -1512,3 +1512,6 @@ WHITELISTED_CLIENTS_EMAIL_API = []
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
+
+# Add on used to collect stats (!technical dept around!)
+ADDON_COLLECTOR_ID = 11950

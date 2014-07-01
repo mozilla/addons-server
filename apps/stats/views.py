@@ -505,7 +505,6 @@ _CACHED_KEYS = sorted(_KEYS.values())
 
 @memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end, field=None, request=None):
-    old_version = request and request.GET.get('old_version', '0') or '0'
 
     cursor = connection.cursor()
     # Let MySQL make this fast. Make sure we prevent SQL injection with the
@@ -531,7 +530,7 @@ def _site_query(period, start, end, field=None, request=None):
             result[date] = default.copy()
             result[date]['date'] = date
             result[date]['data'] = {}
-        result[date]['data'][_KEYS[name]] = count
+        result[date]['data'][_KEYS[name]] = int(count)
 
     return result.values(), _CACHED_KEYS
 
