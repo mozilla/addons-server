@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-05-22 02:16+0000\n"
+"PO-Revision-Date: 2014-07-01 05:02+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400724983.0\n"
+"X-POOTLE-MTIME: 1404190977.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -941,7 +941,7 @@ msgstr[0] "{files} 個檔案"
 #: media/js/zamboni/devhub.js:690
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} 筆使用者評論"
 
 #: media/js/zamboni/devhub.js:820
 msgid "Learn more"
