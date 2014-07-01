@@ -1,9 +1,3 @@
-function dbg() {
-    if(window.console && (typeof window.console.log == 'function')) {
-        window.console.log(Array.prototype.slice.apply(arguments));
-    }
-}
-
 z.hasPushState = (typeof history.replaceState === "function");
 
 z.StatsManager = (function() {
@@ -58,11 +52,9 @@ z.StatsManager = (function() {
 
     // Initialize from localStorage when dom is ready.
     function init() {
-        dbg("looking for local data");
         if (verifyLocalStorage()) {
             var cacheObject = storageCache.get(addonId);
             if (cacheObject) {
-                dbg("found local data, loading...");
                 cacheObject = JSON.parse(cacheObject);
                 if (cacheObject) {
                     dataStore = cacheObject;
@@ -75,27 +67,23 @@ z.StatsManager = (function() {
     // These functions deal with our localStorage cache.
 
     function writeLocalStorage() {
-        dbg("saving local data");
         try {
             storageCache.set(addonId, JSON.stringify(dataStore));
             storage.set("version", STATS_VERSION);
         } catch (e) {
             console.log(e);
         }
-        dbg("saved local data");
     }
 
     function clearLocalStorage() {
         storageCache.remove(addonId);
         storage.remove("version");
-        dbg("cleared local data");
     }
 
     function verifyLocalStorage() {
         if (storage.get("version") == STATS_VERSION) {
             return true;
         } else {
-            dbg("wrong offline data version");
             clearLocalStorage();
             return false;
         }
@@ -264,7 +252,6 @@ z.StatsManager = (function() {
         }
 
         if (ds) {
-            dbg("range", range.start.iso(), range.end.iso());
             if (ds.maxdate < range.end.iso()) {
                 reqs.push(fetchData(metric, Date.iso(ds.maxdate), range.end));
             }
@@ -405,8 +392,6 @@ z.StatsManager = (function() {
         var seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
             seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
             seriesURL = baseURL + ([metric,'day',seriesURLStart,seriesURLEnd]).join('-') + '.json';
-
-        dbg("GET", seriesURLStart, seriesURLEnd);
 
         $.ajax({ url:       seriesURL,
                  dataType:  'text',

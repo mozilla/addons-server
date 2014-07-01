@@ -269,7 +269,7 @@ def _get_metrics_jobs(date=None):
         'addon_total_updatepings': lambda: UpdateCount.objects.filter(
                 date=date).aggregate(sum=Sum('count'))['sum'],
         'collector_updatepings': lambda: UpdateCount.objects.get(
-                addon=11950, date=date).count,
+                addon=settings.ADDON_COLLECTOR_ID, date=date).count,
     }
 
     return stats
