@@ -10,7 +10,7 @@ from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
-from amo.helpers import shared_url
+from amo.urlresolvers import reverse
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 
@@ -61,7 +61,7 @@ class Review(amo.models.ModelBase):
     def get_url_path(self):
         if 'mkt.ratings' in settings.INSTALLED_APPS:
             return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
-        return shared_url('reviews.detail', self.addon, self.id)
+        return reverse('addons.reviews.detail', [self.addon, self.id])
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,
