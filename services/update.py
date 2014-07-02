@@ -265,6 +265,11 @@ class Update(object):
         else:  # Not defined or 'strict'.
             sql.append('AND appmax.version_int >= %(version_int)s ')
 
+        # Special case for bug 1031516.
+        if (data['guid'] == 'firefox-hotfix@mozilla.org' and
+                data['reqVersion'] < '20130826.01'):
+            sql.append("AND versions.version <= '20130826.01 '")
+
         sql.append('ORDER BY versions.id DESC LIMIT 1;')
 
         self.cursor.execute(''.join(sql), data)
