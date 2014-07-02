@@ -57,6 +57,16 @@ class TestUploadValidation(BaseUploadTest):
         doc = pq(resp.content)
         eq_(doc('td').text(), 'December  6, 2010')
 
+    def test_upload_saves_escaped_validation(self):
+        addon_file = open('apps/files/fixtures/files/validation-error.xpi')
+        response = self.client.post(reverse('devhub.upload'),
+                                    {'name': 'addon.xpi',
+                                     'upload': addon_file})
+        uuid = response.url.split('/')[-2]
+        upload = FileUpload.objects.get(uuid=uuid)
+        assert upload._escaped_validation, 'escaped validation not saved'
+        eq_(json.loads(upload._escaped_validation)['errors'], 1)
+
 
 class TestUploadErrors(BaseUploadTest):
     fixtures = ('base/apps', 'base/addon_3615', 'base/users')
