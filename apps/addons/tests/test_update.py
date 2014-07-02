@@ -17,13 +17,22 @@ import settings_local
 from versions.models import ApplicationsVersions, Version
 
 
-class TestDataValidate(amo.tests.TestCase):
+class VersionCheckMixin(object):
+
+    def get(self, data):
+        up = update.Update(data)
+        up.cursor = connection.cursor()
+        return up
+
+
+class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',
                 'base/apps',
                 'base/appversion']
 
     def setUp(self):
+        super(TestDataValidate, self).setUp()
         self.good_data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
@@ -31,11 +40,6 @@ class TestDataValidate(amo.tests.TestCase):
             'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
             'appVersion': '3.7a1pre',
         }
-
-    def get(self, data):
-        up = update.Update(data)
-        up.cursor = connection.cursor()
-        return up
 
     def test_app_os(self):
         data = self.good_data.copy()
@@ -92,13 +96,14 @@ class TestDataValidate(amo.tests.TestCase):
         assert up.is_valid()
 
 
-class TestLookup(amo.tests.TestCase):
+class TestLookup(VersionCheckMixin, amo.tests.TestCase):
     fixtures = ['addons/update',
                 'base/apps',
                 'base/appversion',
                 'base/platforms']
 
     def setUp(self):
+        super(TestLookup, self).setUp()
         self.addon = Addon.objects.get(id=1865)
         self.platform = None
         self.version_int = 3069900200100
@@ -121,8 +126,7 @@ class TestLookup(amo.tests.TestCase):
         # Allow version to be optional.
         if args[0]:
             data['version'] = args[0]
-        up = update.Update(data)
-        up.cursor = connection.cursor()
+        up = super(TestLookup, self).get(data)
         assert up.is_valid()
         up.data['version_int'] = args[1]
         up.get_update()
@@ -376,13 +380,14 @@ class TestLookup(amo.tests.TestCase):
         eq_(version, self.version_1_2_1)
 
 
-class TestDefaultToCompat(amo.tests.TestCase):
+class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
     """
     Test default to compatible with all the various combinations of input.
     """
     fixtures = ['base/platforms', 'addons/default-to-compat']
 
     def setUp(self):
+        super(TestDefaultToCompat, self).setUp()
         self.addon = Addon.objects.get(id=337203)
         self.platform = None
         self.app = Application.objects.get(id=1)
@@ -432,14 +437,13 @@ class TestDefaultToCompat(amo.tests.TestCase):
                 file.update(**kw)
 
     def get(self, **kw):
-        up = update.Update({
+        up = super(TestDefaultToCompat, self).get({
             'reqVersion': 1,
             'id': self.addon.guid,
             'version': kw.get('item_version', '1.0'),
             'appID': self.app.guid,
             'appVersion': kw.get('app_version', '3.0'),
         })
-        up.cursor = connection.cursor()
         assert up.is_valid()
         up.compat_mode = kw.get('compat_mode', 'strict')
         up.get_update()
@@ -565,12 +569,13 @@ class TestDefaultToCompat(amo.tests.TestCase):
         self.check(self.expected)
 
 
-class TestResponse(amo.tests.TestCase):
+class TestResponse(VersionCheckMixin, amo.tests.TestCase):
     fixtures = ['base/addon_3615',
                 'base/platforms',
                 'base/seamonkey']
 
     def setUp(self):
+        super(TestResponse, self).setUp()
         self.addon_one = Addon.objects.get(pk=3615)
         self.good_data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
@@ -591,15 +596,11 @@ class TestResponse(amo.tests.TestCase):
         settings_local.LOCAL_MIRROR_URL = 'http://addons.m.o/'
         settings_local.DEBUG = False
 
-    def get(self, data):
-        up = update.Update(data)
-        up.cursor = connection.cursor()
-        return up
-
     def tearDown(self):
         settings_local.MIRROR_URL = self.old_mirror_url
         settings_local.LOCAL_MIRROR_URL = self.old_local_url
         settings_local.DEBUG = self.old_debug
+        super(TestResponse, self).tearDown()
 
     def test_bad_guid(self):
         data = self.good_data.copy()
@@ -799,3 +800,43 @@ class TestResponse(amo.tests.TestCase):
         data['appVersion'] = '5.0.1'
         upd = self.get(data)
         eq_(upd.get_rdf(), upd.get_no_updates_rdf())
+
+
+class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
+
+    def setUp(self):
+        """Create a "firefox hotfix" addon, with two versions.
+
+        The latest version shouldn't be served as updates to versions older
+        than 20130826.01.
+
+        """
+        super(TestFirefoxHotfix, self).setUp()
+        self.addon = amo.tests.addon_factory(guid='firefox-hotfix@mozilla.org')
+        # This version modifies the signature, please check bug 1031516.
+        amo.tests.version_factory(addon=self.addon, version='20130826.01')
+        # This newer version, with updated signature, should only be served as
+        # updates to the above version.
+        amo.tests.version_factory(addon=self.addon, version='20140319.01')
+
+        self.data = {
+            'id': 'firefox-hotfix@mozilla.org',
+            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'appVersion': '4.0',
+        }
+
+    def test_bug_1031516_old_version(self):
+        """Make sure an old version of Firefox has at least the hotfix
+        20130826.01, which updates the signature."""
+        self.data['reqVersion'] = '20130322.01'
+        up = self.get(self.data)
+        rdf = up.get_rdf()
+        assert rdf.find('20130826.01') > -1
+
+    def test_bug_1031516_recent_version(self):
+        """Make sure a recent version of Firefox has the latest hotfix, and
+        not the 20130826.01 hardcoded one (for the old versions)."""
+        self.data['reqVersion'] = '20130826.01'
+        up = self.get(self.data)
+        rdf = up.get_rdf()
+        assert rdf.find('20140319.01') > -1
