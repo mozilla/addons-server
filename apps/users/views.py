@@ -239,7 +239,7 @@ def admin_edit(request, user):
             messages.success(request, _('Profile Updated'))
             return http.HttpResponseRedirect(reverse('zadmin.index'))
     else:
-        form = forms.AdminUserEditForm(instance=user)
+        form = forms.AdminUserEditForm(instance=user, request=request)
     return render(request, 'users/edit.html', {'form': form, 'amouser': user})
 
 
