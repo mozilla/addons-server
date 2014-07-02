@@ -11,7 +11,7 @@ import amo
 from amo.utils import clean_nl, has_links, slug_validator, slugify
 from happyforms import Form, ModelForm
 from translations.widgets import TranslationTextInput, TranslationTextarea
-from users.models import UserProfile
+from users.models import BlacklistedName, UserProfile
 from .models import Collection, CollectionUser
 from . import tasks
 
@@ -143,6 +143,12 @@ class CollectionForm(ModelForm):
         if (self.instance and
             self.instance.type in amo.COLLECTION_SPECIAL_SLUGS):
             del self.fields['slug']
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if BlacklistedName.blocked(name):
+            raise forms.ValidationError(_('This name cannot be used.'))
+        return name
 
     def clean_description(self):
         description = self.cleaned_data['description']

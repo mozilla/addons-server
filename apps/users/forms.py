@@ -20,7 +20,7 @@ from amo.utils import clean_nl, has_links, log_cef, slug_validator
 from translations import LOCALES
 
 from . import tasks
-from .models import (UserProfile, UserNotification, BlacklistedUsername,
+from .models import (UserProfile, UserNotification, BlacklistedName,
                      BlacklistedEmailDomain, BlacklistedPassword)
 from .widgets import NotificationsSelectMultiple
 
@@ -219,7 +219,7 @@ class UsernameMixin:
         slug_validator(name, lower=False,
             message=_('Enter a valid username consisting of letters, numbers, '
                       'underscores or hyphens.'))
-        if BlacklistedUsername.blocked(name):
+        if BlacklistedName.blocked(name):
             raise forms.ValidationError(_('This username cannot be used.'))
 
         # FIXME: Bug 858452. Remove this check when collation of the username
@@ -277,6 +277,12 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
                                           'different provider to complete '
                                           'your registration.'))
         return self.cleaned_data['email']
+
+    def clean_display_name(self):
+        name = self.cleaned_data['display_name']
+        if BlacklistedName.blocked(name):
+            raise forms.ValidationError(_('This display name cannot be used.'))
+        return name
 
     def clean(self):
         super(UserRegisterForm, self).clean()
@@ -490,24 +496,19 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
         return profile
 
 
-class BlacklistedUsernameAddForm(forms.Form):
-    """Form for adding blacklisted username in bulk fashion."""
-    usernames = forms.CharField(widget=forms.Textarea(
+class BlacklistedNameAddForm(forms.Form):
+    """Form for adding blacklisted names in bulk fashion."""
+    names = forms.CharField(widget=forms.Textarea(
         attrs={'cols': 40, 'rows': 16}))
 
-    def clean(self):
-        super(BlacklistedUsernameAddForm, self).clean()
-        data = self.cleaned_data
-
-        if 'usernames' in data:
-            data['usernames'] = os.linesep.join(
-                    [s.strip() for s in data['usernames'].splitlines()
-                        if s.strip()])
-        if 'usernames' not in data or data['usernames'] == '':
-            msg = 'Please enter at least one username to blacklist.'
-            self._errors['usernames'] = ErrorList([msg])
-
-        return data
+    def clean_names(self):
+        names = self.cleaned_data['names'].strip()
+        if not names:
+            raise forms.ValidationError(
+                _('Please enter at least one name to blacklist.'))
+        names = os.linesep.join(
+            [s.strip() for s in names.splitlines() if s.strip()])
+        return names
 
 
 class BlacklistedEmailDomainAddForm(forms.Form):

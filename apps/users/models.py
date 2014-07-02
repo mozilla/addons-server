@@ -13,7 +13,6 @@ from django.conf import settings
 from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import translation
@@ -25,7 +24,6 @@ from django.utils.functional import lazy
 import caching.base as caching
 import commonware.log
 import tower
-from cache_nuggets.lib import memoize
 from tower import ugettext as _
 import waffle
 
@@ -564,23 +562,23 @@ class RequestUser(UserProfile):
         return keys + (UserProfile._cache_key(self.id, 'default'),)
 
 
-class BlacklistedUsername(amo.models.ModelBase):
-    """Blacklisted user usernames."""
-    username = models.CharField(max_length=255, unique=True, default='')
+class BlacklistedName(amo.models.ModelBase):
+    """Blacklisted User usernames and display_names + Collections' names."""
+    name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
-        db_table = 'users_blacklistedusername'
+        db_table = 'users_blacklistedname'
 
     def __unicode__(self):
-        return self.username
+        return self.name
 
     @classmethod
-    def blocked(cls, username):
-        """Check to see if a username is in the (cached) blacklist."""
+    def blocked(cls, name):
+        """Check to see if a given name is in the (cached) blacklist."""
         qs = cls.objects.all()
-        f = lambda: [u.lower() for u in qs.values_list('username', flat=True)]
+        f = lambda: [n.lower() for n in qs.values_list('name', flat=True)]
         blacklist = caching.cached_with(qs, f, 'blocked')
-        return username.lower() in blacklist
+        return name.lower() in blacklist
 
 
 class BlacklistedEmailDomain(amo.models.ModelBase):

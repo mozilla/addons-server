@@ -3,7 +3,7 @@ from django.db.utils import IntegrityError
 from django.shortcuts import render
 
 from access.admin import GroupUserInline
-from .models import UserProfile, BlacklistedUsername, BlacklistedEmailDomain
+from .models import UserProfile, BlacklistedName, BlacklistedEmailDomain
 from . import forms
 
 
@@ -68,13 +68,13 @@ class BlacklistModelAdmin(admin.ModelAdmin):
         return render(request, self.template_path, {'form': form})
 
 
-class BlacklistedUsernameAdmin(BlacklistModelAdmin):
-    list_display = search_fields = ('username',)
-    blacklist_model = BlacklistedUsername
-    model_field = 'username'
-    model_add_form = forms.BlacklistedUsernameAddForm
-    add_form_field = 'usernames'
-    template_path = 'users/admin/blacklisted_username/add.html'
+class BlacklistedNameAdmin(BlacklistModelAdmin):
+    list_display = search_fields = ('name',)
+    blacklist_model = BlacklistedName
+    model_field = 'name'
+    model_add_form = forms.BlacklistedNameAddForm
+    add_form_field = 'names'
+    template_path = 'users/admin/blacklisted_name/add.html'
 
 
 class BlacklistedEmailDomainAdmin(BlacklistModelAdmin):
@@ -86,5 +86,5 @@ class BlacklistedEmailDomainAdmin(BlacklistModelAdmin):
     template_path = 'users/admin/blacklisted_email_domain/add.html'
 
 admin.site.register(UserProfile, UserAdmin)
-admin.site.register(BlacklistedUsername, BlacklistedUsernameAdmin)
+admin.site.register(BlacklistedName, BlacklistedNameAdmin)
 admin.site.register(BlacklistedEmailDomain, BlacklistedEmailDomainAdmin)

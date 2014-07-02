@@ -10,7 +10,7 @@ from django.db.models import Q
 
 import commonware.log
 
-from users.models import UserProfile, BlacklistedUsername
+from users.models import UserProfile, BlacklistedName
 
 log = commonware.log.getLogger('z.users')
 
@@ -114,7 +114,7 @@ def autocreate_username(candidate, tries=1):
     adjusted_u = make_u(candidate)
     if tries > 1:
         adjusted_u = '%s%s' % (adjusted_u, tries)
-    if (BlacklistedUsername.blocked(adjusted_u) or adjusted_u == ''
+    if (BlacklistedName.blocked(adjusted_u) or adjusted_u == ''
         or tries > max_tries or len(adjusted_u) > 255):
         log.info('username blocked, empty, max tries reached, or too long;'
                  ' username=%s; max=%s' % (adjusted_u, max_tries))

@@ -7,7 +7,7 @@ from urlparse import urlparse
 from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable,
-    check_password, make_password, load_hashers, identify_hasher)
+    check_password, make_password, identify_hasher)
 from django.core import mail
 from django.utils import encoding, translation
 
@@ -24,7 +24,7 @@ from bandwagon.models import Collection
 from reviews.models import Review
 from translations.models import Translation
 from users.models import (BlacklistedEmailDomain, BlacklistedPassword,
-                          BlacklistedUsername, get_hexdigest, UserEmailField,
+                          BlacklistedName, get_hexdigest, UserEmailField,
                           UserProfile)
 from users.utils import find_users
 
@@ -341,12 +341,12 @@ class TestPasswords(amo.tests.TestCase):
         assert profile.has_usable_password() is False
 
 
-class TestBlacklistedUsername(amo.tests.TestCase):
+class TestBlacklistedName(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
-        eq_(BlacklistedUsername.blocked('IE6Fan'), True)
-        eq_(BlacklistedUsername.blocked('testo'), False)
+        eq_(BlacklistedName.blocked('IE6Fan'), True)
+        eq_(BlacklistedName.blocked('testo'), False)
 
 
 class TestBlacklistedEmailDomain(amo.tests.TestCase):
