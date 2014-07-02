@@ -607,15 +607,10 @@ class FileUpload(amo.models.ModelBase):
         compatibility report if `is_compatibility` is `True`.
 
         If `_escaped_validation` is set it will be used, otherwise
-        `_escape_validation` will be called to escape the validation results
-        and they will be saved to the database.
+        `_escape_validation` will be called to escape the validation.
         """
         if self.validation and not self._escaped_validation:
             self._escape_validation()
-            # Save the changes to _escaped_validation.
-            (FileUpload.objects
-                       .filter(pk=self.pk)
-                       .update(_escaped_validation=self._escaped_validation))
         if not self._escaped_validation:
             return ''
         return limit_validation_results(json.loads(self._escaped_validation),

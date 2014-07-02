@@ -655,18 +655,6 @@ class TestFileUpload(UploadTest):
         eq_(upload._escaped_validation,
             '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
 
-    def test_escaped_validation_save_the_escaped_validation(self):
-        upload = FileUpload.objects.create()
-        upload.validation = '{"messages": [{"the": "validation"}]}'
-        assert not upload._escaped_validation
-        upload.escaped_validation()
-        eq_(upload._escaped_validation,
-            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
-        # Reload the object from the database.
-        upload = FileUpload.objects.get(uuid=upload.uuid)
-        eq_(upload._escaped_validation,
-            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
-
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
         data = {
