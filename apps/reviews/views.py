@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
+from django.utils.http import urlquote
 
 import commonware.log
 from tower import ugettext as _
@@ -121,7 +122,7 @@ def translate(request, addon, review_id, language):
                                  status=r.status_code)
     else:
         return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
-            lang=language, text=review.body).decode('utf-8'))
+            lang=language, text=urlquote(review.body)))
 
 
 @addon_view
