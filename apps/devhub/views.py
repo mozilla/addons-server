@@ -44,7 +44,7 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from devhub.utils import limit_validation_results, escape_validation
+from devhub.utils import hide_traceback, make_validation_results
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import parse_addon
@@ -689,16 +689,6 @@ def upload_detail_for_addon(request, addon_id, addon, uuid):
     return json_upload_detail(request, upload, addon_slug=addon.slug)
 
 
-def hide_traceback(error):
-    """Safe wrapper around JSON dict containing a validation result.
-    """
-    if not settings.EXPOSE_VALIDATOR_TRACEBACKS and error:
-        # Just expose the message, not the traceback
-        return error.strip().split('\n')[-1].strip()
-    else:
-        return error
-
-
 @dev_required(allow_editors=True)
 def file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
@@ -758,14 +748,12 @@ def json_file_validation(request, addon_id, addon, file_id):
         except Exception, exc:
             log.error('file_validator(%s): %s' % (file.id, exc))
             error = "\n".join(traceback.format_exception(*sys.exc_info()))
-            return {'validation': '', 'error': hide_traceback(error)}
+            return make_validation_results({'validation': '', 'error': error})
     else:
         v_result = file.validation
 
     validation = json.loads(v_result.validation)
-    escaped_validation = escape_validation(validation)
-    final_validation = limit_validation_results(escaped_validation)
-    return {'validation': final_validation, 'error': None}
+    return make_validation_results({'validation': validation, 'error': None})
 
 
 @json_view
@@ -776,12 +764,12 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
     if result.task_error:
-        return {'validation': '', 'error': hide_traceback(result.task_error)}
+        return make_validation_results({'validation': '',
+                                        'error': result.task_error})
     else:
-        raw_validation = json.loads(result.validation)
-        escaped_validation = escape_validation(raw_validation)
-        final_validation = limit_validation_results(escaped_validation)
-        return {'validation': final_validation, 'error': None}
+        validation = json.loads(result.validation)
+        return make_validation_results({'validation': validation,
+                                        'error': None})
 
 
 @json_view

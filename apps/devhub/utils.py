@@ -5,6 +5,24 @@ from tower import ugettext as _
 from amo.utils import escape_all
 
 
+def make_validation_results(data, is_compatibility=False):
+    if data['validation']:
+        data['validation'] = limit_validation_results(escape_validation(
+            data['validation']))
+    data['error'] = hide_traceback(data['error'])
+    return data
+
+
+def hide_traceback(error):
+    """Safe wrapper around JSON dict containing a validation result.
+    """
+    if not settings.EXPOSE_VALIDATOR_TRACEBACKS and error:
+        # Just expose the message, not the traceback
+        return error.strip().split('\n')[-1].strip()
+    else:
+        return error
+
+
 def limit_validation_results(validation, is_compatibility=False):
     lim = settings.VALIDATOR_MESSAGE_LIMIT
     if lim:
