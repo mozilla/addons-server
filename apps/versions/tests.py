@@ -4,6 +4,8 @@ import hashlib
 from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 
 import mock
 from nose.tools import eq_
@@ -11,6 +13,7 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
+from access.models import Group, GroupUser
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from addons.models import Addon, CompatOverride, CompatOverrideRange
@@ -730,6 +733,47 @@ class TestDownloadsLatest(TestDownloadsBase):
         r = self.client.get(url)
         eq_(r.status_code, 302)
         assert r['Location'].endswith('?src=xxx'), r['Location']
+
+
+class TestDownloadSource(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/admin', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.version = self.addon._latest_version
+        tdir = temp.gettempdir()
+        self.source_file = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        self.source_file.write('a' * (2 ** 21))
+        self.source_file.seek(0)
+        self.version.source = DjangoFile(self.source_file)
+        self.version.save()
+        self.user = UserProfile.objects.get(email="del@icio.us")
+        self.group = Group.objects.create(
+            name='Editors BinarySource',
+            rules='Editors:BinarySource'
+        )
+        self.url = reverse('downloads.source', args=(self.version.pk, ))
+
+    def test_owner_should_be_allowed(self):
+        self.client.login(username=self.user.email, password="password")
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
+    def test_anonymous_should_not_be_allowed(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 404)
+
+    def test_group_binarysource_should_be_allowed(self):
+        GroupUser.objects.create(user=self.user, group=self.group)
+        self.client.login(username=self.user.email, password="password")
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
+    def test_no_source_should_go_in_404(self):
+        self.version.source = None
+        self.version.save()
+        response = self.client.get(self.url)
+        eq_(response.status_code, 404)
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):

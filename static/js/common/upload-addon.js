@@ -218,6 +218,7 @@
                 }};
 
                 upload_progress_inside.animate({'width': '100%'}, animateArgs);
+                $('.binary-source').show();
             });
 
             $upload_field.bind("upload_onreadystatechange", function(e, file, xhr, aborted) {

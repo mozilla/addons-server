@@ -122,6 +122,11 @@ def add_version_modal(context, title, action, upload_url, action_label):
                        action_label=action_label)
 
 
+@register.inclusion_tag('devhub/includes/source_form_field.html')
+def source_form_field(field):
+    return {'field': field}
+
+
 @register.function
 def status_choices(addon):
     """Return a dict like STATUS_CHOICES customized for the addon status."""

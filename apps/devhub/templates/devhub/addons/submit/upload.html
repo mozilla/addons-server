@@ -4,7 +4,7 @@
 
 {% block primary %}
 
-<form method="post" id="create-addon" class="item" action="">
+<form method="post" id="create-addon" class="item" action="" enctype="multipart/form-data">
   {{ csrf() }}
   <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
   <p>
@@ -22,6 +22,8 @@
   <input type="file" id="upload-addon" data-upload-url="{{ url('devhub.upload') }}">
 
   {{ new_addon_form.non_field_errors() }}
+
+  {{ source_form_field(new_addon_form.source) }}
 
       <div class="platform">
         <div class="desktop-platforms">
