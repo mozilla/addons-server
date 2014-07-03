@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-06-05 19:08+0000\n"
+"PO-Revision-Date: 2014-07-03 11:48+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401995339.0\n"
+"X-POOTLE-MTIME: 1404388131.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1843,7 +1843,7 @@ msgstr "Inhoudswaardering {addon} gewijzigd in Volwassen."
 
 #: apps/amo/log.py:579
 msgid "{addon} content rating changed."
-msgstr "Inhoudwaardering {addon} gewijzigd."
+msgstr "Inhoudswaardering {addon} gewijzigd."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3108,7 +3108,7 @@ msgstr "Add-on-compatibiliteitsrapport voor {app} {version}"
 
 #: apps/compat/templates/compat/index.html:11
 msgid "{app} {version} Compatibility"
-msgstr "Compatibiliteit met {app} {version}"
+msgstr "Compatibiliteit van {app} {version}"
 
 #: apps/compat/templates/compat/index.html:17
 msgid "Top 95% compatible with previous version"
