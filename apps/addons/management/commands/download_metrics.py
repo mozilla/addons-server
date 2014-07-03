@@ -63,7 +63,7 @@ class Command(BaseCommand):
     UploadCount objects.
 
     Usage:
-    ./manage.py download_metrics --date YYYY-MM-DD \
+    ./manage.py download_metrics --date YYYY-MM-DD
                                  --with-updates --with-downloads
 
     Set a ``MAX_HIVE_ROWS`` environment variable to minimize the network
@@ -159,20 +159,8 @@ class Command(BaseCommand):
     def process_downloads(self, cur, day, filename, sep, limit=None):
         """Query the download requests and store them on disk."""
         limit = ('limit %s' % limit) if limit else ''
-        # We use "concat" and http://a.com in the following request to have
-        # fully qualified URLs.
-        cur.execute("select count(1), "
-        "  split(request_url,'/')[4], "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'src') "
-        "from v2_raw_logs "
-        "where domain='addons.mozilla.org' "
-        "  and ds='%s' "
-        "  and request_url like '/firefox/downloads/file/%%' "
-        "  and !(parse_url(concat('http://a.com',request_url), 'QUERY', 'src') LIKE 'sync') "
-        "group by "
-        "  split(request_url,'/')[4], "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'src') "
-        "%s" % (day, limit))
+        query = "select count(1), split(request_url,'/')[4], parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src') from v2_raw_logs where domain='addons.mozilla.org' and ds='%s' and request_url like '/%%/downloads/file/%%' and !(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src') LIKE 'sync') AND split(request_url,'/')[1] IN ('firefox','android','thunderbird','seamonkey','mobile','sunbird','posts') group by split(request_url,'/')[4], parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src') %s"  # noqa
+        cur.execute(query % (day, limit))
         return self.to_file(cur, '%s.downloads' % filename, sep)
 
     def to_file(self, cur, filename, sep):
