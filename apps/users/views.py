@@ -542,6 +542,9 @@ def profile(request, user):
         addons = user.addons.reviewed().filter(
             addonuser__user=user, addonuser__listed=True)
 
+        # TODO: temporary, remove this when 1020465 has landed.
+        addons = addons.exclude(type=amo.ADDON_WEBAPP)
+
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
             '-persona__popularity')
         if personas.count() > THEMES_LIMIT:
