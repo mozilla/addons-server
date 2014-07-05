@@ -99,6 +99,7 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
                                                     choices=(
                                                     (1, 'update available'),
                                                     (2, 'update unavailable')))
+    info_url = models.URLField(blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
 
     class Meta(amo.models.ModelBase.Meta):

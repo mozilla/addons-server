@@ -361,13 +361,12 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(vr.getAttribute('minVersion'), '1')
         eq_(vr.getAttribute('maxVersion'), '2')
 
-
     def test_plugin_with_multiple_target_apps(self):
         self.plugin.update(severity=1, min='5', max='6')
         self.app.update(guid=amo.FIREFOX.guid, min='1', max='2')
-        tb_app = BlocklistApp.objects.create(guid=amo.THUNDERBIRD.guid,
-                                             min='3', max='4',
-                                             blplugin=self.plugin)
+        BlocklistApp.objects.create(guid=amo.THUNDERBIRD.guid,
+                                    min='3', max='4',
+                                    blplugin=self.plugin)
         vr = self.dom().getElementsByTagName('versionRange')[0]
         eq_(vr.getAttribute('severity'), '1')
         eq_(vr.getAttribute('minVersion'), '5')
@@ -455,6 +454,19 @@ class BlocklistPluginTest(BlocklistViewTest):
         e = self.dom(self.fx2_url).getElementsByTagName('versionRange')[0]
         eq_(e.getAttribute('severity'), '2')
         eq_(e.getElementsByTagName('targetApplication'), [])
+
+    def test_plugin_without_info_url(self):
+        eq_(self.dom().getElementsByTagName('infoURL'), [])
+
+    def test_plugin_with_info_url(self):
+        self.plugin.update(info_url='http://example.com')
+        info_url = self.dom().getElementsByTagName('infoURL')[0]
+        eq_(info_url.firstChild.nodeValue, 'http://example.com')
+
+    def test_plugin_with_info_url_escaped(self):
+        self.plugin.update(info_url='http://example.com/?foo=<bar>&baz=crux')
+        r = self.client.get(self.fx4_url)
+        assert 'http://example.com/?foo=&lt;bar&gt;&amp;baz=crux' in r.content
 
 
 class BlocklistGfxTest(BlocklistViewTest):
