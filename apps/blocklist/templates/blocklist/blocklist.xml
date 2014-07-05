@@ -17,6 +17,18 @@
           {% endfor %}
           </versionRange>
         {% endif %}
+        {% if row.name %}
+          <name>{{ row.name }}</name>
+        {% endif %}
+        {% if row.creator %}
+          <creator>{{ row.creator }}</creator>
+        {% endif %}
+        {% if row.homepage_url %}
+          <homepageURL>{{ row.homepage_url }}</homepageURL>
+        {% endif %}
+        {% if row.update_url %}
+          <updateURL>{{ row.update_url }}</updateURL>
+        {% endif %}
       {% endfor %}
       <prefs>
         {% for pref in details.prefs %}
