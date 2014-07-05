@@ -60,6 +60,9 @@
       {% elif plugin.severity == 0 %}
         <versionRange {{ attrs(severity=plugin.severity) }}></versionRange>
       {% endif %}
+      {% if plugin.info_url %}
+        <infoURL>{{ plugin.info_url }}</infoURL>
+      {% endif %}
     </pluginItem>
   {% endfor %}
   </pluginItems>

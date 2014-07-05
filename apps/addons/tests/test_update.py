@@ -805,38 +805,84 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
 class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
 
     def setUp(self):
-        """Create a "firefox hotfix" addon, with two versions.
+        """Create a "firefox hotfix" addon with a few versions.
 
-        The latest version shouldn't be served as updates to versions older
-        than 20130826.01.
+        Check bug 1031516 for more info.
 
         """
         super(TestFirefoxHotfix, self).setUp()
         self.addon = amo.tests.addon_factory(guid='firefox-hotfix@mozilla.org')
-        # This version modifies the signature, please check bug 1031516.
-        amo.tests.version_factory(addon=self.addon, version='20130826.01')
-        # This newer version, with updated signature, should only be served as
-        # updates to the above version.
-        amo.tests.version_factory(addon=self.addon, version='20140319.01')
+
+        # First signature changing hotfix.
+        amo.tests.version_factory(addon=self.addon, version='20121019.01',
+                                  min_app_version='10.0',
+                                  max_app_version='16.*')
+
+        # Second signature changing hotfix.
+        amo.tests.version_factory(addon=self.addon, version='20130826.01',
+                                  min_app_version='10.0',
+                                  max_app_version='24.*')
+
+        # Newest version compatible with any Firefox.
+        amo.tests.version_factory(addon=self.addon, version='20202020.01',
+                                  min_app_version='10.0',
+                                  max_app_version='30.*')
 
         self.data = {
             'id': 'firefox-hotfix@mozilla.org',
             'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-            'appVersion': '4.0',
         }
 
-    def test_bug_1031516_old_version(self):
-        """Make sure an old version of Firefox has at least the hotfix
-        20130826.01, which updates the signature."""
-        self.data['reqVersion'] = '20130322.01'
+    def test_10_16_first_hotfix(self):
+        """The first hotfix changing the signature should be served."""
+        self.data['reqVersion'] = '2'
+        self.data['appVersion'] = '16.0.1'
+
+        up = self.get(self.data)
+        rdf = up.get_rdf()
+        assert rdf.find('20121019.01') > -1
+
+    def test_10_16_second_hotfix(self):
+        """The second hotfix changing the signature should be served."""
+        self.data['reqVersion'] = '20121019.01'
+        self.data['appVersion'] = '16.0.1'
+
         up = self.get(self.data)
         rdf = up.get_rdf()
         assert rdf.find('20130826.01') > -1
 
-    def test_bug_1031516_recent_version(self):
-        """Make sure a recent version of Firefox has the latest hotfix, and
-        not the 20130826.01 hardcoded one (for the old versions)."""
+    def test_10_16_newest_hotfix(self):
+        """The newest hotfix should be served."""
         self.data['reqVersion'] = '20130826.01'
+        self.data['appVersion'] = '16.0.1'
+
         up = self.get(self.data)
         rdf = up.get_rdf()
-        assert rdf.find('20140319.01') > -1
+        assert rdf.find('20202020.01') > -1
+
+    def test_16_24_second_hotfix(self):
+        """The second hotfix changing the signature should be served."""
+        self.data['reqVersion'] = '2'
+        self.data['appVersion'] = '16.0.2'
+
+        up = self.get(self.data)
+        rdf = up.get_rdf()
+        assert rdf.find('20130826.01') > -1
+
+    def test_16_24_newest_hotfix(self):
+        """The newest hotfix should be served."""
+        self.data['reqVersion'] = '20130826.01'
+        self.data['appVersion'] = '16.0.2'
+
+        up = self.get(self.data)
+        rdf = up.get_rdf()
+        assert rdf.find('20202020.01') > -1
+
+    def test_above_24_latest_version(self):
+        """The newest hotfix should be served."""
+        self.data['reqVersion'] = '2'
+        self.data['appVersion'] = '28.0'
+
+        up = self.get(self.data)
+        rdf = up.get_rdf()
+        assert rdf.find('20202020.01') > -1
