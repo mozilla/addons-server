@@ -72,6 +72,10 @@ class BlocklistItem(BlocklistBase, amo.models.ModelBase):
     os = models.CharField(max_length=255, blank=True, null=True)
     severity = models.SmallIntegerField(blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    creator = models.CharField(max_length=255, blank=True, null=True)
+    homepage_url = models.URLField(blank=True, null=True)
+    update_url = models.URLField(blank=True, null=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'blitems'

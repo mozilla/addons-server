@@ -22,6 +22,30 @@ base_xml = """
 """
 
 
+class XMLAssertsMixin(object):
+
+    def assertOptional(self, obj, field, xml_field):
+        """Make sure that if the field isn't filled in, it's not in the XML."""
+        # Save the initial value.
+        initial = getattr(obj, field)
+        try:
+            # If not set, the field isn't in the XML.
+            obj.update(**{field: ''})
+            eq_(self.dom(self.fx4_url).getElementsByTagName(xml_field), [])
+            # If set, it's in the XML.
+            obj.update(**{field: 'foobar'})
+            element = self.dom(self.fx4_url).getElementsByTagName(xml_field)[0]
+            eq_(element.firstChild.nodeValue, 'foobar')
+        finally:
+            obj.update(**{field: initial})
+
+    def assertEscaped(self, obj, field):
+        """Make sure that the field content is XML escaped."""
+        obj.update(**{field: 'http://example.com/?foo=<bar>&baz=crux'})
+        r = self.client.get(self.fx4_url)
+        assert 'http://example.com/?foo=&lt;bar&gt;&amp;baz=crux' in r.content
+
+
 class BlocklistViewTest(amo.tests.TestCase):
 
     def setUp(self):
@@ -52,7 +76,7 @@ class BlocklistViewTest(amo.tests.TestCase):
         return minidom.parseString(r.content)
 
 
-class BlocklistItemTest(BlocklistViewTest):
+class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
     def setUp(self):
         super(BlocklistItemTest, self).setUp()
@@ -266,8 +290,18 @@ class BlocklistItemTest(BlocklistViewTest):
         app = self.dom(self.fx4_url).getElementsByTagName('targetApplication')
         eq_(app[0].getElementsByTagName('versionRange'), [])
 
+    def test_optional_fields(self):
+        self.assertOptional(self.item, 'name', 'name')
+        self.assertOptional(self.item, 'creator', 'creator')
+        self.assertOptional(self.item, 'homepage_url', 'homepageURL')
+        self.assertOptional(self.item, 'update_url', 'updateURL')
 
-class BlocklistPluginTest(BlocklistViewTest):
+    def test_urls_escaped(self):
+        self.assertEscaped(self.item, 'homepage_url')
+        self.assertEscaped(self.item, 'update_url')
+
+
+class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
     def setUp(self):
         super(BlocklistPluginTest, self).setUp()
@@ -455,18 +489,9 @@ class BlocklistPluginTest(BlocklistViewTest):
         eq_(e.getAttribute('severity'), '2')
         eq_(e.getElementsByTagName('targetApplication'), [])
 
-    def test_plugin_without_info_url(self):
-        eq_(self.dom().getElementsByTagName('infoURL'), [])
-
-    def test_plugin_with_info_url(self):
-        self.plugin.update(info_url='http://example.com')
-        info_url = self.dom().getElementsByTagName('infoURL')[0]
-        eq_(info_url.firstChild.nodeValue, 'http://example.com')
-
-    def test_plugin_with_info_url_escaped(self):
-        self.plugin.update(info_url='http://example.com/?foo=<bar>&baz=crux')
-        r = self.client.get(self.fx4_url)
-        assert 'http://example.com/?foo=&lt;bar&gt;&amp;baz=crux' in r.content
+    def test_info_url(self):
+        self.assertOptional(self.plugin, 'info_url', 'infoURL')
+        self.assertEscaped(self.plugin, 'info_url')
 
 
 class BlocklistGfxTest(BlocklistViewTest):
