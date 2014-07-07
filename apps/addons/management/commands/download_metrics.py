@@ -128,32 +128,8 @@ class Command(BaseCommand):
     def process_updates(self, cur, day, filename, sep, limit=None):
         """Query the update requests and store them on disk."""
         limit = ('limit %s' % limit) if limit else ''
-        # We use "concat" and http://a.com in the following request to have
-        # fully qualified URLs.
-        cur.execute("select count(1), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'id'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'version'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'status'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'appID'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'appVersion'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'appOS'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'locale'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'updateType') "
-        "from v2_raw_logs "
-        "where domain='versioncheck.addons.mozilla.org' "
-        "  and ds='%s' "
-        "  and request_url like '/update/VersionCheck.php?%%' "
-        "group by "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'id'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'version'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'status'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'appID'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'appVersion'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'appOS'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'locale'), "
-        "  parse_url(concat('http://a.com',request_url), 'QUERY', 'updateType') "
-        "%s" % (day, limit))
-
+        query = "select count(1), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'status'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appId'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appOS'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'locale'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType') from v2_raw_logs where domain='versioncheck.addons.mozilla.org' and ds='%s' and request_url like '/update/VersionCheck.php?%%' group by ds, parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'status'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appId'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appOS'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'locale'), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType') %s"  # noqa
+        cur.execute(query % (day, limit))
         return self.to_file(cur, '%s.updates' % filename, sep)
 
     def process_downloads(self, cur, day, filename, sep, limit=None):
