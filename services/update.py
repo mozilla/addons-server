@@ -268,7 +268,7 @@ class Update(object):
         # Special case for bug 1031516.
         if data['guid'] == 'firefox-hotfix@mozilla.org':
             app_version = data['version_int']
-            hotfix_version = data['reqVersion']
+            hotfix_version = data['version']
             if version_int('10') <= app_version <= version_int('16.0.1'):
                 if hotfix_version < '20121019.01':
                     sql.append("AND versions.version = '20121019.01' ")
