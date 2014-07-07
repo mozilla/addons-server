@@ -831,11 +831,12 @@ class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
         self.data = {
             'id': 'firefox-hotfix@mozilla.org',
             'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'reqVersion': '2',
         }
 
     def test_10_16_first_hotfix(self):
         """The first hotfix changing the signature should be served."""
-        self.data['reqVersion'] = '2'
+        self.data['version'] = ''
         self.data['appVersion'] = '16.0.1'
 
         up = self.get(self.data)
@@ -844,7 +845,7 @@ class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
 
     def test_10_16_second_hotfix(self):
         """The second hotfix changing the signature should be served."""
-        self.data['reqVersion'] = '20121019.01'
+        self.data['version'] = '20121019.01'
         self.data['appVersion'] = '16.0.1'
 
         up = self.get(self.data)
@@ -853,7 +854,7 @@ class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
 
     def test_10_16_newest_hotfix(self):
         """The newest hotfix should be served."""
-        self.data['reqVersion'] = '20130826.01'
+        self.data['version'] = '20130826.01'
         self.data['appVersion'] = '16.0.1'
 
         up = self.get(self.data)
@@ -862,7 +863,7 @@ class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
 
     def test_16_24_second_hotfix(self):
         """The second hotfix changing the signature should be served."""
-        self.data['reqVersion'] = '2'
+        self.data['version'] = ''
         self.data['appVersion'] = '16.0.2'
 
         up = self.get(self.data)
@@ -871,7 +872,7 @@ class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
 
     def test_16_24_newest_hotfix(self):
         """The newest hotfix should be served."""
-        self.data['reqVersion'] = '20130826.01'
+        self.data['version'] = '20130826.01'
         self.data['appVersion'] = '16.0.2'
 
         up = self.get(self.data)
@@ -880,7 +881,7 @@ class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
 
     def test_above_24_latest_version(self):
         """The newest hotfix should be served."""
-        self.data['reqVersion'] = '2'
+        self.data['version'] = ''
         self.data['appVersion'] = '28.0'
 
         up = self.get(self.data)
