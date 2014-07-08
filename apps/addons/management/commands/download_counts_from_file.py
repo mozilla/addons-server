@@ -101,6 +101,5 @@ class Command(BaseCommand):
 
         # Create in bulk: this is much faster.
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
-        total_time = (datetime.now() - start).total_seconds()
         log.info('Processed a total of %s lines' % (index + 1))
-        log.debug('Total processing time: %s seconds' % total_time)
+        log.debug('Total processing time: %s' % (datetime.now() - start))
