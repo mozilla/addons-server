@@ -20,6 +20,7 @@ from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue)
 from editors.sql_table import SQLTable
+from files.models import File
 
 
 @register.function
@@ -364,7 +365,8 @@ class ReviewHelper:
         self.handler = None
         self.required = {}
         self.addon = addon
-        self.all_files = version.files.all() if version else []
+        self.all_files = (version.files.all() if version
+                          else File.objects.none())
         self.get_review_type(request, addon, version)
         self.actions = self.get_actions()
 

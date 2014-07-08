@@ -484,6 +484,8 @@ def app_review(request, addon):
 
 def _review(request, addon):
     version = addon.latest_version
+    if not version:
+        raise http.Http404()
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
