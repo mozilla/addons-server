@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from optparse import make_option
 
 import pyhs2
@@ -14,7 +14,7 @@ import commonware.log
 log = commonware.log.getLogger('adi.export')
 
 
-fetch_time = 0  # Used for time reporting.
+fetch_time = timedelta()  # Used for time reporting.
 
 
 # This class and the following are needed because the pyhs2 lib doesn't return
@@ -33,7 +33,7 @@ class YieldedCursor(cursor.Cursor):
             # Measure the time it takes to retrieve from hive.
             start = datetime.now()
             resultsRes = self.client.FetchResults(fetchReq)
-            fetch_time += (datetime.now() - start).total_seconds()
+            fetch_time += datetime.now() - start
             if len(resultsRes.results.rows) == 0:
                 break
             for row in resultsRes.results.rows:
@@ -119,9 +119,8 @@ class Command(BaseCommand):
                     num_reqs += self.process_updates(
                         cur, day, filename, sep=sep, limit=limit)
 
-        total_time = (datetime.now() - start).total_seconds()
         log.info('Stored a total of %s requests' % num_reqs)
-        log.debug('Total processing time: %s seconds' % total_time)
+        log.debug('Total processing time: %s' % (datetime.now() - start))
         log.debug('Time spent fetching data from hive over the network: %s' %
                   fetch_time)
 
