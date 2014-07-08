@@ -442,6 +442,8 @@ def application_versions_json(request):
 @addon_view
 def review(request, addon):
     version = addon.latest_version
+    if not version:
+        raise http.Http404()
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))

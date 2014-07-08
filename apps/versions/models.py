@@ -258,10 +258,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def failed_full_review(self):
         return any(a.activity_log.details.get('reviewtype') == 'nominated'
-                   for a in (self.all_activity_query
-                                 .filter(activity_log__action__in=(
-                                    amo.LOG.REJECT_VERSION.id,
-                                    amo.LOG.PRELIMINARY_VERSION.id))))
+                   for a in (self.all_activity_query.filter(
+                       activity_log__action__in=(
+                           amo.LOG.REJECT_VERSION.id,
+                           amo.LOG.PRELIMINARY_VERSION.id))))
 
     @amo.cached_property
     def is_compatible(self):
