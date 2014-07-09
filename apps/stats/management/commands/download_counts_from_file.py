@@ -1,6 +1,8 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from optparse import make_option
+from os import path
 
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 import commonware.log
@@ -8,6 +10,8 @@ import commonware.log
 from addons.models import File
 # TODO: use DownloadCount when the script is proven to work correctly.
 from stats.models import update_inc, DownloadCountTmp as DownloadCount
+
+from . import get_date_from_file
 
 
 log = commonware.log.getLogger('adi.downloadcountsfromfile')
@@ -17,8 +21,11 @@ class Command(BaseCommand):
     """Update download count metrics from a file in the database.
 
     Usage:
-    ./manage.py download_counts_from_file <filename> --date=YYYY-MM-DD
+    ./manage.py download_counts_from_file <folder> --date=YYYY-MM-DD
 
+    If no date is specified, the default is the day before.
+    If not folder is specified, the default is "hive_results". This folder is
+    located in <settings.NETAPP_STORAGE>/shared_storage/tmp.
 
     We get a row for each "addon download" request, in this format:
 
@@ -29,9 +36,9 @@ class Command(BaseCommand):
 
     Eg, for the above request:
 
-        addon: <the addon that has this id>
-        count: <the number of requests for this addon, for this day>
         date: <the date of the day the queries were made>
+        count: <the number of requests for this addon, for this day>
+        addon: <the addon that has this id>
         src: {'dp-btn-primary': 1}
 
     """
@@ -46,12 +53,18 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = datetime.now()  # Measure the time it takes to run the script.
+        folder = args[0] if args else 'hive_results'
+        folder = path.join(settings.NETAPP_STORAGE, 'shared_storage', 'tmp',
+                           folder)
         day = options['date']
         if not day:
-            raise CommandError('You must specify a --date parameter in the '
-                               ' YYYY-MM-DD format.')
+            day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
         sep = options['separator']
-        filename = args[0]
+        filepath = path.join(folder, 'download_counts.hive')
+        # Make sure we're not trying to update with mismatched data.
+        if get_date_from_file(filepath, sep) != day:
+            raise CommandError('%s file contains data for another day' %
+                               filepath)
         # First, make sure we don't have any existing counts for the same day,
         # or it would just increment again the same data.
         DownloadCount.objects.filter(date=day).delete()
@@ -64,18 +77,18 @@ class Command(BaseCommand):
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
 
-        with open(filename) as count_file:
+        with open(filepath) as count_file:
             for index, line in enumerate(count_file):
                 if index and (index % 10000) == 0:
                     log.info('Processed %s lines' % index)
 
                 splitted = line[:-1].split(sep)
 
-                if len(splitted) != 3:
+                if len(splitted) != 4:
                     log.debug('Badly formatted row: %s' % line)
                     continue
 
-                counter, file_id, src = splitted
+                day, counter, file_id, src = splitted
                 try:
                     file_id, counter = int(file_id), int(counter)
                 except ValueError:  # Badly formatted? Drop.
