@@ -554,32 +554,32 @@ msgstr "Мови з {0} по {1}"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:163
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Версій додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:165
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Версій додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:169
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Статус додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:171
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Статус додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Джерел завантажень за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Джерел завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
