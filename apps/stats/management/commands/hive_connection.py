@@ -58,7 +58,7 @@ def query_to_file(query, filepath, sep):
                 cur.execute(query)
                 for row in cur.fetch():
                     num_reqs += 1
-                    if (num_reqs % 100000) == 0:
+                    if (num_reqs % 1000000) == 0:
                         log.info('Processed %s requests' % num_reqs)
                     if None in row:  # Incomplete result: skip.
                         log.debug('Skipping malformed row: %s' % row)

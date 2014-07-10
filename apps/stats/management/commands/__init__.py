@@ -28,8 +28,7 @@ class HiveQueryToFileCommand(BaseCommand):
 
     def handle(self, *args, **options):
         folder = args[0] if args else 'hive_results'
-        folder = os.path.join(settings.NETAPP_STORAGE, 'shared_storage', 'tmp',
-                              folder)
+        folder = os.path.join(settings.NETAPP_STORAGE, 'tmp', folder)
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
