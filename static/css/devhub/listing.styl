@@ -1,0 +1,93 @@
+@import '../impala/lib'
+.items:first-child .item:first-child
+  .info, .action
+    border 0
+.listing .item
+  h3 img
+    height auto
+    width auto
+    max-height 64px
+    max-width 64px
+  .info
+    padding-left 102px
+  .item-info, .item-details
+    border-box()
+  .item-info
+    border-left 1px dotted BORDER_BLUE
+    float right
+    margin-left 2%
+    padding-left 2%
+    width 30%
+    .downloads, .users, .price
+      color GREEN
+      &.premium
+        color ORANGE
+    .price
+      font-size 11px
+      line-height 13px
+    p
+      font-size 13px
+      line-height 15px
+      margin 0
+      + p
+        margin-top 2px
+  .item-details
+    width 68%
+  &:hover
+    a
+      color LINK
+    h5
+      color DARK_GRAY
+.html-rtl .listing .item
+  .info
+    padding-right 102px
+  .item-info
+    float left
+    border 0
+    border-right 1px dotted BORDER_BLUE
+    margin 0 2% 0 0
+    padding 0 2% 0 0
+.item-actions
+  clear both
+  float none
+  font-size 11px
+  line-height 13px
+  margin 1.75em 0 0
+  a
+    color NOTE_GRAY
+    &.more-actions
+      position relative
+      &:after
+        border-color NOTE_GRAY transparent transparent
+        border-style solid
+        border-width 3px 3px 0
+        content ""
+        margin 5px 0 0 4px
+        position absolute
+        height 0
+        top 0
+        width 0
+      &:hover:after
+        border-top-color #05e
+  h5
+    font-size 1em
+    margin-right 4px
+  h5, > ul, > ul > li
+    color NOTE_GRAY
+    display inline-block
+  h5:after
+    content ":"
+  ul > li
+    display inline-block
+    &:not(:first-child):before
+      background-color NOTE_GRAY
+      border-radius 5em
+      content ""
+      display inline-block
+      height 2px
+      margin 0 2px 4px
+      width 2px
+.html-rtl .item-actions a.more-actions:after
+  margin 5px 4px 0 0
+.item:hover a.delete-addon
+  color #d33

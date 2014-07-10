@@ -1,0 +1,23 @@
+@import 'lib'
+.full
+  p + table
+    margin 1em 0
+  table
+    margin-bottom 1em
+    width 100%
+  > table:last-child
+    margin-bottom 0
+  th
+    font-weight bold
+  th, td
+    padding 6px 12px
+  tbody
+    color DARK_GRAY
+  tr
+    line-height 1.5em
+  thead
+    background BORDER_BLUE
+  tr:nth-child(2n)
+    background lighten(LINK, 45%)
+  tbody tr:nth-child(2n + 1)
+    background #fff

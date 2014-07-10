@@ -34,8 +34,6 @@
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ static('css/impala/nojs.css') }}"></noscript>
 
-    {% include "mobile/head_debug.html" %}
-
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}

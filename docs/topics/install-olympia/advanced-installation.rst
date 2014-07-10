@@ -85,13 +85,11 @@ other than the default settings.
 Node.js
 -------
 
-`Node.js <http://nodejs.org/>`_ is needed for Stylus and LESS, which in turn
+`Node.js <http://nodejs.org/>`_ is needed for Stylus, which in turn
 are needed to precompile the CSS files.
 
 If you want to serve the CSS files from another domain than the webserver, you
-will need to precompile them. Otherwise you can have them compiled on the fly,
-using javascript in your browser, if you set ``LESS_PREPROCESS = False`` in
-your local settings.
+will need to precompile them.
 
 First, we need to install node and npm::
 
@@ -124,29 +122,3 @@ In your ``settings_local.py`` ensure you are pointing to the correct executable
 for ``stylus``::
 
     STYLUS_BIN = path('node_modules/stylus/bin/stylus')
-
-
---------
-LESS CSS
---------
-
-We're slowing switching over from regular CSS to LESS.  You can learn more about
-LESS at http://lesscss.org.
-
-If you already ran ``npm install`` you don't need to do anything more.
-
-In your ``settings_local.py`` ensure you are pointing to the correct executable
-for ``less``::
-
-    LESS_BIN = path('node_modules/less/bin/lessc')
-
-You can make the CSS live refresh on save by adding ``#!watch`` to the URL or by
-adding the following to your ``settings_local.py``::
-
-    LESS_LIVE_REFRESH = True
-
-If you want syntax highlighting, try:
- * vim: http://leafo.net/lessphp/vim/
- * emacs: http://jdhuntington.com/emacs/less-css-mode.el
- * TextMate: https://github.com/appden/less.tmbundle
- * Coda: http://groups.google.com/group/coda-users/browse_thread/thread/b3327b0cb893e439?pli=1

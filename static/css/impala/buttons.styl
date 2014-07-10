@@ -1,0 +1,182 @@
+@import 'lib'
+.button, button, input[type=submit]
+  position relative
+  font bold (13px / 1em) HEAD_SANS
+  padding 6px 10px 7px
+  text-align center
+  text-decoration none
+  color #fff
+  cursor pointer
+  background #5784BF
+  gradient-two-color(rgb(102, 155, 225, 1), rgb(87, 132, 191, 1))
+  text-shadow 0 1px 0 rgba(0, 0, 0, 0.5)
+  border-radius(6px)
+  box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset)
+  border 0
+button.good, .button.good, .button.add
+  gradient-two-color-fallback(GREEN_LIGHT, GREEN_DARK, GREEN_DARK)
+button.bad, .button.bad, .button.developer, .button.scary
+  gradient-two-color-fallback(RED_LIGHT, RED_DARK, RED_DARK)
+.button
+  display inline-block
+  &.prominent
+    padding 8px 16px 12px
+    font-size 16px
+    box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset)
+  &.add
+    span
+      padding-left 16px
+      background url(../../img/impala/button-icons.png) no-repeat 0 3px
+    &.prominent
+      span
+        padding-left 24px
+        sprite-pos(3, 64, 3px)
+      &.warning, &.caution
+        span
+          sprite-pos(5, 64, 3px)
+      &.disabled, &.concealed, &.caution.concealed
+        span
+          sprite-pos(4, 64, 3px)
+    &.warning, &.caution
+      background url(../../img/impala/warning-bg.png)
+      color #333
+      text-shadow 0 -1px 0 rgba(255, 255, 255, 0.5)
+      top 0
+      span
+        sprite-pos(2, 64, 3px)
+    &.disabled, &.concealed, &.caution.concealed
+      top 0
+      span
+        sprite-pos(1, 64, 3px)
+  &.premium
+    gradient-two-color(rgb(227, 193, 127, 1), rgb(214, 145, 61, 1))
+  &.paypal
+    gradient-two-color(rgb(248, 234, 196, 1), rgb(238, 197, 70, 1))
+    color rgb(51, 70, 118)
+    text-shadow 1px 1px #EDE8BF
+    font-style italic
+    font-family Verdana, SANS_STACK
+    background-color #EEC546
+    small
+      font-size 0.7em
+    em
+      color rgb(90, 120, 168)
+    &.disabled em
+      color #919497
+  &.contribute
+    &.prominent b
+      background url(../../img/impala/button-icons.png) no-repeat
+      padding-left 24px
+      margin-left -4px
+      sprite-pos(7, 64, 4px)
+  &.developer, &.scary
+    span
+      margin-left -4px
+      padding-left 24px
+      background url(../../img/impala/button-icons.png) no-repeat
+      sprite-pos(6, 64, 3px)
+  &.watch:not(.watching)
+    background #ea0
+    gradient-two-color(rgb(238, 170, 0, 1), darken(rgb(238, 170, 0, 1), 10%))
+  &.platform
+    display none
+.html-rtl
+  .button
+    &.add
+      span
+        background-position 93px 3px
+        padding 0 16px 0 0
+      &.prominent
+        span
+          padding 0 24px 0 0
+          sprite-pos-right(3, 64, 3px)
+        &.disabled, &.concealed, &.caution.concealed
+          span
+            sprite-pos-right(4, 64, 3px)
+        &.warning, &.caution
+          span
+            sprite-pos-right(5, 64, 3px)
+      &.warning, &.caution
+        span
+          sprite-pos-right(2, 64, 3px)
+      &.disabled, &.concealed, &.caution.concealed
+        span
+          sprite-pos-right(1, 64, 3px)
+    &.contribute.prominent b
+      margin 0 -4px 0 0
+      padding 0 24px 0 4px
+      sprite-pos-right(7, 64, 4px)
+    &.developer, &.scary
+      span
+        margin 0 -4px 0 0
+        padding 0 24px 0 0
+        sprite-pos-right(6, 64, 3px)
+.button:hover, .button:focus, .button:active, .button.selected
+  text-decoration none
+  box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset)
+body.android.addon-details .button.platform.android:not(.concealed)
+  display inline-block
+.install.clickHijack a *
+  pointer-events none
+.button:active, .button.selected
+  box-shadow(0 0px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset)
+.button:active, .button.selected, .button.prominent:active, .button.prominent.selected
+  top 2px
+  &:before
+    /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
+            This effectively fills the deadzone. See bug 710284. */
+    content ""
+    display block
+    height 2px
+    position absolute
+    top -2px
+    left 0
+    width 100%
+.button.prominent:hover, .button.prominent:focus, .button.prominent:active, .button.prominent.selected
+  box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset)
+.button.prominent:active, .button.prominent.selected
+  box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset, 0 0 100px rgba(255, 255, 255, 0.2) inset)
+.install-shell
+  .install
+    display inline-block
+  .warning
+    font-size 12px
+  .extra
+    margin-top 8px
+  .notavail, .notsupported
+    color ERROR_RED
+    display block
+    font-size 11px
+    margin 0 0 4px
+  .acr-incompat, .notsupported
+    color NOTE_GRAY
+  .notsupported span:before
+    content "\0B7"
+    padding 0 4px
+.listing .notsupported span
+  display block
+  margin-top 4px
+  &:before
+    content ""
+.versions .notsupported
+  display none
+.listing-grid
+  .hovercard
+    .install-button
+      margin 0
+    .button.disabled, .button.concealed
+      display none !important
+    .addon-summary
+      line-height 16px
+.mac .button.mac, .linux .button.linux, .other .button.bsd, .other .button.solaris, .windows .button.windows
+  display inherit
+.thunderbird .listing-grid .install-shell
+  display none
+button[disabled], .button.disabled, .button.concealed, .button.caution.concealed
+  background #c1c5ca
+  gradient-two-color(rgb(209, 212, 215, 1), rgb(193, 197, 202, 1))
+  color #919497
+  box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset)
+  text-shadow 0 1px 0 rgba(255, 255, 255, 0.5)
+button[disabled], .button.disabled, .button.caution.concealed
+  pointer-events none

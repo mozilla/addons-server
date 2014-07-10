@@ -1,0 +1,55 @@
+@import '../impala/lib'
+#search
+  position relative
+  margin-bottom 14px
+  width 100%
+  input[type=search]
+    border-box()
+    background url(../../img/zamboni/mobile/search.svg) no-repeat 10px center rgb(255, 255, 255, 1)
+    border 1px solid #ddd
+    border-radius(6px)
+    display block
+    font-size 18px
+    margin-right 8px
+    padding 10px 10px 10px 40px
+    width-calc(unquote('100% - 68px'), 94%)
+  button
+    box-shadow(0 -3px rgba(0, 0, 0, 0.1) inset)
+    border-radius(6px)
+    background-color #83c53c
+    display block
+    font-size 18px
+    padding 8px 0
+    position absolute
+    top 0
+    right 0
+    width 56px
+.html-rtl #search
+  input[type=search]
+    background-position 99% 50%
+    margin 0 0 0 8px
+    padding 10px 40px 10px 10px
+  button
+    transform(unquote('scaleX(-1)'))
+    right auto
+    left 0
+.noInlineSVG #search button
+  background rgb(131, 197, 60, 1) url(../../img/zamboni/mobile/arrow.png) center no-repeat
+#content.search .item
+  .install-wrapper
+    clear both
+    margin 0 10px
+    padding 0
+  .badges
+    margin 0
+  .buttons, .privacy-policy, .eula
+    display none
+.no-results
+  border-radius(6px)
+  border 1px solid #ddd
+  background-color #f4f4f4
+  color #999
+  font bold 18px SERIF_STACK
+  text-align center
+  margin 14px 14px 1em
+  padding 14px

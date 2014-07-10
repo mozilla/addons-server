@@ -91,9 +91,8 @@ APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
 PRE_GENERATE_APKS = False
 
 # Assuming you did `npm install` (and not `-g`) like you were supposed to,
-# this will be the path to the `stylus` and `lessc` executables.
+# this will be the path to the `stylus` executable
 STYLUS_BIN = path('node_modules/stylus/bin/stylus')
-LESS_BIN = path('node_modules/less/bin/lessc')
 
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.

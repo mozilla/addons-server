@@ -18,8 +18,6 @@
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
 
-    {% include "mobile/head_debug.html" %}
-
     {% block extrahead %}{% endblock %}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} lang-{{ LANG }} {% block bodyclass %}{% endblock %}"

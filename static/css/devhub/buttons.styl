@@ -1,0 +1,10 @@
+@import '../impala/lib'
+button, .button
+  &.good
+    gradient-two-color-fallback(GREEN_LIGHT, GREEN_DARK, GREEN_DARK)
+    &:active
+      gradient-two-color(GREEN_LIGHT, GREEN_DARK)
+  &.bad
+    gradient-two-color-fallback(RED_LIGHT, RED_DARK, RED_DARK)
+    &:active
+      gradient-two-color(RED_DARK, RED_LIGHT)

@@ -1,0 +1,30 @@
+button.good,
+.button.good {
+  background: #489615;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#84c63c), to(#489615));
+  background-image: linear-gradient(#84c63c, #489615);
+  background-image: -moz-linear-gradient(#84c63c, #489615);
+  background-image: -webkit-linear-gradient(#84c63c, #489615);
+}
+button.good:active,
+.button.good:active {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#84c63c), to(#489615));
+  background-image: linear-gradient(#84c63c, #489615);
+  background-image: -moz-linear-gradient(#84c63c, #489615);
+  background-image: -webkit-linear-gradient(#84c63c, #489615);
+}
+button.bad,
+.button.bad {
+  background: #bc2b1a;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#f84b4e), to(#bc2b1a));
+  background-image: linear-gradient(#f84b4e, #bc2b1a);
+  background-image: -moz-linear-gradient(#f84b4e, #bc2b1a);
+  background-image: -webkit-linear-gradient(#f84b4e, #bc2b1a);
+}
+button.bad:active,
+.button.bad:active {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#bc2b1a), to(#f84b4e));
+  background-image: linear-gradient(#bc2b1a, #f84b4e);
+  background-image: -moz-linear-gradient(#bc2b1a, #f84b4e);
+  background-image: -webkit-linear-gradient(#bc2b1a, #f84b4e);
+}
