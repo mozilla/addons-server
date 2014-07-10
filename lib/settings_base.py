@@ -1515,3 +1515,12 @@ URL_FORMAT_OVERRIDE = 'format'
 
 # Add on used to collect stats (!technical dept around!)
 ADDON_COLLECTOR_ID = 11950
+
+# Connection to the hive server.
+HIVE_CONNECTION = {
+    'host': 'peach-gw.peach.metrics.scl3.mozilla.com',
+    'port': 10000,
+    'user': 'aphadke',
+    'password': '',
+    'auth_mechanism': 'PLAIN',
+}
