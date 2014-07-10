@@ -39,6 +39,17 @@ class XMLAssertsMixin(object):
         finally:
             obj.update(**{field: initial})
 
+    def assertAttribute(self, obj, field, tag, attr_name):
+        # Save the initial value.
+        initial = getattr(obj, field)
+        try:
+            # If set, it's in the XML.
+            obj.update(**{field: 'foobar'})
+            element = self.dom(self.fx4_url).getElementsByTagName(tag)[0]
+            eq_(element.getAttribute(attr_name), 'foobar')
+        finally:
+            obj.update(**{field: initial})
+
     def assertEscaped(self, obj, field):
         """Make sure that the field content is XML escaped."""
         obj.update(**{field: 'http://example.com/?foo=<bar>&baz=crux'})
@@ -290,11 +301,21 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         app = self.dom(self.fx4_url).getElementsByTagName('targetApplication')
         eq_(app[0].getElementsByTagName('versionRange'), [])
 
-    def test_optional_fields(self):
-        self.assertOptional(self.item, 'name', 'name')
-        self.assertOptional(self.item, 'creator', 'creator')
-        self.assertOptional(self.item, 'homepage_url', 'homepageURL')
-        self.assertOptional(self.item, 'update_url', 'updateURL')
+    def test_name(self):
+        self.assertAttribute(self.item, field='name', tag='emItem',
+                             attr_name='name')
+
+    def test_creator(self):
+        self.assertAttribute(self.item, field='creator', tag='emItem',
+                             attr_name='creator')
+
+    def test_homepage_url(self):
+        self.assertAttribute(self.item, field='homepage_url', tag='emItem',
+                             attr_name='homepageURL')
+
+    def test_update_url(self):
+        self.assertAttribute(self.item, field='update_url', tag='emItem',
+                             attr_name='updateURL')
 
     def test_urls_escaped(self):
         self.assertEscaped(self.item, 'homepage_url')
