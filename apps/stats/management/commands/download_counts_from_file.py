@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
     If no date is specified, the default is the day before.
     If not folder is specified, the default is "hive_results". This folder is
-    located in <settings.NETAPP_STORAGE>/shared_storage/tmp.
+    located in <settings.NETAPP_STORAGE>/tmp.
 
     We get a row for each "addon download" request, in this format:
 
@@ -54,8 +54,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         start = datetime.now()  # Measure the time it takes to run the script.
         folder = args[0] if args else 'hive_results'
-        folder = path.join(settings.NETAPP_STORAGE, 'shared_storage', 'tmp',
-                           folder)
+        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder)
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -79,7 +78,7 @@ class Command(BaseCommand):
 
         with open(filepath) as count_file:
             for index, line in enumerate(count_file):
-                if index and (index % 10000) == 0:
+                if index and (index % 1000000) == 0:
                     log.info('Processed %s lines' % index)
 
                 splitted = line[:-1].split(sep)
@@ -98,7 +97,6 @@ class Command(BaseCommand):
                 if file_id in files_to_addon:
                     addon_id = files_to_addon[file_id]
                 else:
-                    log.info('File with id: %s not found' % file_id)
                     continue
 
                 # Memoize the DownloadCount.

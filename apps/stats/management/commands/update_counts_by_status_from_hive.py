@@ -12,7 +12,7 @@ class Command(HiveQueryToFileCommand):
 
     If no date is specified, the default is the day before.
     If not folder is specified, the default is "hive_results". This folder is
-    located in <settings.NETAPP_STORAGE>/shared_storage/tmp.
+    located in <settings.NETAPP_STORAGE>/tmp.
 
     Example row:
 

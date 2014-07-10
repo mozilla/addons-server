@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
     If no date is specified, the default is the day before.
     If not folder is specified, the default is "hive_results". This folder is
-    located in <settings.NETAPP_STORAGE>/shared_storage/tmp.
+    located in <settings.NETAPP_STORAGE>/tmp.
 
     Five files are processed:
     - update_counts_by_version.hive
@@ -57,8 +57,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         start = datetime.now()  # Measure the time it takes to run the script.
         folder = args[0] if args else 'hive_results'
-        folder = path.join(settings.NETAPP_STORAGE, 'shared_storage', 'tmp',
-                           folder)
+        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder)
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -87,7 +86,7 @@ class Command(BaseCommand):
             with open(filepath) as results_file:
                 for line in results_file:
                     index += 1
-                    if index and (index % 10000) == 0:
+                    if index and (index % 1000000) == 0:
                         log.info('Processed %s lines' % index)
 
                     splitted = line[:-1].split(sep)
@@ -106,7 +105,6 @@ class Command(BaseCommand):
                     try:
                         count, update_type = int(count), int(update_type)
                     except ValueError:  # Badly formatted? Drop.
-                        log.debug("Update type isn't valid: %s" % update_type)
                         continue
 
                     # The following is magic that I don't understand. I've just
@@ -116,14 +114,14 @@ class Command(BaseCommand):
                     # > 16, if not, ignore the request.
                     # > udpateType & 31 == 16 == valid request.
                     if update_type & 31 != 16:
-                        log.debug("Update type doesn't add to 16")
+                        log.debug("Update type doesn't add to 16: %s" %
+                                  update_type)
                         continue
 
                     # Does this addon exit?
                     if addon_guid in guids_to_addon:
                         addon_id = guids_to_addon[addon_guid]
                     else:
-                        log.debug('Addon with guid: %s not found' % addon_guid)
                         continue
 
                     # Memoize the UpdateCount.
