@@ -3,7 +3,7 @@
 {% if items %}
   <emItems>
   {% for guid, details in items.items() %}
-    <emItem {{ attrs(id=guid, os=details.os, blockID=details.block_id) }}>
+    <emItem {{ attrs(id=guid, os=details.os, blockID=details.block_id, name=details.rows.0.name, creator=details.rows.0.creator, homepageURL=details.rows.0.homepage_url, updateURL=details.rows.0.update_url) }}>
       {% for row in details.rows %}
         {% if row.min or row.max or row.severity or row.apps %}
           <versionRange {{ attrs(minVersion=row.min, maxVersion=row.max,
@@ -16,18 +16,6 @@
             </targetApplication>
           {% endfor %}
           </versionRange>
-        {% endif %}
-        {% if row.name %}
-          <name>{{ row.name }}</name>
-        {% endif %}
-        {% if row.creator %}
-          <creator>{{ row.creator }}</creator>
-        {% endif %}
-        {% if row.homepage_url %}
-          <homepageURL>{{ row.homepage_url }}</homepageURL>
-        {% endif %}
-        {% if row.update_url %}
-          <updateURL>{{ row.update_url }}</updateURL>
         {% endif %}
       {% endfor %}
       <prefs>
