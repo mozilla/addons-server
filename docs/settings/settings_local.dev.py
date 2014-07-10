@@ -81,12 +81,6 @@ VALIDATOR_TIMEOUT = -1
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = True
 
-# For Marketplace payments.
-APP_PURCHASE_KEY = 'localhost'
-APP_PURCHASE_AUD = 'localhost'
-APP_PURCHASE_TYP = 'mozilla-local/payments/pay/v1'
-APP_PURCHASE_SECRET = 'This secret must match your webpay SECRET'
-
 # If you want to skip pre-generation locally, disable it:
 PRE_GENERATE_APKS = False
 
