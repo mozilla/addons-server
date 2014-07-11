@@ -7,6 +7,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 import commonware.log
 
+import amo
 from addons.models import Addon
 # TODO: use UpdateCount when the script is proven to work correctly.
 from stats.models import update_inc, UpdateCountTmp as UpdateCount
@@ -78,7 +79,9 @@ class Command(BaseCommand):
         # Perf: preload all the addons once and for all.
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
-        guids_to_addon = dict(Addon.objects.values_list('guid', 'id'))
+        guids_to_addon = (dict(Addon.objects.exclude(guid__isnull=True)
+                                            .filter(type=amo.ADDON_EXTENSION)
+                                            .values_list('guid', 'id')))
 
         index = -1
         for group in groups:
@@ -119,7 +122,7 @@ class Command(BaseCommand):
                         continue
 
                     # Does this addon exit?
-                    if addon_guid in guids_to_addon:
+                    if addon_guid.strip() and addon_guid in guids_to_addon:
                         addon_id = guids_to_addon[addon_guid]
                     else:
                         continue
@@ -132,9 +135,9 @@ class Command(BaseCommand):
                         update_counts[addon_guid] = uc
 
                     # We can now fill the UpdateCount object.
-                    uc.count += count
-
                     if group == 'version':
+                        # Take this count as the global number of daily users.
+                        uc.count += count
                         uc.versions = update_inc(uc.versions, data, count)
                     elif group == 'status':
                         uc.statuses = update_inc(uc.statuses, data, count)
