@@ -3,20 +3,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-11 19:55+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1405108548.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} зірка"
-msgstr[1] "{0} зірки(-ок)"
+msgstr[1] "{0} зірки"
+msgstr[2] "{0} зірок"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -55,14 +59,16 @@ msgstr "Помилка з {0}"
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Ваш додаток не пройшов перевірку, кількість помилок: {0}."
-msgstr[1] "Ваш додаток не пройшов перевірку, кількість помилок: {0}."
+msgstr[0] "Ваш додаток не пройшов перевірку з {0} помилкою."
+msgstr[1] "Ваш додаток не пройшов перевірку з {0} помилками."
+msgstr[2] "Ваш додаток не пройшов перевірку з {0} помилками."
 
 #: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
+msgstr[2] "&hellip;і ще {0}"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
@@ -90,6 +96,7 @@ msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленням."
 msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
+msgstr[2] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -128,12 +135,14 @@ msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ваш застосунок не пройшов перевірку з {0} помилкою."
 msgstr[1] "Ваш застосунок не пройшов перевірку з {0} помилками."
+msgstr[2] "Ваш застосунок не пройшов перевірку з {0} помилками."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Ваш застосунок пройшов перевірку без помилок і з {0} застереженням."
 msgstr[1] "Ваш застосунок пройшов перевірку без помилок і з {0} застереженнями."
+msgstr[2] "Ваш застосунок пройшов перевірку без помилок і з {0} застереженнями."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
@@ -747,12 +756,14 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -847,7 +858,9 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Вибачте, але вам потрібно мати браузер від Мозіли (наприклад, Firefox), щоб встановити пошуковий модуль."
+msgstr ""
+"Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі "
+"Mozilla (наприклад, Firefox)."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -942,12 +955,14 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/devhub.js:690
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/devhub.js:820
 msgid "Learn more"
@@ -1045,8 +1060,9 @@ msgstr "Завантажується..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Залишилась <b>{0}</b> літера."
-msgstr[1] "Залишилось <b>{0}</b> літер(-и)."
+msgstr[0] "залишився <b>{0}</b> символ."
+msgstr[1] "залишилось <b>{0}</b> символи."
+msgstr[2] "залишилось <b>{0}</b> символів."
 
 #: media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1068,8 +1084,9 @@ msgstr "Стійкість паролю:"
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Щонайменше залишилась {0} літера."
-msgstr[1] "Щонайменше залишилось {0} літер(-и)."
+msgstr[0] "Залишився щонайменше {0} символ."
+msgstr[1] "Залишилось щонайменше {0} символи."
+msgstr[2] "Залишилось щонайменше {0} символів."
 
 #: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
 msgid "All"
@@ -1140,18 +1157,21 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
