@@ -51,15 +51,17 @@ HOME=/tmp
 50 10 * * * %(z_cron)s update_google_analytics
 
 # Update ADI metrics from HIVE.
+# *_from_hive commented out given that a temporary workaround has been
+# set to get access to hive data, davidbgk
 # update counts
-00 1 * * * %(django)s update_counts_by_app_from_hive
-05 1 * * * %(django)s update_counts_by_version_from_hive
-10 1 * * * %(django)s update_counts_by_status_from_hive
-15 1 * * * %(django)s update_counts_by_os_from_hive
-20 1 * * * %(django)s update_counts_by_locale_from_hive
+# 00 1 * * * %(django)s update_counts_by_app_from_hive
+# 05 1 * * * %(django)s update_counts_by_version_from_hive
+# 10 1 * * * %(django)s update_counts_by_status_from_hive
+# 15 1 * * * %(django)s update_counts_by_os_from_hive
+# 20 1 * * * %(django)s update_counts_by_locale_from_hive
 00 3 * * * %(django)s update_counts_from_file
 # download counts
-00 3 * * * %(django)s download_counts_from_hive
+# 00 3 * * * %(django)s download_counts_from_hive
 00 4 * * * %(django)s download_counts_from_file
 
 #Once per day after 2100 PST (after metrics is done)
