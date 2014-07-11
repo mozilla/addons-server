@@ -3,24 +3,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-07-10 11:28+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404991688.0\n"
+"X-Generator: Translate Toolkit 1.8.1\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} зірка"
-msgstr[1] "{0} зірки"
-msgstr[2] "{0} зірок"
+msgstr[1] "{0} зірки(-ок)"
 
 #: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
@@ -28,7 +24,7 @@ msgstr "Виникла проблема при спробі зв'язатись 
 
 #: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
-msgstr "Оберіть файл..."
+msgstr "Виберіть файл..."
 
 #: media/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -59,16 +55,14 @@ msgstr "Помилка з {0}"
 #: media/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Ваш додаток не пройшов перевірку з {0} помилкою."
-msgstr[1] "Ваш додаток не пройшов перевірку з {0} помилками."
-msgstr[2] "Ваш додаток не пройшов перевірку з {0} помилками."
+msgstr[0] "Ваш додаток не пройшов перевірку, кількість помилок: {0}."
+msgstr[1] "Ваш додаток не пройшов перевірку, кількість помилок: {0}."
 
 #: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
-msgstr[2] "&hellip;і ще {0}"
 
 #: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
@@ -94,9 +88,8 @@ msgstr "Завершена перевірка {0}"
 #: media/js/common/upload-addon.js:307
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленням."
+msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
 
 #: media/js/common/upload-addon.js:312
 msgid "Your add-on passed validation with no errors or warnings."
@@ -108,7 +101,7 @@ msgstr "Деякі платформи недоступні для цього т�
 
 #: media/js/common/upload-addon.js:365
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Нажаль, не знайдено підтримуваних платформ."
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -124,29 +117,27 @@ msgstr "Зображення повинні бути PNG чи JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Відео повинні бути у форматі WebM."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr ""
+msgstr "Ваш запакований застосунок повинен мати розширення <code>.zip</code>."
 
 #: media/js/common/upload-packaged-app.js:169
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваш застосунок не пройшов перевірку з {0} помилкою."
+msgstr[1] "Ваш застосунок не пройшов перевірку з {0} помилками."
 
 #: media/js/common/upload-packaged-app.js:298
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваш застосунок пройшов перевірку без помилок і з {0} застереженням."
+msgstr[1] "Ваш застосунок пройшов перевірку без помилок і з {0} застереженнями."
 
 #: media/js/common/upload-packaged-app.js:303
 msgid "Your app passed validation with no errors or warnings."
-msgstr ""
+msgstr "Ваш застосунок пройшов перевірку без помилок і застережень."
 
 #: media/js/impala/collections.js:10 media/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -195,11 +186,11 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: media/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Ім'я вашої теми"
 
 #: media/js/impala/reviews.js:23 media/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr "Помічено для розгляду"
+msgstr "Відмічено для розгляду"
 
 #: media/js/impala/reviews.js:40 media/js/zamboni/reviews.js:34
 msgid "Your input is required"
@@ -207,7 +198,7 @@ msgstr "Потрібна ваша думка"
 
 #: media/js/impala/reviews.js:133 media/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr "Помічено для вилучення"
+msgstr "Відмічено для вилучення"
 
 #: media/js/impala/search.js:114
 msgid "Updating results&hellip;"
@@ -239,7 +230,7 @@ msgstr "Тиждень {0}"
 
 #: media/js/impala/stats/chart.js:269
 msgid "downloads"
-msgstr "завантаження"
+msgstr "завантажень"
 
 #: media/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -271,11 +262,11 @@ msgstr "{0} встановлень"
 
 #: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
-msgstr "Завантаження"
+msgstr "Завантажень"
 
 #: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
-msgstr "Щоденні користувачі"
+msgstr "Щоденних користувачів"
 
 #: media/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
@@ -300,7 +291,7 @@ msgstr "Створено колекцій"
 
 #: media/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr "Додатків у вживанні"
+msgstr "Використовується додатків"
 
 #: media/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
@@ -360,7 +351,7 @@ msgstr "Відібрані"
 
 #: media/js/impala/stats/csv_keys.js:50 media/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Незабаром з'являться"
 
 #: media/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
@@ -464,7 +455,7 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:108
 msgid "Usage"
-msgstr ""
+msgstr "Використання"
 
 #: media/js/impala/stats/csv_keys.js:111
 msgid "Firefox"
@@ -493,102 +484,102 @@ msgstr "Fennec"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:121
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Завантажень та щоденних користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:123
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Завантажень та щоденних користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:127
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Встановлень та щоденних користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:129
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Встановлень та щоденних користувачів від {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:133
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Завантажень за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:135
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:139
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Щоденних користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:141
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Щоденних користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:145
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Застосунків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:147
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Застосунків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:151
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Платформ за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:153
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Платформ з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:157
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Мови за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:159
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Мови з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:163
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Версій додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:165
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Версій додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:169
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Статус додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:171
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Статус додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:175
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Джерел завантажень за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:177
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Джерел завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
@@ -756,14 +747,12 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -858,9 +847,7 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-"Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі "
-"Mozilla (наприклад, Firefox)."
+msgstr "Вибачте, але вам потрібно мати браузер від Мозіли (наприклад, Firefox), щоб встановити пошуковий модуль."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -955,14 +942,12 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/devhub.js:690
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/devhub.js:820
 msgid "Learn more"
@@ -1060,9 +1045,8 @@ msgstr "Завантажується..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "залишився <b>{0}</b> символ."
-msgstr[1] "залишилось <b>{0}</b> символи."
-msgstr[2] "залишилось <b>{0}</b> символів."
+msgstr[0] "Залишилась <b>{0}</b> літера."
+msgstr[1] "Залишилось <b>{0}</b> літер(-и)."
 
 #: media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1084,9 +1068,8 @@ msgstr "Стійкість паролю:"
 #: media/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Залишився щонайменше {0} символ."
-msgstr[1] "Залишилось щонайменше {0} символи."
-msgstr[2] "Залишилось щонайменше {0} символів."
+msgstr[0] "Щонайменше залишилась {0} літера."
+msgstr[1] "Щонайменше залишилось {0} літер(-и)."
 
 #: media/js/zamboni/perf.js:29 media/js/zamboni/perf.js:42
 msgid "All"
@@ -1157,21 +1140,18 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
 
 #: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
