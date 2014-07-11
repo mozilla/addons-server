@@ -51,6 +51,7 @@ HOME=/tmp
 50 10 * * * %(z_cron)s update_google_analytics
 
 # Update ADI metrics from HIVE.
+# Once per day after 0515 UTC (after hive queries + transfert is done)
 # *_from_hive commented out given that a temporary workaround has been
 # set to get access to hive data, davidbgk
 # update counts
@@ -59,19 +60,19 @@ HOME=/tmp
 # 10 1 * * * %(django)s update_counts_by_status_from_hive
 # 15 1 * * * %(django)s update_counts_by_os_from_hive
 # 20 1 * * * %(django)s update_counts_by_locale_from_hive
-00 3 * * * %(django)s update_counts_from_file
+45 5 * * * %(django)s update_counts_from_file
 # download counts
 # 00 3 * * * %(django)s download_counts_from_hive
-00 4 * * * %(django)s download_counts_from_file
+00 6 * * * %(django)s download_counts_from_file
 
-#Once per day after 2100 PST (after metrics is done)
-35 5 * * * %(z_cron)s update_addon_download_totals
-40 5 * * * %(z_cron)s weekly_downloads
-35 6 * * * %(z_cron)s update_global_totals
-40 6 * * * %(z_cron)s update_addon_average_daily_users
-30 7 * * * %(z_cron)s index_latest_stats
-45 7 * * * %(z_cron)s update_addons_collections_downloads
-50 7 * * * %(z_cron)s update_daily_theme_user_counts
+# Once per day after metrics is done (see above)
+35 6 * * * %(z_cron)s update_addon_download_totals
+40 6 * * * %(z_cron)s weekly_downloads
+35 7 * * * %(z_cron)s update_global_totals
+40 7 * * * %(z_cron)s update_addon_average_daily_users
+30 8 * * * %(z_cron)s index_latest_stats
+45 8 * * * %(z_cron)s update_addons_collections_downloads
+50 8 * * * %(z_cron)s update_daily_theme_user_counts
 
 # Once per week
 45 7 * * 4 %(z_cron)s unconfirmed
