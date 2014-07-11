@@ -113,7 +113,7 @@ thrift==0.9.1
 -e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/signing-clients@a8bd730b202391c080113d224d223463e03088e9#egg=signing-clients
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
--e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
+-e git+https://github.com/washort/django-cache-machine@b7a8d44ba60c44c5bd0aaae410b54d4712881f83#egg=django-cache-machine
 ## Forked.
 -e git+https://github.com/washort/django-piston-oauth2.git@c89afee6f98241eb7ef6df57d3d5156fabbfa759#egg=django-piston-oauth2
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
