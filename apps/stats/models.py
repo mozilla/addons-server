@@ -8,30 +8,22 @@ import bleach
 import caching.base
 import tower
 from babel import Locale, numbers
-from jingo import env
 from jinja2.filters import do_dictsort
 from tower import ugettext as _
 
 import amo
-from amo.helpers import absolutify, urlparams
 from amo.models import SearchMixin
 from amo.fields import DecimalCharField
-from amo.utils import get_locale_from_lang, send_mail, send_mail_jinja
+from amo.utils import get_locale_from_lang, send_mail_jinja
 from zadmin.models import DownloadSource
 
 from .db import StatsDictField
 
 
-# This helps us increment counters in dicts easily, for StatsDictFields.
 def update_inc(initial, key, count):
-    """Update and increment the initial dict with "add".
-
-    If the key isn't in "initial", add the new key with a value of 1.
-    If the key is not already in "initial", increment the current value.
-
-    """
+    """Update or create a dict of `int` counters, for StatsDictFields."""
     initial = initial or {}
-    initial[key] = count or initial.get(key, 0) + 1
+    initial[key] = count + initial.get(key, 0)
     return initial
 
 
