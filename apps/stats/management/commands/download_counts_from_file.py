@@ -24,8 +24,8 @@ class Command(BaseCommand):
     ./manage.py download_counts_from_file <folder> --date=YYYY-MM-DD
 
     If no date is specified, the default is the day before.
-    If not folder is specified, the default is "hive_results". This folder is
-    located in <settings.NETAPP_STORAGE>/tmp.
+    If not folder is specified, the default is `hive_results/YYYY-MM-DD/`.
+    This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
 
     We get a row for each "addon download" request, in this format:
 
@@ -53,11 +53,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = datetime.now()  # Measure the time it takes to run the script.
-        folder = args[0] if args else 'hive_results'
-        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder)
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        folder = args[0] if args else 'hive_results'
+        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder, day)
         sep = options['separator']
         filepath = path.join(folder, 'download_counts.hive')
         # Make sure we're not trying to update with mismatched data.
