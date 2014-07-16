@@ -1052,9 +1052,7 @@ msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
 
 #: media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-"ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ "
-"ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
+msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
 
 #: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"

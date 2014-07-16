@@ -19,13 +19,11 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} estrela"
 msgstr[1] "{0} estrelas"
 
-#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-addon.js:34 media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Houve um problema ao contactar o servidor."
 
-#: media/js/common/upload-addon.js:52
-#: media/js/common/upload-packaged-app.js:52
+#: media/js/common/upload-addon.js:52 media/js/common/upload-packaged-app.js:52
 msgid "Select a file..."
 msgstr "Selecione um ficheiro..."
 
@@ -34,29 +32,24 @@ msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "O seu extra deve terminar com .xpi, .jar, .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: media/js/common/upload-addon.js:87
-#: media/js/common/upload-packaged-app.js:89
+#: media/js/common/upload-addon.js:87 media/js/common/upload-packaged-app.js:89
 msgid "{0}% complete"
 msgstr "{0}% completo"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: media/js/common/upload-addon.js:90
-#: media/js/common/upload-packaged-app.js:92
+#: media/js/common/upload-addon.js:90 media/js/common/upload-packaged-app.js:92
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: media/js/common/upload-addon.js:120
-#: media/js/common/upload-packaged-app.js:120
+#: media/js/common/upload-addon.js:120 media/js/common/upload-packaged-app.js:120
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: media/js/common/upload-addon.js:142
-#: media/js/common/upload-packaged-app.js:142
+#: media/js/common/upload-addon.js:142 media/js/common/upload-packaged-app.js:142
 msgid "Uploading {0}"
 msgstr "A carregar {0}"
 
-#: media/js/common/upload-addon.js:169
-#: media/js/common/upload-packaged-app.js:164
+#: media/js/common/upload-addon.js:169 media/js/common/upload-packaged-app.js:164
 msgid "Error with {0}"
 msgstr "Erro com {0}"
 
@@ -66,37 +59,30 @@ msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "O seu extra falhou a validação com {0} erro."
 msgstr[1] "O seu extra falhou a validação com {0} erros."
 
-#: media/js/common/upload-addon.js:188
-#: media/js/common/upload-packaged-app.js:183
+#: media/js/common/upload-addon.js:188 media/js/common/upload-packaged-app.js:183
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e mais {0}"
 msgstr[1] "&hellip;e mais {0}"
 
-#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329
-#: media/js/common/upload-packaged-app.js:197
-#: media/js/common/upload-packaged-app.js:323
+#: media/js/common/upload-addon.js:202 media/js/common/upload-addon.js:329 media/js/common/upload-packaged-app.js:197 media/js/common/upload-packaged-app.js:323
 msgid "See full validation report"
 msgstr "Ver relatório de validação completo"
 
-#: media/js/common/upload-addon.js:214
-#: media/js/common/upload-packaged-app.js:209
+#: media/js/common/upload-addon.js:214 media/js/common/upload-packaged-app.js:209
 msgid "Validating {0}"
 msgstr "A validar {0}"
 
 #. L10n: first argument is an HTTP status code
-#: media/js/common/upload-addon.js:252
-#: media/js/common/upload-packaged-app.js:245
+#: media/js/common/upload-addon.js:252 media/js/common/upload-packaged-app.js:245
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida resposta vazia do servidor: {0}"
 
-#: media/js/common/upload-addon.js:263
-#: media/js/common/upload-packaged-app.js:255
+#: media/js/common/upload-addon.js:263 media/js/common/upload-packaged-app.js:255
 msgid "Unexpected server error while validating."
 msgstr "Erro inesperado do servidor enquanto validava."
 
-#: media/js/common/upload-addon.js:301
-#: media/js/common/upload-packaged-app.js:292
+#: media/js/common/upload-addon.js:301 media/js/common/upload-packaged-app.js:292
 msgid "Finished validating {0}"
 msgstr "Validação {0} terminada"
 
@@ -275,13 +261,11 @@ msgstr "{0} devoluções"
 msgid "{0} installs"
 msgstr "{0} instalações"
 
-#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3
-#: media/js/impala/stats/csv_keys.js:102
+#: media/js/impala/stats/chart.js:369 media/js/impala/stats/csv_keys.js:3 media/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "Transferências"
 
-#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6
-#: media/js/impala/stats/csv_keys.js:103
+#: media/js/impala/stats/chart.js:379 media/js/impala/stats/csv_keys.js:6 media/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "Utilizadores diários"
 
@@ -358,8 +342,7 @@ msgstr "Gestor de extras"
 msgid "Search Results"
 msgstr "Resultados da pesquisa"
 
-#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46
-#: media/js/impala/stats/csv_keys.js:47
+#: media/js/impala/stats/csv_keys.js:45 media/js/impala/stats/csv_keys.js:46 media/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr "Promo da página inicial"
 
@@ -387,8 +370,7 @@ msgstr "Página de detalhes (fundo)"
 msgid "Detail Page (Development Channel)"
 msgstr "Página de detalhes (Canal de desenvolvimento)"
 
-#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59
-#: media/js/impala/stats/csv_keys.js:60
+#: media/js/impala/stats/csv_keys.js:58 media/js/impala/stats/csv_keys.js:59 media/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "Normalmente usado com"
 
@@ -757,19 +739,15 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333
-#: media/js/zamboni/editors.js:336
+#: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333 media/js/zamboni/editors.js:336
 msgid "Select an application first"
 msgstr "Primeiro seleccione uma aplicação"
 
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Definir o extra {0} para a versão máxima {1} e enviar mensagem ao autor."
-msgstr[1] ""
-"Definir os extras {0} para a versão máxima {1} e enviar mensagens aos "
-"autores."
+msgstr[0] "Definir o extra {0} para a versão máxima {1} e enviar mensagem ao autor."
+msgstr[1] "Definir os extras {0} para a versão máxima {1} e enviar mensagens aos autores."
 
 #: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -814,12 +792,8 @@ msgid "Admins and editors must provide a password to log in."
 msgstr "Admins e editores têm de fornecer uma senha para iniciar sessão."
 
 #: media/js/zamboni/browserid_support.js:42
-msgid ""
-"BrowserID login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Início de sessão do BrowserID falhou. Possivelmente não tem uma conta com "
-"esse endereço de correio?"
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Início de sessão do BrowserID falhou. Possivelmente não tem uma conta com esse endereço de correio?"
 
 #. L10n: {0} is an app name like Firefox.
 #: media/js/zamboni/buttons.js:108
@@ -836,18 +810,15 @@ msgstr "Transferir agora"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-"O extra não foi atualizado para suportar a compatibilidade por omissão."
+msgstr "O extra não foi atualizado para suportar a compatibilidade por omissão."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Precisa de estar a utilizar o Firefox 10.0 ou superior."
 
 #: media/js/zamboni/buttons.js:171
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
@@ -876,12 +847,8 @@ msgid "View other versions"
 msgstr "Ver outras versões"
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) "
-"para instalar um plugin de pesquisa."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1016,13 +983,8 @@ msgid "No results found."
 msgstr "Nenhum resultado encontrado."
 
 #: media/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Desculpe, não conseguimos encontrar nenhuma recomendação para si. <br>Por "
-"favor, visite o <a href=\"{0}\">sítio dos extras</a> para encontrar um extra "
-"para si."
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Desculpe, não conseguimos encontrar nenhuma recomendação para si. <br>Por favor, visite o <a href=\"{0}\">sítio dos extras</a> para encontrar um extra para si."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1088,12 +1050,8 @@ msgstr[0] "Falta <b>{0}</b> caractere."
 msgstr[1] "Faltam <b>{0}</b> caracteres."
 
 #: media/js/zamboni/init.js:32
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Esta funcionalidade está desativada temporariamente enquanto procedemos à "
-"manutenção do sítio web. Por favor, volte mais tarde."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Esta funcionalidade está desativada temporariamente enquanto procedemos à manutenção do sítio web. Por favor, volte mais tarde."
 
 #: media/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1150,8 +1108,7 @@ msgstr "Estes testes não foram executados."
 msgid "Tests"
 msgstr "Testes"
 
-#: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449
-#: media/js/zamboni/validator.js:468
+#: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
 msgstr "Erro"
 

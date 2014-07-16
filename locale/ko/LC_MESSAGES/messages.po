@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:46-0700\n"
+"POT-Creation-Date: 2014-07-16 09:14-0700\n"
 "PO-Revision-Date: 2014-05-12 07:59+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
@@ -416,7 +416,7 @@ msgid "Add-on Information for {0}"
 msgstr "{0}의 부가 기능 정보"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:69
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:70
 msgid "Updated"
 msgstr "최근 업데이트"
 
@@ -1958,7 +1958,7 @@ msgid "Collections I'm Following"
 msgstr "팔로우 중인 모음집"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:446
+#: apps/users/models.py:444
 msgid "My Favorite Add-ons"
 msgstr "좋아하는 부가 기능"
 
@@ -2150,19 +2150,23 @@ msgstr "프라이버시:"
 msgid "Icon"
 msgstr "아이콘"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:400
+#: apps/bandwagon/forms.py:150
+msgid "This name cannot be used."
+msgstr ""
+
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
 msgstr "링크는 넣을 수 없습니다."
 
-#: apps/bandwagon/forms.py:164
+#: apps/bandwagon/forms.py:170
 msgid "This url is already in use by another collection"
 msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1081
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
 msgid "Icons must be either PNG or JPG."
 msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1099 apps/users/forms.py:391
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:397
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB보다 작은 이미지를 사용해 주세요."
 
@@ -2202,7 +2206,7 @@ msgstr "선호 목록"
 msgid "Remove from favorites"
 msgstr "선호 목록에서 삭제하기"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:68
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
 #: apps/search/forms.py:90 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2478,9 +2482,21 @@ msgstr "{0} 삭제하기"
 msgid "Delete"
 msgstr "삭제"
 
-#: apps/bandwagon/templates/bandwagon/delete.html:20
+#: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
 msgstr "확실합니까?"
+
+#: apps/bandwagon/templates/bandwagon/delete.html:21 apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152
+#: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98
+#: apps/devhub/templates/devhub/personas/submit.html:119
+msgid "Yes"
+msgstr "예"
+
+#: apps/bandwagon/templates/bandwagon/delete.html:22 apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161
+#: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
+#: apps/devhub/templates/devhub/personas/submit.html:137
+msgid "No"
+msgstr "아니오"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
@@ -2777,15 +2793,15 @@ msgstr "최고 사용자 수"
 msgid "Up & Coming"
 msgstr "인기 급상승"
 
-#: apps/browse/views.py:442 apps/devhub/views.py:70
+#: apps/browse/views.py:442 apps/devhub/views.py:71
 msgid "Created"
 msgstr "신규 등록"
 
-#: apps/browse/views.py:443 apps/devhub/views.py:71 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:443 apps/devhub/views.py:72 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
-#: apps/browse/views.py:444 apps/devhub/views.py:72 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:444 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "별점"
@@ -3951,120 +3967,120 @@ msgstr "\"%s\"에 대한 연결 시간이 초과됐습니다."
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\"에 호스트 접속을 할 수 없습니다."
 
-#: apps/devhub/views.py:167
-msgid "All My Add-ons"
-msgstr "내가 제작한 모든 부가 기능"
-
-#: apps/devhub/views.py:194
-msgid "All Activity"
-msgstr "전체 활동 내역"
-
-#: apps/devhub/views.py:195
-msgid "Add-on Updates"
-msgstr "부가 기능 업데이트"
-
-#: apps/devhub/views.py:196
-msgid "Add-on Status"
-msgstr "부가 기능 상태"
-
-#: apps/devhub/views.py:197
-msgid "User Collections"
-msgstr "사용자 모음집"
-
-#: apps/devhub/views.py:198 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
-msgid "User Reviews"
-msgstr "사용자 평가"
-
-#: apps/devhub/views.py:311 apps/devhub/views.py:315 apps/devhub/views.py:425 apps/devhub/views.py:454 apps/devhub/views.py:505 apps/devhub/views.py:1171
-msgid "Changes successfully saved."
-msgstr "변경 내역이 성공적으로 저장되었습니다."
-
-#: apps/devhub/views.py:318 apps/devhub/views.py:1556
-msgid "Please check the form for errors."
-msgstr "오류 유형에 체크해 주세요."
-
-#: apps/devhub/views.py:330
-msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "부가 기능을 삭제할 수 없습니다. 사용 정지 상태로 만드세요."
-
-#: apps/devhub/views.py:339
-msgid "Theme deleted."
-msgstr "테마가 삭제됐습니다."
-
-#: apps/devhub/views.py:339
-msgid "Add-on deleted."
-msgstr "부가 기능이 삭제되었습니다."
-
-#: apps/devhub/views.py:344
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "비밀번호가 틀렸습니다. 테마가 삭제되지 않았습니다."
-
-#: apps/devhub/views.py:348
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "비밀번호가 틀렸습니다. 부가 기능이 삭제되지 않았습니다."
-
-#: apps/devhub/views.py:460
-msgid "There were errors in your submission."
-msgstr "등록 과정 도중 오류가 발생했습니다."
-
-#: apps/devhub/views.py:524
-msgid "Validate Add-on"
-msgstr "부가 기능 검사"
-
-#: apps/devhub/views.py:533
-msgid "Check Add-on Compatibility"
-msgstr "부가 기능 호환성 검사"
-
-#: apps/devhub/views.py:653
-msgid "There was an error with the submission."
-msgstr "등록 과정에서 오류가 발생했습니다."
-
-#: apps/devhub/views.py:747
+#: apps/devhub/utils.py:57
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
 
-#: apps/devhub/views.py:1083 apps/users/forms.py:386
+#: apps/devhub/views.py:168
+msgid "All My Add-ons"
+msgstr "내가 제작한 모든 부가 기능"
+
+#: apps/devhub/views.py:195
+msgid "All Activity"
+msgstr "전체 활동 내역"
+
+#: apps/devhub/views.py:196
+msgid "Add-on Updates"
+msgstr "부가 기능 업데이트"
+
+#: apps/devhub/views.py:197
+msgid "Add-on Status"
+msgstr "부가 기능 상태"
+
+#: apps/devhub/views.py:198
+msgid "User Collections"
+msgstr "사용자 모음집"
+
+#: apps/devhub/views.py:199 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+msgid "User Reviews"
+msgstr "사용자 평가"
+
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1100
+msgid "Changes successfully saved."
+msgstr "변경 내역이 성공적으로 저장되었습니다."
+
+#: apps/devhub/views.py:319 apps/devhub/views.py:1485
+msgid "Please check the form for errors."
+msgstr "오류 유형에 체크해 주세요."
+
+#: apps/devhub/views.py:331
+msgid "Add-on cannot be deleted. Disable this add-on instead."
+msgstr "부가 기능을 삭제할 수 없습니다. 사용 정지 상태로 만드세요."
+
+#: apps/devhub/views.py:340
+msgid "Theme deleted."
+msgstr "테마가 삭제됐습니다."
+
+#: apps/devhub/views.py:340
+msgid "Add-on deleted."
+msgstr "부가 기능이 삭제되었습니다."
+
+#: apps/devhub/views.py:345
+msgid "Password was incorrect. Theme was not deleted."
+msgstr "비밀번호가 틀렸습니다. 테마가 삭제되지 않았습니다."
+
+#: apps/devhub/views.py:349
+msgid "Password was incorrect. Add-on was not deleted."
+msgstr "비밀번호가 틀렸습니다. 부가 기능이 삭제되지 않았습니다."
+
+#: apps/devhub/views.py:461
+msgid "There were errors in your submission."
+msgstr "등록 과정 도중 오류가 발생했습니다."
+
+#: apps/devhub/views.py:525
+msgid "Validate Add-on"
+msgstr "부가 기능 검사"
+
+#: apps/devhub/views.py:534
+msgid "Check Add-on Compatibility"
+msgstr "부가 기능 호환성 검사"
+
+#: apps/devhub/views.py:654
+msgid "There was an error with the submission."
+msgstr "등록 과정에서 오류가 발생했습니다."
+
+#: apps/devhub/views.py:1012 apps/users/forms.py:392
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
 
-#: apps/devhub/views.py:1087
+#: apps/devhub/views.py:1016
 msgid "Icons cannot be animated."
 msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
-#: apps/devhub/views.py:1089
+#: apps/devhub/views.py:1018
 msgid "Images cannot be animated."
 msgstr "움직이는 이미지는 제대로 작동하지 않습니다."
 
-#: apps/devhub/views.py:1102
+#: apps/devhub/views.py:1031
 msgid "Images cannot be larger than %dKB."
 msgstr "이미지는 %dKB보다 작아야 합니다."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1112
+#: apps/devhub/views.py:1041
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
 
-#: apps/devhub/views.py:1116
+#: apps/devhub/views.py:1045
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
-#: apps/devhub/views.py:1210
+#: apps/devhub/views.py:1139
 msgid "Version %s disabled."
 msgstr "%s 버전이 사용 불가 상태가 되었습니다."
 
-#: apps/devhub/views.py:1213
+#: apps/devhub/views.py:1142
 msgid "Version %s deleted."
 msgstr "%s 버전이 삭제되었습니다."
 
-#: apps/devhub/views.py:1223
+#: apps/devhub/views.py:1152
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 심사시 이점에 유의해 주세요."
 
-#: apps/devhub/views.py:1602
+#: apps/devhub/views.py:1531
 msgid "Preliminary Review Requested."
 msgstr "예비 심사를 요청했습니다."
 
-#: apps/devhub/views.py:1603
+#: apps/devhub/views.py:1532
 msgid "Full Review Requested."
 msgstr "전체 심사를 요청했습니다."
 
@@ -8017,20 +8033,10 @@ msgstr "테마 라이선스"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "인증받은 사람에 한해 테마를 공유하게 할까요?"
 
-#: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
-#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119
-msgid "Yes"
-msgstr "예"
-
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 상업적 용도로 작품을 제작하는 것을 허용합니다."
-
-#: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
-#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137
-msgid "No"
-msgstr "아니오"
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
@@ -11625,7 +11631,7 @@ msgstr "심사 삭제"
 msgid "Other (please specify)"
 msgstr "기타 (이유를 적어주세요)"
 
-#: apps/reviews/views.py:145
+#: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "감사합니다. 평가가 편집자에게 전달되었습니다."
 
@@ -12063,7 +12069,7 @@ msgstr "이 부가 기능 공유하기"
 msgid "Share this Collection"
 msgstr "이 모음집 공유하기"
 
-#: apps/stats/models.py:266
+#: apps/stats/models.py:258
 msgid "Thanks for contributing to {addon_name}"
 msgstr "{addon_name}에 기부해 주셔서 감사합니다"
 
@@ -12473,7 +12479,7 @@ msgstr "그 비밀번호는 허용되지 않습니다."
 msgid "New password"
 msgstr "새 비밀번호"
 
-#: apps/users/forms.py:199 apps/users/forms.py:371
+#: apps/users/forms.py:199 apps/users/forms.py:377
 msgid "Wrong password entered!"
 msgstr "잘못된 비밀번호입니다!"
 
@@ -12513,52 +12519,60 @@ msgstr "잘못된 형식의 URL입니다. http://example.com/my_page 와 같은 
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "등록 절차를 완료하시려면 다른 이메일을 사용해 주세요."
 
-#: apps/users/forms.py:292
+#: apps/users/forms.py:284
+msgid "This display name cannot be used."
+msgstr ""
+
+#: apps/users/forms.py:298
 msgid "The passwords did not match."
 msgstr "비밀번호가 일치하지 않습니다."
 
-#: apps/users/forms.py:311 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:317 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "프로필 사진"
 
-#: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:325 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:456
+#: apps/users/forms.py:462
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "익명으로 표시하려면 변경 사유를 입력하시고 그 외 다른 항목은 변경하지 마세요."
+
+#: apps/users/forms.py:508
+msgid "Please enter at least one name to blacklist."
+msgstr ""
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
 msgid "others"
 msgstr "그 외 여러명"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:64
 msgid "algorithm"
 msgstr "알고리즘"
 
-#: apps/users/models.py:67
+#: apps/users/models.py:65
 msgid "salt"
 msgstr "salt"
 
-#: apps/users/models.py:68
+#: apps/users/models.py:66
 msgid "hash"
 msgstr "hash 값"
 
-#: apps/users/models.py:126
+#: apps/users/models.py:124
 msgid "No user with that email."
 msgstr "해당 이메일로 등록된 사용자가 없습니다"
 
-#: apps/users/models.py:346
+#: apps/users/models.py:344
 msgid "Your account has been restricted"
 msgstr "당신의 계정은 권한이 제한되어 있습니다."
 
-#: apps/users/models.py:416
+#: apps/users/models.py:414
 msgid "Please confirm your email address"
 msgstr "이메일 주소를 확인해 주세요"
 
-#: apps/users/models.py:441
+#: apps/users/models.py:439
 msgid "My Mobile Add-ons"
 msgstr "내 모바일 부가 기능"
 
@@ -12651,11 +12665,11 @@ msgid "Successfully verified!"
 msgstr "검증 완료!"
 
 # %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:641
+#: apps/users/views.py:131 apps/users/views.py:644
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "이메일 정보가 정확한지 {0}로 확인 이메일을 보냈습니다. 로그인 전에 메일을 확인하고 제공된 링크를 클릭해 계정을 먼저 활성화 시켜야 합니다."
 
-#: apps/users/views.py:135 apps/users/views.py:645
+#: apps/users/views.py:135 apps/users/views.py:648
 msgid "Confirmation Email Sent"
 msgstr "확인 이메일이 전송되었습니다"
 
@@ -12733,27 +12747,27 @@ msgstr "계정 활성화 이메일이 전송되었습니다"
 msgid "Having Trouble?"
 msgstr "문제가 있으신가요?"
 
-#: apps/users/views.py:615
+#: apps/users/views.py:618
 msgid "You are already logged in to an account."
 msgstr "이미 이 계정으로 로그인 한 상태입니다."
 
-#: apps/users/views.py:637
+#: apps/users/views.py:640
 msgid "Congratulations! Your user account was successfully created."
 msgstr "축하합니다! 계정 등록이 완료 되었습니다."
 
-#: apps/users/views.py:661
+#: apps/users/views.py:664
 msgid "You already have an account."
 msgstr "계정이 있습니다."
 
-#: apps/users/views.py:671
+#: apps/users/views.py:674
 msgid "There are errors in this form"
 msgstr "이 양식에 오류가 있습니다"
 
-#: apps/users/views.py:672
+#: apps/users/views.py:675
 msgid "Please correct them and resubmit."
 msgstr "올바르게 수정 후 다시 제출해 주세요."
 
-#: apps/users/views.py:687
+#: apps/users/views.py:690
 msgid "User reported."
 msgstr "사용자가 신고되었습니다."
 

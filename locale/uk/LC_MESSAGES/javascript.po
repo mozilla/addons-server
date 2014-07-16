@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1405108548.0\n"
 
@@ -858,9 +857,7 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-"Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі "
-"Mozilla (наприклад, Firefox)."
+msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."
 
 #: media/js/zamboni/collections.js:193
 msgid "clear recently viewed"

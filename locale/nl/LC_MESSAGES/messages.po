@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:46-0700\n"
+"POT-Creation-Date: 2014-07-16 09:14-0700\n"
 "PO-Revision-Date: 2014-07-03 11:48+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -421,7 +421,7 @@ msgid "Add-on Information for {0}"
 msgstr "Add-on-informatie voor {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:69
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:70
 msgid "Updated"
 msgstr "Bijgewerkt"
 
@@ -1975,7 +1975,7 @@ msgid "Collections I'm Following"
 msgstr "Door mij gevolgde collecties"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:446
+#: apps/users/models.py:444
 msgid "My Favorite Add-ons"
 msgstr "Mijn favoriete add-ons"
 
@@ -2170,19 +2170,23 @@ msgstr "Privacy:"
 msgid "Icon"
 msgstr "Pictogram"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:400
+#: apps/bandwagon/forms.py:150
+msgid "This name cannot be used."
+msgstr ""
+
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
 msgstr "Koppelingen zijn niet toegestaan."
 
-#: apps/bandwagon/forms.py:164
+#: apps/bandwagon/forms.py:170
 msgid "This url is already in use by another collection"
 msgstr "Deze URL wordt al door een andere collectie gebruikt"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1081
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
 msgid "Icons must be either PNG or JPG."
 msgstr "Pictogrammen dienen in PNG- of JPG-opmaak te zijn."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1099 apps/users/forms.py:391
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:397
 msgid "Please use images smaller than %dMB."
 msgstr "Gebruik afbeeldingen kleiner dan %d MB."
 
@@ -2222,7 +2226,7 @@ msgstr "Favoriet"
 msgid "Remove from favorites"
 msgstr "Verwijderen uit favorieten"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:68
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
 #: apps/search/forms.py:90 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2503,9 +2507,21 @@ msgstr "{0} verwijderen"
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: apps/bandwagon/templates/bandwagon/delete.html:20
+#: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
 msgstr "Weet u dit zeker?"
+
+#: apps/bandwagon/templates/bandwagon/delete.html:21 apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152
+#: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98
+#: apps/devhub/templates/devhub/personas/submit.html:119
+msgid "Yes"
+msgstr "Ja"
+
+#: apps/bandwagon/templates/bandwagon/delete.html:22 apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161
+#: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
+#: apps/devhub/templates/devhub/personas/submit.html:137
+msgid "No"
+msgstr "Nee"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
@@ -2806,15 +2822,15 @@ msgstr "Meeste gebruikers"
 msgid "Up & Coming"
 msgstr "Aankomend"
 
-#: apps/browse/views.py:442 apps/devhub/views.py:70
+#: apps/browse/views.py:442 apps/devhub/views.py:71
 msgid "Created"
 msgstr "Aangemaakt"
 
-#: apps/browse/views.py:443 apps/devhub/views.py:71 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:443 apps/devhub/views.py:72 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Downloads"
 
-#: apps/browse/views.py:444 apps/devhub/views.py:72 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:444 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Waardering"
@@ -3983,120 +3999,120 @@ msgstr "Wachttijd voor verbinding met “%s” verstreken."
 msgid "Could not contact host at \"%s\"."
 msgstr "Kan geen verbinding maken met de host op “%s”."
 
-#: apps/devhub/views.py:167
-msgid "All My Add-ons"
-msgstr "Al mijn add-ons"
-
-#: apps/devhub/views.py:194
-msgid "All Activity"
-msgstr "Alle activiteit"
-
-#: apps/devhub/views.py:195
-msgid "Add-on Updates"
-msgstr "Add-on-updates"
-
-#: apps/devhub/views.py:196
-msgid "Add-on Status"
-msgstr "Add-on-status"
-
-#: apps/devhub/views.py:197
-msgid "User Collections"
-msgstr "Gebruikerscollecties"
-
-#: apps/devhub/views.py:198 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
-msgid "User Reviews"
-msgstr "Gebruikersbeoordelingen"
-
-#: apps/devhub/views.py:311 apps/devhub/views.py:315 apps/devhub/views.py:425 apps/devhub/views.py:454 apps/devhub/views.py:505 apps/devhub/views.py:1171
-msgid "Changes successfully saved."
-msgstr "Wijzigingen met succes opgeslagen."
-
-#: apps/devhub/views.py:318 apps/devhub/views.py:1556
-msgid "Please check the form for errors."
-msgstr "Controleer het formulier op fouten."
-
-#: apps/devhub/views.py:330
-msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "Add-on kan niet worden verwijderd. Schakel deze add-on uit."
-
-#: apps/devhub/views.py:339
-msgid "Theme deleted."
-msgstr "Thema verwijderd."
-
-#: apps/devhub/views.py:339
-msgid "Add-on deleted."
-msgstr "Add-on verwijderd."
-
-#: apps/devhub/views.py:344
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Wachtwoord onjuist. Thema is niet verwijderd."
-
-#: apps/devhub/views.py:348
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Wachtwoord onjuist. Add-on is niet verwijderd."
-
-#: apps/devhub/views.py:460
-msgid "There were errors in your submission."
-msgstr "Er zijn fouten opgetreden tijdens het indienen."
-
-#: apps/devhub/views.py:524
-msgid "Validate Add-on"
-msgstr "Add-on valideren"
-
-#: apps/devhub/views.py:533
-msgid "Check Add-on Compatibility"
-msgstr "Add-on-compatibiliteit controleren"
-
-#: apps/devhub/views.py:653
-msgid "There was an error with the submission."
-msgstr "Er is een fout opgetreden bij het indienen."
-
-#: apps/devhub/views.py:747
+#: apps/devhub/utils.py:57
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "De validatie leverde te veel fouten/waarschuwingen op, dus %s berichten zijn ingekort. Nadat de zichtbare berichten zijn geadresseerd kunt u de overige lezen."
 
-#: apps/devhub/views.py:1083 apps/users/forms.py:386
+#: apps/devhub/views.py:168
+msgid "All My Add-ons"
+msgstr "Al mijn add-ons"
+
+#: apps/devhub/views.py:195
+msgid "All Activity"
+msgstr "Alle activiteit"
+
+#: apps/devhub/views.py:196
+msgid "Add-on Updates"
+msgstr "Add-on-updates"
+
+#: apps/devhub/views.py:197
+msgid "Add-on Status"
+msgstr "Add-on-status"
+
+#: apps/devhub/views.py:198
+msgid "User Collections"
+msgstr "Gebruikerscollecties"
+
+#: apps/devhub/views.py:199 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+msgid "User Reviews"
+msgstr "Gebruikersbeoordelingen"
+
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1100
+msgid "Changes successfully saved."
+msgstr "Wijzigingen met succes opgeslagen."
+
+#: apps/devhub/views.py:319 apps/devhub/views.py:1485
+msgid "Please check the form for errors."
+msgstr "Controleer het formulier op fouten."
+
+#: apps/devhub/views.py:331
+msgid "Add-on cannot be deleted. Disable this add-on instead."
+msgstr "Add-on kan niet worden verwijderd. Schakel deze add-on uit."
+
+#: apps/devhub/views.py:340
+msgid "Theme deleted."
+msgstr "Thema verwijderd."
+
+#: apps/devhub/views.py:340
+msgid "Add-on deleted."
+msgstr "Add-on verwijderd."
+
+#: apps/devhub/views.py:345
+msgid "Password was incorrect. Theme was not deleted."
+msgstr "Wachtwoord onjuist. Thema is niet verwijderd."
+
+#: apps/devhub/views.py:349
+msgid "Password was incorrect. Add-on was not deleted."
+msgstr "Wachtwoord onjuist. Add-on is niet verwijderd."
+
+#: apps/devhub/views.py:461
+msgid "There were errors in your submission."
+msgstr "Er zijn fouten opgetreden tijdens het indienen."
+
+#: apps/devhub/views.py:525
+msgid "Validate Add-on"
+msgstr "Add-on valideren"
+
+#: apps/devhub/views.py:534
+msgid "Check Add-on Compatibility"
+msgstr "Add-on-compatibiliteit controleren"
+
+#: apps/devhub/views.py:654
+msgid "There was an error with the submission."
+msgstr "Er is een fout opgetreden bij het indienen."
+
+#: apps/devhub/views.py:1012 apps/users/forms.py:392
 msgid "Images must be either PNG or JPG."
 msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 
-#: apps/devhub/views.py:1087
+#: apps/devhub/views.py:1016
 msgid "Icons cannot be animated."
 msgstr "Pictogrammen mogen niet bewegend zijn."
 
-#: apps/devhub/views.py:1089
+#: apps/devhub/views.py:1018
 msgid "Images cannot be animated."
 msgstr "Afbeeldingen mogen niet bewegend zijn."
 
-#: apps/devhub/views.py:1102
+#: apps/devhub/views.py:1031
 msgid "Images cannot be larger than %dKB."
 msgstr "Afbeeldingen mogen niet groter zijn dan %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1112
+#: apps/devhub/views.py:1041
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Afbeeldingen dienen exact {0} pixels breed en {1} pixels hoog te zijn."
 
-#: apps/devhub/views.py:1116
+#: apps/devhub/views.py:1045
 msgid "There was an error uploading your preview."
 msgstr "Er is een fout opgetreden bij het uploaden van uw voorbeeld."
 
-#: apps/devhub/views.py:1210
+#: apps/devhub/views.py:1139
 msgid "Version %s disabled."
 msgstr "Versie %s uitgeschakeld."
 
-#: apps/devhub/views.py:1213
+#: apps/devhub/views.py:1142
 msgid "Version %s deleted."
 msgstr "Versie %s verwijderd."
 
-#: apps/devhub/views.py:1223
+#: apps/devhub/views.py:1152
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "De validatie van deze upload is mislukt en er ontbreken mogelijk volledige validatieresultaten. Let goed op bij de beoordeling."
 
-#: apps/devhub/views.py:1602
+#: apps/devhub/views.py:1531
 msgid "Preliminary Review Requested."
 msgstr "Voorlopige beoordeling aangevraagd."
 
-#: apps/devhub/views.py:1603
+#: apps/devhub/views.py:1532
 msgid "Full Review Requested."
 msgstr "Volledige beoordeling aangevraagd."
 
@@ -8139,20 +8155,10 @@ msgstr "Thema-licentie"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Mogen andere uw thema delen, zolang ze u bedanken?"
 
-#: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
-#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119
-msgid "Yes"
-msgstr "Ja"
-
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, inclusief commercieel gebruik."
-
-#: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
-#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137
-msgid "No"
-msgstr "Nee"
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
@@ -11790,7 +11796,7 @@ msgstr "Beoordeling verwijderen"
 msgid "Other (please specify)"
 msgstr "Overig (specificeer deze)"
 
-#: apps/reviews/views.py:145
+#: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Bedankt; deze beoordeling is aangeduid voor goedkeuring door een editor."
 
@@ -12238,7 +12244,7 @@ msgstr "Deze add-on delen"
 msgid "Share this Collection"
 msgstr "Deze collectie delen"
 
-#: apps/stats/models.py:266
+#: apps/stats/models.py:258
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Bedankt voor uw bijdrage aan {addon_name}"
 
@@ -12638,7 +12644,7 @@ msgstr "Dat wachtwoord is niet toegestaan."
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
-#: apps/users/forms.py:199 apps/users/forms.py:371
+#: apps/users/forms.py:199 apps/users/forms.py:377
 msgid "Wrong password entered!"
 msgstr "Foutief wachtwoord ingegeven!"
 
@@ -12679,52 +12685,60 @@ msgstr "Deze URL heeft een ongeldige opmaak. Geldige URL’s lijken op http://vo
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Gebruik een e-mailadres van een andere provider om uw registratie te voltooien."
 
-#: apps/users/forms.py:292
+#: apps/users/forms.py:284
+msgid "This display name cannot be used."
+msgstr ""
+
+#: apps/users/forms.py:298
 msgid "The passwords did not match."
 msgstr "De wachtwoorden komen niet overeen."
 
-#: apps/users/forms.py:311 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:317 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Profielfoto"
 
-#: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:325 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr "Standaardlocale"
 
-#: apps/users/forms.py:456
+#: apps/users/forms.py:462
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Voer een reden voor de wijziging in om te anonimiseren, maar wijzig geen van de overige velden."
+
+#: apps/users/forms.py:508
+msgid "Please enter at least one name to blacklist."
+msgstr ""
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
 msgid "others"
 msgstr "overigen"
 
-#: apps/users/models.py:66
+#: apps/users/models.py:64
 msgid "algorithm"
 msgstr "algoritme"
 
-#: apps/users/models.py:67
+#: apps/users/models.py:65
 msgid "salt"
 msgstr "salt"
 
-#: apps/users/models.py:68
+#: apps/users/models.py:66
 msgid "hash"
 msgstr "hash"
 
-#: apps/users/models.py:126
+#: apps/users/models.py:124
 msgid "No user with that email."
 msgstr "Er is geen gebruiker met dat e-mailadres."
 
-#: apps/users/models.py:346
+#: apps/users/models.py:344
 msgid "Your account has been restricted"
 msgstr "Uw account is beperkt"
 
-#: apps/users/models.py:416
+#: apps/users/models.py:414
 msgid "Please confirm your email address"
 msgstr "Bevestig uw e-mailadres"
 
-#: apps/users/models.py:441
+#: apps/users/models.py:439
 msgid "My Mobile Add-ons"
 msgstr "Mijn Mobiel-add-ons"
 
@@ -12817,11 +12831,11 @@ msgid "Successfully verified!"
 msgstr "Met succes geverifieerd!"
 
 # %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:641
+#: apps/users/views.py:131 apps/users/views.py:644
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Er is een e-mail verzonden naar uw adres {0} om uw account te bevestigen. Voordat u zich kunt aanmelden dient u uw account te activeren door op de koppeling in dit e-mailbericht te klikken."
 
-#: apps/users/views.py:135 apps/users/views.py:645
+#: apps/users/views.py:135 apps/users/views.py:648
 msgid "Confirmation Email Sent"
 msgstr "Bevestigingsbericht verzonden"
 
@@ -12901,27 +12915,27 @@ msgstr "Activeringsbericht verzonden"
 msgid "Having Trouble?"
 msgstr "Hebt u problemen?"
 
-#: apps/users/views.py:615
+#: apps/users/views.py:618
 msgid "You are already logged in to an account."
 msgstr "U bent al bij een account aangemeld."
 
-#: apps/users/views.py:637
+#: apps/users/views.py:640
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Gefeliciteerd! Uw gebruikersaccount is met succes aangemaakt."
 
-#: apps/users/views.py:661
+#: apps/users/views.py:664
 msgid "You already have an account."
 msgstr "U hebt al een account."
 
-#: apps/users/views.py:671
+#: apps/users/views.py:674
 msgid "There are errors in this form"
 msgstr "Er staan fouten in dit formulier"
 
-#: apps/users/views.py:672
+#: apps/users/views.py:675
 msgid "Please correct them and resubmit."
 msgstr "Corrigeer deze en dien opnieuw in."
 
-#: apps/users/views.py:687
+#: apps/users/views.py:690
 msgid "User reported."
 msgstr "Gebruiker gerapporteerd."
 

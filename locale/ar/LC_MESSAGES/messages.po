@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-30 09:46-0700\n"
+"POT-Creation-Date: 2014-07-16 09:14-0700\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -459,7 +459,7 @@ msgid "Add-on Information for {0}"
 msgstr "معلومات الإضافة لـ {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:69
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:441 apps/devhub/views.py:70
 msgid "Updated"
 msgstr "التحديث"
 
@@ -2038,7 +2038,7 @@ msgid "Collections I'm Following"
 msgstr "المجموعات التي أتابعها"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:446
+#: apps/users/models.py:444
 msgid "My Favorite Add-ons"
 msgstr "إضافاتي المفضلة"
 
@@ -2233,19 +2233,23 @@ msgstr "الخصوصية:"
 msgid "Icon"
 msgstr "الأيقونة"
 
-#: apps/bandwagon/forms.py:152 apps/users/forms.py:400
+#: apps/bandwagon/forms.py:150
+msgid "This name cannot be used."
+msgstr ""
+
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
 msgstr ""
 
-#: apps/bandwagon/forms.py:164
+#: apps/bandwagon/forms.py:170
 msgid "This url is already in use by another collection"
 msgstr "هذا الرابط مستخدم بالفعل من مجموعة أخرى"
 
-#: apps/bandwagon/forms.py:174 apps/devhub/views.py:1081
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
 msgid "Icons must be either PNG or JPG."
 msgstr "صيغة الأيقونات يجب أن تكون إما PNG أو JPG."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1099 apps/users/forms.py:391
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:397
 msgid "Please use images smaller than %dMB."
 msgstr "رجاءً استخدم صورًا أصغر من %d م.بايت."
 
@@ -2285,7 +2289,7 @@ msgstr ""
 msgid "Remove from favorites"
 msgstr "أزِل من المفضلات"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:68
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:440 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
 #: apps/search/forms.py:90 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2600,9 +2604,21 @@ msgstr "حذف {0}"
 msgid "Delete"
 msgstr "احذف"
 
-#: apps/bandwagon/templates/bandwagon/delete.html:20
+#: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
+
+#: apps/bandwagon/templates/bandwagon/delete.html:21 apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152
+#: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98
+#: apps/devhub/templates/devhub/personas/submit.html:119
+msgid "Yes"
+msgstr "نعم"
+
+#: apps/bandwagon/templates/bandwagon/delete.html:22 apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161
+#: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
+#: apps/devhub/templates/devhub/personas/submit.html:137
+msgid "No"
+msgstr "لا"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
@@ -2899,15 +2915,15 @@ msgstr "الأكثر استخداما"
 msgid "Up & Coming"
 msgstr "القادمة"
 
-#: apps/browse/views.py:442 apps/devhub/views.py:70
+#: apps/browse/views.py:442 apps/devhub/views.py:71
 msgid "Created"
 msgstr "الإنشاء"
 
-#: apps/browse/views.py:443 apps/devhub/views.py:71 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:443 apps/devhub/views.py:72 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "التنزيلات"
 
-#: apps/browse/views.py:444 apps/devhub/views.py:72 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:444 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "التقييم"
@@ -4098,120 +4114,120 @@ msgstr ""
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: apps/devhub/views.py:167
-msgid "All My Add-ons"
-msgstr ""
-
-#: apps/devhub/views.py:194
-msgid "All Activity"
-msgstr ""
-
-#: apps/devhub/views.py:195
-msgid "Add-on Updates"
-msgstr ""
-
-#: apps/devhub/views.py:196
-msgid "Add-on Status"
-msgstr ""
-
-#: apps/devhub/views.py:197
-msgid "User Collections"
-msgstr ""
-
-#: apps/devhub/views.py:198 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
-msgid "User Reviews"
-msgstr "تعليقات المستخدمين"
-
-#: apps/devhub/views.py:311 apps/devhub/views.py:315 apps/devhub/views.py:425 apps/devhub/views.py:454 apps/devhub/views.py:505 apps/devhub/views.py:1171
-msgid "Changes successfully saved."
-msgstr "حُفظت التغييرات بنجاح."
-
-#: apps/devhub/views.py:318 apps/devhub/views.py:1556
-msgid "Please check the form for errors."
-msgstr ""
-
-#: apps/devhub/views.py:330
-msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "لا يمكن حذف الإضافة. يمكنك تعطيل الإضافة بدلا من ذلك."
-
-#: apps/devhub/views.py:339
-msgid "Theme deleted."
-msgstr ""
-
-#: apps/devhub/views.py:339
-msgid "Add-on deleted."
-msgstr "حُذفت الإضافة."
-
-#: apps/devhub/views.py:344
-msgid "Password was incorrect. Theme was not deleted."
-msgstr ""
-
-#: apps/devhub/views.py:348
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "كلمة السر خاطئة. لم تُحذف الإضافة."
-
-#: apps/devhub/views.py:460
-msgid "There were errors in your submission."
-msgstr "كان هناك أخطاء في تقديم التقرير."
-
-#: apps/devhub/views.py:524
-msgid "Validate Add-on"
-msgstr ""
-
-#: apps/devhub/views.py:533
-msgid "Check Add-on Compatibility"
-msgstr "فحص توافقية الإضافة"
-
-#: apps/devhub/views.py:653
-msgid "There was an error with the submission."
-msgstr ""
-
-#: apps/devhub/views.py:747
+#: apps/devhub/utils.py:57
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-#: apps/devhub/views.py:1083 apps/users/forms.py:386
+#: apps/devhub/views.py:168
+msgid "All My Add-ons"
+msgstr ""
+
+#: apps/devhub/views.py:195
+msgid "All Activity"
+msgstr ""
+
+#: apps/devhub/views.py:196
+msgid "Add-on Updates"
+msgstr ""
+
+#: apps/devhub/views.py:197
+msgid "Add-on Status"
+msgstr ""
+
+#: apps/devhub/views.py:198
+msgid "User Collections"
+msgstr ""
+
+#: apps/devhub/views.py:199 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
+msgid "User Reviews"
+msgstr "تعليقات المستخدمين"
+
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1100
+msgid "Changes successfully saved."
+msgstr "حُفظت التغييرات بنجاح."
+
+#: apps/devhub/views.py:319 apps/devhub/views.py:1485
+msgid "Please check the form for errors."
+msgstr ""
+
+#: apps/devhub/views.py:331
+msgid "Add-on cannot be deleted. Disable this add-on instead."
+msgstr "لا يمكن حذف الإضافة. يمكنك تعطيل الإضافة بدلا من ذلك."
+
+#: apps/devhub/views.py:340
+msgid "Theme deleted."
+msgstr ""
+
+#: apps/devhub/views.py:340
+msgid "Add-on deleted."
+msgstr "حُذفت الإضافة."
+
+#: apps/devhub/views.py:345
+msgid "Password was incorrect. Theme was not deleted."
+msgstr ""
+
+#: apps/devhub/views.py:349
+msgid "Password was incorrect. Add-on was not deleted."
+msgstr "كلمة السر خاطئة. لم تُحذف الإضافة."
+
+#: apps/devhub/views.py:461
+msgid "There were errors in your submission."
+msgstr "كان هناك أخطاء في تقديم التقرير."
+
+#: apps/devhub/views.py:525
+msgid "Validate Add-on"
+msgstr ""
+
+#: apps/devhub/views.py:534
+msgid "Check Add-on Compatibility"
+msgstr "فحص توافقية الإضافة"
+
+#: apps/devhub/views.py:654
+msgid "There was an error with the submission."
+msgstr ""
+
+#: apps/devhub/views.py:1012 apps/users/forms.py:392
 msgid "Images must be either PNG or JPG."
 msgstr "الصور يجب أن تكون PNG أو JPG."
 
-#: apps/devhub/views.py:1087
+#: apps/devhub/views.py:1016
 msgid "Icons cannot be animated."
 msgstr "الأيقونات لا يمكن أن تكون متحركة."
 
-#: apps/devhub/views.py:1089
+#: apps/devhub/views.py:1018
 msgid "Images cannot be animated."
 msgstr "الصور لا يمكن أن تكون متحركة."
 
-#: apps/devhub/views.py:1102
+#: apps/devhub/views.py:1031
 msgid "Images cannot be larger than %dKB."
 msgstr "الصور لا يمكن أن تكون أكبر من %d ك.بايت."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1112
+#: apps/devhub/views.py:1041
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "الصورة يجب أن تطابق {0} بكسل للعرض، و {1} بكسل للارتفاع."
 
-#: apps/devhub/views.py:1116
+#: apps/devhub/views.py:1045
 msgid "There was an error uploading your preview."
 msgstr "هناك خطأ في رفع المعاينة."
 
-#: apps/devhub/views.py:1210
+#: apps/devhub/views.py:1139
 msgid "Version %s disabled."
 msgstr ""
 
-#: apps/devhub/views.py:1213
+#: apps/devhub/views.py:1142
 msgid "Version %s deleted."
 msgstr "حُذفت الإصدارة %s."
 
-#: apps/devhub/views.py:1223
+#: apps/devhub/views.py:1152
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1602
+#: apps/devhub/views.py:1531
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1603
+#: apps/devhub/views.py:1532
 msgid "Full Review Requested."
 msgstr ""
 
@@ -7982,20 +7998,10 @@ msgstr ""
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152 apps/devhub/templates/devhub/personas/edit.html:173
-#: apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98 apps/devhub/templates/devhub/personas/submit.html:119
-msgid "Yes"
-msgstr "نعم"
-
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
-
-#: apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161 apps/devhub/templates/devhub/personas/edit.html:191
-#: apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107 apps/devhub/templates/devhub/personas/submit.html:137
-msgid "No"
-msgstr "لا"
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
@@ -11548,7 +11554,7 @@ msgstr "احذف التعليق"
 msgid "Other (please specify)"
 msgstr "سبب آخر (يُرجى التحديد)"
 
-#: apps/reviews/views.py:145
+#: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "شكرًا؛ لقد عُلّم هذا التعليق انتظارًا لموافقة المحرّر."
 
@@ -12051,7 +12057,7 @@ msgstr "شارك هذه الإضافة"
 msgid "Share this Collection"
 msgstr "شارك هذه المجموعة"
 
-#: apps/stats/models.py:266
+#: apps/stats/models.py:258
 msgid "Thanks for contributing to {addon_name}"
 msgstr "شكرًا لمساهمتك في {addon_name}"
 
@@ -12439,7 +12445,7 @@ msgstr "غير مسموح بكلمة السر هذه."
 msgid "New password"
 msgstr "كلمة السر الجديدة"
 
-#: apps/users/forms.py:199 apps/users/forms.py:371
+#: apps/users/forms.py:199 apps/users/forms.py:377
 msgid "Wrong password entered!"
 msgstr "كلمة السر التي أدخلتها خاطئة!"
 
@@ -12479,20 +12485,28 @@ msgstr "هذا العنوان غير صالح. العناوين الصالحة �
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "رجاءً استخدم عنوان بريد إلكتروني من مزود مختلف لإكمال تسجيلك."
 
-#: apps/users/forms.py:292
+#: apps/users/forms.py:284
+msgid "This display name cannot be used."
+msgstr ""
+
+#: apps/users/forms.py:298
 msgid "The passwords did not match."
 msgstr "كلمات السر لا تتطابق."
 
-#: apps/users/forms.py:311 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:317 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "صورة الملف الشخصي"
 
-#: apps/users/forms.py:319 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:325 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:456
+#: apps/users/forms.py:462
 msgid "To anonymize, enter a reason for the change but do not change any other field."
+msgstr ""
+
+#: apps/users/forms.py:508
+msgid "Please enter at least one name to blacklist."
 msgstr ""
 
 #: apps/users/helpers.py:51
@@ -12500,31 +12514,31 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: apps/users/models.py:66
+#: apps/users/models.py:64
 msgid "algorithm"
 msgstr ""
 
-#: apps/users/models.py:67
+#: apps/users/models.py:65
 msgid "salt"
 msgstr ""
 
-#: apps/users/models.py:68
+#: apps/users/models.py:66
 msgid "hash"
 msgstr ""
 
-#: apps/users/models.py:126
+#: apps/users/models.py:124
 msgid "No user with that email."
 msgstr ""
 
-#: apps/users/models.py:346
+#: apps/users/models.py:344
 msgid "Your account has been restricted"
 msgstr "تم تقييد حسابك"
 
-#: apps/users/models.py:416
+#: apps/users/models.py:414
 msgid "Please confirm your email address"
 msgstr "رجاءً قم بتأكيد عنوان بريدك الإلكتروني"
 
-#: apps/users/models.py:441
+#: apps/users/models.py:439
 msgid "My Mobile Add-ons"
 msgstr "إضافات هاتفي الذكي"
 
@@ -12617,11 +12631,11 @@ msgid "Successfully verified!"
 msgstr "جرى التحقق منه بنجاح!"
 
 # %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:641
+#: apps/users/views.py:131 apps/users/views.py:644
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "أرسِلت رسالة إلى بريدك الإلكتروني {0} لتأكيد حسابك. قبل أن تستطيع تسجيل الدخول، عليك أن تفعّل حسابك بالنقر على الوصلة الموجودة في الرسالة."
 
-#: apps/users/views.py:135 apps/users/views.py:645
+#: apps/users/views.py:135 apps/users/views.py:648
 msgid "Confirmation Email Sent"
 msgstr "تم إرسال بريد التأكيد"
 
@@ -12697,27 +12711,27 @@ msgstr "أرسلت رسالة التفعيل إلى بريدك"
 msgid "Having Trouble?"
 msgstr "هل تواجه مشاكل؟"
 
-#: apps/users/views.py:615
+#: apps/users/views.py:618
 msgid "You are already logged in to an account."
 msgstr "أنت والج بالفعل إلى حسابك حاليًا!"
 
-#: apps/users/views.py:637
+#: apps/users/views.py:640
 msgid "Congratulations! Your user account was successfully created."
 msgstr "تهانينا! لقد أنشئ حساب مستخدمك بنجاح."
 
-#: apps/users/views.py:661
+#: apps/users/views.py:664
 msgid "You already have an account."
 msgstr "لديك حساب بالفعل!"
 
-#: apps/users/views.py:671
+#: apps/users/views.py:674
 msgid "There are errors in this form"
 msgstr "لديك أخطاء في هذا النموذج"
 
-#: apps/users/views.py:672
+#: apps/users/views.py:675
 msgid "Please correct them and resubmit."
 msgstr "رجاءً صحّح الأخطاء ثم أعد الإرسال."
 
-#: apps/users/views.py:687
+#: apps/users/views.py:690
 msgid "User reported."
 msgstr ""
 
