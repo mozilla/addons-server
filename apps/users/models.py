@@ -574,11 +574,16 @@ class BlacklistedName(amo.models.ModelBase):
 
     @classmethod
     def blocked(cls, name):
-        """Check to see if a given name is in the (cached) blacklist."""
+        """
+        Check to see if a given name is in the (cached) blacklist.
+        Return True if the name contains one of the blacklisted terms.
+
+        """
+        name = name.lower()
         qs = cls.objects.all()
         f = lambda: [n.lower() for n in qs.values_list('name', flat=True)]
         blacklist = caching.cached_with(qs, f, 'blocked')
-        return name.lower() in blacklist
+        return any(n in name for n in blacklist)
 
 
 class BlacklistedEmailDomain(amo.models.ModelBase):
