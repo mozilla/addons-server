@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import logging
+import re
 
 from django.conf import settings
 from django.core.cache import cache
@@ -57,6 +58,14 @@ class Review(amo.models.ModelBase):
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
+
+    def __unicode__(self):
+        quote = lambda o: "'%s'" % re.sub(r"[\\']", lambda m: '\\' + m.group(0),
+                                          unicode(o))
+        return u'Review %d: <%s, %s, %s>' % (self.pk,
+                                             quote(self.addon),
+                                             quote(self.user),
+                                             quote(self.title))
 
     def get_url_path(self):
         if 'mkt.ratings' in settings.INSTALLED_APPS:
