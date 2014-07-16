@@ -346,6 +346,8 @@ class TestBlacklistedName(amo.tests.TestCase):
 
     def test_blocked(self):
         eq_(BlacklistedName.blocked('IE6Fan'), True)
+        eq_(BlacklistedName.blocked('IE6fantastic'), True)
+        eq_(BlacklistedName.blocked('IE6'), False)
         eq_(BlacklistedName.blocked('testo'), False)
 
 
