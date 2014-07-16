@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ page_title("Spammers! Pr0nmongers! Infringers! Down with them all!") }}{% endblock %}
+
+{% block bodyclass %}proper-lists admin-mass-delete{% endblock %}
+
+{% block content %}
+
+<h1><acronym title="We do what we must, because we can">{{ _("Mass Deletion Completed") }}</acronym></h1>
+
+<div class="admin-mass-delete-caution">
+  <div>
+    <img src="{{ MEDIA_URL }}img/zamboni/admin/cheers.jpg">
+  </div>
+  <caption>
+    {{ _("We have done a great thing today.") }}
+  </caption>
+</div>
+
+{% endblock %}

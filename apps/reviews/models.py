@@ -58,6 +58,13 @@ class Review(amo.models.ModelBase):
         db_table = 'reviews'
         ordering = ('-created',)
 
+    def __unicode__(self):
+        quote = lambda o: repr(unicode(o))[1:] # u'foo\t' -> 'foo\t'
+        return u'Review %d: <%s, %s, %s>' % (self.pk,
+                                             quote(self.addon),
+                                             quote(self.user),
+                                             quote(self.title))
+
     def get_url_path(self):
         if 'mkt.ratings' in settings.INSTALLED_APPS:
             return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
