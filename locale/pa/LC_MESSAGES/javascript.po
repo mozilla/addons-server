@@ -997,7 +997,7 @@ msgstr ""
 
 #: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
-msgstr "{ਨਾਮ} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
+msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
 #: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
@@ -1009,7 +1009,7 @@ msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ ਨਹੀਂ ਕੀ�
 
 #: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
-msgstr "{ਨਾਮ} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
+msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
 #: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
