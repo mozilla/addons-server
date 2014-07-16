@@ -25,8 +25,8 @@ class Command(BaseCommand):
     ./manage.py update_counts_from_file <folder> --date=YYYY-MM-DD
 
     If no date is specified, the default is the day before.
-    If not folder is specified, the default is "hive_results". This folder is
-    located in <settings.NETAPP_STORAGE>/tmp.
+    If not folder is specified, the default is `hive_results/<YYYY-MM-DD>/`.
+    This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
 
     Five files are processed:
     - update_counts_by_version.hive
@@ -57,11 +57,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         start = datetime.now()  # Measure the time it takes to run the script.
-        folder = args[0] if args else 'hive_results'
-        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder)
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        folder = args[0] if args else 'hive_results'
+        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder, day)
         sep = options['separator']
         groups = ('version', 'status', 'app', 'os', 'locale')
         # Make sure we're not trying to update with mismatched data.
