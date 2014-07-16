@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-06-13 11:07+0000\n"
+"PO-Revision-Date: 2014-07-16 18:09+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1402657676.0\n"
+"X-POOTLE-MTIME: 1405534168.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2176,7 +2176,7 @@ msgstr "Icon"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Dieser Name kann nicht verwendet werden."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12740,7 +12740,7 @@ msgstr "Bitte verwenden Sie eine E-Mail-Adresse von einem anderen Anbieter, um I
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Dieser Anzeigename kann nicht verwendet werden."
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12760,7 +12760,7 @@ msgstr "Zur Anonymisierung geben Sie einen Grund für die Änderung ein, aber ä
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Geben Sie bitte mindestens einen Namen ein, der gesperrt werden soll."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
