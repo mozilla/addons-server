@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2013-12-04 19:04+0000\n"
-"Last-Translator: Amir <amir_farsi@ymail.com>\n"
+"PO-Revision-Date: 2014-07-16 15:44+0000\n"
+"Last-Translator: PicaKing <PicaKing@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386183840.0\n"
+"X-POOTLE-MTIME: 1405525446.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8486,7 +8486,7 @@ msgstr ""
 
 #: apps/editors/forms.py:42 apps/editors/forms.py:60
 msgid "and"
-msgstr ""
+msgstr "و"
 
 #: apps/editors/forms.py:44
 msgid "Filter by type/action"
@@ -8499,12 +8499,12 @@ msgstr ""
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:67
 msgid "start"
-msgstr ""
+msgstr "شروع"
 
 #. L10n: end, as in "end date"
 #: apps/editors/forms.py:71
 msgid "end"
-msgstr ""
+msgstr "پایان"
 
 #. L10n: Description of what can be searched for
 #: apps/editors/forms.py:74
@@ -8517,11 +8517,11 @@ msgstr ""
 
 #: apps/editors/forms.py:95
 msgid "yes"
-msgstr ""
+msgstr "بله"
 
 #: apps/editors/forms.py:96
 msgid "no"
-msgstr ""
+msgstr "خیر"
 
 #: apps/editors/forms.py:97
 msgid "Admin Flag"
@@ -8953,15 +8953,15 @@ msgstr ""
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45 apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "صافی"
 
 #: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "تاریخ"
 
 #: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
-msgstr ""
+msgstr "رویداد"
 
 #: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:134
 msgid "More details."
@@ -9044,11 +9044,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/leaderboard.html:23 apps/perf/templates/perf/index.html:54
 msgid "Rank"
-msgstr ""
+msgstr "رتبه"
 
 #: apps/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "امتیاز"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
@@ -9089,11 +9089,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:42
 msgid "This Month"
-msgstr ""
+msgstr "این ماه"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "امسال"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -9109,11 +9109,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:79
 msgid "Month"
-msgstr ""
+msgstr "ماه"
 
 #: apps/editors/templates/editors/performance.html:86
 msgid "Year"
-msgstr ""
+msgstr "سال"
 
 #: apps/editors/templates/editors/performance.html:93
 msgid "All-Time"
@@ -9190,7 +9190,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:76
 msgid "Compare"
-msgstr ""
+msgstr "مقایسه"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Compatibility:"
@@ -11687,11 +11687,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/popup.html:12
 msgid "From"
-msgstr ""
+msgstr "از"
 
 #: apps/stats/templates/stats/popup.html:19
 msgid "To"
-msgstr ""
+msgstr "تا"
 
 #: apps/stats/templates/stats/report.html:7
 msgid "Export"
@@ -11724,15 +11724,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:42
 msgid "day"
-msgstr ""
+msgstr "روز"
 
 #: apps/stats/templates/stats/stats.html:45
 msgid "week"
-msgstr ""
+msgstr "هفته"
 
 #: apps/stats/templates/stats/stats.html:48
 msgid "month"
-msgstr ""
+msgstr "ماه"
 
 #: apps/stats/templates/stats/stats.html:54
 msgid "For last:"
@@ -12340,11 +12340,11 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:32 apps/users/templates/users/register.html:48
 msgid "Username"
-msgstr ""
+msgstr "نام کاربری"
 
 #: apps/users/templates/users/edit.html:37 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:63
 msgid "Email Address"
-msgstr ""
+msgstr "آدرس پست الکترونیکی"
 
 #: apps/users/templates/users/edit.html:44 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
@@ -12360,11 +12360,11 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:64
 msgid "Old Password"
-msgstr ""
+msgstr "گذرواژه قدیمی"
 
 #: apps/users/templates/users/edit.html:72
 msgid "New Password"
-msgstr ""
+msgstr "گذرواژه جدید"
 
 #: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
@@ -12432,7 +12432,7 @@ msgstr "موزیلا حق تماس با شما را به صورت شخصی در 
 
 #: apps/users/templates/users/edit.html:201
 msgid "Admin"
-msgstr ""
+msgstr "مدیر"
 
 #: apps/users/templates/users/edit.html:233
 msgid "Delete Account"
@@ -12444,11 +12444,11 @@ msgstr ""
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr ""
+msgstr "هیچ"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr ""
+msgstr "همه"
 
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -12456,7 +12456,7 @@ msgstr ""
 
 #: apps/users/templates/users/login.html:18 apps/users/templates/users/mobile/login.html:25
 msgid "Log In"
-msgstr ""
+msgstr "ورود"
 
 #: apps/users/templates/users/login_form.html:20
 msgid "<a href=\"#\" id=\"show-normal-login\">Are you an admin or editor?</a>"
@@ -12464,7 +12464,7 @@ msgstr ""
 
 #: apps/users/templates/users/login_form.html:31 apps/users/templates/users/vcard.html:29 apps/users/templates/users/mobile/login.html:40
 msgid "Email address"
-msgstr ""
+msgstr "آدرس پست الکترونیکی"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:52
 msgid "Remember me on this device"
@@ -12472,7 +12472,7 @@ msgstr ""
 
 #: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:63 templates/mobile/header_auth.html:12
 msgid "Log in"
-msgstr ""
+msgstr "ورود"
 
 #: apps/users/templates/users/login_help.html:3 apps/users/templates/users/mobile/login.html:70
 msgid "Login Problems?"
@@ -12480,11 +12480,11 @@ msgstr ""
 
 #: apps/users/templates/users/login_help.html:5 apps/users/templates/users/mobile/login.html:72
 msgid "I don't have an account."
-msgstr ""
+msgstr "من حساب کاربری ندارم."
 
 #: apps/users/templates/users/login_help.html:6 apps/users/templates/users/mobile/login.html:73
 msgid "I forgot my password."
-msgstr ""
+msgstr "من گذرواژه ام را فراموش کرده ام."
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
@@ -12522,7 +12522,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
-msgstr ""
+msgstr "درباره من"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
@@ -12631,7 +12631,7 @@ msgstr ""
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
-msgstr ""
+msgstr "ثبت نام"
 
 #: apps/users/templates/users/register.html:53
 msgid "Display name"
@@ -12939,7 +12939,7 @@ msgstr ""
 
 #: templates/menu_links.html:31
 msgid "Contact Us"
-msgstr ""
+msgstr "تماس با ما"
 
 #: templates/user_login.html:37
 msgid "Welcome, {0}"
@@ -12980,7 +12980,7 @@ msgstr ""
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr ""
+msgstr "ورود / ثبت نام"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -13008,7 +13008,7 @@ msgstr ""
 
 #: templates/mobile/header.html:4
 msgid "Features"
-msgstr ""
+msgstr "ویژگی ها"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
@@ -13021,4 +13021,4 @@ msgstr ""
 #. a link
 #: templates/mobile/header.html:10
 msgid "menu"
-msgstr ""
+msgstr "منو"
