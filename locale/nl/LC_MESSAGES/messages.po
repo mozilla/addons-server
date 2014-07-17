@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-03 11:48+0000\n"
+"PO-Revision-Date: 2014-07-17 06:16+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404388131.0\n"
+"X-POOTLE-MTIME: 1405577793.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2172,7 +2172,7 @@ msgstr "Pictogram"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Deze naam kan niet worden gebruikt."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12687,7 +12687,7 @@ msgstr "Gebruik een e-mailadres van een andere provider om uw registratie te vol
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Deze schermnaam kan niet worden gebruikt."
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12707,7 +12707,7 @@ msgstr "Voer een reden voor de wijziging in om te anonimiseren, maar wijzig geen
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Voer ten minste één naam voor de zwarte lijst in."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
