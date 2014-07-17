@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-06-03 05:28+0000\n"
+"PO-Revision-Date: 2014-07-17 01:49+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401773286.0\n"
+"X-POOTLE-MTIME: 1405561740.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2134,7 +2134,7 @@ msgstr "圖示"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "無法使用此名稱。"
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12294,7 +12294,7 @@ msgstr "請使用一個來自不同提供者的電子郵件地址完成你的註
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "無法使用此顯示名稱。"
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12314,7 +12314,7 @@ msgstr "如果您要匿名化，請輸入更改的原因，但請勿更改其他
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "請在黑名單中至少輸入一個名稱。"
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
