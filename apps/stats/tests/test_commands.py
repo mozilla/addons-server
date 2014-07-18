@@ -30,7 +30,7 @@ class TestADICommand(amo.tests.TestCase):
         eq_(update_count.statuses, {u'userEnabled': 5})
         eq_(update_count.applications, {u'{app-id}': {u'30.0': 5}})
         eq_(update_count.oses, {u'WINNT': 5})
-        eq_(update_count.locales, {u'en-US': 5})
+        eq_(update_count.locales, {u'en_us': 5})
 
     def test_download_counts_from_file(self):
         management.call_command('download_counts_from_file', hive_folder,
@@ -39,4 +39,4 @@ class TestADICommand(amo.tests.TestCase):
         download_count = DownloadCount.objects.last()
         eq_(download_count.count, 2)
         eq_(download_count.date, datetime.date(2014, 7, 10))
-        eq_(download_count.sources, {u'search': 1, u'sync': 1})
+        eq_(download_count.sources, {u'search': 1, u'collection': 1})
