@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-05-22 20:20+0000\n"
-"Last-Translator: Andrej <ofimaestro.legenda@gmail.com>\n"
+"PO-Revision-Date: 2014-07-07 10:02+0000\n"
+"Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1400790008.0\n"
+"X-POOTLE-MTIME: 1404727345.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -917,11 +917,11 @@ msgstr "Već ste dodali tog korisnika."
 
 #: media/js/zamboni/collections.js:707
 msgid "Add to favorites"
-msgstr "Dodaj u Omiljene"
+msgstr "Dodaj u omiljene"
 
 #: media/js/zamboni/collections.js:711
 msgid "Remove from favorites"
-msgstr "Izbriši iz Omiljenih"
+msgstr "Izbriši iz omiljenih"
 
 #: media/js/zamboni/collections.js:738
 msgid "Stop following"
@@ -1057,9 +1057,9 @@ msgstr "Učitavanje..."
 #: media/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Još <b>{0}</b> karakter."
-msgstr[1] "Još <b>{0}</b> karaktera."
-msgstr[2] "Još <b>{0}</b> karaktera."
+msgstr[0] "<b>{0}</b> karakter preostao."
+msgstr[1] "<b>{0}</b> karaktera preostala."
+msgstr[2] "<b>{0}</b> karaktera preostalo."
 
 #: media/js/zamboni/init.js:32
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1220,7 +1220,7 @@ msgstr "Kupujem..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Ovaj dodatak je preliminarno pregledan od  Mozilla-e."
+msgstr "Ovaj dodatak je preliminarno pregledan od Mozilla-e."
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
