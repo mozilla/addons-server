@@ -93,6 +93,10 @@ class Command(BaseCommand):
                 except ValueError:  # Badly formatted? Drop.
                     continue
 
+                # Drop incorrect sources: hive newline, ffsync and getpersona.
+                if src in ('\N', 'sync', 'gp'):
+                    continue
+
                 # Does this file exist?
                 if file_id in files_to_addon:
                     addon_id = files_to_addon[file_id]
