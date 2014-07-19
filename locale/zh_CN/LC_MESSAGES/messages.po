@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-06-27 02:46+0000\n"
+"PO-Revision-Date: 2014-07-19 03:51+0000\n"
 "Last-Translator: Shen <steekid@icloud.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1403837186.0\n"
+"X-POOTLE-MTIME: 1405741917.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2130,7 +2130,7 @@ msgstr "图标"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "不能使用这个名字。"
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12257,7 +12257,7 @@ msgstr "请使用一个来自不同提供者的电子邮件地址完成您的注
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "无法使用这个显示名。"
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12277,7 +12277,7 @@ msgstr "如果您要匿名，请输入更改的原因，但不要更改其他字
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "请在黑名单中至少输入一个名称。"
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
