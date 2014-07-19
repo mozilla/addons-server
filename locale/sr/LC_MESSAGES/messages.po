@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-07 10:36+0000\n"
+"PO-Revision-Date: 2014-07-19 10:34+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404729372.0\n"
+"X-POOTLE-MTIME: 1405766095.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3865,7 +3866,10 @@ msgstr "Сваки додатак захтева јединствену ИД у 
 
 #: apps/devhub/forms.py:722
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
-msgstr "Назив пакета Вашег додатка кориштен унутар прегледача. Ово би требао да буде кратак облик његовог назива (нпр. Пробна екстензија би била пробна_екстензија)."
+msgstr ""
+"Назив пакета Вашег додатка коришћен је унутар прегледача. Ово би требао да "
+"буде кратак облик његовог назива (например, Пробна екстензија би била "
+"пробна_екстензија)."
 
 #: apps/devhub/forms.py:727
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
@@ -4306,7 +4310,7 @@ msgstr "Набавите смернице за развој додатака у 
 
 #: apps/devhub/templates/devhub/index.html:132
 msgid "API & Language Reference"
-msgstr "АПИ и језичке референце"
+msgstr "API и језичке референце"
 
 #: apps/devhub/templates/devhub/index.html:134 apps/devhub/templates/devhub/docs/reference.html:14
 msgid "The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece."
@@ -4382,7 +4386,7 @@ msgstr "Полисе додатака"
 
 #: apps/devhub/templates/devhub/nav.html:43
 msgid "API &amp; Language Reference"
-msgstr "АПИ и језичке референце"
+msgstr "API и језичке референце"
 
 #: apps/devhub/templates/devhub/nav.html:56
 msgid "Add-on Compatibility Checker"
@@ -4426,7 +4430,7 @@ msgstr "Верзија додатка"
 
 #: apps/devhub/templates/devhub/package_addon.html:36
 msgid "Unique ID"
-msgstr "Јединствени ИД"
+msgstr "Јединствени ID"
 
 #: apps/devhub/templates/devhub/package_addon.html:37
 msgid "Package Name"
@@ -4914,7 +4918,7 @@ msgstr "Не, овај додатак ће бити ручно надограђ�
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:125
 msgid "Universally unique identifier"
-msgstr "Универзално јединствен идентификатор (УЈИД)"
+msgstr "Универзално јединствен идентификатор"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:126
 msgid "UUID"
@@ -5631,8 +5635,12 @@ msgid ""
 "If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
 "problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
 msgstr ""
-"Ако већ знате шта тражите, само <a href=\"/en-US/developers/search\">потражите!</a> Наша претрага ће наћи најбоље ресурсе за додатке да би пронашли интерфејс који Вам недостаје или учестали проблем "
-"који имате. Ако претрага није довољна, слободно<a href=\"https://forums.addons.mozilla.org\">питајте за помоћ</a>на нашим форумима."
+"Ако већ знате шта тражите, само <a href=\"/en-"
+"US/developers/search\">потражите!</a> Наша претрага ће наћи најбоље ресурсе "
+"за додатке да би пронашли интерфејс који Вам недостаје или учестали проблем "
+"који имате. Ако претрага није довољна, слободно <a "
+"href=\"https://forums.addons.mozilla.org\">питајте за помоћ</a> на нашим "
+"форумима."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
 msgid "Test your add-on"
@@ -5837,7 +5845,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
 msgid "JavaScript Code Modules"
-msgstr ""
+msgstr "JavaScript код модули"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:203
 msgid ""
@@ -5856,7 +5864,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
 msgid "Multiple Item Packaging"
-msgstr ""
+msgstr "Паковање вишеструких ставки"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
 msgid "This article explains how to create an extension package with multiple items \"extensions\"."
@@ -5864,11 +5872,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
 msgid "Extension Documentation Index"
-msgstr ""
+msgstr "Индекс документације о екстензији"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:244
 msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Extensions landing page."
 msgstr ""
+"Ако не можете да пронађете оно што тражите у горе наведеним текстовима, "
+"покушајте Mozilla Developer Center страницу."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
@@ -5914,11 +5924,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
 msgid "Install Manifests"
-msgstr ""
+msgstr "Инсталирај манифест"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:81
 msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
 msgstr ""
+"Овај документ објашњава инсталацију манифеста \"install.rdf\" и сва својства "
+"доступна за коришћење у Вашем додатку."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
 msgid "Other Tutorials"
@@ -5936,7 +5948,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
 msgid "How to Develop a Firefox Extension"
-msgstr ""
+msgstr "Како да развијете Firefox екстензију"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:111
 msgid "In this walk-through, Robert Nyman explains how to develop a Firefox extension from scratch."
@@ -5968,7 +5980,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:162
 msgid "Creating a Dynamic Status Bar Extension"
-msgstr ""
+msgstr "Прављење екстензије динамичке статустне траке"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:165
 msgid "This article modifies the status bar extension created in the above tutorial by fetching content from a website at a regular interval."
@@ -6009,15 +6021,16 @@ msgstr "Jetpack"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:23
 msgid "Jetpack Tutorial"
-msgstr ""
+msgstr "Jetpack приручник"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
 msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
 msgstr ""
+"Сазнајте како је лако проширити Firefox са Jetpack-ом у овом приручнику."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
 msgid "Jetpack API Documentation"
-msgstr ""
+msgstr "Jetpack API документација"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
 msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
@@ -6037,11 +6050,13 @@ msgstr "Прикључци за претрагу"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
 msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr ""
+msgstr "Креирање OpenSearch прикључака за Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
 msgid "This article explains the structure and requirements of search plug-ins in Firefox."
 msgstr ""
+"Овај чланак објашњава структуру и захтеве прикључака за претрагу у "
+"Firefox-у."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
 msgid "Plug-ins"
@@ -6049,7 +6064,7 @@ msgstr "Прикључци"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
 msgid "Plug-in Documentation Index"
-msgstr ""
+msgstr "Индекс документације о прикључцима"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
 msgid ""
@@ -6182,7 +6197,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:108
 msgid "Best Practices for Mobile Extensions"
-msgstr ""
+msgstr "Најбоље праксе за мобилне екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:111
 msgid "Mobile extensions have small screen space and limited resources to work with. This document explains best practices for designing and developing for a mobile environment."
@@ -6198,11 +6213,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:136
 msgid "Designing User Interfaces for Mobile"
-msgstr ""
+msgstr "Дизајнирање корисничког интерфејса за мобилни"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:139
 msgid "How to design an interface for your mobile extension."
-msgstr ""
+msgstr "Како дизајнирати интерфејс за Вашу мобилну екстензију."
 
 #: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
 msgid "More Resources"
@@ -6219,6 +6234,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
 msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
 msgstr ""
+"Потребна помоћ? <a href=\"https://forums.addons.mozilla.org\">Посетите наше "
+"форуме</a>"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:77
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
@@ -6226,7 +6243,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to.html:99
 msgid "Thunderbird &amp; Mobile Add-ons"
-msgstr ""
+msgstr "Thunderbird и мобилни додаци"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:103
 msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
@@ -6276,7 +6293,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Сигурносне рањивости додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "marketplace-staff at mozilla dot org"
@@ -6348,7 +6365,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
-msgstr ""
+msgstr "Захтеване надоградње"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:50
 msgid ""
@@ -6411,7 +6428,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107 apps/devhub/templates/devhub/docs/policies-reviews.html:306 apps/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "Последње ажурирање: 13 јануар 2011"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:13
 msgid ""
@@ -7008,6 +7025,8 @@ msgstr "Одржавање Вашег додатка"
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
 msgstr ""
+"Mozilla је посвећена обезбеђивању сјајног искуства са додацима за кориснике "
+"и програмере. Молимо да прегледате полисе пре него што пошаљете Ваш додатак."
 
 #: apps/devhub/templates/devhub/docs/policies.html:55
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
@@ -7039,7 +7058,7 @@ msgstr "API и језичке референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:11
 msgid "API &amp; Language References"
-msgstr "АПИ и језичке референце"
+msgstr "API и језичке референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:19
 msgid "XUL: Defining User Interfaces"
@@ -7056,6 +7075,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/reference.html:276
 msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a>"
 msgstr ""
+"преко <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla "
+"Developer Center</a>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:31
 msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
@@ -7063,7 +7084,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:38
 msgid "XUL Reference"
-msgstr ""
+msgstr "XUL референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:41 apps/devhub/templates/devhub/docs/reference.html:56
 msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
@@ -7071,11 +7092,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:45
 msgid "A list of all available XUL elements."
-msgstr ""
+msgstr "Листа доступних XUL елемената."
 
 #: apps/devhub/templates/devhub/docs/reference.html:53
 msgid "XUL Controls List"
-msgstr ""
+msgstr "XUL листа контрола"
 
 #: apps/devhub/templates/devhub/docs/reference.html:60
 msgid "A description of many available XUL controls, including screenshots."
@@ -7087,7 +7108,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:72
 msgid "JavaScript Overview"
-msgstr ""
+msgstr "JavaScript преглед"
 
 #: apps/devhub/templates/devhub/docs/reference.html:80
 msgid "JavaScript is a small, lightweight, object-oriented, cross-platform scripting language."
@@ -7115,7 +7136,7 @@ msgstr "CSS: додавање визуелних ефеката"
 
 #: apps/devhub/templates/devhub/docs/reference.html:124
 msgid "CSS Overview"
-msgstr ""
+msgstr "CSS преглед"
 
 #: apps/devhub/templates/devhub/docs/reference.html:133
 msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
@@ -7123,7 +7144,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:140
 msgid "Gecko CSS Reference"
-msgstr ""
+msgstr "Gecko CSS референца"
 
 #: apps/devhub/templates/devhub/docs/reference.html:148
 msgid "Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors."
@@ -7136,6 +7157,8 @@ msgstr "W3C CSS почетна страница"
 #: apps/devhub/templates/devhub/docs/reference.html:159
 msgid "via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
 msgstr ""
+"преко <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web "
+"Consortium</a>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:163
 msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
@@ -7151,7 +7174,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:187
 msgid "STEEL API"
-msgstr ""
+msgstr "STEEL API"
 
 #: apps/devhub/templates/devhub/docs/reference.html:196
 msgid "STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-like set of interfaces to facilitate Thunderbird extension development."
@@ -7159,7 +7182,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:203
 msgid "SMILE API"
-msgstr ""
+msgstr "SMILE API"
 
 #: apps/devhub/templates/devhub/docs/reference.html:211
 msgid "SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development."
@@ -7171,7 +7194,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:223
 msgid "XPCOM Overview"
-msgstr ""
+msgstr "XPCOM преглед"
 
 #: apps/devhub/templates/devhub/docs/reference.html:231
 msgid "XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
@@ -7179,7 +7202,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:238
 msgid "XPCOM Reference"
-msgstr ""
+msgstr "XPCOM референца"
 
 #: apps/devhub/templates/devhub/docs/reference.html:246
 msgid "Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions."
@@ -7191,7 +7214,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:257
 msgid "DOM Overview"
-msgstr ""
+msgstr "DOM преглед"
 
 #: apps/devhub/templates/devhub/docs/reference.html:265
 msgid "The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation."
@@ -7199,7 +7222,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:273
 msgid "Gecko DOM Reference"
-msgstr ""
+msgstr "Gecko DOM референца"
 
 #: apps/devhub/templates/devhub/docs/reference.html:281
 msgid "Mozilla Developer Center's DOM API documentation"
@@ -7248,7 +7271,7 @@ msgstr "Често постављена питања | теме"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:14 apps/devhub/templates/devhub/docs/themes-faq.html:44
 msgid "Introducing Background Themes"
-msgstr ""
+msgstr "Увођење тема позадине"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:16
 msgid "What Are Background Themes?"
@@ -7349,7 +7372,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
-msgstr ""
+msgstr "Да. Теме су бесплатне за преузимање и слободне за коришћење."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:117
 msgid "There are two easy ways to change your theme. You can either:"
@@ -7433,6 +7456,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
 msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
 msgstr ""
+"<a href=\"%(tutorial_url)s\">Сазнајте више о томе како да направите кул "
+"дизајне тема.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:252
 msgid "Yes. Your artwork will always be <em>your</em> artwork."
@@ -7618,7 +7643,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Онемогућили сте овај додатак"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
@@ -7630,7 +7655,7 @@ msgstr "Молим Вас завршите Ваш додатак."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Примићете е-пошту када је преглед завршен."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -7717,7 +7742,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:34
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Ажурирајте Ваш профил.</strong></a>"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:45
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
@@ -7757,7 +7782,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
-msgstr ""
+msgstr "Програмерске вести"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:21
 msgid "View the blog &#9658;"
@@ -7770,7 +7795,7 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "Дозвољен HTML: {0}"
 
 #: apps/devhub/templates/devhub/includes/macros.html:10
 msgid "Some HTML supported."
@@ -7805,7 +7830,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
-msgstr ""
+msgstr "Ова датотека ће бити избрисана при снимању."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:39
 msgid "Undo"
@@ -7817,7 +7842,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Страница са Вашим доприносима: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -8045,7 +8070,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Одаберите боје за Вашу тему."
 
 #: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
@@ -8953,7 +8978,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:406
 msgid "Request more information"
-msgstr ""
+msgstr "Затражи више информација"
 
 #: apps/editors/helpers.py:409
 msgid "Request super-review"
@@ -9250,7 +9275,7 @@ msgstr "Укупно рецензија"
 
 #: apps/editors/templates/editors/home.html:64 apps/editors/templates/editors/themes/home.html:64
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Прегледа овог месеца"
 
 #: apps/editors/templates/editors/home.html:65
 msgid "New Editors"
@@ -9258,7 +9283,7 @@ msgstr "Нови уредници"
 
 #: apps/editors/templates/editors/home.html:80 apps/editors/templates/editors/home.html:95
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Ви сте #{0} са {1} прегледа"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:125
@@ -9417,7 +9442,7 @@ msgstr "Верзија %(version)s &middot; %(created)s <span class=\"light\">&m
 
 #: apps/editors/templates/editors/review.html:61
 msgid "Files in this version:"
-msgstr ""
+msgstr "Датотеке у овој верзији:"
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Contents"
@@ -9970,7 +9995,7 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
-msgstr ""
+msgstr "Желите већу слику?"
 
 #: apps/localizers/templates/localizers/sidebar.html:15
 msgid "Visit localize.mozilla.org"
@@ -10006,7 +10031,7 @@ msgstr "Mozilla додаци за локализацију"
 
 #: apps/localizers/templates/localizers/summary.html:16
 msgid "Want to help?"
-msgstr ""
+msgstr "Желите да помогнете?"
 
 #: apps/localizers/templates/localizers/summary.html:17
 msgid "AMO is available in so many languages thanks to the help of people like you!"
@@ -10105,7 +10130,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Учествујте у нашим <a href=\"%(url)s\">форумима</a>."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
@@ -10212,7 +10237,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Остали доприноси"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
@@ -10220,7 +10245,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:57
 msgid "Software and Images"
-msgstr ""
+msgstr "Софтвер и слике"
 
 #: apps/pages/templates/pages/credits.html:59
 msgid ""
@@ -10250,7 +10275,7 @@ msgstr "ЧПП програмера"
 
 #: apps/pages/templates/pages/dev_faq.html:31 apps/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr ""
+msgstr "Секције"
 
 #: apps/pages/templates/pages/dev_faq.html:33 apps/pages/templates/pages/dev_faq.html:46
 msgid "Developing an Add-on"
@@ -10294,7 +10319,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:58
 msgid "Other resources include:"
-msgstr ""
+msgstr "Остали извори укључују:"
 
 #: apps/pages/templates/pages/dev_faq.html:65
 msgid "Robert Nyman's article \"How to develop a Firefox extension\""
@@ -10396,7 +10421,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:180
 msgid "How do I test my add-on?"
-msgstr ""
+msgstr "Како да тестирам додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:182
 msgid ""
@@ -10429,7 +10454,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:223
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Да ли мој додатак подржава више језика?"
 
 #: apps/pages/templates/pages/dev_faq.html:225
 msgid ""
@@ -10557,15 +10582,16 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:357
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Који оперативни систем да изаберем за мој додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:359
 msgid "You must choose the operating systems on which your add-on will successfully function."
 msgstr ""
+"Морате изабрати оперативне системе на којима ће Ваш додатак да функционише."
 
 #: apps/pages/templates/pages/dev_faq.html:365
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Коју категорију да изаберем за мој додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:367
 msgid ""
@@ -11052,10 +11078,11 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:246
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
 msgstr ""
+"Молимо Вас да посетите нашу <a href=\"%(contact_url)s\">контакт страницу</a>."
 
 #: apps/pages/templates/pages/faq.html:249
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Шта је лиценца изворног кода?"
 
 #: apps/pages/templates/pages/faq.html:250
 msgid ""
@@ -11136,7 +11163,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:316
 msgid "Developer Topics"
-msgstr ""
+msgstr "Програмерске теме"
 
 #: apps/pages/templates/pages/faq.html:317
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
@@ -11144,7 +11171,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:323
 msgid "Still have questions?"
-msgstr ""
+msgstr "Још увек имате питања?"
 
 #: apps/pages/templates/pages/faq.html:324
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
@@ -11190,19 +11217,19 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:71
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Које могућности Вам се допадају а које не?"
 
 #: apps/pages/templates/pages/review_guide.html:72
 msgid "Was it useful?"
-msgstr ""
+msgstr "Да ли је било корисно?"
 
 #: apps/pages/templates/pages/review_guide.html:73
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Да ли је било лако за коришћење?"
 
 #: apps/pages/templates/pages/review_guide.html:74
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Хоћете ли наставити да користите овај додатак?"
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Take a moment to read your review before submitting it to avoid embarrassing typos or grammatical errors."
@@ -11428,7 +11455,7 @@ msgstr ""
 
 #: apps/reviews/forms.py:121
 msgid "Skip for now"
-msgstr ""
+msgstr "Прескочи за сада"
 
 #: apps/reviews/forms.py:123 apps/reviews/templates/reviews/review.html:94
 msgid "Delete review"
@@ -11461,20 +11488,20 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/reply.html:15 apps/reviews/templates/reviews/reply.html:31
 msgid "Reply"
-msgstr ""
+msgstr "Одговори"
 
 #: apps/reviews/templates/reviews/reply.html:28
 msgid "Write a Reply"
-msgstr ""
+msgstr "Напиши одговор"
 
 #. this string is following a <button>.
 #: apps/reviews/templates/reviews/reply.html:38
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "или <a href=\"%(url)s\">откажи</a>"
 
 #: apps/reviews/templates/reviews/report_review.html:3
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Изаберите разлог:"
 
 #: apps/reviews/templates/reviews/review.html:26
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -11633,11 +11660,11 @@ msgstr "претражи колекције"
 
 #: apps/search/forms.py:26
 msgid "search for themes"
-msgstr ""
+msgstr "претражи теме"
 
 #: apps/search/forms.py:27
 msgid "search for apps"
-msgstr ""
+msgstr "претражи апликације"
 
 #: apps/search/forms.py:50
 msgid "Sort By"
@@ -11686,7 +11713,7 @@ msgstr "Приказано је {0} - {1} од {2} резултата"
 #. {0} is an application, like Firefox.
 #: apps/search/views.py:267 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} додатака"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
@@ -11714,7 +11741,7 @@ msgstr ""
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Претрага није доступна"
 
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
@@ -11805,7 +11832,7 @@ msgstr "Додај на MySpace"
 
 #: apps/sharing/__init__.py:65
 msgid "Post to Twitter"
-msgstr ""
+msgstr "Објави на Twitter"
 
 #: apps/sharing/__init__.py:70
 msgid "{0} tweet"
@@ -11817,7 +11844,7 @@ msgstr[2] "{0} твитова"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:78
 msgid "localservice1"
-msgstr ""
+msgstr "localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:80
@@ -11827,7 +11854,7 @@ msgstr ""
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:82
 msgid "http://localservice1/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice1/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:87
@@ -11840,7 +11867,7 @@ msgstr[2] ""
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:93
 msgid "localservice2"
-msgstr ""
+msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:95
@@ -11863,7 +11890,7 @@ msgstr[2] ""
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:108
 msgid "localservice3"
-msgstr ""
+msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:110
@@ -11873,7 +11900,7 @@ msgstr ""
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:112
 msgid "http://localservice3/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice3/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:117
@@ -11901,11 +11928,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr ""
+msgstr "по извору"
 
 #: apps/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
-msgstr ""
+msgstr "по верзији додатка"
 
 #: apps/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
@@ -11913,15 +11940,15 @@ msgstr "по апликацији"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
-msgstr ""
+msgstr "по језику"
 
 #: apps/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "по платформи"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
-msgstr ""
+msgstr "по статусу додатка"
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
@@ -11977,7 +12004,7 @@ msgstr "За"
 
 #: apps/stats/templates/stats/report.html:7
 msgid "Export"
-msgstr ""
+msgstr "Извоз"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: apps/stats/templates/stats/stats.html:18
@@ -12056,7 +12083,7 @@ msgstr ""
 #: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
-msgstr ""
+msgstr "Нема доступних података."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
@@ -12264,7 +12291,7 @@ msgstr "Избриши локал"
 
 #: apps/users/forms.py:34
 msgid "Must be %s characters or more."
-msgstr ""
+msgstr "Мора бити %s или више карактера."
 
 #: apps/users/forms.py:51
 msgid "Letters and numbers required."
@@ -12332,7 +12359,7 @@ msgstr "Профилна слика"
 
 #: apps/users/forms.py:325 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Подразумеван локал"
 
 #: apps/users/forms.py:462
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -12357,7 +12384,7 @@ msgstr "со"
 
 #: apps/users/models.py:66
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:124
 msgid "No user with that email."
@@ -12445,7 +12472,7 @@ msgstr ""
 
 #: apps/users/notifications.py:160
 msgid "User Notifications"
-msgstr ""
+msgstr "Обавештења корисника"
 
 #: apps/users/views.py:88
 msgid "An email address is required."
@@ -12639,7 +12666,7 @@ msgstr "Адреса е-поште"
 
 #: apps/users/templates/users/edit.html:44 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
-msgstr ""
+msgstr "Сакриј адресу е-поште од других корисника"
 
 #: apps/users/templates/users/edit.html:50
 msgid "Change Password"
@@ -12703,7 +12730,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Прикажи колекције које сам направио"
 
 #: apps/users/templates/users/edit.html:171
 msgid "Display collections I'm following"
@@ -13082,7 +13109,7 @@ msgstr[2] "<b>{0}</b> верзија"
 
 #: apps/versions/templates/versions/version_list.html:30 apps/versions/templates/versions/mobile/version_list.html:14
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Будите опрезни са старим верзијама!"
 
 #: apps/versions/templates/versions/version_list.html:31 apps/versions/templates/versions/mobile/version_list.html:15
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
