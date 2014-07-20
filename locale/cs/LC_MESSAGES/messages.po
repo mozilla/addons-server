@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-06-05 09:52+0000\n"
+"PO-Revision-Date: 2014-07-20 20:42+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401961921.0\n"
+"X-POOTLE-MTIME: 1405888965.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2190,7 +2190,7 @@ msgstr "Ikona"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Tento název nemůže být použit."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12664,7 +12664,7 @@ msgstr "Pro dokončení registrace prosím vložte e-mailovou adresu od jiného 
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Toto zobrazené jméno nemůže být použito."
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12684,7 +12684,7 @@ msgstr "Pro anonymizaci vložte důvod pro změnu, ale neměňte žádné jiné 
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Vložte prosím alespoň jeden název do blacklistu."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
