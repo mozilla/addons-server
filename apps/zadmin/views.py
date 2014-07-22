@@ -374,12 +374,32 @@ def notify(request, job):
     if not notify_form.is_valid():
         messages.error(request, notify_form)
     else:
-        for chunk in chunked(updated_versions(job), 100):
+        dry_run = notify_form.cleaned_data['preview_only']
+
+        log.info('[@None] Starting validation email/update process for job %d.'
+                 ' dry_run=%s.' % (job.pk, dry_run))
+
+        log.info('[@None] Starting validation version bumps for job %d.'
+                    % (job.pk,))
+
+        version_list = updated_versions(job)
+        total = version_list.count()
+
+        for chunk in chunked(version_list, 100):
+            log.info('[%d@%d] Updating versions for job %d.' % (
+                len(chunk), total, job.pk))
             tasks.update_maxversions.delay(chunk, job.pk,
                                            notify_form.cleaned_data)
 
+        log.info('[@None] Starting validation email run for job %d.'
+                    % (job.pk,))
+
         updated_authors = completed_version_authors(job)
+        total = updated_authors.count()
         for chunk in chunked(updated_authors, 100):
+            log.info('[%d@%d] Notifying authors for validation job %d'
+                        % (len(chunk), total, job.pk))
+
             # There are times when you want to punch django's ORM in
             # the face. This may be one of those times.
             # TODO: Offload most of this work to the task?
@@ -407,6 +427,11 @@ def notify(request, job):
                                 for u, row in sorted_groupby(users_addons,
                                                              lambda k: k[0]))
 
+            log.info('[%d@%d] Notifying %d authors about %d addons for '
+                     'validation job %d'
+                        % (len(chunk), total, len(users), len(addons.keys()),
+                           job.pk))
+
             for u in users:
                 addons = users_addons[u.pk]
 
@@ -415,6 +440,9 @@ def notify(request, job):
 
             tasks.notify_compatibility.delay(users, job,
                                              notify_form.cleaned_data)
+
+        log.info('[@None] Completed validation email/update process '
+                 'for job %d. dry_run=%s.' % (job.pk, dry_run))
 
     return redirect(reverse('zadmin.validation'))
 
