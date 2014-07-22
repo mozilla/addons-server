@@ -131,8 +131,8 @@ class MassDeleteHelper(object):
         if urls:
             self.objects = map(self.url_to_object, urls)
             self.unknown_urls = tuple(l
-                                 for i, l in enumerate(urls)
-                                 if not self.objects[i])
+                                      for i, l in enumerate(urls)
+                                      if not self.objects[i])
 
             object_types = defaultdict(list)
             for o in self.objects:

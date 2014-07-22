@@ -219,8 +219,6 @@ def mass_delete(request):
 def mass_delete_confirm(request):
     form = MassDeleteConfirmForm(request.POST)
     if request.method == 'POST':
-        print form.is_valid()
-        print form.cleaned_data
         if not form.is_valid():
             # Form is auto-generated. An invalid POST means user
             # meddling.
