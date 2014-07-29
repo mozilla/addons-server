@@ -8,14 +8,14 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.plugins.attrib import attr
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 import waffle
 
 import amo
 import amo.tests
 from addons.models import Addon
-from amo.tests import assert_no_validation_errors
+from amo.tests import assert_no_validation_exceptions
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion, Application
@@ -225,9 +225,9 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_errors(data)
+        assert_no_validation_exceptions(data)
         msg = data['validation']['messages'][0]
-        eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
+        ok_('is invalid' in msg['message'])
 
     def test_time(self):
         r = self.client.post(reverse('devhub.file_validation',
@@ -271,7 +271,7 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_errors(data)
+        assert_no_validation_exceptions(data)
         addon = Addon.objects.get(pk=self.addon.id)
         eq_(addon.binary, True)
 
@@ -328,7 +328,7 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_errors(data)
+        assert_no_validation_exceptions(data)
         addon = Addon.objects.get(pk=self.addon.id)
         eq_(addon.binary, True)
 
@@ -360,7 +360,7 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_errors(data)
+        assert_no_validation_exceptions(data)
         doc = pq(data['validation']['messages'][0]['description'][0])
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
