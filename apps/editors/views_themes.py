@@ -182,8 +182,9 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
             locks = expired_locks
 
     if rereview:
-        return RereviewQueueTheme.objects.filter(
-            theme__themelock__reviewer=reviewer)
+        return (RereviewQueueTheme.objects
+                .filter(theme__themelock__reviewer=reviewer)
+                .exclude(theme__addon__status=amo.STATUS_REJECTED))
 
     # New theme locks may have been created, grab all reviewer's themes again.
     return [lock.theme for lock in locks]
