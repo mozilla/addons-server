@@ -101,7 +101,7 @@ suds==0.4
 thrift==0.9.1
 
 ## Not on pypi.
--e git+https://github.com/mozilla/amo-validator.git@7a1be3ba93a6493681e7a2a4491e7607d0eee120#egg=amo-validator
+-e git+https://github.com/mozilla/amo-validator.git@b682c26af49d2353bd20186922e2f3f846f73f74#egg=amo-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
