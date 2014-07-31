@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-31 08:36+0000\n"
+"PO-Revision-Date: 2014-07-31 10:08+0000\n"
 "Last-Translator: Branislav <sektormaster@atlas.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1406795794.0\n"
+"X-POOTLE-MTIME: 1406801289.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4141,7 +4141,7 @@ msgstr "Pri odosielaní ukážky sa vyskytla chyba."
 
 #: apps/devhub/views.py:1139
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Verzia %s je zakázaná."
 
 #: apps/devhub/views.py:1142
 msgid "Version %s deleted."
@@ -4184,7 +4184,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:38
 msgid "Choose your own code editor"
-msgstr ""
+msgstr "Vyberte si svoj vlastný editor kódu"
 
 #: apps/devhub/templates/devhub/builder.html:39
 msgid "Access your development files locally"
@@ -4192,16 +4192,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/builder.html:40
 msgid "Get greater control over SDK build steps"
-msgstr ""
+msgstr "Majte väčšiu kontrolu nad krokmi SDK"
 
 #: apps/devhub/templates/devhub/builder.html:43
-#, fuzzy
 msgid "Download the Add-on SDK"
-msgstr "Stáhnout Add-on SDK"
+msgstr "Prevziať Add-on SDK"
 
 #: apps/devhub/templates/devhub/builder.html:49
 msgid "Help is at Hand!"
-msgstr ""
+msgstr "Získajte pomocnú ruku!"
 
 #: apps/devhub/templates/devhub/builder.html:51
 msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
@@ -4304,13 +4303,12 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:106
-#, fuzzy
 msgid "Start Making Add-ons"
 msgstr "Začať s tvorbou doplnkov"
 
 #: apps/devhub/templates/devhub/index.html:113
 msgid "Learn &amp; Explore"
-msgstr ""
+msgstr "Učte sa a skúmajte"
 
 #: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:41 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
@@ -4342,7 +4340,7 @@ msgstr "Úspešné príbehy od začiatku až po koniec. Pozrite sa, ako vývojá
 
 #: apps/devhub/templates/devhub/index.html:159
 msgid "Create &amp; Connect"
-msgstr ""
+msgstr "Vytvárajte a spájajte"
 
 #: apps/devhub/templates/devhub/index.html:165
 msgid "Developer Forums"
@@ -4351,29 +4349,32 @@ msgstr "Fórum pre vývojárov"
 #: apps/devhub/templates/devhub/index.html:167
 msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
 msgstr ""
+"Diskutujte o vývoji, zdieľajte svoje nápady a zbierajte kontakty vo svete "
+"doplnkov."
 
 #: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:52 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
 msgid "Add-on Packager"
 msgstr "Balíkovač doplnkov"
 
 #: apps/devhub/templates/devhub/index.html:180
-#, fuzzy
 msgid "Auto-generate add-on packaging by entering basic info and picking UI parts. Get working without setup."
-msgstr "Umožňuje po zadání základních informací a prvků UI vygenerovat doplněk. Začněte bez složitého nastavování."
+msgstr ""
+"Umožňuje po zadaní základných informácií a prvkov UI vygenerovať doplnok. "
+"Začnite bez zložitého nastavovania."
 
 #: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:54
 msgid "Add-on Validator"
 msgstr "Overenie doplnku"
 
 #: apps/devhub/templates/devhub/index.html:193
-#, fuzzy
 msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
-msgstr "Skontrolujte váš doplnok na výskyt bežných problémov a chýb. Dostupné pre všetkých, nielen doplnkom umiestneným na tomto serveri."
+msgstr ""
+"Skontrolujte váš doplnok na výskyt bežných problémov a chýb. Dostupné pre "
+"všetkých, nielen pre doplnky na tomto serveri."
 
 #: apps/devhub/templates/devhub/nav.html:2
-#, fuzzy
 msgid "Return to the DevHub homepage"
-msgstr "Zpět do Centra pro vývojáře"
+msgstr "Späť do Centra pre vývojárov"
 
 #. Text in small tag is smaller and on its own line.
 #: apps/devhub/templates/devhub/nav.html:4
@@ -4404,13 +4405,12 @@ msgstr "Zásady tvorby a správy doplnkov"
 
 #: apps/devhub/templates/devhub/nav.html:43
 msgid "API &amp; Language Reference"
-msgstr ""
+msgstr "Prehľad API a jazykov"
 
 # 89%
 #: apps/devhub/templates/devhub/nav.html:56
-#, fuzzy
 msgid "Add-on Compatibility Checker"
-msgstr "Kontrola kompatibility doplňku"
+msgstr "Kontrola kompatibility doplnku"
 
 #: apps/devhub/templates/devhub/nav.html:58
 msgid "Development Add-ons"
