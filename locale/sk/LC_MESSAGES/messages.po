@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-31 12:11+0000\n"
+"PO-Revision-Date: 2014-07-31 12:22+0000\n"
 "Last-Translator: Branislav <sektormaster@atlas.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1406808689.0\n"
+"X-POOTLE-MTIME: 1406809372.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5506,7 +5506,6 @@ msgstr "alebo <a href=\"{0}\">Zrušiť</a>"
 
 # 83%
 #: apps/devhub/templates/devhub/addons/submit/upload.html:3
-#, fuzzy
 msgid "Step 2"
 msgstr "Krok 2"
 
@@ -5615,9 +5614,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:24
-#, fuzzy
 msgid "Learn the basics"
-msgstr "Přečtěte si základy"
+msgstr "Prečítajte si základy"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:26
 msgid ""
@@ -5638,9 +5636,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:47
-#, fuzzy
 msgid "Build your add-on"
-msgstr "Vytvořte si svůj doplněk"
+msgstr "Vytvorte si svoj doplnok"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:49
 #, fuzzy
@@ -5662,9 +5659,8 @@ msgid "Take me to the Add-on Packager!"
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:65
-#, fuzzy
 msgid "Add some flair"
-msgstr "Rozšiřte jeho funkčnost"
+msgstr "Rozšírte jeho funkčnosť"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:67
 msgid ""
@@ -5684,9 +5680,8 @@ msgid "View the References"
 msgstr "Zobraziť príručky"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:79
-#, fuzzy
 msgid "Enter the How-to Library"
-msgstr "Databáze příkladů, jak na to"
+msgstr "Databáza príkladov, ako na to"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:81
 msgid ""
@@ -5865,14 +5860,12 @@ msgid "This article explains how to properly localize strings with plurals."
 msgstr "Tento článok vysvetľuje, ako správne lokalizovať reťazce používajúce množné čísla."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
-#, fuzzy
 msgid "BabelZilla overview"
-msgstr "Představení BabelZilly"
+msgstr "Predstavenie BabelZilly"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
-#, fuzzy
 msgid "Learn how the BabelZilla localization community works."
-msgstr "Přečtěte si, jak funguje lokalizační komunita BabelZilla."
+msgstr "Prečítajte si, ako funguje lokalizačná komunita BabelZilla."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
 msgid "Advanced Topics"
@@ -6334,9 +6327,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
-#, fuzzy
 msgid "Add-on Editorial Concerns"
-msgstr "Otázky týkající se schvalování doplňků"
+msgstr "Otázky týkajúce sa schvaľovania doplnkov"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
@@ -6533,13 +6525,14 @@ msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every mo
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
-#, fuzzy
 msgid "Criteria for Featured Add-ons"
-msgstr "Kritéria pro doporučené doplňky"
+msgstr "Kritériá pre odporúčané doplnky"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
 msgstr ""
+"Skôr ako odporúčate doplnok, aby bol odporúčaný, uistite sa, že spĺňa "
+"nasledovné kritériá:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 #, fuzzy
@@ -6597,9 +6590,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
-#, fuzzy
 msgid "Nominating an Add-on"
-msgstr "Nominace doplňku"
+msgstr "Nominácie doplnku"
 
 # 80%
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
@@ -6756,14 +6748,12 @@ msgid "We aim to perform full reviews in under 10 days, though most add-ons are 
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
-#, fuzzy
 msgid "Testing Methods &amp; Common Issues"
-msgstr "Metody testování a nejčastější problémy"
+msgstr "Metódy testovania a najčastejšie problémy"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:57
-#, fuzzy
 msgid "When performing a full review, editors will:"
-msgstr "V rámci plné kontroly bude redaktor provádět:"
+msgstr "V rámci kompletnej kontroly bude redaktor vykonávať:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
@@ -7303,7 +7293,6 @@ msgstr "CSS: pridanie vizuálnych efektov"
 
 # 75%
 #: apps/devhub/templates/devhub/docs/reference.html:124
-#, fuzzy
 msgid "CSS Overview"
 msgstr "Prehľad CSS"
 
