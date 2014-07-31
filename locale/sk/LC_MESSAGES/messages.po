@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-31 12:22+0000\n"
+"PO-Revision-Date: 2014-07-31 12:50+0000\n"
 "Last-Translator: Branislav <sektormaster@atlas.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1406809372.0\n"
+"X-POOTLE-MTIME: 1406811017.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4238,15 +4238,17 @@ msgstr "Prosím, zadajte hľadané výrazy."
 
 #: apps/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Načítanie výsledkov&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:23
 msgid "Calling All Add-ons!"
-msgstr ""
+msgstr "Hľadáme doplnky!"
 
 #: apps/devhub/templates/devhub/index.html:25
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr ""
+"Neexistuje lepší spôsob distribúcie vášho doplnku než je jeho hosťovanie na "
+"serveri Mozilla Add-ons."
 
 # 82%
 #: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
@@ -5395,19 +5397,16 @@ msgid "Appropriate for polished add-ons"
 msgstr "Vhodné pro otestované doplňky"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
-#, fuzzy
 msgid "Review should take place within 10 days"
-msgstr "Kontrola by měla trvat do 10 dní"
+msgstr "Kontrola by mala trvať do 10 dní"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
-#, fuzzy
 msgid "Review of subsequent versions within 5 days"
-msgstr "Kontrola aktualizací do 5 dní"
+msgstr "Kontrola aktualizácií do 5 dní"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:35
-#, fuzzy
 msgid "Warning-free installation and no feature limitations"
-msgstr "Instalace bez varování a žádná omezená funkčnost"
+msgstr "Inštalácia bez varovania a žiadna obmedzená funkčnosť"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:39
 msgid "Choose Full Review"
@@ -6085,11 +6084,12 @@ msgstr "Táto dokumentácia API pre Jetpack je potrebná pre každého, kto prac
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
-msgstr ""
+msgstr "Ako vytvoriť tému vzhľadu"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid "Learn how to create your very own Theme with this official walk-through."
 msgstr ""
+"Prečítajte si, ako môžete jednoducho vytvoriť svoju vlastnú tému vzhľadu."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
 msgid "Search Plug-ins"
@@ -6275,18 +6275,25 @@ msgstr "Ďalšie zdroje"
 #: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
 msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
 msgstr ""
+"Viete konkrétne, čo hľadáte? <a href=\"%(link_search)s\">Vyhľadajte si to</a>!"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:43
 msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
 msgstr ""
+"Nájdite si v <a href=\"%(link_reference)s\">prehľade API alebo v referencii "
+"jazyka</a> rozhranie, ktoré hľadáte."
 
 #: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
 msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
 msgstr ""
+"Potrebujete pomoc? <a href=\"https://forums.addons.mozilla.org\">Navštívte "
+"naše fórum</a>."
 
 #: apps/devhub/templates/devhub/docs/how-to.html:77
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
 msgstr ""
+"Prečítajte si základy k vývoju doplnkov na platforme Mozilla. Táto sekcia "
+"obsahuje množstvo postupov pre začiatočníkov."
 
 #: apps/devhub/templates/devhub/docs/how-to.html:99
 msgid "Thunderbird &amp; Mobile Add-ons"
@@ -6482,9 +6489,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
-#, fuzzy
 msgid "Code Disputes"
-msgstr "Otázky ke kódu"
+msgstr "Otázky ku kódu"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:90
 #, fuzzy
@@ -6625,9 +6631,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
-#, fuzzy
 msgid "Rotating Featured Add-ons"
-msgstr "Rotace doporučených doplňků"
+msgstr "Rotácia odporúčaných doplnkov"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
@@ -7004,9 +7009,8 @@ msgid "These are minimum requirements and not a guarantee that the add-on will b
 msgstr "Jedná se o minimální požadavky, které negarantují, že bude doplněk schválen. Tato sekce je platná pro všechny doplňky hostaované na tomto webu a to včetně předběžně zkontrolovaných doplňků."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
-#, fuzzy
 msgid "Private Browsing Mode"
-msgstr "Režim anonymního prohlížení"
+msgstr "Režim súkromného prehliadania"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:282
 #, fuzzy
@@ -7302,26 +7306,22 @@ msgstr ""
 
 # 84%
 #: apps/devhub/templates/devhub/docs/reference.html:140
-#, fuzzy
 msgid "Gecko CSS Reference"
-msgstr "Príručka k Gecko CSS"
+msgstr "Prehľad podpory CSS v Gecku"
 
 #: apps/devhub/templates/devhub/docs/reference.html:148
 msgid "Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors."
 msgstr "Dokumentácia k CSS na stránkach Mozilla Developer Center, vrátane zoznamu všetkých dostupných vlastností, hodnôt a selektorov."
 
 #: apps/devhub/templates/devhub/docs/reference.html:156
-#, fuzzy
 msgid "W3C CSS Homepage"
 msgstr "Domovská stránka W3C CSS"
 
 #: apps/devhub/templates/devhub/docs/reference.html:159
-#, fuzzy
 msgid "via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
 msgstr "na <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:163
-#, fuzzy
 msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
 msgstr "Novinky ohľadne CSS, špecifikácie a nástroje na domovskej stránke W3C CSS."
 
@@ -7632,26 +7632,30 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
 msgstr ""
+"Téma vzhľadu, ktorú nahráte, nesmie pri obrázku hlavičky a päty prekročiť "
+"veľkosť 300 kB."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:276
 msgid "Couldn't find the answer you're looking for? Consider visiting the <a href=\"%(support_url)s\">Firefox support</a> website for more help."
 msgstr ""
+"Nenašli ste odpoveď na otázku, ktorú hľadáte? Ak potrebujete viac pomoci "
+"zvážte návštevu <a href=\"%(support_url)s\">stránok podpory Firefoxu</a>."
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
 msgid "How to Create Your Own Background Theme"
-msgstr ""
+msgstr "Ako vytvoriť svoju vlastnú tému vzhľadu"
 
 #: apps/devhub/templates/devhub/docs/themes.html:4
 msgid "Getting Started | Themes"
-msgstr ""
+msgstr "Začíname | Témy"
 
 #: apps/devhub/templates/devhub/docs/themes.html:12
 msgid "How to create a theme"
-msgstr ""
+msgstr "Ako vytvoriť tému vzhľadu"
 
 #: apps/devhub/templates/devhub/docs/themes.html:15
 msgid "Submit your theme"
-msgstr ""
+msgstr "Pridanie vašej témy vzhľadu"
 
 #: apps/devhub/templates/devhub/docs/themes.html:35
 msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
