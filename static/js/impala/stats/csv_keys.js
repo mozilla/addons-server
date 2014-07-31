@@ -113,7 +113,8 @@ var csv_keys = {
         '{3550f703-e582-4d05-9a08-453d09bdfdc6}' : gettext('Thunderbird'),
         '{718e30fb-e89b-41dd-9da7-e25a45638b28}' : gettext('Sunbird'),
         '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}' : gettext('SeaMonkey'),
-        '{a23983c0-fd0e-11dc-95ff-0800200c9a66}' : gettext('Fennec')
+        '{a23983c0-fd0e-11dc-95ff-0800200c9a66}' : gettext('Fennec'),
+        '{aa3c5121-dab2-40e2-81ca-7ea25febc110}' : gettext('Android')
     },
     chartTitle: {
         "overview"  : [
