@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-31 10:08+0000\n"
+"PO-Revision-Date: 2014-07-31 12:11+0000\n"
 "Last-Translator: Branislav <sektormaster@atlas.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1406801289.0\n"
+"X-POOTLE-MTIME: 1406808689.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4250,9 +4250,8 @@ msgstr ""
 
 # 82%
 #: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
-#, fuzzy
 msgid "Submit an Add-on"
-msgstr "Přidat doplněk"
+msgstr "Pridať doplnok"
 
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
@@ -4265,10 +4264,9 @@ msgstr "Posledná verzia:"
 
 #: apps/devhub/templates/devhub/index.html:63 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
-msgstr ""
+msgstr "Pozícia vo fronte:"
 
 #: apps/devhub/templates/devhub/index.html:64 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
-#, fuzzy
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s z %(total)s"
 
@@ -4278,29 +4276,36 @@ msgstr "Odoslať novú verziu"
 
 #: apps/devhub/templates/devhub/index.html:80
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Zobraziť všetky doplnky ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Redaktori AMO"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Zapojte sa! Staňte sa redaktorom na AMO ešte dnes a pomôžte s rýchlejšou "
+"kontrolou doplnkov."
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Stať sa redaktorom na AMO"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
-msgstr ""
+msgstr "Doplnky pre Firefox jednoducho"
 
 #: apps/devhub/templates/devhub/index.html:98
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
 "ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
 msgstr ""
+"Doplnky umožňujú miliónom používateľom Firefoxu vylepšovať a upravovať svoj "
+"prehliadač a tým aj zážitok z jeho používania. Ak ste webový vývojár a "
+"poznáte HTML, JavaScript a CSS, poznáte všetko potrebné pre to, aby ste "
+"mohli začať vytvárať skvelé doplnky pomocou Add-on SDK. A naviac, doplnky "
+"vytvorené pomocou SDK nepotrebujú pri inštalácií reštart prehliadača."
 
 #: apps/devhub/templates/devhub/index.html:106
 msgid "Start Making Add-ons"
@@ -4437,9 +4442,10 @@ msgid "Describe your add-on"
 msgstr "Popíšte svoj doplnok"
 
 #: apps/devhub/templates/devhub/package_addon.html:26
-#, fuzzy
 msgid "First, you need to enter some basic information about your add-on. This will be displayed in the Add-ons Manager when your extension is installed."
-msgstr "Prvně budeme potřebovat základní informace o vašem doplňku. Ty budou po instalaci vašeho doplňku dostupné ve Správci doplňků."
+msgstr ""
+"Najskôr budeme potrebovať základné informácie o vašom doplnku. Tie budú po "
+"inštalácií vášho doplnku dostupné v Správcovi doplnkov."
 
 #: apps/devhub/templates/devhub/package_addon.html:33
 msgid "Add-on Name"
@@ -4462,9 +4468,10 @@ msgid "Who's working on your add-on?"
 msgstr "Kto pracuje na tomto doplnku?"
 
 #: apps/devhub/templates/devhub/package_addon.html:43
-#, fuzzy
 msgid "Tell us about the people or companies behind this add-on. This information appears in the add-on's About dialog."
-msgstr "Povedzte nám o ľuďoch alebo spoločnosti, ktorí stoja za týmto doplnkom. Táto informácia sa objaví v dialógovom okne O rozšírení."
+msgstr ""
+"Povedzte nám o ľuďoch alebo spoločnosti, ktorí stoja za týmto doplnkom. Táto "
+"informácia sa objaví v dialógovom okne o doplnku."
 
 #: apps/devhub/templates/devhub/package_addon.html:49
 msgid "Primary Author"
@@ -4475,43 +4482,39 @@ msgid "Contributors"
 msgstr "Prispievatelia"
 
 #: apps/devhub/templates/devhub/package_addon.html:54
-#, fuzzy
 msgid "Where will your add-on run?"
-msgstr "Kde bude doplněk provozován?"
+msgstr "Kde bude doplnok prevádzkovaný?"
 
 #: apps/devhub/templates/devhub/package_addon.html:56
-#, fuzzy
 msgid ""
 "Select the applications and versions that your add-on will support. The versions that you select will be the only versions that your add-on will be installable on. Make sure you only select "
 "applications and versions that you intend to test your add-on with."
 msgstr ""
-"Zvolte aplikace a verze, která váš doplněk podporuje. Verze, které zvolíte, budou jediné verze, na které půjde váš doplněk nainstalovat. Ujistěte se, že jste zvolili pouze aplikace a verze, se "
-"kterými budete váš doplněk testovat."
+"Vyberte aplikácie a verzie, ktoré váš doplnok podporuje. Verzie, ktoré "
+"vyberiete, budú jediné verzie, na ktoré pôjde váš doplnok nainštalovať. "
+"Uistite sa, že ste vybrali len tie aplikácie a verzie, s ktorými budete váš "
+"doplnok testovať."
 
 #: apps/devhub/templates/devhub/package_addon.html:64
-#, fuzzy
 msgid "Supported Applications and Versions"
-msgstr "Podporované aplikace a verze"
+msgstr "Podporované aplikácie a verzie"
 
 #: apps/devhub/templates/devhub/package_addon.html:80
-#, fuzzy
 msgid "Choose pre-built features"
-msgstr "Predpripravené funkcie"
+msgstr "Výber predpripravených funkcií"
 
 #: apps/devhub/templates/devhub/package_addon.html:82
-#, fuzzy
 msgid "Get started quickly by selecting user interface components to include in your add-on package. We'll include documented code for each item you select so your extension will work out of the box."
 msgstr ""
-"Zostavenie doplnku začnite zvolením komponentov používateľského rozhrania, ktoré budú súčasťou balíka. Pre každú položku bude do doplnku pridaný zdokumentovaný zdrojový kód, takže vaše rozšírenie "
-"bude funkčné."
+"Zostavenie doplnku začnite výberom komponentov používateľského rozhrania, "
+"ktoré budú súčasťou balíka. Pre každú položku bude do doplnku pridaný "
+"zdokumentovaný zdrojový kód, takže vaše rozšírenie bude funkčné."
 
 #: apps/devhub/templates/devhub/package_addon.html:95
-#, fuzzy
 msgid "Submit and Build"
-msgstr "Odeslat a vytvořit"
+msgstr "Odoslať a vytvoriť"
 
 #: apps/devhub/templates/devhub/package_addon.html:102
-#, fuzzy
 msgid "Advanced Building"
 msgstr "Zostavenie pre pokročilých"
 
@@ -4875,14 +4878,12 @@ msgstr ""
 "nahlasovania nájdených chýb, predpokladaný dátum sprístupnenia novej verzie atď."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
-#, fuzzy
 msgid "Limit 3"
-msgstr "Maximálně 3"
+msgstr "Maximálne 3"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:68
-#, fuzzy
 msgid "Add-on Flags"
-msgstr "Označenie doplnku"
+msgstr "Označenia doplnku"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons."
@@ -4897,9 +4898,8 @@ msgid "This add-on requires external software."
 msgstr "Tento doplnok vyžaduje externý softvér"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:88
-#, fuzzy
 msgid "View Source?"
-msgstr "Zobrazit zdrojový kód?"
+msgstr "Zobraziť zdrojový kód?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:89
 msgid "Whether the source of your add-on can be displayed in our online viewer."
@@ -4914,9 +4914,8 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr "Zdrojový kód tohto doplnku nie je verejne dostupný."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:100
-#, fuzzy
 msgid "Public Stats?"
-msgstr "Veřejné statistiky?"
+msgstr "Zverejniť štatistiky?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:101
 #, fuzzy
@@ -4925,35 +4924,32 @@ msgstr "Zda mohou být informace o stahovanosti a používanosti vašeho doplňk
 
 # 76%
 #: apps/devhub/templates/devhub/addons/edit/technical.html:105
-#, fuzzy
 msgid "This add-on's stats are publicly viewable."
-msgstr "Statistiky tohoto doplňku jsou veřejně dostupné."
+msgstr "Štatistiky tohto doplnku sú verejne dostupné."
 
 # 80%
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
-#, fuzzy
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Statistiky k tomuto doplňku nejsou veřejně přístupné."
+msgstr "Štatistiky tohto doplnku nie sú verejne dostupné."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:113
-#, fuzzy
 msgid "Upgrade SDK?"
-msgstr "Aktualizovat SDK?"
+msgstr "Aktualizovať SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:114
-#, fuzzy
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
-msgstr "Pokud je zvoleno, pokusíme se váš doplněk aktualizovat pokaždé, když bode dostupná nová verze SDK."
+msgstr ""
+"Ak je zvolená táto možnosť, pokúsime sa váš doplnok aktualizovať vždy, keď "
+"bude dostupná nová verzia SDK."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:117
-#, fuzzy
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Tento doplněk bude automaticky aktualizován na novější verze Add-on SDK."
+msgstr ""
+"Tento doplnok bude automaticky aktualizovaný na najnovšie verzie Add-on SDK."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:119
-#, fuzzy
 msgid "No, this add-on will be upgraded manually."
-msgstr "Ne, tento doplněk bude aktualizován ručně."
+msgstr "Nie, tento doplnok bude aktualizovaný ručne."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:125
 msgid "Universally unique identifier"
@@ -4968,14 +4964,12 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "Identifikátor UUID vášho doplnku je zadaný v jeho inštalačnom manifeste a unikátne doplnok identifikuje. Po odoslaní doplnku nie je možné meniť jeho identifikátor UUID."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
-#, fuzzy
 msgid "Remove this dependent add-on"
-msgstr "Odebrat závislý doplněk"
+msgstr "Odobrať tento závislý doplnok"
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
-#, fuzzy
 msgid "Enter the name of an add-on"
-msgstr "Vložte název doplňku"
+msgstr "Zadajte názov doplnku"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:10
 msgid "Add-on Media for {0}"
@@ -5160,63 +5154,58 @@ msgid "Resume the submission process for this app."
 msgstr "Pokračovat v procesu přidání aplikace."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
-#, fuzzy
 msgid "Delete this app."
-msgstr "Smazat aplikaci."
+msgstr "Odstrániť túto aplikáciu."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
 msgid "Edit details about this app's listing."
-msgstr ""
+msgstr "Úprava nastavení stránky aplikácie."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39
-#, fuzzy
 msgid "Manage Status"
-msgstr "Správa stavů"
+msgstr "Správa stavov"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:42
-#, fuzzy
 msgid "Manage In-App Payments"
-msgstr "Správa plateb v aplikaci"
+msgstr "Správa platieb v aplikácií"
 
 # 75%
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:49
-#, fuzzy
 msgid "View App Listing"
-msgstr "Zobrazit stránku aplikace"
+msgstr "Zobraziť stránku aplikácie"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Úprava detailov o stránke tejto témy vzhľadu."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
-msgstr ""
+msgstr "Zobrazenie verejnej stránky témy vzhľadu."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Zobraziť popularitu tejto témy vzhľadu v čase."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Zmena vlastníka tejto témy vzhľadu."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Presun vlastníctva"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
-msgstr ""
+msgstr "Odstrániť túto tému vzhľadu."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
-#, fuzzy
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
 msgstr "Tento doplnok bude automaticky odstránený po niekoľkých dňoch, ak nebude proces odoslania dokončený."
 
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>Najnovšia verzia:</strong><a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5224,7 +5213,7 @@ msgstr "Zakázaný"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:48
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Pozícia vo fronte:</b> %(pos)s z %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:23
@@ -5235,19 +5224,16 @@ msgstr[1] "<strong>{0}</strong> aktívni používatelia"
 msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
-#, fuzzy
 msgid "No test results."
-msgstr "Žádné výsledky testů."
+msgstr "Žiadne výsledky testov."
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8 apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
-#, fuzzy
 msgid "Start performance tests"
-msgstr "Zahájit test výkonu"
+msgstr "Spustiť test výkonu"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
-#, fuzzy
 msgid "This file is not eligible for performance testing."
-msgstr "Tento soubor není určen pro testování výkonu."
+msgstr "Tento súbor nie je určený pre testovanie výkonu."
 
 #: apps/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
@@ -5258,67 +5244,60 @@ msgid "Step 3"
 msgstr "Krok 3"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:7
-#, fuzzy
 msgid "Step 3. Describe"
 msgstr "Krok 3. Popis"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:11
-#, fuzzy
 msgid "Name and version:"
-msgstr "Jméno a verze:"
+msgstr "Názov a verzia:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:20
-#, fuzzy
 msgid "The detail page will be:"
-msgstr "Stránka s detailem bude:"
+msgstr "Stránka s detailom bude:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:24 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "V URL adresách používajte len znaky, čísla, podčiarky a pomlčky."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:34
-#, fuzzy
 msgid "Provide a brief summary:"
-msgstr "Poskytněte stručný souhrn:"
+msgstr "Poskytnite stručný súhrn:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:38
-#, fuzzy
 msgid "This summary will be shown in listings and searches."
-msgstr "Tento souhrn bude viditelný na stránce s aplikací a ve vyhledávání."
+msgstr "Tento súhrn bude viditeľný na stránke s aplikáciou a vo vyhľadávaní."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:55
-#, fuzzy
 msgid "Provide a more detailed description:"
-msgstr "Poskytněte detailní popis aplikace:"
+msgstr "Poskytnite detailný popis aplikácie:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:59
-#, fuzzy
 msgid "The description will appear on the detail page."
-msgstr "Popis bude viditelný na stránce s aplikací."
+msgstr "Popis bude viditeľný na stránke s aplikáciou."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:4 apps/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr ""
+msgstr "Odoslanie dokončené"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:10 apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
 msgstr "Hotovo!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:11
-#, fuzzy
 msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Váš doplněk byl odeslán do fronty na předběžnou kontrolu."
+msgstr "Váš doplnok bol odoslaný do fronty na predbežnú kontrolu."
 
 # 82%
 #: apps/devhub/templates/devhub/addons/submit/done.html:15
-#, fuzzy
 msgid "Your add-on has been submitted to the Full Review queue."
-msgstr "Váš doplněk byl odeslán do fronty na plnou kontrolu."
+msgstr "Váš doplnok bol odoslaný do fronty na detailnú kontrolu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:21
-#, fuzzy
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
-msgstr "Jakmile bude doplněk zkontrolován redaktorem, obdržíte e-mail. V mezičase si ho můžete vy a vaši přátelé nainstalovat přímo ze stránky detailu:"
+msgstr ""
+"Okamžite ako bude doplnok redaktorom skontrolovaný, bude vám doručený "
+"e-mail. V medzičase si ho môžete vy a vaši priatelia nainštalovať priamo zo "
+"stránky detailov:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
@@ -5329,13 +5308,14 @@ msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version
 msgstr "<a href=\"{0}\">Odoslať</a> ďalší na platforme závislý súbor pre túto verziu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:40
-#, fuzzy
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Poskytněte více informací <a href=\"{0}\">úpravou stránky</a>."
+msgstr "Poskytnite viac informácií <a href=\"{0}\">úpravou stránky</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr ""
+"Povedzte vašim používateľom vo svojom <a href=\"{0}\">profile vývojára</a> o "
+"tom, že ste tento doplnok vytvorili."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:44
 #, fuzzy
