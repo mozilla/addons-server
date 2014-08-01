@@ -515,6 +515,24 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(doc('.theme').length, 1)
         eq_(RereviewQueueTheme.with_deleted.count(), 2)
 
+    def test_rejected_addon(self):
+        """Test rejected addons are not displayed in review lists."""
+        # Normal RQT object.
+        RereviewQueueTheme.objects.create(
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
+            footer='')
+
+        # Rejected add-on RQT object.
+        addon = addon_factory(type=amo.ADDON_PERSONA,
+                              status=amo.STATUS_REJECTED)
+        RereviewQueueTheme.objects.create(theme=addon.persona, header='',
+                                          footer='')
+
+        self.login('senior_persona_reviewer@mozilla.com')
+        r = self.client.get(self.queue_url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.theme').length, 1)
+
     @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('editors.tasks.send_mail_jinja')
     @mock.patch('editors.tasks.copy_stored_file')
