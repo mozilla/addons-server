@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-08-03 06:11+0000\n"
+"PO-Revision-Date: 2014-08-03 06:14+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407046293.0\n"
+"X-POOTLE-MTIME: 1407046475.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3200,7 +3200,7 @@ msgstr "Mobile"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr "Firefox Android 版"
+msgstr "Firefox for Android"
 
 #: apps/constants/applications.py:139
 msgid "Mozilla"
@@ -8446,11 +8446,12 @@ msgstr "套上佈景主題吧!"
 
 #: apps/discovery/modules.py:278
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
-msgstr "參觀 Firefox Android 版的 addons.mozilla.org 網站，為您手機的瀏覽器穿上符合您樣式、心情或季節的佈景主題!"
+msgstr ""
+"使用 Firefox for Android 開啟 addons.mozilla.org，為您的行動瀏覽器穿上符合您樣式、心情或季節的佈景主題！"
 
 #: apps/discovery/modules.py:287
 msgid "Get up and move!"
-msgstr "身體力行!"
+msgstr "動起來！"
 
 #: apps/discovery/modules.py:288
 msgid "Install these fitness add-ons to keep you active and healthy."
