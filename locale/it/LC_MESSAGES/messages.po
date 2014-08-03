@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-06-07 08:04+0000\n"
+"PO-Revision-Date: 2014-08-03 09:43+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.11.0-rc1\n"
-"X-POOTLE-MTIME: 1402128241.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1407058985.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2181,7 +2181,7 @@ msgstr "Icona"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Impossibile utilizzare questo nome."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12755,7 +12755,7 @@ msgstr "Utilizza un indirizzo email di un altro provider per completare la regis
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Impossibile utilizzare questo nome per la visualizzazione."
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12775,7 +12775,7 @@ msgstr "Per rendere anonimo, inserire un motivo per la modifica ma non cambiare 
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "È necessario inserire almeno un nome nella black list."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
