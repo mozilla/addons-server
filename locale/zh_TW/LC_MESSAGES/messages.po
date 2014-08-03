@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-17 01:49+0000\n"
+"PO-Revision-Date: 2014-08-03 06:11+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405561740.0\n"
+"X-POOTLE-MTIME: 1407046293.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12643,7 +12643,7 @@ msgstr "提供更多關於您的資料。這些欄位都是選填的，不過它
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr "除非您是開發者，網址才˙會顯示。"
+msgstr "若您是開發者才會顯示此網址。"
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
