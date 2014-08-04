@@ -18,7 +18,7 @@ from nose.tools import assert_not_equal, eq_, ok_
 import amo
 import amo.tests
 from amo import set_user
-from amo.helpers import absolutify
+from amo.helpers import absolutify, storage_url
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
@@ -526,8 +526,7 @@ class TestAddonModels(amo.tests.TestCase):
         3. Test for default non-THEME icon.
         """
         a = Addon.objects.get(pk=3615)
-        expected = (settings.ADDON_ICON_URL % (3, 3615, 32, 0)).rstrip('/0')
-        assert a.icon_url.startswith(expected)
+        assert "/3/3615-32.png" in a.icon_url
         a = Addon.objects.get(pk=6704)
         a.icon_type = None
         assert a.icon_url.endswith('/icons/default-theme.png'), (
@@ -1772,13 +1771,13 @@ class TestPersonaModel(amo.tests.TestCase):
             eq_(data['description'], unicode(self.addon.description))
 
             assert data['headerURL'].startswith(
-                '%s/%s/header.png?' % (settings.LOCAL_MIRROR_URL, id_))
+                '%s%s/header.png?' % (storage_url('addons'), id_))
             assert data['footerURL'].startswith(
-                '%s/%s/footer.png?' % (settings.LOCAL_MIRROR_URL, id_))
+                '%s%s/footer.png?' % (storage_url('addons'), id_))
             assert data['previewURL'].startswith(
-                '%s/%s/preview.jpg?' % (settings.LOCAL_MIRROR_URL, id_))
+                '%s%s/preview.jpg?' % (storage_url('addons'), id_))
             assert data['iconURL'].startswith(
-                '%s/%s/preview_small.jpg?' % (settings.LOCAL_MIRROR_URL, id_))
+                '%s%s/preview_small.jpg?' % (storage_url('addons'), id_))
 
             eq_(data['detailURL'],
                 'https://omgsh.it%s' % self.persona.addon.get_url_path())

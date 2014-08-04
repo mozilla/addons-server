@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
+
 from tower import ugettext as _
 
 from addons.models import Category
@@ -18,10 +19,10 @@ class IconWidgetRenderer(forms.RadioSelect.renderer):
             value = w.choice_value
             if value.split('/')[0] == 'icon' or value == '':
                 o = (("<li><a href='#' class='%s'>"
-                      "<img src='%s/%s-32.png' alt=''>"
+                      "<img src='%simg/addon-icons/%s-32.png' alt=''>"
                       "</a>%s</li>") %
                      ('active' if self.value == w.choice_value else '',
-                      settings.ADDON_ICONS_DEFAULT_URL, w.choice_label, w))
+                      settings.STATIC_URL, w.choice_label, w))
             else:
                 o = "<li class='hide'>%s</li>" % w
             output.append(o)

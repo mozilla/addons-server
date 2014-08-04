@@ -13,6 +13,7 @@ import amo
 import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
+from amo.helpers import storage_path
 from devhub.models import ActivityLog
 from editors import helpers
 from editors.models import ReviewerScore
@@ -172,9 +173,6 @@ class TestReviewHelper(amo.tests.TestCase):
         self.version = self.addon.versions.all()[0]
         self.helper = self.get_helper()
         self.file = self.version.files.all()[0]
-
-        self.old_mirror = settings.MIRROR_STAGE_PATH
-        self.old_normal = settings.ADDONS_PATH
 
         self.create_paths()
 

@@ -9,7 +9,7 @@
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ MEDIA_URL}}img/favicon.ico">
+          href="{{ STATIC_URL}}img/favicon.ico">
 
     {% block rss_feed %}{% endblock %}
 
@@ -24,15 +24,15 @@
     {% block site_css %}
       {{ css('zamboni/impala') }}
       <!--[if lt IE 9]>
-        <script src="{{ media('js/lib/iepp.min.js') }}"></script>
+        <script src="{{ static('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
       <!--[if lte IE 9]>
-        <link rel="stylesheet" href="{{ media('css/legacy/ie9.css') }}">
+        <link rel="stylesheet" href="{{ static('css/legacy/ie9.css') }}">
       <![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
-    <noscript><link rel="stylesheet" href="{{ media('css/impala/nojs.css') }}"></noscript>
+    <noscript><link rel="stylesheet" href="{{ static('css/impala/nojs.css') }}"></noscript>
 
     {% include "mobile/head_debug.html" %}
 
@@ -51,6 +51,7 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-static-url="{{ STATIC_URL }}"
         data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% block bodyattrs %}{% endblock %}>
 
@@ -192,7 +193,7 @@
       <div id="footer" role="contentinfo">
         <div class="section">
           {% block footer_extras %}
-            <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
+            <img class="footerlogo" src="{{ static('img/zamboni/footer-logo-med.png') }}" alt="">
           {% endblock %}
           {% with hide_mobile_link=hide_mobile_link %}
             {% include 'footer.html' %}
@@ -202,12 +203,12 @@
     {% endblock %}
     {# js #}
     {% block site_js %}
-      <script src="{{ static(url('jsi18n')) }}"></script>
+      <script src="{{ cache_buster(url('jsi18n')) }}"></script>
       {% if waffle.switch('browserid-login') %}
         <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
       {% endif %}
       {{ js('impala') }}
-      <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+      <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}
     {% block tabzilla_js %}
       <script src="//mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>

@@ -15,7 +15,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.helpers import absolutify
+from amo.helpers import absolutify, storage_path
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
@@ -239,7 +239,7 @@ class TestRepackageJetpack(amo.tests.TestCase):
 
     def test_unreviewed_file_not_on_mirror(self):
         # Make sure the mirror dir is clear.
-        mirrordir = settings.MIRROR_STAGE_PATH + '/3615'
+        mirrordir = storage_path('mirror_stage') + '/3615'
         rmtree(mirrordir)
         self.file.update(status=amo.STATUS_UNREVIEWED)
         new_file = tasks.repackage_jetpack(self.builder_data())

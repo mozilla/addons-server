@@ -25,7 +25,7 @@ import files
 import paypal
 from addons.models import Addon, AddonCategory, Category, Charity
 
-from amo.helpers import absolutify, url as url_reverse
+from amo.helpers import absolutify, storage_path, url as url_reverse
 
 from amo.tests import (addon_factory, assert_no_validation_errors, formset,
                        initial)
@@ -1236,10 +1236,6 @@ class TestSubmitStep4(TestSubmitBase):
 
     def setUp(self):
         super(TestSubmitStep4, self).setUp()
-        self.old_addon_icon_url = settings.ADDON_ICON_URL
-        settings.ADDON_ICON_URL = (
-            settings.STATIC_URL +
-            'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
         SubmitStep.objects.create(addon_id=3615, step=4)
         self.url = reverse('devhub.submit.4', args=['a3615'])
         self.next_step = reverse('devhub.submit.5', args=['a3615'])
@@ -1247,9 +1243,6 @@ class TestSubmitStep4(TestSubmitBase):
                                    args=['a3615'])
         self.preview_upload = reverse('devhub.addons.upload_preview',
                                       args=['a3615'])
-
-    def tearDown(self):
-        settings.ADDON_ICON_URL = self.old_addon_icon_url
 
     def test_get(self):
         eq_(self.client.get(self.url).status_code, 200)
@@ -1330,12 +1323,12 @@ class TestSubmitStep4(TestSubmitBase):
 
         # Sad we're hardcoding /3/ here, but that's how the URLs work
         _url = addon.get_icon_url(64).split('?')[0]
-        assert _url.endswith('img/uploads/addon_icons/3/%s-64.png' % addon.id)
+        assert _url.endswith('addon_icons/3/%s-64.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+        dirname = os.path.join(storage_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
@@ -1344,7 +1337,7 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.MEDIA_ROOT
+        img = "%s/img/notifications/error.png" % settings.STATIC_ROOT
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -1363,12 +1356,12 @@ class TestSubmitStep4(TestSubmitBase):
 
         # Sad we're hardcoding /3/ here, but that's how the URLs work
         _url = addon.get_icon_url(64).split('?')[0]
-        assert _url.endswith('img/uploads/addon_icons/3/%s-64.png' % addon.id)
+        assert _url.endswith('addon_icons/3/%s-64.png' % addon.id)
 
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+        dirname = os.path.join(storage_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 

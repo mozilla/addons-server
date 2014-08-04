@@ -9,12 +9,12 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
 {% endblock %}
 
 {% block extrahead %}
-<link rel="stylesheet" href="{{ media('css/zamboni/admin_features.css') }}">
+<link rel="stylesheet" href="{{ static('css/zamboni/admin_features.css') }}">
 {% endblock %}
 
 {% block js %}
 {{ super() }}
-<script src="{{ media('js/zamboni/admin_features.js') }}"></script>
+<script src="{{ static('js/zamboni/admin_features.js') }}"></script>
 {% endblock %}
 
 {% macro fc(form) %}

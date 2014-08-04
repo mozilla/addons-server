@@ -290,7 +290,7 @@ class APITest(TestCase):
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
         self.assertContains(response, "<description>This extension integrates")
 
-        icon_url = settings.ADDON_ICON_URL % (3, 3615, 32, '')
+        icon_url = "%s3/3615-32.png" % helpers.storage_url('addon_icons')
         self.assertContains(response, '<icon size="32">' + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
@@ -326,7 +326,7 @@ class APITest(TestCase):
             '(http://delicious.com), the leading social bookmarking '
             'service on the Web.')
         eq_(data['icon'],
-            settings.ADDON_ICON_URL % (3, 3615, 32, '') + '1275062517')
+            '%s3/3615-32.png?modified=1275062517' % helpers.storage_url('addon_icons'))
         eq_(data['compatible_apps'],
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
         eq_(data['eula'], unicode(addon.eula))
@@ -430,11 +430,11 @@ class APITest(TestCase):
                 "<caption>"
                     "TwitterBar places an icon in the address bar.</caption>",
                 """<full type="image/png">""",
-                urlparams(settings.PREVIEW_FULL_URL %
-                          ('20', 20397, 'png', 1209834208), src='api'),
+                urlparams('full/%s/%d.%s' %
+                          ('20', 20397, 'png'), src='api', modified=1209834208),
                 """<thumbnail type="image/png">""",
-                urlparams(settings.PREVIEW_THUMBNAIL_URL %
-                          ('20', 20397, 1209834208), src='api'),
+                urlparams('thumbs/%s/%d.png' %
+                          ('20', 20397), src='api', modified=1209834208),
                 "<developer_comments>Embrace hug love hug meow meow"
                     "</developer_comments>",
                 'size="100352"',

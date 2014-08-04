@@ -8,6 +8,7 @@ from wsgiref.handlers import format_date_time
 
 from constants import base
 from utils import log_configure, log_exception, mypool
+# from amo.helpers import storage_path
 
 from services.utils import settings
 
@@ -169,7 +170,7 @@ class ThemeUpdate(object):
             elif filename == 'icon.png':
                 filename = 'preview_small.jpg'
 
-        return os.path.join(settings.ADDONS_PATH, str(row['addon_id']),
+        return os.path.join(storage_path('addons'), str(row['addon_id']),
                             filename)
 
     def image_url(self, filename):

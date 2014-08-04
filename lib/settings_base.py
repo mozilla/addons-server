@@ -212,67 +212,36 @@ OAUTH_CALLBACK_VIEW = 'api.views.request_token_ready'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = path('media')
+MEDIA_ROOT = path('storage')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/storage/'
 
 # Absolute path to a temporary storage area
 TMP_PATH = path('tmp')
 
-# When True, create a URL root /tmp that serves files in your temp path.
-# This is useful for development to view upload pics, etc.
-# NOTE: This only works when DEBUG is also True.
-SERVE_TMP_PATH = False
-
-# Absolute path to a writable directory shared by all servers. No trailing
-# slash.  Example: /data/
-NETAPP_STORAGE = TMP_PATH
-
-#  File path for storing XPI/JAR files (or any files associated with an
-#  add-on). Example: /mnt/netapp_amo/addons.mozilla.org-remora/files
-ADDONS_PATH = NETAPP_STORAGE + '/addons'
-
-# Like ADDONS_PATH but protected by the app. Used for storing files that should
-# not be publicly accessible (like disabled add-ons).
-GUARDED_ADDONS_PATH = NETAPP_STORAGE + '/guarded-addons'
-
-# Absolute path to a writable directory shared by all servers. No trailing
-# slash.
-# Example: /data/uploads
-UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
-
-# File path for add-on files that get rsynced to mirrors.
-# /mnt/netapp_amo/addons.mozilla.org-remora/public-staging
-MIRROR_STAGE_PATH = NETAPP_STORAGE + '/public-staging'
-
-# Where dumped apps will be written too.
-DUMPED_APPS_PATH = NETAPP_STORAGE + '/dumped-apps'
-
 # Tarballs in DUMPED_APPS_PATH deleted 30 days after they have been written.
 DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
-
-# Where dumped apps will be written too.
-DUMPED_USERS_PATH = NETAPP_STORAGE + '/dumped-users'
 
 # Tarballs in DUMPED_USERS_PATH deleted 30 days after they have been written.
 DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
 # paths that don't require an app prefix
-SUPPORTED_NONAPPS = ('about', 'admin', 'apps', 'blocklist', 'credits',
-                     'developer_agreement', 'developer_faq', 'developers',
-                     'editors', 'faq', 'google1f3e37b7351799a5.html', 'img',
-                     'jsi18n', 'localizers', 'media', 'review_guide',
-                     'robots.txt', 'statistics', 'services', 'sunbird',
-                     '__debug__')
+SUPPORTED_NONAPPS = (
+    'about', 'admin', 'apps', 'blocklist', 'credits', 'developer_agreement',
+    'developer_faq', 'developers', 'editors', 'faq', 'jsi18n', 'localizers',
+    'review_guide', 'google1f3e37b7351799a5.html', 'robots.txt', 'statistics',
+    'services', 'sunbird', 'static', 'storage',
+)
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
-SUPPORTED_NONLOCALES = ('google1f3e37b7351799a5.html', 'img', 'media',
-                        'robots.txt', 'services', 'downloads', 'blocklist',
-                        '__debug__')
+SUPPORTED_NONLOCALES = (
+    'google1f3e37b7351799a5.html', 'robots.txt', 'services', 'downloads',
+    'blocklist', 'static', 'storage',
+)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
@@ -445,6 +414,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
+    'django.contrib.staticfiles',
 
     # Has to load after auth
     'django_browserid',
@@ -943,40 +913,12 @@ LOCAL_MIRROR_URL = 'https://static.addons.mozilla.net/_files'
 PRIVATE_MIRROR_URL = '/_privatefiles'
 
 # File paths
-ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
-COLLECTIONS_ICON_PATH = UPLOADS_PATH + '/collection_icons'
-PREVIEWS_PATH = UPLOADS_PATH + '/previews'
-IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
-REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
-USERPICS_PATH = UPLOADS_PATH + '/userpics'
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-ADDON_ICONS_DEFAULT_PATH = os.path.join(MEDIA_ROOT, 'img/addon-icons')
+ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
 CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
-
-PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
-PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
-STATIC_URL = SITE_URL + '/'
-ADDON_ICONS_DEFAULT_URL = MEDIA_URL + '/img/addon-icons'
-ADDON_ICON_BASE_URL = MEDIA_URL + 'img/icons/'
-ADDON_ICON_URL = (STATIC_URL +
-                  'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-                         'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-                    'img/uploads/previews/full/%s/%d.%s?modified=%d')
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-# paths for uploaded extensions
-COLLECTION_ICON_URL = (STATIC_URL +
-                       'img/uploads/collection_icons/%s/%s.png?m=%s')
-NEW_PERSONAS_IMAGE_URL = STATIC_URL + 'img/uploads/themes/%(id)d/%(file)s'
-PERSONAS_IMAGE_URL = ('http://getpersonas.cdn.mozilla.net/static/'
-                      '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_IMAGE_URL_SSL = ('https://getpersonas.cdn.mozilla.net/static/'
-                          '%(tens)d/%(units)d/%(id)d/%(file)s')
-PERSONAS_UPDATE_URL = 'https://www.getpersonas.com/update_check/%d'
 VAMO_URL = 'https://versioncheck.addons.mozilla.org'
 NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
@@ -1499,7 +1441,7 @@ LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 BASKET_URL = 'https://basket.mozilla.com'
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
-JINGO_MINIFY_USE_STATIC = False
+JINGO_MINIFY_USE_STATIC = True
 
 # Monolith settings.
 MONOLITH_SERVER = None
@@ -1524,3 +1466,12 @@ HIVE_CONNECTION = {
     'password': '',
     'auth_mechanism': 'PLAIN',
 }
+
+# Static
+STATIC_ROOT = path('site-static')
+STATIC_URL = '/static/'
+JINGO_MINIFY_ROOT = path('static')
+STATICFILES_DIRS = (
+    path('static'),
+    JINGO_MINIFY_ROOT
+)

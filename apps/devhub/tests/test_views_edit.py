@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
+from django.test.utils import override_settings
 
 import mock
 from nose import SkipTest
@@ -15,6 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
+from amo.helpers import storage_path
 from amo.tests import addon_factory, formset, initial, req_factory_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -34,11 +36,14 @@ def get_section_url(addon, section, edit=False):
     return reverse('devhub.addons.section', args=args)
 
 
+@override_settings(MEDIA_ROOT=None)  # Make it overridable.
 class TestEdit(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/platforms', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
 
     def setUp(self):
+        # Make new for each test.
+        settings.MEDIA_ROOT = tempfile.mkdtemp()
         super(TestEdit, self).setUp()
         addon = self.get_addon()
         assert self.client.login(username='del@icio.us', password='password')
@@ -47,7 +52,7 @@ class TestEdit(amo.tests.TestCase):
         a.feature = False
         a.save()
         AddonCategory.objects.filter(addon=addon,
-            category__id__in=[23, 24]).delete()
+                                     category__id__in=[23, 24]).delete()
         cache.clear()
 
         self.url = addon.get_dev_url()
@@ -496,15 +501,6 @@ class TestEditMedia(TestEdit):
                                    args=[self.addon.slug])
         self.preview_upload = reverse('devhub.addons.upload_preview',
                                       args=[self.addon.slug])
-        self.old_settings = {'preview': settings.PREVIEW_THUMBNAIL_PATH,
-                             'icons': settings.ADDON_ICONS_PATH}
-        settings.PREVIEW_THUMBNAIL_PATH = tempfile.mkstemp()[1] + '%s/%d.png'
-        settings.ADDON_ICONS_PATH = tempfile.mkdtemp()
-
-    def tearDown(self):
-        super(TestEditMedia, self).tearDown()
-        settings.PREVIEW_THUMBNAIL_PATH = self.old_settings['preview']
-        settings.ADDON_ICONS_PATH = self.old_settings['icons']
 
     def formset_new_form(self, *args, **kw):
         ctx = self.client.get(self.media_edit_url).context
@@ -581,7 +577,7 @@ class TestEditMedia(TestEdit):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+        dirname = os.path.join(storage_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
@@ -596,7 +592,7 @@ class TestEditMedia(TestEdit):
         eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.MEDIA_ROOT
+        img = "%s/img/notifications/error.png" % settings.STATIC_ROOT
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -622,7 +618,7 @@ class TestEditMedia(TestEdit):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(settings.ADDON_ICONS_PATH,
+        dirname = os.path.join(storage_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 
@@ -631,7 +627,7 @@ class TestEditMedia(TestEdit):
         eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def check_image_type(self, url, msg):
-        img = '%s/js/zamboni/devhub.js' % settings.MEDIA_ROOT
+        img = '%s/js/zamboni/devhub.js' % settings.STATIC_ROOT
         src_image = open(img, 'rb')
 
         res = self.client.post(url, {'upload_image': src_image})

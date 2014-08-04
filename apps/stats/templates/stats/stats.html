@@ -9,7 +9,7 @@
 {% block extrahead %}
   {{ css('zamboni/stats') }}
   <link rel="stylesheet"
-        href="{{ media('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
+        href="{{ static('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
 {% endblock %}
 
 {% block title %}
@@ -199,7 +199,7 @@
 
 {% block js %}
 <!--[if IE]>
-   <script src="{{ media('js/lib/excanvas.compiled.js') }}"></script>
+   <script src="{{ static('js/lib/excanvas.compiled.js') }}"></script>
 <![endif]-->
 {{ js('zamboni/stats') }}
 {% endblock %}

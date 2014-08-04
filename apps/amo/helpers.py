@@ -1,5 +1,6 @@
 import collections
 import json as jsonlib
+import os
 import random
 import re
 from operator import attrgetter
@@ -28,7 +29,6 @@ from amo import utils, urlresolvers
 from constants.licenses import PERSONA_LICENSES_IDS
 from translations.query import order_by_translation
 from translations.helpers import truncate
-from versions.models import License
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
@@ -385,6 +385,7 @@ def shuffle(sequence):
 def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
+    from versions.models import License
     if isinstance(license, (long, int)):
         if license in PERSONA_LICENSES_IDS:
             # Grab built-in license.
@@ -469,8 +470,7 @@ def mobile_sort_by(base_url, options=None, selected=None, extra_sort_opts=None,
 
 @register.function
 @jinja2.contextfunction
-def media(context, url, key='MEDIA_URL'):
-    """Get a MEDIA_URL link with a cache buster querystring."""
+def cache_buster(context, url):
     if 'BUILD_ID' in context:
         build = context['BUILD_ID']
     else:
@@ -480,14 +480,21 @@ def media(context, url, key='MEDIA_URL'):
             build = context['BUILD_ID_CSS']
         else:
             build = context['BUILD_ID_IMG']
-    return urljoin(context[key], utils.urlparams(url, b=build))
+    return utils.urlparams(url, b=build)
+
+
+@register.function
+@jinja2.contextfunction
+def media(context, url):
+    """Get a MEDIA_URL link with a cache buster querystring."""
+    return urljoin(settings.MEDIA_URL, cache_buster(context, url))
 
 
 @register.function
 @jinja2.contextfunction
 def static(context, url):
     """Get a STATIC_URL link with a cache buster querystring."""
-    return media(context, url, 'STATIC_URL')
+    return urljoin(settings.STATIC_URL, cache_buster(context, url))
 
 
 @register.function
@@ -606,13 +613,13 @@ def f(string, *args, **kwargs):
 
 def _relative_to_absolute(url):
     """
-    Prepends relative URLs with MEDIA_URL to turn those inline-able.
+    Prepends relative URLs with STATIC_URL to turn those inline-able.
     This method is intended to be used as a ``replace`` parameter of
     ``re.sub``.
     """
     url = url.group(1).strip('"\'')
     if not url.startswith(('data:', 'http:', 'https:', '//')):
-        url = url.replace('../../', settings.MEDIA_URL)
+        url = url.replace('../../', settings.STATIC_URL)
     return 'url(%s)' % url
 
 
@@ -625,7 +632,7 @@ def inline_css(bundle, media=False, debug=None):
 
     Extracted from jingo-minify and re-registered, see:
     https://github.com/jsocol/jingo-minify/pull/41
-    Added: turns relative links to absolute ones using MEDIA_URL.
+    Added: turns relative links to absolute ones using STATIC_URL.
     """
     if debug is None:
         debug = getattr(settings, 'TEMPLATE_DEBUG', False)
@@ -653,3 +660,26 @@ def inline_css(bundle, media=False, debug=None):
 
     return _build_html(contents, '<style type="text/css" media="%s">%%s'
                                  '</style>' % media)
+
+
+def storage_path(what):
+    """Make it possible to override storage paths in settings.
+
+    By default, all storage paths are in the MEDIA_ROOT.
+
+    This is backwards compatible.
+
+    """
+    default = os.path.join(settings.MEDIA_ROOT, what)
+    key = "{0}_PATH".format(what.upper())
+    return getattr(settings, key, default)
+
+
+def storage_url(what):
+    """
+    Generate default media url, and make possible to override it from
+    settings.
+    """
+    default = '%s%s/' % (settings.MEDIA_URL, what)
+    key = "{0}_URL".format(what.upper().replace('-', '_'))
+    return getattr(settings, key, default)

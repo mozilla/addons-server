@@ -17,7 +17,7 @@ import amo.models
 import sharing.utils as sharing
 from access import acl
 from addons.models import Addon, AddonRecommendation
-from amo.helpers import absolutify
+from amo.helpers import absolutify, storage_path, storage_url
 from amo.urlresolvers import reverse
 from amo.utils import sorted_groupby
 from applications.models import Application
@@ -201,7 +201,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return absolutify(self.get_url_path())
 
     def get_img_dir(self):
-        return os.path.join(settings.COLLECTIONS_ICON_PATH,
+        return os.path.join(storage_path('collection_icons'),
                             str(self.id / 1000))
 
     def upvote_url(self):
@@ -259,12 +259,15 @@ class Collection(CollectionBase, amo.models.ModelBase):
         if self.icontype:
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            return settings.COLLECTION_ICON_URL % (
-                    split_id.group(2) or 0, self.id, modified)
+            path = "/".join([
+                split_id.group(2) or '0',
+                "%s.png?m=%s" % (self.id, modified)
+            ])
+            return storage_url('collection_icons') + path
         elif self.type == amo.COLLECTION_FAVORITES:
-            return settings.MEDIA_URL + 'img/icons/heart.png'
+            return settings.STATIC_URL + 'img/icons/heart.png'
         else:
-            return settings.MEDIA_URL + 'img/icons/collection.png'
+            return settings.STATIC_URL + 'img/icons/collection.png'
 
     def set_addons(self, addon_ids, comments={}):
         """Replace the current add-ons with a new list of add-on ids."""

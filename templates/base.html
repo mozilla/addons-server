@@ -9,7 +9,7 @@
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ MEDIA_URL}}img/favicon.ico">
+          href="{{ STATIC_URL}}img/favicon.ico">
 
     {% block rss_feed %}{% endblock %}
 
@@ -23,12 +23,12 @@
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
-      <!--[if IE]><link rel="stylesheet" href="{{ media('css/legacy/ie.css') }}"><![endif]-->
-      <!--[if IE 7]><link rel="stylesheet" href="{{ media('css/legacy/ie7.css') }}"><![endif]-->
+      <!--[if IE]><link rel="stylesheet" href="{{ static('css/legacy/ie.css') }}"><![endif]-->
+      <!--[if IE 7]><link rel="stylesheet" href="{{ static('css/legacy/ie7.css') }}"><![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
-    <noscript><link rel="stylesheet" href="{{ media('css/legacy/nojs.css') }}"></noscript>
+    <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
 
     {% if settings.DEBUG %}
       {% if settings.LESS_LIVE_REFRESH %}
@@ -50,6 +50,7 @@
         data-anonymous="{{ (not request.user.is_authenticated())|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
+        data-static-url="{{ STATIC_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="tabzilla-wrapper">
@@ -147,7 +148,7 @@
       {% block site_js %}
         <script src="{{ static(url('jsi18n')) }}"></script>
         {{ js('common') }}
-        <script async defer src="{{ static(url('addons.buttons.js')) }}"></script>
+        <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
       {% endblock %}
       {% block tabzilla_js %}
         <script src="//mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
@@ -157,7 +158,7 @@
         <div id="footer" role="contentinfo">
           <div class="section">
             {% block footer_extras %}
-              <img class="footerlogo" src="{{ media('img/zamboni/footer-logo-med.png') }}" alt="">
+              <img class="footerlogo" src="{{ static('img/zamboni/footer-logo-med.png') }}" alt="">
             {% endblock %}
             {% include "footer.html" %}
           </div> {# section #}

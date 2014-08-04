@@ -30,7 +30,7 @@ import amo.models
 from access import acl
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
-from amo.helpers import absolutify, shared_url
+from amo.helpers import absolutify, shared_url, storage_path, storage_url
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        JSONEncoder, send_mail, slugify, sorted_groupby, timer,
                        to_language, urlparams)
@@ -889,7 +889,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self._backup_version
 
     def get_icon_dir(self):
-        return os.path.join(settings.ADDON_ICONS_PATH,
+        return os.path.join(storage_path('addon_icons'),
                             '%s' % (self.id / 1000))
 
     def get_icon_url(self, size, use_default=True):
@@ -917,21 +917,30 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not self.icon_type:
             if self.type == amo.ADDON_THEME:
                 icon = amo.ADDON_ICONS[amo.ADDON_THEME]
-                return settings.ADDON_ICON_BASE_URL + icon
+                return "%simg/icons/%s" % (settings.STATIC_URL, icon)
             else:
                 if not use_default:
                     return None
-                return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
-                                         'default', size)
+                return '{0}img/addon-icons/{1}-{2}.png'.format(
+                    settings.STATIC_URL,
+                    'default',
+                    size
+                )
         elif icon_type_split[0] == 'icon':
-            return '%s/%s-%s.png' % (settings.ADDON_ICONS_DEFAULT_URL,
-                                     icon_type_split[1], size)
+            return '{0}img/addon-icons/{1}-{2}.png'.format(
+                settings.STATIC_URL,
+                icon_type_split[1],
+                size
+            )
         else:
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            return settings.ADDON_ICON_URL % (
-                split_id.group(2) or 0, self.id, size,
-                int(time.mktime(self.modified.timetuple())))
+            modified = int(time.mktime(self.modified.timetuple()))
+            path = '/'.join([
+                split_id.group(2) or '0',
+                '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
+            ])
+            return storage_url('addon_icons') + path
 
     @write
     def update_status(self):
@@ -1117,7 +1126,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             preview = self.all_previews[0]
             return preview.thumbnail_url
         except IndexError:
-            return settings.MEDIA_URL + '/img/icons/no-preview.png'
+            return settings.STATIC_URL + '/img/icons/no-preview.png'
 
     def can_request_review(self):
         """Return the statuses an add-on can request."""
@@ -1662,11 +1671,11 @@ class Persona(caching.CachingMixin, models.Model):
         return self.get_mirror_url(filename)
 
     def _image_path(self, filename):
-        return os.path.join(settings.ADDONS_PATH, str(self.addon.id), filename)
+        return os.path.join(storage_path('addons'), str(self.addon.id), filename)
 
     def get_mirror_url(self, filename):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
-                else settings.LOCAL_MIRROR_URL)
+                else storage_url('addons'))
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
         # TODO: Bust the cache on the hash of the image contents or something.
         if self.addon.modified is not None:
@@ -2051,19 +2060,33 @@ class Preview(amo.models.ModelBase):
 
     @property
     def thumbnail_url(self):
-        return self._image_url(settings.PREVIEW_THUMBNAIL_URL)
+        template = storage_url('previews') + 'thumbs/%s/%d.png?modified=%s'
+        return self._image_url(template)
 
     @property
     def image_url(self):
-        return self._image_url(settings.PREVIEW_FULL_URL)
+        template = storage_url('previews') + 'full/%s/%d.%s?modified=%s'
+        return self._image_url(template)
 
     @property
     def thumbnail_path(self):
-        return self._image_path(settings.PREVIEW_THUMBNAIL_PATH)
+        template = os.path.join(
+            storage_path('previews'),
+            'thumbs',
+            '%s',
+            '%d.png'
+        )
+        return self._image_path(template)
 
     @property
     def image_path(self):
-        return self._image_path(settings.PREVIEW_FULL_PATH)
+        template = os.path.join(
+            storage_path('previews'),
+            'full',
+            '%s',
+            '%d.%s'
+        )
+        return self._image_path(template)
 
     @property
     def thumbnail_size(self):

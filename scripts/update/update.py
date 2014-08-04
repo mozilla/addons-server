@@ -72,6 +72,12 @@ def compress_assets(ctx, arg=''):
 
 
 @task
+def collectstatic(ctx):
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local("%s manage.py collectstatic --noinput" % (settings.PYTHON, ))
+
+
+@task
 def schematic(ctx):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("%s %s/bin/schematic migrations" %
@@ -183,6 +189,7 @@ def update(ctx):
     update_locales()
     update_products()
     compress_assets()
+    collectstatic()
     schematic()
     with ctx.lcd(settings.SRC_DIR):
         ctx.local('%s manage.py dump_apps' % settings.PYTHON)

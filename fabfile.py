@@ -60,6 +60,11 @@ def compress_assets(arg=''):
 
 
 @task
+def collectstatic():
+    managecmd('collectstatic --noinput')
+
+
+@task
 def schematic():
     with lcd(OLYMPIA):
         local("%s %s/bin/schematic migrations" %

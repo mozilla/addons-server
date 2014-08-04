@@ -13,6 +13,7 @@ from addons.models import Persona
 from editors.models import RereviewQueueTheme
 import amo
 from amo.decorators import set_modified_on, write
+from amo.helpers import storage_path
 from amo.storage_utils import rm_stored_dir
 from amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from lib.es.utils import index_objects
@@ -119,7 +120,7 @@ def unindex_addons(ids, **kw):
 @task
 def delete_persona_image(dst, **kw):
     log.info('[1@None] Deleting persona image: %s.' % dst)
-    if not dst.startswith(settings.ADDONS_PATH):
+    if not dst.startswith(storage_path('addons')):
         log.error("Someone tried deleting something they shouldn't: %s" % dst)
         return
     try:
@@ -291,7 +292,7 @@ def rereviewqueuetheme_checksum(rqt, **kw):
 @write
 def save_theme(header, footer, addon, **kw):
     """Save theme image and calculates checksum after theme save."""
-    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
+    dst_root = os.path.join(storage_path('addons'), str(addon.id))
     header = os.path.join(settings.TMP_PATH, 'persona_header', header)
     footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
     header_dst = os.path.join(dst_root, 'header.png')
@@ -315,7 +316,7 @@ def save_theme(header, footer, addon, **kw):
 def save_theme_reupload(header, footer, addon, **kw):
     header_dst = None
     footer_dst = None
-    dst_root = os.path.join(settings.ADDONS_PATH, str(addon.id))
+    dst_root = os.path.join(storage_path('addons'), str(addon.id))
 
     try:
         if header:
