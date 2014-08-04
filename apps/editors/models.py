@@ -1,4 +1,3 @@
-import copy
 import datetime
 
 from django.conf import settings
@@ -245,13 +244,14 @@ class PerformanceGraph(ViewQueue):
                 ('yearmonth',
                  "DATE_FORMAT(`log_activity`.`created`, '%%Y-%%m')"),
                 ('approval_created', '`log_activity`.`created`'),
-                ('user_id', '`users`.`id`'),
-                ('total', 'COUNT(*)')]),
+                ('user_id', '`log_activity`.`user_id`'),
+                ('total', 'COUNT(*)')
+            ]),
             'from': [
                 'log_activity',
-                'LEFT JOIN `users` ON (`users`.`id`=`log_activity`.`user_id`)'],
+            ],
             'where': ['log_activity.action in (%s)' % ','.join(review_ids)],
-            'group_by': 'yearmonth'
+            'group_by': 'yearmonth, user_id'
         }
 
 
