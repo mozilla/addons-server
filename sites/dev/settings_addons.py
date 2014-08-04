@@ -12,7 +12,7 @@ SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = getattr(private_addons, 'SITE_URL', 'https://' + DOMAIN)
 SERVICES_URL = SITE_URL
 STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-dev-cdn.allizom.org/static/')
-MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons-dev-cdn.allizom.org/storage/')
+MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons-dev-cdn.allizom.org/user-media/')
 
 LOCAL_MIRROR_URL = '%s_files' % MEDIA_URL
 MIRROR_URL = MEDIA_URL + 'public-staging'
