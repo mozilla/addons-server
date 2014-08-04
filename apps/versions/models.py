@@ -206,10 +206,12 @@ class Version(amo.models.ModelBase):
 
     @amo.cached_property(writable=True)
     def all_activity(self):
+        return self.all_activity_query.select_related(depth=1).no_cache()
+
+    @property
+    def all_activity_query(self):
         from devhub.models import VersionLog  # yucky
-        al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related(depth=1).no_cache())
-        return al
+        return VersionLog.objects.filter(version=self.id).order_by('created')
 
     @amo.cached_property(writable=True)
     def compatible_apps(self):
@@ -236,6 +238,14 @@ class Version(amo.models.ModelBase):
         if targets_mobile:
             all_plats.update(amo.MOBILE_PLATFORMS)
         return all_plats
+
+    @property
+    def failed_full_review(self):
+        return any(a.activity_log.details.get('reviewtype') == 'nominated'
+                   for a in (self.all_activity_query
+                                 .filter(activity_log__action__in=(
+                                    amo.LOG.REJECT_VERSION.id,
+                                    amo.LOG.PRELIMINARY_VERSION.id))))
 
     @amo.cached_property
     def is_compatible(self):

@@ -7,6 +7,9 @@
       <div>By {{ user }} on {{ date }}</div>
     {% endtrans %}
     {% if record.details %}
+      {% if record.details['reviewtype'] %}
+        <div class="history-review-type"><label>{{ _('Review type:') }}</label> {{ review_types[record.details.reviewtype] }}</div>
+      {% endif %}
       {# <pre> rather than <div> so that white space is preserved on copy #}
       <pre class="light history-comment">{{ record.details.comments }}</pre>
     {% endif %}
