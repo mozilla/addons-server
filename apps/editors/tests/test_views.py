@@ -1050,6 +1050,18 @@ class TestPerformance(QueueTest):
         self.setUpAdmin()
         self._test_chart()
 
+    def test_usercount_with_more_than_one_editor(self):
+        self.client.login(username='clouserw@gmail.com', password='password')
+        amo.set_user(UserProfile.objects.get(username='clouserw'))
+        self.create_logs()
+        self.setUpEditor()
+        r = self.client.get(self.get_url())
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        data = json.loads(doc('#monthly').attr('data-chart'))
+        label = datetime.now().strftime('%Y-%m')
+        eq_(data[label]['usercount'], 18)
+
     def _test_performance_other_user_as_admin(self):
         userid = amo.get_user().pk
 
