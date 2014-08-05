@@ -1,5 +1,4 @@
 import os
-import path
 import shutil
 import tempfile
 
@@ -70,9 +69,12 @@ def _uploader(resize_size, final_size):
 
     if isinstance(final_size, list):
         uploadto = user_media_path('addon_icons')
-        os.makedirs(uploadto)
+        try:
+            os.makedirs(uploadto)
+        except OSError:
+            pass
         for rsize, fsize in zip(resize_size, final_size):
-            dest_name = str(path.path(uploadto) / '1234')
+            dest_name = os.path.join(uploadto, '1234')
 
             tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
             dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
@@ -81,6 +83,7 @@ def _uploader(resize_size, final_size):
             if os.path.exists(dest_image.filename):
                 os.remove(dest_image.filename)
             assert not os.path.exists(dest_image.filename)
+        shutil.rmtree(uploadto)
     else:
         dest = tempfile.mktemp(suffix='.png')
         tasks.resize_icon(src.name, dest, resize_size, locally=True)
