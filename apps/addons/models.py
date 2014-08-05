@@ -30,7 +30,7 @@ import amo.models
 from access import acl
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
-from amo.helpers import absolutify, shared_url, storage_path, storage_url
+from amo.helpers import absolutify, shared_url, user_media_path, user_media_url
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        JSONEncoder, send_mail, slugify, sorted_groupby, timer,
                        to_language, urlparams)
@@ -889,7 +889,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self._backup_version
 
     def get_icon_dir(self):
-        return os.path.join(storage_path('addon_icons'),
+        return os.path.join(user_media_path('addon_icons'),
                             '%s' % (self.id / 1000))
 
     def get_icon_url(self, size, use_default=True):
@@ -940,7 +940,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 split_id.group(2) or '0',
                 '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
             ])
-            return storage_url('addon_icons') + path
+            return user_media_url('addon_icons') + path
 
     @write
     def update_status(self):
@@ -1671,11 +1671,11 @@ class Persona(caching.CachingMixin, models.Model):
         return self.get_mirror_url(filename)
 
     def _image_path(self, filename):
-        return os.path.join(storage_path('addons'), str(self.addon.id), filename)
+        return os.path.join(user_media_path('addons'), str(self.addon.id), filename)
 
     def get_mirror_url(self, filename):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
-                else storage_url('addons'))
+                else user_media_url('addons'))
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
         # TODO: Bust the cache on the hash of the image contents or something.
         if self.addon.modified is not None:
@@ -2060,18 +2060,18 @@ class Preview(amo.models.ModelBase):
 
     @property
     def thumbnail_url(self):
-        template = storage_url('previews') + 'thumbs/%s/%d.png?modified=%s'
+        template = user_media_url('previews') + 'thumbs/%s/%d.png?modified=%s'
         return self._image_url(template)
 
     @property
     def image_url(self):
-        template = storage_url('previews') + 'full/%s/%d.%s?modified=%s'
+        template = user_media_url('previews') + 'full/%s/%d.%s?modified=%s'
         return self._image_url(template)
 
     @property
     def thumbnail_path(self):
         template = os.path.join(
-            storage_path('previews'),
+            user_media_path('previews'),
             'thumbs',
             '%s',
             '%d.png'
@@ -2081,7 +2081,7 @@ class Preview(amo.models.ModelBase):
     @property
     def image_path(self):
         template = os.path.join(
-            storage_path('previews'),
+            user_media_path('previews'),
             'full',
             '%s',
             '%d.%s'

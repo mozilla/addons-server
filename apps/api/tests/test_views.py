@@ -290,7 +290,7 @@ class APITest(TestCase):
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
         self.assertContains(response, "<description>This extension integrates")
 
-        icon_url = "%s3/3615-32.png" % helpers.storage_url('addon_icons')
+        icon_url = "%s3/3615-32.png" % helpers.user_media_url('addon_icons')
         self.assertContains(response, '<icon size="32">' + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
@@ -326,7 +326,7 @@ class APITest(TestCase):
             '(http://delicious.com), the leading social bookmarking '
             'service on the Web.')
         eq_(data['icon'],
-            '%s3/3615-32.png?modified=1275062517' % helpers.storage_url('addon_icons'))
+            '%s3/3615-32.png?modified=1275062517' % helpers.user_media_url('addon_icons'))
         eq_(data['compatible_apps'],
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
         eq_(data['eula'], unicode(addon.eula))

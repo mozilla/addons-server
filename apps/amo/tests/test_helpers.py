@@ -484,12 +484,12 @@ class TestStoragePath(amo.tests.TestCase):
     @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
     def test_without_settings(self):
         del settings.ADDONS_PATH
-        path = helpers.storage_path('addons')
+        path = helpers.user_media_path('addons')
         eq_(path, '/path/addons')
 
     @override_settings(ADDONS_PATH="/another/path/")
     def test_with_settings(self):
-        path = helpers.storage_path('addons')
+        path = helpers.user_media_path('addons')
         eq_(path, '/another/path/')
 
 
@@ -499,5 +499,5 @@ class TestMediaUrl(amo.tests.TestCase):
     def test_without_settings(self):
         del settings.USERPICS_URL
         settings.MEDIA_URL = '/mediapath/'
-        url = helpers.storage_url('userpics')
+        url = helpers.user_media_url('userpics')
         eq_(url, '/mediapath/userpics/')

@@ -13,7 +13,7 @@ import amo
 import amo.tests
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 import paypal
 from applications.models import AppVersion
 from addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
@@ -331,7 +331,7 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(v[0].version, '0')
 
         # Test for header, footer, and preview images.
-        dst = os.path.join(storage_path('addons'), str(addon.id))
+        dst = os.path.join(user_media_path('addons'), str(addon.id))
 
         header_src = os.path.join(settings.TMP_PATH, 'persona_header',
                                   u'b4ll1n')
@@ -506,7 +506,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(self.form.is_valid(), True)
         self.form.save()
 
-        dst = os.path.join(storage_path('addons'), str(self.instance.id))
+        dst = os.path.join(user_media_path('addons'), str(self.instance.id))
         header_src = os.path.join(settings.TMP_PATH, 'persona_header',
                                   u'y0l0')
         footer_src = os.path.join(settings.TMP_PATH, 'persona_footer',

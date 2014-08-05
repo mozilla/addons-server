@@ -1,7 +1,6 @@
 import logging
 import math
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
@@ -10,7 +9,7 @@ from celeryutils import task
 
 import amo
 from amo.decorators import set_modified_on
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 from amo.utils import attach_trans_dict, resize_image
 from tags.models import Tag
 from lib.es.utils import index_objects
@@ -57,7 +56,7 @@ def resize_icon(src, dst, locally=False, **kw):
 def delete_icon(dst, **kw):
     log.info('[1@None] Deleting icon: %s.' % dst)
 
-    if not dst.startswith(storage_path('collection_icons')):
+    if not dst.startswith(user_media_path('collection_icons')):
         log.error("Someone tried deleting something they shouldn't: %s" % dst)
         return
 

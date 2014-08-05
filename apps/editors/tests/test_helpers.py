@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.conf import settings
 
 from mock import Mock
 from nose.tools import eq_
@@ -13,7 +12,6 @@ import amo
 import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
-from amo.helpers import storage_path
 from devhub.models import ActivityLog
 from editors import helpers
 from editors.models import ReviewerScore
