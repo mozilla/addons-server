@@ -136,7 +136,6 @@ class NotifyForm(happyforms.Form):
 class MassDeleteForm(happyforms.Form):
     urls = forms.CharField(label=_lazy(u'URLs to delete'),
                            widget=forms.Textarea, required=True)
-
     reason = forms.CharField(label=_lazy(u'Reason for deletion'),
                              required=True)
 
@@ -148,19 +147,30 @@ class MassDeleteConfirmForm(happyforms.Form):
     def clean_objects(self):
         try:
             data = json.loads(self.cleaned_data.get('objects'))
-
-            assert all(all(isinstance(id_, int) for id_ in ids)
-                       for ids in data.values())
-
-            for m, ids in data.items():
-                model = MassDeleteHelper.MODEL_MAP[m]
-                objs = model.objects.in_bulk(ids)
-                assert len(objs) == len(ids)
-
-                data[m] = map(objs.get, ids)
-        except Exception, e:
+        except ValueError:
             raise forms.ValidationError(
                 u'Invalid objects JSON')
+
+        if not all(all(isinstance(id_, int) for id_ in ids)
+                   for ids in data.values()):
+            raise forms.ValidationError(
+                u'Invalid objects JSON')
+
+        for m, ids in data.items():
+            if m not in MassDeleteHelper.MODEL_MAP:
+                raise forms.ValidationError(
+                    u'Invalid model in objects JSON')
+
+            # Purge dups
+            ids = set(ids)
+
+            model = MassDeleteHelper.MODEL_MAP[m]
+            objs = model.objects.in_bulk(ids)
+            if len(objs) != len(ids):
+                raise forms.ValidationError(
+                    u'Invalid IDs in objects JSON')
+
+            data[m] = [objs[i] for i in ids]
 
         return data
 

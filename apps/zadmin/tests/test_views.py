@@ -1165,14 +1165,13 @@ class TestMassDeletion(MassDeletionTest):
                              {'urls': '\n'.join(self.urls + self.fake_urls),
                               'reason': 'Because I can.'})
         eq_(r.status_code, 200)
-        return pq(r.content)
+        return pq(r.content.decode('utf-8'))
 
     def test_confirm(self):
         doc = self.do_confirm()
 
         eq_(doc('#unknown-urls li').text(),
             ' '.join(self.fake_urls))
-        print doc('ul[id^="delete-confirm"]').text()
 
     def test_confirm_related_objects(self):
         doc = self.do_confirm()
