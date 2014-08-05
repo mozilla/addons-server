@@ -25,7 +25,7 @@ import files
 import paypal
 from addons.models import Addon, AddonCategory, Category, Charity
 
-from amo.helpers import absolutify, storage_path, url as url_reverse
+from amo.helpers import absolutify, user_media_path, url as url_reverse
 
 from amo.tests import (addon_factory, assert_no_validation_errors, formset,
                        initial)
@@ -1328,7 +1328,7 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(storage_path('addon_icons'),
+        dirname = os.path.join(user_media_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
@@ -1361,7 +1361,7 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(storage_path('addon_icons'),
+        dirname = os.path.join(user_media_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 

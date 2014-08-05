@@ -16,7 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 from amo.tests import addon_factory, formset, initial, req_factory_factory
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
@@ -577,7 +577,7 @@ class TestEditMedia(TestEdit):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(storage_path('addon_icons'),
+        dirname = os.path.join(user_media_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
@@ -618,7 +618,7 @@ class TestEditMedia(TestEdit):
         eq_(data['icon_type'], 'image/png')
 
         # Check that it was actually uploaded
-        dirname = os.path.join(storage_path('addon_icons'),
+        dirname = os.path.join(user_media_path('addon_icons'),
                                '%s' % (addon.id / 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 

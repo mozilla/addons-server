@@ -17,7 +17,7 @@ import amo.models
 import sharing.utils as sharing
 from access import acl
 from addons.models import Addon, AddonRecommendation
-from amo.helpers import absolutify, storage_path, storage_url
+from amo.helpers import absolutify, user_media_path, user_media_url
 from amo.urlresolvers import reverse
 from amo.utils import sorted_groupby
 from applications.models import Application
@@ -201,7 +201,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return absolutify(self.get_url_path())
 
     def get_img_dir(self):
-        return os.path.join(storage_path('collection_icons'),
+        return os.path.join(user_media_path('collection_icons'),
                             str(self.id / 1000))
 
     def upvote_url(self):
@@ -263,7 +263,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
                 split_id.group(2) or '0',
                 "%s.png?m=%s" % (self.id, modified)
             ])
-            return storage_url('collection_icons') + path
+            return user_media_url('collection_icons') + path
         elif self.type == amo.COLLECTION_FAVORITES:
             return settings.STATIC_URL + 'img/icons/heart.png'
         else:

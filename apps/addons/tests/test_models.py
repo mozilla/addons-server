@@ -18,7 +18,7 @@ from nose.tools import assert_not_equal, eq_, ok_
 import amo
 import amo.tests
 from amo import set_user
-from amo.helpers import absolutify, storage_url
+from amo.helpers import absolutify, user_media_url
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonDeviceType, AddonRecommendation, AddonType,
@@ -1771,13 +1771,13 @@ class TestPersonaModel(amo.tests.TestCase):
             eq_(data['description'], unicode(self.addon.description))
 
             assert data['headerURL'].startswith(
-                '%s%s/header.png?' % (storage_url('addons'), id_))
+                '%s%s/header.png?' % (user_media_url('addons'), id_))
             assert data['footerURL'].startswith(
-                '%s%s/footer.png?' % (storage_url('addons'), id_))
+                '%s%s/footer.png?' % (user_media_url('addons'), id_))
             assert data['previewURL'].startswith(
-                '%s%s/preview.jpg?' % (storage_url('addons'), id_))
+                '%s%s/preview.jpg?' % (user_media_url('addons'), id_))
             assert data['iconURL'].startswith(
-                '%s%s/preview_small.jpg?' % (storage_url('addons'), id_))
+                '%s%s/preview_small.jpg?' % (user_media_url('addons'), id_))
 
             eq_(data['detailURL'],
                 'https://omgsh.it%s' % self.persona.addon.get_url_path())

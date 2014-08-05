@@ -2,14 +2,13 @@ import hashlib
 import os
 
 from django import forms
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import commonware.log
 import happyforms
 
 import amo
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 from addons.models import Addon, AddonUser
 from files.models import File
 from files.utils import parse_addon
@@ -77,7 +76,7 @@ class XPIForm(happyforms.Form):
                  size=xpi.size)
 
         filename = f.generate_filename()
-        path = os.path.join(storage_path('addons'), str(version.addon.id))
+        path = os.path.join(user_media_path('addons'), str(version.addon.id))
         with storage.open(os.path.join(path, filename), 'wb') as destination:
             for chunk in xpi.chunks():
                 hash.update(chunk)

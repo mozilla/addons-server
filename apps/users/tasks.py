@@ -6,7 +6,7 @@ from lib.es.utils import index_objects
 
 from amo.decorators import set_modified_on
 from amo.utils import resize_image
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 
 from .models import UserProfile
 from . import search
@@ -18,7 +18,7 @@ task_log = commonware.log.getLogger('z.task')
 def delete_photo(dst, **kw):
     task_log.debug('[1@None] Deleting photo: %s.' % dst)
 
-    if not dst.startswith(storage_path('userpics')):
+    if not dst.startswith(user_media_path('userpics')):
         task_log.error("Someone tried deleting something they shouldn't: %s"
                        % dst)
         return

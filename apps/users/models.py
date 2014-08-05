@@ -261,9 +261,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
 
     @property
     def picture_dir(self):
-        from amo.helpers import storage_path
+        from amo.helpers import user_media_path
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return os.path.join(storage_path('userpics'), split_id.group(2) or '0',
+        return os.path.join(user_media_path('userpics'), split_id.group(2) or '0',
                             split_id.group(1) or '0')
 
     @property
@@ -272,7 +272,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
 
     @property
     def picture_url(self):
-        from amo.helpers import storage_url
+        from amo.helpers import user_media_url
         if not self.picture_type:
             return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:
@@ -283,7 +283,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
                 split_id.group(1) or '0',
                 "%s.png?modified=%s" % (self.id, modified)
             ])
-            return storage_url('userpics') + path
+            return user_media_url('userpics') + path
 
     @amo.cached_property
     def is_developer(self):

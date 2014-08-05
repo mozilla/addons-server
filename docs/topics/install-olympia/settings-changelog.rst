@@ -4,7 +4,7 @@ Settings Changelog
 2014-07-09
 ----------
 All the media related `XXX_PATH` and `XXX_URL` settings have now been
-deprecated, in favor of helpers `storage_url` and `storage_path`, during
+deprecated, in favor of helpers `user_media_url` and `user_media_path`, during
 the switch to `django.contrib.staticfiles`. `JINGO_MINIFY_USE_STATIC` is
 also now set to True.
 

@@ -3,7 +3,6 @@ import datetime
 import os
 
 import django.dispatch
-from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
@@ -18,7 +17,7 @@ import amo.models
 import amo.utils
 from amo.decorators import use_master
 from amo.urlresolvers import reverse
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 from applications.models import Application, AppVersion
 from files import utils
 from files.models import File, Platform, cleanup_file
@@ -169,11 +168,11 @@ class Version(amo.models.ModelBase):
 
     @property
     def path_prefix(self):
-        return os.path.join(storage_path('addons'), str(self.addon_id))
+        return os.path.join(user_media_path('addons'), str(self.addon_id))
 
     @property
     def mirror_path_prefix(self):
-        return os.path.join(storage_path('mirror_stage'), str(self.addon_id))
+        return os.path.join(user_media_path('mirror_stage'), str(self.addon_id))
 
     def license_url(self, impala=False):
         return reverse('addons.license', args=[self.addon.slug, self.version])

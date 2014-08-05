@@ -9,7 +9,7 @@ import commonware.log
 from PIL import Image
 
 import amo.search
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 from applications.management.commands import dump_apps
 
 monitor_log = commonware.log.getLogger('z.monitor')
@@ -107,16 +107,16 @@ def path():
     # Check file paths / permissions
     rw = (settings.TMP_PATH,
           settings.MEDIA_ROOT,
-          storage_path('addons'),
-          storage_path('uploads'),
-          storage_path('guarded_addons'),
-          storage_path('mirror_stage'),
-          storage_path('addon_icons'),
-          storage_path('collection_icons'),
+          user_media_path('addons'),
+          user_media_path('uploads'),
+          user_media_path('guarded_addons'),
+          user_media_path('mirror_stage'),
+          user_media_path('addon_icons'),
+          user_media_path('collection_icons'),
           settings.PACKAGER_PATH,
-          storage_path('previews'),
-          storage_path('userpics'),
-          storage_path('reviewer_attachments'),
+          user_media_path('previews'),
+          user_media_path('userpics'),
+          user_media_path('reviewer_attachments'),
           settings.REVIEWER_ATTACHMENTS_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),

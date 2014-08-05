@@ -30,7 +30,7 @@ import amo.utils
 from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 from applications.models import Application, AppVersion
 import devhub.signals
 from devhub.utils import limit_validation_results, escape_validation
@@ -267,7 +267,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(storage_path('addons'), str(self.version.addon_id),
+        return os.path.join(user_media_path('addons'), str(self.version.addon_id),
                             self.filename)
 
     @property
@@ -279,12 +279,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def mirror_file_path(self):
-        return os.path.join(storage_path('mirror_stage'),
+        return os.path.join(user_media_path('mirror_stage'),
                             str(self.version.addon_id), self.filename)
 
     @property
     def guarded_file_path(self):
-        return os.path.join(storage_path('guarded_addons'),
+        return os.path.join(user_media_path('guarded_addons'),
                             str(self.version.addon_id), self.filename)
 
     def _signed(self):
@@ -576,7 +576,7 @@ class FileUpload(amo.models.ModelBase):
 
     def add_file(self, chunks, filename, size):
         filename = smart_str(filename)
-        loc = os.path.join(storage_path('addons'), 'temp', uuid.uuid4().hex)
+        loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(amo.utils.smart_path(filename))
         if ext in EXTENSIONS:
             loc += ext

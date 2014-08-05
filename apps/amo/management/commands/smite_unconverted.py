@@ -7,7 +7,7 @@ from celery.task.sets import TaskSet
 
 import bandwagon.tasks
 import users.tasks
-from amo.helpers import storage_path
+from amo.helpers import user_media_path
 
 log = logging.getLogger('z.cmd')
 
@@ -19,8 +19,8 @@ class Command(BaseCommand):
     help = "Clean up __unconverted files"
 
     def handle(self, *args, **kw):
-        z = ((storage_path('collection_icons'), bandwagon.tasks.resize_icon),
-             (storage_path('userpics'), users.tasks.resize_photo))
+        z = ((user_media_path('collection_icons'), bandwagon.tasks.resize_icon),
+             (user_media_path('userpics'), users.tasks.resize_photo))
         for base, task in z:
             self.fix(base, task)
 
