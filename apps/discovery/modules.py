@@ -346,34 +346,3 @@ class AustralisContestResults(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'australis'
     title = _('Add-ons for Australis Contest Winners')
     template = 'discovery/modules/australis-contest-results.html'
-
-
-class FootballWorldCup2014(TemplatePromo):
-    slug = 'Football WorldCup 2014'
-    template = 'discovery/modules/football-worldcup-2014.html'
-
-    def context(self, **kwargs):
-        locales = {
-            'de': 'de',
-            'fr': 'fr',
-            'it': 'it',
-            'ja': 'ja',
-            'id': 'id',
-            'es': 'es-ES',
-            'pt': 'pt-BR',
-            'en': 'en-US',
-        }
-        # Make sure that all "es" or "pt" sublanguages match too.
-        key = self.request.LANG[:2]
-        # Make sure the key is a supported one before using it.
-        key = key if key in locales else 'en'
-        locale = locales[key]
-        source = kwargs.get('module_context', 'home')
-        source = "AMOhome" if source == "home" else "addonmanager"
-        url = (
-            "https://activations.cdn.mozilla.net/{0}/goal.html"
-            "?utm_source={1}&utm_medium=banner&utm_content=goalcom{2}"
-            "&utm_campaign=WC2014".format(locale, source, key)
-        )
-        cssClass = 'multiline' if key in ['en', 'fr', 'es', 'it', 'pt', ] else 'oneline'
-        return {'url': url, 'cssClass': cssClass}
