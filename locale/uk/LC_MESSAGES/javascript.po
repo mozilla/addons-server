@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-08-06 08:19+0000\n"
+"PO-Revision-Date: 2014-08-06 13:08+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407313182.0\n"
+"X-POOTLE-MTIME: 1407330530.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -598,87 +598,87 @@ msgstr "Внесків за останні {0} днів"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:183
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Внески з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:187
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Статистика сайту за останні {1} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:189
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Статистика сайту з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:193
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Додатків використовується, останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:195
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Додатків використовується, з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:199
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Завантажено додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:201
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Завантажено додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:205
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Створено додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Створено додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:211
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Оновлено додатків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Оновлено додатків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:217
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Написано відгуків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:219
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Написано відгуків з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:223
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Зареєстровано користувачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:225
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Зареєстровано користувачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:229
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Створено збірок за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:231
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Створено збірок з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:235
@@ -723,51 +723,54 @@ msgstr ""
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:261
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> за останні {1} днів"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:263 media/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> з {1} по {2}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:267
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> в середньому за останні {1} днів"
 
 #: media/js/impala/stats/overview.js:19
 msgid "No data available."
-msgstr ""
+msgstr "Немає доступних даних."
 
 #: media/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: media/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Інше"
 
 #: media/js/zamboni/admin_validation.js:24 media/js/zamboni/devhub.js:1333 media/js/zamboni/editors.js:336
 msgid "Select an application first"
-msgstr ""
+msgstr "Спочатку виберіть програму"
 
 #: media/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
+"Встановити для додатку {0} максимальну версію {1} та надіслати лист автору."
 msgstr[1] ""
+"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
 msgstr[2] ""
+"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
 
 #: media/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Надіслати лист автору додатку {2}, який не пройшов перевірку."
+msgstr[1] "Надіслати лист авторам додатку {2}, який не пройшов перевірку."
+msgstr[2] "Надіслати лист авторам додатку {2}, який не пройшов перевірку."
 
 #: media/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Встановлення програми недозволено."
 
 #: media/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
@@ -828,7 +831,7 @@ msgstr ""
 
 #: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla відмітила цю версію, як несумісну з вашою версією Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: media/js/zamboni/buttons.js:249
@@ -850,11 +853,11 @@ msgstr "Недоступно для {0} {1}"
 
 #: media/js/zamboni/buttons.js:380
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Працює з {app} {min} - {max}"
 
 #: media/js/zamboni/buttons.js:382
 msgid "View other versions"
-msgstr ""
+msgstr "Дивитись інші версії"
 
 #: media/js/zamboni/buttons.js:597 media/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -910,7 +913,7 @@ msgstr "Потрібна електрона адреса."
 
 #: media/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Ви не можете додати себе, як помічника."
 
 #: media/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -934,33 +937,33 @@ msgstr "Встановити застосунок"
 
 #: media/js/zamboni/devhub.js:124
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Ваш браузер не підтримує тег відео"
 
 #: media/js/zamboni/devhub.js:379
 msgid "Changes Saved"
-msgstr ""
+msgstr "Зміни збережено"
 
 #: media/js/zamboni/devhub.js:395
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Введіть нову адресу ел. пошти автора"
 
 #: media/js/zamboni/devhub.js:542
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Сталась помилка при вивантаженні вашого файлу."
 
 #: media/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{files} файл"
+msgstr[1] "{files} файли"
+msgstr[2] "{files} файлів"
 
 #: media/js/zamboni/devhub.js:690
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{reviews} відгук користувача"
+msgstr[1] "{reviews} відгуки користувача"
+msgstr[2] "{reviews} відгуків користувача"
 
 #: media/js/zamboni/devhub.js:820
 msgid "Learn more"
@@ -1004,7 +1007,7 @@ msgstr ""
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "Оновлення рекомендацій&hellip;"
 
 #: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
