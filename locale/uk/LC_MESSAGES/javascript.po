@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-07-11 19:55+0000\n"
+"PO-Revision-Date: 2014-08-06 08:19+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405108548.0\n"
+"X-POOTLE-MTIME: 1407313182.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -455,11 +456,11 @@ msgstr ""
 
 #: media/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Загальна кількість внесків"
 
 #: media/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
-msgstr ""
+msgstr "Середній внесок"
 
 #: media/js/impala/stats/csv_keys.js:108
 msgid "Usage"
@@ -592,7 +593,7 @@ msgstr "Джерел завантажень з {0} по {1}"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:181
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Внесків за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:183
