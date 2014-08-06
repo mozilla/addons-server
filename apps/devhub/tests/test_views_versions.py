@@ -5,6 +5,8 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from django.core.files import temp
+
 import amo
 import amo.tests
 from amo.urlresolvers import reverse
@@ -445,6 +447,28 @@ class TestVersionEditDetails(TestVersionEdit):
         doc = pq(res.content)
         assert not res.context['compat_form'].extra_forms
         assert doc('p.add-app')[0].attrib['class'] == 'add-app hide'
+
+    def test_should_accept_zip_source_file(self):
+        tdir = temp.gettempdir()
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=tdir) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+            eq_(response.status_code, 302)
+            assert Version.objects.get(pk=self.version.pk).source
+
+    def test_should_not_accept_exe_source_file(self):
+        tdir = temp.gettempdir()
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".exe", dir=tdir) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+            eq_(response.status_code, 200)
+            assert not Version.objects.get(pk=self.version.pk).source
 
 
 class TestVersionEditSearchEngine(TestVersionEdit):

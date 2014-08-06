@@ -1058,7 +1058,11 @@ def upload_image(request, addon_id, addon, upload_type):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    version_form = forms.VersionForm(request.POST or None, instance=version)
+    version_form = forms.VersionForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=version
+    )
 
     new_file_form = forms.NewFileForm(request.POST or None,
                                       addon=addon, version=version,
@@ -1159,11 +1163,21 @@ def check_validation_override(request, form, addon, version):
 @dev_required
 @post_required
 def version_add(request, addon_id, addon):
-    form = forms.NewVersionForm(request.POST, addon=addon, request=request)
+    form = forms.NewVersionForm(
+        request.POST,
+        request.FILES,
+        addon=addon,
+        request=request
+    )
     if form.is_valid():
         pl = (list(form.cleaned_data['desktop_platforms']) +
               list(form.cleaned_data['mobile_platforms']))
-        v = Version.from_upload(form.cleaned_data['upload'], addon, pl)
+        v = Version.from_upload(
+            upload=form.cleaned_data['upload'],
+            addon=addon,
+            platforms=pl,
+            source=form.cleaned_data['source']
+        )
         log.info('Version created: %s for: %s' %
                  (v.pk, form.cleaned_data['upload']))
         check_validation_override(request, form, addon, v)
@@ -1181,13 +1195,16 @@ def version_add(request, addon_id, addon):
 @post_required
 def version_add_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = forms.NewFileForm(request.POST, addon=addon, version=version,
-                             request=request)
+    form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
+                             version=version, request=request)
     if not form.is_valid():
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
                                 parse_addon(upload, addon))
+    source = form.cleaned_data['source']
+    if source:
+        version.update(source=source)
     storage.delete(upload.path)
     check_validation_override(request, form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
@@ -1290,7 +1307,11 @@ def submit_addon(request, step):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
         return redirect(_step_url(1))
     NewItem = forms.NewAddonForm
-    form = NewItem(request.POST or None, request=request)
+    form = NewItem(
+        request.POST or None,
+        request.FILES or None,
+        request=request
+    )
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
@@ -1298,7 +1319,7 @@ def submit_addon(request, step):
             p = (list(data.get('desktop_platforms', [])) +
                  list(data.get('mobile_platforms', [])))
 
-            addon = Addon.from_upload(data['upload'], p)
+            addon = Addon.from_upload(data['upload'], p, source=data['source'])
             AddonUser(addon=addon, user=request.amo_user).save()
             SubmitStep.objects.create(addon=addon, step=3)
             check_validation_override(request, form, addon,

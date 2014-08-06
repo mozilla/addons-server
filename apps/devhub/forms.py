@@ -354,15 +354,48 @@ def check_paypal_id(paypal_id):
         raise forms.ValidationError(_('Could not validate PayPal id.'))
 
 
-class VersionForm(happyforms.ModelForm):
+class WithSourceMixin(object):
+
+    VALID_SOURCE_EXTENSIONS = ('.zip', '.tar', '.7z', '.tar.gz')
+
+    def clean_source(self):
+        source = self.cleaned_data.get('source')
+        if source and not source.name.endswith(self.VALID_SOURCE_EXTENSIONS):
+            raise forms.ValidationError(
+                _('Unsupported file type, please upload an archive file '
+                  '{extensions}.'.format(extensions=self.VALID_SOURCE_EXTENSIONS))
+            )
+        return source
+
+
+class SourceFileInput(forms.widgets.ClearableFileInput):
+    """
+    We need to customize the URL link.
+    1. Remove %(initial)% from template_with_initial
+    2. Prepend the new link (with customized text)
+    """
+
+    template_with_initial = '%(clear_template)s<br />%(input_text)s: %(input)s'
+
+    def render(self, name, value, attrs=None):
+        output = super(SourceFileInput, self).render(name, value, attrs)
+        if value and hasattr(value, 'instance'):
+            url = reverse('downloads.source', args=(value.instance.pk, ))
+            params = {'url': url, 'output': output, 'label': _('View current')}
+            output = '<a href="%(url)s">%(label)s</a> %(output)s' % params
+        return output
+
+
+class VersionForm(WithSourceMixin, happyforms.ModelForm):
     releasenotes = TransField(
         widget=TransTextarea(), required=False)
     approvalnotes = forms.CharField(
         widget=TranslationTextarea(attrs={'rows': 4}), required=False)
+    source = forms.FileField(required=False, widget=SourceFileInput)
 
     class Meta:
         model = Version
-        fields = ('releasenotes', 'approvalnotes')
+        fields = ('releasenotes', 'approvalnotes', 'source')
 
 
 class ApplicationChoiceField(forms.ModelChoiceField):
@@ -438,13 +471,18 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class AddonUploadForm(happyforms.Form):
-    upload = forms.ModelChoiceField(widget=forms.HiddenInput,
+class AddonUploadForm(WithSourceMixin, happyforms.Form):
+    upload = forms.ModelChoiceField(
+        widget=forms.HiddenInput,
         queryset=FileUpload.objects,
-        error_messages={'invalid_choice': _lazy(u'There was an error with your '
-                                                u'upload. Please try again.')})
+        error_messages={
+            'invalid_choice': _lazy(u'There was an error with your '
+                                    u'upload. Please try again.')
+        }
+    )
     admin_override_validation = forms.BooleanField(
         required=False, label=_lazy(u'Override failed validation'))
+    source = forms.FileField(required=False)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -457,18 +495,21 @@ class AddonUploadForm(happyforms.Form):
             raise forms.ValidationError(_(u'There was an error with your '
                                           u'upload. Please try again.'))
 
+
 class NewAddonForm(AddonUploadForm):
     desktop_platforms = forms.ModelMultipleChoiceField(
-            queryset=Platform.objects,
-            widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-            initial=[amo.PLATFORM_ALL.id],
-            required=False)
+        queryset=Platform.objects,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
+        initial=[amo.PLATFORM_ALL.id],
+        required=False
+    )
     desktop_platforms.choices = ((p.id, p.name)
                                  for p in amo.DESKTOP_PLATFORMS.values())
     mobile_platforms = forms.ModelMultipleChoiceField(
-            queryset=Platform.objects,
-            widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-            required=False)
+        queryset=Platform.objects,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
+        required=False
+    )
     mobile_platforms.choices = ((p.id, p.name)
                                 for p in amo.MOBILE_PLATFORMS.values())
 

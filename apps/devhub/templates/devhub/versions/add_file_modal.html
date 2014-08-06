@@ -16,6 +16,8 @@
       </div>
       <input type="file" id="upload-addon"  data-upload-url="{{ upload_url }}">
 
+      {{ source_form_field(new_file_form.source) }}
+
       <div class="platform{% if addon.type == amo.ADDON_SEARCH %} hide{% endif %}">
       {% if modal_type == 'file' %}
         <label>{{ _('Select the target platform for this file.') }}</label>
@@ -29,12 +31,12 @@
           <label>{{ _('Which mobile platforms is this file compatible with?') }}</label>
           {{ new_file_form.mobile_platforms }}
         </div>
-	{% if addon.status == amo.STATUS_NULL %}
-          <div class="nomination-type">
-            <label>{{ _('Which review type would you like to nominate for?') }}</label>
-            {{ new_file_form.nomination_type }}
-          </div>
-	{% endif %}
+       {% if addon.status == amo.STATUS_NULL %}
+        <div class="nomination-type">
+          <label>{{ _('Which review type would you like to nominate for?') }}</label>
+          {{ new_file_form.nomination_type }}
+        </div>
+       {% endif %}
       {% endif %}
       </div>
       {% if is_admin %}

@@ -4,6 +4,8 @@ import hashlib
 from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 
 import mock
 from nose.tools import eq_
@@ -11,6 +13,8 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
+from access.models import Group, GroupUser
+from amo.helpers import user_media_url
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from addons.models import Addon, CompatOverride, CompatOverrideRange
@@ -515,8 +519,8 @@ class TestDownloadsBase(amo.tests.TestCase):
         if not file_:
             file_ = self.file
         eq_(response.status_code, 302)
-        eq_(response['Location'],
-            '%s/%s/%s' % (host, self.addon.id, file_.filename))
+        eq_(response.url,
+            '%s%s/%s' % (host, self.addon.id, file_.filename))
         eq_(response['X-Target-Digest'], file_.hash)
 
     def assert_served_internally(self, response):
@@ -524,13 +528,14 @@ class TestDownloadsBase(amo.tests.TestCase):
         eq_(response[settings.XSENDFILE_HEADER], self.file.guarded_file_path)
 
     def assert_served_locally(self, response, file_=None, attachment=False):
-        host = settings.LOCAL_MIRROR_URL
+        host = settings.SITE_URL + user_media_url('addons')
         if attachment:
-            host += '/_attachments'
+            host += '_attachments/'
         self.assert_served_by_host(response, host, file_)
 
     def assert_served_by_mirror(self, response, file_=None):
-        self.assert_served_by_host(response, settings.MIRROR_URL, file_)
+        url = settings.SITE_URL + user_media_url('addons')
+        self.assert_served_by_host(response, url, file_)
 
 
 class TestDownloads(TestDownloadsBase):
@@ -618,16 +623,6 @@ class TestDownloads(TestDownloadsBase):
         url = self.file_url.replace('firefox', 'thunderbird')
         self.assert_served_locally(self.client.get(url), attachment=True)
 
-    def test_mirror_delay(self):
-        self.file.datestatuschanged = datetime.now()
-        self.file.save()
-        self.assert_served_locally(self.client.get(self.file_url))
-
-        t = datetime.now() - timedelta(minutes=settings.MIRROR_DELAY + 10)
-        self.file.datestatuschanged = t
-        self.file.save()
-        self.assert_served_by_mirror(self.client.get(self.file_url))
-
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
         self.assert_served_by_mirror(self.client.get(url))
@@ -665,7 +660,7 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         # Follow one more hop to hit the downloads.files view.
-        r = self.client.get(response['Location'])
+        r = self.client.get(response.url)
         super(TestDownloadsLatest, self).assert_served_locally(
             r, file_, attachment)
 
@@ -730,6 +725,47 @@ class TestDownloadsLatest(TestDownloadsBase):
         r = self.client.get(url)
         eq_(r.status_code, 302)
         assert r['Location'].endswith('?src=xxx'), r['Location']
+
+
+class TestDownloadSource(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/admin', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+        self.version = self.addon._latest_version
+        tdir = temp.gettempdir()
+        self.source_file = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        self.source_file.write('a' * (2 ** 21))
+        self.source_file.seek(0)
+        self.version.source = DjangoFile(self.source_file)
+        self.version.save()
+        self.user = UserProfile.objects.get(email="del@icio.us")
+        self.group = Group.objects.create(
+            name='Editors BinarySource',
+            rules='Editors:BinarySource'
+        )
+        self.url = reverse('downloads.source', args=(self.version.pk, ))
+
+    def test_owner_should_be_allowed(self):
+        self.client.login(username=self.user.email, password="password")
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
+    def test_anonymous_should_not_be_allowed(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 404)
+
+    def test_group_binarysource_should_be_allowed(self):
+        GroupUser.objects.create(user=self.user, group=self.group)
+        self.client.login(username=self.user.email, password="password")
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+
+    def test_no_source_should_go_in_404(self):
+        self.version.source = None
+        self.version.save()
+        response = self.client.get(self.url)
+        eq_(response.status_code, 404)
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):

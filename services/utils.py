@@ -36,6 +36,8 @@ from constants.base import (ADDON_PREMIUM, STATUS_PUBLIC, STATUS_DISABLED,
                             STATUS_BETA, STATUS_LITE,
                             STATUS_LITE_AND_NOMINATED)
 
+from amo.helpers import user_media_url
+
 APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
 PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
 
@@ -67,21 +69,10 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
 
 
 def get_mirror(status, id, row):
-    if row['datestatuschanged']:
-        published = datetime.now() - row['datestatuschanged']
-    else:
-        published = timedelta(minutes=0)
-
     if row['disabled_by_user'] or status == STATUS_DISABLED:
         host = settings.PRIVATE_MIRROR_URL
-    elif (status == STATUS_PUBLIC
-          and not row['disabled_by_user']
-          and row['file_status'] in (STATUS_PUBLIC, STATUS_BETA)
-          and published > timedelta(minutes=settings.MIRROR_DELAY)
-          and not settings.DEBUG):
-        host = settings.MIRROR_URL
     else:
-        host = settings.LOCAL_MIRROR_URL
+        host = user_media_url('addons')
 
     return posixpath.join(host, str(id), row['filename'])
 

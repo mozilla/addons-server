@@ -1,7 +1,6 @@
 import posixpath
 
 from django import http
-from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 
 import caching.base as caching
@@ -119,3 +118,14 @@ def download_latest(request, addon, type='xpi', platform=None):
     if request.GET:
         url += '?' + request.GET.urlencode()
     return http.HttpResponseRedirect(url)
+
+
+def download_source(request, version_id):
+    version = get_object_or_404(Version, pk=version_id)
+
+    if (version.source and
+       (acl.check_addon_ownership(request, version.addon, viewer=True,
+                                  ignore_disabled=True) or
+       acl.action_allowed(request, 'Editors', 'BinarySource'))):
+        return HttpResponseSendFile(request, version.source)
+    raise http.Http404()

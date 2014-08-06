@@ -183,7 +183,7 @@ class ThemeUpdate(object):
             elif filename == 'icon.png':
                 filename = 'preview_small.jpg'
 
-        image_url = posixpath.join(settings.LOCAL_MIRROR_URL,
+        image_url = posixpath.join(user_media_path('addons'),
                                    str(row['addon_id']), filename or '')
         modified = int(row['modified']) if row['modified'] else 0
         return '%s?%s' % (image_url, modified)

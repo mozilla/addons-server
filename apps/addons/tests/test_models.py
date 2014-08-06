@@ -1755,7 +1755,6 @@ class TestPersonaModel(amo.tests.TestCase):
 
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
-                           LOCAL_MIRROR_URL='https://staticsh.it/_files',
                            NEW_PERSONAS_UPDATE_URL=VAMO,
                            SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data

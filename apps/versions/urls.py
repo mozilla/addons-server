@@ -19,6 +19,9 @@ download_patterns = patterns('',
     url('^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',
         views.download_file, name='downloads.file'),
 
+    url('^source/(?P<version_id>\d+)',
+        views.download_source, name='downloads.source'),
+
     # /latest/1865/type:xpi/platform:5
     url('^latest/%s/(?:type:(?P<type>\w+)/)?'
         '(?:platform:(?P<platform>\d+)/)?.*' % ADDON_ID,
