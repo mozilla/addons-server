@@ -37,8 +37,6 @@ from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
 from zadmin.views import updated_versions, find_files
 
-from .test_helpers import MassDeletionTest
-
 
 no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
                         compatibility_summary=dict(errors=0, warnings=0,
@@ -1153,59 +1151,6 @@ class TestEmailPreview(amo.tests.TestCase):
                          'the subject', 'Hello Ivan Krsti\xc4\x87'])
 
 
-class TestMassDeletion(MassDeletionTest):
-    def setUp(self):
-        super(TestMassDeletion, self).setUp()
-
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-
-    def do_confirm(self):
-        r = self.client.post(reverse('zadmin.mass_delete'),
-                             {'urls': '\n'.join(self.urls + self.fake_urls),
-                              'reason': 'Because I can.'})
-        eq_(r.status_code, 200)
-        return pq(r.content)
-
-    def test_confirm(self):
-        doc = self.do_confirm()
-
-        eq_(doc('#unknown-urls li').text(),
-            ' '.join(self.fake_urls))
-        print doc('ul[id^="delete-confirm"]').text()
-
-    def test_confirm_related_objects(self):
-        doc = self.do_confirm()
-
-        for obj in self.OBJECTS:
-            model = obj['model']
-            inst = model.objects.get(pk=obj['pk'])
-
-            base_id = '#delete-confirm-%s-%d' % (model.__name__, obj['pk'])
-            a = doc('%s > a' % base_id)
-
-            eq_(a.attr('href'), inst.get_url_path())
-            eq_(a.text(), unicode(inst))
-
-            for model_, ids in obj['related'].iteritems():
-                eq_(doc('%s-%s' % (base_id, model_.__name__)).text(),
-                    '%d %s objects' % (len(ids), model_.__name__))
-
-            # Very important.
-            assert "I'm watching you." in doc('body').text()
-
-    def test_delete(self):
-        doc = self.do_confirm()
-
-        r = self.client.post(reverse('zadmin.mass_delete.confirm'),
-                             {'objects': doc('#id_objects').val(),
-                              'reason': doc('#id_reason').val()})
-
-        self.assert3xx(r, reverse('zadmin.mass_delete.confirm'))
-
-        self.assert_deleted()
-
-
 class TestMonthlyPick(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/apps', 'base/users']
 
@@ -1966,9 +1911,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.mass_delete')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.mass_delete.confirm')).status_code,
-            200)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
@@ -1988,9 +1930,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.mass_delete')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.mass_delete.confirm')).status_code,
-            200)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
@@ -2010,9 +1949,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.mass_delete')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.mass_delete.confirm')).status_code,
-            403)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
         eq_(self.client.get(
@@ -2030,9 +1966,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.validation')).status_code, 200)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.mass_delete')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.mass_delete.confirm')).status_code,
-            403)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
         eq_(self.client.get(
@@ -2046,9 +1979,6 @@ class TestPerms(amo.tests.TestCase):
         eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.flagged')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.mass_delete')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.mass_delete.confirm')).status_code,
-            403)
         eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 403)
         eq_(self.client.get(reverse('zadmin.features')).status_code, 403)

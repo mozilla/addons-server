@@ -108,22 +108,6 @@ div.popup input[type="text"] {
     width: 588px;
 }
 
-.proper-lists ul li {
-    list-style: disc;
-    margin-left: 2em;
-}
-
-.admin-mass-delete h1 {
-    margin-top: 1em;
-    margin-bottom: 2em;
-}
-
-.admin-mass-delete h2,
-.admin-mass-delete h3 {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
 .job-status {
     color: #777777;
     font-size: 11px;

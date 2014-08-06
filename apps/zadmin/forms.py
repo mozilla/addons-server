@@ -25,8 +25,6 @@ from compat.forms import CompatForm as BaseCompatForm
 from files.models import File
 from zadmin.models import SiteEvent, ValidationJob
 
-from .helpers import MassDeleteHelper
-
 LOGGER_NAME = 'z.zadmin'
 log = commonware.log.getLogger(LOGGER_NAME)
 
@@ -131,38 +129,6 @@ class NotifyForm(happyforms.Form):
 
     def clean_subject(self):
         return self.check_template(self.cleaned_data['subject'])
-
-
-class MassDeleteForm(happyforms.Form):
-    urls = forms.CharField(label=_lazy(u'URLs to delete'),
-                           widget=forms.Textarea, required=True)
-
-    reason = forms.CharField(label=_lazy(u'Reason for deletion'),
-                             required=True)
-
-
-class MassDeleteConfirmForm(happyforms.Form):
-    objects = forms.CharField(widget=forms.HiddenInput, required=True)
-    reason = forms.CharField(widget=forms.HiddenInput, required=True)
-
-    def clean_objects(self):
-        try:
-            data = json.loads(self.cleaned_data.get('objects'))
-
-            assert all(all(isinstance(id_, int) for id_ in ids)
-                       for ids in data.values())
-
-            for m, ids in data.items():
-                model = MassDeleteHelper.MODEL_MAP[m]
-                objs = model.objects.in_bulk(ids)
-                assert len(objs) == len(ids)
-
-                data[m] = map(objs.get, ids)
-        except Exception, e:
-            raise forms.ValidationError(
-                u'Invalid objects JSON')
-
-        return data
 
 
 class FeaturedCollectionForm(happyforms.ModelForm):

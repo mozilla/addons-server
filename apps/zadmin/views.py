@@ -48,10 +48,8 @@ from . import tasks
 from .decorators import admin_required
 from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
                     DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
-                    JetpackUpgradeForm, MassDeleteForm, MassDeleteConfirmForm,
-                    MonthlyPickFormSet, NotifyForm, OAuthConsumerForm,
-                    YesImSure)
-from .helpers import MassDeleteHelper
+                    JetpackUpgradeForm, MonthlyPickFormSet, NotifyForm,
+                    OAuthConsumerForm, YesImSure)
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -183,7 +181,7 @@ def env(request):
     return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
 
 
-@admin_required(reviewers=True)
+@admin.site.admin_view
 def fix_disabled_file(request):
     file_ = None
     if request.method == 'POST' and 'file' in request.POST:
@@ -194,45 +192,6 @@ def fix_disabled_file(request):
             return redirect('zadmin.fix-disabled')
     return render(request, 'zadmin/fix-disabled.html',
                   {'file': file_, 'file_id': request.POST.get('file', '')})
-
-
-@admin_required
-def mass_delete(request):
-    form = MassDeleteForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        urls = form.cleaned_data['urls'].split()
-
-        helper = MassDeleteHelper(urls=urls)
-        form = MassDeleteConfirmForm({'objects': helper.object_types_json,
-                                      'reason': form.cleaned_data['reason']})
-
-        return render(request, 'zadmin/mass-delete-confirm.html',
-                      {'deletion_helper': helper,
-                       'unknown_urls': helper.unknown_urls,
-                       'confirm_form': form})
-
-    return render(request, 'zadmin/mass-delete.html',
-                  {'mass_delete_form': form})
-
-
-@admin_required
-def mass_delete_confirm(request):
-    form = MassDeleteConfirmForm(request.POST)
-    if request.method == 'POST':
-        print form.is_valid()
-        print form.cleaned_data
-        if not form.is_valid():
-            # Form is auto-generated. An invalid POST means user
-            # meddling.
-            raise PermissionDenied
-
-        helper = MassDeleteHelper(objects=form.cleaned_data['objects'],
-                                  reason=form.cleaned_data['reason'])
-        helper.delete_objects()
-
-        return redirect(reverse('zadmin.mass_delete.confirm'))
-
-    return render(request, 'zadmin/mass-delete-completed.html', {})
 
 
 @login_required
