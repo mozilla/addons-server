@@ -173,8 +173,7 @@ def compare(request, diff, key=None, type='file'):
 def redirect(request, viewer, key):
     new = Token(data=[viewer.file.id, key])
     new.save()
-    url = urljoin(settings.STATIC_URL,
-                  reverse('files.serve', args=[viewer, key]))
+    url = reverse('files.serve', args=[viewer, key])
     url = urlparams(url, token=new.token)
     return http.HttpResponseRedirect(url)
 
