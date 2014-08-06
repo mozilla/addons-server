@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-06-03 20:54+0000\n"
-"Last-Translator: Marcelo <mlcaraldi@gmail.com>\n"
+"PO-Revision-Date: 2014-08-06 17:34+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1401828860.0\n"
+"X-POOTLE-MTIME: 1407346446.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -2219,7 +2219,7 @@ msgstr "Ícone"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Este nome não pode ser usado."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -12833,7 +12833,7 @@ msgstr "Por favor, use um endereço de e-mail de um provedor diferente para comp
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Este nome de apresentação não pode ser usado."
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12853,7 +12853,7 @@ msgstr "Para se manter anônimo, insira um motivo para a alteração mas não al
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Por favor, insira pelo menos um nome na lista negra."
 
 # In a user list: user 1, user 2, "others"
 #: apps/users/helpers.py:51
