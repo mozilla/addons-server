@@ -14,6 +14,7 @@ from pyquery import PyQuery
 import amo
 import amo.tests
 from access.models import Group, GroupUser
+from amo.helpers import user_media_url
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from addons.models import Addon, CompatOverride, CompatOverrideRange
@@ -518,8 +519,8 @@ class TestDownloadsBase(amo.tests.TestCase):
         if not file_:
             file_ = self.file
         eq_(response.status_code, 302)
-        eq_(response['Location'],
-            '%s/%s/%s' % (host, self.addon.id, file_.filename))
+        eq_(response.url,
+            '%s%s/%s' % (host, self.addon.id, file_.filename))
         eq_(response['X-Target-Digest'], file_.hash)
 
     def assert_served_internally(self, response):
@@ -527,13 +528,14 @@ class TestDownloadsBase(amo.tests.TestCase):
         eq_(response[settings.XSENDFILE_HEADER], self.file.guarded_file_path)
 
     def assert_served_locally(self, response, file_=None, attachment=False):
-        host = settings.LOCAL_MIRROR_URL
+        host = settings.SITE_URL + user_media_url('addons')
         if attachment:
-            host += '/_attachments'
+            host += '_attachments/'
         self.assert_served_by_host(response, host, file_)
 
     def assert_served_by_mirror(self, response, file_=None):
-        self.assert_served_by_host(response, settings.MIRROR_URL, file_)
+        url = settings.SITE_URL + user_media_url('addons')
+        self.assert_served_by_host(response, url, file_)
 
 
 class TestDownloads(TestDownloadsBase):
@@ -621,16 +623,6 @@ class TestDownloads(TestDownloadsBase):
         url = self.file_url.replace('firefox', 'thunderbird')
         self.assert_served_locally(self.client.get(url), attachment=True)
 
-    def test_mirror_delay(self):
-        self.file.datestatuschanged = datetime.now()
-        self.file.save()
-        self.assert_served_locally(self.client.get(self.file_url))
-
-        t = datetime.now() - timedelta(minutes=settings.MIRROR_DELAY + 10)
-        self.file.datestatuschanged = t
-        self.file.save()
-        self.assert_served_by_mirror(self.client.get(self.file_url))
-
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
         self.assert_served_by_mirror(self.client.get(url))
@@ -668,7 +660,7 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         # Follow one more hop to hit the downloads.files view.
-        r = self.client.get(response['Location'])
+        r = self.client.get(response.url)
         super(TestDownloadsLatest, self).assert_served_locally(
             r, file_, attachment)
 

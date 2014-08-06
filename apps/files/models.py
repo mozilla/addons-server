@@ -30,7 +30,7 @@ import amo.utils
 from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
-from amo.helpers import user_media_path
+from amo.helpers import user_media_path, user_media_url
 from applications.models import Application, AppVersion
 import devhub.signals
 from devhub.utils import limit_validation_results, escape_validation
@@ -115,23 +115,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return is_eligible
 
     def get_mirror(self, addon, attachment=False):
-        if self.datestatuschanged:
-            published = datetime.now() - self.datestatuschanged
-        else:
-            published = timedelta(minutes=0)
-
         if attachment:
-            host = posixpath.join(settings.LOCAL_MIRROR_URL, '_attachments')
+            host = posixpath.join(user_media_url('addons'), '_attachments')
         elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
             host = settings.PRIVATE_MIRROR_URL
-        elif (addon.status == amo.STATUS_PUBLIC
-              and not addon.disabled_by_user
-              and self.status in (amo.STATUS_PUBLIC, amo.STATUS_BETA)
-              and published > timedelta(minutes=settings.MIRROR_DELAY)
-              and not settings.DEBUG):
-            host = settings.MIRROR_URL  # Send it to the mirrors.
         else:
-            host = settings.LOCAL_MIRROR_URL
+            host = user_media_url('addons')
 
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 

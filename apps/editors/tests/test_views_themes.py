@@ -95,7 +95,6 @@ class ThemeReviewTestMixin(object):
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
                 len(expected))
 
-    @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('amo.messages.success')
     @mock.patch('editors.tasks.reject_rereview')
     @mock.patch('editors.tasks.approve_rereview')
@@ -533,7 +532,6 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.theme').length, 1)
 
-    @mock.patch.object(settings, 'LOCAL_MIRROR_URL', '')
     @mock.patch('editors.tasks.send_mail_jinja')
     @mock.patch('editors.tasks.copy_stored_file')
     @mock.patch('editors.tasks.create_persona_preview_images')

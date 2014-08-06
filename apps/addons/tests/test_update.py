@@ -10,6 +10,7 @@ import amo
 import amo.tests
 from addons.models import (Addon, CompatOverride, CompatOverrideRange,
                            IncompatibleVersions)
+from amo.helpers import user_media_url
 from applications.models import Application, AppVersion
 from files.models import File
 from services import update
@@ -588,17 +589,11 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
         self.mac = amo.PLATFORM_MAC
         self.win = amo.PLATFORM_WIN
 
-        self.old_mirror_url = settings_local.MIRROR_URL
-        self.old_local_url = settings_local.LOCAL_MIRROR_URL
         self.old_debug = settings_local.DEBUG
 
-        settings_local.MIRROR_URL = 'http://releases.m.o/'
-        settings_local.LOCAL_MIRROR_URL = 'http://addons.m.o/'
         settings_local.DEBUG = False
 
     def tearDown(self):
-        settings_local.MIRROR_URL = self.old_mirror_url
-        settings_local.LOCAL_MIRROR_URL = self.old_local_url
         settings_local.DEBUG = self.old_debug
         super(TestResponse, self).tearDown()
 
@@ -728,14 +723,14 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
     def test_url(self):
         up = self.get(self.good_data)
         up.get_rdf()
-        assert settings_local.MIRROR_URL in up.data['row']['url']
+        assert user_media_url('addons') in up.data['row']['url']
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
         up = self.get(self.good_data)
         up.get_rdf()
-        assert settings_local.LOCAL_MIRROR_URL in up.data['row']['url']
+        assert user_media_url('addons') in up.data['row']['url']
 
     def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
@@ -752,7 +747,7 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
         self.addon_one.save()
         up.get_rdf()
         eq_(up.data['row']['file_id'], file.pk)
-        assert settings_local.MIRROR_URL in up.data['row']['url']
+        assert user_media_url('addons') in up.data['row']['url']
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()
