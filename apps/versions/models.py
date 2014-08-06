@@ -66,6 +66,8 @@ class Version(amo.models.ModelBase):
     _developer_name = models.CharField(max_length=255, default='',
                                        editable=False)
 
+    source = models.FileField(upload_to='addon_source', null=True, blank=True)
+
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
 
@@ -96,7 +98,7 @@ class Version(amo.models.ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, send_signal=True):
+    def from_upload(cls, upload, addon, platforms, send_signal=True, source=None):
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -104,8 +106,13 @@ class Version(amo.models.ModelBase):
             license = None
         max_len = cls._meta.get_field_by_name('_developer_name')[0].max_length
         developer = data.get('developer_name', '')[:max_len]
-        v = cls.objects.create(addon=addon, version=data['version'],
-                               license_id=license, _developer_name=developer)
+        v = cls.objects.create(
+            addon=addon,
+            version=data['version'],
+            license_id=license,
+            _developer_name=developer,
+            source=source
+        )
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
 
         AV = ApplicationsVersions

@@ -17,7 +17,7 @@
 </header>
 <section class="primary devhub-form edit-version" role="main">
   <h3>{{ title }}</h3>
-  <form method="post" action="">
+  <form method="post" action="" enctype="multipart/form-data">
     <div class="item">
       <div class="item_wrapper">
         {{ csrf() }}
@@ -114,6 +114,18 @@
               {{ tip(None, _("Optionally, enter any information that may be useful
                               to the Editor reviewing this add-on, such as test
                               account information.")) }}
+            </th>
+            <td>
+              {{ field.errors }}
+              {{ field }}
+            </td>
+          {% endwith %}
+          </tr>
+          <tr>
+          {% with field = version_form.source %}
+            <th>
+              <label for="{{ field.auto_id }}">{{ _("Source code") }}</label>
+              {{ tip(None, _("If your add-on contain binary or obfuscated code, make the source available here for reviewers.")) }}
             </th>
             <td>
               {{ field.errors }}

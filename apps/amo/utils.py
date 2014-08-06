@@ -793,7 +793,7 @@ class LocalFileStorage(FileSystemStorage):
     """
 
     def __init__(self, base_url=None):
-        super(LocalFileStorage, self).__init__(location='/', base_url=base_url)
+        super(LocalFileStorage, self).__init__(base_url=base_url)
 
     def delete(self, name):
         """Delete a file or empty directory path.

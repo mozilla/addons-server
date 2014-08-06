@@ -1011,6 +1011,12 @@ form.select-review .errorlist {
 #upload-file select {
     margin: 1em 0;
 }
+#upload-file .binary-source input[type="file"] {
+    margin-bottom: 1em;
+}
+#upload-file .binary-source {
+    display: none;
+}
 
 #file-list select {
     margin-right: 1em;

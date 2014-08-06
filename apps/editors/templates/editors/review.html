@@ -91,6 +91,10 @@
               {% endfor %}
             </ul>
           {% endif %}
+          {% if version.source and is_admin %}
+            <div><strong>{{ _('Additional sources:') }}</strong></div>
+            <div><a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a></div>
+          {% endif %}
         </td>
         <td>
           <table class="activity">

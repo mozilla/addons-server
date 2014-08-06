@@ -7,6 +7,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files import temp
 
 import mock
 import waffle
@@ -2012,9 +2013,10 @@ class TestVersionAddFile(UploadTest):
             a.application = app
             a.save()
 
-    def post(self, platform=amo.PLATFORM_MAC):
+    def post(self, platform=amo.PLATFORM_MAC, source=None):
         return self.client.post(self.url, dict(upload=self.upload.pk,
-                                               platform=platform.id))
+                                               platform=platform.id,
+                                               source=source))
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -2233,6 +2235,16 @@ class TestVersionAddFile(UploadTest):
 
         eq_(comments.length, 2)
 
+    def test_with_source(self):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        response = self.post(source=source)
+        eq_(response.status_code, 200)
+        assert self.addon.versions.get(pk=self.addon.current_version.pk).source
+        assert Addon.objects.get(pk=self.addon.pk).admin_review
+
 
 class TestUploadErrors(UploadTest):
     fixtures = ['base/apps', 'base/users',
@@ -2313,8 +2325,8 @@ class TestUploadErrors(UploadTest):
 class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-             override_validation=False, expected_status=200):
-        d = dict(upload=self.upload.pk,
+             override_validation=False, expected_status=200, source=None):
+        d = dict(upload=self.upload.pk, source=source,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms],
                  admin_override_validation=override_validation)
@@ -2358,6 +2370,16 @@ class TestAddVersion(AddVersionTest):
         eq_(r.status_code, 200)
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
+
+    def test_with_source(self):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        response = self.post(source=source)
+        eq_(response.status_code, 200)
+        assert self.addon.versions.get(version='0.1').source
+        assert Addon.objects.get(pk=self.addon.pk).admin_review
 
 
 class TestAddBetaVersion(AddVersionTest):
@@ -2466,8 +2488,8 @@ class TestVersionXSS(UploadTest):
 class UploadAddon(object):
 
     def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
-             expect_errors=False):
-        d = dict(upload=self.upload.pk,
+             expect_errors=False, source=None):
+        d = dict(upload=self.upload.pk, source=source,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms])
         r = self.client.post(self.url, d, follow=True)
@@ -2526,6 +2548,18 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                                         args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+
+    def test_with_source(self):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        eq_(Addon.objects.count(), 0)
+        r = self.post(source=source)
+        addon = Addon.objects.get()
+        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        assert addon.current_version.source
+        assert Addon.objects.get(pk=addon.pk).admin_review
 
 
 class TestDeleteAddon(amo.tests.TestCase):

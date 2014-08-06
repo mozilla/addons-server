@@ -476,12 +476,6 @@ def review(request, addon):
     return _review(request, addon)
 
 
-@reviewer_required('app')
-@addon_view
-def app_review(request, addon):
-    return _review(request, addon)
-
-
 def _review(request, addon):
     version = addon.latest_version
 

@@ -475,7 +475,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def from_upload(cls, upload, platforms, is_packaged=False):
+    def from_upload(cls, upload, platforms, is_packaged=False, source=None):
         from files.utils import parse_addon
 
         data = parse_addon(upload)
@@ -490,7 +490,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
         addon.save()
-        Version.from_upload(upload, addon, platforms)
+        Version.from_upload(upload, addon, platforms, source=source)
 
         amo.log(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
@@ -683,6 +683,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # changes.
         if self._latest_version_id != latest_id:
             updated.update({'_latest_version': latest})
+
+        # Only admin should review source files
+        if not self.admin_review and current and current.source:
+            updated.update({'admin_review': True})
 
         # update_version can be called by a post_delete signal (such
         # as File's) when deleting a version. If so, we should avoid putting
