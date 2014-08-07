@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-08-06 13:08+0000\n"
+"PO-Revision-Date: 2014-08-07 05:32+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407330530.0\n"
+"X-POOTLE-MTIME: 1407389524.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -683,42 +683,42 @@ msgstr "Створено збірок з {0} по {1}"
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:235
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Читачів за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:237
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Читачів з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:241
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Рейтинги за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:243
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Рейтинги з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:247
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Продажі за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:249
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Продажі з {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: media/js/impala/stats/csv_keys.js:253
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Встановлень за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: media/js/impala/stats/csv_keys.js:255
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Встановлень з {0} по {1}"
 
 #. L10n: {0} and {1} are integers.
 #: media/js/impala/stats/csv_keys.js:261
