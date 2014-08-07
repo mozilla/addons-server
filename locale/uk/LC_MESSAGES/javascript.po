@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-30 09:46-0700\n"
-"PO-Revision-Date: 2014-08-07 05:32+0000\n"
+"PO-Revision-Date: 2014-08-07 12:48+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407389524.0\n"
+"X-POOTLE-MTIME: 1407415718.0\n"
 
 #: media/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -790,15 +790,15 @@ msgstr ""
 
 #: media/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Встановлення невдале. Спробуйте ще раз пізніше."
 
 #: media/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Встановлення застосунку невдале."
 
 #: media/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Ця система не підтримує встановлення застосунків."
 
 #: media/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
@@ -823,11 +823,11 @@ msgstr "Завантажити зараз"
 
 #: media/js/zamboni/buttons.js:154
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Додаток не було оновлено для типової підтримки сумісності."
 
 #: media/js/zamboni/buttons.js:159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Вам необхідно використовувати Firefox 10.0 або новіший."
 
 #: media/js/zamboni/buttons.js:171
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
@@ -967,43 +967,46 @@ msgstr[2] "{reviews} відгуків користувача"
 
 #: media/js/zamboni/devhub.js:820
 msgid "Learn more"
-msgstr ""
+msgstr "Дізнатись більше"
 
 #: media/js/zamboni/devhub.js:824
 msgid "Example"
-msgstr ""
+msgstr "Приклад"
 
 #: media/js/zamboni/devhub.js:1180
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Обробка змін зображень"
 
 #: media/js/zamboni/devhub.js:1361
 msgid "Starting tests..."
-msgstr ""
+msgstr "Починаю тести..."
 
 #: media/js/zamboni/devhub.js:1368
 msgid "Waiting for test results..."
-msgstr ""
+msgstr "Чекаю результати тесту..."
 
 #: media/js/zamboni/devhub.js:1370 media/js/zamboni/devhub.js:1375
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Внутрішня помилка сервера"
 
 #: media/js/zamboni/devhub.js:1410
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Повинна бути дійсна адреса ел. пошти."
 
 #: media/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Не знайдено результатів."
 
 #: media/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"Вибачте, але ми не можемо знайти для вас яких-небудь "
+"рекомендацій.<br>Відвідайте <a href=\"{0}\">сайт додатків</a>, щоб знайти "
+"додаток, який вам підходить."
 
 #: media/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "Пошук рекомендацій&hellip;"
 
 #: media/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
@@ -1011,47 +1014,47 @@ msgstr "Оновлення рекомендацій&hellip;"
 
 #: media/js/zamboni/editors.js:162
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} переглядав цю сторінку першим."
 
 #: media/js/zamboni/editors.js:212
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Чек перевірено застосунком."
 
 #: media/js/zamboni/editors.js:214
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Чек не було перевірено застосунком."
 
 #: media/js/zamboni/editors.js:285
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} переглядав цей додаток першим."
 
 #: media/js/zamboni/editors.js:296
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Завантаження&hellip;"
 
 #: media/js/zamboni/editors.js:301
 msgid "Version Notes"
-msgstr ""
+msgstr "Примітки до версії"
 
 #: media/js/zamboni/editors.js:306
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Примітки для рецензентів"
 
 #: media/js/zamboni/editors.js:311
 msgid "No version notes found"
-msgstr ""
+msgstr "Не знайдено приміток до версії"
 
 #: media/js/zamboni/editors.js:371
 msgid "Average Reviews"
-msgstr ""
+msgstr "В середньому відгуків"
 
 #: media/js/zamboni/editors.js:427
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Кількість відгуків"
 
 #: media/js/zamboni/editors.js:486
 msgid "Error loading translation"
-msgstr ""
+msgstr "Помилка завантаження перекладу"
 
 #: media/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1076,7 +1079,7 @@ msgstr "Вилучити цю локалізацію"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: media/js/zamboni/packager.js:31
 msgid "Download {0}"
-msgstr ""
+msgstr "Завантажити {0}"
 
 #: media/js/zamboni/password-strength.js:20
 msgid "Password strength:"
@@ -1095,31 +1098,31 @@ msgstr "Усі"
 
 #: media/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr ""
+msgstr "Запитана інформація"
 
 #: media/js/zamboni/themes_review.js:177
 msgid "Flagged"
-msgstr ""
+msgstr "Відмічено"
 
 #: media/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублікат"
 
 #: media/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr ""
+msgstr "Відхилено"
 
 #: media/js/zamboni/themes_review.js:180
 msgid "Approved"
-msgstr ""
+msgstr "Затверджено"
 
 #: media/js/zamboni/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Всі тести пройшли успішно."
 
 #: media/js/zamboni/validator.js:74 media/js/zamboni/validator.js:367
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ці тести не запускались."
 
 #: media/js/zamboni/validator.js:120 media/js/zamboni/validator.js:133
 msgid "Tests"
@@ -1127,52 +1130,52 @@ msgstr ""
 
 #: media/js/zamboni/validator.js:194 media/js/zamboni/validator.js:449 media/js/zamboni/validator.js:468
 msgid "Error"
-msgstr ""
+msgstr "Помилка"
 
 #: media/js/zamboni/validator.js:195
 msgid "Warning"
-msgstr ""
+msgstr "Попередження"
 
 #: media/js/zamboni/validator.js:282
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Тести сумісності"
 
 #: media/js/zamboni/validator.js:331
 msgid "App failed validation."
-msgstr ""
+msgstr "Застосунок не пройшов перевірку."
 
 #: media/js/zamboni/validator.js:333
 msgid "App passed validation."
-msgstr ""
+msgstr "Застосунок пройшов перевірку."
 
 #: media/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Додаток не пройшов перевірку."
 
 #: media/js/zamboni/validator.js:339
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Додаток пройшов перевірку."
 
 #: media/js/zamboni/validator.js:370
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} помилка"
+msgstr[1] "{0} помилки"
+msgstr[2] "{0} помилок"
 
 #: media/js/zamboni/validator.js:372
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} попередження"
+msgstr[1] "{0} попередження"
+msgstr[2] "{0} попереджень"
 
 #: media/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} повідомлення"
+msgstr[1] "{0} повідомлення"
+msgstr[2] "{0} повідомлень"
 
 #: media/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
@@ -1188,52 +1191,52 @@ msgstr ""
 
 #: media/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Потребує новішу версію {0}"
 
 #: media/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr ""
+msgstr "Не перевірено"
 
 #: media/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Експериментальне <span>(дізнатись більше)</span>"
 
 #: media/js/zamboni/mobile/buttons.js:79 media/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Недоступно для {0}"
 
 #: media/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
-msgstr ""
+msgstr "Експериментальне"
 
 #: media/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Для тем потрібна новіша версія {0}"
 
 #: media/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Для тем потрібно {0}"
 
 #: media/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
-msgstr ""
+msgstr "Встановлення..."
 
 #: media/js/zamboni/mobile/buttons.js:136
 msgid "Purchasing..."
-msgstr ""
+msgstr "Покупка..."
 
 #: media/js/zamboni/mobile/buttons.js:165
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Цей додаток було попередньо розглянуто Mozilla."
 
 #: media/js/zamboni/mobile/buttons.js:299
 msgid "Keep it"
-msgstr ""
+msgstr "Залишити їх"
 
 #: media/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Зараз ви це спробуєте!"
 
 #: media/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Додано у Firefox"
