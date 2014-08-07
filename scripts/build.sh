@@ -70,16 +70,6 @@ git submodule --quiet sync && git submodule update --init --recursive
 npm install
 export PATH="./node_modules/.bin/:${PATH}"
 
-# Manage statics (collect and compress).
-echo "collecting statics..." `date`
-
-python manage.py collectstatic --noinput
-
-echo "building assets..." `date`
-
-python manage.py compress_assets
-
-
 if [ -z $SET_ES_TESTS ]; then
     RUN_ES_TESTS=False
 else
@@ -115,6 +105,16 @@ SETTINGS
 # Update product details to pull in any changes (namely, 'dbg' locale)
 echo "Updating product details..."
 python manage.py update_product_details
+
+
+# Manage statics (collect and compress).
+echo "collecting statics..." `date`
+
+python manage.py collectstatic --noinput
+
+echo "building assets..." `date`
+
+python manage.py compress_assets
 
 
 echo "Starting tests..." `date`
