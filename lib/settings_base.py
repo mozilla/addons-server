@@ -1350,8 +1350,9 @@ SIGNING_VALID_ISSUERS = []
 IN_TEST_SUITE = False
 
 # Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
-# Flip this on in your local settings to experience the joy of ES tests.
-RUN_ES_TESTS = False
+# Flip this on in your local settings or set an environment variable to
+# experience the joy of ES tests.
+RUN_ES_TESTS = bool(os.environ.get('RUN_ES_TESTS'))
 
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.
