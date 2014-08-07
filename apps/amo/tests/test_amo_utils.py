@@ -8,12 +8,14 @@ from django.core.cache import cache
 from django.core.validators import ValidationError
 from django.utils import translation
 
+import jingo
 import mock
 from nose.tools import eq_, assert_raises, raises
 
 from amo.utils import (cache_ns_key, escape_all, find_language,
-                       LocalFileStorage, no_translation, resize_image,
-                       rm_local_tmp_dir, slugify, slug_validator, to_language)
+                       LocalFileStorage, no_jinja_autoescape, no_translation,
+                       resize_image, rm_local_tmp_dir, slugify, slug_validator,
+                       to_language)
 from product_details import product_details
 
 u = u'Ελληνικά'
@@ -45,8 +47,7 @@ def test_slugify():
          # I don't really care what slugify returns.  Just don't crash.
          (u'x荿', u'x\u837f'),
          (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
-         (u'¿x', u'x'),
-    ]
+         (u'¿x', u'x')]
     for val, expected in s:
         yield check, val, expected
 
@@ -158,7 +159,7 @@ class TestLocalFileStorage(unittest.TestCase):
         dp = os.path.join(self.tmp, 'path', 'to')
         self.stor.open(os.path.join(dp, 'file.txt'), 'w').close()
         assert os.path.exists(self.stor.path(dp)), (
-                                        'Directory not created: %r' % dp)
+            'Directory not created: %r' % dp)
 
     def test_do_not_make_file_dirs_when_reading(self):
         fpath = os.path.join(self.tmp, 'file.txt')
@@ -248,3 +249,14 @@ def test_escape_all():
     ]
     for val, expected in s:
         yield check, val, expected
+
+
+def test_no_jinja_autoescape():
+    val = 'some double quote: " and a <'
+    tpl = '{{ val }}'
+    ctx = {'val': val}
+    template = jingo.env.from_string(tpl)
+    eq_(template.render(ctx), 'some double quote: &#34; and a &lt;')
+    with no_jinja_autoescape():
+        template = jingo.env.from_string(tpl)
+        eq_(template.render(ctx), 'some double quote: " and a <')

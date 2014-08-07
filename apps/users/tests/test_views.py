@@ -1461,11 +1461,11 @@ class TestThemesProfile(amo.tests.TestCase):
         self._test_good(res)
 
 
+@patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        settings.RECAPTCHA_PRIVATE_KEY = 'something'
         self.full_page = reverse('users.abuse', args=[10482])
 
     @patch('captcha.fields.ReCaptchaField.clean')

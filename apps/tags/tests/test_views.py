@@ -25,6 +25,7 @@ class TestXSS(amo.tests.TestCase):
                 'tags/tags.json']
 
     xss = "<script src='foo.bar'>"
+    escaped = "&lt;script src=&#39;foo.bar&#39;&gt;"
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
@@ -37,15 +38,15 @@ class TestXSS(amo.tests.TestCase):
         """Test xss tag detail."""
         url = reverse('addons.detail_more', args=['a3615'])
         r = self.client.get_ajax(url, follow=True)
-        doc = pq(r.content)
-        eq_(doc('li.tag')[0].text_content().strip(), self.xss)
+        assert self.escaped in r.content
+        assert self.xss not in r.content
 
     def test_tags_xss_cloud(self):
         """Test xss tag cloud."""
         url = reverse('tags.top_cloud')
         r = self.client.get(url, follow=True)
-        doc = pq(r.content)
-        eq_(doc('a.tag')[0].text_content().strip(), self.xss)
+        assert self.escaped in r.content
+        assert self.xss not in r.content
 
 
 class TestXSSURLFail(amo.tests.TestCase):
@@ -53,6 +54,7 @@ class TestXSSURLFail(amo.tests.TestCase):
                 'tags/tags.json']
 
     xss = "<script>alert('xss')</script>"
+    escaped = "&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;"
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
@@ -65,8 +67,8 @@ class TestXSSURLFail(amo.tests.TestCase):
         """Test xss tag detail."""
         url = reverse('addons.detail_more', args=['a3615'])
         r = self.client.get_ajax(url, follow=True)
-        doc = pq(r.content)
-        eq_(doc('li.tag')[0].text_content().strip(), self.xss)
+        assert self.escaped in r.content
+        assert self.xss not in r.content
 
     def test_tags_xss_home(self):
         """Test xss tag home."""
