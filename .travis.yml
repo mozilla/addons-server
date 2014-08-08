@@ -7,7 +7,7 @@ service:
 before_install:
   - wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.13.deb && sudo dpkg -i elasticsearch-0.90.13.deb
   - sudo /usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
-  - sudo service elasticsearch start
+  - sudo /usr/share/elasticsearch/bin/elasticsearch -Des.config=scripts/elasticsearch/elasticsearch.yml
 install:
   - pip install --no-deps -r requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/
   - pip install --no-deps -r requirements/compiled.txt --find-links https://pyrepo.addons.mozilla.org/
