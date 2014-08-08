@@ -39,7 +39,7 @@ Memcached
 
 We slipped this in with the basic install.  The package was
 ``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Switch your
-``settings_local.py`` to use ::
+``local_settings.py`` to use ::
 
     CACHES = {
         'default': {
@@ -56,7 +56,7 @@ RabbitMQ and Celery
 See the :doc:`./celery` page for installation instructions.  The
 :ref:`example settings <example-settings>` set ``CELERY_ALWAYS_EAGER = True``.
 If you're setting up Rabbit and want to use ``celeryd``, make sure you remove
-that line from your ``settings_local.py``.
+that line from your ``local_settings.py``.
 
 
 -------------
@@ -72,7 +72,7 @@ Redis
 
 On OS X the package is called ``redis``.  Get it running with the ``launchctl``
 script included in homebrew.  To let olympia know about Redis, add this to
-``settings_local.py``::
+``local_settings.py``::
 
     CACHE_MACHINE_USE_REDIS = True
     REDIS_BACKEND = 'redis://'
@@ -120,7 +120,7 @@ Learn about Stylus at http://learnboost.github.com/stylus/ ::
     cd olympia
     npm install
 
-In your ``settings_local.py`` ensure you are pointing to the correct executable
+In your ``local_settings.py`` ensure you are pointing to the correct executable
 for ``stylus``::
 
     STYLUS_BIN = path('node_modules/stylus/bin/stylus')
@@ -135,13 +135,13 @@ LESS at http://lesscss.org.
 
 If you already ran ``npm install`` you don't need to do anything more.
 
-In your ``settings_local.py`` ensure you are pointing to the correct executable
+In your ``local_settings.py`` ensure you are pointing to the correct executable
 for ``less``::
 
     LESS_BIN = path('node_modules/less/bin/lessc')
 
 You can make the CSS live refresh on save by adding ``#!watch`` to the URL or by
-adding the following to your ``settings_local.py``::
+adding the following to your ``local_settings.py``::
 
     LESS_LIVE_REFRESH = True
 
