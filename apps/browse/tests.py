@@ -1240,6 +1240,18 @@ class TestPersonas(amo.tests.TestCase):
         personas = pq(res.content).find('.persona-preview')
         eq_(personas.length, 1)
 
+    def test_only_popular_persona_are_shown_in_up_and_coming(self):
+        url = '{path}?sort=up-and-coming'.format(path=self.landing_url)
+        r = self.client.get(url)
+        personas = pq(r.content).find('.persona-preview')
+        eq_(personas.length, 2)
+        p = Persona.objects.get(pk=559)
+        p.popularity = 99
+        p.save()
+        r = self.client.get(url)
+        personas = pq(r.content).find('.persona-preview')
+        eq_(personas.length, 1)
+
 
 class TestMobileFeatured(TestMobile):
 

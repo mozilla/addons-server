@@ -297,6 +297,8 @@ class PersonasFilter(BaseFilter):
         elif field == 'rating':
             return qs.order_by('-bayesian_rating')
         else:
+            # See bug 944096
+            qs = qs.filter(persona__popularity__gte=100)
             return qs.order_by('-persona__movers')
 
 
