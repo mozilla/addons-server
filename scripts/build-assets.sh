@@ -44,11 +44,6 @@ CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 SETTINGS
 
-# Update the submodules.
-echo "Updating submodules..."
-git submodule --quiet foreach 'git submodule --quiet sync'
-git submodule --quiet sync && git submodule update --init --recursive
-
 echo "collecting statics..." `date`
 
 python manage.py collectstatic --noinput

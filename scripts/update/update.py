@@ -89,12 +89,6 @@ def update_code(ctx, ref='origin/master'):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git fetch && git fetch -t")
         ctx.local("git reset --hard %s" % ref)
-        ctx.local("git submodule sync")
-        ctx.local("git submodule update --init --recursive")
-        # Recursively run submodule sync/update to get all the right repo URLs.
-        ctx.local("git submodule foreach 'git submodule sync --quiet'")
-        ctx.local("git submodule foreach "
-                  "'git submodule update --init --recursive'")
 
 
 @task
