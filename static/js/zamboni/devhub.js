@@ -88,6 +88,7 @@ $(document).ready(function() {
             hideme: false,
             callback: function() {
                 $('.upload-status').remove();
+                $('.binary-source').hide();
                 return true;
             }
         });
@@ -97,7 +98,9 @@ $(document).ready(function() {
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'post',
-                data: $(this).serialize(),
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
                 success: function(response) {
                     if (response.url) {
                         window.location = response.url;
@@ -745,18 +748,6 @@ function initEditVersions() {
         }
     });
 
-    // Handle uploader events
-    /*
-    $('.upload-status').bind('upload-success', function(e,json) {
-        $("#upload-file-finish").attr("disabled", false);
-        $modal.setPos();
-        $("#id_upload").val(json.upload);
-    }).bind('upload-error', function() {
-        $modal.setPos(); // Reposition since the error report has been added.
-        $("#upload-file-finish").attr("disabled", true);
-    });
-    */
-
     $('.upload-file-cancel').click(_pd($modal.hideMe));
 
     $("#upload-file-finish").click(function (e) {
@@ -766,7 +757,9 @@ function initEditVersions() {
         $.ajax({
             url: $("#upload-file").attr("action"),
             type: 'post',
-            data: $("#upload-file").serialize(),
+            data: new FormData($("#upload-file")[0]),
+            processData: false,
+            contentType: false,
             success: function (resp) {
                 $("#file-list tbody").append(resp);
                 var new_total = $("#file-list tr").length / 2;
@@ -1199,60 +1192,6 @@ var imageStatus = {
     }
 };
 
-function multipartUpload(form, onreadystatechange) {
-    var xhr = new XMLHttpRequest(),
-        boundary = "BoUnDaRyStRiNg",
-        form = $(form),
-        serialized = form.serializeArray(),
-        submit_items = [],
-        output = "";
-
-    xhr.open("POST", form.attr('action'), true)
-    xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-    xhr.setRequestHeader('Content-length', false);
-    xhr.setRequestHeader("Content-Type", "multipart/form-data;" +
-                                         "boundary=" + boundary);
-
-    $('input[type="file"]', form).each(function(){
-        var files = $(this)[0].files,
-            file_field = $(this);
-
-        $.each(files, function(k, file) {
-            var data = file.getAsBinary();
-
-            serialized.push({
-                'name': $(file_field).attr('name'),
-                'value': data,
-                'file_type': file.type,
-                'file_name': file.name || file.fileName
-            });
-        });
-
-    });
-
-    $.each(serialized, function(k, v){
-        output += "--" + boundary + "\r\n";
-        output += "Content-Disposition: form-data; name=\"" + v.name + "\";";
-
-        if(v.file_name != undefined) {
-            output += " filename=\"new-upload\";\r\n";
-            output += "Content-Type: " + v.file_type;
-        }
-
-        output += "\r\n\r\n";
-        output += v.value;
-        output += "\r\n";
-
-    });
-
-    output += "--" + boundary + "--";
-
-    if(onreadystatechange) {
-        xhr.onreadystatechange = function(e){ onreadystatechange(e, xhr); }
-    }
-
-    xhr.sendAsBinary(output);
-}
 
 function hideSameSizedIcons() {
     icon_sizes = [];

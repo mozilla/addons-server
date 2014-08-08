@@ -2245,6 +2245,15 @@ class TestVersionAddFile(UploadTest):
         assert self.addon.versions.get(pk=self.addon.current_version.pk).source
         assert Addon.objects.get(pk=self.addon.pk).admin_review
 
+    def test_with_bad_source_format(self):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".exe", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        response = self.post(source=source)
+        eq_(response.status_code, 400)
+        assert 'source' in json.loads(response.content)
+
 
 class TestUploadErrors(UploadTest):
     fixtures = ['base/apps', 'base/users',
@@ -2380,6 +2389,14 @@ class TestAddVersion(AddVersionTest):
         eq_(response.status_code, 200)
         assert self.addon.versions.get(version='0.1').source
         assert Addon.objects.get(pk=self.addon.pk).admin_review
+
+    def test_with_bad_source_format(self):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".exe", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        response = self.post(source=source, expected_status=400)
+        assert 'source' in json.loads(response.content)
 
 
 class TestAddBetaVersion(AddVersionTest):
