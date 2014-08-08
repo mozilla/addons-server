@@ -17,7 +17,6 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  loop      to continuously run \`make html\` when sources change"
 	@echo "  html      to make standalone HTML files"
-	@echo "  htmlapi  to make standalone HTML files for the API docs"
 	@echo "  dirhtml   to make HTML files named index.html in directories"
 	@echo "  pickle    to make pickle files"
 	@echo "  json      to make JSON files"
@@ -38,11 +37,6 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
-
-htmlapi:
-	cd api; make html
-	@echo
-	@echo "Build finished. The HTML pages are in $(APIBUILDDIR)/html."
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
