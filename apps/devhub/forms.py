@@ -356,7 +356,7 @@ def check_paypal_id(paypal_id):
 
 class WithSourceMixin(object):
 
-    VALID_SOURCE_EXTENSIONS = ('.zip', '.tar', '.7z', '.tar.gz')
+    VALID_SOURCE_EXTENSIONS = ('.zip', '.tar', '.7z', '.tar.gz', '.rar')
 
     def clean_source(self):
         source = self.cleaned_data.get('source')

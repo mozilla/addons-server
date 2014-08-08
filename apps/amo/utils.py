@@ -144,6 +144,7 @@ def paginate(request, queryset, per_page=20, count=None):
     paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
 
+
 def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
@@ -230,9 +231,10 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             for recipient in white_list:
                 # Add unsubscribe link to footer.
                 token, hash = UnsubscribeCode.create(recipient)
-                unsubscribe_url = absolutify(reverse('users.unsubscribe',
-                    args=[token, hash, perm_setting.short],
-                    add_prefix=False))
+                unsubscribe_url = absolutify(
+                    reverse('users.unsubscribe',
+                            args=[token, hash, perm_setting.short],
+                            add_prefix=False))
 
                 context_options = {
                     'message': message,
@@ -268,36 +270,37 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     return result
 
 
+@contextlib.contextmanager
+def no_jinja_autoescape():
+    """Disable Jinja2 autoescape."""
+    autoescape_orig = env.autoescape
+    env.autoescape = False
+    yield
+    env.autoescape = autoescape_orig
+
+
 def send_mail_jinja(subject, template, context, *args, **kwargs):
     """Sends mail using a Jinja template with autoescaping turned off.
 
     Jinja is especially useful for sending email since it has whitespace
     control.
     """
-    # Get a jinja environment so we can override autoescaping for text emails.
-    autoescape_orig = env.autoescape
-    env.autoescape = False
-    template = env.get_template(template)
+    with no_jinja_autoescape():
+        template = env.get_template(template)
     msg = send_mail(subject, template.render(context), *args, **kwargs)
-    env.autoescape = autoescape_orig
     return msg
 
 
 def send_html_mail_jinja(subject, html_template, text_template, context,
                          *args, **kwargs):
     """Sends HTML mail using a Jinja template with autoescaping turned off."""
-    autoescape_orig = env.autoescape
-    env.autoescape = False
-
-    html_template = env.get_template(html_template)
-    text_template = env.get_template(text_template)
-
+    # Get a jinja environment so we can override autoescaping for text emails.
+    with no_jinja_autoescape():
+        html_template = env.get_template(html_template)
+        text_template = env.get_template(text_template)
     msg = send_mail(subject, text_template.render(context),
                     html_message=html_template.render(context), *args,
                     **kwargs)
-
-    env.autoescape = autoescape_orig
-
     return msg
 
 
@@ -647,8 +650,6 @@ def redirect_for_login(request):
     url = '%s?to=%s' % (reverse('users.login'),
                         urlquote(request.get_full_path()))
     return http.HttpResponseRedirect(url)
-
-
 
 
 def cache_ns_key(namespace, increment=False):

@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -22,10 +23,18 @@ class TestPackager(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
+        super(TestPackager, self).setUp()
         self.url = reverse('devhub.package_addon')
 
         ctx = self.client.get(self.url).context['compat_forms']
         self.compat_form = initial(ctx.initial_forms[1])
+        if not os.path.isdir(settings.PACKAGER_PATH):
+            os.makedirs(settings.PACKAGER_PATH)
+
+    def tearDown(self):
+        if os.path.isdir(settings.PACKAGER_PATH):
+            shutil.rmtree(settings.PACKAGER_PATH)
+        super(TestPackager, self).tearDown()
 
     def _form_data(self, data={}, compat_forms=None):
         """Build the initial data set for the form."""

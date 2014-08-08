@@ -23,7 +23,7 @@ If Elasticsearch isn't packaged for your system, you can install it
 manually, `here are some good instructions on how to do so
 <http://www.elasticsearch.org/tutorials/2010/07/01/setting-up-elasticsearch.html>`_.
 
-For running Marketplace you must install the
+For running Olympia you must install the
 `ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_.
 See the `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_
 for instructions on installing this plugin.

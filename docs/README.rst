@@ -1,8 +1,8 @@
 =====================
-Zamboni Documentation
+Olympia Documentation
 =====================
 
-Within: documentation for the use of Zamboni and its services. All this
+Within: documentation for the use of Olympia and its services. All this
 documentation here is contained in plain text files using
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and
 `Sphinx <http://sphinx-doc.org/>`_.
@@ -18,31 +18,16 @@ documentation source files are changed:
 There are two distinct documentation trees contained within this directory:
 
 
-Zamboni
+Olympia
 -------
 
 Viewable at:
-  http://zamboni.readthedocs.org/
+  http://olympia.readthedocs.org/
 Covers:
-  Development using Zamboni, the source code for
-  `Add-ons <https://addons.mozilla.org/>`_ and
-  `Marketplace <http://marketplace.firefox.com/>`_.
+  Development using Olympia, the source code for
+  `Add-ons <https://addons.mozilla.org/>`_.
 Source location:
-  `/docs <https://github.com/mozilla/zamboni/tree/master/docs>`_
+  `/docs <https://github.com/mozilla/olympia/tree/master/docs>`_
 Build by:
   Running ``make html`` from ``/docs``. The generated documentation will be
   located at ``/docs/_build/html``.
-
-
-Marketplace API
----------------
-
-Viewable at:
-  http://firefox-marketplace-api.readthedocs.org/
-Covers:
-  Consumption of the Marketplace API.
-Source location:
-  `/docs/api`` <https://github.com/mozilla/zamboni/tree/master/docs/api>`_
-Build by:
-  Running ``make htmlapi`` from ``/docs``. The generated documentation will be
-  located at ``/docs/api/_build/html``.

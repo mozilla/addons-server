@@ -58,6 +58,10 @@ echo "Updating vendor..."
 git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
+echo "collecting statics..." `date`
+
+python manage.py collectstatic --noinput
+
 echo "building assets..." `date`
 
 python manage.py compress_assets

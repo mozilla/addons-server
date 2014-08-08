@@ -299,7 +299,7 @@ class TestDRFUser(TestUser):
 
     def setUp(self):
         super(TestDRFUser, self).setUp()
-        self.create_switch('drf')
+        self.create_switch('drf', db=True)
 
     def test_forbidden_user_lookup(self):
         super(TestDRFUser, self).test_forbidden_user_lookup(response_code=403)
@@ -807,7 +807,7 @@ class TestDRFAddon(TestAddon):
 
     def setUp(self):
         super(TestDRFAddon, self).setUp()
-        self.create_switch('drf')
+        self.create_switch('drf', db=True)
 
     def _compare_dicts(self, drf_data, piston_data):
         """
@@ -836,7 +836,7 @@ class TestDRFAddon(TestAddon):
         r = oclient.get(url, self.accepted_consumer, self.token)
         eq_(r.status_code, 200, r.content)
         drf_data = json.loads(r.content)
-        self.create_switch('drf', db=True, **{'active': False})
+        self.create_switch('drf', **{'active': False})
         r = oclient.get(url, self.accepted_consumer, self.token)
         eq_(r.status_code, 200, r.content)
         piston_data = json.loads(r.content)

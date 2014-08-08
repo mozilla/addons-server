@@ -66,6 +66,10 @@ echo "Updating vendor..."
 git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
+# Install node deps locally.
+npm install
+export PATH="./node_modules/.bin/:${PATH}"
+
 if [ -z $SET_ES_TESTS ]; then
     RUN_ES_TESTS=False
 else
@@ -86,15 +90,14 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'localhost:11211',
     }
 }
 CELERY_ALWAYS_EAGER = True
 RUN_ES_TESTS = ${RUN_ES_TESTS}
 ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ADDONS_PATH = '/tmp/warez'
-STATIC_URL = ''
 RUNNING_IN_JENKINS = True
 
 SETTINGS
@@ -102,6 +105,16 @@ SETTINGS
 # Update product details to pull in any changes (namely, 'dbg' locale)
 echo "Updating product details..."
 python manage.py update_product_details
+
+
+# Manage statics (collect and compress).
+echo "collecting statics..." `date`
+
+python manage.py collectstatic --noinput
+
+echo "building assets..." `date`
+
+python manage.py compress_assets
 
 
 echo "Starting tests..." `date`

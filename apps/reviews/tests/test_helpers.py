@@ -107,9 +107,6 @@ class HelpersTest(amo.tests.TestCase):
         eq_(doc('a').text(), 'See All Reviews')
 
     def test_report_review_popup(self):
-        # Set autoescape to False otherwise the inner ``pretty_form`` is
-        # escaped and pyquery can't access the ``name`` attribute.
-        jingo.register.env.autoescape = False
         doc = pq(self.render('{{ report_review_popup() }}'))
         eq_(doc('.popup.review-reason').length, 1)
         for flag, text in ReviewFlag.FLAGS:
@@ -117,9 +114,6 @@ class HelpersTest(amo.tests.TestCase):
         eq_(doc('form input[name=note]').length, 1)
 
     def test_edit_review_form(self):
-        # Set autoescape to False otherwise the inner ``pretty_form`` is
-        # escaped and pyquery can't access the ``name`` attribute.
-        jingo.register.env.autoescape = False
         doc = pq(self.render('{{ edit_review_form() }}'))
         eq_(doc('#review-edit-form').length, 1)
         eq_(doc('p.req').length, 1)
