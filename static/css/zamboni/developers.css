@@ -839,6 +839,39 @@ pre.email_comment {
     color: #777777;
 }
 
+#upload-file .submission-checklist {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #F0B500;
+}
+
+#upload-file .submission-checklist h5 {
+    line-height: 32px;
+}
+
+#upload-file .submission-checklist h5:before {
+    background-image: url('../../img/developers/test-warning.png');
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+}
+#upload-file .submission-checklist ul {
+    margin-left: 0;
+}
+#upload-file .submission-checklist li {
+    float: none;
+}
+#upload-file .submission-checklist a.review-process-overview {
+    font-style: italic;
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+}
+
 /* @end */
 
 /* @group Recent Activity */

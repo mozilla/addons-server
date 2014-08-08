@@ -34,12 +34,12 @@
                 errors = [gettext("There was a problem contacting the server.")];
             }
             if (!errors.length) {
-                errors = settings['getErrors'](json);
+                errors = settings.getErrors(json);
             }
             return {
                 errors: errors,
                 json: json
-            }
+            };
         }
 
         return $(this).each(function(){
@@ -322,12 +322,61 @@
 
                     $("<strong>").text(message).appendTo(upload_results);
 
-                    if (results.full_report_url) {
-                        // There might not be a link to the full report
-                        // if we get an early error like unsupported type.
-                        upload_results.append($("<a>", {'href': results.full_report_url,
-                                                        'target': '_blank',
-                                                        'text': gettext('See full validation report')}));
+                    if (warnings > 0) {
+                        // Validation checklist
+                        var checklist_box = $('<div>').attr('class', 'submission-checklist').appendTo(upload_results),
+                            checklist = [
+                                gettext("Include detailed version notes."),
+                                gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer."),
+                            ],
+                            warnings_id = [
+                                'set_innerHTML',
+                                'namespace_pollution',
+                                'dangerous_global'
+                            ], current, matched,
+                            // this.id is in the form ["testcases_javascript_instanceactions", "_call_expression", "createelement_variable"],
+                            // we usually only match one of the elements.
+                            matchId = function (id) {return _.contains(this.id, id);};
+
+                        if (!upload_results.parents('.add-file-modal').length) {
+                            // We are uploading a file for an existing addon.
+                            checklist.push(gettext("If your add-on is intended for a limited audience, if it is in its initial stages or just an experiment, you should choose Preliminary Review instead of Full Review."));
+                        }
+                        $('<h5>').text(gettext("Add-on submission checklist")).appendTo(checklist_box);
+                        $('<p>').text(gettext("Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:")).appendTo(checklist_box);
+                        if (results.validation.metadata.contains_binary_extension) {
+                            checklist.push(gettext("Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected."));
+                        }
+                        for (var i = 0; i < results.validation.messages.length; i++) {
+                            current = results.validation.messages[i];
+                            matched = _.find(warnings_id, matchId, current);
+                            if (matched) {
+                                checklist.push(gettext(current.message));
+                                // We want only once every possible warning hit.
+                                warnings_id.splice(warnings_id.indexOf(matched), 1);
+                                if (!warnings_id.length) break;
+                            }
+                        }
+                        var checklist_ul = $('<ul>');
+                        $.each(checklist, function (i) {
+                            $('<li>').text(checklist[i]).appendTo(checklist_ul);
+                        });
+                        checklist_ul.appendTo(checklist_box);
+
+                        if (results.full_report_url) {
+                            // There might not be a link to the full report
+                            // if we get an early error like unsupported type.
+                            $('<a>').text(gettext('See full validation report'))
+                                    .attr('href', results.full_report_url)
+                                    .attr('target', '_blank')
+                                    .appendTo(checklist_box);
+                        }
+
+                        $('<a>').text(gettext("If you are unfamiliar with the add-ons review process, you can read about it here."))
+                                .attr('href', 'http://blog.mozilla.com/addons/2011/02/04/overview-amo-review-process/')
+                                .attr('class', 'review-process-overview')
+                                .attr('target', '_blank')
+                                .appendTo(checklist_box);
                     }
 
                     $(".platform ul.error").empty();
