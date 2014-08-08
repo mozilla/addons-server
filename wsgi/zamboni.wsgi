@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 
 # Tell manage that we need to pull in the default settings file.
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()

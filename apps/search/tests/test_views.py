@@ -906,8 +906,7 @@ class TestCollectionSearch(SearchBase):
         eq_(doc('.listing-footer').length, 0)
 
     def test_results_name_query(self):
-        if getattr(settings, 'RUNNING_IN_JENKINS', False):
-            raise SkipTest('Passes locally but fails on Jenkins :(')
+        raise SkipTest('Fails randomly (bug 1050754)')
 
         self._generate()
 

@@ -14,10 +14,10 @@ Configuration
 -------------
 
 Configuration for your unit tests is mostly handled automatically.  The only
-thing you'll need to ensure is that the database credentials in your
-``settings_local.py`` has full permissions to modify a database with ``test-``
-prepended to it.  For example, if my database name were ``olympia`` this
-database would be ``test_olympia``.
+thing you'll need to ensure is that the database credentials in your settings
+has full permissions to modify a database with ``test-`` prepended to it. By
+default the database name is ``olympia``, so the test database is
+``test_olympia``.
 
 Running Tests
 -------------
@@ -43,7 +43,7 @@ the build script at :src:`scripts/build.sh`.
 
 There are a few useful makefile targets that you can use:
 
-Run all the tests using your ``settings_local.py`` file::
+Run all the tests::
 
     make test
 
@@ -58,7 +58,7 @@ To fail and stop running tests on the first failure::
 If you wish to add arguments, or run a specific test, overload the variables
 (check the Makefile for more information)::
 
-    make SETTINGS=settings_test ARGS='--verbosity 2 olympia.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
+    make ARGS='--verbosity 2 olympia.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
 
 Those targets include some useful options, like the ``--with-id`` which allows
 you to re-run only the tests failed from the previous run::

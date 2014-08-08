@@ -46,7 +46,7 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
             },
         }
 
-    If you want to add more to this in ``settings_local.py``, do something like
+    If you want to add more to this in ``local_settings.py``, do something like
     this::
 
         LOGGING['loggers'].update({
