@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-16 09:14-0700\n"
-"PO-Revision-Date: 2014-07-19 10:34+0000\n"
+"PO-Revision-Date: 2014-08-09 07:05+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405766095.0\n"
+"X-POOTLE-MTIME: 1407567925.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2191,7 +2191,7 @@ msgstr "Икона"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Ово име не може бити употребљено."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
@@ -5598,7 +5598,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
-msgstr ""
+msgstr "Одведи ме до Add-on Packager-а!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:65
 msgid "Add some flair"
@@ -5651,6 +5651,10 @@ msgid ""
 "Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
 "on all the platforms and applications it claims to support."
 msgstr ""
+"Чак и ентомолози не воле грешке у својим програмима, па је веома важно да "
+"детаљно тестирате Ваш додатак пре него што буде спреман за опште коришћење. "
+"У најмању руку, требало би да проверите да ли Ваш додатак ради на свим "
+"платформама и апликацијама за које тврди за подржава."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:97
 msgid ""
@@ -5710,6 +5714,14 @@ msgid ""
 "with helps us make the experience better for future generations of add-on innovators. Whether you want to comment on the platform, the documentation, or the website, we'll listen. Better yet, since "
 "Mozilla is open, you might even be able to fix that bug or lack of documentation yourself! It's like the circle of life."
 msgstr ""
+"Ако сте расоложени за разговор, <a "
+"href=\"https://forums.addons.mozilla.org\">би волео да чује Ваше мишљење</a> о "
+"Вашем искуству у креирању додатка. Слушајући са чиме се нови програмери "
+"муче нам помаже да омогућимо боље искуство будућим генерацијама иноватора "
+"додатака. Било да желите да се изјасни о платформи, документација, или о "
+"сајту, ми ћемо слушати. Пошто је Mozilla је отворена, можда ћете чак бити у "
+"могућности да поправите ту грешку или недостатак документације сами! То је "
+"као круг живота."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
@@ -5780,6 +5792,8 @@ msgstr "Прављење изолованих (sandboxed) HTTP конекциј�
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
 msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
 msgstr ""
+"Овај чланак објашњава како да направите HTTP конекцију у заштићеном окружењу "
+"која не утиче на корисникове колачиће."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
 msgid "Displaying Web Content in an Extension"
@@ -5835,7 +5849,7 @@ msgstr "Видео:"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:187
 msgid "Stupid/Awesome Extension Development Hacks"
-msgstr ""
+msgstr "Глупи/Одлични хакови за развој екстензија"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:190
 msgid ""
@@ -5905,6 +5919,9 @@ msgstr "Постављање развојног окружења за ексте
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
 msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
 msgstr ""
+"Овај чланак даје предлоге о томе како да подесите Вашу Mozilla апликацију за "
+"развој екстензија укључујући и поставњање профила, измену подешавања и "
+"корисне алате за развој."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
 msgid "Building an Extension"
@@ -5920,7 +5937,7 @@ msgstr "Паковање екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
 msgid "Learn more details on how extensions are packaged and installed."
-msgstr ""
+msgstr "Сазнајте више детаља о томе како су екстензије упаковане и инсталиране."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
 msgid "Install Manifests"
