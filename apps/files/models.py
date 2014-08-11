@@ -9,7 +9,6 @@ import traceback
 import unicodedata
 import uuid
 import zipfile
-from datetime import datetime, timedelta
 
 import django.dispatch
 from django.conf import settings
@@ -268,7 +267,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def mirror_file_path(self):
-        return os.path.join(user_media_path('mirror_stage'),
+        return os.path.join(user_media_path('addons'),
                             str(self.version.addon_id), self.filename)
 
     @property
@@ -280,16 +279,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         split = self.filename.rsplit('.', 1)
         split.insert(-1, 'signed')
         return '.'.join(split)
-
-    @property
-    def signed_file_path(self):
-        return os.path.join(settings.SIGNED_APPS_PATH,
-                            str(self.version.addon_id), self._signed())
-
-    @property
-    def signed_reviewer_file_path(self):
-        return os.path.join(settings.SIGNED_APPS_REVIEWER_PATH,
-                            str(self.version.addon_id), self._signed())
 
     @property
     def extension(self):

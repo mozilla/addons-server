@@ -236,11 +236,3 @@ class TestRepackageJetpack(amo.tests.TestCase):
             rmtree(os.path.dirname(self.file.mirror_file_path))
         new_file = tasks.repackage_jetpack(self.builder_data())
         assert storage.exists(new_file.mirror_file_path)
-
-    def test_unreviewed_file_not_on_mirror(self):
-        # Make sure the mirror dir is clear.
-        mirrordir = user_media_path('mirror_stage') + '/3615'
-        rmtree(mirrordir)
-        self.file.update(status=amo.STATUS_UNREVIEWED)
-        new_file = tasks.repackage_jetpack(self.builder_data())
-        assert not storage.exists(new_file.mirror_file_path)
