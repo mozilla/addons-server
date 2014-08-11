@@ -110,7 +110,6 @@ def path():
           user_media_path('addons'),
           user_media_path('uploads'),
           user_media_path('guarded_addons'),
-          user_media_path('mirror_stage'),
           user_media_path('addon_icons'),
           user_media_path('collection_icons'),
           settings.PACKAGER_PATH,

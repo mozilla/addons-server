@@ -11,26 +11,13 @@ SERVER_EMAIL = 'zstage@addons.mozilla.org'
 
 SITE_URL = 'https://addons.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = 'https://addons-stage-cdn.allizom.org/'
-LOCAL_MIRROR_URL = '%s_files' % STATIC_URL
-MIRROR_URL = LOCAL_MIRROR_URL
+STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-stage-cdn.allizom.org/static/')
+MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons-stage-cdn.allizom.org/user-media/')
 
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
 
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.png?modified=%d')
-
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
-
-# paths for uploaded extensions
-USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
-
-MEDIA_URL = '/media/'
 
 
 CACHE_PREFIX = 'stage.%s' % CACHE_PREFIX

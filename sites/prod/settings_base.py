@@ -61,18 +61,14 @@ BROKER_CONNECTION_TIMEOUT = 0.1
 NETAPP_STORAGE_ROOT = private.NETAPP_STORAGE_ROOT
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MIRROR_STAGE_PATH = NETAPP_STORAGE_ROOT + '/public-staging'
-UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
-USERPICS_PATH = UPLOADS_PATH + '/userpics'
-ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
-COLLECTION_ICONS_PATH = UPLOADS_PATH + '/collection_icons'
-IMAGEASSETS_PATH = UPLOADS_PATH + '/imageassets'
-REVIEWER_ATTACHMENTS_PATH = UPLOADS_PATH + '/reviewer_attachment'
-PREVIEWS_PATH = UPLOADS_PATH + '/previews'
-PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
-PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.png'
-SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
-SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
+MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+
+# Must be forced in settings because name => path can't be dyncamically
+# computed: reviewer_attachmentS VS reviewer_attachment.
+# TODO: rename folder on file system.
+# (One can also just rename the setting, but this will not be consistent
+# with the naming scheme.)
+REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
 HERA = []
 
