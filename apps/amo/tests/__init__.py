@@ -533,7 +533,7 @@ class AMOPaths(object):
         shutil.copyfile(self.xpi_path(name), file.file_path)
 
 
-def assert_no_validation_errors(validation):
+def assert_no_validation_exceptions(validation):
     """Assert that the validation (JSON) does not contain a traceback.
 
     Note that this does not test whether the addon passed

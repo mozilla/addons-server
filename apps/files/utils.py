@@ -1,6 +1,7 @@
 import collections
 import glob
 import hashlib
+import json
 import logging
 import os
 import re
@@ -77,16 +78,80 @@ def make_xpi(files):
 
 
 class Extractor(object):
+    """Extract adon info from an install.rdf or package.json"""
+    App = collections.namedtuple('App', 'appdata id min max')
+
+    @classmethod
+    def parse(cls, path):
+        install_rdf = os.path.join(path, 'install.rdf')
+        package_json = os.path.join(path, 'package.json')
+        if os.path.exists(install_rdf):
+            return RDFExtractor(path).data
+        elif os.path.exists(package_json):
+            return PackageJSONExtractor(package_json).parse()
+        else:
+            raise forms.ValidationError("No install.rdf or package.json found")
+
+
+class PackageJSONExtractor(object):
+    def __init__(self, path):
+        self.path = path
+        self.data = json.load(open(self.path))
+
+    def get(self, key, default=None):
+        return self.data.get(key, default)
+
+    def apps(self):
+        def supported_app(app):
+            return (Application.objects.supported()
+                                       .filter(guid=app.guid)
+                                       .exists())
+
+        def find_appversion(app, version_req):
+            """
+            Convert an app and a package.json style version requirement to an
+            `AppVersion`. This simply extracts the version number without the
+            ><= requirement so it will not be accurate for version requirements
+            that are not >=, <= or = to a version.
+
+            >>> find_appversion(amo.APPS['firefox'], '>=33.0a1')
+            <AppVersion: 33.0a1>
+            """
+            version = re.sub('>?=?<?', '', version_req)
+            return AppVersion.objects.get(
+                application=app.id, version=version)
+
+        for engine, version in self.get('engines', {}).items():
+            name = 'android' if engine == 'fennec' else engine
+            app = amo.APPS.get(name)
+            if app and supported_app(app):
+                appversion = find_appversion(app, version)
+                yield Extractor.App(
+                    appdata=app, id=app.id, min=appversion, max=appversion)
+
+    def parse(self):
+        return {
+            'guid': self.get('id') or self.get('name'),
+            'type': amo.ADDON_EXTENSION,
+            'name': self.get('title') or self.get('name'),
+            'version': self.get('version'),
+            'homepage': self.get('homepage'),
+            'summary': self.get('description'),
+            'no_restart': True,
+            'apps': list(self.apps()),
+        }
+
+
+class RDFExtractor(object):
     """Extract add-on info from an install.rdf."""
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
              '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT}
-    App = collections.namedtuple('App', 'appdata id min max')
     manifest = u'urn:mozilla:install-manifest'
 
     def __init__(self, path):
         self.path = path
-        self.rdf = rdflib.Graph().parse(open(os.path.join(path,
-                                                          'install.rdf')))
+        install_rdf_path = os.path.join(path, 'install.rdf')
+        self.rdf = rdflib.Graph().parse(open(install_rdf_path))
         self.find_root()
         self.data = {
             'guid': self.find('id'),
@@ -95,15 +160,11 @@ class Extractor(object):
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
             'summary': self.find('description'),
-            'no_restart': self.find('bootstrap') == 'true' or
-                          self.find('type') == '64',
+            'no_restart':
+                self.find('bootstrap') == 'true' or self.find('type') == '64',
             'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
         }
-
-    @classmethod
-    def parse(cls, install_rdf):
-        return cls(install_rdf).data
 
     def find_type(self):
         # If the extension declares a type that we know about, use
@@ -156,7 +217,8 @@ class Extractor(object):
             app = amo.APP_GUIDS.get(self.find('id', ctx))
             if not app:
                 continue
-            if not Application.objects.supported().filter(guid=app.guid).exists():
+            if (not Application.objects.supported()
+                                       .filter(guid=app.guid).exists()):
                 continue
             try:
                 qs = AppVersion.objects.filter(application=app.id)
@@ -164,7 +226,7 @@ class Extractor(object):
                 max = qs.get(version=self.find('maxVersion', ctx))
             except AppVersion.DoesNotExist:
                 continue
-            rv.append(self.App(appdata=app, id=app.id, min=min, max=max))
+            rv.append(Extractor.App(appdata=app, id=app.id, min=min, max=max))
         return rv
 
 
@@ -361,7 +423,7 @@ def parse_xpi(xpi, addon=None):
     try:
         xpi = get_file(xpi)
         extract_xpi(xpi, path)
-        rdf = Extractor.parse(path)
+        xpi_info = Extractor.parse(path)
     except forms.ValidationError:
         raise
     except IOError as e:
@@ -377,27 +439,27 @@ def parse_xpi(xpi, addon=None):
     finally:
         rm_local_tmp_dir(path)
 
-    return check_rdf(rdf, addon)
+    return check_xpi_info(xpi_info, addon)
 
 
-def check_rdf(rdf, addon=None):
+def check_xpi_info(xpi_info, addon=None):
     from addons.models import Addon, BlacklistedGuid
-    if not rdf['guid']:
+    if not xpi_info['guid']:
         raise forms.ValidationError(_("Could not find a UUID."))
-    if addon and addon.guid != rdf['guid']:
+    if addon and addon.guid != xpi_info['guid']:
         raise forms.ValidationError(_("UUID doesn't match add-on."))
     if (not addon
-        and Addon.objects.filter(guid=rdf['guid']).exists()
-        or BlacklistedGuid.objects.filter(guid=rdf['guid']).exists()):
+            and Addon.objects.filter(guid=xpi_info['guid']).exists()
+            or BlacklistedGuid.objects.filter(guid=xpi_info['guid']).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
-    if len(rdf['version']) > 32:
+    if len(xpi_info['version']) > 32:
         raise forms.ValidationError(
             _('Version numbers should have fewer than 32 characters.'))
-    if not VERSION_RE.match(rdf['version']):
+    if not VERSION_RE.match(xpi_info['version']):
         raise forms.ValidationError(
             _('Version numbers should only contain letters, numbers, '
               'and these punctuation characters: +*.-_.'))
-    return rdf
+    return xpi_info
 
 
 def parse_addon(pkg, addon=None):

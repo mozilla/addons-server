@@ -26,7 +26,7 @@ from addons.models import Addon
 from applications.models import Application, AppVersion
 from files.models import File, FileUpload, FileValidation, nfd_str, Platform
 from files.helpers import copyfileobj
-from files.utils import check_rdf, JetpackUpgrader, parse_addon, parse_xpi
+from files.utils import check_xpi_info, JetpackUpgrader, parse_addon, parse_xpi
 from versions.models import Version
 
 
@@ -415,18 +415,18 @@ class TestParseXpi(amo.tests.TestCase):
         eq_(result['type'], amo.ADDON_LPAPP)
 
     def test_good_version_number(self):
-        check_rdf({'guid': 'guid', 'version': '1.2a-b+32*__yeah'})
-        check_rdf({'guid': 'guid', 'version': '1' * 32})
+        check_xpi_info({'guid': 'guid', 'version': '1.2a-b+32*__yeah'})
+        check_xpi_info({'guid': 'guid', 'version': '1' * 32})
 
     def test_bad_version_number(self):
         with self.assertRaises(forms.ValidationError) as e:
-            check_rdf({'guid': 'guid', 'version': 'bad #version'})
+            check_xpi_info({'guid': 'guid', 'version': 'bad #version'})
         msg = e.exception.messages[0]
         assert msg.startswith('Version numbers should only contain'), msg
 
     def test_long_version_number(self):
         with self.assertRaises(forms.ValidationError) as e:
-            check_rdf({'guid': 'guid', 'version': '1' * 33})
+            check_xpi_info({'guid': 'guid', 'version': '1' * 33})
         msg = e.exception.messages[0]
         eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
