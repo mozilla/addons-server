@@ -1,3 +1,5 @@
+.. image:: http://travis-ci.org/mozilla/olympia.png
+
 Welcome to Olympia!  This is `addons.mozilla.org`_.
 
 We have some good `install docs`_ if you want to try it out.  We'd love
