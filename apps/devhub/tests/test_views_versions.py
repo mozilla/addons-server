@@ -346,10 +346,10 @@ class TestVersionEdit(amo.tests.TestCase):
         self.version = self.get_version()
         self.url = reverse('devhub.versions.edit',
                            args=['a3615', self.version.id])
-        self.v1 = AppVersion(application_id=amo.FIREFOX.id, version='1.0')
-        self.v4 = AppVersion(application_id=amo.FIREFOX.id, version='4.0')
-        for v in self.v1, self.v4:
-            v.save()
+        self.v1, _created = AppVersion.objects.get_or_create(
+            application_id=amo.FIREFOX.id, version='1.0')
+        self.v5, _created = AppVersion.objects.get_or_create(
+            application_id=amo.FIREFOX.id, version='5.0')
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -705,7 +705,7 @@ class TestVersionEditCompat(TestVersionEdit):
 
     def test_add_appversion(self):
         f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = self.formset(initial(f), dict(application=18, min=28, max=29),
+        d = self.formset(initial(f), dict(application=18, min=288, max=298),
                          initial_count=1)
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
@@ -716,13 +716,13 @@ class TestVersionEditCompat(TestVersionEdit):
 
     def test_update_appversion(self):
         d = self.get_form()
-        d.update(min=self.v1.id, max=self.v4.id)
+        d.update(min=self.v1.id, max=self.v5.id)
         r = self.client.post(self.url,
                              self.formset(d, initial_count=1))
         eq_(r.status_code, 302)
         av = self.version.apps.get()
         eq_(av.min.version, '1.0')
-        eq_(av.max.version, '4.0')
+        eq_(av.max.version, '5.0')
         eq_(list(ActivityLog.objects.all().values_list('action')),
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
@@ -730,12 +730,12 @@ class TestVersionEditCompat(TestVersionEdit):
         url = reverse('devhub.ajax.compat.update',
                       args=['a3615', self.version.id])
         d = self.get_form(url)
-        d.update(min=self.v1.id, max=self.v4.id)
+        d.update(min=self.v1.id, max=self.v5.id)
         r = self.client.post(url, self.formset(d, initial_count=1))
         eq_(r.status_code, 200)
         av = self.version.apps.get()
         eq_(av.min.version, '1.0')
-        eq_(av.max.version, '4.0')
+        eq_(av.max.version, '5.0')
         eq_(list(ActivityLog.objects.all().values_list('action')),
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 

@@ -9,7 +9,7 @@
         }
     },
     {
-        "pk": 29,
+        "pk": 298,
         "model": "applications.appversion",
         "fields": {
             "version_int": 3020000001000,
@@ -20,7 +20,7 @@
         }
     },
     {
-        "pk": 28,
+        "pk": 288,
         "model": "applications.appversion",
         "fields": {
             "version_int": 3000000200100,
