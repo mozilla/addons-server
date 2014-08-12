@@ -16,7 +16,7 @@ os.environ['CELERY_LOADER'] = 'django'
 wsgidir = os.path.dirname(__file__)
 site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
-# manage adds /apps, /lib, and /vendor to the Python path.
+# manage adds /apps and /lib to the Python path.
 import manage
 
 import django.conf

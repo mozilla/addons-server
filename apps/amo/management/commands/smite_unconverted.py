@@ -2,12 +2,12 @@ import logging
 
 from django.core.management.base import BaseCommand
 
-import path
 from celery.task.sets import TaskSet
 
 import bandwagon.tasks
 import users.tasks
 from amo.helpers import user_media_path
+from amo.utils import walkfiles
 
 log = logging.getLogger('z.cmd')
 
@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
     def fix(self, base, task):
         print 'Searching the nfs...'
-        files = list(path.path(base).walkfiles('*%s' % suffix))
+        files = list(walkfiles(base, suffix))
         print '%s busted files under %s.' % (len(files), base)
         ts = []
         for src in files:

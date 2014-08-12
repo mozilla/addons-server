@@ -333,10 +333,6 @@ This updates olympia::
 
     git checkout master && git pull && git submodule update --init --recursive
 
-This updates zamboni-lib in the ``vendor/`` directory::
-
-    pushd vendor && git pull && git submodule update --init && popd
-
 This updates the python packages::
 
     pip install --no-deps --exists-action=w -r requirements/dev.txt

@@ -13,7 +13,6 @@ from django.db.models import Q, F, Avg
 
 import cronjobs
 import multidb
-import path
 from lib import recommend
 from celery.task.sets import TaskSet
 from celeryutils import task
@@ -21,7 +20,7 @@ import waffle
 
 import amo
 from amo.decorators import write
-from amo.utils import chunked
+from amo.utils import chunked, walkfiles
 from addons import search
 from addons.models import Addon, AppSupport, FrozenAddon, Persona
 from files.models import File
@@ -317,7 +316,7 @@ def unhide_disabled_files():
          | Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
-    for filepath in path.path(settings.GUARDED_ADDONS_PATH).walkfiles():
+    for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
             log.warning('File that should not be guarded: %s.' % filepath)

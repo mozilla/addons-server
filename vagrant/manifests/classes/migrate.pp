@@ -13,7 +13,7 @@ class migrate {
 
     exec { "sql_migrate":
         cwd => "$PROJ_DIR",
-        command => "python ./vendor/src/schematic/schematic migrations/",
+        command => "schematic migrations/",
         logoutput => true,
         require => [
             # Service["mysql"],

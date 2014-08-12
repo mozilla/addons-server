@@ -13,7 +13,6 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
-import path
 from nose.tools import eq_
 
 import amo
@@ -37,15 +36,10 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     fixtures = ['applications/all_apps.json', 'base/appversion']
 
     def setUp(self):
-        self._rename = path.path.rename
-        path.path.rename = path.path.copy
         # The validator task (post Addon upload) loads apps.json
         # so ensure it exists:
         from django.core.management import call_command
         call_command('dump_apps')
-
-    def tearDown(self):
-        path.path.rename = self._rename
 
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
