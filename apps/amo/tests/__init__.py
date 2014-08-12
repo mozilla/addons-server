@@ -692,8 +692,10 @@ def user_factory(**kw):
 
 
 def version_factory(file_kw={}, **kw):
-    min_app_version = kw.pop('min_app_version', '4.0')
-    max_app_version = kw.pop('max_app_version', '5.0')
+    # We can't create duplicates of AppVersions, so make sure the versions are
+    # not already created in fixtures (use fake versions).
+    min_app_version = kw.pop('min_app_version', '4.0.99')
+    max_app_version = kw.pop('max_app_version', '5.0.99')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
