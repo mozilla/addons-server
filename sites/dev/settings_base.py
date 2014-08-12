@@ -68,7 +68,6 @@ CELERYD_PREFETCH_MULTIPLIER = 1
 NETAPP_STORAGE = private.NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = private.NETAPP_STORAGE_ROOT + '/guarded-addons'
 MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
-STATIC_ROOT = NETAPP_STORAGE + '/static'
 
 # Must be forced in settings because name => path can't be dyncamically
 # computed: reviewer_attachmentS VS reviewer_attachment.
