@@ -124,6 +124,12 @@ class TestPasswordResetForm(UserFormBase):
         assert mail.outbox[0].subject.find('Password reset') == 0
         assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
+    def test_required_attrs(self):
+        res = self.client.get(reverse('password_reset_form'))
+        email_input = pq(res.content.decode('utf-8'))('#id_email')
+        eq_(email_input.attr('required'), 'required')
+        eq_(email_input.attr('aria-required'), 'true')
+
 
 class TestUserDeleteForm(UserFormBase):
 
@@ -263,6 +269,12 @@ class TestUserEditForm(UserFormBase):
             form = res.context['form']
             eq_(form.initial['lang'], 'fr')
 
+    def test_required_attrs(self):
+        res = self.client.get(self.url)
+        username_input = pq(res.content.decode('utf-8'))('#id_username')
+        eq_(username_input.attr('required'), 'required')
+        eq_(username_input.attr('aria-required'), 'true')
+
 
 class TestAdminUserEditForm(UserFormBase):
     fixtures = ['base/users']
@@ -357,6 +369,12 @@ class TestUserLoginForm(UserFormBase):
     def test_yes_register(self):
         res = self.client.get(self._get_login_url())
         self.assertContains(res, 'Create an Add-ons Account')
+
+    def test_required_attrs(self):
+        res = self.client.get(self._get_login_url())
+        username_input = pq(res.content.decode('utf-8'))('#id_username')
+        eq_(username_input.attr('required'), 'required')
+        eq_(username_input.attr('aria-required'), 'true')
 
     def test_disabled_account(self):
         url = self._get_login_url()

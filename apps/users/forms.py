@@ -22,7 +22,8 @@ from translations import LOCALES
 from . import tasks
 from .models import (UserProfile, UserNotification, BlacklistedName,
                      BlacklistedEmailDomain, BlacklistedPassword)
-from .widgets import NotificationsSelectMultiple
+from .widgets import (NotificationsSelectMultiple, RequiredEmailInput,
+                      RequiredInputMixin, RequiredTextInput)
 
 
 log = commonware.log.getLogger('z.users')
@@ -36,9 +37,12 @@ class PasswordMixin:
 
     @classmethod
     def widget(cls, **kw):
-        return forms.PasswordInput(attrs={'class': 'password-strength',
-                                          'data-min-length': cls.min_length},
-                                   **kw)
+        attrs = {
+            'class': 'password-strength',
+            'data-min-length': cls.min_length,
+        }
+        attrs.update(RequiredInputMixin.required_attrs)
+        return forms.PasswordInput(attrs=attrs, **kw)
 
     def clean_password(self, field='password', instance='instance'):
         data = self.cleaned_data[field]
@@ -56,7 +60,7 @@ class PasswordMixin:
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
-    username = forms.CharField(max_length=75)
+    username = forms.CharField(max_length=75, widget=RequiredTextInput)
     rememberme = forms.BooleanField(required=False)
     recaptcha = captcha.fields.ReCaptchaField()
     recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
@@ -75,6 +79,7 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
 
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
+    email = forms.EmailField(widget=RequiredEmailInput)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -236,7 +241,8 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
     details here, so we'd have to rewrite most of it anyway.
     """
-    username = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=50, widget=RequiredTextInput)
+    email = forms.EmailField(widget=RequiredEmailInput)
     display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
                                    required=False)
     location = forms.CharField(label=_lazy(u'Location'), max_length=100,
@@ -529,11 +535,3 @@ class BlacklistedEmailDomainAddForm(forms.Form):
             self._errors['domains'] = ErrorList([msg])
 
         return data
-
-
-class ContactForm(happyforms.Form):
-    text = forms.CharField(widget=forms.Textarea())
-
-
-class RemoveForm(happyforms.Form):
-    remove = forms.BooleanField()
