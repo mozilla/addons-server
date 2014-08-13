@@ -1,0 +1,12 @@
+[
+    {
+        "pk": 1,
+        "model": "access.group",
+        "fields": {
+            "rules": "*:*",
+            "name": "Admins",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-05 16:06:55"
+        }
+    }
+]
