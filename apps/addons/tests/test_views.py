@@ -1000,12 +1000,7 @@ class TestPersonas(object):
     fixtures = ['addons/persona', 'base/users']
 
     def create_addon_user(self, addon):
-        if waffle.switch_is_active('personas-migration-completed'):
-            return AddonUser.objects.create(addon=addon, user_id=999)
-
-        if addon.type == amo.ADDON_PERSONA:
-            addon.persona.author = self.persona.author
-            addon.persona.save()
+        return AddonUser.objects.create(addon=addon, user_id=999)
 
 
 class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
@@ -1014,7 +1009,6 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
-        self.create_switch('personas-migration-completed', db=True)
         self.create_addon_user(self.addon)
 
     def test_persona_images(self):
@@ -1427,7 +1421,6 @@ class TestMobileDetails(TestPersonas, TestMobile):
         self.url = reverse('addons.detail', args=[self.ext.slug])
         self.persona = Addon.objects.get(id=15679)
         self.persona_url = self.persona.get_url_path()
-        self.create_switch('personas-migration-completed')
         self.create_addon_user(self.persona)
 
     def test_extension(self):

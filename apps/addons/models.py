@@ -1808,24 +1808,12 @@ class Persona(caching.CachingMixin, models.Model):
         qs = (Addon.objects.valid()
                            .exclude(id=self.addon.id)
                            .filter(type=amo.ADDON_PERSONA))
-        # TODO(andym): delete this once personas are migrated.
-        if not waffle.switch_is_active('personas-migration-completed'):
-            return (qs.filter(persona__author=self.author)
-                      .select_related('persona'))
         return (qs.filter(addonuser__listed=True,
                           authors__in=self.addon.listed_authors)
                   .distinct())
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
-        # TODO(andym): delete this once personas are migrated.
-        if not waffle.switch_is_active('personas-migration-completed'):
-
-            class PersonaAuthor(unicode):
-                @property
-                def name(self):
-                    return self
-            return [PersonaAuthor(self.display_username)]
         return self.addon.listed_authors
 
 
