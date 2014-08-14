@@ -108,7 +108,6 @@ def path():
     rw = (settings.TMP_PATH,
           settings.MEDIA_ROOT,
           user_media_path('addons'),
-          user_media_path('uploads'),
           user_media_path('guarded_addons'),
           user_media_path('addon_icons'),
           user_media_path('collection_icons'),
@@ -116,7 +115,6 @@ def path():
           user_media_path('previews'),
           user_media_path('userpics'),
           user_media_path('reviewer_attachments'),
-          settings.REVIEWER_ATTACHMENTS_PATH,
           dump_apps.Command.JSON_PATH,)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.
