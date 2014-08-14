@@ -127,5 +127,5 @@ def download_source(request, version_id):
        (acl.check_addon_ownership(request, version.addon, viewer=True,
                                   ignore_disabled=True) or
        acl.action_allowed(request, 'Editors', 'BinarySource'))):
-        return HttpResponseSendFile(request, version.source)
+        return HttpResponseSendFile(request, version.source.path)
     raise http.Http404()

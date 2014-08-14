@@ -17,7 +17,7 @@ import amo.models
 import amo.utils
 from amo.decorators import use_master
 from amo.urlresolvers import reverse
-from amo.helpers import user_media_path
+from amo.helpers import user_media_path, id_to_path
 from applications.models import Application, AppVersion
 from files import utils
 from files.models import File, Platform, cleanup_file
@@ -45,6 +45,14 @@ class VersionManager(amo.models.ManagerBase):
         return qs.transform(Version.transformer)
 
 
+def source_upload_path(instance, filename):
+    return os.path.join(
+        'version_source',
+        id_to_path(instance.pk),
+        filename
+    )
+
+
 class Version(amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='versions')
     license = models.ForeignKey('License', null=True)
@@ -66,7 +74,7 @@ class Version(amo.models.ModelBase):
     _developer_name = models.CharField(max_length=255, default='',
                                        editable=False)
 
-    source = models.FileField(upload_to='addon_source', null=True, blank=True)
+    source = models.FileField(upload_to=source_upload_path, null=True, blank=True)
 
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
