@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-03 06:14+0000\n"
+"PO-Revision-Date: 2014-08-14 01:55+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407046475.0\n"
+"X-POOTLE-MTIME: 1407981318.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1903,6 +1903,9 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p>請在下方輸入<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，"
+"您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" "
+"id=\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3709,11 +3712,11 @@ msgstr "無法驗證 PayPal 帳號。"
 
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "檢視目前檔案"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:872
 msgid "Invalid version range."
@@ -7742,11 +7745,11 @@ msgstr "如果您的附加元件會從使用者的電腦收集任何資料，您
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "若您的附加元件含有非已知常見程式庫的二進位程式或混淆過的程式碼，請上傳其原始碼供審查。"
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "了解完整的原始碼審查政策。"
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -8167,11 +8170,11 @@ msgstr "可選填，請輸入任何資訊是審核者在審查您的附加元件
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "原始碼"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "若您的附加元件含有二進位程式或混淆過的程式碼，請在此上傳其原始碼供審查。"
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"
@@ -9363,11 +9366,11 @@ msgstr "相容性:"
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "額外的原始碼:"
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Download files"
-msgstr ""
+msgstr "下載檔案"
 
 #: apps/editors/templates/editors/review.html:129
 msgid "This version has not been reviewed."
