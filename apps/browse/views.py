@@ -23,6 +23,8 @@ from translations.query import order_by_translation
 
 languages = dict((lang.lower(), val)
                  for lang, val in product_details.languages.items())
+PAGINATE_PERSONAS_BY = 30
+MIN_COUNT_FOR_LANDING = 4
 
 
 def locale_display_name(locale):
@@ -259,17 +261,6 @@ def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
                    'search_cat': '%s,0' % category.type})
 
 
-def es_category_landing(request, category):
-    # TODO: Match CategoryLandingFilter.
-    qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
-                                is_disabled=False,
-                                status__in=amo.REVIEWED_STATUSES))
-    filter = ESAddonFilter(request, qs, key='sort', default='popular')
-    return render(request, 'browse/impala/category_landing.html',
-                  {'category': category, 'filter': filter,
-                   'search_cat': '%s,0' % category.type})
-
-
 def creatured(request, category):
     TYPE = amo.ADDON_EXTENSION
     q = Category.objects.filter(application=request.APP.id, type=TYPE)
@@ -289,17 +280,22 @@ class PersonasFilter(BaseFilter):
             ('rating', _lazy(u'Top Rated')))
 
     def _filter(self, field):
-        qs = Addon.objects
-        if field == 'created':
-            return qs.order_by('-created')
-        elif field == 'popular':
-            return qs.order_by('-persona__popularity')
-        elif field == 'rating':
-            return qs.order_by('-bayesian_rating')
+        # Special case with dashes.
+        if field == 'up-and-coming':
+            # See bug 944096 related to the popularity.
+            return (self.model.objects.filter(persona__popularity__gte=100)
+                    .order_by('-persona__movers'))
         else:
-            # See bug 944096
-            qs = qs.filter(persona__popularity__gte=100)
-            return qs.order_by('-persona__movers')
+            return super(PersonasFilter, self)._filter(field)
+
+    def filter_created(self):
+        return self.model.objects.order_by('-created')
+
+    def filter_popular(self):
+        return self.model.objects.order_by('-persona__popularity')
+
+    def filter_rating(self):
+        return self.model.objects.order_by('-bayesian_rating')
 
 
 def personas_listing(request, category_slug=None):
@@ -334,8 +330,9 @@ def personas_listing(request, category_slug=None):
 
         base = base.filter(categories__id=cat.id)
 
-    filter = PersonasFilter(request, base, key='sort', default='up-and-coming')
-    return categories, filter, base, cat
+    filter_ = PersonasFilter(request, base, key='sort',
+                             default='up-and-coming')
+    return categories, filter_, base, cat
 
 
 @mobile_template('browse/personas/{mobile/}')
@@ -347,30 +344,41 @@ def personas(request, category=None, template=None):
                   (HttpResponsePermanentRedirect, HttpResponseRedirect)):
         return listing
 
-    categories, filter, base, category = listing
+    categories, filter_, base, cat = listing
 
-    # Pass the count from base instead of letting it come from
-    # filter.qs.count() since that would join against personas.
-    count = category.count if category else base.count()
+    if filter_.field == 'up-and-coming':
+        # Almost hardcoding the number of element because performing
+        # `filter_.qs.count()` is a performance killer. We're still
+        # verifying the `base.count()` for the template switch below.
+        base_count = base.count()
+        count = (base_count if base_count < MIN_COUNT_FOR_LANDING
+                 else PAGINATE_PERSONAS_BY * settings.PERSONA_DEFAULT_PAGES)
+    else:
+        # Pass the count from base instead of letting it come from
+        # filter_.qs.count() since that would join against personas.
+        count = cat.count if cat else base.count()
 
-    if ('sort' not in request.GET and ((request.MOBILE and not category) or
-                                       (not request.MOBILE and count > 4))):
+    addons = amo.utils.paginate(request, filter_.qs, PAGINATE_PERSONAS_BY,
+                                count=count)
+
+    if ('sort' not in request.GET and ((request.MOBILE and not cat) or
+            (not request.MOBILE and count > MIN_COUNT_FOR_LANDING))):
         template += 'category_landing.html'
     else:
         template += 'grid.html'
 
-    addons = amo.utils.paginate(request, filter.qs, 30, count=count)
-    if category:
-        ids = AddonCategory.creatured_random(category, request.LANG)
+    if cat:
+        ids = AddonCategory.creatured_random(cat, request.LANG)
         featured = manual_order(base, ids, pk_name="addons.id")
     else:
         ids = Addon.featured_random(request.APP, request.LANG)
         featured = manual_order(base, ids, pk_name="addons.id")
 
-    ctx = {'categories': categories, 'category': category, 'addons': addons,
-           'filter': filter, 'sorting': filter.field, 'sort_opts': filter.opts,
+    ctx = {'categories': categories, 'category': cat, 'addons': addons,
+           'filter': filter_, 'sorting': filter_.field,
+           'sort_opts': filter_.opts,
            'featured': featured, 'search_cat': 'themes',
-           'is_homepage': category is None and 'sort' not in request.GET}
+           'is_homepage': cat is None and 'sort' not in request.GET}
     return render(request, template, ctx)
 
 

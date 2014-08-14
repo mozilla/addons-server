@@ -6,6 +6,7 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
+from django.test.utils import override_settings
 from django.utils import http as urllib
 
 from jingo.helpers import datetime as datetime_filter
@@ -25,7 +26,9 @@ from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
 from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import feeds
-from browse.views import locale_display_name, AddonFilter, ThemeFilter
+from browse.views import (AddonFilter, locale_display_name,
+                          MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY,
+                          ThemeFilter)
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
@@ -1167,61 +1170,78 @@ class TestPersonas(amo.tests.TestCase):
 
     def setUp(self):
         self.landing_url = reverse('browse.personas')
+        self.upandcoming_url = '{path}?sort=up-and-coming'.format(
+                                path=self.landing_url)
+        self.created_url = '{path}?sort=created'.format(path=self.landing_url)
+        self.grid_template = 'browse/personas/grid.html'
+        self.landing_template = 'browse/personas/category_landing.html'
 
-    def test_personas_grid(self):
-        """Show grid page if there are fewer than 5 Personas."""
-        base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
-                .extra(select={'_app': amo.FIREFOX.id}))
-        eq_(base.count(), 2)
-        r = self.client.get(self.landing_url)
-        self.assertTemplateUsed(r, 'browse/personas/grid.html')
-        eq_(r.status_code, 200)
-        eq_(r.context['is_homepage'], True)
-
-    def test_personas_landing(self):
-        """Show landing page if there are greater than 4 Personas."""
-        for i in xrange(3):
+    def create_personas(self, number, persona_extras=None):
+        persona_extras = persona_extras or {}
+        addon = Addon.objects.get(id=15679)
+        for i in xrange(number):
             a = Addon(type=amo.ADDON_PERSONA)
             a.name = 'persona-%s' % i
             a.all_categories = []
             a.save()
-            v = Version.objects.get(addon=Addon.objects.get(id=15679))
+            v = Version.objects.get(addon=addon)
             v.addon = a
             v.pk = None
             v.save()
-            p = Persona(addon_id=a.id, persona_id=i)
+            p = Persona(addon_id=a.id, persona_id=i, **persona_extras)
             p.save()
             a.persona = p
             a._current_version = v
             a.status = amo.STATUS_PUBLIC
             a.save()
+
+    def test_personas_grid(self):
+        """
+        Show grid page if there are fewer than
+        MIN_COUNT_FOR_LANDING+1 Personas.
+        """
         base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
-                .extra(select={'_app': amo.FIREFOX.id}))
-        eq_(base.count(), 5)
+                             .extra(select={'_app': amo.FIREFOX.id}))
+        eq_(base.count(), 2)
         r = self.client.get(self.landing_url)
-        self.assertTemplateUsed(r, 'browse/personas/category_landing.html')
+        self.assertTemplateUsed(r, self.grid_template)
+        eq_(r.status_code, 200)
+        eq_(r.context['is_homepage'], True)
 
-    def test_personas_category_landing(self):
-        """Ensure we hit a grid page if there's a category and no sorting."""
-        grid = 'browse/personas/grid.html'
-        landing = 'browse/personas/category_landing.html'
+    def test_personas_landing(self):
+        """
+        Show landing page if there are greater than
+        MIN_COUNT_FOR_LANDING popular Personas.
+        """
+        self.create_personas(MIN_COUNT_FOR_LANDING,
+                             persona_extras={'popularity': 100})
+        base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
+                             .extra(select={'_app': amo.FIREFOX.id}))
+        eq_(base.count(), MIN_COUNT_FOR_LANDING + 2)
+        r = self.client.get(self.landing_url)
+        self.assertTemplateUsed(r, self.landing_template)
 
+        # Whatever the `category.count` is.
+        category = Category(type=amo.ADDON_PERSONA, slug='abc',
+            count=MIN_COUNT_FOR_LANDING + 1,
+            application=Application.objects.get(id=amo.FIREFOX.id))
+        category.save()
+        r = self.client.get(self.landing_url)
+        self.assertTemplateUsed(r, self.landing_template)
+
+    def test_personas_grid_sorting(self):
+        """Ensure we hit a grid page if there is a sorting."""
         category = Category(type=amo.ADDON_PERSONA, slug='abc',
             application=Application.objects.get(id=amo.FIREFOX.id))
         category.save()
         category_url = reverse('browse.personas', args=[category.slug])
-
         r = self.client.get(category_url + '?sort=created')
-        self.assertTemplateUsed(r, grid)
+        self.assertTemplateUsed(r, self.grid_template)
 
-        r = self.client.get(category_url)
-        self.assertTemplateUsed(r, grid)
-
-        # Category with 5 add-ons should bring us to a landing page.
-        category.count = 5
-        category.save()
-        r = self.client.get(category_url)
-        self.assertTemplateUsed(r, landing)
+        # Whatever the `category.count` is.
+        category.update(count=MIN_COUNT_FOR_LANDING + 1)
+        r = self.client.get(category_url + '?sort=created')
+        self.assertTemplateUsed(r, self.grid_template)
 
     def test_personas_category_landing_frozen(self):
         # Check to make sure add-on is there.
@@ -1241,16 +1261,41 @@ class TestPersonas(amo.tests.TestCase):
         eq_(personas.length, 1)
 
     def test_only_popular_persona_are_shown_in_up_and_coming(self):
-        url = '{path}?sort=up-and-coming'.format(path=self.landing_url)
-        r = self.client.get(url)
+        r = self.client.get(self.upandcoming_url)
         personas = pq(r.content).find('.persona-preview')
         eq_(personas.length, 2)
         p = Persona.objects.get(pk=559)
         p.popularity = 99
         p.save()
-        r = self.client.get(url)
+        r = self.client.get(self.upandcoming_url)
         personas = pq(r.content).find('.persona-preview')
         eq_(personas.length, 1)
+
+    @override_settings(PERSONA_DEFAULT_PAGES=2)
+    def test_pagination_in_up_and_coming(self):
+        # If the number is < MIN_COUNT_FOR_LANDING + 1 we keep
+        # the base pagination.
+        r = self.client.get(self.upandcoming_url)
+        eq_(str(r.context['addons']), '<Page 1 of 1>')
+        # Otherwise we paginate on 10, hardcoded.
+        self.create_personas(PAGINATE_PERSONAS_BY,
+                             persona_extras={'popularity': 100})
+        r = self.client.get(self.upandcoming_url)
+        eq_(str(r.context['addons']), '<Page 1 of 2>')
+        # Even if the number of retrieved personas is higher than
+        # 10 pages we shouldn't have a bump in page numbers.
+        self.create_personas(
+            PAGINATE_PERSONAS_BY * settings.PERSONA_DEFAULT_PAGES,
+            persona_extras={'popularity': 100})
+        r = self.client.get(self.upandcoming_url)
+        eq_(str(r.context['addons']), '<Page 1 of 2>')
+
+    def test_pagination_in_created(self):
+        r = self.client.get(self.created_url)
+        eq_(str(r.context['addons']), '<Page 1 of 1>')
+        self.create_personas(PAGINATE_PERSONAS_BY)
+        r = self.client.get(self.created_url)
+        eq_(str(r.context['addons']), '<Page 1 of 2>')
 
 
 class TestMobileFeatured(TestMobile):
