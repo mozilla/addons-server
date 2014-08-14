@@ -501,3 +501,18 @@ class TestMediaUrl(amo.tests.TestCase):
         settings.MEDIA_URL = '/mediapath/'
         url = helpers.user_media_url('userpics')
         eq_(url, '/mediapath/userpics/')
+
+
+class TestIdToPath(amo.tests.TestCase):
+
+    def test_with_1_digit(self):
+        eq_(helpers.id_to_path(1), '1/1/1')
+
+    def test_with_2_digits(self):
+        eq_(helpers.id_to_path(12), '2/12/12')
+
+    def test_with_3_digits(self):
+        eq_(helpers.id_to_path(123), '3/23/123')
+
+    def test_with_many_digits(self):
+        eq_(helpers.id_to_path(123456789), '9/89/123456789')

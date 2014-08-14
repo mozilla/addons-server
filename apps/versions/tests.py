@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import hashlib
 
-from datetime import datetime, timedelta
+from datetime import datetime
+
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_
@@ -727,6 +729,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
+@override_settings(XSENDFILE=True)
 class TestDownloadSource(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/admin', ]
 
@@ -750,6 +753,8 @@ class TestDownloadSource(amo.tests.TestCase):
         self.client.login(username=self.user.email, password="password")
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
+        assert response[settings.XSENDFILE_HEADER]
+        eq_(response[settings.XSENDFILE_HEADER], self.version.source.path)
 
     def test_anonymous_should_not_be_allowed(self):
         response = self.client.get(self.url)
@@ -760,6 +765,8 @@ class TestDownloadSource(amo.tests.TestCase):
         self.client.login(username=self.user.email, password="password")
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
+        assert response[settings.XSENDFILE_HEADER]
+        eq_(response[settings.XSENDFILE_HEADER], self.version.source.path)
 
     def test_no_source_should_go_in_404(self):
         self.version.source = None
