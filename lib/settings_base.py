@@ -386,6 +386,7 @@ INSTALLED_APPS = (
     'jingo_minify',
     'localizers',
     'lib.es',
+    'moz_header',
     'pages',
     'perf',
     'product_details',
@@ -470,7 +471,8 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
-            'css/global/headerfooter.css',
+            'moz_header/header.css',
+            'moz_header/footer.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
             'css/impala/formset.less',
@@ -487,7 +489,8 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/impala/site.less',
             'css/impala/typography.less',
-            'css/global/headerfooter.css',
+            'moz_header/header.css',
+            'moz_header/footer.css',
             'css/impala/forms.less',
             'css/common/invisible-upload.less',
             'css/impala/header.less',
@@ -657,7 +660,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/outgoing_links.js',
 
             # Hover delay for global header
-            'js/global/menu.js',
+            'moz_header/menu.js',
 
             # Password length and strength
             'js/zamboni/password-strength.js',
