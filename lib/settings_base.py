@@ -1208,6 +1208,10 @@ PERFORMANCE_NOTES = False
 # If slowness of addon is THRESHOLD percent slower, show a warning.
 PERF_THRESHOLD = 25
 
+# Performance for persona pagination, we hardcode the number of
+# available pages when the filter is up-and-coming.
+PERSONA_DEFAULT_PAGES = 10
+
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
