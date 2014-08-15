@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-07-11 19:57+0000\n"
+"PO-Revision-Date: 2014-08-15 09:45+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405108628.0\n"
+"X-POOTLE-MTIME: 1408095925.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -56,89 +57,93 @@ msgstr "Додати до {0}"
 
 #: apps/addons/forms.py:48
 msgid "This name is already in use. Please choose another."
-msgstr ""
+msgstr "Це ім'я вже використовується. Виберіть будь ласка інше."
 
 #: apps/addons/forms.py:59
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Це закінчення вже використовується. Виберіть будь ласка інше."
 
 #: apps/addons/forms.py:62
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Закінчення не може бути \"%s\". Виберіть будь ласка інше."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:81
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Недійсна мітка: {0}"
+msgstr[1] "Недійсні мітки: {0}"
+msgstr[2] "Недійсні мітки: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:91
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "\"{0}\" є зарезервованою міткою і не може використовуватись."
+msgstr[1] "\"{0}\" є зарезервованими мітками і не можуть використовуватись."
+msgstr[2] "\"{0}\" є зарезервованими мітками і не можуть використовуватись."
 
 #: apps/addons/forms.py:99
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "У вас на {0} мітку більше допустимого."
+msgstr[1] "У вас на {0} мітки більше допустимого."
+msgstr[2] "У вас на {0} міток більше допустимого."
 
 #: apps/addons/forms.py:104
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
+"Довжина всіх міток не повинна перевищувати %s символів після того, як "
+"вилучено заборонені символи."
 
 #: apps/addons/forms.py:108
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Довжина всіх міток повинна бути не меншою {0} символу."
+msgstr[1] "Довжина всіх міток повинна бути не меншою {0} символи."
+msgstr[2] "Довжина всіх міток повинна бути не меншою {0} символів."
 
 #: apps/addons/forms.py:223
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Категорії не можна змінити поки ваш додаток вибрано для цієї програми."
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:227
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "У вас може бути лише {0} категорія."
+msgstr[1] "У вас може бути лише {0} категорії."
+msgstr[2] "У вас може бути лише {0} категорій."
 
 #: apps/addons/forms.py:235
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Категорія Різне не може бути об'єднана з додатковими категоріями."
 
 #: apps/addons/forms.py:358
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr ""
+"Перед зміною вашої типової локалі, ви повинні мати ім'я, коротку інформацію "
+"і опис на цій локалі. Вам не вистачає %s."
 
 #: apps/addons/forms.py:471 apps/addons/forms.py:560
 msgid "A license must be selected."
-msgstr ""
+msgstr "Повинна бути вибрана ліцензія."
 
 #: apps/addons/forms.py:541
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Дайте назву своїй темі."
 
 #: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Опишіть свою тему."
 
 #: apps/addons/forms.py:688
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Введіть нову адресу електронної пошти автора"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Не переглянуто"
 
 #: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
@@ -154,6 +159,7 @@ msgstr "Користувачі можуть зробити внесок, біл�
 #: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr ""
+"Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище)"
 
 #: apps/addons/models.py:1893
 msgid "Listed"
@@ -161,7 +167,7 @@ msgstr "У списку"
 
 #: apps/addons/views.py:319 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
-msgstr ""
+msgstr "Популярні"
 
 #: apps/addons/views.py:320 apps/browse/views.py:233 apps/browse/views.py:287 apps/browse/views.py:466
 msgid "Recently Added"
@@ -169,7 +175,7 @@ msgstr "Додані недавно"
 
 #: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:17 apps/search/forms.py:92
 msgid "Recently Updated"
-msgstr ""
+msgstr "Нещодавно оновлені"
 
 #: apps/addons/views.py:502
 msgid "Contribution for {0}"
@@ -177,11 +183,11 @@ msgstr "Внесок до {0}"
 
 #: apps/addons/views.py:590
 msgid "Abuse reported."
-msgstr ""
+msgstr "Скаргу відправлено."
 
 #: apps/addons/widgets.py:50
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Мій додаток не підходить жодній з категорій"
 
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:72
 msgid "Other add-ons by %(author)s"
@@ -197,15 +203,15 @@ msgstr "Заслати"
 
 #: apps/addons/templates/addons/button.html:27 apps/addons/templates/addons/impala/button.html:11 apps/addons/templates/addons/mobile/button.html:11
 msgid "No compatible versions"
-msgstr ""
+msgstr "Немає сумісних версій"
 
 #: apps/addons/templates/addons/button.html:35 apps/addons/templates/addons/impala/button.html:19
 msgid "Added to Mobile"
-msgstr ""
+msgstr "Додано до у Мобільні"
 
 #: apps/addons/templates/addons/button.html:37 apps/addons/templates/addons/impala/button.html:21
 msgid "Add to Mobile"
-msgstr ""
+msgstr "Додати у Мобільні"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: apps/addons/templates/addons/button.html:66 apps/addons/templates/addons/includes/install_button.html:19
@@ -219,15 +225,19 @@ msgstr "Ознайомитися з політикою конфіденційн�
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Переглянути ліцензійну угоду кінцевого користувача"
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr ""
+"Цей додаток не був перевірений Mozilla. <a href=\"%(url)s\">Дізнатись "
+"більше</a>"
 
 #: apps/addons/templates/addons/button.html:97 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr ""
+"Цей додаток пройшов попередній розгляд Mozilla. <a href=\"%(url)s\">Дізнатись "
+"більше</a>"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -246,9 +256,9 @@ msgstr[2] "<strong>{0}</strong> додатків"
 #: apps/addons/templates/addons/collections_sidebar.html:29
 msgid "<span>{0}</span> follower"
 msgid_plural "<span>{0}</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>{0}</span> прихильник"
+msgstr[1] "<span>{0}</span> прихильника"
+msgstr[2] "<span>{0}</span> прихильників"
 
 #: apps/addons/templates/addons/collections_teaser.html:7
 msgid "Introduction"
@@ -260,7 +270,7 @@ msgstr "Що таке додатки?"
 
 #: apps/addons/templates/addons/collections_teaser.html:19
 msgid "Extras"
-msgstr ""
+msgstr "Додатково"
 
 #: apps/addons/templates/addons/collections_teaser.html:22
 msgid "<strong>Over 5000 free extras</strong> that let you customize and extend Firefox to meet your needs."
@@ -277,7 +287,7 @@ msgstr "<strong>Більш ніж 5000 безплатних додатків</st
 #: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
-msgstr ""
+msgstr "Теми"
 
 #: apps/addons/templates/addons/collections_teaser.html:33
 msgid "Toolbars, themes and search providers that <strong>help you perform common tasks.</strong>"
@@ -348,7 +358,7 @@ msgstr "Завдання Mozilla - підтримувати здорову та 
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr ""
+msgstr "Зробити внесок"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
@@ -419,12 +429,12 @@ msgstr ""
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
-msgstr ""
+msgstr "Не потребує перезапуску"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:30 apps/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Інформація додатку для {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:443 apps/devhub/views.py:70
@@ -443,7 +453,7 @@ msgstr "Працює з"
 
 #: apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Необхідні додатки"
 
 #: apps/addons/templates/addons/details_box.html:73 apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
@@ -462,11 +472,11 @@ msgstr "Переглянути статистику"
 
 #: apps/addons/templates/addons/details_box.html:89
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Середня кількість щоденних користувачів"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Скарги"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
@@ -476,7 +486,7 @@ msgstr "Політика конфіденційності"
 
 #: apps/addons/templates/addons/details_box.html:115 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Переглянути політику приватності"
 
 #: apps/addons/templates/addons/details_box.html:121
 msgid "EULA"
@@ -497,36 +507,44 @@ msgstr "Коментарі Розробника"
 
 #: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
-msgstr ""
+msgstr "Канал розробки"
 
 #: apps/addons/templates/addons/details_box.html:193 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
+"Канал розробки дає вам змогу випробувати експериментальну версію цього "
+"додатку перед його випуском для всіх. Після встановлення експериментальної "
+"версії ви будете надалі отримувати оновлення з цього каналу."
 
 #: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
-msgstr ""
+msgstr "Встановити експериментальну версію"
 
 #: apps/addons/templates/addons/details_box.html:202
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"<strong>Обережно:</strong> Експериментальні версії цього додатку не були "
+"розглянути Mozilla. Після встановлення експериментальної версії ви будете "
+"надалі отримувати експериментальні оновлення від цього розробника. Щоб "
+"припинити отримання експериментальних оновлень, перевстановіть типову версію "
+"за вищевказаним посиланням."
 
 #: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
-msgstr ""
+msgstr "Версія {0}:"
 
 #: apps/addons/templates/addons/details_box.html:225
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "Тут нічого дивитись! Розробник не включив жодних деталей."
 
 #: apps/addons/templates/addons/details_box.html:242
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "Примітки до версії"
 
 #: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
@@ -536,17 +554,17 @@ msgstr "автор"
 
 #: apps/addons/templates/addons/disabled.html:23 apps/addons/templates/addons/impala/disabled.html:17
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Цей додаток був вилучений автором."
 
 #: apps/addons/templates/addons/disabled.html:25 apps/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Цей додаток був відключений адміністратором."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: apps/addons/templates/addons/eula.html:6 apps/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Ліцензійна угода з кінцевим користувачем для {0}"
 
 #: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
@@ -559,7 +577,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Повернутися до {0}..."
 
 #: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
@@ -571,21 +589,21 @@ msgstr ""
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Популярні розширення"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
 #: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:231 apps/browse/views.py:288 apps/browse/views.py:465
 msgid "Most Popular"
-msgstr ""
+msgstr "Найпопулярніші"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "Всі »"
 
 #: apps/addons/templates/addons/home.html:52 apps/addons/templates/addons/home.html:61 apps/addons/templates/addons/home.html:70 apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "Дивитися всі »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -629,9 +647,9 @@ msgstr[2] ""
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s користувач"
+msgstr[1] "%(num)s користувача"
+msgstr[2] "%(num)s користувачів"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
@@ -645,30 +663,30 @@ msgstr[2] "{0} завантаженнь щотижня"
 #: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} користувач"
+msgstr[1] "{0} користувача"
+msgstr[2] "{0} користувачів"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Платіж скасовано"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Платіж завершено"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
-msgstr ""
+msgstr "Повернутися до додатку."
 
 #: apps/addons/templates/addons/performance_note.html:4 apps/addons/templates/addons/performance_note.html:22 apps/addons/templates/addons/impala/performance_note.html:4
 #: apps/addons/templates/addons/impala/performance_note.html:20
 msgid "This add-on can slow down Firefox."
-msgstr ""
+msgstr "Цей додаток може сповільнити Firefox."
 
 #: apps/addons/templates/addons/performance_note.html:5 apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr ""
+msgstr "Більше&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
@@ -677,21 +695,23 @@ msgstr ""
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
 msgid "Learn more&hellip;"
-msgstr ""
+msgstr "Дізнатись більше&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23 apps/addons/templates/addons/impala/performance_note.html:22
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
 msgstr ""
+"Встановлення цього додатку може сповільнити запуск Firefox на <b>%(amount)s%"
+"%</b>."
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Більше тем {0}"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Дивитися всі теми {0}"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -728,19 +748,19 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
 msgid "Rejected"
-msgstr ""
+msgstr "Відхилено"
 
 #: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157
 msgid "Approved"
-msgstr ""
+msgstr "Схвалено"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:36 apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<strong>{0}</strong> користувач"
+msgstr[1] "<strong>{0}</strong> користувача"
+msgstr[2] "<strong>{0}</strong> користувачів"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
@@ -748,7 +768,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
-msgstr ""
+msgstr "Додати"
 
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
@@ -778,10 +798,12 @@ msgstr "<b>{0}</b> користувачів"
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
+"Щоб встановити цей додаток, а також тисячі інших, <b>встановіть Firefox</b>, "
+"безплатний та відкритий веб-браузер від Mozilla."
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Дізнатись більше про Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
@@ -799,7 +821,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Дізнатись більше про Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -819,16 +841,18 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Допоможіть випробувати нові версії Firefox"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
 msgstr ""
+"Цей додаток потребує %(app)s {new_version}. Зараз ви використовуєте %(app)s "
+"{old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "Оновити {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
@@ -852,20 +876,20 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Переглянути інші версії"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Цей додаток несумісний з вашою версією %(app)s."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Політика приватності для {0}"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "QR-код для додатку"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
@@ -874,7 +898,7 @@ msgstr ""
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
-msgstr ""
+msgstr "Надіслати скаргу"
 
 #: apps/addons/templates/addons/report_abuse.html:10
 msgid ""
@@ -884,7 +908,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/report_abuse.html:23 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
-msgstr ""
+msgstr "Надіслати звіт"
 
 #: apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
@@ -899,7 +923,7 @@ msgstr "Скасувати"
 
 #: apps/addons/templates/addons/report_abuse_full.html:3
 msgid "Report abuse for {0}"
-msgstr ""
+msgstr "Подати скаргу на {0}"
 
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
@@ -907,7 +931,7 @@ msgstr "Що скажете?"
 
 #: apps/addons/templates/addons/review_add_box.html:8 apps/addons/templates/addons/impala/review_add_box.html:10
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Будь ласка <a href=\"%(login)s\">увійдіть</a>, щоб залишити відгук"
 
 #: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
@@ -920,7 +944,7 @@ msgstr "Рейтинг:"
 #: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/add.html:63
 #: apps/reviews/templates/reviews/edit_review.html:15 apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr ""
+msgstr "Відправити відгук"
 
 #: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:26
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
@@ -955,9 +979,9 @@ msgstr ""
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Дивитися всі відгуки для цього додатку"
+msgstr[1] "Дивитися всі %(cnt)s відгуки для цього додатку"
+msgstr[2] "Дивитися всі %(cnt)s відгуків для цього додатку"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -994,11 +1018,11 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "Написати відгук"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Пов'язані категорії"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Often used with&hellip;"
@@ -1017,11 +1041,11 @@ msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
-msgstr ""
+msgstr "Переглянути статистику"
 
 #: apps/addons/templates/addons/impala/details.html:87
 msgid "Manage"
-msgstr ""
+msgstr "Керувати"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
@@ -1030,7 +1054,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "Без перезапуску"
 
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
@@ -1050,19 +1074,19 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
-msgstr ""
+msgstr "Домашня сторінка додатку"
 
 #: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
-msgstr ""
+msgstr "Сайт підтримки"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
-msgstr ""
+msgstr "Електронна пошта підтримки"
 
 #: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
 msgid "Version {0}"
-msgstr ""
+msgstr "Версія {0}"
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
@@ -1083,40 +1107,46 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
-msgstr ""
+msgstr "Про цей додаток"
 
 #: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Коментарі розробника"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
-msgstr ""
+msgstr "Інформація про версію"
 
 #: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
-msgstr ""
+msgstr "Подивитися повну історію версій"
 
 #: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Канал розробника дозволяє вам випробувати експериментальну нову версію цього "
+"додатку перед його виходом у загал. Після встановлення експериментальної "
+"версії ви надалі будете отримувати оновлення з цього каналу. Щоб припинити "
+"експериментальні оновлення, перевстановіть типову версію за посиланням вище."
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
+"<strong>Обережно:</strong> Експериментальна версія цього додатку не була "
+"переглянута Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
-msgstr ""
+msgstr "закрити"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:9
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "Дякуємо за встановлення {0}"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:12
@@ -1140,17 +1170,17 @@ msgstr "Що новенького для {0}"
 #: apps/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Про розробника"
+msgstr[1] "Про розробників"
+msgstr[2] "Про розробників"
 
 #: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:116 apps/users/templates/users/profile.html:29
 msgid "No Photo"
-msgstr ""
+msgstr "Немає фото"
 
 #: apps/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Хто такий {0}?"
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
@@ -1166,7 +1196,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16 apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} користувачів"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
@@ -1189,15 +1219,15 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "Станьте першим!"
 
 #: apps/addons/templates/addons/impala/listing/sorter.html:14 apps/devhub/templates/devhub/addons/listing/item_actions.html:49 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:36
 msgid "More"
-msgstr ""
+msgstr "Більше"
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7 apps/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr ""
+msgstr "Додати в збірку"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
@@ -1205,19 +1235,19 @@ msgstr "Мої додатки"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:66
 msgid "My Themes"
-msgstr ""
+msgstr "Мої теми"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "Додати до Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Редагувати тему"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Схвалити / Відхилити"
 
 #: apps/addons/templates/addons/includes/persona.html:25 apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
@@ -1257,11 +1287,11 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Користувачі"
 
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:91
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Щотижневі завантаження"
 
 #: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
@@ -1270,31 +1300,31 @@ msgstr "Версія"
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Примітки до версії)"
 
 #: apps/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
-msgstr ""
+msgstr "Дивитися всі версії"
 
 #: apps/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "Переглянути експериментальну версію"
 
 #: apps/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr ""
+msgstr "Обережно"
 
 #: apps/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "Відвідати сайт підтримки"
 
 #: apps/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Задати питання автору"
 
 #: apps/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
-msgstr ""
+msgstr "Ліцензійна угода"
 
 #: apps/addons/templates/addons/mobile/eula.html:5
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
@@ -1343,16 +1373,16 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:65
 msgid "More Add-ons"
-msgstr ""
+msgstr "Більше додатків"
 
 #: apps/addons/templates/addons/mobile/home.html:68 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:15
 msgid "Highest Rated"
-msgstr "Найпопулярніші"
+msgstr "Найвище оцінені"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:89
 #: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:88
 msgid "Newest"
-msgstr ""
+msgstr "Найновіші"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
@@ -1368,7 +1398,7 @@ msgstr "Інструменти"
 
 #: apps/amo/context_processors.py:63 apps/discovery/templates/discovery/pane_account.html:8 apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Мій профіль"
 
 #: apps/amo/context_processors.py:69 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
@@ -1392,17 +1422,17 @@ msgstr ""
 
 #: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Відправити новий додаток"
 
 #: apps/amo/context_processors.py:92 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Відправити нову тему"
 
 #: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "Центр розробника"
 
 #: apps/amo/context_processors.py:99 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
@@ -1410,7 +1440,7 @@ msgstr "Інструменти редактора"
 
 #: apps/amo/context_processors.py:102
 msgid "Localizer Tools"
-msgstr ""
+msgstr "Інструменти локалізатора"
 
 #: apps/amo/context_processors.py:106
 msgid "Admin Tools"
@@ -1474,11 +1504,11 @@ msgstr ""
 
 #: apps/amo/log.py:65 apps/amo/log.py:415
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} відключено."
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} включено."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
@@ -1540,23 +1570,23 @@ msgstr ""
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} відхилено."
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} утримано."
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "Утримано"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} передано вище."
 
 #: apps/amo/log.py:198
 msgid "Escalated"
-msgstr ""
+msgstr "Передано вище"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
@@ -1601,11 +1631,11 @@ msgstr ""
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} додано до {collection}."
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} вилучено з {collection}."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
@@ -1681,11 +1711,11 @@ msgstr ""
 
 #: apps/amo/log.py:367
 msgid "Password changed."
-msgstr ""
+msgstr "Пароль змінено."
 
 #: apps/amo/log.py:372
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "{addon} не пройшов перевірку в PayPal."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
@@ -1697,19 +1727,19 @@ msgstr ""
 
 #: apps/amo/log.py:384
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Схвалено, але очікує"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} куплено."
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} встановлено."
 
 #: apps/amo/log.py:402
 msgid "Account updated."
-msgstr ""
+msgstr "Обліковий запис оновлений."
 
 #: apps/amo/log.py:407
 msgid "Escalation cleared for {addon}."
@@ -1765,7 +1795,7 @@ msgstr ""
 
 #: apps/amo/log.py:473
 msgid "Created: {0}."
-msgstr ""
+msgstr "Створено: {0}."
 
 #: apps/amo/log.py:479
 msgid "Edited field: {2} set to: {0}."
@@ -1967,7 +1997,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Мобільні додатки"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:163 templates/menu_links.html:10
 msgid "Search Tools"
@@ -1976,23 +2006,23 @@ msgstr "Пошукові інструменти"
 #. This is a page range (e.g., Page 1 of 50).
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Сторінка <a href=\"%(current_pg_url)s\">%(current_pg)s</a> із <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 apps/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr ""
+msgstr "Перейти на першу сторінку"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:48 apps/stats/templates/stats/stats.html:156
 msgid "Previous"
-msgstr "Попередній"
+msgstr "Попередня"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
 #.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Показано <b>%(begin)s</b>&ndash;<b>%(end)s</b> із <b>%(count)s</b>"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
@@ -2008,19 +2038,19 @@ msgstr ""
 #: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54
 msgid "Body"
-msgstr ""
+msgstr "Вміст"
 
 #: apps/amo/tests/test_messages.py:55
 msgid "Another Title"
-msgstr ""
+msgstr "Інший заголовок"
 
 #: apps/amo/tests/test_messages.py:55
 msgid "Another Body"
-msgstr ""
+msgstr "Інший вміст"
 
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:56
@@ -2619,7 +2649,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:7
 msgid "Newest Collections"
-msgstr ""
+msgstr "Найновіші збірки"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
@@ -2635,7 +2665,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
-msgstr ""
+msgstr "Підписатись"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
@@ -2792,12 +2822,12 @@ msgstr ""
 
 #: apps/browse/views.py:54 apps/browse/views.py:64 apps/search/forms.py:86
 msgid "Most Users"
-msgstr ""
+msgstr "Найбільше користувачів"
 
 #: apps/browse/views.py:60 apps/browse/views.py:71 apps/browse/views.py:286 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:93
 msgid "Up & Coming"
-msgstr ""
+msgstr "Незабаром з'являться"
 
 #: apps/browse/views.py:444 apps/devhub/views.py:71
 msgid "Created"
@@ -2937,7 +2967,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Найновіші розширення"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
@@ -2970,7 +3000,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Найновіші повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
@@ -4527,7 +4557,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/activity.html:83 apps/devhub/templates/devhub/addons/dashboard.html:34 apps/devhub/templates/devhub/addons/dashboard.html:35
 #: apps/devhub/templates/devhub/includes/blog_posts.html:4 apps/devhub/templates/devhub/includes/blog_posts.html:6
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Підписатись на цю стрічку"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:7
 msgid ""
@@ -6056,7 +6086,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
 msgid "Developing Add-ons for Mobile"
-msgstr ""
+msgstr "Розробка мобільних додатків"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:82
 msgid "Mobile Architecture"
@@ -11778,15 +11808,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Підписники"
 
 #: apps/stats/templates/stats/collection_report_menu.html:12
 msgid "Ratings"
-msgstr ""
+msgstr "Оцінки"
 
 #: apps/stats/templates/stats/dashboard.html:3
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Статистика додатку"
 
 #: apps/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
@@ -12044,7 +12074,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Підписники за датою"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
