@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-07-19 03:51+0000\n"
-"Last-Translator: Shen <steekid@icloud.com>\n"
+"PO-Revision-Date: 2014-08-18 01:31+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405741917.0\n"
+"X-POOTLE-MTIME: 1408325492.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1900,6 +1900,9 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔应使用空格分开</strong>。</p> <p> "
+"如果这很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">尝试下一组文字</a>或者<a href=\"#\" "
+"id=\"recaptcha_audio\">另一种验证方式</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3696,11 +3699,11 @@ msgstr "无法验证 PayPal 账户。"
 
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩文件。"
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "查看当前"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:872
 msgid "Invalid version range."
@@ -7728,11 +7731,11 @@ msgstr "如果您的附加组件会从用户的电脑中传出任何的数据，
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "如果您的附加组件包含非已知常见程序库的二进制文件或者混淆过的代码，请上传其源代码以供审查。"
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "详细了解源代码审查政策。"
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -8146,11 +8149,11 @@ msgstr "选填，请输入任何可能有助于审核员审核此附加组件的
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "源代码"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "如果您的附加组件包含二进制文件或者混淆过的代码，请在此上传其源代码以供审查。"
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"
@@ -9324,11 +9327,11 @@ msgstr "兼容性："
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "额外的源代码："
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Download files"
-msgstr ""
+msgstr "下载文件"
 
 #: apps/editors/templates/editors/review.html:129
 msgid "This version has not been reviewed."
@@ -10797,7 +10800,9 @@ msgstr "<a href=\"%(browse_url)s\">完整主题</a></strong>更改 %(app_name)s 
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">主题</a></strong>完整主题的简化版，使用背景图片定制您的 %(app_name)s 工具栏。"
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">主题</a></strong>是完整主题的简化版，它使用背景图片定制您的 %"
+"(app_name)s 工具栏。"
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -11849,27 +11854,27 @@ msgstr "概览"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr "按来源"
+msgstr "依照来源"
 
 #: apps/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
-msgstr "根据附加组件版本"
+msgstr "依照附加组件版本"
 
 #: apps/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
-msgstr "根据应用程序"
+msgstr "依照应用程序"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
-msgstr "根据语言"
+msgstr "依照语言"
 
 #: apps/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr "按平台"
+msgstr "依照平台"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
-msgstr "根据附加组件状态"
+msgstr "依照附加组件状态"
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
@@ -12009,7 +12014,7 @@ msgstr "没有可用数据。"
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
-msgstr "这个仪表板目前是 <b>公开显示的</b>。"
+msgstr "这个仪表板目前是<b>公开显示的</b>。"
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
@@ -12017,7 +12022,7 @@ msgstr "贡献统计目前是<b>私密的</b>。"
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr "这个仪表板目前是<b>私有的</b>。"
+msgstr "这个仪表板目前是<b>私密的</b>。"
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
@@ -12025,39 +12030,39 @@ msgstr "更改设置。"
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
-msgstr "按日期的附加组件创建"
+msgstr "依照日期统计的附加组件创建"
 
 #: apps/stats/templates/stats/reports/addons_downloaded.html:3
 msgid "Add-ons Downloaded by Date"
-msgstr "按日期的附加组件下载"
+msgstr "依照日期统计的附加组件下载"
 
 #: apps/stats/templates/stats/reports/addons_in_use.html:3
 msgid "Add-ons in Use by Date"
-msgstr "按日期的附加组件使用"
+msgstr "依照日期统计的附加组件使用"
 
 #: apps/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
-msgstr "按日期的附加组件更新"
+msgstr "依照日期统计的附加组件更新"
 
 #: apps/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr "按日期统计应用的使用"
+msgstr "依照日期统计的应用程序使用"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
-msgstr "按日期的收藏集创建"
+msgstr "依照日期统计的收藏集创建"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr "按日期显示贡献"
+msgstr "依照日期统计的贡献"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr "按日期的下载"
+msgstr "依照日期统计的下载"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr "下载量是如何计算的？"
+msgstr "下载量是怎么计算的？"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -12067,11 +12072,11 @@ msgstr "<h2>下载量是怎么计算的？</h2> <p> 下载量信息每天晚上�
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr "按日期统计用户语言"
+msgstr "依照日期统计的用户语言"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr "按日期统计使用平台"
+msgstr "依照日期统计的使用平台"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -12095,7 +12100,7 @@ msgstr "查看更多应用程序&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr "置顶语言"
+msgstr "热门语言"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
@@ -12111,15 +12116,15 @@ msgstr "查看更多平台&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr "按日期的评分"
+msgstr "依照日期统计的评分"
 
 #: apps/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr "按日期的评论创建"
+msgstr "依照日期统计的评论创建"
 
 #: apps/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr "按日期统计下载来源"
+msgstr "依照日期统计的下载来源"
 
 #: apps/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
@@ -12140,15 +12145,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "按日期统计的附加组件状态"
+msgstr "依照日期统计的附加组件状态"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr "按日期的订阅者"
+msgstr "依照日期统计的订阅者"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr "按日期统计每日用户"
+msgstr "依照日期统计的每日用户"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
@@ -12169,11 +12174,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr "按日期的用户登录"
+msgstr "依照日期统计的用户注册"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr "按日期统计应用程序版本"
+msgstr "依照日期统计的应用程序版本"
 
 # {0} is a number
 #: apps/tags/templates/tags/top_cloud.html:4
