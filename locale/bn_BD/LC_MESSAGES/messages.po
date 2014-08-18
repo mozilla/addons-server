@@ -3,250 +3,265 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-08-17 21:37+0000\n"
+"Last-Translator: Zobayer Ahmed <zobayer_mc@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1408311475.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
-msgstr ""
+msgstr "ডাউনলোড করুন"
 
 #: apps/addons/buttons.py:187
 msgid "Download"
-msgstr ""
+msgstr "ডাউনলোড"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: apps/addons/buttons.py:191
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr ""
+msgstr "ডাউনলোড বহাল রাখুন"
 
 #: apps/addons/buttons.py:207
 msgctxt "install_button"
 msgid "Featured"
-msgstr ""
+msgstr "নির্বাচিত"
 
 #: apps/addons/buttons.py:212
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "পর্যালোচিত হয়নি"
 
 #: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "পরীক্ষামূলক"
 
 #: apps/addons/buttons.py:226
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} তে যুক্ত করুন"
 
 #: apps/addons/forms.py:48
 msgid "This name is already in use. Please choose another."
-msgstr ""
+msgstr "নামটি ইতিমধ্যে ব্যবহৃত হয়েছে। অনুগ্রহ করে অন্য একটি নাম নির্বাচন করুন।"
 
 #: apps/addons/forms.py:59
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "স্লাগটি ইতিমধ্যে ব্যবহৃত হয়েছে। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
 
 #: apps/addons/forms.py:62
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "স্লাগটি \"%s\" করা যাচ্ছে না। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:81
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "অকার্যকর ট্যাগ: {0}"
+msgstr[1] "অকার্যকর ট্যাগ: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:91
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
+msgstr[1] "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
 
 #: apps/addons/forms.py:99
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার খুব বেশি {0} ট্যাগ হয়েছে।"
+msgstr[1] "আপনার খুব বেশি {0} ট্যাগ হয়েছে।"
 
 #: apps/addons/forms.py:104
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "অকার্যকর অক্ষর বাদ দেয়ার পরও সকল ট্যাগ %s অক্ষর বা তার কম হতে হবে।"
 
 #: apps/addons/forms.py:108
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
+msgstr[1] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
 
 #: apps/addons/forms.py:223
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
+"যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী "
+"পরিবর্তন করা যাবে না।"
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:227
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার কেবলমাত্র {0} টি বিষয়শ্রেণী রয়েছে।"
+msgstr[1] "আপনার কেবলমাত্র {0} টি বিষয়শ্রেণী রয়েছে।"
 
 #: apps/addons/forms.py:235
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "বিবিধ বিষয়শ্রেণী বাড়তি বিষয়শ্রেণীর সাথে মেশানো যাবে না।"
 
 #: apps/addons/forms.py:358
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr ""
+"পূর্বনির্ধারিত লোকেল পরিবর্তন করার পূর্বে আপনার অবশ্যই ঐ লোকেলে একটি নাম, "
+"সারসংক্ষেপ ও বিবরণ থাকতে হবে। আপনার %s বাদ পরেছে।"
 
 #: apps/addons/forms.py:471 apps/addons/forms.py:560
 msgid "A license must be selected."
-msgstr ""
+msgstr "একটি লাইসেন্স অবশ্যই নির্বাচন করতে হবে।"
 
 #: apps/addons/forms.py:541
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "আপনার থিমের একটি নাম দিন।"
 
 #: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "আপনার থিমটির বর্ণনা দিন।"
 
 #: apps/addons/forms.py:688
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "একজন নতুন সম্পাদকের ইমেল ঠিকানা প্রবেশ করান"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
-msgstr ""
+msgstr "পর্যালোচিত হয় নি"
 
+# ডেলটা, selected হলো নির্বাচিত।
 #: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:53 apps/browse/views.py:67 apps/browse/views.py:230 apps/browse/views.py:441
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr ""
+msgstr "বৈশিষ্ট্যপূর্ণ"
 
 #: apps/addons/models.py:310
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
+msgstr "ব্যবহারকারীদের এর থেকে বেশি বা কম অবদান রাখার সুযোগ রয়েছে।"
 
 #: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr ""
+"ব্যবহারকারীরা অ্যাড-অনস ম্যানেজারে সর্বদা জিজ্ঞাসিত হবে (ফায়ারফক্স ৪ ও "
+"অধিকের ক্ষেত্রে)"
 
 #: apps/addons/models.py:1893
 msgid "Listed"
-msgstr ""
+msgstr "তালিকাভুক্ত"
 
 #: apps/addons/views.py:319 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
-msgstr ""
+msgstr "জনপ্রিয়"
 
 #: apps/addons/views.py:320 apps/browse/views.py:233 apps/browse/views.py:287 apps/browse/views.py:466
 msgid "Recently Added"
-msgstr ""
+msgstr "সম্প্রতি যোগ করা হয়েছে"
 
 #: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:17 apps/search/forms.py:92
 msgid "Recently Updated"
-msgstr ""
+msgstr "সম্প্রতি হাল নাগাদ করা হয়েছে"
 
 #: apps/addons/views.py:502
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "{0} এর জন্য অনুদান"
 
 #: apps/addons/views.py:590
 msgid "Abuse reported."
-msgstr ""
+msgstr "অপব্যবহার রিপোর্ট করা হয়েছে।"
 
 #: apps/addons/widgets.py:50
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "আমার অ্যাড-অনটি কোন বিষয়শ্রেণীর সাথে মানায় না"
 
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:72
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(author)s অনান্য এড অনস"
+msgstr[1] "এই অথরস এর অনান্য এড অনস"
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
 msgid "Go"
-msgstr ""
+msgstr "চলুন"
 
 #: apps/addons/templates/addons/button.html:27 apps/addons/templates/addons/impala/button.html:11 apps/addons/templates/addons/mobile/button.html:11
 msgid "No compatible versions"
-msgstr ""
+msgstr "কোন সামঞ্জস্যপূর্ণ সংস্করণ নেই"
 
 #: apps/addons/templates/addons/button.html:35 apps/addons/templates/addons/impala/button.html:19
 msgid "Added to Mobile"
-msgstr ""
+msgstr "মোবাইলে যুক্ত করা হয়েছে"
 
 #: apps/addons/templates/addons/button.html:37 apps/addons/templates/addons/impala/button.html:21
 msgid "Add to Mobile"
-msgstr ""
+msgstr "মোবাইলে যুক্ত করুন"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: apps/addons/templates/addons/button.html:66 apps/addons/templates/addons/includes/install_button.html:19
 msgid "for {0}"
-msgstr ""
+msgstr "{0} এর জন্য"
 
 #: apps/addons/templates/addons/button.html:82 apps/addons/templates/addons/mobile/button.html:28
 msgid "View privacy policy"
-msgstr ""
+msgstr "গোপনীয়তার নীতি দেখুন"
 
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট দেখুন"
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr ""
+"এই অ্যাড-অনটি মজিলা কর্তৃক পর্যালোচনা করা হয় নি।  <a href=\"%"
+"(url)s\">বিস্তারিত</a>"
 
 #: apps/addons/templates/addons/button.html:97 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr ""
+"এই অ্যাড-অনটি মজিলা কর্তৃক প্রাথমিকভাবে পর্যালোচনা করা হয়েছে। <a href=\"%"
+"(url)s\">বিস্তারিত</a>"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
 msgid "by %(users)s"
-msgstr ""
+msgstr "%(users)s দ্বারা"
 
 #. {0} is the number of add-ons.
 #: apps/addons/templates/addons/collections_sidebar.html:21
 msgid "<strong>{0}</strong> add-on"
 msgid_plural "<strong>{0}</strong> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> অ্যাড-অন"
+msgstr[1] "<strong>{0}</strong> অ্যাড-অন"
 
 #. {0} is the number of subscribers.
 #: apps/addons/templates/addons/collections_sidebar.html:29
 msgid "<span>{0}</span> follower"
 msgid_plural "<span>{0}</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>{0}</span> জন অনুসরণকারী"
+msgstr[1] "<span>{0}</span> জন অনুসরণকারী"
 
 #: apps/addons/templates/addons/collections_teaser.html:7
 msgid "Introduction"
-msgstr ""
+msgstr "পরিচিতি"
 
 #: apps/addons/templates/addons/collections_teaser.html:15 apps/discovery/templates/discovery/pane.html:24
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "অ্যাড-অন কী?"
 
 #: apps/addons/templates/addons/collections_teaser.html:19
 msgid "Extras"
-msgstr ""
+msgstr "অতিরিক্ত"
 
 #: apps/addons/templates/addons/collections_teaser.html:22
 msgid "<strong>Over 5000 free extras</strong> that let you customize and extend Firefox to meet your needs."
 msgstr ""
+"<strong>৫০০০ এরও বেশি এক্সটেনশন</strong> যা ফায়ারফক্সকে কাস্টোমাইজ করে আপনার "
+"প্রয়োজন মেটাতে সাহায্য করে।"
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -259,43 +274,52 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
-msgstr ""
+msgstr "থিম"
 
 #: apps/addons/templates/addons/collections_teaser.html:33
 msgid "Toolbars, themes and search providers that <strong>help you perform common tasks.</strong>"
 msgstr ""
+"টুলবার, থিম এবং সার্চ প্রভাইডার, যা <strong>আপনাকে সাধারণ কাজ করতে সহায়তা "
+"করে।</strong>"
 
 #: apps/addons/templates/addons/collections_teaser.html:41
 msgid "Install"
-msgstr ""
+msgstr "ইন্সটল"
 
 #: apps/addons/templates/addons/collections_teaser.html:44
 msgid "<strong>Easy to install</strong> and keep up-to-date."
-msgstr ""
+msgstr "<strong>সহজেই ইন্সটল</strong> ও হালনাগাদ করা যায়।"
 
 #: apps/addons/templates/addons/collections_teaser.html:63
 msgid "Learn more about this add-on"
-msgstr ""
+msgstr "অ্যাড-অনটি সম্পর্কে আরও জানুন"
 
 #: apps/addons/templates/addons/collections_teaser.html:73
 msgid "Like these? Find more add-ons in the {0} collection."
-msgstr ""
+msgstr "এগুলো পছন্দ হয়েছে? {0} সংগ্রহে আরও অ্যাড-অন খুঁজুন।"
 
 #: apps/addons/templates/addons/contribution.html:11 apps/addons/templates/addons/impala/developers.html:44
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr ""
+"এই অ্যাড-অনটির ডেভেলপার চান আপনি একটি ছোট অনুদানের মাধ্যমে এর উন্নয়ন অব্যাহত "
+"রাখতে সাহায্য করুন।"
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"অ্যাড-অনটির ডেভেলপার চান আপনি <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a>কে অনুদান প্রদানের মাধ্যমে আপনার সমর্থন প্রকাশ করুন।"
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"এই অ্যাড-অনটির ডেভেলপার চান যে আপনি <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a>কে একটি ছোট অনুদান প্রদানের মাধ্যমে আপনার সমর্থন প্রকাশ "
+"করুন।"
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:25
 msgid "Contribute"
-msgstr ""
+msgstr "অবদান রাখুন"
 
 #. Click Contribute button OR Install button
 #: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/impala/contribution.html:32
@@ -306,285 +330,308 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
-msgstr ""
+msgstr "অথবা"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "প্রস্তাবিত অনুদান: {0}"
 
 #: apps/addons/templates/addons/contribution.html:48 apps/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
-msgstr ""
+msgstr "এটা কী?"
 
 #: apps/addons/templates/addons/contribution.html:63
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"আপনি যদি এটি ব্যবহার করে উপকৃত হয়ে থাকেন তবে <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a>কে কিছু অনুদান দিলে অ্যাড-অনটির ডেভেলপার খুশি হত।"
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"আপনি যদি এটি ব্যবহার করে উপকৃত হয়ে থাকেন তবে <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a>কে একটি ছোট অনুদান দিলে অ্যাড-অনটির ডেভেলপার খুশি হত।"
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
 msgstr ""
+"ডেভেলপারদের জন্য গতিশীল ও সুস্থ পরিবেশ সমর্থনে মজিলা প্রতিজ্ঞাবদ্ধ। আপনার "
+"অবদান এই অ্যাড-অনকে ভবিষ্যতে টিকে থাকতে সহায়তা করবে।"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr ""
+msgstr "অনুদান পাঠান"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"<strong>%(addon_name)s</strong> এর উন্নয়ন অব্যাহত রাখতে সাহায্য করার জন্য <a "
+"href=\"%(paypal_url)s\">PayPal</a> এর মাধ্যমে ছোট একটি অনুদান পাঠান।"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"ডেভেলপার চান যে <b>%(addon_name)s</b> এর প্রতি আপনার সমর্থন প্রকাশের জন্য "
+"আপনি <a href=\"%(charity_url)s\">%(charity_name)s</a> কে  <a href=\"%"
+"(paypal_url)s\">PayPal</a> এর মাধ্যমে অনুদান পাঠান।"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
+"ডেভেলপার চান যে <b>%(addon_name)s</b> এর প্রতি আপনার সমর্থন প্রকাশের জন্য "
+"আপনি <a href=\"%(charity_url)s\">%(charity_name)s</a> কে  <a href=\"%"
+"(paypal_url)s\">PayPal</a> এর মাধ্যমে একটি ছোট অনুদান পাঠান।"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "আপনি কত অনুদান দিতে চান?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "সর্বোচ্চ অনুদানের পরিমান {0}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "সর্বনিম্ন অনুদানের পরিমান {0} ।"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "অনুদানের পরিমান অবশ্যই সংখ্যায় হতে হবে।"
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "প্রস্তাবিত এককালীন অনুদানের পরিমান {0}"
 
 #. {0} is a currency symbol (e.g., $),
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "এককালীন অনুদানের পরিমাণ {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "আপনার অনুদানের সাথে একটি মন্তব্য অথবা অনুরোধ করুন।"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74 apps/bandwagon/templates/bandwagon/ajax_new.html:20 apps/bandwagon/templates/bandwagon/includes/addedit.html:34
 #: apps/reviews/templates/reviews/mobile/add_form.html:13 templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(ঐচ্ছিক)"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
-msgstr ""
+msgstr "অনুদান দিন"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "পেপালের সাথে যুক্ত হচ্ছে"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
-msgstr ""
+msgstr "না থাক"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "অনুদান গৃহিত হয়েছে, ধন্যবাদ।"
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
-msgstr ""
+msgstr "রিস্টার্ট করার প্রয়োজন নেই"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:30 apps/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "{0} এর জন্য অ্যাড-অনের তথ্য"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:443 apps/devhub/views.py:70
 msgid "Updated"
-msgstr ""
+msgstr "হালনাগাদকৃত"
 
 #: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:42
 #: apps/discovery/templates/discovery/addons/detail.html:81
 msgid "Website"
-msgstr ""
+msgstr "ওয়েবসাইট"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51 apps/addons/templates/addons/mobile/details.html:80 apps/search/templates/search/results.html:72 apps/versions/templates/versions/version.html:21
 msgid "Works with"
-msgstr ""
+msgstr "কাজ করবে"
 
 #: apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
-msgstr ""
+msgstr "প্রয়োজনীয় অ্যাড-অন"
 
 #: apps/addons/templates/addons/details_box.html:73 apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
 msgid "Rating"
-msgstr ""
+msgstr "রেটিং"
 
 #: apps/addons/templates/addons/details_box.html:77
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
-msgstr ""
+msgstr "ডাউনলোড"
 
 #: apps/addons/templates/addons/details_box.html:83 apps/addons/templates/addons/details_box.html:95 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
 #: apps/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
-msgstr ""
+msgstr "পরিসংখ্যান দেখুন"
 
 #: apps/addons/templates/addons/details_box.html:89
 msgid "Average Daily Users"
-msgstr ""
+msgstr "প্রতিদিন গড় ব্যবহারকারী"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Abuse Reports"
-msgstr ""
+msgstr "অপব্যবহারের রিপোর্ট"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
-msgstr ""
+msgstr "গোপনীয়তার নীতি"
 
 #: apps/addons/templates/addons/details_box.html:115 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "গোপনীয়তার নীতি দেখুন"
 
 #: apps/addons/templates/addons/details_box.html:121
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 #: apps/addons/templates/addons/details_box.html:162 apps/addons/templates/addons/details_box.html:222
 msgid "More about this add-on"
-msgstr ""
+msgstr "এই অ্যাড-অনটি সম্পর্কে আরও জানুন"
 
 #: apps/addons/templates/addons/details_box.html:171
 msgid "Image Gallery"
-msgstr ""
+msgstr "ইমেজ গ্যালারি"
 
 #: apps/addons/templates/addons/details_box.html:181
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
-msgstr ""
+msgstr "ডেভেলপারের মন্তব্যগুলো"
 
 #: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
-msgstr ""
+msgstr "সম্প্রসারনের চ্যানেল"
 
 #: apps/addons/templates/addons/details_box.html:193 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
+"ডেভেলপমেন্ট চ্যানেল আপনাকে এই অ্যাড-অনের সাধারণ ব্যবহারকারীর নিকট উন্মুক্ত "
+"করার পূর্বে পরীক্ষামূলক সংস্করণ পরীক্ষা করতে দেয়। একবার ডেভেলপমেন্ট সংস্করণ "
+"ইনস্টল করলে আপনি এই চ্যানেল থেকে হালনাগাদ পেতে থাকবেন।"
 
 #: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
-msgstr ""
+msgstr "উন্নত সংস্করণ ইনস্টল করুন"
 
 #: apps/addons/templates/addons/details_box.html:202
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"<strong>সতর্কতা:</strong> এই অ্যাড-অনটির ডেভলপমেট মজিলা দ্বারা পর্যালোচনা "
+"করা হয়নি। যখনই আপনি একটি ডেভলপমেন্ট সংস্করণ ইন্সটল করবেন, তার পর থেকেই আপনি "
+"ডেভলপার হতে অ্যাড অনটির ডেভলপমেন্ট হালনাগাদ পেতে থাকবেন। ডেভলপমেন্ট হালনাগাদ "
+"বন্ধ করতে, উপরের লিংক হতে পূর্বনির্ধারিত সংস্করণটি ইন্সটল করুন।"
 
 #: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
-msgstr ""
+msgstr "সংস্করণ {0}:"
 
 #: apps/addons/templates/addons/details_box.html:225
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "এখানে কিছুই দেখা যাচ্ছে না! ডেভেলপার বিস্তারিত কোন কিছুই যুক্ত করেনি।"
 
 #: apps/addons/templates/addons/details_box.html:242
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "সংস্করণ নথি"
 
 #: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109
 #: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78
 msgid "by"
-msgstr ""
+msgstr "দ্বারা"
 
 #: apps/addons/templates/addons/disabled.html:23 apps/addons/templates/addons/impala/disabled.html:17
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "এই অ্যাড-অনটি এর প্রণেতা কর্তৃক অপসারিত হয়েছে।"
 
 #: apps/addons/templates/addons/disabled.html:25 apps/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "এই অ্যাড-অনটি একজন প্রশাসক কর্তৃক নিস্ক্রিয় করা হয়েছে।"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: apps/addons/templates/addons/eula.html:6 apps/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "{0} এর এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট"
 
 #: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট"
 
 #: apps/addons/templates/addons/eula.html:23 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s  অ্যাড অনটি ইন্সটল করার পূর্বে, আপনাকে ব্যাবহারকারীর লাইসেন্স "
+"সংক্রান্ত চুক্তি স্বীকার করতে হবে।"
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "{0} তে ফিরে যান…"
 
 #: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "{0} জন্য অ্যাড-অন"
 
 #: apps/addons/templates/addons/home.html:10 apps/addons/templates/addons/home.html:51 apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "নির্বাচিত এক্সটেনশনসমূহ"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "জনপ্রিয় এক্সটেনশনসমূহ"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
 #: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:231 apps/browse/views.py:288 apps/browse/views.py:465
 msgid "Most Popular"
-msgstr ""
+msgstr "সবথেকে জনপ্রিয়"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "সকল »"
 
 #: apps/addons/templates/addons/home.html:52 apps/addons/templates/addons/home.html:61 apps/addons/templates/addons/home.html:70 apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "সবগুলো দেখুন »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "আসন্ন এক্সটেনশন সমূহ"
 
 #: apps/addons/templates/addons/home.html:69 apps/browse/templates/browse/personas/category_landing.html:61 apps/discovery/templates/discovery/pane.html:97
 msgid "Featured Themes"
-msgstr ""
+msgstr "নির্বাচিত থিমসমূহ"
 
 #: apps/addons/templates/addons/home.html:77 apps/bandwagon/templates/bandwagon/collection_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr ""
+msgstr "নির্বাচিত সংগ্রহসমূহ"
 
 #: apps/addons/templates/addons/listing_header.html:3 apps/addons/templates/addons/impala/listing/sorter.html:2 apps/amo/templates/amo/mobile/sort_by.html:2
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:126
 msgid "Sort by:"
-msgstr ""
+msgstr "বাছাই দ্বারা:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -592,276 +639,314 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:50 apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "হালনাগাদকৃত {0}"
 
+# যেহেতু এখানে {0} তারিখ বুঝানো হয়েছে...
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
 #: apps/addons/templates/addons/listing/items_mobile.html:44 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
-msgstr ""
+msgstr "{0} তে সংযুক্ত"
 
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s সাপ্তাহিক ডাউনলোড"
+msgstr[1] "%(num)s সাপ্তাহিক ডাউনলোড"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num) জন ব্যবহারকারী"
+msgstr[1] "%(num) জন ব্যবহারকারী"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "সপ্তাহে {0} টি ডাউনলোড"
+msgstr[1] "সপ্তাহে {0} টি ডাউনলোড"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} জন ব্যবহারকারী"
+msgstr[1] "{0} জন ব্যবহারকারী"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "পেমেন্ট বাতিল করা হয়েছে"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "পেমেন্ট সম্পন্ন হয়েছে"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
-msgstr ""
+msgstr "অ্যাড-অনে ফিরুন।"
 
 #: apps/addons/templates/addons/performance_note.html:4 apps/addons/templates/addons/performance_note.html:22 apps/addons/templates/addons/impala/performance_note.html:4
 #: apps/addons/templates/addons/impala/performance_note.html:20
 msgid "This add-on can slow down Firefox."
-msgstr ""
+msgstr "এই অ্যাড-অনটি ফায়ারফক্সের গতি মন্থর করে দিতে পারে।"
 
 #: apps/addons/templates/addons/performance_note.html:5 apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr ""
+msgstr "More&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
 msgstr ""
+"<b>পারফরমেন্স সতর্কতাঃ</b> এই এক্সটেনশনটি ইনস্টল করলে ফায়ারফক্স চালু হতে <b>"
+"%(amount)s%%</b> বেশি সময় নেবে।"
 
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
 msgid "Learn more&hellip;"
-msgstr ""
+msgstr "আরও জানুন &hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23 apps/addons/templates/addons/impala/performance_note.html:22
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
 msgstr ""
+"এই অ্যাড-অন টি ইন্সটল করলে ফায়ারফক্স খোলার সময় <b>%(amount)s%%</b> মন্দীভূত "
+"করতে পারে।"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr ""
+msgstr "আরও {0} থিম"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "সব {0} থিমগুলো দেখুন"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
-msgstr ""
+msgstr "এই শিল্পীর আরও কাজ"
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "এই শিল্পীর সবগুলো থিম দেখুন"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:274
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
-msgstr ""
+msgstr "বিষয়শ্রেণীসমূহ"
 
 #: apps/addons/templates/addons/persona_detail_table.html:10 apps/addons/templates/addons/mobile/persona_detail_table.html:3 apps/editors/templates/editors/themes/deleted.html:19
 #: apps/editors/templates/editors/themes/themes.html:25
 msgid "Artist"
-msgstr ""
+msgstr "শিল্পী"
 
 #: apps/addons/templates/addons/persona_detail_table.html:19 apps/addons/templates/addons/mobile/persona_detail_table.html:14 apps/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr ""
+msgstr "দৈনিক ব্যবহারকারী"
 
 #. The License for this add-on.
 #: apps/addons/templates/addons/persona_detail_table.html:26 apps/addons/templates/addons/impala/license.html:17 apps/addons/templates/addons/mobile/persona_detail_table.html:21
 #: apps/devhub/templates/devhub/includes/license_form.html:5 apps/devhub/templates/devhub/versions/edit.html:89 apps/editors/templates/editors/themes/themes.html:41
 msgid "License"
-msgstr ""
+msgstr "লাইসেন্স"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 msgid "Awaiting Review"
-msgstr ""
+msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
 msgid "Rejected"
-msgstr ""
+msgstr "বাতিলকৃত"
 
 #: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:157
 msgid "Approved"
-msgstr ""
+msgstr "অনুমোদিত"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:36 apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> জন ব্যবহারকারী"
+msgstr[1] "<strong>{0}</strong> জন ব্যবহারকারী"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "প্রাকদর্শনের জন্য হোভার করুন"
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
-msgstr ""
+msgstr "যোগ করুন"
 
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
 #: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:254
 msgid "Edit"
-msgstr ""
+msgstr "সম্পাদনা করুন"
 
 #. For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: apps/addons/templates/addons/persona_preview.html:66
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "{1} তে {0} দ্বারা"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr ""
+msgstr "এখনও রেট করা হয় নি"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> জন ব্যবহারকারী"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
+"এটি সহ আরও হাজারো অ্যাড-অন পেতে, মজিলার ফ্রি  ও ওপেন ওয়েব ব্রাউজার, "
+"<b>ফায়ারফক্স ব্যবহার করুন</b>।"
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "ফায়ারফক্স সম্পর্কে বিস্তারিত জানুন"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
+"অথবা <b><a class=\"installer\" href=\"{url}\">যেকোন ভাবে ডাউনলোড করুন</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>কিভাবে থান্ডারবার্ডে ইন্সটল করবেন</strong><ol><li>ডাউনলোড করে আপনার "
+"হার্ড ডিস্কে ফাইলটি সংরক্ষণ করুন।</li><li>মজিলা থান্ডারবার্ডের টুলস মেনু হতে "
+"অ্যাড-অনস খুলুন।</li><li>অ্যাড-অন সার্চ ফিল্ডের পরের অপশনস বাটন হতে "
+"\"Install Add-on From File...\" নির্বাচন করে ডাউনলোডকৃত অ্যাড-অনটি চিহ্নিত করে "
+"দিন।</li></ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"এই থিমটি ইন্সটল করতে, <b>থান্ডারবার্ড ইন্সটল করুন/b> এবং Personas Plus "
+"অ্যাড-অনটি ইন্সটল করুন। থান্ডারবার্ড হল মজিলার মেসেজিং এর তৈরী একটি ফ্রি এবং "
+"ওপেন সোর্স ইমেইল গ্রহণের সফটওয়্যার।"
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "থান্ডারবার্ড সম্পর্কে বিস্তারিত জানুন"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
+"এটি সহ আরও হাজারো থিম ইন্সটল করতে, মজিলার ফ্রি ও ওপেন ওয়েব ব্রাউজার, "
+"<b>ফায়ারফক্স</b> ব্যবহার করুন।"
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
+"এই অ্যাড-অনটি আপনার %(app)s এর সংস্করণের সঙ্গে কাজ করার জন্য হালনাগাদ করা হয় "
+"নি।"
 
 #: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
-msgstr ""
+msgstr "যে কোনভাবে ইনস্টল করুন"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "এই অ্যাড-অনটির জন্য প্রয়োজনীয় ফায়ারফক্সের সংস্করণটি এখনও মুক্তি পায় নি।"
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "ফায়ারফক্সের নতুন সংস্করণ পরীক্ষা করতে সাহায্য করুন"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
 msgstr ""
+"এই অ্যাড-অন %(app) এর {new_version} প্রয়োজন। আপনি বর্তমানে %(app) এর "
+"{old_version} ব্যবহার করছেন।"
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "আপগ্রেড {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "অথবা <a href=\"%(href)s\">এই অ্যাড-অনটির পুরোনো সংস্করণগুলো</a> দেখুন।"
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
 msgstr ""
+"এই পার্সনাটির জন্য %(app)s %(new_version)s প্রয়োজন। আপনি বর্তমানে %(app)s "
+"{old_version} ব্যবহার করছেন।"
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>সতর্কতা:</strong>এই অ্যাড-অনটি মজিলা কর্তৃক পর্যালোচনা করা হয় নি। "
+"তৃতীয় পক্ষের কোন সফটওয়্যার ইন্সটল করার ক্ষেত্রে সতর্কতা অবলম্বন করুন কেননা "
+"এতে আপনার কম্পিউটারের ক্ষতি হতে পারে।"
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr ""
+"<strong>লক্ষ্য করুন:</strong> এই অ্যাড-অনটি আপনার অপারেটিং সিস্টেমের সাথে "
+"সামঞ্জস্যপূর্ণ নয়।"
 
 #: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr ""
+"এই অ্যাড-অনটি নিম্নক্ত কারণে আপনার %(app)s এর সংস্করণের সাথে সামঞ্জস্যপূর্ণ "
+"নয়:"
 
 #: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "অন্য সংস্করণসূমহ দেখুন"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "এই অ্যাড-অনটি আপনার %(app)s এর সংস্করণের সঙ্গে সামঞ্জস্যপূর্ণ নয়।"
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "{0} জন্য গোপনীয়তা নীতি"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "অ্যাড-অনের জন্য QR কোড"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
+"{0} আপনার মোবাইলের ফায়ারফক্সে চান? আপনার ফোনে সরাসরি ইন্সটল করতে এই QR কোডটি "
+"স্ক্যান করুন। (আপনার একটি QR রিডারের প্রয়োজন হবে। আপনার কাছে না থেকে থাকলে "
+"আপনার ফোনের মার্কেটপ্লেসে অনুসন্ধান করুন।)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
-msgstr ""
+msgstr "অপব্যবহার রিপোর্ট করুন"
 
 #: apps/addons/templates/addons/report_abuse.html:10
 msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"আপনি যদি আশঙ্কা করে থাকেন যে এই অ্যাড-অনটি <a href=\"%(url)s\">আমাদের "
+"নীতিমালা</a> ভঙ্গ করছে কিংবা এতে নিরাপত্তা বা গোপনীয়তা সম্পর্কিত কোন ত্রুটি "
+"আছে, তবে নিচের ফর্মে আপনার কারণগুলো তুলে ধরুন। অনুগ্রহ করে এই ফর্মটি অন্য "
+"কোন কারনে ব্যবহার করবেন না।"
 
 #: apps/addons/templates/addons/report_abuse.html:23 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
-msgstr ""
+msgstr "রিপোর্ট পাঠান"
 
 #: apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
@@ -872,526 +957,555 @@ msgstr ""
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল"
 
 #: apps/addons/templates/addons/report_abuse_full.html:3
 msgid "Report abuse for {0}"
-msgstr ""
+msgstr "{0} এর জন্য অপব্যবহারের রিপোর্ট করুন"
 
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
-msgstr ""
+msgstr "আপনি কি মনে করেন?"
 
 #: apps/addons/templates/addons/review_add_box.html:8 apps/addons/templates/addons/impala/review_add_box.html:10
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr ""
+"পর্যালোচনা জমা দেওয়ার জন্য অনুগ্রহ করে <a href=\"%(login)s\">লগ ইন</a> করুন"
 
 #: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr ""
+msgstr "পর্যালোচনা:"
 
 #: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
-msgstr ""
+msgstr "রেটিং:"
 
 #: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/add.html:63
 #: apps/reviews/templates/reviews/edit_review.html:15 apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr ""
+msgstr "পর্যালোচনা জমা দিন"
 
 #: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:26
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
+"অনুগ্রহ করে পর্যালোচনায় বাগ রিপোর্ট জমা দেবেন না। আপনার সমস্যাটি সমাধান করার "
+"জন্য হয়তো তাদের আপনার সাথে যোগাযোগ করার প্রয়োজন হতে পারে কিন্তু আমরা আপনার "
+"ইমেইল অ্যাড্রেস অ্যাড-অন ডেভেলপারদের জন্য উন্মুক্ত করে দেই না।"
 
 #: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
 msgstr ""
+"এই অ্যাড-অনটির জন্য কোথায় সহায়তা পেতে পারেন তা <a href=\"%(support)s\">সহায়তা "
+"অংশে</a> দেখুন।"
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
 msgid "Review Guidelines"
-msgstr ""
+msgstr "পর্যালোচনা নির্দেশিকা"
 
 #: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:45
 msgid "Detailed Review"
-msgstr ""
+msgstr "বিস্তারিত পর্যালোচনা"
 
 #: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:764 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr ""
+msgstr "পর্যালোচনাসূমহ"
 
 #: apps/addons/templates/addons/review_list_box.html:14 apps/addons/templates/addons/impala/review_list_box.html:14 apps/reviews/templates/reviews/review.html:30
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "%(user)s কর্তৃক %(date)s তারিখে"
 
 #: apps/addons/templates/addons/review_list_box.html:19 apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "এই পর্যালোচনায় ডেভেলপারের প্রতিক্রিয়া দেখুন"
 
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "এই অ্যাড-অনের সবগুলো পর্যালোচনা দেখুন"
+msgstr[1] "এই অ্যাড-অনের সবগুলো %(cnt)s পর্যালোচনা দেখুন"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
 msgid "Tags"
-msgstr ""
+msgstr "ট্যাগসূমহ"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> প্রস্তাবিত"
 
 #: apps/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "এই অ্যাড-অনটি ভালো লেগেছে?"
 
 #: apps/addons/templates/addons/impala/contribution.html:43
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
 msgstr ""
+"এই <a href=\"%(meet_url)s\">অ্যাড-অনের ডেভেলপার</a> চান যে আপনি ছোট্ট একটি "
+"অবদানের মাধ্যমে এই অ্যাড-অনটির উন্নয়ন অব্যাহত রাখতে সহায়তা করবেন।"
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"এই <a href=\"%(meet_url)s\">অ্যাড-অনটির ডেভেলপার</a> চান, আপনি <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a> তে কিছু অনুদান প্রদানের মাধ্যমে আপনার "
+"সমর্থন প্রদর্শন করেন।"
 
 #: apps/addons/templates/addons/impala/contribution.html:53
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"<a href=\"%(meet_url)s\">এই অ্যাড-অনটির ডেভেলপার</a> চান যে, আপনি <a href=\"%"
+"(charity_url)s\">%(charity_name)s</a> তে সামান্য কিছু অনুদান প্রদানের মাধ্যমে "
+"আপনার সমর্থন প্রকাশ করুন।"
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "এই অ্যাড-অনটি সঠিকভাবে কাজ করার জন্য উক্ত অ্যাড-অনগুলো দরকার: "
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "গড়"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "একটি পর্যালোচনা লিখুন"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "সম্পর্কিত বিষয়শ্রেণী"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Often used with&hellip;"
-msgstr ""
+msgstr "প্রায়শ ব্যবহৃত with&hellip;"
 
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
-msgstr ""
+msgstr "এই সংগ্রহের অংশ"
 
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> টি ব্যবহারকারীর পর্যালোচনা"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> টি ব্যবহারকারীর পর্যালোচনা"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
-msgstr ""
+msgstr "পরিসংখ্যান দেখুন"
 
 #: apps/addons/templates/addons/impala/details.html:87
 msgid "Manage"
-msgstr ""
+msgstr "পরিচালনা"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
-msgstr ""
+msgstr "{0} এর আইকন"
 
 #: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "পুনরায় চালুর প্রয়োজন নেই"
 
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ডেভেলপারের সাথে পরিচিত হোন: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">ডেভেলপারদের সাথে পরিচিত হোন</a>"
 
 #: apps/addons/templates/addons/impala/details.html:144
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgstr "কেন {0} তৈরি করা হয়েছে এবং এই অ্যাড-অনটির ভবিষ্যত কি জানুন।"
 
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "অ্যাড-অন স্ক্রিনশট #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
-msgstr ""
+msgstr "অ্যাড-অন হোম পেজ"
 
 #: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
-msgstr ""
+msgstr "সহায়ক সাইট"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
-msgstr ""
+msgstr "ই-মেইল সহায়তা"
 
 #: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
 msgid "Version {0}"
-msgstr ""
+msgstr "সংস্করণ {0}"
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
-msgstr ""
+msgstr "তথ্য"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> এর অধীনে প্রকাশিত"
 
 #: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:403 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
-msgstr ""
+msgstr "কাস্টম লাইসেন্স"
 
 #: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">%(name)s</a> এর অধীনে প্রকাশিত"
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
-msgstr ""
+msgstr "এই অ্যাড-অন সম্পর্কে"
 
 #: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "ডেভেলপার’এর মন্তব্যসমূহ"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
-msgstr ""
+msgstr "সংস্করণের তথ্য"
 
 #: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
-msgstr ""
+msgstr "সংস্করণের সম্পূর্ন ইতিহাস দেখুন"
 
 #: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"ডেভেলপমেন্ট চ্যানেলে আপনাকে এই অ্যাড-অনের একটা নতুন পরীক্ষামূলক ভার্সন সবার "
+"জন্য উন্মুক্ত হবার আগে পরীক্ষা করে দেখতে দিবে। ডেভেলপমেন্ট ভার্সন ইনস্টল "
+"করার পর আপনি এই চ্যানেল থেকে আপডেট পেতে থাকবেন। ডেভেলপমেন্ট আপডেট পেতে না "
+"চাইলে উপরের লিংক থেকে অ্যাড-অনের ডিফল্ট ভার্সনটি পুনরায় ইনস্টল করে নিন। "
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
+"<strong>সতর্কতা:</strong> এই অ্যাড-অনের ডেভেলপমেন্ট ভার্সন এখনও মজিলা কর্তৃক "
+"পর্যালোচনা করা হয় নি।"
 
 #: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
-msgstr ""
+msgstr "বন্ধ"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:9
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "{0} ইন্সটল করার জন্য ধন্যবাদ"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:12
 msgid "Meet the {0} Developer"
-msgstr ""
+msgstr "{0} ডেভেলপারের সাথে পরিচিত হোন"
 
 #: apps/addons/templates/addons/impala/developers.html:41
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
 msgstr ""
+"অ্যাড-অনটি ডাউনলোড করার পূর্বে, অনুগ্রহ করে এর উন্নয়নের জন্য একটি ছোট অনুদান "
+"করার বিষয়টি বিবেচনা করবেন।"
 
 #: apps/addons/templates/addons/impala/developers.html:80
 msgid "Why was {0} created?"
-msgstr ""
+msgstr "{0} কেন তৈরি করা হয়েছে?"
 
 #: apps/addons/templates/addons/impala/developers.html:84
 msgid "What's next for {0}"
-msgstr ""
+msgstr "{0} এর ভবিষ্যত পরিকল্পনা কী?"
 
 #: apps/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ডেভেলপার সম্পর্কে"
+msgstr[1] "ডেভেলপারদের সম্পর্কে"
 
 #: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:116 apps/users/templates/users/profile.html:29
 msgid "No Photo"
-msgstr ""
+msgstr "কোন ছবি নেই"
 
 #: apps/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
-msgstr ""
+msgstr "{0} কে?"
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "{addon} এর সোর্স কোড লাইসেন্স"
 
 #: apps/addons/templates/addons/impala/license.html:21 apps/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
-msgstr ""
+msgstr "সোর্স কোড লাইসেন্স"
 
 #: apps/addons/templates/addons/impala/performance_note.html:5
 msgid "Explain&hellip;"
-msgstr ""
+msgstr "Explain&hellip;"
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16 apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} জন ব্যবহারকারী"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "permalink"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "অনুবাদ"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "সকল ব্যবহারকারীর পর্যালোচনা দেখুন"
+msgstr[1] "সকল %(cnt)s ব্যবহারকারীর পর্যালোচনা দেখুন"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "অ্যাড-অনটি এখনও পর্যালোচনা করা হয় নি।"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "প্রথম পর্যালোচনাকারী হোন!"
 
 #: apps/addons/templates/addons/impala/listing/sorter.html:14 apps/devhub/templates/devhub/addons/listing/item_actions.html:49 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:36
 msgid "More"
-msgstr ""
+msgstr "আরও"
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7 apps/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr ""
+msgstr "সংগ্রহে যোগ করুন"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
-msgstr ""
+msgstr "আমার অ্যাড-অনসমূহ"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:66
 msgid "My Themes"
-msgstr ""
+msgstr "আমার থিমসমূহ"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "ফায়ারফক্সে যুক্ত করুন"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "থিম সম্পাদনা"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "অনুমোদন / বাতিল"
 
 #: apps/addons/templates/addons/includes/persona.html:25 apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "পর্যালোচনা ইতিহাস"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "দুঃখিত, থিমটি পেন্ডিং অবস্থায় আছে। দয়া করে পরে আবার দেখুন।"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "থিমটি পেন্ডিং অবস্থায় আছে। এটি আপনি ছাড়া আর কেউ দেখতে পাবে না।"
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
-msgstr ""
+msgstr "সংগ্রাহকের টীকা"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "এখনও রেট করা হয় নি"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:24 apps/devhub/templates/devhub/addons/listing/macros.html:15
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
+msgstr[1] "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
-msgstr ""
+msgstr "হয়তো আপনার ব্রাউজারের গতি মন্থর করে ফেলবে"
 
 #: apps/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "আরো জানুন"
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "ব্যবহারকারী"
 
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:58 apps/browse/views.py:69 apps/search/forms.py:91
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "সাপ্তাহিক ডাউনলোড"
 
 #: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
-msgstr ""
+msgstr "সংস্করণ"
 
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Version Notes)"
 
 #: apps/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
-msgstr ""
+msgstr "সকল সংস্করণগুলো দেখুন"
 
 #: apps/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "উন্নত সংস্করণ দেখুন"
 
 #: apps/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr ""
+msgstr "সতর্কতা"
 
 #: apps/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "সহায়তা সাইটে যান"
 
 #: apps/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "প্রণেতাকে প্রশ্ন করুন"
 
 #: apps/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
-msgstr ""
+msgstr "লাইসেন্স চুক্তি"
 
 #: apps/addons/templates/addons/mobile/eula.html:5
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
 msgstr ""
+"%(name)s ইনস্টল প্রক্রিয়া শুরু করার আগে প্রান্তিক ব্যবহারকারী চুক্তিপত্র "
+"মানতে হবেঃ"
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "গ্রহণ"
 
 #: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:48
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"আড-অন ইনস্টল করার জন্য আপনাকে ফায়ারফক্স ব্যবহার করতে হবে। <a "
+"href=\"http://mozilla.com/mobile\">বিস্তারিত জানুন&nbsp;&raquo;</a>"
 
 #: apps/addons/templates/addons/mobile/home.html:15 templates/header_title.html:4 templates/impala/header_title.html:3
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
 
 #: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:256 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
 #: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
 msgid "Add-ons"
-msgstr ""
+msgstr "অ্যাড-অন"
 
 #: apps/addons/templates/addons/mobile/home.html:19
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "ব্যক্তিগতকরণের সহজ পদ্ধতিগুলো।"
 
 #: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:55 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
-msgstr ""
+msgstr "আরও জানুন"
 
 #: apps/addons/templates/addons/mobile/home.html:22
 msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
+"অ্যাড-অন হচ্ছে এমন কিছু অ্যাপলিকেশন, যা আপনাকে অতিরিক্ত ফাংশন ও স্টাইল যুক্ত "
+"করার সুবিধা দেয়। আপনি একটি ওয়েবসাইটের নাম ভুল করুন, অথবা একটি পেজ ঠিকমত লোড "
+"হচ্ছে না, সব পরিস্থিতি উন্নয়নের জন্য একটি অ্যাড-অন রয়েছে।"
 
 #: apps/addons/templates/addons/mobile/home.html:47
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "সকল নির্বাচিত অ্যাড-অন দেখুন"
 
 #: apps/addons/templates/addons/mobile/home.html:53
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "সকল জনপ্রিয় অ্যাড-অন দেখুন"
 
 #: apps/addons/templates/addons/mobile/home.html:65
 msgid "More Add-ons"
-msgstr ""
+msgstr "আরও অ্যাড-অন"
 
 #: apps/addons/templates/addons/mobile/home.html:68 apps/browse/templates/browse/personas/mobile/category_landing.html:64 apps/search/forms.py:15
 msgid "Highest Rated"
-msgstr ""
+msgstr "সর্বচ্চো রেটেড"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:89
 #: apps/browse/views.py:56 apps/browse/views.py:66 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:88
 msgid "Newest"
-msgstr ""
+msgstr "নতুন"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "ব্যবহার করে দেখুন!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "থিমের তথ্য &raquo;"
 
 #: apps/amo/context_processors.py:55 apps/devhub/templates/devhub/nav.html:49
 msgid "Tools"
-msgstr ""
+msgstr "টুলস"
 
 #: apps/amo/context_processors.py:63 apps/discovery/templates/discovery/pane_account.html:8 apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "আমার প্রোফাইল"
 
 #: apps/amo/context_processors.py:69 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
-msgstr ""
+msgstr "অ্যাকাউন্ট সেটিংস"
 
 #: apps/amo/context_processors.py:72 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr ""
+msgstr "আমার সংগ্রহসমূহ"
 
 #: apps/amo/context_processors.py:77 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr ""
+msgstr "আমার পছন্দসমূহ"
 
 #: apps/amo/context_processors.py:82 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr ""
+msgstr "লগ আউট"
 
 #: apps/amo/context_processors.py:87 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "আমার জমাকৃতগুলো নিয়ন্ত্রন করা"
 
 #: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "নতুন অ্যাড-অন জমা দিন"
 
 #: apps/amo/context_processors.py:92 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "নতুন থিম জমা দিন"
 
 #: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "ডেভেলপার হাব"
 
 #: apps/amo/context_processors.py:99 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
-msgstr ""
+msgstr "সম্পাদনা টুলস"
 
 #: apps/amo/context_processors.py:102
 msgid "Localizer Tools"
-msgstr ""
+msgstr "অনুবাদকারীর টুলস"
 
 #: apps/amo/context_processors.py:106
 msgid "Admin Tools"
-msgstr ""
+msgstr "অ্যাডমিন টুলস"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "অবশ্যই বৈধ হেক্স কালার কোড হতে হবে, যেমন #000000।"
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr ""
+msgstr "কমপক্ষে একটি মান প্রবেশ করান"
 
 #: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
@@ -1401,328 +1515,330 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2 apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3 apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
 msgid "Collections"
-msgstr ""
+msgstr "সংগ্রহ"
 
 #: apps/amo/helpers.py:190 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "অভিধান এবং ভাষা প্যাকসমূহ"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:433
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} আগে"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} তৈরি করা হয়েছিল।"
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} এর বৈশিষ্ট্যগুলো সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} এর বর্ণনা সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "{addon} এর বিভাগ সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{addon} এ {0.name} ({1}) যুক্ত করা হয়েছে।"
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{addon} হতে {0.name} ({1}) অপসারন করা হয়েছে।"
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য অনুদান।"
 
 #: apps/amo/log.py:65 apps/amo/log.py:415
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} বন্ধ করা আছে।"
 
 #: apps/amo/log.py:71
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} চালু করা আছে।"
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য স্ট্যাটাস সার্বজনীন নির্দিষ্ট করা হয়েছে।"
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon} এর স্ট্যাটাস গোপন নির্দিষ্ট করা হয়েছে।"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} এর অবস্থা {0} এ পরিবর্তন করা হয়েছে।"
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "{addon} এ প্রভিউ যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "{addon} এর প্রিভিউ সম্পাদনা করা হয়েছে।"
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "{addon} হতে প্রিভিউ মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{addon} এ {version} যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} এর {version} সম্পাদনা করা হয়েছে।"
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "{addon} হতে {0} সংস্করণ মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} এর {version} এ {0.name} ফাইল যোগ করা হয়েছে।"
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr " {addon} এর {version} হতে  {0} ফাইলটি মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "প্রাথমিকভাবে অনুমোদিত"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
 
 #: apps/amo/log.py:187
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} বজায় রাখা হয়েছে।"
 
 #: apps/amo/log.py:188
 msgid "Retained"
-msgstr ""
+msgstr "রাখা হয়েছে"
 
 #: apps/amo/log.py:197
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} বৃদ্ধি করা হয়েছে।"
 
 #: apps/amo/log.py:198
 msgid "Escalated"
-msgstr ""
+msgstr "বর্ধিত"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} এর {version} এর পর্যালোচনা অনুরোধ করা হয়েছে।"
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} এর {version} এর জন্য আরও তথ্য চাওয়া হয়েছে।"
 
 #: apps/amo/log.py:217
 msgid "More information requested"
-msgstr ""
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} সুপার পর্যালোচনার অনুরোধ করা হচ্ছে।"
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr ""
+msgstr "সুপার পর্যালোচনার অনুরোধ করা হচ্ছে"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "মন্তব্য করুন {addon} {version}।"
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:412
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "মন্তব্য করুন"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} যুক্ত হয়েছে {addon} তে।"
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{addon} হতে {tag}  অপসারন করা হয়েছে।"
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} টি {collection} এ যুক্ত করা হয়েছে।"
 
 #: apps/amo/log.py:261
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} টি {collection} হতে অপসারণ করা হয়েছে।"
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr " {addon}  এর জন্য {review} লেখা হয়েছে।"
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} টি  {0} এ নির্বাচিত হয়েছে।"
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} টি আর {0} তে নির্বাচিত নেই।"
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} টি নির্বাচিত হয়েছে।"
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} টি আর নির্বাচিত নেই।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} যোগ করা হয়েছে।"
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{addon} এর জন্য {0.name} এর পদবি পরিবর্তন করে {1} করা হয়েছে।"
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} এখন {0.name} এর অধীনে লাইসেন্স করা।"
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} এর নীতিমালা পরিবর্তন হয়েছে।"
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} এর আইকন পরিবর্তন হয়েছে।"
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{addon} এর {review} অনুমোদিত হয়েছে।"
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} {addon} এর {review} অনুমোদন করেছে।"
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "{addon} এর {0} পর্যালোচনা মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "{version} এর জন্য অ্যাপ্লিকেশনের সর্বোচ্চ সংস্করণ হালনাগাদ করা হয়েছে।"
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "{version} এর জন্য অ্যাপ্লিকেশনের সর্বচ্চো সংস্করণ হালনাগাদ করা হয়েছে।"
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "রচয়িতা {version} এর সামঞ্জস্যতা সম্পর্কে ইমেইল করেছে।"
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "রচয়িতার কাছে অ্যাড-অনের সামঞ্জস্যতা সম্পর্কিত ইমেইল পাঠানো হয়েছে।"
 
 #: apps/amo/log.py:367
 msgid "Password changed."
-msgstr ""
+msgstr "পাসওয়ার্ড পরিবর্তন করা হয়েছে।"
 
 #: apps/amo/log.py:372
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "পেপালের সাথে {addon} এর চেক ব্যার্থ হয়েছে।"
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "{addon} এর মেনিফেস্ট হালনাগাদ করা হয়েছে।"
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
+"{addon} {version} অনুমোদিত হয়েছে কিন্তু সবার জন্য উন্মুক্ত হবার অপেক্ষায় "
+"আছে।"
 
 #: apps/amo/log.py:384
 msgid "Approved but waiting"
-msgstr ""
+msgstr "অনুমোদিত হয়েছে তবে এখনও অপেক্ষমান রয়েছে"
 
 #: apps/amo/log.py:392
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} ক্রয় করা হয়েছে।"
 
 #: apps/amo/log.py:397
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} ইনস্টল করা হয়েছে।"
 
 #: apps/amo/log.py:402
 msgid "Account updated."
-msgstr ""
+msgstr "অ্যাকাউন্ট হালনাগাদ করা হয়েছে।"
 
 #: apps/amo/log.py:407
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "{addon} এর পূর্ববর্তী সংস্করণ গুলো মুছে ফেলা হয়েছে।"
 
 #: apps/amo/log.py:408
 msgid "Escalation cleared"
-msgstr ""
+msgstr "পূর্ববর্তী সংস্করণ মুছে দেয়া হয়েছে"
 
 #: apps/amo/log.py:416
 msgid "App disabled"
-msgstr ""
+msgstr "অ্যাপ অকেজো করা হয়েছে"
 
 #: apps/amo/log.py:423
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "অতিরিক্ত অভিযোগের কারনে {addon} তুলে নেয়া হয়েছে।"
 
 #: apps/amo/log.py:424
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "অধিক অপব্যবহারের প্রতিবেদনসূমহ"
 
 #: apps/amo/log.py:431
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} সমালোচক দ্বারা ছড়ানোর হয়েছে।"
 
 #: apps/amo/log.py:432
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "রিভিউয়ার অপসারন"
 
 #: apps/amo/log.py:440
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "ভিডিও এর সাথে একটি সমস্যা থাকায় {addon} থেকে ভিডিও অপসারন করা হয়েছে।"
 
 #: apps/amo/log.py:442
 msgid "Video removed"
-msgstr ""
+msgstr " ভিডিও অপসারণ করা হয়েছে"
 
 #: apps/amo/log.py:447
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "নতুন ডিভাইস যুক্ত করা হয়েছে, তাই {addon} পুনরায় রিভিউ করুন।"
 
 #: apps/amo/log.py:448
 msgid "Device(s) Added"
-msgstr ""
+msgstr "ডিভাইস(s) যোগ করা হয়েছে"
 
 #: apps/amo/log.py:455
 msgid "{addon} device support manually changed by reviewer."
@@ -1734,19 +1850,19 @@ msgstr ""
 
 #: apps/amo/log.py:473
 msgid "Created: {0}."
-msgstr ""
+msgstr "তৈরি করা হয়েছে: {0}।"
 
 #: apps/amo/log.py:479
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "সম্পাদিত ক্ষেত্র: {2} সেট টু: {0}। "
 
 #: apps/amo/log.py:485
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "মুছে ফেলা হয়েছে: {1}।"
 
 #: apps/amo/log.py:491
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "{user} ব্যবহারকারী সম্পাদনা করেছে, কারন: {1}"
 
 #: apps/amo/log.py:497
 msgid "User {user} anonymized."
@@ -1762,11 +1878,11 @@ msgstr ""
 
 #: apps/amo/log.py:516
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{addon} এর {review} হালনাগাদ করা হয়েছে।"
 
 #: apps/amo/log.py:522
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} পর্যালোচনা করা হয়েছে।"
 
 #: apps/amo/log.py:528
 msgid "User {0.name} added to {group}."
@@ -1795,7 +1911,7 @@ msgstr ""
 #. L10n: {0} is the status
 #: apps/amo/log.py:560
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} হাল {0} তে পরিবর্তন করা হয়েছে।"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:567
@@ -1808,11 +1924,11 @@ msgstr ""
 
 #: apps/amo/log.py:579
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} বিষয়বস্তু রেটিং পরিবর্তন করা হয়েছে।"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "অনুমোদিত নয়"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
@@ -1824,7 +1940,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
-msgstr ""
+msgstr "খুঁজে পাওয়া যায় নি"
 
 #: apps/amo/templates/amo/404.html:6
 msgid ""
@@ -1846,15 +1962,15 @@ msgstr ""
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr ""
+msgstr "কিছু কিছু অধিকার সংরক্ষিত"
 
 #: apps/amo/templates/amo/no_results.html:1 apps/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
-msgstr ""
+msgstr "কোন ফলাফল পাওয়া যায় নি"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -1862,7 +1978,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:62 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:75
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:88
 msgid "Prev"
-msgstr ""
+msgstr "আগের"
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 apps/amo/templates/amo/mobile/impala_paginator.html:16 apps/amo/templates/amo/mobile/paginator.html:14
 #: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:37
@@ -1870,15 +1986,17 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
 #: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:49 apps/stats/templates/stats/stats.html:159
 msgid "Next"
-msgstr ""
+msgstr "পরের"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr ""
+"ফলাফলসূমহ <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of "
+"<strong>%(count)s</strong>"
 
 #: apps/amo/templates/amo/read-only.html:3 apps/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "রক্ষণাবেক্ষণের কাজ চলছে"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
@@ -1890,7 +2008,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
-msgstr ""
+msgstr "আপনি কি মানুষ?"
 
 #: apps/amo/templates/amo/recaptcha.html:8
 msgid ""
@@ -1901,16 +2019,16 @@ msgstr ""
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
 msgid "Top Rated"
-msgstr ""
+msgstr "শীর্ষস্থানীয়"
 
 #: apps/amo/templates/amo/side_nav.html:16
 msgid "Explore"
-msgstr ""
+msgstr "ঘুরে বেড়ান"
 
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
 #: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:160 templates/menu_links.html:8
 msgid "Extensions"
-msgstr ""
+msgstr "এক্সটেনশন"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -1918,50 +2036,52 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
-msgstr ""
+msgstr "সর্বাধিক অনুসরণকারী"
 
 #: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr ""
+msgstr "আমার তৈরি সংগ্রহসমূহ"
 
 #: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "আমার অনুসারিত সংগ্রহসমূহ"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: apps/users/models.py:451
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "মোবাইলের জন্য অ্যাড-অন"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:163 templates/menu_links.html:10
 msgid "Search Tools"
-msgstr ""
+msgstr "অনুসন্ধান টুল"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"<a href=\"%(last_pg_url)s\">(last_pg)s</a> এর <a href=\"%(current_pg_url)s\">%"
+"(current_pg)s</a> পৃষ্ঠা"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 apps/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr ""
+msgstr "প্রথম পাতায় যান"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:48 apps/stats/templates/stats/stats.html:156
 msgid "Previous"
-msgstr ""
+msgstr "পূর্বের"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
 #.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "প্রদর্শিত <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
@@ -1976,24 +2096,24 @@ msgstr ""
 #: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "শিরেনাম"
 
 #: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54
 msgid "Body"
-msgstr ""
+msgstr "বডি"
 
 #: apps/amo/tests/test_messages.py:55
 msgid "Another Title"
-msgstr ""
+msgstr "অন্য শিরোনাম"
 
 #: apps/amo/tests/test_messages.py:55
 msgid "Another Body"
-msgstr ""
+msgstr "অন্য বডি"
 
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:56
 msgid "Invalid data provided: {0}"
-msgstr ""
+msgstr "অবৈধ তথ্য দেয়া হয়েছে: {0}"
 
 #: apps/api/handlers.py:64
 msgid "Add-on did not validate: %s"
@@ -2001,7 +2121,7 @@ msgstr ""
 
 #: apps/api/views.py:247
 msgid "Not implemented yet."
-msgstr ""
+msgstr "এখনও বাস্তবায়িত হয়নি।"
 
 #: apps/api/templates/piston/request_token_ready.html:3 apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
@@ -2009,11 +2129,11 @@ msgstr ""
 
 #: apps/api/templates/piston/request_token_ready.html:8 apps/api/templates/piston/request_token_ready.html:18
 msgid "Access Granted"
-msgstr ""
+msgstr "প্রবেশ মঞ্জুর করা হয়েছে"
 
 #: apps/api/templates/piston/request_token_ready.html:10 apps/api/templates/piston/request_token_ready.html:29
 msgid "Access Not Granted"
-msgstr ""
+msgstr "প্রবেশ মঞ্জুর করা হয়নি"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid "You have chosen to give access to %(consumer)s. They will be able to act on your behalf or retrieve information about you."
@@ -2030,7 +2150,7 @@ msgstr ""
 #. consumer is the Oauth Consumer, e.g. FlightDeck
 #: apps/api/templates/piston/oauth/authorize.html:9
 msgid "Authorize Token for {0}"
-msgstr ""
+msgstr "{0} জন্য টোকেন অনুমোদিত"
 
 #: apps/api/templates/piston/oauth/authorize.html:11
 msgid ""
@@ -2040,7 +2160,7 @@ msgstr ""
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
-msgstr ""
+msgstr "নিশ্চিত করুন"
 
 #: apps/api/templates/piston/oauth/challenge.html:3 apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
@@ -2048,7 +2168,7 @@ msgstr ""
 
 #: apps/applications/views.py:36 apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
-msgstr ""
+msgstr "অ্যাপ্লিকেশন সংস্করণ"
 
 #: apps/applications/views.py:42
 msgid "Acceptable versions for all applications on AMO."
@@ -2056,7 +2176,7 @@ msgstr ""
 
 #: apps/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "বৈধ অ্যাপ্লিকেশন সংস্করণ"
 
 #: apps/applications/templates/applications/appversions.html:12
 msgid "Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
@@ -2064,16 +2184,16 @@ msgstr ""
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #. {0} is an add-on name.
 #: apps/applications/templates/applications/appversions.html:26 apps/versions/templates/versions/version_list.html:18
 msgid "Versions"
-msgstr ""
+msgstr "সংস্করণ"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
@@ -2082,7 +2202,7 @@ msgstr ""
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
 msgid "Collections :: %s"
-msgstr ""
+msgstr "সংগ্রহ :: %s"
 
 #: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:145
 msgid "Collections are groups of related add-ons that anyone can create and share."
@@ -2091,113 +2211,113 @@ msgstr ""
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: সংগ্রহ :: {1}"
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "শুধু আমি এই সংগ্রহটি দেখতে পারব।"
 
 #: apps/bandwagon/forms.py:20
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "যেকেউ এই সংগ্রহটি দেখতে পারব।"
 
 #: apps/bandwagon/forms.py:121
 msgid "Give your collection a name."
-msgstr ""
+msgstr "আপনার সংগ্রহের নাম দিন।"
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "আপনার সংগ্রহের বর্ণনা দিন (লিন্ক দেওয়া যাবে না)।"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
-msgstr ""
+msgstr "গোপনীয়তা:"
 
 #: apps/bandwagon/forms.py:137
 msgid "Icon"
-msgstr ""
+msgstr "আইকন"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
-msgstr ""
+msgstr "কোন লিঙ্ক গ্রহণযোগ্য নয়।"
 
 #: apps/bandwagon/forms.py:170
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
 
 #: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "আইকন অবশ্যই PNG অথবা JPG তে হতে হবে।"
 
 #: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:397
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "অনুগ্রহ করে %dMB এর থেকে ছোট ছবি ব্যবহার করুন।"
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "পছন্দের তালিকা থেকে অপসারণ করুন"
 
 #: apps/bandwagon/helpers.py:53
 msgid "Add to Favorites"
-msgstr ""
+msgstr "পছন্দের তালিকায় যুক্ত করুন"
 
 #: apps/bandwagon/helpers.py:74
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "এই সংগ্রহের জন্য একটি ইতিবাচক ভোট যোগ করুন"
 
 #: apps/bandwagon/helpers.py:75
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "এই সংগ্রহের জন্য একটি নেতিবাচক ভোট যোগ করুন"
 
 #: apps/bandwagon/helpers.py:76
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "এই সংগ্রহের জন্য আমার ভোট অপসারণ করুন"
 
 #: apps/bandwagon/helpers.py:87
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "এই সংগ্রহের জন্য ভোট দিতে লগ ইন করুন"
 
 #: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr ""
+msgstr "পছন্দের তালিকায় যুক্ত করুন"
 
 #: apps/bandwagon/helpers.py:147
 msgid "Favorite"
-msgstr ""
+msgstr "পছন্দ"
 
 #: apps/bandwagon/helpers.py:147 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr ""
+msgstr "পছন্দের তালিকা হতে অপসারণ করুন"
 
 #: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:442 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
 #: apps/search/forms.py:90 apps/users/templates/users/vcard.html:5
 msgid "Name"
-msgstr ""
+msgstr "নাম"
 
 #: apps/bandwagon/views.py:92
 msgid "Recently Popular"
-msgstr ""
+msgstr "সাম্প্রতিক জনপ্রিয়"
 
 #: apps/bandwagon/views.py:174 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
-msgstr ""
+msgstr "যুক্ত করা হয়েছে"
 
 #: apps/bandwagon/views.py:175
 msgid "Popularity"
-msgstr ""
+msgstr "জনপ্রিয়তা"
 
 #: apps/bandwagon/views.py:297
 msgid "Collection created!"
-msgstr ""
+msgstr "সংগ্রহ তৈরি করা হয়েছে!"
 
 #: apps/bandwagon/views.py:298
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
@@ -2205,23 +2325,23 @@ msgstr ""
 
 #: apps/bandwagon/views.py:302
 msgid "Collection updated!"
-msgstr ""
+msgstr "সংগ্রহ হালনাগাদ করা হয়েছে!"
 
 #: apps/bandwagon/views.py:303
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "পরিবর্তন দেখতে <a href=\"%(url)s\">আপনার সংগ্রহ দেখুন</a>।"
 
 #: apps/bandwagon/views.py:558
 msgid "Icon Deleted"
-msgstr ""
+msgstr "আইকন মুছে ফেলা হয়েছে"
 
 #: apps/bandwagon/templates/bandwagon/add.html:3 apps/bandwagon/templates/bandwagon/add.html:11 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
-msgstr ""
+msgstr "নতুন সংগ্রহ তৈরি করুন"
 
 #: apps/bandwagon/templates/bandwagon/add.html:9 apps/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "তৈরি করুন"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24 apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
@@ -2229,58 +2349,58 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/add.html:33 apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr ""
+msgstr "সংগ্রহ তৈরি করুন"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "সংগ্রহ দেখুন"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr ""
+msgstr "নতুন সংগ্রহ শুরু করুন..."
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr ""
+msgstr "নতুন সংগ্রহ শুরু করুন"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:6 apps/bandwagon/templates/bandwagon/includes/addedit.html:4
 msgid "Name:"
-msgstr ""
+msgstr "নাম:"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "অথবা <a id=\"collections-new-cancel\" href=\"#\">বাতিল</a>"
 
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "সংগ্রহসূমহ রেট করার জন্য, অবশ্যই আপনার একটি এড-অন একাউন্ট থাকতে হবে।"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:179
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "অ্যাড-অন অ্যাকাউন্ট তৈরি করুন"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:182
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "অথবা <a href=\"%(login)s\">অপনার বর্তমান অ্যাকাউন্টে লগ ইন করুন</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: সংগ্রহ"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
-msgstr ""
+msgstr "ব্যক্তিগত"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45 apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(num)s</span> অনুসরণকারী"
+msgstr[1] "<span>%(num)s</span> অনুসরণকারী"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
-msgstr ""
+msgstr "এই সংগ্রহ সম্বন্ধে"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
@@ -2288,27 +2408,27 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "এই সংগ্রহ নিজস্ব করুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:79
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "এই সংগ্রহ সর্বজনীন করুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
-msgstr ""
+msgstr "সংগ্রহ সম্পর্কে জানুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:93
 msgid "More Options:"
-msgstr ""
+msgstr "আরও অপশন:"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
 msgid "Edit Collection"
-msgstr ""
+msgstr "সংগ্রহ সম্পাদনা"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:96 apps/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
-msgstr ""
+msgstr "সংগ্রহ মুছে ফেলুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
@@ -2325,32 +2445,32 @@ msgstr[1] ""
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
-msgstr ""
+msgstr "চলুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 msgid "What are Collections?"
-msgstr ""
+msgstr "সংগ্রহ কী?"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:149
 msgid "Explore Collections"
-msgstr ""
+msgstr "সংগ্রহ ঘুরে দেখুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
-msgstr ""
+msgstr "সাধারণ ট্যাগসূমহ"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
-msgstr ""
+msgstr "এই ব্যবহারকারী দ্বারা আরো"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:176
 msgid "See all collections by this user"
-msgstr ""
+msgstr "এই ব্যবহারকারীর সব সংগ্রহ দেখুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
 msgid "Recently Viewed"
-msgstr ""
+msgstr "সম্প্রতি দেখা হয়েছে"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid ""
@@ -2366,31 +2486,31 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "আমার পছন্দের অ্যাড-অন"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:25
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> এড-অন"
+msgstr[1] "<span>%(addons)s</span> এড-অন সূমহ"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:32
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(followers)s</span> অনুসরণকারী"
+msgstr[1] "<span>%(followers)s</span> অনুসরণকারীরা"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:5
 msgid "Popular Collections"
-msgstr ""
+msgstr "জনপ্রিয় সংগ্রহ"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:6
 msgid "Highest Rated Collections"
-msgstr ""
+msgstr "সর্বোচ্চ রেট সংগ্রহসূমহ"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:7
 msgid "Recently Added Collections"
-msgstr ""
+msgstr "সম্প্রতি সংগ্রহসূমহ যুক্ত করা হয়েছে"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:32 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -2402,16 +2522,16 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s সাপ্তাহিক অনুসরণকারী"
+msgstr[1] "%(num)s সাপ্তাহিক অনুসরণকারী"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s মাসিক অনুসরণকারী"
+msgstr[1] "%(num)s মাসিক অনুসরণকারী"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2419,66 +2539,66 @@ msgstr[1] ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s অনুসরণকারী"
+msgstr[1] "%(num)s অনুসরণকারী"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9 apps/devhub/templates/devhub/personas/edit.html:27
 msgid "by {0}"
-msgstr ""
+msgstr "{0} দ্বারা"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:5 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Stop Following"
-msgstr ""
+msgstr "অনুসরণ করা বন্ধ করুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:6 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Follow this Collection"
-msgstr ""
+msgstr "সংগ্রহটি অনুসরণ করুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
-msgstr ""
+msgstr "সংগ্রহটি সম্পাদনা করুন"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:21 apps/bandwagon/templates/bandwagon/collection_widgets.html:23 apps/devhub/templates/devhub/addons/listing/item_actions.html:45
 #: apps/stats/templates/stats/stats.html:75 apps/stats/templates/stats/stats.html:79 apps/stats/templates/stats/stats.html:81
 msgid "Statistics"
-msgstr ""
+msgstr "পরিসংখ্যান"
 
 #. %s is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/delete.html:4 apps/bandwagon/templates/bandwagon/delete.html:15
 msgid "Delete {0}"
-msgstr ""
+msgstr "{0} মুছে ফেলুন"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35 apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133
 #: apps/devhub/templates/devhub/versions/list.html:153
 msgid "Delete"
-msgstr ""
+msgstr "মুছে ফেলুন"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
-msgstr ""
+msgstr "আপনি নিশ্চিত?"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:21 apps/devhub/templates/devhub/personas/edit.html:131 apps/devhub/templates/devhub/personas/edit.html:152
 #: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98
 #: apps/devhub/templates/devhub/personas/submit.html:119
 msgid "Yes"
-msgstr ""
+msgstr "হ্যাঁ"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:22 apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161
 #: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
 #: apps/devhub/templates/devhub/personas/submit.html:137
 msgid "No"
-msgstr ""
+msgstr "না"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
 msgid "Edit {0}"
-msgstr ""
+msgstr "{0} সম্পাদনা করুন"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
 #: apps/editors/templates/editors/themes/themes.html:60
 msgid "Description"
-msgstr ""
+msgstr "বর্ণনা"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:39
 msgid "Contributors & More"
@@ -2491,29 +2611,29 @@ msgstr ""
 #: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300
 #: apps/devhub/templates/devhub/versions/edit.html:139 apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
-msgstr ""
+msgstr "পরিবর্তন সংরক্ষণ"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:121
 msgid "Owner"
-msgstr ""
+msgstr "মালিক"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr ""
+msgstr "স্বত্বাধিকারী হোন"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "একজন অবদানকারী হিসেবে এই ব্যবহারকারীকে অপসারণ করুন"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18 apps/bandwagon/templates/bandwagon/edit_contributors.html:43 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:20
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48 apps/devhub/templates/devhub/addons/ajax_compat_update.html:19
 msgid "Remove"
-msgstr ""
+msgstr "অপসারণ করুন"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
-msgstr ""
+msgstr "সংগ্রহ অনুদানকারী"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
@@ -2523,31 +2643,31 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
-msgstr ""
+msgstr "ব্যবহারকারী"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20
 msgid "Email"
-msgstr ""
+msgstr "ইমেইল"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
 msgid "Role"
-msgstr ""
+msgstr "ভূমিকা"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "অনদানকারী যোগ করতে ইমেইল ঠিকানাটি প্রবেশ করান"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
-msgstr ""
+msgstr "অনদানকারী যোগ করুন"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:60
 msgid "Contributor"
-msgstr ""
+msgstr "অবদানকারী"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
-msgstr ""
+msgstr "অ্যাডমিন সেটিংস"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
@@ -2558,28 +2678,28 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:109 apps/editors/templates/editors/themes/themes.html:126 apps/editors/templates/editors/themes/themes.html:132
 #: apps/editors/templates/editors/themes/themes.html:139
 msgid "Continue"
-msgstr ""
+msgstr "চালিয়ে যান"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:84
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "অথবা <a id=\"change-owner-cancel\" href=\"#\">বাতিল করুন</a>"
 
 #. {0} is a username.
 #: apps/bandwagon/templates/bandwagon/user_listing.html:7
 msgid "Collections by {0}"
-msgstr ""
+msgstr "{0} দ্বারা সংগ্রহসূমহ"
 
 #: apps/bandwagon/templates/bandwagon/user_listing.html:31
 msgid "No collections found."
-msgstr ""
+msgstr "কোন সংগ্রহ পাওয়া যায়নি"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:6
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "সর্বাধিক অনুসরণকৃত সংগ্রহসূমহ"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:7
 msgid "Newest Collections"
-msgstr ""
+msgstr "নতুন সংগ্রহ"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
@@ -2587,24 +2707,24 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:9
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "সম্প্রতি সংগ্রহসূমহ হালনাগাদ করা হয়েছে"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:10
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "সম্প্রতি জনপ্রিয় সংগ্রহসূমহ"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
-msgstr ""
+msgstr "সাবস্ক্রাইব"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
-msgstr ""
+msgstr "অনুসরণ করছেন"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr ""
+msgstr "সংগ্রহ তৈরি করুন"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
@@ -2612,7 +2732,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:39
 msgid "Collection Icon"
-msgstr ""
+msgstr "সংগ্রহ আইকন"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:41
 msgid "Reset"
@@ -2637,7 +2757,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:370 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
-msgstr ""
+msgstr "অ্যাড-অন"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
@@ -2770,24 +2890,24 @@ msgstr ""
 #: apps/browse/views.py:446 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
-msgstr ""
+msgstr "রেটিং"
 
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5 apps/browse/templates/browse/creatured.html:13
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: নির্বাচিত অ্যাড-অন"
 
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "নির্বাচিত অ্যাড-অন"
 
 #. {0} is a category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:21
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "{0} এ কোন নির্বাচিত অ্যাড-অন নেই।"
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -2795,84 +2915,86 @@ msgstr ""
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
-msgstr ""
+msgstr "ডিকশনারি ইন্সটল করুন"
 
 #: apps/browse/templates/browse/language_tools.html:10
 msgid "Install Language Pack"
-msgstr ""
+msgstr "ভাষা প্যাক ইন্সটল"
 
 #: apps/browse/templates/browse/language_tools.html:12
 msgid "Download Dictionary"
-msgstr ""
+msgstr "ডিকশনারি ডাউনলোড করুন"
 
 #: apps/browse/templates/browse/language_tools.html:13
 msgid "Download Language Pack"
-msgstr ""
+msgstr "ভাষা প্যাক ডাউনলোড করুন"
 
 #: apps/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
-msgstr ""
+msgstr "আপনার লোকেলে থাকা"
 
 #: apps/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "আপনার লোকেলে থাকা ভাষা প্যাক ও ডিকশনারির তালিকা।"
 
 #: apps/browse/templates/browse/language_tools.html:41 apps/browse/templates/browse/language_tools.html:63
 msgid "Language"
-msgstr ""
+msgstr "ভাষা"
 
 #: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:150
 msgid "Dictionary"
-msgstr ""
+msgstr "ডিকশনারি"
 
 #: apps/browse/templates/browse/language_tools.html:43 apps/browse/templates/browse/language_tools.html:65
 msgid "Language Pack"
-msgstr ""
+msgstr "ভাষা প্যাক"
 
 #: apps/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "সকল লোকেল"
 
 #: apps/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "ভাষা প্যাক ও ডিকশনারির তালিকা।"
 
 #. {0} is a category name, like "Music".
 #: apps/browse/templates/browse/search_tools.html:8
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: অনুসন্ধান টুলস"
 
 #. {0} is an integer.
 #: apps/browse/templates/browse/search_tools.html:39 apps/devhub/templates/devhub/addons/dashboard.html:17
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> টি অ্যাড-অন"
+msgstr[1] "<b>{0}</b> গুলো অ্যাড-অন"
 
 #: apps/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
-msgstr ""
+msgstr "এক্সটেনশন অনুসন্ধান"
 
 #: apps/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "ফায়ারফক্সে সার্চ সংক্রান্ত কার্যকারিতা যোগ করুন"
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr ""
+msgstr "অনুসন্ধান সরবরাহকারী"
 
 #: apps/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "আপনার সার্চ বারের জন্য নতুন সরবরাহকারী খুঁজুন"
 
 #: apps/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
-msgstr ""
+msgstr "অতিরিক্ত সামগ্রী"
 
 #. {0} is an app name, like Firefox.
 #: apps/browse/templates/browse/search_tools.html:93
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
 msgstr ""
+"{0} এর <a href=\"http://support.mozilla.com/kb/Search+bar\">অনুসন্ধান বার</a> "
+"সম্পর্কে আরও জানুন"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
@@ -2881,22 +3003,25 @@ msgstr ""
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr ""
+"<a href=\"https://developer.mozilla.org/\">মজিলা ডেভেলপারস নেটওয়ার্কে</a> <a h"
+"ref=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefo"
+"x\">আপনার নিজেরটি তৈরি করুন</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:161
 msgid "Complete Themes"
-msgstr ""
+msgstr "সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "সবথেকে জনপ্রিয় থিমসমূহ"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "সর্বোচ্চ রেট পাওয়া এক্সটেনশান"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr ""
+msgstr "নতুন এক্সটেনশনসমূহ"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
@@ -2904,11 +3029,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "সাপ্তাহিক ডাউনলোডের এক্সটেনশানসূমহ"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "সম্প্রতি এক্সটেনশানসূমহ হালনাগাদ করা হয়েছে"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
@@ -2917,31 +3042,31 @@ msgstr ""
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "নির্বাচিত সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "সবথেকে জনপ্রিয় সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "শীর্ষস্থানীয় সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "নতুন সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "নাম অনুসারে সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "সাপ্তাহিক ডাউনলোড অনুসারে সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "সম্প্রতি হালনাগাদকৃত সম্পূর্ণ থিম"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
@@ -2956,44 +3081,45 @@ msgstr[1] ""
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
-msgstr ""
+msgstr "ফলাফল পাওয়া যায় নি।"
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} গুলো থিম"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0} 'র থিমসূমহ"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "প্রোফাইল দেখুন"
 
 #: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "নিজের থিম তৈরি করুন"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
+"আপনার ব্রাউজার, আপনার স্টাইল! আপনার নিজস্ব একটি নকশা দিয়ে এটি সাজিয়ে নিন!"
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
-msgstr ""
+msgstr "আরও জানুন"
 
 #: apps/browse/templates/browse/personas/category_landing.html:6 apps/browse/templates/browse/personas/mobile/category_landing.html:5
 msgid "View All Recently Added"
-msgstr ""
+msgstr "সকল সম্প্রতি যুক্ত দেখুন"
 
 #: apps/browse/templates/browse/personas/category_landing.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr ""
+msgstr "সকল সবথেকে জনপ্রিয় দেখুন"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8 apps/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
-msgstr ""
+msgstr "শীর্ষস্থানীয় সবগুলো দেখুন"
 
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
@@ -3001,7 +3127,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "আরো নিজস্বকরণ চান?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
@@ -3244,15 +3370,16 @@ msgstr ""
 
 #: apps/constants/base.py:32
 msgid "Beta"
-msgstr ""
+msgstr "বেটা"
 
 #: apps/constants/base.py:33
 msgid "Preliminarily Reviewed"
-msgstr ""
+msgstr "প্রাথমিকভাবে পর্যালোচনা করা হয়েছে"
 
 #: apps/constants/base.py:34
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr ""
+"প্রাথমিকভাবে পর্যালোচনা করা হয়েছে এবং সম্পূর্ণ পর্যালোচনা জন্য অপেক্ষা করছে"
 
 #: apps/constants/base.py:36
 msgid "Pending a review choice"
@@ -3260,7 +3387,7 @@ msgstr ""
 
 #: apps/constants/base.py:37 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
-msgstr ""
+msgstr "অপসারন করা হয়েছে"
 
 #: apps/constants/base.py:41
 msgid "Flagged for further review"
@@ -3268,23 +3395,23 @@ msgstr ""
 
 #: apps/constants/base.py:42
 msgid "Blocked"
-msgstr ""
+msgstr "ব্লককৃত"
 
 #: apps/constants/base.py:110
 msgid "Full"
-msgstr ""
+msgstr "সম্পূর্ণ"
 
 #: apps/constants/base.py:111
 msgid "Preliminary"
-msgstr ""
+msgstr "প্রাথমিক"
 
 #: apps/constants/base.py:122 apps/users/notifications.py:159
 msgid "Developer"
-msgstr ""
+msgstr "ডেভেলপার"
 
 #: apps/constants/base.py:123
 msgid "Viewer"
-msgstr ""
+msgstr "দর্শক"
 
 #: apps/constants/base.py:124 templates/mobile/header.html:7
 msgid "Support"
@@ -3292,60 +3419,60 @@ msgstr ""
 
 #: apps/constants/base.py:147 apps/constants/base.py:159 apps/constants/platforms.py:11
 msgid "Any"
-msgstr ""
+msgstr "যে কোনো"
 
 #: apps/constants/base.py:148
 msgid "Extension"
-msgstr ""
+msgstr "অতিরিক্ত"
 
 #: apps/constants/base.py:149
 msgid "Complete Theme"
-msgstr ""
+msgstr "সম্পূর্ণ থিম"
 
 #: apps/constants/base.py:151
 msgid "Search Engine"
-msgstr ""
+msgstr "সার্চ ইঞ্জিন"
 
 #: apps/constants/base.py:152
 msgid "Plugin"
-msgstr ""
+msgstr "প্লাগইন"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "ল্যাংগুয়েজ প্যাক (Application)"
 
 #: apps/constants/base.py:154 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
-msgstr ""
+msgstr "থিম"
 
 #: apps/constants/base.py:162
 msgid "Dictionaries"
-msgstr ""
+msgstr "ডিকশনারি"
 
 #: apps/constants/base.py:164
 msgid "Plugins"
-msgstr ""
+msgstr "প্লাগইন"
 
 #: apps/constants/base.py:165
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "ল্যাংগুয়েজ প্যাক (Application)"
 
 #: apps/constants/base.py:230
 msgid "Free"
-msgstr ""
+msgstr "ফ্রী"
 
 #: apps/constants/base.py:231
 msgid "Premium"
-msgstr ""
+msgstr "প্রিমিয়াম"
 
 #: apps/constants/base.py:232
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "ইন-অ্যাপ পেমেন্টের সাথে প্রিমিয়াম"
 
 #: apps/constants/base.py:233
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "ইন-অ্যাপ পেমেন্টের সাথে ফ্রী"
 
 #: apps/constants/base.py:234
 msgid "I'll use my own system for in-app payments"
@@ -3963,7 +4090,7 @@ msgstr ""
 
 #: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1104
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "পরিবর্তনগুলো সফলতার সাথে সংরক্ষিত হয়েছে।"
 
 #: apps/devhub/views.py:319 apps/devhub/views.py:1506
 msgid "Please check the form for errors."
@@ -3975,19 +4102,19 @@ msgstr ""
 
 #: apps/devhub/views.py:340
 msgid "Theme deleted."
-msgstr ""
+msgstr "থিম মুছে ফেলা হয়েছে।"
 
 #: apps/devhub/views.py:340
 msgid "Add-on deleted."
-msgstr ""
+msgstr "অ্যাড-অন মুছে ফেলা হয়েছে।"
 
 #: apps/devhub/views.py:345
 msgid "Password was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "পাসওয়ার্ড ভুল। থিম মুছে ফেলা হয় নি।"
 
 #: apps/devhub/views.py:349
 msgid "Password was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "পাসওয়ার্ড ভুল। অ্যাড-অন মুছে ফেলা হয় নি।"
 
 #: apps/devhub/views.py:461
 msgid "There were errors in your submission."
@@ -4007,15 +4134,15 @@ msgstr ""
 
 #: apps/devhub/views.py:1012 apps/users/forms.py:392
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "ছবি অবশ্যই PNG অথবা JPG হতে হবে।"
 
 #: apps/devhub/views.py:1016
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "আইকন এনিমেটেড হতে পারবে না।"
 
 #: apps/devhub/views.py:1018
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "ছবি এনিমেটেড হতে পারবে না।"
 
 #: apps/devhub/views.py:1031
 msgid "Images cannot be larger than %dKB."
@@ -4032,11 +4159,11 @@ msgstr ""
 
 #: apps/devhub/views.py:1143
 msgid "Version %s disabled."
-msgstr ""
+msgstr "%s সংস্করণ নিষ্ক্রিয় করা হয়েছে।"
 
 #: apps/devhub/views.py:1146
 msgid "Version %s deleted."
-msgstr ""
+msgstr "%s সংস্করণ মুছে ফেলা হয়েছে।"
 
 #: apps/devhub/views.py:1156
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
@@ -4052,7 +4179,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "অ্যাড-অনে ফিরে যান"
 
 #: apps/devhub/templates/devhub/builder.html:3 apps/devhub/templates/devhub/builder.html:30
 msgid "Add-on SDK"
@@ -7849,10 +7976,14 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
+"আপলোড এবং ফর্ম সাবমিট করার পর এএমও দল আপনার হালনাগাদকৃত ডিজাইন পর্যালোচনা "
+"করবে। সেসময় পর্যন্ত, আপনার বর্তমান ডিজাইন সকলের নিকট দেখা যাবে।"
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr ""
+"আপনি পূর্বেই ডিজাইন সাবমিট করেছিলেন যেটি বর্তমানে পর্যালোচনার অপেক্ষায় "
+"রয়েছে।"
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -7864,7 +7995,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "আপনার থিমের ডিজাইন গৃহীত হলে আপনি এখান হতেই তা হালনাগাদ করতে পারবেন।"
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -7876,7 +8007,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
 
 #: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
@@ -7892,23 +8023,23 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "এটি ট্যাবের রঙ"
 
 #: apps/devhub/templates/devhub/personas/edit.html:281 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
-msgstr ""
+msgstr "প্রাকদর্শন"
 
 #: apps/devhub/templates/devhub/personas/edit.html:287 apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "আপনার থিমের নাম"
 
 #: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr ""
+msgstr "<a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a> দ্বারা"
 
 #: apps/devhub/templates/devhub/personas/submit.html:7
 msgid "Create a New Theme"
-msgstr ""
+msgstr "একটি নতুন থিম তৈরী করুন"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
@@ -7916,29 +8047,39 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "আপনার থিমের একটি নাম দিন।"
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
+"থিম সাবমিট করার মধ্য দিয়ে আপনি <a href=\"%(tos_url)s\" target=\"_blank\">থিম "
+"সেবাটির শর্তাদি</a> মেনে নিতে সম্মত হয়েছেন। <a href=\"%(guidelines_url)s\" "
+"target=\"_blank\">পর্যালোচনার নির্দেশিকার</a> বিধান অনুযায়ী আপনার থিমটি "
+"অনুমোদনের জন্য বিবেচনা করা হবে।"
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
-msgstr ""
+msgstr "থিম সাবমিট করুন"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:11
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
+"আপনার থিমটি পর্যালোচনার সারিতে সাবমিট করা হয়েছে। আপনি একটি ইমেইল পাবেন যখনই "
+"তা রিভিউ হয়ে যাবে, সাধারণত ২৪ ঘন্টার মধ্যেই।"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
 msgstr ""
+"আপনার <a href=\"%(edit_url)s\">থিমের তালিকা</a> পরিবর্তন করে এটি সম্বন্ধে আরও "
+"তথ্য দিন।"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"আপনার থিমের রিভিউ, সংগ্রহ এবং আরও নানা ধরনের তথ্যের হালনাগাদ পেতে থিমটির <a "
+"href=\"%(feed_url)s\">activity feed</a> দেখুন বা সেখানে সাবস্ক্রাইব করে রাখুন।"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
@@ -12827,18 +12968,18 @@ msgstr ""
 #. {0} is an add-on name.
 #: apps/versions/templates/versions/version_list.html:21
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0} সংস্করণের ইতিহাস"
 
 #. {0} is a number.
 #: apps/versions/templates/versions/version_list.html:24
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> টি সংস্করণ"
+msgstr[1] "<b>{0}</b> গুলো সংস্করণ"
 
 #: apps/versions/templates/versions/version_list.html:30 apps/versions/templates/versions/mobile/version_list.html:14
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "পুরোনো সংস্করণ ব্যবহারে সতর্ক হোন!"
 
 #: apps/versions/templates/versions/version_list.html:31 apps/versions/templates/versions/mobile/version_list.html:15
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
@@ -12875,11 +13016,11 @@ msgstr ""
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "অন্যান্য ভাষা"
 
 #: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "মজিলা অ্যাড-অন"
 
 #: templates/base.html:63 templates/impala/base.html:107
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -12887,27 +13028,28 @@ msgstr ""
 
 #: templates/base.html:81 templates/impala/base.html:73
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "অন্য অ্যাপ্লিকেশনের জন্য অ্যাড-অন খুঁজুন"
 
 #: templates/base.html:82 templates/impala/base.html:73
 msgid "Other Applications"
-msgstr ""
+msgstr "অন্যান্য অ্যাপ্লিকেশন"
 
 #: templates/base.html:131 templates/impala/base.html:175
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
+"নিজের সংগ্রহ তৈরির জন্য, আপনার অবশ্যই একটি অ্যাড-অন অ্যাকাউন্ট থাকতে হবে।"
 
 #: templates/categories.html:2
 msgid "Choose a category"
-msgstr ""
+msgstr "একটি বিষয়শ্রেণী নির্বাচন করুন"
 
 #: templates/categories.html:5
 msgid "Mobile Categories"
-msgstr ""
+msgstr "মোবাইল বিষয়শ্রেণীসমূহ"
 
 #: templates/copyright.html:5
 msgid "View Mobile Site"
-msgstr ""
+msgstr "মোবাইল সাইট দেখুন"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -12919,63 +13061,63 @@ msgstr ""
 
 #: templates/footer.html:5 templates/menu_links.html:32
 msgid "Blog"
-msgstr ""
+msgstr "ব্লগ"
 
 #: templates/footer.html:7
 msgid "FAQ"
-msgstr ""
+msgstr "প্রশ্ন উত্তর"
 
 #: templates/footer.html:8
 msgid "Forum"
-msgstr ""
+msgstr "ফোরাম"
 
 #: templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> অ্যাড-অন"
 
 #: templates/header_title.html:10
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> অ্যাড-অন"
 
 #: templates/header_title.html:12
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> মোবাইল অ্যাড-অন"
 
 #: templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> অ্যাড-অন"
 
 #: templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> অ্যাড-অন"
 
 #: templates/menu_links.html:6
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "ফায়ারফক্স অ্যাড-অন"
 
 #: templates/menu_links.html:11
 msgid "Language Support"
-msgstr ""
+msgstr "ভাষা সমর্থন"
 
 #: templates/menu_links.html:22
 msgid "About Firefox"
-msgstr ""
+msgstr "ফায়ারফক্স সম্পর্কে"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "মজিলায় যোগ দিন"
 
 #: templates/menu_links.html:24
 msgid "Participate"
-msgstr ""
+msgstr "অংশগ্রহণ করুন"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "প্রেস সেন্টার"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "ব্রান্ড টুলকিট"
 
 #: templates/menu_links.html:28
 msgid "Careers"
@@ -12983,23 +13125,23 @@ msgstr ""
 
 #: templates/menu_links.html:29
 msgid "Partnerships"
-msgstr ""
+msgstr "পার্টনারশিপ"
 
 #: templates/menu_links.html:30
 msgid "Legal"
-msgstr ""
+msgstr "আইনগত"
 
 #: templates/menu_links.html:31
 msgid "Contact Us"
-msgstr ""
+msgstr "যোগাযোগ"
 
 #: templates/user_login.html:37
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "স্বাগতম, {0}"
 
 #: templates/user_login.html:41 templates/impala/user_login.html:26
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">রেজিস্টার</a> অথবা <a href=\"%(login)s\">লগ ইন</a>"
 
 #: templates/impala/base.html:118
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -13008,11 +13150,13 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:129
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "{0} অ্যাড-অন এ স্বাগতম।"
 
 #: templates/impala/base.html:132
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
+"হাজারো অতিরিক্ত বৈশিষ্ট্য ও স্টাইল থেকে আপনার পছন্দেরটি বেছে নিয়ে "
+"ফায়ারফক্সকে নিজের মত করে সাজান।"
 
 #: templates/impala/base.html:137
 msgid "Add extra features and styles to make %(app)s your own."
@@ -13025,52 +13169,53 @@ msgstr ""
 #: templates/impala/base.html:147
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr ""
+"আমাদের <a class=\"mobile-link\" href=\"#\">মোবাইল অ্যাড-অন সাইটটি</a> দেখুন।"
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr ""
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr ""
+msgstr "লগ ইন / রেজিস্টার"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
-msgstr ""
+msgstr "প্রয়োজনীয়"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "প্রয়োজনীয় স্থানসমুহ"
 
 #: templates/mobile/base_addons.html:56
 msgid "Mobile Home"
-msgstr ""
+msgstr "মোবাইল হোম"
 
 #: templates/mobile/base_addons.html:75
 msgid "View full site"
-msgstr ""
+msgstr "সম্পূর্ন সাইটটি দেখুন"
 
 #: templates/mobile/base_addons.html:78
 msgid "Legal Notices"
-msgstr ""
+msgstr "আইনগত বিজ্ঞপ্তি"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
-msgstr ""
+msgstr "মজিলা ফায়ারফক্স"
 
 #: templates/mobile/header.html:4
 msgid "Features"
-msgstr ""
+msgstr "সুবিধাসমুহ"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "অ্যাড-অন"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
-msgstr ""
+msgstr "মজিলা পরিদর্শন করুন"
 
 #. a link
 #: templates/mobile/header.html:10
 msgid "menu"
-msgstr ""
+msgstr "মেনু"
