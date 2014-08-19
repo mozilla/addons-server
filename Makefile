@@ -1,8 +1,3 @@
-# You can set these variables from the command line.
-DJANGO=python manage.py
-SETTINGS=settings_local
-RUN_ES_TESTS=1
-
 .PHONY: help docs test test_force_db tdd test_failed update_code update_submodules update_deps update_db update_assets update_landfill full_update reindex
 
 help:
@@ -20,23 +15,21 @@ help:
 	@echo "  update_landfill   to load the landfill database data"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "Check the Makefile  to know exactly what each target is doing. If you see a "
-	@echo "target using something like $(SETTINGS), you can make it use another value:"
-	@echo "  make SETTINGS=settings_mine docs"
 
 docs:
 	$(MAKE) -C docs html
 
 test:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	python manage.py test --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
 
 test_force_db:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	FORCE_DB=1 python manage.py test --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
 
 tdd:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --noinput --failfast --pdb --with-id -v 2 $(ARGS)
+	python manage.py test --noinput --failfast --pdb --with-id -v 2 $(ARGS)
 
 test_failed:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
+	python manage.py test --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
 
 update_code:
 	git checkout master && git pull
@@ -54,13 +47,13 @@ update_db:
 	schematic migrations
 
 update_assets:
-	$(DJANGO) compress_assets --settings=$(SETTINGS)
-	$(DJANGO) collectstatic --settings=$(SETTINGS) --noinput
+	python manage.py compress_assets
+	python manage.py collectstatic --noinput
 
 full_update: update_code update_deps update_db update_assets
 
 update_landfill:
-	$(DJANGO) install_landfill --settings=$(SETTINGS) $(ARGS)
+	python manage.py install_landfill $(ARGS)
 
 reindex:
-	$(DJANGO) reindex --settings=$(SETTINGS) $(ARGS)
+	python manage.py reindex $(ARGS)

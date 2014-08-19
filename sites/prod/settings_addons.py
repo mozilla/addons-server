@@ -1,5 +1,4 @@
 from lib.settings_base import *
-from default.settings import *
 from settings_base import *
 
 import private_addons
