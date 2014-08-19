@@ -36,7 +36,20 @@ from constants.base import (ADDON_PREMIUM, STATUS_PUBLIC, STATUS_DISABLED,
                             STATUS_BETA, STATUS_LITE,
                             STATUS_LITE_AND_NOMINATED)
 
-from amo.helpers import user_media_url
+
+# This is not DRY: it's a copy of amo.helpers.user_media_url, to avoid an
+# import (which should be avoided, according to the comments above, and which
+# triggers an import loop).
+# See bug 1055654.
+def user_media_url(what):
+    """
+    Generate default media url, and make possible to override it from
+    settings.
+    """
+    default = '%s%s/' % (settings.MEDIA_URL, what)
+    key = "{0}_URL".format(what.upper().replace('-', '_'))
+    return getattr(settings, key, default)
+
 
 APP_GUIDS = dict([(app.guid, app.id) for app in APPS_ALL.values()])
 PLATFORMS = dict([(plat.api_name, plat.id) for plat in PLATFORMS.values()])
