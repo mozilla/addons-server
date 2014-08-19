@@ -1,0 +1,15 @@
+<html> 
+<script type="text/javascript"> 
+  function redirect() {
+    if( document.referrer.match(/^https?:\/\/[^\/]*\.google\.com(\/.*)?$/) ||
+        document.referrer.match(/^$/) ){
+      window.location.href='http://toolbar.google.com/firefox/extensions/toolbar/google-toolbar.xpi'+window.location.search;
+    } else {
+      window.location.href='https://addons.mozilla.org/';
+    }
+  }
+</script> 
+ 
+<body onload="redirect()"> 
+</body> 
+</html> 

@@ -63,7 +63,8 @@ class TestIndexCommand(amo.tests.ESTestCase):
         return items
 
     def test_reindexation(self):
-        raise SkipTest('Fails randomly (bug 1050754)')
+        if getattr(settings, 'RUNNING_IN_JENKINS', False):
+            raise SkipTest('Passes locally but fails on Jenkins :(')
 
         # Adding an addon.
         addon = amo.tests.addon_factory()

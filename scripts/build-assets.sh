@@ -45,10 +45,13 @@ fi
 npm install
 export PATH="./node_modules/.bin/:${PATH}"
 
-cat > local_settings <<SETTINGS
+cat > settings_local.py <<SETTINGS
+from ${SETTINGS} import *
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 SETTINGS
+
+export DJANGO_SETTINGS_MODULE=settings_local
 
 # Update the vendor lib.
 echo "Updating vendor..."

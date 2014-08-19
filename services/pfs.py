@@ -12,6 +12,8 @@ import jinja2
 
 from utils import log_configure
 
+import settings_local as settings
+
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 

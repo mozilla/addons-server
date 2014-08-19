@@ -9,7 +9,6 @@ from fabdeploytools import helpers
 
 import deploysettings as settings
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local'
 
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
