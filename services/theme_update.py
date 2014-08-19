@@ -8,9 +8,8 @@ from wsgiref.handlers import format_date_time
 
 from constants import base
 from utils import log_configure, log_exception, mypool
-from amo.helpers import user_media_path
 
-from services.utils import settings
+from services.utils import settings, user_media_path, user_media_url
 
 # Configure the log.
 log_configure()
@@ -183,7 +182,7 @@ class ThemeUpdate(object):
             elif filename == 'icon.png':
                 filename = 'preview_small.jpg'
 
-        image_url = posixpath.join(user_media_path('addons'),
+        image_url = posixpath.join(user_media_url('addons'),
                                    str(row['addon_id']), filename or '')
         modified = int(row['modified']) if row['modified'] else 0
         return '%s?%s' % (image_url, modified)

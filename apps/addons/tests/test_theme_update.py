@@ -11,6 +11,7 @@ from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
+from amo.helpers import user_media_path, user_media_url
 from versions.models import Version
 from services import theme_update
 
@@ -137,3 +138,19 @@ class TestThemeUpdate(amo.tests.TestCase):
 
         self.check_good(
             json.loads(self.get_update('en-US', 813, 'src=gp').get_json()))
+
+    def test_image_path(self):
+        up = self.get_update('en-US', 15663)
+        up.get_update()
+        image_path = up.image_path('foo.png')
+        # This is ugly. It's needed because services.theme_update imports
+        # settings_local, and settings_test is overriding MEDIA_ROOT.
+        import settings_local
+        with self.settings(MEDIA_ROOT=settings_local.MEDIA_ROOT):
+            assert user_media_path('addons') in image_path
+
+    def test_image_url(self):
+        up = self.get_update('en-US', 15663)
+        up.get_update()
+        image_url = up.image_url('foo.png')
+        assert user_media_url('addons') in image_url
