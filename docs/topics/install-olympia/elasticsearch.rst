@@ -70,15 +70,15 @@ structure of a table, indexing is analagous to storing rows.
 
 For AMO, this will set up all indexes and start the indexing processeses::
 
-    ./manage.py reindex
+    ./manage.py reindex --settings=your_local_amo_settings
 
-Or you could use the makefile target::
+Or you could use the makefile target (using the ``settings_local.py`` file)::
 
     make reindex
 
-If you need to add arguments::
+If you need to use another settings file and add arguments::
 
-    make ARGS='--with-stats --wipe --force' reindex
+    make SETTINGS=settings_amo ARGS='--with-stats --wipe --force' reindex
 
 
 Indexing

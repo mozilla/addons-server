@@ -54,6 +54,12 @@ ENABLE_API_ERROR_SERVICE = False
 SITE_URL = 'http://testserver'
 MOBILE_SITE_URL = ''
 
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
+    }
+}
+
 # COUNT() caching can't be invalidated, it just expires after x seconds. This
 # is just too annoying for tests, so disable it.
 CACHE_COUNT_TIMEOUT = -1

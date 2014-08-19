@@ -1,7 +1,8 @@
 language: python
 python:
   - "2.7"
-services:
+service:
+  - redis-server
   - memcached
 before_install:
   - wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.13.deb && sudo dpkg -i elasticsearch-0.90.13.deb
@@ -14,10 +15,11 @@ install:
   - export PATH="./node_modules/.bin/:${PATH}"
 before_script:
   - mysql -e 'create database olympia;'
+  - echo -e "from lib.settings_base import *\nCELERY_ALWAYS_EAGER = True\nRUNNING_IN_JENKINS = True" > settings_local.py
   - make update_submodules
   - make update_assets
 script:
-  - DJANGO_SETTINGS_MODULE=settings_ci make test
+  - make test
 notifications:
   irc:
     channels:

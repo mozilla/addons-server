@@ -139,14 +139,14 @@ add puppet commands like
 
     cp vagrant/manifests/classes/custom-dist.pp vagrant/manifests/classes/custom.pp
 
-For example, if your ``local_settings.py`` file requires additional packages or
+For example, if your ``settings_local.py`` file requires additional packages or
 Python modules, you'll need to add ``sudo pip install <package>``.
 Your ``custom.pp`` file is ignored by git.
 
 Troubleshooting
 ---------------
 
-If you have already set up Olympia with a custom ``local_settings.py`` file
+If you have already set up Olympia with a custom ``settings_local.py`` file
 then be sure your database credentials match the defaults::
 
     'NAME': 'olympia',
