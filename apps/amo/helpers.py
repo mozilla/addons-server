@@ -662,6 +662,7 @@ def inline_css(bundle, media=False, debug=None):
                                  '</style>' % media)
 
 
+# A (temporary?) copy of this is in services/utils.py. See bug 1055654.
 def user_media_path(what):
     """Make it possible to override storage paths in settings.
 
@@ -675,6 +676,7 @@ def user_media_path(what):
     return getattr(settings, key, default)
 
 
+# A (temporary?) copy of this is in services/utils.py. See bug 1055654.
 def user_media_url(what):
     """
     Generate default media url, and make possible to override it from
