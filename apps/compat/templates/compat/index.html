@@ -53,11 +53,11 @@
 <h2 class="c">
   {% if show_previous %}
     {{ _('Details for add-ons compatible with previous version:') }}
-    <a href="{{ request.get_full_path()|urlparams(previous=None) }}"
+    <a href="{{ request.get_full_path()|urlparams(previous=None,page=1) }}"
        class="button">{{ _('Show all versions') }}</a>
   {% else %}
     {{ _('Details for add-ons compatible with all versions:') }}
-    <a href="{{ request.get_full_path()|urlparams(previous=1) }}"
+    <a href="{{ request.get_full_path()|urlparams(previous=1,page=1) }}"
        class="button">{{ _('Show previous version only') }}</a>
   {% endif %}
 </h2>
