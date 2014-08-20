@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     if ($('#addon.primary').length == 0) return;
 
-    var lb_baseurl = z.media_url+'img/jquery-lightbox/';
+    var lb_baseurl = z.static_url+'img/jquery-lightbox/';
     $("a[rel='jquery-lightbox']").lightBox({
         overlayOpacity: 0.6,
         imageBlank: lb_baseurl+"lightbox-blank.gif",
