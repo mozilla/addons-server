@@ -19,7 +19,7 @@ function initDetail() {
     $(".addon-info").addClass("js");
 
     // Set up the lightbox.
-    var lb_baseurl = z.media_url + "img/jquery-lightbox/";
+    var lb_baseurl = z.static_url + "img/jquery-lightbox/";
     $("#images .panel a").lightBox({
         overlayOpacity: 0.6,
         imageBlank: lb_baseurl + "lightbox-blank.gif",
