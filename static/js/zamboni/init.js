@@ -140,7 +140,7 @@ z.appMatchesUserAgent = z.browser[z.app];
 
 z.anonymous = JSON.parse(document.body.getAttribute('data-anonymous'));
 
-z.media_url = document.body.getAttribute('data-media-url');
+z.static_url = document.body.getAttribute('data-static-url');
 
 z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 
