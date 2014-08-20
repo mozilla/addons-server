@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-09 07:05+0000\n"
+"PO-Revision-Date: 2014-08-20 07:37+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407567925.0\n"
+"X-POOTLE-MTIME: 1408520253.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1956,6 +1957,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Молимо Вас унесите <strong>све речи</strong> испод, <strong>раздвојене "
+"размаком ако је неопходно</strong>. </p> <p> Ако је ово тешко за читање, "
+"можете <a href=\"#\" id=\"recaptcha_different\">испробати различите речи</a> или "
+"<a href=\"#\" id=\"recaptcha_audio\">покушајте различите врсте изазова</a> "
+"уместо. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3788,6 +3794,8 @@ msgstr "Нисмо могли да проверимо PayPal ИД."
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Тип датотеке није подржан, молимо Вас да отпремите архиву датотеке "
+"{extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
@@ -5857,7 +5865,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:213
 msgid "Creating Custom Firefox Extensions with the Mozilla Build System"
-msgstr ""
+msgstr "Израда прилагођених Firefox екстензија са Mozilla Build System-ом"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:216
 msgid ""
