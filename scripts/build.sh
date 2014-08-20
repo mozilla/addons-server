@@ -88,6 +88,8 @@ DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 DATABASES['default']['TEST_NAME'] = 'test_zamboni_$1'
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+SERVICES_DATABASE['NAME'] = DATABASES['default']['NAME']
+SERVICES_DATABASE['USER'] = DATABASES['default']['USER']
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
