@@ -555,7 +555,10 @@ def profile(request, user):
             '-weekly_downloads')
         addons = amo.utils.paginate(request, addons, 5)
 
-    reviews = amo.utils.paginate(request, user.reviews.all())
+    reviews = amo.utils.paginate(
+        request,
+        # TODO: temporary, remove the exclude when 1020465 has landed.
+        user.reviews.all().exclude(addon__type=amo.ADDON_WEBAPP))
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
