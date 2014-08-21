@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-20 07:37+0000\n"
+"PO-Revision-Date: 2014-08-21 16:44+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408520253.0\n"
+"X-POOTLE-MTIME: 1408639486.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3799,7 +3799,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "Види тренутни"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:872
 msgid "Invalid version range."
@@ -5599,12 +5599,23 @@ msgid ""
 "Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
 "copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
 msgstr ""
+"Једном када се упознате са окружењем развоја екстензија, време је да "
+"започнете свој први додатак. Некада је ово значило пењање уз брдо по снегу "
+"да се нађе одговарајући шаблон за копирање за Вашу инсталацију манифеста "
+"додатка. Срећом, центар програмера додатака (то је то!) уводи моторне санке "
+"екстензија паковања: <a href=\"%(url)s\">Add-on Packager</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
 "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
 "install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
 msgstr ""
+"Само следите кораке да унесете име, број верзије, подржане апликације и "
+"друге детаље Вашег додатка, а то ће учинити да Ваша укапкована екстензија "
+"буде спремна за преузимање. Не само да генерише Вашу инсталацију манифеста, "
+"већ можете да изаберете заједничке елементе окружења као што су траке са "
+"алаткама, додатне палете, и контекст меније да направи продужетак радног "
+"скелета. Практично пишете екстензију за себе!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
@@ -5802,7 +5813,7 @@ msgstr "Научите како да прикажете веб садржај у
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
 msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr ""
+msgstr "Пет погрешних разлога да користите eval функцију у некој екстензији"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
 msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
@@ -5853,6 +5864,9 @@ msgid ""
 "In this video, Jono Xia explains how to go further in extension development using XPCOM, overlays, XHRs, DOM manipulation, etc. in order to make Firefox do things you might have never thought "
 "possible."
 msgstr ""
+"У овом видеу, Jono Xia објашњава како да напредујете у развоју екстензија "
+"користећи XPCOM, overlays, XHRs, DOM манипулацију, итд. у циљу да Firefox "
+"ради ствари које можда никад нисте помислили да можете."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
 msgid "JavaScript Code Modules"
@@ -5862,6 +5876,9 @@ msgstr "JavaScript код модули"
 msgid ""
 "JavaScript code modules let multiple privileged JavaScript scopes share code. For example, a module could be used by Firefox itself as well as by extensions, in order to avoid code duplication."
 msgstr ""
+"JavaScript модули кода дају вишестурке привилегије JavaScript опсезима "
+"делења кода. На пример, модул може бити искоришћен од самог Firefox-а као и "
+"од екстензије, у циљу да избегне дуплирање кода."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:213
 msgid "Creating Custom Firefox Extensions with the Mozilla Build System"
@@ -5872,6 +5889,9 @@ msgid ""
 "This article describes how to set up the development environment for a large, complex Firefox extension with a need for high-performance, use of third-party libraries in C/C++, or interfaces not "
 "exposed via XPCOM."
 msgstr ""
+"Овај чланак објашњава како да подесите развојно окружење за велике и сложене "
+"Firefox екстензије које захтевају високе перформансе, користећи C/C++ "
+"библиотеке трећих лица или окружења не изложеним преко XPCOM-а."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
 msgid "Multiple Item Packaging"
@@ -5880,6 +5900,8 @@ msgstr "Паковање вишеструких ставки"
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
 msgid "This article explains how to create an extension package with multiple items \"extensions\"."
 msgstr ""
+"Овај чланак објашњава како да направите пакет екстензије са више ставки "
+"\"екстензија\"."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
 msgid "Extension Documentation Index"
@@ -5906,6 +5928,10 @@ msgid ""
 "This tutorial will guide you through all the basics of add-on development, teaching you how to package them, create a suitable development environment, and program the most common features found in "
 "add-ons. It includes working code samples and the references and tools to explore all topics more in depth."
 msgstr ""
+"Овај приручник ће Вас водити кроз све основе за развој додатака, учећи Вас "
+"како да их спакујете, створите одговарајуће развојно окружење и програмирате "
+"најчешће функције које се налазе у додацима. То укључује радне узорке кода "
+"и референце и алате да се дубље истраже све теме."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:36
 msgid "Setting Up an Extension Development Environment"
@@ -5922,6 +5948,9 @@ msgstr "Прављење екстензије"
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
 msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Firefox browser containing the text \"Hello, World!\""
 msgstr ""
+"Овај приручник ће Вас провести кроз потребне кораке да изградите "
+"најосновнију екстензију - ону која додаје статусну траку Firefox прегледачу "
+"која садржи текст \"Здраво свете!\""
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:65
 msgid "Extension Packaging"
@@ -5952,6 +5981,9 @@ msgid ""
 "In this detailed guide to extension development, you'll learn the basics of packaging extensions, building an interface with XUL, implementing advanced processes with XPCOM, and how to put it all "
 "together."
 msgstr ""
+"У овом детаљном водичу за развој екстензија, научићете основе упакованих "
+"екстензија, прављење окружења са XUL-ом, спровођење напредних процеса са "
+"XPCOM-ом и како да их све саставите заједно."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
 msgid "How to Develop a Firefox Extension"
@@ -5960,6 +5992,8 @@ msgstr "Како да развијете Firefox екстензију"
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:111
 msgid "In this walk-through, Robert Nyman explains how to develop a Firefox extension from scratch."
 msgstr ""
+"У овом водичу, Robert Nyman објашњава како да развијате Firefox екстензије "
+"од нуле."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:121
 msgid "How to Build a Firefox Extension"
@@ -5967,7 +6001,7 @@ msgstr "Како направити Firefox екстензију"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:124
 msgid "Lifehacker gives tips and helpful hints on developing your first Firefox extension."
-msgstr ""
+msgstr "Lifehacker даје корисне савете о развоју Ваше прве Firefox екстензије."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:134
 msgid "Firefox Extension Development Tutorial"
@@ -5975,7 +6009,7 @@ msgstr "Firefox-ов развојни курс за екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:137
 msgid "A multi-page tutorial covering a variety of extension development topics."
-msgstr ""
+msgstr "Вишестрани приручник покрива различите теме развоја екстензија."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:149
 msgid "Creating a Status Bar Extension"
@@ -5984,6 +6018,8 @@ msgstr "Прављење екстензије статусне траке"
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:152
 msgid "Learn how to create a simple status bar extension and add more advanced functionality in subsequent tutorials, linked below."
 msgstr ""
+"Научите како да направите једноставну екстензију статусне траке и додате још "
+"напредних функционалности у наредним упуствима, повезане у наставку."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:162
 msgid "Creating a Dynamic Status Bar Extension"
@@ -5992,14 +6028,18 @@ msgstr "Прављење екстензије динамичке статуст�
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:165
 msgid "This article modifies the status bar extension created in the above tutorial by fetching content from a website at a regular interval."
 msgstr ""
+"Овај чланак мења екстензију статусне траке направљене у претходном упуству "
+"при преузимању садржаја са веб сајта у редовном интервалу."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:175
 msgid "Adding Preferences to an Extension"
-msgstr ""
+msgstr "Додавање опција за екстензију"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:178
 msgid "This article shows how to add preferences to the dynamic status bar created in the above tutorial."
 msgstr ""
+"Овај чланак показује како да додате опције динамичкој статусној траци "
+"направљеној у претходном приручнику."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:187
 msgid "Books"
@@ -6007,11 +6047,13 @@ msgstr "Књиге"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:193
 msgid "Build Your Own Firefox Extension E-book"
-msgstr ""
+msgstr "Направите Вашу електронску књигу Firefox екстензије"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:196
 msgid "With a little JavaScript know-how, author James Edwards will show you just how straightforward it is to build your own Firefox extensions."
 msgstr ""
+"Уз мало JavaScript знања, аутор James Edwards ће Вам показати колико је "
+"једноставно да направите Вашу Firefox екстензију."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:3 apps/devhub/templates/devhub/docs/how-to-other-addons.html:7 apps/devhub/templates/devhub/docs/how-to-other-addons.html:9
 #: apps/devhub/templates/devhub/docs/how-to.html:29 apps/devhub/templates/devhub/docs/how-to.html:125
@@ -6021,6 +6063,8 @@ msgstr "Друге врсте додатака"
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12 apps/devhub/templates/devhub/docs/how-to.html:128
 msgid "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-ons here."
 msgstr ""
+"Нађите информације о прикључцима претраге, Jetpack-у, темама и другим "
+"врстама додатака овде."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
 msgid "Jetpack"
@@ -6040,7 +6084,7 @@ msgstr "Jetpack API документација"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
 msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
-msgstr ""
+msgstr "Ова Jetpack API документација је обавезна за рад на Вашем Jetpack-у."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
@@ -6048,7 +6092,7 @@ msgstr "Како правити теме"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr ""
+msgstr "Научите како да направите Вашу тему са овим званичним приручником."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
 msgid "Search Plug-ins"
@@ -6075,6 +6119,9 @@ msgid ""
 "Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in "
 "documentation index to learn more."
 msgstr ""
+"Прикључци за Mozilla базиране апликације су бинарне компоненте које могу "
+"приказати садржај који сама апликација не може приказати. Истражите Mozilla "
+"Developer Center документацију прикључака да сазнате више."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3 apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
@@ -6085,14 +6132,17 @@ msgstr "Развој теме"
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11 apps/devhub/templates/devhub/docs/how-to.html:115
 msgid "Style Mozilla applications the way you want with pixel-perfect themes."
 msgstr ""
+"Уредите Mozilla апликацију на начин који Ви желите са pixel-perfect темама."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
 msgid "Creating a Skin for Firefox"
-msgstr ""
+msgstr "Прављење теме за Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:26
 msgid "Learn how to find the right files to edit, make your changes, and package up your new theme in this tutorial."
 msgstr ""
+"Сазнајте како да нађете праве датотеке за уређивање, да направите измене и "
+"спакујете Вашу нову тему у овом приручнику."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:37
 msgid "How to Create a Firefox Theme"
@@ -6101,6 +6151,8 @@ msgstr "Како направити Firefox тему"
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:40
 msgid "Thomas McMahon explains how to create a Firefox theme from start-to-finish in this tutorial."
 msgstr ""
+"Thomas McMahon објашњава како да направите Firefox тему од почетка-до краја "
+"у овом приручнику."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:54
 msgid "Theme Packaging"
@@ -6117,22 +6169,28 @@ msgstr "Први кораци у дизајнирању тема"
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
 msgid "This blog post by Lim Chee Aun explains the use of -moz-image-region in themes."
 msgstr ""
+"Овај Lim Chee Aun-ов блог пост објашњава корист -moz-image-region у темама."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:81
 msgid "Making Sure Your Theme Works with RTL Locales"
-msgstr ""
+msgstr "Уверите се да Ваша тема ради са RTL локализацијама"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:85
 msgid "It's important to make sure your theme works in all locales. This article explains how to tweak your theme to look great for users who browse in right-to-left."
 msgstr ""
+"Важно је да се уверите да Ваша тема ради на свим локализацијама. Овај чланак "
+"објашњава како да подесите Вашу тему да изгледа одлично за кориснике који "
+"прегледају са десна на лево."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:95
 msgid "Theme Documentation Index"
-msgstr ""
+msgstr "Индекс документације теме"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:98
 msgid "If you haven't found what you're looking for yet, try the Mozilla Developer Center's Themes section."
 msgstr ""
+"Ако још увек нисте нашли оно што тражите, пробајте секцију тема на Mozilla "
+"Developer Center."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:3 apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:7
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:9 apps/devhub/templates/devhub/docs/how-to.html:21
@@ -6142,6 +6200,9 @@ msgstr "Додаци за Thunderbird и мобилне"
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
 msgid "Add-ons aren't just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
 msgstr ""
+"Додаци нису само за Firefox. Сазнајте како да проширите друге Mozilla "
+"апликације, као што су Thunderbird клијент е-поште и Firefox за мобилне "
+"уређаје."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:18
 msgid "Developing Add-ons for Thunderbird"
@@ -6154,6 +6215,9 @@ msgstr "Прављење Thunderbird екстензија"
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:27
 msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Thunderbird Mail Client containing the text \"Hello, World!\""
 msgstr ""
+"Овај приручник ће Вас провести кроз потребне кораке да направите једноставну "
+"ектензију - ону која додаје статусну траку на Thunderbird клијенту е-поште "
+"садржећи текст \"Здраво, свете!\""
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
 msgid "An Overview of Thunderbird Components"
@@ -6162,22 +6226,29 @@ msgstr "Преглед Thunderbird компонената"
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:40
 msgid "This article describes the Thunderbird user interface, discusses example modifications, and introduces some of the APIs most commonly used by extension developers."
 msgstr ""
+"Овај чланак објашњава окружење Thunderbird корисника, дискутује о примерима "
+"модификација и уводи неке од најчешће коришћених API-ја од стране програмера "
+"екстензија."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:52
 msgid "Thunderbird How-tos"
-msgstr ""
+msgstr "Thunderbird како да"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:55
 msgid "This section contains many code samples and how-to articles on common Thunderbird extension tasks."
 msgstr ""
+"Ова секција садржи много узорака кодова и чланака о заједничким Thunderbird "
+"задацима екстензија."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:65
 msgid "Thunderbird Extensions Documentation Index"
-msgstr ""
+msgstr "Индекс документације екстензија Thunderbird-а"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:68
 msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Thunderbird extensions landing page."
 msgstr ""
+"Ако не можете да нађете оно што тражите у претходним чланцима, покушајте "
+"Mozilla Developer Center Thunderbird одредишну страницу екстензија."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
 msgid "Developing Add-ons for Mobile"
@@ -6190,6 +6261,8 @@ msgstr "Мобилна архитектура"
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:85
 msgid "This document describes the architecture of Firefox on mobile and includes performance tips for mobile code."
 msgstr ""
+"Овај документ описује архитектуру Firefox-а на мобилном уређају и укључује "
+"савете перформанси за мобилни код."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
 msgid "Mobile Extensions"
@@ -6198,6 +6271,8 @@ msgstr "Мобилне екстензије"
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
 msgid "This document explains the specifics on creating an extension for mobile."
 msgstr ""
+"Овај документ објашњава специфичности прављења екстензија за мобилне "
+"телефоне."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:108
 msgid "Best Practices for Mobile Extensions"
@@ -6206,14 +6281,17 @@ msgstr "Најбоље праксе за мобилне екстензије"
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:111
 msgid "Mobile extensions have small screen space and limited resources to work with. This document explains best practices for designing and developing for a mobile environment."
 msgstr ""
+"Мобилне екстензије имају мали екран и ограничена средства за рад. Овај "
+"документ објашњава најбољи начин за вежбање дизајнирања и програмирања за "
+"мобилно окружење."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:123
 msgid "Mobile Code Snippets"
-msgstr ""
+msgstr "Исечак мобилног кода"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:126
 msgid "Code snippets specific to mobile."
-msgstr ""
+msgstr "Исечак кода специфичан за мобилни."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:136
 msgid "Designing User Interfaces for Mobile"
@@ -6229,11 +6307,13 @@ msgstr "Више ресурса"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
 msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
-msgstr ""
+msgstr "Већ знате шта тражите? <a href=\"%(link_search)s\">Потражите га!</a>"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:43
 msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
 msgstr ""
+"Прегледајте кроз <a href=\"%(link_reference)s\">API & Language референце</a> "
+"да нађете окружење за које се надате да постоји"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
 msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
@@ -6242,6 +6322,8 @@ msgstr "Потребна помоћ? <a href=\"https://forums.addons.mozilla.org
 #: apps/devhub/templates/devhub/docs/how-to.html:77
 msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
 msgstr ""
+"Научите основе развоја екстензија на Mozilla платформама са овом секцијом "
+"пуном beginner&#039;s водича."
 
 #: apps/devhub/templates/devhub/docs/how-to.html:99
 msgid "Thunderbird &amp; Mobile Add-ons"
@@ -6250,6 +6332,9 @@ msgstr "Thunderbird и мобилни додаци"
 #: apps/devhub/templates/devhub/docs/how-to.html:103
 msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
 msgstr ""
+"Наставци aren&#039;t само за Firefox. Сазнајте како да проширите друге "
+"Mozilla апликације, као што су Thunderbird клијент е-поште и Firefox за "
+"мобилне уређаје."
 
 #: apps/devhub/templates/devhub/docs/marketplace.html:3
 msgid "Marketplace"
@@ -6258,7 +6343,7 @@ msgstr "Marketplace"
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Споразум програмера"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3 apps/devhub/templates/devhub/docs/policies-contact.html:7 apps/devhub/templates/devhub/docs/policies-contact.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:27 apps/devhub/templates/devhub/docs/policies.html:115
@@ -6268,16 +6353,22 @@ msgstr "Контактирајте нас"
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Хвала Вам на интересовању у контактирању Mozilla Add-ons тима. Молимо Вас "
+"пажљиво прочитајте ову страницу да би се уверили да Ваш захтев оде на право "
+"место."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
-msgstr ""
+msgstr "Подршка додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:19
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
 msgstr ""
+"Ако имате питање о нарочитом додатку, као што је \"како да користим додатак?\" "
+"или \"зашто ово не ради исправно?\", молимо Вас контактирајте аутора додатка "
+"кроз канал подршке листиран на листинг страници додатака."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -6285,13 +6376,18 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors на mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid ""
 "If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
 "strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
+"Ако имате питање у вези прегледа неког додатка уредника или желите да "
+"пријавите кршење права, молимо Вас контактирајте %(mail_editors)s. "
+"<strong>Готово све пријаве додатака спадају у ову категорију.</strong> "
+"Молимо Вас да се уверите да сте убацили линк ка додатку у питању и детаљан "
+"опис Вашег питања или коментара."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -6307,24 +6403,35 @@ msgid ""
 "issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Ако сте открили безбедносни пропуст у неком додатку, чак и ако није "
+"постављен овде, Mozilla је веома заинтересована o Вашем открићу и радиће са "
+"програмером додатка да што пре исправе проблем ако је то могуће. Безбедносни "
+"пропусти додатака могу бити пријављени <a "
+"href=\"http://www.mozilla.org/projects/security/security-bugs-"
+"policy.html\">поверљиво</a> на <a href=\"%(link_bugzilla)s\">Bugzilla-и</a> или "
+"слањем е-поште %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Функционалност и развој веб сатја"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
 "If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">file a bug report</a> in Bugzilla, including "
 "the location of the problem and how you encountered it."
 msgstr ""
+"Ако сте нашли проблем са овим сајтом, волели би смо да га исправимо. Молимо "
+"Вас <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozil"
+"la.org\">поднесите извештај о грешци</a> на Bugzilla-и, укључујући и локацију "
+"проблема и како сте наишли на њега."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3 apps/devhub/templates/devhub/docs/policies-maintenance.html:7 apps/devhub/templates/devhub/docs/policies-maintenance.html:8
 msgid "Maintaining Your Add-ons"
-msgstr ""
+msgstr "Одржавање Ваших додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:10
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Подношење нових верзија Вашег додатка"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
@@ -6332,24 +6439,38 @@ msgid ""
 "mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
 "please remember that versions must be reviewed by an editor."
 msgstr ""
+"Програмери су охрабрени да поднесу ажурирања својим додацима да исправе "
+"грешке, додају функције, а на други начин побољшају свој производ. Нове "
+"верзије додатка морају имати <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">већи број "
+"верзија</a> и могу се поднети преко пружаног развојног алата. Не постоји "
+"ограничење у броју верзије које могу бити поднете, али молим Вас да "
+"запамтите да верзије морају бити прегледане од стране уредника."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
 msgstr ""
+"Нове верзије ће бити додате у реду за преглед, и било које додатне верзије "
+"поднете пре него што је преглед завршен, преместиће ту верзију на крај реда."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
-msgstr ""
+msgstr "Како да поднесем бета верзију додатка?"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr ""
+msgstr "Бета верзије канала су доступни само потпуно прегледаним додацима."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
+"Да бисте направили бета канал, отпремите датотеку са јединственом стринг "
+"верзијом која садржи неки од следећих стрингова: <code>a, b, alpha, beta, "
+"pre, rc</code>, са опционим бројем на крају. Овај текст мора доћи на крају "
+"стринг верзије. Ако разумете регек формат, ево шта тражимо у броју верзије: "
+"<code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
@@ -6375,58 +6496,97 @@ msgid ""
 "developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
+"Одређене ситуације могу настати у којим Mozilla тражи да проргамер додатака "
+"ажурира своје додатаке у датом временском периоду ради решавања великог "
+"безбедносног проблема или политике кршења. Ми радимо са програмерима како би "
+"прилагодили своје распореде са њиховим, али ако је питање од довољно "
+"озбиљне природе, додаци који се не могу ажурирати са траженом исправком могу "
+"бити деградирани од потпуно прегледаног статуса, онемогућени, или трајно "
+"уклоњени са сајта."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "Пренос власништва"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:57
 msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
 msgstr ""
+"Додаци могу имати више корисника са дозволом за ажурирање и управљањем "
+"листинга. Постојећи аутори наставка могу пренети власништво и додати нове "
+"програмере на листу додатака кроз пружене алате за програмере. Интеракција "
+"са Mozilla представницима је неопходно за пренос власништва."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
 msgstr ""
+"Mozilla може да помогне давањем додатне дозволе на листингу додатка ако је "
+"<a href=\"%(link_contact)s\">контактирана</a> од стране тренутног власника "
+"додатка."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla охрабрује своје кориснике да поврате информације о својим искуствима "
+"са коришћењем додатка. Ово дозвољава другим корисницима да одлуче да ли је "
+"додатак стабилан и користан. Такође пружа важне повратне информације "
+"програмерима, дозвољавајући им да стално побољшавају њихов додатак "
+"корисниковим потребама."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
 msgstr ""
+"Рецензија мора да прати <a href=\"%(link_guidelines)s\">смернице "
+"рецензије</a>. Рецензије које не прате ове смернице могу бити означене за "
+"модерирање, али негативне рецензије се неће уклонити сем ако не пруже лажне "
+"информације."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"Многи програмери обезбеђују механизам подршке, као што су форуми, групе за "
+"дискусије или адресе е-пошта. Препоручује се да за питања за подршку путу "
+"постављена путем тих медија уместо у секцији за рецензију додатка."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
-msgstr ""
+msgstr "Спорови кода"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:90
 msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
+"Многи додаци омогћавају јавно њихов изворни код. Ово не значи да је изворни "
+"код отворени код или да је дозвољен за употребу у другом додатку. Првобитни "
+"аутор додатка задржава ауторска права његовог рада осим ако другачије није "
+"наведено у лиценци додатка."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
+"У случају да смо обавештени о кршењу ауторских права или лиценце, "
+"предузећемо мере да преиспитамо ситуацију и утврдити да ли је заиста дошло "
+"до кршења права. Ако утврдимо да је дошло до кршења права, уклонићемо "
+"увредљиви додатак и контактирати аутора. Новој пријави додатка (укључујући "
+"ажурирања) која садржи злоупотребљене кодове ће бити онемогућен јавни "
+"статус."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
 msgstr ""
+"Ако нисте сигурни о тренутном статусу ауторских права изворног кода додатка, "
+"морате контактирати оргиналног аутора и добити експлицитну дозволу пре "
+"употребе изворног кода."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107 apps/devhub/templates/devhub/docs/policies-reviews.html:306 apps/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
@@ -6437,55 +6597,71 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
+"Истакнути додаци су екстензије врхунског квалитета и теме истакнуте на <a "
+"href=\"%(link_gallery)s\">АМО-у</a>, Firefox-овом менаџеру додатака и преко "
+"других Mozilla веб сајтова. Ови додаци су излог моћи Firefox прилагођавања и "
+"корисни су за широку публику."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
 msgstr ""
+"Истакнути додаци су изабрани од стране Featured Add-ons Advisory Board, мале "
+"групе програмера додатака и фанова Mozilla заједнице који су волонтирали да "
+"прегледају и гласају током номинација."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
 msgstr ""
+"<a href=\"%(link_featured)s\">Истакнуте екстензије</a> се бирају сваког "
+"месеца, а <a href=\"%(link_themes)s\">истакнуте завршене теме</a> се бирају "
+"током сваког квартала."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
-msgstr ""
+msgstr "Критеријуми за истакнуте додатке"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
 msgstr ""
+"Пре номинације неког додатка да буде истакнут, молимо Вас уверите се да "
+"задовољава следеће критеријуме:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr ""
+msgstr "Додатак мора да има завршен и информативан AMO листинг. То значи:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
-msgstr ""
+msgstr "прилагођена иконица од 64 пиксела"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:42
 msgid "a clear and concise name (no lengthy keywords)"
-msgstr ""
+msgstr "кратко и јасно име (нема дугих кључних речи)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:43
 msgid "a clear and concise summary of the add-on's functionality"
-msgstr ""
+msgstr "кратак и јасан резиме функционалности додатка"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:44
 msgid "detailed description and privacy policy, if applicable"
-msgstr ""
+msgstr "детаљан опис и полиса о приватности, по потреби"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:45
 msgid "updated screenshots of the add-on's functionality"
-msgstr ""
+msgstr "ажуриран снимак екрана функционалности додатка"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
 msgstr ""
+"мора бити потпуно одобрен од стране AMO уредника (нема прелиминарних уноса "
+"рецензија)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
 msgstr ""
+"Додатак мора имати одличну рецензију корисника и било какав проблем или "
+"захтев за подршку мора бити пријављен програмеру."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -6494,12 +6670,18 @@ msgstr "Додатак мора да има минимално 2,000 корис�
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
 msgstr ""
+"Додатак мора бити компатибилан са последњом верзијом Firefox-а и мора бити "
+"компатибилан са бета верзијом 4 недеље пре коначног пуштања."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
+"<strong>Оно што је најважније</strong>, додатак мора имати широк потрошачки "
+"апел Firefox корисницима и да буде изузетан на готово сваки начин: искуство "
+"корисника, перформансе, сигурност и корисну или забавну вредност. Истакнуте "
+"завршене теме такође морају бити визуелно привлачне."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6507,37 +6689,50 @@ msgstr "Номиновање додатка"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "amo-featured at mozilla dot org"
-msgstr ""
+msgstr "amo-featured на mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
 msgstr ""
+"Ако желите да номинујете додатак да буде истакнут и да испуни претходне "
+"критеријуме, пошаљите е-пошту на %(mail_featured)s са:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr ""
+msgstr "име додатка, URL адреса и да ли сте његов програмер"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
+msgstr "картко објашњење зашто додатак има жалбе и зашто треба да буде истакнут"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr ""
+"по избору, повезује на било коју спољну рецензију или чланак који спомиње "
+"додатак"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Номинације додатака су прегледане од стране саветодавног одбора једном "
+"месечно (једном у свака 3 месеца за номинације завршених тема). Уобичајени "
+"разлози за одбијање укључују недостатак широке жалбе на потрошаче, "
+"субоптимално искуство корисника, квалитет и безбедносне проблеме, "
+"неспојивост и сличности са другим истакнутим додатком. Одбијени додатак не "
+"може бити поново номинован у следећа 3 месеца."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
-msgstr ""
+msgstr "Ротација истакнутих додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
 msgstr ""
+"Mozilla и саветодавни одбор истакнутих додатака регуларно процењују и "
+"ротирају истакнуте додатке. Неки од најчешћих разлога за уклањање додатка са "
+"истакнуте листе су:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:83
 msgid ""
@@ -6548,6 +6743,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
 msgstr ""
+"Негатвне рецензије &mdash; Истакнути додаци би требали имати одлично "
+"искуство и веома мало грешака, тако да додатак са много негативних рецензија "
+"буде поново разматран."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid ""
