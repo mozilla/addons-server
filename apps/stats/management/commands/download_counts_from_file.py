@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from optparse import make_option
-from os import path
+from os import path, unlink
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -118,3 +118,7 @@ class Command(BaseCommand):
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
+
+        # Clean up file.
+        log.debug('Deleting {path}'.format(path=filepath))
+        unlink(filepath)

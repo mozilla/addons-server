@@ -1,6 +1,7 @@
 import datetime
 import os
 from nose.tools import eq_
+import shutil
 
 from django.conf import settings
 from django.core import management
@@ -18,6 +19,21 @@ hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
 
 class TestADICommand(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'addons/persona')
+
+    def setUp(self):
+        self.clean_up_files()
+        shutil.copytree(os.path.join(hive_folder, 'src'),
+                        os.path.join(hive_folder, '2014-07-10'))
+
+    def tearDown(self):
+        self.clean_up_files()
+
+    def clean_up_files(self):
+        dirpath = os.path.join(hive_folder, '2014-07-10')
+        if os.path.isdir(dirpath):
+            for name in os.listdir(dirpath):
+                os.unlink(os.path.join(dirpath, name))
+            os.rmdir(dirpath)
 
     def test_update_counts_from_file(self):
         management.call_command('update_counts_from_file', hive_folder,
