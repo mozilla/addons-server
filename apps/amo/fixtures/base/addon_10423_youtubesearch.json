@@ -187,8 +187,6 @@
             "last_login_attempt_ip": "",
             "last_login_attempt": null,
             "password": "",
-            "resetcode_expires": null,
-            "resetcode": "",
             "created": "2009-01-19 15:19:21",
             "notes": null,
             "modified": "2009-01-19 15:19:53",

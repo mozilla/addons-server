@@ -118,21 +118,6 @@ def gc(test_result=True):
 
 
 @cronjobs.register
-def expired_resetcode():
-    """
-    Delete password reset codes that have expired.
-    """
-    log.debug('Removing reset codes that have expired...')
-    cursor = connection.cursor()
-    cursor.execute("""
-    UPDATE users SET resetcode=DEFAULT,
-                     resetcode_expires=DEFAULT
-    WHERE resetcode_expires < NOW()
-    """)
-    transaction.commit_unless_managed()
-
-
-@cronjobs.register
 def category_totals():
     """
     Update category counts for sidebar navigation.
