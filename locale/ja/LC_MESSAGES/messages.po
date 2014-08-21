@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-01-12 18:36-0500\n"
+"PO-Revision-Date: 2014-08-21 08:00-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -208,7 +208,7 @@ msgstr "プライバシーポリシーを表示"
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "エンドユーザ使用許諾契約書を表示"
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1016,7 +1016,7 @@ msgstr "管理"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
-msgstr ""
+msgstr "{0} のアイコン"
 
 #: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1035,7 +1035,7 @@ msgstr "{0} が作られた経緯と、このアドオンの今後の開発計�
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "アドオンのスクリーンショット #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
@@ -1663,11 +1663,11 @@ msgstr "{version} のアプリケーション最高バージョンが更新さ�
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr "作者が {version} の互換性についてメールを送信しました。"
+msgstr "{version} の互換性に関するメールが作者に送信されました。"
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "アドオンの互換性に関するメールが作者に送信されました。"
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1924,6 +1924,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</> か、"
+"代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -2142,7 +2144,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "コレクションの説明を記入してください。(リンクの使用は許可されていません)"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2154,11 +2156,11 @@ msgstr "アイコン"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "この名前は使えません。"
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
-msgstr ""
+msgstr "リンクの使用は許可されていません。"
 
 #: apps/bandwagon/forms.py:170
 msgid "This url is already in use by another collection"
@@ -3542,23 +3544,23 @@ msgstr "承認"
 
 #: apps/constants/editors.py:23
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "性的もしくはわいせつな内容"
 
 #: apps/constants/editors.py:24
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "不適切もしくは侮辱的な内容"
 
 #: apps/constants/editors.py:25
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "暴力、戦争もしくは兵器の画像"
 
 #: apps/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "ナチスもしくはその他扇動的な内容"
 
 #: apps/constants/editors.py:27
 msgid "Defamatory content"
-msgstr ""
+msgstr "中傷的な内容"
 
 #: apps/constants/editors.py:28
 msgid "Online gambling"
@@ -3566,15 +3568,15 @@ msgstr "オンラインギャンブル"
 
 #: apps/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "スパム的な内容"
 
 #: apps/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "低画質、引き延ばしもしくは空白の画像"
 
 #: apps/constants/editors.py:31
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "ヘッダ画像の整列問題"
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -3682,11 +3684,11 @@ msgstr "「その他」を選択した場合は、ライセンス本文の入力
 
 #: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "このアドオンにはエンドユーザ使用許諾契約書があります"
 
 #: apps/devhub/forms.py:211
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "アドオンのエンドユーザ使用許諾契約書を指定してください:"
 
 #: apps/devhub/forms.py:214
 msgid "This add-on has a Privacy Policy"
@@ -3734,11 +3736,11 @@ msgstr "PayPal ID が検証できません。"
 
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "非対応のファイル形式です。アーカイブファイル {extensions} をアップロードしてください。"
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "最新版を表示"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:872
 msgid "Invalid version range."
@@ -4102,7 +4104,7 @@ msgstr "Add-on SDK"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>Add-on SDK:</strong> アドオンを素早く簡単に作成"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
@@ -4213,15 +4215,15 @@ msgstr "すべてのアドオンを見る ►"
 
 #: apps/devhub/templates/devhub/index.html:83
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO 審査担当者"
 
 #: apps/devhub/templates/devhub/index.html:85
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "一歩先へ！ AMO の審査担当者になって、あなたのアドオンの審査を早めましょう。"
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "AMO 審査担当者になる"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -5100,7 +5102,7 @@ msgstr "登録手続きが完了しなかった場合、このアドオンは数
 #. {1} is a version number.
 #: apps/devhub/templates/devhub/addons/listing/items.html:24
 msgid "<strong>Latest version:</strong> <a href=\"{0}\">{1}</a>"
-msgstr ""
+msgstr "<strong>最新版:</strong> <a href=\"{0}\">{1}</a>"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:39
 msgid "Disabled"
@@ -5214,11 +5216,11 @@ msgstr "審査完了までのおおよその <a href=\"{0}\">待ち時間</a> �
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "レビュー待ちの列から一歩先へ！"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "AMO の審査担当者になって、あなたのアドオンの審査を早めましょう。"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -11853,7 +11855,7 @@ msgstr "月"
 
 #: apps/stats/templates/stats/stats.html:54
 msgid "For last:"
-msgstr ""
+msgstr "過去:"
 
 #: apps/stats/templates/stats/stats.html:57
 msgid "7 days"
@@ -12058,7 +12060,7 @@ msgstr ""
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr ""
+msgstr "人気 {0} タグ"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
@@ -12067,11 +12069,11 @@ msgstr "{0} の人気タグ"
 
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "翻訳言語: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: apps/translations/templates/translations/trans-menu.html:16 apps/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
@@ -12083,7 +12085,7 @@ msgstr "新規ロケール"
 
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "<b>{0}</b> ロケールに未保存の変更があります。ロケールを変更する前に変更を保存しますか？"
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -12091,7 +12093,7 @@ msgstr "変更を破棄"
 
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "<b>{0}</b> の翻訳をすべて削除してもよろしいですか？ この操作は取り消せません。"
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -12099,11 +12101,11 @@ msgstr "ロケールを削除"
 
 #: apps/users/forms.py:34
 msgid "Must be %s characters or more."
-msgstr ""
+msgstr "%s 文字以上入力してください。"
 
 #: apps/users/forms.py:51
 msgid "Letters and numbers required."
-msgstr ""
+msgstr "英数字を含むようにしてください。"
 
 #: apps/users/forms.py:54
 msgid "That password is not allowed."
@@ -12119,11 +12121,11 @@ msgstr "入力されたパスワードが間違っています。"
 
 #: apps/users/forms.py:218
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "数字のみのユーザ名は使用できません。"
 
 #: apps/users/forms.py:220
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "英数字、アンダーバー、ハイフンを含む適切な形式のユーザ名を入力してください。"
 
 #: apps/users/forms.py:223
 msgid "This username cannot be used."
@@ -12151,11 +12153,11 @@ msgstr "この URL は不正な形式です。有効な URL は http://example.c
 
 #: apps/users/forms.py:276
 msgid "Please use an email address from a different provider to complete your registration."
-msgstr ""
+msgstr "登録を完了するには他のプロバイダのメールアドレスを使用してください。"
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "この表示名は使用できません。"
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12167,15 +12169,15 @@ msgstr "プロフィール写真"
 
 #: apps/users/forms.py:325 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "既定のロケール"
 
 #: apps/users/forms.py:462
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "匿名化するには、他の項目は変更せずに、変更の理由のみ記入してください。"
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "ブラックリストへ追加する名前を少なくともひとつ入力してください。"
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
@@ -12184,15 +12186,15 @@ msgstr "その他"
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "アルゴリズム"
 
 #: apps/users/models.py:64
 msgid "salt"
-msgstr ""
+msgstr "ソルト"
 
 #: apps/users/models.py:65
 msgid "hash"
-msgstr ""
+msgstr "ハッシュ"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
@@ -12212,71 +12214,71 @@ msgstr "自分のモバイル向けアドオン"
 
 #: apps/users/notifications.py:17
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "自分の寄付に対してアドオンの開発者からお礼があったとき"
 
 #: apps/users/notifications.py:26
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "自分のレビューに対してアドオンの開発者から返信があったとき"
 
 #: apps/users/notifications.py:34
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "自分のレビューに対してアプリの開発者から返信があったとき"
 
 #: apps/users/notifications.py:41
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "アドオンや Firefox の新機能が使用可能になったとき"
 
 #: apps/users/notifications.py:50
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "自分のアドオンの互換性が正しく更新されたとき"
 
 #: apps/users/notifications.py:59
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "自分の SDK ベースのアドオンが正しく更新されたとき"
 
 #: apps/users/notifications.py:68
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "ユーザによって自分のアドオンのレビューが書かれたとき"
 
 #: apps/users/notifications.py:76
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "ユーザによって自分のアプリのレビューが書かれたとき"
 
 #: apps/users/notifications.py:83
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "アドオンのコンテストやイベントが発表されたとき"
 
 #: apps/users/notifications.py:92
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "自分のアドオンの互換性が更新できないとき"
 
 #: apps/users/notifications.py:101
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "自分の SDK ベースのアドオンが更新できないとき"
 
 #: apps/users/notifications.py:110
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "自分のアドオンがエディタによって審査されたとき"
 
 #: apps/users/notifications.py:119
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "自分の個別アドオンに関する Mozilla からのメールを受け取ります"
 
 #: apps/users/notifications.py:128
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "自分のアプリがエディタによって審査されたとき"
 
 #: apps/users/notifications.py:134
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "自分の個別アプリに関する Mozilla からのメールを受け取ります"
 
 #: apps/users/notifications.py:141
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr ""
+msgstr "アプリ開発者向けのニュースやアンケートに関する Mozilla からのメールを受け取ります"
 
 #: apps/users/notifications.py:152
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr ""
+msgstr "Marketplace へ新たに追加された地域に関する Mozilla からのメールを受け取ります"
 
 #: apps/users/notifications.py:160
 msgid "User Notifications"
@@ -12333,7 +12335,7 @@ msgstr ""
 
 #: apps/users/views.py:207
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "メールアドレスの変更を %s で確認してください。"
 
 #: apps/users/views.py:219
 msgid "Errors Found"
@@ -12353,11 +12355,11 @@ msgstr "これからは {0} でログインしてください。"
 
 #: apps/users/views.py:317
 msgid "Persona authentication failure."
-msgstr ""
+msgstr "Persona 認証に失敗しました。"
 
 #: apps/users/views.py:337
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "このアカウントの確認済みメールアドレスを使用してください。"
 
 #: apps/users/views.py:448
 msgid "Wrong email address or password!"
@@ -12393,7 +12395,7 @@ msgstr "ありがとうございます。ユーザアカウントの登録が完
 
 #: apps/users/views.py:664
 msgid "You already have an account."
-msgstr ""
+msgstr "あなたは既にアカウントを作成しています。"
 
 #: apps/users/views.py:674
 msgid "There are errors in this form"
@@ -12405,7 +12407,7 @@ msgstr "誤りを訂正して、もう一度送信してください。"
 
 #: apps/users/views.py:690
 msgid "User reported."
-msgstr ""
+msgstr "ユーザが報告されました。"
 
 #: apps/users/widgets.py:37
 msgid "new"
@@ -12425,15 +12427,15 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "「削除」をクリックすることで、あなたのアカウントは <strong>永久に削除</strong> されます。つまり、"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "あなたは今後 %(site)s へログインできなくなります。"
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "あなたのレビューと評価は削除されませんが、あなたとの関連づけは失われます。"
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -12510,7 +12512,7 @@ msgstr "あなたについてのもう少し詳しい情報を記入してくだ
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "この URL はあなたが開発者である場合のみ表示されます。"
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -12522,7 +12524,7 @@ msgstr "現在の写真を削除"
 
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr ""
+msgstr "これはあなたに関する情報 (説明など) を表示するのに使用される既定のロケールです。"
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -12530,7 +12532,7 @@ msgstr "もしよければ、コミュニティに向けて自己紹介してく
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "使用可能な HTML は {0} です。リンクの使用は許可されていません。"
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
@@ -12554,7 +12556,7 @@ msgstr "通知"
 
 #: apps/users/templates/users/edit.html:181
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Mozilla では時々、今後のリリースやアドオン関連のイベントに関するメールをお送りしています。興味のあるトピックを選択してください。"
 
 #: apps/users/templates/users/edit.html:191
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
@@ -12725,7 +12727,7 @@ msgstr "パスワード変更のためのリンクをメールで送信"
 #: apps/users/templates/users/pwreset_sent.html:10
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr ""
+msgstr "詳しい情報が記載されたメールがリクエストされたアカウント宛に送信されました。もしメールが届かない場合は、アカウント登録時に使用したのと同じメールアドレスを入力したか再度確認してください。"
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -12773,7 +12775,7 @@ msgstr "表示名"
 
 #: apps/users/templates/users/report_abuse.html:7
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "スパムもしくは不適切な写真など、このユーザを報告する理由を記入してください。"
 
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
@@ -12781,7 +12783,7 @@ msgstr "ユーザ {0} を報告"
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr ""
+msgstr "アカウントのパスワードは 8 文字以上で、アルファベットと数字を含む必要があります。"
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
@@ -12789,11 +12791,11 @@ msgstr "購読解除"
 
 #: apps/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "購読を解除しました。"
 
 #: apps/users/templates/users/unsubscribe.html:10
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "メールアドレス <strong>%(email)s</strong> に以下の通知が送られなくなります:"
 
 #: apps/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
@@ -12813,7 +12815,7 @@ msgstr "購読を解除できませんでした"
 
 #: apps/users/templates/users/unsubscribe.html:30
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "申し訳ありませんが、購読を解除できませんでした。クリックされたリンクが正しくないようです。<a href=\"%(edit_url)s\">プロファイル編集ページ</a> から購読を解除してください。"
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
@@ -12952,7 +12954,7 @@ msgstr "完了時にメールを送信する"
 
 #: apps/zadmin/forms.py:106
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "メールを送信する代わりにログで残す"
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
