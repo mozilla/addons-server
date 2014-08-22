@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-21 08:00-0400\n"
+"PO-Revision-Date: 2014-08-22 06:00-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -11195,23 +11195,23 @@ msgstr ""
 
 #: apps/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Sunbird に関する詳細"
 
 #: apps/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "PayPal との通信中に問題が発生しました。また後で試してください。"
 
 #: apps/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "この通貨に関する問題が発生しました。"
 
 #: apps/paypal/__init__.py:67
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "受取人の通貨へ変換するには金額が少なすぎます。"
 
 #: apps/paypal/__init__.py:69
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "購入者と販売者は別の PayPal アカウントを持っている必要があります。"
 
 #. L10n: {0} is the currency.
 #: apps/paypal/__init__.py:72
@@ -11231,11 +11231,11 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:33
 msgid "Add-ons with Slow Start-up"
-msgstr ""
+msgstr "起動時間を遅くするアドオン"
 
 #: apps/perf/templates/perf/index.html:34
 msgid "The following add-ons have a significant impact on how long it takes %(app)s to start up."
-msgstr ""
+msgstr "以下のアドオンは %(app)s の起動時間に重大な影響を与えています。"
 
 #. Show All, Windows, Mac, Linux. The other names are inserted after the colon.
 #: apps/perf/templates/perf/index.html:40
@@ -11248,7 +11248,7 @@ msgstr "影響"
 
 #: apps/perf/templates/perf/index.html:58
 msgid "Longer lines are slower"
-msgstr ""
+msgstr "線が長いほど遅いことを意味します"
 
 #. {0} is an add-on's percentage of slowness
 #: apps/perf/templates/perf/index.html:92
@@ -11257,7 +11257,7 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:104
 msgid "Show more add-ons"
-msgstr ""
+msgstr "その他のアドオンを見る"
 
 #: apps/perf/templates/perf/index.html:115
 msgid "For Add-on Developers"
@@ -11269,7 +11269,7 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:121
 msgid "Learn more about performance"
-msgstr ""
+msgstr "パフォーマンスに関する詳細"
 
 #: apps/reviews/feeds.py:28
 msgid "Reviews for %s"
@@ -11351,15 +11351,15 @@ msgstr "これは以前のバージョン ({0}) についてのレビューで�
 #: apps/reviews/templates/reviews/review.html:56
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
+msgstr[0] "このユーザはこのアドオンについて <a href=\"%(user_review_url)s\">過去に %(cnt)s 件のレビュー</a> を書いています。"
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "このユーザはこのアドオンについて <a href=\"%(user_review_url)s\">他にもレビュー</a> を書いています。"
 
 #: apps/reviews/templates/reviews/review.html:72
 msgid "Flagged for review"
-msgstr ""
+msgstr "審査フラグ付き"
 
 #: apps/reviews/templates/reviews/review.html:76
 msgid "Report this review"
@@ -11393,7 +11393,7 @@ msgstr[0] "このアドオンには <b>{0}</b> 件のレビューがあります
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:33
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "開発者 {0} さんからの返信"
 
 #: apps/reviews/templates/reviews/review_list.html:35
 msgid "Review for %(addon)s by %(user)s"
@@ -11423,11 +11423,11 @@ msgstr[0] "{num} 件のレビュー"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "5 つ星中 {0} つの評価を受けています"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "5 つ星中 %(rating)s つの評価を受けています"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:3 apps/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
@@ -11544,7 +11544,7 @@ msgstr "{0} アドオン"
 #. Firefox."
 #: apps/search/views.py:557
 msgid "Any {0}"
-msgstr ""
+msgstr "すべての {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:592
@@ -11566,11 +11566,11 @@ msgstr "コレクションの検索結果"
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "検索使用不可"
 
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "検索機能は一時的に使用できなくなっています。数分後に再度試してください。"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
@@ -11945,7 +11945,7 @@ msgstr "日別ダウンロード回数"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "ダウンロードはどのように数えられているのですか？"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -11955,15 +11955,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "日別ユーザ使用言語数"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "日別プラットフォーム使用回数"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> ダウンロード"
 
 #: apps/stats/templates/stats/reports/overview.html:9 apps/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
@@ -11975,43 +11975,43 @@ msgstr "日次平均ユーザ数 <b>{0}</b>"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "上位のアプリケーション"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "他のアプリケーションを表示..."
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "上位の言語"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "他の言語を表示..."
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "上位のプラットフォーム"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "他のプラットフォームを表示..."
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr ""
+msgstr "日別評価回数"
 
 #: apps/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "日別レビュー投稿回数"
 
 #: apps/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr ""
+msgstr "日別ダウンロード参照元数"
 
 #: apps/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "外部参照元のトラッキングについて..."
 
 #: apps/stats/templates/stats/reports/sources.html:10
 msgid ""
@@ -12024,19 +12024,19 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "日別アドオンステータス"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "日別購読者数"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "日別ユーザ数"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "日別ユーザ数とは？"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -12052,11 +12052,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "日別ユーザ登録者数"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr ""
+msgstr "日別アプリケーションバージョン"
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
