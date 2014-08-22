@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-22 05:26+0000\n"
+"PO-Revision-Date: 2014-08-22 12:40+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408685216.0\n"
+"X-POOTLE-MTIME: 1408711238.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -316,6 +316,8 @@ msgstr "Розробник цього додатку просить вас по�
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Розробник цього додатку просить вас виявити свою підтримку, зробивши внесок "
+"на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -338,7 +340,7 @@ msgstr "або"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Пропонований внесок: {0}"
 
 #: apps/addons/templates/addons/contribution.html:48 apps/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
@@ -377,15 +379,15 @@ msgstr ""
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "Скільки ви хотіли б внести?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "Максимальна сума внеску становить {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Мінімальна сума внеску становить {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
@@ -425,7 +427,7 @@ msgstr "Ні, дякую"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Внесок зроблено, дякуємо."
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
@@ -482,7 +484,7 @@ msgstr "Скарги"
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
-msgstr "Політика конфіденційності"
+msgstr "Політика приватності"
 
 #: apps/addons/templates/addons/details_box.html:115 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
@@ -607,11 +609,11 @@ msgstr "Дивитися всі »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Розширення, які незабаром вийдуть"
 
 #: apps/addons/templates/addons/home.html:69 apps/browse/templates/browse/personas/category_landing.html:61 apps/discovery/templates/discovery/pane.html:97
 msgid "Featured Themes"
-msgstr ""
+msgstr "Відібрані теми"
 
 #: apps/addons/templates/addons/home.html:77 apps/bandwagon/templates/bandwagon/collection_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
@@ -640,9 +642,9 @@ msgstr "Додано {0}"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s щотижневе завантаження"
+msgstr[1] "%(num)s щотижневі завантаження"
+msgstr[2] "%(num)s щотижневих завантажень"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
@@ -655,9 +657,9 @@ msgstr[2] "%(num)s користувачів"
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} завантаження щотижня"
-msgstr[1] "{0} завантаження щотижня"
-msgstr[2] "{0} завантаженнь щотижня"
+msgstr[0] "{0} щотижневе завантаження"
+msgstr[1] "{0} щотижневі завантаження"
+msgstr[2] "{0} щотижневих завантажень"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
@@ -719,7 +721,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Дивитись більше тем цього художника"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:274
@@ -730,11 +732,11 @@ msgstr "Категорії"
 #: apps/addons/templates/addons/persona_detail_table.html:10 apps/addons/templates/addons/mobile/persona_detail_table.html:3 apps/editors/templates/editors/themes/deleted.html:19
 #: apps/editors/templates/editors/themes/themes.html:25
 msgid "Artist"
-msgstr "Митець"
+msgstr "Художник"
 
 #: apps/addons/templates/addons/persona_detail_table.html:19 apps/addons/templates/addons/mobile/persona_detail_table.html:14 apps/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr "Користувачів щодня"
+msgstr "Щоденних користувачів"
 
 #. The License for this add-on.
 #: apps/addons/templates/addons/persona_detail_table.html:26 apps/addons/templates/addons/impala/license.html:17 apps/addons/templates/addons/mobile/persona_detail_table.html:21
@@ -789,7 +791,7 @@ msgstr "оглянуто {0} {1}"
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr "Ще не оцінений:"
+msgstr "Ще не оцінено"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
@@ -833,7 +835,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
-msgstr "Встановити попри все"
+msgstr "Все одно встановити"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "This add-on requires a version of Firefox that has not been released yet."
@@ -974,7 +976,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/review_list_box.html:19 apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Показати відповідь розробника на цей відгук"
 
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
@@ -990,7 +992,7 @@ msgstr "Мітки"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> запропоновано"
 
 #: apps/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
@@ -1030,7 +1032,7 @@ msgstr "Часто використовується з…"
 
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Є частиною таких збірок"
 
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -1070,7 +1072,7 @@ msgstr "Дізнатися, чому був створений {0} та які �
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Знімок екрану #{0} додатку"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
@@ -1090,7 +1092,7 @@ msgstr "Версія {0}"
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
-msgstr ""
+msgstr "Інформація"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
@@ -1204,7 +1206,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "перекласти"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -1215,7 +1217,7 @@ msgstr[2] ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Досі не було відгуків для цього додатку."
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
@@ -1267,7 +1269,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Ще не оцінено"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:24 apps/devhub/templates/devhub/addons/listing/macros.html:15
@@ -1279,11 +1281,11 @@ msgstr[2] "<strong>{0}</strong> завантажень щотижня"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
-msgstr ""
+msgstr "Може сповільнити ваш браузер"
 
 #: apps/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "Читати більше"
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
@@ -1332,7 +1334,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Погодитись"
 
 #: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:48
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -1369,7 +1371,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:53
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Переглянути всі популярні додатки"
 
 #: apps/addons/templates/addons/mobile/home.html:65
 msgid "More Add-ons"
@@ -1452,7 +1454,7 @@ msgstr ""
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Введіть хоча б одне значення."
 
 #: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
@@ -1471,11 +1473,11 @@ msgstr "Словники та мовні пакети"
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:433
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} тому"
 
 #: apps/amo/log.py:19
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} було створено."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
@@ -1566,7 +1568,7 @@ msgstr ""
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Попередньо схвалено"
 
 #: apps/amo/log.py:177
 msgid "{addon} {version} rejected."
@@ -1619,15 +1621,15 @@ msgstr ""
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:412
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: apps/amo/log.py:243
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} додано до {addon}."
 
 #: apps/amo/log.py:249
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} прибрано з {addon}."
 
 #: apps/amo/log.py:255
 msgid "{addon} added to {collection}."
@@ -1719,11 +1721,11 @@ msgstr "{addon} не пройшов перевірку в PayPal."
 
 #: apps/amo/log.py:377
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Маніфест {addon} оновлено."
 
 #: apps/amo/log.py:383
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} схвалено, але чекає надання загального доступу."
 
 #: apps/amo/log.py:384
 msgid "Approved but waiting"
@@ -1771,11 +1773,11 @@ msgstr ""
 
 #: apps/amo/log.py:440
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Відео вилучено з {addon} через проблеми з відтворенням."
 
 #: apps/amo/log.py:442
 msgid "Video removed"
-msgstr ""
+msgstr "Відео вилучено"
 
 #: apps/amo/log.py:447
 msgid "{addon} re-review because of new device(s) added."
@@ -1873,7 +1875,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Не дозволено"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
@@ -1915,7 +1917,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/no_results.html:1 apps/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
-msgstr ""
+msgstr "Результатів не знайдено"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -1975,7 +1977,7 @@ msgstr "Розширення"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Хочете більше налаштувань? Спробуйте <b>Повні теми</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
@@ -1993,7 +1995,7 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: apps/users/models.py:451
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Мої улюблені додатки"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
@@ -2063,7 +2065,7 @@ msgstr ""
 
 #: apps/api/views.py:247
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ще не впроваджено."
 
 #: apps/api/templates/piston/request_token_ready.html:3 apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
@@ -2102,7 +2104,7 @@ msgstr ""
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
-msgstr ""
+msgstr "Підтвердити"
 
 #: apps/api/templates/piston/oauth/challenge.html:3 apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
@@ -2157,15 +2159,15 @@ msgstr ""
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Тільки я можу переглядати цю збірку."
 
 #: apps/bandwagon/forms.py:20
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Будь-хто може переглядати цю збірку."
 
 #: apps/bandwagon/forms.py:121
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Дайте назву своїй збірці."
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
@@ -2173,11 +2175,11 @@ msgstr ""
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Опишіть свою збірку (посилання не дозволені)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
-msgstr ""
+msgstr "Приватність:"
 
 #: apps/bandwagon/forms.py:137
 msgid "Icon"
@@ -2185,15 +2187,15 @@ msgstr "Позначка"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Ця назва не може бути використана."
 
 #: apps/bandwagon/forms.py:158 apps/users/forms.py:406
 msgid "No links are allowed."
-msgstr ""
+msgstr "Посилання не дозволені."
 
 #: apps/bandwagon/forms.py:170
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Ця адреса URL вже використовується в іншій збірці"
 
 #: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
 msgid "Icons must be either PNG or JPG."
@@ -2201,7 +2203,7 @@ msgstr ""
 
 #: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:397
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Будь ласка, використовуйте зображення розміром до %dMB."
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
@@ -2251,7 +2253,7 @@ msgstr ""
 
 #: apps/bandwagon/views.py:174 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
-msgstr ""
+msgstr "Додано"
 
 #: apps/bandwagon/views.py:175
 msgid "Popularity"
@@ -2259,7 +2261,7 @@ msgstr "Популярність"
 
 #: apps/bandwagon/views.py:297
 msgid "Collection created!"
-msgstr ""
+msgstr "Збірку створено!"
 
 #: apps/bandwagon/views.py:298
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
@@ -2267,7 +2269,7 @@ msgstr ""
 
 #: apps/bandwagon/views.py:302
 msgid "Collection updated!"
-msgstr ""
+msgstr "Збірку оновлено!"
 
 #: apps/bandwagon/views.py:303
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
@@ -2279,11 +2281,11 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/add.html:3 apps/bandwagon/templates/bandwagon/add.html:11 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Створити нову збірку"
 
 #: apps/bandwagon/templates/bandwagon/add.html:9 apps/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "Створити"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24 apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
@@ -2295,7 +2297,7 @@ msgstr "Створити збірку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "Переглянути цю збірку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
