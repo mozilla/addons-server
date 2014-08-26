@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-22 12:40+0000\n"
+"PO-Revision-Date: 2014-08-26 06:10+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408711238.0\n"
+"X-POOTLE-MTIME: 1409033432.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -322,6 +322,8 @@ msgstr ""
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Розробник цього додатку просить вас виявити свою підтримку, зробивши "
+"невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:25
 msgid "Contribute"
@@ -349,10 +351,16 @@ msgstr "Що це?"
 #: apps/addons/templates/addons/contribution.html:63
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"Розробник цього додатку бажає, щоб ви розглянули можливість зробити внесок "
+"на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>, якщо вам "
+"подобається його використовувати."
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"Розробник цього додатку бажає, щоб ви розглянули можливість зробити "
+"невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>, "
+"якщо вам подобається його використовувати."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -365,17 +373,25 @@ msgstr "Зробити внесок"
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Допоможіть підтримати продовження розробки <strong>%(addon_name)s</strong>, "
+"зробивши невеликий внесок через <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Щоб виявити свою підтримку <b>%(addon_name)s</b>, розробник просить вас "
+"зробити внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a> "
+"через <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
+"Щоб виявити свою підтримку <b>%(addon_name)s</b>, розробник просить вас "
+"зробити невеликий внесок на користь <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a> через <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -391,22 +407,22 @@ msgstr "Мінімальна сума внеску становить {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Сума внеску повинна бути числом."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "Пропонований одноразовий внесок {0}"
 
 #. {0} is a currency symbol (e.g., $),
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "Одноразовий внесок {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Залиште коментар або запит разом з вашим внеском."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74 apps/bandwagon/templates/bandwagon/ajax_new.html:20 apps/bandwagon/templates/bandwagon/includes/addedit.html:34
 #: apps/reviews/templates/reviews/mobile/add_form.html:13 templates/includes/forms.html:10
@@ -576,6 +592,8 @@ msgstr "Ліцензійна угода з кінцевим користувач
 #: apps/addons/templates/addons/eula.html:23 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s потребує, щоб перед встановленням ви погодились із наступними "
+"умовами ліцензійної угоди кінцевого користувача:"
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
@@ -587,7 +605,7 @@ msgstr "Додатки для {0}"
 
 #: apps/addons/templates/addons/home.html:10 apps/addons/templates/addons/home.html:51 apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Відібрані розширення"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
@@ -630,7 +648,7 @@ msgstr "Сортувати за:"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:50 apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "Оновлено {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10 apps/addons/templates/addons/macros.html:69 apps/addons/templates/addons/persona_preview.html:21
@@ -693,6 +711,8 @@ msgstr "Більше&hellip;"
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
 msgstr ""
+"<b>Попередження про швидкодію:</b> Встановлення цього додатку може "
+"сповільнити запуск Firefox на <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
@@ -717,7 +737,7 @@ msgstr "Дивитися всі теми {0}"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
-msgstr ""
+msgstr "Більше від цього художника"
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
@@ -746,7 +766,7 @@ msgstr "Ліцензія"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Очікує перевірки"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
 msgid "Rejected"
