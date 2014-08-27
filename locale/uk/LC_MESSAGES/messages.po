@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-26 12:01+0000\n"
+"PO-Revision-Date: 2014-08-27 07:41+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409054460.0\n"
+"X-POOTLE-MTIME: 1409125291.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -982,6 +982,8 @@ msgstr "Будь ласка, не надсилайте повідомлення 
 #: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
 msgstr ""
+"Для отримання інформації про те, як отримати допомогу для цього додатку, "
+"зверніться до <a href=\"%(support)s\">розділу підтримки</a>."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
@@ -1096,9 +1098,9 @@ msgstr "Без перезапуску"
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Познайомитись з розробником: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Познайомитись з розробниками</a>"
+msgstr[2] "<a href=\"%(url)s\">Познайомитись з розробниками</a>"
 
 #: apps/addons/templates/addons/impala/details.html:144
 msgid "Learn why {0} was created and find out what's next for this add-on."
@@ -1131,7 +1133,7 @@ msgstr "Інформація"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Випущено на умовах <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:403 apps/devhub/forms.py:124 apps/devhub/forms.py:154
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
@@ -1140,7 +1142,7 @@ msgstr "Custom License"
 
 #: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Випущено під <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
@@ -1221,7 +1223,7 @@ msgstr "Хто такий {0}?"
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Ліцензія початкового коду для {addon}"
 
 #: apps/addons/templates/addons/impala/license.html:21 apps/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
@@ -1229,7 +1231,7 @@ msgstr "Ліцензія джерельного коду"
 
 #: apps/addons/templates/addons/impala/performance_note.html:5
 msgid "Explain&hellip;"
-msgstr ""
+msgstr "Пояснити&hellip;"
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16 apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
@@ -1389,7 +1391,7 @@ msgstr "Додатки"
 
 #: apps/addons/templates/addons/mobile/home.html:19
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Легкі шляхи персоналізувати."
 
 #: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:55 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
@@ -1404,7 +1406,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/home.html:47
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Переглянути всі відібрані додатки"
 
 #: apps/addons/templates/addons/mobile/home.html:53
 msgid "View all Popular add-ons"
@@ -1425,11 +1427,11 @@ msgstr "Найновіші"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "Спробуйте їх!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Інформація про тему &raquo;"
 
 #: apps/amo/context_processors.py:55 apps/devhub/templates/devhub/nav.html:49
 msgid "Tools"
@@ -1457,7 +1459,7 @@ msgstr "Вийти"
 
 #: apps/amo/context_processors.py:87 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Керувати моїми представленнями"
 
 #: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
@@ -1487,7 +1489,7 @@ msgstr "Адміністративні інструменти"
 
 #: apps/amo/fields.py:71
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Це повинен бути дійсний hex-код кольору, наприклад #000000."
 
 #: apps/amo/fields.py:97
 msgid "Enter at least one value."
@@ -1518,28 +1520,28 @@ msgstr "{addon} було створено."
 
 #: apps/amo/log.py:27
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Властивості {addon} змінено."
 
 #: apps/amo/log.py:33
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Опис {addon} змінено."
 
 #: apps/amo/log.py:39
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Категорії для {addon} змінено."
 
 #: apps/amo/log.py:45
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) додано до {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:53
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) вилучено з {addon}."
 
 #: apps/amo/log.py:60
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Внески для {addon}."
 
 #: apps/amo/log.py:65 apps/amo/log.py:415
 msgid "{addon} disabled."
@@ -1551,57 +1553,57 @@ msgstr "{addon} включено."
 
 #: apps/amo/log.py:78
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Статистику для {addon} встановлено загальнодоступною."
 
 #: apps/amo/log.py:85
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Статистику {addon} встановлено приватною."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:92
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Статус {addon} змінено на {0}."
 
 #: apps/amo/log.py:99
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "До {addon} додано зображення для перегляду."
 
 #: apps/amo/log.py:105
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Зображення для перегляду {addon} змінено."
 
 #: apps/amo/log.py:111
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Зображення для перегляду видалені з {addon}."
 
 #: apps/amo/log.py:117
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} додано до {addon}."
 
 #: apps/amo/log.py:124
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} змінена для {addon}."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:132
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Версію {0} вилучено з {addon}."
 
 #: apps/amo/log.py:139
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Файл {0.name} додано до {version} {addon}."
 
 #: apps/amo/log.py:150
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Файл {0} вилучено з {version} {addon}."
 
 #: apps/amo/log.py:156
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} схвалено."
 
 #: apps/amo/log.py:166
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} пройшов попередній розгляд."
 
 #: apps/amo/log.py:167
 msgid "Preliminarily approved"
@@ -1629,19 +1631,19 @@ msgstr "Передано вище"
 
 #: apps/amo/log.py:207
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Запитаний розгляд {addon} {version}."
 
 #: apps/amo/log.py:208
 msgid "Review requested"
-msgstr ""
+msgstr "Запитаний розгляд"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Запитано більше інформації про {addon} {version}"
 
 #: apps/amo/log.py:217
 msgid "More information requested"
-msgstr ""
+msgstr "Запитано більше інформації"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
@@ -1653,7 +1655,7 @@ msgstr ""
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Коментар про {addon} {version}."
 
 #: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:412
 #: apps/editors/templates/editors/themes/history_table.html:11
@@ -1678,12 +1680,12 @@ msgstr "{addon} вилучено з {collection}."
 
 #: apps/amo/log.py:267
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "Для {addon} написано {review}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:275
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} відібрано в {0}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
@@ -1710,11 +1712,11 @@ msgstr ""
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "Тепер {addon} ліцензовано на умовах {0.name}."
 
 #: apps/amo/log.py:322
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Політика {addon} змінена."
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
@@ -1722,19 +1724,19 @@ msgstr ""
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} для {addon} схвалено."
 
 #: apps/amo/log.py:335
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} схвалив {review} для {addon}."
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr ""
+msgstr "Відгук {0} для {addon} вилучено."
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
-msgstr ""
+msgstr "{user} вилучив {0} для {addon}."
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
@@ -1742,11 +1744,11 @@ msgstr ""
 
 #: apps/amo/log.py:357
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Авторам відправлено повідомлення про сумісність {version}."
 
 #: apps/amo/log.py:362
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Повідомлення про сумісність додатку відправлено автору."
 
 #: apps/amo/log.py:367
 msgid "Password changed."
@@ -1822,7 +1824,7 @@ msgstr ""
 
 #: apps/amo/log.py:448
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Пристрій(-ої) додано"
 
 #: apps/amo/log.py:455
 msgid "{addon} device support manually changed by reviewer."
@@ -1838,15 +1840,15 @@ msgstr "Створено: {0}."
 
 #: apps/amo/log.py:479
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Змінене поле: {2} встановлене в: {0}."
 
 #: apps/amo/log.py:485
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Вилучено: {1}."
 
 #: apps/amo/log.py:491
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Відредаговано користувачем {user} по причині: {1}"
 
 #: apps/amo/log.py:497
 msgid "User {user} anonymized."
@@ -1895,7 +1897,7 @@ msgstr ""
 #. L10n: {0} is the status
 #: apps/amo/log.py:560
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Статус {version} змінено на {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:567
@@ -1904,11 +1906,11 @@ msgstr ""
 
 #: apps/amo/log.py:573
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Рейтинг вмісту {addon} змінено на Дорослий."
 
 #: apps/amo/log.py:579
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Рейтинг вмісту {addon} змінено."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1917,10 +1919,14 @@ msgstr "Не дозволено"
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
 msgstr ""
+"<h1>Ой! Не дозволено.</h1> <p>Ви намагаєтесь зробити щось, на що не маєте "
+"дозволу.</p>"
 
 #: apps/amo/templates/amo/403.html:12
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr ""
+"<p>Спробуйте повернутись на попередню сторінку, перезавантажити, а потім "
+"спробуйте ще раз.</p>"
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -2027,7 +2033,7 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Збірки, за якими я слідкую"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: apps/users/models.py:451
@@ -2066,9 +2072,9 @@ msgstr "Показано <b>%(begin)s</b>&ndash;<b>%(end)s</b> із <b>%(count)s
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Сторінка {n}"
+msgstr[1] "Сторінка {n}"
+msgstr[2] "Сторінка {n}"
 
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
