@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-27 12:47+0000\n"
+"PO-Revision-Date: 2014-08-27 12:49+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409143625.0\n"
+"X-POOTLE-MTIME: 1409143786.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1708,7 +1708,7 @@ msgstr "{0} {1} додано."
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Роль {0.name} змінено на {1} для {addon}."
 
 #: apps/amo/log.py:316
 msgid "{addon} is now licensed under {0.name}."
