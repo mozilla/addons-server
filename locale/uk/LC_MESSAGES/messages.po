@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-27 07:41+0000\n"
+"PO-Revision-Date: 2014-08-27 12:47+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409125291.0\n"
+"X-POOTLE-MTIME: 1409143625.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -220,7 +220,7 @@ msgstr "для {0}"
 
 #: apps/addons/templates/addons/button.html:82 apps/addons/templates/addons/mobile/button.html:28
 msgid "View privacy policy"
-msgstr "Ознайомитися з політикою конфіденційності"
+msgstr "Ознайомитися з політикою приватності"
 
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
@@ -1694,16 +1694,16 @@ msgstr ""
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} тепер відібрано."
 
 #: apps/amo/log.py:293
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} більше не є відібраним."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:301
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} додано."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:308
@@ -1860,23 +1860,23 @@ msgstr ""
 
 #: apps/amo/log.py:509
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Адміністратор {0} переглянув журнал активності для {user}."
 
 #: apps/amo/log.py:516
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} для {addon} оновлено."
 
 #: apps/amo/log.py:522
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} перевірено."
 
 #: apps/amo/log.py:528
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Користувач {0.name} доданий до {group}."
 
 #: apps/amo/log.py:536
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Користувач {0.name} вилучений з {group}."
 
 #: apps/amo/log.py:543
 msgid "{addon} minimum requirements manually changed by reviewer."
@@ -1884,15 +1884,15 @@ msgstr ""
 
 #: apps/amo/log.py:544
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Вимоги змінено рецензентом"
 
 #: apps/amo/log.py:551
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "Мінімальні вимоги {addon} змінено вручну."
 
 #: apps/amo/log.py:552
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Вимоги змінено"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:560
@@ -1956,7 +1956,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Деякі права захищено"
 
 #: apps/amo/templates/amo/no_results.html:1 apps/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
@@ -1981,10 +1981,12 @@ msgstr "Наступна"
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr ""
+"Результати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> із "
+"<strong>%(count)s</strong>"
 
 #: apps/amo/templates/amo/read-only.html:3 apps/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Триває технічне обслуговування"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
@@ -2079,6 +2081,8 @@ msgstr[2] "Сторінка {n}"
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
 msgstr ""
+"Якщо ви зараз не отримаєте пропозицію встановити %(addon_name)s, будь ласка "
+"<a href=\"%(addon_xpi)s\">натисніть тут</a>."
 
 #: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
@@ -2100,7 +2104,7 @@ msgstr "Інший вміст"
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:56
 msgid "Invalid data provided: {0}"
-msgstr ""
+msgstr "Надано недійсні дані: {0}"
 
 #: apps/api/handlers.py:64
 msgid "Add-on did not validate: %s"
@@ -2116,19 +2120,23 @@ msgstr ""
 
 #: apps/api/templates/piston/request_token_ready.html:8 apps/api/templates/piston/request_token_ready.html:18
 msgid "Access Granted"
-msgstr ""
+msgstr "Доступ надано"
 
 #: apps/api/templates/piston/request_token_ready.html:10 apps/api/templates/piston/request_token_ready.html:29
 msgid "Access Not Granted"
-msgstr ""
+msgstr "Доступ не надано"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid "You have chosen to give access to %(consumer)s. They will be able to act on your behalf or retrieve information about you."
 msgstr ""
+"Ви вибрали надати доступ для %(consumer)s. Вони отримають змогу діяти від "
+"вашого імені або отримувати інформацію про вас."
 
 #: apps/api/templates/piston/request_token_ready.html:32
 msgid "You have chosen to not give access to %(consumer)s. They will not be able to act on your behalf or retrieve information about you."
 msgstr ""
+"Ви вибрали не надавати доступ для %(consumer)s. Вони не зможуть діяти від "
+"вашого імені або отримувати інформацію про вас."
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
@@ -2274,15 +2282,15 @@ msgstr "Ввійдіть, щоб проголосувати за цю збірк
 
 #: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr ""
+msgstr "Додати до обраного"
 
 #: apps/bandwagon/helpers.py:147
 msgid "Favorite"
-msgstr ""
+msgstr "Обране"
 
 #: apps/bandwagon/helpers.py:147 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Вилучити з обраного"
 
 #: apps/bandwagon/views.py:90 apps/bandwagon/views.py:176 apps/browse/views.py:57 apps/browse/views.py:68 apps/browse/views.py:442 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
@@ -2292,7 +2300,7 @@ msgstr "Назва"
 
 #: apps/bandwagon/views.py:92
 msgid "Recently Popular"
-msgstr ""
+msgstr "Нещодавно популярні"
 
 #: apps/bandwagon/views.py:174 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
@@ -2309,6 +2317,8 @@ msgstr "Збірку створено!"
 #: apps/bandwagon/views.py:298
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
 msgstr ""
+"Ваша нова збірка показана внизу. Якщо бажаєте, ви можете <a href=\"%"
+"(url)s\">змінити додаткові налаштування</a>."
 
 #: apps/bandwagon/views.py:302
 msgid "Collection updated!"
@@ -2316,7 +2326,7 @@ msgstr "Збірку оновлено!"
 
 #: apps/bandwagon/views.py:303
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Переглянути свою збірку</a>, щоб побачити зміни."
 
 #: apps/bandwagon/views.py:558
 msgid "Icon Deleted"
@@ -2362,18 +2372,19 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
 msgstr ""
+"Щоб оцінити збірки, у вас повинен бути обліковий запис на сайті додатків."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:179
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Створити обліковий запис на сайті додатків"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:182
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "або <a href=\"%(login)s\">увійти в свій поточний обліковий запис</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
@@ -2388,19 +2399,19 @@ msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
-msgstr ""
+msgstr "Про цю збірку"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Додатки, які синхронізуються з моїм мобільним Firefox"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Зробити цю збірку приватною"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:79
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Зробити цю збірку загальнодоступною"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
@@ -2451,11 +2462,11 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
-msgstr ""
+msgstr "Більше від цього користувача"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:176
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Дивитися всі збірки цього користувача"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
@@ -2481,9 +2492,9 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:25
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>%(addons)s</span> додаток"
+msgstr[1] "<span>%(addons)s</span> додатки"
+msgstr[2] "<span>%(addons)s</span> додатків"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:32
 msgid "<span>%(followers)s</span> follower"
@@ -2498,11 +2509,11 @@ msgstr "Популярні збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:6
 msgid "Highest Rated Collections"
-msgstr ""
+msgstr "Найвище оцінені збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:7
 msgid "Recently Added Collections"
-msgstr ""
+msgstr "Нещодавно додані збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing.html:32 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -2539,7 +2550,7 @@ msgstr[2] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9 apps/devhub/templates/devhub/personas/edit.html:27
 msgid "by {0}"
-msgstr ""
+msgstr "від {0}"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:5 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Stop Following"
@@ -2561,7 +2572,7 @@ msgstr "Статистика"
 #. %s is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/delete.html:4 apps/bandwagon/templates/bandwagon/delete.html:15
 msgid "Delete {0}"
-msgstr ""
+msgstr "Вилучити {0}"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35 apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133
@@ -2577,7 +2588,7 @@ msgstr "Ви впевнені?"
 #: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98
 #: apps/devhub/templates/devhub/personas/submit.html:119
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:22 apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161
 #: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
@@ -2597,7 +2608,7 @@ msgstr "Опис"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:39
 msgid "Contributors & More"
-msgstr ""
+msgstr "Помічники та інше"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:54 apps/bandwagon/templates/bandwagon/edit.html:67 apps/bandwagon/templates/bandwagon/edit.html:82
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:59 apps/devhub/templates/devhub/addons/profile.html:42
@@ -2606,7 +2617,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300
 #: apps/devhub/templates/devhub/versions/edit.html:139 apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
-msgstr ""
+msgstr "Зберегти зміни"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:121
@@ -2615,34 +2626,38 @@ msgstr "Власник"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr ""
+msgstr "Зробити власником"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Вилучити цього користувача як помічника"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18 apps/bandwagon/templates/bandwagon/edit_contributors.html:43 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:20
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48 apps/devhub/templates/devhub/addons/ajax_compat_update.html:19
 msgid "Remove"
-msgstr ""
+msgstr "Вилучити"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Помічники збірки"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Ви можете додати декілька помічників до цієї збірки. Помічник може додавати "
+"і вилучати додатки з цієї збірки, але не може змінити її назву чи опис. Щоб "
+"додати помічника, введіть його адресу електронної пошти у полі внизу. "
+"Помічники повинні мати обліковий запис на сайті додатків Mozilla."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
-msgstr ""
+msgstr "Користувач"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20
 msgid "Email"
-msgstr ""
+msgstr "Адреса ел. пошти"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
 msgid "Role"
@@ -2650,7 +2665,7 @@ msgstr "Роль"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Введіть адресу електронної пошти помічника"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
@@ -2682,7 +2697,7 @@ msgstr ""
 #. {0} is a username.
 #: apps/bandwagon/templates/bandwagon/user_listing.html:7
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Збірки від {0}"
 
 #: apps/bandwagon/templates/bandwagon/user_listing.html:31
 msgid "No collections found."
@@ -2698,15 +2713,15 @@ msgstr "Найновіші збірки"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
-msgstr ""
+msgstr "Збірки за назвою"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:9
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Нещодавно оновлені збірки"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:10
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Нещодавно популярні збірки"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
@@ -2719,11 +2734,13 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr ""
+msgstr "Створити збірку"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
+"Збірки дають змогу з легкістю слідкувати за улюбленими додатками та ділитись "
+"вашим ідеально пристосованим браузером з іншими."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:39
 msgid "Collection Icon"
@@ -2784,28 +2801,28 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Заблоковані додатки"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr ""
+msgstr "Чорний список"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> було заблоковано для вашого захисту."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Чому його було заблоковано?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr ""
+msgstr "На кого вплинуло?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
-msgstr ""
+msgstr "Що це значить?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:22
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
@@ -13206,23 +13223,23 @@ msgstr "потрібно"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Необхідні поля"
 
 #: templates/mobile/base_addons.html:56
 msgid "Mobile Home"
-msgstr ""
+msgstr "Мобільна домівка"
 
 #: templates/mobile/base_addons.html:75
 msgid "View full site"
-msgstr ""
+msgstr "Дивитися повний сайт"
 
 #: templates/mobile/base_addons.html:78
 msgid "Legal Notices"
-msgstr "Правові повідомлення"
+msgstr "Юридичні відомості"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
-msgstr ""
+msgstr "Mozilla Firefox"
 
 #: templates/mobile/header.html:4
 msgid "Features"
@@ -13230,13 +13247,13 @@ msgstr "Особливості"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "Додатки"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
-msgstr ""
+msgstr "Відвідати Mozilla"
 
 #. a link
 #: templates/mobile/header.html:10
 msgid "menu"
-msgstr ""
+msgstr "меню"
