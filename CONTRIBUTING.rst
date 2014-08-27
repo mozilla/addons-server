@@ -7,9 +7,7 @@ Contributing
 The easiest way to let us know about your awesome work is to send a pull
 request on github or in IRC.
 
-Use **summary (bug #bugzilla bug ID#)** for the commit message. Eg::
-
-    Improve contributing instructions (bug 1041234)
+Use **bugzilla summary** ``(`` **bugzilla Bug ID** ``)`` for the commit message.
 
 Point us to a branch with your new code and we'll
 go from there.  You can attach a patch to a bug if you're more comfortable that
