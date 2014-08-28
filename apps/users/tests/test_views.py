@@ -299,8 +299,7 @@ class TestEditAdmin(UserViewBase):
     def get_data(self):
         data = model_to_dict(self.regular)
         data['admin_log'] = 'test'
-        for key in ['password', 'resetcode_expires']:
-            del data[key]
+        del data['password']
         return data
 
     def get_user(self):

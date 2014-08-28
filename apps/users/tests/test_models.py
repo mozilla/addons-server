@@ -95,19 +95,6 @@ class TestUserProfile(amo.tests.TestCase):
         assert not u.is_staff
         assert not u.is_superuser
 
-    def test_resetcode_expires(self):
-        """
-        For some reason resetcode is required, and we default it to
-        '0000-00-00 00:00' in mysql, but that doesn't fly in Django since it's
-        an invalid date.  If Django reads this from the db, it interprets this
-        as resetcode_expires as None
-        """
-
-        u = UserProfile(username='jconnor', pk=2, resetcode_expires=None,
-                        email='j.connor@sky.net')
-        u.save()
-        assert u.resetcode_expires
-
     def test_picture_url(self):
         """
         Test for a preview URL if image is set, or default image otherwise.
