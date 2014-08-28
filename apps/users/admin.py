@@ -21,8 +21,7 @@ class UserAdmin(admin.ModelAdmin):
                        'bio', 'homepage', 'location', 'occupation'),
         }),
         ('Registration', {
-            'fields': ('confirmationcode', 'resetcode',
-                       'resetcode_expires'),
+            'fields': ('confirmationcode',),
         }),
         ('Flags', {
             'fields': ('deleted', 'display_collections',

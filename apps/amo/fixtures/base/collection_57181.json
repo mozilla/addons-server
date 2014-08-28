@@ -18,8 +18,6 @@
             "emailhidden": true,
             "password": "",
             "username": "dsmailin",
-            "resetcode_expires": null,
-            "resetcode": "",
             "created": "2010-02-19 00:52:22",
             "notes": null,
             "modified": "2010-02-19 06:32:19",

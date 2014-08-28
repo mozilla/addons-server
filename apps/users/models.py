@@ -158,9 +158,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
     picture_type = models.CharField(max_length=75, default='', blank=True)
-    resetcode = models.CharField(max_length=255, default='', blank=True)
-    resetcode_expires = models.DateTimeField(default=datetime.now, null=True,
-                                             blank=True)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
@@ -363,12 +360,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
             self.confirmationcode = ''.join(random.sample(string.letters +
                                                           string.digits, 60))
         return self.confirmationcode
-
-    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
-        # we have to fix stupid things that we defined poorly in remora
-        if not self.resetcode_expires:
-            self.resetcode_expires = datetime.now()
-        super(UserProfile, self).save(force_insert, force_update, using, **kwargs)
 
     def has_usable_password(self):
         """Override AbstractBaseUser.has_usable_password."""

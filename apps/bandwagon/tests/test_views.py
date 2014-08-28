@@ -1122,6 +1122,29 @@ class TestCollectionListing(amo.tests.TestCase):
         eq_(list(c),
             sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))
 
+    def _test_exclude_empty_collections(self, url):
+        r = self.client.get(url)
+        initial_length = len(r.context['collections'].object_list)
+        Collection.objects.get(nickname='webdev').addons.clear()
+        r = self.client.get(url)
+        eq_(len(r.context['collections'].object_list), initial_length - 1)
+
+    def test_exclude_empty_collections_newest_sort(self):
+        url = urlparams(self.url, sort='created')
+        self._test_exclude_empty_collections(url)
+
+    def test_exclude_empty_collections_name_sort(self):
+        url = urlparams(self.url, sort='name')
+        self._test_exclude_empty_collections(url)
+
+    def test_exclude_empty_collections_updated_sort(self):
+        url = urlparams(self.url, sort='updated')
+        self._test_exclude_empty_collections(url)
+
+    def test_exclude_empty_collections_popular_sort(self):
+        url = urlparams(self.url, sort='popular')
+        self._test_exclude_empty_collections(url)
+
     def test_added_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
         eq_(doc('.items .item .updated').text().startswith('Added'), True)

@@ -91,26 +91,30 @@ class CollectionFilter(BaseFilter):
               ('updated', _lazy(u'Recently Updated')),
               ('popular', _lazy(u'Recently Popular')))
 
-    def filter(self, field):
-        qs = self.base_queryset
-        if field == 'featured':
-            return qs.filter(type=amo.COLLECTION_FEATURED)
-        elif field == 'followers':
-            return qs.order_by('-subscribers')
-        elif field == 'popular':
-            return qs.order_by('-weekly_subscribers')
-        elif field == 'updated':
-            return qs.order_by('-modified')
-        elif field == 'created':
-            return qs.order_by('-created')
-        elif field == 'name':
-            return order_by_translation(qs, 'name')
+    def filter_featured(self):
+        return self.base_queryset.filter(type=amo.COLLECTION_FEATURED)
+
+    def filter_followers(self):
+        return self.base_queryset.order_by('-subscribers')
+
+    def filter_popular(self):
+        return self.base_queryset.order_by('-weekly_subscribers')
+
+    def filter_updated(self):
+        return self.base_queryset.order_by('-modified')
+
+    def filter_created(self):
+        return self.base_queryset.order_by('-created')
+
+    def filter_name(self):
+        return order_by_translation(self.base_queryset, 'name')
 
 
 def get_filter(request, base=None):
     if base is None:
         base = Collection.objects.listed()
-    base = base.filter(Q(application=request.APP.id) | Q(application=None))
+    base = base.filter((Q(application=request.APP.id) | Q(application=None))
+                       & ~Q(addons=None))
     return CollectionFilter(request, base, key='sort', default='featured')
 
 
@@ -175,14 +179,15 @@ class CollectionAddonFilter(BaseFilter):
             ('popular', _lazy(u'Popularity')),
             ('name', _lazy(u'Name')))
 
-    def filter(self, field):
-        if field == 'added':
-            return self.base_queryset.order_by('collectionaddon__created')
-        elif field == 'name':
-            return order_by_translation(self.base_queryset, 'name')
-        elif field == 'popular':
-            return (self.base_queryset.order_by('-weekly_downloads')
-                    .with_index(addons='downloads_type_idx'))
+    def filter_added(self):
+        return self.base_queryset.order_by('collectionaddon__created')
+
+    def filter_name(self):
+        return order_by_translation(self.base_queryset, 'name')
+
+    def filter_popular(self):
+        return (self.base_queryset.order_by('-weekly_downloads')
+                .with_index(addons='downloads_type_idx'))
 
 
 @allow_mine
