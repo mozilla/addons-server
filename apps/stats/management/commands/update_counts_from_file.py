@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from optparse import make_option
-from os import path
+from os import path, unlink
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -64,12 +64,14 @@ class Command(BaseCommand):
         folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder, day)
         sep = options['separator']
         groups = ('version', 'status', 'app', 'os', 'locale')
+        group_filepaths = []
         # Make sure we're not trying to update with mismatched data.
         for group in groups:
             filepath = path.join(folder, 'update_counts_by_%s.hive' % group)
             if get_date_from_file(filepath, sep) != day:
                 raise CommandError('%s file contains data for another day' %
                                    filepath)
+            group_filepaths.append((group, filepath))
         # First, make sure we don't have any existing counts for the same day,
         # or it would just increment again the same data.
         UpdateCount.objects.filter(date=day).delete()
@@ -84,8 +86,7 @@ class Command(BaseCommand):
                                             .values_list('guid', 'id')))
 
         index = -1
-        for group in groups:
-            filepath = path.join(folder, 'update_counts_by_%s.hive' % group)
+        for group, filepath in group_filepaths:
             with open(filepath) as results_file:
                 for line in results_file:
                     index += 1
@@ -168,3 +169,8 @@ class Command(BaseCommand):
         UpdateCount.objects.bulk_create(update_counts.values(), 100)
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
+
+        # Clean up files.
+        for _, filepath in group_filepaths:
+            log.debug('Deleting {path}'.format(path=filepath))
+            unlink(filepath)
