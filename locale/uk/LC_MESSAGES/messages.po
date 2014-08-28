@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-27 12:49+0000\n"
+"PO-Revision-Date: 2014-08-28 13:47+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409143786.0\n"
+"X-POOTLE-MTIME: 1409233670.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1952,7 +1952,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -1991,10 +1991,15 @@ msgstr "Триває технічне обслуговування"
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr ""
+"Ця функція тимчасово відключена, поки ми проводимо технічне обслуговування "
+"сайту. Будь ласка, скористайтесь кнопкою \"Назад\" свого браузера і спробуйте "
+"знову трохи пізніше."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr ""
+"Деякі функції на цій сторінці тимчасово відключені, поки ми проводимо "
+"технічне обслуговування сайту. Будь ласка спробуйте знову трохи пізніше."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -2005,6 +2010,10 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Введіть будь ласка <strong>всі слова</strong> внизу, <strong>разом з "
+"пробілами</strong>. </p> <p> Якщо важко прочитати, ви можете <a href=\"#\" "
+"id=\"recaptcha_different\">спробувати інші слова</a> або <a href=\"#\" "
+"id=\"recaptcha_audio\">спробувати інший тип відображення</a> натомість. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -2013,7 +2022,7 @@ msgstr "Найпопулярніші"
 
 #: apps/amo/templates/amo/side_nav.html:16
 msgid "Explore"
-msgstr ""
+msgstr "Переглянути"
 
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
 #: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:160 templates/menu_links.html:8
@@ -2030,7 +2039,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Створені мною збірки"
 
 #: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
@@ -2206,7 +2215,7 @@ msgstr ""
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Збірки :: {1}"
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
@@ -2222,7 +2231,7 @@ msgstr "Дайте назву своїй збірці."
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
@@ -2354,19 +2363,19 @@ msgstr "Переглянути цю збірку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Почати нову збірку..."
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Почати нову збірку"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:6 apps/bandwagon/templates/bandwagon/includes/addedit.html:4
 msgid "Name:"
-msgstr ""
+msgstr "Назва:"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "або <a id=\"collections-new-cancel\" href=\"#\">Скасувати</a>"
 
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
@@ -2423,25 +2432,25 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
 msgid "Edit Collection"
-msgstr ""
+msgstr "Змінити збірку"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:96 apps/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
-msgstr ""
+msgstr "Видалити збірку"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s тема в цій збірці"
+msgstr[1] "%(num)s теми в цій збірці"
+msgstr[2] "%(num)s тем у цій збірці"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s додаток у цій збірці"
+msgstr[1] "%(num)s додатки в цій збірці"
+msgstr[2] "%(num)s додатків у цій збірці"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
@@ -2454,7 +2463,7 @@ msgstr "Що таке збірки?"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:149
 msgid "Explore Collections"
-msgstr ""
+msgstr "Переглянути збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
@@ -2487,7 +2496,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Мої улюблені додатки"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:25
 msgid "<span>%(addons)s</span> add-on"
@@ -2562,7 +2571,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Змінити цю збірку"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:21 apps/bandwagon/templates/bandwagon/collection_widgets.html:23 apps/devhub/templates/devhub/addons/listing/item_actions.html:45
 #: apps/stats/templates/stats/stats.html:75 apps/stats/templates/stats/stats.html:79 apps/stats/templates/stats/stats.html:81
@@ -2594,12 +2603,12 @@ msgstr "Так"
 #: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
 #: apps/devhub/templates/devhub/personas/submit.html:137
 msgid "No"
-msgstr ""
+msgstr "Ні"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
 msgid "Edit {0}"
-msgstr ""
+msgstr "Змінити {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
 #: apps/editors/templates/editors/themes/themes.html:60
@@ -2669,11 +2678,11 @@ msgstr "Введіть адресу електронної пошти поміч
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
-msgstr ""
+msgstr "Додати помічника"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:60
 msgid "Contributor"
-msgstr ""
+msgstr "Помічник"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
@@ -2682,6 +2691,8 @@ msgstr "Адмін Налаштування"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr ""
+"<b>Увага:</b> Змінивши власника цієї збірки, ви більше не зможете редагувати "
+"її. Ви зможете тільки додавати або вилучати додатки з неї."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
@@ -2692,7 +2703,7 @@ msgstr "Продовжити"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:84
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "або <a id=\"change-owner-cancel\" href=\"#\">Скасувати</a>"
 
 #. {0} is a username.
 #: apps/bandwagon/templates/bandwagon/user_listing.html:7
@@ -2773,7 +2784,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Введіть назву додатку щоб включити"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
 msgid "Add to Collection"
@@ -2781,23 +2792,23 @@ msgstr "Додати до збірки"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:779 apps/editors/helpers.py:799
 msgid "Pending"
-msgstr ""
+msgstr "Очікує"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
 msgid "Add a comment"
-msgstr ""
+msgstr "Додати коментар"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Вилучити цей додаток зі збірки"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "ЗБІРКИ"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:8
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Групи подібних додатків, які може створити кожен."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
@@ -2831,6 +2842,8 @@ msgstr ""
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
 msgstr ""
+"Проблемний додаток чи плагін буде автоматично відключено і надалі не зможе "
+"використовуватись."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
 msgid ""
@@ -2841,6 +2854,7 @@ msgstr ""
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
 msgstr ""
+"Заблоковано %(date)s. <a href=\"%(link)s\">Переглянути запит блокування</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
@@ -2880,7 +2894,7 @@ msgstr ""
 
 #: apps/browse/feeds.py:161
 msgid "Search tools"
-msgstr ""
+msgstr "Засоби пошуку"
 
 #: apps/browse/views.py:54 apps/browse/views.py:64 apps/search/forms.py:86
 msgid "Most Users"
@@ -2897,12 +2911,12 @@ msgstr "Створено"
 
 #: apps/browse/views.py:445 apps/devhub/views.py:72 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
-msgstr ""
+msgstr "Завантаження"
 
 #: apps/browse/views.py:446 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
-msgstr ""
+msgstr "Оцінка"
 
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5 apps/browse/templates/browse/creatured.html:13
@@ -2943,11 +2957,11 @@ msgstr "Завантажити мовний пакет"
 
 #: apps/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
-msgstr ""
+msgstr "Доступно вашою мовою"
 
 #: apps/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Список мовних пакетів та словників, які доступні вашою мовою."
 
 #: apps/browse/templates/browse/language_tools.html:41 apps/browse/templates/browse/language_tools.html:63
 msgid "Language"
@@ -2963,7 +2977,7 @@ msgstr "Мовний пакет"
 
 #: apps/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "Всі мови"
 
 #: apps/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
@@ -2972,7 +2986,7 @@ msgstr "Перелік мовних пакетів та словників."
 #. {0} is a category name, like "Music".
 #: apps/browse/templates/browse/search_tools.html:8
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Засоби пошуку"
 
 #. {0} is an integer.
 #: apps/browse/templates/browse/search_tools.html:39 apps/devhub/templates/devhub/addons/dashboard.html:17
@@ -2984,7 +2998,7 @@ msgstr[2] "<b>{0}</b> додатоки"
 
 #: apps/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
-msgstr ""
+msgstr "Розширення пошуку"
 
 #: apps/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
@@ -3025,7 +3039,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Найвище оцінені розширення"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
@@ -3033,15 +3047,15 @@ msgstr "Найновіші розширення"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Розширення за назвою"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Розширення за щотижневими завантаженнями"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Нещодавно оновлені розширення"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
@@ -3050,15 +3064,15 @@ msgstr ""
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Відібрані повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Найпопулярніші повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Найвище оцінені повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
@@ -3066,11 +3080,11 @@ msgstr "Найновіші повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Повні теми за назвою"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Повні теми за щотижневими завантаженнями"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
@@ -3119,15 +3133,15 @@ msgstr "Дізнайтесь більше"
 
 #: apps/browse/templates/browse/personas/category_landing.html:6 apps/browse/templates/browse/personas/mobile/category_landing.html:5
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Переглянути всі нещодавно додані"
 
 #: apps/browse/templates/browse/personas/category_landing.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Переглянути всі найпопулярніші"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8 apps/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Переглянути всі найвище оцінені"
 
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
