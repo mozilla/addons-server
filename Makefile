@@ -27,16 +27,16 @@ docs:
 	$(MAKE) -C docs html
 
 test:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
 
 test_force_db:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	RUN_ES_TESTS=$(RUN_ES_TESTS) FORCE_DB=1 $(DJANGO) test --settings=$(SETTINGS) --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
 
 tdd:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --noinput --failfast --pdb --with-id -v 2 $(ARGS)
+	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --with-blockage --noinput --failfast --pdb --with-id -v 2 $(ARGS)
 
 test_failed:
-	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
+	RUN_ES_TESTS=$(RUN_ES_TESTS) $(DJANGO) test --settings=$(SETTINGS) --with-blockage --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
 
 update_code:
 	git checkout master && git pull
