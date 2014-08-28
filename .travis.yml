@@ -19,7 +19,7 @@ before_script:
   - make update_submodules
   - make update_assets
 script:
-  - make test
+  - make test ARGS=addons.tests.test_forms:TestCategoryForm.test_no_possible_categories
 notifications:
   irc:
     channels:
