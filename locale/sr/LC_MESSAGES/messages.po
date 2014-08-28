@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-27 20:57+0000\n"
+"PO-Revision-Date: 2014-08-28 20:59+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409173058.0\n"
+"X-POOTLE-MTIME: 1409259566.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6918,13 +6918,16 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
-msgstr ""
+msgstr "Неки од најчешћих проблема које видимо приликом обављања прегледа су:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
+"<strong>JavaScript namespace pollution</strong> &mdash; је најчешћи "
+"прекршај. Будите сигурни да <a href=\"https://developer.mozilla.org/en/XUL_Sc"
+"hool/JavaScript_Object_Management\">wrap your loose variables</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
@@ -6932,11 +6935,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "remote JavaScript execution или injection"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
-msgstr ""
+msgstr "remote XUL"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
@@ -7312,11 +7315,11 @@ msgstr "API и језичке референце"
 
 #: apps/devhub/templates/devhub/docs/reference.html:19
 msgid "XUL: Defining User Interfaces"
-msgstr ""
+msgstr "XUL: Дефинисање корисничког интерфејса"
 
 #: apps/devhub/templates/devhub/docs/reference.html:23
 msgid "XUL Overview"
-msgstr ""
+msgstr "XUL преглед"
 
 #: apps/devhub/templates/devhub/docs/reference.html:26 apps/devhub/templates/devhub/docs/reference.html:75 apps/devhub/templates/devhub/docs/reference.html:91
 #: apps/devhub/templates/devhub/docs/reference.html:107 apps/devhub/templates/devhub/docs/reference.html:127 apps/devhub/templates/devhub/docs/reference.html:143
@@ -7337,6 +7340,8 @@ msgstr "XUL референце"
 #: apps/devhub/templates/devhub/docs/reference.html:41 apps/devhub/templates/devhub/docs/reference.html:56
 msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
 msgstr ""
+"преко <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla "
+"Developer Center</a></span>"
 
 #: apps/devhub/templates/devhub/docs/reference.html:45
 msgid "A list of all available XUL elements."
@@ -7352,7 +7357,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:67
 msgid "JavaScript: Specifying Behavior"
-msgstr ""
+msgstr "JavaScript: Дефинисање понашања"
 
 #: apps/devhub/templates/devhub/docs/reference.html:72
 msgid "JavaScript Overview"
@@ -7361,22 +7366,26 @@ msgstr "JavaScript преглед"
 #: apps/devhub/templates/devhub/docs/reference.html:80
 msgid "JavaScript is a small, lightweight, object-oriented, cross-platform scripting language."
 msgstr ""
+"JavaScript је мали, лаган, објектно-оријентисани, међуплатформски језик за "
+"скрипте."
 
 #: apps/devhub/templates/devhub/docs/reference.html:88
 msgid "Gecko JavaScript Language Reference"
-msgstr ""
+msgstr "Gecko JavaScript Language референца"
 
 #: apps/devhub/templates/devhub/docs/reference.html:96
 msgid "Mozilla Developer Center's JavaScript documentation, including functions, statements, properties, and more."
 msgstr ""
+"Mozilla Developer Center's JavaScript документација, укључујући функције , "
+"наредбе, својства, и још много тога."
 
 #: apps/devhub/templates/devhub/docs/reference.html:104
 msgid "JavaScript Style Guide"
-msgstr ""
+msgstr "JavaScript стилски водич"
 
 #: apps/devhub/templates/devhub/docs/reference.html:112
 msgid "Mozilla's JavaScript coding standards."
-msgstr ""
+msgstr "Стандради кодовања Mozilla-иног JavaScript-а."
 
 #: apps/devhub/templates/devhub/docs/reference.html:120
 msgid "CSS: Adding Visual Effects"
@@ -7436,7 +7445,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:219
 msgid "XPCOM: Cross-Platform Components"
-msgstr ""
+msgstr "XPCOM: међуплатформске компоненте"
 
 #: apps/devhub/templates/devhub/docs/reference.html:223
 msgid "XPCOM Overview"
@@ -7456,7 +7465,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/reference.html:253
 msgid "DOM: Interacting with Content"
-msgstr ""
+msgstr "DOM: Интеракција са садржајем"
 
 #: apps/devhub/templates/devhub/docs/reference.html:257
 msgid "DOM Overview"
@@ -7533,19 +7542,19 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
 msgid "Installing Background Themes"
-msgstr ""
+msgstr "Инсталирам тему позадине"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
 msgid "How do I add Background Themes to my Firefox?"
-msgstr ""
+msgstr "Како да додам тему позадине на Firefox?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:24 apps/devhub/templates/devhub/docs/themes-faq.html:103
 msgid "Are Background Themes free?"
-msgstr ""
+msgstr "Да ли су теме позадине бесплатне?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:27 apps/devhub/templates/devhub/docs/themes-faq.html:112
 msgid "Using Background Themes"
-msgstr ""
+msgstr "Користим тему позадине"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
 msgid "How do I change my current Background Theme?"
