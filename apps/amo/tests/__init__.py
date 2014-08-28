@@ -48,6 +48,7 @@ from applications.models import Application, AppVersion
 from bandwagon.models import Collection
 from files.models import File, Platform
 from lib.es.signals import process, reset
+from translations.hold import clean_translations
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
@@ -272,6 +273,7 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
 
     def _post_teardown(self):
         amo.set_user(None)
+        clean_translations(None)  # Make sure queued translations are removed.
         super(TestCase, self)._post_teardown()
 
     def _pre_setup(self):
