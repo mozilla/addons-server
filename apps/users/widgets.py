@@ -56,3 +56,22 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
                     Context(context)))
 
         return mark_safe(u'<ol class="complex">%s</ol>' % u'\n'.join(output))
+
+
+class RequiredInputMixin(object):
+    """This mixin adds required attributes to the input."""
+
+    required_attrs = {'required': 'required', 'aria-required': 'true'}
+
+    def render(self, name, value, attrs=None):
+        attrs = attrs or {}
+        attrs.update(self.required_attrs)
+        return super(RequiredInputMixin, self).render(name, value, attrs)
+
+
+class RequiredTextInput(RequiredInputMixin, forms.TextInput):
+    """A Django TextInput with required attributes."""
+
+
+class RequiredEmailInput(RequiredInputMixin, forms.EmailInput):
+    """A Django EmailInput with required attributes."""
