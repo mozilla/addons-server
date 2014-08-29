@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-28 20:59+0000\n"
+"PO-Revision-Date: 2014-08-29 12:02+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409259566.0\n"
+"X-POOTLE-MTIME: 1409313721.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6421,7 +6421,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "Недоумице уређивача додатка"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
@@ -6526,6 +6526,10 @@ msgid ""
 "Once a file meeting this criteria is uploaded to AMO, it will automatically be marked as a beta version. Users of add-ons with these unique version numbers will automatically be served the newest "
 "beta updates."
 msgstr ""
+"Једном када датотека одговара критеријуму она ће се отпремити на AMO, она ће "
+"аутоматски бити означена као бета верзија. Корисници додатака са овим "
+"јединственим бројевима верзија ће аутоматски бити услужени са најновијим "
+"бета исправкама."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid ""
@@ -6804,15 +6808,19 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr ""
+msgstr "Придруживање истакнутом саветодавном одбору додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
 msgstr ""
+"Сваких шест месеци нови саветодавни одбор се бира на основу пријава из "
+"заједнице за додатке. Чланови морају:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
 msgstr ""
+"да буду активни чланови заједнице додатака, било као програмер, еванђелиста "
+"или љубитељ"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
@@ -6891,6 +6899,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
 msgstr ""
+"Циљ нам је да извршимо потпуну рецензије за мање од 10 дана, иако су већина "
+"додатака прегледани и раније."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -6898,23 +6908,31 @@ msgstr "Методе тестирања &amp; чести проблеми"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "Приликом обављања потпуне ревизије, уредници ће:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
 msgstr ""
+"инсталирати додатак и уверити се да функционише као што је описано и да је "
+"без великих недостатака"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid "perform a source code review, looking for performance and security best practices"
 msgstr ""
+"извршити преглед изворног кода, у потрази за најбољим праксама код "
+"перформансе и безбедности"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
 msgstr ""
+"уверити се да је политика приватности додатака је у складу са својом "
+"функционалношћу"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
 msgstr ""
+"тражити у складу са свим политикама Mozilla-е, детаљно описано у овим "
+"документима"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
@@ -7104,11 +7122,11 @@ msgstr "Додаци који њушкају или пресрећу саобр�
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr ""
+msgstr "Conduit-based палете без изричитог претходног одобрења"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Промена поставки и неочекиваних својства"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
@@ -7303,7 +7321,7 @@ msgstr "Услови услуге за пријаву Вашег рада на �
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
-msgstr ""
+msgstr "Како да ступите у контакт са нама у вези ове полисе или Вашег додатка."
 
 #: apps/devhub/templates/devhub/docs/reference.html:3 apps/devhub/templates/devhub/docs/reference.html:8
 msgid "API & Language References"
@@ -7353,7 +7371,7 @@ msgstr "XUL листа контрола"
 
 #: apps/devhub/templates/devhub/docs/reference.html:60
 msgid "A description of many available XUL controls, including screenshots."
-msgstr ""
+msgstr "Опис многих доступних XUL контрола, укључујући и снимке екрана."
 
 #: apps/devhub/templates/devhub/docs/reference.html:67
 msgid "JavaScript: Specifying Behavior"
@@ -7398,6 +7416,9 @@ msgstr "CSS преглед"
 #: apps/devhub/templates/devhub/docs/reference.html:133
 msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
 msgstr ""
+"Cascading Style Sheets (CSS) је стилски језик који се користи за описивање "
+"презентације документа писане у HTML или XML и користи се за стил кориснички "
+"интерфејс апликације засноване на XUL."
 
 #: apps/devhub/templates/devhub/docs/reference.html:140
 msgid "Gecko CSS Reference"
@@ -7406,6 +7427,8 @@ msgstr "Gecko CSS референца"
 #: apps/devhub/templates/devhub/docs/reference.html:148
 msgid "Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors."
 msgstr ""
+"Mozilla Developer Center CSS документација, листа свих расположивих особина, "
+"вредности, и селектора."
 
 #: apps/devhub/templates/devhub/docs/reference.html:156
 msgid "W3C CSS Homepage"
@@ -7418,14 +7441,17 @@ msgstr "преко <a class=\"refsource\" href=\"http://www.w3.org\">World Wide 
 #: apps/devhub/templates/devhub/docs/reference.html:163
 msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
 msgstr ""
+"Пронађите CSS вести, спецификације и алате на W3C CSS почетној страници."
 
 #: apps/devhub/templates/devhub/docs/reference.html:167
 msgid "FUEL: Easier Extension Development"
-msgstr ""
+msgstr "FUEL: Лакши развој екстензија"
 
 #: apps/devhub/templates/devhub/docs/reference.html:180
 msgid "FUEL is a JavaScript library designed to help developers build extensions using terminology and interfaces that are familiar to them."
 msgstr ""
+"FUEL је JavaScript библиотека дизајнирана да помогне програмерима да изграде "
+"екстензије користећи терминологију и интерфејсе који су им већ познати."
 
 #: apps/devhub/templates/devhub/docs/reference.html:187
 msgid "STEEL API"
@@ -7462,6 +7488,8 @@ msgstr "XPCOM референца"
 #: apps/devhub/templates/devhub/docs/reference.html:246
 msgid "Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions."
 msgstr ""
+"Mozilla Developer Center XPCOM API документација, листа замрзнутих "
+"интерфејса и функција."
 
 #: apps/devhub/templates/devhub/docs/reference.html:253
 msgid "DOM: Interacting with Content"
@@ -7481,7 +7509,7 @@ msgstr "Gecko DOM референца"
 
 #: apps/devhub/templates/devhub/docs/reference.html:281
 msgid "Mozilla Developer Center's DOM API documentation"
-msgstr ""
+msgstr "Mozilla Developer Center DOM API документација"
 
 #: apps/devhub/templates/devhub/docs/reference.html:292
 msgid "Jump to Reference"
@@ -7514,6 +7542,8 @@ msgstr "DOM"
 #: apps/devhub/templates/devhub/docs/reference.html:313
 msgid "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-to Library</a>"
 msgstr ""
+"Научите како да користите ове API-је и више у нашој <a href=\"%"
+"(link_howto)s\">Како-да библиотеци</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:3 apps/devhub/templates/devhub/docs/themes.html:18 apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
 #: apps/pages/templates/pages/faq.html:10
@@ -7534,11 +7564,11 @@ msgstr "Шта су позадинске теме?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:17 apps/devhub/templates/devhub/docs/themes-faq.html:59
 msgid "What kind of computers and operating systems do Background Themes work with?"
-msgstr ""
+msgstr "На каквим рачунарима и оперативним системима раде теме позадине?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
 msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr ""
+msgstr "Која је разлика између теме позадине и комплетне теме?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
 msgid "Installing Background Themes"
@@ -7558,35 +7588,35 @@ msgstr "Користим тему позадине"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
 msgid "How do I change my current Background Theme?"
-msgstr ""
+msgstr "Како да променим тренутну тему позадине?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
 msgid "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr ""
+msgstr "Ако имам инсталирану комплетну тему, да ли ће тема позадине радити?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
 msgid "How do I undo a Background Theme?"
-msgstr ""
+msgstr "Како да опозовем тему позадине?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:32 apps/devhub/templates/devhub/docs/themes-faq.html:161
 msgid "How do I provide feedback?"
-msgstr ""
+msgstr "Како да пружим повратне информације?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:35
 msgid "Creating Your Own Background Themes"
-msgstr ""
+msgstr "Креирање сопствене теме за позадину"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:37
 msgid "Can I create my own Background Theme?"
-msgstr ""
+msgstr "Да ли могу да ја направим моју тему позадине?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:38 apps/devhub/templates/devhub/docs/themes-faq.html:184
 msgid "Are there any content guidelines?"
-msgstr ""
+msgstr "Да ли постоје смернице садржаја?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:39 apps/devhub/templates/devhub/docs/themes-faq.html:250
 msgid "Do I still retain ownership over artwork that I upload?"
-msgstr ""
+msgstr "Да ли и даље задржавам власништво над уметничких делом које сам послао?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:40 apps/devhub/templates/devhub/docs/themes-faq.html:258
 msgid "After creating a Background Theme, can I edit the design?"
@@ -7595,10 +7625,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:41 apps/devhub/templates/devhub/docs/themes-faq.html:266
 msgid "What's the maximum file size allowable for my Background Theme?"
 msgstr ""
+"Која је максимална величина датотеке која је дозвољена за моју тему "
+"позадине?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
 msgid "What are Background Themes?"
-msgstr ""
+msgstr "Шта су теме позадине?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:49
 msgid ""
@@ -7609,6 +7641,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:61
 msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
 msgstr ""
+"Теме позадине раде на свим рачунарима који имају инсталиран Firefox. То "
+"укључује платформе Mac, Linux, Windows и Android."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
@@ -7631,11 +7665,13 @@ msgstr "Да. Теме су бесплатне за преузимање и сл
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:117
 msgid "There are two easy ways to change your theme. You can either:"
-msgstr ""
+msgstr "Постоје два начина да промените Вашу тему. Можете:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:123
 msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
 msgstr ""
+"Посетити <a href=\"%(gallery_url)s\">галерију</a>, изаберите Вашу омиљену тему "
+"и затим кликните на Ваш избор и тренутно промените изглед Вашег прегледача."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:130
 msgid ""
@@ -7663,7 +7699,7 @@ msgstr "Креирање сопствених тема"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:173
 msgid "Can I create my own Theme?"
-msgstr ""
+msgstr "Да ли могу да направим сопствену тему?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:175
 msgid ""
@@ -7683,7 +7719,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
-msgstr ""
+msgstr "Ваш дизајн не садржи сексуално експлицитни или увредљив садржај."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:208
 msgid "Your design does not include identifiable elements of any non-celebrity person(s) other than yourself or individuals who have given you permission to do so."
@@ -7695,7 +7731,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:221
 msgid "Your design does not relate to gambling."
-msgstr ""
+msgstr "Ваш дизајн се не односи на коцкање."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:226
 msgid "Your design does not violate any applicable law or regulation or the rights of any person or entity."
@@ -7714,7 +7750,7 @@ msgstr "<a href=\"%(tutorial_url)s\">Сазнајте више о томе ка�
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:252
 msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr ""
+msgstr "Да. Ваш рад ће увек бити <em>Ваш</em> рад."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:260
 msgid ""
@@ -7725,14 +7761,18 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
 msgstr ""
+"Тема коју отпремите не може бити већа од 300 KB за заглавље или подножје "
+"слике."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:276
 msgid "Couldn't find the answer you're looking for? Consider visiting the <a href=\"%(support_url)s\">Firefox support</a> website for more help."
 msgstr ""
+"Нисте пронашли одговор који сте тражили? Размислите о посети <a href=\"%"
+"(support_url)s\">Firefox подршке</a> за више помоћи."
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
 msgid "How to Create Your Own Background Theme"
-msgstr ""
+msgstr "Како да направим сопствену тему позадине"
 
 #: apps/devhub/templates/devhub/docs/themes.html:4
 msgid "Getting Started | Themes"
@@ -7756,7 +7796,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:46
 msgid "Creating a Theme Header Image"
-msgstr ""
+msgstr "Прављење слике заглавља теме"
 
 #: apps/devhub/templates/devhub/docs/themes.html:48
 msgid ""
@@ -7770,11 +7810,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:59 apps/devhub/templates/devhub/docs/themes.html:130
 msgid "Image Requirements"
-msgstr ""
+msgstr "Захтеви слике"
 
 #: apps/devhub/templates/devhub/docs/themes.html:62
 msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
-msgstr ""
+msgstr "Димензије би требало да буду <b>3000px ширина &times; 200px висина</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:67 apps/devhub/templates/devhub/docs/themes.html:138
 msgid "PNG or JPG file format"
@@ -7804,7 +7844,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:100
 msgid "Online Image Editor Resources"
-msgstr ""
+msgstr "Онлајн ресурси уређивача слика"
 
 #: apps/devhub/templates/devhub/docs/themes.html:103
 msgid "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and easy-to-use tools for creating and editing images within a browser."
@@ -7828,7 +7868,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:133
 msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
-msgstr ""
+msgstr "Димензије би требало да буду <b>3000px ширина &times; 100px висина</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:157
 msgid "Firefox may reveal more of the upper portion of the image if the find bar is open or if an extension adds more height to the bottom of the window."
@@ -7959,7 +7999,7 @@ msgstr "%b %e, %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Последње ажурирање:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
@@ -7967,7 +8007,7 @@ msgstr "Следећа верзија:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Ово је најновија верзија, али још увек није јавна на сајту."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
@@ -7993,7 +8033,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Уверите се да је Ваш кориснички профил ажуриран."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:34
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
@@ -8054,7 +8094,7 @@ msgstr "Дозвољен HTML: {0}"
 
 #: apps/devhub/templates/devhub/includes/macros.html:10
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Неки имају подржан HTML."
 
 #: apps/devhub/templates/devhub/includes/macros.html:59
 msgid "Remove this application"
@@ -8065,9 +8105,9 @@ msgstr "Уклони ову апликацију"
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Изаберите <b>до {0}</b> {1} категорију за овај додатак:"
+msgstr[1] "Изаберите <b>до {0}</b> {1} категорије за овај додатак:"
+msgstr[2] "Изаберите <b>до {0}</b> {1} категорија за овај додатак:"
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
@@ -8085,7 +8125,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Прочитајте више о полиси прегледа изворног кода."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -8219,7 +8259,7 @@ msgstr "или <a id=\"setup-cancel\" href=\"#\">Откажи</a>"
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Пренеси власништво"
 
 #: apps/devhub/templates/devhub/personas/edit.html:77 apps/devhub/templates/devhub/personas/submit.html:31
 msgid "Theme Details"
@@ -8321,7 +8361,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Можете да ажурирате дизајн Ваше теме наком што се одобри."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -8329,7 +8369,7 @@ msgstr "Заглавље"
 
 #: apps/devhub/templates/devhub/personas/edit.html:266
 msgid "Footer"
-msgstr ""
+msgstr "Подножје"
 
 #: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
@@ -8361,7 +8401,7 @@ msgstr "Име теме"
 
 #: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr ""
+msgstr "од <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
 #: apps/devhub/templates/devhub/personas/submit.html:7
 msgid "Create a New Theme"
@@ -8370,6 +8410,8 @@ msgstr "Направи нову тему"
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
+"Теме позадине су лак начин да персонализујете Firefox. Доставите Ваш дизајн "
+"испод, или <a href=\"%(submit_url)s\">научите како да је направите</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
