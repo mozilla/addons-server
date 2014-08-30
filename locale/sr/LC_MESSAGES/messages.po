@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-29 12:02+0000\n"
+"PO-Revision-Date: 2014-08-30 14:17+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409313721.0\n"
+"X-POOTLE-MTIME: 1409408227.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8122,6 +8122,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
+"Ако Ваш додатак садржи бинарни или баговит код осим већ познатих библиотека, "
+"отпремите своје изворе на преглед."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
@@ -8130,6 +8132,8 @@ msgstr "Прочитајте више о полиси прегледа изво�
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
 msgstr ""
+"Ви не можете да уклоните појединачну датотеку након што је процес ревизије "
+"започео. Морате обрисати целу верзију."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -8357,7 +8361,7 @@ msgstr "Нерешено заглавље"
 
 #: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
-msgstr ""
+msgstr "Подножје на чекању"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
@@ -8422,22 +8426,33 @@ msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
+"Подношењем своје теме, слажете се са <a href=\"%(tos_url)s\" "
+"target=\"_blank\">Условима коришћења тема</a>. Ваша тема подлеже одобрењу у "
+"складу са стандардима утврђеним у <a href=\"%(guidelines_url)s\" "
+"target=\"_blank\">Смерницама прегледа</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
-msgstr ""
+msgstr "Поднеси тему"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:11
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
+"Ваша тема је достављена на разматрање. Ви ћете добити е-пошту након што је "
+"прегледана, обично у року од 24 сата."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
 msgstr ""
+"Пружите више детаља о Вашој теми тако што ћете<a href=\"%(edit_url)s\">уредити "
+"свој листинг</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Погледајте и претплатите се на <a href=\"%(feed_url)s\">Извор активности</a> "
+"Ваше теме да бисте остали информисани о критикама, колекцијама и још много "
+"тога."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
@@ -8469,7 +8484,7 @@ msgstr "Изаберите другу слику за заглавље"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:19
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Изаберите слику подножја за тему."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:24
 msgid "3000 &times; 100 pixels"
@@ -8489,15 +8504,15 @@ msgstr "Датотеке додате на прегледане верзије �
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:23
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Изаберите циљану платформу за ову датотеку."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:36
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "За који тип преглед желите да је номинујете?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Управљај верзијом {0}"
 
 #: apps/devhub/templates/devhub/versions/edit.html:12 apps/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
@@ -8526,6 +8541,9 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Информације о променама у овом издању, нове могућности, познате грешке, и "
+"друге корисне информације које су специфичне за ово издање/верзију. Ова "
+"информација је такође приказана у Управљачу додатака приликом ажурирања."
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8541,7 +8559,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Изворни код"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -8598,7 +8616,7 @@ msgstr "0 датотека"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Позиција у реду за чекање: %(pos)s од %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8666,6 +8684,9 @@ msgstr "Избриши верзију {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Ви ћете да избришете тренутну верзију додатка. Ово може да изазове да се "
+"статус о додатаку промени или Ваш унос да се изгуби у јавности, ако је то "
+"једина јавна верзија Вашег додатка."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
@@ -8879,7 +8900,7 @@ msgstr "Одлични додаци за посао, забаву, приват�
 
 #: apps/discovery/modules.py:347
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Победници такмичења додаци за Australis"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9063,7 +9084,7 @@ msgstr "Последња верзија"
 
 #: apps/editors/forms.py:109
 msgid "Days Since Submission"
-msgstr ""
+msgstr "Дана од подношења"
 
 #: apps/editors/forms.py:114
 msgid "Add-on Types"
@@ -9277,7 +9298,7 @@ msgstr[2] "{0} дана"
 
 #: apps/editors/helpers.py:397
 msgid "Push to public"
-msgstr ""
+msgstr "Направи јавним"
 
 #: apps/editors/helpers.py:406
 msgid "Request more information"
@@ -9285,7 +9306,7 @@ msgstr "Затражи више информација"
 
 #: apps/editors/helpers.py:409
 msgid "Request super-review"
-msgstr ""
+msgstr "Захтевај супер-рецензију"
 
 #: apps/editors/helpers.py:420
 msgid "Grant preliminary review"
@@ -9377,31 +9398,31 @@ msgstr "Захтеване додатне информације"
 
 #: apps/editors/models.py:177
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Садржи коментар уредника"
 
 #: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Диплирано подношење"
 
 #: apps/editors/tasks.py:80
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Хвала Вам што сте поднели Вашу тему"
 
 #: apps/editors/tasks.py:84
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Проблем са подношењем Ваше теме"
 
 #: apps/editors/tasks.py:88
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Поднешење теме је означено за преглед"
 
 #: apps/editors/tasks.py:95
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Питање о Вашем подношењу теме"
 
 #: apps/editors/views.py:122
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Нови додатак (испод 5 дана)"
 
 #: apps/editors/views.py:123
 msgid "Passable (5 to 10 days)"
@@ -9446,7 +9467,7 @@ msgstr "треба више информација"
 
 #: apps/editors/views.py:699
 msgid "needs super review"
-msgstr ""
+msgstr "захтева супер рецензију"
 
 #: apps/editors/views_themes.py:328
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -9559,14 +9580,14 @@ msgstr[2] "{c} непрегледаних достава."
 
 #: apps/editors/templates/editors/home.html:41
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Тренутно време чекања:"
 
 #: apps/editors/templates/editors/home.html:49
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} додатак"
+msgstr[1] "{0} додатка"
+msgstr[2] "{0} додатака"
 
 #: apps/editors/templates/editors/home.html:50
 msgid "{0}%"
@@ -9679,7 +9700,7 @@ msgstr "Година"
 
 #: apps/editors/templates/editors/performance.html:93
 msgid "All-Time"
-msgstr ""
+msgstr "Све време"
 
 #: apps/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
@@ -9695,7 +9716,7 @@ msgstr "Процесирај рецензије"
 
 #: apps/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Акције модерације:"
 
 #: apps/editors/templates/editors/queue.html:90
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -9761,11 +9782,11 @@ msgstr "Компатибилност:"
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "Додатни извори:"
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Download files"
-msgstr ""
+msgstr "Преузми датотеке"
 
 #: apps/editors/templates/editors/review.html:129
 msgid "This version has not been reviewed."
@@ -9869,7 +9890,7 @@ msgstr "Новије"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Недавно додељени поени"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
@@ -9953,9 +9974,9 @@ msgstr[2] "{num} Ажурирања"
 #: apps/editors/templates/editors/themes/home.html:49
 msgid "{num} unreviewed theme submission this week."
 msgid_plural "{num} unreviewed theme submissions this week."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} непрегледана тема ове недење."
+msgstr[1] "{num} непрегледане теме ове недење."
+msgstr[2] "{num} непрегледаних тема ове недење."
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -10040,7 +10061,7 @@ msgstr "(Вероватно дуплирана достављања)"
 
 #: apps/editors/templates/editors/themes/themes.html:66
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Претходне белешке прегледа"
 
 #: apps/editors/templates/editors/themes/themes.html:72
 msgid "More Info Requested: {0}"
@@ -10117,15 +10138,15 @@ msgstr ""
 
 #: apps/files/utils.py:287
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Неважећи назив датотеке у архиви: {0}"
 
 #: apps/files/utils.py:295
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Величина прелази ограничење величине у архиви: {0}"
 
 #: apps/files/utils.py:345
 msgid "Invalid archive."
-msgstr ""
+msgstr "Неважећа архива."
 
 #: apps/files/utils.py:435 apps/files/utils.py:438
 msgid "Could not parse install.rdf."
@@ -10173,23 +10194,23 @@ msgstr "Верзија: %(version)s &bull; Величина: %(size)s &bull; MD5
 
 #: apps/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Поређење датотека :: Алати уредника"
 
 #: apps/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Приказ датотеке :: Алати уредника"
 
 #: apps/files/templates/files/viewer.html:15
 msgid "Validation failed:"
-msgstr ""
+msgstr "Валидација је неуспешна:"
 
 #: apps/files/templates/files/viewer.html:38
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Додатак се процесира, молимо сачекајте."
 
 #: apps/files/templates/files/viewer.html:42
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Преузимање резултата валидације..."
 
 #: apps/files/templates/files/viewer.html:53
 msgid "Deleted files:"
@@ -10197,11 +10218,11 @@ msgstr "Избрисане датотеке:"
 
 #: apps/files/templates/files/viewer.html:62
 msgid "Hide known files"
-msgstr ""
+msgstr "Сакриј познате датотеке"
 
 #: apps/files/templates/files/viewer.html:65
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Верзија SDK додатка:"
 
 #: apps/files/templates/files/viewer.html:69
 msgid "Tab stops:"
@@ -10209,11 +10230,11 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:75 apps/files/templates/files/viewer.html:76
 msgid "Up file"
-msgstr ""
+msgstr "Датотека горе"
 
 #: apps/files/templates/files/viewer.html:80 apps/files/templates/files/viewer.html:81
 msgid "Down file"
-msgstr ""
+msgstr "Датотека доле"
 
 #: apps/files/templates/files/viewer.html:86 apps/files/templates/files/viewer.html:87
 msgid "Previous diff"
@@ -10233,11 +10254,11 @@ msgstr "Следећа напомена"
 
 #: apps/files/templates/files/viewer.html:105 apps/files/templates/files/viewer.html:106
 msgid "Expand all"
-msgstr ""
+msgstr "Прошири све"
 
 #: apps/files/templates/files/viewer.html:110 apps/files/templates/files/viewer.html:111
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Сакриј или прикажи дрво"
 
 #: apps/files/templates/files/viewer.html:115 apps/files/templates/files/viewer.html:116
 msgid "Wrap or unwrap text"
@@ -10245,7 +10266,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:124
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Нема датотека из отпремљене датотеке."
 
 #: apps/files/templates/files/viewer.html:130
 msgid "Fetching file."
@@ -10293,7 +10314,7 @@ msgstr "Посетите {0} L10n почетну страницу"
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:33
 msgid "Current Localizers for {0}:"
-msgstr ""
+msgstr "Тренутно локализатора за {0}:"
 
 #: apps/localizers/templates/localizers/locale_switcher.html:3
 msgid "Change Locale:"
@@ -10302,7 +10323,7 @@ msgstr "Промени локал:"
 #. Header to an info box in the sidebar
 #: apps/localizers/templates/localizers/sidebar.html:4
 msgid "Good to know"
-msgstr ""
+msgstr "Добро за знати"
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
