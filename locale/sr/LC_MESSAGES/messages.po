@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-30 14:17+0000\n"
+"PO-Revision-Date: 2014-08-30 16:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409408227.0\n"
+"X-POOTLE-MTIME: 1409416855.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10367,11 +10367,11 @@ msgstr "Желите да помогнете?"
 
 #: apps/localizers/templates/localizers/summary.html:17
 msgid "AMO is available in so many languages thanks to the help of people like you!"
-msgstr ""
+msgstr "AMO је доступан у многим језицима захваљујући помоћи људи попут Вас!"
 
 #: apps/localizers/templates/localizers/summary.html:19
 msgid "Get started with AMO L10n"
-msgstr ""
+msgstr "Започните са AMO локализацијом"
 
 #: apps/localizers/templates/localizers/summary.html:23
 msgid "Existing AMO locales"
@@ -10403,7 +10403,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Ко прави ове додатке?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -10451,14 +10451,19 @@ msgstr ""
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
 msgstr ""
+"Помозите нам да побољшамо овај сајт. Он је отворенег кода, а можете поднети "
+"грешке и доставити закрпе. <a href=\"%(url)s\"> Bugzilla</a> садржи све наше "
+"садашње грешке."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
+"Уколико сте заинтересовани за додатаке, али се не бавите техником, још увек "
+"постоје начини да се помогнете:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Реците Вашим пријатељма. Реците им које додатке Ви користите."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -10467,6 +10472,8 @@ msgstr "Учествујте у нашим <a href=\"%(url)s\">форумима<
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Преглдајте додатке на сајту. Аутори додатака ће вероватно да побољшају своје "
+"додатке и да праве нове кад знају да људи цене њихов рад."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -10531,12 +10538,19 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
+"Ако надоградите на нову верзију Firefox-а или ажурирате своје додатке, Ваши "
+"извештаји за старе верзије ће бити сакривени да би Вам омогућили да "
+"тестирате нову верзију. Уколико имате било каквих питања, молимо питајте на "
+"<a href=\"%(url)s\">нашин форумима</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
 msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
 msgstr ""
+"Хиљаде додатака прави наша заједница сваке године, и Ваша помоћ са "
+"тестирањем компатибилности помаже нам да будемо сигурни да ови додаци остају "
+"корисни и настојимо да пружимо сјајно корисничко искуство."
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
@@ -10544,15 +10558,17 @@ msgstr "Хвала!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr ""
+msgstr "Заслуге сајта"
 
 #: apps/pages/templates/pages/credits.html:12
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
 msgstr ""
+"Mozilla жели да се захвали следећим људима за њихов допринос "
+"addons.mozilla.org пројекту током свих година:"
 
 #: apps/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Програмери &amp; Администратори"
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
@@ -10565,7 +10581,7 @@ msgstr "Рецензенти"
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Више од {0} прегледа додатака"
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
@@ -10573,7 +10589,7 @@ msgstr "Остали доприноси"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Претходни Програмери &amp; Администратори"
 
 #: apps/pages/templates/pages/credits.html:57
 msgid "Software and Images"
@@ -10584,22 +10600,37 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
+"Неке иконице које су са <a "
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, "
+"lсу линценциране под <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution 2.5 лиценцом</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"Неке иконице које су са <a href=\"http://www.fatcow.com/free-icons/\">FatCow "
+"Farm-Fresh Web Icons Set</a>, су линценциране под <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
+"Attribution 3.0 лиценцом</a>."
 
 #: apps/pages/templates/pages/credits.html:61
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Неке странице користе елементе из <a "
+"href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (нису "
+"комерцијални), лиценцирани под <a href=\"http://creativecommons.org/licenses"
+"/by-nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 лиценцом</a>."
 
 #: apps/pages/templates/pages/credits.html:65
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
 msgstr ""
+"За информације о доприносу, погледајте нашу <a href=\"%(url)s\">wiki "
+"страницу</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:4
 msgid "Developer FAQ"
@@ -10611,32 +10642,32 @@ msgstr "Секције"
 
 #: apps/pages/templates/pages/dev_faq.html:33 apps/pages/templates/pages/dev_faq.html:46
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Развој додатка"
 
 #. Heading for a list of resources for developers
 #: apps/pages/templates/pages/dev_faq.html:34 apps/pages/templates/pages/dev_faq.html:238
 msgid "Support Resources"
-msgstr ""
+msgstr "Ресурси подршке"
 
 #: apps/pages/templates/pages/dev_faq.html:35 apps/pages/templates/pages/dev_faq.html:282
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Доприношење Вашем додатку"
 
 #: apps/pages/templates/pages/dev_faq.html:36 apps/pages/templates/pages/dev_faq.html:402
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Процес прегледа додатка"
 
 #: apps/pages/templates/pages/dev_faq.html:37 apps/pages/templates/pages/dev_faq.html:465
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Управљање Вашим додатком"
 
 #: apps/pages/templates/pages/dev_faq.html:38 apps/pages/templates/pages/dev_faq.html:505
 msgid "Recommended Status"
-msgstr ""
+msgstr "Препоручен статус"
 
 #: apps/pages/templates/pages/dev_faq.html:40 apps/pages/templates/pages/dev_faq.html:601
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Референце на лиценце отвореног извора"
 
 # The title for a user if they are a developer
 #: apps/pages/templates/pages/dev_faq.html:44
@@ -10655,15 +10686,17 @@ msgstr "Остали извори укључују:"
 
 #: apps/pages/templates/pages/dev_faq.html:65
 msgid "Robert Nyman's article \"How to develop a Firefox extension\""
-msgstr ""
+msgstr "Чланак Robert Nyman-а \"How to develop a Firefox extension\""
 
 #: apps/pages/templates/pages/dev_faq.html:69
 msgid "Myk Melez's video tutorial \"Video Tutorial - Extensions Bootcamp: Zero to 'Hello World' in 45 Minutes\""
 msgstr ""
+"Видео туторијал од Myk Melez-а \"Video Tutorial - Extensions Bootcamp: Zero "
+"to 'Hello World' in 45 Minutes\""
 
 #: apps/pages/templates/pages/dev_faq.html:73
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Који алати су ми потребни да би направио додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:75
 msgid ""
@@ -10673,7 +10706,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:89
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Популарни програми за обраду кода су:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: apps/pages/templates/pages/dev_faq.html:92
@@ -10681,6 +10714,10 @@ msgid ""
 "<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus.sourceforge.net/uk/site.htm"
 "\">Notepad++</a></li> <li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://www.activestate.com/komodo_edit/\">Komodo Edit</a></li> "
+"<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
+"://notepad-plus.sourceforge.net/uk/site.htm\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "You can also learn more about setting up your development environment via the MDC article <a href=\"%(url)s\">Setting up extension development environment</a>"
