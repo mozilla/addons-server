@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-30 16:40+0000\n"
+"PO-Revision-Date: 2014-08-30 18:20+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409416855.0\n"
+"X-POOTLE-MTIME: 1409422850.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10722,14 +10722,19 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "You can also learn more about setting up your development environment via the MDC article <a href=\"%(url)s\">Setting up extension development environment</a>"
 msgstr ""
+"Такође можете сазнати више о подешавању Вашег развојног окружење преко MDC "
+"чланка <a href=\"%(url)s\">Подешавање развојног окружење екстензија</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:107
 msgid "Where can I find documentation on building add-ons?"
-msgstr ""
+msgstr "Где могу да пронађем документацију о прављењу додатака?"
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "All Mozilla documentation on add-on development including tutorials and APIs can be found via the <a href=\"%(url)s\">Mozilla Developer Center</a>."
 msgstr ""
+"Сва Mozilla документација о развоју додатака укључује туторијале и API-је "
+"који могу бити пронађени преко <a href=\"%(url)s\">Mozilla Developer "
+"Center</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:115
 msgid "What is a \".xpi\" file?"
@@ -10738,6 +10743,8 @@ msgstr "Шта је \".xpi\" датотека?"
 #: apps/pages/templates/pages/dev_faq.html:117
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
 msgstr ""
+"Екстензије су упаковане и дистрибуиране у ZIP датотекама или пакетима, са "
+"XPI (изговара се \"zippy\") екстензијом датотеке."
 
 #: apps/pages/templates/pages/dev_faq.html:123
 msgid "What is XUL?"
@@ -10751,7 +10758,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:134
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "За шта се користи датотека \"install.rdf\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:136
 msgid ""
@@ -10762,24 +10769,31 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:147
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "Шта значи \"maxVersion\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:149
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
 msgstr ""
+"То одређује максималну верзију Firefox-а на којој ће ова екстензија радити. "
+"Подесите да ово буде новије од тренутно доступне верзије!"
 
 #: apps/pages/templates/pages/dev_faq.html:156
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "Да ли мој додатак може да садржи бинарне компоненте?"
 
 #: apps/pages/templates/pages/dev_faq.html:158
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Да. Можете да користите Mozilla-ин <a href=\"%(url)s\">XPCOM component object "
+"model</a> да побољшате свој додатак. XPCOM компоненте ће бити имплементиране "
+"у JavaScript, Java и C++."
 
 #: apps/pages/templates/pages/dev_faq.html:165
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
 msgstr ""
+"Да и могу да користим JavaScript библиотеку као што је jQuery, MooTools или "
+"Prototype да направим додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:167
 msgid ""
@@ -10801,6 +10815,7 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:191
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
+"Како да тестирам компатибилност са најновијом верзијом Mozilla софтвера?"
 
 #: apps/pages/templates/pages/dev_faq.html:193
 msgid ""
@@ -10812,7 +10827,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"
-msgstr ""
+msgstr "Шта је leak тестирање?"
 
 #: apps/pages/templates/pages/dev_faq.html:210
 msgid ""
@@ -10833,31 +10848,31 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Треба ми савет око прављења додатака. Где могу да га добијем?"
 
 #: apps/pages/templates/pages/dev_faq.html:241
 msgid "Mozilla offers the following support options for add-on developers:"
-msgstr ""
+msgstr "Mozilla нуди опције за додатну подршку за програмере додатака на:"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:247
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (за дискусију о разоју додатака)"
 
 #. #amo is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:249
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (за подршку у вези са хостовањем Вашег додатка на AMO)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:254
 msgid "Mailing List"
-msgstr ""
+msgstr "Маилинг листа"
 
 #. Label for a link to the extension developers newsgroup
 #: apps/pages/templates/pages/dev_faq.html:258
 msgid "Newsgroup"
-msgstr ""
+msgstr "Дискусионе групе"
 
 #. Label for a link to the extension developers Google Group
 #: apps/pages/templates/pages/dev_faq.html:262
@@ -10866,7 +10881,7 @@ msgstr "Google група"
 
 #: apps/pages/templates/pages/dev_faq.html:266
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Да ли Mozilla нуди услуге за развој?"
 
 #: apps/pages/templates/pages/dev_faq.html:267 apps/pages/templates/pages/dev_faq.html:548
 msgid "No."
@@ -10875,6 +10890,8 @@ msgstr "Не."
 #: apps/pages/templates/pages/dev_faq.html:269
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Да ли постоје програмери других компанија које могу запослити да направе мој "
+"додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:271
 msgid ""
