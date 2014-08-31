@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-03 09:43+0000\n"
+"PO-Revision-Date: 2014-08-31 15:09+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407058985.0\n"
+"X-POOTLE-MTIME: 1409497750.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1947,6 +1947,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p>Inserisci di seguito <strong>tutte le parole</strong> <strong>separandole "
+"con uno spazio dove presente</strong>. </p><p>Se le parole risultano "
+"illeggibili, puoi <a href=\"#\" id=\"recaptcha_different\">ritentare con parole "
+"diverse</a> oppure <a href=\"#\" id=\"recaptcha_audio\">provare con un sistema "
+"alternativo</a>.</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3775,10 +3780,11 @@ msgstr "Impossibile verificare l’identificativo PayPal."
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Tipo di file non supportato. Carica un file archivio valido {extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "Mostra versione corrente"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:872
 msgid "Invalid version range."
@@ -8043,10 +8049,13 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
+"Se il componente aggiuntivo contiene file binari o codice offuscato diverso "
+"dalle librerie note, caricane il sorgente per la revisione."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
 msgstr ""
+"Ulteriori informazioni riguardo alle norme di revisione del codice sorgente."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -8468,11 +8477,13 @@ msgstr "(facoltativo) Inserisci informazioni utili per i revisori che dovranno v
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Codice sorgente"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
+"Se il componente aggiuntivo contiene file binari o codice offuscato, "
+"utilizza questa pagina per rendere disponibile il sorgente ai revisori."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"
@@ -9675,11 +9686,11 @@ msgstr "Compatibilità:"
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "Altre fonti:"
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Download files"
-msgstr ""
+msgstr "Scarica i file"
 
 #: apps/editors/templates/editors/review.html:129
 msgid "This version has not been reviewed."
