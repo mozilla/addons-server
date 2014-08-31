@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-31 17:24+0000\n"
+"PO-Revision-Date: 2014-08-31 20:59+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409505842.0\n"
+"X-POOTLE-MTIME: 1409518798.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -11729,15 +11729,23 @@ msgid ""
 "Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important "
 "part of any review."
 msgstr ""
+"Оцене додатака треба да буду фер и да буду добар показатељ укупног квалитета "
+"и корисности. Немојте дати 5 звездица ако Вам се свиђа или 1 звездицу ако "
+"је мрзиш. Доследно оцењивање је важан део сваког прегледа."
 
 #: apps/pages/templates/pages/review_guide.html:162
 msgid ""
 "<b>5 stars: Excellent.</b> Not only does everything it claims, but it is significantly more useful than many other add-ons. This add-on is likely to be one you use often and you highly recommend it."
 msgstr ""
+"<b>5 звездица: Одличан.</b> Не само да ради све што тврди, али је знатно "
+"више користан од многих других додатака. Овај додатак ће вероватно бити "
+"један који ће се често користити и препоручујем га."
 
 #: apps/pages/templates/pages/review_guide.html:170
 msgid "<b>4 stars: Good.</b> Useful and easy to use, though not necessarily special. This add-on is recommended but may be more suited for some people over others."
 msgstr ""
+"<b>4 звездице: Добар.</b> Користан и једноставан за коришћење, али не нужно "
+"посебан. Овај додатак се препоручује, али се вероватно могу наћи бољи."
 
 #: apps/pages/templates/pages/review_guide.html:177
 msgid ""
@@ -11750,20 +11758,28 @@ msgid ""
 "<b>2 stars: Poor.</b> Add-on is of low quality, usability, or just doesn't do what it says it should. You are recommending against this add-on, while noting that it might have some redeeming value "
 "for a few people."
 msgstr ""
+"<b>2 звездице: Лош.</b> Додатак је лошег квалитета, употребљивости или "
+"једноставно не ради оно што би требао. Ви не препоручујете овај додатак, уз "
+"напомену да би могао да има неку вредност за неколико људи."
 
 #: apps/pages/templates/pages/review_guide.html:193
 msgid ""
 "<b>1 star: Bad.</b> Add-on either doesn't work correctly or is utterly useless. You can't think of any significant reason why someone should give it a try and are recommending that it be avoided "
 "completely."
 msgstr ""
+"<b>1 звездица: Јако лош.</b> Додатак или не ради исправно или је потпуно "
+"бескорисан. Ви не можете да се сетите било каквог разлога зашто би неко "
+"требао да га проба и препоручујете да се он у потпуности избегава."
 
 #: apps/pages/templates/pages/review_guide.html:203
 msgid "There's nothing wrong with giving an add-on a perfect or horrible review, just please indicate why you are doing so. The stars mean nothing if you don't tell us why."
 msgstr ""
+"Нема ништа лоше у томе да дате додатку савршену илу ужасну оцену, само "
+"наведите зашто то радите тако. Звездице не значе ништа ако не кажете зашто."
 
 #: apps/pages/templates/pages/review_guide.html:212
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Како да пријавим проблематичну рецензију?"
 
 #: apps/pages/templates/pages/review_guide.html:214
 msgid ""
@@ -11773,15 +11789,19 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:222
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Ја сам аутор додатка, да ли могу одговорити на критике?"
 
 #: apps/pages/templates/pages/review_guide.html:224
 msgid "Yes, add-on authors can provide a single response to a review. Additional discussions or followup should be moved to a support forum or discussion group."
 msgstr ""
+"Да, аутори додатка могу да пруже један одговор на ревизију. Додатни "
+"разговори или праћење треба да буде премештени у форум за подршку или "
+"дискусионе групе."
 
 #: apps/pages/templates/pages/review_guide.html:231
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr ""
+"Ја сам аутор додатка, да ли могу да избришем неповољне критике или оцене?"
 
 #: apps/pages/templates/pages/review_guide.html:233
 msgid ""
@@ -11802,6 +11822,8 @@ msgstr ""
 #: apps/pages/templates/pages/sunbird.html:38
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
 msgstr ""
+"Ми препоручујемо да се надоградите на <a href=\"%(tb_url)s\">Thunderbird</a> и "
+"<a href=\"%(lightning_url)s\">Lightning</a>."
 
 #: apps/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
@@ -11810,27 +11832,29 @@ msgstr "Читајте више о Sunbird"
 #: apps/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
 msgstr ""
+"Десила се грешка при комуникацији са PayPal. Молимо покушајте поново "
+"касније."
 
 #: apps/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Дошло је до грешке са овом валутом."
 
 #: apps/paypal/__init__.py:67
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Износ је премали за конверзију у валуту прималаца."
 
 #: apps/paypal/__init__.py:69
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "Купац и продавац морају имати различите PayPal налоге."
 
 #. L10n: {0} is the currency.
 #: apps/paypal/__init__.py:72
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "Продавац не прихвата уплате у %s."
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
-msgstr ""
+msgstr "Додаци слабих перфоманси"
 
 #: apps/perf/templates/perf/index.html:24
 msgid ""
@@ -11841,11 +11865,13 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:33
 msgid "Add-ons with Slow Start-up"
-msgstr ""
+msgstr "Додаци са спорим временом стартовања"
 
 #: apps/perf/templates/perf/index.html:34
 msgid "The following add-ons have a significant impact on how long it takes %(app)s to start up."
 msgstr ""
+"Следеће додаци имају значајан утицај на колико је потребно да се %(app)s "
+"покрене."
 
 #. Show All, Windows, Mac, Linux. The other names are inserted after the colon.
 #: apps/perf/templates/perf/index.html:40
@@ -11854,16 +11880,16 @@ msgstr "Прикажи:"
 
 #: apps/perf/templates/perf/index.html:57
 msgid "Impact"
-msgstr ""
+msgstr "Утицај"
 
 #: apps/perf/templates/perf/index.html:58
 msgid "Longer lines are slower"
-msgstr ""
+msgstr "Дуже линије су спорије"
 
 #. {0} is an add-on's percentage of slowness
 #: apps/perf/templates/perf/index.html:92
 msgid "<b>{0}%</b> <span>slower</span>"
-msgstr ""
+msgstr "<b>{0}%</b> <span>спорије</span>"
 
 #: apps/perf/templates/perf/index.html:104
 msgid "Show more add-ons"
@@ -11871,28 +11897,30 @@ msgstr "Прикажи још додатака"
 
 #: apps/perf/templates/perf/index.html:115
 msgid "For Add-on Developers"
-msgstr ""
+msgstr "За програмере додатка"
 
 #: apps/perf/templates/perf/index.html:116
 msgid "Don't let poor performance affect the experience of your users. Here are a few tips on how to keep your add-ons responsive and nimble."
 msgstr ""
+"Не дозволите да лоше перформансе утичу на искуство Ваших корисника. Ево "
+"неколико савета о томе како да Ваши додаци буду responsive и nimble."
 
 #: apps/perf/templates/perf/index.html:121
 msgid "Learn more about performance"
-msgstr ""
+msgstr "Научите више о перфомансама"
 
 #: apps/reviews/feeds.py:28
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Рецензије за %s"
 
 #: apps/reviews/feeds.py:36
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Историја прегледа за овај додатак"
 
 #. L10n: This describes the number of stars given out of 5
 #: apps/reviews/feeds.py:53
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Оцењено са %d од 5 звездица"
 
 #: apps/reviews/forms.py:120
 msgid "Keep review; remove flags"
@@ -11916,7 +11944,7 @@ msgstr "Хвала; ова рецензија је означена за одо�
 
 #: apps/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Додај рецензију за {0}"
 
 #: apps/reviews/templates/reviews/add.html:26
 msgid ""
@@ -11950,12 +11978,12 @@ msgstr "Изаберите разлог:"
 
 #: apps/reviews/templates/reviews/review.html:26
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "од %(user)s <b>(Програмер)</b> датума %(date)s"
 
 #. {0} is a version number (like 1.01)
 #: apps/reviews/templates/reviews/review.html:50 apps/reviews/templates/reviews/mobile/review_list.html:41
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Овај преглед је за претходну верзију додатка ({0})."
 
 #: apps/reviews/templates/reviews/review.html:56
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
@@ -11967,10 +11995,12 @@ msgstr[2] ""
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
 msgstr ""
+"Овај корисник има <a href=\"%(user_review_url)s\">друге прегледе</a> овог "
+"додатка."
 
 #: apps/reviews/templates/reviews/review.html:72
 msgid "Flagged for review"
-msgstr ""
+msgstr "Означено за рецензију"
 
 #: apps/reviews/templates/reviews/review.html:76
 msgid "Report this review"
@@ -11978,29 +12008,29 @@ msgstr "Пријави ову рецензију"
 
 #: apps/reviews/templates/reviews/review.html:82
 msgid "Reply to review"
-msgstr ""
+msgstr "Одговори на рецензију"
 
 #: apps/reviews/templates/reviews/review.html:88
 msgid "Edit review"
-msgstr ""
+msgstr "Уреди рецензију"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: рецензија"
 
 #. {0} is an addon name.
 #: apps/reviews/templates/reviews/review_list.html:24 apps/reviews/templates/reviews/mobile/add.html:4 apps/reviews/templates/reviews/mobile/review_list.html:4
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Рецензије за {0}"
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:27
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> преглед за овај додатак"
+msgstr[1] "<b>{0}</b> прегледа за овај додатак"
+msgstr[2] "<b>{0}</b> прегледа за овај додатак"
 
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -12020,15 +12050,15 @@ msgstr "Нема пронађених резултата."
 
 #: apps/reviews/templates/reviews/review_list.html:57
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Просек</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
-msgstr ""
+msgstr "Напиши нову рецензију"
 
 #: apps/reviews/templates/reviews/review_list.html:81 apps/reviews/templates/reviews/mobile/reviews_link.html:15
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Будите први да напишете рецензију."
 
 #: apps/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
@@ -12039,19 +12069,19 @@ msgstr[2] "{num} критика"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Оцењено са {0} од 5 звездица"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Оцењено са %(rating)s од 5 звездица"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:3 apps/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
-msgstr ""
+msgstr "Додај рецензију"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:5
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Пријавите се да бисте додали рецензију"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
@@ -12059,22 +12089,22 @@ msgstr "Наслов:"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
-msgstr ""
+msgstr "Још увек нема оцена."
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Просек од {0} оцене"
+msgstr[1] "Просек од {0} оцене"
+msgstr[2] "Просек од {0} оцена"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
-msgstr ""
+msgstr "од %(user)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Прочитај више&nbsp;&raquo;"
 
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
@@ -12117,11 +12147,12 @@ msgstr "Поређај по"
 
 #: apps/search/forms.py:85
 msgid "Relevance"
-msgstr ""
+msgstr "Релевантност"
 
 #: apps/search/helpers.py:24
 msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
 msgstr ""
+"Резултати <strong>{0}</strong>-<strong>{1}</strong> од <strong>{2}</strong>"
 
 # {0} is a number
 # {1} is a number
@@ -12164,7 +12195,7 @@ msgstr "{0} додатака"
 #. Firefox."
 #: apps/search/views.py:557
 msgid "Any {0}"
-msgstr ""
+msgstr "Било који {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:592
@@ -12173,16 +12204,16 @@ msgstr "Сви системи"
 
 #: apps/search/views.py:603
 msgid "All Tags"
-msgstr ""
+msgstr "Све ознаке"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/collections.html:8
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Резултати претраге колекције за {0}"
 
 #: apps/search/templates/search/collections.html:10
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Резултати претраге колекције"
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
@@ -12191,36 +12222,37 @@ msgstr "Претрага није доступна"
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Претрага је привремено недоступанa. Покушајте поново за неколико минута."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Резултати претраге тема за {0}"
 
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Резултати претраге тема"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Ознака"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Резултати претраге за ознаку \"{0}\""
 
 #: apps/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> одговарајући резултат"
+msgstr[1] "<b>{0}</b> одговарајућа резултата"
+msgstr[2] "<b>{0}</b> одговарајућих резултата"
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
-msgstr ""
+msgstr "Филтрирај резултате"
 
 #: apps/search/templates/search/results.html:69
 msgid "Category"
@@ -12232,7 +12264,7 @@ msgstr "Ознака"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "Претражи резултате за <i>({num})</i>"
 
 #: apps/sharing/__init__.py:14
 msgid "{0} post"
@@ -12294,7 +12326,7 @@ msgstr "localservice1"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:80
 msgid "Post to localservice1"
-msgstr ""
+msgstr "Објави на localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:82
@@ -12305,9 +12337,9 @@ msgstr "http://localservice1/?url={url}&title={title}"
 #: apps/sharing/__init__.py:87
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} објавa на localservice1"
+msgstr[1] "{0} објавe на localservice1"
+msgstr[2] "{0} објавa на localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:93
@@ -12317,20 +12349,20 @@ msgstr "localservice2"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:95
 msgid "Post to localservice2"
-msgstr ""
+msgstr "Објави на localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:97
 msgid "http://localservice2/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice2/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:102
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} објава на localservice2"
+msgstr[1] "{0} објаве на localservice2"
+msgstr[2] "{0} објава на localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:108
@@ -12340,7 +12372,7 @@ msgstr "localservice3"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:110
 msgid "Post to localservice3"
-msgstr ""
+msgstr "Објави на localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:112
@@ -12351,9 +12383,9 @@ msgstr "http://localservice3/?url={url}&title={title}"
 #: apps/sharing/__init__.py:117
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} објава на localservice3"
+msgstr[1] "{0} објаве на localservice3"
+msgstr[2] "{0} објава на localservice3"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -12365,11 +12397,11 @@ msgstr "Подели ову колекцију"
 
 #: apps/stats/models.py:258
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Хвала Вам што сте допринели додатку {addon_name}"
 
 #: apps/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
-msgstr ""
+msgstr "Преглед"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
@@ -12409,19 +12441,19 @@ msgstr "Статистике додатка"
 
 #: apps/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Додаци који се користе"
 
 #: apps/stats/templates/stats/global_report_menu.html:10
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Додатака направљено"
 
 #: apps/stats/templates/stats/global_report_menu.html:14
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Додатака преузето"
 
 #: apps/stats/templates/stats/global_report_menu.html:18
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Додатака ажурирано"
 
 #: apps/stats/templates/stats/global_report_menu.html:22
 msgid "Collections Created"
@@ -12429,7 +12461,7 @@ msgstr "Колекција је креирана"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
-msgstr ""
+msgstr "Написано рецензија"
 
 #: apps/stats/templates/stats/global_report_menu.html:30
 msgid "User Signups"
@@ -12454,15 +12486,15 @@ msgstr "Извоз"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: apps/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Контролна табла статистика :: додаци за {1}"
 
 #: apps/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Контролна табла статистика"
 
 #: apps/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Контролна табла статистика :: додаци за {0}"
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
@@ -12470,7 +12502,7 @@ msgstr "Контроле:"
 
 #: apps/stats/templates/stats/stats.html:33
 msgid "reset zoom"
-msgstr ""
+msgstr "ресетуј увеличај"
 
 #: apps/stats/templates/stats/stats.html:40
 msgid "Group by:"
@@ -12510,7 +12542,7 @@ msgstr "365 дана"
 
 #: apps/stats/templates/stats/stats.html:69
 msgid "Custom..."
-msgstr ""
+msgstr "Прилагођено..."
 
 #. {0} is an add-on name
 #: apps/stats/templates/stats/stats.html:88 apps/stats/templates/stats/stats.html:91
@@ -12519,11 +12551,11 @@ msgstr "Статистика за {0}"
 
 #: apps/stats/templates/stats/stats.html:94
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Контролна табла статистика"
 
 #: apps/stats/templates/stats/stats.html:102
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Учитавам најновије податке&hellip;"
 
 #: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
@@ -12532,15 +12564,15 @@ msgstr "Нема доступних података."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Ова контролна табла је тренутно <b>јавна</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Статистике доприноса су тренутно <b>приватне </b>."
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Ова контролна табла је тренутно <b>приватна</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
@@ -12548,57 +12580,60 @@ msgstr "Промени поставке."
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Направњени додаци по датуму"
 
 #: apps/stats/templates/stats/reports/addons_downloaded.html:3
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Преузети додаци по датуму"
 
 #: apps/stats/templates/stats/reports/addons_in_use.html:3
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Додаци који се користе по датуму"
 
 #: apps/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Отпремљени додаци по датуму"
 
 #: apps/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Коришћење апликације по датуму"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Колекција направљено по датуму"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Доприноси по датуму"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Преузимања по датуму"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Како се преузимања броје?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Како се броје преузимања?</h2> <p> Број преузимања се ажурира свако вече "
+"и садржи само оригинално преузимање додатка, не исправке. Преузимања се "
+"могу поделити од специфичног извора који се односи на преузимање. </p>"
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "Језици корисника по датуму"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Коришћење платформе по датуму"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Преузимања"
 
 #: apps/stats/templates/stats/reports/overview.html:9 apps/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
@@ -12606,7 +12641,7 @@ msgstr "Учитавам..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> просечно дневних корисника"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
@@ -12614,39 +12649,39 @@ msgstr "Најпопуларније апликације"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Погледајте више апликација&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Најпопуларнији језици"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Погледајте више језика&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Најпопуларније платформе"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Погледајте више платформи&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Оцене по датуму"
 
 #: apps/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Направљено рецензија по датуму"
 
 #: apps/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Извори за преузимање по датуму"
 
 #: apps/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "О праћењу спољних извора..."
 
 #: apps/stats/templates/stats/reports/sources.html:10
 msgid ""
@@ -12659,15 +12694,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Статус додатка по датуму"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Претплатника по датуму"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Дневних корисника по датуму"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
@@ -12687,7 +12722,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Број регистрованих корисника по датуму"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
@@ -12695,7 +12730,7 @@ msgstr "Верзије апликација по датуму"
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr ""
+msgstr "Најпопуларнијих {0} ознака"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
@@ -12704,7 +12739,7 @@ msgstr "{0} Најчешће коришћене ознаке"
 
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Локализуј за: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: apps/translations/templates/translations/trans-menu.html:16 apps/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
@@ -12789,10 +12824,12 @@ msgstr "Овај URL је неисправног формата. Валидне 
 #: apps/users/forms.py:276
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr ""
+"Молимо Вас да користите адресу е-поште од другог провајдера да бисте "
+"завршили регистрацију."
 
 #: apps/users/forms.py:284
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Име не може да се користи."
 
 #: apps/users/forms.py:298
 msgid "The passwords did not match."
@@ -12812,7 +12849,7 @@ msgstr ""
 
 #: apps/users/forms.py:508
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Молимо да унесете бар једно име на црну листу."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
