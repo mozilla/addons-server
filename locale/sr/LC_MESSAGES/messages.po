@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-31 06:48+0000\n"
+"PO-Revision-Date: 2014-08-31 09:57+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409467735.0\n"
+"X-POOTLE-MTIME: 1409479054.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -11282,26 +11282,40 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Комплетне теме</a></strong> мењају цео "
+"изглед %(app_name)s, обично укључујући иконице, боје, дијалоге и друге "
+"визуелне стилова."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Теме</a></strong> су лагане теме које "
+"користе слике у позадини да прилагоде Ваш %(app_name)s са траком са "
+"алаткама."
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Претраживачи</a> </strong> додају додатне "
+"изборе у падајућем менију поља за претрагу . Ови провајдери омогућавају Вам "
+"да брзо претраживање било који сајт."
 
 #: apps/pages/templates/pages/faq.html:72
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Речници и пакети језика</a></strong> додају "
+"подршку %(app_name)s за додатне језике."
 
 #: apps/pages/templates/pages/faq.html:77
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Прикључци</a></strong> помажу %(app_name)s "
+"да приказује или разуме различите врсте медија, као што су Adobe Flash или "
+"Apple Quicktime."
 
 #: apps/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Како да инсталирам, управљам или уклоним додатак?"
 
 #: apps/pages/templates/pages/faq.html:86
 msgid ""
@@ -11312,7 +11326,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr ""
+msgstr "Како да инсталирам додатке без рестартовања Firefox-а?"
 
 #: apps/pages/templates/pages/faq.html:101
 msgid ""
@@ -11322,7 +11336,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Како да одржим додатке ажурираним?"
 
 #: apps/pages/templates/pages/faq.html:111
 msgid ""
@@ -11333,7 +11347,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Да ли су додаци безбедни за инсталацију?"
 
 #: apps/pages/templates/pages/faq.html:123
 msgid ""
@@ -11344,7 +11358,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Да ли додаци могу успорити %(app_name)s?"
 
 #: apps/pages/templates/pages/faq.html:135
 msgid ""
@@ -11355,6 +11369,8 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:142
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
 msgstr ""
+"%(app_name)s ми је рекао да додатак није компатибилан. Да ли постоји начин "
+"да га и даље користим?"
 
 #: apps/pages/templates/pages/faq.html:145
 msgid ""
@@ -11365,7 +11381,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Шта да радим ако имам проблема са додатком?"
 
 #: apps/pages/templates/pages/faq.html:158
 msgid ""
@@ -11376,11 +11392,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Галерија додатака"
 
 #: apps/pages/templates/pages/faq.html:172
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Како да се одлучим између додатака који раде исту ствар?"
 
 #: apps/pages/templates/pages/faq.html:174
 msgid ""
@@ -11390,7 +11406,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:181
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "Шта ако не могу наћи додатак који тражим?"
 
 #: apps/pages/templates/pages/faq.html:182
 msgid ""
@@ -11410,7 +11426,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:197
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "Шта значи ако додатак \"није прегледан\"?"
 
 #: apps/pages/templates/pages/faq.html:198
 msgid ""
@@ -11420,15 +11436,17 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:207
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Која је цена додатака?"
 
 #: apps/pages/templates/pages/faq.html:208
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr ""
+"Додаци који су хостовани у нашој галерији су бесплатни осим ако није "
+"назначено другачије."
 
 #: apps/pages/templates/pages/faq.html:211
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "Шта значи када додатак тражи доприносе?"
 
 #: apps/pages/templates/pages/faq.html:212
 msgid ""
@@ -11438,7 +11456,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "Шта су бета додаци?"
 
 #: apps/pages/templates/pages/faq.html:219
 msgid ""
@@ -11454,7 +11472,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:230
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
+msgstr "Шта значи ако је додатак означен као спор?"
 
 #: apps/pages/templates/pages/faq.html:232
 msgid ""
@@ -11474,7 +11492,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:245
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "Како да пријавим грешку или контактирам Mozilla тим за додатке?"
 
 #: apps/pages/templates/pages/faq.html:246
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
@@ -11494,10 +11512,11 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:259
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
 msgstr ""
+"Firefox и други Mozilla софтвер су <a href=\"%(url)s\">отвореног кода</a>."
 
 #: apps/pages/templates/pages/faq.html:267
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Колекције и Омиљени"
 
 #: apps/pages/templates/pages/faq.html:270
 msgid "What is a collection?"
@@ -11506,22 +11525,27 @@ msgstr "Шта је колекција?"
 #: apps/pages/templates/pages/faq.html:271
 msgid "Collections are groups of related add-ons created by users to share."
 msgstr ""
+"Колекције су групе сродних додатака креираних од стране корисника да би се "
+"делили."
 
 #: apps/pages/templates/pages/faq.html:273
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Шта је Моја омиљена колекција?"
 
 #: apps/pages/templates/pages/faq.html:274
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
+"Омиљени додаци су додаци које сте забележили да би сте их лако нашли "
+"касније. Можете да додате додатак у омиљене колекцију тако што ћете кликнути "
+"на \"Додај у омиљене\" на својој страници са детаљима."
 
 #: apps/pages/templates/pages/faq.html:279
 msgid "Personalized recommendations"
-msgstr ""
+msgstr "Персонализоване препоруке"
 
 #: apps/pages/templates/pages/faq.html:282
 msgid "What are personalized recommendations?"
-msgstr ""
+msgstr "Шта су персонализоване препоруке?"
 
 #: apps/pages/templates/pages/faq.html:283
 msgid ""
@@ -11531,7 +11555,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
-msgstr ""
+msgstr "Како се персонализоване препоруке одређују?"
 
 #: apps/pages/templates/pages/faq.html:289
 msgid ""
@@ -11546,6 +11570,8 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:297
 msgid "Please see <a href=\"%(support_url)s\">this support article</a> for instructions on how to opt out."
 msgstr ""
+"Молим Вас погледајте <a href=\"%(support_url)s\">овај чланак подршке</a> за "
+"упутства о томе како да га онемогућите."
 
 #: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13 templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
@@ -11553,7 +11579,7 @@ msgstr "Додаци за мобилни"
 
 #: apps/pages/templates/pages/faq.html:306
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "Шта је мобилни додатак?"
 
 #: apps/pages/templates/pages/faq.html:307
 msgid ""
