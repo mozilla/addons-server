@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-30 18:20+0000\n"
+"PO-Revision-Date: 2014-08-31 06:48+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409422850.0\n"
+"X-POOTLE-MTIME: 1409467735.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10986,23 +10986,28 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:376
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Шта значи \"номиновање\" мог додатка?"
 
 #: apps/pages/templates/pages/dev_faq.html:378
 msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
 msgstr ""
+"Номинирани додаци су нови додаци које је аутор номиновао да постану јавни "
+"путем Developer Tools-а."
 
 #: apps/pages/templates/pages/dev_faq.html:384
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Да ли могу да прецизирам споразум о лиценци за коришћење мог додатка?"
 
 #: apps/pages/templates/pages/dev_faq.html:386
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
+"Да. Можете одредити споразум о лиценцирању приликом слања додатка. Такође "
+"можете да додате или ажурирате уговор о лиценци преко Developer Tools табле "
+"након што је поднет Ваш додатак."
 
 #: apps/pages/templates/pages/dev_faq.html:393
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Да ли могу да укључим полису приватности за мој додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:395
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
@@ -11010,7 +11015,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:404
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Зашто мој додатак мора поново да се прегледа?"
 
 #: apps/pages/templates/pages/dev_faq.html:406
 msgid ""
@@ -11031,7 +11036,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Које су смернице које се користе за преглед мог додатка?"
 
 #: apps/pages/templates/pages/dev_faq.html:429
 msgid ""
@@ -11041,26 +11046,28 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:439
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Колико дуго је потребно да се додатак прегледа?"
 
 #: apps/pages/templates/pages/dev_faq.html:441
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
 msgstr ""
+"Ми Вам не можемо дати процену времена колико ће бити потребно пре него што "
+"се прегледа додатак. Многи фактори утичу на време, укључујући:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:448
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "број поднесених додатака"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:450
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "сложеност кода додатака"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:452
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "број проблематичних области које су откривене"
 
 #: apps/pages/templates/pages/dev_faq.html:455
 msgid ""
@@ -11070,7 +11077,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Како могу да видим колико је пута преузет мој додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:469
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
@@ -11078,7 +11085,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:476
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Како могу да видим колико активних корисника користи мој додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:478
 msgid ""
@@ -11087,7 +11094,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:485
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Како да поднесем надоградњу за мој додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
@@ -11095,7 +11102,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:494
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "Да ли моја надоградња мора да буде прегледана од стране уредника?"
 
 #: apps/pages/templates/pages/dev_faq.html:496
 msgid ""
@@ -11118,7 +11125,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:526
 msgid "What is a Featured add-on?"
-msgstr ""
+msgstr "Шта је истакнут додатак?"
 
 #: apps/pages/templates/pages/dev_faq.html:528
 msgid ""
@@ -11129,19 +11136,21 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:540
 msgid "How can my add-on be listed as Recommended?"
-msgstr ""
+msgstr "Како да мој додатак буде наведен као Препоручен?"
 
 #: apps/pages/templates/pages/dev_faq.html:542 apps/pages/templates/pages/dev_faq.html:552
 msgid "<a href=\"%(url)s\">This page</a> describes the process by which the Recommended lists are managed."
 msgstr ""
+"<a href=\"%(url)s\">Ова страница</a> описује процес са којим се управља са "
+"препорученим листама."
 
 #: apps/pages/templates/pages/dev_faq.html:547
 msgid "Can I pay to have my add-on listed as Recommended?"
-msgstr ""
+msgstr "Да ли могу да платим да ми додатак буде наведен као Препоручен?"
 
 #: apps/pages/templates/pages/dev_faq.html:550
 msgid "Why is my add-on no longer listed as Recommended?"
-msgstr ""
+msgstr "Зашто мој додатак више није Препоручен?"
 
 #: apps/pages/templates/pages/dev_faq.html:559
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -11174,18 +11183,23 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:577
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
 msgstr ""
+"Тренутно, AMO не обезбеђује механизам да директну комуникацију са "
+"рецензентом, али ова опција се истражује и разматра за будуће надоградње."
 
 #: apps/pages/templates/pages/dev_faq.html:584
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr ""
+"Да ли могу тражити да се преглед уклони уколико је преглед био негативан?"
 
 #: apps/pages/templates/pages/dev_faq.html:586
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
 msgstr ""
+"Не. Ми не уклањамо негативне критике од додатака, осим ако се утврди да су "
+"лажне."
 
 #: apps/pages/templates/pages/dev_faq.html:592
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
+msgstr "Да ли могу тражити да се преглед уклони уколико је преглед био нетачан?"
 
 #: apps/pages/templates/pages/dev_faq.html:594
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
@@ -11222,7 +11236,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:672
 msgid "Wikipedia listing of known open source licenses."
-msgstr ""
+msgstr "Wikipedia списак познатих лиценци отвореног кода."
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
@@ -11240,7 +11254,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Да ли ће додатак радити на мом веб прегледачу или апликацији?"
 
 #: apps/pages/templates/pages/faq.html:27
 msgid ""
@@ -11251,11 +11265,13 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Који су различити типови додатака?"
 
 #: apps/pages/templates/pages/faq.html:43
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
 msgstr ""
+"Постоји неколико врста додатака које можете да прилагодите %(app_name)s на "
+"различите начине:"
 
 #: apps/pages/templates/pages/faq.html:47
 msgid ""
