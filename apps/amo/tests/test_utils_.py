@@ -105,5 +105,9 @@ def test_walkfiles():
     file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
     file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
 
+    # Only files ending with _foo.
     eq_(list(walkfiles(basedir, suffix='_foo')), [file1path, file2path])
-    eq_(list(walkfiles(basedir)), [file1path, file2path, file3path])
+    # All files.
+    all_files = list(walkfiles(basedir))
+    eq_(len(all_files), 3)
+    eq_(set(all_files), set([file1path, file2path, file3path]))
