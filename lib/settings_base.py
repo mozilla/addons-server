@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': '',
         'PORT': '',
-        'USER': '',
+        'USER': 'root',
         'PASSWORD': '',
         'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
         'TEST_CHARSET': 'utf8',
@@ -97,7 +97,7 @@ DATABASES = {
 # database connection, only some values are supported.
 SERVICES_DATABASE = {
     'NAME': 'olympia',
-    'USER': '',
+    'USER': 'root',
     'PASSWORD': '',
     'HOST': '',
 }
@@ -386,6 +386,7 @@ INSTALLED_APPS = (
     'jingo_minify',
     'localizers',
     'lib.es',
+    'moz_header',
     'pages',
     'perf',
     'product_details',
@@ -470,7 +471,8 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
-            'css/global/headerfooter.css',
+            'moz_header/header.css',
+            'moz_header/footer.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
             'css/impala/formset.less',
@@ -487,7 +489,8 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/impala/site.less',
             'css/impala/typography.less',
-            'css/global/headerfooter.css',
+            'moz_header/header.css',
+            'moz_header/footer.css',
             'css/impala/forms.less',
             'css/common/invisible-upload.less',
             'css/impala/header.less',
@@ -657,7 +660,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/outgoing_links.js',
 
             # Hover delay for global header
-            'js/global/menu.js',
+            'moz_header/menu.js',
 
             # Password length and strength
             'js/zamboni/password-strength.js',
@@ -1160,7 +1163,7 @@ ENGAGE_ROBOTS = False
 READ_ONLY = False
 
 
-# Turn on read-only mode in settings_local.py by putting this line
+# Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
 def read_only_mode(env):
     env['READ_ONLY'] = True
@@ -1190,7 +1193,7 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
-# RECAPTCHA - copy all three statements to settings_local.py
+# RECAPTCHA: overload all three statements to local_settings.py with your keys.
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
@@ -1356,7 +1359,7 @@ IN_TEST_SUITE = False
 # Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
 # Flip this on in your local settings or set an environment variable to
 # experience the joy of ES tests.
-RUN_ES_TESTS = bool(os.environ.get('RUN_ES_TESTS'))
+RUN_ES_TESTS = False
 
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.

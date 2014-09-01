@@ -14,7 +14,6 @@ from amo.helpers import user_media_url
 from applications.models import Application, AppVersion
 from files.models import File
 from services import update
-import settings_local
 from versions.models import ApplicationsVersions, Version
 
 
@@ -588,14 +587,6 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
 
         self.mac = amo.PLATFORM_MAC
         self.win = amo.PLATFORM_WIN
-
-        self.old_debug = settings_local.DEBUG
-
-        settings_local.DEBUG = False
-
-    def tearDown(self):
-        settings_local.DEBUG = self.old_debug
-        super(TestResponse, self).tearDown()
 
     def test_bad_guid(self):
         data = self.good_data.copy()

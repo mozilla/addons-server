@@ -13,12 +13,12 @@ class migrate {
 
     exec { "sql_migrate":
         cwd => "$PROJ_DIR",
-        command => "python ./vendor/src/schematic/schematic migrations/",
+        command => "schematic migrations/",
         logoutput => true,
         require => [
             # Service["mysql"],
             Package["python2.6"],
-            File["$PROJ_DIR/settings_local.py"],
+            File["$PROJ_DIR/settings.py"],
             File["$PROJ_DIR/migrations/264-locale-indexes.py"],
             # Exec["fetch_landfill_sql"],
             # Exec["load_data"]

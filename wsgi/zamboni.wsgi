@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 
 # Tell manage that we need to pull in the default settings file.
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
@@ -16,7 +16,7 @@ os.environ['CELERY_LOADER'] = 'django'
 wsgidir = os.path.dirname(__file__)
 site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
-# manage adds /apps, /lib, and /vendor to the Python path.
+# manage adds /apps and /lib to the Python path.
 import manage
 
 import django.conf

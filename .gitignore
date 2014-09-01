@@ -1,6 +1,7 @@
 .env
 settings_local.py*
 settings_local_*.py
+local_settings.py
 shellng_local.py
 *.py[co]
 *.sw[po]

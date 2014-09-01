@@ -10,7 +10,7 @@ class zamboni {
     exec { "create_mysql_database":
         command => "mysqladmin -uroot create $DB_NAME",
         unless  => "mysql -uroot -B --skip-column-names -e 'show databases' | /bin/grep '$DB_NAME'",
-        require => File["$PROJ_DIR/settings_local.py"]
+        require => File["$PROJ_DIR/settings.py"]
     }
 
     exec { "grant_mysql_database":
