@@ -144,9 +144,9 @@ class TestThemeUpdate(amo.tests.TestCase):
         up.get_update()
         image_path = up.image_path('foo.png')
         # This is ugly. It's needed because services.theme_update imports
-        # settings_local, and settings_test is overriding MEDIA_ROOT.
-        import settings_local
-        with self.settings(MEDIA_ROOT=settings_local.MEDIA_ROOT):
+        # settings, and settings_test is overriding MEDIA_ROOT.
+        import settings
+        with self.settings(MEDIA_ROOT=settings.MEDIA_ROOT):
             assert user_media_path('addons') in image_path
 
     def test_image_url(self):

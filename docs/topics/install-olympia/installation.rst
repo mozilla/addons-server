@@ -43,10 +43,6 @@ if you're running a recent version, you can `install them automatically
 
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig openssl curl
 
-On versions 12.04 and later, you will need to install a patched version of
-M2Crypto instead of the version from PyPI. Please check the `Finish the
-install`_ paragraph.
-
 
 .. _osx-packages:
 
@@ -163,37 +159,6 @@ This runs a command like this::
 
 .. _pip: http://www.pip-installer.org/en/latest/
 
-If you are on a linux box and get a compilation error while installing M2Crypto
-like the following::
-
-    SWIG/_m2crypto_wrap.c:6116:1: error: unknown type name ‘STACK’
-
-    ... snip a very long output of errors around STACK...
-
-    SWIG/_m2crypto_wrap.c:23497:20: error: expected expression before ‘)’ token
-
-       result = (STACK *)pkcs7_get0_signers(arg1,arg2,arg3);
-
-                        ^
-
-    error: command 'gcc' failed with exit status 1
-
-It may be because of a `few reasons`_:
-
-.. _few reasons:
-    http://blog.rectalogic.com/2013/11/installing-m2crypto-in-python.html
-
-* comment the line starting with ``M2Crypto`` in ``requirements/compiled.txt``
-* install the patched package from the Debian repositories (replace
-  ``x86_64-linux-gnu`` by ``i386-linux-gnu`` if you're on a 32bits platform)::
-
-    DEB_HOST_MULTIARCH=x86_64-linux-gnu pip install -I --exists-action=w "git+git://anonscm.debian.org/collab-maint/m2crypto.git@debian/0.21.1-3#egg=M2Crypto"
-    pip install --no-deps -r requirements/dev.txt
-
-* revert your changes to ``requirements/compiled.txt``::
-
-    git checkout requirements/compiled.txt
-
 
 .. _example-settings:
 
@@ -206,19 +171,18 @@ Settings
     setup but want to know what has recently changed.
 
 Most of olympia is already configured in ``settings.py``, but there's some
-things you need to configure locally.  All your local settings go into
-``settings_local.py``.  The settings template for
-developers, included below, is at :src:`docs/settings/settings_local.dev.py`.
+things you may want to configure locally.  All your local settings go into
+``local_settings.py``.  The settings template for developers, included below,
+is at :src:`docs/settings/local_settings.dev.py`.
 
-.. literalinclude:: /settings/settings_local.dev.py
+.. literalinclude:: /settings/local_settings.dev.py
 
-I'm overriding the database parameters from ``settings.py`` and then extending
-``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the `Django Debug
-Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.  It's awesome,
-you want it.
+I'm extending ``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the
+`Django Debug Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.
+It's awesome, you want it.
 
-Any file that looks like ``settings_local*`` is for local use only; it will be
-ignored by git.
+The file ``local_settings.py`` is for local use only; it will be ignored by
+git.
 
 
 Database
@@ -229,10 +193,9 @@ our production DB which has been redacted and pruned for development use.
 Development snapshots are hosted over at
 https://landfill-addons.allizom.org/db/
 
-There is a management command that download and install the landfill
-database. You have to create the database first using the following
-command filling in the database name from your ``settings_local.py``
-(Defaults to ``olympia``)::
+There is a management command that download and install the landfill database.
+You have to create the database first using the following command filling in
+the database name from your settings (Defaults to ``olympia``)::
 
     mysqladmin -uroot create $DB_NAME
 
@@ -280,13 +243,13 @@ More info on schematic: https://github.com/mozilla/schematic
 Run the Server
 --------------
 
-If you've gotten the system requirements, downloaded ``olympia`` and
-``zamboni-lib``, set up your virtualenv with the compiled packages, and
-configured your settings and database, you're good to go.
+If you've gotten the system requirements, downloaded ``olympia``, set up your
+virtualenv with the compiled packages, and configured your settings and
+database, you're good to go.
 
 ::
 
-    ./manage.py runserver --settings=settings_local 0.0.0.0:8000
+    ./manage.py runserver
 
 .. note::
 
@@ -294,7 +257,7 @@ configured your settings and database, you're good to go.
    http://localhost:8000 in your browser will raise a 500 server error.
    If you don't want to run through the :doc:`./advanced-installation`
    documentation just right now, you can disable all LESS pre-processing by
-   adding the following line to your settings_local file::
+   adding the following line to your ``local_settings.py`` file::
 
       LESS_PREPROCESS = False
 
@@ -338,7 +301,7 @@ Testing
 The :ref:`testing` page has more info, but here's the quick way to run
 olympia's tests::
 
-    ./manage.py test --settings=settings_local
+    ./manage.py test
 
 There are a few useful makefile targets that you can use, the simplest one
 being::

@@ -2,9 +2,9 @@
 # the base image again
 class zamboni_plus {
 
-    file { "$PROJ_DIR/settings_local.py":
+    file { "$PROJ_DIR/settings.py":
         ensure => file,
-        source => "$PROJ_DIR/docs/settings/settings_local.dev.py",
+        source => "$PROJ_DIR/settings.py",
         replace => false;
     }
 

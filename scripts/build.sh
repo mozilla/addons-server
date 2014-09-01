@@ -12,7 +12,6 @@ VENV=$WORKSPACE/venv
 VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
 ES_HOST='jenkins-es20'
-SETTINGS=default
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
@@ -20,13 +19,6 @@ if [ -z $1 ]; then
     echo "Warning: You should provide a unique name for this job to prevent database collisions."
     echo "Usage: ./build.sh <name>"
     echo "Continuing, but don't say you weren't warned."
-fi
-
-if [ -z $2 ]; then
-    echo "Warning: no settings file specified, using: default"
-    echo "Usage: ./build.sh <name> <settings>"
-else
-    SETTINGS=$2
 fi
 
 echo "Setup..." `date`
@@ -76,11 +68,9 @@ else
     RUN_ES_TESTS=True
 fi
 
-cat > settings_local.py <<SETTINGS
-from lib.settings_base import *
-from ${SETTINGS}.settings import *
-ROOT_URLCONF = 'lib.urls_base'
-LOG_LEVEL = logging.ERROR
+cat > local_settings.py <<SETTINGS
+from settings_ci import *
+
 DATABASES['default']['NAME'] = 'zamboni_$1'
 DATABASES['default']['HOST'] = 'localhost'
 DATABASES['default']['USER'] = 'hudson'
@@ -90,16 +80,9 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 SERVICES_DATABASE['NAME'] = DATABASES['default']['NAME']
 SERVICES_DATABASE['USER'] = DATABASES['default']['USER']
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'localhost:11211',
-    }
-}
-CELERY_ALWAYS_EAGER = True
-RUN_ES_TESTS = ${RUN_ES_TESTS}
 ES_HOSTS = ['${ES_HOST}:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
+
 RUNNING_IN_JENKINS = True
 
 SETTINGS
