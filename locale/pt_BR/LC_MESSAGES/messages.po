@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-06 17:34+0000\n"
+"PO-Revision-Date: 2014-09-01 15:35+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1407346446.0\n"
+"X-POOTLE-MTIME: 1409585748.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -1984,6 +1984,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Por favor insira <strong>todas as palavras</strong> abaixo, "
+"<strong>separadas por um espaço, se necessário</strong>. </p> <p> Se estiver "
+"difícil de ler, você pode <a href=\"#\" id=\"recaptcha_different\">tentar "
+"palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">um tipo "
+"diferente de desafio</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3832,10 +3837,12 @@ msgstr "O ID do PayPal não pôde ser validado."
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Tipo de arquivo não suportado, por favor enviar um arquivo no formato "
+"{extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "Ver atual"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:872
 msgid "Invalid version range."
@@ -8077,10 +8084,12 @@ msgstr "Se seu complemento transmite quaisquer dados do computador do usuário, 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
+"Se o seu complemento contém o código binário ou ofuscado de diferente "
+"bibliotecas conhecidas, envie suas fontes para a revisão."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Leia mais sobre a política de revisão de código fonte."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -8511,11 +8520,13 @@ msgstr "Opcionalmente, insira qualquer informação que possa ser útil para o E
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Código-fonte"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
+"Se o seu complemento contém o código binário ou ofuscado, disponibilize a "
+"fonte para os revisores."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"
@@ -9752,11 +9763,11 @@ msgstr "Compatibilidade:"
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "Fontes adicionais:"
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Download files"
-msgstr ""
+msgstr "Baixar arquivos"
 
 #: apps/editors/templates/editors/review.html:129
 msgid "This version has not been reviewed."
