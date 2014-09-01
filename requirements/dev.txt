@@ -1,4 +1,3 @@
--r prod.txt
 -r compiled.txt
 -r test.txt
 
