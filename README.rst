@@ -1,4 +1,5 @@
-.. image:: http://travis-ci.org/mozilla/olympia.png
+.. image:: https://travis-ci.org/mozilla/olympia.svg?branch=master
+    :target: https://travis-ci.org/mozilla/olympia
 
 Welcome to Olympia!  This is `addons.mozilla.org`_.
 
