@@ -8,12 +8,12 @@ before_install:
   - sudo /usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
   - sudo /usr/share/elasticsearch/bin/elasticsearch -Des.config=scripts/elasticsearch/elasticsearch.yml
 install:
+  - make update_deps
   - pip install --no-deps -r requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/
   - pip install --no-deps -r requirements/compiled.txt --find-links https://pyrepo.addons.mozilla.org/
   - npm install
 before_script:
   - mysql -e 'create database olympia;'
-  - make update_submodules
   - make update_assets
 script:
   - DJANGO_SETTINGS_MODULE=settings_ci make test

@@ -104,7 +104,7 @@ Updating Olympia Code
 To sync your repository with upstream changes, just update the code using git::
 
     cd olympia
-    git pull && git submodule sync --quiet && git submodule update --init --recursive
+    git pull
 
 Next, rebuild your VM so that any new requirements are installed and any new
 DB migration scripts are run.

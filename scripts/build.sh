@@ -47,11 +47,6 @@ if [ ! -d "$LOCALE" ]; then
     svn co http://svn.mozilla.org/addons/trunk/site/app/locale/ $LOCALE
 fi
 
-# Update the submodules.
-echo "Updating submodules..."
-git submodule --quiet foreach 'git submodule --quiet sync'
-git submodule --quiet sync && git submodule update --init --recursive
-
 # Install node deps locally.
 npm install
 export PATH="./node_modules/.bin/:${PATH}"
