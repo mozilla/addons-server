@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import hashlib
+import os
 
 from datetime import datetime
 
@@ -742,6 +743,7 @@ class TestDownloadSource(amo.tests.TestCase):
         self.source_file.seek(0)
         self.version.source = DjangoFile(self.source_file)
         self.version.save()
+        self.filename = os.path.basename(self.version.source.path)
         self.user = UserProfile.objects.get(email="del@icio.us")
         self.group = Group.objects.create(
             name='Editors BinarySource',
@@ -754,6 +756,8 @@ class TestDownloadSource(amo.tests.TestCase):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
         assert response[settings.XSENDFILE_HEADER]
+        assert 'Content-Disposition' in response
+        assert self.filename in response['Content-Disposition']
         eq_(response[settings.XSENDFILE_HEADER], self.version.source.path)
 
     def test_anonymous_should_not_be_allowed(self):
@@ -766,6 +770,8 @@ class TestDownloadSource(amo.tests.TestCase):
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
         assert response[settings.XSENDFILE_HEADER]
+        assert 'Content-Disposition' in response
+        assert self.filename in response['Content-Disposition']
         eq_(response[settings.XSENDFILE_HEADER], self.version.source.path)
 
     def test_no_source_should_go_in_404(self):

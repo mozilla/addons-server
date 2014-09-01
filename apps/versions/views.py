@@ -1,3 +1,4 @@
+import os
 import posixpath
 
 from django import http
@@ -124,8 +125,11 @@ def download_source(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
 
     if (version.source and
-       (acl.check_addon_ownership(request, version.addon, viewer=True,
-                                  ignore_disabled=True) or
-       acl.action_allowed(request, 'Editors', 'BinarySource'))):
-        return HttpResponseSendFile(request, version.source.path)
+        (acl.check_addon_ownership(request, version.addon,
+                                   viewer=True, ignore_disabled=True)
+         or acl.action_allowed(request, 'Editors', 'BinarySource'))):
+        res = HttpResponseSendFile(request, version.source.path)
+        name = os.path.basename(version.source.path)
+        res['Content-Disposition'] = "attachment; filename={0}".format(name)
+        return res
     raise http.Http404()
