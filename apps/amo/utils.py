@@ -1042,3 +1042,11 @@ def has_links(html):
     except LinkFound:
         return True
     return False
+
+
+def walkfiles(folder, suffix=''):
+    """Iterator over files in folder, recursively."""
+    return (os.path.join(basename, filename)
+            for basename, dirnames, filenames in os.walk(folder)
+            for filename in filenames
+            if filename.endswith(suffix))

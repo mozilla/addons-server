@@ -1,10 +1,11 @@
 import collections
+import tempfile
 
 from nose.tools import eq_, ok_
 
 
 import amo
-from amo.utils import attach_trans_dict
+from amo.utils import attach_trans_dict, walkfiles
 from addons.models import Addon
 
 
@@ -27,8 +28,8 @@ class TestAttachTransDict(amo.tests.TestCase):
         # implementation should leave localized_string un-escaped but never use
         # it for __unicode__. We depend on this behaviour later in the test.
         ok_('<script>' in addon.description.localized_string)
-        ok_(not '<script>' in addon.description.localized_string_clean)
-        ok_(not '<script>' in unicode(addon.description))
+        ok_('<script>' not in addon.description.localized_string_clean)
+        ok_('<script>' not in unicode(addon.description))
 
         # Attach trans dict.
         attach_trans_dict(Addon, [addon])
@@ -95,3 +96,14 @@ def test_has_links():
 
     html = 'a badly markuped <a href="http://example.com">link'
     assert amo.utils.has_links(html)
+
+
+def test_walkfiles():
+    basedir = tempfile.mkdtemp()
+    subdir = tempfile.mkdtemp(dir=basedir)
+    file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
+    file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
+    file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
+
+    eq_(list(walkfiles(basedir, suffix='_foo')), [file1path, file2path])
+    eq_(list(walkfiles(basedir)), [file1path, file2path, file3path])

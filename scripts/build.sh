@@ -9,7 +9,6 @@ python --version
 
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
-VENDOR=$WORKSPACE/vendor
 LOCALE=$WORKSPACE/locale
 ES_HOST='jenkins-es20'
 
@@ -48,13 +47,8 @@ if [ ! -d "$LOCALE" ]; then
     svn co http://svn.mozilla.org/addons/trunk/site/app/locale/ $LOCALE
 fi
 
-if [ ! -d "$VENDOR" ]; then
-    echo "No vendor lib?  Cloning..."
-    git clone --recursive git://github.com/mozilla/zamboni-lib.git $VENDOR
-fi
-
-# Update the vendor lib.
-echo "Updating vendor..."
+# Update the submodules.
+echo "Updating submodules..."
 git submodule --quiet foreach 'git submodule --quiet sync'
 git submodule --quiet sync && git submodule update --init --recursive
 
