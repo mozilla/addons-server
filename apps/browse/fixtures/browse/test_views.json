@@ -1,13 +1,5 @@
 [
     {
-        "pk": 3,
-        "model": "addons.addontype",
-        "fields": {
-            "modified": "2009-02-06 08:42:28",
-            "created": "2006-08-21 23:53:30"
-        }
-    },
-    {
         "pk": 15000,
         "model": "translations.translation",
         "fields": {
@@ -16,14 +8,6 @@
             "id": 15000,
             "modified": "2009-03-26 07:41:10",
             "localized_string": "Walloon Language Pack"
-        }
-    },
-    {
-        "pk": 5,
-        "model": "addons.addontype",
-        "fields": {
-            "modified": "2009-02-06 08:42:28",
-            "created": "2006-08-21 23:53:58"
         }
     },
     {

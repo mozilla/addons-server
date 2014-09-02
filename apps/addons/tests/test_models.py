@@ -21,7 +21,7 @@ from amo import set_user
 from amo.helpers import absolutify, user_media_url
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonDeviceType, AddonRecommendation, AddonType,
+                           AddonDeviceType, AddonRecommendation,
                            AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
@@ -1700,7 +1700,7 @@ class TestCategoryModel(amo.tests.TestCase):
         for t in amo.ADDON_TYPE.keys():
             if t == amo.ADDON_DICT:
                 continue  # Language packs don't have categories.
-            cat = Category(type=AddonType(id=t), slug='omg')
+            cat = Category(type=t, slug='omg')
             assert cat.get_url_path()
 
 

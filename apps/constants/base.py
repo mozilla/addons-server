@@ -149,8 +149,9 @@ ADDON_TYPE = {
     ADDON_THEME: _(u'Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
     ADDON_SEARCH: _(u'Search Engine'),
-    ADDON_PLUGIN: _(u'Plugin'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
+    ADDON_LPADDON: _(u'Language Pack (Add-on)'),
+    ADDON_PLUGIN: _(u'Plugin'),
     ADDON_PERSONA: _(u'Theme'),
 }
 
@@ -161,8 +162,9 @@ ADDON_TYPES = {
     ADDON_THEME: _(u'Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
     ADDON_SEARCH: _(u'Search Tools'),
-    ADDON_PLUGIN: _(u'Plugins'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
+    ADDON_LPADDON: _(u'Language Packs (Add-on)'),
+    ADDON_PLUGIN: _(u'Plugins'),
     ADDON_PERSONA: _(u'Themes'),
 }
 

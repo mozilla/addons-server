@@ -24,17 +24,6 @@
         }
     },
     {
-        "pk": 4,
-        "model": "addons.addontype",
-        "fields": {
-            "description": null,
-            "name_plural": null,
-            "modified": "2009-02-06 08:42:28",
-            "name": null,
-            "created": "2006-08-21 23:53:36"
-        }
-    },
-    {
         "pk": 6,
         "model": "versions.license",
         "fields": {

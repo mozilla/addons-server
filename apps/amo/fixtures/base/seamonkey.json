@@ -11,14 +11,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "addons.addontype",
-        "fields": {
-            "modified": "2009-02-06 08:42:28",
-            "created": "2006-08-21 23:53:19"
-        }
-    },
-    {
         "pk": 116674,
         "model": "translations.translation",
         "fields": {

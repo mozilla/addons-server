@@ -514,7 +514,7 @@ def side_nav(context, addon_type, category=None):
 
 def _side_nav(context, addon_type, cat):
     # Prevent helpers generating circular imports.
-    from addons.models import Category, AddonType
+    from addons.models import Category, Addon
     request = context['request']
     qs = Category.objects.filter(weight__gte=0)
     if addon_type != amo.ADDON_PERSONA:
@@ -524,7 +524,7 @@ def _side_nav(context, addon_type, cat):
     if cat:
         base_url = cat.get_url_path()
     else:
-        base_url = AddonType(addon_type).get_url_path()
+        base_url = Addon.get_type_url(addon_type)
     ctx = dict(request=request, base_url=base_url, categories=categories,
                addon_type=addon_type, amo=amo)
     return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
