@@ -43,15 +43,6 @@
           {% else %}
             {% set queue_types = ['pending_themes'] %}
           {% endif %}
-          {% for type in queue_types %}
-            <div class="editor-stats-table">
-              <div>
-                {{ ngettext('{num} unreviewed theme submission this week.',
-                            '{num} unreviewed theme submissions this week.',
-                            weekly_theme_counts[type]['week'])|f(num=weekly_theme_counts[type]['week']) }}
-              </div>
-            </div>
-          {% endfor %}
         </div>
       </div>
     </div>
@@ -88,6 +79,7 @@
             </table>
           </div>
         </div>
+      </div>
     </div>
   </section>
 

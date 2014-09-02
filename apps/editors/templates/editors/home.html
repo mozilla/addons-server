@@ -32,11 +32,6 @@
       <div class="editor-stats">
         {% for type in ('nominated', 'pending', 'prelim'): %}
           <div class="editor-stats-table">
-            <div>
-              {{ ngettext("{c} unreviewed submissions.",
-                          "{c} unreviewed submissions.",
-                          progress['week'][type])|f(c=progress['week'][type]) }}
-            </div>
             <div class="editor-stats-dark">
               <strong>{{ _('Current waiting times:') }}</strong>
               <div class="editor-waiting">
