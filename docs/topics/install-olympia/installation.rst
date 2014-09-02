@@ -66,15 +66,10 @@ Use the Source
 
 Grab olympia from github with::
 
-    git clone --recursive git://github.com/mozilla/olympia.git
+    git clone git://github.com/mozilla/olympia.git
     cd olympia
 
 ``olympia.git`` is all the source code.  :ref:`updating` is detailed later on.
-
-If at any point you realize you forgot to clone with the recursive
-flag, you can fix that by running::
-
-    git submodule update --init --recursive
 
 
 virtualenv and virtualenvwrapper
@@ -164,11 +159,6 @@ This runs a command like this::
 
 Settings
 --------
-
-.. note::
-
-    There is a :doc:`settings-changelog`, this can be useful for people who are already
-    setup but want to know what has recently changed.
 
 Most of olympia is already configured in ``settings.py``, but there's some
 things you may want to configure locally.  All your local settings go into
@@ -331,7 +321,7 @@ If you want to do it manually, then check the following steps:
 
 This updates olympia::
 
-    git checkout master && git pull && git submodule update --init --recursive
+    git checkout master && git pull
 
 This updates the python packages::
 
