@@ -106,8 +106,14 @@ class Command(BaseCommand):
                     else:
                         day, addon_guid, data, count, update_type = splitted
 
+                    # Old versions of Firefox don't provide the update type.
+                    if update_type in ['0', 'NULL', '%UPDATE_TYPE%']:
+                        update_type = None
+
                     try:
-                        count, update_type = int(count), int(update_type)
+                        count = int(count)
+                        if update_type:
+                            update_type = int(update_type)
                     except ValueError:  # Badly formatted? Drop.
                         continue
 
@@ -117,7 +123,7 @@ class Command(BaseCommand):
                     # > the lower bits for updateType (eg 112) should add to
                     # > 16, if not, ignore the request.
                     # > udpateType & 31 == 16 == valid request.
-                    if update_type & 31 != 16:
+                    if update_type and update_type & 31 != 16:
                         log.debug("Update type doesn't add to 16: %s" %
                                   update_type)
                         continue
