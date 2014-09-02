@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-13 09:39-0700\n"
-"PO-Revision-Date: 2014-08-29 12:07+0000\n"
+"PO-Revision-Date: 2014-09-02 12:21+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409314022.0\n"
+"X-POOTLE-MTIME: 1409660492.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3006,11 +3006,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr ""
+msgstr "Провайдери пошуку"
 
 #: apps/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Знайти нових провайдерів для вашої пошукової панелі"
 
 #: apps/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
@@ -3020,6 +3020,8 @@ msgstr "Додаткові ресурси"
 #: apps/browse/templates/browse/search_tools.html:93
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
 msgstr ""
+"Дізнатись більше про <a "
+"href=\"http://support.mozilla.com/kb/Search+bar\">панель пошуку</a> в {0}"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
@@ -3031,11 +3033,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:161
 msgid "Complete Themes"
-msgstr ""
+msgstr "Повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Найпопулярніші розширення"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
@@ -3088,7 +3090,7 @@ msgstr "Повні теми за щотижневими завантаження
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Нещодавно оновлені повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
@@ -3117,11 +3119,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "Переглянути профіль"
 
 #: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Створити свою власну тему"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
@@ -3129,7 +3131,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
-msgstr "Дізнайтесь більше"
+msgstr "Дізнатись більше"
 
 #: apps/browse/templates/browse/personas/category_landing.html:6 apps/browse/templates/browse/personas/mobile/category_landing.html:5
 msgid "View All Recently Added"
@@ -3149,12 +3151,14 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Хочете більше персоналізації?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Повні теми перетворюють вигляд вікна, панелі пошуку, кнопок, вкладок та меню "
+"вашого браузера. <a href=\"%(url)s\" class=\"more-info\">Почати перегляд</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -3166,7 +3170,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Не знайдено тем"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
@@ -3174,11 +3178,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Більше тем"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Всі теми"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
 msgid "All"
@@ -3186,7 +3190,7 @@ msgstr "Всі"
 
 #: apps/compat/forms.py:23 apps/search/views.py:528
 msgid "All Add-ons"
-msgstr ""
+msgstr "Всі додатки"
 
 #: apps/compat/forms.py:24
 msgid "Binary"
@@ -3202,11 +3206,11 @@ msgstr "Інше"
 
 #: apps/compat/templates/compat/index.html:4
 msgid "Add-on Compatibility Report for {app} {version}"
-msgstr ""
+msgstr "Звіт сумісності додатку для {app} {version}"
 
 #: apps/compat/templates/compat/index.html:11
 msgid "{app} {version} Compatibility"
-msgstr ""
+msgstr "Сумісність {app} {version}"
 
 #: apps/compat/templates/compat/index.html:17
 msgid "Top 95% compatible with previous version"
@@ -3218,7 +3222,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:19
 msgid "All active add-ons"
-msgstr ""
+msgstr "Всі активні додатки"
 
 #: apps/compat/templates/compat/index.html:23 apps/constants/base.py:371
 msgid "App"
@@ -3230,7 +3234,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
-msgstr ""
+msgstr "Показати всі версії"
 
 #: apps/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
@@ -3238,11 +3242,11 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:61
 msgid "Show previous version only"
-msgstr ""
+msgstr "Показати тільки попередню версію"
 
 #: apps/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Звіти сумісності додатку"
 
 #: apps/compat/templates/compat/reporter.html:11 apps/compat/templates/compat/reporter_detail.html:35
 msgid ""
@@ -3252,11 +3256,11 @@ msgstr ""
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Звіти для ваших додатків"
 
 #: apps/compat/templates/compat/reporter.html:30 apps/compat/templates/compat/reporter_detail.html:9
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Центр сумісності додатку"
 
 #: apps/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -3264,7 +3268,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:3 apps/compat/templates/compat/reporter_detail.html:10 apps/compat/templates/compat/reporter_detail.html:25
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Звіти сумісності {addon}"
 
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
@@ -3282,7 +3286,7 @@ msgstr[2] ""
 
 #: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73
 msgid "View all"
-msgstr ""
+msgstr "Переглянути всі"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
@@ -3290,7 +3294,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
-msgstr ""
+msgstr "Тип звіту"
 
 #: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
@@ -3318,7 +3322,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:82
 msgid "No reports found."
-msgstr ""
+msgstr "Звітів не знайдено."
 
 #: apps/constants/applications.py:18
 msgid "Firefox"
@@ -3342,7 +3346,7 @@ msgstr "Мобільний"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox для Android"
 
 #: apps/constants/applications.py:139
 msgid "Mozilla"
@@ -3350,7 +3354,7 @@ msgstr "Mozilla"
 
 #: apps/constants/applications.py:149
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: apps/constants/applications.py:154 templates/mobile/header.html:5
 msgid "Desktop"
@@ -3358,7 +3362,7 @@ msgstr ""
 
 #: apps/constants/applications.py:161
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Мобільний Firefox"
 
 #: apps/constants/applications.py:168
 msgid "Firefox Tablet"
@@ -3366,7 +3370,7 @@ msgstr ""
 
 #: apps/constants/applications.py:175
 msgid "Firefox OS"
-msgstr ""
+msgstr "Firefox OS"
 
 #: apps/constants/base.py:26
 msgid "Incomplete"
@@ -3450,7 +3454,7 @@ msgstr "Розширення"
 
 #: apps/constants/base.py:149
 msgid "Complete Theme"
-msgstr ""
+msgstr "Повна тема"
 
 #: apps/constants/base.py:151
 msgid "Search Engine"
@@ -3607,31 +3611,31 @@ msgstr ""
 
 #: apps/constants/base.py:467
 msgid "Level 1"
-msgstr ""
+msgstr "Рівень 1"
 
 #: apps/constants/base.py:468
 msgid "Level 2"
-msgstr ""
+msgstr "Рівень 2"
 
 #: apps/constants/base.py:469
 msgid "Level 3"
-msgstr ""
+msgstr "Рівень 3"
 
 #: apps/constants/base.py:470
 msgid "Level 4"
-msgstr ""
+msgstr "Рівень 4"
 
 #: apps/constants/base.py:471
 msgid "Level 5"
-msgstr ""
+msgstr "Рівень 5"
 
 #: apps/constants/base.py:472
 msgid "Level 6"
-msgstr ""
+msgstr "Рівень 6"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:85
 msgid "Request More Info"
-msgstr ""
+msgstr "Запитати більше інформації"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:89
 msgid "Flag"
@@ -3643,19 +3647,19 @@ msgstr ""
 
 #: apps/constants/editors.py:17 apps/editors/helpers.py:403 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
 msgid "Reject"
-msgstr ""
+msgstr "Відхилити"
 
 #: apps/constants/editors.py:18 apps/editors/templates/editors/themes/queue.html:70
 msgid "Approve"
-msgstr ""
+msgstr "Схвалити"
 
 #: apps/constants/editors.py:23
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Сексуальний чи порнографічний вміст"
 
 #: apps/constants/editors.py:24
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Недоречний чи образливий вміст"
 
 #: apps/constants/editors.py:25
 msgid "Violence, war, or weaponry images"
@@ -3675,7 +3679,7 @@ msgstr ""
 
 #: apps/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "Містить спам"
 
 #: apps/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
@@ -3691,7 +3695,7 @@ msgstr "Всі права захищені"
 
 #: apps/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
@@ -3715,11 +3719,11 @@ msgstr ""
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
-msgstr ""
+msgstr "Всі платформи"
 
 #: apps/constants/platforms.py:26
 msgid "All Mobile Platforms"
-msgstr ""
+msgstr "Всі мобільні платформи"
 
 #: apps/constants/platforms.py:33
 msgid "Linux"
@@ -3743,19 +3747,19 @@ msgstr "Solaris"
 
 #: apps/constants/platforms.py:68
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: apps/constants/platforms.py:75
 msgid "Maemo"
-msgstr ""
+msgstr "Maemo"
 
 #: apps/devhub/feeds.py:35
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Нещодавні зміни для %s"
 
 #: apps/devhub/feeds.py:37
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Нещодавні зміни для моїх додатків"
 
 #: apps/devhub/forms.py:70
 msgid "Must have at least one owner."
@@ -3799,7 +3803,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:214
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Цей додаток має політику приватності"
 
 #: apps/devhub/forms.py:216
 msgid "Please specify your add-on's Privacy Policy:"
@@ -4019,7 +4023,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:935
 msgid "Context menu command"
-msgstr ""
+msgstr "Команда контекстного меню"
 
 #: apps/devhub/forms.py:936
 msgid "Creates a context menu item for images"
@@ -4095,19 +4099,19 @@ msgstr ""
 
 #: apps/devhub/views.py:195
 msgid "All Activity"
-msgstr ""
+msgstr "Вся активність"
 
 #: apps/devhub/views.py:196
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Оновлення додатку"
 
 #: apps/devhub/views.py:197
 msgid "Add-on Status"
-msgstr ""
+msgstr "Статус додатку"
 
 #: apps/devhub/views.py:198
 msgid "User Collections"
-msgstr ""
+msgstr "Збірки користувача"
 
 #: apps/devhub/views.py:199 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:557
 msgid "User Reviews"
@@ -4297,11 +4301,11 @@ msgstr ""
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
-msgstr ""
+msgstr "Статус:"
 
 #: apps/devhub/templates/devhub/index.html:54
 msgid "Latest Version:"
-msgstr ""
+msgstr "Остання версія:"
 
 #: apps/devhub/templates/devhub/index.html:63 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
@@ -4309,11 +4313,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:64 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s з %(total)s"
 
 #: apps/devhub/templates/devhub/index.html:74 apps/devhub/templates/devhub/includes/addons_edit_nav.html:18
 msgid "Upload New Version"
-msgstr ""
+msgstr "Вивантажити нову версію"
 
 #: apps/devhub/templates/devhub/index.html:80
 msgid "View all add-ons ►"
@@ -4383,7 +4387,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:165
 msgid "Developer Forums"
-msgstr ""
+msgstr "Форуми розробника"
 
 #: apps/devhub/templates/devhub/index.html:167
 msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
@@ -4474,15 +4478,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:33
 msgid "Add-on Name"
-msgstr ""
+msgstr "Назва додатку"
 
 #: apps/devhub/templates/devhub/package_addon.html:35
 msgid "Add-on Version"
-msgstr ""
+msgstr "Версія додатку"
 
 #: apps/devhub/templates/devhub/package_addon.html:36
 msgid "Unique ID"
-msgstr ""
+msgstr "Унікальний ID"
 
 #: apps/devhub/templates/devhub/package_addon.html:37
 msgid "Package Name"
@@ -4502,7 +4506,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/package_addon.html:50
 msgid "Contributors"
-msgstr ""
+msgstr "Помічники"
 
 #: apps/devhub/templates/devhub/package_addon.html:54
 msgid "Where will your add-on run?"
@@ -10014,23 +10018,23 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/summary.html:19
 msgid "Get started with AMO L10n"
-msgstr ""
+msgstr "Початок роботи з локалізацією AMO"
 
 #: apps/localizers/templates/localizers/summary.html:23
 msgid "Existing AMO locales"
-msgstr ""
+msgstr "Наявні локалізації AMO"
 
 #: apps/localizers/templates/localizers/summary.html:27
 msgid "Locale code"
-msgstr ""
+msgstr "Код локалі"
 
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
-msgstr ""
+msgstr "Ім'я локалі"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Про додатки Mozilla"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
@@ -12494,6 +12498,8 @@ msgstr ""
 #: apps/users/views.py:337
 msgid "Please use the verified email for this account."
 msgstr ""
+"Будь ласка, використовуйте для цього облікового запису перевірену електронну "
+"пошту."
 
 #: apps/users/views.py:448
 msgid "Wrong email address or password!"
@@ -12502,24 +12508,31 @@ msgstr "Неправильна адреса електронної пошти ч
 #: apps/users/views.py:460
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr ""
+"Посилання для активації облікового запису відправлено на вашу адресу "
+"електронної пошти {0}. Ви повинні перейти за цим посиланням для можливості "
+"увійти."
 
 #: apps/users/views.py:465
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
+"Якщо ви не отримали повідомлення для підтвердження, переконайтесь чи ваш "
+"сервіс електронної пошти не позначив його, як \"спам\". При необхідності ви "
+"можете <a href=\"%s\">відправити повідомлення для підтвердження ще раз</a> на "
+"свою адресу ел. пошти, зазначену вгорі."
 
 #: apps/users/views.py:470
 msgid "Activation Email Sent"
-msgstr ""
+msgstr "Повідомлення для активації відправлено"
 
 #: apps/users/views.py:471
 msgid "Having Trouble?"
-msgstr ""
+msgstr "Виникли проблеми?"
 
 #: apps/users/views.py:618
 msgid "You are already logged in to an account."
-msgstr ""
+msgstr "Ви вже увійшли в обліковий запис."
 
 #: apps/users/views.py:640
 msgid "Congratulations! Your user account was successfully created."
@@ -12527,15 +12540,15 @@ msgstr "Вітаємо! Ваш користувацький рахунок ус�
 
 #: apps/users/views.py:664
 msgid "You already have an account."
-msgstr ""
+msgstr "Ви вже маєте обліковий запис."
 
 #: apps/users/views.py:674
 msgid "There are errors in this form"
-msgstr ""
+msgstr "В цій формі є помилки"
 
 #: apps/users/views.py:675
 msgid "Please correct them and resubmit."
-msgstr ""
+msgstr "Будь ласка, виправте їх і відправте ще раз."
 
 #: apps/users/views.py:690
 msgid "User reported."
