@@ -15,14 +15,22 @@ INSTALLED_APPS += (
     'django_extensions',
 )
 
-# Here we use the LocMemCache backend from cache-machine, as it interprets the
-# "0" timeout parameter of ``cache``  in the same way as the Memcached backend:
-# as infinity. Django's LocMemCache backend interprets it as a "0 seconds"
-# timeout (and thus doesn't cache at all).
+# Using locmem deadlocks in certain scenarios. This should all be fixed,
+# hopefully, in Django1.7. At that point, we may try again, and remove this to
+# not require memcache installation for newcomers.
+# A failing scenario is:
+# 1/ log in
+# 2/ click on "Submit a new addon"
+# 3/ click on "I accept this Agreement" => request never ends
+#
+# If this is changed back to locmem, make sure to use it from "caching" (by
+# default in Django for locmem, a timeout of "0" means "don't cache it", while
+# on other backends it means "cache forever"):
+#      'BACKEND': 'caching.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
-        'BACKEND': 'caching.backends.locmem.LocMemCache',
-        'LOCATION': 'olympia',
+        'BACKEND': 'caching.backends.memcached.MemcachedCache',
+        'LOCATION': 'localhost:11211',
     }
 }
 

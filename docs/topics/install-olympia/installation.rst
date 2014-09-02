@@ -32,9 +32,9 @@ On Ubuntu
 ~~~~~~~~~
 The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
-<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev,libssl-dev,swig openssl,curl>`_::
+<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,memcached,libssl-dev,swig openssl,curl>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig openssl curl
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl
 
 
 .. _osx-packages:
