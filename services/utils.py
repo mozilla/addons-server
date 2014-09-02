@@ -6,7 +6,6 @@ import os
 settingmodule = os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local')
 if settingmodule.startswith(('zamboni',  # typical git clone destination
                              'workspace',  # Jenkins
-                             'project',  # vagrant VM
                              'freddo')):
     settingmodule = settingmodule.split('.', 1)[1]
 

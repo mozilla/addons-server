@@ -7,13 +7,6 @@ Installing Olympia
 We're going to use all the hottest tools to set up a nice environment.  Skip
 steps at your own peril. Here we go!
 
-.. note::
-
-    It was once possible to build Olympia in a
-    :doc:`virtual machine using vagrant <install-with-vagrant>`
-    but that has known bugs at the time of this writing.
-    For best results, install manually or contribute to 956815!
-
 
 Requirements
 ------------
