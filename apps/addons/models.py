@@ -546,13 +546,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                        args=[self.slug] + (args or []),
                        add_prefix=add_prefix)
 
-    def get_ratings_url(self, action='list', args=None, add_prefix=True):
-        # TODO: Change this. This is confusing since it applies to only
-        # themes.
-        return reverse('ratings.themes.%s' % action,
-                       args=[self.slug] + (args or []),
-                       add_prefix=add_prefix)
-
     def type_url(self):
         """The url for this add-on's AddonType."""
         return AddonType(self.type).get_url_path()
