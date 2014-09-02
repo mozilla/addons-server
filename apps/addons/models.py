@@ -546,9 +546,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                        args=[self.slug] + (args or []),
                        add_prefix=add_prefix)
 
+    @classmethod
+    def get_type_url(cls, type):
+        try:
+            type = amo.ADDON_SLUGS[type]
+        except KeyError:
+            return None
+        return reverse('browse.%s' % type)
+
     def type_url(self):
-        """The url for this add-on's AddonType."""
-        return AddonType(self.type).get_url_path()
+        """The url for this add-on's type."""
+        return Addon.get_type_url(self.type)
 
     def share_url(self):
         return reverse('addons.share', args=[self.slug])
@@ -1861,28 +1869,6 @@ class AddonRecommendation(models.Model):
         for addon, rows in sorted_groupby(q, key=lambda x: x['addon']):
             d[addon] = dict((r['other_addon'], r['score']) for r in rows)
         return d
-
-
-class AddonType(amo.models.ModelBase):
-    name = TranslatedField()
-    name_plural = TranslatedField()
-    description = TranslatedField()
-
-    class Meta:
-        db_table = 'addontypes'
-
-    def __unicode__(self):
-        return unicode(self.name)
-
-    def get_url_path(self):
-        try:
-            type = amo.ADDON_SLUGS[self.id]
-        except KeyError:
-            return None
-        return reverse('browse.%s' % type)
-
-dbsignals.pre_save.connect(save_signal, sender=AddonType,
-                           dispatch_uid='addontype_translations')
 
 
 class AddonUser(caching.CachingMixin, models.Model):

@@ -44,17 +44,6 @@
         }
     },
     {
-        "pk": 4,
-        "model": "addons.addontype",
-        "fields": {
-            "name": 4,
-            "created": "2006-08-21 23:53:36",
-            "description": 151,
-            "modified": "2009-02-06 08:42:28",
-            "name_plural": 145
-        }
-    },
-    {
         "pk": 1,
         "model": "files.platform",
         "fields": {

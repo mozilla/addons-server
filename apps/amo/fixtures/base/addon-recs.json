@@ -1,16 +1,5 @@
 [
     {
-        "pk": 1,
-        "model": "addons.addontype",
-        "fields": {
-            "created": "2006-08-22 23:53:19",
-            "description": null,
-            "modified": "2009-02-06 08:42:28",
-            "name": null,
-            "name_plural": null
-        }
-    },
-        {
         "pk": 1027,
         "model": "addons.addon",
         "fields": {

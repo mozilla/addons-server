@@ -48,17 +48,6 @@
         }
     },
     {
-        "pk": 9,
-        "model": "addons.addontype",
-        "fields": {
-            "description": 590130,
-            "name_plural": 590129,
-            "modified": "2009-10-20 21:58:03",
-            "name": 590128,
-            "created": "2009-10-20 21:58:03"
-        }
-    },
-    {
         "pk": 638180,
         "model": "translations.translation",
         "fields": {

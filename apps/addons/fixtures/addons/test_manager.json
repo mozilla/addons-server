@@ -1,17 +1,6 @@
 [
     {
         "pk": 1,
-        "model": "addons.addontype",
-        "fields": {
-            "description": null,
-            "name_plural": null,
-            "modified": "2009-02-06 08:42:28",
-            "name": null,
-            "created": "2006-08-21 23:53:19"
-        }
-    },
-    {
-        "pk": 1,
         "model": "applications.application",
         "fields": {
             "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
