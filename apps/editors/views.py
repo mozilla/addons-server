@@ -592,7 +592,7 @@ def _review(request, addon):
     ctx = context(version=version, addon=addon,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
-                  status_types=amo.STATUS_CHOICES, show_diff=show_diff,
+                  show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal)
 

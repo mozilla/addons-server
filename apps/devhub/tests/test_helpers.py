@@ -173,39 +173,39 @@ class TestDevFilesStatus(amo.tests.TestCase):
     def expect(self, expected):
         cnt, msg = helpers.dev_files_status([self.file], self.addon)[0]
         eq_(cnt, 1)
-        eq_(msg, expected)
+        eq_(msg, unicode(expected))
 
     def test_unreviewed_lite(self):
         self.addon.status = amo.STATUS_LITE
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+        self.expect(Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
 
     def test_unreviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
 
     def test_unreviewed_nominated(self):
         self.addon.status = amo.STATUS_NOMINATED
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
 
     def test_unreviewed_lite_and_nominated(self):
         self.addon.status = amo.STATUS_LITE_AND_NOMINATED
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
 
     def test_reviewed_lite(self):
         self.addon.status = amo.STATUS_LITE
         self.file.status = amo.STATUS_LITE
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_LITE])
+        self.expect(File.STATUS_CHOICES[amo.STATUS_LITE])
 
     def test_reviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_PUBLIC
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_PUBLIC])
+        self.expect(File.STATUS_CHOICES[amo.STATUS_PUBLIC])
 
     def test_disabled(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_DISABLED
-        self.expect(amo.STATUS_CHOICES[amo.STATUS_DISABLED])
+        self.expect(File.STATUS_CHOICES[amo.STATUS_DISABLED])

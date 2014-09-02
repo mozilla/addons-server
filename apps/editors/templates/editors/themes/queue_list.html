@@ -65,7 +65,7 @@
                   {{ emaillink(qa.persona.themelock.reviewer.email) }}
                 {% endif %}
               </td>
-              <td>{{ STATUS_CHOICES[qa.status] }}</td>
+              <td>{{ qa.STATUS_CHOICES[qa.status] }}</td>
             </tr>
           {% endfor %}
         </tbody>

@@ -243,7 +243,7 @@ class TestReviewHelper(amo.tests.TestCase):
         eq_(len(mail.outbox), 1)
 
     def test_action_details(self):
-        for status in amo.STATUS_CHOICES:
+        for status in Addon.STATUS_CHOICES:
             self.addon.update(status=status)
             helper = self.get_helper()
             actions = helper.actions
@@ -734,8 +734,9 @@ def test_version_status():
     addon = Addon()
     version = Version()
     version.all_files = [File(status=amo.STATUS_PUBLIC),
-                         File(status=amo.STATUS_DELETED)]
-    eq_(u'Fully Reviewed,Deleted', helpers.version_status(addon, version))
+                         File(status=amo.STATUS_UNREVIEWED)]
+    eq_(u'Fully Reviewed,Awaiting Review',
+        helpers.version_status(addon, version))
 
     version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
-    eq_(u'Awaiting Preliminary Review', helpers.version_status(addon, version))
+    eq_(u'Awaiting Review', helpers.version_status(addon, version))

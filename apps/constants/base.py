@@ -22,24 +22,36 @@ STATUS_PUBLIC_WAITING = 13  # bug 740967
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 STATUS_BLOCKED = 15
 
-STATUS_CHOICES = {
+STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
     STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
-    STATUS_PENDING: _(u'Pending approval'),
     STATUS_NOMINATED: _(u'Awaiting Full Review'),
     STATUS_PUBLIC: _(u'Fully Reviewed'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
-    STATUS_BETA: _(u'Beta'),
     STATUS_LITE: _(u'Preliminarily Reviewed'),
     STATUS_LITE_AND_NOMINATED: _(
         u'Preliminarily Reviewed and Awaiting Full Review'),
-    STATUS_PURGATORY: _(u'Pending a review choice'),
     STATUS_DELETED: _(u'Deleted'),
+}
+
+STATUS_CHOICES_PERSONA = {
+    STATUS_NULL: STATUS_CHOICES_ADDON[STATUS_NULL],
+    STATUS_PENDING: _(u'Pending approval'),
+    STATUS_PUBLIC: STATUS_CHOICES_ADDON[STATUS_PUBLIC],
+    STATUS_DISABLED: STATUS_CHOICES_ADDON[STATUS_DISABLED],
+    STATUS_DELETED: STATUS_CHOICES_ADDON[STATUS_DELETED],
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
     # The need to go to the marketplace and actualy make it public.
     STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
-    STATUS_BLOCKED: _(u'Blocked'),
+}
+
+STATUS_CHOICES_FILE = {
+    STATUS_UNREVIEWED: _(u'Awaiting Review'),
+    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_DISABLED: _(u'Disabled by Mozilla'),
+    STATUS_BETA: _(u'Beta'),
+    STATUS_LITE: _(u'Preliminarily Reviewed'),
 }
 
 # We need to expose nice values that aren't localisable.

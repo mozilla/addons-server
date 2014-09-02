@@ -38,7 +38,7 @@ class TestReviewActions(amo.tests.TestCase):
             'Retain preliminary review')
 
     def test_other_statuses(self):
-        for status in amo.STATUS_CHOICES:
+        for status in Addon.STATUS_CHOICES:
             if status in NOMINATED_STATUSES:
                 return
             else:

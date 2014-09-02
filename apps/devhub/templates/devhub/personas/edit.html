@@ -41,7 +41,7 @@
       <div class="info">
         <p>
           <strong>{{ _('Status:') }}</strong>
-          <span class="{{ status_class(addon) }}"><b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
+          <span class="{{ status_class(addon) }}"><b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
         </p>
         {% set position = get_position(addon) %}
         {% if position and position.pos and position.total %}

@@ -11,7 +11,7 @@
   <guid>{{ addon.guid }}</guid>
   <slug>{{ addon.slug }}</slug>
   <version>{{ version.version }}</version>
-  <status id="{{ addon.status }}">{{ amo.STATUS_CHOICES[addon.status] }}</status>
+  <status id="{{ addon.status }}">{{ addon.STATUS_CHOICES[addon.status] }}</status>
   <authors>
     {% if not addon.is_persona() %}
     {% for author in addon.listed_authors -%}
@@ -99,7 +99,7 @@
     {%- for file in addon.current_beta_version.all_files -%}
     <install hash="{{ file.hash }}" os="{{ file.platform.name }}"
              size="{{ file.size }}"
-             status="{{ amo.STATUS_CHOICES[amo.STATUS_BETA] }}">
+             status="{{ file.STATUS_CHOICES[amo.STATUS_BETA] }}">
       {{ file.get_url_path('api') }}
     </install>
     {% endfor -%}

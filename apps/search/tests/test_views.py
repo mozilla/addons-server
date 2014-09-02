@@ -636,7 +636,7 @@ class TestPersonaSearch(SearchBase):
             self._addons.append(addon)
 
         # Add some unreviewed personas.
-        for status in set(amo.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
+        for status in set(Addon.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
             self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
                                                         status=status))
 

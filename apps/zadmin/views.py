@@ -784,11 +784,6 @@ def addon_manage(request, addon):
                 addon.slug, form.cleaned_data['highest_status']))
             form.save()
 
-        if 'outstanding' in form.changed_data:
-            log.info('Addon "%s" changed to%s outstanding' % (addon.slug,
-                     '' if form.cleaned_data['outstanding'] else ' not'))
-            form.save()
-
         for form in formset:
             if 'status' in form.changed_data:
                 log.info('Addon "%s" file (ID:%d) status changed to: %s' % (
