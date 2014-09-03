@@ -38,8 +38,8 @@ Memcached
 ---------
 
 We slipped this in with the basic install.  The package was
-``libmemcached-dev`` on Ubuntu and ``libmemcached`` on OS X.  Switch your
-``local_settings.py`` to use ::
+``memcached`` on Ubuntu and ``libmemcached`` on OS X.  Your default
+settings already use the following, so you shouldn't need to change anything::
 
     CACHES = {
         'default': {
