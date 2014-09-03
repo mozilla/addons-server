@@ -457,9 +457,9 @@ class QueueTest(EditorTest):
         # Format: (Created n days ago,
         #          percentages of [< 5, 5-10, >10],
         #          how many are under 7 days?)
-        return ((1, (0, 0, 100), 2),
-                (8, (0, 50, 50), 1),
-                (11, (50, 0, 50), 1))
+        return ((1, (0, 0, 100)),
+                (8, (0, 50, 50)),
+                (11, (50, 0, 50)))
 
     def addon_file(self, *args, **kw):
         a = create_addon_file(*args, **kw)
@@ -623,7 +623,7 @@ class TestQueueBasics(QueueTest):
 
         style = lambda w: 'width:%s%%' % (float(w) if w > 0 else 0)
 
-        for days, widths, under_7 in self.get_review_data():
+        for days, widths in self.get_review_data():
             new_nomination = datetime.now() - timedelta(days=days)
             version.update(nomination=new_nomination)
 
@@ -635,8 +635,6 @@ class TestQueueBasics(QueueTest):
             eq_(div('.waiting_old').attr('style'), style(widths[0]))
             eq_(div('.waiting_med').attr('style'), style(widths[1]))
             eq_(div('.waiting_new').attr('style'), style(widths[2]))
-
-            eq_(div.children('div:eq(0)').text().split()[0], str(under_7))
 
     def test_pending_bar(self):
         self.generate_files()
@@ -656,7 +654,7 @@ class TestQueueBasics(QueueTest):
         # `eq` is the table number (0, 1 or 2).
         style = lambda w: 'width:%s%%' % (float(w) if w > 0 else 0)
 
-        days, widths, under_7 = data
+        days, widths = data
 
         f = addon.versions.all()[0].all_files[0]
         d = datetime.now() - timedelta(days=days)
@@ -675,8 +673,6 @@ class TestQueueBasics(QueueTest):
         eq_(div('.waiting_old').attr('style'), style(widths[0]))
         eq_(div('.waiting_med').attr('style'), style(widths[1]))
         eq_(div('.waiting_new').attr('style'), style(widths[2]))
-
-        eq_(div.children('div:eq(0)').text().split()[0], str(under_7))
 
     def test_flags_jetpack(self):
         ad = create_addon_file('Jetpack', '0.1', amo.STATUS_NOMINATED,

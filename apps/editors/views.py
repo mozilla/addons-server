@@ -165,8 +165,7 @@ def _editor_progress():
     types = ['nominated', 'prelim', 'pending']
     progress = {'new': queue_counts(types, days_max=4),
                 'med': queue_counts(types, days_min=5, days_max=10),
-                'old': queue_counts(types, days_min=11),
-                'week': queue_counts(types, days_max=7)}
+                'old': queue_counts(types, days_min=11)}
 
     # Return the percent of (p)rogress out of (t)otal.
     pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
