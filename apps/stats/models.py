@@ -107,6 +107,16 @@ class UpdateCountTmp(SearchMixin, models.Model):
         db_table = 'update_counts_tmp'
 
 
+class ThemeUpdateCount(SearchMixin, models.Model):
+    """Daily users taken from the ADI data (coming from Hive)."""
+    addon = models.ForeignKey('addons.Addon')
+    count = models.PositiveIntegerField()
+    date = models.DateField()
+
+    class Meta:
+        db_table = 'theme_update_counts'
+
+
 class AddonShareCount(models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
@@ -341,7 +351,12 @@ class ClientData(models.Model):
 
 
 class ThemeUserCount(SearchMixin, models.Model):
-    """Theme active daily users."""
+    """Theme popularity (weekly average of users).
+
+    This is filled in by a cron job reading the popularity from the theme
+    (Persona).
+
+    """
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()

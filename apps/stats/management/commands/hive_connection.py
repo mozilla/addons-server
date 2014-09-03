@@ -60,9 +60,6 @@ def query_to_file(query, filepath, sep):
                     num_reqs += 1
                     if (num_reqs % 1000000) == 0:
                         log.info('Processed %s requests' % num_reqs)
-                    if None in row:  # Incomplete result: skip.
-                        log.debug('Skipping malformed row: %s' % row)
-                        continue
                     f.write(sep.join(str(col) for col in row))
                     f.write('\n')
 

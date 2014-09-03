@@ -10,7 +10,7 @@ import amo.search
 import amo.tests
 # TODO: use DownloadCount and UpdateCount when the script is proven
 # to work correctly.
-from stats.models import (DownloadCountTmp as DownloadCount,
+from stats.models import (DownloadCountTmp as DownloadCount, ThemeUpdateCount,
                           UpdateCountTmp as UpdateCount)
 
 
@@ -18,7 +18,7 @@ hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
 
 
 class TestADICommand(amo.tests.TestCase):
-    fixtures = ('base/addon_3615',)
+    fixtures = ('base/addon_3615', 'addons/persona')
 
     def setUp(self):
         self.clean_up_files()
@@ -56,3 +56,11 @@ class TestADICommand(amo.tests.TestCase):
         eq_(download_count.count, 2)
         eq_(download_count.date, datetime.date(2014, 7, 10))
         eq_(download_count.sources, {u'search': 1, u'collection': 1})
+
+    def test_theme_update_counts_from_file(self):
+        management.call_command('theme_update_counts_from_file', hive_folder,
+                                date='2014-07-10')
+        eq_(ThemeUpdateCount.objects.all().count(), 2)
+        eq_(ThemeUpdateCount.objects.get(addon_id=3615).count, 2)
+        # Persona 813 has addon id 15663
+        eq_(ThemeUpdateCount.objects.get(addon_id=15663).count, 7)
