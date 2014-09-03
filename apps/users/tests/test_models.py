@@ -416,3 +416,21 @@ class TestUserHistory(amo.tests.TestCase):
         user_2 = UserProfile.objects.create(username='user_2',
                                             email='luke@jedi.com')
         eq_([user_1, user_2], list(find_users('luke@jedi.com')))
+
+
+class TestUserManager(amo.tests.TestCase):
+
+    def test_create_user(self):
+        user = UserProfile.objects.create_user("test", "test@test.com", 'xxx')
+        assert user.pk is not None
+
+    def test_create_superuser(self):
+        user = UserProfile.objects.create_superuser(
+            "test",
+            "test@test.com",
+            'xxx'
+        )
+        assert user.pk is not None
+        Group.objects.get(name="Admins") in user.groups.all()
+        assert user.is_staff
+        assert user.is_superuser
