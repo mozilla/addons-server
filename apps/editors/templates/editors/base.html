@@ -68,9 +68,11 @@
           {{ _('Moderated Review Log') }}</a></li>
       </ul>
     </li>
-    <li class="top">
-      <a href="{{ url('editors.motd') }}" class="controller">{{ _('Announcement') }}</a>
-    </li>
+    {% if is_admin %}
+      <li class="top">
+        <a href="{{ url('editors.motd') }}" class="controller">{{ _('Announcement') }}</a>
+      </li>
+    {% endif %}
   </ul>
 </div>
 {% endblock %}
