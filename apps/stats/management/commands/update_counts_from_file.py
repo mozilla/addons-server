@@ -61,7 +61,7 @@ class Command(BaseCommand):
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
         folder = args[0] if args else 'hive_results'
-        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder, day)
+        folder = path.join(settings.TMP_PATH, folder, day)
         sep = options['separator']
         groups = ('version', 'status', 'app', 'os', 'locale')
         # Make sure we're not trying to update with mismatched data.
@@ -104,6 +104,9 @@ class Command(BaseCommand):
                             update_type = splitted
                     else:
                         day, addon_guid, data, count, update_type = splitted
+
+                    if update_type:
+                        update_type.strip()
 
                     # Old versions of Firefox don't provide the update type.
                     if update_type in ['0', 'NULL', '%UPDATE_TYPE%']:

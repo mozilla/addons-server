@@ -28,7 +28,7 @@ class HiveQueryToFileCommand(BaseCommand):
 
     def handle(self, *args, **options):
         folder = args[0] if args else 'hive_results'
-        folder = os.path.join(settings.NETAPP_STORAGE, 'tmp', folder)
+        folder = os.path.join(settings.TMP_PATH, folder)
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -38,7 +38,9 @@ class HiveQueryToFileCommand(BaseCommand):
 
         if not os.path.isdir(folder):
             os.makedirs(folder)
-        filepath = os.path.join(folder, self.filename)
+        if not os.path.isdir(os.path.join(folder, day)):
+            os.makedirs(os.path.join(folder, day))
+        filepath = os.path.join(folder, day, self.filename)
         return query_to_file(self.query % (day, limit_str), filepath, sep)
 
 

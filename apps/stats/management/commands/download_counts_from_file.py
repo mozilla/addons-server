@@ -57,7 +57,7 @@ class Command(BaseCommand):
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
         folder = args[0] if args else 'hive_results'
-        folder = path.join(settings.NETAPP_STORAGE, 'tmp', folder, day)
+        folder = path.join(settings.TMP_PATH, folder, day)
         sep = options['separator']
         filepath = path.join(folder, 'download_counts.hive')
         # Make sure we're not trying to update with mismatched data.

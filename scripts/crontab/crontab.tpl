@@ -54,6 +54,8 @@ HOME=/tmp
 # Once per day after 1000 UTC (after hive queries + transfert is done)
 30 10 * * * %(django)s update_counts_from_file
 00 11 * * * %(django)s download_counts_from_file
+05 11 * * * %(django)s theme_update_counts_from_hive
+30 11 * * * %(django)s theme_update_counts_from_file
 
 # Once per day after metrics is done (see above)
 35 11 * * * %(z_cron)s update_addon_download_totals
