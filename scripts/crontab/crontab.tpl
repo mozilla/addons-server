@@ -56,6 +56,7 @@ HOME=/tmp
 00 11 * * * %(django)s download_counts_from_file
 05 11 * * * %(django)s theme_update_counts_from_hive
 30 11 * * * %(django)s theme_update_counts_from_file
+30 12 * * * %(django)s update_theme_popularity_movers
 
 # Once per day after metrics is done (see above)
 35 11 * * * %(z_cron)s update_addon_download_totals
