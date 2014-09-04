@@ -1,5 +1,7 @@
-import datetime
 import os
+import shutil
+from datetime import date, timedelta
+
 from nose.tools import eq_
 
 from django.conf import settings
@@ -9,6 +11,7 @@ import amo.search
 import amo.tests
 # TODO: use DownloadCount and UpdateCount when the script is proven
 # to work correctly.
+from addons.models import Persona
 from stats.models import (DownloadCountTmp as DownloadCount, ThemeUpdateCount,
                           UpdateCountTmp as UpdateCount)
 
@@ -17,7 +20,7 @@ hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
 
 
 class TestADICommand(amo.tests.TestCase):
-    fixtures = ('base/addon_3615', 'addons/persona')
+    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona')
 
     def test_update_counts_from_file(self):
         management.call_command('update_counts_from_file', hive_folder,
@@ -25,7 +28,7 @@ class TestADICommand(amo.tests.TestCase):
         eq_(UpdateCount.objects.all().count(), 1)
         update_count = UpdateCount.objects.last()
         eq_(update_count.count, 5)
-        eq_(update_count.date, datetime.date(2014, 7, 10))
+        eq_(update_count.date, date(2014, 7, 10))
         eq_(update_count.versions, {u'3.8': 2, u'3.7': 3})
         eq_(update_count.statuses, {u'userEnabled': 5})
         eq_(update_count.applications, {u'{app-id}': {u'30.0': 5}})
@@ -38,7 +41,7 @@ class TestADICommand(amo.tests.TestCase):
         eq_(DownloadCount.objects.all().count(), 1)
         download_count = DownloadCount.objects.last()
         eq_(download_count.count, 2)
-        eq_(download_count.date, datetime.date(2014, 7, 10))
+        eq_(download_count.date, date(2014, 7, 10))
         eq_(download_count.sources, {u'search': 1, u'collection': 1})
 
     def test_theme_update_counts_from_file(self):
@@ -48,3 +51,24 @@ class TestADICommand(amo.tests.TestCase):
         eq_(ThemeUpdateCount.objects.get(addon_id=3615).count, 2)
         # Persona 813 has addon id 15663
         eq_(ThemeUpdateCount.objects.get(addon_id=15663).count, 7)
+
+    def test_update_theme_popularity_movers(self):
+        # Create ThemeUpdateCount entries for the persona 559 with addon_id
+        # 15663 and the persona 575 with addon_id 15679 for the last 21 days.
+        for i in range(21):
+            d = date.today() - timedelta(days=i)
+            ThemeUpdateCount.objects.create(addon_id=15663, count=i, date=d)
+            ThemeUpdateCount.objects.create(addon_id=15679,
+                                            count=i * 10, date=d)
+        # Compute the popularity and movers.
+        management.call_command('update_theme_popularity_movers')
+        p1 = Persona.objects.get(pk=559)
+        p2 = Persona.objects.get(pk=575)
+
+        eq_(p1.popularity, 3)  # sum(range(7)) / 7
+        # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
+        eq_(p1.movers, -0.7)
+
+        eq_(p2.popularity, 30)  # sum(range(7)) * 10 / 7
+        # Three weeks avg (sum(range(21)) * 10 / 21) = 100 so (30 - 100) / 100.
+        eq_(p2.movers, -0.7)

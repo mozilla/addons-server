@@ -107,11 +107,24 @@ class UpdateCountTmp(SearchMixin, models.Model):
         db_table = 'update_counts_tmp'
 
 
+class ThemeUpdateCountManager(models.Manager):
+
+    def get_last_x_days_avg(self, days):
+        """Return the average number of users (count) over the last x days."""
+        today = datetime.date.today()
+        return self.values(
+            'addon_id').filter(
+            date__gt=today - datetime.timedelta(days=days)).annotate(
+            models.Avg('count'))
+
+
 class ThemeUpdateCount(SearchMixin, models.Model):
     """Daily users taken from the ADI data (coming from Hive)."""
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
+
+    objects = ThemeUpdateCountManager()
 
     class Meta:
         db_table = 'theme_update_counts'

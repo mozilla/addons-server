@@ -64,8 +64,8 @@ class Command(BaseCommand):
 
         theme_update_counts = {}
 
-        # Memoize the addons.
-        addons = Addon.objects.values_list('id', flat=True)
+        # Memoize the addon ids.
+        addons = set(Addon.objects.values_list('id', flat=True))
         # Perf: preload all the Personas once and for all.
         # This builds a dict where each key (the persona_id we get from the
         # hive query) has the addon_id as value.
