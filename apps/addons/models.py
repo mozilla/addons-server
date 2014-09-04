@@ -1650,6 +1650,9 @@ class Persona(caching.CachingMixin, models.Model):
     approve = models.DateTimeField(null=True)
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)
+    # TODO: remove the following two fields when the ADI stuff is used for real
+    movers_tmp = models.FloatField(null=True)
+    popularity_tmp = models.IntegerField(null=False, default=0)
     license = models.PositiveIntegerField(
         choices=amo.PERSONA_LICENSES_CHOICES, null=True, blank=True)
 
