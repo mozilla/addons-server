@@ -51,7 +51,8 @@ class Command(BaseCommand):
         for addon_id, three_weeks_avg in three_weeks_avg_dict.iteritems():
             popularity = int(one_week_avg_dict.get(addon_id, 0))
             Persona.objects.filter(addon_id=addon_id).update(
-                popularity=popularity,
-                movers=(popularity - three_weeks_avg) / three_weeks_avg)
+                # TODO: remove _tmp from the fields when the ADI stuff is used
+                popularity_tmp=popularity,
+                movers_tmp=(popularity - three_weeks_avg) / three_weeks_avg)
 
         log.debug('Total processing time: %s' % (datetime.now() - start))

@@ -80,10 +80,11 @@ class TestADICommand(amo.tests.TestCase):
         p1 = Persona.objects.get(pk=559)
         p2 = Persona.objects.get(pk=575)
 
-        eq_(p1.popularity, 3)  # sum(range(7)) / 7
+        # TODO: remove _tmp from the fields when we use the ADI stuff for real
+        eq_(p1.popularity_tmp, 3)  # sum(range(7)) / 7
         # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
-        eq_(p1.movers, -0.7)
+        eq_(p1.movers_tmp, -0.7)
 
-        eq_(p2.popularity, 30)  # sum(range(7)) * 10 / 7
+        eq_(p2.popularity_tmp, 30)  # sum(range(7)) * 10 / 7
         # Three weeks avg (sum(range(21)) * 10 / 21) = 100 so (30 - 100) / 100.
-        eq_(p2.movers, -0.7)
+        eq_(p2.movers_tmp, -0.7)
