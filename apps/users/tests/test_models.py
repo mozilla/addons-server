@@ -419,6 +419,7 @@ class TestUserHistory(amo.tests.TestCase):
 
 
 class TestUserManager(amo.tests.TestCase):
+    fixtures = ('users/test_backends', )
 
     def test_create_user(self):
         user = UserProfile.objects.create_user("test", "test@test.com", 'xxx')

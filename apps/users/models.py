@@ -139,14 +139,9 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
     def create_superuser(self, username, email, password):
         """
         Creates and saves a superuser.
-
-        If no Admins Group yet exists, it's created.
         """
         user = self.create_user(username, email, password)
-        admins, created = Group.objects.get_or_create(
-            name='Admins',
-            rules='*:*'
-        )
+        admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
 
