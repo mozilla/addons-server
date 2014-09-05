@@ -26,7 +26,6 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
-from addons.search import setup_mapping
 from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
@@ -2181,12 +2180,10 @@ class TestSearchSignals(amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()
-        setup_mapping()
         self.addCleanup(self.cleanup)
 
     def cleanup(self):
-        for index in settings.ES_INDEXES.values():
-            self.es.delete_index_if_exists(index)
+        self.empty_index('default')
 
     def test_no_addons(self):
         eq_(Addon.search().count(), 0)

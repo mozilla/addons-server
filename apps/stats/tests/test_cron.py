@@ -162,7 +162,7 @@ class TestIndexLatest(amo.tests.ESTestCase):
     def test_index_latest(self):
         latest = datetime.date.today() - datetime.timedelta(days=5)
         UpdateCount.index({'date': latest})
-        self.refresh('update_counts')
+        self.refresh('stats')
 
         start = latest.strftime('%Y-%m-%d')
         finish = datetime.date.today().strftime('%Y-%m-%d')

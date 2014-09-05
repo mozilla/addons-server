@@ -3,10 +3,7 @@ import logging
 from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
-from elasticutils import S as EU_S
-from elasticutils.contrib.django import get_es as eu_get_es
-from pyes import ES as pyes_ES
-from pyes import VERSION as PYES_VERSION
+from elasticsearch import Elasticsearch
 
 
 log = logging.getLogger('z.es')
@@ -18,60 +15,14 @@ DEFAULT_INDEXES = ['default']
 DEFAULT_DUMP_CURL = None
 
 
-# Pulled from elasticutils 0.5 so we can upgrade elasticutils to a newer
-# version which is based on pyelasticsearch and not break AMO.
-def get_es(hosts=None, default_indexes=None, timeout=None, dump_curl=None,
-           **settings):
-    """Create an ES object and return it.
-
-    :arg hosts: list of uris; ES hosts to connect to, defaults to
-        ``['localhost:9200']``
-    :arg default_indexes: list of strings; the default indexes to use,
-        defaults to 'default'
-    :arg timeout: int; the timeout in seconds, defaults to 5
-    :arg dump_curl: function or None; function that dumps curl output,
-        see docs, defaults to None
-    :arg settings: other settings to pass into `pyes.es.ES`
-
-    Examples:
-
-    >>> es = get_es()
-
-    >>> es = get_es(hosts=['localhost:9200'])
-
-    >>> es = get_es(timeout=30)  # good for indexing
-
-    >>> es = get_es(default_indexes=['sumo_prod_20120627']
-
-    >>> class CurlDumper(object):
-    ...     def write(self, text):
-    ...         print text
-    ...
-    >>> es = get_es(dump_curl=CurlDumper())
-
-    """
+def get_es(hosts=None, timeout=None, **settings):
+    """Create an ES object and return it."""
     # Cheap way of de-None-ifying things
     hosts = hosts or getattr(dj_settings, 'ES_HOSTS', DEFAULT_HOSTS)
-    default_indexes = default_indexes or [dj_settings.ES_INDEXES['default']]
     timeout = (timeout if timeout is not None else
                getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT))
-    dump_curl = dump_curl or getattr(dj_settings, 'DEFAULT_DUMP_CURL', False)
 
-    if not isinstance(default_indexes, list):
-        default_indexes = [default_indexes]
-
-    es = pyes_ES(hosts, default_indexes=default_indexes, timeout=timeout,
-                 dump_curl=dump_curl, **settings)
-
-    # pyes 0.15 does this lame thing where it ignores dump_curl in
-    # the ES constructor and always sets it to None. So what we do
-    # is set it manually after the ES has been created and
-    # defaults['dump_curl'] is truthy. This might not work for all
-    # values of dump_curl.
-    if PYES_VERSION[0:2] == (0, 15) and dump_curl is not None:
-        es.dump_curl = dump_curl
-
-    return es
+    return Elasticsearch(hosts, timeout=timeout, **settings)
 
 
 class ES(object):
@@ -112,6 +63,9 @@ class ES(object):
     def facet(self, **kw):
         return self._clone(next_step=('facet', kw.items()))
 
+    def source(self, *fields):
+        return self._clone(next_step=('source', fields))
+
     def extra(self, **kw):
         new = self._clone()
         actions = 'values values_dict order_by query filter facet'.split()
@@ -147,6 +101,7 @@ class ES(object):
         queries = []
         sort = []
         fields = ['id']
+        source = []
         facets = {}
         as_list = as_dict = False
         for action, value in self.steps:
@@ -169,35 +124,56 @@ class ES(object):
                 queries.extend(self._process_queries(value))
             elif action == 'filter':
                 filters.extend(self._process_filters(value))
+            elif action == 'source':
+                source.extend(value)
             elif action == 'facet':
                 facets.update(value)
             else:
                 raise NotImplementedError(action)
 
-        qs = {}
-        if len(filters) > 1:
-            qs['filter'] = {'and': filters}
-        elif filters:
-            qs['filter'] = filters[0]
-
         if len(queries) > 1:
-            qs['query'] = {'bool': {'must': queries}}
+            qs = {'bool': {'must': queries}}
         elif queries:
-            qs['query'] = queries[0]
+            qs = queries[0]
+        else:
+            qs = {"match_all": {}}
+
+        qs = {
+            "function_score": {
+                "query": qs,
+                "functions": [{"field_value_factor": {"field": "boost"}}]
+            }
+        }
+
+        if filters:
+            if len(filters) > 1:
+                filters = {"and": filters}
+            qs = {
+                "filtered": {
+                    "query": qs,
+                    "filter": filters
+                }
+            }
+
+        body = {"query": qs}
+        if sort:
+            body['sort'] = sort
+        if self.start:
+            body['from'] = self.start
+        if self.stop is not None:
+            body['size'] = self.stop - self.start
+        if facets:
+            body['facets'] = facets
 
         if fields:
-            qs['fields'] = fields
-        if facets:
-            qs['facets'] = facets
-        if sort:
-            qs['sort'] = sort
-        if self.start:
-            qs['from'] = self.start
-        if self.stop is not None:
-            qs['size'] = self.stop - self.start
+            body['fields'] = fields
+        # As per version 1.0, ES has deprecated loading fields not stored from
+        # '_source', plus non leaf fields are not allowed in fields.
+        if source:
+            body['_source'] = source
 
         self.fields, self.as_list, self.as_dict = fields, as_list, as_dict
-        return qs
+        return body
 
     def _split(self, string):
         if '__' in string:
@@ -261,7 +237,11 @@ class ES(object):
         es = get_es()
         try:
             with statsd.timer('search.es.timer') as timer:
-                hits = es.search(qs, self.index, self.type._meta.db_table)
+                hits = es.search(
+                    body=qs,
+                    index=self.index,
+                    doc_type=self.type._meta.db_table
+                )
         except Exception:
             log.error(qs)
             raise
@@ -317,7 +297,12 @@ class DictSearchResults(SearchResults):
             # Elasticsearch >= 1.0 style.
             for h in hits:
                 hit = {}
-                for field, value in h['fields'].items():
+                fields = h['fields']
+                # If source is returned, it means that it has been asked, so
+                # take it.
+                if '_source' in h:
+                    fields.update(h['_source'])
+                for field, value in fields.items():
                     if type(value) != list:
                         value = [value]
                     hit[field] = value
@@ -353,43 +338,3 @@ class ObjectSearchResults(SearchResults):
     def __iter__(self):
         objs = dict((obj.id, obj) for obj in self.objects)
         return (objs[id] for id in self.ids if id in objs)
-
-
-class TempS(EU_S):
-    # Temporary class override to mimic ElasticUtils v0.5 behavior.
-    # TODO: Remove this when we've moved mkt to its own index.
-
-    def get_es(self, **kwargs):
-        """Returns the pyelasticsearch ElasticSearch object to use.
-
-        This uses the django get_es builder by default which takes
-        into account settings in ``settings.py``.
-
-        """
-        return super(TempS, self).get_es(default_builder=eu_get_es)
-
-    def _do_search(self):
-        """
-        Perform the search, then convert that raw format into a SearchResults
-        instance and return it.
-        """
-        if not self._results_cache:
-            hits = self.raw()
-            if self.as_list:
-                ResultClass = ListSearchResults
-            elif self.as_dict or self.type is None:
-                ResultClass = DictSearchResults
-            else:
-                ResultClass = ObjectSearchResults
-            self._results_cache = ResultClass(self.type, hits, self.fields)
-        return self._results_cache
-
-    def _build_query(self):
-        query = super(TempS, self)._build_query()
-        if 'fields' in query:
-            if 'id' not in query['fields']:
-                query['fields'].append('id')
-        else:
-            query['fields'] = ['id']
-
-        return query

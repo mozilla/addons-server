@@ -15,7 +15,7 @@ import constants.editors as rvw
 from access import acl
 from addons.models import Addon, Persona
 from amo.decorators import json_view, post_required
-from amo.search import TempS
+from amo.search import ES
 from amo.urlresolvers import reverse
 from amo.utils import days_ago, paginate
 from devhub.models import ActivityLog
@@ -199,7 +199,7 @@ def themes_search(request):
         flagged = search_form.cleaned_data['queue_type'] == 'flagged'
 
         # ES query on name.
-        themes = TempS(Addon).filter(type=amo.ADDON_PERSONA)
+        themes = Addon.search().filter(type=amo.ADDON_PERSONA)
         if rereview:
             themes = themes.filter(has_theme_rereview=True)
         else:

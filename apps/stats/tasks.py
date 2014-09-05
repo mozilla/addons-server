@@ -289,8 +289,8 @@ def index_update_counts(ids, **kw):
             key = '%s-%s' % (update.addon_id, update.date)
             data = search.extract_update_count(update)
             for index in indices:
-                UpdateCount.index(data, bulk=True, id=key, index=index)
-        es.flush_bulk(forced=True)
+                UpdateCount.index(data, refresh=False, id=key, index=index)
+        es.indices.refresh(index)
     except Exception, exc:
         index_update_counts.retry(args=[ids], exc=exc, **kw)
         raise
@@ -310,9 +310,9 @@ def index_download_counts(ids, **kw):
             key = '%s-%s' % (dl.addon_id, dl.date)
             data = search.extract_download_count(dl)
             for index in indices:
-                DownloadCount.index(data, bulk=True, id=key, index=index)
+                DownloadCount.index(data, refresh=False, id=key, index=index)
 
-        es.flush_bulk(forced=True)
+        es.indices.refresh(index)
     except Exception, exc:
         index_download_counts.retry(args=[ids], exc=exc)
         raise
@@ -339,8 +339,8 @@ def index_collection_counts(ids, **kw):
                 AddonCollectionCount.objects.filter(**filters),
                 CollectionStats.objects.filter(**filters))
             for index in indices:
-                CollectionCount.index(data, bulk=True, id=key, index=index)
-        es.flush_bulk(forced=True)
+                CollectionCount.index(data, refresh=False, id=key, index=index)
+        es.indices.refresh(index)
     except Exception, exc:
         index_collection_counts.retry(args=[ids], exc=exc)
         raise
@@ -362,8 +362,8 @@ def index_theme_user_counts(ids, **kw):
             key = '%s-%s' % (user_count.addon_id, user_count.date)
             data = search.extract_theme_user_count(user_count)
             for index in indices:
-                ThemeUserCount.index(data, bulk=True, id=key, index=index)
-            es.flush_bulk(forced=True)
+                ThemeUserCount.index(data, refresh=False, id=key, index=index)
+            es.indices.refresh(index)
     except Exception, exc:
         index_theme_user_counts.retry(args=[ids], exc=exc)
         raise
