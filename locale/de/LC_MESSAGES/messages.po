@@ -1943,11 +1943,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Bitte geben Sie <strong>alle folgenden Wörter</strong> ein, "
-"<strong>falls nötig, getrennt durch ein Leerzeichen</strong>. </p> <p> Wenn "
-"dies schwer zu lesen ist, können Sie es <a href=\"#\" "
-"id=\"recaptcha_different\">mit anderen Wörtern versuchen</a> oder <a href=\"#\" "
-"id=\"recaptcha_audio\">eine andere Art der Aufgabe ausprobieren</a>. </p>"
+"<p> Bitte geben Sie <strong>alle folgenden Wörter</strong> ein, <strong>falls nötig, getrennt durch ein Leerzeichen</strong>. </p> <p> Wenn dies schwer zu lesen ist, können Sie es <a href=\"#\" id="
+"\"recaptcha_different\">mit anderen Wörtern versuchen</a> oder <a href=\"#\" id=\"recaptcha_audio\">eine andere Art der Aufgabe ausprobieren</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3772,9 +3769,7 @@ msgstr "PayPal-ID konnte nicht geprüft werden."
 
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
-"Nicht unterstützter Dateityp, bitte laden Sie eine Archivdatei hoch "
-"{extensions}."
+msgstr "Nicht unterstützter Dateityp, bitte laden Sie eine Archivdatei hoch {extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
@@ -5581,8 +5576,8 @@ msgid ""
 "copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
 msgstr ""
 "Sobald Sie mit der Entwicklungsumgebung für Erweiterungen vertraut sind, ist es Zeit, mit Ihrem ersten Add-on anzufangen. Früher hieß das, einen Hügel im Schnee hochzuklettern, um eine passende "
-"Vorlage zum Kopieren in das Installationsmanifest Ihres Add-ons zu finden. Zum Glück gibt es in der Add-on-Entwicklerecke (das ist hier!) das Schneemobil der Erweiterungspakete: Den <a href=\"%(url)"
-"s\">Add-on-Packer</a>!"
+"Vorlage zum Kopieren in das Installationsmanifest Ihres Add-ons zu finden. Zum Glück gibt es in der Add-on-Entwicklerecke (das ist hier!) das Schneemobil der Erweiterungspakete: Den <a href="
+"\"%(url)s\">Add-on-Packer</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
@@ -8044,10 +8039,7 @@ msgstr "Wenn Ihr Add-on Daten vom Rechner eines Benutzers überträgt, ist eine 
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
-"Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, der nicht zu "
-"bekannten Bibliotheken gehört, laden Sie seinen Quelltext zur Überprüfung "
-"hoch."
+msgstr "Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, der nicht zu bekannten Bibliotheken gehört, laden Sie seinen Quelltext zur Überprüfung hoch."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
@@ -8477,9 +8469,7 @@ msgstr "Quelltext"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
-"Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, stellen Sie "
-"den Quelltext hier für die Überprüfer zur Verfügung."
+msgstr "Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, stellen Sie den Quelltext hier für die Überprüfer zur Verfügung."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"
@@ -10705,10 +10695,10 @@ msgid ""
 "beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Um die Kompatibilität mit der neuesten Mozilla-Software sicherzustellen, ist es wichtig, die Updates herunterzuladen, wenn sie zur Verfügung stehen und sie mit Ihrem Add-on zu testen, um "
-"sicherzustellen, dass es immer noch wie erwartet funktioniert. Am besten befolgen Sie die Schritte in der Anleitung <a href=\"%(ext_url)s\">Entwickeln einer Erweiterung</a> zum <a href=\"%(test_url)"
-"s\">Testen Ihres Add-ons</a>. In vielen Fällen kann die neueste Version der Mozilla-Software eine Beta-Version sein. Da diese Versionen teilweise Änderungen an der Architektur beinhalten, die sich "
-"auf die Funktionalität Ihres Add-ons auswirken könnten, ist es wichtig, aktiv in den Beta-Prozess eingebunden zu sein, um sicherzustellen, dass es bei der endgültigen Veröffentlichung der Mozilla-"
-"Software keine negativen Auswirkungen für die Benutzer Ihres Add-ons gibt."
+"sicherzustellen, dass es immer noch wie erwartet funktioniert. Am besten befolgen Sie die Schritte in der Anleitung <a href=\"%(ext_url)s\">Entwickeln einer Erweiterung</a> zum <a href="
+"\"%(test_url)s\">Testen Ihres Add-ons</a>. In vielen Fällen kann die neueste Version der Mozilla-Software eine Beta-Version sein. Da diese Versionen teilweise Änderungen an der Architektur "
+"beinhalten, die sich auf die Funktionalität Ihres Add-ons auswirken könnten, ist es wichtig, aktiv in den Beta-Prozess eingebunden zu sein, um sicherzustellen, dass es bei der endgültigen "
+"Veröffentlichung der Mozilla-Software keine negativen Auswirkungen für die Benutzer Ihres Add-ons gibt."
 
 #: apps/pages/templates/pages/dev_faq.html:208
 msgid "What is leak testing?"

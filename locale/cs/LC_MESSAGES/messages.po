@@ -1958,10 +1958,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>Vložte prosím <strong>všechna slova</strong> níže a <strong>oddělte je "
-"mezerami</strong>, pokud je to nutné.</p><p>Pokud se nedají přečíst, můžete "
-"<a href=\"#\" id=\"recaptcha_different\">zkusit jiná slova</a> nebo <a href=\"#\" "
-"id=\"recaptcha_audio\">jiný typ ověření</a>.</p>"
+"<p>Vložte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné.</p><p>Pokud se nedají přečíst, můžete <a href=\"#\" id=\"recaptcha_different\">zkusit "
+"jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>.</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -3790,9 +3788,7 @@ msgstr "Nelze zkontrolovat PayPal id."
 
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
-"Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro "
-"{extensions}."
+msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro {extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
@@ -7986,9 +7982,7 @@ msgstr "Pokud váš doplněk přenáší jakákoliv data z počítače uživatel
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
-"Pokud váš doplněk obsahuje binární či obfuskovaný kód a nejedná se o známou "
-"knihovnu, nahrajte pro kontrolu jeho zdrojový kód."
+msgstr "Pokud váš doplněk obsahuje binární či obfuskovaný kód a nejedná se o známou knihovnu, nahrajte pro kontrolu jeho zdrojový kód."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
@@ -8415,9 +8409,7 @@ msgstr "Zdrojový kód"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
-"Pokud váš doplněk obsahuje binární či obfuskovaný kód, zpřístupněte zdrojový "
-"kód pro kontrolu redaktorům."
+msgstr "Pokud váš doplněk obsahuje binární či obfuskovaný kód, zpřístupněte zdrojový kód pro kontrolu redaktorům."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"

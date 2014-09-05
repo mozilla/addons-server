@@ -7593,8 +7593,8 @@ msgid ""
 "Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., Photoshop). To get started <a href=\"%(tutorial_url)s\">read more about how to create a "
 "theme</a>."
 msgstr ""
-"¡Desde luego que sí! Lo único que necesitas hacer es crear dos archivos de gráficos con tu programa favorito de edición de gráficos (por ejemplo, Photoshop). Para comenzar, <a href=\"%(tutorial_url)"
-"s\">infórmate sobre cómo crear un tema</a>."
+"¡Desde luego que sí! Lo único que necesitas hacer es crear dos archivos de gráficos con tu programa favorito de edición de gráficos (por ejemplo, Photoshop). Para comenzar, <a href="
+"\"%(tutorial_url)s\">infórmate sobre cómo crear un tema</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:186
 msgid ""

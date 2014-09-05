@@ -1903,9 +1903,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，"
-"您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" "
-"id=\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
+"<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" id="
+"\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87

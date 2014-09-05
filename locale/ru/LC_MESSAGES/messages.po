@@ -5599,9 +5599,9 @@ msgid ""
 "Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
 "#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
 msgstr ""
-"Если вы предпочитаете сразу нырнуть в работу, для этого имеется несколько других учебников в нашем <a href=\"%(base_docs)show-to/getting-started\">разделе Начало работы</a> в <a href=\"%(base_docs)"
-"show-to\">Библиотеке инструкций</a>, которые позволят прыгнуть прямо в код. И если у вас есть некоторое свободное время, вы можете предпочесть просмотреть видео, где пошагово изучаются основы "
-"расширений:  <a href=\"http://design-challenge.mozilla.com/resources/#extension_bootcamp\">Extension Bootcamp: С нуля до Hello World! за 45 минут</a>."
+"Если вы предпочитаете сразу нырнуть в работу, для этого имеется несколько других учебников в нашем <a href=\"%(base_docs)show-to/getting-started\">разделе Начало работы</a> в <a href="
+"\"%(base_docs)show-to\">Библиотеке инструкций</a>, которые позволят прыгнуть прямо в код. И если у вас есть некоторое свободное время, вы можете предпочесть просмотреть видео, где пошагово "
+"изучаются основы расширений:  <a href=\"http://design-challenge.mozilla.com/resources/#extension_bootcamp\">Extension Bootcamp: С нуля до Hello World! за 45 минут</a>."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:47
 msgid "Build your add-on"

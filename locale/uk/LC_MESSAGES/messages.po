@@ -18,8 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1409660492.0\n"
 
@@ -92,9 +91,7 @@ msgstr[2] "У вас на {0} міток більше допустимого."
 
 #: apps/addons/forms.py:104
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
-"Довжина всіх міток не повинна перевищувати %s символів після того, як "
-"вилучено заборонені символи."
+msgstr "Довжина всіх міток не повинна перевищувати %s символів після того, як вилучено заборонені символи."
 
 #: apps/addons/forms.py:108
 msgid "All tags must be at least {0} character."
@@ -121,9 +118,7 @@ msgstr "Категорія Різне не може бути об'єднана �
 
 #: apps/addons/forms.py:358
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
-"Перед зміною вашої типової локалі, ви повинні мати ім'я, коротку інформацію "
-"і опис на цій локалі. Вам не вистачає %s."
+msgstr "Перед зміною вашої типової локалі, ви повинні мати ім'я, коротку інформацію і опис на цій локалі. Вам не вистачає %s."
 
 #: apps/addons/forms.py:471 apps/addons/forms.py:560
 msgid "A license must be selected."
@@ -158,8 +153,7 @@ msgstr "Користувачі можуть зробити внесок, біл�
 
 #: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
-msgstr ""
-"Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище)"
+msgstr "Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище)"
 
 #: apps/addons/models.py:1893
 msgid "Listed"
@@ -229,15 +223,11 @@ msgstr "Переглянути ліцензійну угоду кінцевог�
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
-"Цей додаток не був перевірений Mozilla. <a href=\"%(url)s\">Дізнатись "
-"більше</a>"
+msgstr "Цей додаток не був перевірений Mozilla. <a href=\"%(url)s\">Дізнатись більше</a>"
 
 #: apps/addons/templates/addons/button.html:97 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
-"Цей додаток пройшов попередній розгляд Mozilla. <a href=\"%(url)s\">Дізнатись "
-"більше</a>"
+msgstr "Цей додаток пройшов попередній розгляд Mozilla. <a href=\"%(url)s\">Дізнатись більше</a>"
 
 #: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
 #: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -315,15 +305,11 @@ msgstr "Розробник цього додатку просить вас по�
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"Розробник цього додатку просить вас виявити свою підтримку, зробивши внесок "
-"на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "Розробник цього додатку просить вас виявити свою підтримку, зробивши внесок на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"Розробник цього додатку просить вас виявити свою підтримку, зробивши "
-"невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "Розробник цього додатку просить вас виявити свою підтримку, зробивши невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:25
 msgid "Contribute"
@@ -350,17 +336,11 @@ msgstr "Що це?"
 
 #: apps/addons/templates/addons/contribution.html:63
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
-"Розробник цього додатку бажає, щоб ви розглянули можливість зробити внесок "
-"на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>, якщо вам "
-"подобається його використовувати."
+msgstr "Розробник цього додатку бажає, щоб ви розглянули можливість зробити внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>, якщо вам подобається його використовувати."
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
-"Розробник цього додатку бажає, щоб ви розглянули можливість зробити "
-"невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>, "
-"якщо вам подобається його використовувати."
+msgstr "Розробник цього додатку бажає, щоб ви розглянули можливість зробити невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>, якщо вам подобається його використовувати."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -372,26 +352,20 @@ msgstr "Зробити внесок"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Допоможіть підтримати продовження розробки <strong>%(addon_name)s</strong>, "
-"зробивши невеликий внесок через <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Допоможіть підтримати продовження розробки <strong>%(addon_name)s</strong>, зробивши невеликий внесок через <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Щоб виявити свою підтримку <b>%(addon_name)s</b>, розробник просить вас "
-"зробити внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a> "
-"через <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Щоб виявити свою підтримку <b>%(addon_name)s</b>, розробник просить вас зробити внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a> через <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"Щоб виявити свою підтримку <b>%(addon_name)s</b>, розробник просить вас "
-"зробити невеликий внесок на користь <a href=\"%(charity_url)s\">%"
-"(charity_name)s</a> через <a href=\"%(paypal_url)s\">PayPal</a>."
+"Щоб виявити свою підтримку <b>%(addon_name)s</b>, розробник просить вас зробити невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a> через <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -532,9 +506,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"Канал розробки дає вам змогу випробувати експериментальну версію цього "
-"додатку перед його випуском для всіх. Після встановлення експериментальної "
-"версії ви будете надалі отримувати оновлення з цього каналу."
+"Канал розробки дає вам змогу випробувати експериментальну версію цього додатку перед його випуском для всіх. Після встановлення експериментальної версії ви будете надалі отримувати оновлення з "
+"цього каналу."
 
 #: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
@@ -545,11 +518,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Обережно:</strong> Експериментальні версії цього додатку не були "
-"розглянути Mozilla. Після встановлення експериментальної версії ви будете "
-"надалі отримувати експериментальні оновлення від цього розробника. Щоб "
-"припинити отримання експериментальних оновлень, перевстановіть типову версію "
-"за вищевказаним посиланням."
+"<strong>Обережно:</strong> Експериментальні версії цього додатку не були розглянути Mozilla. Після встановлення експериментальної версії ви будете надалі отримувати експериментальні оновлення від "
+"цього розробника. Щоб припинити отримання експериментальних оновлень, перевстановіть типову версію за вищевказаним посиланням."
 
 #: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
@@ -591,9 +561,7 @@ msgstr "Ліцензійна угода з кінцевим користувач
 
 #: apps/addons/templates/addons/eula.html:23 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
-"%(addon_name)s потребує, щоб перед встановленням ви погодились із наступними "
-"умовами ліцензійної угоди кінцевого користувача:"
+msgstr "%(addon_name)s потребує, щоб перед встановленням ви погодились із наступними умовами ліцензійної угоди кінцевого користувача:"
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
@@ -710,9 +678,7 @@ msgstr "Більше&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
-msgstr ""
-"<b>Попередження про швидкодію:</b> Встановлення цього додатку може "
-"сповільнити запуск Firefox на <b>%(amount)s%%</b>."
+msgstr "<b>Попередження про швидкодію:</b> Встановлення цього додатку може сповільнити запуск Firefox на <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
@@ -721,9 +687,7 @@ msgstr "Дізнатись більше&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23 apps/addons/templates/addons/impala/performance_note.html:22
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
-msgstr ""
-"Встановлення цього додатку може сповільнити запуск Firefox на <b>%(amount)s%"
-"%</b>."
+msgstr "Встановлення цього додатку може сповільнити запуск Firefox на <b>%(amount)s%%</b>."
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
@@ -819,9 +783,7 @@ msgstr "<b>{0}</b> користувачів"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
-"Щоб встановити цей додаток, а також тисячі інших, <b>встановіть Firefox</b>, "
-"безплатний та відкритий веб-браузер від Mozilla."
+msgstr "Щоб встановити цей додаток, а також тисячі інших, <b>встановіть Firefox</b>, безплатний та відкритий веб-браузер від Mozilla."
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
@@ -867,9 +829,7 @@ msgstr "Допоможіть випробувати нові версії Firefo
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
-"Цей додаток потребує %(app)s {new_version}. Зараз ви використовуєте %(app)s "
-"{old_version}."
+msgstr "Цей додаток потребує %(app)s {new_version}. Зараз ви використовуєте %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
@@ -916,9 +876,8 @@ msgstr "QR-код для додатку"
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
-"Хочете {0} на своєму мобільному Firefox? Зіскануйте цей QR-код, щоб "
-"встановити прямо у свій телефон. (Вам потрібна програма для зчитування "
-"QR-кодів. Знайдіть її у своєму магазині програм, якщо у вас її немає.)"
+"Хочете {0} на своєму мобільному Firefox? Зіскануйте цей QR-код, щоб встановити прямо у свій телефон. (Вам потрібна програма для зчитування QR-кодів. Знайдіть її у своєму магазині програм, якщо у "
+"вас її немає.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:330
@@ -930,10 +889,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"Якщо ви підозрюєте цей додаток у порушенні <a href=\"%(url)s\">нашої "
-"політики</a> або у проблемах безпеки чи приватності, скористайтеся формою "
-"внизу для опису вашої стурбованості. Будь ласка, не використовуйте дану "
-"форму для будь-яких інших цілей."
+"Якщо ви підозрюєте цей додаток у порушенні <a href=\"%(url)s\">нашої політики</a> або у проблемах безпеки чи приватності, скористайтеся формою внизу для опису вашої стурбованості. Будь ласка, не "
+"використовуйте дану форму для будь-яких інших цілей."
 
 #: apps/addons/templates/addons/report_abuse.html:23 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
@@ -981,9 +938,7 @@ msgstr "Будь ласка, не надсилайте повідомлення 
 
 #: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr ""
-"Для отримання інформації про те, як отримати допомогу для цього додатку, "
-"зверніться до <a href=\"%(support)s\">розділу підтримки</a>."
+msgstr "Для отримання інформації про те, як отримати допомогу для цього додатку, зверніться до <a href=\"%(support)s\">розділу підтримки</a>."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
@@ -1029,23 +984,15 @@ msgstr "Подобається цей додаток?"
 
 #: apps/addons/templates/addons/impala/contribution.html:43
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
-"<a href=\"%(meet_url)s\">Розробник цього додатку</a> просить вас підтримати "
-"його подальшу розробку, зробивши невеликий внесок."
+msgstr "<a href=\"%(meet_url)s\">Розробник цього додатку</a> просить вас підтримати його подальшу розробку, зробивши невеликий внесок."
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"<a href=\"%(meet_url)s\">Розробник цього додатку</a> просить вас виявити свою "
-"підтримку, зробивши внесок на користь <a href=\"%(charity_url)s\">%"
-"(charity_name)s</a>."
+msgstr "<a href=\"%(meet_url)s\">Розробник цього додатку</a> просить вас виявити свою підтримку, зробивши внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:53
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-"<a href=\"%(meet_url)s\">Розробник цього додатку</a> просить вас виявити свою "
-"підтримку, зробивши невеликий внесок на користь <a href=\"%(charity_url)s\">%"
-"(charity_name)s</a>."
+msgstr "<a href=\"%(meet_url)s\">Розробник цього додатку</a> просить вас виявити свою підтримку, зробивши невеликий внесок на користь <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
@@ -1165,16 +1112,12 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"Канал розробника дозволяє вам випробувати експериментальну нову версію цього "
-"додатку перед його виходом у загал. Після встановлення експериментальної "
-"версії ви надалі будете отримувати оновлення з цього каналу. Щоб припинити "
-"експериментальні оновлення, перевстановіть типову версію за посиланням вище."
+"Канал розробника дозволяє вам випробувати експериментальну нову версію цього додатку перед його виходом у загал. Після встановлення експериментальної версії ви надалі будете отримувати оновлення з "
+"цього каналу. Щоб припинити експериментальні оновлення, перевстановіть типову версію за посиланням вище."
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-"<strong>Обережно:</strong> Експериментальна версія цього додатку не була "
-"переглянута Mozilla."
+msgstr "<strong>Обережно:</strong> Експериментальна версія цього додатку не була переглянута Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1367,9 +1310,7 @@ msgstr "Ліцензійна угода"
 
 #: apps/addons/templates/addons/mobile/eula.html:5
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
-"%(name)s потребує, щоб перед встановленням ви погодились із наступною "
-"ліцензійною угодою кінцевого користувача:"
+msgstr "%(name)s потребує, щоб перед встановленням ви погодились із наступною ліцензійною угодою кінцевого користувача:"
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
@@ -1918,15 +1859,11 @@ msgstr "Не дозволено"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
-"<h1>Ой! Не дозволено.</h1> <p>Ви намагаєтесь зробити щось, на що не маєте "
-"дозволу.</p>"
+msgstr "<h1>Ой! Не дозволено.</h1> <p>Ви намагаєтесь зробити щось, на що не маєте дозволу.</p>"
 
 #: apps/amo/templates/amo/403.html:12
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
-"<p>Спробуйте повернутись на попередню сторінку, перезавантажити, а потім "
-"спробуйте ще раз.</p>"
+msgstr "<p>Спробуйте повернутись на попередню сторінку, перезавантажити, а потім спробуйте ще раз.</p>"
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -1980,9 +1917,7 @@ msgstr "Наступна"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
-"Результати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> із "
-"<strong>%(count)s</strong>"
+msgstr "Результати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> із <strong>%(count)s</strong>"
 
 #: apps/amo/templates/amo/read-only.html:3 apps/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
@@ -1990,16 +1925,11 @@ msgstr "Триває технічне обслуговування"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
-"Ця функція тимчасово відключена, поки ми проводимо технічне обслуговування "
-"сайту. Будь ласка, скористайтесь кнопкою \"Назад\" свого браузера і спробуйте "
-"знову трохи пізніше."
+msgstr "Ця функція тимчасово відключена, поки ми проводимо технічне обслуговування сайту. Будь ласка, скористайтесь кнопкою \"Назад\" свого браузера і спробуйте знову трохи пізніше."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
-"Деякі функції на цій сторінці тимчасово відключені, поки ми проводимо "
-"технічне обслуговування сайту. Будь ласка спробуйте знову трохи пізніше."
+msgstr "Деякі функції на цій сторінці тимчасово відключені, поки ми проводимо технічне обслуговування сайту. Будь ласка спробуйте знову трохи пізніше."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -2010,10 +1940,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Введіть будь ласка <strong>всі слова</strong> внизу, <strong>разом з "
-"пробілами</strong>. </p> <p> Якщо важко прочитати, ви можете <a href=\"#\" "
-"id=\"recaptcha_different\">спробувати інші слова</a> або <a href=\"#\" "
-"id=\"recaptcha_audio\">спробувати інший тип відображення</a> натомість. </p>"
+"<p> Введіть будь ласка <strong>всі слова</strong> внизу, <strong>разом з пробілами</strong>. </p> <p> Якщо важко прочитати, ви можете <a href=\"#\" id=\"recaptcha_different\">спробувати інші слова</"
+"a> або <a href=\"#\" id=\"recaptcha_audio\">спробувати інший тип відображення</a> натомість. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -2089,9 +2017,7 @@ msgstr[2] "Сторінка {n}"
 
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
-msgstr ""
-"Якщо ви зараз не отримаєте пропозицію встановити %(addon_name)s, будь ласка "
-"<a href=\"%(addon_xpi)s\">натисніть тут</a>."
+msgstr "Якщо ви зараз не отримаєте пропозицію встановити %(addon_name)s, будь ласка <a href=\"%(addon_xpi)s\">натисніть тут</a>."
 
 #: apps/amo/tests/test_messages.py:53 apps/amo/tests/test_messages.py:54 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
@@ -2137,15 +2063,11 @@ msgstr "Доступ не надано"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid "You have chosen to give access to %(consumer)s. They will be able to act on your behalf or retrieve information about you."
-msgstr ""
-"Ви вибрали надати доступ для %(consumer)s. Вони отримають змогу діяти від "
-"вашого імені або отримувати інформацію про вас."
+msgstr "Ви вибрали надати доступ для %(consumer)s. Вони отримають змогу діяти від вашого імені або отримувати інформацію про вас."
 
 #: apps/api/templates/piston/request_token_ready.html:32
 msgid "You have chosen to not give access to %(consumer)s. They will not be able to act on your behalf or retrieve information about you."
-msgstr ""
-"Ви вибрали не надавати доступ для %(consumer)s. Вони не зможуть діяти від "
-"вашого імені або отримувати інформацію про вас."
+msgstr "Ви вибрали не надавати доступ для %(consumer)s. Вони не зможуть діяти від вашого імені або отримувати інформацію про вас."
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
@@ -2325,9 +2247,7 @@ msgstr "Збірку створено!"
 
 #: apps/bandwagon/views.py:298
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
-"Ваша нова збірка показана внизу. Якщо бажаєте, ви можете <a href=\"%"
-"(url)s\">змінити додаткові налаштування</a>."
+msgstr "Ваша нова збірка показана внизу. Якщо бажаєте, ви можете <a href=\"%(url)s\">змінити додаткові налаштування</a>."
 
 #: apps/bandwagon/views.py:302
 msgid "Collection updated!"
@@ -2380,8 +2300,7 @@ msgstr "або <a id=\"collections-new-cancel\" href=\"#\">Скасувати</a
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
-"Щоб оцінити збірки, у вас повинен бути обліковий запис на сайті додатків."
+msgstr "Щоб оцінити збірки, у вас повинен бути обліковий запис на сайті додатків."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:179
 msgid "Create an Add-ons Account"
@@ -2655,10 +2574,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Ви можете додати декілька помічників до цієї збірки. Помічник може додавати "
-"і вилучати додатки з цієї збірки, але не може змінити її назву чи опис. Щоб "
-"додати помічника, введіть його адресу електронної пошти у полі внизу. "
-"Помічники повинні мати обліковий запис на сайті додатків Mozilla."
+"Ви можете додати декілька помічників до цієї збірки. Помічник може додавати і вилучати додатки з цієї збірки, але не може змінити її назву чи опис. Щоб додати помічника, введіть його адресу "
+"електронної пошти у полі внизу. Помічники повинні мати обліковий запис на сайті додатків Mozilla."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2690,9 +2607,7 @@ msgstr "Адмін Налаштування"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-"<b>Увага:</b> Змінивши власника цієї збірки, ви більше не зможете редагувати "
-"її. Ви зможете тільки додавати або вилучати додатки з неї."
+msgstr "<b>Увага:</b> Змінивши власника цієї збірки, ви більше не зможете редагувати її. Ви зможете тільки додавати або вилучати додатки з неї."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
@@ -2749,9 +2664,7 @@ msgstr "Створити збірку"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
-"Збірки дають змогу з легкістю слідкувати за улюбленими додатками та ділитись "
-"вашим ідеально пристосованим браузером з іншими."
+msgstr "Збірки дають змогу з легкістю слідкувати за улюбленими додатками та ділитись вашим ідеально пристосованим браузером з іншими."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:39
 msgid "Collection Icon"
@@ -2841,9 +2754,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr ""
-"Проблемний додаток чи плагін буде автоматично відключено і надалі не зможе "
-"використовуватись."
+msgstr "Проблемний додаток чи плагін буде автоматично відключено і надалі не зможе використовуватись."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
 msgid ""
@@ -2853,8 +2764,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
-"Заблоковано %(date)s. <a href=\"%(link)s\">Переглянути запит блокування</a>."
+msgstr "Заблоковано %(date)s. <a href=\"%(link)s\">Переглянути запит блокування</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
@@ -3019,9 +2929,7 @@ msgstr "Додаткові ресурси"
 #. {0} is an app name, like Firefox.
 #: apps/browse/templates/browse/search_tools.html:93
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
-"Дізнатись більше про <a "
-"href=\"http://support.mozilla.com/kb/Search+bar\">панель пошуку</a> в {0}"
+msgstr "Дізнатись більше про <a href=\"http://support.mozilla.com/kb/Search+bar\">панель пошуку</a> в {0}"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
@@ -3156,9 +3064,7 @@ msgstr "Хочете більше персоналізації?"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"Повні теми перетворюють вигляд вікна, панелі пошуку, кнопок, вкладок та меню "
-"вашого браузера. <a href=\"%(url)s\" class=\"more-info\">Почати перегляд</a>"
+msgstr "Повні теми перетворюють вигляд вікна, панелі пошуку, кнопок, вкладок та меню вашого браузера. <a href=\"%(url)s\" class=\"more-info\">Почати перегляд</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -5254,9 +5160,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:24 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
-"Будь ласка, використовуйте в своїй URL лише літери, цифри, підкреслювання і "
-"тире."
+msgstr "Будь ласка, використовуйте в своїй URL лише літери, цифри, підкреслювання і тире."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
@@ -5336,10 +5240,7 @@ msgstr "Крок 5. Виберіть ліцензію"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr ""
-"Ми вимагаємо для всіх додатків зазначати умови на яких ліцензовано їх "
-"початковий код. Будь ласка, виберіть ліцензію зі списку внизу або введіть "
-"свою."
+msgstr "Ми вимагаємо для всіх додатків зазначати умови на яких ліцензовано їх початковий код. Будь ласка, виберіть ліцензію зі списку внизу або введіть свою."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
@@ -5464,9 +5365,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:24
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr ""
-"Коли ви будете готові почати, будь ласка ознайомтесь і прийміть нашу "
-"<strong>Угоду Розробника</strong>:"
+msgstr "Коли ви будете готові почати, будь ласка ознайомтесь і прийміть нашу <strong>Угоду Розробника</strong>:"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:34
 msgid "Printable Version"
@@ -6623,10 +6522,8 @@ msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
-"Поки триває розгляд, додаток не з'явиться ніде в загальнодоступній галереї, "
-"але пряме посилання на сторінку додатку буде діяти. Це дозволить автору "
-"ділитися посиланням з друзями, запрошуючи їх спробувати його в роботі, "
-"навіть якщо він ще не затверджений."
+"Поки триває розгляд, додаток не з'явиться ніде в загальнодоступній галереї, але пряме посилання на сторінку додатку буде діяти. Це дозволить автору ділитися посиланням з друзями, запрошуючи їх "
+"спробувати його в роботі, навіть якщо він ще не затверджений."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
@@ -7589,15 +7486,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:208
 msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
-msgstr ""
-"<b>Важливо:</b> Будь ласка переконайтесь, що у вас є права на використання "
-"зображення у своїй темі!"
+msgstr "<b>Важливо:</b> Будь ласка переконайтесь, що у вас є права на використання зображення у своїй темі!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:216
 msgid "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size and JPG or PNG format!"
-msgstr ""
-"<b>Вивантажити зображення</b> &mdash; переконайтесь, що вони не перевищують "
-"об'єм 300 КБ та мають формат JPG або PNG!"
+msgstr "<b>Вивантажити зображення</b> &mdash; переконайтесь, що вони не перевищують об'єм 300 КБ та мають формат JPG або PNG!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
@@ -12497,9 +12390,7 @@ msgstr ""
 
 #: apps/users/views.py:337
 msgid "Please use the verified email for this account."
-msgstr ""
-"Будь ласка, використовуйте для цього облікового запису перевірену електронну "
-"пошту."
+msgstr "Будь ласка, використовуйте для цього облікового запису перевірену електронну пошту."
 
 #: apps/users/views.py:448
 msgid "Wrong email address or password!"
@@ -12507,20 +12398,15 @@ msgstr "Неправильна адреса електронної пошти ч
 
 #: apps/users/views.py:460
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr ""
-"Посилання для активації облікового запису відправлено на вашу адресу "
-"електронної пошти {0}. Ви повинні перейти за цим посиланням для можливості "
-"увійти."
+msgstr "Посилання для активації облікового запису відправлено на вашу адресу електронної пошти {0}. Ви повинні перейти за цим посиланням для можливості увійти."
 
 #: apps/users/views.py:465
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
-"Якщо ви не отримали повідомлення для підтвердження, переконайтесь чи ваш "
-"сервіс електронної пошти не позначив його, як \"спам\". При необхідності ви "
-"можете <a href=\"%s\">відправити повідомлення для підтвердження ще раз</a> на "
-"свою адресу ел. пошти, зазначену вгорі."
+"Якщо ви не отримали повідомлення для підтвердження, переконайтесь чи ваш сервіс електронної пошти не позначив його, як \"спам\". При необхідності ви можете <a href=\"%s\">відправити повідомлення "
+"для підтвердження ще раз</a> на свою адресу ел. пошти, зазначену вгорі."
 
 #: apps/users/views.py:470
 msgid "Activation Email Sent"

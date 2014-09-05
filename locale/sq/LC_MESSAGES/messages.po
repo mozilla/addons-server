@@ -2767,8 +2767,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Kur Mozilla vihet në dijeni rreth një shtese, shtojce, pse software-i nga palë të treta që prekin seriozisht sigurinë, qëndrueshmërinë, ose punimin e %(app)s, dhe që plotësojnë <a href=\"%(criteria)"
-"s\">disa kushte</a>, software-it mund t'i bllokohet përdorimi në masë. Për më tepër të dhëna, ju lutemi, lexoni <a href=\"%(support)s\">këtë artikull asistence</a>."
+"Kur Mozilla vihet në dijeni rreth një shtese, shtojce, pse software-i nga palë të treta që prekin seriozisht sigurinë, qëndrueshmërinë, ose punimin e %(app)s, dhe që plotësojnë <a href="
+"\"%(criteria)s\">disa kushte</a>, software-it mund t'i bllokohet përdorimi në masë. Për më tepër të dhëna, ju lutemi, lexoni <a href=\"%(support)s\">këtë artikull asistence</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -7576,8 +7576,8 @@ msgid ""
 "Yes. We are big fans of creativity, but want to ensure that the art displayed in the Themes gallery meets a basic set of guidelines. Please review the <a href=\"%(tos_url)s\">Terms of Service</a> "
 "for authoritative and complete language, but the following gives you an overview of the requirements:"
 msgstr ""
-"Po. Jemi dashamirës të mëdhenj të krijimtarisë, por duam të sigurohemi se arti që shfaqet te galeria e Temave, është në pajtim me një dorë udhëzimesh bazë.  Ju lutemi, shqyrtoni <a href=\"%(tos_url)"
-"s\">Kushtet e Shërbimit</a>, për shprehje të plotë dhe autoritative të gjithë kësaj, por, sa vijon, ju jep një përmbledhje të domosdoshmërive:"
+"Po. Jemi dashamirës të mëdhenj të krijimtarisë, por duam të sigurohemi se arti që shfaqet te galeria e Temave, është në pajtim me një dorë udhëzimesh bazë.  Ju lutemi, shqyrtoni <a href="
+"\"%(tos_url)s\">Kushtet e Shërbimit</a>, për shprehje të plotë dhe autoritative të gjithë kësaj, por, sa vijon, ju jep një përmbledhje të domosdoshmërive:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."

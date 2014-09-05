@@ -10979,8 +10979,8 @@ msgid ""
 "Firefox sends information about the add-ons you have installed to Mozilla once a day in order to update the information displayed to you in the Add-ons Manager, as explained in our <a href="
 "\"%(privacy_url)s\">Privacy Policy</a>. Add-ons that are often used together are determined from the aggregate data and displayed to you as personalized recommendations."
 msgstr ""
-"Firefox gửi thông tin về tiện ích mà bạn đã cài đặt tới Mozilla mỗi ngày một lần để cập nhật thông tin hiển thị tới bạn trong trình Quản lí Tiện ích, như đã giải thích trong <a href=\"%(privacy_url)"
-"s\">Chính sách Riêng tư</a> của chúng tôi. Các tiện ích thường được dùng với nhau được xác định từ dữ liệu tổng hợp và được hiển thị tới bạn dưới dạng khuyến nghị riêng cho cá nhân."
+"Firefox gửi thông tin về tiện ích mà bạn đã cài đặt tới Mozilla mỗi ngày một lần để cập nhật thông tin hiển thị tới bạn trong trình Quản lí Tiện ích, như đã giải thích trong <a href="
+"\"%(privacy_url)s\">Chính sách Riêng tư</a> của chúng tôi. Các tiện ích thường được dùng với nhau được xác định từ dữ liệu tổng hợp và được hiển thị tới bạn dưới dạng khuyến nghị riêng cho cá nhân."
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"

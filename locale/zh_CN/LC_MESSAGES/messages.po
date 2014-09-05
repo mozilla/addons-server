@@ -1900,9 +1900,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔应使用空格分开</strong>。</p> <p> "
-"如果这很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">尝试下一组文字</a>或者<a href=\"#\" "
-"id=\"recaptcha_audio\">另一种验证方式</a>。</p>"
+"<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔应使用空格分开</strong>。</p> <p> 如果这很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">尝试下一组文字</a>或者<a href=\"#\" id="
+"\"recaptcha_audio\">另一种验证方式</a>。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -10800,9 +10799,7 @@ msgstr "<a href=\"%(browse_url)s\">完整主题</a></strong>更改 %(app_name)s 
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">主题</a></strong>是完整主题的简化版，它使用背景图片定制您的 %"
-"(app_name)s 工具栏。"
+msgstr "<strong><a href=\"%(browse_url)s\">主题</a></strong>是完整主题的简化版，它使用背景图片定制您的 %(app_name)s 工具栏。"
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."

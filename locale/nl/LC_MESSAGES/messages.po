@@ -841,9 +841,7 @@ msgstr "<strong>Waarschuwing:</strong> deze add-on is niet beoordeeld door Mozil
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr ""
-"<strong>Opmerking:</strong> deze add-on is niet compatibel met uw "
-"besturingssysteem."
+msgstr "<strong>Opmerking:</strong> deze add-on is niet compatibel met uw besturingssysteem."
 
 #: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
@@ -1941,10 +1939,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Voer <strong>alle onderstaande woorden in</strong>, <strong>indien nodig "
-"gescheiden door een spatie</strong>. </p> <p> Als dit moeilijk leesbaar is, "
-"kunt u <a href=\"#\" id=\"recaptcha_different\">andere woorden proberen</a> of "
-"<a href=\"#\" id=\"recaptcha_audio\">een ander soort captcha proberen</a>. </p>"
+"<p> Voer <strong>alle onderstaande woorden in</strong>, <strong>indien nodig gescheiden door een spatie</strong>. </p> <p> Als dit moeilijk leesbaar is, kunt u <a href=\"#\" id=\"recaptcha_different"
+"\">andere woorden proberen</a> of <a href=\"#\" id=\"recaptcha_audio\">een ander soort captcha proberen</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
@@ -8005,9 +8001,7 @@ msgstr "Als uw add-on gegevens vanaf de computer van de gebruiker verzendt, is e
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
-"Als uw add-on binaire of verborgen code buiten bekende bibliotheken bevat, "
-"upload dan de bronnen voor beoordeling."
+msgstr "Als uw add-on binaire of verborgen code buiten bekende bibliotheken bevat, upload dan de bronnen voor beoordeling."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
@@ -8435,9 +8429,7 @@ msgstr "Broncode"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
-"Als uw add-on binaire of verborgen code bevat, stel dan de bron hier "
-"beschikbaar aan beoordelaars."
+msgstr "Als uw add-on binaire of verborgen code bevat, stel dan de bron hier beschikbaar aan beoordelaars."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 msgid "Upload a new file"

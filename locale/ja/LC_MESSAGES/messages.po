@@ -1924,8 +1924,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</> か、"
-"代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。"
+"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える"
+"</> か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:55
 #: apps/browse/views.py:65 apps/browse/views.py:232 apps/browse/views.py:289 apps/search/forms.py:87
