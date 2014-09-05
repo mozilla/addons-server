@@ -617,8 +617,8 @@ msgstr[1] "%(num)s সাপ্তাহিক ডাউনলোড"
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "%(num) জন ব্যবহারকারী"
-msgstr[1] "%(num) জন ব্যবহারকারী"
+msgstr[0] "%(num)s জন ব্যবহারকারী"
+msgstr[1] "%(num)s জন ব্যবহারকারী"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
@@ -809,7 +809,7 @@ msgstr "ফায়ারফক্সের নতুন সংস্করণ প
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "এই অ্যাড-অন %(app) এর {new_version} প্রয়োজন। আপনি বর্তমানে %(app) এর {old_version} ব্যবহার করছেন।"
+msgstr "এই অ্যাড-অন %(app)s এর {new_version} প্রয়োজন। আপনি বর্তমানে %(app)s এর {old_version} ব্যবহার করছেন।"
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
@@ -1649,7 +1649,7 @@ msgstr "{addon} এর {0} পর্যালোচনা মুছে ফেল
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
-msgstr "{version} এর জন্য অ্যাপ্লিকেশনের সর্বোচ্চ সংস্করণ হালনাগাদ করা হয়েছে।"
+msgstr ""
 
 #: apps/amo/log.py:352
 msgid "Application max version for {version} updated."
