@@ -34,7 +34,7 @@ class CurrentVersionTestCase(amo.tests.TestCase):
 
 
 class TestLastUpdated(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed', 'base/apps',
+    fixtures = ['base/addon_3615', 'addons/listed',
                 'addons/persona', 'base/seamonkey', 'base/thunderbird']
 
     def test_personas(self):

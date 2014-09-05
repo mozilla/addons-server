@@ -32,7 +32,7 @@ from amo.tests import (addon_factory, assert_no_validation_exceptions, formset,
                        initial)
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from devhub import tasks
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
@@ -246,8 +246,7 @@ class TestDashboard(HubTest):
 
 
 class TestUpdateCompatibility(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_4594_a9',
-                'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -301,11 +300,10 @@ class TestUpdateCompatibility(amo.tests.TestCase):
         assert doc('.item[data-addonid=3615] .tooltip.compat-error')
 
     def test_incompat_mobile(self):
-        app = Application.objects.get(id=amo.MOBILE.id)
         appver = AppVersion.objects.get(version='2.0')
-        appver.update(application=app)
+        appver.update(application=amo.MOBILE.id)
         av = ApplicationsVersions.objects.all()[0]
-        av.application = app
+        av.application = amo.MOBILE.id
         av.max = appver
         av.save()
         doc = pq(self.client.get(self.url).content)
@@ -313,7 +311,7 @@ class TestUpdateCompatibility(amo.tests.TestCase):
 
 
 class TestDevRequired(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -357,7 +355,7 @@ class TestDevRequired(amo.tests.TestCase):
 
 
 class TestVersionStats(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -380,7 +378,7 @@ class TestVersionStats(amo.tests.TestCase):
 
 
 class TestEditPayments(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = self.get_addon()
@@ -588,7 +586,7 @@ class TestEditPayments(amo.tests.TestCase):
 
 
 class TestDisablePayments(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -615,7 +613,7 @@ class TestDisablePayments(amo.tests.TestCase):
 
 
 class TestPaymentsProfile(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         raise SkipTest
@@ -806,7 +804,7 @@ class TestHome(amo.tests.TestCase):
 
 
 class TestActivityFeed(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615')
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super(TestActivityFeed, self).setUp()
@@ -863,7 +861,7 @@ class TestActivityFeed(amo.tests.TestCase):
 
 
 class TestProfileBase(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -1664,7 +1662,7 @@ class TestSubmitBump(TestSubmitBase):
 
 
 class TestSubmitSteps(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -1750,7 +1748,7 @@ class TestSubmitSteps(amo.tests.TestCase):
 
 
 class TestUpload(BaseUploadTest):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
         super(TestUpload, self).setUp()
@@ -1809,7 +1807,7 @@ class TestUpload(BaseUploadTest):
 
 
 class TestUploadDetail(BaseUploadTest):
-    fixtures = ['base/apps', 'base/appversion', 'base/users']
+    fixtures = ['base/appversion', 'base/users']
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
@@ -1935,7 +1933,7 @@ def assert_json_field(request, field, msg):
 
 
 class UploadTest(BaseUploadTest, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         super(UploadTest, self).setUp()
@@ -1947,7 +1945,7 @@ class UploadTest(BaseUploadTest, amo.tests.TestCase):
 
 
 class TestQueuePosition(UploadTest):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestQueuePosition, self).setUp()
@@ -1989,7 +1987,7 @@ class TestQueuePosition(UploadTest):
 
 
 class TestVersionAddFile(UploadTest):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestVersionAddFile, self).setUp()
@@ -2003,9 +2001,8 @@ class TestVersionAddFile(UploadTest):
         version_files.save()
 
     def make_mobile(self):
-        app = Application.objects.get(pk=amo.MOBILE.id)
         for a in self.version.apps.all():
-            a.application = app
+            a.application = amo.MOBILE.id
             a.save()
 
     def post(self, platform=amo.PLATFORM_MAC, source=None):
@@ -2251,7 +2248,7 @@ class TestVersionAddFile(UploadTest):
 
 
 class TestUploadErrors(UploadTest):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
     validator_success = json.dumps({
         "errors": 0,
         "success": True,
@@ -2394,7 +2391,7 @@ class TestAddVersion(AddVersionTest):
 
 
 class TestAddBetaVersion(AddVersionTest):
-    fixtures = ['base/apps', 'base/users', 'base/appversion', 'base/addon_3615']
+    fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
 
     def setUp(self):
         super(TestAddBetaVersion, self).setUp()
@@ -2512,7 +2509,7 @@ class UploadAddon(object):
 
 
 class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
         super(TestCreateAddon, self).setUp()
@@ -2573,7 +2570,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
 
 class TestDeleteAddon(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -2698,7 +2695,7 @@ class TestRequestReview(amo.tests.TestCase):
 
 
 class TestRedirects(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.base = reverse('devhub.index')
@@ -2755,7 +2752,7 @@ class TestDocs(amo.tests.TestCase):
 
 
 class TestRemoveLocale(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)

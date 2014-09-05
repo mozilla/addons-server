@@ -182,7 +182,7 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
 
 
 class BaseOAuth(TestCase):
-    fixtures = ['base/users', 'base/apps', 'base/appversion', 'base/licenses']
+    fixtures = ['base/users', 'base/appversion', 'base/licenses']
 
     def setUp(self):
         self.editor = UserProfile.objects.get(email='editor@mozilla.com')

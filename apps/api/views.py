@@ -353,8 +353,7 @@ class SearchView(APIView):
                 # This fails if the string is already UTF-8.
                 pass
 
-        query, qs_filters, params = extract_filters(query, filters['app'],
-                                                    opts)
+        query, qs_filters, params = extract_filters(query, opts)
 
         qs = Addon.search().query(or_=name_query(query))
         filters.update(qs_filters)

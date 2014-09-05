@@ -570,7 +570,7 @@ class TestBackup(ButtonTest):
 
 
 class TestViews(amo.tests.TestCase):
-    fixtures = ['addons/eula+contrib-addon', 'base/apps']
+    fixtures = ['addons/eula+contrib-addon']
 
     def test_eula_with_contrib_roadblock(self):
         url = reverse('addons.eula', args=[11730, 53612])

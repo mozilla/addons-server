@@ -27,7 +27,7 @@ from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
 
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from files.models import File, FileUpload
 from files.utils import parse_addon, VERSION_RE
 from translations.widgets import TranslationTextarea, TranslationTextInput
@@ -401,12 +401,6 @@ class VersionForm(WithSourceMixin, happyforms.ModelForm):
         fields = ('releasenotes', 'approvalnotes', 'source')
 
 
-class ApplicationChoiceField(forms.ModelChoiceField):
-
-    def label_from_instance(self, obj):
-        return obj.id
-
-
 class AppVersionChoiceField(forms.ModelChoiceField):
 
     def label_from_instance(self, obj):
@@ -414,8 +408,7 @@ class AppVersionChoiceField(forms.ModelChoiceField):
 
 
 class CompatForm(happyforms.ModelForm):
-    application = ApplicationChoiceField(Application.objects.all(),
-                                         widget=forms.HiddenInput)
+    application = forms.ChoiceField(amo.APPS_CHOICES, widget=forms.HiddenInput)
     min = AppVersionChoiceField(AppVersion.objects.none())
     max = AppVersionChoiceField(AppVersion.objects.none())
 
@@ -959,12 +952,12 @@ class CheckCompatibilityForm(happyforms.Form):
         w.attrs['data-url'] = reverse('devhub.compat_application_versions')
 
     def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application__id=app_id)
+        versions = AppVersion.objects.filter(application=app_id)
         return [(v.id, v.version) for v in versions]
 
     def clean_application(self):
         app_id = int(self.cleaned_data['application'])
-        app = Application.objects.get(pk=app_id)
+        app = amo.APPS_IDS.get(app_id)
         self.cleaned_data['application'] = app
         choices = self.version_choices_for_app_id(app_id)
         self.fields['app_version'].choices = choices

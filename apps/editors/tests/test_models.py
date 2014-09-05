@@ -12,7 +12,7 @@ from amo.tests import addon_factory
 from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import File
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from editors.models import (EditorSubscription, RereviewQueueTheme,
                             ReviewerScore, send_notifications,
                             ViewFastTrackQueue, ViewFullReviewQueue,
@@ -28,10 +28,8 @@ def create_addon_file(name, version_str, addon_status, file_status,
         file_kw = {}
     if version_kw is None:
         version_kw = {}
-    app, created_ = Application.objects.get_or_create(id=application.id,
-                                                      guid=application.guid)
-    app_vr, created_ = AppVersion.objects.get_or_create(application=app,
-                                                        version='1.0')
+    app_vr, created_ = AppVersion.objects.get_or_create(
+        application=application.id, version='1.0')
     try:
         ad = Addon.objects.get(name__localized_string=name)
     except Addon.DoesNotExist:
@@ -43,7 +41,7 @@ def create_addon_file(name, version_str, addon_status, file_status,
     if not created_:
         vr.update(**version_kw)
     va, created_ = ApplicationsVersions.objects.get_or_create(
-        version=vr, application=app, min=app_vr, max=app_vr)
+        version=vr, application=application.id, min=app_vr, max=app_vr)
     file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
                                 platform=platform.id, status=file_status,
                                 **file_kw)

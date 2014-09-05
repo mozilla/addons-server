@@ -38,7 +38,7 @@ def get_section_url(addon, section, edit=False):
 
 @override_settings(MEDIA_ROOT=None)  # Make it overridable.
 class TestEdit(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+    fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
 
     def setUp(self):
@@ -303,7 +303,7 @@ class TestEditBasic(TestEdit):
         c = CollectionAddon.objects.create(addon_id=addon_id,
             collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c.collection,
-                                          application_id=amo.FIREFOX.id)
+                                          application=amo.FIREFOX.id)
 
     def test_edit_categories_add_creatured(self):
         raise SkipTest()
@@ -1212,7 +1212,7 @@ class TestEditTechnical(TestEdit):
 
 
 class TestAdmin(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def login_admin(self):
         assert self.client.login(username='admin@mozilla.com',

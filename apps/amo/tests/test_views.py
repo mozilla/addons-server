@@ -61,8 +61,7 @@ class Test404(amo.tests.TestCase):
 
 
 class TestCommon(amo.tests.TestCase):
-    fixtures = ('base/users', 'base/global-stats', 'base/configs',
-                'base/addon_3615')
+    fixtures = ('base/users', 'base/global-stats', 'base/addon_3615')
 
     def setUp(self):
         self.url = reverse('home')

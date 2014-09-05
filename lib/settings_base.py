@@ -1066,7 +1066,7 @@ CUSTOM_DUMPS = {
             'current_version.apps.all.0',
             'addonuser_set.all.0',
         ],
-        'order': ('applications.application', 'translations.translation',
+        'order': ('translations.translation',
                   'files.platform', 'addons.addon',
                   'versions.license', 'versions.version', 'files.file'),
         'excludes': {

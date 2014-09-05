@@ -1133,10 +1133,7 @@ class TestProfileView(UserViewBase):
 
 
 class TestProfileLinks(UserViewBase):
-    fixtures = ['base/apps',
-                'base/appversion',
-                'base/featured',
-                'users/test_backends']
+    fixtures = ['base/appversion', 'base/featured', 'users/test_backends']
 
     def test_edit_buttons(self):
         """Ensure admin/user edit buttons are shown."""
@@ -1190,7 +1187,7 @@ class TestProfileLinks(UserViewBase):
 
 
 class TestProfileSections(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
+    fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections',
                 'reviews/dev-reply']
 

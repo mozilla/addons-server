@@ -201,7 +201,7 @@ class TestFileHelper(amo.tests.TestCase):
 
 
 class TestSearchEngineHelper(amo.tests.TestCase):
-    fixtures = ['base/addon_4594_a9', 'base/apps']
+    fixtures = ['base/addon_4594_a9']
 
     def setUp(self):
         self.left = File.objects.get(pk=25753)
