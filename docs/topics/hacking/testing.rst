@@ -18,6 +18,11 @@ thing you'll need to ensure is that the database credentials in your settings
 has full permissions to modify a database with ``test_`` prepended to it. By
 default the database name is ``olympia``, so the test database is
 ``test_olympia``.
+Optionally, in particular if the code you are working on is related to search,
+you'll want to run Elasticsearch tests. For this, you need to set the setting
+``RUN_ES_TESTS=True``. Obviously, you need Elasticsearch to be installed. See
+:ref:`elasticsearch` page for details.
+
 
 Running Tests
 -------------
