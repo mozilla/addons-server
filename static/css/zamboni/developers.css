@@ -868,7 +868,6 @@ pre.email_comment {
 #upload-file .submission-checklist a.review-process-overview {
     font-style: italic;
     display: block;
-    text-align: right;
     margin-top: 10px;
 }
 
