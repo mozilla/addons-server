@@ -111,7 +111,7 @@ def download_latest(request, addon, type='xpi', platform=None):
                                 version=addon._current_version_id)
     try:
         # If there's a file matching our platform, it'll float to the end.
-        file = sorted(files, key=lambda f: f.platform_id == platforms[-1])[-1]
+        file = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]
     except IndexError:
         raise http.Http404()
     args = [file.id, type] if type else [file.id]

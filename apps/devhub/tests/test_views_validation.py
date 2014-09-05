@@ -95,8 +95,7 @@ class TestUploadErrors(BaseUploadTest):
 
 
 class TestFileValidation(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms',
-                'devhub/addon-validation-1']
+    fixtures = ['base/apps', 'base/users', 'devhub/addon-validation-1']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -200,7 +199,7 @@ class TestValidateAddon(amo.tests.TestCase):
 
 class TestValidateFile(BaseUploadTest):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'devhub/addon-file-100456', 'base/platforms']
+                'devhub/addon-file-100456']
 
     def setUp(self):
         super(TestValidateFile, self).setUp()

@@ -695,7 +695,7 @@ def test_send_email_autoescape():
 
 
 class TestCompareLink(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/platforms']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)
@@ -711,7 +711,7 @@ class TestCompareLink(amo.tests.TestCase):
         file = File.objects.create(version=self.version,
                                    platform=self.current.platform)
         File.objects.create(version=self.version,
-                            platform_id=amo.PLATFORM_LINUX.id)
+                            platform=amo.PLATFORM_LINUX.id)
         eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
 
     def test_specific_platform(self):
@@ -719,14 +719,14 @@ class TestCompareLink(amo.tests.TestCase):
         self.current.save()
 
         linux = File.objects.create(version=self.version,
-                                    platform_id=amo.PLATFORM_LINUX.id)
+                                    platform=amo.PLATFORM_LINUX.id)
         eq_(linux.pk, helpers.file_compare(self.current, self.version).pk)
 
     def test_no_platform(self):
         self.current.platform_id = amo.PLATFORM_LINUX.id
         self.current.save()
         file = File.objects.create(version=self.version,
-                                   platform_id=amo.PLATFORM_WIN.id)
+                                   platform=amo.PLATFORM_WIN.id)
         eq_(file.pk, helpers.file_compare(self.current, self.version).pk)
 
 

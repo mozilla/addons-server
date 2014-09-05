@@ -16,7 +16,7 @@
 
 <h3>
   <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
-  {% if file.platform.id != amo.PLATFORM_ALL.id %}({{ file.platform }}){% endif %}
+  {% if file.platform != amo.PLATFORM_ALL.id %}({{ file.get_platform_display() }}){% endif %}
 </h3>
 <div id="breadcrumbs-wrapper">
   <form method="POST" id="diff-selector">

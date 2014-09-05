@@ -38,7 +38,7 @@ def get_section_url(addon, section, edit=False):
 
 @override_settings(MEDIA_ROOT=None)  # Make it overridable.
 class TestEdit(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms', 'base/addon_3615',
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
 
     def setUp(self):

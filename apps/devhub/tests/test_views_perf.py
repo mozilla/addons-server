@@ -7,12 +7,10 @@ from nose.tools import eq_
 from addons.models import Addon
 from amo.urlresolvers import reverse
 import amo.tests
-from files.models import Platform
 
 
 class TestPerfViews(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms',
-                'base/addon_3615']
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestPerfViews, self).setUp()
@@ -47,21 +45,18 @@ class TestPerfViews(amo.tests.TestCase):
         eq_(re.status_code, 200)
         return json.loads(re.content)
 
-    def set_platform(self, platform):
-        self.file.update(platform=Platform.objects.get(pk=platform.id))
-
     def test_start_linux(self):
-        self.set_platform(amo.PLATFORM_LINUX)
+        self.file.update(platform=amo.PLATFORM_LINUX.id)
         re = self.start()
         eq_(re, {'success': True})
         self.assert_call(((self.file, 'linux', 'firefox3.6'), {}))
         self.assert_call(((self.file, 'linux', 'firefox6.0'), {}))
 
     def test_start_all(self):
-        self.set_platform(amo.PLATFORM_ALL)
+        self.file.update(platform=amo.PLATFORM_ALL.id)
         self.start()
         self.assert_call(((self.file, 'linux', 'firefox6.0'), {}))
 
     def test_unsupported_plat(self):
-        self.set_platform(amo.PLATFORM_ANDROID)
+        self.file.update(platform=amo.PLATFORM_ANDROID.id)
         eq_(self.start(), {'success': False})

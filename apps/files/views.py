@@ -1,7 +1,4 @@
-from urlparse import urljoin
-
 from django import http, shortcuts
-from django.conf import settings
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt

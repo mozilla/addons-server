@@ -38,7 +38,7 @@
               {% for file in files %}
                 {% if not loop.first %}</tr><tr><td colspan="2">{% endif %}
                 <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
-                <td>{{ file.platform }}</td>
+                <td>{{ file.get_platform_display() }}</td>
                 <td>
                   {{ form_map[file.id].status }}
                   {% for hidden in form_map[file.id].hidden_fields() %}

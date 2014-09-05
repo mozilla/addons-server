@@ -24,7 +24,7 @@ from api.utils import addon_to_dict
 from api.views import addon_filter
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from files.models import File, Platform
+from files.models import File
 from files.tests.test_models import UploadTest
 from tags.models import AddonTag, Tag
 
@@ -732,9 +732,8 @@ class AddonFilterTest(TestCase):
         eq_(addons, [self.addon2])
 
     def test_platform_filter(self):
-        platform, _ = Platform.objects.get_or_create(pk=amo.PLATFORM_WIN.id)
         file = self.addon1.current_version.files.all()[0]
-        file.update(platform=platform)
+        file.update(platform=amo.PLATFORM_WIN.id)
         # Transformers don't know 'bout my files.
         self.addons[0] = Addon.objects.get(pk=self.addons[0].pk)
         addons = addon_filter(
@@ -927,7 +926,7 @@ class TestGuidSearch(TestCase):
 
 
 class SearchTest(ESTestCase):
-    fixtures = ('base/apps', 'base/platforms', 'base/appversion',
+    fixtures = ('base/apps', 'base/appversion',
                 'base/addon_6113', 'base/addon_40', 'base/addon_3615',
                 'base/addon_6704_grapple', 'base/addon_4664_twitterbar',
                 'base/addon_10423_youtubesearch', 'base/featured')
@@ -1120,13 +1119,13 @@ class SearchTest(ESTestCase):
         addon = Addon.objects.get(pk=3615)
 
         file1 = addon.current_version.files.all()[0]
-        file1.update(platform=Platform(id=amo.PLATFORM_LINUX.id))
+        file1.update(platform=amo.PLATFORM_LINUX.id)
 
         # Make a 2nd file just like the 1st, but with a different platform that
         # uses binary_components.
         file2 = file1
         file2.id = None
-        file2.platform = Platform(id=amo.PLATFORM_WIN.id)
+        file2.platform = amo.PLATFORM_WIN.id
         file2.binary_components = True
         file2.save()
 
@@ -1273,7 +1272,7 @@ class DRFSearchTest(DRFMixin, SearchTest):
 
 
 class LanguagePacks(UploadTest):
-    fixtures = ['addons/listed', 'base/apps', 'base/platforms']
+    fixtures = ['addons/listed', 'base/apps']
 
     def setUp(self):
         self.url = reverse('api.language', args=['1.5'])
@@ -1311,7 +1310,7 @@ class LanguagePacks(UploadTest):
     def setup_localepicker(self, platform):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
         version = self.addon.versions.all()[0]
-        File.objects.create(version=version, platform_id=platform,
+        File.objects.create(version=version, platform=platform,
                             status=amo.STATUS_PUBLIC)
 
     def test_search_wrong_platform(self):

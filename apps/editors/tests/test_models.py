@@ -11,7 +11,7 @@ import amo.tests
 from amo.tests import addon_factory
 from addons.models import Addon
 from versions.models import Version, version_uploaded, ApplicationsVersions
-from files.models import Platform, File
+from files.models import File
 from applications.models import Application, AppVersion
 from editors.models import (EditorSubscription, RereviewQueueTheme,
                             ReviewerScore, send_notifications,
@@ -32,7 +32,6 @@ def create_addon_file(name, version_str, addon_status, file_status,
                                                       guid=application.guid)
     app_vr, created_ = AppVersion.objects.get_or_create(application=app,
                                                         version='1.0')
-    pl, created_ = Platform.objects.get_or_create(id=platform.id)
     try:
         ad = Addon.objects.get(name__localized_string=name)
     except Addon.DoesNotExist:
@@ -46,7 +45,8 @@ def create_addon_file(name, version_str, addon_status, file_status,
     va, created_ = ApplicationsVersions.objects.get_or_create(
         version=vr, application=app, min=app_vr, max=app_vr)
     file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                                platform=pl, status=file_status, **file_kw)
+                                platform=platform.id, status=file_status,
+                                **file_kw)
     if created:
         vr.update(created=created)
         file_.update(created=created)
@@ -61,9 +61,8 @@ def create_search_ext(name, version_str, addon_status, file_status):
     except Addon.DoesNotExist:
         ad = Addon.objects.create(type=amo.ADDON_SEARCH, name=name)
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
-    pl, created = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
     File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                        platform=pl, status=file_status)
+                        platform=amo.PLATFORM_ALL.id, status=file_status)
     # Update status *after* there are files:
     Addon.objects.get(pk=ad.id).update(status=addon_status)
     return ad

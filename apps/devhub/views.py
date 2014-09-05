@@ -542,10 +542,10 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
         raise PermissionDenied
     file_ = get_object_or_404(File, pk=file_id)
 
-    plats = perf.PLATFORM_MAP.get(file_.platform.id, None)
+    plats = perf.PLATFORM_MAP.get(file_.platform, None)
     if plats is None:
         log.info('Unsupported performance platform %s for file %s'
-                 % (file_.platform.id, file_))
+                 % (file_.platform, file_))
         # TODO(Kumar) provide a message about this
         return {'success': False}
 

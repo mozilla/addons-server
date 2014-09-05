@@ -174,7 +174,7 @@ class InstallButton(object):
         return rv
 
     def file_details(self, file):
-        platform = file.platform_id
+        platform = file.platform
         if self.latest and (
             self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()

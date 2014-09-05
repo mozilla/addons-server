@@ -28,7 +28,7 @@ from amo.urlresolvers import reverse
 from amo.utils import raise_required, slugify
 
 from applications.models import Application, AppVersion
-from files.models import File, FileUpload, Platform
+from files.models import File, FileUpload
 from files.utils import parse_addon, VERSION_RE
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
@@ -500,21 +500,19 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
 
 
 class NewAddonForm(AddonUploadForm):
-    desktop_platforms = forms.ModelMultipleChoiceField(
-        queryset=Platform.objects,
+    desktop_platforms = forms.TypedMultipleChoiceField(
+        choices=amo.DESKTOP_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
         initial=[amo.PLATFORM_ALL.id],
-        required=False
+        required=False,
+        coerce=int
     )
-    desktop_platforms.choices = ((p.id, p.name)
-                                 for p in amo.DESKTOP_PLATFORMS.values())
-    mobile_platforms = forms.ModelMultipleChoiceField(
-        queryset=Platform.objects,
+    mobile_platforms = forms.TypedMultipleChoiceField(
+        choices=amo.MOBILE_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-        required=False
+        required=False,
+        coerce=int
     )
-    mobile_platforms.choices = ((p.id, p.name)
-                                for p in amo.MOBILE_PLATFORMS.values())
 
     def clean(self):
         if not self.errors:
@@ -560,10 +558,17 @@ class NewVersionForm(NewAddonForm):
 
 
 class NewFileForm(AddonUploadForm):
-    platform = File._meta.get_field('platform').formfield(empty_label=None,
-                    widget=forms.RadioSelect(attrs={'class': 'platform'}))
-    platform.choices = sorted((p.id, p.name)
-                              for p in amo.SUPPORTED_PLATFORMS.values())
+    platform = forms.TypedChoiceField(
+        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
+        widget=forms.RadioSelect(attrs={'class': 'platform'}),
+        coerce=int,
+        # We don't want the id value of the field to be output to the user
+        # when choice is invalid. Make a generic error message instead.
+        error_messages={
+            'invalid_choice': _lazy(u'Select a valid choice. That choice is '
+                                    u'not one of the available choices.')
+        }
+    )
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
@@ -571,8 +576,8 @@ class NewFileForm(AddonUploadForm):
         super(NewFileForm, self).__init__(*args, **kw)
         # Reset platform choices to just those compatible with target app.
         field = self.fields['platform']
-        field.choices = sorted((k, v.name) for k, v in
-                               self.version.compatible_platforms().items())
+        field.choices = sorted((p.id, p.name) for p in
+                               self.version.compatible_platforms().values())
         # Don't allow platforms we already have.
         to_exclude = set(File.objects.filter(version=self.version)
                                      .values_list('platform', flat=True))
@@ -587,7 +592,6 @@ class NewFileForm(AddonUploadForm):
         to_exclude.add(amo.PLATFORM_ALL_MOBILE.id)
 
         field.choices = [p for p in field.choices if p[0] not in to_exclude]
-        field.queryset = Platform.objects.filter(id__in=dict(field.choices))
 
     def clean(self):
         if not self.version.is_allowed_upload():
@@ -603,7 +607,7 @@ class NewFileForm(AddonUploadForm):
 
 
 class FileForm(happyforms.ModelForm):
-    platform = File._meta.get_field('platform').formfield(empty_label=None)
+    platform = File._meta.get_field('platform').formfield()
 
     class Meta:
         model = File
@@ -619,7 +623,7 @@ class FileForm(happyforms.ModelForm):
             # See bug 646268.
             if amo.PLATFORM_ALL_MOBILE.id in compat:
                 del compat[amo.PLATFORM_ALL_MOBILE.id]
-            pid = int(kw['instance'].platform_id)
+            pid = int(kw['instance'].platform)
             plats = [(p.id, p.name) for p in compat.values()]
             if pid not in compat:
                 plats.append([pid, amo.PLATFORMS[pid].name])
@@ -647,7 +651,7 @@ class BaseFileFormSet(BaseModelFormSet):
                  if not f.cleaned_data.get('DELETE', False)]
 
         if self.forms and 'platform' in self.forms[0].fields:
-            platforms = [f['platform'].id for f in files]
+            platforms = [f['platform'] for f in files]
 
             if amo.PLATFORM_ALL.id in platforms and len(files) > 1:
                 raise forms.ValidationError(

@@ -18,14 +18,13 @@ log = commonware.log.getLogger('z.files')
 class FileSelectWidget(widgets.Select):
     def render_options(self, choices, selected_choices):
         def option(files, label=None):
-            addon = files[0].version.addon
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
             files.sort(lambda a, b: ((a.status == amo.STATUS_DISABLED) -
                                      (b.status == amo.STATUS_DISABLED)))
 
             if label is None:
-                label = u', '.join(unicode(os.platform) for os in f)
+                label = u', '.join(f.get_platform_display() for f in files)
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
             if selected in files:

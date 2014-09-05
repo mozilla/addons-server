@@ -86,7 +86,7 @@ class FormsTest(amo.tests.TestCase):
 
 
 class TestTagsForm(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)

@@ -31,7 +31,7 @@ from applications.models import Application, AppVersion
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
-from files.models import File, Platform
+from files.models import File
 from files.tests.test_models import UploadTest
 from reviews.models import Review, ReviewFlag
 from translations.models import Translation, TranslationSequence
@@ -300,7 +300,6 @@ class TestAddonModels(amo.tests.TestCase):
                 'base/appversion',
                 'base/collections',
                 'base/featured',
-                'base/platforms',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
@@ -1504,7 +1503,6 @@ class TestAddonDelete(amo.tests.TestCase):
 
 
 class TestUpdateStatus(amo.tests.TestCase):
-    fixtures = ['base/platforms', ]
 
     def test_no_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -1624,8 +1622,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
 
 
 class TestBackupVersion(amo.tests.TestCase):
-    fixtures = ['addons/update', 'base/apps', 'base/appversion',
-                'base/platforms']
+    fixtures = ['addons/update', 'base/apps', 'base/appversion']
 
     def setUp(self):
         self.version_1_2_0 = 105387
@@ -1823,7 +1820,6 @@ class TestAddonRecommendations(amo.tests.TestCase):
 class TestAddonDependencies(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/appversion',
-                'base/platforms',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
@@ -1863,7 +1859,6 @@ class TestListedAddonTwoVersions(amo.tests.TestCase):
 class TestFlushURLs(amo.tests.TestCase):
     fixtures = ['base/apps',
                 'base/appversion',
-                'base/platforms',
                 'base/users',
                 'base/addon_5579',
                 'base/previews',
@@ -1915,7 +1910,7 @@ class TestAddonFromUpload(UploadTest):
         super(TestAddonFromUpload, self).setUp()
         u = UserProfile.objects.get(pk=999)
         set_user(u)
-        self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
         self.addCleanup(translation.deactivate)
@@ -1948,17 +1943,16 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform])
         v = addon.versions.get()
         eq_(v.version, '0.1')
-        eq_(v.files.get().platform_id, self.platform.id)
+        eq_(v.files.get().platform, self.platform)
         eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
 
     def test_xpi_for_multiple_platforms(self):
-        platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
-                     Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
+        platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   platforms)
         v = addon.versions.get()
-        eq_(sorted([f.platform.id for f in v.all_files]),
-            sorted([p.id for p in platforms]))
+        eq_(sorted([f.platform for f in v.all_files]),
+            sorted(platforms))
 
     def test_search_attributes(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
@@ -1977,7 +1971,7 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform])
         v = addon.versions.get()
         eq_(v.version, datetime.now().strftime('%Y%m%d'))
-        eq_(v.files.get().platform_id, amo.PLATFORM_ALL.id)
+        eq_(v.files.get().platform, amo.PLATFORM_ALL.id)
         eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
 
     def test_no_homepage(self):
@@ -2226,8 +2220,8 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
         super(TestLanguagePack, self).setUp()
         self.addon = amo.tests.addon_factory(type=amo.ADDON_LPAPP,
                                              status=amo.STATUS_PUBLIC)
-        self.platform_all = Platform.objects.get(id=amo.PLATFORM_ALL.id)
-        self.platform_mob = Platform.objects.create(id=amo.PLATFORM_ANDROID.id)
+        self.platform_all = amo.PLATFORM_ALL.id
+        self.platform_mob = amo.PLATFORM_ANDROID.id
         self.version = self.addon.current_version
 
     def test_extract(self):

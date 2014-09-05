@@ -20,7 +20,7 @@ from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, id_to_path
 from applications.models import Application, AppVersion
 from files import utils
-from files.models import File, Platform, cleanup_file
+from files.models import File, cleanup_file
 from tower import ugettext as _
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
@@ -129,7 +129,7 @@ class Version(amo.models.ModelBase):
                application_id=app.id).save()
         if addon.type == amo.ADDON_SEARCH:
             # Search extensions are always for all platforms.
-            platforms = [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+            platforms = [amo.PLATFORM_ALL.id]
         else:
             platforms = cls._make_safe_platform_files(platforms)
 
@@ -148,12 +148,14 @@ class Version(amo.models.ModelBase):
     def _make_safe_platform_files(cls, platforms):
         """Make file platform translations until all download pages
         support desktop ALL + mobile ALL. See bug 646268.
+
+        Returns platforms ids.
         """
-        pl_set = set([p.id for p in platforms])
+        pl_set = set(platforms)
 
         if pl_set == set([amo.PLATFORM_ALL_MOBILE.id, amo.PLATFORM_ALL.id]):
             # Make it really ALL:
-            return [Platform.objects.get(id=amo.PLATFORM_ALL.id)]
+            return [amo.PLATFORM_ALL.id]
 
         has_mobile = any(p in amo.MOBILE_PLATFORMS for p in pl_set)
         has_desktop = any(p in amo.DESKTOP_PLATFORMS for p in pl_set)
@@ -165,17 +167,17 @@ class Version(amo.models.ModelBase):
             # we have to split the files into exact platforms.
             # Additionally, it is not safe to use all-mobile.
             new_plats = []
-            for p in platforms:
-                if p.id == amo.PLATFORM_ALL_MOBILE.id:
-                    new_plats.extend(list(Platform.objects
-                                     .filter(id__in=amo.MOBILE_PLATFORMS)
-                                     .exclude(id=amo.PLATFORM_ALL_MOBILE.id)))
-                elif p.id == amo.PLATFORM_ALL.id:
-                    new_plats.extend(list(Platform.objects
-                                     .filter(id__in=amo.DESKTOP_PLATFORMS)
-                                     .exclude(id=amo.PLATFORM_ALL.id)))
+            for platform in platforms:
+                if platform == amo.PLATFORM_ALL_MOBILE.id:
+                    plats = amo.MOBILE_PLATFORMS.keys()
+                    plats.remove(amo.PLATFORM_ALL_MOBILE.id)
+                    new_plats.extend(plats)
+                elif platform == amo.PLATFORM_ALL.id:
+                    plats = amo.DESKTOP_PLATFORMS.keys()
+                    plats.remove(amo.PLATFORM_ALL.id)
+                    new_plats.extend(plats)
                 else:
-                    new_plats.append(p)
+                    new_plats.append(platform)
             return new_plats
 
         # Platforms are safe as is
@@ -317,7 +319,7 @@ class Version(amo.models.ModelBase):
     @amo.cached_property
     def supported_platforms(self):
         """Get a list of supported platform names."""
-        return list(set(amo.PLATFORMS[f.platform_id] for f in self.all_files))
+        return list(set(amo.PLATFORMS[f.platform] for f in self.all_files))
 
     @property
     def status(self):
