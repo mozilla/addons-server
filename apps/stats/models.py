@@ -110,12 +110,17 @@ class UpdateCountTmp(SearchMixin, models.Model):
 class ThemeUpdateCountManager(models.Manager):
 
     def get_last_x_days_avg(self, days):
-        """Return the average number of users (count) over the last x days."""
+        """Return a dict of the average number of users (count) over the last x
+        days per addon."""
         today = datetime.date.today()
-        return self.values(
-            'addon_id').filter(
-            date__gt=today - datetime.timedelta(days=days)).annotate(
-            models.Avg('count'))
+        averages = (self.values('addon_id')
+                        .filter(date__gt=today - datetime.timedelta(days=days))
+                        .annotate(avg=models.Avg('count')))
+        # Transform the queryset from a list of dicts
+        #   [{'addon_id': id1, 'count__avg': avg1], {'addon_id': id2, ...
+        # to a dict
+        #   {id1: avg1, id2: avg2, ...}
+        return dict((d['addon_id'], d['avg']) for d in averages)
 
 
 class ThemeUpdateCount(SearchMixin, models.Model):
@@ -128,6 +133,22 @@ class ThemeUpdateCount(SearchMixin, models.Model):
 
     class Meta:
         db_table = 'theme_update_counts'
+
+
+class ThemeUpdateCountBulk(models.Model):
+    """Used by the update_theme_popularity_movers command for perf reasons.
+
+    First bulk inserting all the averages over the last week and last three
+    weeks in this table allows us to bulk update (instead of running an update
+    per Persona).
+
+    """
+    persona_id = models.PositiveIntegerField()
+    popularity = models.PositiveIntegerField()
+    movers = models.FloatField()
+
+    class Meta:
+        db_table = 'theme_update_counts_bulk'
 
 
 class AddonShareCount(models.Model):
