@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-08-21 17:31+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2014-09-05 16:25+0000\n"
+"Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408642289.0\n"
+"X-POOTLE-MTIME: 1409934319.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3317,11 +3317,11 @@ msgstr "搜尋引擎"
 
 #: apps/constants/base.py:152
 msgid "Language Pack (Application)"
-msgstr "語言套件 (應用程式)"
+msgstr "語言套件（應用程式）"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "語言套件（附加元件）"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3340,11 +3340,11 @@ msgstr "字典"
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:165
 msgid "Language Packs (Application)"
-msgstr "語言套件 (應用程式)"
+msgstr "語言套件（應用程式）"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "語言套件（附加元件）"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
