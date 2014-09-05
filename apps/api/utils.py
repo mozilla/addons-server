@@ -105,7 +105,7 @@ def extract_from_query(term, filter, regexp, end_of_word_boundary=True):
     return (term, value)
 
 
-def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
+def extract_filters(term, opts=None):
     """
     Pulls all the filtering options out of the term and returns a cleaned term
     and a dictionary of filter names and filter values. Term filters override
@@ -138,15 +138,6 @@ def extract_filters(term, app_id=amo.FIREFOX.id, opts=None):
     # Version filters.
     term, version = extract_from_query(term, 'version', '[0-9.]+')
     params['version'] = version or opts.get('version')
-
-    # Category filters.
-    term, category = extract_from_query(term, 'category', '\w+')
-    if category and 'app' in opts:
-        category = (Category.objects.filter(slug__istartswith=category,
-                                            application=opts['app'])
-                    .values_list('id', flat=True))
-        if category:
-            filters['category'] = category[0]
 
     # Tag filters.
     term, tag = extract_from_query(term, 'tag', '\w+')

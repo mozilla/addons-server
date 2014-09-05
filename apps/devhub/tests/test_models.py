@@ -175,8 +175,7 @@ class TestActivityLog(amo.tests.TestCase):
 
 
 class TestVersion(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/thunderbird']
+    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)

@@ -13,7 +13,7 @@ from versions.models import License, Version
 
 
 class TestOwnership(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)

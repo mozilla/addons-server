@@ -348,8 +348,7 @@ class TestVotes(amo.tests.TestCase):
 
 class TestCRUD(amo.tests.TestCase):
     """Test the collection form."""
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
-                'base/collections')
+    fixtures = ('base/users', 'base/addon_3615', 'base/collections')
 
     def setUp(self):
         self.client = HappyUnicodeClient()
@@ -663,7 +662,7 @@ class TestCRUD(amo.tests.TestCase):
         url = reverse('collections.edit_contributors',
                       args=['admin', self.slug])
         r = self.client.post(url, {'contributor': 999,
-                                   'application_id': 1,
+                                   'application': 1,
                                    'type': 1},
                              follow=True)
         doc = pq(r.content)('.success')
@@ -764,7 +763,7 @@ class TestCRUD(amo.tests.TestCase):
         url = reverse('collections.edit_contributors',
                       args=['admin', self.slug])
         self.client.post(url,
-                         {'contributor': 999, 'application_id': 1, 'type': 1},
+                         {'contributor': 999, 'application': 1, 'type': 1},
                          follow=True)
         url = reverse('collections.edit', args=['admin', self.slug])
 
@@ -921,7 +920,7 @@ class TestChangeAddon(amo.tests.TestCase):
 
 
 class AjaxTest(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/users', 'base/addon_3615',
+    fixtures = ('base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections')
 
     def setUp(self):
@@ -1058,7 +1057,7 @@ class TestCollectionFeed(TestFeeds):
 
 
 class TestCollectionListing(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615', 'base/category',
+    fixtures = ['base/users', 'base/addon_3615', 'base/category',
                 'base/featured', 'addons/featured', 'addons/listed',
                 'base/collections', 'bandwagon/featured_collections']
 
@@ -1224,7 +1223,7 @@ class TestCollectionForm(amo.tests.TestCase):
                         instance=collection,
                         files={'icon': get_uploaded_file('transparent.png')},
                         initial={'author': collection.author,
-                                 'application_id': collection.application.pk})
+                                 'application': collection.application})
         assert form.is_valid()
         form.save()
         assert update_mock.called

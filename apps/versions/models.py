@@ -126,7 +126,7 @@ class Version(amo.models.ModelBase):
         AV = ApplicationsVersions
         for app in data.get('apps', []):
             AV(version=v, min=app.min, max=app.max,
-               application_id=app.id).save()
+               application=app.id).save()
         if addon.type == amo.ADDON_SEARCH:
             # Search extensions are always for all platforms.
             platforms = [amo.PLATFORM_ALL.id]
@@ -244,9 +244,9 @@ class Version(amo.models.ModelBase):
 
         The result is based on which app(s) the version targets.
         """
-        apps = set([a.application.id for a in self.apps.all()])
-        targets_mobile = amo.MOBILE.id in apps
-        targets_other = any((a != amo.MOBILE.id) for a in apps)
+        app_ids = [a.application for a in self.apps.all()]
+        targets_mobile = amo.MOBILE.id in app_ids
+        targets_other = any((id_ != amo.MOBILE.id) for id_ in app_ids)
         all_plats = {}
         if targets_other:
             all_plats.update(amo.DESKTOP_PLATFORMS)
@@ -388,7 +388,7 @@ class Version(amo.models.ModelBase):
     def _compat_map(cls, avs):
         apps = {}
         for av in avs:
-            app_id = av.application_id
+            app_id = av.application
             if app_id in amo.APP_IDS:
                 apps[amo.APP_IDS[app_id]] = av
         return apps
@@ -613,7 +613,7 @@ class VersionComment(amo.models.ModelBase):
 
 class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
-    application = models.ForeignKey(Application)
+    application = models.PositiveIntegerField(db_column='application_id')
     version = models.ForeignKey(Version, related_name='apps')
     min = models.ForeignKey(AppVersion, db_column='min',
         related_name='min_set')
@@ -626,9 +626,15 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         db_table = u'applications_versions'
         unique_together = (("application", "version"),)
 
+    def get_application_display(self):
+        return unicode(amo.APPS_ALL[self.application].pretty)
+
     def __unicode__(self):
         if (self.version.is_compatible[0] and
-            self.version.is_compatible_app(amo.APP_IDS[self.application.id])):
-            return _(u'{app} {min} and later').format(app=self.application,
-                                                      min=self.min)
-        return u'%s %s - %s' % (self.application, self.min, self.max)
+            self.version.is_compatible_app(amo.APP_IDS[self.application])):
+            return _(u'{app} {min} and later').format(
+                app=self.get_application_display(),
+                min=self.min
+            )
+        return u'%s %s - %s' % (self.get_application_display(),
+                                self.min, self.max)

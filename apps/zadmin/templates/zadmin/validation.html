@@ -60,7 +60,7 @@
       <td>{{ job.pk }}</td>
       <td>{{ job.created }}</td>
       <td class="tests-finished">{{ job.completed }}</td>
-      <td>{{ amo.APPS_ALL[job.application.id].pretty }}</td>
+      <td>{{ amo.APPS_ALL[job.application].pretty }}</td>
       <td>{{ job.curr_max_version.version }}</td>
       <td>{{ job.target_version.version }}</td>
       <td class="tested">{{ job.stats['total'] }}</td>

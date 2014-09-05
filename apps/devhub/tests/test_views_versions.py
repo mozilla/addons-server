@@ -12,7 +12,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import File
 from users.models import UserProfile
@@ -337,8 +337,7 @@ class TestVersion(amo.tests.TestCase):
 
 
 class TestVersionEdit(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/thunderbird']
+    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -347,9 +346,9 @@ class TestVersionEdit(amo.tests.TestCase):
         self.url = reverse('devhub.versions.edit',
                            args=['a3615', self.version.id])
         self.v1, _created = AppVersion.objects.get_or_create(
-            application_id=amo.FIREFOX.id, version='1.0')
+            application=amo.FIREFOX.id, version='1.0')
         self.v5, _created = AppVersion.objects.get_or_create(
-            application_id=amo.FIREFOX.id, version='5.0')
+            application=amo.FIREFOX.id, version='5.0')
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -368,10 +367,10 @@ class TestVersionEditMobile(TestVersionEdit):
     def setUp(self):
         super(TestVersionEditMobile, self).setUp()
         self.version.apps.all().delete()
-        mobile = Application.objects.get(id=amo.MOBILE.id)
-        app_vr = AppVersion.objects.create(application=mobile, version='1.0')
+        app_vr = AppVersion.objects.create(application=amo.MOBILE.id,
+                                           version='1.0')
         ApplicationsVersions.objects.create(version=self.version,
-                                            application=mobile,
+                                            application=amo.MOBILE.id,
                                             min=app_vr, max=app_vr)
         self.version.files.update(platform=amo.PLATFORM_ANDROID.id)
 
@@ -436,11 +435,10 @@ class TestVersionEditDetails(TestVersionEdit):
         assert doc('p.add-app')[0].attrib['class'] == 'add-app'
 
     def test_add_not(self):
-        Application(id=52).save()
         for id in [18, 52, 59, 60, 61]:
-            av = AppVersion(application_id=id, version='1')
+            av = AppVersion(application=id, version='1')
             av.save()
-            ApplicationsVersions(application_id=id, min=av, max=av,
+            ApplicationsVersions(application=id, min=av, max=av,
                                  version=self.version).save()
 
         res = self.client.get(self.url)
@@ -473,8 +471,7 @@ class TestVersionEditDetails(TestVersionEdit):
 
 class TestVersionEditSearchEngine(TestVersionEdit):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
-    fixtures = ['base/apps', 'base/users',
-                'base/thunderbird', 'base/addon_4594_a9.json']
+    fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -644,9 +641,8 @@ class TestVersionEditFiles(TestVersionEdit):
             set(['radio']))
 
     def test_mobile_addon_supports_only_mobile_platforms(self):
-        app = Application.objects.get(pk=amo.MOBILE.id)
         for a in self.version.apps.all():
-            a.application = app
+            a.application = amo.MOBILE.id
             a.save()
         self.version.files.all().update(platform=amo.PLATFORM_ALL_MOBILE.id)
         forms = self.client.get(self.url).context['file_form'].forms
@@ -656,8 +652,7 @@ class TestVersionEditFiles(TestVersionEdit):
 
 
 class TestPlatformSearch(TestVersionEdit):
-    fixtures = ['base/apps', 'base/users',
-                'base/thunderbird', 'base/addon_4594_a9.json']
+    fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',

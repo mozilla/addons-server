@@ -252,7 +252,7 @@ def update_incompatible_appversions(data, **kw):
 
         for app_range in app_ranges:
             IncompatibleVersions.objects.create(version=version,
-                                                app_id=app_range.app.id,
+                                                app=app_range.app.id,
                                                 min_app_version=app_range.min,
                                                 max_app_version=app_range.max)
             log.info('Added incompatible version for version ID [%d]: '

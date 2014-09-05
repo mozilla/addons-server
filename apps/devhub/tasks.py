@@ -22,7 +22,7 @@ from amo.decorators import write, set_modified_on
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from devhub import perf
 from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
@@ -60,8 +60,8 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
     log.info('COMPAT CHECK for upload %s / app %s version %s'
              % (upload_id, app_guid, appversion_str))
     upload = FileUpload.objects.get(pk=upload_id)
-    app = Application.objects.get(guid=app_guid)
-    appver = AppVersion.objects.get(application=app, version=appversion_str)
+    app = amo.APP_GUIDS.get(app_guid)
+    appver = AppVersion.objects.get(application=app.id, version=appversion_str)
     try:
         result = run_validator(upload.path,
                                for_appversions={app_guid: [appversion_str]},
@@ -74,7 +74,7 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
                                                 {app_guid: appversion_str}},
                                compat=True)
         upload.validation = result
-        upload.compat_with_app = app
+        upload.compat_with_app = app.id
         upload.compat_with_appver = appver
         upload.save()  # We want to hit the custom save().
     except:

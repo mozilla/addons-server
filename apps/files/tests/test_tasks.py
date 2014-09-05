@@ -207,9 +207,8 @@ class TestRepackageJetpack(amo.tests.TestCase):
 
     def test_supported_apps(self):
         # Create AppVersions to match what's in the xpi.
-        AppVersion.objects.create(application_id=amo.FIREFOX.id, version='3.6')
-        AppVersion.objects.create(
-            application_id=amo.FIREFOX.id, version='4.0b6')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='3.6')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='4.0b6')
 
         # Make sure the new appver matches the old appver.
         new = tasks.repackage_jetpack(self.builder_data()).version

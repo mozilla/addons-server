@@ -12,7 +12,7 @@ from amo.urlresolvers import reverse
 
 
 class TestSubmitPersona(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/user_999']
+    fixtures = ['base/user_999']
 
     def setUp(self):
         assert self.client.login(username='regular@mozilla.com',

@@ -7,7 +7,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from amo.helpers import url
-from applications.models import AppVersion, Application
+from applications.models import AppVersion
 from applications.management.commands import dump_apps
 
 
@@ -39,39 +39,14 @@ class TestAppVersion(amo.tests.TestCase):
 
     def test_unique_together_application_version(self):
         """Check that one can't add duplicate application-version pairs."""
-        app = Application.objects.create(guid='foobar')
-        AppVersion.objects.create(application=app, version='123')
+        AppVersion.objects.create(application=1, version='123')
 
         with self.assertRaises(IntegrityError):
-            AppVersion.objects.create(application=app, version='123')
-
-
-class TestApplication(amo.tests.TestCase):
-    fixtures = ['applications/all_apps.json']
-
-    def test_string_representation(self):
-        """
-        Check that the string representation of the app model instances
-        matches out constants
-        """
-        for static_app in amo.APP_USAGE:
-            model_app = Application.objects.get(id=static_app.id)
-            eq_(unicode(model_app), unicode(static_app.pretty))
-
-
-class TestApplicationManager(amo.tests.TestCase):
-    fixtures = ['applications/all_apps.json']
-
-    def test_default_manager(self):
-        eq_(Application.objects.count(), 6)
-
-    def test_supported(self):
-        Application.objects.latest('pk').update(supported=False)
-        eq_(Application.objects.supported().count(), 5)
+            AppVersion.objects.create(application=1, version='123')
 
 
 class TestViews(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion']
+    fixtures = ['base/appversion']
 
     def test_appversions(self):
         eq_(self.client.get(url('apps.appversions')).status_code, 200)
@@ -81,20 +56,17 @@ class TestViews(amo.tests.TestCase):
 
 
 class TestCommands(amo.tests.TestCase):
-    fixtures = ['applications/all_apps.json', 'base/apps', 'base/appversion']
+    fixtures = ['base/appversion']
 
     def test_dump_apps(self):
         call_command('dump_apps')
         with open(dump_apps.Command.JSON_PATH, 'r') as f:
             apps = json.load(f)
-        db_apps = Application.objects.all()
-        assert len(db_apps)
-        for app in db_apps:
+        for idx, app in amo.APP_IDS.iteritems():
             data = apps[str(app.id)]
             versions = sorted([a.version for a in
-                               AppVersion.objects.filter(application=app)])
-            r_app = amo.APPS_ALL[app.id]
-            eq_("%s: %r" % (r_app.short, sorted(data['versions'])),
-                "%s: %r" % (r_app.short, versions))
-            eq_(data['name'], r_app.short)
+                               AppVersion.objects.filter(application=app.id)])
+            eq_("%s: %r" % (app.short, sorted(data['versions'])),
+                "%s: %r" % (app.short, versions))
+            eq_(data['name'], app.short)
             eq_(data['guid'], app.guid)

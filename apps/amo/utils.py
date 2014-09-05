@@ -314,7 +314,7 @@ class JSONEncoder(json.DjangoJSONEncoder):
         if isinstance(obj, unicodable):
             return unicode(obj)
         if isinstance(obj, ApplicationsVersions):
-            return {unicode(obj.application): {'min': unicode(obj.min),
+            return {unicode(amo.APP_IDS[obj.application].pretty): {'min': unicode(obj.min),
                                                'max': unicode(obj.max)}}
 
         return super(JSONEncoder, self).default(obj)

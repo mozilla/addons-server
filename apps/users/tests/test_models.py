@@ -31,7 +31,7 @@ from users.utils import find_users
 
 class TestUserProfile(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
-                'users/test_backends', 'base/apps',)
+                'users/test_backends')
 
     def test_anonymize(self):
         u = UserProfile.objects.get(id='4043307')
