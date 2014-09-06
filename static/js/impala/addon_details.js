@@ -55,17 +55,17 @@ $(function () {
                      .eq(current).addClass('active');
             var $img = $("#preview"+current);
             if ($img.length) {
-                $oldimg.css("opacity", 0);
+                $oldimg.css({"opacity": "0", "z-index": "0"});
                 $img.css({
-                    "opacity": 1
+                    "opacity": "1", "z-index": "1"
                 });
             } else {
                 $img = $(lbImage([current, $a.attr("href")]));
                 $content.append($img);
                 $img.load(function(e) {
-                    $oldimg.css("opacity", 0);
+                    $oldimg.css({"opacity": "0", "z-index": "0"});
                     $img.css({
-                        "opacity": 1
+                        "opacity": "1", "z-index": "1"
                     });
                     for (var i=0; i<$strip.length; i++) {
                         if (i != current) {
