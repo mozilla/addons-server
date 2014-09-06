@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-08-31 17:10+0000\n"
+"PO-Revision-Date: 2014-09-06 11:14+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409505056.0\n"
+"X-POOTLE-MTIME: 1410002070.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3405,7 +3405,7 @@ msgstr "Jazykový balíček (aplikace)"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Jazykový balíček (doplněk)"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3428,7 +3428,7 @@ msgstr "Jazykové balíčky (aplikace)"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Jazykové balíčky (doplněk)"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
