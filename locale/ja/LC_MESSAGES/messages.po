@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-08-22 06:00-0400\n"
+"PO-Revision-Date: 2014-09-06 02:40-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3353,7 +3353,7 @@ msgstr "言語パック (アプリケーション)"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "言語パック (アドオン)"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3376,7 +3376,7 @@ msgstr "言語パック (アプリケーション)"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "言語パック (アドオン)"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
@@ -7357,7 +7357,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
 msgid "How to Create Your Own Background Theme"
-msgstr ""
+msgstr "独自背景テーマの作り方"
 
 #: apps/devhub/templates/devhub/docs/themes.html:4
 msgid "Getting Started | Themes"
@@ -11214,11 +11214,11 @@ msgstr "購入者と販売者は別の PayPal アカウントを持っている�
 #. L10n: {0} is the currency.
 #: apps/paypal/__init__.py:72
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "この販売者は %s での決済を受け付けていません。"
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
-msgstr ""
+msgstr "パフォーマンスの遅いアドオン"
 
 #: apps/perf/templates/perf/index.html:24
 msgid ""
