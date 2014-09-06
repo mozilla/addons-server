@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-08-18 01:31+0000\n"
+"PO-Revision-Date: 2014-09-06 04:34+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408325492.0\n"
+"X-POOTLE-MTIME: 1409978059.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3315,7 +3315,7 @@ msgstr "语言包（应用程序）"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "语言包（附加组件）"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3338,7 +3338,7 @@ msgstr "语言包（应用程序）"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "语言包（附加组件）"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
