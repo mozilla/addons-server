@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-08-14 08:11+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2014-09-06 06:45+0000\n"
+"Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408003906.0\n"
+"X-POOTLE-MTIME: 1409985933.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3382,7 +3382,7 @@ msgstr "Taalpakket (Toepassing)"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Taalpakket (add-on)"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3405,7 +3405,7 @@ msgstr "Taalpakketten (Toepassing)"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Taalpakketten (add-on)"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
