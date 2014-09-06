@@ -149,7 +149,7 @@ def _drop_collection_recs(**kw):
 
 
 @cronjobs.register
-def reindex_collections(index=None, aliased=True):
+def reindex_collections(index=None):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)
            .values_list('id', flat=True))

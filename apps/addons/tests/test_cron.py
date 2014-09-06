@@ -1,11 +1,8 @@
 import os
 import datetime
 
-from nose.exc import SkipTest
 from nose.tools import eq_
 import mock
-
-from django.conf import settings
 
 import amo
 import amo.tests

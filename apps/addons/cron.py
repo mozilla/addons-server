@@ -21,7 +21,6 @@ import waffle
 import amo
 from amo.decorators import write
 from amo.utils import chunked, walkfiles
-from addons import search
 from addons.models import Addon, AppSupport, FrozenAddon, Persona
 from files.models import File
 from lib.es.utils import raise_if_reindex_in_progress
@@ -474,10 +473,8 @@ def give_personas_versions():
 
 
 @cronjobs.register
-def reindex_addons(index=None, aliased=True, addon_type=None):
+def reindex_addons(index=None, addon_type=None):
     from . import tasks
-    # Make sure our mapping is up to date.
-    search.setup_mapping(index, aliased)
     ids = (Addon.objects.values_list('id', flat=True)
            .filter(_current_version__isnull=False,
                    status__in=amo.VALID_STATUSES,

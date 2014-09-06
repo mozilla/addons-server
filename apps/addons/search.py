@@ -4,14 +4,17 @@ from operator import attrgetter
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-import pyes.exceptions as pyes
-
 import amo
 import amo.search
+from amo.models import SearchMixin
+from addons.cron import reindex_addons
 from addons.models import Persona
-from amo.utils import create_es_index_if_missing
+from bandwagon.cron import reindex_collections
 from bandwagon.models import Collection
+from compat.cron import compatibility_report
 from compat.models import AppCompat
+from lib.es.utils import create_index
+from users.cron import reindex_users
 from users.models import UserProfile
 from versions.compare import version_int
 
@@ -64,7 +67,7 @@ def extract(addon):
             # This would otherwise get attached when by the transformer.
             d['weekly_downloads'] = addon.persona.popularity
             # Boost on popularity.
-            d['_boost'] = addon.persona.popularity ** .2
+            d['boost'] = addon.persona.popularity ** .2
             d['has_theme_rereview'] = (
                 addon.persona.rereviewqueuetheme_set.exists())
         except Persona.DoesNotExist:
@@ -73,10 +76,10 @@ def extract(addon):
     else:
         # Boost by the number of users on a logarithmic scale. The maximum
         # boost (11,000,000 users for adblock) is about 5x.
-        d['_boost'] = addon.average_daily_users ** .2
+        d['boost'] = addon.average_daily_users ** .2
     # Double the boost if the add-on is public.
     if addon.status == amo.STATUS_PUBLIC and 'boost' in d:
-        d['_boost'] = max(d['_boost'], 1) * 4
+        d['boost'] = max(d['boost'], 1) * 4
 
     # Indices for each language. languages is a list of locales we want to
     # index with analyzer if the string's locale matches.
@@ -98,28 +101,40 @@ def extract(addon):
     return d
 
 
-def setup_mapping(index=None, aliased=True):
-    """Set up the addons index mapping."""
+def get_alias():
+    return settings.ES_INDEXES.get(SearchMixin.ES_ALIAS_KEY)
+
+
+def create_new_index(index=None, config=None):
+    if config is None:
+        config = {}
+    if index is None:
+        index = get_alias()
+    config['settings'] = {'index': INDEX_SETTINGS}
+    config['mappings'] = get_mappings()
+    create_index(index, config)
+
+
+def get_mappings():
     # Mapping describes how elasticsearch handles a document during indexing.
     # Most fields are detected and mapped automatically.
-    appver = {'dynamic': False, 'properties': {'max': {'type': 'long'},
-                                               'min': {'type': 'long'}}}
-    mapping = {
-        # Optional boosting during indexing.
-        '_boost': {'name': '_boost', 'null_value': 1.0},
+    appver = {
+        'dynamic': False,
         'properties': {
+            'max': {'type': 'long'},
+            'min': {'type': 'long'}
+        }
+    }
+    mapping = {
+        'properties': {
+            'boost': {'type': 'float', 'null_value': 1.0},
             # Turn off analysis on name so we can sort by it.
             'name_sort': {'type': 'string', 'index': 'not_analyzed'},
             # Adding word-delimiter to split on camelcase and punctuation.
-            'name': {'type': 'string',
-                     'analyzer': 'standardPlusWordDelimiter'},
-            'summary': {'type': 'string',
-                        'analyzer': 'snowball'},
-            'description': {'type': 'string',
-                            'analyzer': 'snowball'},
-            'tags': {'type': 'string',
-                     'index': 'not_analyzed',
-                     'index_name': 'tag'},
+            'name': {'type': 'string', 'analyzer': 'standardPlusWordDelimiter'},
+            'summary': {'type': 'string', 'analyzer': 'snowball'},
+            'description': {'type': 'string', 'analyzer': 'snowball'},
+            'tags': {'type': 'string', 'index': 'not_analyzed', 'index_name': 'tag'},
             'platforms': {'type': 'integer', 'index_name': 'platform'},
             'appversion': {'properties': dict((app.id, appver)
                                               for app in amo.APP_USAGE)},
@@ -127,10 +142,9 @@ def setup_mapping(index=None, aliased=True):
     }
     # Add room for language-specific indexes.
     for analyzer in amo.SEARCH_ANALYZER_MAP:
-        if (not settings.ES_USE_PLUGINS and
-            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
-            log.info('While creating mapping, skipping the %s analyzer'
-                     % analyzer)
+        if (not settings.ES_USE_PLUGINS
+           and analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+            log.info('While creating mapping, skipping the %s analyzer' % analyzer)
             continue
 
         mapping['properties']['name_' + analyzer] = {
@@ -146,14 +160,55 @@ def setup_mapping(index=None, aliased=True):
             'analyzer': analyzer,
         }
 
-    es = amo.search.get_es()
-    # Adjust the mapping for all models at once because fields are shared
-    # across all doc types in an index. If we forget to adjust one of them
-    # we'll get burned later on.
-    for model in Addon, AppCompat, Collection, UserProfile:
-        index = index or model._get_index()
-        index = create_es_index_if_missing(index, aliased=aliased)
+    models = (Addon, AppCompat, Collection, UserProfile)
+    return dict((m._meta.db_table, mapping) for m in models)
+
+
+def reindex(index):
+    indexers = [
+        reindex_addons, reindex_collections, reindex_users, compatibility_report
+    ]
+    for indexer in indexers:
+        log.info('Indexing %r' % indexer.__name__)
         try:
-            es.put_mapping(model._meta.db_table, mapping, index)
-        except pyes.ElasticSearchException, e:
-            log.error(e)
+            indexer(index)
+        except Exception:
+            # We want to log this event but continue
+            log.error('Indexer %r failed' % indexer.__name__)
+
+
+INDEX_SETTINGS = {
+    "analysis": {
+        "analyzer": {
+            "standardPlusWordDelimiter": {
+                "tokenizer": "standard",
+                "filter": ["standard", "wordDelim", "lowercase", "stop", "dict"]
+            }
+        },
+        "filter": {
+            "wordDelim": {
+                "type": "word_delimiter",
+                "preserve_original": True
+            },
+            "dict": {
+                "type": "dictionary_decompounder",
+                "word_list": [
+                    "cool", "iris", "fire", "bug", "flag", "fox", "grease",
+                    "monkey", "flash", "block", "forecast", "screen", "grab",
+                    "cookie", "auto", "fill", "text", "all", "so", "think",
+                    "mega", "upload", "download", "video", "map", "spring",
+                    "fix", "input", "clip", "fly", "lang", "up", "down",
+                    "persona", "css", "html", "http", "ball", "firefox",
+                    "bookmark", "chat", "zilla", "edit", "menu", "menus",
+                    "status", "bar", "with", "easy", "sync", "search", "google",
+                    "time", "window", "js", "super", "scroll", "title", "close",
+                    "undo", "user", "inspect", "inspector", "browser",
+                    "context", "dictionary", "mail", "button", "url",
+                    "password", "secure", "image", "new", "tab", "delete",
+                    "click", "name", "smart", "down", "manager", "open",
+                    "query", "net", "link", "blog", "this", "color", "select",
+                    "key", "keys", "foxy", "translate", "word", ]
+            }
+        }
+    }
+}

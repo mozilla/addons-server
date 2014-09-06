@@ -35,10 +35,8 @@ from django.utils.functional import Promise
 from django.utils.http import urlquote
 
 import bleach
-import elasticutils.contrib.django as elasticutils
 import html5lib
 import jinja2
-import pyes.exceptions as pyes
 import pytz
 from babel import Locale
 from cef import log_cef as _log_cef
@@ -123,7 +121,7 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    p = (ESPaginator if isinstance(queryset, (amo.search.ES, elasticutils.S))
+    p = (ESPaginator if isinstance(queryset, amo.search.ES)
          else paginator.Paginator)(queryset, per_page)
 
     if count is not None:
@@ -917,59 +915,6 @@ def rm_local_tmp_file(path):
     path managed by the Django Storage API.
     """
     return os.unlink(path)
-
-
-def timestamp_index(index):
-    """Returns index-YYYYMMDDHHMMSS with the current time."""
-    return '%s-%s' % (index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
-
-
-def create_es_index_if_missing(index, config=None, aliased=False):
-    """Creates an index if it's not present.
-
-    Returns the index name. It may change if it was aliased.
-
-    Options:
-
-    - index: name of the index.
-    - config: if provided, used as the settings option for the
-      ES calls.
-    - aliased: If set to true, the index is suffixed with a timestamp
-      and an alias with the index name is created.
-    """
-    es = amo.search.get_es()
-
-    if aliased:
-        alias = index
-        try:
-            indices = es.get_alias(alias)
-            if len(indices) > 1:
-                raise ValueError("The %r alias should not point to "
-                                 "several indices" % index)
-            # we're good here - the alias and the index exist
-            return indices[0]
-        except pyes.IndexMissingException:
-            # no alias exists, so we want to
-            # create a fresh one and a fresh index
-            index = timestamp_index(index)
-
-    if settings.IN_TEST_SUITE:
-        if not config:
-            config = {}
-        # Be nice to ES running on ci.mozilla.org
-        config.update({'number_of_shards': 3,
-                       'number_of_replicas': 0})
-    try:
-        es.create_index_if_missing(index, settings=config)
-        if aliased:
-            try:
-                es.add_alias(alias, [index])
-            except pyes.ElasticSearchException, exc:
-                log.info('ES error creating alias: %s' % exc)
-    except pyes.ElasticSearchException, exc:
-        log.info('ES error creating index: %s' % exc)
-
-    return index
 
 
 def timer(*func, **kwargs):

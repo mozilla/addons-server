@@ -18,6 +18,7 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 
 from cache_nuggets.lib import memoize
+from dateutil.parser import parse
 from product_details import product_details
 
 import amo
@@ -56,7 +57,7 @@ def dashboard(request):
                    'stats_base_url': stats_base_url})
 
 
-def get_series(model, extra_field=None, **filters):
+def get_series(model, extra_field=None, source=None, **filters):
     """
     Get a generator of dicts for the stats model given by the filters.
 
@@ -67,13 +68,17 @@ def get_series(model, extra_field=None, **filters):
     extra = () if extra_field is None else (extra_field,)
     # Put a slice on it so we get more than 10 (the default), but limit to 365.
     qs = (model.search().order_by('-date').filter(**filters)
-          .values_dict('date', 'count', *extra))[:365]
-    for val in qs:
+          .values_dict('date', 'count', *extra))
+    if source:
+        qs = qs.source(source)
+    for val in qs[:365]:
         # Convert the datetimes to a date.
-        date_ = date(*val['date'][0].timetuple()[:3])
+        date_ = parse(val['date'][0]).date()
         rv = dict(count=val['count'][0], date=date_, end=date_)
         if extra_field:
             rv['data'] = extract(val[extra_field])
+        if source:
+            rv['data'] = extract(val[source])
         yield rv
 
 
@@ -200,7 +205,7 @@ def sources_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    series = get_series(DownloadCount, extra_field='_source.sources',
+    series = get_series(DownloadCount, source='sources',
                         addon=addon.id, date__range=date_range)
 
     if format == 'csv':
@@ -235,13 +240,13 @@ def usage_breakdown_series(request, addon, group,
     check_stats_permission(request, addon)
 
     fields = {
-        'applications': '_source.apps',
-        'locales': '_source.locales',
-        'oses': '_source.os',
-        'versions': '_source.versions',
-        'statuses': '_source.status',
+        'applications': 'apps',
+        'locales': 'locales',
+        'oses': 'os',
+        'versions': 'versions',
+        'statuses': 'status',
     }
-    series = get_series(UpdateCount, extra_field=fields[field],
+    series = get_series(UpdateCount, source=fields[field],
                         addon=addon.id, date__range=date_range)
     if field == 'locales':
         series = process_locales(series)
@@ -624,7 +629,7 @@ def _collection_query(request, collection, start=None, end=None):
                          .values_dict())[:365]
     series = []
     for val in qs:
-        date_ = date(*val['date'].timetuple()[:3])
+        date_ = parse(val['date']).date()
         series.append(dict(count=val['count'], date=date_, end=date_,
                            data=extract(val['data'])))
     return series

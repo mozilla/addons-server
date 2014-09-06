@@ -80,7 +80,7 @@ loggers = {
     'newrelic': {
         'level': 'WARNING',
     },
-    'elasticutils': {
+    'elasticsearch': {
         'level': 'WARNING',
     },
     'suds': {
