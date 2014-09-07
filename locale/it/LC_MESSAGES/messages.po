@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-08-31 15:09+0000\n"
+"PO-Revision-Date: 2014-09-07 09:54+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409497750.0\n"
+"X-POOTLE-MTIME: 1410083683.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1278,7 +1278,7 @@ msgstr "Versione"
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr "{0} note di versione"
+msgstr "{0} (note di versione)"
 
 #: apps/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
@@ -1399,7 +1399,7 @@ msgstr "Disconnetti"
 
 #: apps/amo/context_processors.py:87 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr "I miei componenti aggiuntivi"
+msgstr "Gestione dei progetti"
 
 #: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
@@ -3393,7 +3393,7 @@ msgstr "language pack (applicazione)"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Language Pack (componente aggiuntivo)"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3416,7 +3416,7 @@ msgstr "language pack (applicazione)"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Language Pack (componenti aggiuntivi)"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
@@ -3990,7 +3990,7 @@ msgstr "Documentazione :: Centro di sviluppo"
 
 #: apps/devhub/helpers.py:67
 msgid "My Submissions"
-msgstr "Le mie app"
+msgstr "I miei progetti"
 
 #: apps/devhub/helpers.py:101
 msgid "Developer Docs"
