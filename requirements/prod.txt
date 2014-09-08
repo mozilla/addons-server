@@ -40,7 +40,7 @@ django-statsd-mozilla==0.3.10
 django-storages==1.1.8
 django-waffle==0.9.2
 easy-thumbnails==1.4
-elasticsearch==1.1.1
+elasticsearch==1.0.0
 email-reply-parser==0.2.0
 fastchardet==0.2.0
 feedparser==5.1.3
