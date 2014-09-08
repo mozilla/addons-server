@@ -38,7 +38,6 @@ def extract_update_count(update, all_apps=None):
            'date': update.date,
            'count': update.count,
            'id': update.id,
-           '_id': '{0}-{1}'.format(update.addon_id, update.date),
            'versions': es_dict(update.versions),
            'os': [],
            'locales': [],
@@ -95,8 +94,7 @@ def extract_download_count(dl):
             'date': dl.date,
             'count': dl.count,
             'sources': es_dict(dl.sources) if dl.sources else {},
-            'id': dl.id,
-            '_id': '{0}-{1}'.format(dl.addon_id, dl.date)}
+            'id': dl.id}
 
 
 def extract_addon_collection(collection_count, addon_collections,
@@ -105,8 +103,6 @@ def extract_addon_collection(collection_count, addon_collections,
     collection_stats = dict([[c.name, c.count] for c in collection_stats])
     return {'date': collection_count.date,
             'id': collection_count.collection_id,
-            '_id': '{0}-{1}'.format(collection_count.collection_id,
-                                    collection_count.date),
             'count': collection_count.count,
             'data': es_dict({
                 'downloads': addon_collection_count,
@@ -120,8 +116,7 @@ def extract_theme_user_count(user_count):
     return {'addon': user_count.addon_id,
             'date': user_count.date,
             'count': user_count.count,
-            'id': user_count.id,
-            '_id': '{0}-{1}'.format(user_count.addon_id, user_count.date)}
+            'id': user_count.id}
 
 
 def get_all_app_versions():
@@ -146,7 +141,7 @@ def create_new_index(index=None, config=None):
 
 
 def reindex(index):
-    call_command('index_stats', '--index', index)
+    call_command('index_stats')
 
 
 def get_mappings():
