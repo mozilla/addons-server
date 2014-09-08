@@ -110,7 +110,7 @@ class Command(BaseCommand):
                         update_type.strip()
 
                     # Old versions of Firefox don't provide the update type.
-                    if update_type in ['0', 'NULL', '%UPDATE_TYPE%']:
+                    if update_type in ['0', 'NULL', 'None',  '%UPDATE_TYPE%']:
                         update_type = None
 
                     try:
