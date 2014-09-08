@@ -146,7 +146,7 @@ def create_new_index(index=None, config=None):
 
 
 def reindex(index):
-    call_command('index_stats', '--index', index)
+    call_command('index_stats', index=index)
 
 
 def get_mappings():
