@@ -326,32 +326,32 @@
                         // Validation checklist
                         var checklist_box = $('<div>').attr('class', 'submission-checklist').appendTo(upload_results),
                             checklist = [
-                                gettext("Include detailed version notes."),
-                                gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer."),
+                                gettext("Include detailed version notes (this can be done in the next step)."),
+                                gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."),
                             ],
                             warnings_id = [
                                 'set_innerHTML',
                                 'namespace_pollution',
                                 'dangerous_global'
-                            ], current, matched,
+                            ], current, matched, messages = [],
                             // this.id is in the form ["testcases_javascript_instanceactions", "_call_expression", "createelement_variable"],
                             // we usually only match one of the elements.
                             matchId = function (id) {return _.contains(this.id, id);};
 
                         if (!upload_results.parents('.add-file-modal').length) {
                             // We are uploading a file for an existing addon.
-                            checklist.push(gettext("If your add-on is intended for a limited audience, if it is in its initial stages or just an experiment, you should choose Preliminary Review instead of Full Review."));
+                            checklist.push(gettext("If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."));
                         }
                         $('<h5>').text(gettext("Add-on submission checklist")).appendTo(checklist_box);
                         $('<p>').text(gettext("Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:")).appendTo(checklist_box);
                         if (results.validation.metadata.contains_binary_extension) {
-                            checklist.push(gettext("Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected."));
+                            messages.push(gettext("Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected."));
                         }
                         for (var i = 0; i < results.validation.messages.length; i++) {
                             current = results.validation.messages[i];
                             matched = _.find(warnings_id, matchId, current);
                             if (matched) {
-                                checklist.push(gettext(current.message));
+                                messages.push(gettext(current.message));
                                 // We want only once every possible warning hit.
                                 warnings_id.splice(warnings_id.indexOf(matched), 1);
                                 if (!warnings_id.length) break;
@@ -362,6 +362,14 @@
                             $('<li>').text(checklist[i]).appendTo(checklist_ul);
                         });
                         checklist_ul.appendTo(checklist_box);
+                        if (messages.length) {
+                            $('<h6>').text(gettext("The validation process found these issues that can lead to rejections:")).appendTo(checklist_box);
+                            var messages_ul = $('<ul>');
+                            $.each(messages, function (i) {
+                                $('<li>').text(messages[i]).appendTo(messages_ul);
+                            });
+                            messages_ul.appendTo(checklist_box);
+                        }
 
                         if (results.full_report_url) {
                             // There might not be a link to the full report
