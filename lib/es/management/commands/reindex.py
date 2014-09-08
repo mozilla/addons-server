@@ -23,6 +23,12 @@ logger = logging.getLogger('z.elasticsearch')
 ES = get_es()
 
 
+MODULES = {
+    'stats': stats_search,
+    'addons': addons_search,
+}
+
+
 def log(msg, stdout=sys.stdout):
     stdout.write(msg + '\n')
 
@@ -41,8 +47,8 @@ def update_aliases(actions, stdout=sys.stdout):
 
 
 @task_with_callbacks
-def create_new_index(module, new_index, stdout=sys.stdout):
-    alias = module.get_alias()
+def create_new_index(module_str, new_index, stdout=sys.stdout):
+    alias = MODULES[module_str].get_alias()
     log('Create the index {0}, for alias: {1}'.format(new_index, alias),
         stdout=stdout)
 
@@ -61,13 +67,13 @@ def create_new_index(module, new_index, stdout=sys.stdout):
             settings.ES_DEFAULT_NUM_SHARDS
         )
 
-    module.create_new_index(new_index, config)
+    MODULES[module_str].create_new_index(new_index, config)
 
 
 @task_with_callbacks
-def index_data(module, index, stdout=sys.stdout):
+def index_data(module_str, index, stdout=sys.stdout):
     log('Reindexing {0}'.format(index), stdout=stdout)
-    module.reindex(index)
+    MODULES[module_str].reindex(index)
 
 
 @task_with_callbacks
@@ -127,9 +133,9 @@ class Command(BaseCommand):
 
         log('Starting the reindexation', stdout=self.stdout)
 
-        modules = [addons_search]
+        modules = ['addons']
         if kwargs.get('with_stats', False):
-            modules.append(stats_search)
+            modules.append('stats')
 
         if kwargs.get('wipe', False):
             confirm = raw_input('Are you sure you want to wipe all AMO '
@@ -140,7 +146,7 @@ class Command(BaseCommand):
 
             if confirm == 'yes':
                 unflag_database(stdout=self.stdout)
-                for index in set(m.get_alias() for m in modules):
+                for index in set(MODULES[m].get_alias() for m in modules):
                     ES.indices.delete(index)
             else:
                 raise CommandError("Aborted.")
@@ -165,7 +171,7 @@ class Command(BaseCommand):
         # for each index, we create a new time-stamped index
         for module in modules:
             old_index = None
-            alias = module.get_alias()
+            alias = MODULES[module].get_alias()
 
             try:
                 olds = ES.indices.get_alias(alias)
@@ -187,14 +193,11 @@ class Command(BaseCommand):
 
             # flag the database
             step1 = tree.add_task(flag_database,
-                                  args=[new_index, old_index, alias],
-                                  kwargs={'stdout': self.stdout})
+                                  args=[new_index, old_index, alias])
             step2 = step1.add_task(create_new_index,
-                                   args=[module, new_index],
-                                   kwargs={'stdout': self.stdout})
+                                   args=[module, new_index])
             step3 = step2.add_task(index_data,
-                                   args=[module, new_index],
-                                   kwargs={'stdout': self.stdout})
+                                   args=[module, new_index])
             last_action = step3
 
             # adding new index to the alias
@@ -202,18 +205,15 @@ class Command(BaseCommand):
 
         # Alias the new index and remove the old aliases, if any.
         renaming_step = last_action.add_task(update_aliases,
-                                             args=[alias_actions],
-                                             kwargs={'stdout': self.stdout})
+                                             args=[alias_actions])
 
         # unflag the database - there's no need to duplicate the
         # indexing anymore
-        delete = renaming_step.add_task(unflag_database,
-                                        kwargs={'stdout': self.stdout})
+        delete = renaming_step.add_task(unflag_database)
 
         # Delete the old indexes, if any
         if to_remove:
-            delete.add_task(delete_indexes,
-                            args=[to_remove], kwargs={'stdout': self.stdout})
+            delete.add_task(delete_indexes, args=[to_remove])
 
         # let's do it
         log('Running all indexation tasks', stdout=self.stdout)
