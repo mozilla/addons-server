@@ -87,7 +87,7 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         tasks.index_download_counts(list(downloads))
         user_counts = ThemeUserCount.objects.values_list('id', flat=True)
         tasks.index_theme_user_counts(list(user_counts))
-        self.refresh('stats')
+        self.refresh('update_counts')
 
 
 class TestSeriesSecurity(StatsTest):
@@ -849,7 +849,7 @@ class TestCollections(amo.tests.ESTestCase):
                                             'votes_down': x, 'downloads': x})}
             CollectionCount.index(data, id='%s-%s' % (x, self.collection.pk))
 
-        self.refresh('stats')
+        self.refresh('stats_collections_counts')
 
     def tests_collection_anon(self):
         res = self.client.get(self.url)

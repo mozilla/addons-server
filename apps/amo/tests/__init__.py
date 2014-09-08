@@ -19,7 +19,10 @@ from django.test.client import Client
 from django.utils import translation
 
 import caching
+import elasticutils.contrib.django as elasticutils
 import mock
+import pyelasticsearch.exceptions as pyelasticsearch
+import pyes.exceptions as pyes
 import test_utils
 import tower
 from dateutil.parser import parse as dateutil_parser
@@ -198,7 +201,21 @@ class TestClient(Client):
             raise AttributeError
 
 
-Mocked_ES = mock.patch('amo.search.get_es', spec=True)
+ES_patchers = [mock.patch('amo.search.get_es', spec=True),
+               mock.patch('elasticutils.contrib.django', spec=True)]
+
+
+def start_es_mock():
+    for patch in ES_patchers:
+        patch.start()
+
+
+def stop_es_mock():
+    for patch in ES_patchers:
+        patch.stop()
+
+    if hasattr(elasticutils, '_local') and hasattr(elasticutils._local, 'es'):
+        delattr(elasticutils._local, 'es')
 
 
 def mock_es(f):
@@ -208,11 +225,11 @@ def mock_es(f):
     """
     @wraps(f)
     def decorated(request, *args, **kwargs):
-        Mocked_ES.start()
+        start_es_mock()
         try:
             return f(request, *args, **kwargs)
         finally:
-            Mocked_ES.stop()
+            stop_es_mock()
     return decorated
 
 
@@ -226,7 +243,7 @@ class MockEsMixin(object):
     @classmethod
     def setUpClass(cls):
         if cls.mock_es:
-            Mocked_ES.start()
+            start_es_mock()
         try:
             reset.send(None)  # Reset all the ES tasks on hold.
             super(MockEsMixin, cls).setUpClass()
@@ -234,7 +251,7 @@ class MockEsMixin(object):
             # We need to unpatch here because tearDownClass will not be
             # called.
             if cls.mock_es:
-                Mocked_ES.stop()
+                stop_es_mock()
             raise
 
     @classmethod
@@ -243,7 +260,7 @@ class MockEsMixin(object):
             super(MockEsMixin, cls).tearDownClass()
         finally:
             if cls.mock_es:
-                Mocked_ES.stop()
+                stop_es_mock()
 
 
 class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
@@ -719,7 +736,7 @@ class ESTestCase(TestCase):
 
         super(ESTestCase, cls).setUpClass()
         try:
-            cls.es.cluster.health()
+            cls.es.cluster_health()
         except Exception, e:
             e.args = tuple([u'%s (it looks like ES is not running, '
                             'try starting it or set RUN_ES_TESTS=False)'
@@ -733,10 +750,27 @@ class ESTestCase(TestCase):
         }
 
         for index in set(settings.ES_INDEXES.values()):
-            cls.es.indices.delete(index, ignore=[404])
+            # Get the index that's pointed to by the alias.
+            try:
+                indices = cls.es.get_alias(index)
+                index = indices[0]
+            except IndexError:
+                # There's no alias, just use the index.
+                print 'Found no alias for %s.' % index
+                index = index
+            except (pyes.IndexMissingException,
+                    pyelasticsearch.ElasticHttpNotFoundError):
+                pass
 
-        addons.search.create_new_index()
-        stats.search.create_new_index()
+            # Remove any alias as well.
+            try:
+                cls.es.delete_index(index)
+            except (pyes.IndexMissingException,
+                    pyelasticsearch.ElasticHttpNotFoundError) as exc:
+                print 'Could not delete index %r: %s' % (index, exc)
+
+        addons.search.setup_mapping()
+        stats.search.setup_indexes()
 
     @classmethod
     def tearDownClass(cls):
@@ -765,7 +799,7 @@ class ESTestCase(TestCase):
     @classmethod
     def refresh(cls, index='default', timesleep=0):
         process.send(None)
-        cls.es.indices.refresh(settings.ES_INDEXES[index])
+        cls.es.refresh(settings.ES_INDEXES[index], timesleep=timesleep)
 
     @classmethod
     def reindex(cls, model, index='default'):
@@ -783,10 +817,3 @@ class ESTestCase(TestCase):
             addon_factory(),
             addon_factory(),
         ]
-
-    @classmethod
-    def empty_index(cls, index):
-        cls.es.delete_by_query(
-            settings.ES_INDEXES[index],
-            body={"query": {"match_all": {}}}
-        )

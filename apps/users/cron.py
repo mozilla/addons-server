@@ -47,7 +47,7 @@ def update_user_ratings():
 
 
 @cronjobs.register
-def reindex_users(index=None):
+def reindex_users(index=None, aliased=True):
     from . import tasks
     ids = UserProfile.objects.values_list('id', flat=True)
     taskset = [tasks.index_users.subtask(args=[chunk], kwargs=dict(index=index))

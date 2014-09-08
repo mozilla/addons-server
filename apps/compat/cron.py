@@ -20,7 +20,7 @@ log = logging.getLogger('z.compat')
 
 
 @cronjobs.register
-def compatibility_report(index=None):
+def compatibility_report(index=None, aliased=True):
     docs = defaultdict(dict)
     indices = get_indices(index)
 
@@ -123,6 +123,5 @@ def compatibility_report(index=None):
     for chunk in amo.utils.chunked(docs.values(), 150):
         for doc in chunk:
             for index in indices:
-                AppCompat.index(doc, id=doc['id'], refresh=False, index=index)
-    es = amo.search.get_es()
-    es.indices.refresh()
+                AppCompat.index(doc, id=doc['id'], bulk=True, index=index)
+        amo.search.get_es().flush_bulk(forced=True)

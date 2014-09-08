@@ -4,6 +4,7 @@ import math
 from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
+import elasticutils.contrib.django as elasticutils
 from celeryutils import task
 
 import amo

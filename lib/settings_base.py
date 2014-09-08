@@ -1097,7 +1097,7 @@ LOGGING = {
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
-        'elasticsearch': {'handlers': ['null']},
+        'pyes': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
@@ -1277,11 +1277,12 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
 ## elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {
-    'default': 'addons',
-    'stats': 'addons_stats',
-}
-
+ES_INDEXES = {'default': 'addons',
+              'update_counts': 'addons_stats',
+              'download_counts': 'addons_stats',
+              'stats_contributions': 'addons_stats',
+              'stats_collections_counts': 'addons_stats',
+              'users_install': 'addons_stats'}
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5

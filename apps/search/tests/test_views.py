@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import mock
 import urlparse
 
 from django.conf import settings

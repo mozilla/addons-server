@@ -37,12 +37,7 @@ class AddonCollectionCount(models.Model):
         db_table = 'stats_addons_collections_counts'
 
 
-class StatsSearchMixin(SearchMixin):
-
-    ES_ALIAS_KEY = 'stats'
-
-
-class CollectionCount(StatsSearchMixin, models.Model):
+class CollectionCount(SearchMixin, models.Model):
     collection = models.ForeignKey('bandwagon.Collection')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -62,7 +57,7 @@ class CollectionStats(models.Model):
         db_table = 'stats_collections'
 
 
-class DownloadCount(StatsSearchMixin, models.Model):
+class DownloadCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -73,7 +68,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
 
 
 # TODO: remove when the script is proven to work correctly.
-class DownloadCountTmp(StatsSearchMixin, models.Model):
+class DownloadCountTmp(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -83,7 +78,7 @@ class DownloadCountTmp(StatsSearchMixin, models.Model):
         db_table = 'download_counts_tmp'
 
 
-class UpdateCount(StatsSearchMixin, models.Model):
+class UpdateCount(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -98,7 +93,7 @@ class UpdateCount(StatsSearchMixin, models.Model):
 
 
 # TODO: remove when the script is proven to work correctly.
-class UpdateCountTmp(StatsSearchMixin, models.Model):
+class UpdateCountTmp(SearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -128,7 +123,7 @@ class ThemeUpdateCountManager(models.Manager):
         return dict((d['addon_id'], d['avg']) for d in averages)
 
 
-class ThemeUpdateCount(StatsSearchMixin, models.Model):
+class ThemeUpdateCount(SearchMixin, models.Model):
     """Daily users taken from the ADI data (coming from Hive)."""
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
@@ -389,7 +384,7 @@ class ClientData(models.Model):
                            'is_chromeless', 'language', 'region')
 
 
-class ThemeUserCount(StatsSearchMixin, models.Model):
+class ThemeUserCount(SearchMixin, models.Model):
     """Theme popularity (weekly average of users).
 
     This is filled in by a cron job reading the popularity from the theme

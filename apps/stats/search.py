@@ -1,14 +1,10 @@
 import collections
 
-from django.conf import settings
-from django.core.management import call_command
-
 import amo
 import amo.search
+from amo.utils import create_es_index_if_missing
 from applications.models import AppVersion
-from lib.es.utils import create_index
-from stats.models import (CollectionCount, DownloadCount, StatsSearchMixin,
-                          UpdateCount)
+from stats.models import CollectionCount, DownloadCount, UpdateCount
 
 
 def es_dict(items):
@@ -127,42 +123,24 @@ def get_all_app_versions():
     return dict(rv)
 
 
-def get_alias():
-    return settings.ES_INDEXES.get(StatsSearchMixin.ES_ALIAS_KEY)
+def setup_indexes(index=None, aliased=True):
+    es = amo.search.get_es()
+    for model in CollectionCount, DownloadCount, UpdateCount:
+        index = index or model._get_index()
+        index = create_es_index_if_missing(index, aliased=aliased)
 
-
-def create_new_index(index=None, config=None):
-    if config is None:
-        config = {}
-    if index is None:
-        index = get_alias()
-    config['mappings'] = get_mappings()
-    create_index(index, config)
-
-
-def reindex(index):
-    call_command('index_stats')
-
-
-def get_mappings():
-    mapping = {
-        'properties': {
-            'id': {'type': 'long'},
-            'boost': {'type': 'float', 'null_value': 1.0},
-            'count': {'type': 'long'},
-            'data': {
-                'dynamic': 'true',
-                'properties': {
-                    'v': {'type': 'long'},
-                    'k': {'type': 'string'}
-                }
-            },
-            'date': {
-                'format': 'dateOptionalTime',
-                'type': 'date'
+        mapping = {
+            'properties': {
+                'id': {'type': 'long'},
+                'count': {'type': 'long'},
+                'data': {'dynamic': 'true',
+                         'properties': {
+                            'v': {'type': 'long'},
+                            'k': {'type': 'string'}
+                        }
+                },
+                'date': {'format': 'dateOptionalTime',
+                         'type': 'date'}
             }
         }
-    }
-
-    models = (CollectionCount, DownloadCount, UpdateCount)
-    return dict((m._meta.db_table, mapping) for m in models)
+        es.put_mapping(model._meta.db_table, mapping, index)
