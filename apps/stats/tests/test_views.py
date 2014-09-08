@@ -78,6 +78,7 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
 
     def setUp(self):
         super(ESStatsTest, self).setUp()
+        self.empty_index('stats')
         self.index()
 
     def index(self):
