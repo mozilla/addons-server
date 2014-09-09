@@ -20,7 +20,7 @@ REGEX = dict(
 
 
 def referrer(name):
-    return 'document.referrer.match(%s)' % (REGEX[n],)
+    return 'document.referrer.match(%s)' % (REGEX[name],)
 
 default_referrers = [referrer(n)
                      for n in ['mozilla', 'momo', 'localhost']]
