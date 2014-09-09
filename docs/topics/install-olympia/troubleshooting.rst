@@ -29,14 +29,15 @@ set ``CELERY_ALWAYS_EAGER = False`` and run::
     :doc:`./celery` instructions.
 
 This may help you to see where the image processing tasks are failing. For
-example it might show that PIL is failing due to missing dependencies.
+example it might show that Pillow is failing due to missing dependencies.
 
-Checking your PIL installation (Ubuntu)
-_______________________________________
+Checking your Pillow installation (Ubuntu)
+__________________________________________
 
 When you run you should see at least JPEG and ZLIB are supported
 
-If that's the case you should see this in the output of ``pip install -I PIL``::
+If that's the case you should see this in the output of
+``pip install -I Pillow``::
 
     --------------------------------------------------------------------
     *** TKINTER support not available
@@ -46,7 +47,7 @@ If that's the case you should see this in the output of ``pip install -I PIL``::
     *** LITTLECMS support not available
     --------------------------------------------------------------------
 
-If you don't then this suggests PIL can't find your image libraries:
+If you don't then this suggests Pillow can't find your image libraries:
 
 To fix this double-check you have the necessary development libraries
 installed first (e.g: ``sudo apt-get install libjpeg-dev zlib1g-dev``)
@@ -68,12 +69,12 @@ Or this if your running 64bit::
     e.g. ``i686``
 
 
-Now re-install PIL::
+Now re-install Pillow::
 
-    pip install -I PIL
+    pip install -I Pillow
 
 And you should see the necessary image libraries are now working with
-PIL correctly.
+Pillow correctly.
 
 
 ES is timing out
