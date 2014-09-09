@@ -24,7 +24,7 @@ from amo.helpers import absolutify, numberfmt, urlparams
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
-from addons.models import Addon, AddonDependency, AddonUser, Charity
+from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
 from bandwagon.models import Collection
 from paypal.tests.test import other_error
 from stats.models import Contribution
@@ -1135,7 +1135,7 @@ class TestStatus(amo.tests.TestCase):
         eq_(self.client.get(self.url).status_code, 404)
 
     def test_persona(self):
-        for status in amo.STATUS_CHOICES.keys():
+        for status in Persona.STATUS_CHOICES.keys():
             if status == amo.STATUS_DELETED:
                 continue
             self.persona.status = status
@@ -1145,7 +1145,7 @@ class TestStatus(amo.tests.TestCase):
                 else 404)
 
     def test_persona_disabled(self):
-        for status in amo.STATUS_CHOICES.keys():
+        for status in Persona.STATUS_CHOICES.keys():
             if status == amo.STATUS_DELETED:
                 continue
             self.persona.status = status

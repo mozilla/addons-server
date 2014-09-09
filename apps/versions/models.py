@@ -321,7 +321,7 @@ class Version(amo.models.ModelBase):
 
     @property
     def status(self):
-        return [amo.STATUS_CHOICES[f.status] for f in self.all_files]
+        return [f.STATUS_CHOICES[f.status] for f in self.all_files]
 
     @property
     def statuses(self):

@@ -39,7 +39,7 @@
                 <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
               {% else %}
                 <span class="{{ status_class(addon) }}">
-                  <b>{{ amo.STATUS_CHOICES[addon.status] }}</b></span>
+                  <b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
               {% endif %}
             </li>
             {% with position = get_position(addon) %}

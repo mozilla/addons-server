@@ -780,7 +780,7 @@ class TestHome(amo.tests.TestCase):
             addon.save()
             doc = self.get_pq()
             addon_item = doc('#my-addons .addon-item')
-            eq_('Status: ' + unicode(amo.STATUS_CHOICES[addon.status]),
+            eq_('Status: ' + unicode(addon.STATUS_CHOICES[addon.status]),
                 addon_item.find('p').eq(1).text())
 
         Addon.objects.all().delete()
@@ -1971,7 +1971,7 @@ class TestQueuePosition(UploadTest):
         eq_(pq(r.content)('.version-status-actions .dark').length, 0)
 
     def test_in_queue(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
                     (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
                     (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
 
@@ -2052,7 +2052,7 @@ class TestVersionAddFile(UploadTest):
         file.save()
 
         cases = [(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
-                 (amo.STATUS_NULL, amo.STATUS_UNREVIEWED, False)]
+                 (amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False)]
 
         for c in cases:
             version_files = self.addon.current_version.files.all()

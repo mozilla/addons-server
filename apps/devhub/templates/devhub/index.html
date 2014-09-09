@@ -47,7 +47,7 @@
             </p>
             <p>
               <strong>{{ _('Status:') }}</strong>
-              <span class="{{ status_class(item.addon) }}"><b>{{ amo.STATUS_CHOICES[item.addon.status] }}</b></span>
+              <span class="{{ status_class(item.addon) }}"><b>{{ item.addon.STATUS_CHOICES[item.addon.status] }}</b></span>
             </p>
             {% if item.addon.current_version %}
               <p>

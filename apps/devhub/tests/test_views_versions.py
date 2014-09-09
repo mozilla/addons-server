@@ -249,7 +249,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
-        for status in amo.STATUS_CHOICES:
+        for status in Addon.STATUS_CHOICES:
             if status in amo.UNDER_REVIEW_STATUSES + (amo.STATUS_DELETED,):
                 continue
 
@@ -277,7 +277,7 @@ class TestVersion(amo.tests.TestCase):
         eq_(Addon.objects.get(id=3615).status, amo.STATUS_PUBLIC)
 
     def test_cancel_button(self):
-        for status in amo.STATUS_CHOICES:
+        for status in Addon.STATUS_CHOICES:
             if status not in amo.UNDER_REVIEW_STATUSES:
                 continue
 
@@ -288,7 +288,7 @@ class TestVersion(amo.tests.TestCase):
             assert doc('#modal-cancel')
 
     def test_not_cancel_button(self):
-        for status in amo.STATUS_CHOICES:
+        for status in Addon.STATUS_CHOICES:
             if status in amo.UNDER_REVIEW_STATUSES:
                 continue
 

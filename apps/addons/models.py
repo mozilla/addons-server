@@ -214,7 +214,7 @@ class AddonManager(amo.models.ManagerBase):
 
 
 class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
-    STATUS_CHOICES = amo.STATUS_CHOICES.items()
+    STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
@@ -229,9 +229,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     type = models.PositiveIntegerField(db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES, db_index=True, default=0)
+        choices=STATUS_CHOICES.items(), db_index=True, default=0)
     highest_status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES, default=0,
+        choices=STATUS_CHOICES.items(), default=0,
         help_text="An upper limit for what an author can change.",
         db_column='higheststatus')
     icon_type = models.CharField(max_length=25, blank=True,
@@ -290,7 +290,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     auto_repackage = models.BooleanField(
         default=True, help_text='Automatically upgrade jetpack add-on to a '
                                 'new sdk version?')
-    outstanding = models.BooleanField(default=False)
 
     nomination_message = models.TextField(null=True,
                                           db_column='nominationmessage')
@@ -380,6 +379,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def __init__(self, *args, **kw):
         super(Addon, self).__init__(*args, **kw)
         self._first_category = {}
+
+        if self.type == amo.ADDON_PERSONA:
+            self.STATUS_CHOICES = Persona.STATUS_CHOICES
 
     def save(self, **kw):
         self.clean_slug()
@@ -1636,6 +1638,8 @@ def attach_tags(addons):
 
 class Persona(caching.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
+    STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
+
     addon = models.OneToOneField(Addon)
     persona_id = models.PositiveIntegerField(db_index=True)
     # name: deprecated in favor of Addon model's name field

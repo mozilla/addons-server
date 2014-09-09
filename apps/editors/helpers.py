@@ -52,7 +52,7 @@ def file_review_status(addon, file):
         # unreviewed.  Especially for versions.
         else:
             return _(u'Rejected or Unreviewed')
-    return amo.STATUS_CHOICES[file.status]
+    return file.STATUS_CHOICES[file.status]
 
 
 @register.function

@@ -2063,7 +2063,7 @@ class TestReviewPreliminary(ReviewBase):
         data = self.prelim_dict()
         f = self.version.files.all()[0]
 
-        statuses = dict(amo.STATUS_CHOICES)  # Deep copy.
+        statuses = dict(File.STATUS_CHOICES)  # Shallow copy.
         del statuses[amo.STATUS_BETA], statuses[amo.STATUS_UNREVIEWED]
         for status in statuses:
             f.update(status=status)
@@ -2208,7 +2208,7 @@ class TestStatusFile(ReviewBase):
 
     def test_other(self):
         self.addon.update(status=amo.STATUS_BETA)
-        self.check_status(unicode(amo.STATUS_CHOICES[self.get_file().status]))
+        self.check_status(unicode(File.STATUS_CHOICES[self.get_file().status]))
 
 
 class TestAbuseReports(amo.tests.TestCase):

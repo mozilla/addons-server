@@ -44,7 +44,7 @@ EXTENSIONS = ('.xpi', '.jar', '.xml', '.json', '.zip')
 
 
 class File(amo.models.OnChangeMixin, amo.models.ModelBase):
-    STATUS_CHOICES = amo.STATUS_CHOICES.items()
+    STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.ForeignKey('versions.Version', related_name='files')
     platform = models.ForeignKey('Platform', default=amo.PLATFORM_ALL.id)
@@ -57,7 +57,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # The jetpack builder version, if applicable.
     builder_version = models.CharField(max_length=10, null=True,
                                        db_index=True)
-    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES,
+    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES.items(),
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     no_restart = models.BooleanField(default=False)

@@ -12,7 +12,9 @@ from amo.urlresolvers import reverse
 from amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
 from access import acl
 from addons.helpers import new_context
+from addons.models import Addon
 from compat.models import CompatReport
+from files.models import File
 
 
 register.function(acl.check_addon_ownership)
@@ -129,12 +131,18 @@ def source_form_field(field):
 
 @register.function
 def status_choices(addon):
-    """Return a dict like STATUS_CHOICES customized for the addon status."""
+    """
+    Return a dict like File.STATUS_CHOICES customized for the addon status.
+    """
     # Show "awaiting full review" for unreviewed files on that track.
-    choices = dict(amo.STATUS_CHOICES)
+    choices = dict(File.STATUS_CHOICES)
     if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                         amo.STATUS_PUBLIC):
-        choices[amo.STATUS_UNREVIEWED] = choices[amo.STATUS_NOMINATED]
+        choices[amo.STATUS_UNREVIEWED] = \
+                Addon.STATUS_CHOICES[amo.STATUS_NOMINATED]
+    else:
+        choices[amo.STATUS_UNREVIEWED] = \
+                Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED]
     return choices
 
 
