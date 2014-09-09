@@ -32,9 +32,9 @@ On Ubuntu
 ~~~~~~~~~
 The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
-<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,memcached,libssl-dev,swig openssl,curl>`_::
+<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,memcached,libssl-dev,swig openssl,curl,libjpeg-dev,zlib1g-dev>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev
 
 
 .. _osx-packages:
@@ -142,7 +142,6 @@ This runs a command like this::
 
     pip install --no-deps -r requirements/dev.txt --exists-action=w \
                 --find-links https://pyrepo.addons.mozilla.org/ \
-                --allow-external PIL --allow-unverified PIL \
                 --download-cache=/tmp/pip-cache
 
 .. _pip: http://www.pip-installer.org/en/latest/
