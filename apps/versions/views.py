@@ -129,7 +129,7 @@ def download_source(request, version_id):
                                    viewer=True, ignore_disabled=True)
          or acl.action_allowed(request, 'Editors', 'BinarySource'))):
         res = HttpResponseSendFile(request, version.source.path)
-        name = os.path.basename(version.source.path)
-        res['Content-Disposition'] = "attachment; filename={0}".format(name)
+        name = os.path.basename(version.source.path.replace('"', ''))
+        res['Content-Disposition'] = 'attachment; filename="{0}"'.format(name)
         return res
     raise http.Http404()
