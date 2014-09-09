@@ -10,11 +10,22 @@ import commonware.log
 from addons.models import File
 # TODO: use DownloadCount when the script is proven to work correctly.
 from stats.models import update_inc, DownloadCountTmp as DownloadCount
+from zadmin.models import DownloadSource
 
 from . import get_date_from_file
 
 
 log = commonware.log.getLogger('adi.downloadcountsfromfile')
+
+
+def is_valid_source(src, fulls, prefixes):
+    """Return True if the source is valid.
+
+    A source is valid if it is in the list of valid full sources or prefixed by
+    a prefix in the list of valid prefix sources.
+
+    """
+    return src in fulls or any(p in src for p in prefixes)
 
 
 class Command(BaseCommand):
@@ -76,6 +87,14 @@ class Command(BaseCommand):
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
 
+        # Only accept valid sources, which are listed in the DownloadSource
+        # model. The source must either be exactly one of the "full" valid
+        # sources, or prefixed by one of the "prefix" valid sources.
+        fulls = set(DownloadSource.objects.filter(type='full').values_list(
+            'name', flat=True))
+        prefixes = DownloadSource.objects.filter(type='prefix').values_list(
+            'name', flat=True)
+
         with open(filepath) as count_file:
             for index, line in enumerate(count_file):
                 if index and (index % 1000000) == 0:
@@ -93,8 +112,7 @@ class Command(BaseCommand):
                 except ValueError:  # Badly formatted? Drop.
                     continue
 
-                # Drop incorrect sources: hive newline, ffsync and getpersona.
-                if src in ('\N', 'sync', 'gp'):
+                if not is_valid_source(src, fulls=fulls, prefixes=prefixes):
                     continue
 
                 # Does this file exist?
