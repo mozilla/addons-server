@@ -14,6 +14,8 @@ import amo.tests
 from addons.models import Persona
 from stats.models import (DownloadCountTmp as DownloadCount, ThemeUpdateCount,
                           UpdateCountTmp as UpdateCount)
+from stats.management.commands.download_counts_from_file import is_valid_source
+from zadmin.models import DownloadSource
 
 
 hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
@@ -51,6 +53,10 @@ class TestADICommand(amo.tests.TestCase):
         eq_(update_count.locales, {u'en_us': 5})
 
     def test_download_counts_from_file(self):
+        # Create the necessary "valid download sources" entries.
+        DownloadSource.objects.create(name='search', type='full')
+        DownloadSource.objects.create(name='coll', type='prefix')
+
         management.call_command('download_counts_from_file', hive_folder,
                                 date='2014-07-10')
         eq_(DownloadCount.objects.all().count(), 1)
@@ -88,3 +94,17 @@ class TestADICommand(amo.tests.TestCase):
         eq_(p2.popularity_tmp, 30)  # sum(range(7)) * 10 / 7
         # Three weeks avg (sum(range(21)) * 10 / 21) = 100 so (30 - 100) / 100.
         eq_(p2.movers_tmp, -0.7)
+
+    def test_is_valid_source(self):
+        assert is_valid_source('foo',
+                               fulls=['foo', 'bar'],
+                               prefixes=['baz', 'cruux'])
+        assert not is_valid_source('foob',
+                                   fulls=['foo', 'bar'],
+                                   prefixes=['baz', 'cruux'])
+        assert is_valid_source('foobaz',
+                               fulls=['foo', 'bar'],
+                               prefixes=['baz', 'cruux'])
+        assert not is_valid_source('ba',
+                                   fulls=['foo', 'bar'],
+                                   prefixes=['baz', 'cruux'])
