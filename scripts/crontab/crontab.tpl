@@ -1,6 +1,7 @@
 # Crons are run in UTC time!
 
 MAILTO=amo-developers@mozilla.org
+DJANGO_SETTINGS_MODULE='settings_local'
 
 HOME=/tmp
 
