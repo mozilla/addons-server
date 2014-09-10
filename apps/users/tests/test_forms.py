@@ -134,21 +134,21 @@ class TestPasswordResetForm(UserFormBase):
 class TestUserDeleteForm(UserFormBase):
 
     def test_bad_password(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'password': 'wrong', 'confirm': True, }
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        data = {'password': 'wrongpassword', 'confirm': True, }
         r = self.client.post('/en-US/firefox/users/delete', data)
         msg = "Wrong password entered!"
         self.assertFormError(r, 'form', 'password', msg)
 
     def test_not_confirmed(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'password': 'foo'}
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        data = {'password': 'password'}
         r = self.client.post('/en-US/firefox/users/delete', data)
         self.assertFormError(r, 'form', 'confirm', 'This field is required.')
 
     def test_success(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'password': 'foo', 'confirm': True, }
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        data = {'password': 'password', 'confirm': True, }
         self.client.post('/en-US/firefox/users/delete', data, follow=True)
         # TODO XXX: Bug 593055
         #self.assertContains(r, "Profile Deleted")
@@ -160,8 +160,8 @@ class TestUserDeleteForm(UserFormBase):
     def test_developer_attempt(self, f):
         """A developer's attempt to delete one's self must be thwarted."""
         f.return_value = True
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
-        data = {'password': 'foo', 'confirm': True, }
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        data = {'password': 'password', 'confirm': True, }
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, 'You cannot delete your account')
 
@@ -170,7 +170,7 @@ class TestUserEditForm(UserFormBase):
 
     def setUp(self):
         super(TestUserEditForm, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         self.url = reverse('users.edit')
 
     def test_no_names(self):
@@ -197,7 +197,7 @@ class TestUserEditForm(UserFormBase):
 
     def test_set_unmatched_passwords(self):
         data = {'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'foo',
+                'oldpassword': 'password',
                 'password': 'longer123',
                 'password2': 'longer1234', }
         r = self.client.post(self.url, data)
@@ -207,7 +207,7 @@ class TestUserEditForm(UserFormBase):
     def test_set_new_passwords(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'foo',
+                'oldpassword': 'password',
                 'password': 'longer123',
                 'password2': 'longer123',
                 'lang': 'en-US'}
@@ -217,7 +217,7 @@ class TestUserEditForm(UserFormBase):
     def test_long_data(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'foo',
+                'oldpassword': 'password',
                 'password': 'new',
                 'password2': 'new',
                 'lang': 'en-US'}
@@ -312,13 +312,13 @@ class TestUserLoginForm(UserFormBase):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
         url = self._get_login_url()
         r = self.client.post(url, {'username': user.email,
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
             user.display_name)
         eq_(pq(r.content)('.account .user').attr('title'), user.email)
 
         r = self.client.post(url, {'username': user.email,
-                                   'password': 'foo',
+                                   'password': 'password',
                                    'rememberme': 1}, follow=True)
         eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
             user.display_name)
@@ -330,7 +330,7 @@ class TestUserLoginForm(UserFormBase):
     def test_redirect_after_login(self):
         url = urlparams(self._get_login_url(), to="/en-US/firefox/about")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         self.assertRedirects(r, '/en-US/about')
 
         # Test a valid domain.  Note that assertRedirects doesn't work on
@@ -338,7 +338,7 @@ class TestUserLoginForm(UserFormBase):
         url = urlparams(self._get_login_url(), to="/addon/new",
                         domain="builder")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         to, code = r.redirect_chain[0]
         self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
         self.assertEqual(code, 302)
@@ -346,14 +346,14 @@ class TestUserLoginForm(UserFormBase):
     def test_redirect_after_login_evil(self):
         url = urlparams(self._get_login_url(), to='http://foo.com')
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
 
     def test_redirect_after_login_domain(self):
         url = urlparams(self._get_login_url(), to='/en-US/firefox',
                         domain='http://evil.com')
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         self.assertRedirects(r, '/en-US/firefox/')
 
     def test_unconfirmed_account(self):
@@ -361,7 +361,7 @@ class TestUserLoginForm(UserFormBase):
         self.user_profile.confirmationcode = 'blah'
         self.user_profile.save()
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
         self.assertContains(r, "A link to activate your user account")
         self.assertContains(r, "If you did not receive the confirmation")
@@ -381,7 +381,7 @@ class TestUserLoginForm(UserFormBase):
         self.user_profile.deleted = True
         self.user_profile.save()
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'foo'}, follow=True)
+                                   'password': 'password'}, follow=True)
         self.assertNotContains(r, "Welcome, Jeff")
         self.assertContains(r, 'Wrong email address or password')
 
@@ -391,7 +391,7 @@ class TestUserLoginForm(UserFormBase):
         t = datetime(t.year, t.month, t.day, t.hour, t.minute, t.second)
         url = self._get_login_url()
         self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                               'password': 'foo'}, follow=True)
+                               'password': 'password'}, follow=True)
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         eq_(u.failed_login_attempts, 0)
         eq_(u.last_login_attempt_ip, '127.0.0.1')
@@ -420,7 +420,7 @@ class TestUserLoginForm(UserFormBase):
 
         """
         form = AuthenticationForm(data={'username': 'foo',
-                                        'password': 'bar',
+                                        'password': 'barpassword',
                                         'recaptcha': ''},
                                   use_recaptcha=True)
         form.is_valid()
@@ -537,7 +537,7 @@ class TestUserRegisterForm(UserFormBase):
         self.assertFormError(r, 'form', 'homepage', m)
 
     def test_already_logged_in(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get('/users/register', follow=True)
         self.assertContains(r, "You are already logged in")
         self.assertNotContains(r, '<button type="submit">Register</button>')
@@ -579,7 +579,7 @@ class TestUserRegisterForm(UserFormBase):
     def test_long_data(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'foo',
+                'oldpassword': 'password',
                 'password': 'new',
                 'password2': 'new', }
         for field, length in (('username', 50), ('display_name', 50)):
@@ -592,7 +592,7 @@ class TestUserRegisterForm(UserFormBase):
 class TestBlacklistedNameAdminAddForm(UserFormBase):
 
     def test_no_usernames(self):
-        self.client.login(username='testo@example.com', password='foo')
+        self.client.login(username='testo@example.com', password='password')
         url = reverse('admin:users_blacklistedname_add')
         data = {'names': "\n\n", }
         r = self.client.post(url, data)
@@ -600,7 +600,7 @@ class TestBlacklistedNameAdminAddForm(UserFormBase):
         self.assertFormError(r, 'form', 'names', msg)
 
     def test_add(self):
-        self.client.login(username='testo@example.com', password='foo')
+        self.client.login(username='testo@example.com', password='password')
         url = reverse('admin:users_blacklistedname_add')
         data = {'names': "IE6Fan\nfubar\n\n", }
         r = self.client.post(url, data)
@@ -613,7 +613,7 @@ class TestBlacklistedNameAdminAddForm(UserFormBase):
 class TestBlacklistedEmailDomainAdminAddForm(UserFormBase):
 
     def test_no_domains(self):
-        self.client.login(username='testo@example.com', password='foo')
+        self.client.login(username='testo@example.com', password='password')
         url = reverse('admin:users_blacklistedemaildomain_add')
         data = {'domains': "\n\n", }
         r = self.client.post(url, data)
@@ -621,7 +621,7 @@ class TestBlacklistedEmailDomainAdminAddForm(UserFormBase):
         self.assertFormError(r, 'form', 'domains', msg)
 
     def test_add(self):
-        self.client.login(username='testo@example.com', password='foo')
+        self.client.login(username='testo@example.com', password='password')
         url = reverse('admin:users_blacklistedemaildomain_add')
         data = {'domains': "mailinator.com\ntrash-mail.de\n\n", }
         r = self.client.post(url, data)

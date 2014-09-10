@@ -41,7 +41,8 @@ class PasswordMixin:
             'class': 'password-strength',
             'data-min-length': cls.min_length,
         }
-        attrs.update(RequiredInputMixin.required_attrs)
+        if kw.pop('required', False):
+            attrs.update(RequiredInputMixin.required_attrs)
         return forms.PasswordInput(attrs=attrs, **kw)
 
     def clean_password(self, field='password', instance='instance'):
@@ -61,6 +62,11 @@ class PasswordMixin:
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
     username = forms.CharField(max_length=75, widget=RequiredTextInput)
+    password = forms.CharField(max_length=255,
+                               min_length=PasswordMixin.min_length,
+                               error_messages=PasswordMixin.error_msg,
+                               widget=PasswordMixin.widget(render_value=False,
+                                                           required=True))
     rememberme = forms.BooleanField(required=False)
     recaptcha = captcha.fields.ReCaptchaField()
     recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
@@ -169,7 +175,7 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
     new_password1 = forms.CharField(label=_lazy(u'New password'),
                                     min_length=PasswordMixin.min_length,
                                     error_messages=PasswordMixin.error_msg,
-                                    widget=PasswordMixin.widget())
+                                    widget=PasswordMixin.widget(required=True))
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -252,10 +258,11 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     password = forms.CharField(max_length=255,
                                min_length=PasswordMixin.min_length,
                                error_messages=PasswordMixin.error_msg,
-                               widget=PasswordMixin.widget(render_value=False))
-
+                               widget=PasswordMixin.widget(render_value=False,
+                                                           required=True))
     password2 = forms.CharField(max_length=255,
-                                widget=forms.PasswordInput(render_value=False))
+                                widget=PasswordMixin.widget(render_value=False,
+                                                            required=True))
     recaptcha = captcha.fields.ReCaptchaField()
     homepage = forms.URLField(label=_lazy(u'Homepage'), required=False)
 
@@ -316,10 +323,8 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
                                min_length=PasswordMixin.min_length,
                                error_messages=PasswordMixin.error_msg,
                                widget=PasswordMixin.widget(render_value=False))
-
     password2 = forms.CharField(max_length=255, required=False,
                                 widget=forms.PasswordInput(render_value=False))
-
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     notifications = forms.MultipleChoiceField(
