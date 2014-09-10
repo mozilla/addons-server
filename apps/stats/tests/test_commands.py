@@ -70,8 +70,10 @@ class TestADICommand(amo.tests.TestCase):
                                 date='2014-07-10')
         eq_(ThemeUpdateCount.objects.all().count(), 2)
         eq_(ThemeUpdateCount.objects.get(addon_id=3615).count, 2)
-        # Persona 813 has addon id 15663
-        eq_(ThemeUpdateCount.objects.get(addon_id=15663).count, 7)
+        # Persona 813 has addon id 15663: we need the count to be the sum of
+        # the "old" request on the persona_id 813 (only the one with the source
+        # "gp") and the "new" request on the addon_id 15663.
+        eq_(ThemeUpdateCount.objects.get(addon_id=15663).count, 15)
 
     def test_update_theme_popularity_movers(self):
         # Create ThemeUpdateCount entries for the persona 559 with addon_id

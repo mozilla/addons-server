@@ -101,8 +101,16 @@ class Command(BaseCommand):
                 if addon_id not in addons:
                     continue
 
-                theme_update_counts[addon_id] = ThemeUpdateCount(
-                    addon_id=addon_id, date=day, count=count)
+                # Memoize the ThemeUpdateCount.
+                if addon_id in theme_update_counts:
+                    tuc = theme_update_counts[addon_id]
+                else:
+                    tuc = ThemeUpdateCount(addon_id=addon_id, date=day,
+                                           count=0)
+                    theme_update_counts[addon_id] = tuc
+
+                # We can now fill the ThemeUpdateCount object.
+                tuc.count += count
 
         # Create in bulk: this is much faster.
         ThemeUpdateCount.objects.bulk_create(theme_update_counts.values(), 100)
