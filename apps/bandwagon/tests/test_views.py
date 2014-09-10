@@ -115,7 +115,7 @@ class TestViews(amo.tests.TestCase):
             self.check_response(*test)
 
     def test_legacy_redirects_edit(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         uuid = u.favorites_collection().uuid
         self.check_response('/collections/edit/%s' % uuid, 301,
@@ -135,7 +135,7 @@ class TestViews(amo.tests.TestCase):
             self.check_response(*test)
 
     def test_collection_directory_redirects_with_login(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
 
         self.check_response('/collections/favorites/', 301,
                             reverse('collections.following'))
@@ -159,7 +159,7 @@ class TestViews(amo.tests.TestCase):
         amo.set_user(u)
         c.add_addon(addon)
 
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         response = self.client.get(c.get_url_path())
         eq_(list(response.context['addons'].object_list), [addon])
 
@@ -171,7 +171,7 @@ class TestViews(amo.tests.TestCase):
         c.add_addon(addon)
 
         assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='foo')
+                                 password='password')
 
         # My Collections.
         response = self.client.get('/en-US/firefox/collections/mine/')
@@ -198,7 +198,7 @@ class TestViews(amo.tests.TestCase):
         c.save()
 
         assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='foo')
+                                 password='password')
         response = self.client.get('/en-US/firefox/collections/mine/')
         # All markup is escaped, all links are stripped.
         self.assertContains(response, '&lt;b&gt;foo&lt;/b&gt; some text')
@@ -213,7 +213,7 @@ class TestViews(amo.tests.TestCase):
         eq_(res.status_code, 302)
         assert res.url != edit_url
 
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
 
         res = self.client.post(collection.delete_icon_url())
         eq_(res.status_code, 302)
@@ -225,7 +225,7 @@ class TestViews(amo.tests.TestCase):
         collection = user.favorites_collection()
         client = django.test.Client(enforce_csrf_checks=True)
 
-        client.login(username='jbalogh@mozilla.com', password='foo')
+        client.login(username='jbalogh@mozilla.com', password='password')
 
         res = client.get(collection.delete_icon_url())
         eq_(res.status_code, 405)  # Only POSTs are allowed.
@@ -240,14 +240,14 @@ class TestPrivacy(amo.tests.TestCase):
     def setUp(self):
         # The favorites collection is created automatically.
         self.url = reverse('collections.detail', args=['jbalogh', 'favorites'])
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         eq_(self.client.get(self.url).status_code, 200)
         self.client.logout()
         self.c = Collection.objects.get(slug='favorites',
                                         author__username='jbalogh')
 
     def test_owner(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         # TODO(cvan): Uncomment when bug 719512 gets fixed.
@@ -287,7 +287,7 @@ class TestVotes(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         args = ['fligtar', 'slug']
         Collection.objects.create(slug='slug', author_id=9945)
         self.c_url = reverse('collections.detail', args=args)
@@ -825,7 +825,7 @@ class TestChangeAddon(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         self.add = reverse('collections.alter',
                            args=['jbalogh', 'mobile', 'add'])
         self.remove = reverse('collections.alter',

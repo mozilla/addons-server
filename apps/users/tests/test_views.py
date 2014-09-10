@@ -68,7 +68,7 @@ class TestAjax(UserViewBase):
 
     def setUp(self):
         super(TestAjax, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
 
     def test_ajax_404(self):
         r = self.client.get(reverse('users.ajax'), follow=True)
@@ -116,11 +116,11 @@ class TestEdit(UserViewBase):
 
     def setUp(self):
         super(TestEdit, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                     'oldpassword': 'foo', 'password': 'longenough',
+                     'oldpassword': 'password', 'password': 'longenough',
                      'password2': 'longenough', 'lang': 'en-US'}
 
     def test_password_logs(self):
@@ -447,7 +447,7 @@ class TestLogin(UserViewBase):
     def setUp(self):
         super(TestLogin, self).setUp()
         self.url = reverse('users.login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
+        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
 
     def test_client_login(self):
         """
@@ -455,7 +455,7 @@ class TestLogin(UserViewBase):
         our custom code.
         """
         assert not self.client.login(username='jbalogh@mozilla.com',
-                                     password='wrong')
+                                     password='wrongpassword')
         assert self.client.login(**self.data)
 
     def test_double_login(self):
@@ -584,24 +584,24 @@ class TestLogin(UserViewBase):
         """
         profile = UserProfile.objects.create(username='login_test',
                                              email='bob@example.com')
-        profile.set_password('baz')
+        profile.set_password('bazpassword')
         profile.email = 'charlie@example.com'
         profile.save()
         profile2 = UserProfile.objects.create(username='login_test2',
                                               email='bob@example.com')
-        profile2.set_password('foo')
+        profile2.set_password('foopassword')
         profile2.save()
 
         res = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                               'password': 'wrong'})
+                                               'password': 'wrongpassword'})
         eq_(res.status_code, 200)
         eq_(UserProfile.objects.get(email='charlie@example.com')
             .failed_login_attempts, 1)
         res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                                'password': 'baz'})
+                                                'password': 'bazpassword'})
         eq_(res2.status_code, 302)
         res3 = self.client.post(self.url, data={'username': 'bob@example.com',
-                                                'password': 'foo'})
+                                                'password': 'foopassword'})
         eq_(res3.status_code, 302)
 
     def test_changed_account(self):
@@ -610,17 +610,17 @@ class TestLogin(UserViewBase):
         """
         profile = UserProfile.objects.create(username='login_test',
                                              email='bob@example.com')
-        profile.set_password('baz')
+        profile.set_password('bazpassword')
         profile.email = 'charlie@example.com'
         profile.save()
 
         res = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                               'password': 'wrong'})
+                                               'password': 'wrongpassword'})
         eq_(res.status_code, 200)
         eq_(UserProfile.objects.get(email='charlie@example.com')
             .failed_login_attempts, 1)
         res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                                'password': 'baz'})
+                                                'password': 'bazpassword'})
         eq_(res2.status_code, 302)
 
 
@@ -630,7 +630,7 @@ class TestPersonaLogin(UserViewBase):
     def setUp(self):
         super(TestPersonaLogin, self).setUp()
         self.url = reverse('users.browserid_login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
+        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
@@ -901,7 +901,7 @@ class TestFailedCount(UserViewBase):
     def setUp(self):
         super(TestFailedCount, self).setUp()
         self.url = reverse('users.login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'foo'}
+        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
 
     def log_calls(self, obj):
         return [call[0][0] for call in obj.call_args_list]
@@ -1032,7 +1032,7 @@ class TestLogout(UserViewBase):
 
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        self.client.login(username=user.email, password='foo')
+        self.client.login(username=user.email, password='password')
         r = self.client.get('/', follow=True)
         eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
             user.display_name)
@@ -1042,7 +1042,7 @@ class TestLogout(UserViewBase):
         assert not pq(r.content)('.account .user')
 
     def test_redirect(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         self.client.get('/', follow=True)
         url = '/en-US/about'
         r = self.client.get(urlparams(reverse('users.logout'), to=url),
@@ -1065,7 +1065,7 @@ class TestLogout(UserViewBase):
         self.assertRedirects(r, '/en-US/about', status_code=302)
 
     def test_session_cookie_should_be_http_only(self):
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get(reverse('users.logout'))
         self.assertIn('httponly', str(r.cookies[settings.SESSION_COOKIE_NAME]))
 
@@ -1154,7 +1154,7 @@ class TestProfileLinks(UserViewBase):
                                               args=[self.user.id]))
 
         # Non-admin, someone else's profile.
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         links = get_links(9945)
         eq_(links.length, 1)
         eq_(links.eq(0).attr('href'), reverse('users.abuse', args=[9945]))
@@ -1180,7 +1180,7 @@ class TestProfileLinks(UserViewBase):
 
     def test_amouser(self):
         # request.amo_user should be a special guy.
-        self.client.login(username='jbalogh@mozilla.com', password='foo')
+        self.client.login(username='jbalogh@mozilla.com', password='password')
         response = self.client.get(reverse('home'))
         request = response.context['request']
         assert hasattr(request.amo_user, 'mobile_addons')
