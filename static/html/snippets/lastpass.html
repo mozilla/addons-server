@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Static HTML page used in an iframe for a snippet that can install an
+       addon directly from about:home (via the aformentioned iframe). -->
+  <head>
+    <meta charset="utf-8">
+    <title>LastPass Addon Snippet</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #install-link {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAAPklEQVR4AWP4D4Wv/oMAkITyKZD4Cpb4iiSBA+CWePkfAn+CeEASxmdY+R8CH4LEgSSMTwt/bPk/EQi3wCUAcebY97QtnxsAAAAASUVORK5CYII=) top 12px left 16px no-repeat, linear-gradient(#84C63C, #489615) repeat scroll 0% 0% #489615;
+        border-radius: 6px;
+        box-shadow: 0px 3px rgba(0, 0, 0, 0.1), 0px -4px rgba(0, 0, 0, 0.1) inset;
+        color: #FFF;
+        display: inline-block;
+        font: bold 16px "Trebuchet MS",sans-serif;
+        margin-top: 8px;
+        padding: 8px 16px 12px 38px;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+      }
+
+      #install-link:active {
+        box-shadow: none;
+        margin-top: 3px;
+      }
+
+      #icon-container {
+        float: left;
+        width: 80px;
+        text-align: center;
+      }
+
+      #content {
+        color: #3C3C3C;
+        font: message-box;
+        font-size: 12px;
+        padding-left: 80px;
+      }
+
+      #content p {
+        display: table-cell;
+        vertical-align: middle;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="icon-container">
+      <img id="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAyCAMAAAAZbWmiAAABgFBMVEUAAAAkZaCl0fCfzu+MwedWoKshZ6EmbKZWkL5imsWgzu94sN5jrd+Uxep9vu+NwuiQwuchZJ0rereSxemk0fAgaqc5bqwocKyfze4nZ6Gi0fA4frVLiLlbpNqXxeqRwuggaKQfba+x2PAhZZ4rcaqi0O+Zy+wgZZ0kW5cqdrOn1fOFu+Si0O8iZ6FXotek0fCfzu6m0/Fcpdo9dLB1q9hKi8NBicBso8wgZ50hZp9ZoNdqrNo7dK1MlsqAvuiMv+aNv+dhruGKu+IgZ6Gj0fCi0O5OibmOwOZfq+Bgr+E/ib5gq95Pgrdhqd2CvOVssuF+s+A0h8dYnNRUl9F0rt9optksXZ1wptYfcrcnVpc0aKeBtuMbRYhXkssiUJFko9hyrN0vfrweSoyAteIfcLR5seBrqNthoNdloNN8s+JLfLREgb5Kh8UxhMVdoNdPjclantVlmc1cmNGOwOgec7pQks0xgsFWm9Rik8ZXir89fL2FueUqf8KKvecieb5RgrkWSzkAAAAAUXRSTlMAmenm4QPd6NfbSPvn+QYsuCf97cny/Ozs0dTj0vSItOv5EVfijOBADvUc7ja7565W3e789e7i4Bd0/M9m5uXMy0ietJxet8WG+qW07eysx/5re2CEAAACcklEQVR4Xu3UZXcaQRSA4SFYikYhEEJJiBvRNtZY3VlX3CXu0vavd2YWFobsOe0PyPuVZ/feczkAUM/Nhj/u7+3t98z/w3nnUuc4i9UQeBzhHtihY2ctUa/V6mdrgWnD91icXAnGFdaycvVPdZVX1cWfP17Cwt52eHhex50Id2qjbDxeLMGKc0tt0PRNEMplTrjjpdUkZnIiXcclnKEDj7bewVfXKvwoiYVUSsdhOUWo3grptHBWTcojru1PXvDl8/ENU1Mb8WggjnPeqloyw4zsLgObfXiRZu75LGSSnEuc6AmaS56s7Ha5l8EClYF0i2GurhiGOUvcN0oIEi9JvFxbsXS5FWUAmK4p6to//maEQSV9twJXLgvlOzmrwidvvmOmPMTAZoaCHc3YX63cMIyEDpPNqrgr2mXpulBQF2EwNUNp9aFlebWV5JpEDOd2gA0/1SxjH19P6s6H3tZsyAuAXYd42WEfD/OtW4Z+Ka3M8OYBnenLbrkmCaZUlgEAC0eERMtuQ0Y4NgihKUN1lHlNsFyBZWMQRvsMIOmK7ASEvf4n8EWHSxWWILTan8KH1nqFNFc6ncO/INtRRxCSju4fQzDw2FEfhrqjaXoSoEzibzIRQsLRQQx38pdkeQyxSx0jVxrAsDciGsIK23BF8zzQpG2UhN0P7S4+MAYaWU0RsQPmKmwRu+P+CdDWlC1PQHzmU+g4swMQTb8dbIdN58RjyaKRvA4VzZ32T1jB0zYCo01YgV8HOZZsMyJqMI2cMzhrzPRDid1FNPad0djWoQbFSzGUolPmJSNAHkoMcSwx1rjphcGQO+YB/1H0w3sNPPcX7A5kwIfZC5IAAAAASUVORK5CYII=" />
+    </div>
+    <div id="content">
+      <p>We love giving you awesome add-ons. We also love giving you free things. Check out LastPass, a password management add-on.</p>
+      <a href="#" id="install-link">Add to Firefox</a>
+    </div>
+    <script>
+      (function() {
+        'use strict';
+
+        var installLink = document.getElementById('install-link');
+        installLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          send_stats_event('lastpass-addon-snippet-click');
+          var xpiUrl = 'https://addons.mozilla.org/firefox/downloads/latest/8542/platform:2/addon-8542-latest.xpi?src=snippet';
+          InstallTrigger.install({
+            LastPass:  {
+              URL: xpiUrl,
+              IconURL: 'https://addons.cdn.mozilla.net/user-media/addon_icons/8/8542-64.png?modified=1390935753',
+              toString: function() {
+                return xpiUrl;
+              },
+            }
+          }, postInstall);
+        }, false);
+
+        function postInstall(url, status) {
+          if (status == 0) {
+            send_stats_event('lastpass-addon-snippet-install');
+          } else {
+            send_stats_event('lastpass-addon-snippet-cancelled-install');
+          }
+        }
+
+        // Notifies stats server that something happened.
+        var SAMPLE_RATE = 0.1;
+        var STATS_URL = 'https://snippets-stats.mozilla.org/foo.html';
+        function send_stats_event(id) {
+          if (Math.random() <= SAMPLE_RATE) {
+            var url = STATS_URL + '?snippet_name=' + id + '&locale=en-US';
+            var r = new XMLHttpRequest();
+            r.open('GET', url);
+            r.send();
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
