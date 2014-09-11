@@ -72,7 +72,7 @@ def get_output(data):
 
     # Begin our huge and embarrassing if-else statement.
     if g['mimetype'] in ['application/x-shockwave-flash',
-                         'application/futuresplash']
+                         'application/futuresplash']:
         # Tell the user where they can go to get the installer.
 
         plugin.update(
