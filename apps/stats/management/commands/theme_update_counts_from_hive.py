@@ -33,7 +33,6 @@ class Command(HiveQueryToFileCommand):
           and domain = "versioncheck.addons.mozilla.org"
           and ds = '%s'
           -- fast filters:
-          and http_status_code = 200
           and request_url like '%%update-check%%'
           -- takes more time but it's the correct filter:
           and regexp_extract(request_url, '^/([-\\w]+)(/themes/update-check/)(\\d+).*', 2) = '/themes/update-check/'
