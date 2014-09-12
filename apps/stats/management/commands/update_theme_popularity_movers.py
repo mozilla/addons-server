@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 from django.core.management.base import BaseCommand
 from django.db import connection
@@ -28,13 +28,20 @@ class Command(BaseCommand):
     help = __doc__
 
     def handle(self, *args, **options):
-        start = datetime.now()  # Measure the time it takes to run the script.
+        start = datetime.datetime.now()  # Measure the time it takes to run.
+        # The theme_update_counts_from_* gather data for the day before, at
+        # best.
+        yesterday = datetime.date.today() - datetime.timedelta(days=1)
 
-        # Average number of users over the last 7 days.
-        one_week_averages = ThemeUpdateCount.objects.get_last_x_days_avg(7)
+        # Average number of users over the last 7 days (0 to 6 days ago).
+        last_week_avgs = ThemeUpdateCount.objects.get_range_days_avg(
+            start=yesterday - datetime.timedelta(days=6), end=yesterday)
 
-        # Average number of users over the last three weeks (21 days).
-        three_weeks_averages = ThemeUpdateCount.objects.get_last_x_days_avg(21)
+        # Average number of users over the three weeks before last week
+        # (7 to 27 days ago).
+        prev_3_weeks_avgs = ThemeUpdateCount.objects.get_range_days_avg(
+            start=yesterday - datetime.timedelta(days=27),
+            end=yesterday - datetime.timedelta(days=7))
 
         # Perf: memoize the addon to persona relation.
         addon_to_persona = dict(Persona.objects.values_list('addon_id', 'id'))
@@ -43,13 +50,16 @@ class Command(BaseCommand):
 
         # Loop over the three_weeks_avg_dict, which can't be shorter than the
         # one_week_avg_dict.
-        for addon_id, three_weeks_avg in three_weeks_averages.iteritems():
+        for addon_id, prev_3_weeks in prev_3_weeks_avgs.iteritems():
             # Create the temporary ThemeUpdateCountBulk for later bulk create.
-            pop = one_week_averages.get(addon_id, 0)
+            pop = last_week_avgs.get(addon_id, 0)
             tucb = ThemeUpdateCountBulk(
                 persona_id=addon_to_persona[addon_id],
                 popularity=pop,
-                movers=(pop - three_weeks_avg) / three_weeks_avg)
+                movers=(pop - prev_3_weeks) / prev_3_weeks)
+            # Set movers to 0 if values aren't high enough.
+            if pop <= 100 or prev_3_weeks_avgs <= 1:
+                tucb.movers = 0
             temp_update_counts.append(tucb)
 
         # Create in bulk: this is much faster.
@@ -67,4 +77,5 @@ class Command(BaseCommand):
         cursor = connection.cursor()
         cursor.execute(raw_query)
 
-        log.debug('Total processing time: %s' % (datetime.now() - start))
+        log.debug('Total processing time: %s' % (
+            datetime.datetime.now() - start))

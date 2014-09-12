@@ -109,12 +109,11 @@ class UpdateCountTmp(SearchMixin, models.Model):
 
 class ThemeUpdateCountManager(models.Manager):
 
-    def get_last_x_days_avg(self, days):
-        """Return a dict of the average number of users (count) over the last x
-        days per addon."""
-        today = datetime.date.today()
+    def get_range_days_avg(self, start, end):
+        """Return a a dict of the average number of users (count) over the
+        given range of days, per addons."""
         averages = (self.values('addon_id')
-                        .filter(date__gt=today - datetime.timedelta(days=days))
+                        .filter(date__range=[start, end])
                         .annotate(avg=models.Avg('count')))
         # Transform the queryset from a list of dicts
         #   [{'addon_id': id1, 'count__avg': avg1], {'addon_id': id2, ...
