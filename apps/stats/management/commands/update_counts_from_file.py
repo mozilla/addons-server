@@ -9,6 +9,9 @@ import commonware.log
 
 import amo
 from addons.models import Addon
+from applications.models import AppVersion
+from constants.applications import APPS_ALL
+from constants.platforms import PLATFORMS
 # TODO: use UpdateCount when the script is proven to work correctly.
 from stats.models import update_inc, UpdateCountTmp as UpdateCount
 
@@ -16,6 +19,10 @@ from . import get_date_from_file
 
 
 log = commonware.log.getLogger('adi.updatecountsfromfile')
+
+APP_GUIDS = set([a.guid for a in APPS_ALL.values()])
+APP_VERSIONS = set(AppVersion.objects.values_list('version', flat=True))
+PLATFORM_NAMES = set([p.api_name for p in PLATFORMS.values()])
 
 
 class Command(BaseCommand):
@@ -154,6 +161,9 @@ class Command(BaseCommand):
                     elif group == 'status':
                         uc.statuses = update_inc(uc.statuses, data, count)
                     elif group == 'app':
+                        if (app_id not in APP_GUIDS or
+                                app_ver not in APP_VERSIONS):  # Sanity check.
+                            continue
                         # Applications is a dict of dicts, eg:
                         # {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}":
                         #       {"10.0": 2, "21.0": 1, ....},
@@ -167,6 +177,8 @@ class Command(BaseCommand):
                         uc.applications.update(
                             {app_id: update_inc(app, app_ver, count)})
                     elif group == 'os':
+                        if data not in PLATFORM_NAMES:  # Sanity check.
+                            continue
                         uc.oses = update_inc(uc.oses, data, count)
                     elif group == 'locale':
                         # Drop incorrect locales sizes.
