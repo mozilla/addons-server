@@ -37,9 +37,9 @@ class HiveQueryToFileCommand(BaseCommand):
         limit_str = ('limit %s' % limit) if limit else ''
 
         if not os.path.isdir(folder):
-            os.makedirs(folder, 0775)
+            os.makedirs(folder)
         if not os.path.isdir(os.path.join(folder, day)):
-            os.makedirs(os.path.join(folder, day, 0775))
+            os.makedirs(os.path.join(folder, day))
         filepath = os.path.join(folder, day, self.filename)
         return query_to_file(self.query % (day, limit_str), filepath, sep)
 
