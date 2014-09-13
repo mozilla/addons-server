@@ -48,18 +48,19 @@ class Command(BaseCommand):
 
         temp_update_counts = []
 
-        # Loop over the three_weeks_avg_dict, which can't be shorter than the
-        # one_week_avg_dict.
-        for addon_id, prev_3_weeks in prev_3_weeks_avgs.iteritems():
+        for addon_id, popularity in last_week_avgs.iteritems():
+            if addon_id not in addon_to_persona:
+                continue
             # Create the temporary ThemeUpdateCountBulk for later bulk create.
-            pop = last_week_avgs.get(addon_id, 0)
+            prev_3_weeks_avg = prev_3_weeks_avgs.get(addon_id, 0)
             tucb = ThemeUpdateCountBulk(
                 persona_id=addon_to_persona[addon_id],
-                popularity=pop,
-                movers=(pop - prev_3_weeks) / prev_3_weeks)
+                popularity=popularity,
+                movers=0)
             # Set movers to 0 if values aren't high enough.
-            if pop <= 100 or prev_3_weeks_avgs <= 1:
-                tucb.movers = 0
+            if popularity > 100 and prev_3_weeks_avg > 1:
+                tucb.movers = (
+                    popularity - prev_3_weeks_avg) / prev_3_weeks_avg
             temp_update_counts.append(tucb)
 
         # Create in bulk: this is much faster.
