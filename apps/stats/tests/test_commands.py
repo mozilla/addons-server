@@ -48,8 +48,7 @@ class TestADICommand(amo.tests.TestCase):
         eq_(update_count.date, date(2014, 7, 10))
         eq_(update_count.versions, {u'3.8': 2, u'3.7': 3})
         eq_(update_count.statuses, {u'userEnabled': 5})
-        eq_(update_count.applications,
-            {u'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {u'2.0': 18}})
+        eq_(update_count.applications, {u'{app-id}': {u'30.0': 18}})
         eq_(update_count.oses, {u'WINNT': 5})
         eq_(update_count.locales, {u'en_us': 5})
 
