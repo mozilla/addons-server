@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-09-06 04:34+0000\n"
+"PO-Revision-Date: 2014-09-14 14:16+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409978059.0\n"
+"X-POOTLE-MTIME: 1410704194.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -743,7 +743,7 @@ msgstr "由 {0} 发表于 {1}"
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr "尚未评分"
+msgstr "尚无评分"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
@@ -968,7 +968,7 @@ msgstr "平均"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr "撰写评论"
+msgstr "填写评论"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
@@ -1206,7 +1206,7 @@ msgstr "收藏者说明"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr "尚未评分"
+msgstr "尚无评分"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:24 apps/devhub/templates/devhub/addons/listing/macros.html:15
@@ -11494,7 +11494,7 @@ msgstr "{0} :: 评论"
 #. {0} is an addon name.
 #: apps/reviews/templates/reviews/review_list.html:24 apps/reviews/templates/reviews/mobile/add.html:4 apps/reviews/templates/reviews/mobile/review_list.html:4
 msgid "Reviews for {0}"
-msgstr "对 {0} 的评价"
+msgstr "对 {0} 的评论"
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:27
@@ -11514,7 +11514,7 @@ msgstr[0] "%(user)s 对 %(addon)s 发表的评论"
 
 #: apps/reviews/templates/reviews/review_list.html:42
 msgid "No reviews found."
-msgstr "没有发现评论。"
+msgstr "还没有评论。"
 
 #: apps/reviews/templates/reviews/review_list.html:57
 msgid "<strong>Average</strong> (%(total)s)"
@@ -11522,11 +11522,11 @@ msgstr "<strong>平均</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
-msgstr "撰写新评论"
+msgstr "写一段新的评论"
 
 #: apps/reviews/templates/reviews/review_list.html:81 apps/reviews/templates/reviews/mobile/reviews_link.html:15
 msgid "Be the first to write a review."
-msgstr "率先撰写评论。"
+msgstr "来写下第一篇评论吧。"
 
 #: apps/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
