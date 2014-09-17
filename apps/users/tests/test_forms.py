@@ -316,8 +316,7 @@ class TestUserLoginForm(UserFormBase):
                               'password': 'shortpw'})
         error_msg = (u'As part of our new password policy, your password must '
                       'be 8 characters or more. Please update your password '
-                      'if that is not the case by '
-                      '<a href="/en-US/firefox/users/pwreset">issuing a '
+                      'by <a href="/en-US/firefox/users/pwreset">issuing a '
                       'password reset</a>.')
         self.assertFormError(r, 'form', 'password', error_msg)
 
