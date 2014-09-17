@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-05 08:42-0700\n"
-"PO-Revision-Date: 2014-09-01 08:09+0000\n"
+"PO-Revision-Date: 2014-09-17 09:20+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409558979.0\n"
+"X-POOTLE-MTIME: 1410945642.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3406,7 +3407,7 @@ msgstr "Језички пакет (Апликација)"
 
 #: apps/constants/base.py:153
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Language Pack (додатак)"
 
 #: apps/constants/base.py:154
 msgid "Plugin"
@@ -3429,7 +3430,7 @@ msgstr "Језички пакети (Апликација)"
 
 #: apps/constants/base.py:166
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Language Packs (додатак)"
 
 #: apps/constants/base.py:167
 msgid "Plugins"
@@ -5773,7 +5774,7 @@ msgstr "Овај чланак објашњава како да се локали
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
 msgid "Responsible First-run Usage"
-msgstr ""
+msgstr "Одговорна употреба при првом покретању"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
 msgid "This blog post describes what a bad first-run experience means for users, and gives tips for improving that experience."
@@ -6634,6 +6635,9 @@ msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
+"Чланови Mozilla тима за додатке могу забранити било коју селекцију додатка "
+"због безбедности, приватности, компатибилност или било ког другог разлога, "
+"али генерално је на Одбору да изабере додатке које ће истаћи."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -6660,6 +6664,10 @@ msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
 "are free to choose the best fit for their add-on."
 msgstr ""
+"Како бисмо обезбедили да сви додаци који су хостовани у нашој галерији "
+"безбедни за кориснике да инсталирају, Mozilla ће почети захтевати да сви "
+"додаци који се хостују имају рецензију. Нудимо две врсте рецензије и "
+"програмери су слободни да изаберу најбољу која одговара за њиховом додатку."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
@@ -7069,6 +7077,9 @@ msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
+"Одабир одговарајуће лиценце за Ваш додатак је веома важан корак у процесу за "
+"подношење. Лиценца прецизира права које дајете на изворни код и важна је у "
+"заштити интелектуалног власништво."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
@@ -7255,6 +7266,9 @@ msgstr "XPCOM преглед"
 #: apps/devhub/templates/devhub/docs/reference.html:231
 msgid "XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"XPCOM је међу-платформска компонента објекта модела са више повезаних "
+"језика, допуштајући XPCOM компонентима да буду имплементиране у JavaScript, "
+"Java, Python и C++."
 
 #: apps/devhub/templates/devhub/docs/reference.html:238
 msgid "XPCOM Reference"
@@ -7443,6 +7457,9 @@ msgid ""
 "Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the "
 "<code>Appearance</code> tab."
 msgstr ""
+"Када се инсталира тема, она се чува у Управљачу додацима, где можете да "
+"омогућите или онемогућите. Једноставно идите на <code>Алатке</code> &gt; "
+"<code>Додаци</code> мени и кликните на<code>Изглед</code> језичак."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
@@ -7483,6 +7500,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
 msgstr ""
+"Или сте власник свих елемената Вашег дизајна или сте овлашћени широм света "
+"да их репродукујете и дистрибуирате (и да дозволите другима да то ураде) од "
+"стране власника или закона."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
@@ -7552,6 +7572,8 @@ msgstr "Поднесите Вашу тему"
 #: apps/devhub/templates/devhub/docs/themes.html:35
 msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
 msgstr ""
+"Теме се састоје од две графичке датотеке слика&mdash;a слика \"заглавља\" и "
+"слика \"подножја\" &mdash;што је подразумевана подлога Firefox позадине."
 
 #: apps/devhub/templates/devhub/docs/themes.html:41
 msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
@@ -7594,6 +7616,8 @@ msgstr "Савети"
 #: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
 msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
 msgstr ""
+"Суптилан, благ контраст слике и градиенти су најбољи; веома детаљне слике ће "
+"се такмичити са корисничким интерфејсом прегледача."
 
 #: apps/devhub/templates/devhub/docs/themes.html:86
 msgid "Firefox may reveal more of the lower portion of the image if another toolbar or other UI element is added to the top of the window."
@@ -7616,10 +7640,13 @@ msgstr "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr нуди профес�
 #: apps/devhub/templates/devhub/docs/themes.html:110
 msgid "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch up photos with Photoshop&reg; Express, a free online photo editor."
 msgstr ""
+"<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; подесите, ротирајте и "
+"дотерајте фотографије са Photoshop&reg; Express, бесплатан онлајн уређивач "
+"слика."
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
 msgid "Creating a Theme Footer Image"
-msgstr ""
+msgstr "Прављење слике заглавља теме"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
 msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
@@ -7649,10 +7676,14 @@ msgstr "Подношење слика Ваше теме"
 #: apps/devhub/templates/devhub/docs/themes.html:173
 msgid "To get started submitting your images, go to the Theme Submission page:"
 msgstr ""
+"Да бисте почели са подношењем слика, идите на страницу за подношење тема:"
 
 #: apps/devhub/templates/devhub/docs/themes.html:179
 msgid "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate names are not allowed, so you may need to try a few times to find a unique name."
 msgstr ""
+"<b>Именујте Вашу тему</b> &mdash; изаберите јединствено име за Вашу тему. "
+"Дупликати именима нису дозвољени, тако да ћете морати да покушате неколико "
+"пута да пронађе јединствено име."
 
 #: apps/devhub/templates/devhub/docs/themes.html:186
 msgid ""
