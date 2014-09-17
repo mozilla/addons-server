@@ -297,16 +297,29 @@ class TestUserLoginForm(UserFormBase):
         return "/en-US/firefox/users/login"
 
     def test_credential_fail(self):
-        url = self._get_login_url()
-        r = self.client.post(url, {'username': '', 'password': ''})
+        r = self.client.post(self._get_login_url(),
+                             {'username': '', 'password': ''})
         self.assertFormError(r, 'form', 'username', "This field is required.")
         self.assertFormError(r, 'form', 'password', "This field is required.")
 
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'wrongpassword'})
+    def test_credential_fail_wrong_password(self):
+        r = self.client.post(self._get_login_url(),
+                             {'username': 'jbalogh@mozilla.com',
+                              'password': 'wrongpassword'})
         self.assertFormError(r, 'form', '', ("Please enter a correct username "
                                              "and password. Note that both "
                                              "fields may be case-sensitive."))
+
+    def test_credential_fail_short_password(self):
+        r = self.client.post(self._get_login_url(),
+                             {'username': 'jbalogh@mozilla.com',
+                              'password': 'shortpw'})
+        error_msg = (u'As part of our new password policy, your password must '
+                      'be 8 characters or more. Please update your password '
+                      'if that is not the case by '
+                      '<a href="/en-US/firefox/users/pwreset">issuing a '
+                      'password reset</a>.')
+        self.assertFormError(r, 'form', 'password', error_msg)
 
     def test_credential_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
