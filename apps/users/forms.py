@@ -85,8 +85,7 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
         if ('password' in self.errors and 'password' in self.data and
                 1 < len(self.data['password']) < PasswordMixin.min_length):
             msg = _('As part of our new password policy, your password must '
-                    'be %s characters or more. '
-                    'Please update your password if that is not the case by '
+                    'be %s characters or more. Please update your password by '
                     '<a href="%s">issuing a password reset</a>.'
                     ) % (PasswordMixin.min_length,
                          reverse('password_reset_form'))
