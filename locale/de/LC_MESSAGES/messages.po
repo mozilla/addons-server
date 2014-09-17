@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-05 17:42+0000\n"
+"PO-Revision-Date: 2014-09-17 17:38+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1409938975.0\n"
+"X-POOTLE-MTIME: 1410975516.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -75,8 +75,8 @@ msgstr[1] "„{0}“ sind reservierte Schlagwörter und können nicht verwendet 
 #: apps/addons/forms.py:99
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Sie haben um {0} zu viele Schlagwörter."
-msgstr[1] "Sie haben um {0} zu viele Schlagwörter."
+msgstr[0] "Sie haben {0} Schlagwort zu viel."
+msgstr[1] "Sie haben {0} Schlagwörter zu viel."
 
 #: apps/addons/forms.py:104
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -384,7 +384,7 @@ msgstr "Eine einmalige Spende in der vorgeschlagenen Höhe von {0}"
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr "Eine einmaliger Spende von {1} {0}"
+msgstr "Eine einmalige Spende von {1} {0}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
@@ -3814,6 +3814,8 @@ msgstr "Version %s existiert bereits."
 #: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
+"Treffen Sie eine gültige Wahl. Diese Wahl gehört nicht zu den verfügbaren "
+"Möglichkeiten."
 
 #: apps/devhub/forms.py:599
 msgid "You cannot upload any more files for this version."
@@ -12709,6 +12711,9 @@ msgstr "Dieses Passwort ist nicht erlaubt."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Als Teil unserer neuen Passwort-Regeln muss Ihr Passwort mindestens %s "
+"Zeichen lang sein. Bitte aktualisieren Sie Ihr Passwort, falls noch nicht "
+"geschehen, indem Sie <a href=\"%s\">Ihr Passwort zurücksetzen</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
