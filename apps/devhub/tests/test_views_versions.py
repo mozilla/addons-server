@@ -14,7 +14,7 @@ from amo.tests import formset, initial
 from addons.models import Addon
 from applications.models import Application, AppVersion
 from devhub.models import ActivityLog
-from files.models import File, Platform
+from files.models import File
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 
@@ -338,7 +338,7 @@ class TestVersion(amo.tests.TestCase):
 
 class TestVersionEdit(amo.tests.TestCase):
     fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'base/thunderbird', 'base/platforms']
+                'base/thunderbird']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -414,7 +414,7 @@ class TestVersionEditDetails(TestVersionEdit):
     def test_supported_platforms(self):
         res = self.client.get(self.url)
         choices = res.context['new_file_form'].fields['platform'].choices
-        taken = [f.platform_id for f in self.version.files.all()]
+        taken = [f.platform for f in self.version.files.all()]
         platforms = set(self.version.compatible_platforms()) - set(taken)
         eq_(len(choices), len(platforms))
 
@@ -474,8 +474,7 @@ class TestVersionEditDetails(TestVersionEdit):
 class TestVersionEditSearchEngine(TestVersionEdit):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
     fixtures = ['base/apps', 'base/users',
-                'base/thunderbird', 'base/addon_4594_a9.json',
-                'base/platforms']
+                'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -549,10 +548,10 @@ class TestVersionEditFiles(TestVersionEdit):
     def test_unique_platforms(self):
         # Move the existing file to Linux.
         f = self.version.files.get()
-        f.update(platform=Platform.objects.get(id=amo.PLATFORM_LINUX.id))
+        f.update(platform=amo.PLATFORM_LINUX.id)
         # And make a new file for Mac.
         File.objects.create(version=self.version,
-                            platform_id=amo.PLATFORM_MAC.id)
+                            platform=amo.PLATFORM_MAC.id)
 
         forms = map(initial,
                     self.client.get(self.url).context['file_form'].forms)
@@ -569,7 +568,7 @@ class TestVersionEditFiles(TestVersionEdit):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
 
         File.objects.create(version=self.version,
-                            platform_id=amo.PLATFORM_MAC.id)
+                            platform=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         res = self.client.post(self.url, self.formset(*forms, prefix='files'))
@@ -581,7 +580,7 @@ class TestVersionEditFiles(TestVersionEdit):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
 
         File.objects.create(version=self.version,
-                    platform_id=amo.PLATFORM_MAC.id)
+                    platform=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         # A test that we don't check the platform for deleted files.
@@ -592,9 +591,9 @@ class TestVersionEditFiles(TestVersionEdit):
     def add_in_bsd(self):
         f = self.version.files.get()
         # The default file is All, which prevents the addition of more files.
-        f.update(platform=Platform.objects.get(id=amo.PLATFORM_MAC.id))
+        f.update(platform=amo.PLATFORM_MAC.id)
         return File.objects.create(version=self.version,
-                                   platform_id=amo.PLATFORM_BSD.id)
+                                   platform=amo.PLATFORM_BSD.id)
 
     def get_platforms(self, form):
         return [amo.PLATFORMS[i[0]].shortname
@@ -617,7 +616,7 @@ class TestVersionEditFiles(TestVersionEdit):
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        eq_(File.objects.no_cache().get(pk=bsd.pk).platform_id,
+        eq_(File.objects.no_cache().get(pk=bsd.pk).platform,
             amo.PLATFORM_BSD.id)
 
     def test_all_unsupported_platforms_change(self):
@@ -627,7 +626,7 @@ class TestVersionEditFiles(TestVersionEdit):
         # Update the file platform to Linux:
         forms[1]['platform'] = amo.PLATFORM_LINUX.id
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        eq_(File.objects.no_cache().get(pk=bsd.pk).platform_id,
+        eq_(File.objects.no_cache().get(pk=bsd.pk).platform,
             amo.PLATFORM_LINUX.id)
         forms = self.client.get(self.url).context['file_form'].forms
         choices = self.get_platforms(forms[1])
@@ -667,9 +666,6 @@ class TestPlatformSearch(TestVersionEdit):
                            args=['a4594', 42352])
         self.version = Version.objects.get(id=42352)
         self.file = self.version.files.all()[0]
-        for platform in amo.PLATFORMS:
-            if platform != 0:
-                Platform.objects.get_or_create(id=platform)
 
     def test_no_platform_search_engine(self):
         response = self.client.get(self.url)
@@ -683,8 +679,8 @@ class TestPlatformSearch(TestVersionEdit):
                            approvalnotes='yy')
         response = self.client.post(self.url, dd)
         eq_(response.status_code, 302)
-        version = Version.objects.no_cache().get(id=42352).files.all()[0]
-        eq_(amo.PLATFORM_ALL.id, version.platform.id)
+        file_ = Version.objects.no_cache().get(id=42352).files.all()[0]
+        eq_(amo.PLATFORM_ALL.id, file_.platform)
 
 
 class TestVersionEditCompat(TestVersionEdit):

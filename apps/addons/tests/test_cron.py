@@ -1,18 +1,15 @@
 import os
 import datetime
 
-from nose.exc import SkipTest
 from nose.tools import eq_
 import mock
-
-from django.conf import settings
 
 import amo
 import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
 from django.core.management.base import CommandError
-from files.models import File, Platform
+from files.models import File
 from lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from stats.models import UpdateCount
 from versions.models import Version
@@ -119,7 +116,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):
-        p = Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        p = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
         self.f1 = File.objects.create(version=self.version, platform=p,

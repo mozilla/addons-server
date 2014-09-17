@@ -64,7 +64,7 @@
             <li class="file-info">
               <span class="light">
                 <strong><a href="{{ file.get_url_path('editor') }}" class="editors-install"
-                    data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.platform }}</a></strong>
+                    data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.get_platform_display() }}</a></strong>
                 <div>
                   {{ file_review_status(addon, file) }}
                 </div>

@@ -24,7 +24,7 @@ from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
 from applications.models import AppVersion, Application
 from devhub.models import ActivityLog
-from files.models import File, Platform
+from files.models import File
 from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import views
@@ -85,8 +85,7 @@ def test_dict_from_int():
 
 
 class TestVersion(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/admin',
-                'base/platforms']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/admin']
 
     def setUp(self):
         self.version = Version.objects.get(pk=81551)
@@ -205,11 +204,11 @@ class TestVersion(amo.tests.TestCase):
         for platform in [amo.PLATFORM_LINUX.id,
                          amo.PLATFORM_WIN.id,
                          amo.PLATFORM_BSD.id]:
-            file = File(platform_id=platform, version=version)
+            file = File(platform=platform, version=version)
             file.save()
         version = Version.objects.get(pk=81551)
         assert version.is_allowed_upload()
-        file = File(platform_id=amo.PLATFORM_MAC.id, version=version)
+        file = File(platform=amo.PLATFORM_MAC.id, version=version)
         file.save()
         # The transform don't know bout my new files.
         version = Version.objects.no_cache().get(pk=81551)
@@ -221,7 +220,7 @@ class TestVersion(amo.tests.TestCase):
         for platform in [amo.PLATFORM_LINUX.id,
                          amo.PLATFORM_WIN.id,
                          amo.PLATFORM_MAC.id]:
-            file = File(platform_id=platform, version=version)
+            file = File(platform=platform, version=version)
             file.save()
         # The transform don't know bout my new files.
         version = Version.objects.get(pk=81551)
@@ -654,7 +653,7 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def setUp(self):
         super(TestDownloadsLatest, self).setUp()
-        self.platform = Platform.objects.create(id=5)
+        self.platform = 5
 
     def assert_served_by_mirror(self, response):
         # Follow one more hop to hit the downloads.files view.
@@ -716,8 +715,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_multiple_objects(self):
-        p = Platform.objects.create(id=3)
-        f = File.objects.create(platform=p, version=self.file.version,
+        f = File.objects.create(platform=3, version=self.file.version,
                                 filename='unst.xpi', status=self.file.status)
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 3})
@@ -782,15 +780,14 @@ class TestDownloadSource(amo.tests.TestCase):
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/users',
-                'base/platforms']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/users']
 
     def setUp(self):
         super(TestVersionFromUpload, self).setUp()
         self.upload = self.get_upload(self.filename)
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='guid@xpi')
-        self.platform = Platform.objects.get(id=amo.PLATFORM_MAC.id)
+        self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application_id=1, version=version)
 
@@ -837,47 +834,49 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_file_name_platform_all(self):
         version = Version.from_upload(self.upload, self.addon,
-                            [Platform.objects.get(pk=amo.PLATFORM_ALL.id)])
+                                      [amo.PLATFORM_ALL.id])
         files = version.all_files
         eq_(files[0].filename, u'delicious_bookmarks-0.1-fx.xpi')
 
     def test_mobile_all_creates_platform_files(self):
-        all_mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
-        version = Version.from_upload(self.upload, self.addon, [all_mobile])
+        version = Version.from_upload(self.upload, self.addon,
+                                      [amo.PLATFORM_ALL_MOBILE.id])
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
             ['android', 'maemo'])
 
     def test_mobile_all_desktop_all_creates_all(self):
-        all_desktop = Platform.objects.get(id=amo.PLATFORM_ALL.id)
-        all_mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
-        version = Version.from_upload(self.upload, self.addon, [all_desktop,
-                                                                all_mobile])
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.PLATFORM_ALL.id, amo.PLATFORM_ALL_MOBILE.id]
+        )
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
             ['all'])
 
     def test_desktop_all_with_mixed_mobile_creates_platform_files(self):
-        all_desktop = Platform.objects.get(id=amo.PLATFORM_ALL.id)
-        android = Platform.objects.get(id=amo.PLATFORM_ANDROID.id)
-        version = Version.from_upload(self.upload, self.addon, [all_desktop,
-                                                                android])
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.PLATFORM_ALL.id, amo.PLATFORM_ANDROID.id]
+        )
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
             ['android', 'linux', 'mac', 'windows'])
 
     def test_mobile_all_with_mixed_desktop_creates_platform_files(self):
-        all_mobile = Platform.objects.get(id=amo.PLATFORM_ALL_MOBILE.id)
-        linux = Platform.objects.get(id=amo.PLATFORM_LINUX.id)
-        version = Version.from_upload(self.upload, self.addon, [linux,
-                                                                all_mobile])
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL_MOBILE.id]
+        )
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform.id].shortname for f in files),
+        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
             ['android', 'linux', 'maemo'])
 
     def test_multiple_platforms(self):
-        platforms = [Platform.objects.get(pk=amo.PLATFORM_LINUX.id),
-                     Platform.objects.get(pk=amo.PLATFORM_MAC.id)]
+        platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
         assert storage.exists(self.upload.path)
         with storage.open(self.upload.path) as f:
             uploaded_hash = hashlib.md5(f.read()).hexdigest()
@@ -886,8 +885,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             "Expected original upload to move but it still exists.")
         files = version.all_files
         eq_(len(files), 2)
-        eq_(sorted([f.platform.id for f in files]),
-            sorted([p.id for p in platforms]))
+        eq_(sorted([f.platform for f in files]),
+            sorted(platforms))
         eq_(sorted([f.filename for f in files]),
             [u'delicious_bookmarks-0.1-fx-%s.xpi' % (
                 amo.PLATFORM_LINUX.shortname),
@@ -927,7 +926,7 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
                                       [self.platform])
         files = version.all_files
         eq_(len(files), 1)
-        eq_(files[0].platform.id, amo.PLATFORM_ALL.id)
+        eq_(files[0].platform, amo.PLATFORM_ALL.id)
 
 
 class TestStatusFromUpload(TestVersionFromUpload):

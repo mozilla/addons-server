@@ -143,8 +143,7 @@ class TestFlagged(amo.tests.TestCase):
 
 
 class BulkValidationTest(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/platforms', 'base/addon_3615',
-                'base/appversion', 'base/users']
+    fixtures = ['base/apps', 'base/addon_3615', 'base/appversion', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -182,12 +181,12 @@ class BulkValidationTest(amo.tests.TestCase):
 
         return ValidationJob.objects.create(**kw)
 
-    def create_file(self, version=None, platform_id=amo.PLATFORM_ALL.id):
+    def create_file(self, version=None, platform=amo.PLATFORM_ALL.id):
         if not version:
             version = self.version
         return File.objects.create(version=version,
                                    filename='file-%s' % self.counter,
-                                   platform_id=platform_id,
+                                   platform=platform,
                                    status=amo.STATUS_PUBLIC)
 
     def create_result(self, job, f, **kwargs):

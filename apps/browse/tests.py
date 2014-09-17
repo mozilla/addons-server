@@ -335,8 +335,7 @@ class TestLanguageTools(amo.tests.TestCase):
 
 
 class TestThemes(amo.tests.TestCase):
-    fixtures = ('base/category', 'base/platforms', 'base/addon_6704_grapple',
-                'base/addon_3615')
+    fixtures = ('base/category', 'base/addon_6704_grapple', 'base/addon_3615')
 
     def setUp(self):
         super(TestThemes, self).setUp()

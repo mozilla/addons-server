@@ -28,7 +28,7 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import send_mail
 from devhub.tasks import run_validator
-from files.models import FileUpload, Platform
+from files.models import FileUpload
 from files.utils import parse_addon
 from users.models import UserProfile
 from users.utils import get_task_user
@@ -205,8 +205,8 @@ def get_context(addon, version, job, results, fileob=None):
                                        args=[addon.slug, r.pk]))
                     for r in results)
     addon_name = addon.name
-    if fileob and fileob.platform.id != amo.PLATFORM_ALL.id:
-        addon_name = u'%s (%s)' % (addon_name, fileob.platform)
+    if fileob and fileob.platform != amo.PLATFORM_ALL.id:
+        addon_name = u'%s (%s)' % (addon_name, fileob.get_platform_display())
     return Context({
             'ADDON_NAME': addon_name,
             'ADDON_VERSION': version.version,
@@ -351,9 +351,6 @@ def notify_compatibility(users, job, data, **kw):
 def fetch_langpacks(path, **kw):
     log.info('[@None] Fetching language pack updates %s' % path)
 
-    PLATFORMS = amo.PLATFORM_ALL,
-    PLATFORMS = [Platform.objects.get(pk=p.id) for p in PLATFORMS]
-
     owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
     orig_lang = translation.get_language()
 
@@ -458,7 +455,7 @@ def fetch_langpacks(path, **kw):
                                               settings.LANGPACK_OWNER_EMAIL))
                 continue
 
-            version = Version.from_upload(upload, addon, PLATFORMS)
+            version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id])
             log.info('[@None] Updating language pack "%s" to version %s'
                      % (xpi, data['version']))
         else:
@@ -467,7 +464,7 @@ def fetch_langpacks(path, **kw):
                           'language pack' % (data['version'], xpi))
                 continue
 
-            addon = Addon.from_upload(upload, PLATFORMS)
+            addon = Addon.from_upload(upload, [amo.PLATFORM_ALL.id])
             AddonUser(addon=addon, user=owner).save()
             version = addon.versions.get()
 

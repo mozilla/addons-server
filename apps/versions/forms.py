@@ -72,7 +72,7 @@ class XPIForm(happyforms.Form):
         hash = hashlib.sha256()
 
         f = File(version=version,
-                 platform_id=amo.PLATFORM_DICT[data['platform']].id,
+                 platform=amo.PLATFORM_DICT[data['platform']].id,
                  size=xpi.size)
 
         filename = f.generate_filename()

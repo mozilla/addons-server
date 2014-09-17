@@ -44,10 +44,10 @@ class ButtonTest(amo.tests.TestCase):
         v.version = 'v1'
         self.addon.current_version = v
 
-        self.file = self.get_file(amo.PLATFORM_ALL)
+        self.file = self.get_file(amo.PLATFORM_ALL.id)
         v.all_files = [self.file]
 
-        self.platforms = amo.PLATFORM_MAC, amo.PLATFORM_LINUX
+        self.platforms = amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id
         self.platform_files = map(self.get_file, self.platforms)
 
         self.request = Mock()
@@ -79,7 +79,7 @@ class ButtonTest(amo.tests.TestCase):
 
     def get_file(self, platform):
         file = Mock()
-        file.platform_id = platform.id
+        file.platform = platform
         file.latest_xpi_url.return_value = 'xpi.latest'
         file.get_url_path.return_value = 'xpi.url'
         file.eula_url.return_value = 'eula.url'
@@ -278,7 +278,7 @@ class TestButton(ButtonTest):
         eq_(b.attrs(), {})
 
     def test_file_details(self):
-        file = self.get_file(amo.PLATFORM_ALL)
+        file = self.get_file(amo.PLATFORM_ALL.id)
         self.addon.meet_the_dev_url.return_value = 'meet.dev'
         b = self.get_button()
 
@@ -289,7 +289,7 @@ class TestButton(ButtonTest):
         eq_(os, None)
 
         # Platformer.
-        file = self.get_file(amo.PLATFORM_MAC)
+        file = self.get_file(amo.PLATFORM_MAC.id)
         _, _, os = b.file_details(file)
         eq_(os, amo.PLATFORM_MAC)
 
@@ -306,7 +306,7 @@ class TestButton(ButtonTest):
             '/en-US/firefox/addon/2/contribute/roadblock/?version=v1')
 
     def test_file_details_unreviewed(self):
-        file = self.get_file(amo.PLATFORM_ALL)
+        file = self.get_file(amo.PLATFORM_ALL.id)
         file.status = amo.STATUS_UNREVIEWED
         b = self.get_button()
 
@@ -333,7 +333,7 @@ class TestButton(ButtonTest):
         links = self.get_button().links()
 
         eq_(len(links), len(self.platforms))
-        eq_([x.os for x in links], list(self.platforms))
+        eq_([x.os.id for x in links], list(self.platforms))
 
     def test_link_with_invalid_file(self):
         self.version.all_files = self.platform_files
@@ -342,7 +342,7 @@ class TestButton(ButtonTest):
 
         expected_platforms = self.platforms[1:]
         eq_(len(links), len(expected_platforms))
-        eq_([x.os for x in links], list(expected_platforms))
+        eq_([x.os.id for x in links], list(expected_platforms))
 
     def test_no_version(self):
         self.addon.current_version = None
@@ -434,8 +434,9 @@ class TestButtonHtml(ButtonTest):
         eq_(doc('.button').length, 2)
 
         for platform in self.platforms:
-            os = doc('.button.%s .os' % platform.shortname).attr('data-os')
-            eq_(platform.name, os)
+            os = doc('.button.%s .os' %
+                     amo.PLATFORMS[platform].shortname).attr('data-os')
+            eq_(amo.PLATFORMS[platform].name, os)
 
     def test_compatible_apps(self):
         compat = Mock()
@@ -538,7 +539,7 @@ class TestBackup(ButtonTest):
 
     def get_backup_file(self):
         file = Mock()
-        file.platform_id = amo.PLATFORM_ALL.id
+        file.platform = amo.PLATFORM_ALL.id
         file.latest_xpi_url.return_value = 'xpi.backup'
         file.get_url_path.return_value = 'xpi.backup.url'
         file.status = amo.STATUS_PUBLIC

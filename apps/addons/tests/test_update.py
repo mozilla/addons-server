@@ -26,10 +26,7 @@ class VersionCheckMixin(object):
 
 
 class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
-    fixtures = ['base/addon_3615',
-                'base/platforms',
-                'base/apps',
-                'base/appversion']
+    fixtures = ['base/addon_3615', 'base/apps', 'base/appversion']
 
     def setUp(self):
         super(TestDataValidate, self).setUp()
@@ -97,10 +94,7 @@ class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
 
 
 class TestLookup(VersionCheckMixin, amo.tests.TestCase):
-    fixtures = ['addons/update',
-                'base/apps',
-                'base/appversion',
-                'base/platforms']
+    fixtures = ['addons/update', 'base/apps', 'base/appversion']
 
     def setUp(self):
         super(TestLookup, self).setUp()
@@ -297,7 +291,7 @@ class TestLookup(VersionCheckMixin, amo.tests.TestCase):
         """If client passes a platform, find that specific platform."""
         version = Version.objects.get(pk=115509)
         for file in version.files.all():
-            file.platform_id = amo.PLATFORM_LINUX.id
+            file.platform = amo.PLATFORM_LINUX.id
             file.save()
 
         version, file = self.get('1.2', self.version_int,
@@ -308,7 +302,7 @@ class TestLookup(VersionCheckMixin, amo.tests.TestCase):
         """If client passes a platform, find that specific platform."""
         version = Version.objects.get(pk=115509)
         for file in version.files.all():
-            file.platform_id = amo.PLATFORM_LINUX.id
+            file.platform = amo.PLATFORM_LINUX.id
             file.save()
 
         version, file = self.get('1.2', self.version_int,
@@ -319,11 +313,11 @@ class TestLookup(VersionCheckMixin, amo.tests.TestCase):
         """If client passes a platform, make sure we get the right file."""
         version = Version.objects.get(pk=self.version_1_2_2)
         file_one = version.files.all()[0]
-        file_one.platform_id = amo.PLATFORM_LINUX.id
+        file_one.platform = amo.PLATFORM_LINUX.id
         file_one.save()
 
         file_two = File(version=version, filename='foo', hash='bar',
-                        platform_id=amo.PLATFORM_WIN.id,
+                        platform=amo.PLATFORM_WIN.id,
                         status=amo.STATUS_PUBLIC)
         file_two.save()
         version, file = self.get('1.2', self.version_int,
@@ -384,7 +378,7 @@ class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
     """
     Test default to compatible with all the various combinations of input.
     """
-    fixtures = ['base/platforms', 'addons/default-to-compat']
+    fixtures = ['addons/default-to-compat']
 
     def setUp(self):
         super(TestDefaultToCompat, self).setUp()
@@ -570,9 +564,7 @@ class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
 
 
 class TestResponse(VersionCheckMixin, amo.tests.TestCase):
-    fixtures = ['base/addon_3615',
-                'base/platforms',
-                'base/seamonkey']
+    fixtures = ['base/addon_3615', 'base/seamonkey']
 
     def setUp(self):
         super(TestResponse, self).setUp()
@@ -596,7 +588,7 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
 
     def test_no_platform(self):
         file = File.objects.get(pk=67442)
-        file.platform_id = self.win.id
+        file.platform = self.win.id
         file.save()
 
         data = self.good_data.copy()
@@ -611,12 +603,12 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
 
     def test_different_platform(self):
         file = File.objects.get(pk=67442)
-        file.platform_id = self.win.id
+        file.platform = self.win.id
         file.save()
         file_pk = file.pk
 
         file.id = None
-        file.platform_id = self.mac.id
+        file.platform = self.mac.id
         file.save()
         mac_file_pk = file.pk
 

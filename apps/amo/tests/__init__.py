@@ -46,7 +46,7 @@ from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import Application, AppVersion
 from bandwagon.models import Collection
-from files.models import File, Platform
+from files.models import File
 from lib.es.signals import process, reset
 from translations.hold import clean_translations
 from translations.models import Translation
@@ -655,10 +655,9 @@ def collection_factory(**kw):
 
 def file_factory(**kw):
     v = kw['version']
-    p, _ = Platform.objects.get_or_create(id=amo.PLATFORM_ALL.id)
     status = kw.pop('status', amo.STATUS_PUBLIC)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=p, status=status, **kw)
+                            platform=amo.PLATFORM_ALL.id, status=status, **kw)
     return f
 
 

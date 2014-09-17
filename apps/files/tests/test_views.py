@@ -20,7 +20,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from files.helpers import DiffHelper, FileViewer
-from files.models import File, Platform
+from files.models import File
 from users.models import UserProfile
 
 dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
@@ -42,9 +42,7 @@ class FilesBase:
         self.version = self.addon.versions.latest()
         self.file = self.version.all_files[0]
 
-        p = Platform.objects.filter(id__in=(amo.PLATFORM_WIN.id,
-                                            amo.PLATFORM_LINUX.id,
-                                            amo.PLATFORM_MAC.id))
+        p = [amo.PLATFORM_LINUX.id, amo.PLATFORM_WIN.id, amo.PLATFORM_MAC.id]
 
         self.file.update(platform=p[0])
 
@@ -292,8 +290,9 @@ class FilesBase:
 
         files = doc('#id_left > optgroup > option')
         eq_([f.text for f in files],
-            [str(self.files[0].platform),
-             '%s, %s' % (self.files[1].platform, self.files[2].platform)])
+            [str(self.files[0].get_platform_display()),
+             '%s, %s' % (self.files[1].get_platform_display(),
+                         self.files[2].get_platform_display())])
 
         eq_(files.eq(0).attr('value'), str(self.files[0].id))
         eq_(files.eq(1).attr('value'), str(self.files[1].id))
@@ -309,7 +308,7 @@ class FilesBase:
 
 
 class TestFileViewer(FilesBase, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def poll_url(self):
         return reverse('files.poll', args=[self.file.pk])
@@ -452,7 +451,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         with self.activate(locale='zh-CN'):
             PLATFORM_NAME = u'所有移动平台'
             f = self.files[0]
-            eq_(unicode(f.platform), PLATFORM_NAME)
+            eq_(f.get_platform_display(), PLATFORM_NAME)
 
             res = self.client.get(self.file_url())
             doc = pq(res.content.decode('utf-8'))
@@ -462,7 +461,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
 
 
 class TestDiffViewer(FilesBase, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/platforms', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         super(TestDiffViewer, self).setUp()

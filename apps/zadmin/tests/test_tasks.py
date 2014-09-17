@@ -60,7 +60,7 @@ def make_langpack(version):
 
 
 class TestLangpackFetcher(amo.tests.TestCase):
-    fixtures = ['base/platforms', 'zadmin/users']
+    fixtures = ['zadmin/users']
 
     LISTING = 'pretend-this-is-a-sha256-sum  win32/xpi/de-DE.xpi\n'
 

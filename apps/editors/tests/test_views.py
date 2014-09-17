@@ -35,8 +35,7 @@ from .test_models import create_addon_file
 
 
 class EditorTest(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/platforms', 'base/approvals',
-                'editors/pending-queue']
+    fixtures = ['base/users', 'base/approvals', 'editors/pending-queue']
 
     def login_as_admin(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -116,7 +115,7 @@ class TestEventLogDetail(TestEventLog):
 
 
 class TestReviewLog(EditorTest):
-    fixtures = EditorTest.fixtures + ['base/addon_3615', 'base/platforms']
+    fixtures = EditorTest.fixtures + ['base/addon_3615']
 
     def setUp(self):
         self.login_as_editor()
@@ -298,7 +297,7 @@ class TestReviewLog(EditorTest):
 
 
 class TestHome(EditorTest):
-    fixtures = EditorTest.fixtures + ['base/addon_3615', 'base/platforms']
+    fixtures = EditorTest.fixtures + ['base/addon_3615']
 
     def setUp(self):
         self.login_as_editor()
@@ -839,7 +838,7 @@ class TestPreliminaryQueue(QueueTest):
 
 
 class TestModeratedQueue(QueueTest):
-    fixtures = ['base/users', 'base/platforms', 'reviews/dev-reply']
+    fixtures = ['base/users', 'reviews/dev-reply']
 
     def setUp(self):
         super(TestModeratedQueue, self).setUp()

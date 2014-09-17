@@ -35,7 +35,7 @@ def change():
     print 'Changing %s files' % len(files)
     for chunk in chunked(files, 100):
         for file in File.objects.no_cache().filter(pk__in=chunk):
-            file.platform_id = amo.PLATFORM_ALL.id
+            file.platform = amo.PLATFORM_ALL.id
             if not file.datestatuschanged:
                 file.datestatuschanged = datetime.now()
             file.save()

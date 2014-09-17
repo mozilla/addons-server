@@ -135,14 +135,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "files.platform",
-        "fields": {
-            "modified": "2010-01-02 12:34:56",
-            "created": "2010-01-02 12:34:56"
-        }
-    },
-    {
         "pk": 457235,
         "model": "versions.version",
         "fields": {

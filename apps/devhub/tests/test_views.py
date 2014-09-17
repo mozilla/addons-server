@@ -36,7 +36,7 @@ from applications.models import Application, AppVersion
 from devhub import tasks
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
-from files.models import File, FileUpload, Platform
+from files.models import File, FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from reviews.models import Review
 from translations.models import Translation
@@ -1021,8 +1021,7 @@ class TestProfile(TestProfileBase):
 
 
 class TestSubmitBase(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/platforms',
-                'base/users']
+    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -1944,14 +1943,11 @@ class UploadTest(BaseUploadTest, amo.tests.TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
-        if not Platform.objects.filter(id=amo.PLATFORM_MAC.id):
-            Platform.objects.create(id=amo.PLATFORM_MAC.id)
         assert self.client.login(username='del@icio.us', password='password')
 
 
 class TestQueuePosition(UploadTest):
-    fixtures = ['base/apps', 'base/users',
-                'base/addon_3615', 'base/platforms']
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestQueuePosition, self).setUp()
@@ -1961,7 +1957,7 @@ class TestQueuePosition(UploadTest):
         self.edit_url = reverse('devhub.versions.edit',
                                 args=[self.addon.slug, self.version.id])
         version_files = self.version.files.all()[0]
-        version_files.platform_id = amo.PLATFORM_LINUX.id
+        version_files.platform = amo.PLATFORM_LINUX.id
         version_files.save()
 
     def test_not_in_queue(self):
@@ -1993,8 +1989,7 @@ class TestQueuePosition(UploadTest):
 
 
 class TestVersionAddFile(UploadTest):
-    fixtures = ['base/apps', 'base/users',
-                'base/addon_3615', 'base/platforms']
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestVersionAddFile, self).setUp()
@@ -2004,7 +1999,7 @@ class TestVersionAddFile(UploadTest):
         self.edit_url = reverse('devhub.versions.edit',
                                 args=[self.addon.slug, self.version.id])
         version_files = self.version.files.all()[0]
-        version_files.platform_id = amo.PLATFORM_LINUX.id
+        version_files.platform = amo.PLATFORM_LINUX.id
         version_files.save()
 
     def make_mobile(self):
@@ -2108,7 +2103,7 @@ class TestVersionAddFile(UploadTest):
     def test_platform_choices(self):
         r = self.client.get(self.edit_url)
         form = r.context['new_file_form']
-        platform = self.version.files.get().platform_id
+        platform = self.version.files.get().platform
         choices = form.fields['platform'].choices
         # User cannot upload existing platforms:
         assert platform not in dict(choices), choices
@@ -2256,8 +2251,7 @@ class TestVersionAddFile(UploadTest):
 
 
 class TestUploadErrors(UploadTest):
-    fixtures = ['base/apps', 'base/users',
-                'base/addon_3615', 'base/platforms']
+    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
     validator_success = json.dumps({
         "errors": 0,
         "success": True,
@@ -2400,8 +2394,7 @@ class TestAddVersion(AddVersionTest):
 
 
 class TestAddBetaVersion(AddVersionTest):
-    fixtures = ['base/apps', 'base/users', 'base/appversion',
-                'base/addon_3615', 'base/platforms']
+    fixtures = ['base/apps', 'base/users', 'base/appversion', 'base/addon_3615']
 
     def setUp(self):
         super(TestAddBetaVersion, self).setUp()
@@ -2519,7 +2512,7 @@ class UploadAddon(object):
 
 
 class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/platforms']
+    fixtures = ['base/apps', 'base/users']
 
     def setUp(self):
         super(TestCreateAddon, self).setUp()
@@ -2602,13 +2595,13 @@ class TestDeleteAddon(amo.tests.TestCase):
 
 
 class TestRequestReview(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/platforms']
+    fixtures = ['base/users']
 
     def setUp(self):
         self.addon = Addon.objects.create(type=1, name='xxx')
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
-                                        platform_id=amo.PLATFORM_ALL.id)
+                                        platform=amo.PLATFORM_ALL.id)
         self.redirect_url = self.addon.get_dev_url('versions')
         self.lite_url = reverse('devhub.request-review',
                                 args=[self.addon.slug, amo.STATUS_LITE])

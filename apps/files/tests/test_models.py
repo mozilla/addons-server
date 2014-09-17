@@ -23,7 +23,7 @@ import devhub.signals
 from amo.utils import rm_local_tmp_dir
 from addons.models import Addon
 from applications.models import Application, AppVersion
-from files.models import File, FileUpload, FileValidation, nfd_str, Platform
+from files.models import File, FileUpload, FileValidation, nfd_str
 from files.helpers import copyfileobj
 from files.utils import check_xpi_info, JetpackUpgrader, parse_addon, parse_xpi
 from versions.models import Version
@@ -60,7 +60,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Tests the methods of the File model.
     """
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/platforms']
+    fixtures = ['base/addon_3615', 'base/addon_5579']
 
     def test_get_absolute_url(self):
         f = File.objects.get(id=67442)
@@ -220,7 +220,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename_platform_specific(self):
         f = File.objects.get(id=67442)
-        f.platform_id = amo.PLATFORM_MAC.id
+        f.platform = amo.PLATFORM_MAC.id
         eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx-mac.xpi')
 
     def test_generate_filename_many_apps(self):
@@ -567,7 +567,7 @@ class TestFileUpload(UploadTest):
         upload = self.get_upload(filename='extension.xpi',
                                  validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
-        plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
+        plat = amo.PLATFORM_LINUX.id
         file_ = File.from_upload(upload, version, plat)
         eq_(file_.binary, True)
 
@@ -589,8 +589,7 @@ class TestFileUpload(UploadTest):
         upload = self.get_upload(filename='extension.xpi',
                                  validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
-        plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
-        file_ = File.from_upload(upload, version, plat)
+        file_ = File.from_upload(upload, version, amo.PLATFORM_LINUX.id)
         eq_(file_.binary, True)
 
     def test_validator_sets_require_chrome(self):
@@ -611,8 +610,7 @@ class TestFileUpload(UploadTest):
         upload = self.get_upload(filename='extension.xpi',
                                  validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
-        plat = Platform.objects.get(pk=amo.PLATFORM_LINUX.id)
-        file_ = File.from_upload(upload, version, plat)
+        file_ = File.from_upload(upload, version, amo.PLATFORM_LINUX.id)
         eq_(file_.requires_chrome, True)
 
     def test_escaped_validation_is_set_on_save(self):
@@ -786,7 +784,7 @@ class TestFileFromUpload(UploadTest):
         for app, versions in appver.items():
             for version in versions:
                 AppVersion(application_id=app.id, version=version).save()
-        self.platform = Platform.objects.create(id=amo.PLATFORM_MAC.id)
+        self.platform = amo.PLATFORM_MAC.id
         self.addon = Addon.objects.create(guid='guid@jetpack',
                                           type=amo.ADDON_EXTENSION,
                                           name='xxx')
@@ -1100,7 +1098,7 @@ class LanguagePackBase(UploadTest):
     def setUp(self):
         super(LanguagePackBase, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_LPAPP)
-        self.platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
+        self.platform = amo.PLATFORM_ALL.id
         self.version = Version.objects.create(addon=self.addon)
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.addon._current_version = self.version

@@ -59,14 +59,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "files.platform",
-        "fields": {
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
         "pk": 98217,
         "model": "versions.version",
         "fields": {
@@ -76,22 +68,6 @@
             "modified": "2010-03-02 21:03:35",
             "version": "4.3.0",
             "addon": 3895
-        }
-    },
-    {
-        "pk": 2,
-        "model": "files.platform",
-        "fields": {
-            "modified": "2008-04-07 08:16:55",
-            "created": "2007-03-05 13:09:27"
-        }
-    },
-    {
-        "pk": 5,
-        "model": "files.platform",
-        "fields": {
-            "modified": "2008-04-07 08:16:56",
-            "created": "2007-03-05 13:09:27"
         }
     },
     {

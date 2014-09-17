@@ -47,7 +47,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.ForeignKey('versions.Version', related_name='files')
-    platform = models.ForeignKey('Platform', default=amo.PLATFORM_ALL.id)
+    platform = models.PositiveIntegerField(
+        default=amo.PLATFORM_ALL.id,
+        db_column="platform_id"
+    )
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
@@ -83,10 +86,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def __unicode__(self):
         return unicode(self.id)
 
-    @property
-    def amo_platform(self):
-        # TODO: Ideally this would be ``platform``.
-        return amo.PLATFORMS[self.platform_id]
+    def get_platform_display(self):
+        return unicode(amo.PLATFORMS[self.platform].name)
 
     @property
     def has_been_validated(self):
@@ -221,8 +222,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                              self.version.compatible_apps])
             parts.append(apps)
 
-        if self.platform_id and self.platform_id != amo.PLATFORM_ALL.id:
-            parts.append(amo.PLATFORMS[self.platform_id].shortname)
+        if self.platform and self.platform != amo.PLATFORM_ALL.id:
+            parts.append(amo.PLATFORMS[self.platform].shortname)
 
         self.filename = '-'.join(parts) + extension
         return self.filename
@@ -245,8 +246,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def latest_xpi_url(self):
         addon = self.version.addon
         kw = {'addon_id': addon.pk}
-        if self.platform_id != amo.PLATFORM_ALL.id:
-            kw['platform'] = self.platform_id
+        if self.platform != amo.PLATFORM_ALL.id:
+            kw['platform'] = self.platform
         return os.path.join(reverse('downloads.latest', kwargs=kw),
                             'addon-%s-latest%s' % (addon.pk, self.extension))
 
@@ -497,22 +498,6 @@ class Approval(amo.models.ModelBase):
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'approvals'
         ordering = ('-created',)
-
-
-class Platform(amo.models.ModelBase):
-    # `name` and `shortname` are provided in amo.__init__
-    # name = TranslatedField()
-    # shortname = TranslatedField()
-
-    class Meta(amo.models.ModelBase.Meta):
-        db_table = 'platforms'
-
-    def __unicode__(self):
-        if self.id in amo.PLATFORMS:
-            return unicode(amo.PLATFORMS[self.id].name)
-        else:
-            log.warning('Invalid platform')
-            return ''
 
 
 class FileUpload(amo.models.ModelBase):

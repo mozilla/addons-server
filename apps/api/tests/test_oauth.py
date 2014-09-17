@@ -182,8 +182,7 @@ def get_access_token(consumer, token, authorize=True, verifier=None):
 
 
 class BaseOAuth(TestCase):
-    fixtures = ['base/users', 'base/apps', 'base/appversion', 'base/platforms',
-                'base/licenses']
+    fixtures = ['base/users', 'base/apps', 'base/appversion', 'base/licenses']
 
     def setUp(self):
         self.editor = UserProfile.objects.get(email='editor@mozilla.com')
@@ -569,7 +568,7 @@ class TestAddon(BaseOAuth):
         v = a.versions.get(version='0.2')
         eq_(v.version, '0.2')
         # validate any new version data
-        eq_(v.files.get().amo_platform.shortname, 'windows')
+        eq_(amo.PLATFORMS[v.files.get().platform].shortname, 'windows')
 
     def test_create_version_bad_license(self):
         data = self.create_addon()

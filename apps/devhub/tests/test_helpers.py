@@ -14,7 +14,7 @@ from amo.urlresolvers import reverse
 from amo.tests.test_helpers import render
 from addons.models import Addon
 from devhub import helpers
-from files.models import File, Platform
+from files.models import File
 from versions.models import Version
 
 
@@ -163,11 +163,10 @@ class TestDisplayUrl(unittest.TestCase):
 class TestDevFilesStatus(amo.tests.TestCase):
 
     def setUp(self):
-        platform = Platform.objects.create(id=amo.PLATFORM_ALL.id)
         self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
-                                        platform=platform,
+                                        platform=amo.PLATFORM_ALL.id,
                                         status=amo.STATUS_UNREVIEWED)
 
     def expect(self, expected):
