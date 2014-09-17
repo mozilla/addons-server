@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:42-0700\n"
+"POT-Creation-Date: 2014-09-17 09:09-0700\n"
 "PO-Revision-Date: 2014-09-14 14:16+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -129,16 +129,16 @@ msgstr "尚未审核"
 msgid "Featured"
 msgstr "精选"
 
-#: apps/addons/models.py:310
+#: apps/addons/models.py:309
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "用户可以选择捐助多于或少于这个金额。"
 
-#: apps/addons/models.py:319
+#: apps/addons/models.py:318
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问"
 
 # Column name in a table.
-#: apps/addons/models.py:1882
+#: apps/addons/models.py:1886
 msgid "Listed"
 msgstr "已列出"
 
@@ -251,7 +251,7 @@ msgstr "<strong>超过五千个免费扩展</strong>让您随心定制并扩展�
 #: apps/browse/templates/browse/impala/base_listing.html:38 apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42
 #: apps/browse/templates/browse/personas/category_landing.html:21 apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38
 #: apps/browse/templates/browse/personas/grid.html:7 apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:168 apps/devhub/templates/devhub/nav.html:45
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:180 apps/devhub/templates/devhub/nav.html:45
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
 #: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
@@ -698,11 +698,11 @@ msgstr "每日用户量"
 msgid "License"
 msgstr "许可协议"
 
-#: apps/addons/templates/addons/persona_preview.html:12
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:50
 msgid "Awaiting Review"
 msgstr "等待审核"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:43 apps/editors/helpers.py:50
 msgid "Rejected"
 msgstr "已被退回"
 
@@ -1230,7 +1230,7 @@ msgstr "用户量"
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:952 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "版本"
 
@@ -1367,7 +1367,7 @@ msgstr "提交新的附加组件"
 msgid "Submit a New Theme"
 msgstr "提交一个新主题"
 
-#: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
+#: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "开发者中心"
@@ -1914,7 +1914,7 @@ msgstr "浏览"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:161 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:173 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "扩展"
 
@@ -1944,7 +1944,7 @@ msgstr "我收藏的附加组件"
 msgid "Add-ons for Mobile"
 msgstr "移动版附加组件"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:164 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "搜索工具"
 
@@ -2132,7 +2132,7 @@ msgstr "图标"
 msgid "This name cannot be used."
 msgstr "不能使用这个名字。"
 
-#: apps/bandwagon/forms.py:158 apps/users/forms.py:412
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:430
 msgid "No links are allowed."
 msgstr "不允许使用链接。"
 
@@ -2144,7 +2144,7 @@ msgstr "此网址已被其他收藏集使用"
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
-#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:403
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:421
 msgid "Please use images smaller than %dMB."
 msgstr "请使用小于 %dMB 的图像。"
 
@@ -2495,7 +2495,7 @@ msgstr "保存更改"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:121
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:133
 msgid "Owner"
 msgstr "所有者"
 
@@ -2639,7 +2639,7 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr "要在此收藏集中增加一个附加组件，请在下面的框中输入其名称然后回车。您也可以使用遍布整个网站的<strong>添加到收藏集</strong>链接来添加附加组件。"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:372 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:384 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "附加组件"
 
@@ -2827,7 +2827,7 @@ msgstr "您的语言下可用的语言包和字典列表。"
 msgid "Language"
 msgstr "语言"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:150
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:162
 msgid "Dictionary"
 msgstr "字典"
 
@@ -2887,7 +2887,7 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr "在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">创建你自己的</a>"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:162
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
 msgstr "完整主题"
 
@@ -3052,7 +3052,7 @@ msgstr "二进制"
 msgid "Non-binary"
 msgstr "非二进制"
 
-#: apps/compat/views.py:84 apps/constants/base.py:360 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:372 apps/devhub/forms.py:145
 msgid "Other"
 msgstr "其他"
 
@@ -3076,7 +3076,7 @@ msgstr "全部附加组件的前 95%"
 msgid "All active add-ons"
 msgstr "全部活跃的附加组件"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:373
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:385
 msgid "App"
 msgstr "应用"
 
@@ -3144,7 +3144,7 @@ msgstr "按应用程序排序"
 msgid "Report Type"
 msgstr "报告类型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:949 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "应用程序"
 
@@ -3229,266 +3229,258 @@ msgid "Awaiting Preliminary Review"
 msgstr "等待初步审核"
 
 #: apps/constants/base.py:28
-msgid "Pending approval"
-msgstr "等待审核"
-
-#: apps/constants/base.py:29
 msgid "Awaiting Full Review"
 msgstr "等待全面审核"
 
-#: apps/constants/base.py:30
+#: apps/constants/base.py:29 apps/constants/base.py:51
 msgid "Fully Reviewed"
 msgstr "已全面审核"
 
-#: apps/constants/base.py:31
+#: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
-#: apps/constants/base.py:32
-msgid "Beta"
-msgstr "公开测试版"
-
-#: apps/constants/base.py:33
+#: apps/constants/base.py:31 apps/constants/base.py:54
 msgid "Preliminarily Reviewed"
 msgstr "已初步审核"
 
-#: apps/constants/base.py:34
+#: apps/constants/base.py:32
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "已初步审核并等待全面审核"
 
-#: apps/constants/base.py:36
-msgid "Pending a review choice"
-msgstr "等待选择审核"
-
-#: apps/constants/base.py:37 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "已删除"
 
-#: apps/constants/base.py:41
+#: apps/constants/base.py:39
+msgid "Pending approval"
+msgstr "等待审核"
+
+#: apps/constants/base.py:46
 msgid "Flagged for further review"
 msgstr "标记以做进一步审核"
 
-#: apps/constants/base.py:42
-msgid "Blocked"
-msgstr "已阻止"
+#: apps/constants/base.py:53
+msgid "Beta"
+msgstr "公开测试版"
 
-#: apps/constants/base.py:110
+#: apps/constants/base.py:122
 msgid "Full"
 msgstr "全面"
 
-#: apps/constants/base.py:111
+#: apps/constants/base.py:123
 msgid "Preliminary"
 msgstr "初步"
 
-#: apps/constants/base.py:122 apps/users/notifications.py:159
+#: apps/constants/base.py:134 apps/users/notifications.py:159
 msgid "Developer"
 msgstr "开发者"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:123
+#: apps/constants/base.py:135
 msgid "Viewer"
 msgstr "查看者"
 
-#: apps/constants/base.py:124 templates/mobile/header.html:7
+#: apps/constants/base.py:136 templates/mobile/header.html:7
 msgid "Support"
 msgstr "支持"
 
-#: apps/constants/base.py:147 apps/constants/base.py:160 apps/constants/platforms.py:11
+#: apps/constants/base.py:159 apps/constants/base.py:172 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "任意"
 
-#: apps/constants/base.py:148
+#: apps/constants/base.py:160
 msgid "Extension"
 msgstr "扩展"
 
-#: apps/constants/base.py:149
+#: apps/constants/base.py:161
 msgid "Complete Theme"
 msgstr "完整主题"
 
-#: apps/constants/base.py:151
+#: apps/constants/base.py:163
 msgid "Search Engine"
 msgstr "搜索引擎"
 
-#: apps/constants/base.py:152
+#: apps/constants/base.py:164
 msgid "Language Pack (Application)"
 msgstr "语言包（应用程序）"
 
-#: apps/constants/base.py:153
+#: apps/constants/base.py:165
 msgid "Language Pack (Add-on)"
 msgstr "语言包（附加组件）"
 
-#: apps/constants/base.py:154
+#: apps/constants/base.py:166
 msgid "Plugin"
 msgstr "插件"
 
-#: apps/constants/base.py:155 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:167 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "主题"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:163
+#: apps/constants/base.py:175
 msgid "Dictionaries"
 msgstr "字典"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:165
+#: apps/constants/base.py:177
 msgid "Language Packs (Application)"
 msgstr "语言包（应用程序）"
 
-#: apps/constants/base.py:166
+#: apps/constants/base.py:178
 msgid "Language Packs (Add-on)"
 msgstr "语言包（附加组件）"
 
-#: apps/constants/base.py:167
+#: apps/constants/base.py:179
 msgid "Plugins"
 msgstr "插件"
 
-#: apps/constants/base.py:232
+#: apps/constants/base.py:244
 msgid "Free"
 msgstr "免费版"
 
-#: apps/constants/base.py:233
+#: apps/constants/base.py:245
 msgid "Premium"
 msgstr "付费版"
 
-#: apps/constants/base.py:234
+#: apps/constants/base.py:246
 msgid "Premium with in-app payments"
 msgstr "付费版，使用“应用内付款”"
 
-#: apps/constants/base.py:235
+#: apps/constants/base.py:247
 msgid "Free with in-app payments"
 msgstr "免费版，使用“应用内付款”"
 
-#: apps/constants/base.py:236
+#: apps/constants/base.py:248
 msgid "I'll use my own system for in-app payments"
 msgstr "我将使用我自己的系统进行应用内收费"
 
-#: apps/constants/base.py:292
+#: apps/constants/base.py:304
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "仅在此附加组件页面和开发者简介中询问"
 
-#: apps/constants/base.py:293
+#: apps/constants/base.py:305
 msgid "Ask after users start downloading this add-on"
 msgstr "用户开始下载这个附加组件后询问"
 
-#: apps/constants/base.py:294
+#: apps/constants/base.py:306
 msgid "Ask before users can download this add-on"
 msgstr "用户下载这个附加组件前询问"
 
-#: apps/constants/base.py:361
+#: apps/constants/base.py:373
 msgid "Exception"
 msgstr "例外"
 
-#: apps/constants/base.py:362
+#: apps/constants/base.py:374
 msgid "Release"
 msgstr "发布"
 
-#: apps/constants/base.py:363
+#: apps/constants/base.py:375
 msgid "Change"
 msgstr "更改"
 
-#: apps/constants/base.py:374
+#: apps/constants/base.py:386
 msgid "Persona"
 msgstr "炫彩风格"
 
-#: apps/constants/base.py:406
+#: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
 msgstr "人工审核员点数"
 
-#: apps/constants/base.py:407
+#: apps/constants/base.py:419
 msgid "Full Add-on Review"
 msgstr "全面附加组件审核"
 
-#: apps/constants/base.py:408
+#: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
 msgstr "初步附加组件审核"
 
-#: apps/constants/base.py:409
+#: apps/constants/base.py:421
 msgid "Updated Add-on Review"
 msgstr "已更新附加组件审核"
 
-#: apps/constants/base.py:410
+#: apps/constants/base.py:422
 msgid "Full Dictionary Review"
 msgstr "字典全面审核"
 
-#: apps/constants/base.py:411
+#: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
 msgstr "初步字典审核"
 
-#: apps/constants/base.py:412
+#: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
 msgstr "已更新字典审核"
 
-#: apps/constants/base.py:413
+#: apps/constants/base.py:425
 msgid "Full Language Pack Review"
 msgstr "语言包全面审核"
 
-#: apps/constants/base.py:414
+#: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
 msgstr "首选语言包审核"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
 msgstr "已更新语言包审核"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:428
 msgid "Theme Review"
 msgstr "主题审核"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:429
 msgid "Full Search Provider Review"
 msgstr "搜索提供商全面审核"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
 msgstr "搜索提供商初步审核"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
 msgstr "已更新搜索提供商审核"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:432
 msgid "Complete Theme Review"
 msgstr "完整主题审核"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
 msgstr "完整主题初步审核"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
 msgstr "完整主题更新审核"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:435
 msgid "Moderated Addon Review"
 msgstr "提请仲裁的附加组件评论"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:436
 msgid "Moderated App Review"
 msgstr "提请仲裁的应用评论"
 
-#: apps/constants/base.py:469
+#: apps/constants/base.py:481
 msgid "Level 1"
 msgstr "第1级"
 
-#: apps/constants/base.py:470
+#: apps/constants/base.py:482
 msgid "Level 2"
 msgstr "第2级"
 
-#: apps/constants/base.py:471
+#: apps/constants/base.py:483
 msgid "Level 3"
 msgstr "第3级"
 
-#: apps/constants/base.py:472
+#: apps/constants/base.py:484
 msgid "Level 4"
 msgstr "第4级"
 
-#: apps/constants/base.py:473
+#: apps/constants/base.py:485
 msgid "Level 5"
 msgstr "第5级"
 
-#: apps/constants/base.py:474
+#: apps/constants/base.py:486
 msgid "Level 6"
 msgstr "第6级"
 
@@ -3712,7 +3704,7 @@ msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩�
 msgid "View current"
 msgstr "查看当前"
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:872
+#: apps/devhub/forms.py:441 apps/devhub/forms.py:876
 msgid "Invalid version range."
 msgstr "版本范围无效。"
 
@@ -3728,204 +3720,208 @@ msgstr "您的上传过程中发生错误，请重试。"
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:528
 msgid "Need at least one platform."
 msgstr "至少需要选择一个平台。"
 
-#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "全面审核"
 
-#: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步审核"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:540
 msgid "Please choose a review nomination type"
 msgstr "请选择提交审核的类型"
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:555
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:595
+#: apps/devhub/forms.py:568
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: apps/devhub/forms.py:599
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:605
 msgid "Version doesn't match"
 msgstr "版本不匹配"
 
-#: apps/devhub/forms.py:634
+#: apps/devhub/forms.py:638
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "审核过程开始后您不能删除文件。您必须删除整个版本。"
 
-#: apps/devhub/forms.py:654
+#: apps/devhub/forms.py:658
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "不能既选择所有平台又指定特定平台。"
 
-#: apps/devhub/forms.py:659
+#: apps/devhub/forms.py:663
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#: apps/devhub/forms.py:672
+#: apps/devhub/forms.py:676
 msgid "A review type must be selected."
 msgstr "必须选择一个审核类型。"
 
-#: apps/devhub/forms.py:750
+#: apps/devhub/forms.py:754
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "给您的附加组件命名。最成功的附加组件通常都在名称中多多少少指出了它们所提供的功能。"
 
-#: apps/devhub/forms.py:754
+#: apps/devhub/forms.py:758
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "用一句话简要地描述一下您的附加组件。这句话会出现附加组件管理器中。"
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:761
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "输入您的初版版本号。依照不同的发布次数和个人喜好，通常是 0.1 或 1.0"
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:765
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "每个附加组件都需要一个独一无二的 ID，以 UUID 或电子邮件地址的形式来表示，例如 addon-name@developer.com。此电子邮件地址可以是不真实的。"
 
-#: apps/devhub/forms.py:766
+#: apps/devhub/forms.py:770
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "您的附加组件包名只用于浏览器内。请尽量用简称（比如Test Extension 应叫作 test_extension)。"
 
-#: apps/devhub/forms.py:771
+#: apps/devhub/forms.py:775
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "请输入这个附加组件的作者或组织的名称。"
 
-#: apps/devhub/forms.py:774
+#: apps/devhub/forms.py:778
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "请输入这个扩展的其他贡献者名字，每行一个。"
 
-#: apps/devhub/forms.py:783
+#: apps/devhub/forms.py:787
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "附加组件名称中不能含有 Mozilla 的商标。"
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:794
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "请输入一个由字母、数字或下划线组成的有效包名。"
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:798
 msgid "This package name is already in use."
 msgstr "此包名已被使用。"
 
-#: apps/devhub/forms.py:797
+#: apps/devhub/forms.py:801
 msgid "The package name cannot be: %s."
 msgstr "包名不能是：%s。"
 
-#: apps/devhub/forms.py:808
+#: apps/devhub/forms.py:812
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "附加组件 ID 必须是一个 UUID 字符串或电子邮件地址。"
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:818
 msgid "The version string is invalid."
 msgstr "版本号字符串无效。"
 
-#: apps/devhub/forms.py:822
+#: apps/devhub/forms.py:826
 msgid "Minimum"
 msgstr "最小"
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:829
 msgid "Maximum"
 msgstr "最大"
 
-#: apps/devhub/forms.py:876
+#: apps/devhub/forms.py:880
 msgid "Min version must be less than Max version."
 msgstr "最小版本必须小于最大版本。"
 
-#: apps/devhub/forms.py:901
+#: apps/devhub/forms.py:905
 msgid "{0} is a required target application."
 msgstr "{0} 是一个必需的目标应用程序。"
 
-#: apps/devhub/forms.py:913
+#: apps/devhub/forms.py:917
 msgid "About dialog"
 msgstr "“关于”对话框"
 
-#: apps/devhub/forms.py:914
+#: apps/devhub/forms.py:918
 msgid "Creates a standard About dialog for your extension"
 msgstr "为您的扩展创建一个标准的“关于”对话框"
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:922
 msgid "Preferences dialog"
 msgstr "“首选项”对话框"
 
-#: apps/devhub/forms.py:919
+#: apps/devhub/forms.py:923
 msgid "Creates an example Preferences window"
 msgstr "创建一个示例“首选项”窗口"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:926
 msgid "Toolbar"
 msgstr "工具栏"
 
-#: apps/devhub/forms.py:923
+#: apps/devhub/forms.py:927
 msgid "Creates an example toolbar for your extension"
 msgstr "为您的扩展创建一个示例工具栏"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:930
 msgid "Toolbar button"
 msgstr "工具栏按钮"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:931
 msgid "Creates an example button on the browser toolbar"
 msgstr "创建一个浏览器工具栏的示例按钮"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:935
 msgid "Main menu command"
 msgstr "主菜单命令"
 
-#: apps/devhub/forms.py:932
+#: apps/devhub/forms.py:936
 msgid "Creates an item on the Tools menu"
 msgstr "在工具菜单上创建一个项目"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:939
 msgid "Context menu command"
 msgstr "上下文菜单命令"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:940
 msgid "Creates a context menu item for images"
 msgstr "创建一个图像的上下文菜单项"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:943
 msgid "Sidebar support"
 msgstr "侧边栏支持"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:944
 msgid "Creates an example sidebar panel"
 msgstr "创建一个示例侧边栏面板"
 
-#: apps/devhub/forms.py:949 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:953 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "请先选择一个应用程序"
 
-#: apps/devhub/forms.py:1001
+#: apps/devhub/forms.py:1005
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
 
-#: apps/devhub/helpers.py:43
+#: apps/devhub/helpers.py:45
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "附加组件文档 :: 开发者中心"
 
-#: apps/devhub/helpers.py:67
+#: apps/devhub/helpers.py:69
 msgid "My Submissions"
 msgstr "我的提交"
 
-#: apps/devhub/helpers.py:101
+#: apps/devhub/helpers.py:103
 msgid "Developer Docs"
 msgstr "开发者文档"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
-#: apps/devhub/helpers.py:198
+#: apps/devhub/helpers.py:206
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 个错误"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
-#: apps/devhub/helpers.py:201
+#: apps/devhub/helpers.py:209
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
@@ -4018,7 +4014,7 @@ msgstr "检查附加组件兼容性"
 msgid "There was an error with the submission."
 msgstr "提交时发生错误。"
 
-#: apps/devhub/views.py:1012 apps/users/forms.py:398
+#: apps/devhub/views.py:1012 apps/users/forms.py:416
 msgid "Images must be either PNG or JPG."
 msgstr "图像必须为 PNG 或 JPG 格式。"
 
@@ -4693,7 +4689,7 @@ msgstr "默认语言"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "除非您使用特定语言的译本覆盖它，否则关于您的附加组件的信息会使用此语言显示。"
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:260 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:280 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "主页"
@@ -9036,12 +9032,12 @@ msgstr "需要更多信息"
 msgid "needs super review"
 msgstr "需要超级审核"
 
-#: apps/editors/views_themes.py:327
+#: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} 个主题审核成功（+ {1} 点，共 {2} 点）。"
 
-#: apps/editors/views_themes.py:342
+#: apps/editors/views_themes.py:341
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "您的主题锁已成功释放。其他审核者现在可以审核这些发布的主题。您可能需要刷新本页面，以在下面的表格中查看变化。"
 
@@ -9632,7 +9628,7 @@ msgstr "向艺术家提问"
 msgid "Describe your reason for flagging"
 msgstr "描述您标注的理由"
 
-#: apps/files/forms.py:88
+#: apps/files/forms.py:87
 msgid "Cannot diff a version against itself"
 msgstr "无法判断一个版本与他自身的差别"
 
@@ -9709,11 +9705,11 @@ msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> 与附加组件不匹配"
 
-#: apps/files/views.py:45
+#: apps/files/views.py:42
 msgid "Back to review"
 msgstr "返回审核"
 
-#: apps/files/views.py:49
+#: apps/files/views.py:46
 msgid "Back to addon"
 msgstr "返回附加组件"
 
@@ -11839,7 +11835,7 @@ msgstr "分享这个附加组件"
 msgid "Share this Collection"
 msgstr "分享收藏集"
 
-#: apps/stats/models.py:302
+#: apps/stats/models.py:301
 msgid "Thanks for contributing to {addon_name}"
 msgstr "感谢您捐款给 {addon_name}"
 
@@ -12217,83 +12213,87 @@ msgstr "您确定要移除所有的 <b>{0}</b> 翻译？此操作无法撤销。
 msgid "Delete Locale"
 msgstr "删除语言"
 
-#: apps/users/forms.py:35
+#: apps/users/forms.py:37
 msgid "Must be %s characters or more."
 msgstr "至少有 %s 个字符。"
 
-#: apps/users/forms.py:55
+#: apps/users/forms.py:58
 msgid "Letters and numbers required."
 msgstr "字母和数字是必须的。"
 
-#: apps/users/forms.py:58
+#: apps/users/forms.py:61
 msgid "That password is not allowed."
 msgstr "不允许那个密码。"
 
-#: apps/users/forms.py:169 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:87
+msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
+msgstr ""
+
+#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "新密码"
 
-#: apps/users/forms.py:204 apps/users/forms.py:383
+#: apps/users/forms.py:223 apps/users/forms.py:401
 msgid "Wrong password entered!"
 msgstr "输入了错误的密码！"
 
-#: apps/users/forms.py:223
+#: apps/users/forms.py:242
 msgid "Usernames cannot contain only digits."
 msgstr "用户名不能仅包含数字。"
 
-#: apps/users/forms.py:225
+#: apps/users/forms.py:244
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "请输入一个有效的用户名，只能由字母、数字、下划线及连字符构成。"
 
-#: apps/users/forms.py:228
+#: apps/users/forms.py:247
 msgid "This username cannot be used."
 msgstr "不能使用该用户名。"
 
-#: apps/users/forms.py:234
+#: apps/users/forms.py:253
 msgid "This username is already in use."
 msgstr "这个用户名已经被使用。"
 
-#: apps/users/forms.py:246 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:265 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "显示名"
 
-#: apps/users/forms.py:248 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:267 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "位置"
 
-#: apps/users/forms.py:250 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:269 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "职业"
 
-#: apps/users/forms.py:274
+#: apps/users/forms.py:294
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "网址格式无效。有效的网址看上去应该类似于 http://example.com/my_page 。"
 
-#: apps/users/forms.py:282
+#: apps/users/forms.py:302
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "请使用一个来自不同提供者的电子邮件地址完成您的注册。"
 
-#: apps/users/forms.py:290
+#: apps/users/forms.py:310
 msgid "This display name cannot be used."
 msgstr "无法使用这个显示名。"
 
-#: apps/users/forms.py:304
+#: apps/users/forms.py:324
 msgid "The passwords did not match."
 msgstr "密码不匹配。"
 
-#: apps/users/forms.py:323 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:341 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "个人资料照片"
 
-#: apps/users/forms.py:331 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:349 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr "默认语种"
 
-#: apps/users/forms.py:468
+#: apps/users/forms.py:486
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "如果您要匿名，请输入更改的原因，但不要更改其他字段。"
 
-#: apps/users/forms.py:514
+#: apps/users/forms.py:532
 msgid "Please enter at least one name to blacklist."
 msgstr "请在黑名单中至少输入一个名称。"
 
@@ -12979,15 +12979,15 @@ msgstr "%s 版本历史"
 msgid "Version History with Changelogs"
 msgstr "版本历史记录"
 
-#: apps/versions/models.py:277
+#: apps/versions/models.py:279
 msgid "Add-on uses binary components."
 msgstr "添加使用二进制的附加组件。"
 
-#: apps/versions/models.py:280
+#: apps/versions/models.py:282
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加组件选择采用严格的兼容性检查。"
 
-#: apps/versions/models.py:630
+#: apps/versions/models.py:632
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-05 08:42-0700\n"
+"POT-Creation-Date: 2014-09-17 09:09-0700\n"
 "PO-Revision-Date: 2014-09-01 08:09+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -142,16 +142,16 @@ msgstr "Nije ocenjeno"
 msgid "Featured"
 msgstr "Izdvojeno"
 
-#: apps/addons/models.py:310
+#: apps/addons/models.py:309
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Korisnici imaju opciju da doprinose više ili manje od ove količine."
 
-#: apps/addons/models.py:319
+#: apps/addons/models.py:318
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Korisnici će uvek biti pitani u medžeru za dodatke (Firefox 4 i novije)"
 
 # Column name in a table.
-#: apps/addons/models.py:1882
+#: apps/addons/models.py:1886
 msgid "Listed"
 msgstr "Navedene"
 
@@ -270,7 +270,7 @@ msgstr "<strong>Preko 5000 besplatnih dodataka</strong> koji Vam omogućavaju d
 #: apps/browse/templates/browse/impala/base_listing.html:38 apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42
 #: apps/browse/templates/browse/personas/category_landing.html:21 apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38
 #: apps/browse/templates/browse/personas/grid.html:7 apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:168 apps/devhub/templates/devhub/nav.html:45
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:180 apps/devhub/templates/devhub/nav.html:45
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
 #: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
@@ -519,8 +519,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Oprez:</strong> Razvojna verzija ovog dodatka nije pregledana od strane Mozilla fondacije. Kada isntalirate razvojnu verziju, nastavićete da dobijate razvojne nadogradnje od ovog programera. "
-"Da biste zaustavili primanje razvojnih nadogradnji, ponovo instalirajte razvojnu verziju sa gore navedene veze."
+"<strong>Oprez:</strong> Razvojna verzija ovog dodatka nije pregledana od strane Mozilla fondacije. Kada isntalirate razvojnu verziju, nastavićete da dobijate razvojne nadogradnje od ovog "
+"programera. Da biste zaustavili primanje razvojnih nadogradnji, ponovo instalirajte razvojnu verziju sa gore navedene veze."
 
 #: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
@@ -731,11 +731,11 @@ msgstr "Dnevni korisnici"
 msgid "License"
 msgstr "Licenca"
 
-#: apps/addons/templates/addons/persona_preview.html:12
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:50
 msgid "Awaiting Review"
 msgstr "Čekam ocenu"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:38 apps/editors/helpers.py:50
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:178 apps/constants/base.py:43 apps/editors/helpers.py:50
 msgid "Rejected"
 msgstr "Odbijeno"
 
@@ -1282,7 +1282,7 @@ msgstr "Korisnici"
 msgid "Weekly Downloads"
 msgstr "Sedmična preuzimanja"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:952 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Verzija"
 
@@ -1352,8 +1352,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Dodaci su aplikacije koje Vam pružaju prilagođavanje Firefox-a sa dodatnim opcijama i stilom. Bilo da pogrešno ukucate naziv veb sajta ili ne možete da učitate zauzetu stranicu, postoji dodatak koji "
-"može da poboljša Vaše pregledanje."
+"Dodaci su aplikacije koje Vam pružaju prilagođavanje Firefox-a sa dodatnim opcijama i stilom. Bilo da pogrešno ukucate naziv veb sajta ili ne možete da učitate zauzetu stranicu, postoji dodatak "
+"koji može da poboljša Vaše pregledanje."
 
 #: apps/addons/templates/addons/mobile/home.html:47
 msgid "View all Featured add-ons"
@@ -1421,7 +1421,7 @@ msgstr "Podnesi novi dodatak"
 msgid "Submit a New Theme"
 msgstr "Podnesi novu temu"
 
-#: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:34 apps/devhub/helpers.py:66 apps/devhub/helpers.py:100 templates/footer.html:6
+#: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "Centar za programera"
@@ -1892,8 +1892,8 @@ msgstr ""
 "</p> <ul> <li>Ako ste ukucali adresu u svoj veb pregledač, molimo proverite da li ste je pravilno uneli.</li> <li> Ako ste do ovog sajta došli prateći vezu sa nekog drugog sajta, molimo da nas o "
 "tome obavestite tako što ćete poslati poruku na <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Recite nam odakle ste došli i šta ste tražili, a mi ćemo uraditi sve što je u "
 "našoj mogućnosti da Vam pomognemo. </li> </ul> <p>A možete i skočiti na neku od naših popularnih veb strana.</p> <ul> <li>Da li Vas interesuje <a href=\"%(rec)s\">lista preporučenih dodataka</a>?</"
-"li> <li> Da li želite da <a href=\"%(search)s\">pretražite dodatke</a>? Možete otvoriti <a href=\"%(search)s\">stranu za pretraživanje</a> a možete i koristiti polje za pretragu iznad ovog teksta. </"
-"li> <li> Ako biste ipak želeli da počnete ponovo, samo otvorite <a href=\"%(home)s\">početnu stranu dodataka</a>. </li> </ul>"
+"li> <li> Da li želite da <a href=\"%(search)s\">pretražite dodatke</a>? Možete otvoriti <a href=\"%(search)s\">stranu za pretraživanje</a> a možete i koristiti polje za pretragu iznad ovog teksta. "
+"</li> <li> Ako biste ipak želeli da počnete ponovo, samo otvorite <a href=\"%(home)s\">početnu stranu dodataka</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1970,7 +1970,7 @@ msgstr "Istraži"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:161 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:173 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "Ekstenzije"
 
@@ -2000,7 +2000,7 @@ msgstr "Moji omiljeni dodaci"
 msgid "Add-ons for Mobile"
 msgstr "Dodaci za mobilni"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:164 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "Alati za pretragu"
 
@@ -2100,8 +2100,8 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> %(consumer)s želi dozvolu da deluje u Vaše ime. Ovo može da podrazumeva: </p> <ul> <li>Otpremanje, menjanje ili uklanjanje dodataka u Vaše ime.</li> <li>Otpremanje, menjanje ili uklanjanje verzija "
-"dodataka u Vaše ime.</li> <li> Sakupljanje Vaših ličnih podataka, kao što su korisničko ime i adresa e-pošte (ali ne i Vašu lozinku). </li> </ul>"
+"<p> %(consumer)s želi dozvolu da deluje u Vaše ime. Ovo može da podrazumeva: </p> <ul> <li>Otpremanje, menjanje ili uklanjanje dodataka u Vaše ime.</li> <li>Otpremanje, menjanje ili uklanjanje "
+"verzija dodataka u Vaše ime.</li> <li> Sakupljanje Vaših ličnih podataka, kao što su korisničko ime i adresa e-pošte (ali ne i Vašu lozinku). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -2192,7 +2192,7 @@ msgstr "Ikonica"
 msgid "This name cannot be used."
 msgstr "Ovo ime ne može biti upotrebljeno."
 
-#: apps/bandwagon/forms.py:158 apps/users/forms.py:412
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:430
 msgid "No links are allowed."
 msgstr "Veze nisu dozvoljene."
 
@@ -2204,7 +2204,7 @@ msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonice moraju biti ili PNG ili JPG formata."
 
-#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:403
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:421
 msgid "Please use images smaller than %dMB."
 msgstr "Molimo Vas koristite slike manje od %dMB."
 
@@ -2574,7 +2574,7 @@ msgstr "Sačuvaj izmene"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:121
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:133
 msgid "Owner"
 msgstr "Vlasnik"
 
@@ -2600,8 +2600,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Možete dodati više saradnika ovoj kolekciji. Saradnik može da doda ili ukloni dodatke iz ove kolekcije, ali ne može da izmeni njegov naziv ili opis. Da biste dodali saradnika, unesite njihovu adresu "
-"e-pošte u polje ispod. Saradnici moraju da imaju Mozilla Add-ons nalog."
+"Možete dodati više saradnika ovoj kolekciji. Saradnik može da doda ili ukloni dodatke iz ove kolekcije, ali ne može da izmeni njegov naziv ili opis. Da biste dodali saradnika, unesite njihovu "
+"adresu e-pošte u polje ispod. Saradnici moraju da imaju Mozilla Add-ons nalog."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2717,10 +2717,10 @@ msgstr "Dodaci u Vašoj kolekciji"
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
-"Da biste stavili dodatak u ovu kolekciju, unesite njegov naziv u polju ispod i pritisnite Enter. Možete koristiti i veze <strong>Dodaj u kolekciju</strong> na čitavom sajtu kako biste dodali dodatke "
-"kasnije."
+"Da biste stavili dodatak u ovu kolekciju, unesite njegov naziv u polju ispod i pritisnite Enter. Možete koristiti i veze <strong>Dodaj u kolekciju</strong> na čitavom sajtu kako biste dodali "
+"dodatke kasnije."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:372 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:384 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Dodatak"
 
@@ -2908,7 +2908,7 @@ msgstr "Spisak jezičkih paketa i rečnika je dostupna u Vašem lokalu."
 msgid "Language"
 msgstr "Jezik"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:150
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:162
 msgid "Dictionary"
 msgstr "Rečnik"
 
@@ -2970,7 +2970,7 @@ msgstr "Pregledajte još više pretraživača na <a href=\"http://mycroft.mozdev
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Napravite vlastiti</a> na <a href=\"https://developer.mozilla.org/\">Mozilla centru za programere</a>"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:162
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
 msgstr "Kompletne teme"
 
@@ -3137,7 +3137,7 @@ msgstr "Binarno"
 msgid "Non-binary"
 msgstr "Ne-binarno"
 
-#: apps/compat/views.py:84 apps/constants/base.py:360 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:372 apps/devhub/forms.py:145
 msgid "Other"
 msgstr "Drugo"
 
@@ -3161,7 +3161,7 @@ msgstr "Vrh 95% od svih dodataka"
 msgid "All active add-ons"
 msgstr "Svi aktivni dodaci"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:373
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:385
 msgid "App"
 msgstr "Aplikacija"
 
@@ -3190,8 +3190,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
 "help supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Izveštaji koji su nam dostavnjeni kroz <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> su ovde prikupljeni za programere da vide. Ovi izveštaji nam pomažu da odredimo dodatke kojima treba "
-"pomoć za podržavanje naredne verzije Firefox-a. </p>"
+"<p> Izveštaji koji su nam dostavnjeni kroz <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> su ovde prikupljeni za programere da vide. Ovi izveštaji nam pomažu da odredimo dodatke kojima "
+"treba pomoć za podržavanje naredne verzije Firefox-a. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
@@ -3235,7 +3235,7 @@ msgstr "Filtriraj po aplikaciji"
 msgid "Report Type"
 msgstr "Tip izveštaja"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:949 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikacija"
 
@@ -3320,266 +3320,258 @@ msgid "Awaiting Preliminary Review"
 msgstr "Čekanje preliminarne recenzije"
 
 #: apps/constants/base.py:28
-msgid "Pending approval"
-msgstr "Odobrenje u toku"
-
-#: apps/constants/base.py:29
 msgid "Awaiting Full Review"
 msgstr "Čekanje pune recenzije"
 
-#: apps/constants/base.py:30
+#: apps/constants/base.py:29 apps/constants/base.py:51
 msgid "Fully Reviewed"
 msgstr "Potpuno ocenjeno"
 
-#: apps/constants/base.py:31
+#: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Disabled by Mozilla"
 msgstr "Onemogućeno od strane Mozilla-e"
 
-#: apps/constants/base.py:32
-msgid "Beta"
-msgstr "Beta verzija"
-
-#: apps/constants/base.py:33
+#: apps/constants/base.py:31 apps/constants/base.py:54
 msgid "Preliminarily Reviewed"
 msgstr "Preliminarno recenzirano"
 
-#: apps/constants/base.py:34
+#: apps/constants/base.py:32
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Preliminarno pregledano i čeka potpunu recenziju"
 
-#: apps/constants/base.py:36
-msgid "Pending a review choice"
-msgstr "Na čekanju izbor recenzije"
-
-#: apps/constants/base.py:37 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Obrisano"
 
-#: apps/constants/base.py:41
+#: apps/constants/base.py:39
+msgid "Pending approval"
+msgstr "Odobrenje u toku"
+
+#: apps/constants/base.py:46
 msgid "Flagged for further review"
 msgstr "Označeno za dalju recenziju"
 
-#: apps/constants/base.py:42
-msgid "Blocked"
-msgstr "Blokirano"
+#: apps/constants/base.py:53
+msgid "Beta"
+msgstr "Beta verzija"
 
-#: apps/constants/base.py:110
+#: apps/constants/base.py:122
 msgid "Full"
 msgstr "Puno"
 
-#: apps/constants/base.py:111
+#: apps/constants/base.py:123
 msgid "Preliminary"
 msgstr "Preliminarno"
 
-#: apps/constants/base.py:122 apps/users/notifications.py:159
+#: apps/constants/base.py:134 apps/users/notifications.py:159
 msgid "Developer"
 msgstr "Autor"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:123
+#: apps/constants/base.py:135
 msgid "Viewer"
 msgstr "Pregledač"
 
-#: apps/constants/base.py:124 templates/mobile/header.html:7
+#: apps/constants/base.py:136 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Podrška"
 
-#: apps/constants/base.py:147 apps/constants/base.py:160 apps/constants/platforms.py:11
+#: apps/constants/base.py:159 apps/constants/base.py:172 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "Sve"
 
-#: apps/constants/base.py:148
+#: apps/constants/base.py:160
 msgid "Extension"
 msgstr "Proširenje"
 
-#: apps/constants/base.py:149
+#: apps/constants/base.py:161
 msgid "Complete Theme"
 msgstr "Potpuna tema"
 
-#: apps/constants/base.py:151
+#: apps/constants/base.py:163
 msgid "Search Engine"
 msgstr "Pretraživač"
 
-#: apps/constants/base.py:152
+#: apps/constants/base.py:164
 msgid "Language Pack (Application)"
 msgstr "Jezički paket (Aplikacija)"
 
-#: apps/constants/base.py:153
+#: apps/constants/base.py:165
 msgid "Language Pack (Add-on)"
 msgstr ""
 
-#: apps/constants/base.py:154
+#: apps/constants/base.py:166
 msgid "Plugin"
 msgstr "Priključak"
 
-#: apps/constants/base.py:155 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:167 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "Tema"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:163
+#: apps/constants/base.py:175
 msgid "Dictionaries"
 msgstr "Rečnici"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:165
+#: apps/constants/base.py:177
 msgid "Language Packs (Application)"
 msgstr "Jezički paketi (Aplikacija)"
 
-#: apps/constants/base.py:166
+#: apps/constants/base.py:178
 msgid "Language Packs (Add-on)"
 msgstr ""
 
-#: apps/constants/base.py:167
+#: apps/constants/base.py:179
 msgid "Plugins"
 msgstr "Priključci"
 
-#: apps/constants/base.py:232
+#: apps/constants/base.py:244
 msgid "Free"
 msgstr "Besplatno"
 
-#: apps/constants/base.py:233
+#: apps/constants/base.py:245
 msgid "Premium"
 msgstr "Premijum"
 
-#: apps/constants/base.py:234
+#: apps/constants/base.py:246
 msgid "Premium with in-app payments"
 msgstr "Premijum sa plaćanjem unutar aplikacije"
 
-#: apps/constants/base.py:235
+#: apps/constants/base.py:247
 msgid "Free with in-app payments"
 msgstr "Besplatno sa plaćanjem unutar aplikacije"
 
-#: apps/constants/base.py:236
+#: apps/constants/base.py:248
 msgid "I'll use my own system for in-app payments"
 msgstr "Koristiću moj sistem za plaćanja unutar aplikacije"
 
-#: apps/constants/base.py:292
+#: apps/constants/base.py:304
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Pitajte samo na stranici ovog dodatka ili na profilu programera"
 
-#: apps/constants/base.py:293
+#: apps/constants/base.py:305
 msgid "Ask after users start downloading this add-on"
 msgstr "Pitajte nakon što korisnici preuzmu ovaj dodatak"
 
-#: apps/constants/base.py:294
+#: apps/constants/base.py:306
 msgid "Ask before users can download this add-on"
 msgstr "Pitajte pre nego što korisnici preuzmu ovaj dodatak"
 
-#: apps/constants/base.py:361
+#: apps/constants/base.py:373
 msgid "Exception"
 msgstr "Izuzetak"
 
-#: apps/constants/base.py:362
+#: apps/constants/base.py:374
 msgid "Release"
 msgstr "Izdanje"
 
-#: apps/constants/base.py:363
+#: apps/constants/base.py:375
 msgid "Change"
 msgstr "Izmena"
 
-#: apps/constants/base.py:374
+#: apps/constants/base.py:386
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:406
+#: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
 msgstr "Poeni samostalnog recenzenta"
 
-#: apps/constants/base.py:407
+#: apps/constants/base.py:419
 msgid "Full Add-on Review"
 msgstr "Puna recenzija dodatka"
 
-#: apps/constants/base.py:408
+#: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
 msgstr "Preliminarna recenzija dodatka"
 
-#: apps/constants/base.py:409
+#: apps/constants/base.py:421
 msgid "Updated Add-on Review"
 msgstr "Ažurirana recenzija dodatka"
 
-#: apps/constants/base.py:410
+#: apps/constants/base.py:422
 msgid "Full Dictionary Review"
 msgstr "Puna recenzija rečnika"
 
-#: apps/constants/base.py:411
+#: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
 msgstr "Preliminarna recenzija rečnika"
 
-#: apps/constants/base.py:412
+#: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
 msgstr "Ažurirana recenzija rečnika"
 
-#: apps/constants/base.py:413
+#: apps/constants/base.py:425
 msgid "Full Language Pack Review"
 msgstr "Puna recenzija jezičkog paketa"
 
-#: apps/constants/base.py:414
+#: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
 msgstr "Preliminarna recenzija jezičkog paketa"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
 msgstr "Ažurirana recenzija jezičkog paketa"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:428
 msgid "Theme Review"
 msgstr "Recenzija teme"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:429
 msgid "Full Search Provider Review"
 msgstr "Puna recenzija pretraživača"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
 msgstr "Preliminarna recenzija pretraživača"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
 msgstr "Ažurirana recenzija pretraživača"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:432
 msgid "Complete Theme Review"
 msgstr "Puna recenzija teme"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
 msgstr "Preliminarna recenzija potpune teme"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
 msgstr "Ažurirana recenzija potpune teme"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:435
 msgid "Moderated Addon Review"
 msgstr "Recenzija uređene aplikacije"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:436
 msgid "Moderated App Review"
 msgstr "Recenzija uređene aplikacije"
 
-#: apps/constants/base.py:469
+#: apps/constants/base.py:481
 msgid "Level 1"
 msgstr "Nivo 1"
 
-#: apps/constants/base.py:470
+#: apps/constants/base.py:482
 msgid "Level 2"
 msgstr "Nivo 2"
 
-#: apps/constants/base.py:471
+#: apps/constants/base.py:483
 msgid "Level 3"
 msgstr "Nivo 3"
 
-#: apps/constants/base.py:472
+#: apps/constants/base.py:484
 msgid "Level 4"
 msgstr "Nivo 4"
 
-#: apps/constants/base.py:473
+#: apps/constants/base.py:485
 msgid "Level 5"
 msgstr "Nivo 5"
 
-#: apps/constants/base.py:474
+#: apps/constants/base.py:486
 msgid "Level 6"
 msgstr "Nivo 6"
 
@@ -3803,7 +3795,7 @@ msgstr "Tip datoteke nije podržan, molimo Vas da otpremite arhivu datoteke {ext
 msgid "View current"
 msgstr "Vidi trenutni"
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:872
+#: apps/devhub/forms.py:441 apps/devhub/forms.py:876
 msgid "Invalid version range."
 msgstr "Neispravan opseg verzije."
 
@@ -3819,197 +3811,201 @@ msgstr "Došlo je do greške tokom otpremanja. Molimo Vas, pokušajte ponovo."
 msgid "Override failed validation"
 msgstr "Prepis nije prešao validaciju"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:528
 msgid "Need at least one platform."
 msgstr "Potrebna je bar jedna platforma."
 
-#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Puna recenzija"
 
-#: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Preliminarna recenzija"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:540
 msgid "Please choose a review nomination type"
 msgstr "Molimo Vas izaberite vrstu nominacije za recenziju"
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:555
 msgid "Version %s already exists"
 msgstr "Verzija %s već postoji"
 
-#: apps/devhub/forms.py:595
+#: apps/devhub/forms.py:568
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: apps/devhub/forms.py:599
 msgid "You cannot upload any more files for this version."
 msgstr "Ne možete više datoteka otpremiti za ovu verziju."
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:605
 msgid "Version doesn't match"
 msgstr "Verzije se ne poklapaju"
 
-#: apps/devhub/forms.py:634
+#: apps/devhub/forms.py:638
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Ne možete obrisati datoteku čim proces recenzije započne. Morate obrisati celu verziju."
 
-#: apps/devhub/forms.py:654
+#: apps/devhub/forms.py:658
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Sve ne može se ukombinovati sa određenim platformama."
 
-#: apps/devhub/forms.py:659
+#: apps/devhub/forms.py:663
 msgid "A platform can only be chosen once."
 msgstr "Platforma se može samo jednom izabrati."
 
-#: apps/devhub/forms.py:672
+#: apps/devhub/forms.py:676
 msgid "A review type must be selected."
 msgstr "Morate izabrati tip recenzije."
 
-#: apps/devhub/forms.py:750
+#: apps/devhub/forms.py:754
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Dajte svom dodatku ime. Najuspešniji dodaci u svom nazivu daju neki nagoveštaj o njihovim mogućnostima."
 
-#: apps/devhub/forms.py:754
+#: apps/devhub/forms.py:758
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Ukratko opišite svoj dodatak u jednoj rečenici. Ovo se pojavljuje u Menadžeru dodataka."
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:761
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Unesite početni broj verzije. U zavisnosti od broja izdanja i Vaših preferenci, obično je 0.1 ili 1.0"
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:765
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Svaki dodatak zahteva jedinstven ID u obliku UUID ili adrese e-pošte, kao što je naziv-dodatka@developer.com. Adresa e-pošte ne treba da bude važeća."
 
-#: apps/devhub/forms.py:766
+#: apps/devhub/forms.py:770
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "Naziv paketa Vašeg dodatka korišćen je unutar pregledača. Ovo bi trebao da bude kratak oblik njegovog naziva (naprimer, Probna ekstenzija bi bila probna_ekstenzija)."
 
-#: apps/devhub/forms.py:771
+#: apps/devhub/forms.py:775
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Unesite ime osobe ili entiteta koji će biti naveden kao autor ovog dodatka."
 
-#: apps/devhub/forms.py:774
+#: apps/devhub/forms.py:778
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Unesite imena drugih saradnika ove ekstenzije, jednog po redu."
 
-#: apps/devhub/forms.py:783
+#: apps/devhub/forms.py:787
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Nazivi dodataka ne bi smeli da sadrže robne marke Mozilla-e."
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:794
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Unesite ispravan naziv paketa koji se sastoji od slova, brojeva, ili donjih crta."
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:798
 msgid "This package name is already in use."
 msgstr "Naziv paketa je već u upotrebi."
 
-#: apps/devhub/forms.py:797
+#: apps/devhub/forms.py:801
 msgid "The package name cannot be: %s."
 msgstr "Naziv paketa ne sme biti: %s."
 
-#: apps/devhub/forms.py:808
+#: apps/devhub/forms.py:812
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "ID dodatka mora biti UUID string ili adresa e-pošte."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:818
 msgid "The version string is invalid."
 msgstr "String verzije je neispravan."
 
-#: apps/devhub/forms.py:822
+#: apps/devhub/forms.py:826
 msgid "Minimum"
 msgstr "Najmanje"
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:829
 msgid "Maximum"
 msgstr "Najviše"
 
-#: apps/devhub/forms.py:876
+#: apps/devhub/forms.py:880
 msgid "Min version must be less than Max version."
 msgstr "Najmanja verzija mora biti manja od maksimalne."
 
-#: apps/devhub/forms.py:901
+#: apps/devhub/forms.py:905
 msgid "{0} is a required target application."
 msgstr "{0} je zahtevana ciljana aplikacija."
 
-#: apps/devhub/forms.py:913
+#: apps/devhub/forms.py:917
 msgid "About dialog"
 msgstr "\"O\" dijalog"
 
-#: apps/devhub/forms.py:914
+#: apps/devhub/forms.py:918
 msgid "Creates a standard About dialog for your extension"
 msgstr "Kreira standardan \"O\" dijagol za Vašu ekstenziju"
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:922
 msgid "Preferences dialog"
 msgstr "Dijalog za podešavanja"
 
-#: apps/devhub/forms.py:919
+#: apps/devhub/forms.py:923
 msgid "Creates an example Preferences window"
 msgstr "Kreira primer prozora Podešavanja"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:926
 msgid "Toolbar"
 msgstr "Traka sa alatkama"
 
-#: apps/devhub/forms.py:923
+#: apps/devhub/forms.py:927
 msgid "Creates an example toolbar for your extension"
 msgstr "Kreira primer trake sa alatkama za Vašu ekstenziju"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:930
 msgid "Toolbar button"
 msgstr "Dugme za traku sa alatkama"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:931
 msgid "Creates an example button on the browser toolbar"
 msgstr "Kreira primer dugmeta na traci sa alatkama na pregledaču"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:935
 msgid "Main menu command"
 msgstr "Komanda za glavni meni"
 
-#: apps/devhub/forms.py:932
+#: apps/devhub/forms.py:936
 msgid "Creates an item on the Tools menu"
 msgstr "Kreira stavku u meniju Alatke"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:939
 msgid "Context menu command"
 msgstr "Komanda za kontekstni meni"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:940
 msgid "Creates a context menu item for images"
 msgstr "Kreira stavku za slike u kontekstnom meniju"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:943
 msgid "Sidebar support"
 msgstr "Sidebar podrška"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:944
 msgid "Creates an example sidebar panel"
 msgstr "Kreira primer panela sa strane"
 
-#: apps/devhub/forms.py:949 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:953 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Prvo izaberite aplikaciju"
 
-#: apps/devhub/forms.py:1001
+#: apps/devhub/forms.py:1005
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ne može biti više od 3 zahtevana dodatka."
 
-#: apps/devhub/helpers.py:43
+#: apps/devhub/helpers.py:45
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentacija dodatka :: Centar za programere"
 
-#: apps/devhub/helpers.py:67
+#: apps/devhub/helpers.py:69
 msgid "My Submissions"
 msgstr "Moje dostave"
 
-#: apps/devhub/helpers.py:101
+#: apps/devhub/helpers.py:103
 msgid "Developer Docs"
 msgstr "Programerski dokumenti"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
-#: apps/devhub/helpers.py:198
+#: apps/devhub/helpers.py:206
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} greška"
@@ -4018,7 +4014,7 @@ msgstr[2] "{0} grešaka"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
-#: apps/devhub/helpers.py:201
+#: apps/devhub/helpers.py:209
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozorenje"
@@ -4113,7 +4109,7 @@ msgstr "Proverite kompatibilnost dodatka"
 msgid "There was an error with the submission."
 msgstr "Došlo je do greške sa dostavom."
 
-#: apps/devhub/views.py:1012 apps/users/forms.py:398
+#: apps/devhub/views.py:1012 apps/users/forms.py:416
 msgid "Images must be either PNG or JPG."
 msgstr "Slike moraju biti ili PNG ili JPG formata."
 
@@ -4531,8 +4527,8 @@ msgid ""
 "<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
 "<li>Read the documentation and ask for help when you need it!</li> </ol>"
 msgstr ""
-"<ol> <li> Sledite uputstva u zapakovanom izvornom kodu da biste kreirali sopstvena podešavanja i napravite sopstvena prilagođavanja. </li> <li>Uklonite izvorni kod koji na kraju ne iskoristite.</li> "
-"<li>Pročitajte dokumentaciju i zatražite pomoć kada Vam je potrebna!</li> </ol>"
+"<ol> <li> Sledite uputstva u zapakovanom izvornom kodu da biste kreirali sopstvena podešavanja i napravite sopstvena prilagođavanja. </li> <li>Uklonite izvorni kod koji na kraju ne iskoristite.</"
+"li> <li>Pročitajte dokumentaciju i zatražite pomoć kada Vam je potrebna!</li> </ol>"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
 msgid ""
@@ -4610,8 +4606,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Ovaj dodatak nije kompatibilan sa <b>%(app_name)s %(app_version)s</b>, posledneg izdanja %(app_name)s-a. Molimo Vas uzmite u obzir ažuriranje informacija kompatibilnosti Vašeg dodatka, ili otpremite "
-"noviju verziju."
+"Ovaj dodatak nije kompatibilan sa <b>%(app_name)s %(app_version)s</b>, posledneg izdanja %(app_name)s-a. Molimo Vas uzmite u obzir ažuriranje informacija kompatibilnosti Vašeg dodatka, ili "
+"otpremite noviju verziju."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
@@ -4696,8 +4692,8 @@ msgid ""
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
 "<p>Dodaci mogu imati bilo koji broj autora sa 3 moguće uloge:</p> <ul> <li><b>Vlasnik:</b> Može upravljati svim aspektima listinga dodatka, uključujući i dodavanje i uklanjanje drugih autora</li> "
-"<li><b>Programer:</b> Može upravljati svim aspektima listinga dodatka, osim za dodavanje i uklanjanje drugih autora i upravljanje plaćanja</li> <li><b>Posmatrač:</b> Može videti podešavanja dodatka i "
-"statistike, ali ne može da menja</li> </ul>"
+"<li><b>Programer:</b> Može upravljati svim aspektima listinga dodatka, osim za dodavanje i uklanjanje drugih autora i upravljanje plaćanja</li> <li><b>Posmatrač:</b> Može videti podešavanja dodatka "
+"i statistike, ali ne može da menja</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
@@ -4761,7 +4757,8 @@ msgstr "Kategorije su primarni način na koji korisnici pronalaze dodatke. Izabe
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</a> ako postoji razlog za izmenjivanje Vaših kategorija."
+"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</a> ako postoji razlog za izmenjivanje Vaših "
+"kategorija."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
@@ -4809,7 +4806,7 @@ msgstr "Podrazumevani lokal"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "Informacije o Vašem dodatku su prikazane u ovom jeziku osim ako ih ne zamenite sa prevodom specifičnim za ovaj jezik."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:260 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:280 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Početna"
@@ -5470,8 +5467,8 @@ msgstr "Korak 2. Postavite dodatak"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
-"Iskoristite polja ispod da biste otpremili Vaš paket sa dodatkom i odaberite bilo koja ograničenja platforme. Nakon postavljanja, niz automatizovanih testova za proveru valjanosti će biti pokrenuti na "
-"Vašoj datoteci."
+"Iskoristite polja ispod da biste otpremili Vaš paket sa dodatkom i odaberite bilo koja ograničenja platforme. Nakon postavljanja, niz automatizovanih testova za proveru valjanosti će biti pokrenuti "
+"na Vašoj datoteci."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which desktop platforms is this file compatible with?"
@@ -5508,7 +5505,8 @@ msgstr "Personalizovano pregledanje sa StumbleUpon"
 #: apps/devhub/templates/devhub/docs/case-studies.html:50
 msgid "StumbleUpon is a recommendation engine that helps users discover and share great websites. With over 8 million users, it has become one of the most popular sharing services on the Web today."
 msgstr ""
-"StumbleUpon preporučujemo jer pomaže korisnicima da otkriju i podele odlične veb sajtove. Sa preko 8 miliona korisnika, postao je jedan od najpopularnijih usluga današnjice za deljenje preko interneta."
+"StumbleUpon preporučujemo jer pomaže korisnicima da otkriju i podele odlične veb sajtove. Sa preko 8 miliona korisnika, postao je jedan od najpopularnijih usluga današnjice za deljenje preko "
+"interneta."
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:55
 msgid "Learn how StumbleUpon got its start with Firefox"
@@ -5547,8 +5545,8 @@ msgid ""
 "Cooliris lets users browse photos and videos from the Web or local computer on an infinitely scrollable 3-D wall. Its award-winning design brings speed and elegance to searching, finding and "
 "enjoying rich content."
 msgstr ""
-"Cooliris dozvoljava korisnicima da pregledaju slike i snimke sa veba ili lokalnog računara na beskrajnom klizaču 3-D zida. Njegov nagrađivani dizajn donosi brzinu i eleganciju pretraživanja, traženja i "
-"uživanja u bogatom sadržaju."
+"Cooliris dozvoljava korisnicima da pregledaju slike i snimke sa veba ili lokalnog računara na beskrajnom klizaču 3-D zida. Njegov nagrađivani dizajn donosi brzinu i eleganciju pretraživanja, "
+"traženja i uživanja u bogatom sadržaju."
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:95
 msgid "Find out how Cooliris re-invented photo browsing"
@@ -5601,8 +5599,8 @@ msgid ""
 "Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
 "copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
 msgstr ""
-"Jednom kada se upoznate sa okruženjem razvoja ekstenzija, vreme je da započnete svoj prvi dodatak. Nekada je ovo značilo penjanje uz brdo po snegu da se nađe odgovarajući šablon za kopiranje za Vašu "
-"instalaciju manifesta dodatka. Srećom, centar programera dodataka (to je to!) uvodi motorne sanke ekstenzija pakovanja: <a href=\"%(url)s\">Add-on Packager</a>!"
+"Jednom kada se upoznate sa okruženjem razvoja ekstenzija, vreme je da započnete svoj prvi dodatak. Nekada je ovo značilo penjanje uz brdo po snegu da se nađe odgovarajući šablon za kopiranje za "
+"Vašu instalaciju manifesta dodatka. Srećom, centar programera dodataka (to je to!) uvodi motorne sanke ekstenzija pakovanja: <a href=\"%(url)s\">Add-on Packager</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
@@ -5627,7 +5625,8 @@ msgid ""
 "learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
 msgstr ""
 "Ako je Vašem dodatku potrebno više funkcionalnosti od bočne trake koju Vam je napravio Packager, postoji više načina da otkrijete kako da dodate funkcije koje želite. Jedan od najčešćih načina da "
-"naučite kako da uradite nešto u ekstenzijama jeste da pogledate šta druge ekstenzije već rade. Samo zapamtite da ako licence druge ekstenzije ne dozvoljavaju da kopirate njegov izvor, ni Vi ne možete."
+"naučite kako da uradite nešto u ekstenzijama jeste da pogledate šta druge ekstenzije već rade. Samo zapamtite da ako licence druge ekstenzije ne dozvoljavaju da kopirate njegov izvor, ni Vi ne "
+"možete."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:72
 msgid ""
@@ -5652,8 +5651,8 @@ msgid ""
 "If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
 "problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
 msgstr ""
-"Ako već znate šta tražite, samo <a href=\"/en-US/developers/search\">potražite!</a> Naša pretraga će naći najbolje resurse za dodatke da bi pronašli interfejs koji Vam nedostaje ili učestali problem "
-"koji imate. Ako pretraga nije dovoljna, slobodno <a href=\"https://forums.addons.mozilla.org\">pitajte za pomoć</a> na našim forumima."
+"Ako već znate šta tražite, samo <a href=\"/en-US/developers/search\">potražite!</a> Naša pretraga će naći najbolje resurse za dodatke da bi pronašli interfejs koji Vam nedostaje ili učestali "
+"problem koji imate. Ako pretraga nije dovoljna, slobodno <a href=\"https://forums.addons.mozilla.org\">pitajte za pomoć</a> na našim forumima."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:89
 msgid "Test your add-on"
@@ -5664,8 +5663,8 @@ msgid ""
 "Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
 "on all the platforms and applications it claims to support."
 msgstr ""
-"Čak i entomolozi ne vole greške u svojim programima, pa je veoma važno da detaljno testirate Vaš dodatak pre nego što bude spreman za opšte korišćenje. U najmanju ruku, trebalo bi da proverite da li "
-"Vaš dodatak radi na svim platformama i aplikacijama za koje tvrdi za podržava."
+"Čak i entomolozi ne vole greške u svojim programima, pa je veoma važno da detaljno testirate Vaš dodatak pre nego što bude spreman za opšte korišćenje. U najmanju ruku, trebalo bi da proverite da "
+"li Vaš dodatak radi na svim platformama i aplikacijama za koje tvrdi za podržava."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:97
 msgid ""
@@ -5726,8 +5725,8 @@ msgid ""
 "Mozilla is open, you might even be able to fix that bug or lack of documentation yourself! It's like the circle of life."
 msgstr ""
 "Ako ste rasoloženi za razgovor, <a href=\"https://forums.addons.mozilla.org\">bi voleo da čuje Vaše mišljenje</a> o Vašem iskustvu u kreiranju dodatka. Slušajući sa čime se novi programeri muče nam "
-"pomaže da omogućimo bolje iskustvo budućim generacijama inovatora dodataka. Bilo da želite da se izjasni o platformi, dokumentacija, ili o sajtu, mi ćemo slušati. Pošto je Mozilla je otvorena, možda "
-"ćete čak biti u mogućnosti da popravite tu grešku ili nedostatak dokumentacije sami! To je kao krug života."
+"pomaže da omogućimo bolje iskustvo budućim generacijama inovatora dodataka. Bilo da želite da se izjasni o platformi, dokumentacija, ili o sajtu, mi ćemo slušati. Pošto je Mozilla je otvorena, "
+"možda ćete čak biti u mogućnosti da popravite tu grešku ili nedostatak dokumentacije sami! To je kao krug života."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
@@ -5882,8 +5881,8 @@ msgid ""
 "This article describes how to set up the development environment for a large, complex Firefox extension with a need for high-performance, use of third-party libraries in C/C++, or interfaces not "
 "exposed via XPCOM."
 msgstr ""
-"Ovaj članak objašnjava kako da podesite razvojno okruženje za velike i složene Firefox ekstenzije koje zahtevaju visoke performanse, koristeći C/C++ biblioteke trećih lica ili okruženja ne izloženim "
-"preko XPCOM-a."
+"Ovaj članak objašnjava kako da podesite razvojno okruženje za velike i složene Firefox ekstenzije koje zahtevaju visoke performanse, koristeći C/C++ biblioteke trećih lica ili okruženja ne "
+"izloženim preko XPCOM-a."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
 msgid "Multiple Item Packaging"
@@ -5965,7 +5964,8 @@ msgstr "Uputstva za programere Firefox dodataka"
 msgid ""
 "In this detailed guide to extension development, you'll learn the basics of packaging extensions, building an interface with XUL, implementing advanced processes with XPCOM, and how to put it all "
 "together."
-msgstr "U ovom detaljnom vodiču za razvoj ekstenzija, naučićete osnove upakovanih ekstenzija, pravljenje okruženja sa XUL-om, sprovođenje naprednih procesa sa XPCOM-om i kako da ih sve sastavite zajedno."
+msgstr ""
+"U ovom detaljnom vodiču za razvoj ekstenzija, naučićete osnove upakovanih ekstenzija, pravljenje okruženja sa XUL-om, sprovođenje naprednih procesa sa XPCOM-om i kako da ih sve sastavite zajedno."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
 msgid "How to Develop a Firefox Extension"
@@ -6310,8 +6310,8 @@ msgid ""
 "If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
 "strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
-"Ako imate pitanje u vezi pregleda nekog dodatka urednika ili želite da prijavite kršenje prava, molimo Vas kontaktirajte %(mail_editors)s. <strong>Gotovo sve prijave dodataka spadaju u ovu kategoriju."
-"</strong> Molimo Vas da se uverite da ste ubacili link ka dodatku u pitanju i detaljan opis Vašeg pitanja ili komentara."
+"Ako imate pitanje u vezi pregleda nekog dodatka urednika ili želite da prijavite kršenje prava, molimo Vas kontaktirajte %(mail_editors)s. <strong>Gotovo sve prijave dodataka spadaju u ovu "
+"kategoriju.</strong> Molimo Vas da se uverite da ste ubacili link ka dodatku u pitanju i detaljan opis Vašeg pitanja ili komentara."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -6327,9 +6327,9 @@ msgid ""
 "issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
-"Ako ste otkrili bezbednosni propust u nekom dodatku, čak i ako nije postavljen ovde, Mozilla je veoma zainteresovana o Vašem otkriću i radiće sa programerom dodatka da što pre isprave problem ako je "
-"to moguće. Bezbednosni propusti dodataka mogu biti prijavljeni <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">poverljivo</a> na <a href=\"%(link_bugzilla)s\">Bugzilla-"
-"i</a> ili slanjem e-pošte %(mail_admins)s."
+"Ako ste otkrili bezbednosni propust u nekom dodatku, čak i ako nije postavljen ovde, Mozilla je veoma zainteresovana o Vašem otkriću i radiće sa programerom dodatka da što pre isprave problem ako "
+"je to moguće. Bezbednosni propusti dodataka mogu biti prijavljeni <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">poverljivo</a> na <a href=\"%(link_bugzilla)s"
+"\">Bugzilla-i</a> ili slanjem e-pošte %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -6358,8 +6358,8 @@ msgid ""
 "please remember that versions must be reviewed by an editor."
 msgstr ""
 "Programeri su ohrabreni da podnesu ažuriranja svojim dodacima da isprave greške, dodaju funkcije, a na drugi način poboljšaju svoj proizvod. Nove verzije dodatka moraju imati <a href=\"https://"
-"developer.mozilla.org/en/Toolkit_version_format\">veći broj verzija</a> i mogu se podneti preko pružanog razvojnog alata. Ne postoji ograničenje u broju verzije koje mogu biti podnete, ali molim Vas "
-"da zapamtite da verzije moraju biti pregledane od strane urednika."
+"developer.mozilla.org/en/Toolkit_version_format\">veći broj verzija</a> i mogu se podneti preko pružanog razvojnog alata. Ne postoji ograničenje u broju verzije koje mogu biti podnete, ali molim "
+"Vas da zapamtite da verzije moraju biti pregledane od strane urednika."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
@@ -6408,8 +6408,8 @@ msgid ""
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
 "Određene situacije mogu nastati u kojim Mozilla traži da prorgamer dodataka ažurira svoje dodatake u datom vremenskom periodu radi rešavanja velikog bezbednosnog problema ili politike kršenja. Mi "
-"radimo sa programerima kako bi prilagodili svoje rasporede sa njihovim, ali ako je pitanje od dovoljno ozbiljne prirode, dodaci koji se ne mogu ažurirati sa traženom ispravkom mogu biti degradirani od "
-"potpuno pregledanog statusa, onemogućeni, ili trajno uklonjeni sa sajta."
+"radimo sa programerima kako bi prilagodili svoje rasporede sa njihovim, ali ako je pitanje od dovoljno ozbiljne prirode, dodaci koji se ne mogu ažurirati sa traženom ispravkom mogu biti degradirani "
+"od potpuno pregledanog statusa, onemogućeni, ili trajno uklonjeni sa sajta."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -6420,8 +6420,8 @@ msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
 msgstr ""
-"Dodaci mogu imati više korisnika sa dozvolom za ažuriranje i upravljanjem listinga. Postojeći autori nastavka mogu preneti vlasništvo i dodati nove programere na listu dodataka kroz pružene alate za "
-"programere. Interakcija sa Mozilla predstavnicima je neophodno za prenos vlasništva."
+"Dodaci mogu imati više korisnika sa dozvolom za ažuriranje i upravljanjem listinga. Postojeći autori nastavka mogu preneti vlasništvo i dodati nove programere na listu dodataka kroz pružene alate "
+"za programere. Interakcija sa Mozilla predstavnicima je neophodno za prenos vlasništva."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
@@ -6448,8 +6448,8 @@ msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
-"Mnogi programeri obezbeđuju mehanizam podrške, kao što su forumi, grupe za diskusije ili adrese e-pošta. Preporučuje se da za pitanja za podršku putu postavljena putem tih medija umesto u sekciji za "
-"recenziju dodatka."
+"Mnogi programeri obezbeđuju mehanizam podrške, kao što su forumi, grupe za diskusije ili adrese e-pošta. Preporučuje se da za pitanja za podršku putu postavljena putem tih medija umesto u sekciji "
+"za recenziju dodatka."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6460,8 +6460,8 @@ msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
-"Mnogi dodaci omogćavaju javno njihov izvorni kod. Ovo ne znači da je izvorni kod otvoreni kod ili da je dozvoljen za upotrebu u drugom dodatku. Prvobitni autor dodatka zadržava autorska prava njegovog "
-"rada osim ako drugačije nije navedeno u licenci dodatka."
+"Mnogi dodaci omogćavaju javno njihov izvorni kod. Ovo ne znači da je izvorni kod otvoreni kod ili da je dozvoljen za upotrebu u drugom dodatku. Prvobitni autor dodatka zadržava autorska prava "
+"njegovog rada osim ako drugačije nije navedeno u licenci dodatka."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
@@ -6484,8 +6484,8 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
-"Istaknuti dodaci su ekstenzije vrhunskog kvaliteta i teme istaknute na <a href=\"%(link_gallery)s\">AMO-u</a>, Firefox-ovom menadžeru dodataka i preko drugih Mozilla veb sajtova. Ovi dodaci su izlog "
-"moći Firefox prilagođavanja i korisni su za široku publiku."
+"Istaknuti dodaci su ekstenzije vrhunskog kvaliteta i teme istaknute na <a href=\"%(link_gallery)s\">AMO-u</a>, Firefox-ovom menadžeru dodataka i preko drugih Mozilla veb sajtova. Ovi dodaci su "
+"izlog moći Firefox prilagođavanja i korisni su za široku publiku."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -6781,8 +6781,8 @@ msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
-"Za informacije kako da zaobiđete ove probleme, pogledajte našu <a href=\"%(link_howto)s\">Kako-da biblioteku</a>. Neke od ovih vežbi, kao što su binarni ili zasenčen kod, su dozvoljeni pod određenim "
-"uslovima navedenim u nastavku."
+"Za informacije kako da zaobiđete ove probleme, pogledajte našu <a href=\"%(link_howto)s\">Kako-da biblioteku</a>. Neke od ovih vežbi, kao što su binarni ili zasenčen kod, su dozvoljeni pod "
+"određenim uslovima navedenim u nastavku."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
@@ -6797,8 +6797,8 @@ msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"Ako je dodatak specifičan za sajt, preporučuje se da bude dodeljen test nalog tokom procesa pregleda. Pored toga, uključujući i detaljne instrukcije za testiranje će dozvoliti uredniku da bolje razume "
-"kako funkcioniše dodatak i ubrza proces testiranja. Ove informacije mogu biti smeštene u polju Beleške recezentu kada se menjaju verzije u Centru za programera."
+"Ako je dodatak specifičan za sajt, preporučuje se da bude dodeljen test nalog tokom procesa pregleda. Pored toga, uključujući i detaljne instrukcije za testiranje će dozvoliti uredniku da bolje "
+"razume kako funkcioniše dodatak i ubrza proces testiranja. Ove informacije mogu biti smeštene u polju Beleške recezentu kada se menjaju verzije u Centru za programera."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -6823,8 +6823,8 @@ msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
 msgstr ""
-"Ako verzija ne ispunjava kriterijume za punu recenziju, može mu biti dodeljena preliminarna recenzija ili onemogućen ukoliko postoji sigurnosni problem. Autor će dobiti e-poštu sa objašnjenjem koje su "
-"mere preduzete i kako da ih popravi. U većini slučajeva, programer može jednostavno popraviti problem i ponovo podneti za punu recenziju."
+"Ako verzija ne ispunjava kriterijume za punu recenziju, može mu biti dodeljena preliminarna recenzija ili onemogućen ukoliko postoji sigurnosni problem. Autor će dobiti e-poštu sa objašnjenjem koje "
+"su mere preduzete i kako da ih popravi. U većini slučajeva, programer može jednostavno popraviti problem i ponovo podneti za punu recenziju."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid ""
@@ -7456,7 +7456,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:163
 msgid "We're always looking for ways to improve themes, and would love to hear what you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us your feedback."
-msgstr "Mi smo uvek u potrazi za načinima da se poboljšaju teme i voleli bih da čujemo šta Vi mislite. Posetite <a href=\"%(forum_url)s\">forume za teme </a> da biste nam poslali povratne informacije."
+msgstr ""
+"Mi smo uvek u potrazi za načinima da se poboljšaju teme i voleli bih da čujemo šta Vi mislite. Posetite <a href=\"%(forum_url)s\">forume za teme </a> da biste nam poslali povratne informacije."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
 msgid "Creating Your Own Themes"
@@ -8008,7 +8009,8 @@ msgstr "Automatski ćemo poslati e-poštu korisnicima koji doprinose Vašem dod
 msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
-msgstr "Preporučujemo da se zahvalite korisniku i da mu kažete koliko Vam znači njegova podrška. Takođe, recite im o tome šta je novo za Vaš dodatak i o svim novim dodacima koje ste napravili za njih."
+msgstr ""
+"Preporučujemo da se zahvalite korisniku i da mu kažete koliko Vam znači njegova podrška. Takođe, recite im o tome šta je novo za Vaš dodatak i o svim novim dodacima koje ste napravili za njih."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
@@ -9209,14 +9211,14 @@ msgstr "treba više informacija"
 msgid "needs super review"
 msgstr "zahteva super recenziju"
 
-#: apps/editors/views_themes.py:327
+#: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} recenzija teme je uspešno obrađena (+{1} poena, {2} ukupno)."
 msgstr[1] "{0} recenzije teme su uspešno obrađene (+{1} poena, {2} ukupno)."
 msgstr[2] "{0} recenzija teme su uspešno obrađene (+{1} poena, {2} ukupno)."
 
-#: apps/editors/views_themes.py:342
+#: apps/editors/views_themes.py:341
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -9825,7 +9827,7 @@ msgstr "Postavite pitanje autoru"
 msgid "Describe your reason for flagging"
 msgstr "Navedite Vaše razloge za označavanje"
 
-#: apps/files/forms.py:88
+#: apps/files/forms.py:87
 msgid "Cannot diff a version against itself"
 msgstr ""
 
@@ -9902,11 +9904,11 @@ msgstr "Broj verzije vi trebalo da sadrži samo slova, brojeve, i ove karaktere:
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> se ne poklapa sa dodatkom"
 
-#: apps/files/views.py:45
+#: apps/files/views.py:42
 msgid "Back to review"
 msgstr "Nazad na recenzije"
 
-#: apps/files/views.py:49
+#: apps/files/views.py:46
 msgid "Back to addon"
 msgstr "Nazad na dodatke"
 
@@ -11997,7 +11999,7 @@ msgstr "Deli ovaj dodatak sa ostalima"
 msgid "Share this Collection"
 msgstr "Podeli ovu kolekciju"
 
-#: apps/stats/models.py:302
+#: apps/stats/models.py:301
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Hvala Vam što ste doprineli dodatku {addon_name}"
 
@@ -12370,83 +12372,87 @@ msgstr "Da li ste sigurni da želite da uklonite svih <b>{0}</b> prevoda? Ovo ne
 msgid "Delete Locale"
 msgstr "Izbriši lokal"
 
-#: apps/users/forms.py:35
+#: apps/users/forms.py:37
 msgid "Must be %s characters or more."
 msgstr "Mora biti %s ili više karaktera."
 
-#: apps/users/forms.py:55
+#: apps/users/forms.py:58
 msgid "Letters and numbers required."
 msgstr "Slova i brojevi neophodni."
 
-#: apps/users/forms.py:58
+#: apps/users/forms.py:61
 msgid "That password is not allowed."
 msgstr "Ta lozinka nije dozvoljena."
 
-#: apps/users/forms.py:169 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:87
+msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
+msgstr ""
+
+#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Nova lozinka"
 
-#: apps/users/forms.py:204 apps/users/forms.py:383
+#: apps/users/forms.py:223 apps/users/forms.py:401
 msgid "Wrong password entered!"
 msgstr "Uneli ste lošu lozinku!"
 
-#: apps/users/forms.py:223
+#: apps/users/forms.py:242
 msgid "Usernames cannot contain only digits."
 msgstr "Korisnička imena ne mogu da sadrže samo brojeve."
 
-#: apps/users/forms.py:225
+#: apps/users/forms.py:244
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Unesite ispravno korisničko ime koje sadrži slova, brojeve, crte ili crtice."
 
-#: apps/users/forms.py:228
+#: apps/users/forms.py:247
 msgid "This username cannot be used."
 msgstr "Ovo korisničko ime ne može da se koristi."
 
-#: apps/users/forms.py:234
+#: apps/users/forms.py:253
 msgid "This username is already in use."
 msgstr "Ovo korisničko ime je već u upotrebi."
 
-#: apps/users/forms.py:246 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:265 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Prikazano ime"
 
-#: apps/users/forms.py:248 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:267 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Lokacija"
 
-#: apps/users/forms.py:250 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:269 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Zanimanje"
 
-#: apps/users/forms.py:274
+#: apps/users/forms.py:294
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Ovaj URL je neispravnog formata. Validne URL adrese izgledaju ovako http://primer.com/moja_strana."
 
-#: apps/users/forms.py:282
+#: apps/users/forms.py:302
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Molimo Vas da koristite adresu e-pošte od drugog provajdera da biste završili registraciju."
 
-#: apps/users/forms.py:290
+#: apps/users/forms.py:310
 msgid "This display name cannot be used."
 msgstr "Ime ne može da se koristi."
 
-#: apps/users/forms.py:304
+#: apps/users/forms.py:324
 msgid "The passwords did not match."
 msgstr "Lozinke se ne poklapaju."
 
-#: apps/users/forms.py:323 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:341 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Profilna slika"
 
-#: apps/users/forms.py:331 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:349 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr "Podrazumevan lokal"
 
-#: apps/users/forms.py:468
+#: apps/users/forms.py:486
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
 
-#: apps/users/forms.py:514
+#: apps/users/forms.py:532
 msgid "Please enter at least one name to blacklist."
 msgstr "Molimo da unesete bar jedno ime na crnu listu."
 
@@ -12995,7 +13001,8 @@ msgstr "Pošalji vezu za resetovanje lozinke"
 #: apps/users/templates/users/pwreset_sent.html:10
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "E-pošta je poslata zatraženom nalogu sa daljnim informacijama. Ako ne primite e-poštu, molimo Vas da potvrdite da ste uneli istu adresu e-pošte koju ste koristili prilikom registracije naloga."
+msgstr ""
+"E-pošta je poslata zatraženom nalogu sa daljnim informacijama. Ako ne primite e-poštu, molimo Vas da potvrdite da ste uneli istu adresu e-pošte koju ste koristili prilikom registracije naloga."
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -13142,15 +13149,15 @@ msgstr "%s istorijat verzije"
 msgid "Version History with Changelogs"
 msgstr "Istorijat verzija sa promenama"
 
-#: apps/versions/models.py:277
+#: apps/versions/models.py:279
 msgid "Add-on uses binary components."
 msgstr "Dodaci koriste binarne komponente."
 
-#: apps/versions/models.py:280
+#: apps/versions/models.py:282
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Dodatak se opredelio strogom proverom kompatibilnosti."
 
-#: apps/versions/models.py:630
+#: apps/versions/models.py:632
 msgid "{app} {min} and later"
 msgstr "{app} {min} i kasnije"
 
