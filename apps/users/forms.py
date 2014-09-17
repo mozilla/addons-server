@@ -8,6 +8,7 @@ from django.core.files.storage import default_storage as storage
 from django.contrib.auth import forms as auth_forms
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
+from django.utils.safestring import mark_safe
 
 import captcha.fields
 import commonware.log
@@ -16,6 +17,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 import users.notifications as email
+from amo.urlresolvers import reverse
 from amo.utils import clean_nl, has_links, log_cef, slug_validator
 from translations import LOCALES
 
@@ -78,7 +80,18 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
             del self.fields['recaptcha']
 
     def clean(self):
-        """Only clean the form (username and password) if recaptcha is ok."""
+        # We want an explicit error message for old accounts with a too
+        # short password, see bug 1067673 for details.
+        if ('password' in self.errors and 'password' in self.data and
+                1 < len(self.data['password']) < PasswordMixin.min_length):
+            msg = _('As part of our new password policy, your password must '
+                    'be %s characters or more. '
+                    'Please update your password if that is not the case by '
+                    '<a href="%s">issuing a password reset</a>.'
+                    ) % (PasswordMixin.min_length,
+                         reverse('password_reset_form'))
+            self._errors['password'] = ErrorList([mark_safe(msg)])
+        # Only clean the form (username and password) if recaptcha is ok.
         if 'recaptcha' in self.errors:
             return {}
         return super(AuthenticationForm, self).clean()
