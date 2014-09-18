@@ -1,6 +1,7 @@
 from django.db import models
 
 import amo.models
+from constants.applications import APPS_CHOICES
 from versions import compare
 
 
@@ -11,26 +12,10 @@ class ApplicationManager(amo.models.ManagerBase):
         return self.exclude(supported=False)
 
 
-class Application(amo.models.ModelBase):
-
-    guid = models.CharField(max_length=255, default='')
-    supported = models.BooleanField(default=1)
-    # We never reference these translated fields, so stop loading them.
-    # name = TranslatedField()
-    # shortname = TranslatedField()
-
-    objects = ApplicationManager()
-
-    class Meta:
-        db_table = 'applications'
-
-    def __unicode__(self):
-        return unicode(amo.APPS_ALL[self.id].pretty)
-
-
 class AppVersion(amo.models.ModelBase):
 
-    application = models.PositiveIntegerField(db_column='application_id')
+    application = models.PositiveIntegerField(choices=APPS_CHOICES,
+                                              db_column='application_id')
     version = models.CharField(max_length=255, default='')
     version_int = models.BigIntegerField(editable=False)
 

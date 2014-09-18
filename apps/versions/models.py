@@ -18,7 +18,7 @@ import amo.utils
 from amo.decorators import use_master
 from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, id_to_path
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from files import utils
 from files.models import File, cleanup_file
 from tower import ugettext as _
@@ -613,12 +613,13 @@ class VersionComment(amo.models.ModelBase):
 
 class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
-    application = models.PositiveIntegerField(db_column='application_id')
+    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                              db_column='application_id')
     version = models.ForeignKey(Version, related_name='apps')
     min = models.ForeignKey(AppVersion, db_column='min',
-        related_name='min_set')
+                            related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',
-        related_name='max_set')
+                            related_name='max_set')
 
     objects = caching.base.CachingManager()
 
