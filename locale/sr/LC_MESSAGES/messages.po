@@ -6,16 +6,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-17 09:20+0000\n"
+"PO-Revision-Date: 2014-09-18 07:18+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410945642.0\n"
+"X-POOTLE-MTIME: 1411024731.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3833,7 +3834,7 @@ msgstr "Верзија %s већ постоји"
 
 #: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "Одаберите исправан избор. Тај избор није један од доступних избора."
 
 #: apps/devhub/forms.py:599
 msgid "You cannot upload any more files for this version."
@@ -6594,6 +6595,10 @@ msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
 "a good indicator the add-on may not be very useful to our users."
 msgstr ""
+"Недостатак раста &mdash; Истакнути додаци обично доживе значајан раст и код "
+"корисника који преузимају и код активних корисника. Ако додатак не показује "
+"раст на било који значајан начин, то је добар показатељ да додатак можда "
+"неће бити користам другим корисницима."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
@@ -6604,6 +6609,10 @@ msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
 msgstr ""
+"Некомпатибилан са предстојећим Firefox верзијама &mdash; Од истакнутих "
+"додатака се очекује да буду компатибилни са стабилним и бета верзијама "
+"Firefox-а. Додаци који нису компатибилни са бета верзијом Firefox-а четири "
+"недеље пре његовог пуштања ће изгубити своје истакнуте позиције."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -6620,10 +6629,14 @@ msgstr "да буду активни чланови заједнице дода�
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
 msgstr ""
+"посветите се испробавању свих поднесених номинација, давању повратних "
+"информација и гласању сваког месеца"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
 msgstr ""
+"уздржите се од гласања за додатке који имају било какве пословне или личне "
+"везе са Вама, као и директно конкурентих додатака"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
@@ -6639,6 +6652,12 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
+"Ова истакнута полиса се односи само на addons.mozilla.org глобалну листу "
+"истакнутих додатака. Истакнути додаци на другим местима се често издвајају "
+"из ове листе, али Mozilla може да истакне било који додатак на другом месту "
+"без сагласности одбора. Поред тога, локалне специфичности заобилазе глобалне "
+"подразумеване, тако да ако се локал определио за своје могућности, неке или "
+"све глобалне могућности се можда неће појавити у том локалу."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
@@ -6666,12 +6685,19 @@ msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
+"<strong><a href=\"#full\">Пуна рецензија</a></strong> &mdash; темељна и "
+"функционална рецензија кода додатка, одговарајућа за додатке који су спремни "
+"за дистрибуцију масе. Све функције веб сајта су доступне овим додацима."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Прелиминарна рецензија</a></strong> &mdash; "
+"бржи преглед је намењен експерименталним додацима. Прелиминарне рецензије не "
+"проверавају функционалност и потпуну сагласност полисе приватности, али "
+"прегледани додаци имају дугме упозорења и нека ограничења функција."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -6679,18 +6705,33 @@ msgid ""
 "org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
 "receive an email with any updates throughout the review process."
 msgstr ""
+"Детаљни описи сваке опције су испод. Након избора поднешеног процеса "
+"рецензије, додатак ће бити стављен на чекање. Додаци су прегледани од стране "
+"<a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO уредника</a>, групе "
+"талентованих програмера који волонтирају да помогну Mozilla пројектима, и "
+"прегледом додатака обезбеђују стабилно и безбедно искуство за кориснике. "
+"Програмери ће добити е-пошту са било каквим променама током процеса "
+"прегледа."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
+"Док чекате преглед, додаци се неће појавити било где у јавној галерији, али "
+"директне везе до странице детаља додатка ће радити. Ово омогућава аутору да "
+"блогује или подели везу са пријатељима, позивајући их да га испробају, пре "
+"него што је прегледана."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
+"Пуна рецензија одговара додацима који су добро истестирани, стабилни, брзи и "
+"имају широк апел нашим корисницима. Ако сте сигурни да је Ваш додатак "
+"одговара критеријумима, молимо Вас да разматрате о експериментисању док је у "
+"прелиминарном прегледу и акумулирању корисникових повратних информација."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
@@ -6817,6 +6858,10 @@ msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
+"Накнадне верзије додатка ће бити аутоматски стављене у ред за потпун "
+"преглед. Док преглед не буде завршен, нова верзија ће бити приказана само на "
+"страници историјата верзије додатка. Када буде прегледана, верзија ће бити "
+"ажурирана преко сајта и распоређена преко сервиса за аутоматско ажурирање."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid ""
@@ -6947,6 +6992,12 @@ msgid ""
 "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
 "session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
 msgstr ""
+"Додаци који складиште или на други начин рукују са подацима прегледа морају "
+"подржавати <a href=\"https://developer.mozilla.org/En/Supporting_private_brow"
+"sing_mode\">Режим за приватно прегледање</a>. Током сесије за Приватно "
+"прегледање, ниједан податак прегледа несме бити написан на диск и сви подаци "
+"морају бити обрисани чим корисник заврши са сесијом приватног прегледања "
+"или изађе из Firefox-а."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -6957,6 +7008,10 @@ msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
+"Додаци могу да садрже бинарни, баговит и умањен изворни код, али морате "
+"дозволити Mozilla-и да размотри копију људско читљивог изворног кода сваке "
+"верзије додатка које су предате на разматрање. Ови додаци испуњавју услове "
+"за прелиминарни преглед и морају изабрати пун процес прегледа."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid ""
@@ -7661,15 +7716,25 @@ msgid ""
 "<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
 "and/or tags are unrelated to your theme."
 msgstr ""
+"<b>Изаберите категорију и ознаке</b> &mdash; изаберите категорију и унесите "
+"неке ознаке које описују Ваше теме. Имајте у виду да ће рецезент можда "
+"одбити Вашу тему ако је очигледно да категорија и/или ознаке немају везе са "
+"Вашом темом."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid ""
 "<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
 msgstr ""
+"<b>Опишите Вашу тему</b> &mdash; напишите кратак опис Ваше тема. Имајте у "
+"виду да ће рецензент можда одбити Вашу тему ако опис не представља верно "
+"Вашу тему."
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
 msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
 msgstr ""
+"<b>Изаберите лиценцу за Вашу тему</b> &mdash; одлучите се за ауторску "
+"лиценцу за Ваш рад. <a href=\"%(cc_url)s\">Сазнајте више о типовима Creative "
+"Common лиценци.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:208
 msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
@@ -7686,18 +7751,26 @@ msgstr "<b>Изаберите боје текста и језичака</b> &mda
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
 msgstr ""
+"<b>Погледајте Вашу тему</b> &mdash; Ви сте спремни да погледате Вашу тему! "
+"Једноставно пређите мишем преко дугмета за подношење теме да видите како она "
+"изгледа."
 
 #: apps/devhub/templates/devhub/docs/themes.html:236
 msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
 msgstr ""
+"<b>Поднесите Вашу тему</b> &mdash; ако све изгледа ок, кликните на дугме за "
+"подношење теме и завршили сте! Можете видети све теме којима сте Ви аутор на "
+"страници профила."
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
 msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
 msgstr ""
+"<b>Савет:</b> да се осигура да је Ваша тема одобрена за галерију, будите "
+"сигурни да је у складу са смерницама за садржај и условима коришћења услуге!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 msgid "Submit Your Theme Now"
-msgstr ""
+msgstr "Поднесите Вашу тему сада"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
