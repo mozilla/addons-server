@@ -1274,9 +1274,8 @@ class TestFeatures(amo.tests.TestCase):
         d = dict(application=999, collection=80)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        eq_(r.context['form'].errors[0]['application'],
-            ['Select a valid choice. That choice is not one of the available '
-             'choices.'])
+        eq_(r.context['form'].errors[0]['application'], [
+            'Select a valid choice. 999 is not one of the available choices.'])
 
     def test_bad_collection_for_app(self):
         d = dict(application=amo.THUNDERBIRD.id, collection=80)

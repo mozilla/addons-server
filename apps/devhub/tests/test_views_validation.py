@@ -19,7 +19,6 @@ from amo.tests import assert_no_validation_exceptions
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
-from constants.applications import FIREFOX
 from devhub.tasks import compatibility_check
 from files.helpers import copyfileobj
 from files.models import File, FileUpload, FileValidation
@@ -424,10 +423,10 @@ class TestValidateFile(BaseUploadTest):
         })
         xpi = self.get_upload('extension.xpi')
         AppVersion.objects.create(
-            application=FIREFOX.id,
+            application=amo.FIREFOX.id,
             version='10.0.*')
 
-        compatibility_check(xpi, FIREFOX.guid, '10.0.*')
+        compatibility_check(xpi, amo.FIREFOX.guid, '10.0.*')
 
         eq_(run_validator.call_args[1]['compat'], True)
 

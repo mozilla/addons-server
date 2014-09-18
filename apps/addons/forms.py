@@ -184,17 +184,17 @@ class AppFormBasic(AddonFormBasic):
 
 
 class CategoryForm(forms.Form):
-    application = forms.ChoiceField(amo.APPS_CHOICES,
-                                    widget=forms.HiddenInput,
-                                    required=False)
+    application = forms.TypedChoiceField(amo.APPS_CHOICES, coerce=int,
+                                         widget=forms.HiddenInput,
+                                         required=False)
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
 
     def save(self, addon):
-        application = self.cleaned_data['application']
+        application = self.cleaned_data.get('application')
         categories_new = self.cleaned_data['categories']
         categories_old = [cats for app, cats in addon.app_categories if
-                          (app and application and app.id == int(application))
+                          (app and application and app.id == application)
                           or (not app and not application)]
         if categories_old:
             categories_old = categories_old[0]

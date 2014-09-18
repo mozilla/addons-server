@@ -136,11 +136,7 @@ class FeaturedCollectionForm(happyforms.ModelForm):
         (i, product_details.languages[i]['native'])
         for i in settings.AMO_LANGUAGES)
 
-    application = forms.ChoiceField(
-        amo.APPS_CHOICES,
-        error_messages={'invalid_choice': _lazy(u'Select a valid choice. That '
-                                                u'choice is not one of the '
-                                                u'available choices.')})
+    application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)
     locale = forms.ChoiceField(choices=LOCALES, required=False)
 
