@@ -35,7 +35,7 @@ def get_featured_ids(app, lang=None, type=None):
     from addons.models import Addon
     ids = []
     is_featured = (Q(collections__featuredcollection__isnull=False) &
-                   Q(collections__featuredcollection__application__id=app.id))
+                   Q(collections__featuredcollection__application=app.id))
     qs = Addon.objects.all()
 
     if type:

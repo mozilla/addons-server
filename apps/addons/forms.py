@@ -22,7 +22,6 @@ from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
 from addons.tasks import save_theme, save_theme_reupload
 from addons.utils import reverse_name_lookup
 from addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
-from applications.models import Application
 from devhub import tasks as devhub_tasks
 from tags.models import Tag
 from translations import LOCALES
@@ -184,16 +183,10 @@ class AppFormBasic(AddonFormBasic):
     name = TransField(max_length=128)
 
 
-class ApplicationChoiceField(forms.ModelChoiceField):
-
-    def label_from_instance(self, obj):
-        return obj.id
-
-
 class CategoryForm(forms.Form):
-    application = ApplicationChoiceField(Application.objects.all(),
-                                         widget=forms.HiddenInput,
-                                         required=False)
+    application = forms.ChoiceField(amo.APPS_CHOICES,
+                                    widget=forms.HiddenInput,
+                                    required=False)
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
 
@@ -201,8 +194,8 @@ class CategoryForm(forms.Form):
         application = self.cleaned_data['application']
         categories_new = self.cleaned_data['categories']
         categories_old = [cats for app, cats in addon.app_categories if
-                          (app and application and app.id == application.id) or
-                          (not app and not application)]
+                          (app and application and app.id == int(application))
+                          or (not app and not application)]
         if categories_old:
             categories_old = categories_old[0]
 
@@ -251,7 +244,7 @@ class BaseCategoryFormSet(BaseFormSet):
         # Drop any apps that don't have appropriate categories.
         qs = Category.objects.filter(type=self.addon.type)
         app_cats = dict((k, list(v)) for k, v in
-                        sorted_groupby(qs, 'application_id'))
+                        sorted_groupby(qs, 'application'))
         for app in list(apps):
             if app and not app_cats.get(app.id):
                 apps.remove(app)

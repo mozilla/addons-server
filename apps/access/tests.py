@@ -75,7 +75,7 @@ class ACLTestCase(TestCase):
 
 
 class TestHasPerm(TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')

@@ -9,7 +9,7 @@ from django.utils.functional import memoize
 import amo
 import amo.models
 from amo.urlresolvers import reverse
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from files.models import File
 
 _config_cache = {}
@@ -49,7 +49,7 @@ def set_config(conf, value):
 
 
 class ValidationJob(amo.models.ModelBase):
-    application = models.ForeignKey(Application)
+    application = models.PositiveIntegerField(db_column='application_id')
     curr_max_version = models.ForeignKey(AppVersion,
                                          related_name='validation_current_set')
     target_version = models.ForeignKey(AppVersion,

@@ -19,7 +19,7 @@ from devhub.views import packager_path
 
 
 class TestPackager(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/appversion',
+    fixtures = ['base/users', 'base/appversion',
                 'base/addon_3615']
 
     def setUp(self):
@@ -207,7 +207,7 @@ class TestPackager(amo.tests.TestCase):
 
     @patch.object(amo, 'DEFAULT_MINVER', '3.6')
     def test_default_firefox_minver(self):
-        eq_(len(AppVersion.objects.filter(application__id=amo.FIREFOX.id,
+        eq_(len(AppVersion.objects.filter(application=amo.FIREFOX.id,
                                           version='3.6')), 1)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -232,8 +232,7 @@ class TestPackager(amo.tests.TestCase):
 
 
 class TestPackagerDownload(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/appversion',
-                'base/addon_3615']
+    fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
 
     def setUp(self):
         self.url = lambda f: reverse('devhub.package_addon_json', args=[f])

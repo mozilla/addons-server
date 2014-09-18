@@ -8,7 +8,7 @@ from applications.models import AppVersion
 
 
 class Command(BaseCommand):
-    help = ('Add a new version to a Application. Syntax: \n'
+    help = ('Add a new version of an application. Syntax: \n'
             '    ./manage.py addnewversion <application_name> <version>')
     log = commonware.log.getLogger('z.appversions')
 

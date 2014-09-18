@@ -22,7 +22,7 @@ from amo.tests import addon_factory
 from amo.urlresolvers import reverse
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
-from applications.models import AppVersion, Application
+from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import File
 from files.tests.test_models import UploadTest
@@ -85,7 +85,7 @@ def test_dict_from_int():
 
 
 class TestVersion(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/admin']
+    fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
         self.version = Version.objects.get(pk=81551)
@@ -94,7 +94,7 @@ class TestVersion(amo.tests.TestCase):
         return [amo.PLATFORMS[i].shortname for i in ids]
 
     def target_mobile(self):
-        app = Application.objects.get(pk=amo.MOBILE.id)
+        app = amo.MOBILE.id
         app_vr = AppVersion.objects.create(application=app, version='1.0')
         ApplicationsVersions.objects.create(version=self.version,
                                             application=app,
@@ -390,22 +390,20 @@ class TestVersion(amo.tests.TestCase):
         eq_(version.is_compatible_app(amo.UNKNOWN_APP), False)
 
     def test_compat_override_app_versions(self):
-        app = Application.objects.get(pk=1)
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
         co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=app, min_version='0',
+        CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
                                            max_version=version.version,
                                            min_app_version='10.0a1',
                                            max_app_version='10.*')
         eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
 
     def test_compat_override_app_versions_wildcard(self):
-        app = Application.objects.get(pk=1)
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
         co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=app, min_version='0',
+        CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
                                            max_version='*',
                                            min_app_version='10.0a1',
                                            max_app_version='10.*')
@@ -425,7 +423,7 @@ class TestVersion(amo.tests.TestCase):
 
 
 class TestViews(amo.tests.TestCase):
-    fixtures = ['addons/eula+contrib-addon', 'base/apps']
+    fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
         self.old_perpage = views.PER_PAGE
@@ -480,7 +478,7 @@ class TestViews(amo.tests.TestCase):
 
 
 class TestFeeds(amo.tests.TestCase):
-    fixtures = ['addons/eula+contrib-addon', 'base/apps']
+    fixtures = ['addons/eula+contrib-addon']
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
@@ -508,7 +506,7 @@ class TestFeeds(amo.tests.TestCase):
 
 
 class TestDownloadsBase(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_5299_gcal', 'base/users']
+    fixtures = ['base/addon_5299_gcal', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=5299)
@@ -780,7 +778,7 @@ class TestDownloadSource(amo.tests.TestCase):
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         super(TestVersionFromUpload, self).setUp()
@@ -789,7 +787,7 @@ class TestVersionFromUpload(UploadTest, amo.tests.TestCase):
         self.addon.update(guid='guid@xpi')
         self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(application_id=1, version=version)
+            AppVersion.objects.create(application=1, version=version)
 
 
 class TestExtensionVersionFromUpload(TestVersionFromUpload):

@@ -10,8 +10,7 @@ from addons.models import Addon
 
 
 class ManualOrderTest(TestCase):
-    fixtures = ('base/apps', 'base/addon_3615', 'base/addon_5299_gcal',
-                'base/addon_40')
+    fixtures = ('base/addon_3615', 'base/addon_5299_gcal', 'base/addon_40')
 
     def test_ordering(self):
         """Given a specific set of primary keys, assure that we return addons

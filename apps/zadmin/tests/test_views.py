@@ -143,7 +143,7 @@ class TestFlagged(amo.tests.TestCase):
 
 
 class BulkValidationTest(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/appversion', 'base/users']
+    fixtures = ['base/addon_3615', 'base/appversion', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -172,7 +172,7 @@ class BulkValidationTest(amo.tests.TestCase):
                                       version=version)
 
     def create_job(self, **kwargs):
-        kw = dict(application_id=amo.FIREFOX.id,
+        kw = dict(application=amo.FIREFOX.id,
                   curr_max_version=kwargs.pop('current', self.curr_max),
                   target_version=kwargs.pop('target',
                                             self.appversion('3.7a3')),
@@ -228,7 +228,7 @@ class TestBulkValidation(BulkValidationTest):
         self.assertNoFormErrors(r)
         self.assertRedirects(r, reverse('zadmin.validation'))
         job = ValidationJob.objects.get()
-        eq_(job.application_id, amo.FIREFOX.id)
+        eq_(job.application, amo.FIREFOX.id)
         eq_(job.curr_max_version.version, self.curr_max.version)
         eq_(job.target_version.version, new_max.version)
         eq_(job.finish_email, 'fliggy@mozilla.com')
@@ -378,7 +378,7 @@ class TestBulkUpdate(BulkValidationTest):
         appver = AppVersion.objects.get(application=1, version='3.7a1pre')
         for v in self.version_one, self.version_two:
             ApplicationsVersions.objects.create(
-                application_id=amo.FIREFOX.id, version=v,
+                application=amo.FIREFOX.id, version=v,
                 min=appver, max=appver)
 
     def test_no_update_link(self):
@@ -478,7 +478,7 @@ class TestBulkUpdate(BulkValidationTest):
     def test_update_different_app(self):
         self.create_result(self.job, self.create_file(self.version))
         target = self.version.apps.all()[0]
-        target.application_id = amo.FIREFOX.id
+        target.application = amo.FIREFOX.id
         target.save()
         eq_(self.version.apps.all()[0].max, self.curr_max)
 
@@ -1151,7 +1151,7 @@ class TestEmailPreview(amo.tests.TestCase):
 
 
 class TestMonthlyPick(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/apps', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -1225,14 +1225,13 @@ class TestMonthlyPick(amo.tests.TestCase):
 
 
 class TestFeatures(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/collections',
-                'base/addon_3615.json']
+    fixtures = ['base/users', 'base/collections', 'base/addon_3615.json']
 
     def setUp(self):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('zadmin.features')
-        FeaturedCollection.objects.create(application_id=amo.FIREFOX.id,
+        FeaturedCollection.objects.create(application=amo.FIREFOX.id,
                                           locale='zh-CN', collection_id=80)
         self.f = self.client.get(self.url).context['form'].initial_forms[0]
         self.initial = self.f.initial
@@ -1716,7 +1715,7 @@ class TestCompat(amo.tests.ESTestCase):
         # Add an override for this current app version.
         compat = CompatOverride.objects.create(addon=addon, guid=addon.guid)
         CompatOverrideRange.objects.create(compat=compat,
-            app_id=amo.FIREFOX.id, min_app_version=self.app_version + 'a1',
+            app=amo.FIREFOX.id, min_app_version=self.app_version + 'a1',
             max_app_version=self.app_version + '*')
 
         # Check that there is an override for this current app version.
@@ -1892,7 +1891,7 @@ class TestEmailDevs(amo.tests.TestCase):
 
 
 class TestPerms(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/apps', 'zadmin/tests/flagged']
+    fixtures = ['base/users', 'zadmin/tests/flagged']
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.

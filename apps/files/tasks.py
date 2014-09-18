@@ -161,7 +161,7 @@ def repackage_jetpack(builder_data, **kw):
         # Sync the compatible apps of the new version with data from the old
         # version if the repack didn't specify compat info.
         for app in old_version.apps.values():
-            sync_app = amo.APP_IDS[app['application_id']]
+            sync_app = amo.APP_IDS[app['application']]
             new_compat = new_version.compatible_apps
             if sync_app not in new_compat:
                 app.update(version_id=new_version.id, id=None)

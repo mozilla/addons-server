@@ -11,7 +11,7 @@ import amo.tests
 from addons.models import (Addon, CompatOverride, CompatOverrideRange,
                            IncompatibleVersions)
 from amo.helpers import user_media_url
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from files.models import File
 from services import update
 from versions.models import ApplicationsVersions, Version
@@ -26,7 +26,7 @@ class VersionCheckMixin(object):
 
 
 class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/apps', 'base/appversion']
+    fixtures = ['base/addon_3615', 'base/appversion']
 
     def setUp(self):
         super(TestDataValidate, self).setUp()
@@ -94,7 +94,7 @@ class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
 
 
 class TestLookup(VersionCheckMixin, amo.tests.TestCase):
-    fixtures = ['addons/update', 'base/apps', 'base/appversion']
+    fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
         super(TestLookup, self).setUp()
@@ -102,7 +102,7 @@ class TestLookup(VersionCheckMixin, amo.tests.TestCase):
         self.platform = None
         self.version_int = 3069900200100
 
-        self.app = Application.objects.get(id=1)
+        self.app = amo.APP_IDS[1]
         self.version_1_0_2 = 66463
         self.version_1_1_3 = 90149
         self.version_1_2_0 = 105387
@@ -384,7 +384,7 @@ class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
         super(TestDefaultToCompat, self).setUp()
         self.addon = Addon.objects.get(id=337203)
         self.platform = None
-        self.app = Application.objects.get(id=1)
+        self.app = amo.APP_IDS[1]
         self.app_version_int_3_0 = 3000000200100
         self.app_version_int_4_0 = 4000000200100
         self.app_version_int_5_0 = 5000000200100
@@ -419,7 +419,7 @@ class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
         co = CompatOverride.objects.create(
             name='test', guid=self.addon.guid, addon=self.addon
         )
-        default = dict(compat=co, app=self.app, min_version='0',
+        default = dict(compat=co, app=self.app.id, min_version='0',
                        max_version='*', min_app_version='0',
                        max_app_version='*')
         default.update(kw)

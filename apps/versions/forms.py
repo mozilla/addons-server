@@ -93,7 +93,7 @@ class XPIForm(happyforms.Form):
 
         for app in apps:
             av = ApplicationsVersions.objects.create(version=version,
-                    min=app.min, max=app.max, application_id=app.id)
+                    min=app.min, max=app.max, application=app.id)
             amo.log(amo.LOG.ADD_APPVERSION,
                     version, version.addon, app.appdata.short, av)
 

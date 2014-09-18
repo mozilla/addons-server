@@ -22,7 +22,7 @@ from amo.urlresolvers import reverse
 from amo.views import handler500
 from api.utils import addon_to_dict
 from api.views import addon_filter
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File
 from files.tests.test_models import UploadTest
@@ -181,7 +181,7 @@ class StripHTMLTest(TestCase):
 
 
 class APITest(TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_4664_twitterbar',
+    fixtures = ['base/addon_3615', 'base/addon_4664_twitterbar',
                 'base/addon_5299_gcal', 'perf/index']
 
     def test_api_caching(self):
@@ -506,9 +506,8 @@ class APITest(TestCase):
         c = CollectionAddon.objects.create(
                 addon=Addon.objects.get(id=5299),
                 collection=Collection.objects.create())
-        FeaturedCollection.objects.create(locale='ja',
-            application=Application.objects.get(id=amo.FIREFOX.id),
-            collection=c.collection)
+        FeaturedCollection.objects.create(
+            locale='ja', application=amo.FIREFOX.id, collection=c.collection)
         for lang, app, result in [('ja', 'firefox', 1),
                                   ('en-US', 'firefox', 0),
                                   ('ja', 'seamonkey', 0)]:
@@ -594,7 +593,7 @@ class DRFAPITest(DRFMixin, APITest):
 
 class ListTest(TestCase):
     """Tests the list view with various urls."""
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615', 'base/featured',
+    fixtures = ['base/users', 'base/addon_3615', 'base/featured',
                 'addons/featured', 'bandwagon/featured_collections',
                 'base/collections']
 
@@ -694,7 +693,7 @@ class DRFListTest(DRFMixin, ListTest):
 
 class AddonFilterTest(TestCase):
     """Tests the addon_filter, including the various d2c cases."""
-    fixtures = ['base/apps', 'base/appversion']
+    fixtures = ['base/appversion']
 
     def setUp(self):
         # Start with 2 compatible add-ons.
@@ -784,7 +783,7 @@ class AddonFilterTest(TestCase):
         # Add override for this add-on.
         compat = CompatOverride.objects.create(guid='three', addon=addon3)
         CompatOverrideRange.objects.create(
-            compat=compat, app=Application.objects.get(pk=1),
+            compat=compat, app=1,
             min_version=addon3.current_version.version, max_version='*')
 
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
@@ -818,7 +817,7 @@ class SeamonkeyFeaturedTest(TestCase):
 
 
 class TestGuidSearch(TestCase):
-    fixtures = ('base/apps', 'base/addon_6113', 'base/addon_3615')
+    fixtures = ('base/addon_6113', 'base/addon_3615')
     # These are the guids for addon 6113 and 3615.
     good = ('search/guid:{22870005-adef-4c9d-ae36-d0e1f2f27e5a},'
             '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
@@ -827,7 +826,7 @@ class TestGuidSearch(TestCase):
         addon = Addon.objects.get(id=3615)
         c = CompatOverride.objects.create(guid=addon.guid)
         app = addon.compatible_apps.keys()[0]
-        CompatOverrideRange.objects.create(compat=c, app_id=app.id)
+        CompatOverrideRange.objects.create(compat=c, app=app.id)
 
     def test_success(self):
         r = make_call(self.good)
@@ -900,7 +899,7 @@ class TestGuidSearch(TestCase):
 
     def test_addon_compatibility_not_hosted(self):
         c = CompatOverride.objects.create(guid='yeah', name='ok')
-        CompatOverrideRange.objects.create(app_id=1, compat=c,
+        CompatOverrideRange.objects.create(app=1, compat=c,
                                            min_version='1', max_version='2',
                                            min_app_version='3',
                                            max_app_version='4')
@@ -926,7 +925,7 @@ class TestGuidSearch(TestCase):
 
 
 class SearchTest(ESTestCase):
-    fixtures = ('base/apps', 'base/appversion',
+    fixtures = ('base/appversion',
                 'base/addon_6113', 'base/addon_40', 'base/addon_3615',
                 'base/addon_6704_grapple', 'base/addon_4664_twitterbar',
                 'base/addon_10423_youtubesearch', 'base/featured')
@@ -1154,11 +1153,10 @@ class SearchTest(ESTestCase):
     def test_compat_mode_normal_max_version(self):
         # We ignore versions that don't qualify for d2c by not having the
         # minimum maxVersion support (e.g. Firefox >= 4.0).
-        app = Application.objects.get(id=1)
-        fx30 = AppVersion.objects.get(application=app, version="3.0")
-        fx35 = AppVersion.objects.get(application=app, version="3.5")
+        fx30 = AppVersion.objects.get(application=1, version="3.0")
+        fx35 = AppVersion.objects.get(application=1, version="3.5")
         addon = Addon.objects.get(pk=3615)
-        av = addon.current_version.apps.filter(application=app)[0]
+        av = addon.current_version.apps.filter(application=1)[0]
         av.min = fx30
         av.max = fx35
         av.save()
@@ -1192,10 +1190,9 @@ class SearchTest(ESTestCase):
         self.assertContains(response, 'Delicious Bookmarks')
 
         # Make add-on have a compat override.
-        app = Application.objects.get(id=1)
         co = CompatOverride.objects.create(name='test', guid=addon.guid,
                                            addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=app,
+        CompatOverrideRange.objects.create(compat=co, app=1,
                                            min_version='0',
                                            max_version='*',
                                            min_app_version='0',
@@ -1272,7 +1269,7 @@ class DRFSearchTest(DRFMixin, SearchTest):
 
 
 class LanguagePacks(UploadTest):
-    fixtures = ['addons/listed', 'base/apps']
+    fixtures = ['addons/listed']
 
     def setUp(self):
         self.url = reverse('api.language', args=['1.5'])
@@ -1293,7 +1290,7 @@ class LanguagePacks(UploadTest):
 
     def test_search_app(self):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
-        AppSupport.objects.create(addon=self.addon, app_id=amo.THUNDERBIRD.id)
+        AppSupport.objects.create(addon=self.addon, app=amo.THUNDERBIRD.id)
         res = self.client.get(self.tb_url)
         self.assertContains(res, "<guid>{835A3F80-DF39")
 

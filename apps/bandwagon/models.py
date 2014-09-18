@@ -20,7 +20,6 @@ from addons.models import Addon, AddonRecommendation
 from amo.helpers import absolutify, user_media_path, user_media_url
 from amo.urlresolvers import reverse
 from amo.utils import sorted_groupby
-from applications.models import Application
 from stats.models import CollectionShareCountTotal
 from translations.fields import (LinkifiedField, save_signal,
                                  NoLinksNoMarkupField, TranslatedField)
@@ -120,7 +119,8 @@ class Collection(CollectionBase, amo.models.ModelBase):
     downloads = models.PositiveIntegerField(default=0)
     weekly_subscribers = models.PositiveIntegerField(default=0)
     monthly_subscribers = models.PositiveIntegerField(default=0)
-    application = models.ForeignKey(Application, null=True)
+    application = models.PositiveIntegerField(db_column='application_id',
+                                              null=True)
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
@@ -587,7 +587,7 @@ class RecommendedCollection(Collection):
 
 
 class FeaturedCollection(amo.models.ModelBase):
-    application = models.ForeignKey(Application)
+    application = models.PositiveIntegerField(db_column='application_id')
     collection = models.ForeignKey(Collection)
     locale = models.CharField(max_length=10, null=True)
 

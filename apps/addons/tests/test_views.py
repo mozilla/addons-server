@@ -71,7 +71,6 @@ def test_hovercards(self, doc, addons, src=''):
 
 
 class TestHomepage(amo.tests.TestCase):
-    fixtures = ['base/apps']
 
     def setUp(self):
         self.base_url = reverse('home')
@@ -96,8 +95,7 @@ class TestHomepage(amo.tests.TestCase):
 
 
 class TestHomepageFeatures(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/appversion',
+    fixtures = ['base/appversion',
                 'base/users',
                 'base/addon_3615',
                 'base/collections',
@@ -166,7 +164,7 @@ class TestPromobox(amo.tests.TestCase):
 
 
 class TestContributeInstalled(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/addon_592']
+    fixtures = ['base/appversion', 'base/addon_592']
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=592)
@@ -339,7 +337,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
 
 
 class TestDeveloperPages(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592', 'base/apps',
+    fixtures = ['base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',
                 'addons/addon_228106_info+dev+bio.json',
                 'addons/addon_228107_multiple-devs.json']
@@ -483,8 +481,7 @@ class TestLicensePage(amo.tests.TestCase):
 
 
 class TestDetailPage(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/addon_3615',
+    fixtures = ['base/addon_3615',
                 'base/users',
                 'base/addon_59',
                 'base/addon_4594_a9',
@@ -823,7 +820,7 @@ class TestDetailPage(amo.tests.TestCase):
 
 
 class TestImpalaDetailPage(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592', 'base/apps', 'base/users']
+    fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -988,7 +985,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
 
     def test_categories(self):
         c = self.addon.all_categories[0]
-        c.application_id = amo.THUNDERBIRD.id
+        c.application = amo.THUNDERBIRD.id
         c.save()
         links = self.get_more_pq()('#related ul:first').find('a')
         expected = [(unicode(c.name), c.get_url_path()) for c in
@@ -1185,7 +1182,7 @@ class TestEulaPolicyRedirects(amo.tests.TestCase):
 
 
 class TestEula(amo.tests.TestCase):
-    fixtures = ['base/apps', 'addons/eula+contrib-addon']
+    fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=11730)
@@ -1300,7 +1297,7 @@ class TestXssOnName(amo.tests.TestCase):
 
 
 class TestPrivacyPolicy(amo.tests.TestCase):
-    fixtures = ['base/apps', 'addons/eula+contrib-addon']
+    fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=11730)
@@ -1389,7 +1386,7 @@ class TestReportAbuse(amo.tests.TestCase):
 
 
 class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
-    fixtures = ['addons/featured', 'base/apps', 'base/users',
+    fixtures = ['addons/featured', 'base/users',
                 'base/addon_3615', 'base/featured',
                 'bandwagon/featured_collections']
 

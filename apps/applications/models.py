@@ -30,7 +30,7 @@ class Application(amo.models.ModelBase):
 
 class AppVersion(amo.models.ModelBase):
 
-    application = models.ForeignKey(Application)
+    application = models.PositiveIntegerField(db_column='application_id')
     version = models.CharField(max_length=255, default='')
     version_int = models.BigIntegerField(editable=False)
 

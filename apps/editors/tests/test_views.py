@@ -22,7 +22,6 @@ from addons.models import Addon, AddonDependency, AddonUser
 from amo.tests import check_links, formset, initial
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
-from applications.models import Application
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, ReviewerScore
 from files.models import File
@@ -1105,7 +1104,7 @@ class SearchTest(EditorTest):
 
 
 class TestQueueSearch(SearchTest):
-    fixtures = ['base/users', 'base/apps', 'base/appversion']
+    fixtures = ['base/users', 'base/appversion']
 
     def setUp(self):
         super(TestQueueSearch, self).setUp()
@@ -1318,10 +1317,10 @@ class TestQueueSearch(SearchTest):
         d = create_addon_file('Bieber For Mobile 4.0b2pre', '0.1',
                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
                               application=amo.MOBILE)
-        app = Application.objects.get(pk=amo.MOBILE.id)
-        max = AppVersion.objects.get(application=app, version='4.0b2pre')
-        (ApplicationsVersions.objects
-         .filter(application=app, version=d['version']).update(max=max))
+        max = AppVersion.objects.get(application=amo.MOBILE.id,
+                                     version='4.0b2pre')
+        (ApplicationsVersions.objects.filter(
+            application=amo.MOBILE.id, version=d['version']).update(max=max))
         r = self.search(application_id=amo.MOBILE.id, max_version='4.0b2pre')
         eq_(self.named_addons(r), [u'Bieber For Mobile 4.0b2pre'])
 
@@ -1679,16 +1678,14 @@ class TestReview(ReviewBase):
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
                         amo.STATUS_UNREVIEWED)
 
-        a1, c = Application.objects.get_or_create(id=amo.THUNDERBIRD.id)
-        a2, c = Application.objects.get_or_create(id=amo.SEAMONKEY.id)
         av = AppVersion.objects.all()[0]
         v = self.addon.versions.all()[0]
 
         ApplicationsVersions.objects.create(version=v,
-                application=a1, min=av, max=av)
+                application=amo.THUNDERBIRD.id, min=av, max=av)
 
         ApplicationsVersions.objects.create(version=v,
-                application=a2, min=av, max=av)
+                application=amo.SEAMONKEY.id, min=av, max=av)
 
         eq_(self.addon.versions.count(), 1)
         url = reverse('editors.review', args=[self.addon.slug])
