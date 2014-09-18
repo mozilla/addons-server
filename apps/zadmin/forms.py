@@ -19,7 +19,7 @@ from quieter_formset.formset import BaseModelFormSet
 import amo
 from addons.models import Addon
 from amo.urlresolvers import reverse
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
 from compat.forms import CompatForm as BaseCompatForm
 from files.models import File
@@ -44,16 +44,17 @@ class DevMailerForm(happyforms.Form):
 
 class BulkValidationForm(happyforms.ModelForm):
     application = forms.ChoiceField(
-                label=_lazy(u'Application'),
-                choices=[(a.id, a.pretty) for a in amo.APPS_ALL.values()])
+        label=_lazy(u'Application'),
+        choices=amo.APPS_CHOICES)
     curr_max_version = forms.ChoiceField(
-                label=_lazy(u'Current Max. Version'),
-                choices=[('', _lazy(u'Select an application first'))])
+        label=_lazy(u'Current Max. Version'),
+        choices=[('', _lazy(u'Select an application first'))])
     target_version = forms.ChoiceField(
-                label=_lazy(u'Target Version'),
-                choices=[('', _lazy(u'Select an application first'))])
-    finish_email = forms.CharField(required=False,
-                                   label=_lazy(u'Email when finished'))
+        label=_lazy(u'Target Version'),
+        choices=[('', _lazy(u'Select an application first'))])
+    finish_email = forms.CharField(
+        required=False,
+        label=_lazy(u'Email when finished'))
 
     class Meta:
         model = ValidationJob
@@ -69,13 +70,12 @@ class BulkValidationForm(happyforms.ModelForm):
         w.attrs['data-url'] = reverse('zadmin.application_versions_json')
 
     def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application__id=app_id)
+        versions = AppVersion.objects.filter(application=app_id)
         return [(v.id, v.version) for v in versions]
 
     def clean_application(self):
         app_id = int(self.cleaned_data['application'])
-        app = Application.objects.get(pk=app_id)
-        self.cleaned_data['application'] = app
+        self.cleaned_data['application'] = app_id
         choices = self.version_choices_for_app_id(app_id)
         self.fields['target_version'].choices = choices
         self.fields['curr_max_version'].choices = choices
@@ -136,7 +136,7 @@ class FeaturedCollectionForm(happyforms.ModelForm):
         (i, product_details.languages[i]['native'])
         for i in settings.AMO_LANGUAGES)
 
-    application = forms.ModelChoiceField(Application.objects.all())
+    application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)
     locale = forms.ChoiceField(choices=LOCALES, required=False)
 

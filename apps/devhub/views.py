@@ -39,7 +39,7 @@ from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all, HttpResponseSendFile, MenuItem
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
@@ -514,7 +514,7 @@ def profile(request, addon_id, addon):
 @post_required
 @json_view
 def compat_application_versions(request):
-    app_id = request.POST['application_id']
+    app_id = request.POST['application']
     f = CheckCompatibilityForm()
     return {'choices': f.version_choices_for_app_id(app_id)}
 
@@ -626,8 +626,11 @@ def upload(request, addon_slug=None, is_standalone=False):
     if request.user.is_authenticated():
         fu.user = request.amo_user
         fu.save()
-    if request.POST.get('app_id') and request.POST.get('version_id'):
-        app = get_object_or_404(Application, pk=request.POST['app_id'])
+    app_id = request.POST.get('app_id')
+    if app_id and request.POST.get('version_id'):
+        app = amo.APPS_ALL.get(int(app_id))
+        if not app:
+            raise http.Http404()
         ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
     else:
@@ -1112,7 +1115,7 @@ def version_edit(request, addon_id, addon, version_id):
 def _log_max_version_change(addon, version, appversion):
     details = {'version': version.version,
                'target': appversion.version.version,
-               'application': appversion.application.pk}
+               'application': appversion.application}
     amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
             addon, version, details=details)
 

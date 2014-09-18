@@ -225,7 +225,7 @@ def find_files(job):
     addons = (Addon.objects.filter(
                         status__in=amo.VALID_STATUSES,
                         disabled_by_user=False,
-                        versions__apps__application=job.application.id,
+                        versions__apps__application=job.application,
                         versions__apps__max__version_int__gte=current,
                         versions__apps__max__version_int__lt=target)
                            # Exclude lang packs and themes.

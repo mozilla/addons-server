@@ -27,7 +27,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
 from addons.search import setup_mapping
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
@@ -180,7 +180,7 @@ class TestCleanSlug(amo.tests.TestCase):
 
 
 class TestAddonManager(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/users',
+    fixtures = ['base/appversion', 'base/users',
                 'base/addon_3615', 'addons/featured', 'addons/test_manager',
                 'base/collections', 'base/featured',
                 'bandwagon/featured_collections', 'base/addon_5299_gcal']
@@ -199,8 +199,9 @@ class TestAddonManager(amo.tests.TestCase):
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
         eq_(len(q.all()), 4)
 
-        addon = q[0]
-        eq_(addon.id, 2464)
+        # Pick one of the listed addons.
+        addon = Addon.objects.get(pk=2464)
+        assert addon in q.all()
 
         # Disabling hides it.
         addon.disabled_by_user = True
@@ -296,8 +297,7 @@ class TestAddonManager(amo.tests.TestCase):
 
 
 class TestAddonModels(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/appversion',
+    fixtures = ['base/appversion',
                 'base/collections',
                 'base/featured',
                 'base/users',
@@ -384,7 +384,7 @@ class TestAddonModels(amo.tests.TestCase):
         v = Version.objects.create(addon=addon, version='99')
         File.objects.create(status=status, version=v)
 
-        ApplicationsVersions.objects.create(application_id=amo.FIREFOX.id,
+        ApplicationsVersions.objects.create(application=amo.FIREFOX.id,
                                             version=v, min=av.min, max=av.max)
         return v
 
@@ -510,7 +510,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_incompatible_asterix(self):
         av = ApplicationsVersions.objects.get(pk=47881)
-        av.max = AppVersion.objects.create(application_id=amo.FIREFOX.id,
+        av.max = AppVersion.objects.create(application=amo.FIREFOX.id,
                                            version_int=version_int('5.*'),
                                            version='5.*')
         av.save()
@@ -972,15 +972,14 @@ class TestAddonModels(amo.tests.TestCase):
         cats = addon().all_categories
         eq_(cats, [c22, c23, c24])
         for cat in cats:
-            eq_(cat.application.id, amo.FIREFOX.id)
+            eq_(cat.application, amo.FIREFOX.id)
 
         cats = [c24, c23, c22]
         app_cats = [(amo.FIREFOX, cats)]
         eq_(addon().app_categories, app_cats)
 
-        tb = Application.objects.get(id=amo.THUNDERBIRD.id)
-        c = Category(application=tb, name='XXX', type=addon().type, count=1,
-                     weight=1)
+        c = Category(application=amo.THUNDERBIRD.id, name='XXX',
+                     type=addon().type, count=1, weight=1)
         c.save()
         AddonCategory.objects.create(addon=addon(), category=c)
         c24.save()  # Clear the app_categories cache.
@@ -996,9 +995,8 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(addon.app_categories, [(amo.FIREFOX, cats)])
 
         # Associate this add-on with a Sunbird category.
-        a = Application.objects.create(id=amo.SUNBIRD.id)
-        c2 = Category.objects.create(application=a, type=amo.ADDON_EXTENSION,
-                                     name='Sunny D')
+        c2 = Category.objects.create(application=amo.SUNBIRD.id,
+                                     type=amo.ADDON_EXTENSION, name='Sunny D')
         AddonCategory.objects.create(addon=addon, category=c2)
 
         # Sunbird category should be excluded.
@@ -1470,8 +1468,7 @@ class TestAddonDelete(amo.tests.TestCase):
             other_addon=addon, score=0)
         AddonUser.objects.create(addon=addon,
             user=UserProfile.objects.create())
-        AppSupport.objects.create(addon=addon,
-            app=Application.objects.create())
+        AppSupport.objects.create(addon=addon, app=1)
         CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
         Persona.objects.create(addon=addon, persona_id=0)
@@ -1600,7 +1597,7 @@ class TestAddonGetURLPath(amo.tests.TestCase):
 
 
 class TestAddonModelsFeatured(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/users',
+    fixtures = ['base/appversion', 'base/users',
                 'addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured']
 
@@ -1622,7 +1619,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
 
 
 class TestBackupVersion(amo.tests.TestCase):
-    fixtures = ['addons/update', 'base/apps', 'base/appversion']
+    fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
         self.version_1_2_0 = 105387
@@ -1818,8 +1815,7 @@ class TestAddonRecommendations(amo.tests.TestCase):
 
 
 class TestAddonDependencies(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/appversion',
+    fixtures = ['base/appversion',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
@@ -1857,8 +1853,7 @@ class TestListedAddonTwoVersions(amo.tests.TestCase):
 
 
 class TestFlushURLs(amo.tests.TestCase):
-    fixtures = ['base/apps',
-                'base/appversion',
+    fixtures = ['base/appversion',
                 'base/users',
                 'base/addon_5579',
                 'base/previews',
@@ -1904,7 +1899,7 @@ class TestFlushURLs(amo.tests.TestCase):
 
 
 class TestAddonFromUpload(UploadTest):
-    fixtures = ('base/apps', 'base/users')
+    fixtures = ['base/users']
 
     def setUp(self):
         super(TestAddonFromUpload, self).setUp()
@@ -1912,7 +1907,7 @@ class TestAddonFromUpload(UploadTest):
         set_user(u)
         self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(application_id=1, version=version)
+            AppVersion.objects.create(application=1, version=version)
         self.addCleanup(translation.deactivate)
 
     def manifest(self, basename):
@@ -2257,15 +2252,15 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 class TestCompatOverride(amo.tests.TestCase):
 
     def setUp(self):
-        self.app = Application.objects.create(id=1)
+        self.app = amo.APP_IDS[1]
 
         one = CompatOverride.objects.create(guid='one')
-        CompatOverrideRange.objects.create(compat=one, app=self.app)
+        CompatOverrideRange.objects.create(compat=one, app=self.app.id)
 
         two = CompatOverride.objects.create(guid='two')
-        CompatOverrideRange.objects.create(compat=two, app=self.app,
+        CompatOverrideRange.objects.create(compat=two, app=self.app.id,
                                            min_version='1', max_version='2')
-        CompatOverrideRange.objects.create(compat=two, app=self.app,
+        CompatOverrideRange.objects.create(compat=two, app=self.app.id,
                                            min_version='1', max_version='2',
                                            min_app_version='3',
                                            max_app_version='4')
@@ -2288,10 +2283,10 @@ class TestCompatOverride(amo.tests.TestCase):
         one = CompatOverride.objects.get(guid='one')
 
         # The default is incompatible.
-        c = CompatOverrideRange.objects.create(compat=one, app_id=1)
+        c = CompatOverrideRange.objects.create(compat=one, app=1)
         eq_(c.override_type(), 'incompatible')
 
-        c = CompatOverrideRange.objects.create(compat=one, app_id=1, type=0)
+        c = CompatOverrideRange.objects.create(compat=one, app=1, type=0)
         eq_(c.override_type(), 'compatible')
 
     def test_guid_match(self):
@@ -2327,7 +2322,7 @@ class TestCompatOverride(amo.tests.TestCase):
 
     def test_collapsed_ranges_multiple_versions(self):
         c = CompatOverride.objects.get(guid='one')
-        CompatOverrideRange.objects.create(compat=c, app_id=1,
+        CompatOverrideRange.objects.create(compat=c, app=1,
                                            min_version='1', max_version='2',
                                            min_app_version='3',
                                            max_app_version='3.*')
@@ -2347,7 +2342,7 @@ class TestCompatOverride(amo.tests.TestCase):
         # If the override ranges have different types they should be separate
         # entries.
         c = CompatOverride.objects.get(guid='one')
-        CompatOverrideRange.objects.create(compat=c, app_id=1, type=0,
+        CompatOverrideRange.objects.create(compat=c, app=1, type=0,
                                            min_app_version='3',
                                            max_app_version='3.*')
         r = c.collapsed_ranges()
@@ -2377,7 +2372,7 @@ class TestCompatOverride(amo.tests.TestCase):
     def test_collapsed_ranges_multiple_versions_and_apps(self):
         c = CompatOverride.objects.get(guid='two')
         CompatOverrideRange.objects.create(min_version='5', max_version='6',
-                                           compat=c, app_id=1)
+                                           compat=c, app=1)
         r = c.collapsed_ranges()
 
         eq_(len(r), 2)
@@ -2395,14 +2390,14 @@ class TestCompatOverride(amo.tests.TestCase):
 class TestIncompatibleVersions(amo.tests.TestCase):
 
     def setUp(self):
-        self.app = Application.objects.create(id=amo.FIREFOX.id)
+        self.app = amo.APP_IDS[amo.FIREFOX.id]
         self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
 
     def test_signals_min(self):
         eq_(IncompatibleVersions.objects.count(), 0)
 
         c = CompatOverride.objects.create(guid='r@b')
-        CompatOverrideRange.objects.create(compat=c, app=self.app,
+        CompatOverrideRange.objects.create(compat=c, app=self.app.id,
                                            min_version='0',
                                            max_version='1.0')
 
@@ -2429,7 +2424,7 @@ class TestIncompatibleVersions(amo.tests.TestCase):
         eq_(IncompatibleVersions.objects.count(), 0)
 
         c = CompatOverride.objects.create(guid='r@b')
-        CompatOverrideRange.objects.create(compat=c, app=self.app,
+        CompatOverrideRange.objects.create(compat=c, app=self.app.id,
                                            min_version='1.0',
                                            max_version='*')
 

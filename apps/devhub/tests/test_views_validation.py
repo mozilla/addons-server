@@ -18,8 +18,7 @@ from addons.models import Addon
 from amo.tests import assert_no_validation_exceptions
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
-from applications.models import AppVersion, Application
-from constants.applications import FIREFOX
+from applications.models import AppVersion
 from devhub.tasks import compatibility_check
 from files.helpers import copyfileobj
 from files.models import File, FileUpload, FileValidation
@@ -30,8 +29,7 @@ from zadmin.models import ValidationResult
 
 
 class TestUploadValidation(BaseUploadTest):
-    fixtures = ['base/apps', 'base/users',
-                'devhub/invalid-id-uploaded-xpi.json']
+    fixtures = ['base/users', 'devhub/invalid-id-uploaded-xpi.json']
 
     def setUp(self):
         super(TestUploadValidation, self).setUp()
@@ -69,7 +67,7 @@ class TestUploadValidation(BaseUploadTest):
 
 
 class TestUploadErrors(BaseUploadTest):
-    fixtures = ('base/apps', 'base/addon_3615', 'base/users')
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super(TestUploadErrors, self).setUp()
@@ -95,7 +93,7 @@ class TestUploadErrors(BaseUploadTest):
 
 
 class TestFileValidation(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'devhub/addon-validation-1']
+    fixtures = ['base/users', 'devhub/addon-validation-1']
 
     def setUp(self):
         assert self.client.login(username='del@icio.us', password='password')
@@ -198,8 +196,7 @@ class TestValidateAddon(amo.tests.TestCase):
 
 
 class TestValidateFile(BaseUploadTest):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615',
-                'devhub/addon-file-100456']
+    fixtures = ['base/users', 'base/addon_3615', 'devhub/addon-file-100456']
 
     def setUp(self):
         super(TestValidateFile, self).setUp()
@@ -426,10 +423,10 @@ class TestValidateFile(BaseUploadTest):
         })
         xpi = self.get_upload('extension.xpi')
         AppVersion.objects.create(
-            application=Application.objects.get(guid=FIREFOX.guid),
+            application=amo.FIREFOX.id,
             version='10.0.*')
 
-        compatibility_check(xpi, FIREFOX.guid, '10.0.*')
+        compatibility_check(xpi, amo.FIREFOX.guid, '10.0.*')
 
         eq_(run_validator.call_args[1]['compat'], True)
 
@@ -527,7 +524,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
 
 
 class TestUploadCompatCheck(BaseUploadTest):
-    fixtures = ['base/apps', 'base/appversions', 'base/addon_3615']
+    fixtures = ['base/appversion', 'base/addon_3615']
     compatibility_result = json.dumps({
         "errors": 0,
         "success": True,
@@ -544,8 +541,8 @@ class TestUploadCompatCheck(BaseUploadTest):
     def setUp(self):
         super(TestUploadCompatCheck, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
-        self.app = Application.objects.get(pk=amo.FIREFOX.id)
-        self.appver = AppVersion.objects.get(application=self.app,
+        self.app = amo.FIREFOX
+        self.appver = AppVersion.objects.get(application=self.app.id,
                                              version='3.7a1pre')
         self.upload_url = reverse('devhub.standalone_upload')
 
@@ -563,7 +560,7 @@ class TestUploadCompatCheck(BaseUploadTest):
             # Simulate how JS posts data w/ app/version from the form.
             res = self.client.post(self.upload_url,
                                    {'upload': f,
-                                    'app_id': self.app.pk,
+                                    'app_id': self.app.id,
                                     'version_id': self.appver.pk},
                                    follow=True)
         return json.loads(res.content)
@@ -625,7 +622,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         res = self.client.get(reverse('devhub.check_addon_compatibility'))
         eq_(res.status_code, 200)
         doc = pq(res.content)
-        data = {'application_id': amo.FIREFOX.id,
+        data = {'application': amo.FIREFOX.id,
                 'csrfmiddlewaretoken':
                             doc('input[name=csrfmiddlewaretoken]').val()}
         r = self.client.post(doc('#id_application').attr('data-url'),

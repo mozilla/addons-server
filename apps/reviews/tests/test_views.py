@@ -14,7 +14,7 @@ from users.models import UserProfile
 
 
 class ReviewTest(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin']
+    fixtures = ['reviews/dev-reply.json', 'base/admin']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=1865)
@@ -452,8 +452,7 @@ class TestTranslate(ReviewTest):
 
 
 class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/dev-reply.json', 'base/admin',
-                'base/users']
+    fixtures = ['reviews/dev-reply.json', 'base/admin', 'base/users']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=1865)

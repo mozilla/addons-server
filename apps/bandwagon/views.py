@@ -294,7 +294,7 @@ def collection_vote(request, username, slug, direction):
 
 
 def initial_data_from_request(request):
-    return dict(author=request.amo_user, application_id=request.APP.id)
+    return dict(author=request.amo_user, application=request.APP.id)
 
 
 def collection_message(request, collection, option):
@@ -346,7 +346,7 @@ def add(request):
 def ajax_new(request):
     form = forms.CollectionForm(request.POST or None,
         initial={'author': request.amo_user,
-                 'application_id': request.APP.id},
+                 'application': request.APP.id},
     )
 
     if request.method == 'POST' and form.is_valid():
@@ -448,7 +448,7 @@ def edit(request, collection, username, slug):
 
     if is_admin:
         initial = dict(type=collection.type,
-                       application=collection.application_id)
+                       application=collection.application)
         admin_form = forms.AdminForm(initial=initial)
     else:
         admin_form = None

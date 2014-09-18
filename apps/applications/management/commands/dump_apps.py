@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
 import commonware.log
 import amo
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 
 log = commonware.log.getLogger('z.cron')
 
@@ -20,9 +20,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         apps = {}
-        for id, guid in (Application.objects
-                         .supported().values_list('id', 'guid')):
-            apps[id] = dict(guid=guid, versions=[],
+        for id, app in amo.APP_IDS.iteritems():
+            apps[id] = dict(guid=app.guid, versions=[],
                             name=amo.APPS_ALL[id].short)
         versions = (AppVersion.objects.values_list('application', 'version')
                     .order_by('version_int'))

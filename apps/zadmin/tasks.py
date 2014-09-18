@@ -67,7 +67,7 @@ def tally_job_results(job_id, **kw):
         job.update(completed=datetime.now())
         if job.finish_email:
             send_mail(u'Behold! Validation results for %s %s->%s'
-                      % (amo.APP_IDS[job.application.id].pretty,
+                      % (amo.APP_IDS[job.application].pretty,
                          job.curr_max_version.version,
                          job.target_version.version),
                       textwrap.dedent("""
@@ -89,15 +89,14 @@ def bulk_validate_file(result_id, **kw):
         log.info('[1@None] Validating file %s (%s) for result_id %s'
                  % (res.file, file_base, res.id))
         target = res.validation_job.target_version
-        ver = {target.application.guid: [target.version]}
+        guid = amo.APP_IDS[target.application].guid
+        ver = {guid: [target.version]}
         # Set min/max so the validator only tests for compatibility with
         # the target version. Note that previously we explicitly checked
         # for compatibility with older versions. See bug 675306 for
         # the old behavior.
-        overrides = {'targetapp_minVersion':
-                                {target.application.guid: target.version},
-                     'targetapp_maxVersion':
-                                {target.application.guid: target.version}}
+        overrides = {'targetapp_minVersion': {guid: target.version},
+                     'targetapp_maxVersion': {guid: target.version}}
         validation = run_validator(res.file.file_path, for_appversions=ver,
                                    test_all_tiers=True, overrides=overrides,
                                    compat=True)
@@ -148,7 +147,7 @@ def add_validation_jobs(pks, job_pk, **kw):
     prelim_app = list(amo.UNDER_REVIEW_STATUSES) + [amo.STATUS_BETA]
     for addon in Addon.objects.filter(pk__in=pks):
         ids = []
-        base = addon.versions.filter(apps__application=job.application.id,
+        base = addon.versions.filter(apps__application=job.application,
                                      apps__max__version_int__gte=curr_ver,
                                      apps__max__version_int__lt=target_ver)
 
@@ -159,7 +158,7 @@ def add_validation_jobs(pks, job_pk, **kw):
             log.info('Addon %s already has a public version %r which is '
                      'compatible with target version of app %s %s (or newer)'
                      % (addon.pk, [v.pk for v in already_compat.all()],
-                        job.application.id, job.target_version))
+                        job.application, job.target_version))
             continue
 
         try:
@@ -226,7 +225,7 @@ def update_maxversions(version_pks, job_pk, data, **kw):
     job = ValidationJob.objects.get(pk=job_pk)
     set_user(get_task_user())
     dry_run = data['preview_only']
-    app_id = job.target_version.application.pk
+    app_id = job.target_version.application
     stats = collections.defaultdict(int)
     stats['processed'] = 0
     stats['is_dry_run'] = int(dry_run)
@@ -278,7 +277,7 @@ def notify_compatibility(users, job, data, **kw):
              % (len(users), notify_compatibility.rate_limit, job.pk))
     set_user(get_task_user())
     dry_run = data['preview_only']
-    app_id = job.target_version.application.pk
+    app_id = job.target_version.application
     stats = collections.defaultdict(int)
     stats['processed'] = 0
     stats['is_dry_run'] = int(dry_run)
@@ -307,7 +306,7 @@ def notify_compatibility(users, job, data, **kw):
 
 
             context = Context({
-                'APPLICATION': str(job.application),
+                'APPLICATION': unicode(amo.APP_IDS[job.application].pretty),
                 'VERSION': job.target_version.version,
                 'PASSING_ADDONS': user.passing_addons,
                 'FAILING_ADDONS': user.failing_addons,

@@ -58,8 +58,7 @@ class TestGoogleAnalytics(amo.tests.TestCase):
 
 
 class TestTotalContributions(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/users',
-                'base/addon_3615']
+    fixtures = ['base/appversion', 'base/users', 'base/addon_3615']
 
     def test_total_contributions(self):
 

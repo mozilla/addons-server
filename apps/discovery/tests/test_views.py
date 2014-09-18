@@ -15,7 +15,7 @@ import addons.signals
 from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonDependency, CompatOverride,
                            CompatOverrideRange, Preview)
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from bandwagon.models import MonthlyPick, SyncedCollection
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
@@ -27,7 +27,7 @@ from versions.models import Version, ApplicationsVersions
 
 
 class TestRecs(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/addon_3615',
+    fixtures = ['base/appversion', 'base/addon_3615',
                 'base/addon-recs', 'base/addon_5299_gcal', 'base/category',
                 'base/featured', 'addons/featured']
 
@@ -54,7 +54,7 @@ class TestRecs(amo.tests.TestCase):
             v = Version.objects.create(addon=addon)
             File.objects.create(version=v, status=amo.STATUS_PUBLIC)
             ApplicationsVersions.objects.create(
-                version=v, application_id=amo.FIREFOX.id,
+                version=v, application=amo.FIREFOX.id,
                 min_id=self.min_id, max_id=self.max_id)
             addon.update(_current_version=v)
             addons.signals.version_changed.send(sender=addon)
@@ -188,17 +188,15 @@ class TestRecs(amo.tests.TestCase):
 
 
 class TestModuleAdmin(amo.tests.TestCase):
-    fixtures = ['base/apps']
 
     def test_sync_db_and_registry(self):
         def check():
-            views._sync_db_and_registry(qs, app)
+            views._sync_db_and_registry(qs, 1)
             eq_(qs.count(), len(registry))
             modules = qs.values_list('module', flat=True)
             eq_(set(modules), set(registry.keys()))
 
-        app = Application.objects.create()
-        qs = DiscoveryModule.objects.no_cache().filter(app=app)
+        qs = DiscoveryModule.objects.no_cache().filter(app=1)
         eq_(qs.count(), 0)
 
         # All our modules get added.
@@ -221,7 +219,7 @@ class TestModuleAdmin(amo.tests.TestCase):
 
 
 class TestUrls(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/apps', 'base/featured', 'addons/featured',
+    fixtures = ['base/users', 'base/featured', 'addons/featured',
                 'base/addon_3615']
 
     def test_reverse(self):
@@ -264,7 +262,7 @@ class TestUrls(amo.tests.TestCase):
 
 
 class TestPromos(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'discovery/discoverymodules']
+    fixtures = ['base/users', 'discovery/discoverymodules']
 
     def get_disco_url(self, platform, version):
         return reverse('discovery.pane.promos', args=[platform, version])
@@ -301,9 +299,8 @@ class TestPromos(amo.tests.TestCase):
 
 
 class TestPane(amo.tests.TestCase):
-    fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
-                'base/collections', 'base/featured', 'base/users',
-                'bandwagon/featured_collections']
+    fixtures = ['addons/featured', 'base/addon_3615', 'base/collections',
+                'base/featured', 'base/users', 'bandwagon/featured_collections']
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
@@ -393,7 +390,7 @@ class TestPane(amo.tests.TestCase):
 
 
 class TestDetails(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_592']
+    fixtures = ['base/addon_3615', 'base/addon_592']
 
     def setUp(self):
         self.addon = self.get_addon()
@@ -471,7 +468,7 @@ class TestPersonaDetails(amo.tests.TestCase):
 
 
 class TestDownloadSources(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/users',
+    fixtures = ['base/addon_3615', 'base/users',
                 'base/collections', 'base/featured', 'addons/featured',
                 'discovery/discoverymodules']
 
@@ -518,14 +515,14 @@ class TestDownloadSources(amo.tests.TestCase):
 
 
 class TestMonthlyPick(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/apps', 'base/addon_3615',
+    fixtures = ['base/users', 'base/addon_3615',
                 'discovery/discoverymodules']
 
     def setUp(self):
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
-            app=Application.objects.get(id=amo.FIREFOX.id), ordering=4,
+            app=amo.FIREFOX.id, ordering=4,
             module='Monthly Pick')
 
     def test_monthlypick(self):
@@ -573,7 +570,7 @@ class TestMonthlyPick(amo.tests.TestCase):
 
 
 class TestPaneMoreAddons(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion']
+    fixtures = ['base/appversion']
 
     def setUp(self):
         self.addon1 = addon_factory(hotness=99,
@@ -634,7 +631,7 @@ class TestPaneMoreAddons(amo.tests.TestCase):
         # Add override for this add-on.
         compat = CompatOverride.objects.create(guid='three', addon=addon3)
         CompatOverrideRange.objects.create(
-            compat=compat, app=Application.objects.get(pk=1),
+            compat=compat, app=1,
             min_version=addon3.current_version.version, max_version='*')
 
         res = self.client.get(self._url(version='12.0', compat_mode='normal'))

@@ -192,6 +192,7 @@ APPS_ALL = dict((app.id, app) for app in _apps + (MOZILLA, SUNBIRD))
 APP_IDS = dict((app.id, app) for app in _apps)
 APP_GUIDS = dict((app.guid, app) for app in _apps)
 APPS_RETIRED = dict([(MOZILLA.short, MOZILLA), (SUNBIRD.short, SUNBIRD)])
+APPS_CHOICES = tuple((app.id, app.pretty) for app in _apps)
 
 APP_TYPE_SUPPORT = {}
 for _app in APP_USAGE:

@@ -127,7 +127,7 @@ class SearchBase(amo.tests.ESTestCase):
 
 
 class TestESSearch(SearchBase):
-    fixtures = ['base/apps', 'base/category']
+    fixtures = ['base/category']
 
     @classmethod
     def setUpClass(cls):
@@ -462,7 +462,7 @@ class TestESSearch(SearchBase):
         self.check_cat_filters(dict(cat=999))
 
     def test_defaults_atype_foreign_cat(self):
-        cat = Category.objects.create(application_id=amo.THUNDERBIRD.id,
+        cat = Category.objects.create(application=amo.THUNDERBIRD.id,
                                       type=amo.ADDON_EXTENSION)
         self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=cat.id))
 
@@ -616,7 +616,6 @@ class TestESSearch(SearchBase):
 
 
 class TestPersonaSearch(SearchBase):
-    fixtures = ['base/apps']
 
     @classmethod
     def setUpClass(cls):
@@ -778,7 +777,6 @@ class TestPersonaSearch(SearchBase):
 
 
 class TestCollectionSearch(SearchBase):
-    fixtures = ['base/apps']
 
     @classmethod
     def setUpClass(cls):
@@ -977,9 +975,9 @@ class TestCollectionSearch(SearchBase):
 
     def test_results_other_applications(self):
         tb_collection = amo.tests.collection_factory(
-            application_id=amo.THUNDERBIRD.id)
+            application=amo.THUNDERBIRD.id)
         sm_collection = amo.tests.collection_factory(
-            application_id=amo.SEAMONKEY.id)
+            application=amo.SEAMONKEY.id)
         self.refresh()
 
         r = self.client.get(self.url)

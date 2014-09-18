@@ -7,7 +7,7 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Addon
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from files.models import File
 from files.utils import find_jetpacks, PackageJSONExtractor
 from versions.models import Version
@@ -80,9 +80,8 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
             yield PackageJSONExtractor(f.name)
 
     def create_appversion(self, name, version):
-        app_guid = amo.APPS[name].guid
-        app = Application.objects.supported().get(guid=app_guid)
-        return AppVersion.objects.create(application=app, version=version)
+        return AppVersion.objects.create(application=amo.APPS[name].id,
+                                         version=version)
 
     def test_guid(self):
         """Use id for the guid."""

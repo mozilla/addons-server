@@ -11,7 +11,7 @@ from users.models import UserProfile
 
 
 class TestReviewModel(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models']
+    fixtures = ['reviews/test_models']
 
     def test_translations(self):
         translation.activate('en-US')
@@ -36,7 +36,7 @@ class TestReviewModel(amo.tests.TestCase):
 
 
 class TestGroupedRating(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/dev-reply']
+    fixtures = ['reviews/dev-reply']
     grouped_ratings = [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)]
 
     def test_get_none(self):
@@ -58,7 +58,7 @@ class TestGroupedRating(amo.tests.TestCase):
 
 
 class TestSpamTest(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models']
+    fixtures = ['reviews/test_models']
 
     def test_create_not_there(self):
         Review.objects.all().delete()

@@ -35,7 +35,7 @@ class AdminForm(Form):
 
     def save(self, collection):
         collection.type = self.cleaned_data['type']
-        collection.application_id = self.cleaned_data['application']
+        collection.application = self.cleaned_data['application']
         collection.save()
 
 
@@ -188,7 +188,7 @@ class CollectionForm(ModelForm):
     def save(self, default_locale=None):
         c = super(CollectionForm, self).save(commit=False)
         c.author = self.initial['author']
-        c.application_id = self.initial['application_id']
+        c.application = self.initial['application']
         icon = self.cleaned_data.get('icon')
 
         if default_locale:

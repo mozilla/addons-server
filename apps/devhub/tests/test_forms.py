@@ -85,13 +85,13 @@ class TestCharityForm(amo.tests.TestCase):
 
 
 class TestCompatForm(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615']
+    fixtures = ['base/addon_3615']
 
     def test_mozilla_app(self):
         moz = amo.MOZILLA
-        appver = AppVersion.objects.create(application_id=moz.id)
+        appver = AppVersion.objects.create(application=moz.id)
         v = Addon.objects.get(id=3615).current_version
-        ApplicationsVersions(application_id=moz.id, version=v,
+        ApplicationsVersions(application=moz.id, version=v,
                              min=appver, max=appver).save()
         fs = forms.CompatFormSet(None, queryset=v.apps.all())
         apps = [f.app for f in fs.forms]
@@ -132,7 +132,7 @@ class TestPreviewForm(amo.tests.TestCase):
 
 
 class TestThemeForm(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/user_2519']
+    fixtures = ['base/user_2519']
 
     def setUp(self):
         self.populate()
@@ -142,7 +142,7 @@ class TestThemeForm(amo.tests.TestCase):
         self.request.amo_user.is_authenticated.return_value = True
 
     def populate(self):
-        self.cat = Category.objects.create(application_id=amo.FIREFOX.id,
+        self.cat = Category.objects.create(application=amo.FIREFOX.id,
                                            type=amo.ADDON_PERSONA, name='xxxx')
         License.objects.create(id=amo.LICENSE_CC_BY.id)
 
@@ -377,7 +377,7 @@ class TestThemeForm(amo.tests.TestCase):
 
 
 class TestEditThemeForm(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/user_2519']
+    fixtures = ['base/user_2519']
 
     def setUp(self):
         self.populate()
@@ -573,7 +573,7 @@ class TestEditThemeForm(amo.tests.TestCase):
 
 
 class TestEditThemeOwnerForm(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users']
+    fixtures = ['base/users']
 
     def setUp(self):
         self.instance = Addon.objects.create(

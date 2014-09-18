@@ -150,7 +150,7 @@ def module_admin(request):
             SELECT * from discovery_modules WHERE app_id = %s
             ORDER BY ordering IS NULL, ordering""", [APP.id])
     qs.ordered = True  # The formset looks for this.
-    _sync_db_and_registry(qs, APP)
+    _sync_db_and_registry(qs, APP.id)
 
     Form = modelformset_factory(DiscoveryModule, form=DiscoveryModuleForm,
                                 can_delete=True, extra=0)
@@ -163,14 +163,14 @@ def module_admin(request):
     return render(request, 'discovery/module_admin.html', {'formset': formset})
 
 
-def _sync_db_and_registry(qs, app):
+def _sync_db_and_registry(qs, app_id):
     """Match up the module registry and DiscoveryModule rows in the db."""
     existing = dict((m.module, m) for m in qs)
     to_add = [m for m in module_registry if m not in existing]
     to_delete = [m for m in existing if m not in module_registry]
     for m in to_add:
-        DiscoveryModule.objects.get_or_create(module=m, app_id=app.id)
-    DiscoveryModule.objects.filter(module__in=to_delete, app=app.id).delete()
+        DiscoveryModule.objects.get_or_create(module=m, app=app_id)
+    DiscoveryModule.objects.filter(module__in=to_delete, app=app_id).delete()
     if to_add or to_delete:
         qs._result_cache = None
 

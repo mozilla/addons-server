@@ -5,14 +5,12 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from addons.models import Category
-from applications.models import Application
 
 from django.db import connection
 
 
 class TestRedirects(amo.tests.TestCase):
-    fixtures = ['base/apps', 'reviews/test_models',
-                'addons/persona', 'base/global-stats']
+    fixtures = ['reviews/test_models', 'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /themes/film-and-tv"""
@@ -144,9 +142,8 @@ class TestRedirects(amo.tests.TestCase):
         self.assert3xx(r, '/en-US/firefox/extensions/',
                        status_code=301)
 
-        a = Application.objects.create()
         Category.objects.create(pk=12, slug='woo', type=amo.ADDON_EXTENSION,
-                                application=a, count=1, weight=0)
+                                application=amo.FIREFOX.id, count=1, weight=0)
         r = self.client.get('/browse/type:1/cat:12?sort=averagerating',
                             follow=True)
         url, code = r.redirect_chain[-1]

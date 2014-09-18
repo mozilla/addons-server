@@ -30,7 +30,7 @@ from amo.decorators import use_master
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, user_media_url
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 import devhub.signals
 from devhub.utils import limit_validation_results, escape_validation
 from files.utils import SafeUnzip
@@ -513,8 +513,8 @@ class FileUpload(amo.models.ModelBase):
     validation = models.TextField(null=True)
     _escaped_validation = models.TextField(
         null=True, db_column='escaped_validation')
-    compat_with_app = models.ForeignKey(
-        Application, null=True, related_name='uploads_compat_for_app')
+    compat_with_app = models.PositiveIntegerField(
+        choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
         AppVersion, null=True, related_name='uploads_compat_for_appver')
     task_error = models.TextField(null=True)

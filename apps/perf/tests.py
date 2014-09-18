@@ -2,17 +2,14 @@ from django.conf import settings
 
 from mock import patch
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 
 import amo.tests
-from amo.urlresolvers import reverse
 from perf.models import Performance
 from addons.models import Addon
 
 
 class TestModels(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615', 'base/addon_5299_gcal',
-                'perf/index']
+    fixtures = ['base/addon_3615', 'base/addon_5299_gcal', 'perf/index']
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)

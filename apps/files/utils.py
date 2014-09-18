@@ -27,7 +27,7 @@ from tower import ugettext as _
 
 import amo
 from amo.utils import rm_local_tmp_dir
-from applications.models import AppVersion, Application
+from applications.models import AppVersion
 from versions.compare import version_int as vint
 
 
@@ -102,10 +102,6 @@ class PackageJSONExtractor(object):
         return self.data.get(key, default)
 
     def apps(self):
-        def supported_app(app):
-            return (Application.objects.supported()
-                                       .filter(guid=app.guid)
-                                       .exists())
 
         def find_appversion(app, version_req):
             """
@@ -124,7 +120,7 @@ class PackageJSONExtractor(object):
         for engine, version in self.get('engines', {}).items():
             name = 'android' if engine == 'fennec' else engine
             app = amo.APPS.get(name)
-            if app and supported_app(app):
+            if app and app.guid in amo.APP_GUIDS:
                 appversion = find_appversion(app, version)
                 yield Extractor.App(
                     appdata=app, id=app.id, min=appversion, max=appversion)
@@ -217,8 +213,7 @@ class RDFExtractor(object):
             app = amo.APP_GUIDS.get(self.find('id', ctx))
             if not app:
                 continue
-            if (not Application.objects.supported()
-                                       .filter(guid=app.guid).exists()):
+            if not app.guid in amo.APP_GUIDS:
                 continue
             try:
                 qs = AppVersion.objects.filter(application=app.id)

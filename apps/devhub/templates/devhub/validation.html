@@ -24,7 +24,7 @@
     {% if result_type == 'compat' %}
     <tr>
         <th>{{ _('Tested for compatibility against:') }}</th>
-        <td>{{ amo.APP_IDS[target_app.pk].pretty }} {{ target_version }}</td>
+        <td>{{ amo.APP_IDS[target_app].pretty }} {{ target_version }}</td>
     </tr>
     {% endif %}
 </table>
@@ -34,7 +34,7 @@
   {% if result_type == 'compat' %}
     {% with app_trans=app_trans,
             version_change_links=version_change_links,
-            target_version={target_app.guid: target_version.version} %}
+            target_version={amo.APP_IDS[target_app].guid: target_version.version} %}
       {% include "devhub/addons/includes/validation_compat_test_results.html" %}
     {% endwith %}
   {% else %}
