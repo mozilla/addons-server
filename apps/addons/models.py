@@ -1925,7 +1925,8 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
                                 help_text='Used in Category URLs.')
     type = models.PositiveIntegerField(db_column='addontype_id',
                                        choices=do_dictsort(amo.ADDON_TYPE))
-    application = models.PositiveIntegerField(null=True, blank=True,
+    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                              null=True, blank=True,
                                               db_column='application_id')
     count = models.IntegerField('Addon count', default=0)
     weight = models.IntegerField(
@@ -1977,7 +1978,8 @@ class Feature(amo.models.ModelBase):
     start = models.DateTimeField()
     end = models.DateTimeField()
     locale = models.CharField(max_length=10, default='', blank=True, null=True)
-    application = models.PositiveIntegerField(db_column='application_id')
+    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                              db_column='application_id')
 
     class Meta:
         db_table = 'features'
@@ -2087,7 +2089,8 @@ dbsignals.pre_save.connect(save_signal, sender=Preview,
 class AppSupport(amo.models.ModelBase):
     """Cache to tell us if an add-on's current version supports an app."""
     addon = models.ForeignKey(Addon)
-    app = models.PositiveIntegerField(db_column='app_id')
+    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                      db_column='app_id')
     min = models.BigIntegerField("Minimum app version", null=True)
     max = models.BigIntegerField("Maximum app version", null=True)
 
@@ -2236,7 +2239,8 @@ class CompatOverrideRange(amo.models.ModelBase):
         max_length=255, default='*',
         help_text=u'If not "*", version is required to exist for the override'
                   u' to take effect.')
-    app = models.PositiveIntegerField(db_column='app_id')
+    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                      db_column='app_id')
     min_app_version = models.CharField(max_length=255, default='0')
     max_app_version = models.CharField(max_length=255, default='*')
 
@@ -2259,7 +2263,8 @@ class IncompatibleVersions(amo.models.ModelBase):
     a particular version falls within the range of a compatibility override.
     """
     version = models.ForeignKey(Version, related_name='+')
-    app = models.PositiveIntegerField(db_column='app_id')
+    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                      db_column='app_id')
     min_app_version = models.CharField(max_length=255, blank=True, default='0')
     max_app_version = models.CharField(max_length=255, blank=True, default='*')
     min_app_version_int = models.BigIntegerField(blank=True, null=True,

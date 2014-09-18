@@ -119,7 +119,8 @@ class Collection(CollectionBase, amo.models.ModelBase):
     downloads = models.PositiveIntegerField(default=0)
     weekly_subscribers = models.PositiveIntegerField(default=0)
     monthly_subscribers = models.PositiveIntegerField(default=0)
-    application = models.PositiveIntegerField(db_column='application_id',
+    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                              db_column='application_id',
                                               null=True)
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
@@ -587,7 +588,8 @@ class RecommendedCollection(Collection):
 
 
 class FeaturedCollection(amo.models.ModelBase):
-    application = models.PositiveIntegerField(db_column='application_id')
+    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                              db_column='application_id')
     collection = models.ForeignKey(Collection)
     locale = models.CharField(max_length=10, null=True)
 

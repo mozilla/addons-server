@@ -49,7 +49,8 @@ def set_config(conf, value):
 
 
 class ValidationJob(amo.models.ModelBase):
-    application = models.PositiveIntegerField(db_column='application_id')
+    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
+                                              db_column='application_id')
     curr_max_version = models.ForeignKey(AppVersion,
                                          related_name='validation_current_set')
     target_version = models.ForeignKey(AppVersion,

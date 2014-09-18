@@ -514,7 +514,7 @@ class FileUpload(amo.models.ModelBase):
     _escaped_validation = models.TextField(
         null=True, db_column='escaped_validation')
     compat_with_app = models.PositiveIntegerField(
-        db_column="compat_with_app_id", null=True)
+        choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
         AppVersion, null=True, related_name='uploads_compat_for_appver')
     task_error = models.TextField(null=True)
