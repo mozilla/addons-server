@@ -34,7 +34,7 @@ admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 class PasswordMixin:
     min_length = 8
-    error_msg = {'min_length': _('Must be %s characters or more.')
+    error_msg = {'min_length': _lazy('Must be %s characters or more.')
                                % min_length}
 
     @classmethod
