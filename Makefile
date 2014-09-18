@@ -1,4 +1,4 @@
-.PHONY: help docs test test_force_db tdd test_failed update_code update_deps update_db update_assets update_landfill full_update reindex
+.PHONY: help docs test test_force_db tdd test_failed initialize_db update_code update_deps update_db update_assets full_init full_update reindex
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -7,11 +7,12 @@ help:
 	@echo "  test_force_db     to run all the test suite with a new database"
 	@echo "  tdd               to run all the test suite, but stop on the first error"
 	@echo "  test_failed       to rerun the failed tests from the previous run"
+	@echo "  initialize_db     to create a new database"
 	@echo "  update_code       to update the git repository"
 	@echo "  update_deps       to update the python and npm dependencies"
 	@echo "  update_db         to run the database migrations"
+	@echo "  full_init         to init the code, the dependencies and the database"
 	@echo "  full_update       to update the code, the dependencies and the database"
-	@echo "  update_landfill   to load the landfill database data"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "Check the Makefile  to know exactly what each target is doing. If you see a "
 
@@ -30,6 +31,14 @@ tdd:
 test_failed:
 	python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
 
+initialize_db:
+	python manage.py reset_db
+	python manage.py syncdb --noinput
+	python manage.py loaddata apps/access/fixtures/initial.json
+	python manage.py import_prod_versions
+	schematic --fake migrations/
+	python manage.py createsuperuser
+
 update_code:
 	git checkout master && git pull
 
@@ -44,10 +53,9 @@ update_assets:
 	python manage.py compress_assets
 	python manage.py collectstatic --noinput
 
-full_update: update_code update_deps update_db update_assets
+full_init: update_code update_deps initialize_db update_assets
 
-update_landfill:
-	python manage.py install_landfill $(ARGS)
+full_update: update_code update_deps update_db update_assets
 
 reindex:
 	python manage.py reindex $(ARGS)
