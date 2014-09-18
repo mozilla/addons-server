@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-07 09:54+0000\n"
+"PO-Revision-Date: 2014-09-18 21:03+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410083683.0\n"
+"X-POOTLE-MTIME: 1411074191.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3820,7 +3820,7 @@ msgstr "La versione %s è già presente"
 
 #: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "Scegli un’opzione valida. L’opzione selezionata non è disponibile."
 
 #: apps/devhub/forms.py:599
 msgid "You cannot upload any more files for this version."
@@ -12724,6 +12724,9 @@ msgstr "Questa password non è consentita."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"In accordo con i nostri nuovi criteri per le password, la password deve "
+"contenere almeno %s caratteri. Se la password in uso non rispetta questo "
+"criterio, aggiornala <a href=\"%s\">richiedendone la reimpostazione</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
