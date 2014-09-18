@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-14 14:16+0000\n"
+"PO-Revision-Date: 2014-09-18 00:02+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410704194.0\n"
+"X-POOTLE-MTIME: 1410998532.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3742,7 +3742,7 @@ msgstr "版本 %s 已存在"
 
 #: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "请选择一个有效的选项。目前的选项不是可用的选项之一。"
 
 #: apps/devhub/forms.py:599
 msgid "You cannot upload any more files for this version."
@@ -12223,11 +12223,13 @@ msgstr "字母和数字是必须的。"
 
 #: apps/users/forms.py:61
 msgid "That password is not allowed."
-msgstr "不允许那个密码。"
+msgstr "您不能使用此密码。"
 
 #: apps/users/forms.py:87
+#, fuzzy
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"作为我们新的密码策略的一部分，您的密码必须有 %s 个或更多个字符。请更新您的密码，如果有问题，请用<a href=\"%s\">密码重设</a>。"
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
