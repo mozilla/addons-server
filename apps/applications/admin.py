@@ -1,15 +1,12 @@
 from django.contrib import admin
 
-from .models import Application, AppVersion
+from .models import AppVersion
 
 
-class AppVersionAdmin(admin.StackedInline):
+class AppVersionAdmin(admin.ModelAdmin):
+    list_display = ('version', 'application',)
     model = AppVersion
     ordering = ('-version_int',)
 
 
-class ApplicationAdmin(admin.ModelAdmin):
-    inlines = [AppVersionAdmin]
-
-
-admin.site.register(Application, ApplicationAdmin)
+admin.site.register(AppVersion, AppVersionAdmin)

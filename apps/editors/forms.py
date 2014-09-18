@@ -127,7 +127,7 @@ class QueueSearchForm(happyforms.Form):
         w.attrs['data-url'] = reverse('editors.application_versions_json')
 
     def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application__id=app_id)
+        versions = AppVersion.objects.filter(application=app_id)
         return [('', '')] + [(v.version, v.version) for v in versions]
 
     def clean_addon_type_ids(self):

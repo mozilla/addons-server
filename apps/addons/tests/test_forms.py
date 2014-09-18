@@ -271,11 +271,10 @@ class TestIconForm(amo.tests.TestCase):
 
 
 class TestCategoryForm(amo.tests.TestCase):
-    fixtures = ['base/apps']
 
     def test_no_possible_categories(self):
         Category.objects.create(type=amo.ADDON_SEARCH,
-                                application_id=amo.FIREFOX.id)
+                                application=amo.FIREFOX.id)
         addon = Addon.objects.create(type=amo.ADDON_SEARCH)
         form = forms.CategoryFormSet(addon=addon)
         apps = [f.app for f in form.forms]

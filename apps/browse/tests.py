@@ -23,7 +23,6 @@ from amo.helpers import absolutify, numberfmt, urlparams
 from addons.tests.test_views import TestMobile
 from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
                            FrozenAddon, Persona)
-from applications.models import Application
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import feeds
 from browse.views import (AddonFilter, locale_display_name,
@@ -127,7 +126,7 @@ class TestESExtensions(ExtensionTestCase):
         # Stick one add-on in a category, make sure search finds it.
         addon = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                      disabled_by_user=False)[0]
-        c = Category.objects.create(application_id=amo.FIREFOX.id,
+        c = Category.objects.create(application=amo.FIREFOX.id,
                                     slug='alerts', type=addon.type)
         AddonCategory.objects.create(category=c, addon=addon)
         addon.save()
@@ -159,7 +158,7 @@ def test_locale_display_name():
 
 
 class TestListing(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/users', 'base/category',
+    fixtures = ['base/appversion', 'base/users', 'base/category',
                 'base/featured', 'addons/featured', 'addons/listed',
                 'base/collections', 'bandwagon/featured_collections',
                 'base/addon_3615']
@@ -394,7 +393,7 @@ class TestThemes(amo.tests.TestCase):
 
 
 class TestFeeds(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/users', 'base/category',
+    fixtures = ['base/appversion', 'base/users', 'base/category',
                 'base/featured', 'addons/featured', 'addons/listed',
                 'base/collections', 'bandwagon/featured_collections',
                 'base/addon_3615']
@@ -486,7 +485,7 @@ class TestFeeds(amo.tests.TestCase):
 
 
 class TestFeaturedLocale(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/appversion', 'base/category', 'base/users',
+    fixtures = ['base/appversion', 'base/category', 'base/users',
                 'base/addon_3615', 'base/featured', 'addons/featured',
                 'browse/nameless-addon', 'base/collections',
                 'bandwagon/featured_collections',
@@ -654,7 +653,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
         for pk in [1003, 3481]:
             addon = Addon.objects.get(pk=pk)
             addon.update(status=amo.STATUS_PUBLIC)
-            addon.appsupport_set.create(app_id=1)
+            addon.appsupport_set.create(app=1)
 
         # Note 1003 and 3481 are now en-US.
         # And 7661 and 2464 are now None.
@@ -695,7 +694,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
     def test_featured_duplicated(self):
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
-        another.feature_set.create(application_id=amo.FIREFOX.id,
+        another.feature_set.create(application=amo.FIREFOX.id,
                                    locale=None,
                                    start=datetime.today(),
                                    end=datetime.today())
@@ -704,7 +703,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
     def change_addon(self, addon, locale='es'):
         fc = FeaturedCollection.objects.filter(collection__addons=addon.id)[0]
         feature = FeaturedCollection.objects.create(locale=locale,
-            application=Application.objects.get(id=amo.FIREFOX.id),
+            application=amo.FIREFOX.id,
             collection=Collection.objects.create())
         c = CollectionAddon.objects.filter(addon=addon,
                                            collection=fc.collection)[0]
@@ -719,13 +718,13 @@ class TestFeaturedLocale(amo.tests.TestCase):
             c = CollectionAddon.objects.create(addon=addon,
                 collection=Collection.objects.create())
             FeaturedCollection.objects.create(locale=locale,
-                application=Application.objects.get(id=amo.FIREFOX.id),
+                application=amo.FIREFOX.id,
                 collection=c.collection)
         self.reset()
 
 
 class TestListingByStatus(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/addon_3615']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
@@ -787,7 +786,7 @@ class TestListingByStatus(amo.tests.TestCase):
 
 
 class BaseSearchToolsTest(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/appversion', 'base/featured',
+    fixtures = ('base/appversion', 'base/featured',
                 'addons/featured', 'base/category', 'addons/listed')
 
     def setUp(self):
@@ -818,7 +817,7 @@ class BaseSearchToolsTest(amo.tests.TestCase):
 
         # Feature foxy :
         foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
-        Feature(addon=foxy, application_id=amo.FIREFOX.id,
+        Feature(addon=foxy, application=amo.FIREFOX.id,
                 start=datetime.now(),
                 end=datetime.now() + timedelta(days=30)).save()
 
@@ -1144,7 +1143,7 @@ class TestCategoriesFeed(amo.tests.TestCase):
 
 
 class TestFeaturedFeed(amo.tests.TestCase):
-    fixtures = ['addons/featured', 'base/addon_3615', 'base/apps',
+    fixtures = ['addons/featured', 'base/addon_3615',
                 'base/appversion', 'base/appversion', 'base/collections',
                 'base/featured', 'base/users',
                 'bandwagon/featured_collections']
@@ -1164,7 +1163,7 @@ class TestFeaturedFeed(amo.tests.TestCase):
 
 
 class TestPersonas(amo.tests.TestCase):
-    fixtures = ('base/apps', 'base/appversion', 'base/featured',
+    fixtures = ('base/appversion', 'base/featured',
                 'addons/featured', 'addons/persona')
 
     def setUp(self):
@@ -1223,7 +1222,7 @@ class TestPersonas(amo.tests.TestCase):
         # Whatever the `category.count` is.
         category = Category(type=amo.ADDON_PERSONA, slug='abc',
             count=MIN_COUNT_FOR_LANDING + 1,
-            application=Application.objects.get(id=amo.FIREFOX.id))
+            application=amo.FIREFOX.id)
         category.save()
         r = self.client.get(self.landing_url)
         self.assertTemplateUsed(r, self.landing_template)
@@ -1231,7 +1230,7 @@ class TestPersonas(amo.tests.TestCase):
     def test_personas_grid_sorting(self):
         """Ensure we hit a grid page if there is a sorting."""
         category = Category(type=amo.ADDON_PERSONA, slug='abc',
-            application=Application.objects.get(id=amo.FIREFOX.id))
+            application=amo.FIREFOX.id)
         category.save()
         category_url = reverse('browse.personas', args=[category.slug])
         r = self.client.get(category_url + '?sort=created')
@@ -1405,7 +1404,7 @@ class TestMobilePersonas(TestMobile):
 
     def _create_persona_cat(self):
         category = Category(type=amo.ADDON_PERSONA, slug='xxx',
-                            application_id=amo.FIREFOX.id)
+                            application=amo.FIREFOX.id)
         category.save()
         return category
 

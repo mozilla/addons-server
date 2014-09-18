@@ -44,7 +44,7 @@ from addons.models import (Addon, Persona,
                            update_search_index as addon_update_search_index)
 from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from bandwagon.models import Collection
 from files.models import File
 from lib.es.signals import process, reset
@@ -633,7 +633,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 def collection_factory(**kw):
     data = {
         'type': amo.COLLECTION_NORMAL,
-        'application_id': amo.FIREFOX.id,
+        'application': amo.FIREFOX.id,
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'addon_count': random.randint(200, 2000),
         'subscribers': random.randint(1000, 5000),
@@ -702,13 +702,13 @@ def version_factory(file_kw={}, **kw):
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
     if kw.get('addon').type != amo.ADDON_PERSONA:
-        a, _ = Application.objects.get_or_create(id=amo.FIREFOX.id)
-        av_min, _ = AppVersion.objects.get_or_create(application=a,
+        av_min, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
                                                      version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=a,
+        av_max, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
                                                      version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=a, version=v,
-                                                   min=av_min, max=av_max)
+        ApplicationsVersions.objects.get_or_create(application=amo.FIREFOX.id,
+                                                   version=v, min=av_min,
+                                                   max=av_max)
     file_factory(version=v, **file_kw)
     return v
 

@@ -119,11 +119,11 @@ def categories(request, locale_code):
     category_objects = dict([(c.id, c) for c in cats])
     # Initial data to pre-populate forms.
     initial = [dict(id=c.id, name=strings.get(c.name_id),
-                    application=c.application_id) for c in cats]
+                    application=c.application) for c in cats]
     # Group categories by application, and sort by name within app groups.
     categories = []
     category_no_app = None
-    for key, group in groupby(cats, lambda c: c.application_id):
+    for key, group in groupby(cats, lambda c: c.application):
         sorted_cats = sorted(group, key=lambda c: c.name)
         if key:
             categories.append((key, sorted_cats))

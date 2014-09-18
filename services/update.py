@@ -146,8 +146,7 @@ class Update(object):
         sql = ["""
             SELECT
                 addons.guid as guid, addons.addontype_id as type,
-                addons.inactive as disabled_by_user,
-                applications.guid as appguid, appmin.version as min,
+                addons.inactive as disabled_by_user, appmin.version as min,
                 appmax.version as max, files.id as file_id,
                 files.status as file_status, files.hash,
                 files.filename, versions.id as version_id,
@@ -160,13 +159,12 @@ class Update(object):
                 ON addons.id = versions.addon_id AND addons.id = %(id)s
             INNER JOIN applications_versions
                 ON applications_versions.version_id = versions.id
-            INNER JOIN applications
-                ON applications_versions.application_id = applications.id
-                AND applications.id = %(app_id)s
             INNER JOIN appversions appmin
                 ON appmin.id = applications_versions.min
+                AND appmin.application_id = %(app_id)s
             INNER JOIN appversions appmax
                 ON appmax.id = applications_versions.max
+                AND appmax.application_id = %(app_id)s
             INNER JOIN files
                 ON files.version_id = versions.id AND (files.platform_id = 1
             """]
@@ -283,7 +281,7 @@ class Update(object):
 
         if result:
             row = dict(zip([
-                'guid', 'type', 'disabled_by_user', 'appguid', 'min', 'max',
+                'guid', 'type', 'disabled_by_user', 'min', 'max',
                 'file_id', 'file_status', 'hash', 'filename', 'version_id',
                 'datestatuschanged', 'strict_compat', 'releasenotes',
                 'version', 'premium_type'],
@@ -291,6 +289,7 @@ class Update(object):
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
             row['url'] = get_mirror(data['addon_status'],
                                     data['id'], row)
+            row['appguid'] = applications.APPS_ALL[data['app_id']].guid
             data['row'] = row
             return True
 

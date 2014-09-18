@@ -22,7 +22,7 @@ import devhub.signals
 
 from amo.utils import rm_local_tmp_dir
 from addons.models import Addon
-from applications.models import Application, AppVersion
+from applications.models import AppVersion
 from files.models import File, FileUpload, FileValidation, nfd_str
 from files.helpers import copyfileobj
 from files.utils import check_xpi_info, JetpackUpgrader, parse_addon, parse_xpi
@@ -33,7 +33,6 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
-    fixtures = ['applications/all_apps.json', 'base/appversion']
 
     def setUp(self):
         # The validator task (post Addon upload) loads apps.json
@@ -295,11 +294,10 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
 
 class TestParseXpi(amo.tests.TestCase):
-    fixtures = ['base/apps']
 
     def setUp(self):
         for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(application_id=amo.FIREFOX.id,
+            AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
 
     def parse(self, addon=None, filename='extension.xpi'):
@@ -330,8 +328,8 @@ class TestParseXpi(amo.tests.TestCase):
         AppVersion.objects.all().delete()
         eq_(self.parse()['apps'], [])
 
+    @mock.patch.object(amo.FIREFOX, 'guid', 'iamabadguid')
     def test_parse_apps_bad_guid(self):
-        Application.objects.all().delete()
         eq_(self.parse()['apps'], [])
 
     def test_guid_match(self):
@@ -432,27 +430,13 @@ class TestParseXpi(amo.tests.TestCase):
         result = self.parse(filename='strict-compat.xpi')
         eq_(result['strict_compatibility'], True)
 
-    def test_unsupported_version_only(self):
-        guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
-        android = Application.objects.get(guid=guid)
-        # Make sure supported application and version exist.
-        AppVersion.objects.create(application=android, version="30.0")
-        AppVersion.objects.create(application=android, version="32.0")
-        android.update(supported=True)
-        result = self.parse(filename='unsupported_version_only.xpi')
-        eq_(result['apps'][0].appdata.guid, guid)
-        android.update(supported=False)
-        result = self.parse(filename='unsupported_version_only.xpi')
-        eq_(result['apps'], [])
-
 
 class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
-    fixtures = ['base/apps']
 
     def setUp(self):
         for version in ('3.0', '4.0b3pre'):
-            AppVersion.objects.create(application_id=amo.FIREFOX.id,
+            AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
 
     def parse(self, filename='alt-rdf.xpi'):
@@ -490,8 +474,7 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
 
 
 class TestFileUpload(UploadTest):
-    fixtures = ['applications/all_apps.json', 'base/appversion',
-                'base/addon_3615']
+    fixtures = ['base/appversion', 'base/addon_3615']
 
     def setUp(self):
         super(TestFileUpload, self).setUp()
@@ -775,7 +758,6 @@ class TestFileUpload(UploadTest):
 
 
 class TestFileFromUpload(UploadTest):
-    fixtures = ['base/apps']
 
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
@@ -783,7 +765,7 @@ class TestFileFromUpload(UploadTest):
                   amo.MOBILE: ['0.1', '2.0a1pre']}
         for app, versions in appver.items():
             for version in versions:
-                AppVersion(application_id=app.id, version=version).save()
+                AppVersion(application=app.id, version=version).save()
         self.platform = amo.PLATFORM_MAC.id
         self.addon = Addon.objects.create(guid='guid@jetpack',
                                           type=amo.ADDON_EXTENSION,
@@ -1094,6 +1076,7 @@ class TestCheckJetpackVersion(amo.tests.TestCase):
 
 
 class LanguagePackBase(UploadTest):
+    fixtures = ['base/appversion']
 
     def setUp(self):
         super(LanguagePackBase, self).setUp()

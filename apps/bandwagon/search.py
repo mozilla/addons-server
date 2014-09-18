@@ -8,9 +8,9 @@ import amo
 def extract(collection):
     attrs = ('id', 'created', 'modified', 'slug', 'author_username',
              'subscribers', 'weekly_subscribers', 'monthly_subscribers',
-             'rating', 'listed', 'type', 'application_id')
+             'rating', 'listed', 'type', 'application')
     d = dict(zip(attrs, attrgetter(*attrs)(collection)))
-    d['app'] = d.pop('application_id')
+    d['app'] = d.pop('application')
     d['name_sort'] = unicode(collection.name).lower()
     translations = collection.translations
     d['name'] = list(set(string for _, string

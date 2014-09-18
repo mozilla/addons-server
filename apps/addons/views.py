@@ -116,7 +116,7 @@ def extension_detail(request, addon):
 
     # Popular collections this addon is part of.
     collections = Collection.objects.listed().filter(
-        addons=addon, application__id=request.APP.id)
+        addons=addon, application=request.APP.id)
 
     ctx = {
         'addon': addon,

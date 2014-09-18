@@ -134,24 +134,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
-            "modified": "2008-11-03 15:34:59",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
-        "pk": 59,
-        "model": "applications.application",
-        "fields": {
-            "guid": "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}",
-            "modified": "2008-06-17 08:29:01",
-            "created": "2007-03-05 13:09:26"
-        }
-    },
-    {
         "pk": 84,
         "model": "addons.feature",
         "fields": {

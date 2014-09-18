@@ -7,7 +7,7 @@ from addons.search import extract
 
 
 class TestExtract(amo.tests.TestCase):
-    fixtures = ['base/apps', 'base/users', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         self.attrs = ('id', 'slug', 'app_slug', 'created', 'last_updated',
