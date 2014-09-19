@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-18 20:47+0000\n"
+"PO-Revision-Date: 2014-09-19 09:27+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411073228.0\n"
+"X-POOTLE-MTIME: 1411118868.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7779,6 +7779,8 @@ msgstr "Онемогућили сте овај додатак"
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Навођење додатка је онемогућено и не приказује се било где у нашој галерији "
+"или у услугама ажурирања."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7852,7 +7854,7 @@ msgstr "Ово је најновија верзија, али још увек н
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Редови нису строго прегледани у реду"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -8148,6 +8150,8 @@ msgstr "Да ли други могу да деле Вашу тему, укол�
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
+"Давалац лиценце дозвољава другима да копирају, дистрибуирају, приказују и "
+"обављају посао, укључујући и комерцијалне сврхе."
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
@@ -9450,7 +9454,7 @@ msgstr[2] "({num}) уређених рецензија"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Табела лидере рецезената"
 
 #: apps/editors/templates/editors/leaderboard.html:18 apps/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
@@ -9816,7 +9820,7 @@ msgstr "Опције прегледа"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Аутоматко-напредовање после прегледа"
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
@@ -11352,6 +11356,9 @@ msgid ""
 "Firefox recommends add-ons for you based on the add-ons you already have installed. If you have at least 3 add-ons installed, just visit the Get Add-ons area of the Add-ons Manager to see the "
 "\"Recommended for You\" box."
 msgstr ""
+"Firefox препоручује додатке на основу додатака које сте већ инталирали. Ако "
+"имате барем 3 додатака инсталирано, само посетите Набави додатке област "
+"Вашег управљача додатака да бисте видели \"Препоручени за Вас\" поље."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -11362,10 +11369,15 @@ msgid ""
 "Firefox sends information about the add-ons you have installed to Mozilla once a day in order to update the information displayed to you in the Add-ons Manager, as explained in our <a href="
 "\"%(privacy_url)s\">Privacy Policy</a>. Add-ons that are often used together are determined from the aggregate data and displayed to you as personalized recommendations."
 msgstr ""
+"Firefox шаље информације о додацима које сте инсталирали Mozilla-и једном "
+"дневно, како би се ажурирала информација која је приказане Вама у управљачу "
+"додатака, као што је објашњено у нашој <a href=\"%(privacy_url)s\">Полиси "
+"приватности</a>. Додаци који се често користе заједно су одређени из "
+"скупљених података и приказани су Вама као персонализоване препоруке."
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"
-msgstr ""
+msgstr "Како могу да искључим ове препоруке?"
 
 #: apps/pages/templates/pages/faq.html:297
 msgid "Please see <a href=\"%(support_url)s\">this support article</a> for instructions on how to opt out."
@@ -11420,6 +11432,10 @@ msgid ""
 "Add-on reviews are a way for add-on site users to share their opinions about the add-ons that they have installed and used. Editors reserve the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
+"Рецензије додатака су начин да корисници сајта додатака поделе њихова "
+"мишљења о додатку којег су инсталирали и користили. Уредници задржавају "
+"право да одбију или уклоне било коју рецензију која није у складу са овим "
+"смерницама."
 
 #: apps/pages/templates/pages/review_guide.html:59
 msgid "Do:"
@@ -11464,6 +11480,8 @@ msgstr "Одвојите тренутак да бисте прочитали с�
 #: apps/pages/templates/pages/review_guide.html:86
 msgid "Avoid referring to topical or temporal references since reviews can remain on the site for a long time."
 msgstr ""
+"Избегавајте да се позивате на актуелне или привремене референце пошто "
+"коментари могу да остану на сајту дуго времена."
 
 #: apps/pages/templates/pages/review_guide.html:93
 msgid "Don’t:"
@@ -11476,6 +11494,8 @@ msgstr "Написати једноставне коментаре као што
 #: apps/pages/templates/pages/review_guide.html:102
 msgid "Post bug or problem reports in reviews. Use the available support options for each add-on."
 msgstr ""
+"Да поставите буг или извештаје о проблему у рецензији. Користите доступне "
+"опције за подршку за сваки додатак."
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid "Write reviews for add-ons which you have not personally used."
@@ -11484,6 +11504,8 @@ msgstr "Напишете рецензије за додатаке које ни�
 #: apps/pages/templates/pages/review_guide.html:113
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr ""
+"Да користите псовке, сексуални језик или језик који се може протумачити као "
+"мржња."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid "Include HTML, links to malware, source code or code snippets. Reviews are meant to be text only."
@@ -11496,6 +11518,8 @@ msgstr "Направите лажне изјаве, понижавате аут�
 #: apps/pages/templates/pages/review_guide.html:131
 msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
 msgstr ""
+"Користите коментаре, као начин да се затражите подршку за одређену Firefox "
+"(или друге апликације) верзију."
 
 #: apps/pages/templates/pages/review_guide.html:137
 msgid "Include your own email, phone number, or other personal details."
@@ -11586,6 +11610,10 @@ msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
 msgstr ""
+"Развој Sunbird пројекта је заустављен и последња верзија је изашла 30. марта "
+"2010. године. Били смо поносни да хостујемо Sunbird додатке на овом сајту, "
+"али пошто се пројекат више не одржава и ми смо онемогућили нашу подршку за "
+"додатке."
 
 #: apps/pages/templates/pages/sunbird.html:38
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
@@ -11684,7 +11712,7 @@ msgstr "Оцењено са %d од 5 звездица"
 
 #: apps/reviews/forms.py:120
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Задржи рецензију; уклони заставице"
 
 #: apps/reviews/forms.py:121
 msgid "Skip for now"
@@ -11717,7 +11745,7 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Одговор на рецензију од {0}"
 
 #: apps/reviews/templates/reviews/reply.html:15 apps/reviews/templates/reviews/reply.html:31
 msgid "Reply"
@@ -11749,8 +11777,14 @@ msgstr "Овај преглед је за претходну верзију до
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
 msgstr[0] ""
+"Овај корисник има <a href=\"%(user_review_url)s\">претходни преглед</a> овог "
+"додатка."
 msgstr[1] ""
+"Овај корисник има <a href=\"%(user_review_url)s\">%(cnt)s претходна "
+"прегледа</a> овог додатка."
 msgstr[2] ""
+"Овај корисник има <a href=\"%(user_review_url)s\">%(cnt)s претходних "
+"прегледа</a> овог додатка."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -11793,14 +11827,14 @@ msgstr[2] "<b>{0}</b> прегледа за овај додатак"
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:33
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Програмер {0} је одговорио"
 
 #: apps/reviews/templates/reviews/review_list.html:35
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Рецензија за %(addon)s од %(user)s"
+msgstr[1] "Рецензије за %(addon)s од %(user)s"
+msgstr[2] "Рецензије за %(addon)s од %(user)s"
 
 #: apps/reviews/templates/reviews/review_list.html:42
 msgid "No reviews found."
@@ -11867,9 +11901,9 @@ msgstr "Прочитај више&nbsp;&raquo;"
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Погледај све рецензије"
+msgstr[1] "Погледај свих %(cnt)s рецензија"
+msgstr[2] "Погледај свих %(cnt)s рецензија"
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
@@ -12221,11 +12255,11 @@ msgstr "Написано рецензија"
 
 #: apps/stats/templates/stats/global_report_menu.html:30
 msgid "User Signups"
-msgstr ""
+msgstr "Пријава корисника"
 
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Период по избору"
 
 #: apps/stats/templates/stats/popup.html:12
 msgid "From"
@@ -12539,6 +12573,9 @@ msgstr "Та лозинка није дозвољена."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Као део наше нове полисе за лозинке, лозинка мора бити %s карактера или "
+"више. Молимо Вас да ажурирате Вашу лозинку ако то није случај тако што ћете "
+"затражити<a href=\"%s\">ресетовање лозинке</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -13037,7 +13074,7 @@ msgstr "Пријави ме"
 
 #: apps/users/templates/users/login_help.html:3 apps/users/templates/users/mobile/login.html:70
 msgid "Login Problems?"
-msgstr ""
+msgstr "Проблеми са пријављивањем?"
 
 #: apps/users/templates/users/login_help.html:5 apps/users/templates/users/mobile/login.html:72
 msgid "I don't have an account."
@@ -13104,7 +13141,7 @@ msgstr "Теме које сам ја направио"
 
 #: apps/users/templates/users/profile.html:87
 msgid "Followed by Me"
-msgstr ""
+msgstr "Ја пратим"
 
 #: apps/users/templates/users/profile.html:89
 msgid "Created by Me"
