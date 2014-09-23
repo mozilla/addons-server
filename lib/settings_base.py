@@ -1467,7 +1467,7 @@ ADDON_COLLECTOR_ID = 11950
 HIVE_CONNECTION = {
     'host': 'peach-gw.peach.metrics.scl3.mozilla.com',
     'port': 10000,
-    'user': 'aphadke',
+    'user': 'amo_prod',
     'password': '',
     'auth_mechanism': 'PLAIN',
 }
