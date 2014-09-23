@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-23 13:44+0000\n"
+"PO-Revision-Date: 2014-09-23 13:52+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411479854.0\n"
+"X-POOTLE-MTIME: 1411480340.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4589,9 +4589,8 @@ msgid "Validated at:"
 msgstr "Overené dňa:"
 
 #: apps/devhub/templates/devhub/validation.html:26
-#, fuzzy
 msgid "Tested for compatibility against:"
-msgstr "Kompatibilita otestována proti:"
+msgstr "Kompatibilita otestovaná proti:"
 
 #: apps/devhub/templates/devhub/addons/activity.html:4 apps/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
@@ -5378,9 +5377,8 @@ msgid "A complete review of your add-on's source and functionality. <a href=\"%(
 msgstr "Kompletní kontrola zdrojového kódu doplňku a jeho funkcionality. <a href=\"%(url)s\">Dozvědět se více&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
-#, fuzzy
 msgid "Appropriate for polished add-ons"
-msgstr "Vhodné pro otestované doplňky"
+msgstr "Vhodné pre otestované doplnky"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Review should take place within 10 days"
@@ -5399,9 +5397,10 @@ msgid "Choose Full Review"
 msgstr "Zvoľte riadnu kontrolu"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:48
-#, fuzzy
 msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Rychlejší kontrola zdrojového kódu doplňku, zda neobsahuje zásadní problémy. <a href=\"%(url)s\">Dozvědět se více&hellip;</a>"
+msgstr ""
+"Rýchlejšia kontrola zdrojového kódu doplnku, či neobsahuje zásadné problémy. "
+"<a href=\"%(url)s\">Dozvedieť sa viac&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:54
 msgid "Appropriate for experimental add-ons"
@@ -5463,13 +5462,16 @@ msgstr ""
 "Hostování svého doplňku v naší galerii je nejlepší způsob, jak vystavit svou práci miliónům uživatelů Firefoxu. Poskytneme vám zdarma vše, co potřebujete k distribuci a aktualizacím svého doplňku."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
-#, fuzzy
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
-msgstr "Pro dokončení procesu přidání budete potřebovat balíček s doplňkem (.xpi, .jar nebo .xml) a nejméně jeden obrázek s vaším doplňkem v akci."
+msgstr ""
+"Pre dokončenie procesu pridania budete potrebovať balíček s doplnkom (.xpi, "
+".jar alebo .xml) a najmenej jeden obrázok s vašim doplnkom v akcii."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:24
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
+"Teraz môžete začať. Prečítajte si a akceptujte našu <strong>dohodu pre "
+"vývojárov</strong>:"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:34
 msgid "Printable Version"
@@ -5950,7 +5952,7 @@ msgstr "Balík rozšírenia"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
 msgid "Learn more details on how extensions are packaged and installed."
-msgstr ""
+msgstr "Dozvedieť sa viac, ako sú rozlíšenia balené a inštalované."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
 msgid "Install Manifests"
