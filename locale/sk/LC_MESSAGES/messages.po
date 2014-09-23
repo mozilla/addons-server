@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-08-01 22:12+0000\n"
+"PO-Revision-Date: 2014-09-23 12:59+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1406931127.0\n"
+"X-POOTLE-MTIME: 1411477171.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2178,7 +2178,7 @@ msgstr "Adresa URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Popíšte vašu kolekciu (odkazy nie sú povolené)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2381,9 +2381,9 @@ msgstr "Odstrániť kolekciu"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s téma v tejto kolekcii"
+msgstr[1] "%(num)s témy v tejto kolekcii"
+msgstr[2] "%(num)s tém v tejto kolekcii"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
@@ -3051,7 +3051,7 @@ msgstr "Nenašli sa žiadne výsledky."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} tém vzhľadu"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
@@ -3402,7 +3402,7 @@ msgstr "Jazykový balík (aplikácia)"
 
 #: apps/constants/base.py:165
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Jazykový balíček (doplnok)"
 
 #: apps/constants/base.py:166
 msgid "Plugin"
@@ -3425,7 +3425,7 @@ msgstr "Jazykové balíky (aplikácia)"
 
 #: apps/constants/base.py:178
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Jazykové balíčky (doplnok)"
 
 #: apps/constants/base.py:179
 msgid "Plugins"
@@ -3437,19 +3437,19 @@ msgstr "Zadarmo"
 
 #: apps/constants/base.py:245
 msgid "Premium"
-msgstr ""
+msgstr "Platená"
 
 #: apps/constants/base.py:246
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Platená s platbami vo vnútri aplikácie"
 
 #: apps/constants/base.py:247
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Zadarmo s platbami vo vnútri aplikácie"
 
 #: apps/constants/base.py:248
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Vo vnútri aplikácie budem využívať vlastný platobný systém"
 
 #: apps/constants/base.py:304
 msgid "Only ask on this add-on's page and developer profile"
@@ -3581,7 +3581,7 @@ msgstr "Úroveň 6"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:85
 msgid "Request More Info"
-msgstr ""
+msgstr "Požiadať doplnkové informácie"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:89
 msgid "Flag"
@@ -3794,10 +3794,11 @@ msgstr "Nepodarilo sa overiť PayPal ID."
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom pre {extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "Zobraziť aktuálne"
 
 #: apps/devhub/forms.py:441 apps/devhub/forms.py:876
 msgid "Invalid version range."
@@ -4115,9 +4116,8 @@ msgid "Validate Add-on"
 msgstr "Overiť doplnok"
 
 #: apps/devhub/views.py:534
-#, fuzzy
 msgid "Check Add-on Compatibility"
-msgstr "Kontrola kompatibility doplňku"
+msgstr "Kontrola kompatibility doplnku"
 
 #: apps/devhub/views.py:654
 msgid "There was an error with the submission."
@@ -4137,7 +4137,7 @@ msgstr "Obrázky nesmú byť animované."
 
 #: apps/devhub/views.py:1031
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Obrázky nemôžu byť väčšie ako %d kb."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: apps/devhub/views.py:1041
@@ -4159,6 +4159,8 @@ msgstr "Verzia %s bola odstránená."
 #: apps/devhub/views.py:1156
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
+"Pri nahrávaní kontrola zlyhala a preto jej výsledky nemusia byť kompletné. "
+"Venujte tomu preto pri kontrole zvláštnu pozornosť."
 
 #: apps/devhub/views.py:1552
 msgid "Preliminary Review Requested."
@@ -4179,17 +4181,23 @@ msgstr "SDK pre doplnky"
 #. Section in strong tag is bigger and on it's own line
 #: apps/devhub/templates/devhub/builder.html:11
 msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr ""
+msgstr "<strong>Add-on SDK:</strong> Vytvárajte doplnky rýchlo a jednoducho"
 
 #: apps/devhub/templates/devhub/builder.html:16
 msgid ""
 "The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
 "million Firefox users world wide."
 msgstr ""
+"Add-on SDK poskytuje výkonné API, ktoré umožňuje vývojárom vytvárať doplnky "
+"pre Firefox za pomoci HTML, CSS a JavaScriptu. Hneď ako budete mať svoj "
+"doplnok hotový, môžete ho jednoducho zdieľať s viac ako 400 miliónmi "
+"používateľov Firefoxu po celom svete."
 
 #: apps/devhub/templates/devhub/builder.html:32
 msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
 msgstr ""
+"Add-on SKD je sada API a nástrojov pre príkazový riadok, ktoré vám umožnia "
+"jednoduchý vývoj doplnkov."
 
 #: apps/devhub/templates/devhub/builder.html:38
 msgid "Choose your own code editor"
@@ -4197,7 +4205,7 @@ msgstr "Vyberte si svoj vlastný editor kódu"
 
 #: apps/devhub/templates/devhub/builder.html:39
 msgid "Access your development files locally"
-msgstr ""
+msgstr "Pristupujte k vytváranému doplnku lokálne."
 
 #: apps/devhub/templates/devhub/builder.html:40
 msgid "Get greater control over SDK build steps"
@@ -5076,11 +5084,11 @@ msgstr "Zadajte vaše heslo na potvrdenie vášho rozhodnutia:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Povedzte nám, prečo odstraňujete vašu tému vzhľadu:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Povedzte nám, prečo odstraňujete váš doplnok:"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:1
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:250
@@ -5135,9 +5143,8 @@ msgstr "Zobraziť posledné zmeny"
 
 # 89%
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:7
-#, fuzzy
 msgid "Resume the submission process for this app."
-msgstr "Pokračovat v procesu přidání aplikace."
+msgstr "Pokračovať v procese pridávania tejto aplikácie."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
 msgid "Delete this app."
@@ -5632,7 +5639,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
-msgstr ""
+msgstr "Prejsť na nástroj pre tvorbu doplnkov!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:65
 msgid "Add some flair"
@@ -6506,9 +6513,9 @@ msgid "Before nominating an add-on to be featured, please ensure it meets the fo
 msgstr "Skôr ako odporúčate doplnok, aby bol odporúčaný, uistite sa, že spĺňa nasledovné kritériá:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
-#, fuzzy
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr "Doplněk musí mít kompletní a informačně užitečný popis na AMO. To znamená:"
+msgstr ""
+"Doplnok musí mať kompletný a informačne užitočný popis na AMO. To znamená:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
@@ -6531,9 +6538,10 @@ msgid "updated screenshots of the add-on's functionality"
 msgstr "aktualizované obrázky funkcionality doplnku"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:46
-#, fuzzy
 msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
-msgstr "musí být plně schválen redaktorem AMO (předběžné kontroly nejsou dostatečné)"
+msgstr ""
+"musí byť plne schválený redaktorom AMO (predbežné kontroly nie sú "
+"dostatočné)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
 #, fuzzy
@@ -6658,7 +6666,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "Posledná aktualizácia: 31. januára 2013"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:3 apps/devhub/templates/devhub/docs/policies-reviews.html:7 apps/devhub/templates/devhub/docs/policies-reviews.html:8
 #: apps/devhub/templates/devhub/docs/policies.html:15 apps/devhub/templates/devhub/docs/policies.html:64
