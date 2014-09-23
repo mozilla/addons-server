@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-23 12:59+0000\n"
+"PO-Revision-Date: 2014-09-23 13:44+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411477171.0\n"
+"X-POOTLE-MTIME: 1411479854.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6342,7 +6342,6 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
-#, fuzzy
 msgid "Website Functionality & Development"
 msgstr "Funkcionalita webu a vývoj"
 
@@ -6550,12 +6549,14 @@ msgstr "Doplněk musí mít skvělé recenze od uživatelů a jakékoliv problé
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "Doplnok musí mať minimálne 2000 používateľov."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
-#, fuzzy
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
-msgstr "Doplněk musí být kompatibilní s poslední verzí Firefoxu a musí být kompatibilní s betaverzí následující verze 4 týdny před jejím finálním vydáním."
+msgstr ""
+"Doplnok musí byť kompatibilní s poslednou verziou Firefoxu a musí byť "
+"kompatibilní s betaverziou nasledujúcej verzie 4 týždne pred jej finálnym "
+"vydaním."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
@@ -6663,6 +6664,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
 msgstr ""
+"Pre informácie o ďalšej perióde sledujte <a href=\"%(link_blog)s\">blog "
+"Mozilla Add-ons</a> alebo <a href=\"%(link_twitter)s\">@mozamo</a> na "
+"Twitteri."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
@@ -6990,9 +6994,8 @@ msgstr ""
 "relace anonymního prohlížení nemohou být taková data zapisována na disk a všechna taková data musí být smazána v situaci, kdy Firefox ukončuje relaci anonymního prohlížení."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
-#, fuzzy
 msgid "Binary Components & Obfuscated Code"
-msgstr "Binární komponenty a kód z obfuskátoru"
+msgstr "Binárne komponenty a kód z obfuskátora"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:289
 #, fuzzy
@@ -7126,9 +7129,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
-#, fuzzy
 msgid "Licensing"
-msgstr "Licencování"
+msgstr "Licencovanie"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:86
 #, fuzzy
@@ -7397,39 +7399,39 @@ msgstr "Často kladené otázky"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:4
 msgid "Frequently Asked Questions | Themes"
-msgstr ""
+msgstr "Často kladené otázky | Témy"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:14 apps/devhub/templates/devhub/docs/themes-faq.html:44
 msgid "Introducing Background Themes"
-msgstr ""
+msgstr "Úvod k témam"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:16
 msgid "What Are Background Themes?"
-msgstr ""
+msgstr "Čo sú to témy?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:17 apps/devhub/templates/devhub/docs/themes-faq.html:59
 msgid "What kind of computers and operating systems do Background Themes work with?"
-msgstr ""
+msgstr "Na akých počítačoch a operačných systémoch fungujú témy?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
 msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr ""
+msgstr "Aký je rozdiel medzi klasickou témou a plnou témou vzhľadu?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
 msgid "Installing Background Themes"
-msgstr ""
+msgstr "Inštalácia tém"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
 msgid "How do I add Background Themes to my Firefox?"
-msgstr ""
+msgstr "Ako pridám tému do svojho Firefoxu?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:24 apps/devhub/templates/devhub/docs/themes-faq.html:103
 msgid "Are Background Themes free?"
-msgstr ""
+msgstr "Sú témy zadarmo?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:27 apps/devhub/templates/devhub/docs/themes-faq.html:112
 msgid "Using Background Themes"
-msgstr ""
+msgstr "Používanie tém"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
 msgid "How do I change my current Background Theme?"
@@ -7437,7 +7439,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
 msgid "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr ""
+msgstr "Ak mám nainštalovanú plnú tému vzhľadu, bude mi fungovať klasická téma?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
 msgid "How do I undo a Background Theme?"
@@ -7449,7 +7451,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:35
 msgid "Creating Your Own Background Themes"
-msgstr ""
+msgstr "Vytváranie vlastných tém"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:37
 msgid "Can I create my own Background Theme?"
@@ -7473,17 +7475,23 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
 msgid "What are Background Themes?"
-msgstr ""
+msgstr "Čo sú to témy?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:49
 msgid ""
 "Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added "
 "every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
 msgstr ""
+"Témy sú jednoducho inštalovateľné a jednoducho použiteľné doplnky pre zmenu "
+"vzhľadu webového prehliadača Firefox. Existujú tisíce tém vytvorených "
+"komunitou a každý deň pribúdajú ďalšie. <a href=\"%(browse_url)s\">Začnite "
+"hľadať vzhľad, ktorý vám bude najviac pasovať.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:61
 msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
 msgstr ""
+"Témy fungujú na akomkoľvek počítači na akom je nainštalovaný Firefox. To "
+"zahŕňa Windows, Linux, Mac aj Android."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
@@ -7492,6 +7500,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
 msgstr ""
+"Témy menia len vzhľad hlavičky a päty vášho prehliadača. Tieto témy si "
+"môžete vyskúšať a nainštalovať jedným kliknutím bez nutnosti reštartovať "
+"prehliadač."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid ""
@@ -7582,6 +7593,12 @@ msgid ""
 "guidelines for submissions, Mozilla retains the discretion to reject or remove designs for any reason. In some cases, this is necessary for legal reasons, but it also allows us to maintain the "
 "integrity of the site."
 msgstr ""
+"Majte tiež na pamäti, že váš dizajn by mal byť vo formáte vhodnom pre témy "
+"(vid pravidlá), mal by byť v dobrej kvalite a nemal by duplikovať iné témy. "
+"Mozilla uvádza prehľad podmienok pre odoslanie témy, ale vyhradzuje si právo "
+"zamietnutia alebo odstránenia návrhu z akéhokoľvek dôvodu. V niektorých "
+"prípadoch je to nutné z legálnych dôvodov, inokedy to môže byť v rámci snahy "
+"o zachovanie integrity webu."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
 msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
@@ -7624,6 +7641,8 @@ msgstr "Pridanie vašej témy vzhľadu"
 #: apps/devhub/templates/devhub/docs/themes.html:35
 msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
 msgstr ""
+"Základom tém sú dva grafické súbory&mdash; obrázok \"hlavičky\" a obrázok "
+"\"päty\"&mdash;,ktoré zmenia východzie pozadie grafického rozhrania Firefoxu."
 
 #: apps/devhub/templates/devhub/docs/themes.html:41
 msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
@@ -8275,6 +8294,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
+"Témy vám dávajú možnosť jednoducho si prispôsobiť vzhľad vášho Firefoxu. "
+"Pridajte svoj vlastný motív nižšie alebo <a href=\"%(submit_url)s\">si "
+"prečítajte, ako vytvoriť nový</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
@@ -11265,6 +11287,8 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Témy</a></strong> sú odľahčené vzhľady, "
+"ktoré umožňujú zmeniť obrázok na pozadí panelov aplikácie %(app_name)s."
 
 #: apps/pages/templates/pages/faq.html:66
 #, fuzzy
