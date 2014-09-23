@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-23 13:52+0000\n"
+"PO-Revision-Date: 2014-09-23 15:28+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411480340.0\n"
+"X-POOTLE-MTIME: 1411486126.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5312,14 +5312,17 @@ msgstr "Zobrazte si či odebírejte <a href=\"{0}\">informace o nedávné aktivi
 #: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr ""
+"Pozrite sa na približný <a href=\"{0}\">čas čakania</a> vo fronte na kontrolu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Postúpte do fronty na kontrolu!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:53
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Staňte sa redaktorom na AMO ešte dnes a pomôžte s rýchlejšou kontrolou "
+"doplnkov."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5330,9 +5333,11 @@ msgid "Step 5. Select a License"
 msgstr "Krok 5. Voľba licencie"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
-#, fuzzy
 msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr "U všech doplňků vyžadujeme, aby u nich bylo uvedeno, pod jakými podmínkami je jejich zdrojový kód licencován. Zvolte prosím jednu z licencí v seznamu nebo zadejte vlastní."
+msgstr ""
+"U všetkých doplnkov požadujeme, aby u nich bolo uvedené, pod akými "
+"podmienkami je ich zdrojový kód licencovaný. Zvoľte prosím jednu z licencií "
+"v zozname, alebo zadajte vlastnú."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
@@ -5723,7 +5728,7 @@ msgstr "Je vše v pořádku? Skvělé! Nyní zbývá udělat jen jedinou věc&he
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:130
 msgid "Submit my Add-on!"
-msgstr ""
+msgstr "Odoslať môj doplnok!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:133
 msgid "Congratulations!"
@@ -6791,7 +6796,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
-msgstr ""
+msgstr "Chyby generované v Chybovej konzole"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
@@ -6944,15 +6949,18 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
 msgstr ""
+"Doplnky, ktoré špehujú alebo zachytávajú sieťovú prevádzku iných "
+"používateľov"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
 msgstr ""
+"Automaticky generované panely (Conduit), ktoré neboli skôr explicitne "
+"schválené"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
-#, fuzzy
 msgid "Changing of Defaults and Unexpected Features"
-msgstr "Změna výchozích hodnot či neočekávané funkce"
+msgstr "Zmena východzích hodnôt, alebo neočakávané funkcie"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 #, fuzzy
@@ -7225,7 +7233,7 @@ msgstr "cez <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla
 
 #: apps/devhub/templates/devhub/docs/reference.html:45
 msgid "A list of all available XUL elements."
-msgstr ""
+msgstr "Zoznam všetkých dostupných elementov XUL."
 
 #: apps/devhub/templates/devhub/docs/reference.html:53
 msgid "XUL Controls List"
@@ -7275,6 +7283,9 @@ msgstr "Prehľad CSS"
 #: apps/devhub/templates/devhub/docs/reference.html:133
 msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
 msgstr ""
+"Cascading Style Sheets (CSS) je jazyk používaný na štýlovanie prezentácie "
+"dokumentov napísaných v HTML alebo XHTML kóde a je použitý aj pre štýlovanie "
+"používateľského rozhrania aplikácií založených na XUL."
 
 # 84%
 #: apps/devhub/templates/devhub/docs/reference.html:140
@@ -7547,17 +7558,20 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
 msgid "Creating Your Own Themes"
-msgstr ""
+msgstr "Vytváranie vlastných tém"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:173
 msgid "Can I create my own Theme?"
-msgstr ""
+msgstr "Môžem vytvoriť vlastnú tému?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:175
 msgid ""
 "Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., Photoshop). To get started <a href=\"%(tutorial_url)s\">read more about how to create a "
 "theme</a>."
 msgstr ""
+"Áno! Všetko, čo potrebujete, je vytvoriť dva grafické súbory vo vašom "
+"obľúbenom programe na prácu s grafikou (napr. Photoshop). Na začiatok si <a "
+"href=\"%(tutorial_url)s\">prečítajte niečo o vytváraní tém</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:186
 msgid ""
@@ -7583,11 +7597,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:221
 msgid "Your design does not relate to gambling."
-msgstr ""
+msgstr "Váš dizajn neobsahuje tématiku hazardu."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:226
 msgid "Your design does not violate any applicable law or regulation or the rights of any person or entity."
 msgstr ""
+"Váš dizajn neporušuje žiadne právo, reguláciu ani iné práva iných osôb a "
+"inštitúcií."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:231
 msgid ""
@@ -7605,10 +7621,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
 msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
 msgstr ""
+"<a href=\"%(tutorial_url)s\">Dozvedieť sa viac o tom, ako vytvoriť skvelé "
+"vzhľady.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:252
 msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr ""
+msgstr "Áno. Vaše dielo bude vždy <em>vašim</em> dielom."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:260
 msgid ""
@@ -7652,37 +7670,41 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:46
 msgid "Creating a Theme Header Image"
-msgstr ""
+msgstr "Vytvorenie obrázka hlavičky témy"
 
 #: apps/devhub/templates/devhub/docs/themes.html:48
 msgid ""
 "The header image is displayed as the background of the top of the browser window, nestling in behind the toolbars, address bar, search bar and the tab strip. It will be <b>anchored to the top-right "
 "corner</b> of the browser window."
 msgstr ""
+"Obrázok hlavičky je zobrazený ako pozadie v hornej časti okna prehliadača "
+"tj. v miestach, kde sú panely, adresný riadok, pole vyhľadávania a panel s "
+"kartami. Obrázok bude zarovnaný do <b>pravého horného rohu</b> okna "
+"prehliadača."
 
 #: apps/devhub/templates/devhub/docs/themes.html:57
 msgid "View a sample Theme Header here."
-msgstr ""
+msgstr "Zobraziť príklad hlavičky témy."
 
 #: apps/devhub/templates/devhub/docs/themes.html:59 apps/devhub/templates/devhub/docs/themes.html:130
 msgid "Image Requirements"
-msgstr ""
+msgstr "Požiadavky na obrázok"
 
 #: apps/devhub/templates/devhub/docs/themes.html:62
 msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
-msgstr ""
+msgstr "Rozmery by mali byť <b>3000px šírka &times; 200px výška</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:67 apps/devhub/templates/devhub/docs/themes.html:138
 msgid "PNG or JPG file format"
-msgstr ""
+msgstr "Formát PNG alebo JPG"
 
 #: apps/devhub/templates/devhub/docs/themes.html:72 apps/devhub/templates/devhub/docs/themes.html:143
 msgid "Image must be no larger than 300 KB in file size"
-msgstr ""
+msgstr "Obrázok nesmie byť väčší ako 300 kB."
 
 #: apps/devhub/templates/devhub/docs/themes.html:77 apps/devhub/templates/devhub/docs/themes.html:148
 msgid "Tips"
-msgstr ""
+msgstr "Tipy"
 
 #: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
 msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
@@ -7712,19 +7734,22 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
 msgid "Creating a Theme Footer Image"
-msgstr ""
+msgstr "Vytvorenie obrázka päty témy"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
 msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
 msgstr ""
+"Obrázok päty je zobrazený ako pozadie v dolnej časti okna prehliadača a to "
+"na pozadí stavového riadku a panelu vyhľadávania. Obrázok bude ukotvený za "
+"ľavý spodný roh okna prehliadača."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
 msgid "View a sample Theme Footer here."
-msgstr ""
+msgstr "Zobraziť príklad päty témy."
 
 #: apps/devhub/templates/devhub/docs/themes.html:133
 msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
-msgstr ""
+msgstr "Rozmery by mali byť <b>3000px šírka &times; 100px výška</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:157
 msgid "Firefox may reveal more of the upper portion of the image if the find bar is open or if an extension adds more height to the bottom of the window."
@@ -7839,32 +7864,36 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "Aktuálna verzia:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
+"Toto je verzia vášho doplnku, ktorý bude nainštalovaný, ak niekto klikne na "
+"webe addons.mozilla.org na tlačidlo pre inštaláciu."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "Vytvorené:"
 
 #. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%b. %e %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Posledná aktualizácia:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "Ďalšia verzia:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach "
+"zverejnená."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
