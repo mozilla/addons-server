@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-24 10:13+0000\n"
+"PO-Revision-Date: 2014-09-24 12:33+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411553626.0\n"
+"X-POOTLE-MTIME: 1411561998.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7124,13 +7124,15 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:49
-#, fuzzy
 msgid ""
 "<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
 "your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
-"<strong>Je doplněk užitečný pro široké spektrum uživatelů Firefoxu?</strong> Váš doplněk nemusí být zrovna další Greasemonkey či Firebug, ale pokud je doplněk užitečný pouze pro zaměstnance ve vaší "
-"firmě nebo pro ty, kteří jsou součástí malé webové komunity, pak možná cítíte, že není vhodný pro široké spektrum uživatelů, kteří Firefox používají."
+"<strong>Je doplnok užitočný pre široké spektrum používateľov "
+"Firefoxu?</strong> Váš doplnok nemusí byť zrovna ďalší Greasemonkey či "
+"Firebug, ale ak je doplnok užitočný len pre zamestnancov vo vašej firme "
+"alebo pre tých, ktorí sú súčasťou malej webové komunity, tak možno cítite, "
+"že nie je vhodný pre široké spektrum používateľov Firefoxu."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:55
 #, fuzzy
@@ -7439,9 +7441,10 @@ msgid "DOM"
 msgstr "DOM"
 
 #: apps/devhub/templates/devhub/docs/reference.html:313
-#, fuzzy
 msgid "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-to Library</a>"
-msgstr "Přečtěte si, jak tato API použít v naší <a href=\"%(link_howto)s\">Databázi ukázek, jak na to</a>"
+msgstr ""
+"Prečítajte si, ako tieto API použiť v našej <a href=\"%"
+"(link_howto)s\">Databáze ukážok, ako na to</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:3 apps/devhub/templates/devhub/docs/themes.html:18 apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
 #: apps/pages/templates/pages/faq.html:10
@@ -7563,6 +7566,14 @@ msgid ""
 "\"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you "
 "wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
+"V rámci niekoľkých sekúnd môžete tému nainštalovať a premeniť tak vzhľad "
+"webového prehliadača Firefox. Pre náhľad ľubovolnej témy cez ňu jednoducho "
+"prejdite myšou a uvidíte ju dočasne vo svojom prehliadači. Ak sa vám páči, "
+"jednoducho kliknite na tlačidlo <code>Pridať do Firefoxu</code>. Tým je téma "
+"okamžite nainštalovaná a uložená v Správcovi doplnkov, kde ju môžete "
+"kedykoľvek povoliť, alebo zakázať. Jednoducho prejdite do ponuky "
+"<code>Nástroje</code> &gt; <code>Doplnky</code> a zvoľte sekciu "
+"<code>Vzhľad</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
@@ -7583,6 +7594,10 @@ msgid ""
 "Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the "
 "<code>Appearance</code> tab."
 msgstr ""
+"Okamžite ako je téma nainštalovaná je uložená v Správcovi doplnkov, kde ju "
+"môžete kedykoľvek povoliť, alebo zakázať. Jednoducho prejdite do ponuky "
+"<code>Nástroje</code> &gt; <code>Doplnky</code> a zvoľte sekciu "
+"<code>Vzhľad</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
@@ -7808,15 +7823,20 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:171
 msgid "Submitting your Theme Images"
-msgstr ""
+msgstr "Odoslanie obrázkov vašej témy"
 
 #: apps/devhub/templates/devhub/docs/themes.html:173
 msgid "To get started submitting your images, go to the Theme Submission page:"
 msgstr ""
+"Pre zahájenie odosielania vašich obrázkov prejdite na stránku odosielania "
+"tém:"
 
 #: apps/devhub/templates/devhub/docs/themes.html:179
 msgid "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate names are not allowed, so you may need to try a few times to find a unique name."
 msgstr ""
+"<b>Názov vašej témy</b> &mdash; zadajte unikátny názov pre vašu tému. "
+"Duplicitné názvy nie sú povolené, takže je možné, že budete musieť postupne "
+"niekoľko vyskúšať, kým nájdete nejaké unikátne."
 
 #: apps/devhub/templates/devhub/docs/themes.html:186
 msgid ""
@@ -8129,7 +8149,7 @@ msgstr "Nastaviť príspevky"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Krok 2: Ceny a dostupnosť"
 
 #: apps/devhub/templates/devhub/payments/tier.html:18
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
@@ -8140,14 +8160,13 @@ msgid "Contributions"
 msgstr "Príspevky"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
-#, fuzzy
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Pokud chcete začít žádat o příspěvky od uživatelů, vyplňte pole níže."
+msgstr ""
+"Ak chcete začať požadovať príspevky od používateľov, vyplňte pole nižšie."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:11
-#, fuzzy
 msgid "Who will receive contributions to this add-on?"
-msgstr "Kdo u doplňku dostane získané příspěvky?"
+msgstr "Kto dostane získané príspevky z tohto doplnku?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
@@ -8296,47 +8315,49 @@ msgstr "Zvoľte inú licenciu."
 
 #: apps/devhub/templates/devhub/personas/edit.html:207 apps/devhub/templates/devhub/personas/submit.html:153
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Zvoľte licenciu vašej témy."
 
 #: apps/devhub/templates/devhub/personas/edit.html:217 apps/devhub/templates/devhub/personas/submit.html:163
 msgid "Theme Design"
-msgstr ""
+msgstr "Vzhľad témy"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Načítať nový návrh"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
+"Po načítaní a odoslaní vykoná tím AMO kontrolu vami aktualizovanej témy. "
+"Vaša aktuálna téma bude medzi tým stále k dispozícií na webe."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Vami skôr odoslaná téma, ktorá čaká na kontrolu."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr ""
+msgstr "Čakajúca hlavička"
 
 #: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
-msgstr ""
+msgstr "Čakajúca päta"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Svoj návrh témy budete môcť aktualizovať, až keď bude schválený."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
-msgstr ""
+msgstr "Hlavička"
 
 #: apps/devhub/templates/devhub/personas/edit.html:266
 msgid "Footer"
-msgstr ""
+msgstr "Päta"
 
 #: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Zvoľte farby vašej témy."
 
 #: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
@@ -8344,7 +8365,7 @@ msgstr "Text popredia"
 
 #: apps/devhub/templates/devhub/personas/edit.html:273 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Jedná sa o farbu textov na kartách."
 
 #: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
@@ -8359,9 +8380,8 @@ msgid "Preview"
 msgstr "Ukážka"
 
 #: apps/devhub/templates/devhub/personas/edit.html:287 apps/devhub/templates/devhub/personas/submit.html:183
-#, fuzzy
 msgid "Your Theme's Name"
-msgstr "Jméno vašeho motivu"
+msgstr "Názov vašej témy"
 
 #: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
@@ -8369,7 +8389,7 @@ msgstr "autor: <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
 #: apps/devhub/templates/devhub/personas/submit.html:7
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Vytvoriť novú tému"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
@@ -8380,7 +8400,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Pomenujte vašu tému."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
@@ -8509,7 +8529,7 @@ msgstr "Voliteľné, môžete zadať informácie, ktoré by mohli byť užitočn
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Zdrojový kód"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -8570,7 +8590,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr ""
+msgstr "Nie je overená."
 
 #: apps/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
@@ -8597,7 +8617,7 @@ msgstr "Zrušiť požiadavku o kontrolu"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Aktuálne na AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -8617,11 +8637,11 @@ msgstr "Výkon"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Ďalšia verzia tohto doplnku"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Staršie verzie"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
@@ -8659,7 +8679,7 @@ msgstr "Odstrániť verziu"
 
 #: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Disable Version"
-msgstr ""
+msgstr "Zakázať verziu"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
@@ -9111,7 +9131,7 @@ msgstr "Čakajúci na riadnu kontrolu"
 
 #: apps/editors/helpers.py:54
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Zamietnuté a neskontrolované"
 
 #: apps/editors/helpers.py:108
 msgid "Queue"
@@ -9134,21 +9154,20 @@ msgid "Moderated Reviews"
 msgstr "Moderované recenzie"
 
 #: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
-#, fuzzy
 msgid "Fast Track"
-msgstr "Rychlá kontrola"
+msgstr "Rýchla kontrola"
 
 #: apps/editors/helpers.py:115
 msgid "Pending Themes"
-msgstr ""
+msgstr "Čakajúce témy"
 
 #: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Označené témy"
 
 #: apps/editors/helpers.py:117
 msgid "Update Themes"
-msgstr ""
+msgstr "Aktualizované témy"
 
 #: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
@@ -9207,9 +9226,8 @@ msgid "Applications"
 msgstr "Aplikácie"
 
 #: apps/editors/helpers.py:200
-#, fuzzy
 msgid "Additional"
-msgstr "Další"
+msgstr "Ďalšie"
 
 #: apps/editors/helpers.py:217
 msgid "Site Specific"
@@ -9265,13 +9283,12 @@ msgstr "Požadovať super-recenziu"
 
 # 80%
 #: apps/editors/helpers.py:420
-#, fuzzy
 msgid "Grant preliminary review"
-msgstr "Udělit předběžnou kontrolu"
+msgstr "Udeliť predbežnú kontrolu"
 
 #: apps/editors/helpers.py:421
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "Označí súbory ako predbežne schválené."
 
 #: apps/editors/helpers.py:423
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
@@ -9286,47 +9303,46 @@ msgstr ""
 "správcom, nie autorovi."
 
 #: apps/editors/helpers.py:433
-#, fuzzy
 msgid "This will reject the add-on and remove it from the review queue."
-msgstr "Zamítne doplněk a odstraní jej z fronty na kontrolu."
+msgstr "Zamietne doplnok a odstráni ho zo zoznamu na kontrolu."
 
 #: apps/editors/helpers.py:435
-#, fuzzy
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr "Přidejte komentář k této verzi. Autor jej nebude vidět."
+msgstr "Pridajte komentár k tejto verzii. Autor ho nebude vidieť."
 
 #: apps/editors/helpers.py:439
-#, fuzzy
 msgid "This will reject the files and remove them from the review queue."
-msgstr "Zamítne soubory a odstraní je z fronty na kontrolu."
+msgstr "Zamietne súbory a odstráni ich zo zoznamu na kontrolu."
 
 #: apps/editors/helpers.py:443
-#, fuzzy
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Označí doplněk jako předběžně kontrolovaný. Příští verze budou opět procházet předběžnou kontrolou."
+msgstr ""
+"Označí doplnok ako predbežne skontrolovaný. Ďalšie verzie budú opäť "
+"prechádzať predbežnou kontrolou."
 
 #: apps/editors/helpers.py:448
-#, fuzzy
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Označí soubory jako předběžně kontrolované. Příští verze budou opět přocházet předběžnou kontrolou."
+msgstr ""
+"Označí súbory ako predbežne skontrolované. Ďalšie verzie budú opäť "
+"prechádzať predbežnou kontrolou."
 
 #: apps/editors/helpers.py:453
 msgid "Retain preliminary review"
 msgstr "Predbežná kontrola pozdržaná"
 
 #: apps/editors/helpers.py:454
-#, fuzzy
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Zamítne předběžnou kontrolu doplňku. Příští verze budou opět procházet předběžnou kontrolou."
+msgstr ""
+"Zamietne predbežnú kontrolu doplnku. Ďalšie verzie budú opäť prechádzať "
+"predbežnou kontrolou."
 
 #: apps/editors/helpers.py:459
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Tým schválite verziu zo Sandboxu nominovanú na uverejnenie, aby sa objavila na verejnej stránke."
 
 #: apps/editors/helpers.py:462
-#, fuzzy
 msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "Zamítne verzi veřejného doplňku a odstraní ji z fronty."
+msgstr "Zamietne verziu verejne dostupného doplnku a odstráni ho z fronty."
 
 #: apps/editors/helpers.py:465
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
@@ -9334,17 +9350,15 @@ msgstr "Týmto označíte doplnok a jeho najnovšiu verziu a súbory ako verejn�
 
 # 83%
 #: apps/editors/helpers.py:533
-#, fuzzy
 msgid "add-on"
-msgstr "doplněk"
+msgstr "doplnok"
 
 #: apps/editors/helpers.py:783 apps/editors/helpers.py:803
 msgid "Flagged"
-msgstr ""
+msgstr "Označené"
 
 # 85%
 #: apps/editors/helpers.py:787 apps/editors/helpers.py:806
-#, fuzzy
 msgid "Updates"
 msgstr "Aktualizácie"
 
@@ -9358,36 +9372,32 @@ msgstr "Doplnok typu Jetpack"
 
 #: apps/editors/models.py:175
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Doplnok vyžaduje reštart"
 
 # 92%
 #: apps/editors/models.py:176
-#, fuzzy
 msgid "More Information Requested"
-msgstr "Vyžadováno více informací"
+msgstr "Požadované doplňujúce informácie"
 
 #: apps/editors/models.py:177
-#, fuzzy
 msgid "Contains Editor Comment"
-msgstr "Obsahuje komentář redaktora"
+msgstr "Obsahuje komentár redaktora"
 
 #: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Duplicitné odoslanie"
 
 #: apps/editors/tasks.py:80
-#, fuzzy
 msgid "Thanks for submitting your Theme"
-msgstr "Děkujeme za přidání vašeho motivu"
+msgstr "Ďakujeme za pridanie vašej témy"
 
 #: apps/editors/tasks.py:84
-#, fuzzy
 msgid "A problem with your Theme submission"
-msgstr "Při přidávání vašeho motivu nastal problém"
+msgstr "Pri pridávaní vašej témy nastal problém"
 
 #: apps/editors/tasks.py:88
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Odoslanie témy označené na kontrolu"
 
 #: apps/editors/tasks.py:95
 #, fuzzy
@@ -9410,7 +9420,7 @@ msgstr "S prodlevou (více než 10 dní)"
 
 #: apps/editors/views.py:452
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Nastala neznáma chyba"
 
 #: apps/editors/views.py:482
 msgid "Self-reviews are not allowed."
@@ -9421,28 +9431,24 @@ msgid "Review successfully processed."
 msgstr "Recenzia úspešne spracovaná."
 
 #: apps/editors/views.py:692
-#, fuzzy
 msgid "was approved"
-msgstr "byl schválen"
+msgstr "schválené"
 
 # 80%
 #: apps/editors/views.py:693
-#, fuzzy
 msgid "given preliminary review"
-msgstr "byl předběžně zkontrolován"
+msgstr "predbežne skontrolované"
 
 # 87%
 #: apps/editors/views.py:694
-#, fuzzy
 msgid "rejected"
-msgstr "zamítnuto"
+msgstr "zamietnuté"
 
 # 88%
 #: apps/editors/views.py:695
-#, fuzzy
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr "bude detailně zkontrolován"
+msgstr "bude detailne skontrolované"
 
 #: apps/editors/views.py:697
 msgid "needs more information"
@@ -9942,18 +9948,16 @@ msgid "Theme Review History for {0}"
 msgstr ""
 
 #: apps/editors/templates/editors/themes/history_table.html:6
-#, fuzzy
 msgid "Review Date"
-msgstr "Datum kontroly"
+msgstr "Dátum kontroly"
 
 #: apps/editors/templates/editors/themes/history_table.html:9 apps/editors/templates/editors/themes/logs.html:18
 msgid "Action"
 msgstr "Akcia"
 
 #: apps/editors/templates/editors/themes/history_table.html:10
-#, fuzzy
 msgid "Reason"
-msgstr "Důvod"
+msgstr "Dôvod"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
 #, fuzzy
@@ -10010,36 +10014,32 @@ msgid "Keyboard Shortcuts"
 msgstr "Klávesové zkratky"
 
 #: apps/editors/templates/editors/themes/queue.html:67
-#, fuzzy
 msgid "Next Theme"
-msgstr "Další motiv"
+msgstr "Ďalšia téma"
 
 #: apps/editors/templates/editors/themes/queue.html:68
-#, fuzzy
 msgid "Previous Theme"
-msgstr "Předchozí motiv"
+msgstr "Predchádzajúca téma"
 
 #: apps/editors/templates/editors/themes/queue.html:81
-#, fuzzy
 msgid "Your Review History"
-msgstr "Upraviť recenziu"
+msgstr "Vaša história kontrol"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Odoslať kontrolu"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Odoslať kontroly"
 
 #: apps/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
 msgstr "Skontrolované {0} z {1}"
 
 #: apps/editors/templates/editors/themes/queue.html:101
-#, fuzzy
 msgid "There are currently no Themes to review."
-msgstr "Aktuálně nečekají na kontrolu žádné položky."
+msgstr "Aktuálne nečakajú na kontrolu žiadne témy."
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
@@ -10564,9 +10564,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
-#, fuzzy
 msgid "Thank you!"
-msgstr "Děkujeme!"
+msgstr "Ďakujeme!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
@@ -10640,20 +10639,17 @@ msgstr "Často kladené otázky pre vývojárov"
 
 # 75%
 #: apps/pages/templates/pages/dev_faq.html:31 apps/pages/templates/pages/review_guide.html:33
-#, fuzzy
 msgid "Sections"
-msgstr "Sekce"
+msgstr "Sekcie"
 
 #: apps/pages/templates/pages/dev_faq.html:33 apps/pages/templates/pages/dev_faq.html:46
-#, fuzzy
 msgid "Developing an Add-on"
-msgstr "Vývoj doplňku"
+msgstr "Vývoj doplnkov"
 
 #. Heading for a list of resources for developers
 #: apps/pages/templates/pages/dev_faq.html:34 apps/pages/templates/pages/dev_faq.html:238
-#, fuzzy
 msgid "Support Resources"
-msgstr "Kde hledat podporu"
+msgstr "Kde hľadať podporu"
 
 #: apps/pages/templates/pages/dev_faq.html:35 apps/pages/templates/pages/dev_faq.html:282
 #, fuzzy
@@ -11256,18 +11252,16 @@ msgid "Currently, AMO does not provide a mechanism to directly communicate with 
 msgstr "V současné době AMO nenabízí možnost přímé komunikace s redaktorem, ale tato funkčnost je zvažována a může se v budoucnu objevit."
 
 #: apps/pages/templates/pages/dev_faq.html:584
-#, fuzzy
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Mohu požádat o odstranění recenze, pokud je negativní?"
+msgstr "Môžem požiadať o odstránenie recenzie, ak je negatívna?"
 
 #: apps/pages/templates/pages/dev_faq.html:586
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:592
-#, fuzzy
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "Mohu požádat o smazání recenze, která je nepravdivá?"
+msgstr "Môžem požiadať o odstránenie recenzie, ktorá je nepravdivá?"
 
 #: apps/pages/templates/pages/dev_faq.html:594
 #, fuzzy
@@ -11343,9 +11337,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/faq.html:42
-#, fuzzy
 msgid "What are the different types of add-ons?"
-msgstr "Jaké typy doplňků jsou dostupné?"
+msgstr "Aké typy doplnkov sú dostupné?"
 
 #: apps/pages/templates/pages/faq.html:43
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
@@ -11386,9 +11379,8 @@ msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s
 msgstr "<strong><a href=\"%(browse_url)s\">Zásuvné moduly</a></strong> pomáhají aplikaci %(app_name)s zobrazovat a rozumnět různým typům obsahu, jako je Adobe Flash či Apple Quicktime."
 
 #: apps/pages/templates/pages/faq.html:85
-#, fuzzy
 msgid "How do I install, manage, or remove an add-on?"
-msgstr "Jak mohu nainstalovat, spravovat či odstranit doplněk?"
+msgstr "Ako môžem nainštalovať, spravovať alebo odstrániť doplnok?"
 
 #: apps/pages/templates/pages/faq.html:86
 msgid ""
@@ -11398,9 +11390,8 @@ msgid ""
 msgstr ""
 
 #: apps/pages/templates/pages/faq.html:100
-#, fuzzy
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr "Jak mohu nainstalovat doplňky bez restartu Firefoxu?"
+msgstr "Ako môžem nainštalovať doplnky bez reštartu Firefoxu?"
 
 #: apps/pages/templates/pages/faq.html:101
 msgid ""
@@ -11732,53 +11723,46 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:67
-#, fuzzy
 msgid "Keep reviews concise and easy to understand."
-msgstr "Mějte recenze stručné a snadno srozumitelné."
+msgstr "Majte recenzie stručné a jednoducho zrozumiteľné."
 
 #: apps/pages/templates/pages/review_guide.html:68
-#, fuzzy
 msgid "Give specific and helpful details. For example:"
-msgstr "Popište konkrétní a užitečné detaily. Například:"
+msgstr "Popíšte konkrétne a užitočné detaily. Napríklad:"
 
 #: apps/pages/templates/pages/review_guide.html:70
-#, fuzzy
 msgid "Did the add-on work as you expected it to?"
-msgstr "Funguje doplněk podle očekávání?"
+msgstr "Funguje doplnok podľa očakávaní?"
 
 #: apps/pages/templates/pages/review_guide.html:71
-#, fuzzy
 msgid "What features did you like or dislike?"
-msgstr "Které funkce se vám líbí a které naopak ne?"
+msgstr "Ktoré funkcie sa vám páčia a ktoré nie?"
 
 #: apps/pages/templates/pages/review_guide.html:72
-#, fuzzy
 msgid "Was it useful?"
-msgstr "Je užitečný?"
+msgstr "Je užitočný?"
 
 #: apps/pages/templates/pages/review_guide.html:73
-#, fuzzy
 msgid "Was it easy to use?"
-msgstr "Používá se snadno?"
+msgstr "Používa sa jednoducho?"
 
 #: apps/pages/templates/pages/review_guide.html:74
-#, fuzzy
 msgid "Will you continue to use this add-on?"
-msgstr "Budete doplněk i nadále používat?"
+msgstr "Budete doplnok aj naďalej používať?"
 
 #: apps/pages/templates/pages/review_guide.html:79
-#, fuzzy
 msgid "Take a moment to read your review before submitting it to avoid embarrassing typos or grammatical errors."
-msgstr "Před odesláním si svou recenzi znovu přečtěte a ujistěte se, že neobsahuje překlepy či gramatické chyby."
+msgstr ""
+"Pred odoslaním si svoju recenziu znovu prečítajte a uistite sa, že "
+"neobsahuje preklepy a gramatické chyby."
 
 #: apps/pages/templates/pages/review_guide.html:86
 msgid "Avoid referring to topical or temporal references since reviews can remain on the site for a long time."
-msgstr ""
+msgstr "Neodkazujte na dočasné adresy. Recenzie môžu byť na webe dlhý čas."
 
 #: apps/pages/templates/pages/review_guide.html:93
-#, fuzzy
 msgid "Don’t:"
-msgstr "Nepište:"
+msgstr "Nepíšte:"
 
 #: apps/pages/templates/pages/review_guide.html:96
 msgid "Submit simple reviews such as \"Great!\", \"wonderful\", or \"bad\" with no further explanation."
@@ -11923,9 +11907,8 @@ msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a h
 msgstr "Doporučujeme aktualizovate na <a href=\"%(tb_url)s\">Thunderbird</a> a <a href=\"%(lightning_url)s\">Lightning</a>."
 
 #: apps/pages/templates/pages/sunbird.html:45
-#, fuzzy
 msgid "Read more about Sunbird"
-msgstr "Dozvědět se více o Sunbirdu"
+msgstr "Dozvedieť sa viac o Sunbirde"
 
 #: apps/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
@@ -12177,9 +12160,8 @@ msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
 
 # 75%
 #: apps/reviews/templates/reviews/mobile/add_form.html:3 apps/reviews/templates/reviews/mobile/add_form.html:8
-#, fuzzy
 msgid "Add a Review"
-msgstr "Přidat recenzi"
+msgstr "Pridať recenziu"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:5
 msgid "Log in to add a review"
@@ -12923,13 +12905,12 @@ msgid "Enter a valid username consisting of letters, numbers, underscores or hyp
 msgstr "Vložte platné uživatelské jméno, které obsahuje znaky abecedy, čísla, podtržítka či pomlčky."
 
 #: apps/users/forms.py:247
-#, fuzzy
 msgid "This username cannot be used."
-msgstr "Toto uživatelské jméno nemůže být použito."
+msgstr "Toto používateľské meno nemôže byť použité."
 
 #: apps/users/forms.py:253
 msgid "This username is already in use."
-msgstr ""
+msgstr "Toto používateľské meno sa už používa."
 
 #: apps/users/forms.py:265 apps/users/templates/users/edit.html:93
 msgid "Display Name"
@@ -12953,7 +12934,7 @@ msgstr "Použite e-mailovú adresu od iného poskytovateľa a dokončite vašu r
 
 #: apps/users/forms.py:310
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Toto zobrazené meno nemôže byť použité."
 
 #: apps/users/forms.py:324
 msgid "The passwords did not match."
@@ -12965,7 +12946,7 @@ msgstr "Fotografia profilu"
 
 #: apps/users/forms.py:349 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Východzí jazyk"
 
 #: apps/users/forms.py:486
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -13143,9 +13124,8 @@ msgstr ""
 "pomocí vaší aktuální e-mailové adresy."
 
 #: apps/users/views.py:207
-#, fuzzy
 msgid "Please confirm your email address change at %s"
-msgstr "Potvrďte prosím změnu vaší e-mailové adresy na %s"
+msgstr "Potvrďte prosím zmenu vašej e-mailovej adresy na %s"
 
 #: apps/users/views.py:219
 msgid "Errors Found"
@@ -13165,11 +13145,11 @@ msgstr "Odteraz používajte {0} na prihlásenie."
 
 #: apps/users/views.py:317
 msgid "Persona authentication failure."
-msgstr ""
+msgstr "Overenie služby Persona zlyhalo."
 
 #: apps/users/views.py:337
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "Pre tento účet použite svoju overenú e-mailovú adresu."
 
 #: apps/users/views.py:448
 msgid "Wrong email address or password!"
@@ -13204,9 +13184,8 @@ msgid "Congratulations! Your user account was successfully created."
 msgstr "Blahoželáme! Váš účet používateľa bol úspešne vytvorený."
 
 #: apps/users/views.py:667
-#, fuzzy
 msgid "You already have an account."
-msgstr "Již máte účet."
+msgstr "Už máte účet."
 
 #: apps/users/views.py:677
 msgid "There are errors in this form"
@@ -13646,11 +13625,11 @@ msgstr "Registrovaný"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Čas posledného prihlásenia"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP adresa posledného prihlásenia"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
@@ -13663,9 +13642,9 @@ msgstr "{0} doplnkov"
 #: apps/users/templates/users/vcard.html:62
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s téma"
+msgstr[1] "%(num)s témy"
+msgstr[2] "%(num)s tém"
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
@@ -13691,14 +13670,12 @@ msgid "Version History with Changelogs"
 msgstr "História verzií s denníkmi zmien"
 
 #: apps/versions/models.py:279
-#, fuzzy
 msgid "Add-on uses binary components."
-msgstr "Doplněk obsahuje binární komponenty."
+msgstr "Doplnok obsahuje binárne komponenty."
 
 #: apps/versions/models.py:282
-#, fuzzy
 msgid "Add-on has opted into strict compatibility checking."
-msgstr "Doplněk má nastavení striktní kontrolu kompatibility."
+msgstr "Doplnok má nastavenú striktnú kontrolu kompatibility."
 
 #: apps/versions/models.py:632
 msgid "{app} {min} and later"
@@ -13774,9 +13751,8 @@ msgid "Target Version"
 msgstr "Cieľová verzia"
 
 #: apps/zadmin/forms.py:56
-#, fuzzy
 msgid "Email when finished"
-msgstr "Po dokončení zaslat e-mail"
+msgstr "Po dokončení odoslať e-mail"
 
 #: apps/zadmin/forms.py:106
 #, fuzzy
