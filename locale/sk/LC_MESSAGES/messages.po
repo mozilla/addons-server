@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-23 15:28+0000\n"
+"PO-Revision-Date: 2014-09-24 08:24+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411486126.0\n"
+"X-POOTLE-MTIME: 1411547047.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3944,21 +3944,18 @@ msgid "Creates a standard About dialog for your extension"
 msgstr "Vytvorí štandardné dialógové okno O rozšírení"
 
 #: apps/devhub/forms.py:922
-#, fuzzy
 msgid "Preferences dialog"
-msgstr "Dialog předvoleb"
+msgstr "Dialóg nastavení"
 
 #: apps/devhub/forms.py:923
-#, fuzzy
 msgid "Creates an example Preferences window"
-msgstr "Vytvorí ukážkové okno Možnosti"
+msgstr "Vytvorí ukážkové okno nastavení"
 
 #: apps/devhub/forms.py:926
 msgid "Toolbar"
 msgstr "Panel nástrojov"
 
 #: apps/devhub/forms.py:927
-#, fuzzy
 msgid "Creates an example toolbar for your extension"
 msgstr "Vytvorí ukážkový panel nástrojov pre váš doplnok"
 
@@ -3967,17 +3964,14 @@ msgid "Toolbar button"
 msgstr "Tlačidlo na paneli nástrojov"
 
 #: apps/devhub/forms.py:931
-#, fuzzy
 msgid "Creates an example button on the browser toolbar"
 msgstr "Vytvorí ukážkové tlačidlo na paneli nástrojov prehliadača"
 
 #: apps/devhub/forms.py:935
-#, fuzzy
 msgid "Main menu command"
-msgstr "Příkaz do hlavní nabídky"
+msgstr "Príkaz do hlavnej ponuky"
 
 #: apps/devhub/forms.py:936
-#, fuzzy
 msgid "Creates an item on the Tools menu"
 msgstr "Vytvorí položku v ponuke Nástroje"
 
@@ -4054,6 +4048,8 @@ msgstr "Nebolo možné kontaktovať server \"%s\"."
 #: apps/devhub/utils.py:57
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
+"Kontrola vygenerovala príliš veľa chýb/varovaní. %s správ tak nie je "
+"zobrazených. Po opravení zobrazených nedostatkov budete môcť vidieť ďalšie."
 
 #: apps/devhub/views.py:168
 msgid "All My Add-ons"
@@ -4085,7 +4081,7 @@ msgstr "Zmeny boli úspešne uložené."
 
 #: apps/devhub/views.py:319 apps/devhub/views.py:1506
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Skontrolujte prosím chyby vo formulári."
 
 #: apps/devhub/views.py:331
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -4222,10 +4218,15 @@ msgstr "Získajte pomocnú ruku!"
 #: apps/devhub/templates/devhub/builder.html:51
 msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
 msgstr ""
+"Potrebujete pomôcť s vytváraním doplnkov? Je tu k dispozícií <a href=\"%"
+"(url_docs)s\">rozsiahla dokumentácia</a> a široká komunita vývojárov, takže "
+"na to nikdy nieste sami."
 
 #: apps/devhub/templates/devhub/builder.html:60
 msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
 msgstr ""
+"Chcete, aby bol Add-on SKD ešte lepší? Prevezmite si zdrojový kód a "
+"prečítajte si, ako sa <a href='%(url_wiki)s'>môžete zapojiť</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4249,9 +4250,8 @@ msgid "Search Results for \"{0}\""
 msgstr "Výsledky vyhľadávania pre \"{0}\""
 
 #: apps/devhub/templates/devhub/devhub_search.html:19
-#, fuzzy
 msgid "Please enter some search terms."
-msgstr "Prosím, zadajte hľadané výrazy."
+msgstr "Zadajte frázu pre vyhľadávanie."
 
 #: apps/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
@@ -4518,19 +4518,25 @@ msgid "Advanced Building"
 msgstr "Zostavenie pre pokročilých"
 
 #: apps/devhub/templates/devhub/package_addon.html:104
-#, fuzzy
 msgid "Want to create XULRunner applications, XPCOM components, and other advanced skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr "Chcete vytvořit aplikaci postavenou na XULRunneru, XPCOM komponenty či jiné pokročilé věci? Navštivte <a href=\"%(url)s\">průvodce vytvořením projektu na serveru MozDev</a>."
+msgstr ""
+"Chcete vytvoriť aplikáciu postavenú na XULRunneri, XPCOM komponenty, alebo "
+"iné pokročilé veci? Navštívte <a href=\"%(url)s\">sprievodcu vytvorením "
+"projektu na serveri MozDev</a>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:10
 msgid "Add-on packaged successfully!"
-msgstr ""
+msgstr "Doplnok bol úspešne vytvorený!"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:14
 msgid ""
 "Use the download link below to save a copy of your extension's compressed source. To install as an extension in Firefox or another compatible application, simply rename the <kbd>.zip</kbd> "
 "extension to <kbd>.xpi</kbd>."
 msgstr ""
+"Kliknutím na odkaz uvedený nižšie uložíte kópiu rozšírenia vo forme "
+"skopírovaného zdrojového kódu. Ak chcete rozšírenie nainštalovať do Firefoxu "
+"alebo inej kompatibilnej aplikácie tak premenujte súbor <kbd>.zip</kbd>na "
+"<kbd>.xpi</kbd>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:22
 msgid "Please wait&hellip;"
@@ -4549,31 +4555,39 @@ msgid ""
 "<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
 "<li>Read the documentation and ask for help when you need it!</li> </ol>"
 msgstr ""
+"<ol> <li>Pre vytvorenie vlastných možností a prispôsobení postupujte podľa "
+"inštrukcií v zabalenom zdrojovom kóde.</li> <li>Odstráňte ľubovolný zdrojový "
+"kód, ktorý nepoužijete.</li><li>Prečítajte si dokumentáciu a spýtajte sa ak "
+"budete potrebovať pomoc!</li> </ol>"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:41
 msgid ""
 "Now that you've got an extension skeleton, the fun part begins: hacking on the extension to make it do what you want. If you need some help, check out our <a href=\"%(gs_url)s\">Getting Started</a> "
 "page for the basics, or visit the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and documentation."
 msgstr ""
+"Teraz, keď už máte kostru rozšírenia hotovú, začína zábavnejšia časť: "
+"prispôsobiť rozšírenie tak, aby vyhovovalo vašim predstavám. Ak potrebujete "
+"pomôcť, prečítajte si návod pre začiatočníkov s názvom <a href=\"%"
+"(gs_url)s\">Začíname</a> alebo sa pozrite na <a href=\"%(ht_url)s\">databázu "
+"návodov a tipov</a>, kde nájdete potrebnú dokumentáciu."
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
 msgstr "hľadať v dokumentoch pre vývojárov"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
-#, fuzzy
 msgid "Use the field below to upload your add-on package."
-msgstr "Pro nahrání vašeho doplňku použijte pole níže."
+msgstr "Pre načítanie vášho doplnku použite pole nižšie."
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
-#, fuzzy
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Po nahrání bude spuštěna sada automatizovaných testů, které zkontrolují kompatibilitu s následující verzí aplikace:"
+msgstr ""
+"Po načítaní bude spustená sada automatizovaných testov, ktoré skontrolujú "
+"kompatibilitu s nasledujúcou verziou aplikácie:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
-#, fuzzy
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr "Po nahrání bude na vašem souboru spuštěna sada automatizovaných testů."
+msgstr "Po načítaní bude na vašom súbore spustená sada automatizovaných testov."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -5630,19 +5644,26 @@ msgid "Build your add-on"
 msgstr "Vytvorte si svoj doplnok"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:49
-#, fuzzy
 msgid ""
 "Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
 "copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
 msgstr ""
-"Vzhledem k tomu, že jste již seznámeni s prostředím vývoje rozšíření, je čas začít vytvářet první doplněk. Dříve bylo potřeba najít nějakou vhodnou šablonu instalačního manifestu doplňku. Dnes "
-"Centrum pro vývojáře (v něm se momentálně nacházíte!) nabízí snadné vytvoření doplňku pomocí <a href=\"%(url)s\">Nástroje na tvorbu doplňků</a>!"
+"Vzhľadom k tomu, že ste sa už zoznámili s prostredím vývoja rozšírení, je "
+"čas začať vytvárať prvý doplnok. Kedysi bolo potrebné nájsť nejakú vhodnú "
+"šablónu inštalačného manifestu doplnku. Dnes Centrum pre vývojárov (v ňom sa "
+"teraz nachádzate!) ponúka jednoduché vytvorenie doplnkov pomocou <a href=\"%"
+"(url)s\">Nástroja na tvorbu doplnkov</a>!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid ""
 "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
 "install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
 msgstr ""
+"Len nasledujte kroky a zadajte názov svojho doplnku, číslo verzie, "
+"podporované aplikácie a iné detaily. Následne sa vám ponúkne balíček s "
+"doplnkom na prevzatie. Nevygeneruje sa vám len inštalačný manifest. Môžete "
+"si tiež do kostry doplnku vybrať typické prvky rozhrania, ako sú panel, "
+"postranný panel, položka do ponuky atď. Prakticky za vás píšeme doplnok!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
@@ -6391,9 +6412,8 @@ msgid "How do I submit a Beta add-on?"
 msgstr "Ako pridať betaverziu doplnku?"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:25
-#, fuzzy
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr "Kanály betaverzí jsou dostupné pouze pro plně schválené doplňky."
+msgstr "Kanály betaverzií sú dostupné len pre plne schválené doplnky."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
@@ -6756,9 +6776,8 @@ msgid "look for compliance with all of Mozilla's policies, detailed in these doc
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
-#, fuzzy
 msgid "Some of the most common issues we see when performing these reviews are:"
-msgstr "Nejčastější problémy, se kterými se v rámci kontroly setkáváme:"
+msgstr "Najčastejšie problémy s ktorými sa v rámci kontroly stretávame:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
@@ -6907,18 +6926,16 @@ msgstr ""
 "bude zkontrolována, bude dostupná napříč webem a distribuována skrze službu automatických aktualizací."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:188
-#, fuzzy
 msgid "Policies on Specific Add-on Practices"
-msgstr "Zásady pro doplňky"
+msgstr "Zásady pre doplnky"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:189
 msgid "Prohibited Add-ons"
 msgstr "Zakázané doplnky"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:190
-#, fuzzy
 msgid "The following add-ons are not permitted in any form:"
-msgstr "Následující doplňky nejsou v žádné formě dovoleny:"
+msgstr "Následujúce doplnky nie sú v žiadnej forme dovolené:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
@@ -7370,7 +7387,7 @@ msgstr "Príručka k Gecko DOM"
 
 #: apps/devhub/templates/devhub/docs/reference.html:281
 msgid "Mozilla Developer Center's DOM API documentation"
-msgstr ""
+msgstr "Dokumentácia k API DOMu na Mozilla Developer Center."
 
 #: apps/devhub/templates/devhub/docs/reference.html:292
 msgid "Jump to Reference"
@@ -7448,7 +7465,7 @@ msgstr "Používanie tém"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
 msgid "How do I change my current Background Theme?"
-msgstr ""
+msgstr "Ako zmením svoju aktuálnu tému?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
 msgid "If I have a Complete Theme installed, will Background Themes still work?"
@@ -7456,11 +7473,11 @@ msgstr "Ak mám nainštalovanú plnú tému vzhľadu, bude mi fungovať klasick�
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
 msgid "How do I undo a Background Theme?"
-msgstr ""
+msgstr "Môžem inštaláciu témy vrátiť späť?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:32 apps/devhub/templates/devhub/docs/themes-faq.html:161
 msgid "How do I provide feedback?"
-msgstr ""
+msgstr "Ako môžem odoslať svoj názor?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:35
 msgid "Creating Your Own Background Themes"
@@ -7468,23 +7485,23 @@ msgstr "Vytváranie vlastných tém"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:37
 msgid "Can I create my own Background Theme?"
-msgstr ""
+msgstr "Môžem vytvoriť vlastnú tému?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:38 apps/devhub/templates/devhub/docs/themes-faq.html:184
 msgid "Are there any content guidelines?"
-msgstr ""
+msgstr "Existujú nejaké pravidlá pre obsah?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:39 apps/devhub/templates/devhub/docs/themes-faq.html:250
 msgid "Do I still retain ownership over artwork that I upload?"
-msgstr ""
+msgstr "Mám stále vlastnícke práva na dielo, ktoré som načítal?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:40 apps/devhub/templates/devhub/docs/themes-faq.html:258
 msgid "After creating a Background Theme, can I edit the design?"
-msgstr ""
+msgstr "Môžem po vytvorení témy upraviť jej vzhľad?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:41 apps/devhub/templates/devhub/docs/themes-faq.html:266
 msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr ""
+msgstr "Aká je maximálna povolená veľkosť pre moju tému?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:47
 msgid "What are Background Themes?"
@@ -7509,6 +7526,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
 msgstr ""
+"Plné témy umožňujú pomocou štýlov zmeniť vzhľad vášho prehliadača, jeho "
+"okien, panelu s adresou, tlačidlá, karty a ponuky."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
