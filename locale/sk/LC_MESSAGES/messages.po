@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-24 12:33+0000\n"
+"PO-Revision-Date: 2014-09-24 14:39+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411561998.0\n"
+"X-POOTLE-MTIME: 1411569599.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6304,9 +6304,10 @@ msgid "Thunderbird &amp; Mobile Add-ons"
 msgstr "Doplnky pre Thunderbird a mobilný Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:103
-#, fuzzy
 msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Doplňky nejsou pouze pro Firefox. Přečtěte si, jak rozšířit další aplikace Mozilla jako jsou poštovní klient Thunderbird nebo Firefox pro mobilní zařízení."
+msgstr ""
+"Doplnky nie sú len pre Firefox. Prečítajte si, ako pridať ďalšie aplikácie "
+"Mozilla ako poštový klient Thunderbird alebo Firefox pre mobilné zariadenia."
 
 #: apps/devhub/templates/devhub/docs/marketplace.html:3
 msgid "Marketplace"
@@ -6323,9 +6324,11 @@ msgid "Contacting Us"
 msgstr "Kontaktujte nás"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
-#, fuzzy
 msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
-msgstr "Děkujeme za váš zájem kontaktovat tým serveru Doplňky Mozilly. Přečtěte si prosím pečlivě tuto stránku a ujistěte se, že svůj dotaz směřujete správným směrem."
+msgstr ""
+"Ďakujeme za váš záujem kontaktovať tím servera Mozilla Add-ons. Starostlivo "
+"si prosím prečítajte túto stránku a uistite sa, že svoju otázku smerujete "
+"správnym smerom."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
@@ -6339,7 +6342,10 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr "Otázky týkajúce sa schvaľovania doplnkov"
+msgstr ""
+"Ak máte otázku ku konkrétnemu doplnku ako \"ako sa doplnok používa?\" alebo "
+"\"prečo nefunguje korektne?\", kontaktujte priamo autora doplnku. Kontaktné "
+"informácie nájdete priamo na stránke konkrétneho doplnku. "
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
