@@ -10,7 +10,8 @@ the most relevant hits.
 
 Also check out `elasticsearch-head <http://mobz.github.io/elasticsearch-head/>`_,
 a plugin with web front-end to elasticsearch that can be easier than talking to
-elasticsearch over curl.
+elasticsearch over curl, or `Marvel <http://www.elasticsearch.org/overview/marvel/>`_,
+which includes a query editors with autocompletion.
 
 Installation
 ------------
@@ -21,41 +22,10 @@ Elasticsearch comes with most package managers.::
 
 If Elasticsearch isn't packaged for your system, you can install it
 manually, `here are some good instructions on how to do so
-<http://www.elasticsearch.org/tutorials/2010/07/01/setting-up-elasticsearch.html>`_.
+<http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_installing_elasticsearch.html>`_.
 
-For running Olympia you must install the
-`ICU Analysis Plugin <http://www.elasticsearch.org/guide/reference/index-modules/analysis/icu-plugin/>`_.
-See the `ICU Github Page <https://github.com/elasticsearch/elasticsearch-analysis-icu>`_
-for instructions on installing this plugin.
-
-On an Ubuntu box, this would mean running::
-
-    sudo /usr/share/elasticsearch/bin/plugin -install elasticsearch/elasticsearch-analysis-icu/1.13.0
-
-Settings
---------
-
-.. literalinclude:: /../scripts/elasticsearch/elasticsearch.yml
-
-We use a custom analyzer for indexing add-on names since they're a little
-different from normal text.
-
-To get the same results as our servers, configure Elasticsearch by copying the
-:src:`scripts/elasticsearch/elasticsearch.yml` (available in the
-``scripts/elasticsearch/`` folder of your install) to your system:
-
-* If on OS X, copy that file into
-  ``/usr/local/Cellar/elasticsearch/*/config/``.
-* On Linux, the directory is ``/etc/elasticsearch/``.
-
-.. note::
-
-   If you are on a linux box, make sure to comment out the 4 lines relevant to
-   the path configuration, unless it corresponds to an existing
-   ``/usr/local/var`` folder and you want it to be stored there.
-
-If you don't do this your results will be slightly different, but you probably
-won't notice.
+On Ubuntu, you should just download and install a .deb from the
+`download page <http://www.elasticsearch.org/download/>`_.
 
 Launching and Setting Up
 ------------------------
@@ -63,6 +33,9 @@ Launching and Setting Up
 Launch the Elasticsearch service. If you used homebrew, ``brew info
 elasticsearch`` will show you the commands to launch. If you used aptitude,
 Elasticsearch will come with a start-stop daemon in /etc/init.d.
+On Ubuntu, if you have installed from a .deb, you can type:
+
+    sudo service elasticsearch start
 
 Olympia has commands that sets up mappings and indexes objects such as add-ons
 and apps for you. Setting up the mappings is analagous to defining the
@@ -102,8 +75,9 @@ maintained incrementally through post_save and post_delete hooks::
 Querying Elasticsearch in Django
 --------------------------------
 
-We use `elasticutils <http://github.com/mozilla/elasticutils>`_, a Python
-library that gives us a search API to elasticsearch.
+For now, we have our own query builder (which is an historical clone of
+`elasticutils <http://github.com/mozilla/elasticutils>`_), but we will
+switch to the official one very soon.
 
 We attach elasticutils to Django models with a mixin. This lets us do things
 like ``.search()`` which returns an object which acts a lot like Django's ORM's

@@ -19,11 +19,11 @@ def extract(collection):
                                 in translations[collection.description_id]))
 
     # Boost by the number of subscribers.
-    d['_boost'] = collection.subscribers ** .2
+    d['boost'] = collection.subscribers ** .2
 
     # Double the boost if the collection is public.
     if collection.listed:
-        d['_boost'] = max(d['_boost'], 1) * 4
+        d['boost'] = max(d['boost'], 1) * 4
 
     # Indices for each language. languages is a list of locales we want to
     # index with analyzer if the string's locale matches.

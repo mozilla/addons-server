@@ -6,8 +6,8 @@ from django.db import models, transaction
 from django.utils import encoding, translation
 
 import caching.base
+import elasticsearch
 import multidb.pinning
-import pyes.exceptions
 import queryset_transform
 
 from . import search
@@ -291,24 +291,26 @@ class OnChangeMixin(object):
 
 class SearchMixin(object):
 
+    ES_ALIAS_KEY = 'default'
+
     @classmethod
     def _get_index(cls):
         indexes = settings.ES_INDEXES
-        return indexes.get(cls._meta.db_table) or indexes['default']
+        return indexes.get(cls.ES_ALIAS_KEY)
 
     @classmethod
-    def index(cls, document, id=None, bulk=False, index=None):
-        """Wrapper around pyes.ES.index."""
+    def index(cls, document, id=None, refresh=False, index=None):
+        """Wrapper around Elasticsearch.index."""
         search.get_es().index(
-            document, index=index or cls._get_index(),
-            doc_type=cls._meta.db_table, id=id, bulk=bulk)
+            body=document, index=index or cls._get_index(),
+            doc_type=cls.get_mapping_type(), id=id, refresh=refresh)
 
     @classmethod
     def unindex(cls, id, index=None):
         es = search.get_es()
         try:
             es.delete(index or cls._get_index(), cls._meta.db_table, id)
-        except pyes.exceptions.NotFoundException:
+        except elasticsearch.TransportError:
             # Item wasn't found, whatevs.
             pass
 
@@ -316,15 +318,8 @@ class SearchMixin(object):
     def search(cls, index=None):
         return search.ES(cls, index or cls._get_index())
 
-    # For compatibility with elasticutils > v0.5.
-    # TODO: Remove these when we've moved mkt to its own index.
-
     @classmethod
-    def get_index(cls):
-        return cls._get_index()
-
-    @classmethod
-    def get_mapping_type_name(cls):
+    def get_mapping_type(cls):
         return cls._meta.db_table
 
 

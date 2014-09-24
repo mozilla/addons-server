@@ -172,8 +172,6 @@ REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
 
-CELERYD_TASK_SOFT_TIME_LIMIT = 240
-
 LESS_PREPROCESS = True
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'

@@ -1,88 +1,32 @@
 import json
 import logging
 import os
-import re
 import sys
 import time
-import traceback
+
 from optparse import make_option
 
-import requests
 from celery_tasktree import task_with_callbacks, TaskTree
+import elasticsearch
 
-from django.conf import settings as django_settings
-from django.core.management import call_command
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from addons.cron import reindex_addons
-from amo.utils import timestamp_index
-from apps.addons.search import setup_mapping as put_amo_mapping
-from bandwagon.cron import reindex_collections
-from compat.cron import compatibility_report
+from amo.search import get_es
+from apps.addons import search as addons_search
+from apps.stats import search as stats_search
 from lib.es.utils import (is_reindexing_amo, unflag_reindexing_amo,
-                          flag_reindexing_amo)
-from stats.search import setup_indexes as put_stats_mapping
-from users.cron import reindex_users
-
-
-_INDEXES = {}
-_ALIASES = django_settings.ES_INDEXES.copy()
-# Remove stats indexes. They may be added later via the --with-stats option.
-_STATS_ALIASES = {}
-for k, v in _ALIASES.items():
-    if 'stats' in v:
-        _ALIASES.pop(k)
-        _STATS_ALIASES[k] = v
-
-
-def index_stats(index=None, aliased=True):
-    """Indexes the previous 365 days."""
-    call_command('index_stats', addons=None)
-
-
-_INDEXES = {'stats': [index_stats],
-            'apps': [reindex_addons,
-                     reindex_collections,
-                     reindex_users,
-                     compatibility_report]}
+                          flag_reindexing_amo, timestamp_index)
 
 logger = logging.getLogger('z.elasticsearch')
-DEFAULT_NUM_REPLICAS = 0
-DEFAULT_NUM_SHARDS = 3
 
-if hasattr(django_settings, 'ES_URLS'):
-    base_url = django_settings.ES_URLS[0]
-else:
-    base_url = 'http://127.0.0.1:9200'
+ES = get_es()
 
 
-def url(path):
-    return '%s%s' % (base_url, path)
-
-
-def _action(name, **kw):
-    return {name: kw}
-
-
-def call_es(path, *args, **kw):
-    method = kw.pop('method', 'GET')
-    status = kw.pop('status', 200)
-    if isinstance(status, int):
-        status = [status]
-
-    if not path.startswith('/'):
-        path = '/' + path
-
-    method = getattr(requests, method.lower())
-    res = method(url(path), *args, **kw)
-
-    if res.status_code not in status:
-        error = CommandError('Call on %r failed.\n%s' % (path, res.content))
-        error.content = res.content
-        error.json = res.json()
-        raise error
-
-    return res
+MODULES = {
+    'stats': stats_search,
+    'addons': addons_search,
+}
 
 
 def log(msg, stdout=sys.stdout):
@@ -91,116 +35,45 @@ def log(msg, stdout=sys.stdout):
 
 @task_with_callbacks
 def delete_indexes(indexes, stdout=sys.stdout):
-    """Removes the indexes.
-
-    - indexes: list of indexes names to remove.
-    """
-    # now call the server - can we do this with a single call?
-    for index in indexes:
-        log('Removing index %r' % index, stdout=stdout)
-        call_es(index, method='DELETE')
+    indices = ','.join(indexes)
+    log('Removing indices %r' % indices, stdout=stdout)
+    ES.indices.delete(indices, ignore=[404, 500])
 
 
 @task_with_callbacks
-def run_aliases_actions(actions, stdout=sys.stdout):
-    """Run actions on aliases.
-
-     - action: list of action/index/alias items
-    """
-    # we also want to rename or delete the current index in case we have one
-    dump = []
-    aliases = []
-
-    for action, index, alias in actions:
-        dump.append({action: {'index': index, 'alias': alias}})
-
-        if action == 'add':
-            aliases.append(alias)
-
-    post_data = json.dumps({'actions': dump})
-
-    # now call the server
-    log('Rebuilding aliases with actions: %s' % dump, stdout=stdout)
-    try:
-        call_es('_aliases', post_data, method='POST')
-    except CommandError, e:
-        log('Initial command error: %s' % e, stdout=stdout)
-        # XXX Did not find a better way to extract the info
-        error = e.json['error']
-        res = re.search('(Invalid alias name \[)(?P<index>.*?)(\])', error)
-        if res is None:
-            raise
-
-        index = res.groupdict()['index']
-        log('Removing index %r' % index, stdout=stdout)
-        call_es(index, method='DELETE')
-
-        # Now trying again
-        log('Trying again to rebuild the aliases', stdout=stdout)
-        call_es('_aliases', post_data, method='POST')
+def update_aliases(actions, stdout=sys.stdout):
+    log('Rebuilding aliases with actions: %s' % actions, stdout=stdout)
+    ES.indices.update_aliases({'actions': actions}, ignore=404)
 
 
 @task_with_callbacks
-def create_mapping(new_index, alias, num_replicas=DEFAULT_NUM_REPLICAS,
-                   num_shards=DEFAULT_NUM_SHARDS, stdout=sys.stdout):
-    """Creates a mapping for the new index.
-
-    - new_index: new index name.
-    - alias: alias name
-    - num_replicas: number of replicas in ES
-    - num_shards: number of shards in ES
-    """
-    log('Create the mapping for index %r, alias: %r' % (new_index, alias),
+def create_new_index(module_str, new_index, stdout=sys.stdout):
+    alias = MODULES[module_str].get_alias()
+    log('Create the index {0}, for alias: {1}'.format(new_index, alias),
         stdout=stdout)
 
-    if requests.head(url('/' + alias)).status_code == 200:
-        res = call_es('%s/_settings' % (alias)).json()
+    config = {}
+
+    # Retrieve settings from last index, if any
+    if ES.indices.exists(alias):
+        res = ES.indices.get_settings(alias)
         idx_settings = res.get(alias, {}).get('settings', {})
-    else:
-        idx_settings = {}
+        config['number_of_replicas'] = idx_settings.get(
+            'number_of_replicas',
+            settings.ES_DEFAULT_NUM_REPLICAS
+        )
+        config['number_of_shards'] = idx_settings.get(
+            'number_of_shards',
+            settings.ES_DEFAULT_NUM_SHARDS
+        )
 
-    settings = {
-        'number_of_replicas': idx_settings.get('number_of_replicas',
-                                               num_replicas),
-        'number_of_shards': idx_settings.get('number_of_shards',
-                                             num_shards)
-    }
-
-    # Create mapping without aliases since we do it manually
-    if not 'stats' in alias:
-        put_amo_mapping(new_index, aliased=False)
-    else:
-        put_stats_mapping(new_index, aliased=False)
-
-    # Create new index
-    index_url = url('/%s' % new_index)
-
-    # if the index already exists we can keep it
-    if requests.head(index_url).status_code == 200:
-        return
-
-    call_es(index_url, json.dumps(settings), method='PUT',
-            status=(200, 201))
+    MODULES[module_str].create_new_index(new_index, config)
 
 
 @task_with_callbacks
-def create_index(index, is_stats, stdout=sys.stdout):
-    """Create the index.
-
-    - index: name of the index
-    - is_stats: if True, we're indexing stats
-    """
-    log('Running all indexes for %r' % index, stdout=stdout)
-    indexers = is_stats and _INDEXES['stats'] or _INDEXES['apps']
-
-    for indexer in indexers:
-        log('Indexing %r' % indexer.__name__, stdout=stdout)
-        try:
-            indexer(index, aliased=False)
-        except Exception:
-            # We want to log this event but continue
-            log('Indexer %r failed' % indexer.__name__, stdout=stdout)
-            traceback.print_exc()
+def index_data(module_str, index, stdout=sys.stdout):
+    log('Reindexing {0}'.format(index), stdout=stdout)
+    MODULES[module_str].reindex(index)
 
 
 @task_with_callbacks
@@ -232,9 +105,6 @@ Current Aliases configuration:
 class Command(BaseCommand):
     help = 'Reindex all ES indexes'
     option_list = BaseCommand.option_list + (
-        make_option('--prefix', action='store',
-                    help='Indexes prefixes, like test_',
-                    default=''),
         make_option('--force', action='store_true',
                     help=('Bypass the database flag that says '
                           'another indexation is ongoing'),
@@ -261,12 +131,11 @@ class Command(BaseCommand):
             raise CommandError('Indexation already occuring - use --force to '
                                'bypass')
 
-        prefix = kwargs.get('prefix', '')
         log('Starting the reindexation', stdout=self.stdout)
 
+        modules = ['addons']
         if kwargs.get('with_stats', False):
-            # Add the stats indexes back.
-            _ALIASES.update(_STATS_ALIASES)
+            modules.append('stats')
 
         if kwargs.get('wipe', False):
             confirm = raw_input('Are you sure you want to wipe all AMO '
@@ -277,95 +146,80 @@ class Command(BaseCommand):
 
             if confirm == 'yes':
                 unflag_database(stdout=self.stdout)
-                for index in set(_ALIASES.values()):
-                    requests.delete(url('/%s') % index)
+                for index in set(MODULES[m].get_alias() for m in modules):
+                    ES.indices.delete(index)
             else:
                 raise CommandError("Aborted.")
         elif force:
             unflag_database(stdout=self.stdout)
 
-        # Get list current aliases at /_aliases.
-        all_aliases = requests.get(url('/_aliases')).json()
+        alias_actions = []
 
-        # building the list of indexes
-        indexes = set([prefix + index for index in
-                       _ALIASES.values()])
-
-        actions = []
-
-        def add_action(*elmt):
-            if elmt in actions:
+        def add_alias_action(action, index, alias):
+            action = {action: {'index': index, 'alias': alias}}
+            if action in alias_actions:
                 return
-            actions.append(elmt)
+            alias_actions.append(action)
 
-        all_aliases = all_aliases.items()
-
-        # creating a task tree
+        # Creating a task tree.
         log('Building the task tree', stdout=self.stdout)
         tree = TaskTree()
         last_action = None
 
         to_remove = []
 
-        # for each index, we create a new time-stamped index
-        for alias in indexes:
-            is_stats = 'stats' in alias
+        # For each index, we create a new time-stamped index.
+        for module in modules:
             old_index = None
+            alias = MODULES[module].get_alias()
 
-            for aliased_index, alias_ in all_aliases:
-                if alias in alias_['aliases'].keys():
-                    # mark the index to be removed later
-                    old_index = aliased_index
-                    to_remove.append(aliased_index)
+            olds = ES.indices.get_aliases(alias, ignore=404)
+            for old_index in olds:
+                # Mark the index to be removed later.
+                to_remove.append(old_index)
+                # Mark the alias to be removed from that index.
+                add_alias_action('remove', old_index, alias)
 
-                    # mark the alias to be removed as well
-                    add_action('remove', aliased_index, alias)
-
-            # create a new index, using the alias name with a timestamp
+            # Create a new index, using the alias name with a timestamp.
             new_index = timestamp_index(alias)
 
-            # if old_index is None that could mean it's a full index
-            # In that case we want to continue index in it
-            future_alias = url('/%s' % alias)
-            if requests.head(future_alias).status_code == 200:
+            # If old_index is None that could mean it's a full index.
+            # In that case we want to continue index in it.
+            if ES.indices.exists(alias):
                 old_index = alias
 
-            # flag the database
+            # Flag the database.
             step1 = tree.add_task(flag_database,
-                                  args=[new_index, old_index, alias],
-                                  kwargs={'stdout': self.stdout})
-            step2 = step1.add_task(create_mapping,
-                                   args=[new_index, alias],
-                                   kwargs={'stdout': self.stdout})
-            step3 = step2.add_task(create_index,
-                                   args=[new_index, is_stats],
-                                   kwargs={'stdout': self.stdout})
+                                  args=[new_index, old_index, alias])
+            step2 = step1.add_task(create_new_index,
+                                   args=[module, new_index])
+            step3 = step2.add_task(index_data,
+                                   args=[module, new_index])
             last_action = step3
 
-            # adding new index to the alias
-            add_action('add', new_index, alias)
+            # Adding new index to the alias.
+            add_alias_action('add', new_index, alias)
 
         # Alias the new index and remove the old aliases, if any.
-        renaming_step = last_action.add_task(run_aliases_actions,
-                                             args=[actions],
-                                             kwargs={'stdout': self.stdout})
+        renaming_step = last_action.add_task(update_aliases,
+                                             args=[alias_actions])
 
-        # unflag the database - there's no need to duplicate the
-        # indexing anymore
-        delete = renaming_step.add_task(unflag_database,
-                                        kwargs={'stdout': self.stdout})
+        # Unflag the database - there's no need to duplicate the
+        # indexing anymore.
+        delete = renaming_step.add_task(unflag_database)
 
-        # Delete the old indexes, if any
-        delete.add_task(delete_indexes,
-                        args=[to_remove], kwargs={'stdout': self.stdout})
+        # Delete the old indexes, if any.
+        if to_remove:
+            delete.add_task(delete_indexes, args=[to_remove])
 
-        # let's do it
+        # Let's do it.
         log('Running all indexation tasks', stdout=self.stdout)
 
         os.environ['FORCE_INDEXING'] = '1'
         try:
             tree.apply_async()
-            time.sleep(10)   # give celeryd some time to flag the DB
+            if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
+                time.sleep(10)   # give celeryd some time to flag the DB
             while is_reindexing_amo():
                 sys.stdout.write('.')
                 sys.stdout.flush()
@@ -375,8 +229,8 @@ class Command(BaseCommand):
 
         sys.stdout.write('\n')
 
-        # let's return the /_aliases values
-        aliases = call_es('_aliases').json()
+        # Let's return the /_aliases values.
+        aliases = ES.indices.get_aliases()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
-        summary = _SUMMARY % (len(indexes), aliases)
+        summary = _SUMMARY % (len(modules), aliases)
         log(summary, stdout=self.stdout)
