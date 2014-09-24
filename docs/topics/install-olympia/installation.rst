@@ -32,9 +32,9 @@ On Ubuntu
 ~~~~~~~~~
 The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
-<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,memcached,libssl-dev,swig openssl,curl,libjpeg-dev,zlib1g-dev>`_::
+<apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,memcached,libssl-dev,swig openssl,curl,libjpeg-dev,zlib1g-dev,libsasl2-dev>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev
 
 
 .. _osx-packages:
@@ -108,41 +108,33 @@ Getting Packages
 
 Now we're ready to go, so create an environment for olympia::
 
-    mkvirtualenv --python=python2.6 olympia
+    mkvirtualenv olympia
 
-That creates a clean environment named olympia using Python 2.6. You can get
-out of the environment by restarting your shell or calling ``deactivate``.
+That creates a clean environment named olympia using your default python. You
+can get out of the environment by restarting your shell or calling
+``deactivate``.
 
 To get back into the olympia environment later, type::
 
     workon olympia  # requires virtualenvwrapper
 
-.. note:: Olympia requires at least Python 2.6.1, production is using
-          Python 2.6.6. Python 2.7 is not supported.
+.. note:: Olympia requires at least Python 2.6.1, and at most Python 2.7,
+          production is using Python 2.6.6.
 
 .. note:: If you want to use a different Python binary, pass the name (if it is
           on your path) or the full path to mkvirtualenv with ``--python``::
 
             mkvirtualenv --python=/usr/local/bin/python2.6 olympia
 
-.. note:: If you are using an older version of virtualenv that defaults to
-          using system packages you might need to pass ``--no-site-packages``::
-
-            mkvirtualenv --python=python2.6 --no-site-packages olympia
 
 Finish the install
 ~~~~~~~~~~~~~~~~~~
 
 First make sure you have a recent `pip`_ for security reasons.
-From inside your activated virtualenv, install the required python packages::
+From inside your activated virtualenv, install the required python packages,
+initialize the database, create a super user, compress the assets, ...::
 
-    make full_update
-
-This runs a command like this::
-
-    pip install --no-deps -r requirements/dev.txt --exists-action=w \
-                --find-links https://pyrepo.addons.mozilla.org/ \
-                --download-cache=/tmp/pip-cache
+    make full_init
 
 .. _pip: http://www.pip-installer.org/en/latest/
 
@@ -170,44 +162,14 @@ git.
 Database
 --------
 
-Instead of running ``manage.py syncdb`` your best bet is to grab a snapshot of
-our production DB which has been redacted and pruned for development use.
-Development snapshots are hosted over at
-https://landfill-addons.allizom.org/db/
+The database is initialized automatically using the `make full_init` command
+you saw earlier. If you want to start from scratch and recreate the database,
+you can just run the `make initialize_db` command.
 
-There is a management command that download and install the landfill database.
-You have to create the database first using the following command filling in
-the database name from your settings (Defaults to ``olympia``)::
+This will also fake all the `schematic`_ migrations, and allow you to create a
+superuser.
 
-    mysqladmin -uroot create $DB_NAME
-
-Then you can just run the following command to install the landfill
-database. You can also use it whenever you want to restore back to the
-base landfill database::
-
-    ./manage.py install_landfill
-
-Here are the shell commands to pull down and set up the latest
-snapshot manually (ie without the management command)::
-
-    export DB_NAME=olympia
-    export DB_USER=olympia
-    mysqladmin -uroot create $DB_NAME
-    mysql -uroot -B -e'GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost'
-    wget -P /tmp https://landfill-addons.allizom.org/db_data/landfill-`date +%Y-%m-%d`.sql.gz
-    zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
-    # Optionally, you can remove the landfill site notice:
-    mysql -uroot -e"delete from config where \`key\`='site_notice'" $DB_NAME
-
-.. note::
-
-   If you are under Mac OS X, you might need to add a *.Z* suffix to the
-   *.sql.gz* file, otherwise **zcat** might not recognize it::
-
-      ...
-      $ mv /tmp/landfill-`date +%Y-%m-%d`.sql.gz /tmp/landfill-`date +%Y-%m-%d`.sql.gz.Z
-      $ zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
-      ...
+.. _schematic: https://github.com/mozilla/schematic
 
 
 Database Migrations
@@ -246,17 +208,6 @@ database, you're good to go.
    Be aware, however, that this will make the site VERY slow, as a huge amount
    of LESS files will be served to your browser on EACH request, and each of
    those will be compiled on the fly by the LESS javascript compiler.
-
-
-Persona
--------
-
-We use `Persona <https://login.persona.org/>`_ to log in and create accounts.
-In order for this to work you need to set ``SITE_URL`` in
-your local settings file based on how you run your dev server. Here is an
-example::
-
-    SITE_URL = 'http://localhost:8000'
 
 
 Create an Admin User
@@ -304,24 +255,7 @@ database migrations)::
 
     make full_update
 
-Use the following if you also wish to prefill your database with the data from
-landfill::
-
-    make update_landfill
-
-If you want to do it manually, then check the following steps:
-
-This updates olympia::
-
-    git checkout master && git pull
-
-This updates the python packages::
-
-    pip install --no-deps --exists-action=w -r requirements/dev.txt
-
-We use `schematic <http://github.com/mozilla/schematic/>`_ to run migrations::
-
-    schematic migrations
+If you want to do it manually, then check the Makefile.
 
 The :ref:`contributing` page has more on managing branches.
 
