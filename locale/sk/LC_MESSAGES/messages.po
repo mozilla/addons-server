@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-24 09:07+0000\n"
+"PO-Revision-Date: 2014-09-24 10:13+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411549627.0\n"
+"X-POOTLE-MTIME: 1411553626.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7103,6 +7103,18 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
+"<strong>Bol doplnok zodpovedne otestovaný a neobsahuje žiadne závažné "
+"problémy?</strong> Jedným z dôležitých bodov pre posudzovanie kvality "
+"doplnkov sú recenzie používateľov, ktoré indikujú, či bol doplnok otestovaný "
+"a či nemá vážne problémy, prípadne negatívny vplyv na prehliadač. Ak vám "
+"redaktor nahlási problémy ako je vážny vplyv na výkon, pády, časté problémy "
+"s funkcionalitou doplnku, spamovanie správ do chybovej konzoly, mali by ste "
+"si to vziať k srdcu a vytvoriť novú verziu doplnku, ktorá vyrieši maximum z "
+"týchto problémov. Neočakávame perfektnú optimalizáciu alebo nulové množstvo "
+"chýb &mdash; Firefox sám sa neustále zlepšuje &mdash; chceme ale, aby ste "
+"doplnok konštantne zlepšovali a minimalizovali situácie, kedy nefunguje "
+"podľa očakávaní používateľov. Zároveň prosíme, aby ste tieto situácie "
+"popísali, aby používatelia neboli prekvapení.   "
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -7554,15 +7566,17 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
-msgstr ""
+msgstr "Áno. Témy sú na prevzatie zadarmo a k voľnému používaniu."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:117
 msgid "There are two easy ways to change your theme. You can either:"
-msgstr ""
+msgstr "Existujú dva spôsoby, ako zmeniť tému. Môžete:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:123
 msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
 msgstr ""
+"Navštívte <a href=\"%(gallery_url)s\">galériu</a>, vyberte si svoju obľúbenú "
+"tému a kliknite na ňu. Vzhľad prehliadača sa vám okamžite zmení."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:130
 msgid ""
@@ -7695,6 +7709,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes.html:41
 msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
 msgstr ""
+"<a href=\"%(submit_url)s\">Dokončili ste svoj návrh? Môžete ho ihneď "
+"pridať!</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:46
 msgid "Creating a Theme Header Image"
@@ -7737,6 +7753,8 @@ msgstr "Tipy"
 #: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
 msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
 msgstr ""
+"Najlepší je jemný, mäkký kontrast obrázkov a prechodov; vysoko detailné "
+"obrázky budú lepšie ladiť s prostredím prehliadača."
 
 #: apps/devhub/templates/devhub/docs/themes.html:86
 msgid "Firefox may reveal more of the lower portion of the image if another toolbar or other UI element is added to the top of the window."
@@ -7841,15 +7859,17 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 msgid "Submit Your Theme Now"
-msgstr ""
+msgstr "Pridať vašu novú tému"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Tento doplnok ste zakázali"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Stránka vášho doplnku je zakázaná a nie je tak k dispozícií kdekoľvek v "
+"našej galérií ani aktualizačnej službe."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on."
@@ -7871,6 +7891,9 @@ msgstr "Váš doplnok je zobrazený v našej galérii a používatelia automatic
 #: apps/devhub/templates/devhub/includes/addon_details.html:53
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
 msgstr ""
+"Váš doplnok bol zakázaný administrátorom webu a už nie je dostupný v našej "
+"galérií. Ak máte otázky, pošlite ich na e-mail marketplace-"
+"staff@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:60
 #, fuzzy
@@ -7966,7 +7989,7 @@ msgstr "Povedzte svojim používateľom, čo chystáte a na čo sa môžu teši�
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
 msgid "View All"
-msgstr ""
+msgstr "Zobraziť všetko"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
 msgid "Enable Add-on"
@@ -7985,15 +8008,13 @@ msgid "Compatibility Reports"
 msgstr "Hlásenia o kompatibilite"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:56
-#, fuzzy
 msgid "{0} failure reports"
-msgstr "{0} chybových hlášení"
+msgstr "{0} chybových hlásení"
 
 # 94%
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:58
-#, fuzzy
 msgid "{0} success reports"
-msgstr "{0} úspěšných hlášení"
+msgstr "{0} úspešných hlásení"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -8067,9 +8088,8 @@ msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "Aktuálne požadujete <b>príspevky</b> od používateľov"
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
-#, fuzzy
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Vaše stránka s příspěvky: <a href=\"%(url)s\">%(url_full)s</a>"
+msgstr "Vaša stránka s príspevkami: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -8139,18 +8159,16 @@ msgstr "Aká je adresa URL organizácie?"
 
 # 80%
 #: apps/devhub/templates/devhub/payments/voluntary.html:22
-#, fuzzy
 msgid "What is the PayPal ID of the organization?"
-msgstr "Jaké je PayPal ID organizace?"
+msgstr "Aké je PayPal ID organizácie?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:28
 msgid "What is your PayPal ID?"
 msgstr "Aký je váš identifikátor pre PayPal?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:29
-#, fuzzy
 msgid "Sign up for PayPal"
-msgstr "Zaregistrovať sa na PayPal"
+msgstr "Prihlásiť sa k službe PayPal"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
@@ -8161,24 +8179,27 @@ msgid "(Example: 3.99)"
 msgstr "(Napríklad: 3.99)"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:39
-#, fuzzy
 msgid "When should users be asked for contributions?"
-msgstr "Kdy by měli být uživatelé žádáni o příspěvky?"
+msgstr "Kedy by mali byť používatelia požiadaný o príspevky?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
 msgstr "Odoslať poznámku s poďakovaním?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:47
-#, fuzzy
 msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Uživatelům, kteří přispějí na doplněk, zašleme e-mail s tímto textem."
+msgstr ""
+"Používateľom, ktorí prispejú na doplnok odošleme e-mail s nasledovným "
+"textom."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
+"Odporúčame používateľovi poďakovať a povedať mu, ako moc si ceníte jeho "
+"podporu. Môžete mu tiež povedať, čo ďalšie s doplnkom plánujete, alebo aké "
+"iné doplnky ste vytvoril. "
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
@@ -8190,61 +8211,61 @@ msgstr "alebo <a id=\"setup-cancel\" href=\"#\">Zrušiť</a>"
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Presun vlastníctva"
 
 #: apps/devhub/templates/devhub/personas/edit.html:77 apps/devhub/templates/devhub/personas/submit.html:31
-#, fuzzy
 msgid "Theme Details"
-msgstr "Detaily o motivu"
+msgstr "Detaily o téme"
 
 #: apps/devhub/templates/devhub/personas/edit.html:87 apps/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Nastavte si peknú URL adresu pre stránku detailu."
 
 # 86%
 #: apps/devhub/templates/devhub/personas/edit.html:92 apps/devhub/templates/devhub/personas/submit.html:41
-#, fuzzy
 msgid "Select the category that best describes your Theme."
-msgstr "Zvolte kategorii, která nejlépe popisuje váš motiv."
+msgstr "Zvoľte kategóriu, ktorá najlepšie popisuje vašu tému."
 
 #: apps/devhub/templates/devhub/personas/edit.html:95 apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Pridajte značky, ktoré popisujú vašu tému."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106 apps/devhub/templates/devhub/personas/submit.html:54
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
+"Krátky popis vašej témy, ktorý je zobrazený vo vyhľadávaní, prehľade "
+"kategórií, alebo priamo na stránke s detailom témy."
 
 #: apps/devhub/templates/devhub/personas/edit.html:122 apps/devhub/templates/devhub/personas/submit.html:68
-#, fuzzy
 msgid "Theme License"
-msgstr "Licence motivu"
+msgstr "Licencia témy"
 
 # 88%
 #: apps/devhub/templates/devhub/personas/edit.html:126 apps/devhub/templates/devhub/personas/submit.html:72
-#, fuzzy
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Môžu ostatní zdieľať vašu tému Persona, ak vás uvedú ako autora?"
+msgstr "Môžu ďalší zdieľať vašu tému, ak vás uvedú ako autora?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
+"Autor dáva ďalším právo kopírovať, distribuovať, zobrazovať a upravovať. "
+"Tieto povolenia platia aj pre komerčné využívanie."
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr ""
+"Autor dáva ďalším právo kopírovať, distribuovať, zobrazovať a upravovať. "
+"Tieto povolenia neplatia pre komerčné využívanie."
 
 #: apps/devhub/templates/devhub/personas/edit.html:147 apps/devhub/templates/devhub/personas/submit.html:93
-#, fuzzy
 msgid "Can others make commercial use of your Theme?"
-msgstr "Mohou ostatní komerčně použít mou Personu?"
+msgstr "Môžu ďalší komerčne využívať vašu tému?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:168 apps/devhub/templates/devhub/personas/submit.html:114
-#, fuzzy
 msgid "Can others create derivative works from your Theme?"
-msgstr "Mohou ostatní vytvářet odvozená díla z mé Persony?"
+msgstr "Môžu ďalší vytvárať odvodené diela z vašej témy?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:174 apps/devhub/templates/devhub/personas/submit.html:120
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
