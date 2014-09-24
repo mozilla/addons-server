@@ -91,8 +91,6 @@ receipts==0.2.9
 redis==2.8.0
 requests==2.0.0
 sasl==0.1.3
-schematic==0.2
-#signing_clients==0.1.7
 six==1.4.1
 slumber==0.5.3
 SQLAlchemy==0.7.5
@@ -107,6 +105,7 @@ thrift==0.9.1
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
 # Temporary fork.
+-e git+https://github.com/mozilla/schematic.git@a3adf69738a2d99b718be35eef58addd5857e11c#egg=schematic
 -e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
 -e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
 -e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
