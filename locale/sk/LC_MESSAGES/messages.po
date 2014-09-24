@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-24 08:24+0000\n"
+"PO-Revision-Date: 2014-09-24 09:07+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411547047.0\n"
+"X-POOTLE-MTIME: 1411549627.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3882,9 +3882,11 @@ msgid "Each add-on requires a unique ID in the form of a UUID or an email addres
 msgstr "Každý doplnok musí mať unikátne identifikačné číslo vo forme UUID alebo e-mailovej adresy, ako napríklad nazov-doplnku@developer.com. Táto adresa nemusí byť platnou e-mailovou adresou."
 
 #: apps/devhub/forms.py:770
-#, fuzzy
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
-msgstr "Názov balíčku vášho doplnku používaný webovým prehliadačom. Malo by to byť skrátený názov doplnku (napríklad, pre testovací doplnok môže byť uvedený názov testovaci_doplnok)."
+msgstr ""
+"Názov balíčka vášho doplnku, tak ako bude používaný webovým prehliadačom. "
+"Mal by to byť skrátený názov doplnku (napríklad, pre testovací doplnok môže "
+"byť uvedený názov testovací_doplnok)."
 
 #: apps/devhub/forms.py:775
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
@@ -3939,7 +3941,6 @@ msgid "About dialog"
 msgstr "Dialógové okno O aplikácii"
 
 #: apps/devhub/forms.py:918
-#, fuzzy
 msgid "Creates a standard About dialog for your extension"
 msgstr "Vytvorí štandardné dialógové okno O rozšírení"
 
@@ -6602,29 +6603,37 @@ msgid "amo-featured at mozilla dot org"
 msgstr "amo-featured zavináč mozilla tečka org"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
-#, fuzzy
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
-msgstr "Pokud chcete váš doplněk nominovat a splňuje kritéria uvedená výše, pošlete e-mail na adresu %(mail_featured)s s následujícím:"
+msgstr ""
+"Ak chcete váš doplnok nominovať a splňuje kritériá uvedené vyššie, pošlite "
+"e-mail na adresu %(mail_featured)s s nasledujúcimi vecami:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
-#, fuzzy
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr "jméno doplňku, jeho URL a informaci, zda jste jeho vývojářem"
+msgstr "názov doplnku, jeho URL adresa a informácia, či ste jeho vývojárom"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"krátke vysvetlenie, prečo je doplnok určený pre široké spektrum používateľov "
+"a prečo by mal byť propagovaný"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
-#, fuzzy
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr "volitelně: odkaz na jakékoliv externí recenze nebo články, které se o doplňku zmiňují"
+msgstr ""
+"voliteľne, odkaz na akékoľvek externé recenzie, alebo články, ktoré o "
+"doplnku niečo píšu"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Nominované doplnky sú kontrolované skupinou Advisory Board raz za mesiac "
+"(každé tri mesiace pre témy). Bežné dôvody pre zamietnutie zahŕňajú úzke "
+"zameranie doplnkov, neoptimálne vyhotovenie, zlú kvalitu, bezpečnostné "
+"problémy, nekompatibilitu, alebo podobnosť s iným, už odporúčaným doplnkom. "
+"Zamietnuté doplnky nemôžu byť ďalšie tri mesiace znovu nominované."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
