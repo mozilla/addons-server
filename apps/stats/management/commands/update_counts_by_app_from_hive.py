@@ -21,4 +21,43 @@ class Command(HiveQueryToFileCommand):
     """
     help = __doc__
     filename = 'update_counts_by_app.hive'
-    query = "select ds , coalesce(reflect('java.net.URLDecoder', 'decode', parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id') ), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id') ) as id , case coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ) when '%%APP_ID%%' then 'Invalid' when '' then 'Invalid' when null then 'Invalid' else coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ) end as product_guid , case coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ) when '%%APP_VERSION%%' then 'Invalid' when '' then 'Invalid' when null then 'Invalid' else coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ) end as product_version ,count(*), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType') from v2_raw_logs where true and domain = 'versioncheck.addons.mozilla.org' and ds = '%s' group by ds , coalesce(reflect('java.net.URLDecoder', 'decode', parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id') ), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id') ) , case coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ) when '%%APP_ID%%' then 'Invalid' when '' then 'Invalid' when null then 'Invalid' else coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid') ) end , case coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ) when '%%APP_VERSION%%' then 'Invalid' when '' then 'Invalid' when null then 'Invalid' else coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid') ) end, parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType') %s"  # noqa
+    query = """
+        SELECT ds ,
+               coalesce(reflect('java.net.URLDecoder', 'decode', parse_url(concat('http://www.a.com', request_url), 'QUERY', 'id')), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id')) AS id ,
+               CASE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid'))
+                   WHEN '%APP_ID%' THEN 'Invalid'
+                   WHEN '' THEN 'Invalid'
+                   WHEN NULL THEN 'Invalid'
+                   ELSE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid'))
+               END AS product_guid ,
+               CASE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com', request_url), 'QUERY', 'appVersion'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid'))
+                   WHEN '%APP_VERSION%' THEN 'Invalid'
+                   WHEN '' THEN 'Invalid'
+                   WHEN NULL THEN 'Invalid'
+                   ELSE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid'))
+               END AS product_version ,
+               count(*),
+               parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType')
+        FROM v2_raw_logs
+        WHERE
+          TRUE AND
+          DOMAIN = 'versioncheck.addons.mozilla.org' AND
+          ds = '{day}' AND
+          {ip_filtering}
+        GROUP BY ds ,
+                 coalesce(reflect('java.net.URLDecoder', 'decode', parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id')), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id')) ,
+                 CASE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid'))
+                     WHEN '%APP_ID%' THEN 'Invalid'
+                     WHEN '' THEN 'Invalid'
+                     WHEN NULL THEN 'Invalid'
+                     ELSE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appID'),'Invalid'))
+                 END ,
+                 CASE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid'))
+                     WHEN '%APP_VERSION%' THEN 'Invalid'
+                     WHEN '' THEN 'Invalid'
+                     WHEN NULL THEN 'Invalid'
+                     ELSE coalesce(reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid')), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'appVersion'),'Invalid'))
+                 END,
+                 parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType')
+        {limit}
+    """

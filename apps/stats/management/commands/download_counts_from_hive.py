@@ -21,4 +21,23 @@ class Command(HiveQueryToFileCommand):
     """
     help = __doc__
     filename = 'download_counts.hive'
-    query = "select ds, count(1), split(request_url,'/')[4], parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src') from v2_raw_logs where domain='addons.mozilla.org' and ds='%s' and request_url like '/%%/downloads/file/%%' and !(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src') LIKE 'sync') AND split(request_url,'/')[1] IN ('firefox','android','thunderbird','seamonkey','mobile','sunbird','posts') group by ds, split(request_url,'/')[4], parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src') %s"  # noqa
+    query = """
+        SELECT
+            ds,
+            count(1),
+            split(request_url,'/')[4],
+            parse_url(concat('http://www.a.com', request_url), 'QUERY', 'src')
+        FROM v2_raw_logs
+        WHERE
+            domain='addons.mozilla.org' AND
+            ds='{day}' AND
+            request_url LIKE '/%/downloads/file/%' AND
+
+            {ip_filtering}
+
+        GROUP BY
+            ds,
+            split(request_url,'/')[4],
+            parse_url(concat('http://www.a.com', request_url), 'QUERY', 'src')
+        {limit}
+    """

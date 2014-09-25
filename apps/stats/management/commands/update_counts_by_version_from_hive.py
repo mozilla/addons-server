@@ -21,4 +21,31 @@ class Command(HiveQueryToFileCommand):
     """
     help = __doc__
     filename = 'update_counts_by_version.hive'
-    query = "select ds, coalesce(reflect('java.net.URLDecoder', 'decode', parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id') ), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id')) as id, case coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')) when '%%ITEM_VERSION%%' then 'Invalid' when '' then 'Invalid' when null then 'Invalid' else coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')) end as version, count(*), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType') from v2_raw_logs where true and domain = 'versioncheck.addons.mozilla.org' and ds = '%s' group by ds, coalesce(reflect('java.net.URLDecoder', 'decode', parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id') ), parse_url(concat('http://www.a.com',request_url), 'QUERY', 'id')), case coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')) when '%%ITEM_VERSION%%' then 'Invalid' when '' then 'Invalid' when null then 'Invalid' else coalesce( reflect('java.net.URLDecoder', 'decode', coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid') ), coalesce(parse_url(concat('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')) end, parse_url(concat('http://www.a.com',request_url), 'QUERY', 'updateType') %s"  # noqa
+    query = """
+        SELECT ds,
+               COALESCE(REFLECT('java.net.URLDecoder', 'decode', PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'id')), PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'id')) AS ID,
+               CASE COALESCE(REFLECT('java.net.URLDecoder', 'decode', COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')), COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid'))
+                   WHEN '%ITEM_VERSION%' THEN 'Invalid'
+                   WHEN '' THEN 'Invalid'
+                   WHEN NULL THEN 'Invalid'
+                   ELSE COALESCE(REFLECT('java.net.URLDecoder', 'decode', COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')), COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'), 'Invalid'))
+               END AS VERSION,
+               COUNT(*),
+               PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'updateType')
+        FROM V2_RAW_LOGS
+        WHERE
+            TRUE AND
+            DOMAIN = 'versioncheck.addons.mozilla.org' AND
+            DS = '{day}' AND
+            {ip_filtering}
+        GROUP BY ds,
+                 COALESCE(REFLECT('java.net.URLDecoder', 'decode', PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'id')), PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'id')),
+                 CASE COALESCE(REFLECT('java.net.URLDecoder', 'decode', COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'), 'Invalid')), COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid'))
+                     WHEN '%ITEM_VERSION%' THEN 'Invalid'
+                     WHEN '' THEN 'Invalid'
+                     WHEN NULL THEN 'Invalid'
+                     ELSE COALESCE(REFLECT('java.net.URLDecoder', 'decode', COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid')), COALESCE(PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'version'),'Invalid'))
+                 END,
+                 PARSE_URL(CONCAT('http://www.a.com',request_url), 'QUERY', 'updateType')
+        {limit}
+    """
