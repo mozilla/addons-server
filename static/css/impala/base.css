@@ -55,6 +55,10 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+table tbody tr td p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 /* end meyer reset */
 
 /* Bold/Strong should be bold and strong! */
