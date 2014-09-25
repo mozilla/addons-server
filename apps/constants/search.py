@@ -65,7 +65,6 @@ SEARCH_ANALYZER_PLUGINS = [
     'polish',
 ]
 
-
 # Which stemmer to use for each langauge.
 #
 # Note: We use the keys of this dict for supported stop words, also, which is

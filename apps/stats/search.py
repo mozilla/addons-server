@@ -1,10 +1,14 @@
 import collections
 
+from django.conf import settings
+from django.core.management import call_command
+
 import amo
 import amo.search
-from amo.utils import create_es_index_if_missing
 from applications.models import AppVersion
-from stats.models import CollectionCount, DownloadCount, UpdateCount
+from lib.es.utils import create_index
+from stats.models import (CollectionCount, DownloadCount, StatsSearchMixin,
+                          UpdateCount)
 
 
 def es_dict(items):
@@ -34,6 +38,7 @@ def extract_update_count(update, all_apps=None):
            'date': update.date,
            'count': update.count,
            'id': update.id,
+           '_id': '{0}-{1}'.format(update.addon_id, update.date),
            'versions': es_dict(update.versions),
            'os': [],
            'locales': [],
@@ -90,7 +95,8 @@ def extract_download_count(dl):
             'date': dl.date,
             'count': dl.count,
             'sources': es_dict(dl.sources) if dl.sources else {},
-            'id': dl.id}
+            'id': dl.id,
+            '_id': '{0}-{1}'.format(dl.addon_id, dl.date)}
 
 
 def extract_addon_collection(collection_count, addon_collections,
@@ -99,6 +105,8 @@ def extract_addon_collection(collection_count, addon_collections,
     collection_stats = dict([[c.name, c.count] for c in collection_stats])
     return {'date': collection_count.date,
             'id': collection_count.collection_id,
+            '_id': '{0}-{1}'.format(collection_count.collection_id,
+                                    collection_count.date),
             'count': collection_count.count,
             'data': es_dict({
                 'downloads': addon_collection_count,
@@ -112,7 +120,8 @@ def extract_theme_user_count(user_count):
     return {'addon': user_count.addon_id,
             'date': user_count.date,
             'count': user_count.count,
-            'id': user_count.id}
+            'id': user_count.id,
+            '_id': '{0}-{1}'.format(user_count.addon_id, user_count.date)}
 
 
 def get_all_app_versions():
@@ -123,24 +132,42 @@ def get_all_app_versions():
     return dict(rv)
 
 
-def setup_indexes(index=None, aliased=True):
-    es = amo.search.get_es()
-    for model in CollectionCount, DownloadCount, UpdateCount:
-        index = index or model._get_index()
-        index = create_es_index_if_missing(index, aliased=aliased)
+def get_alias():
+    return settings.ES_INDEXES.get(StatsSearchMixin.ES_ALIAS_KEY)
 
-        mapping = {
-            'properties': {
-                'id': {'type': 'long'},
-                'count': {'type': 'long'},
-                'data': {'dynamic': 'true',
-                         'properties': {
-                            'v': {'type': 'long'},
-                            'k': {'type': 'string'}
-                        }
-                },
-                'date': {'format': 'dateOptionalTime',
-                         'type': 'date'}
+
+def create_new_index(index=None, config=None):
+    if config is None:
+        config = {}
+    if index is None:
+        index = get_alias()
+    config['mappings'] = get_mappings()
+    create_index(index, config)
+
+
+def reindex(index):
+    call_command('index_stats', index=index)
+
+
+def get_mappings():
+    mapping = {
+        'properties': {
+            'id': {'type': 'long'},
+            'boost': {'type': 'float', 'null_value': 1.0},
+            'count': {'type': 'long'},
+            'data': {
+                'dynamic': 'true',
+                'properties': {
+                    'v': {'type': 'long'},
+                    'k': {'type': 'string'}
+                }
+            },
+            'date': {
+                'format': 'dateOptionalTime',
+                'type': 'date'
             }
         }
-        es.put_mapping(model._meta.db_table, mapping, index)
+    }
+
+    models = (CollectionCount, DownloadCount, UpdateCount)
+    return dict((m._meta.db_table, mapping) for m in models)

@@ -1,7 +1,6 @@
 import mock
+from elasticsearch import TransportError
 from nose.tools import eq_
-from pyes.exceptions import ElasticSearchException, IndexMissingException
-from pyes.urllib3.connectionpool import HTTPError, MaxRetryError, TimeoutError
 from test_utils import RequestFactory
 
 import amo.tests
@@ -15,19 +14,10 @@ class TestElasticsearchExceptionMiddleware(amo.tests.TestCase):
 
     @mock.patch('search.middleware.render')
     def test_exceptions_we_catch(self, render_mock):
-        # These are instantiated with an error string.
-        for e in [ElasticSearchException, IndexMissingException]:
-            ESM().process_exception(self.request, e('ES ERROR'))
-            render_mock.assert_called_with(self.request, 'search/down.html',
-                                           status=503)
-            render_mock.reset_mock()
-
-        # These are just Exception classes.
-        for e in [HTTPError, MaxRetryError, TimeoutError]:
-            ESM().process_exception(self.request, e('ES ERROR'))
-            render_mock.assert_called_with(self.request, 'search/down.html',
-                                           status=503)
-            render_mock.reset_mock()
+        ESM().process_exception(self.request, TransportError(400, 'ES ERROR'))
+        render_mock.assert_called_with(self.request, 'search/down.html',
+                                       status=503)
+        render_mock.reset_mock()
 
     @mock.patch('search.middleware.render')
     def test_exceptions_we_do_not_catch(self, render_mock):

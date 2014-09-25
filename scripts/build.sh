@@ -10,7 +10,7 @@ python --version
 cd $WORKSPACE
 VENV=$WORKSPACE/venv
 LOCALE=$WORKSPACE/locale
-ES_HOST='jenkins-es20'
+ES_HOST='elasticsearch-1.3'
 
 echo "Starting build on executor $EXECUTOR_NUMBER..." `date`
 
@@ -69,7 +69,7 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 SERVICES_DATABASE['NAME'] = DATABASES['default']['NAME']
 SERVICES_DATABASE['USER'] = DATABASES['default']['USER']
-ES_HOSTS = ['${ES_HOST}:9200']
+ES_HOSTS = ['${ES_HOST}:10200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 
 RUNNING_IN_JENKINS = True

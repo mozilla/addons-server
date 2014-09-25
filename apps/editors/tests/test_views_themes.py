@@ -600,6 +600,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         assert (copy_mock2.call_args_list[0][0][1]
                 .endswith('preview_large.jpg'))
 
+
 class TestDeletedThemeLookup(amo.tests.TestCase):
     fixtures = ['base/users', 'editors/user_persona_reviewer',
                 'editors/user_senior_persona_reviewer']
@@ -627,6 +628,7 @@ class TestThemeSearch(amo.tests.ESTestCase):
     def setUp(self):
         self.addon = addon_factory(type=amo.ADDON_PERSONA, name='themeteam',
                                    status=amo.STATUS_PENDING)
+        self.refresh('default')
 
     def search(self, q, flagged=False, rereview=False):
         get_query = {'q': q, 'queue_type': ('rereview' if rereview else
@@ -643,11 +645,13 @@ class TestThemeSearch(amo.tests.ESTestCase):
 
     def test_flagged(self):
         self.addon.update(status=amo.STATUS_REVIEW_PENDING)
+        self.refresh('default')
         eq_(self.search('theme', flagged=True)[0]['id'], self.addon.id)
 
     def test_rereview(self):
         RereviewQueueTheme.objects.create(theme=self.addon.persona)
         self.addon.save()
+        self.refresh('default')
         eq_(self.search('theme', rereview=True)[0]['id'], self.addon.id)
 
 

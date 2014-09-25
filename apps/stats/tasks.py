@@ -9,13 +9,13 @@ from django.db.models import Sum, Max
 import commonware.log
 from apiclient.discovery import build
 from celeryutils import task
+from elasticsearch.helpers import bulk_index
 from oauth2client.client import OAuth2Credentials
 
 import amo
 import amo.search
 from addons.models import Addon
 from bandwagon.models import Collection
-from lib.es.utils import get_indices
 from reviews.models import Review
 from stats.models import Contribution
 from users.models import UserProfile
@@ -46,7 +46,7 @@ def addon_total_contributions(*addons, **kw):
 @task
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s] Updating addons+collections download totals." %
-                  (len(data)))
+             (len(data)))
     cursor = connection.cursor()
     q = ("UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
          "AND collection_id=%s;" * len(data))
@@ -60,7 +60,7 @@ def update_addons_collections_downloads(data, **kw):
 @task
 def update_collections_total(data, **kw):
     log.info("[%s] Updating collections' download totals." %
-                   (len(data)))
+             (len(data)))
     for var in data:
         (Collection.objects.filter(pk=var['collection_id'])
          .update(downloads=var['sum']))
@@ -191,9 +191,9 @@ def _get_daily_jobs(date=None):
     stats = {
         # Add-on Downloads
         'addon_total_downloads': lambda: DownloadCount.objects.filter(
-                date__lt=next_date).aggregate(sum=Sum('count'))['sum'],
+            date__lt=next_date).aggregate(sum=Sum('count'))['sum'],
         'addon_downloads_new': lambda: DownloadCount.objects.filter(
-                date=date).aggregate(sum=Sum('count'))['sum'],
+            date=date).aggregate(sum=Sum('count'))['sum'],
 
         # Add-on counts
         'addon_count_new': Addon.objects.extra(**extra).count,
@@ -203,25 +203,25 @@ def _get_daily_jobs(date=None):
 
         # User counts
         'user_count_total': UserProfile.objects.filter(
-                created__lt=next_date).count,
+            created__lt=next_date).count,
         'user_count_new': UserProfile.objects.extra(**extra).count,
 
         # Review counts
         'review_count_total': Review.objects.filter(created__lte=date,
                                                     editorreview=0).count,
         'review_count_new': Review.objects.filter(editorreview=0).extra(
-                **extra).count,
+            **extra).count,
 
         # Collection counts
         'collection_count_total': Collection.objects.filter(
-                created__lt=next_date).count,
+            created__lt=next_date).count,
         'collection_count_new': Collection.objects.extra(**extra).count,
         'collection_count_autopublishers': Collection.objects.filter(
-                created__lt=next_date, type=amo.COLLECTION_SYNCHRONIZED).count,
+            created__lt=next_date, type=amo.COLLECTION_SYNCHRONIZED).count,
 
-        'collection_addon_downloads': (lambda:
-            AddonCollectionCount.objects.filter(date__lte=date).aggregate(
-                sum=Sum('count'))['sum']),
+        'collection_addon_downloads': (
+            lambda: AddonCollectionCount.objects.filter(
+                date__lte=date).aggregate(sum=Sum('count'))['sum']),
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do
@@ -267,89 +267,82 @@ def _get_metrics_jobs(date=None):
     # If you're editing these, note that you are returning a function!
     stats = {
         'addon_total_updatepings': lambda: UpdateCount.objects.filter(
-                date=date).aggregate(sum=Sum('count'))['sum'],
+            date=date).aggregate(sum=Sum('count'))['sum'],
         'collector_updatepings': lambda: UpdateCount.objects.get(
-                addon=settings.ADDON_COLLECTOR_ID, date=date).count,
+            addon=settings.ADDON_COLLECTOR_ID, date=date).count,
     }
 
     return stats
 
 
 @task
-def index_update_counts(ids, **kw):
-    index = kw.pop('index', None)
-    indices = get_indices(index)
+def index_update_counts(ids, index=None, **kw):
+    index = index or search.get_alias()
 
     es = amo.search.get_es()
     qs = UpdateCount.objects.filter(id__in=ids)
     if qs:
         log.info('Indexing %s updates for %s.' % (qs.count(), qs[0].date))
+    data = []
     try:
         for update in qs:
-            key = '%s-%s' % (update.addon_id, update.date)
-            data = search.extract_update_count(update)
-            for index in indices:
-                UpdateCount.index(data, bulk=True, id=key, index=index)
-        es.flush_bulk(forced=True)
+            data.append(search.extract_update_count(update))
+        bulk_index(es, data, index=index,
+                   doc_type=UpdateCount.get_mapping_type(), refresh=True)
     except Exception, exc:
-        index_update_counts.retry(args=[ids], exc=exc, **kw)
+        index_update_counts.retry(args=[ids, index], exc=exc, **kw)
         raise
 
 
 @task
-def index_download_counts(ids, **kw):
-    index = kw.pop('index', None)
-    indices = get_indices(index)
+def index_download_counts(ids, index=None, **kw):
+    index = index or search.get_alias()
 
     es = amo.search.get_es()
     qs = DownloadCount.objects.filter(id__in=ids)
     if qs:
         log.info('Indexing %s downloads for %s.' % (qs.count(), qs[0].date))
     try:
+        data = []
         for dl in qs:
-            key = '%s-%s' % (dl.addon_id, dl.date)
-            data = search.extract_download_count(dl)
-            for index in indices:
-                DownloadCount.index(data, bulk=True, id=key, index=index)
-
-        es.flush_bulk(forced=True)
+            data.append(search.extract_download_count(dl))
+        bulk_index(es, data, index=index,
+                   doc_type=DownloadCount.get_mapping_type(), refresh=True)
     except Exception, exc:
-        index_download_counts.retry(args=[ids], exc=exc)
+        index_download_counts.retry(args=[ids, index], exc=exc)
         raise
 
 
 @task
-def index_collection_counts(ids, **kw):
-    index = kw.pop('index', None)
-    indices = get_indices(index)
+def index_collection_counts(ids, index=None, **kw):
+    index = index or search.get_alias()
 
     es = amo.search.get_es()
     qs = CollectionCount.objects.filter(collection__in=ids)
     if qs:
         log.info('Indexing %s addon collection counts: %s'
                  % (qs.count(), qs[0].date))
+    data = []
     try:
         for collection_count in qs:
             collection = collection_count.collection_id
-            key = '%s-%s' % (collection, collection_count.date)
             filters = dict(collection=collection,
                            date=collection_count.date)
-            data = search.extract_addon_collection(
+            data.append(search.extract_addon_collection(
                 collection_count,
                 AddonCollectionCount.objects.filter(**filters),
-                CollectionStats.objects.filter(**filters))
-            for index in indices:
-                CollectionCount.index(data, bulk=True, id=key, index=index)
-        es.flush_bulk(forced=True)
+                CollectionStats.objects.filter(**filters)))
+        bulk_index(es, data, index=index,
+                   doc_type=CollectionCount.get_mapping_type(),
+                   refresh=True)
     except Exception, exc:
         index_collection_counts.retry(args=[ids], exc=exc)
         raise
 
 
 @task
-def index_theme_user_counts(ids, **kw):
-    index = kw.pop('index', None)
-    indices = get_indices(index)
+def index_theme_user_counts(ids, index=None, **kw):
+    index = index or search.get_alias()
 
     es = amo.search.get_es()
     qs = ThemeUserCount.objects.filter(id__in=ids)
@@ -357,13 +350,12 @@ def index_theme_user_counts(ids, **kw):
     if qs:
         log.info('Indexing %s theme user counts for %s.'
                  % (qs.count(), qs[0].date))
+    data = []
     try:
         for user_count in qs:
-            key = '%s-%s' % (user_count.addon_id, user_count.date)
-            data = search.extract_theme_user_count(user_count)
-            for index in indices:
-                ThemeUserCount.index(data, bulk=True, id=key, index=index)
-            es.flush_bulk(forced=True)
+            data.append(search.extract_theme_user_count(user_count))
+        bulk_index(es, data, index=index,
+                   doc_type=ThemeUserCount.get_mapping_type(), refresh=True)
     except Exception, exc:
-        index_theme_user_counts.retry(args=[ids], exc=exc)
+        index_theme_user_counts.retry(args=[ids], exc=exc, **kw)
         raise

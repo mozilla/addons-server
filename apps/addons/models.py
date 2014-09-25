@@ -988,8 +988,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
               and (self.latest_version.all_files[0].status
                    in amo.UNDER_REVIEW_STATUSES)):
             # Addon is public, but its latest file is not (it's the case on a
-            # new file upload). So, call update, to trigger watch_status, which
-            # takes care of setting nomination time when needed.
+            # new file upload). So, call update, to trigger watch_status, which
+            # takes care of setting nomination time when needed.
             status = self.status
 
         if status is not None:
