@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-24 14:39+0000\n"
+"PO-Revision-Date: 2014-09-25 21:46+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411569599.0\n"
+"X-POOTLE-MTIME: 1411681568.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5367,12 +5367,13 @@ msgid "Step 4. Add Images"
 msgstr "Krok 4. Pridanie obrázkov"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:9
-#, fuzzy
 msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
 msgstr ""
-"Vlastní ikony a náhledy dají uživatelům přehled a pomohou jim v pochopení, co doplněk dělá. Silně doporučujeme nahrát vlastní ikonu, protože na některých místech webu se zobrazuje pouze tato ikona."
+"Vlastné ikony a náhľady dajú používateľom prehľad a pomôžu im v pochopení, "
+"čo doplnok robí. Dôrazne odporúčame načítať vlastnú ikonu, lebo na "
+"niektorých miestach webu sa zobrazuje len táto ikona."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
@@ -5383,18 +5384,21 @@ msgid "Step 6. Select a Review Process"
 msgstr "Krok 6. Voľba procesu kontroly"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:10
-#, fuzzy
 msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Všechny doplňky hostované v naší galerii musí být zkontrolovány redaktorem dříve, než se objeví v kategoriích a výsledcích vyhledávání. V době, kdy čekáte na kontrolu, je váš doplněk přímo dostupný "
-"na konkrétní URL. Níže si zvolte proces kontroly, který nejlépe sedne pro váš doplněk."
+"Všetky doplnky umiestnené v našej galérií musia byť pred tým, ako sa "
+"zobrazia v kategóriách a výsledkoch vyhľadávania skontrolované redaktorom. V "
+"čase, kedy čakáte na kontrolu je váš doplnok priamo dostupný na konkrétnej "
+"URL adrese. Nižšie si vyberte proces kontroly, ktorý vám najlepšie vyhovuje "
+"pre váš doplnok."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
-#, fuzzy
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Kompletní kontrola zdrojového kódu doplňku a jeho funkcionality. <a href=\"%(url)s\">Dozvědět se více&hellip;</a>"
+msgstr ""
+"Kompletná kontrola zdrojového kódu doplnku a jeho funkcionality. <a href=\"%"
+"(url)s\">Dozvedieť sa viac&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
@@ -5476,10 +5480,11 @@ msgid "Step 1. Getting Started"
 msgstr "Krok 1. Začíname"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
-#, fuzzy
 msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
 msgstr ""
-"Hostování svého doplňku v naší galerii je nejlepší způsob, jak vystavit svou práci miliónům uživatelů Firefoxu. Poskytneme vám zdarma vše, co potřebujete k distribuci a aktualizacím svého doplňku."
+"Umiestnenie vášho doplnku v našej galérií je najlepší spôsob, ako "
+"prezentovať svoju prácu miliónom používateľom Firefoxu. Poskytneme vám "
+"zadarmo všetko, čo potrebujete k distribúcií a aktualizáciám svojho doplnku."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
@@ -5519,19 +5524,19 @@ msgid "Step 2. Upload Your Add-on"
 msgstr "Krok 2. Odošlite svoj doplnok"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
-#, fuzzy
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Pro nahrání balíčku se svým doplňkem a omezení cílových platforem použijte pole níže. Po nahrání bude spuštěna skupina automatizovaných testů, které váš balíček zkontrolují."
+msgstr ""
+"Pre načítanie balíčka so svojim doplnkom a výber cieľových platforiem "
+"použite pole nižšie. Po načítaní bude spustená sada automatizovaných testov, "
+"ktoré váš balíček skontrolujú."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
-#, fuzzy
 msgid "Which desktop platforms is this file compatible with?"
-msgstr "S jakými desktopovými platformami je tento soubor kompatibilní?"
+msgstr "S akými platformami pre stolové počítače je tento súbor kompatibilný?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
-#, fuzzy
 msgid "Which mobile platforms is this file compatible with?"
-msgstr "S jakými mobilními platformami je tento soubor kompatibilní?"
+msgstr "S akými platformami pre mobilné zariadenia je tento súbor kompatibilný?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 #, fuzzy
@@ -5629,9 +5634,10 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:32
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visit the Firefox Add-ons Developer Guide</a>"
-msgstr "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Přečíst si Firefox Add-ons Developer Guide</a>"
+msgstr ""
+"<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Pr"
+"ečítať si príručku Firefox Add-ons Developer Guide</a>"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:38
 msgid ""
@@ -6467,33 +6473,41 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
-#, fuzzy
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
-msgstr "Mozilla vám může pomoci s přidělením dalších práv ke stránce doplňku, pokud je <a href=\"%(link_contact)s\">kontaktována</a> aktuálním vlastníkem doplňku."
+msgstr ""
+"Mozilla vám môže pomôcť s pridelením ďalších práv ku stránke doplnku, ak "
+"bude <a href=\"%(link_contact)s\">kontaktovaná</a> aktuálnym vlastníkom "
+"doplnku."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
-#, fuzzy
 msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
-"Mozilla podporuje uživatele v zasílání reakcí a svých zkušeností s konkrétními doplňky. Díky tomu mohou ostatní uživatelé rozpoznat, zda je doplněk stabilní a užitečný. Vývojáři díky ohlasům "
-"získávají užitečné reakce, které jim umožňují kontinuální vylepšovat své doplňky tak, aby lépe vyhovovaly uživatelům."
+"Mozilla podporuje používateľov v odosielaní reakcií a svojich skúseností s "
+"konkrétnymi doplnkami. Vďaka tomu môžu ďalší používatelia rozpoznať, či je "
+"doplnok stabilný a užitočný. Vývojári vďaka ohlasom získavajú užitočné "
+"reakcie, ktoré im umožňujú kontinuálne vylepšovanie svojich doplnkov tak, "
+"aby lepšie vyhovovali používateľom."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
-#, fuzzy
 msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
 msgstr ""
-"Recenze musí splňovat <a href=\"%(link_guidelines)s\">pravidla pro recenze</a>. Recenze, které nesplňují pravidla mohou být označeny k moderování, nicméně negativní recenze nejsou odstraňovány, "
-"pokud neobsahují chybné informace."
+"Recenzie musia spĺňať <a href=\"%(link_guidelines)s\">pravidlá pre "
+"recenzie</a>. Recenzie, ktoré nespĺňajú pravidlá môžu byť označené na "
+"moderovanie, ale aj napriek tomu negatívne recenzie nie sú odstraňované, ak "
+"neobsahujú chybné informácie."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"Veľa vývojárov poskytuje podporu formou fóra, diskusnej skupiny alebo "
+"e-mailom. Je odporúčané, aby boli otázky podpory kladené na týchto miestach "
+"a nie v recenziách doplnku."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6748,13 +6762,14 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
-#, fuzzy
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
-"Po dobu kontroly nejsou doplňky v galerii viditelné, odkaz na stránku s detailem doplňku by ale měl fungovat. Autor tak může na doplněk odkázat ze svého blogu či poslat odkaz známým, aby doplněk "
-"vyzkoušeli ještě dříve, než bude zkontrolován."
+"Počas dobu kontroly nie sú doplnky v galérií viditeľné, odkaz na stránku s "
+"detailom doplnku by ale mal fungovať. Autor tak môže na doplnok odkázať zo "
+"svojho blogu, alebo poslať odkaz známym, aby doplnok vyskúšali ešte skôr, "
+"ako bude skontrolovaný."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
@@ -6969,14 +6984,20 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
 msgstr ""
+"Doplnky, ktoré po inštalácií automaticky inštalujú, alebo spúšťajú "
+"inštalátory iného softvéru, ktorý nie je súčasťou Firefoxu."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid "Add-ons that provide their own update mechanism for code or search engines"
 msgstr ""
+"Doplnky, ktoré poskytujú vlastný aktualizačný mechanizmus pre kód a "
+"vyhľadávacie moduly."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
 msgstr ""
+"Doplnky, ktoré menia webový obsah spôsobom, ktorý je neobvyklý, alebo ťažko "
+"rozpoznateľný používateľmi."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
@@ -7013,14 +7034,17 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
-#, fuzzy
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr "Podobné funkce nemohou být zahrnuty do aktualizace plně zkontrolovaného doplňku, ale musí být zahrnuty v úvodní kontrole."
+msgstr ""
+"Takéto funkcie nemôžu byť zahrnuté do aktualizácie plne skontrolovaného "
+"doplnku, ale musia byť zahrnuté v úvodnej kontrole."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
-#, fuzzy
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr "Jedná se o minimální požadavky, které negarantují, že bude doplněk schválen. Tato sekce je platná pro všechny doplňky hostaované na tomto webu a to včetně předběžně zkontrolovaných doplňků."
+msgstr ""
+"Jedná sa o minimálne požiadavky, ktoré negarantujú, že bude doplnok "
+"schválený. Táto sekcia je platná pre všetky doplnky umiestnené na tomto webe "
+"a to vrátane predbežne skontrolovaných doplnkov."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
@@ -7160,15 +7184,19 @@ msgstr ""
 "Mozilly."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
-#, fuzzy
 msgid ""
 "<strong>Is the add-on free of unlicensed trademarks and copyrights?</strong> Though you may mean no harm to the holder of a trademark, or the owner of a copyrighted work, we can't host add-ons that "
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
-"<strong>Neobsahuje váš doplněk materiál porušující ochranné známky či copyright?</strong> I když si myslíte, že váš doplněk nemůže držiteli ochranné známky způsobit žádnou škodu, nemůžeme hostovat "
-"doplňky, které ochranné známky či copyright porušují. Pokud nemáte právo pro použití chráněného názvu či obrázku, prosíme, nepřidávejte doplněk do galerie. Pokud váš doplněk zahrnuje kód, který je "
-"vlastněný někým jiným a není licencován pro použití ve vašem doplňku, prosíme, nepřidávejte doplněk do galerie."
+"<strong>Neobsahuje váš doplnok materiál porušujúci ochranné známky alebo "
+"copyright?</strong> Aj keď si myslíte, že váš doplnok nemôže držiteľovi "
+"ochrannej známky spôsobiť žiadnu škodu, nemôžeme ku nám umiestňovať doplnky, "
+"ktoré ochranné známky alebo copyright porušujú. Ak nemáte právo na "
+"používanie chráneného názvu či obrázka, prosíme, nepridávajte doplnok do "
+"galérie. Ak váš doplnok obsahuje kód, ktorý je vlastnený niekym iným a nie "
+"je licencovaný pre použitie vo vašom doplnku, prosíme, nepridávajte doplnok "
+"do galérie."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:73
 msgid ""
@@ -7176,6 +7204,13 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
+"Ak v súvislosti s využitím kódu z iných doplnkov ich autor jasne nepovedal, "
+"že môžete jeho kód vo svojej práci použiť (napr. definovaním, pod akou open "
+"source licenciou je dostupný), tak predpokladajte, že nemáte právo ho "
+"prevziať. Môžete ale autora takéhoto kódu kontaktovať a požiadať o "
+"dovolenie. My vám však nedávame žiadne špeciálne práva len pre to, že je "
+"doplnok umiestnený na našom webe, alebo ak autor neodpovedá na vašu "
+"požiadavku."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
@@ -7183,6 +7218,11 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
+"To isté platí aj pre ochranné známky Mozilla Foundation ako sú \"Mozilla\", "
+"\"Firefox\" alebo \"Thunderbird\". Zásady ochrany ochranných známok Mozilly sú "
+"stanovené tak, aby zabraňovali zavádzaniu používateľov a zabraňujú ich "
+"zneužitiu. Rešpektujte prosím potrebu takejto ochrany a pomôžte nám ochrániť "
+"aktíva Mozilla Foundation."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
