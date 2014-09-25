@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-25 22:00+0000\n"
+"PO-Revision-Date: 2014-09-25 22:34+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411682420.0\n"
+"X-POOTLE-MTIME: 1411684474.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1919,7 +1919,7 @@ msgstr "Niektoré práva vyhradené"
 
 #: apps/amo/templates/amo/no_results.html:1 apps/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
-msgstr ""
+msgstr "Neboli nájdené žiadne výsledky."
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -6367,13 +6367,12 @@ msgstr ""
 "doplňků spadají do této kategorie.</strong> Ujistěte se prosím, že ke své otázce přiložíte odkaz na doplněk, kterého se otázka týká, a nezapomenete na detailní popis otázky či komentáře."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
-#, fuzzy
 msgid "Add-on Security Vulnerabilities"
-msgstr "Hlášení bezpečnostních chyb v doplňcích"
+msgstr "Hlásenie bezpečnostných chýb v doplnkoch"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "marketplace-staff at mozilla dot org"
-msgstr ""
+msgstr "marketplace-staff at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6381,28 +6380,34 @@ msgid ""
 "issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Ak si myslíte, že ste našli bezpečnostnú chybu v doplnku (a to aj v prípade, "
+"že tu nie je umiestnený), bude Mozilla za túto informáciu povďačná a spolu "
+"s autorom zapracujú čo najrýchlejšie na oprave. Bezpečnostné chyby v "
+"doplnkoch môžu byť hlásené <a href=\"http://www.mozilla.org/projects/security"
+"/security-bugs-policy.html\">dôverne</a> cez <a href=\"%"
+"(link_bugzilla)s\">Bugzillu</a> alebo e-mailom na %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
 msgstr "Funkcionalita webu a vývoj"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
-#, fuzzy
 msgid ""
 "If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">file a bug report</a> in Bugzilla, including "
 "the location of the problem and how you encountered it."
 msgstr ""
-"Pokud jste nalezli problém s webem, rádi jej opravíme. <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">Nahlaste prosím</a> problém v Bugzille spolu s informací, co "
-"je za problém a jak jej lze zreprodukovat."
+"Ak ste našli problém s webom, radi ho opravíme. <a href=\"https://bugzilla.mo"
+"zilla.org/enter_bug.cgi?product=addons.mozilla.org\">Nahláste prosím</a> "
+"problém v Bugzille spolu s informáciou, čo je za problém a ako ho možno "
+"znova vyvolať."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3 apps/devhub/templates/devhub/docs/policies-maintenance.html:7 apps/devhub/templates/devhub/docs/policies-maintenance.html:8
 msgid "Maintaining Your Add-ons"
 msgstr "Spravovanie svojich doplnkov"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:10
-#, fuzzy
 msgid "Submitting New Versions of Your Add-on"
-msgstr "Přidání nových verzí doplňku"
+msgstr "Pridanie nových verzií vášho doplnku"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:12
 #, fuzzy
