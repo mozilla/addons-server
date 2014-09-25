@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-17 09:09-0700\n"
-"PO-Revision-Date: 2014-09-25 21:46+0000\n"
+"PO-Revision-Date: 2014-09-25 22:00+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411681568.0\n"
+"X-POOTLE-MTIME: 1411682420.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6780,6 +6780,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
 msgstr ""
+"Snažíme sa vykonávať plné kontroly do 10 dní. U väčšiny doplnkov je však "
+"tento čas kontroly oveľa kratší."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -6792,18 +6794,25 @@ msgstr "V rámci kompletnej kontroly bude redaktor vykonávať:"
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
 msgstr ""
+"nainštalovať doplnok, vyskúšať jeho funkčnosť tak, ako je popísaná a "
+"skontrolovať, či nejaví problémy"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid "perform a source code review, looking for performance and security best practices"
 msgstr ""
+"vykonať kontrolu zdrojového kódu a pozrieť, či spĺňa zásady pre výkon a "
+"bezpečnosť"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
 msgstr ""
+"uistiť sa, či zásady ochrany súkromia odpovedajú tomu, ako sa doplnok správa"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
 msgstr ""
+"pozrieť na možný rozpor s nejakými zásadami Mozilly, ktoré sú popísané v "
+"tomto dokumente"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
@@ -6821,27 +6830,27 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "volanie vzdialeného JavaScriptu, alebo jeho vkladanie"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
-msgstr ""
+msgstr "vzdialené XUL"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
-msgstr ""
+msgstr "synchrónny XMLHttpRequests"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:106
 msgid "obfuscated code"
-msgstr ""
+msgstr "kód je prejdený obfuskátorom"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:107
 msgid "binary components or executables"
-msgstr ""
+msgstr "obsahuje binárne komponenty, alebo spustiteľné súbory"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
-msgstr ""
+msgstr "zahŕňa softvér tretích strán"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
@@ -6849,15 +6858,15 @@ msgstr "Chyby generované v Chybovej konzole"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
-msgstr ""
+msgstr "obsahuje úniky pamäte"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:112
 msgid "possible conflicts with other add-ons"
-msgstr ""
+msgstr "konflikt s inými doplnkami"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "výrazný vplyv na rýchlosť štartu aplikácie, alebo výrazný pokles výkonu"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 #, fuzzy
