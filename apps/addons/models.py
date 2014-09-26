@@ -28,9 +28,9 @@ from addons.utils import get_creatured_ids, get_featured_ids
 import amo
 import amo.models
 from access import acl
+from amo import helpers
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
-from amo.helpers import absolutify, shared_url, user_media_path, user_media_url
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        JSONEncoder, send_mail, slugify, sorted_groupby, timer,
                        to_language, urlparams)
@@ -218,10 +218,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
-    # This column is only used for webapps, so they can have a slug namespace
-    # separate from addons and personas.
-    app_slug = models.CharField(max_length=30, unique=True, null=True,
-                                blank=True)
     name = TranslatedField(default=None)
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
@@ -435,7 +431,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 'name': self.name,
                 'slug': self.slug,
                 'total_downloads': self.total_downloads,
-                'url': absolutify(self.get_url_path()),
+                'url': helpers.absolutify(self.get_url_path()),
                 'user_str': ("%s, %s (%s)" % (user.display_name or
                                               user.username, user.email,
                                               user.id) if user else "Unknown"),
@@ -460,8 +456,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._reviews.all().delete()
-            self.update(status=amo.STATUS_DELETED,
-                        slug=None, app_slug=None, app_domain=None,
+            self.update(status=amo.STATUS_DELETED, slug=None, app_domain=None,
                         _current_version=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
@@ -523,7 +518,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def get_api_url(self):
         # Used by Piston in output.
-        return absolutify(self.get_url_path())
+        return helpers.absolutify(self.get_url_path())
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         args = args or []
@@ -543,7 +538,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def reviews_url(self):
-        return shared_url('reviews.list', self)
+        return helpers.url('addons.reviews.list', self.slug)
 
     def get_ratings_url(self, action='list', args=None, add_prefix=True):
         return reverse('ratings.themes.%s' % action,
@@ -905,7 +900,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self._backup_version
 
     def get_icon_dir(self):
-        return os.path.join(user_media_path('addon_icons'),
+        return os.path.join(helpers.user_media_path('addon_icons'),
                             '%s' % (self.id / 1000))
 
     def get_icon_url(self, size, use_default=True):
@@ -956,7 +951,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 split_id.group(2) or '0',
                 '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
             ])
-            return user_media_url('addon_icons') + path
+            return helpers.user_media_url('addon_icons') + path
 
     @write
     def update_status(self):
@@ -1431,17 +1426,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             if res:
                 return res[0]
 
-    @property
-    def uses_flash(self):
-        """
-        Convenience property until more sophisticated per-version
-        checking is done for packaged apps.
-        """
-        f = self.get_latest_file()
-        if not f:
-            return False
-        return f.uses_flash
-
     def in_escalation_queue(self):
         return self.escalationqueue_set.exists()
 
@@ -1690,12 +1674,12 @@ class Persona(caching.CachingMixin, models.Model):
         return self.get_mirror_url(filename)
 
     def _image_path(self, filename):
-        return os.path.join(
-            user_media_path('addons'), str(self.addon.id), filename)
+        return os.path.join(helpers.user_media_path('addons'),
+                            str(self.addon.id), filename)
 
     def get_mirror_url(self, filename):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
-                else user_media_url('addons'))
+                else helpers.user_media_url('addons'))
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
         # TODO: Bust the cache on the hash of the image contents or something.
         if self.addon.modified is not None:
@@ -1806,7 +1790,7 @@ class Persona(caching.CachingMixin, models.Model):
             'previewURL': self.thumb_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
-            'detailURL': absolutify(self.addon.get_url_path()),
+            'detailURL': helpers.absolutify(self.addon.get_url_path()),
             'version': '1.0'
         }
 
@@ -2048,18 +2032,22 @@ class Preview(amo.models.ModelBase):
 
     @property
     def thumbnail_url(self):
-        template = user_media_url('previews') + 'thumbs/%s/%d.png?modified=%s'
+        template = (
+            helpers.user_media_url('previews') +
+            'thumbs/%s/%d.png?modified=%s')
         return self._image_url(template)
 
     @property
     def image_url(self):
-        template = user_media_url('previews') + 'full/%s/%d.%s?modified=%s'
+        template = (
+            helpers.user_media_url('previews') +
+            'full/%s/%d.%s?modified=%s')
         return self._image_url(template)
 
     @property
     def thumbnail_path(self):
         template = os.path.join(
-            user_media_path('previews'),
+            helpers.user_media_path('previews'),
             'thumbs',
             '%s',
             '%d.png'
@@ -2069,7 +2057,7 @@ class Preview(amo.models.ModelBase):
     @property
     def image_path(self):
         template = os.path.join(
-            user_media_path('previews'),
+            helpers.user_media_path('previews'),
             'full',
             '%s',
             '%d.%s'

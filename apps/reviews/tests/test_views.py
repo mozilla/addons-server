@@ -5,7 +5,7 @@ from pyquery import PyQuery as pq
 import mock
 
 import amo.tests
-from amo.helpers import shared_url
+from amo import helpers
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from devhub.models import ActivityLog
@@ -34,41 +34,45 @@ class ReviewTest(amo.tests.TestCase):
 class TestViews(ReviewTest):
 
     def test_dev_reply(self):
-        url = shared_url('reviews.detail', self.addon, 218468)
+        url = helpers.url('addons.reviews.detail', self.addon.slug, 218468)
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
     def test_dev_no_rss(self):
-        url = shared_url('reviews.detail', self.addon, 218468)
+        url = helpers.url('addons.reviews.detail', self.addon.slug, 218468)
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(doc('link[title=RSS]').length, 0)
 
     def test_404_user_page(self):
-        url = shared_url('reviews.user', self.addon, 233452342)
+        url = helpers.url('addons.reviews.user', self.addon.slug, 233452342)
         r = self.client.get(url)
         eq_(r.status_code, 404)
 
     def test_feed(self):
-        url = shared_url('reviews.list.rss', self.addon)
+        url = helpers.url('addons.reviews.list.rss', self.addon.slug)
         r = self.client.get(url)
         eq_(r.status_code, 200)
 
     def test_abuse_form(self):
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
-        r = self.client.get(shared_url('reviews.detail', self.addon,
-                                       218468))
+        r = self.client.get(helpers.url('addons.reviews.detail',
+                                        self.addon.slug, 218468))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
 
     def test_edit_review_form(self):
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
-        r = self.client.get(shared_url('reviews.detail', self.addon, 218468))
+        r = self.client.get(helpers.url('addons.reviews.detail',
+                                        self.addon.slug, 218468))
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
     def test_list(self):
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         reviews = doc('#reviews .item')
@@ -93,14 +97,16 @@ class TestViews(ReviewTest):
         eq_(item.attr('data-rating'), '')
 
     def test_list_rss(self):
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         doc = pq(r.content)
         eq_(doc('link[title=RSS]').length, 1)
 
     def test_empty_list(self):
         Review.objects.all().delete()
         eq_(Review.objects.count(), 0)
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#reviews .item').length, 0)
@@ -111,7 +117,8 @@ class TestViews(ReviewTest):
     def test_list_item_actions(self):
         self.login_admin()
         self.make_it_my_review()
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         reviews = pq(r.content)('#reviews .item')
 
         r = Review.objects.get(id=218207)
@@ -133,7 +140,7 @@ class TestFlag(ReviewTest):
 
     def setUp(self):
         super(TestFlag, self).setUp()
-        self.url = shared_url('reviews.flag', self.addon, 218468)
+        self.url = helpers.url('addons.reviews.flag', self.addon.slug, 218468)
         self.login_admin()
 
     def test_no_login(self):
@@ -186,7 +193,8 @@ class TestDelete(ReviewTest):
 
     def setUp(self):
         super(TestDelete, self).setUp()
-        self.url = shared_url('reviews.delete', self.addon, 218207)
+        self.url = helpers.url('addons.reviews.delete',
+                               self.addon.slug, 218207)
         self.login_admin()
 
     def test_no_login(self):
@@ -200,7 +208,7 @@ class TestDelete(ReviewTest):
         eq_(response.status_code, 403)
 
     def test_404(self):
-        url = shared_url('reviews.delete', self.addon, 0)
+        url = helpers.url('addons.reviews.delete', self.addon.slug, 0)
         response = self.client.post(url)
         eq_(response.status_code, 404)
 
@@ -221,7 +229,7 @@ class TestDelete(ReviewTest):
     def test_delete_own_review(self):
         self.client.logout()
         self.login_dev()
-        url = shared_url('reviews.delete', self.addon, 218468)
+        url = helpers.url('addons.reviews.delete', self.addon.slug, 218468)
         cnt = Review.objects.count()
         response = self.client.post(url)
         eq_(response.status_code, 200)
@@ -268,13 +276,13 @@ class TestCreate(ReviewTest):
 
     def setUp(self):
         super(TestCreate, self).setUp()
-        self.add = shared_url('reviews.add', self.addon)
+        self.add = helpers.url('addons.reviews.add', self.addon.slug)
         self.client.login(username='root_x@ukr.net', password='password')
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=1865)
         self.log_count = ActivityLog.objects.count
         self.more = self.addon.get_url_path(more=True)
-        self.list = shared_url('reviews.list', self.addon)
+        self.list = helpers.url('addons.reviews.list', self.addon.slug)
 
     def test_add_logged(self):
         r = self.client.get(self.add)
@@ -292,7 +300,8 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 1)
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         doc = pq(r.content)
         eq_(doc('#add-review').length, 0)
         eq_(doc('#add-first-review').length, 0)
@@ -311,7 +320,8 @@ class TestCreate(ReviewTest):
         self.login_dev()
         r = self.client.get_ajax(self.more)
         eq_(pq(r.content)('#add-review').length, 0)
-        r = self.client.get(shared_url('reviews.list', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.list',
+                                        self.addon.slug))
         doc = pq(r.content)
         eq_(doc('#add-review').length, 0)
         eq_(doc('#add-first-review').length, 0)
@@ -367,21 +377,21 @@ class TestEdit(ReviewTest):
         self.client.login(username='root_x@ukr.net', password='password')
 
     def test_edit(self):
-        url = shared_url('reviews.edit', self.addon, 218207)
+        url = helpers.url('addons.reviews.edit', self.addon.slug, 218207)
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
         eq_('%s' % Review.objects.get(id=218207).body, 'woo woo')
 
     def test_edit_not_owner(self):
-        url = shared_url('reviews.edit', self.addon, 218468)
+        url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 403)
 
     def test_edit_reply(self):
         self.login_dev()
-        url = shared_url('reviews.edit', self.addon, 218468)
+        url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
         r = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
                              X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
@@ -401,7 +411,8 @@ class TestTranslate(ReviewTest):
 
     def test_regular_call(self):
         review = self.review
-        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        url = helpers.url('addons.reviews.translate', review.addon.slug,
+                          review.id, 'fr')
         r = self.client.get(url)
         eq_(r.status_code, 302)
         eq_(r.get('Location'), 'https://translate.google.com/#auto/fr/yes')
@@ -409,7 +420,8 @@ class TestTranslate(ReviewTest):
     def test_unicode_call(self):
         review = Review.objects.create(addon=self.addon, user=self.user,
                                        title='or', body=u'héhé 3%')
-        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        url = helpers.url('addons.reviews.translate',
+                          review.addon.slug, review.id, 'fr')
         r = self.client.get(url)
         eq_(r.status_code, 302)
         eq_(r.get('Location'),
@@ -428,7 +440,8 @@ class TestTranslate(ReviewTest):
 
         # Call translation.
         review = self.review
-        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        url = helpers.url('addons.reviews.translate', review.addon.slug,
+                          review.id, 'fr')
         r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
         eq_(r.content, '{"body": "oui", "title": "oui"}')
@@ -446,7 +459,8 @@ class TestTranslate(ReviewTest):
 
         # Call translation.
         review = self.review
-        url = shared_url('reviews.translate', review.addon, review.id, 'fr')
+        url = helpers.url('addons.reviews.translate', review.addon.slug,
+                          review.id, 'fr')
         r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 400)
 
@@ -458,8 +472,8 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
         self.addon = Addon.objects.get(id=1865)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.login_regular()
-        self.add = shared_url('reviews.add', self.addon)
-        self.list = shared_url('reviews.list', self.addon)
+        self.add = helpers.url('addons.reviews.add', self.addon.slug)
+        self.list = helpers.url('addons.reviews.list', self.addon.slug)
 
     def login_regular(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -533,5 +547,5 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
     def test_add_logged_out(self):
         self.client.logout()
         self.mobile_init()
-        r = self.client.get(shared_url('reviews.add', self.addon))
+        r = self.client.get(helpers.url('addons.reviews.add', self.addon.slug))
         eq_(r.status_code, 302)

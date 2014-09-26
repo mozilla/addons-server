@@ -147,7 +147,6 @@ ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
-ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
 
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
@@ -389,7 +388,6 @@ CANNED_RESPONSE_CHOICES = {
 # For use in urls.
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
-APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 # Reviewer Incentive Scores.
 # Note: Don't change these since they're used as keys in the database.
