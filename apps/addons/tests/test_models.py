@@ -9,6 +9,7 @@ from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ValidationError
+from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -1799,6 +1800,27 @@ class TestPreviewModel(amo.tests.TestCase):
         preview.update(filetype='video/webm')
         assert 'png' in preview.thumbnail_path
         assert 'webm' in preview.image_path
+
+    def check_delete(self, preview, filename):
+        """Test that when the Preview object is deleted, its image and thumb
+        are deleted from the filesystem."""
+        try:
+            with storage.open(filename, 'w') as f:
+                f.write('sample data\n')
+            assert storage.exists(filename)
+            preview.delete()
+            assert not storage.exists(filename)
+        finally:
+            if storage.exists(filename):
+                storage.delete(filename)
+
+    def test_delete_image(self):
+        preview = Preview.objects.get(pk=24)
+        self.check_delete(preview, preview.image_path)
+
+    def test_delete_thumbnail(self):
+        preview = Preview.objects.get(pk=24)
+        self.check_delete(preview, preview.thumbnail_path)
 
 
 class TestAddonRecommendations(amo.tests.TestCase):
