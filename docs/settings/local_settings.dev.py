@@ -1,4 +1,4 @@
-from settings import *  # noqa
+from default.settings import *  # noqa
 
 # To activate the Django debug toolbar.
 INSTALLED_APPS += (
