@@ -51,7 +51,16 @@ HOME=/tmp
 50 10 * * * %(z_cron)s update_google_analytics
 
 # Update ADI metrics from HIVE.
-# Once per day after 1000 UTC (after hive queries + transfert is done)
+# Update counts
+00 1 * * * %(django)s update_counts_by_app_from_hive
+30 1 * * * %(django)s update_counts_by_version_from_hive
+00 2 * * * %(django)s update_counts_by_status_from_hive
+30 2 * * * %(django)s update_counts_by_os_from_hive
+00 3 * * * %(django)s update_counts_by_locale_from_hive
+# Download counts
+30 3 * * * %(django)s download_counts_from_hive
+
+# Once per day after hive queries are done
 30 10 * * * %(django)s update_counts_from_file
 00 11 * * * %(django)s download_counts_from_file
 05 11 * * * %(django)s theme_update_counts_from_hive
