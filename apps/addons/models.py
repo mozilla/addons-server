@@ -31,7 +31,7 @@ import amo.models
 from access import acl
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
-from amo.helpers import absolutify, shared_url, user_media_path, user_media_url
+from amo.helpers import absolutify, user_media_path, user_media_url
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        JSONEncoder, send_mail, slugify, sorted_groupby, timer,
                        to_language, urlparams)
@@ -542,9 +542,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def reviews_url(self):
-        return shared_url('reviews.list', self)
+        return reverse('addons.reviews.list', args=[self.slug])
 
-    def get_ratings_url(self, action='list', args=None, add_prefix=True):
+    def get_reviews_url(self, action='list', args=None, add_prefix=True):
         return reverse('ratings.themes.%s' % action,
                        args=[self.slug] + (args or []),
                        add_prefix=add_prefix)

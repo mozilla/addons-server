@@ -37,11 +37,11 @@
     {% endif %}
     &middot;
     <a class="permalink"
-      href="{{ shared_url('reviews.detail', addon, review.id) }}">{{ _('permalink') }}</a>
+      href="{{ addon.get_reviews_url('detail', args=[review.id]) }}">{{ _('permalink') }}</a>
     {% if waffle.switch('reviews-translate') %}
       &middot;
       <a class="translate" rel="nofollow" target="_blank"
-         href="{{ shared_url('reviews.translate', addon, review.id, LANG) }}">{{ _('translate') }}</a>
+         href="{{ addon.get_reviews_url('translate', args=[review.id, LANG]) }}">{{ _('translate') }}</a>
     {% endif %}
   </p>
   <p class="description">{{ review.body|nl2br }}</p>
@@ -51,7 +51,7 @@
   {% endif %}
   {% if page != 'user' and review.previous_count %}
   <span class="item-note">
-    {% with user_review_url = shared_url('reviews.user', addon, review.user.id) %}
+    {% with user_review_url = addon.get_reviews_url('user', args=[review.user.id]) %}
       {% if review.is_latest %}
         {% trans num=review.previous_count, cnt=review.previous_count|numberfmt %}
           This user has a <a href="{{ user_review_url }}">previous review</a> of this add-on.
@@ -72,13 +72,13 @@
       <li class="flagged">{{ _('Flagged for review') }}</li>
     {% elif review.user_id != request.user.id %}
       <li>
-        <a class="flag-review" href="{{ shared_url('reviews.flag', addon, review.id) }}">
+        <a class="flag-review" href="{{ addon.get_reviews_url('flag', args=[review.id]) }}">
           {{ _('Report this review') }}</a>
       </li>
     {% endif %}
     {% if not (is_reply or has_reply) and (perms.is_author or perms.is_admin) %}
       <li>
-        <a class="review-reply" href="{{ shared_url('reviews.reply', addon, review.id) }}">
+        <a class="review-reply" href="{{ addon.get_reviews_url('reply', args=[review.id]) }}">
           {{ _('Reply to review') }}</a>
       </li>
     {% endif %}
@@ -90,7 +90,7 @@
     {% endif %}
     {% if check_review_delete(review) %}
       <li>
-        <a class="delete-review" href="{{ shared_url('reviews.delete', addon, review.id) }}">
+        <a class="delete-review" href="{{ addon.get_reviews_url('delete', args=[review.id]) }}">
           {{ _('Delete review') }}</a>
       </li>
     {% endif %}

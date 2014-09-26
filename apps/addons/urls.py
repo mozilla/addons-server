@@ -35,7 +35,7 @@ detail_patterns = patterns('',
                                                  addon_id, permanent=True),
                    name='addons.about'),
 
-    ('^reviews/', include(review_patterns('addons'))),
+    ('^reviews/', include(review_patterns)),
     ('^statistics/', include(stats_patterns)),
     ('^versions/', include('versions.urls')),
 )

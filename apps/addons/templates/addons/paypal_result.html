@@ -20,7 +20,7 @@
 </aside>
 <section class="primary island c">
   {% if status == 'error' %}
-      <a href="{{ shared_url('addons.purchase.error', addon)|urlparams(realurl=realurl) }}"
+      <a href="{{ url('addons.purchase.error', addon.slug)|urlparams(realurl=realurl) }}"
          id="paypal-error">Error</a>
   {% endif %}
   <p>
