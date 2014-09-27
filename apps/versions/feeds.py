@@ -1,5 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
+from django.utils.feedgenerator import DefaultFeed
 from jingo.helpers import datetime
 
 from tower import ugettext as _
@@ -7,12 +8,41 @@ from tower import ugettext as _
 import amo
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify, url
+from amo.utils import urlparams
 
 from addons.models import Addon
+from versions.views import PER_PAGE
+
+
+class PagedFeed(DefaultFeed):
+
+    page = None
+
+    def add_page_relation(self, handler, rel, page):
+        page = None if page == 1 else page
+        url = urlparams(self.feed['feed_url'], page=page)
+        handler.addQuickElement('atom:link', None, {'rel': rel, 'href': url})
+
+    def add_root_elements(self, handler):
+        # set feed_url to current page
+        page = None if self.page.number == 1 else self.page.number
+        self.feed['feed_url'] = urlparams(self.feed['feed_url'], page=page)
+        DefaultFeed.add_root_elements(self, handler)
+
+        # http://tools.ietf.org/html/rfc5005#section-3
+        self.add_page_relation(handler, 'first', 1)
+        if self.page.has_previous():
+            self.add_page_relation(handler, 'previous',
+                                   self.page.previous_page_number())
+        if self.page.has_next():
+            self.add_page_relation(handler, 'next',
+                                   self.page.next_page_number())
+        self.add_page_relation(handler, 'last', self.page.paginator.num_pages)
 
 
 class VersionsRss(Feed):
 
+    feed_type = PagedFeed
     addon = None
 
     def get_object(self, request, addon_id):
@@ -20,6 +50,10 @@ class VersionsRss(Feed):
            the RSS feed of it Versions"""
         qs = Addon.objects
         self.addon = get_object_or_404(qs.id_or_slug(addon_id) & qs.valid())
+        items_qs = (self.addon.versions
+                    .filter(files__status__in=amo.VALID_STATUSES)
+                    .distinct().order_by('-created'))
+        self.feed_type.page = amo.utils.paginate(request, items_qs, PER_PAGE)
         return self.addon
 
     def title(self, addon):
@@ -36,9 +70,7 @@ class VersionsRss(Feed):
 
     def items(self, obj):
         """Return the Versions for this Addon to be output as RSS <item>'s"""
-        qs = (obj.versions.filter(files__status__in=amo.VALID_STATUSES)
-              .distinct().order_by('-created'))
-        return qs.all()[:30]
+        return self.feed_type.page
 
     def item_link(self, version):
         """Link for a particular version (<item><link>)"""
