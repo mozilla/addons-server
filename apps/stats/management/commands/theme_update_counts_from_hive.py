@@ -31,7 +31,7 @@ class Command(HiveQueryToFileCommand):
         from v2_raw_logs
         where true
           and domain = "versioncheck.addons.mozilla.org"
-          and ds = '%s'
+          and ds = '{day}'
           -- fast filters:
           and request_url like '%%update-check%%'
           -- takes more time but it's the correct filter:
@@ -41,5 +41,5 @@ class Command(HiveQueryToFileCommand):
            , regexp_extract(request_url, '^/([-\\w]+)(/themes/update-check/)(\\d+).*', 3)
            , parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src')
         -- limit
-        %s
+        {limit}
     """  # noqa

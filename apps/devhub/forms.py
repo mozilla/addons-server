@@ -408,7 +408,9 @@ class AppVersionChoiceField(forms.ModelChoiceField):
 
 
 class CompatForm(happyforms.ModelForm):
-    application = forms.ChoiceField(amo.APPS_CHOICES, widget=forms.HiddenInput)
+    application = forms.TypedChoiceField(choices=amo.APPS_CHOICES,
+                                         coerce=int,
+                                         widget=forms.HiddenInput)
     min = AppVersionChoiceField(AppVersion.objects.none())
     max = AppVersionChoiceField(AppVersion.objects.none())
 
@@ -446,6 +448,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         self.initial = ([{} for _ in qs] +
                         [{'application': a.id} for a in apps])
         self.extra = len(amo.APP_GUIDS) - len(self.forms)
+
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
         # ask for a new one to be built.
