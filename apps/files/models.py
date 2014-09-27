@@ -48,6 +48,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     version = models.ForeignKey('versions.Version', related_name='files')
     platform = models.PositiveIntegerField(
+        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,
         db_column="platform_id"
     )
