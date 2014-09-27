@@ -97,11 +97,12 @@ DESKTOP_PLATFORMS = SortedDict([(PLATFORM_ALL.id, PLATFORM_ALL),
 
 SUPPORTED_PLATFORMS = DESKTOP_PLATFORMS.copy()
 SUPPORTED_PLATFORMS.update(MOBILE_PLATFORMS)
-DESKTOP_PLATFORMS_CHOICES = (
+DESKTOP_PLATFORMS_CHOICES = tuple(
     (p.id, p.name) for p in DESKTOP_PLATFORMS.values()
 )
-MOBILE_PLATFORMS_CHOICES = ((p.id, p.name) for p in MOBILE_PLATFORMS.values())
-SUPPORTED_PLATFORMS_CHOICES = (
+MOBILE_PLATFORMS_CHOICES = tuple((p.id, p.name)
+                                 for p in MOBILE_PLATFORMS.values())
+SUPPORTED_PLATFORMS_CHOICES = tuple(
     (p.id, p.name) for p in SUPPORTED_PLATFORMS.values()
 )
 
