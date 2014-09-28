@@ -1,8 +1,11 @@
 import os
 import datetime
+import time
 
 from nose.tools import eq_
 import mock
+
+from django.conf import settings
 
 import amo
 import amo.tests
@@ -245,3 +248,41 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
 
         addon = Addon.objects.get(pk=3615)
         eq_(addon.average_daily_users, 1234)
+
+
+class TestCleanupImageFiles(amo.tests.TestCase):
+
+    @mock.patch('addons.cron.os')
+    def test_cleanup_image_files_exists(self, os_mock):
+        cron.cleanup_image_files()
+        assert os_mock.path.exists.called
+
+    @mock.patch('addons.cron.os.unlink')
+    @mock.patch('addons.cron.os.stat')
+    @mock.patch('addons.cron.os.listdir')
+    @mock.patch('addons.cron.os.path')
+    def test_cleanup_image_files_age(self, os_path_mock, os_listdir_mock,
+                                     os_stat_mock, os_unlink_mock):
+        os_path_mock.exists.return_value = True
+        os_listdir_mock.return_value = ['foo']
+
+        young = datetime.datetime.today() - datetime.timedelta(hours=10)
+        old = datetime.datetime.today() - datetime.timedelta(days=2)
+
+        # Don't delete too young files.
+        stat_mock = mock.Mock()
+        stat_mock.st_atime = time.mktime(young.timetuple())
+        os_stat_mock.return_value = stat_mock
+        cron.cleanup_image_files()
+        assert os_listdir_mock.called
+        assert os_stat_mock.called
+        assert not os_unlink_mock.called
+
+        # Delete old files.
+        stat_mock = mock.Mock()
+        stat_mock.st_atime = time.mktime(old.timetuple())
+        os_stat_mock.return_value = stat_mock
+        cron.cleanup_image_files()
+        assert os_listdir_mock.called
+        assert os_stat_mock.called
+        assert os_unlink_mock.called

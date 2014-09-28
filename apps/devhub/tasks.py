@@ -234,6 +234,8 @@ def resize_preview(src, instance, **kw):
                                       remove_src=False)
         instance.sizes = sizes
         instance.save()
+        # Finally delete the temporary now useless source file.
+        os.unlink(src)
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)

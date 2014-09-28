@@ -22,7 +22,7 @@ def cleanup_extracted_file():
     for path in os.listdir(root):
         full = os.path.join(root, path)
         age = time.time() - os.stat(full)[stat.ST_ATIME]
-        if (age) > (60 * 60):
+        if age > 60 * 60:
             log.debug('Removing extracted files: %s, %dsecs old.' %
                       (full, age))
             shutil.rmtree(full)
