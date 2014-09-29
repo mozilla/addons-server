@@ -20,7 +20,6 @@ from django.utils.translation import trans_real as translation
 import caching.base as caching
 import commonware.log
 import json_field
-import waffle
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
