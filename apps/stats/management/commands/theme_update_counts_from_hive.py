@@ -32,9 +32,6 @@ class Command(HiveQueryToFileCommand):
         where true
           and domain = "versioncheck.addons.mozilla.org"
           and ds = '{day}'
-          -- fast filters:
-          and request_url like '%%update-check%%'
-          -- takes more time but it's the correct filter:
           and regexp_extract(request_url, '^/([-\\w]+)(/themes/update-check/)(\\d+).*', 2) = '/themes/update-check/'
           group by
              ds
