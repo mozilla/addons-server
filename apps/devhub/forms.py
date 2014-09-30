@@ -129,8 +129,7 @@ class LicenseForm(AMOModelForm):
         addon = kw.pop('addon', None)
         self.version = None
         if addon:
-            qs = addon.versions.order_by('-version')[:1]
-            self.version = qs[0] if qs else None
+            self.version = addon.latest_version
             if self.version:
                 kw['instance'], kw['initial'] = self.version.license, None
                 # Clear out initial data if it's a builtin license.
