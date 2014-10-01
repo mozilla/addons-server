@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-17 17:38+0000\n"
+"PO-Revision-Date: 2014-10-01 16:54+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410975516.0\n"
+"X-POOTLE-MTIME: 1412182476.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12679,6 +12679,9 @@ msgstr "Dieses Passwort ist nicht erlaubt."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Als Teil unserer neuen Passwortregeln muss ihr Passwort mindestens %s "
+"Zeichen lang sein. Bitte aktualisieren Sie Ihr Passwort, indem Sie <a href=\""
+"%s\">eine Anfrage zum Zurücksetzen des Passworts stellen</a>."
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
