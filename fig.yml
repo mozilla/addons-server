@@ -1,0 +1,30 @@
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/code
+    - /pip-src  # To store editable pip packages' source.
+  links:
+    - memcached:memcached
+    - mysqld:mysqld
+    - elasticsearch:elasticsearch
+    - redis:redis
+  environment:
+    - DATABASE_URL=mysql://root:@mysqld/olympia
+    - MEMCACHE_LOCATION=memcached:11211
+    - ELASTICSEARCH_LOCATION=elasticsearch:9200
+    - REDIS_LOCATION=redis:6379
+
+memcached:
+  build: dockerfiles/memcached
+
+mysqld:
+  image: dockerfile/mysql
+
+elasticsearch:
+  image: dockerfile/elasticsearch
+
+redis:
+  image: redis
