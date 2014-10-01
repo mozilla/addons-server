@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 09:09-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-09-18 08:30+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -46,75 +46,75 @@ msgstr "實驗版"
 msgid "Add to {0}"
 msgstr "新增至 {0}"
 
-#: apps/addons/forms.py:48
+#: apps/addons/forms.py:47
 msgid "This name is already in use. Please choose another."
 msgstr "名稱已經有人使用。請嘗試其他名稱。"
 
-#: apps/addons/forms.py:59
+#: apps/addons/forms.py:58
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
-#: apps/addons/forms.py:62
+#: apps/addons/forms.py:61
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "這個 slug 不能為「%s」。請嘗試另一個。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:81
+#: apps/addons/forms.py:80
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "無效的標籤：{0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:90
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" 為保留字不能使用。"
 
-#: apps/addons/forms.py:99
+#: apps/addons/forms.py:98
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "標籤多出 {0} 個了。"
 
-#: apps/addons/forms.py:104
+#: apps/addons/forms.py:103
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "移除無效的字元之後所有的標籤都必須少於或等於 %s 字元。"
 
-#: apps/addons/forms.py:108
+#: apps/addons/forms.py:107
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有的標籤至少為 {0} 字元。"
 
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:216
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "您的附加元件目前為此應用程式的精選物件，無法更改類別。"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:227
+#: apps/addons/forms.py:220
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
 
-#: apps/addons/forms.py:235
+#: apps/addons/forms.py:228
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "這個雜項類別不能與其他的類別結合。"
 
-#: apps/addons/forms.py:358
+#: apps/addons/forms.py:351
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "在您更動您的預設語系前，您必須為那個語系填入名稱、概要與敘述。您目前沒有填入 %s。"
 
-#: apps/addons/forms.py:471 apps/addons/forms.py:560
+#: apps/addons/forms.py:464 apps/addons/forms.py:553
 msgid "A license must be selected."
 msgstr "您必須選擇一項授權條款。"
 
-#: apps/addons/forms.py:541
+#: apps/addons/forms.py:534
 msgid "Give Your Theme a Name."
 msgstr "給您的佈景主題一個名稱。"
 
-#: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:540 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "敘述您的佈景主題。"
 
-#: apps/addons/forms.py:688
+#: apps/addons/forms.py:681
 msgid "Enter a new author's email address"
 msgstr "輸入一個新的作者電子郵件地址"
 
@@ -129,11 +129,11 @@ msgstr "尚未審查"
 msgid "Featured"
 msgstr "精選"
 
-#: apps/addons/models.py:309
+#: apps/addons/models.py:310
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "使用者可以選擇比這個金額更多或較少的捐助。"
 
-#: apps/addons/models.py:318
+#: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "在附加元件管理員中詢問使用者(包含 Firefox 4 或更新的版本)"
 
@@ -1230,7 +1230,7 @@ msgstr "使用者數"
 msgid "Weekly Downloads"
 msgstr "每週下載次數"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:952 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "版本"
 
@@ -2136,7 +2136,7 @@ msgstr "圖示"
 msgid "This name cannot be used."
 msgstr "無法使用此名稱。"
 
-#: apps/bandwagon/forms.py:158 apps/users/forms.py:430
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:429
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
 
@@ -2144,11 +2144,11 @@ msgstr "不允許加入鏈結。"
 msgid "This url is already in use by another collection"
 msgstr "這個網址已被其他的收藏集使用"
 
-#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:421
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1031 apps/users/forms.py:420
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
@@ -3150,7 +3150,7 @@ msgstr "依應用程式過濾"
 msgid "Report Type"
 msgstr "報告類型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:949 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "應用程式"
 
@@ -3390,103 +3390,99 @@ msgstr "修改"
 msgid "Persona"
 msgstr "個性面板"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Manual Reviewer Points"
 msgstr "手動審核點數"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Full Add-on Review"
 msgstr "完整附加元件審核"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Preliminary Add-on Review"
 msgstr "初步附加元件審核"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Updated Add-on Review"
 msgstr "更新附加元件審核"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Full Dictionary Review"
 msgstr "完整字典審核"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Preliminary Dictionary Review"
 msgstr "初階字典審核"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Updated Dictionary Review"
 msgstr "更新字典審核"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Full Language Pack Review"
 msgstr "完整語言包審核"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Preliminary Language Pack Review"
 msgstr "初階語言包審核"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Updated Language Pack Review"
 msgstr "更新語言包審核"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Theme Review"
 msgstr "主題審核"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Full Search Provider Review"
 msgstr "完整搜尋提供商審核"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Preliminary Search Provider Review"
 msgstr "初步搜尋提供商審核"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Updated Search Provider Review"
 msgstr "更新搜尋提供商審核"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Complete Theme Review"
 msgstr "完整主題審核"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Preliminary Complete Theme Review"
 msgstr "完整主題初步審核"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Updated Complete Theme Review"
 msgstr "已更新的完整佈景主題審核"
 
-#: apps/constants/base.py:435
+#: apps/constants/base.py:434
 msgid "Moderated Addon Review"
 msgstr "有問題的附加元件評論"
 
-#: apps/constants/base.py:436
-msgid "Moderated App Review"
-msgstr "有問題的應用程式評論"
-
-#: apps/constants/base.py:481
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr "第1級"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr "第2級"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr "第3級"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr "第4級"
 
-#: apps/constants/base.py:485
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr "第5級"
 
-#: apps/constants/base.py:486
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr "第6級"
 
@@ -3717,199 +3713,199 @@ msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
 msgid "View current"
 msgstr "檢視目前檔案"
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:876
+#: apps/devhub/forms.py:436 apps/devhub/forms.py:872
 msgid "Invalid version range."
 msgstr "無效的版本號碼範圍。"
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:465
 msgid "Need at least one compatible application."
 msgstr "至少需要一個相容的應用程式。"
 
-#: apps/devhub/forms.py:482 apps/devhub/forms.py:498
+#: apps/devhub/forms.py:478 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上傳過程發生錯誤，請再試一次。"
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:483
 msgid "Override failed validation"
 msgstr "無視驗證失敗"
 
-#: apps/devhub/forms.py:528
+#: apps/devhub/forms.py:524
 msgid "Need at least one platform."
 msgstr "至少要選擇一個平台。"
 
-#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "完整審核"
 
-#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步審核"
 
-#: apps/devhub/forms.py:540
+#: apps/devhub/forms.py:536
 msgid "Please choose a review nomination type"
 msgstr "請選擇送交審核的類型"
 
-#: apps/devhub/forms.py:555
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:564
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "您選的不是有效的選項，請選擇有效的選項。"
 
-#: apps/devhub/forms.py:599
+#: apps/devhub/forms.py:595
 msgid "You cannot upload any more files for this version."
 msgstr "您不行再對這個版本上傳檔案。"
 
-#: apps/devhub/forms.py:605
+#: apps/devhub/forms.py:601
 msgid "Version doesn't match"
 msgstr "版本不相符"
 
-#: apps/devhub/forms.py:638
+#: apps/devhub/forms.py:634
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "當審核開始後您就無法刪除檔案。您必須刪除整個版本。"
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:654
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "所有平台不能與某特定平台結合。"
 
-#: apps/devhub/forms.py:663
+#: apps/devhub/forms.py:659
 msgid "A platform can only be chosen once."
 msgstr "只能選擇一個平台。"
 
-#: apps/devhub/forms.py:676
+#: apps/devhub/forms.py:672
 msgid "A review type must be selected."
 msgstr "您必須選擇一項審核方式。"
 
-#: apps/devhub/forms.py:754
+#: apps/devhub/forms.py:750
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "為您的附加元件命名。最成功的附加元件在名稱中多多少少指出它們提供的功能。"
 
-#: apps/devhub/forms.py:758
+#: apps/devhub/forms.py:754
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "以一句話簡單敘述您的附加元件。這句話會顯示於附加元件管理員的頁面。"
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:757
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "輸入您的初版號碼。依據發行次數與個人偏好，通常是 0.1 或 1.0"
 
-#: apps/devhub/forms.py:765
+#: apps/devhub/forms.py:761
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "每一個附加元件需要一個獨一無二的 ID，以 UUID 或電子郵件的形式來表示，例如 addon-name@developer.com。該電子郵件不須為真實的。"
 
-#: apps/devhub/forms.py:770
+#: apps/devhub/forms.py:766
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "在瀏覽器使用的附加元件封裝名稱。該封裝名稱應為附加元件名稱的簡寫(例如，附加元件名稱為 Test Extension，封存名稱為 test_extension)。"
 
-#: apps/devhub/forms.py:775
+#: apps/devhub/forms.py:771
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "請輸入這個附加元件的作者名稱或組織名稱。"
 
-#: apps/devhub/forms.py:778
+#: apps/devhub/forms.py:774
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "輸入此擴充套件的其餘貢獻者姓名，每一行只列出一個姓名。"
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:783
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "附加元件不應該含有 Mozilla 商標。"
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:790
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "輸入一個有效的封裝名稱包含英文、數字或底線。"
 
-#: apps/devhub/forms.py:798
+#: apps/devhub/forms.py:794
 msgid "This package name is already in use."
 msgstr "這個封裝的名稱已經有人使用了。"
 
-#: apps/devhub/forms.py:801
+#: apps/devhub/forms.py:797
 msgid "The package name cannot be: %s."
 msgstr "這個封裝名稱不能是: %s。"
 
-#: apps/devhub/forms.py:812
+#: apps/devhub/forms.py:808
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "附加元件 ID 必須是個 UUID 字串或 email 地址。"
 
-#: apps/devhub/forms.py:818
+#: apps/devhub/forms.py:814
 msgid "The version string is invalid."
 msgstr "版本字串不正確。"
 
-#: apps/devhub/forms.py:826
+#: apps/devhub/forms.py:822
 msgid "Minimum"
 msgstr "最小"
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:825
 msgid "Maximum"
 msgstr "最大"
 
-#: apps/devhub/forms.py:880
+#: apps/devhub/forms.py:876
 msgid "Min version must be less than Max version."
 msgstr "最小版本必須小於最大版本。"
 
-#: apps/devhub/forms.py:905
+#: apps/devhub/forms.py:901
 msgid "{0} is a required target application."
 msgstr "{0} 需要一個目標應用程式。"
 
-#: apps/devhub/forms.py:917
+#: apps/devhub/forms.py:913
 msgid "About dialog"
 msgstr "關於對話框"
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:914
 msgid "Creates a standard About dialog for your extension"
 msgstr "替您的擴充套件建立一個標準的關於對話框"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:918
 msgid "Preferences dialog"
 msgstr "偏好設定對話框"
 
-#: apps/devhub/forms.py:923
+#: apps/devhub/forms.py:919
 msgid "Creates an example Preferences window"
 msgstr "建立一個樣本偏好設定視窗"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:922
 msgid "Toolbar"
 msgstr "工具列"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:923
 msgid "Creates an example toolbar for your extension"
 msgstr "在您的擴充套件裡新增一個樣本工具列"
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:926
 msgid "Toolbar button"
 msgstr "工具列按鈕"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:927
 msgid "Creates an example button on the browser toolbar"
 msgstr "在瀏覽器裡的工具列建立一個樣本按紐"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:931
 msgid "Main menu command"
 msgstr "主選單命令"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:932
 msgid "Creates an item on the Tools menu"
 msgstr "在工具選單上建立一個物件"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:935
 msgid "Context menu command"
 msgstr "內容功能表命令"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:936
 msgid "Creates a context menu item for images"
 msgstr "建立一個圖片的右鍵清單項目"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:939
 msgid "Sidebar support"
 msgstr "側邊欄支援"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:940
 msgid "Creates an example sidebar panel"
 msgstr "建立一個樣本側邊攔"
 
-#: apps/devhub/forms.py:953 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:949 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "先選擇一個應用程式"
 
-#: apps/devhub/forms.py:1005
+#: apps/devhub/forms.py:1001
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必要的附加元件不能超過三個。"
 
@@ -3983,11 +3979,11 @@ msgstr "使用者收藏集"
 msgid "User Reviews"
 msgstr "使用者意見"
 
-#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1104
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1107
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: apps/devhub/views.py:319 apps/devhub/views.py:1506
+#: apps/devhub/views.py:319 apps/devhub/views.py:1509
 msgid "Please check the form for errors."
 msgstr "請檢查表格是否有錯誤。"
 
@@ -4023,52 +4019,52 @@ msgstr "驗證附加元件"
 msgid "Check Add-on Compatibility"
 msgstr "檢查附加元件的相容性"
 
-#: apps/devhub/views.py:654
+#: apps/devhub/views.py:657
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: apps/devhub/views.py:1012 apps/users/forms.py:416
+#: apps/devhub/views.py:1015 apps/users/forms.py:415
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: apps/devhub/views.py:1016
+#: apps/devhub/views.py:1019
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: apps/devhub/views.py:1018
+#: apps/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1034
 msgid "Images cannot be larger than %dKB."
 msgstr "圖片大小不能超過 %dKB。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1041
+#: apps/devhub/views.py:1044
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "圖檔的寬必須剛好為 {0} 像素並且高 {1} 像素。"
 
-#: apps/devhub/views.py:1045
+#: apps/devhub/views.py:1048
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: apps/devhub/views.py:1143
+#: apps/devhub/views.py:1146
 msgid "Version %s disabled."
 msgstr "已停用 %s 版本。"
 
-#: apps/devhub/views.py:1146
+#: apps/devhub/views.py:1149
 msgid "Version %s deleted."
 msgstr "已刪除版本 %s。"
 
-#: apps/devhub/views.py:1156
+#: apps/devhub/views.py:1159
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: apps/devhub/views.py:1552
+#: apps/devhub/views.py:1555
 msgid "Preliminary Review Requested."
 msgstr "已要求初步審核。"
 
-#: apps/devhub/views.py:1553
+#: apps/devhub/views.py:1556
 msgid "Full Review Requested."
 msgstr "已要求完整審核。"
 
@@ -4702,7 +4698,7 @@ msgstr "預設地區"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "除非您輸入其他語系版本的翻譯，否則關於您的附加元件的資訊會使用這個語系顯示。"
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:280 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:279 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "首頁"
@@ -6057,45 +6053,21 @@ msgstr "如果您從以上文章找不到資訊，試試看 Mozilla 開發者交
 msgid "Developing Add-ons for Mobile"
 msgstr "開發 Mobile 附加元件"
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:82
-msgid "Mobile Architecture"
-msgstr "Mobile 結構"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:85
-msgid "This document describes the architecture of Firefox on mobile and includes performance tips for mobile code."
-msgstr "這個文件描述了 Firefox Mobile 的架構與改善 Mobile 程式碼效能之提示。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
 msgid "Mobile Extensions"
 msgstr "Mobile 擴充套件"
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
 msgid "This document explains the specifics on creating an extension for mobile."
 msgstr "這個文件解釋建立Mobile 擴充套件之細節。"
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:108
-msgid "Best Practices for Mobile Extensions"
-msgstr "Mobile 擴充套件最佳實踐"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:111
-msgid "Mobile extensions have small screen space and limited resources to work with. This document explains best practices for designing and developing for a mobile environment."
-msgstr "Mobile 擴充套件的資源有限、顯示又受到行動電話螢幕較小的限制。本文件向您解釋怎麼樣的作法在 Mobile 環境中設計與開發是最好的。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:123
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
 msgid "Mobile Code Snippets"
 msgstr "Mobile 程式碼片段"
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:126
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
 msgid "Code snippets specific to mobile."
 msgstr "Mobile 專用的程式碼片段。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:136
-msgid "Designing User Interfaces for Mobile"
-msgstr "設計 Mobile 的使用者介面"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:139
-msgid "How to design an interface for your mobile extension."
-msgstr "如何設計 Mobile 擴充套件之介面。"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
 msgid "More Resources"
@@ -9066,12 +9038,12 @@ msgstr "需要更多資訊"
 msgid "needs super review"
 msgstr "需要超級審核"
 
-#: apps/editors/views_themes.py:326
+#: apps/editors/views_themes.py:325
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。"
 
-#: apps/editors/views_themes.py:341
+#: apps/editors/views_themes.py:340
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "您的佈景主題鎖已經發佈成功。現在其他審查者已可以看到您的佈景主題。您可以重新整理頁面，觀看更新後的內容。"
 
@@ -9703,47 +9675,47 @@ msgstr "在存取檔案 %s 時發生錯誤。%s。"
 msgid "There was an error accessing file %s."
 msgstr "存取檔案 %s 時發生錯誤。"
 
-#: apps/files/utils.py:250
+#: apps/files/utils.py:245
 msgid "Could not parse uploaded file."
 msgstr "無法解析已上傳的檔案。"
 
-#: apps/files/utils.py:287
+#: apps/files/utils.py:282
 msgid "Invalid file name in archive: {0}"
 msgstr "壓縮檔中有無效檔名: {0}"
 
-#: apps/files/utils.py:295
+#: apps/files/utils.py:290
 msgid "File exceeding size limit in archive: {0}"
 msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 
-#: apps/files/utils.py:345
+#: apps/files/utils.py:340
 msgid "Invalid archive."
 msgstr "無效的封存。"
 
-#: apps/files/utils.py:435 apps/files/utils.py:438
+#: apps/files/utils.py:430 apps/files/utils.py:433
 msgid "Could not parse install.rdf."
 msgstr "無法解析 install.rdf。"
 
-#: apps/files/utils.py:448
+#: apps/files/utils.py:443
 msgid "Could not find a UUID."
 msgstr "找不到 UUID。"
 
-#: apps/files/utils.py:450
+#: apps/files/utils.py:445
 msgid "UUID doesn't match add-on."
 msgstr "UUID 與附加元件不相符。"
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:449
 msgid "Duplicate UUID found."
 msgstr "發現重複的 UUID。"
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:452
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "版本號碼應該少於 32 個字元。"
 
-#: apps/files/utils.py:460
+#: apps/files/utils.py:455
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本號碼只能含有英文字母、數字，以及這些標點符號: +*.-_。"
 
-#: apps/files/utils.py:477
+#: apps/files/utils.py:472
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> 與附加元件不相符"
 
@@ -11873,7 +11845,7 @@ msgstr "分享此元件"
 msgid "Share this Collection"
 msgstr "分享此收藏集"
 
-#: apps/stats/models.py:301
+#: apps/stats/models.py:306
 msgid "Thanks for contributing to {addon_name}"
 msgstr "感謝您對 {addon_name} 的捐助"
 
@@ -12263,74 +12235,74 @@ msgid "That password is not allowed."
 msgstr "您不能使用這組密碼。"
 
 #: apps/users/forms.py:87
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
-msgstr "我們的新密碼政策要求您的密碼超過 %s 字元，若您不符合的話請 <a href=\"%s\">重設密碼</a>。"
+msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
+msgstr ""
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "新密碼"
 
-#: apps/users/forms.py:223 apps/users/forms.py:401
+#: apps/users/forms.py:222 apps/users/forms.py:400
 msgid "Wrong password entered!"
 msgstr "輸入的密碼錯誤！"
 
-#: apps/users/forms.py:242
+#: apps/users/forms.py:241
 msgid "Usernames cannot contain only digits."
 msgstr "使用者名稱不能只有數字。"
 
-#: apps/users/forms.py:244
+#: apps/users/forms.py:243
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "請輸入有效的使用者名稱，當中只能有字母、數字、底線或連字號。"
 
-#: apps/users/forms.py:247
+#: apps/users/forms.py:246
 msgid "This username cannot be used."
 msgstr "無法使用此使用者名稱。"
 
-#: apps/users/forms.py:253
+#: apps/users/forms.py:252
 msgid "This username is already in use."
 msgstr "這個使用者名稱已經有人使用。"
 
-#: apps/users/forms.py:265 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:264 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "顯示名稱"
 
-#: apps/users/forms.py:267 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:266 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "地點"
 
-#: apps/users/forms.py:269 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:268 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "職業"
 
-#: apps/users/forms.py:294
+#: apps/users/forms.py:293
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URL 格式無效，有效的 URL 像這樣: http://example.com/my_page。"
 
-#: apps/users/forms.py:302
+#: apps/users/forms.py:301
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "請使用一個來自不同提供者的電子郵件地址完成你的註冊。"
 
-#: apps/users/forms.py:310
+#: apps/users/forms.py:309
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
 
-#: apps/users/forms.py:324
+#: apps/users/forms.py:323
 msgid "The passwords did not match."
 msgstr "密碼不符。"
 
-#: apps/users/forms.py:341 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:340 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "個人檔案照片"
 
-#: apps/users/forms.py:349 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:348 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr "預設語系"
 
-#: apps/users/forms.py:486
+#: apps/users/forms.py:485
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "如果您要匿名化，請輸入更改的原因，但請勿更改其他欄位。"
 
-#: apps/users/forms.py:532
+#: apps/users/forms.py:531
 msgid "Please enter at least one name to blacklist."
 msgstr "請在黑名單中至少輸入一個名稱。"
 
@@ -13024,7 +12996,7 @@ msgstr "使用二進位元件的附加元件。"
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加元件已要求進行嚴格的相容性檢測。"
 
-#: apps/versions/models.py:632
+#: apps/versions/models.py:636
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 
@@ -13096,7 +13068,7 @@ msgstr "目前的最大相容版本"
 msgid "Target Version"
 msgstr "目標版本"
 
-#: apps/zadmin/forms.py:56
+#: apps/zadmin/forms.py:57
 msgid "Email when finished"
 msgstr "完成後請寄電子郵件通知"
 

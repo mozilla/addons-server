@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 09:09-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2014-08-19 04:41+0000\n"
 "Last-Translator: Riyad <riyadrir@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,80 +46,80 @@ msgstr "পরীক্ষামূলক"
 msgid "Add to {0}"
 msgstr "{0} তে যুক্ত করুন"
 
-#: apps/addons/forms.py:48
+#: apps/addons/forms.py:47
 msgid "This name is already in use. Please choose another."
 msgstr "নামটি ইতিমধ্যে ব্যবহৃত হয়েছে। অনুগ্রহ করে অন্য একটি নাম নির্বাচন করুন।"
 
-#: apps/addons/forms.py:59
+#: apps/addons/forms.py:58
 msgid "This slug is already in use. Please choose another."
 msgstr "স্লাগটি ইতিমধ্যে ব্যবহৃত হয়েছে। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
 
-#: apps/addons/forms.py:62
+#: apps/addons/forms.py:61
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "স্লাগটি \"%s\" করা যাচ্ছে না। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:81
+#: apps/addons/forms.py:80
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "অকার্যকর ট্যাগ: {0}"
 msgstr[1] "অকার্যকর ট্যাগ: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:90
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
 msgstr[1] "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
 
-#: apps/addons/forms.py:99
+#: apps/addons/forms.py:98
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "আপনার খুব বেশি {0} ট্যাগ হয়েছে।"
 msgstr[1] "আপনার খুব বেশি {0} ট্যাগ হয়েছে।"
 
-#: apps/addons/forms.py:104
+#: apps/addons/forms.py:103
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "অকার্যকর অক্ষর বাদ দেয়ার পরও সকল ট্যাগ %s অক্ষর বা তার কম হতে হবে।"
 
-#: apps/addons/forms.py:108
+#: apps/addons/forms.py:107
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
 msgstr[1] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
 
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:216
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী পরিবর্তন করা যাবে না।"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:227
+#: apps/addons/forms.py:220
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "আপনার কেবলমাত্র {0} টি বিষয়শ্রেণী রয়েছে।"
 msgstr[1] "আপনার কেবলমাত্র {0} টি বিষয়শ্রেণী রয়েছে।"
 
-#: apps/addons/forms.py:235
+#: apps/addons/forms.py:228
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "বিবিধ বিষয়শ্রেণী বাড়তি বিষয়শ্রেণীর সাথে মেশানো যাবে না।"
 
-#: apps/addons/forms.py:358
+#: apps/addons/forms.py:351
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "পূর্বনির্ধারিত লোকেল পরিবর্তন করার পূর্বে আপনার অবশ্যই ঐ লোকেলে একটি নাম, সারসংক্ষেপ ও বিবরণ থাকতে হবে। আপনার %s বাদ পরেছে।"
 
-#: apps/addons/forms.py:471 apps/addons/forms.py:560
+#: apps/addons/forms.py:464 apps/addons/forms.py:553
 msgid "A license must be selected."
 msgstr "একটি লাইসেন্স অবশ্যই নির্বাচন করতে হবে।"
 
-#: apps/addons/forms.py:541
+#: apps/addons/forms.py:534
 msgid "Give Your Theme a Name."
 msgstr "আপনার থিমের একটি নাম দিন।"
 
-#: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:540 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "আপনার থিমটির বর্ণনা দিন।"
 
-#: apps/addons/forms.py:688
+#: apps/addons/forms.py:681
 msgid "Enter a new author's email address"
 msgstr "একজন নতুন সম্পাদকের ইমেল ঠিকানা প্রবেশ করান"
 
@@ -135,11 +135,11 @@ msgstr "পর্যালোচিত হয় নি"
 msgid "Featured"
 msgstr "বৈশিষ্ট্যপূর্ণ"
 
-#: apps/addons/models.py:309
+#: apps/addons/models.py:310
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "ব্যবহারকারীদের এর থেকে বেশি বা কম অবদান রাখার সুযোগ রয়েছে।"
 
-#: apps/addons/models.py:318
+#: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "ব্যবহারকারীরা অ্যাড-অনস ম্যানেজারে সর্বদা জিজ্ঞাসিত হবে (ফায়ারফক্স ৪ ও অধিকের ক্ষেত্রে)"
 
@@ -1246,7 +1246,7 @@ msgstr "ব্যবহারকারী"
 msgid "Weekly Downloads"
 msgstr "সাপ্তাহিক ডাউনলোড"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:952 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "সংস্করণ"
 
@@ -2140,7 +2140,7 @@ msgstr "আইকন"
 msgid "This name cannot be used."
 msgstr "এই নামটি ব্যবহার করা যাবে না।"
 
-#: apps/bandwagon/forms.py:158 apps/users/forms.py:430
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:429
 msgid "No links are allowed."
 msgstr "কোন লিঙ্ক গ্রহণযোগ্য নয়।"
 
@@ -2148,11 +2148,11 @@ msgstr "কোন লিঙ্ক গ্রহণযোগ্য নয়।"
 msgid "This url is already in use by another collection"
 msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
 
-#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
 msgstr "আইকন অবশ্যই PNG অথবা JPG তে হতে হবে।"
 
-#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:421
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1031 apps/users/forms.py:420
 msgid "Please use images smaller than %dMB."
 msgstr "অনুগ্রহ করে %dMB এর থেকে ছোট ছবি ব্যবহার করুন।"
 
@@ -3157,7 +3157,7 @@ msgstr "অ্যাপ্লিকেশন অনুযায়ী বাছু�
 msgid "Report Type"
 msgstr "রিপোর্টের ধরন"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:949 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "অ্যাপ্লিকেশন"
 
@@ -3394,103 +3394,99 @@ msgstr "পরিবর্তন"
 msgid "Persona"
 msgstr ""
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Manual Reviewer Points"
 msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Full Add-on Review"
 msgstr "সম্পূর্ণ অ্যাড-অন পর্যালোচনা"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Preliminary Add-on Review"
 msgstr "প্রাথমিক অ্যাড-অন পর্যালোচনা"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Updated Add-on Review"
 msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Full Dictionary Review"
 msgstr "সম্পূর্ণ ডিকশনারি পর্যালোচনা"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Preliminary Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Full Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Preliminary Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Updated Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Full Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Preliminary Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Complete Theme Review"
 msgstr "সম্পূর্ণ থিম পর্যালোচনা"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Preliminary Complete Theme Review"
 msgstr "সম্পূর্ণ থিমের প্রাথমিক পর্যালোচনা"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Updated Complete Theme Review"
 msgstr "সম্পূর্ণ থিম পর্যালোচনা হালনাগাদ করা হয়েছে"
 
-#: apps/constants/base.py:435
+#: apps/constants/base.py:434
 msgid "Moderated Addon Review"
 msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
 
-#: apps/constants/base.py:436
-msgid "Moderated App Review"
-msgstr "নিয়ন্ত্রিত অ্যাপ রিভিউ"
-
-#: apps/constants/base.py:481
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr "লেভেল ১"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr ""
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr "লেভেল ৩"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr "লেভেল ৪"
 
-#: apps/constants/base.py:485
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr ""
 
-#: apps/constants/base.py:486
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr ""
 
@@ -3714,199 +3710,199 @@ msgstr ""
 msgid "View current"
 msgstr ""
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:876
+#: apps/devhub/forms.py:436 apps/devhub/forms.py:872
 msgid "Invalid version range."
 msgstr ""
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:465
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: apps/devhub/forms.py:482 apps/devhub/forms.py:498
+#: apps/devhub/forms.py:478 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:483
 msgid "Override failed validation"
 msgstr ""
 
-#: apps/devhub/forms.py:528
+#: apps/devhub/forms.py:524
 msgid "Need at least one platform."
 msgstr "কমপক্ষে একটি প্ল্যাটফর্ম প্রয়োজন।"
 
-#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "সম্পূর্ণ পর্যালোচনা"
 
-#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "প্রাথমিক পর্যালোচনা"
 
-#: apps/devhub/forms.py:540
+#: apps/devhub/forms.py:536
 msgid "Please choose a review nomination type"
 msgstr "ইনুগ্রহ করে একটি পর্যালোচনা মনোনয়নের ধরন বাছাই করুন"
 
-#: apps/devhub/forms.py:555
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "সংস্করণ %s আগে থেকেই রয়েছে"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:564
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:599
+#: apps/devhub/forms.py:595
 msgid "You cannot upload any more files for this version."
 msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
 
-#: apps/devhub/forms.py:605
+#: apps/devhub/forms.py:601
 msgid "Version doesn't match"
 msgstr "সংস্করণ মেলেনি"
 
-#: apps/devhub/forms.py:638
+#: apps/devhub/forms.py:634
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "রিভিউ প্রক্রিয়া শুরু হওয়ার পর আপনি কোন ফাইল অপসারন করতে পারবেন না। আপনাকে অবশ্যই সম্পূর্ণ ভার্সন মুছে দিতে হবে।"
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:654
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
-#: apps/devhub/forms.py:663
+#: apps/devhub/forms.py:659
 msgid "A platform can only be chosen once."
 msgstr ""
 
-#: apps/devhub/forms.py:676
+#: apps/devhub/forms.py:672
 msgid "A review type must be selected."
 msgstr ""
 
-#: apps/devhub/forms.py:754
+#: apps/devhub/forms.py:750
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr ""
 
-#: apps/devhub/forms.py:758
+#: apps/devhub/forms.py:754
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr ""
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:757
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr ""
 
-#: apps/devhub/forms.py:765
+#: apps/devhub/forms.py:761
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr ""
 
-#: apps/devhub/forms.py:770
+#: apps/devhub/forms.py:766
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr ""
 
-#: apps/devhub/forms.py:775
+#: apps/devhub/forms.py:771
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr ""
 
-#: apps/devhub/forms.py:778
+#: apps/devhub/forms.py:774
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr ""
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:783
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr ""
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:790
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr ""
 
-#: apps/devhub/forms.py:798
+#: apps/devhub/forms.py:794
 msgid "This package name is already in use."
 msgstr ""
 
-#: apps/devhub/forms.py:801
+#: apps/devhub/forms.py:797
 msgid "The package name cannot be: %s."
 msgstr ""
 
-#: apps/devhub/forms.py:812
+#: apps/devhub/forms.py:808
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr ""
 
-#: apps/devhub/forms.py:818
+#: apps/devhub/forms.py:814
 msgid "The version string is invalid."
 msgstr ""
 
-#: apps/devhub/forms.py:826
+#: apps/devhub/forms.py:822
 msgid "Minimum"
 msgstr ""
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:825
 msgid "Maximum"
 msgstr ""
 
-#: apps/devhub/forms.py:880
+#: apps/devhub/forms.py:876
 msgid "Min version must be less than Max version."
 msgstr ""
 
-#: apps/devhub/forms.py:905
+#: apps/devhub/forms.py:901
 msgid "{0} is a required target application."
 msgstr ""
 
-#: apps/devhub/forms.py:917
+#: apps/devhub/forms.py:913
 msgid "About dialog"
 msgstr ""
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:914
 msgid "Creates a standard About dialog for your extension"
 msgstr ""
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:918
 msgid "Preferences dialog"
 msgstr ""
 
-#: apps/devhub/forms.py:923
+#: apps/devhub/forms.py:919
 msgid "Creates an example Preferences window"
 msgstr ""
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:922
 msgid "Toolbar"
 msgstr ""
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:923
 msgid "Creates an example toolbar for your extension"
 msgstr ""
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:926
 msgid "Toolbar button"
 msgstr ""
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:927
 msgid "Creates an example button on the browser toolbar"
 msgstr ""
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:931
 msgid "Main menu command"
 msgstr ""
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:932
 msgid "Creates an item on the Tools menu"
 msgstr ""
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:935
 msgid "Context menu command"
 msgstr ""
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:936
 msgid "Creates a context menu item for images"
 msgstr ""
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:939
 msgid "Sidebar support"
 msgstr ""
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:940
 msgid "Creates an example sidebar panel"
 msgstr ""
 
-#: apps/devhub/forms.py:953 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:949 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr ""
 
-#: apps/devhub/forms.py:1005
+#: apps/devhub/forms.py:1001
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -3980,11 +3976,11 @@ msgstr ""
 msgid "User Reviews"
 msgstr ""
 
-#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1104
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1107
 msgid "Changes successfully saved."
 msgstr "পরিবর্তনগুলো সফলতার সাথে সংরক্ষিত হয়েছে।"
 
-#: apps/devhub/views.py:319 apps/devhub/views.py:1506
+#: apps/devhub/views.py:319 apps/devhub/views.py:1509
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4020,52 +4016,52 @@ msgstr ""
 msgid "Check Add-on Compatibility"
 msgstr ""
 
-#: apps/devhub/views.py:654
+#: apps/devhub/views.py:657
 msgid "There was an error with the submission."
 msgstr ""
 
-#: apps/devhub/views.py:1012 apps/users/forms.py:416
+#: apps/devhub/views.py:1015 apps/users/forms.py:415
 msgid "Images must be either PNG or JPG."
 msgstr "ছবি অবশ্যই PNG অথবা JPG হতে হবে।"
 
-#: apps/devhub/views.py:1016
+#: apps/devhub/views.py:1019
 msgid "Icons cannot be animated."
 msgstr "আইকন এনিমেটেড হতে পারবে না।"
 
-#: apps/devhub/views.py:1018
+#: apps/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "ছবি এনিমেটেড হতে পারবে না।"
 
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1034
 msgid "Images cannot be larger than %dKB."
 msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1041
+#: apps/devhub/views.py:1044
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: apps/devhub/views.py:1045
+#: apps/devhub/views.py:1048
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: apps/devhub/views.py:1143
+#: apps/devhub/views.py:1146
 msgid "Version %s disabled."
 msgstr "%s সংস্করণ নিষ্ক্রিয় করা হয়েছে।"
 
-#: apps/devhub/views.py:1146
+#: apps/devhub/views.py:1149
 msgid "Version %s deleted."
 msgstr "%s সংস্করণ মুছে ফেলা হয়েছে।"
 
-#: apps/devhub/views.py:1156
+#: apps/devhub/views.py:1159
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1552
+#: apps/devhub/views.py:1555
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1553
+#: apps/devhub/views.py:1556
 msgid "Full Review Requested."
 msgstr ""
 
@@ -4695,7 +4691,7 @@ msgstr ""
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:280 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:279 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr ""
@@ -6025,44 +6021,20 @@ msgstr ""
 msgid "Developing Add-ons for Mobile"
 msgstr ""
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:82
-msgid "Mobile Architecture"
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:85
-msgid "This document describes the architecture of Firefox on mobile and includes performance tips for mobile code."
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
 msgid "Mobile Extensions"
 msgstr ""
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
 msgid "This document explains the specifics on creating an extension for mobile."
 msgstr ""
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:108
-msgid "Best Practices for Mobile Extensions"
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:111
-msgid "Mobile extensions have small screen space and limited resources to work with. This document explains best practices for designing and developing for a mobile environment."
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:123
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
 msgid "Mobile Code Snippets"
 msgstr ""
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:126
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
 msgid "Code snippets specific to mobile."
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:136
-msgid "Designing User Interfaces for Mobile"
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:139
-msgid "How to design an interface for your mobile extension."
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
@@ -8951,13 +8923,13 @@ msgstr ""
 msgid "needs super review"
 msgstr ""
 
-#: apps/editors/views_themes.py:326
+#: apps/editors/views_themes.py:325
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/views_themes.py:341
+#: apps/editors/views_themes.py:340
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -9589,47 +9561,47 @@ msgstr ""
 msgid "There was an error accessing file %s."
 msgstr ""
 
-#: apps/files/utils.py:250
+#: apps/files/utils.py:245
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: apps/files/utils.py:287
+#: apps/files/utils.py:282
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:295
+#: apps/files/utils.py:290
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:345
+#: apps/files/utils.py:340
 msgid "Invalid archive."
 msgstr ""
 
-#: apps/files/utils.py:435 apps/files/utils.py:438
+#: apps/files/utils.py:430 apps/files/utils.py:433
 msgid "Could not parse install.rdf."
 msgstr ""
 
-#: apps/files/utils.py:448
+#: apps/files/utils.py:443
 msgid "Could not find a UUID."
 msgstr ""
 
-#: apps/files/utils.py:450
+#: apps/files/utils.py:445
 msgid "UUID doesn't match add-on."
 msgstr ""
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:449
 msgid "Duplicate UUID found."
 msgstr ""
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:452
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: apps/files/utils.py:460
+#: apps/files/utils.py:455
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
 
-#: apps/files/utils.py:477
+#: apps/files/utils.py:472
 msgid "<em:type> doesn't match add-on"
 msgstr ""
 
@@ -11665,7 +11637,7 @@ msgstr ""
 msgid "Share this Collection"
 msgstr ""
 
-#: apps/stats/models.py:301
+#: apps/stats/models.py:306
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 
@@ -12049,74 +12021,74 @@ msgid "That password is not allowed."
 msgstr ""
 
 #: apps/users/forms.py:87
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
+msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr ""
 
-#: apps/users/forms.py:223 apps/users/forms.py:401
+#: apps/users/forms.py:222 apps/users/forms.py:400
 msgid "Wrong password entered!"
 msgstr ""
 
-#: apps/users/forms.py:242
+#: apps/users/forms.py:241
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: apps/users/forms.py:244
+#: apps/users/forms.py:243
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: apps/users/forms.py:247
+#: apps/users/forms.py:246
 msgid "This username cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:253
+#: apps/users/forms.py:252
 msgid "This username is already in use."
 msgstr ""
 
-#: apps/users/forms.py:265 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:264 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr ""
 
-#: apps/users/forms.py:267 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:266 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr ""
 
-#: apps/users/forms.py:269 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:268 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr ""
 
-#: apps/users/forms.py:294
+#: apps/users/forms.py:293
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
 
-#: apps/users/forms.py:302
+#: apps/users/forms.py:301
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr ""
 
-#: apps/users/forms.py:310
+#: apps/users/forms.py:309
 msgid "This display name cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:324
+#: apps/users/forms.py:323
 msgid "The passwords did not match."
 msgstr ""
 
-#: apps/users/forms.py:341 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:340 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr ""
 
-#: apps/users/forms.py:349 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:348 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:486
+#: apps/users/forms.py:485
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
 
-#: apps/users/forms.py:532
+#: apps/users/forms.py:531
 msgid "Please enter at least one name to blacklist."
 msgstr ""
 
@@ -12807,7 +12779,7 @@ msgstr ""
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:632
+#: apps/versions/models.py:636
 msgid "{app} {min} and later"
 msgstr ""
 
@@ -12878,7 +12850,7 @@ msgstr ""
 msgid "Target Version"
 msgstr ""
 
-#: apps/zadmin/forms.py:56
+#: apps/zadmin/forms.py:57
 msgid "Email when finished"
 msgstr ""
 

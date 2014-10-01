@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 09:09-0700\n"
+"POT-Creation-Date: 2014-10-01 09:25-0700\n"
 "PO-Revision-Date: 2013-05-16 16:54+0200\n"
 "Last-Translator: Bogomil <bogomil@efb.bg>\n"
 "Language-Team: none\n"
@@ -50,80 +50,80 @@ msgstr "Експериментален"
 msgid "Add to {0}"
 msgstr "Добави към {0}"
 
-#: apps/addons/forms.py:48
+#: apps/addons/forms.py:47
 msgid "This name is already in use. Please choose another."
 msgstr "Това име вече се използва. Мола, изберете друго."
 
-#: apps/addons/forms.py:59
+#: apps/addons/forms.py:58
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
-#: apps/addons/forms.py:62
+#: apps/addons/forms.py:61
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:81
+#: apps/addons/forms.py:80
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Невалиден етикет: {0}"
 msgstr[1] "Невалидни етикети: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:90
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" е запазен и не може да се използва."
 msgstr[1] "\"{0}\" са запазени и не могат да се използват."
 
-#: apps/addons/forms.py:99
+#: apps/addons/forms.py:98
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Имате {0} етикет в повече."
 msgstr[1] "Имате {0} етикета в повече."
 
-#: apps/addons/forms.py:104
+#: apps/addons/forms.py:103
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Всички етикети трябва да са %s знака или по-малко, след катто бъдат премахнати невалидните знаци."
 
-#: apps/addons/forms.py:108
+#: apps/addons/forms.py:107
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Всички етикети трябва да са поне {0} знак."
 msgstr[1] "Всички етикети трябва да са поне {0} знака."
 
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:216
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Категориите не могат да се променят, докато добавката ви е препоръчана за това приложение."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:227
+#: apps/addons/forms.py:220
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Можете да имате само {0} категория."
 msgstr[1] "Можете да имате само {0} категории."
 
-#: apps/addons/forms.py:235
+#: apps/addons/forms.py:228
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Категорията разни не може да бъде комбинирана с допълнителни категории."
 
-#: apps/addons/forms.py:358
+#: apps/addons/forms.py:351
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Преди да промените локала си по подразбиране, трябва да имате име, обобщение и описание в този локал. Липсва ви %s."
 
-#: apps/addons/forms.py:471 apps/addons/forms.py:560
+#: apps/addons/forms.py:464 apps/addons/forms.py:553
 msgid "A license must be selected."
 msgstr "Трябва да изберете лиценз."
 
-#: apps/addons/forms.py:541
+#: apps/addons/forms.py:534
 msgid "Give Your Theme a Name."
 msgstr ""
 
-#: apps/addons/forms.py:547 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:540 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr ""
 
-#: apps/addons/forms.py:688
+#: apps/addons/forms.py:681
 msgid "Enter a new author's email address"
 msgstr ""
 
@@ -138,11 +138,11 @@ msgstr "Не е прегледан"
 msgid "Featured"
 msgstr "Препоръчани"
 
-#: apps/addons/models.py:309
+#: apps/addons/models.py:310
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Потребителите имат възможност да даряват повече или по-малко от тази сума. "
 
-#: apps/addons/models.py:318
+#: apps/addons/models.py:319
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Потребителите ще бъдат питани в Мениджъра на добавки (Firefox 4 и нагоре)"
 
@@ -1252,7 +1252,7 @@ msgstr "Потребители"
 msgid "Weekly Downloads"
 msgstr "Седмични сваляния"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:952 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Версия "
 
@@ -2157,7 +2157,7 @@ msgstr "Иконка"
 msgid "This name cannot be used."
 msgstr ""
 
-#: apps/bandwagon/forms.py:158 apps/users/forms.py:430
+#: apps/bandwagon/forms.py:158 apps/users/forms.py:429
 msgid "No links are allowed."
 msgstr ""
 
@@ -2165,11 +2165,11 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr "Това URL вече се използва от друга колекция"
 
-#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1010
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
 msgstr "Иконките трябва да са PNG или JPG."
 
-#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1028 apps/users/forms.py:421
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1031 apps/users/forms.py:420
 msgid "Please use images smaller than %dMB."
 msgstr "Моля, използвайте изображения по-малки от %dМБ."
 
@@ -3187,7 +3187,7 @@ msgstr "Филтрирай по приложение"
 msgid "Report Type"
 msgstr "Тип на доклада"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:949 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Приложение"
 
@@ -3427,103 +3427,99 @@ msgstr "Промени"
 msgid "Persona"
 msgstr "Декорация"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Full Add-on Review"
 msgstr "Пълна рецензия на добавката"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Preliminary Add-on Review"
 msgstr "Предварителна рецензия на добавката"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Updated Add-on Review"
 msgstr "Обновена рецензия на добавката"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Full Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Preliminary Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Full Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Preliminary Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Updated Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Full Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Preliminary Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Preliminary Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:435
+#: apps/constants/base.py:434
 msgid "Moderated Addon Review"
 msgstr ""
 
-#: apps/constants/base.py:436
-msgid "Moderated App Review"
-msgstr ""
-
-#: apps/constants/base.py:481
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr ""
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr ""
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr ""
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr ""
 
-#: apps/constants/base.py:485
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr ""
 
-#: apps/constants/base.py:486
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr ""
 
@@ -3753,199 +3749,199 @@ msgstr ""
 msgid "View current"
 msgstr ""
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:876
+#: apps/devhub/forms.py:436 apps/devhub/forms.py:872
 msgid "Invalid version range."
 msgstr "Невалиден обхват на версиите."
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:465
 msgid "Need at least one compatible application."
 msgstr "Трябва да има поне едно съвместимо приложение."
 
-#: apps/devhub/forms.py:482 apps/devhub/forms.py:498
+#: apps/devhub/forms.py:478 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "Имаше грешка при качването ви. Моля, опитайте отново."
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:483
 msgid "Override failed validation"
 msgstr ""
 
-#: apps/devhub/forms.py:528
+#: apps/devhub/forms.py:524
 msgid "Need at least one platform."
 msgstr "Нужна е поне една платформа."
 
-#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Пълна рецензия"
 
-#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Предварителен преглед"
 
-#: apps/devhub/forms.py:540
+#: apps/devhub/forms.py:536
 msgid "Please choose a review nomination type"
 msgstr ""
 
-#: apps/devhub/forms.py:555
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "Версия %s вече съществува"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:564
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:599
+#: apps/devhub/forms.py:595
 msgid "You cannot upload any more files for this version."
 msgstr "Не можете да качвате повече файлове за тази версия."
 
-#: apps/devhub/forms.py:605
+#: apps/devhub/forms.py:601
 msgid "Version doesn't match"
 msgstr "Версията не съвпада"
 
-#: apps/devhub/forms.py:638
+#: apps/devhub/forms.py:634
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Не можете да изтриете файл след като веднъж е започнат процеса по одобрение. Трябва да изтриете цялата версия."
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:654
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Платформата всички не може да бъде комбинирана със специфични платформи."
 
-#: apps/devhub/forms.py:663
+#: apps/devhub/forms.py:659
 msgid "A platform can only be chosen once."
 msgstr "Платформа може да се избира само веднъж."
 
-#: apps/devhub/forms.py:676
+#: apps/devhub/forms.py:672
 msgid "A review type must be selected."
 msgstr "Трябва да се избере вид на рецензията."
 
-#: apps/devhub/forms.py:754
+#: apps/devhub/forms.py:750
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Дайте име на добавката си. Най-успешните добавки подсказват за функцията си чрез името си."
 
-#: apps/devhub/forms.py:758
+#: apps/devhub/forms.py:754
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Опишете добавката си кратко в едно изречение. То се показва в мениджъра на добавки."
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:757
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Въведете началната си версия. В зависимост от номера на версията и вашите предпочитания, това обикновено е 0.1 или 1.0"
 
-#: apps/devhub/forms.py:765
+#: apps/devhub/forms.py:761
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr ""
 
-#: apps/devhub/forms.py:770
+#: apps/devhub/forms.py:766
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr ""
 
-#: apps/devhub/forms.py:775
+#: apps/devhub/forms.py:771
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr ""
 
-#: apps/devhub/forms.py:778
+#: apps/devhub/forms.py:774
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr ""
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:783
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Имената на добавките не трябва да съдържат запазени марки на Mozilla."
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:790
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Въведете валидно име на пакета, състоящо се от букви, цифри или долно тире."
 
-#: apps/devhub/forms.py:798
+#: apps/devhub/forms.py:794
 msgid "This package name is already in use."
 msgstr "Името на този пакет вече се използва."
 
-#: apps/devhub/forms.py:801
+#: apps/devhub/forms.py:797
 msgid "The package name cannot be: %s."
 msgstr "Името на пакета не може да е: %s."
 
-#: apps/devhub/forms.py:812
+#: apps/devhub/forms.py:808
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "ID-то на добавката трябва да е UUID низ или имейл адрес."
 
-#: apps/devhub/forms.py:818
+#: apps/devhub/forms.py:814
 msgid "The version string is invalid."
 msgstr "Низът за версията е невалиден."
 
-#: apps/devhub/forms.py:826
+#: apps/devhub/forms.py:822
 msgid "Minimum"
 msgstr "Минимум"
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:825
 msgid "Maximum"
 msgstr "Максимум"
 
-#: apps/devhub/forms.py:880
+#: apps/devhub/forms.py:876
 msgid "Min version must be less than Max version."
 msgstr "Минималната версия трябва да е по-малка от максималната версия."
 
-#: apps/devhub/forms.py:905
+#: apps/devhub/forms.py:901
 msgid "{0} is a required target application."
 msgstr "{0} е задължително за целевото приложение."
 
-#: apps/devhub/forms.py:917
+#: apps/devhub/forms.py:913
 msgid "About dialog"
 msgstr "Относно"
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:914
 msgid "Creates a standard About dialog for your extension"
 msgstr "Създава стандартен диалогов прозорец \"Относно\" за вашето разширение"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:918
 msgid "Preferences dialog"
 msgstr "Диалог с настройки"
 
-#: apps/devhub/forms.py:923
+#: apps/devhub/forms.py:919
 msgid "Creates an example Preferences window"
 msgstr "Създава примерен прозорец за настройки"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:922
 msgid "Toolbar"
 msgstr "Лента с инструменти"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:923
 msgid "Creates an example toolbar for your extension"
 msgstr "Създава примерна лента  с инструменти за вашето разширение"
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:926
 msgid "Toolbar button"
 msgstr "Бутон за лентата с инструменти"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:927
 msgid "Creates an example button on the browser toolbar"
 msgstr "Създава примерен бутон на лентата с инструменти на браузъра"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:931
 msgid "Main menu command"
 msgstr "Команда в главното меню"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:932
 msgid "Creates an item on the Tools menu"
 msgstr "Създава елемент в меню Инструменти"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:935
 msgid "Context menu command"
 msgstr "Команда от контекстното меню"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:936
 msgid "Creates a context menu item for images"
 msgstr "Създава елемент в контекстното меню за изображения"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:939
 msgid "Sidebar support"
 msgstr "Поддръжка на странична лента"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:940
 msgid "Creates an example sidebar panel"
 msgstr "Създава примерен страничен панел"
 
-#: apps/devhub/forms.py:953 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:949 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Първо изберете приложение"
 
-#: apps/devhub/forms.py:1005
+#: apps/devhub/forms.py:1001
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Не може да има повече от 3 задължителни добавки."
 
@@ -4021,11 +4017,11 @@ msgstr "Потребителски колекции"
 msgid "User Reviews"
 msgstr "Потребителски рецензии"
 
-#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1104
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1107
 msgid "Changes successfully saved."
 msgstr "Промените запазени успешно."
 
-#: apps/devhub/views.py:319 apps/devhub/views.py:1506
+#: apps/devhub/views.py:319 apps/devhub/views.py:1509
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4061,52 +4057,52 @@ msgstr "Валидиране на добавката"
 msgid "Check Add-on Compatibility"
 msgstr "Провери съвместимостта на добавката"
 
-#: apps/devhub/views.py:654
+#: apps/devhub/views.py:657
 msgid "There was an error with the submission."
 msgstr "Стана грешка при пращането на добавката."
 
-#: apps/devhub/views.py:1012 apps/users/forms.py:416
+#: apps/devhub/views.py:1015 apps/users/forms.py:415
 msgid "Images must be either PNG or JPG."
 msgstr "Картинките трябва да са PNG или JPG."
 
-#: apps/devhub/views.py:1016
+#: apps/devhub/views.py:1019
 msgid "Icons cannot be animated."
 msgstr "Иконките не могат да са анимирани."
 
-#: apps/devhub/views.py:1018
+#: apps/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "Изображенията не могат да са анимирани."
 
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1034
 msgid "Images cannot be larger than %dKB."
 msgstr "Изображенията не трябва да са по-големи от %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1041
+#: apps/devhub/views.py:1044
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Изображенията трябва да са точно {0} пиксела широки и {1} пиксела високи."
 
-#: apps/devhub/views.py:1045
+#: apps/devhub/views.py:1048
 msgid "There was an error uploading your preview."
 msgstr "Стана грешка при качването на рецензията ви."
 
-#: apps/devhub/views.py:1143
+#: apps/devhub/views.py:1146
 msgid "Version %s disabled."
 msgstr ""
 
-#: apps/devhub/views.py:1146
+#: apps/devhub/views.py:1149
 msgid "Version %s deleted."
 msgstr "Версия %s изтрита."
 
-#: apps/devhub/views.py:1156
+#: apps/devhub/views.py:1159
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1552
+#: apps/devhub/views.py:1555
 msgid "Preliminary Review Requested."
 msgstr "Поискан е предварителен преглед."
 
-#: apps/devhub/views.py:1553
+#: apps/devhub/views.py:1556
 msgid "Full Review Requested."
 msgstr "Поискан е пълен преглед."
 
@@ -4747,7 +4743,7 @@ msgstr "Локал по подразбиране"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr "Информацията за добавката ви се показва в този локал, освен ако не сте я заменили с превод специфичен за локала."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:280 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:279 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Начална страница"
@@ -6096,44 +6092,20 @@ msgstr ""
 msgid "Developing Add-ons for Mobile"
 msgstr "Разработване на добавки за мобилни устройства"
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:82
-msgid "Mobile Architecture"
-msgstr "Мобилна архитектура"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:85
-msgid "This document describes the architecture of Firefox on mobile and includes performance tips for mobile code."
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
 msgid "Mobile Extensions"
 msgstr "Мобилни разширения"
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
 msgid "This document explains the specifics on creating an extension for mobile."
 msgstr ""
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:108
-msgid "Best Practices for Mobile Extensions"
-msgstr "Най-добри практики за мобилните разширения"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:111
-msgid "Mobile extensions have small screen space and limited resources to work with. This document explains best practices for designing and developing for a mobile environment."
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:123
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
 msgid "Mobile Code Snippets"
 msgstr ""
 
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:126
+#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
 msgid "Code snippets specific to mobile."
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:136
-msgid "Designing User Interfaces for Mobile"
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:139
-msgid "How to design an interface for your mobile extension."
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
@@ -9105,13 +9077,13 @@ msgstr "има нужда от още информация"
 msgid "needs super review"
 msgstr "има нужда от супер рецензия"
 
-#: apps/editors/views_themes.py:326
+#: apps/editors/views_themes.py:325
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/views_themes.py:341
+#: apps/editors/views_themes.py:340
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
@@ -9779,47 +9751,47 @@ msgstr "Имаше грешка при достъпването на файл %s
 msgid "There was an error accessing file %s."
 msgstr "Имаше грешка при достъпването на файл %s."
 
-#: apps/files/utils.py:250
+#: apps/files/utils.py:245
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: apps/files/utils.py:287
+#: apps/files/utils.py:282
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:295
+#: apps/files/utils.py:290
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:345
+#: apps/files/utils.py:340
 msgid "Invalid archive."
 msgstr "Невалиден архив."
 
-#: apps/files/utils.py:435 apps/files/utils.py:438
+#: apps/files/utils.py:430 apps/files/utils.py:433
 msgid "Could not parse install.rdf."
 msgstr "Не можа да е анализира install.rdf."
 
-#: apps/files/utils.py:448
+#: apps/files/utils.py:443
 msgid "Could not find a UUID."
 msgstr "UUID не можа да бъде намерено."
 
-#: apps/files/utils.py:450
+#: apps/files/utils.py:445
 msgid "UUID doesn't match add-on."
 msgstr "UUID не съвпада с добавката."
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:449
 msgid "Duplicate UUID found."
 msgstr "Намерен UUID дупликат."
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:452
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Номерата на версиите трябва да са по-малки от 32 знака."
 
-#: apps/files/utils.py:460
+#: apps/files/utils.py:455
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Номерата на версиите трябва да съдържат само букви, цифри и тези пунктуационни знаци: +*.-_."
 
-#: apps/files/utils.py:477
+#: apps/files/utils.py:472
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> не съвпада с добавката"
 
@@ -11943,7 +11915,7 @@ msgstr "Сподели тази добавка"
 msgid "Share this Collection"
 msgstr "Сподели тази колекция"
 
-#: apps/stats/models.py:301
+#: apps/stats/models.py:306
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Благодарим за приноса Ви към {addon_name}"
 
@@ -12364,74 +12336,74 @@ msgid "That password is not allowed."
 msgstr "Тази парола не е разрешена."
 
 #: apps/users/forms.py:87
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password if that is not the case by <a href=\"%s\">issuing a password reset</a>."
+msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
 msgstr "Нова парола "
 
-#: apps/users/forms.py:223 apps/users/forms.py:401
+#: apps/users/forms.py:222 apps/users/forms.py:400
 msgid "Wrong password entered!"
 msgstr "Грешна парола!"
 
-#: apps/users/forms.py:242
+#: apps/users/forms.py:241
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: apps/users/forms.py:244
+#: apps/users/forms.py:243
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: apps/users/forms.py:247
+#: apps/users/forms.py:246
 msgid "This username cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:253
+#: apps/users/forms.py:252
 msgid "This username is already in use."
 msgstr ""
 
-#: apps/users/forms.py:265 apps/users/templates/users/edit.html:93
+#: apps/users/forms.py:264 apps/users/templates/users/edit.html:93
 msgid "Display Name"
 msgstr "Име за показване"
 
-#: apps/users/forms.py:267 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:266 apps/users/templates/users/edit.html:98 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Местоположение"
 
-#: apps/users/forms.py:269 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:268 apps/users/templates/users/edit.html:103 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Професия"
 
-#: apps/users/forms.py:294
+#: apps/users/forms.py:293
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Това URL има невалиден формат. Валидни URL изглеждат като това http://example.com/my_page."
 
-#: apps/users/forms.py:302
+#: apps/users/forms.py:301
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Моля, използвайте имейл адрес от различен доставчик, за да завършите регистрацията си."
 
-#: apps/users/forms.py:310
+#: apps/users/forms.py:309
 msgid "This display name cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:324
+#: apps/users/forms.py:323
 msgid "The passwords did not match."
 msgstr "Паролите не съвпадат."
 
-#: apps/users/forms.py:341 apps/users/templates/users/edit.html:114
+#: apps/users/forms.py:340 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
 msgstr "Снимка на профила"
 
-#: apps/users/forms.py:349 apps/users/templates/users/edit.html:128
+#: apps/users/forms.py:348 apps/users/templates/users/edit.html:128
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:486
+#: apps/users/forms.py:485
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
 
-#: apps/users/forms.py:532
+#: apps/users/forms.py:531
 msgid "Please enter at least one name to blacklist."
 msgstr ""
 
@@ -13142,7 +13114,7 @@ msgstr ""
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:632
+#: apps/versions/models.py:636
 msgid "{app} {min} and later"
 msgstr ""
 
@@ -13219,7 +13191,7 @@ msgstr "Текуща Макс. верия"
 msgid "Target Version"
 msgstr "Целева версия"
 
-#: apps/zadmin/forms.py:56
+#: apps/zadmin/forms.py:57
 msgid "Email when finished"
 msgstr "Прати имейл, когато е готово"
 
