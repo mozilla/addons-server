@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-18 08:30+0000\n"
+"PO-Revision-Date: 2014-10-02 01:46+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411029051.0\n"
+"X-POOTLE-MTIME: 1412214414.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12236,7 +12236,7 @@ msgstr "您不能使用這組密碼。"
 
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
+msgstr "我們新的密碼政策要求您的密碼必須超過 %s 字元長，請 <a href=\"%s\">要求重設密碼</a> 來更新您的密碼。"
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
