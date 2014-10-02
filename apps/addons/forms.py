@@ -280,7 +280,7 @@ CategoryFormSet = formset_factory(form=CategoryForm,
 def icons():
     """
     Generates a list of tuples for the default icons for add-ons,
-    in the format (psuedo-mime-type, description).
+    in the format (pseudo-mime-type, description).
     """
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
     dirs, files = storage.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
