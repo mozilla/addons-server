@@ -57,7 +57,7 @@ from users.models import RequestUser, UserProfile
 # running middlewares, and thus not activating a language, and thus not
 # installing gettext in the globals, and thus not have it in the context when
 # rendering templates.
-tower.activate('en')
+tower.activate('en-us')
 
 
 def formset(*args, **kw):
