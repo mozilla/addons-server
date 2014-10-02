@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-17 18:22+0000\n"
+"PO-Revision-Date: 2014-10-02 11:40+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1410978177.0\n"
+"X-POOTLE-MTIME: 1412250013.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12626,6 +12626,9 @@ msgstr "Dat wachtwoord is niet toegestaan."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Ten gevolge van ons nieuwe wachtwoordbeleid dient uw wachtwoord uit ten "
+"minste %s tekens te bestaan. Werk uw wachtwoord bij door <a href=\"%s\">uw "
+"wachtwoord opnieuw in te stellen</a>."
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
