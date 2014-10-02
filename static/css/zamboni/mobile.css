@@ -236,7 +236,7 @@ table th {
 
 #sort-menu.expand ul {
     border-color: #a9badb;
-    height: 407px;
+    height: auto;
 }
 .purchases #sort-menu.expand ul {
     height: 100px;
