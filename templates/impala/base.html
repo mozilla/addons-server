@@ -19,7 +19,7 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block tabzilla_css %}
-      <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
+      <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/impala') }}
@@ -212,7 +212,7 @@
       <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}
     {% block tabzilla_js %}
-      <script src="//mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
+      <script src="https://mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block js_extras %}{% endblock %}
