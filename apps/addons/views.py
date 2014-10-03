@@ -470,6 +470,8 @@ def developers(request, addon, page):
 @anonymous_csrf_exempt
 @post_required
 def contribute(request, addon):
+    commentlimit = 255  # Enforce paypal-imposed comment length limit
+
     contrib_type = request.POST.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'
     source = request.POST.get('source', '')
@@ -483,7 +485,7 @@ def contribute(request, addon):
         amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
 
     form = ContributionForm({'amount': amount})
-    if not form.is_valid():
+    if len(comment) > commentlimit or not form.is_valid():
         return http.HttpResponse(json.dumps({'error': 'Invalid data.',
                                              'status': '', 'url': '',
                                              'paykey': ''}),

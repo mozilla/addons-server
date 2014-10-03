@@ -251,6 +251,13 @@ class TestContributeEmbedded(amo.tests.TestCase):
         eq_(data['paykey'], '')
         eq_(data['error'], 'Invalid data.')
 
+    def test_amount_length(self):
+        response = self.client_post(rev=['a592'], data={'onetime-amount': '0',
+                                                        'type': 'onetime'})
+        data = json.loads(response.content)
+        eq_(data['paykey'], '')
+        eq_(data['error'], 'Invalid data.')
+
     def test_ppal_json_switch(self):
         response = self.client_post(rev=['a592'], qs='?result_type=json')
         eq_(response.status_code, 200)
@@ -267,6 +274,14 @@ class TestContributeEmbedded(amo.tests.TestCase):
         eq_(res.status_code, 302)
         assert settings.PAYPAL_FLOW_URL in res._headers['location'][1]
         eq_(Contribution.objects.all()[0].comment, u'版本历史记录')
+
+    def test_comment_too_long(self):
+        response = self.client_post(rev=['a592'],
+                            data={'comment': u'a' * 256})
+
+        data = json.loads(response.content)
+        eq_(data['paykey'], '')
+        eq_(data['error'], 'Invalid data.')
 
     def test_organization(self):
         c = Charity.objects.create(name='moz', url='moz.com',
