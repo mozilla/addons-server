@@ -499,10 +499,23 @@ class QueueTest(EditorTest):
 
 
 class TestQueueBasics(QueueTest):
+    fixtures = QueueTest.fixtures + ['editors/user_persona_reviewer']
 
     def test_only_viewable_by_editor(self):
+        # Addon reviewer has access.
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+
+        # Regular user doesn't have access.
         self.client.logout()
         assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        r = self.client.get(self.url)
+        eq_(r.status_code, 403)
+
+        # Persona reviewer doesn't have access either.
+        self.client.logout()
+        assert self.client.login(username='persona_reviewer@mozilla.com',
                                  password='password')
         r = self.client.get(self.url)
         eq_(r.status_code, 403)
