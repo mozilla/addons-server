@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 import os
 
 from django import forms
@@ -719,4 +720,4 @@ class EditThemeOwnerForm(happyforms.Form):
 
 
 class ContributionForm(happyforms.Form):
-    amount = forms.DecimalField(required=True)
+    amount = forms.DecimalField(required=True, min_value=Decimal('0.01'))
