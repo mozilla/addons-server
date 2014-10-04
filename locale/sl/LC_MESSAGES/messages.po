@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-26 17:18+0000\n"
+"PO-Revision-Date: 2014-10-04 16:33+0000\n"
 "Last-Translator: upwinxp <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411751887.0\n"
+"X-POOTLE-MTIME: 1412440413.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -186,10 +187,10 @@ msgstr "Moj dodatek ne spada v nobeno od kategorij"
 #: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:72
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Drugi dodatki iz rok %(author)s"
-msgstr[1] "Drugi dodatki teh avtorjev"
+msgstr[0] ""
+msgstr[1] "Drugi dodatki iz rok %(author)s"
 msgstr[2] "Drugi dodatki teh avtorjev"
-msgstr[3] "Drugi dodatki teh avtorjev"
+msgstr[3] ""
 
 #: apps/addons/templates/addons/author_other_addons.html:27
 msgctxt "addons_author_addons_submit"
@@ -661,10 +662,10 @@ msgstr[3] "{0} prenosov na teden"
 #: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "uporabnikov {0}  "
-msgstr[1] "uporabnikov {0}"
-msgstr[2] "uporabnikov {0}"
-msgstr[3] "uporabnikov {0}"
+msgstr[0] "{0} uporabnik"
+msgstr[1] "{0} uporabnikov"
+msgstr[2] "{0} uporabnikov"
+msgstr[3] "{0} uporabnikov"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
@@ -703,12 +704,12 @@ msgstr "Če namestite ta dodatek, se bo Firefox v bodoče zaganjal počasneje za
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr "Več {0} Tem"
+msgstr "Več {0} tem"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr "Oglejte si vseh {0} Tem"
+msgstr "Oglejte si vseh {0} tem"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -815,7 +816,10 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Če želite namestiti to Temo, <b>si prenesite Thunderbird</b>, brezplačen in odprtokodni program za pošto Mozille Messaging in namestite dodatek Personas Plus."
+msgstr ""
+"Če želite namestiti to temo, <b>si prenesite Thunderbird</b>, brezplačen in "
+"odprtokodni program za pošto Mozille Messaging in namestite dodatek Personas "
+"Plus."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -929,11 +933,11 @@ msgstr "Kaj mislite?"
 
 #: apps/addons/templates/addons/review_add_box.html:8 apps/addons/templates/addons/impala/review_add_box.html:10
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Prosimo, <a href=\"%(login)s\">prijavite se</a>, da predložite pregled."
+msgstr "Prosimo, <a href=\"%(login)s\">prijavite se</a>, da predložite recenzijo"
 
 #: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr "Pregled:"
+msgstr "Recenzija:"
 
 #: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
@@ -942,11 +946,14 @@ msgstr "Ocena:"
 #: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/add.html:63
 #: apps/reviews/templates/reviews/edit_review.html:15 apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr "Pošlji pregled"
+msgstr "Pošlji recenzijo"
 
 #: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:26
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
-msgstr "V pregledih prosim ne navajajte napak. Vašega e-poštnega naslova razvijalcem ne dajemo dalje, potrebovali bi ga pa, da bi od vas zvedeli več o problemu."
+msgstr ""
+"V recenzijah prosim ne navajajte napak. Vašega e-poštnega naslova "
+"razvijalcem ne dajemo dalje, potrebovali bi ga pa, da bi od vas zvedeli več "
+"o težavi."
 
 #: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
@@ -955,16 +962,16 @@ msgstr "Glejte <a href=\"%(support)s\">odsek za podporo</a>, da zveste, kje lahk
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
 msgid "Review Guidelines"
-msgstr "Pregled smernic"
+msgstr "Smernice za recenzije"
 
 #: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:45
 msgid "Detailed Review"
-msgstr "Podroben pregled"
+msgstr "Podrobna recenzija"
 
 #: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:764 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr "Pregledi"
+msgstr "Recenzije"
 
 #: apps/addons/templates/addons/review_list_box.html:14 apps/addons/templates/addons/impala/review_list_box.html:14 apps/reviews/templates/reviews/review.html:30
 msgid "by %(user)s on %(date)s"
@@ -972,15 +979,15 @@ msgstr "od %(user)s dne %(date)s"
 
 #: apps/addons/templates/addons/review_list_box.html:19 apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr "Pokaži odgovor razvijalca na ta pregled"
+msgstr "Pokaži odgovor razvijalca na to recenzijo"
 
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Oglejte si vse preglede za ta dodatek"
-msgstr[1] "Oglejte si vse preglede (%(cnt)s) za ta dodatek"
-msgstr[2] "Oglejte si vse preglede (%(cnt)s) za ta dodatek"
-msgstr[3] "Oglejte si vse preglede (%(cnt)s) za ta dodatek"
+msgstr[0] ""
+msgstr[1] "Oglejte si vse recenzije za ta dodatek"
+msgstr[2] "Oglejte si vseh %(cnt)s recenzij za ta dodatek"
+msgstr[3] ""
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1017,7 +1024,7 @@ msgstr "Povprečje"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr "Napišite pregled"
+msgstr "Napišite recenzijo"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
@@ -1034,10 +1041,10 @@ msgstr "Del teh zbirk"
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recenzija uporabnika"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenzij uporabnika"
+msgstr[0] ""
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenzija uporabnika"
 msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> recenzij uporabnika"
-msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> recenzij uporabnika"
+msgstr[3] ""
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -1059,10 +1066,10 @@ msgstr "Ponoven zagon ni potreben"
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Spoznajte razvijalca: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Spoznajte razvijalce</a>"
+msgstr[0] ""
+msgstr[1] "Spoznajte razvijalca: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[2] "<a href=\"%(url)s\">Spoznajte razvijalce</a>"
-msgstr[3] "<a href=\"%(url)s\">Spoznajte razvijalce</a>"
+msgstr[3] ""
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:144
@@ -1209,10 +1216,10 @@ msgstr "prevedi"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Glej vse preglede uporabnikov"
-msgstr[1] "Glej %(cnt)s preglede uporabnikov"
-msgstr[2] "Glej %(cnt)s preglede uporabnikov"
-msgstr[3] "Glej %(cnt)s preglede uporabnikov"
+msgstr[0] ""
+msgstr[1] "Glej vse preglede uporabnikov"
+msgstr[2] "Glej %(cnt)s pregledov uporabnikov"
+msgstr[3] ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
@@ -1244,7 +1251,7 @@ msgstr "Dodaj v Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr "Uredi Temo"
+msgstr "Uredi temo"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
@@ -1432,7 +1439,7 @@ msgstr "Pošlji nov dodatek"
 #: apps/amo/context_processors.py:92 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr "Prijavi novo Temo"
+msgstr "Prijavi novo temo"
 
 #: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
@@ -1700,7 +1707,7 @@ msgstr "{user} odobril {review} za {addon}."
 
 #: apps/amo/log.py:344
 msgid "Review {0} for {addon} deleted."
-msgstr "Pregled {0} za {addon} zbrisan."
+msgstr "Recenzija {0} za {addon} zbrisana."
 
 #: apps/amo/log.py:345
 msgid "{user} deleted {0} for {addon}."
@@ -1797,11 +1804,11 @@ msgstr "Dodane naprave"
 
 #: apps/amo/log.py:455
 msgid "{addon} device support manually changed by reviewer."
-msgstr "Podporo v {addon} za naprave je ročno spremenil recenzent."
+msgstr "Recenzent je ročno spremenil podporo za naprave za {addon}."
 
 #: apps/amo/log.py:456
 msgid "Device(s) Changed by Reviewer"
-msgstr "recenzent spremenil napravo(-e)"
+msgstr "Recenzent spremenil napravo(e)"
 
 #: apps/amo/log.py:473
 msgid "Created: {0}."
@@ -1850,7 +1857,7 @@ msgstr "Uporabnik {0.name} odstranil iz {group}."
 
 #: apps/amo/log.py:543
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Minimalne zahteve za {addon} je ročno spremenil recenzent."
+msgstr "Recenzent je ročno spremenil minimalne zahteve za {addon}."
 
 #: apps/amo/log.py:544
 msgid "Requirements Changed by Reviewer"
@@ -1993,7 +2000,7 @@ msgstr "Razširitve"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Želite urediti bolj po svoje? Poskusite <b>Kompletne Teme</b>"
+msgstr "Želite urediti bolj po svoje? Poskusite <b>celotne teme</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
@@ -2015,7 +2022,7 @@ msgstr "Moji najljubši dodatki"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr "Dodatki za Mobile"
+msgstr "Dodatki za mobilne naprave"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176 templates/menu_links.html:10
 msgid "Search Tools"
@@ -2024,11 +2031,13 @@ msgstr "Orodja za iskanje"
 #. This is a page range (e.g., Page 1 of 50).
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr ""
+"Stran <a href=\"%(current_pg_url)s\">%(current_pg)s</a> od <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 apps/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr "Jump to first page"
+msgstr "Skoči na prvo stran"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:48 apps/stats/templates/stats/stats.html:156
@@ -2040,7 +2049,7 @@ msgstr "Nazaj"
 #.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
+msgstr "Prikaz <b>%(begin)s</b>&ndash;<b>%(end)s</b> od <b>%(count)s</b>"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
@@ -2397,18 +2406,18 @@ msgstr "Izbriši zbirko"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "Tem v tej zbirki %(num)s"
-msgstr[1] "Tem v tej zbirki %(num)s"
-msgstr[2] "Tem v tej zbirki %(num)s"
-msgstr[3] "Tem v tej zbirki %(num)s"
+msgstr[0] ""
+msgstr[1] "%(num)s tema v tej zbirki"
+msgstr[2] "%(num)s tem v tej zbirki"
+msgstr[3] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "Dodatkov v tej zbirki %(num)s"
-msgstr[1] "Dodatkov v tej zbirki %(num)s"
-msgstr[2] "Dodatkov v tej zbirki %(num)s"
-msgstr[3] "Dodatkov v tej zbirki %(num)s"
+msgstr[0] "%(num)s dodatek v tej zbirki"
+msgstr[1] "%(num)s dodatkov v tej zbirki"
+msgstr[2] "%(num)s dodatkov v tej zbirki"
+msgstr[3] "%(num)s dodatkov v tej zbirki"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
@@ -2802,19 +2811,27 @@ msgstr "Kaj to pomeni?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:22
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "Uporabnikom se resno svetuje, da problematični dodatek ali vstavek deaktivirajo, vendar se lahko odločijo, da ga bodo še naprej uporabljali, če sprejmejo opisana tveganja."
+msgstr ""
+"Uporabnikom se resno svetuje, da problematični dodatek ali vtičnik "
+"onemogočijo, vendar se lahko odločijo, da ga bodo še naprej uporabljali, če "
+"sprejmejo opisana tveganja."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "Problematičen dodatek ali vstavek bo samodejno onemogočen in ne bo več uporaben."
+msgstr ""
+"Problematičen dodatek ali vtičnik bo samodejno onemogočen in ne bo več "
+"uporaben."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Ko Mozilla zve, da kak dodatek, vstavek ali druga programska oprema iz tretje roke resno ogroža varnost, stabilnost, ali delo z %(app)s in izpolnjuje <a href=\"%(criteria)s\"> določena merila </a>, "
-"lahko programsko opremo onemogoči za splošno rabo. Za več o tem preberite <a href=\"%(support)s\"> ta članek za podporo</a>."
+"Ko Mozilla zve, da kak dodatek, vtičnik ali druga programska oprema iz "
+"tretje roke resno ogroža varnost, stabilnost, ali delo z %(app)s in "
+"izpolnjuje <a href=\"%(criteria)s\">določena merila</a>, lahko programsko "
+"opremo onemogoči za splošno rabo. Za več o tem preberite <a href=\"%"
+"(support)s\"> ta članek za podporo</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -2836,7 +2853,7 @@ msgstr "%s Dodatki"
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:113
 msgid "%s Themes"
-msgstr "%s Teme"
+msgstr "%s teme"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
@@ -2862,7 +2879,7 @@ msgstr "Iskalniki"
 
 #: apps/browse/views.py:56 apps/browse/views.py:66 apps/search/forms.py:86
 msgid "Most Users"
-msgstr "Most Users"
+msgstr "Največ uporabnikov"
 
 #: apps/browse/views.py:62 apps/browse/views.py:73 apps/browse/views.py:277 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:93
@@ -2996,68 +3013,68 @@ msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_f
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
-msgstr "Celotne Teme"
+msgstr "Celotne teme"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr "Most Popular Extensions"
+msgstr "Najbolj priljubljene razširitve"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr "Top-Rated Extensions"
+msgstr "Najbolje ocenjene razširitve"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr "Newest Extensions"
+msgstr "Najnovejše razširitve"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr "Extensions by Name"
+msgstr "Razširitve po imenu"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensions by Weekly Downloads"
+msgstr "Razširitve po prenosih na teden"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr "Recently Updated Extensions"
+msgstr "Nedavno posodobljene razširitve"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr "Up & Coming Extensions"
+msgstr "Razširitve na obzorju"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr "Predstavljene Celotne Teme"
+msgstr "Predstavljene Celotne teme"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr "Najbolj priljubljene Celotne Teme"
+msgstr "Najbolj priljubljene Celotne teme"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr "Najbolje ocenjene Celotne Teme"
+msgstr "Najbolje ocenjene Celotne teme"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr "Najnovejše Celotne Teme"
+msgstr "Najnovejše Celotne teme"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr "Celotne Teme po imenu"
+msgstr "Celotne teme po imenu"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Celotne Teme po številu prenosov na teden"
+msgstr "Celotne teme po številu prenosov na teden"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr "Pred kratkim posodobljene Celotne Teme"
+msgstr "Pred kratkim posodobljene Celotne teme"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr "Celotne Teme na obzorju"
+msgstr "Celotne teme na obzorju"
 
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -3074,12 +3091,12 @@ msgstr "Ni najti rezultatov"
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr "{0} Tem"
+msgstr "{0} tem"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr "Teme - {0}'"
+msgstr "Teme - {0}"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
@@ -3087,7 +3104,7 @@ msgstr "Prikaži profil"
 
 #: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
 msgid "Create Your Own Theme"
-msgstr "Ustvarite si svojo lastno Temo"
+msgstr "Ustvarite si svojo lastno temo"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
@@ -3112,7 +3129,9 @@ msgstr "Ogled vseh dodatkov Najbolje Ocenjeni"
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
-"Več kot 300,000 dizajnov, s katerimi si lahko preoblečete svoj brskalnik! Premaknite miško prek  Teme za ozadje, da si jo ogledate. <a href=\"%(url)s\" class=\"more-info\">Začnite raziskovati</a>"
+"Več kot 300,000 dizajnov, s katerimi si lahko preoblečete svoj brskalnik! "
+"Premaknite miško prek teme za ozadje, da si jo ogledate. <a href=\"%(url)s\" "
+"class=\"more-info\">Začnite raziskovati</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
@@ -3121,7 +3140,10 @@ msgstr "Želite večjo prilagodljivost?"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Celotne Teme spremenijo videz brskalnika s slogi, za okenski okvir, naslovno vrstico, gumbe, zavihke in menije. <a href=\"%(url)s\" class=\"more-info\">Začnite raziskovati</a>"
+msgstr ""
+"Celotne teme spremenijo videz brskalnika s slogi za okenski okvir, naslovno "
+"vrstico, gumbe, zavihke in menije. <a href=\"%(url)s\" class=\"more-"
+"info\">Začnite raziskovati</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -3141,7 +3163,7 @@ msgstr "Zlahka uporabne teme za Firefox"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr "Teme dalje"
+msgstr "Več tem"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
@@ -3285,7 +3307,7 @@ msgstr "Uspeh"
 
 #: apps/compat/templates/compat/reporter_detail.html:56
 msgid "Problem"
-msgstr "Problem"
+msgstr "Težava"
 
 #: apps/compat/templates/compat/reporter_detail.html:82
 msgid "No reports found."
@@ -3415,7 +3437,7 @@ msgstr "Dodatek"
 
 #: apps/constants/base.py:161
 msgid "Complete Theme"
-msgstr "Celotna Tema"
+msgstr "Celotna tema"
 
 #: apps/constants/base.py:163
 msgid "Search Engine"
@@ -3431,7 +3453,7 @@ msgstr "Jezikovni paket (dodatek)"
 
 #: apps/constants/base.py:166
 msgid "Plugin"
-msgstr "Vstavek"
+msgstr "Vtičnik"
 
 #: apps/constants/base.py:167 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
@@ -3454,7 +3476,7 @@ msgstr "Jezikovni paketi (dodatek)"
 
 #: apps/constants/base.py:179
 msgid "Plugins"
-msgstr "Vstavki"
+msgstr "Vtičniki"
 
 #: apps/constants/base.py:244
 msgid "Free"
@@ -3474,7 +3496,7 @@ msgstr "Brezplačno z in-app plačili"
 
 #: apps/constants/base.py:248
 msgid "I'll use my own system for in-app payments"
-msgstr "za plačila bom rabil svoj lasten sistem  znotraj programa"
+msgstr "Za plačila bom rabil svoj lasten sistem znotraj programa"
 
 #: apps/constants/base.py:304
 msgid "Only ask on this add-on's page and developer profile"
@@ -3546,7 +3568,7 @@ msgstr "Posodbljena recenzija jezikovnega paketa"
 
 #: apps/constants/base.py:427
 msgid "Theme Review"
-msgstr "Pregled Teme"
+msgstr "Pregled teme"
 
 #: apps/constants/base.py:428
 msgid "Full Search Provider Review"
@@ -3562,15 +3584,15 @@ msgstr "Posodobljena recenzija ponudnika za iskanje<"
 
 #: apps/constants/base.py:431
 msgid "Complete Theme Review"
-msgstr "Pregled Celotne Teme"
+msgstr "Pregled Celotne teme"
 
 #: apps/constants/base.py:432
 msgid "Preliminary Complete Theme Review"
-msgstr "Predhodna recenzija Celotne Teme"
+msgstr "Predhodna recenzija Celotne teme"
 
 #: apps/constants/base.py:433
 msgid "Updated Complete Theme Review"
-msgstr "Posodobljena recenzija Celotne Teme"
+msgstr "Posodobljena recenzija Celotne teme"
 
 #: apps/constants/base.py:434
 msgid "Moderated Addon Review"
@@ -4132,7 +4154,7 @@ msgstr "Validiraj dodatek"
 
 #: apps/devhub/views.py:534
 msgid "Check Add-on Compatibility"
-msgstr "Check Add-on Compatibility"
+msgstr "Preveri združljivost dodatka"
 
 #: apps/devhub/views.py:657
 msgid "There was an error with the submission."
@@ -4148,16 +4170,16 @@ msgstr "Ikone ne morejo biti animirane."
 
 #: apps/devhub/views.py:1021
 msgid "Images cannot be animated."
-msgstr "Images cannot be animated."
+msgstr "Slike ne morejo biti animirane."
 
 #: apps/devhub/views.py:1034
 msgid "Images cannot be larger than %dKB."
-msgstr "Images cannot be larger than %dKB."
+msgstr "Slike ne morejo biti večje od %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: apps/devhub/views.py:1044
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
+msgstr "Slike morajo biti široke natanko {0} pikslov in visoke {1} pikslov."
 
 #: apps/devhub/views.py:1048
 msgid "There was an error uploading your preview."
@@ -4173,7 +4195,9 @@ msgstr "Različica %s izbrisana."
 
 #: apps/devhub/views.py:1159
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "Ta prenos pri validiranju ni uspel, lahko da rezultati validiranja niso v celoti na razpolago.   Bodite pri njih pregledu na to pozorni. ."
+msgstr ""
+"Ta prenos pri validiranju ni uspel, lahko da rezultati validiranja niso v "
+"celoti na razpolago. Bodite pozorni, ko jih boste pregledovali."
 
 #: apps/devhub/views.py:1555
 msgid "Preliminary Review Requested."
@@ -4278,7 +4302,7 @@ msgstr "Prijavite dodatek"
 #: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:37 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
-msgstr "Status:"
+msgstr "Stanje:"
 
 #: apps/devhub/templates/devhub/index.html:54
 msgid "Latest Version:"
@@ -5068,7 +5092,7 @@ msgstr "Vrh"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr "Zbriši Temo"
+msgstr "Zbriši temo"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "Delete Add-on"
@@ -5305,7 +5329,8 @@ msgstr "<a href=\"{0}\">Naloži</a> drugo za platformo specifično datoteko za t
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:40
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Dodajte še druge podrobnosti, s tem da  <a href=\"{0}\">uredite objavo</a>."
+msgstr ""
+"Dodajte še druge podrobnosti, s tem da <a href=\"{0}\">uredite objavo</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
@@ -5504,7 +5529,7 @@ msgstr "S katero platformo je ta datoteka v skladu?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
 msgid "Which mobile platforms is this file compatible with?"
-msgstr "S katerimi mobilnimi platformami je ta datoteka v skladu?"
+msgstr "S katerimi mobilnimi platformami je ta datoteka združljiva?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
@@ -6060,7 +6085,9 @@ msgstr "Druge vrste dodatkov"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12 apps/devhub/templates/devhub/docs/how-to.html:128
 msgid "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-ons here."
-msgstr "Tu boste našli informacije o iskalnikih, o sistemu jetpack, o Temah in o drugih vrstah dodatkov."
+msgstr ""
+"Tu boste našli informacije o iskalnikih, o sistemu Jetpack, o temah in o "
+"drugih vrstah dodatkov."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
 msgid "Jetpack"
@@ -6084,39 +6111,42 @@ msgstr "Če delate z JetPack, je obvezno, da imate dokumentacijo za Jetpack API.
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
-msgstr "Kako ustvariti Teme"
+msgstr "Kako ustvariti teme"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr "Oglejte si, kako ustvarite svojo lastno Temo, v tem uradnem sprehodu skozi njih razvoj."
+msgstr "Oglejte si, kako ustvarite svojo lastno temo, v teh uradnih navodilih."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
 msgid "Search Plug-ins"
-msgstr "Vstavki za iskanje"
+msgstr "Vtičniki za iskanje"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
 msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr "Ustvarjanje vstavkov OpenSearch za Firefox"
+msgstr "Ustvarjanje vtičnikov OpenSearch za Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
 msgid "This article explains the structure and requirements of search plug-ins in Firefox."
-msgstr "Ta članek razloži strukturo in zahteve za vstavke za iskanje v Firefoxu."
+msgstr ""
+"Ta članek razloži strukturo in zahteve za vtičnike za iskanje v Firefoxu."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
 msgid "Plug-ins"
-msgstr "Vstavki"
+msgstr "Vtičniki"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
 msgid "Plug-in Documentation Index"
-msgstr "Vstavek Kazalo dokumentacije"
+msgstr "Kazalo dokumentacije o vtičnikih"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
 msgid ""
 "Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in "
 "documentation index to learn more."
 msgstr ""
-"Vstavki za aplikacije Mozille so binarni sestavni deli, ki lahko prikazujejo vsebino, ki je aplikacija sama od sebe ni sposobna prikazovati. Raziščite Kazalo za dokumentacijo o vstavkih pri "
-"Razvojnem Centru Mozille, če želite izvedeti več."
+"Vtičniki za aplikacije Mozille so binarni sestavni deli, ki lahko "
+"prikazujejo vsebino, ki je aplikacija sama ni sposobna prikazovati. "
+"Raziščite Kazalo za dokumentacijo o vtičnikih pri Razvojnem Centru Mozille, "
+"če želite izvedeti več."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3 apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
@@ -6179,7 +6209,7 @@ msgstr "Če še niste našli, kar iščete še, poskusite oddelek s temami Razvo
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:3 apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:7
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:9 apps/devhub/templates/devhub/docs/how-to.html:21
 msgid "Thunderbird & Mobile Add-ons"
-msgstr "Thunderbird & Mobile Add-ons"
+msgstr "Thunderbird & Mobilni dodatki"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
 msgid "Add-ons aren't just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
@@ -6305,7 +6335,7 @@ msgstr "Uredniške pristojnosti glede dodatkov"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr "amo-editors at mozilla dot org"
+msgstr "amo-editors afna mozilla pika org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid ""
@@ -6321,7 +6351,7 @@ msgstr "Ranljivosti dodatkov na področju varnosti"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "marketplace-staff at mozilla dot org"
-msgstr "marketplace-staff at mozilla dot org"
+msgstr "marketplace-staff afna mozilla pika org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6556,8 +6586,11 @@ msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
-"<strong>Najbolj pomembno</strong> pa je, da da mora dodatek biti privlačen za čim večji krog uporabnike Firefox in da je izjemen v skoraj vseh pogledih: s stališča izkušenj uporabnikov, "
-"zmogljivosti, varnosti, koristnosti ali vrednosti kot razvedrilo."
+"<strong>Najbolj pomembno</strong> pa je, da mora dodatek biti privlačen za "
+"čim večji krog uporabnikov Firefoxa in da je izjemen v skoraj vseh pogledih: "
+"s stališča izkušenj uporabnikov, zmogljivosti, varnosti, koristnosti ali "
+"vrednosti kot razvedrilo. Izbrane celotne teme morajo biti tudi na videz "
+"privlačne."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6565,7 +6598,7 @@ msgstr "Kako se dodatek imenuje"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "amo-featured at mozilla dot org"
-msgstr "amo-featured at mozilla dot org"
+msgstr "amo-featured afna mozilla pika org"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
@@ -6965,11 +6998,19 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p> Kadarkoli kak dodatek vsebuje nepričakovano* funkcijo, ki </p> <ul> <li> kompromitira zasebnost ali varnost uporabnika uporabnika zasebnosti ali varnosti (kot je recimo pošiljanje podatkov "
-"tretjim osebam), </li> <li> spremeni privzete nastavitve, kot sta domača stran ali privzeti iskalnik, ali </li> <li> spremeni nastavitve ali funkcije v drugih dodatkih ali pa jih celo onesposobi </"
-"li> </ul> <p>mora funkcija mora upoštevati naslednje zahteve: </p> <ul> <li> v opisu dodatka mora biti jasno navedeno, kakšne spremembe dodatek naredi. </li> <li> Vse spremembe morajo biti opt-in, "
-"kar pomeni, da mora uporabnik izvesti možnost, ki ni prednastavljena, da sprejme spremembo . </li> <li> V dvogovoru za opt-in mora biti jasno navedeno ime dodatka, ki zahteva spremembo. </li> <li> "
-"Odstranitev dodatka obnovi uporabnikove prvotne nastavitve, če so bile spremenjene. < /li> </ul> <p> * Nepričakovane funkcije so funkcije, ki niso povezane z osnovno funkcijo dodatka.</p>"
+"<p> Kadarkoli kak dodatek vsebuje nepričakovano* funkcijo, ki </p> <ul> "
+"<li>kompromitira zasebnost ali varnost uporabnika (npr. pošilja podatke "
+"tretjim osebam),</li> <li>spremeni privzete nastavitve, kot sta domača stran "
+"ali privzeti iskalnik, ali</li> <li>spremeni nastavitve ali funkcije v "
+"drugih dodatkih ali pa jih celo onemogoči</li> </ul> <p>mora funkcija "
+"upoštevati naslednje zahteve:</p> <ul> <li>V opisu dodatka mora biti jasno "
+"navedeno, kakšne spremembe dodatek naredi.</li> <li> Vse spremembe morajo "
+"biti opt-in, kar pomeni, da mora uporabnik izvesti možnost, ki ni privzeta, "
+"da sprejme spremembo.</li> <li>V pogovornem oknu za opt-in mora biti jasno "
+"navedeno ime dodatka, ki zahteva spremembo.</li> <li>Odstranitev dodatka "
+"mora obnoviti uporabnikove prvotne nastavitve, če so bile spremenjene.</li> "
+"</ul> <p>* Nepričakovane funkcije so funkcije, ki niso povezane z osnovno "
+"funkcijo dodatka.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -7024,8 +7065,10 @@ msgid ""
 "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
 "and unrestricted:"
 msgstr ""
-"Dodatki, ki se jih gostuje na na Mozilli. bi morali biti visoke kakovosti in omogočati uporabnikom lažje in ugodnejše delo na spletu. Ko se odločamo o tem, ali je kak dodatek primeren za javno "
-"distribucijo brez omejitev, upoštevamo naslednje stvari:"
+"Dodatki, ki se jih gostuje na Mozilli, bi morali biti visoke kakovosti in "
+"omogočati uporabnikom lažje in ugodnejše delo na spletu. Ko se odločamo o "
+"tem, ali je kak dodatek primeren za javno distribucijo brez omejitev, "
+"upoštevamo naslednje stvari:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid ""
@@ -7492,8 +7535,10 @@ msgid ""
 "Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added "
 "every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
 msgstr ""
-"Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added "
-"every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
+"Teme za ozadje so preobleke, preproste za namestitev in uporabo, ki "
+"spremenijo videz vašega Firefoxa. Skupnost je ustvarila stotisoče tem, med "
+"katerimi lahko izbirate, in vsak dan nastanejo nove. <a href=\"%"
+"(browse_url)s\">Tu začnite iskati zasnove, ki so po vaši meri.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:61
 msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
@@ -8234,11 +8279,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr ""
+msgstr "Glava v čakanju"
 
 #: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
-msgstr ""
+msgstr "Noga v čakanju"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
 msgid "You may update your theme design here once it has been approved."
@@ -8576,7 +8621,7 @@ msgstr "Izbriši različico"
 
 #: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Disable Version"
-msgstr ""
+msgstr "Onemogoči različico"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
@@ -8677,21 +8722,25 @@ msgstr "Nekaj prima dodatkov za Thunderbird."
 
 #: apps/discovery/modules.py:218
 msgid "Sit Back and Relax"
-msgstr "Sit Back and Relax"
+msgstr "Naslonite se nazaj in se sprostite"
 
 #: apps/discovery/modules.py:219
 msgid "Add-ons that help you on your travels!"
-msgstr "Add-ons that help you on your travels!"
+msgstr "Dodatki, ki vam pomagajo na potovanjih!"
 
 #: apps/discovery/modules.py:223
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Displays a country flag depicting the location of the current website's server and more."
+msgstr ""
+"Prikaže zastavo države, ki ponazarja lokacijo strežnika trenutne strani, in "
+"še več."
 
 #: apps/discovery/modules.py:225
+#, fuzzy
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "FoxClocks let you keep an eye on the time around the world."
 
 #: apps/discovery/modules.py:227
+#, fuzzy
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr "Automatically get the lowest price when you shop online or search for flights."
 
@@ -9153,19 +9202,19 @@ msgstr[3] "{0} minuti"
 #: apps/editors/helpers.py:252
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] "{0} hour"
-msgstr[1] "{0} hours"
-msgstr[2] "{0} hours"
-msgstr[3] "{0} hours"
+msgstr[0] ""
+msgstr[1] "{0} ura"
+msgstr[2] "{0} ur"
+msgstr[3] ""
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:256
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "{0} day"
-msgstr[1] "{0} days"
-msgstr[2] "{0} days"
-msgstr[3] "{0} days"
+msgstr[0] ""
+msgstr[1] "{0} dan"
+msgstr[2] "{0} dni"
+msgstr[3] ""
 
 #: apps/editors/helpers.py:397
 msgid "Push to public"
@@ -9185,7 +9234,7 @@ msgstr "Dovoli predhodni pregled"
 
 #: apps/editors/helpers.py:421
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "To bo označilo datoteke kot predhodno pregledane."
 
 #: apps/editors/helpers.py:423
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
@@ -9262,11 +9311,11 @@ msgstr "Dodatek Jetpack"
 
 #: apps/editors/models.py:175
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Dodatek brez ponovnega zagona"
 
 #: apps/editors/models.py:176
 msgid "More Information Requested"
-msgstr "Potrebno je več informacije"
+msgstr "Potrebnih je več informacij"
 
 #: apps/editors/models.py:177
 msgid "Contains Editor Comment"
@@ -9278,11 +9327,11 @@ msgstr "Podvojena oddaja"
 
 #: apps/editors/tasks.py:80
 msgid "Thanks for submitting your Theme"
-msgstr "Hvala za oddano Temo"
+msgstr "Hvala za oddano temo"
 
 #: apps/editors/tasks.py:84
 msgid "A problem with your Theme submission"
-msgstr "Problem z oddano Temo"
+msgstr "Težava pri oddaji teme"
 
 #: apps/editors/tasks.py:88
 msgid "Theme submission flagged for review"
@@ -9306,7 +9355,7 @@ msgstr "Zapadlo (Več kot 10 dni)"
 
 #: apps/editors/views.py:452
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Prišlo je do neznane napake"
 
 #: apps/editors/views.py:482
 msgid "Self-reviews are not allowed."
@@ -9413,7 +9462,7 @@ msgstr "Dogodek"
 
 #: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:129
 msgid "More details."
-msgstr "More details."
+msgstr "Več podrobnosti."
 
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
@@ -9425,7 +9474,7 @@ msgstr "Podrobnosti dnevnika"
 
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
-msgstr "Log details"
+msgstr "Podrobnosti dnevnika"
 
 # 84%
 # 100%
@@ -9489,7 +9538,7 @@ msgstr "Novi uredniki"
 
 #: apps/editors/templates/editors/home.html:75 apps/editors/templates/editors/home.html:90
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Vi ste {0}. z {1} pregledi"
 
 # 87%
 # 100%
@@ -9561,7 +9610,7 @@ msgstr "Ta mesec"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Letos"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -9667,11 +9716,11 @@ msgstr "Združljivost:"
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "Dodatni viri:"
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Download files"
-msgstr ""
+msgstr "Prenos datotek"
 
 #: apps/editors/templates/editors/review.html:129
 msgid "This version has not been reviewed."
@@ -9783,11 +9832,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Top recenzenti (zadnjih 7 dni)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Top recenzentov še ni."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -9796,7 +9845,7 @@ msgstr "Ves čas"
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Imate <span>{0}</span> točk."
 
 # 88%
 #: apps/editors/templates/editors/includes/search_results_themes.html:6 apps/editors/templates/editors/themes/history_table.html:7 apps/editors/templates/editors/themes/logs.html:19
@@ -9806,15 +9855,15 @@ msgstr "Recenzent"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Izbrisane teme"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Datum izbrisa"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Ni najdenih tem za to časovno obdobje."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -9898,7 +9947,7 @@ msgstr "Vaša zgodovina pregledov"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Oddaj pregled"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
@@ -9992,11 +10041,11 @@ msgstr "Ta datoteka ne obstaja več."
 #. L10n: {0} is the file size limit of the file viewer.
 #: apps/files/helpers.py:165
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Velikost datoteke presega mejo {0}."
 
 #: apps/files/helpers.py:179
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Težave pri dekodiranju {0}."
 
 #: apps/files/helpers.py:190
 msgid "This file is not viewable online. Please download the file to view the contents."
@@ -10020,11 +10069,11 @@ msgstr "Prenesene datoteke ni bilo mogoče razčleniti."
 
 #: apps/files/utils.py:282
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Neveljavno ime datoteke v arhivu: {0}"
 
 #: apps/files/utils.py:290
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Datoteka v arhivu presega omejitev velikosti: {0}"
 
 #: apps/files/utils.py:340
 msgid "Invalid archive."
@@ -10273,107 +10322,148 @@ msgstr "Ime lokale"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "O Mozillinih dodatkih"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "Kaj je to spletno mesto?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, znano kot \"AMO\", je Mozillino uradno spletno mesto "
+"dodatkov za Mozilline programe, kot so Firefox, Thunderbird in SeaMonkey. "
+"Dodatki vam omogočajo dodati nove funkcije in spremeniti delovanje svojega "
+"brskalnika oz. aplikacije. Razglejte se naokoli in raziščite tisoče načinov, "
+"da si prilagodite način uporabe spleta."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Kdo izdeluje te dodatke?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Dodatke na tej strani ustvarjajo tisoči razvijalcev v naši skupnosti, od "
+"posameznih ljubiteljskih razvijalcev do velikih korporacij. Vse dodatke, ki "
+"so na voljo za javnost, pregleda ekipa urednikov, preden so izdani. Dodatki, "
+"označeni kot eksperimentalni, niso bili pregledani, zato bodite previdni "
+"pri namestitvi."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Kako lahko sledim dogajanju na AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
+"Obstaja veliko načinov, da ostanete na tekočem z novicami iz sveta dodatkov:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
 msgstr ""
+"Naš <a href=\"%(url)s\">blog dodatkov</a> je redno posodobljen z informacijami "
+"za navdušence za dodatke in za razvijalce."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"Novice, namige in trike pogosto objavimo na našem Twitter računu, <a href=\"%"
+"(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Naši <a href=\"%(url)s\">forumi</a> so mesto, kjer ste lahko v stiku s "
+"skupnostjo za dodatke in razpravljate o prihajajočih spremembah AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Sliši se krasno! Kako se lahko pridružim?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
+"Obstaja veliko načinov, da se nam pridružite. Če ste tehnični navdušenec:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Ustvarite svoj lastni dodatek</a>. Nudimo vam brezplačno "
+"gostovanje in storitev posodabljanja ter vam pomagamo doseči veliko "
+"uporabnikov."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
 msgstr ""
+"Če imate izkušnje z razvojem dodatkov, <a href=\"%(url)s\">postanite "
+"recenzent</a>! Naši recenzenti so ljubitelji dodatkov s tehničnim ozadjem, "
+"ki preverjajo kakovost in stabilnost kode dodatka."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
 msgstr ""
+"Pomagajte izboljšati to spletno mesto. Je odprtokodno, zato lahko poročate o "
+"napakah in prispevate popravke. <a href=\"%(url)s\">Bugzilla</a> vsebuje vsa "
+"trenutna poročila o napakah."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
+"Če vas dodatki zanimajo, vendar niste tako tehnično podprti, nam lahko "
+"pomagate tudi na druge načine:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Povejte prijateljem! Pokažite ljudem, katere dodatke uporabljate."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Sodelujte v naših <a href=\"%(url)s\">forumih</a>."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Preglejte ddatke na strani. Avtorji dodatkov bodo verjetno izboljševali "
+"svoje dodatke in dodajali nove, ko bodo videli, da uporabniki cenijo njihovo "
+"delo."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "Imam vprašanje"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"Mesto, kjer lahko najdete odgovor, je <a href=\"%(faq_url)s\"><abbr "
+"title=\"Pogosto zastavljena vprašanja\">FAQ</abbr></a>. Če tam ne najdete "
+"odgovora, lahko <a href=\"%(forum_url)s\">zastavite vprašanje na naših "
+"forumih</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Če resnično morate stopiti v stik z nekom iz Mozilline ekipe, obiščite našo "
+"stran s <a href=\"%(url)s\">podatki za kontakt</a>."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Kdo dela na tem spletnem mestu?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Skozi leta je k temu spletnemu mestu prispevalo veliko ljudi, to so "
+"prostovoljci iz skupnosti kot tudi posvečena ekipa AMO. Seznam pomembnejših "
+"sodelavcev najdete na naši strani <a href=\"%(url)s\">Zasluge za stran</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -10469,8 +10559,11 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
+"Nekatere ikone, ki jih uporabljamo, so iz <a "
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">seta ikon famfamfam "
+"Silk</a>, pod licenco <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution 2.5 License</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
@@ -10534,6 +10627,7 @@ msgid "Add-on Developer FAQ"
 msgstr "Pogosta vprašanja za razvijalce dodatkov"
 
 #: apps/pages/templates/pages/dev_faq.html:48
+#, fuzzy
 msgid ""
 "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the Mozilla Developer Center. The tutorial, <a href=\"%(url)s\">Building an Extension</a>, will "
 "help explain how to setup your work environment and move forward with creating an add-on. </p>"
@@ -10562,10 +10656,13 @@ msgid ""
 "You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
 "targeted for:"
 msgstr ""
+"Imeti boste morali različico Mozillinega programa, za katerega izdelujete "
+"dodatek, in urejevalnik kode po vaši izbiri. Dodatke lahko ustvarite za "
+"skoraj vse Mozilline programe, vendar so v prvi vrsti namenjeni za:"
 
 #: apps/pages/templates/pages/dev_faq.html:89
 msgid "Popular code editors include:"
-msgstr "Priljubljeni uredniki kod so:"
+msgstr "Priljubljeni urejevalniki kod so na primer:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: apps/pages/templates/pages/dev_faq.html:92
@@ -10605,6 +10702,11 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML User Interface Language) je Mozillin jezik na osnovi XML, ki vam "
+"omogoča ustvariti aplikacije z bogato funkcionalnostjo in neodvisno od "
+"platforme. Ponuja komponente, kot so gumbi, meniji, orodne vrstice, drevesa "
+"itd., s katerimi lahko obogatite dodatke tako, da spremenite dele "
+"uporabniškega vmesnika brskalnika."
 
 #: apps/pages/templates/pages/dev_faq.html:134
 msgid "What is the \"install.rdf\" file used for?"
@@ -10733,7 +10835,7 @@ msgstr "Novičarska skupina"
 #. Label for a link to the extension developers Google Group
 #: apps/pages/templates/pages/dev_faq.html:262
 msgid "Google Group"
-msgstr "Google Group"
+msgstr "Google Skupina"
 
 #: apps/pages/templates/pages/dev_faq.html:266
 msgid "Does Mozilla offer development services?"
@@ -11036,7 +11138,9 @@ msgstr "Ali lahko zahtevam, da se recenzijo odstrani, če je negativna?"
 
 #: apps/pages/templates/pages/dev_faq.html:586
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "Ne. Negativnih ocen iz dodatkov ne odstranjujemo, razen če se se ugotovi, da so napačne."
+msgstr ""
+"Ne. Negativnih ocen iz dodatkov ne odstranjujemo, razen če se ugotovi, da so "
+"napačne."
 
 #: apps/pages/templates/pages/dev_faq.html:592
 msgid "Can I request that a review be removed if the review is inaccurate?"
@@ -11130,10 +11234,15 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Celotne teme</a></strong> spremenijo "
+"celoten videz %(app_name)sa, kar običajno vključuje ikone, barve, pogovorna "
+"okna in ostale vizualne sloge."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Teme</a></strong> so lahke teme, ki "
+"prilagodijo orodne vrstice %(app_name)sa s slikami za ozadje."
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -11145,7 +11254,10 @@ msgstr "<strong><a href=\"%(browse_url)s\">Slovarji in jezikovni paketi</a></str
 
 #: apps/pages/templates/pages/faq.html:77
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr "<strong><a href=\"%(browse_url)s\">Vstavki</a></strong> pomagajo, da %(app_name)s lahko prikaže ali razume različne vrste medijev, kot sta na primer Adobe Flash ali Apple Quicktime."
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">Vtičniki</a></strong> pomagajo, da %"
+"(app_name)s lahko prikaže ali razume različne vrste medijev, kot sta na "
+"primer Adobe Flash ali Apple Quicktime."
 
 #: apps/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
@@ -11183,9 +11295,13 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
 "\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"Posodobitve za dodatke se za razliko od vtičnikov samodejno preverja enkrat na dan. Firefox ima privzeto nastavitev, da se posodobitve samodejno namešča. Različice Firefoxa pred 4 (in drugih "
-"aplikacij) vas bodo opozorile, da so za vaše dodatke na voljo posodobitve. <a href=\"%(plugin_url)s\">Vstavkov</a> se zaenkrat ne preverja samodejno, zato priporočamo, da redno obiskujete stran<a "
-"href=\"%(plugincheck_url)s\">Kontrola vstavkov</a> in tako ostanete na tekočem."
+"Posodobitve za dodatke se za razliko od vtičnikov samodejno preverja enkrat "
+"na dan. Firefox ima privzeto nastavitev, da se posodobitve samodejno "
+"namešča. Različice Firefoxa pred 4 (in drugih aplikacij) vas bodo opozorile, "
+"da so za vaše dodatke na voljo posodobitve. Posodobitev <a href=\"%"
+"(plugin_url)s\">vtičnikov</a> se zaenkrat ne preverja samodejno, zato "
+"priporočamo, da redno obiskujete stran<a href=\"%"
+"(plugincheck_url)s\">Preverjanje vtičnikov</a> in tako ostanete na tekočem."
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -11586,8 +11702,10 @@ msgid ""
 "Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important "
 "part of any review."
 msgstr ""
-"Ocene za dodatke naj bodo poštene in dobra slika za njih splošno kvaliteto in koristnost.  Ne dajajte petice samo zato, ker vam je dodatek všeč, ali pa enke, ker ga sovražite. Konzistentno "
-"ocenjevanje je pomemben vidik za vsako recenzijo."
+"Ocene za dodatke naj bodo poštene in dobra slika za njih splošno kvaliteto "
+"in koristnost. Ne dajajte 5 zvezdic samo zato, ker vam je dodatek všeč, ali "
+"pa ene, ker ga sovražite. Dosledno ocenjevanje je pomemben vidik za vsako "
+"recenzijo."
 
 #: apps/pages/templates/pages/review_guide.html:162
 msgid ""
@@ -11659,6 +11777,11 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that "
 "is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"V glavnem ne. Če pa recenzija ne upošteva smernic za recenzije, opisanih "
+"zgoraj, lahko kliknete \"Prijavi to recenzijo\" in zahtevate, da jo recenzent "
+"moderira. Če recenzija vključuje pritožbo, ki ni več veljavna zaradi nove "
+"izdaje dodatka, bomo morda razmislili o izbrisu recenzije. Podrobno zahtevo "
+"pošljite na amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -11839,10 +11962,14 @@ msgstr "Ta pregled je za prejšnjo različico dodatka ({0})."
 #: apps/reviews/templates/reviews/review.html:56
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Ta uporabnik ima <a href=\"%(user_review_url)s\">prejšnjo recenzijo</a> za ta dodatek."
-msgstr[1] "Ta uporabnik ima prejšnje recenzije za ta dodatek.<a href=\"%(user_review_url)s\">%(cnt)s</a>"
-msgstr[2] "Ta uporabnik ima prejšnje recenzije za ta dodatek.<a href=\"%(user_review_url)s\">%(cnt)s</a>"
-msgstr[3] "Ta uporabnik ima prejšnje recenzije za ta dodatek.<a href=\"%(user_review_url)s\">%(cnt)s</a>"
+msgstr[0] ""
+msgstr[1] ""
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">prejšnjo recenzijo</a> za ta "
+"dodatek."
+msgstr[2] ""
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnjih "
+"recenzij</a> za ta dodatek."
+msgstr[3] ""
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -11902,7 +12029,7 @@ msgstr "Pregledov ni najti."
 
 #: apps/reviews/templates/reviews/review_list.html:57
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Povprečje</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
@@ -11963,10 +12090,10 @@ msgstr "Berite daljee&nbsp;&raquo;"
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Glej vse recenzije"
-msgstr[1] "Glej vse recenzije (%(cnt)s)"
+msgstr[0] ""
+msgstr[1] "Glej vse recenzije"
 msgstr[2] "Glej vse recenzije (%(cnt)s)"
-msgstr[3] "Glej vse recenzije (%(cnt)s)"
+msgstr[3] ""
 
 #: apps/search/forms.py:12
 msgid "Most popular this week"
@@ -12015,7 +12142,9 @@ msgstr "Rezultati <strong>{0}</strong>-<strong>{1}</strong> od <strong>{2}</stro
 # {4} is a word (the add-on is tagged with it)
 #: apps/search/helpers.py:44
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "Prikaz {0} - {1} od {2} rezultatov za <strong>{3}</strong> z z oznako <strong>{4}</strong>"
+msgstr ""
+"Prikaz {0} - {1} od {2} rezultatov za <strong>{3}</strong> z oznako "
+"<strong>{4}</strong>"
 
 # {0} is a number
 # {1} is a number
@@ -12058,7 +12187,7 @@ msgstr "Vsi sistemi"
 
 #: apps/search/views.py:603
 msgid "All Tags"
-msgstr "All Tags"
+msgstr "Vse oznake"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/collections.html:8
@@ -12563,11 +12692,20 @@ msgid ""
 "parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
 "sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Sledenje zunanjim virom </h2> <p>Če ste od zunaj, recimo s svpoje spletne strani a z bloga, naredili povezavo na podrobno stran za svoj dodatek ali neposredno na svojo datoteko, lahko dodate "
-"parameter, tako da se povezavi sledi kot  dodatnemu, neodvisnemu viru za prenose. Naslednje povezave bi na primer bile videti, kot da se njih vir nahaja v vašem blogu:<dl> <dt>Stran za podrobnosti "
-"o dodatku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?"
-"src=<b>external-blog</b></dd> </dl> <p>Sledilo se bo samo src parametrom, ki se začnejo z \"\"external-\", v dolžini do 61 dodatnih znakov. Poljubno besedilo po \"\"external-\" se lahko uporablja "
-"za opis vira, kot so \"external-blog\", \"external-sidebar\", \"external-campaign225\", itd. Naslednji za URL-varne znaki so dovoljeni: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Sledenje zunanjim virom</h2> <p>Če ste od zunaj, recimo s svoje spletne "
+"strani ali z bloga, naredili povezavo na stran s podrobnostmi svojega "
+"dodatka ali neposredno na datoteko dodatka, lahko dodate parameter, tako da "
+"se povezavi sledi kot dodatnemu, neodvisnemu viru za prenose. Naslednje "
+"povezave bi na primer bile videti, kot da se njihov vir nahaja v vašem "
+"blogu: <dl> <dt>Stran za podrobnosti o dodatku</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> "
+"<dt>Direktna povezava do datoteke</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%"
+"(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Sledilo se bo samo "
+"src parametrom, ki se začnejo z \"external-\", v dolžini do 61 dodatnih "
+"znakov. Poljubno besedilo po \"external-\" se lahko uporablja za opis vira, "
+"kot so \"external-blog\", \"external-sidebar\", \"external-campaign225\", itd. Za "
+"URL so dovoljeni naslednji znaki: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -12727,7 +12865,9 @@ msgstr ""
 
 #: apps/users/forms.py:485
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "To anonymize, enter a reason for the change but do not change any other field."
+msgstr ""
+"Za anonimizacijo vnesite razlog za spremembo, vendar ne spreminjajte ostalih "
+"polj."
 
 #: apps/users/forms.py:531
 msgid "Please enter at least one name to blacklist."
@@ -12838,7 +12978,7 @@ msgstr "Mozilla želi priti v stik z mano glede novih območij, ki jih je dodala
 
 #: apps/users/notifications.py:160
 msgid "User Notifications"
-msgstr "User Notifications"
+msgstr "Uporabniška obvestila"
 
 #: apps/users/views.py:88
 msgid "An email address is required."
@@ -13096,7 +13236,7 @@ msgstr "Razno"
 
 #: apps/users/templates/users/edit.html:156
 msgid "Decide what collections should be shown in your profile."
-msgstr "Decide what collections should be shown in your profile."
+msgstr "Določite, katere zbirke naj bodo prikazane v vašem profilu."
 
 #: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
@@ -13132,11 +13272,11 @@ msgstr "Posodobi račun"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr "none"
+msgstr "nič"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr "all"
+msgstr "vse"
 
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -13401,9 +13541,9 @@ msgstr "{0} dodatkov"
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] "%(num)s tema"
-msgstr[1] " %(num)s tem "
-msgstr[2] " %(num)s tem "
-msgstr[3] " %(num)s tem "
+msgstr[1] "%(num)s tem"
+msgstr[2] "%(num)s tem"
+msgstr[3] "%(num)s tem"
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
@@ -13577,7 +13717,7 @@ msgstr "Forum"
 
 #: templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Dodatki"
 
 #: templates/header_title.html:10
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
@@ -13690,11 +13830,11 @@ msgstr "Zahtevana polja"
 
 #: templates/mobile/base_addons.html:56
 msgid "Mobile Home"
-msgstr "Mobile Home"
+msgstr "Mobilni dom"
 
 #: templates/mobile/base_addons.html:75
 msgid "View full site"
-msgstr "Prikaži celo spletišče"
+msgstr "Prikaži celo spletno mesto"
 
 #: templates/mobile/base_addons.html:78
 msgid "Legal Notices"
