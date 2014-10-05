@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-18 13:12+0000\n"
+"PO-Revision-Date: 2014-10-05 09:14+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1411045934.0\n"
+"X-POOTLE-MTIME: 1412500473.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12603,6 +12603,9 @@ msgstr "Heslo není povoleno."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Jako součást naší nové politiky hesel vyžadujeme, aby vaše heslo bylo dlouhé "
+"%s  znaků či více. Aktualizujte své heslo pomocí <a href=\"%s\">jeho "
+"obnovy</a>."
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
