@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-25 22:34+0000\n"
+"PO-Revision-Date: 2014-10-06 21:12+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1411684474.0\n"
+"X-POOTLE-MTIME: 1412629961.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3833,7 +3833,7 @@ msgstr "Verzia %s už existuje"
 
 #: apps/devhub/forms.py:564
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "Zvoľte platnú hodnotu. Táto voľba nie je žiadnou z dostupných možností."
 
 #: apps/devhub/forms.py:595
 msgid "You cannot upload any more files for this version."
@@ -3860,7 +3860,6 @@ msgid "A review type must be selected."
 msgstr "Musí byť zvolený typ kontroly."
 
 #: apps/devhub/forms.py:750
-#, fuzzy
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Pomenujte svoj doplnok. Najúspešnejšie doplnky obsahujú vo svojom názve indikáciu toho, na čo slúžia."
 
@@ -4632,9 +4631,11 @@ msgid "Update Compatibility"
 msgstr "Aktualizovať kompatibilitu"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
-#, fuzzy
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Zde upravené informace o aplikaci umožní uživatelům instalovat doplněk i tehdy, když instalační manifest v balíčku uvádí, že je doplněk nekompatibilní."
+msgstr ""
+"Tu zadané informácie o aplikácií umožňujú používateľom nainštalovať doplnok "
+"aj vtedy, keď inštalačný manifest v balíku uvádza, že doplnok nie je "
+"kompatibilný."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -4694,6 +4695,12 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Doplnky môžu mať viac autorov a to v 3 definovaných roliach: </p><ul> "
+"<li><b>Vlastník:</b> Môže spravovať všetko, čo sa týka stránky doplnku, a "
+"pridávať či odoberať iných autorov.</li> <li><b>Vývojár</b> Môže spravovať "
+"všetko, čo sa týka stránky doplnku, s výnimkou pridávania/odoberania autorov "
+"a správy platieb.</li> <li><b>Pozorovateľ:</b> Môže zobraziť nastavenia "
+"doplnku a jeho štatistiky, ale nesmie robiť žiadne zmeny.</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
@@ -4757,6 +4764,9 @@ msgstr "Kategórie sú základným prvkom, podľa ktorého používatelia prehli
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Ak je doplnok pre túto aplikáciu vedený ako odporúčaný, nemôžete meniť jeho "
+"umiestnenie v kategóriách. Ak máte dôvod, prečo chcete kategórie upraviť, "
+"napíšte nám na e-mail <a href=\"mailto:%(email)s\">%(email)s</a>."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
@@ -4775,7 +4785,7 @@ msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:131 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Príklad: dark, cinema, noir. Maximálne 20."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:135
 msgid "Reserved tag:"
@@ -4833,6 +4843,9 @@ msgstr "Ak si prajete zobraziť e-mailovú adresu pre otázky na podporu, zadajt
 #: apps/devhub/templates/devhub/addons/edit/support.html:44
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
+"Ak má váš doplnok stránky podpory, alebo fórum, vložte sem ich adresy. Ak je "
+"vaša webová stránka lokalizovaná do ďalších jazykov, môže byť do tohoto "
+"poľa pridaných viacero jazykových variantov."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4896,9 +4909,10 @@ msgid "Public Stats?"
 msgstr "Zverejniť štatistiky?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:101
-#, fuzzy
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
-msgstr "Zda mohou být informace o stahovanosti a používanosti vašeho doplňku zobrazeny návštěníkům."
+msgstr ""
+"Či môžu byť informácie týkajúce sa preberaní a používanosti vášho doplnku "
+"zobrazované návštevníkom."
 
 # 76%
 #: apps/devhub/templates/devhub/addons/edit/technical.html:105
@@ -4955,10 +4969,11 @@ msgid "Add-on icon"
 msgstr "Ikona doplnku"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
-#, fuzzy
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
-"Nahrajte ikonu pro váš doplněk nebo zvolte jednu ze svých. Ikona je zobrazena prakticky na všech místech, kde je váš doplněk umístěn. Nahrané obrázky musí mít jeden z následujících typů: .png, .jpg"
+"Nahrajte ikonu pre váš doplnok alebo zvoľte jednu zo svojich. Ikona je "
+"zobrazená prakticky na všetkých miestach, kde je váš doplnok umiestnený. "
+"Nahrané obrázky musia mať jeden z nasledujúcich formátov: .png, .jpg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
 msgid "Select an icon for your add-on:"
@@ -4995,9 +5010,8 @@ msgid "Screenshots"
 msgstr "Ukážky"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:88
-#, fuzzy
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Přidejte prosím k vašemu doplňku alespoň jeden obrázek:"
+msgstr "Pridajte prosím k vášmu doplnku aspoň jeden obrázok:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:113
 msgid "Please provide a caption for this screenshot:"
@@ -5051,7 +5065,7 @@ msgstr "Odstrániť doplnok"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Odstránením vašej témy ju trvalo odstránite z tohto webu."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
 msgid ""
