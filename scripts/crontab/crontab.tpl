@@ -25,22 +25,15 @@ HOME=/tmp
 20 */3 * * * %(z_cron)s compatibility_report
 
 #twice per day
-# Use system python to use an older version of sqlalchemy than what is in our venv
-# Add slugs after we get all the new personas.
-# commented out 2013-03-28, clouserw
-#25 10,22 * * * %(z_cron)s addons_add_slugs
-# commented out 2013-03-28, clouserw
-#45 2,14 * * * %(z_cron)s give_personas_versions
 25 16,4 * * * %(z_cron)s update_collections_total
 25 17,5 * * * %(z_cron)s hide_disabled_files
+25 18,6 * * * %(z_cron)s cleanup_image_files
 
 #once per day
 30 9 * * * %(z_cron)s update_user_ratings
 30 12 * * * %(z_cron)s cleanup_synced_collections
 30 14 * * * %(z_cron)s category_totals
 30 15 * * * %(z_cron)s collection_subscribers
-# commented out 2013-03-28, clouserw
-#30 16 * * * %(z_cron)s personas_adu
 30 17 * * * %(z_cron)s share_count_totals
 30 18 * * * %(z_cron)s recs
 0 22 * * * %(z_cron)s gc
