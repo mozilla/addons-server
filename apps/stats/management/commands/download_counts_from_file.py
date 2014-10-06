@@ -1,3 +1,4 @@
+import codecs
 from datetime import datetime, timedelta
 from optparse import make_option
 from os import path, unlink
@@ -95,7 +96,7 @@ class Command(BaseCommand):
         prefixes = DownloadSource.objects.filter(type='prefix').values_list(
             'name', flat=True)
 
-        with open(filepath) as count_file:
+        with codecs.open(filepath, encoding='utf8') as count_file:
             for index, line in enumerate(count_file):
                 if index and (index % 1000000) == 0:
                     log.info('Processed %s lines' % index)
