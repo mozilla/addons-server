@@ -1,3 +1,4 @@
+import codecs
 from datetime import datetime
 
 import commonware.log
@@ -53,7 +54,7 @@ def query_to_file(query, filepath, sep):
             authMechanism=settings.HIVE_CONNECTION['auth_mechanism']) as conn:
         log.info('Storing hive results in %s' % filepath)
         num_reqs = 0
-        with open(filepath, 'w') as f:
+        with codecs.open(filepath, 'w', encoding='utf8') as f:
             with conn.cursor() as cur:
                 cur.execute(query)
                 for row in cur.fetch():

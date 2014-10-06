@@ -1,3 +1,4 @@
+import codecs
 from datetime import datetime, timedelta
 from optparse import make_option
 from os import path, unlink
@@ -87,7 +88,7 @@ class Command(BaseCommand):
 
         index = -1
         for group, filepath in group_filepaths:
-            with open(filepath) as results_file:
+            with codecs.open(filepath, encoding='utf8') as results_file:
                 for line in results_file:
                     index += 1
                     if index and (index % 1000000) == 0:
