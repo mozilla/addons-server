@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-05 21:20+0400\n"
+"PO-Revision-Date: 2014-10-06 18:23+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -8304,12 +8304,11 @@ msgid "Criteria for Featured Add-ons"
 msgstr "Критерии для избранных дополнений"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
-#, fuzzy
 msgid ""
 "Before nominating an add-on to be featured, please ensure it meets the "
 "following criteria:"
 msgstr ""
-"До выдвижения дополнение будет лучшее, убедитесь, что он соответствует "
+"Перед номинацией дополнения в избранные убедитесь, что оно соответствует "
 "следующим критериям:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
@@ -8366,18 +8365,17 @@ msgstr ""
 "совместимы с бета-версиями за 4 недели до их финального релиза."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:51
-#, fuzzy
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal "
 "to Firefox's users and be outstanding in nearly every way: user experience, "
 "performance, security, and usefulness or entertainment value. Featured "
 "complete themes must also be visually appealing."
 msgstr ""
-"< сильный > самое главное < / strong >, дополнения должны иметь широкую "
-"привлекательность для пользователей Firefox и в почти всех отношениях: "
-"Пользовательский опыт, производительность, безопасность и полезность или "
-"развлечения значение. Полный Рекомендуемые темы также должен быть визуально "
-"привлекательным."
+"<strong>Самое важное</strong> - дополнение должно вызывать широкий интерес "
+"со стороны пользователей Firefox и быть выдающимся почти во всех отношениях: "
+"пользовательский интерфейс, производительность, безопасность, быть полезным "
+"или развлекательным. Избранные полные темы также должны быть визуально "
+"привлекательными."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -8444,18 +8442,16 @@ msgstr ""
 "избранных, являются:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:83
-#, fuzzy
 msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a "
 "substantial gain in both downloads and active users. If an add-on is not "
 "demonstrating growth in any substantial way, that's a good indicator the add-"
 "on may not be very useful to our users."
 msgstr ""
-"Отсутствие роста и вашей учётной; Дополнения, которые фигурируют как правило "
-"испытывают существенный выигрыш в неделю и активных пользователей. Если "
-"дополнения не демонстрирует роста в любой существенный путь, что является "
-"хорошим показателем этого дополнения не могут быть очень полезным для наших "
-"пользователей."
+"Отсутствие роста &mdash; Дополнения, попавшие в избранные, как правило "
+"испытывают существенный рост загрузок и активных пользователей. Если "
+"дополнение не демонстрирует существенного роста, это является хорошим "
+"индикатором, что оно может быть не очень полезно для пользователей."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid ""
@@ -8525,7 +8521,6 @@ msgstr ""
 "другой причине, но в целом выбор избранных дополнений зависит от Совета."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:120
-#, fuzzy
 msgid ""
 "This featured policy only applies to the addons.mozilla.org global list of "
 "featured add-ons. Add-ons featured in other locations are often pulled from "
@@ -8534,13 +8529,13 @@ msgid ""
 "defaults, so if a locale has opted to select its own features, some or all "
 "of the global features may not appear in that locale."
 msgstr ""
-"Это Рекомендуемые политика применяется только к глобальному списку addons."
-"mozilla.org Рекомендуемые дополнения. Дополнения в других местах часто "
-"извлекаются из этого списка, но Mozilla могут включать любые дополнения в "
-"других местах без согласия Совета. Кроме того особенности языкового "
-"переопределяют глобальные параметры по умолчанию, так что если локаль решила "
-"выбрать свои собственные особенности, некоторые или все из глобальных "
-"функций могут не отображаться в этой локали."
+"Эта политика избранных дополнений применяется только к глобальному списку "
+"избранных дополнений addons.mozilla.org. Дополнения, избранные в других "
+"местах, часто берутся из этого списка, но Mozilla могут избирать любые "
+"дополнения в других местах без согласия Совета. Кроме того избранные, "
+"специфичные для локали, имеют приоритет над глобальным списком по умолчанию, "
+"так что если локаль решила выбрать свои избранные дополнения, некоторые или "
+"все из глобального списка избранных могут не отображаться в этой локали."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid ""
@@ -9880,7 +9875,6 @@ msgstr ""
 "мгновенно просмотреть дизайн и установить его одним щелчком без перезагрузки."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
-#, fuzzy
 msgid ""
 "In just a few seconds, you can install a theme and transform the look of "
 "your Firefox web browser. Preview any theme by simply mousing over it; the "
@@ -9890,14 +9884,14 @@ msgid ""
 "disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-"
 "ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
-"Всего несколько секунд вы можете установить тему и трансформировать внешний "
-"вид вашего веб-браузера Firefox. Просмотреть все темы, просто мышью над ним; "
-"Дизайн появится в вашем заголовке браузера, так что вы можете «попробовать.» "
-"Когда вы будете готовы, просто нажмите зеленый < код > Добавить в Firefox "
-"< / код > кнопка. После установки темы, он сохраняется в менеджере "
-"дополнений, где вы можете включить или отключить их, как вы пожелаете. "
-"Просто выберите Инструменты < код > < / код > & gt; < код > дополнения < / "
-"код > меню и нажмите на вид < кода > < / код > вкладка."
+"Всего за несколько секунд вы можете установить тему и трансформировать "
+"внешний вид вашего Firefox. Просмотрите любую тему, просто наведя на неё "
+"курсор мыши; её дизайн появится в вашем заголовке браузера, так что вы "
+"можете \"её попробовать.\" Когда вы будете готовы, просто щёлкните по "
+"зеленой кнопке <code>Добавить в Firefox</code> кнопка. После установки темы "
+"она сохранится в Менеджере дополнений, где вы можете включить или отключить "
+"её, если вы пожелаете. Просто выберите меню <code>Инструменты</code> &gt; "
+"<code>Дополнения</code> и нажмите на вкладку <code>Внешний вид</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
@@ -9928,39 +9922,36 @@ msgstr ""
 "<code>Внешний вид</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
-#, fuzzy
 msgid ""
 "Yes. If you have a non-default Complete Theme installed, Firefox will "
 "automatically switch to a default theme in order to allow you to use your "
 "choice of Background Theme designs."
 msgstr ""
-"Да. Если у вас установлен полный тема по умолчанию, Firefox будет "
-"автоматически переключаться на тему по умолчанию позволит вам использовать "
-"ваш выбор конструкций темы фона."
+"Да. Если у вас установлена нестандартная Полная тема, Firefox автоматически "
+"переключится на тему по умолчанию, чтобы позволить вам использовать ваш "
+"дизайн Фоновой темы."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:152
-#, fuzzy
 msgid ""
 "To undo the design you most recently selected, go to <code>Tools</code> &gt; "
 "<code>Add-ons</code> in the menu bar and select the <code>Appearance</code> "
 "tab. Next to the theme you want to undo, click the <code>Disable</code> "
 "button."
 msgstr ""
-"Чтобы отменить дизайн, совсем недавно выбран, перейдите в Инструменты < кода "
-"> < / код > & gt; < код > дополнения < / код > в строке меню и выберите "
-"внешний вид < код > < / код > вкладка. Рядом с темы, которую вы хотите "
-"отменить, щелкните < код > < / отключение код > кнопка."
+"Чтобы отменить установку последнего выбранного вами дизайна, перейдите в "
+"пункт меню <code>Инструменты</code> &gt; <code>Дополнения</code> и выберите "
+"вкладку <code>Внешний вид</code>. Рядом с отменяемой вами темой щёлкните по "
+"кнопке <code>Отключить</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:163
-#, fuzzy
 msgid ""
 "We're always looking for ways to improve themes, and would love to hear what "
 "you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us "
 "your feedback."
 msgstr ""
-"Мы всегда ищем способы улучшить темы и очень хотелось бы услышать, что вы "
-"думаете. Посещение < a href = \"%(for um_url) s» > темы форума < /a > "
-"Отправить нам свой отзыв."
+"Мы всегда ищем способы улучшить темы, и нам хотелось бы услышать, что вы "
+"думаете. Посетите <a href=\"%(forum_url)s\">форум тем</a>, чтобы отправить "
+"нам свой отзыв."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:170
 msgid "Creating Your Own Themes"
@@ -9971,18 +9962,16 @@ msgid "Can I create my own Theme?"
 msgstr "Могу ли я создать свою собственную тему?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:175
-#, fuzzy
 msgid ""
 "Absolutely! All you need to do is create two graphics files in your favorite "
 "graphics editing program (e.g., Photoshop). To get started <a href="
 "\"%(tutorial_url)s\">read more about how to create a theme</a>."
 msgstr ""
-"Абсолютно! Все, что вам нужно сделать, это создать два графических файлов в "
-"вашу любимую программу редактирования (например, Photoshop). Для начала < a "
-"href = \"%(tutor ial_url) s \"> читать далее о том, как создать тему < /a >."
+"Абсолютно! Всё, что вам нужно сделать - это создать два графических файла в "
+"вашем любимом графическом редакторе (например, Photoshop). Для начала <a "
+"href=\"%(tutorial_url)s\">узнайте больше о том, как создать тему</a>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:186
-#, fuzzy
 msgid ""
 "Yes. We are big fans of creativity, but want to ensure that the art "
 "displayed in the Themes gallery meets a basic set of guidelines. Please "
@@ -9990,10 +9979,10 @@ msgid ""
 "and complete language, but the following gives you an overview of the "
 "requirements:"
 msgstr ""
-"Да. Мы большие поклонники творчества, но хотят убедиться, что отображается в "
-"коллекции темы искусства соответствует набор основных руководящих принципов. "
-"Пожалуйста обзор < a href = \"%(tos _url) s» > условия использования < /a > "
-"язык авторитетным и полным, но следующие дает вам обзор требований:"
+"Да. Мы большие поклонники творчества, но хотим убедиться, что исскуство, "
+"отображаемое в галерее Тем, соответствует базовому набору принципов. "
+"Пожалуйста, ознакомьтесь с <a href=\"%(tos_url)s\">Условиями службы</a>, "
+"чтобы узнать полные требования. Ниже приведён обзор требований:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 #, fuzzy
@@ -10009,40 +9998,38 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
 msgstr ""
-"Ваш дизайн не содержит ярко выраженно сексуального или оскорбительного "
+"Ваш дизайн не должен иметь ярко выраженно сексуального или оскорбительного "
 "содержания."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:208
-#, fuzzy
 msgid ""
 "Your design does not include identifiable elements of any non-celebrity "
 "person(s) other than yourself or individuals who have given you permission "
 "to do so."
 msgstr ""
-"Ваш дизайн не включают в себя идентифицировать элементы любого не "
-"знаменитости лица(лиц), кроме себя или лиц, которые дал вам разрешение на "
-"это."
+"Ваш дизайн не должен включать идентифицируемые элементы любого лица, не "
+"относящегося к знаменитостям, кроме себя или лиц, которые дали вам на это "
+"разрешение."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:215
 msgid ""
 "Your design does not depict violence or Nazi imagery, nor is it "
 "discriminatory or hateful."
 msgstr ""
-"Ваш дизайн не изображает насилие, образы нацизма, не призывает к "
+"Ваш дизайн не должен изображать насилие, образы нацизма, не призывать к "
 "дискриминации или ненависти."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:221
 msgid "Your design does not relate to gambling."
-msgstr "Ваш дизайн не относится к азартным играм."
+msgstr "Ваш дизайн не должен относиться к азартным играм."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:226
-#, fuzzy
 msgid ""
 "Your design does not violate any applicable law or regulation or the rights "
 "of any person or entity."
 msgstr ""
-"Ваш дизайн не нарушает любым применимым законодательством или регулирования "
-"или права любого физического или юридического лица."
+"Ваш дизайн не должен нарушать любой применимый закон или регулирование или "
+"права любого физического или юридического лица."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:231
 #, fuzzy
@@ -10063,18 +10050,16 @@ msgstr ""
 "позволяет нам поддерживать целостность сайта."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
-#, fuzzy
 msgid ""
 "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme "
 "designs.</a>"
 msgstr ""
-"< a href = \"%(tutor ial_url) s» > узнать больше о том, как создать "
-"прохладно тему конструкции. < /a >"
+"<a href=\"%(tutorial_url)s\">Узнайте больше о том, как создавать крутые "
+"дизайны тем.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:252
-#, fuzzy
 msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr "Да. Ваша работа будет всегда быть < em > < /em > иллюстрации."
+msgstr "Да. Ваша работа всегда будет <em>вашей</em> работой."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:260
 #, fuzzy
@@ -10092,22 +10077,20 @@ msgstr ""
 "изменения в настройки каждой конструкции."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
-#, fuzzy
 msgid ""
 "The theme you upload may not exceed 300 KB for the header or the footer "
 "image."
 msgstr ""
-"Темы, которые вы загружаете не может превышать 300 КБ, для заголовка или "
-"нижнего колонтитула изображения."
+"Размер темы, которую вы загружаете, не может превышать 300 КБ для верхнего "
+"или нижнего изображения."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:276
-#, fuzzy
 msgid ""
 "Couldn't find the answer you're looking for? Consider visiting the <a href="
 "\"%(support_url)s\">Firefox support</a> website for more help."
 msgstr ""
-"Не мог найти ответ вы ищете? Рассмотрим посещение < a href = \"%(s "
-"upport_url) s» > Firefox поддержка < /a > веб-сайт для получения "
+"Не смогли найти ответ, который вы ищете? Возможно, вам стоит посетить веб-"
+"сайт <a href=\"%(support_url)s\">Поддержки Firefox</a> для получения "
 "дополнительной помощи."
 
 #: apps/devhub/templates/devhub/docs/themes.html:3
@@ -10127,44 +10110,41 @@ msgid "Submit your theme"
 msgstr "Представить вашу тему"
 
 #: apps/devhub/templates/devhub/docs/themes.html:35
-#, fuzzy
 msgid ""
 "Themes are made up of two graphic image files&mdash;a \"header\" image and a "
 "\"footer\" image&mdash;which skin the default Firefox UI background."
 msgstr ""
-"Темы состоят из двух файлов графических изображений и вашей учётной; образ "
-"«заголовок» и «нижний колонтитул» образ и вашей учётной; который кожи по "
-"умолчанию Firefox Пользовательского фона."
+"Темы состоят из двух графических файлов изображений&mdash;\"верхнего\" и "
+"\"нижнего\" изображения&mdash;которые покрывают фон интерфейса Firefox по "
+"умолчанию."
 
 #: apps/devhub/templates/devhub/docs/themes.html:41
-#, fuzzy
 msgid ""
 "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!"
 "</a>"
 msgstr ""
-"< a href = \"%(s ubmit_url) s» > закончил свой дизайн? Вы можете отправить "
-"его прямо сейчас! < /a >"
+"<a href=\"%(submit_url)s\">Закончили свой дизайн? Вы можете представить его "
+"прямо сейчас! </a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:46
 msgid "Creating a Theme Header Image"
 msgstr "Создание верхнего изображения темы"
 
 #: apps/devhub/templates/devhub/docs/themes.html:48
-#, fuzzy
 msgid ""
 "The header image is displayed as the background of the top of the browser "
 "window, nestling in behind the toolbars, address bar, search bar and the tab "
 "strip. It will be <b>anchored to the top-right corner</b> of the browser "
 "window."
 msgstr ""
-"Заголовок изображения отображается в качестве фона в верхней части окна "
-"браузера, птенец в за панель инструментов, адресную строку, панель поиска и "
-"вкладок. Это будет < b > якорь в правом верхнем углу < /b > окна браузера."
+"Верхнее изображение отображается в качестве фона верхней части окна "
+"браузера, находясь за панелями инструментов, адресной строкой, панелями "
+"поиска и вкладок. Оно будет <b>привязано к верхнему правому углу</b> окна "
+"браузера."
 
 #: apps/devhub/templates/devhub/docs/themes.html:57
-#, fuzzy
 msgid "View a sample Theme Header here."
-msgstr "Посмотреть образец заголовка темы здесь."
+msgstr "Посмотреть образец верхнего изображения темы здесь."
 
 #: apps/devhub/templates/devhub/docs/themes.html:59
 #: apps/devhub/templates/devhub/docs/themes.html:130
@@ -10223,49 +10203,44 @@ msgstr ""
 "показывает больше с левой стороны от изображения."
 
 #: apps/devhub/templates/devhub/docs/themes.html:100
-#, fuzzy
 msgid "Online Image Editor Resources"
-msgstr "Онлайн редактор изображений ресурсов"
+msgstr "Некоторые онлайновые редакторы изображений"
 
 #: apps/devhub/templates/devhub/docs/themes.html:103
-#, fuzzy
 msgid ""
 "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and "
 "easy-to-use tools for creating and editing images within a browser."
 msgstr ""
-"< a href = \"%(pixlr _url) s» > Pixlr < /a > & вашей учётной; Pixlr "
-"предлагает профессиональный и простой в использовании инструменты для "
-"создания и редактирования изображений в браузере."
+"<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr предлагает "
+"профессиональные и простые в использовании инструменты для создания и "
+"редактирования изображений внутри браузера."
 
 #: apps/devhub/templates/devhub/docs/themes.html:110
-#, fuzzy
 msgid ""
 "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch "
 "up photos with Photoshop&reg; Express, a free online photo editor."
 msgstr ""
-"< a href = \"%(photos hop_url) s» > Photoshop < /a > & вашей учётной; Tweak, "
-"поворот и ретушировать фотографии с Photoshop & reg; Экспресс, бесплатный "
-"онлайн редактор фотографий."
+"<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash;Изменяйте, вращайте и "
+"ретушируйте фото с Photoshop&reg; Express, бесплатным онлайновым редактором "
+"фотографий."
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
 msgid "Creating a Theme Footer Image"
 msgstr "Создание нижнего изображения темы"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
-#, fuzzy
 msgid ""
 "The footer image is displayed as the background of the bottom of the browser "
 "window, behind the add-on and find bars. It will be anchored to the bottom-"
 "left corner of the browser window."
 msgstr ""
-"Изображение нижнего колонтитула отображается в качестве фона в нижней части "
-"окна браузера, за дополнение и найти бары. Он будет вписываться в нижнем "
-"левом углу окна браузера."
+"Нижнее изображение отображается в качестве фона нижней части окна браузера, "
+"за панелями дополнений и поиска. Оно будет привязано к нижнему левому углу "
+"окна браузера."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
-#, fuzzy
 msgid "View a sample Theme Footer here."
-msgstr "Посмотреть образец колонтитул темы здесь."
+msgstr "Посмотреть образец нижнего изображения темы здесь."
 
 #: apps/devhub/templates/devhub/docs/themes.html:133
 msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
@@ -11764,9 +11739,8 @@ msgid "Get Mobile Add-ons"
 msgstr "Загрузить мобильные дополнения"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
-#, fuzzy
 msgid "Shop smart this holiday season"
-msgstr "Магазин смарт этот курортный сезон"
+msgstr "Умный Шоппинг в этот праздничный сезон"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 #, fuzzy
@@ -13379,10 +13353,10 @@ msgid "This sounds great! How can I get involved?"
 msgstr "Это звучит здорово! Как я могу принять участие?"
 
 #: apps/pages/templates/pages/about.lhtml:40
-#, fuzzy
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr "Есть много способов принять участие. Если вы на технической стороне:"
+msgstr ""
+"Есть много способов принять участие. Если вы знакомы с технической стороной:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 #, fuzzy
