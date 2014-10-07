@@ -933,27 +933,12 @@ class TestStatusFromUpload(TestVersionFromUpload):
     def setUp(self):
         super(TestStatusFromUpload, self).setUp()
         self.current = self.addon.current_version
-        # We need one public file to stop the addon update signal
-        # moving the addon away from public. Only public addons check
-        # for beta status on from_upload.
         self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
-        File.objects.create(version=self.current, status=amo.STATUS_PUBLIC)
-        self.addon.update(status=amo.STATUS_PUBLIC)
 
     def test_status(self):
-        qs = File.objects.filter(version=self.current)
         Version.from_upload(self.upload, self.addon, [self.platform])
-        eq_(sorted([q.status for q in qs.all()]),
-            [amo.STATUS_PUBLIC, amo.STATUS_DISABLED])
-
-    @mock.patch('files.utils.parse_addon')
-    def test_status_beta(self, parse_addon):
-        parse_addon.return_value = {'version': u'0.1beta'}
-
-        qs = File.objects.filter(version=self.current)
-        Version.from_upload(self.upload, self.addon, [self.platform])
-        eq_(sorted([q.status for q in qs.all()]),
-            [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC])
+        eq_(File.objects.filter(version=self.current)[0].status,
+            amo.STATUS_DISABLED)
 
 
 class TestMobileVersions(TestMobile):

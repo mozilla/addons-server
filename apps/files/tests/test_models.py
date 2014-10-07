@@ -878,22 +878,6 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, data)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
-    def test_public_to_beta(self):
-        upload = self.upload('beta-extension')
-        data = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
-        eq_(f.status, amo.STATUS_BETA)
-
-    def test_trusted_public_to_beta(self):
-        upload = self.upload('beta-extension')
-        data = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
-        eq_(f.status, amo.STATUS_BETA)
-
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
         data = parse_addon(upload.path)

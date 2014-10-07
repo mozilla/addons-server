@@ -150,11 +150,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if version.addon.status == amo.STATUS_PUBLIC:
-            if amo.VERSION_BETA.search(parse_data.get('version', '')):
-                f.status = amo.STATUS_BETA
-            elif version.addon.trusted:
-                f.status = amo.STATUS_PUBLIC
+        if version.addon.status == amo.STATUS_PUBLIC and version.addon.trusted:
+            f.status = amo.STATUS_PUBLIC
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status

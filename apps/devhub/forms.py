@@ -535,6 +535,10 @@ class NewVersionForm(NewAddonForm):
         error_messages={
             'required': _lazy(u'Please choose a review nomination type')
         })
+    beta = forms.BooleanField(
+        required=False,
+        help_text=_lazy(u'A file with a version ending with a|alpha|b|beta and'
+                        u' an optional number is detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
@@ -565,6 +569,10 @@ class NewFileForm(AddonUploadForm):
                                     u'not one of the available choices.')
         }
     )
+    beta = forms.BooleanField(
+        required=False,
+        help_text=_lazy(u'A file with a version ending with a|alpha|b|beta and'
+                        u' an optional number is detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
