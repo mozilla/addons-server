@@ -70,15 +70,14 @@ def user_can_delete_review(request, review):
       * Users in a group with "Users:Edit" privileges.
       * Users in a group with "Addons:Edit" privileges.
 
-    TODO: Make this more granular when we have multiple reviewer types, e.g.
-    persona reviewers shouldn't be able to delete add-on reviews.
+    Persona editors can't delete addons reviews.
+
     """
-    is_editor = acl.check_reviewer(request)
     is_author = review.addon.has_author(request.user)
     return (
         review.user_id == request.user.id or
         not is_author and (
-            is_editor or
+            acl.is_editor(request, review.addon) or
             acl.action_allowed(request, 'Users', 'Edit') or
             acl.action_allowed(request, 'Addons', 'Edit')))
 

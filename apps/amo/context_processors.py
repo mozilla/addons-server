@@ -58,7 +58,8 @@ def global_settings(request):
     if request.user.is_authenticated():
         amo_user = request.amo_user
         profile = request.user
-        is_reviewer = acl.check_reviewer(request)
+        is_reviewer = (acl.check_addons_reviewer(request) or
+                       acl.check_personas_reviewer(request))
 
         account_links.append({'text': _('My Profile'),
                               'href': profile.get_url_path()})

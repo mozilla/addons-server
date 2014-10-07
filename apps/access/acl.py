@@ -102,11 +102,16 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
                                 addonuser__role__in=roles).exists()
 
 
-def check_reviewer(request, only=None, region=None):
-    addon = action_allowed(request, 'Addons', 'Review')
-    persona = action_allowed(request, 'Personas', 'Review')
-    if only == 'addon':
-        return addon
-    elif only == 'persona':
-        return persona
-    return addon or persona
+def check_addons_reviewer(request):
+    return action_allowed(request, 'Addons', 'Review')
+
+
+def check_personas_reviewer(request):
+    return action_allowed(request, 'Personas', 'Review')
+
+
+def is_editor(request, addon):
+    """Return True if the user is an addons reviewer, or a personas reviewer
+    and the addon is a persona."""
+    return (check_addons_reviewer(request) or
+            (check_personas_reviewer(request) and addon.is_persona()))

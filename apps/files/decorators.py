@@ -18,7 +18,7 @@ log = commonware.log.getLogger('z.addons')
 
 
 def allowed(request, file):
-    allowed = acl.check_reviewer(request)
+    allowed = acl.check_addons_reviewer(request)
     if not allowed:
         try:
             addon = file.version.addon

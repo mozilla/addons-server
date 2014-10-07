@@ -31,14 +31,14 @@ def setup_viewer(request, file_obj):
             'selected': {},
             'validate_url': ''}
 
-    if (acl.check_reviewer(request) or
+    if (acl.check_addons_reviewer(request) or
         acl.check_addon_ownership(request, file_obj.version.addon,
                                   viewer=True, ignore_disabled=True)):
         data['validate_url'] = reverse('devhub.json_file_validation',
                                        args=[file_obj.version.addon.slug,
                                              file_obj.id])
 
-    if acl.check_reviewer(request):
+    if acl.check_addons_reviewer(request):
         data['file_link'] = {'text': _('Back to review'),
                              'url': reverse('editors.review',
                                             args=[data['addon'].slug])}

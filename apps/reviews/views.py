@@ -72,7 +72,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
-            'is_editor': acl.check_reviewer(request),
+            'is_editor': acl.is_editor(request, addon),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),
         }
