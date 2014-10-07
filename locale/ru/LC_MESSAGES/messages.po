@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-08 02:46+0400\n"
+"PO-Revision-Date: 2014-10-08 02:54+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -13311,14 +13311,13 @@ msgid ""
 msgstr "Есть много способов принять участие. Если вы знакомы с технологиями:"
 
 #: apps/pages/templates/pages/about.lhtml:42
-#, fuzzy
 msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
-"< a href = \"%(ur l) s» > сделать свои собственные дополнения < /a >. Мы "
-"предоставляем бесплатные услуги хостинга и обновлений и может помочь вам "
-"достичь большой аудитории пользователей."
+"<a href=\"%(url)s\">Создайте своё собственное дополнение</a>. Мы "
+"предоставляем бесплатный хостинг и службу обновлений и может помочь вам "
+"охватить большое число пользователей."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid ""
