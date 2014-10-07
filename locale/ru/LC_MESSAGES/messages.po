@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-06 18:23+0400\n"
+"PO-Revision-Date: 2014-10-08 02:46+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -6513,7 +6513,7 @@ msgstr "Введите краткую сводку:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:38
 msgid "This summary will be shown in listings and searches."
-msgstr "Эта сводка будет отображена в перечнях и поиске."
+msgstr "Эта сводка будет отображена на странице и в поиске."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:55
 msgid "Provide a more detailed description:"
@@ -6569,7 +6569,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/done.html:40
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr ""
-"Предоставьте больше информации, <a href=\"{0}\">отредактировав его листинг</"
+"Предоставьте больше информации, <a href=\"{0}\">отредактировав его страницу</"
 "a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
@@ -8168,9 +8168,9 @@ msgid ""
 "transfer of ownership."
 msgstr ""
 "Дополнения могут иметь несколько пользователей, которым разрешено обновлять "
-"и управлять его листингом. Существующие авторы дополнения может передавать "
-"право собственности и добавлять дополнительных разработчиков в листинг "
-"дополнения, доступный из Инструментов Разработчика. Для передачи права "
+"и управлять его страницу. Существующие авторы дополнения может передавать "
+"право собственности и добавлять дополнительных разработчиков на страницу "
+"дополнения, доступную из Инструментов Разработчика. Для передачи права "
 "собственности взаимодействие с представителями Mozilla не требуется."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
@@ -9292,7 +9292,7 @@ msgstr ""
 "проекту Mozilla, так и нам, нравятся веб-приложения и новые веб-сервисы, но "
 "дополнения Firefox должны обеспечивать улучшение веб-сёрфинга для "
 "пользователя, а не являться просто способом продвижения нового сайта или "
-"услуги через листинг дополнений Mozilla."
+"услуги через страницы дополнений Mozilla."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
 msgid ""
@@ -10172,35 +10172,32 @@ msgstr "Советы"
 
 #: apps/devhub/templates/devhub/docs/themes.html:80
 #: apps/devhub/templates/devhub/docs/themes.html:151
-#, fuzzy
 msgid ""
 "Subtle, soft contrast images and gradients work best; highly detailed images "
 "will compete with the browser UI."
 msgstr ""
-"Тонкий, мягкий контраст изображения и градиенты работают лучше всего; "
-"высокодетальные снимки будут соревноваться с пользовательского интерфейса "
-"браузера."
+"Неброские, мягко-контрастные изображения и градиенты выглядят лучше всего; "
+"изображения с высокой степенью детализации будут состязаться за внимание с "
+"пользовательским интерфейсом."
 
 #: apps/devhub/templates/devhub/docs/themes.html:86
-#, fuzzy
 msgid ""
 "Firefox may reveal more of the lower portion of the image if another toolbar "
 "or other UI element is added to the top of the window."
 msgstr ""
-"Firefox может выявить больше в нижней части изображения, если другой панели "
-"инструментов или другой элемент пользовательского интерфейса добавляется в "
-"верхней части окна."
+"Firefox может показать больше из нижней части изображения, если в верхнюю "
+"часть окна добавлена ещё одна панель инструментов или другой элемент "
+"интерфейса."
 
 #: apps/devhub/templates/devhub/docs/themes.html:93
-#, fuzzy
 msgid ""
 "The upper right-hand side of the image should have the most important "
 "information&mdash;as a user increases the width of the browser window, the "
 "browser reveals more of the left-hand side of the image."
 msgstr ""
-"В верхней правой части изображения должны иметь наиболее важную информацию и "
-"вашей учётной; как пользователь увеличивает ширину окна браузера, браузер "
-"показывает больше с левой стороны от изображения."
+"Верхняя правая часть изображения должна содержать наиболее важную "
+"информацию&mdash;по мере того, как пользователь увеличивает ширину окна "
+"браузера, браузер отображает больше из левой части изображения."
 
 #: apps/devhub/templates/devhub/docs/themes.html:100
 msgid "Online Image Editor Resources"
@@ -10247,142 +10244,129 @@ msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
 msgstr "Размеры должны быть <b>3000px в ширину &times; 100px в высоту</b>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:157
-#, fuzzy
 msgid ""
 "Firefox may reveal more of the upper portion of the image if the find bar is "
 "open or if an extension adds more height to the bottom of the window."
 msgstr ""
-"Firefox может выявить больше верхней части изображения, если найти бар "
-"открыт или если расширение добавляет больше высоты в нижней части окна."
+"Firefox может показать больше из верхней части изображения, если открыта "
+"панель поиска или если расширение добавляет больше высоты для нижней части "
+"окна."
 
 #: apps/devhub/templates/devhub/docs/themes.html:164
-#, fuzzy
 msgid ""
 "The left-hand side of the image should have the most importan "
 "information&mdash;as a user increases the width of the browser window, the "
 "browser reveals more of the right-hand side of the image."
 msgstr ""
-"В левой части изображения должны иметь наиболее importan информацию и вашей "
-"учётной; как пользователь увеличивает ширину окна браузера, браузер "
-"показывает больше из правой части изображения."
+"Левая часть изображения должна содержать наиболее важную информацию&mdash;по "
+"мере того, как пользователь увеличивает ширину окна браузера, браузер "
+"отображает больше из правой части изображения."
 
 #: apps/devhub/templates/devhub/docs/themes.html:171
 msgid "Submitting your Theme Images"
 msgstr "Представление изображений для вашей темы"
 
 #: apps/devhub/templates/devhub/docs/themes.html:173
-#, fuzzy
 msgid "To get started submitting your images, go to the Theme Submission page:"
 msgstr ""
-"Чтобы начать работу, представляя ваши изображения, перейдите на страницу "
-"представления темы:"
+"Для представления ваших изображений перейдите на страницу представления темы:"
 
 #: apps/devhub/templates/devhub/docs/themes.html:179
-#, fuzzy
 msgid ""
 "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate "
 "names are not allowed, so you may need to try a few times to find a unique "
 "name."
 msgstr ""
-"< b > имя вашего тема < /b > и вашей учётной; Выберите уникальное имя для "
-"вашей темы. Повторяющиеся имена не допускаются, поэтому вам придется "
-"попробовать несколько раз, чтобы найти уникальное имя."
+"<b>Укажите имя вашей темы</b> &mdash; выберите уникальное имя для вашей "
+"темы. Использование уже существующего имени не разрешено, поэтому возможно "
+"вам придется попробовать несколько раз, чтобы найти уникальное имя."
 
 #: apps/devhub/templates/devhub/docs/themes.html:186
-#, fuzzy
 msgid ""
 "<b>Pick a category and tags</b> &mdash; select a category and enter some "
 "tags that best describe your theme. Keep in mind that a reviewer may reject "
 "your theme if it is obvious that your category and/or tags are unrelated to "
 "your theme."
 msgstr ""
-"< b > выбрать категории и теги < /b > и вашей учётной; Выберите категорию и "
-"введите некоторые теги, которые лучше всего описывают вашу тему. Имейте в "
-"виду, что рецензент может отклонить вашу тему, если очевидно, что категории "
-"и теги не имеют отношения к вашей теме."
+"<b>Выберите категорию и метки</b> &mdash; выберите категорию и введите "
+"несколько меток, которые лучше всего описывают вашу тему. Имейте в виду, что "
+"рецензент может отклонить вашу тему, если очевидно, что категория и метки не "
+"имеют отношения к вашей теме."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
-#, fuzzy
 msgid ""
 "<b>Describe your theme</b> &mdash; write a short description of your theme. "
 "Keep in mind that a reviewer may reject your theme if your description is "
 "not an accurate representation of your theme."
 msgstr ""
-"< b > опишите ваш тема < /b > и вашей учётной; напишите краткое описание "
-"вашей темы. Имейте в виду, что рецензент может отклонить вашу тему, если "
-"ваше описание не является точным представлением вашей темы."
+"<b>Опишите вашу тему </b> &mdash; сделайте краткое описание вашей темы. "
+"Имейте в виду, что рецензент может отклонить вашу тему, если ваше описание "
+"не является точным представлением вашей темы."
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
-#, fuzzy
 msgid ""
 "<b>Select a license for your theme</b> &mdash; decide on a copyright license "
 "for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative "
 "Common licenses.</a>"
 msgstr ""
-"< b > выбрать лицензию на тему < /b > и вашей учётной; решение о авторского "
-"права лицензии на вашу работу. < a href = \"%(cc_ur l) s» > узнать больше о "
-"типах Creative Общие лицензии. < /a >"
+"<b>Выберите лицензию для вашей темы</b> &mdash; примите решение, под какой "
+"лицензией будет размещена ваша работа. <a href=\"%(cc_url)s\">Узнать больше "
+"о типах лицензий Creative Common.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:208
-#, fuzzy
 msgid ""
 "<b>Important:</b> Please be sure you have the rights to use the image in "
 "your theme!"
 msgstr ""
-"< b > важно: < /b > Пожалуйста убедитесь, что у вас есть права на "
-"использование изображения в вашей теме!"
+"<b>Важно:</b> Пожалуйста, убедитесь, что у вас есть права на использование "
+"изображений в вашей теме!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:216
-#, fuzzy
 msgid ""
 "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size "
 "and JPG or PNG format!"
 msgstr ""
-"< b > загрузить ваши изображения < /b > и вашей учётной; Убедитесь, что они "
-"находятся под 300 KB в размер и формат JPG или PNG!"
+"<b>Загрузите ваши изображения</b> &mdash;  убедитесь, что их размер не более "
+"300 КБ и они в формате JPG или PNG!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
-#, fuzzy
 msgid ""
 "<b>Select text and tab colors</b> &mdash; you can choose the tab "
 "(\"background\") color and foreground text color that work best with your "
 "header image."
 msgstr ""
-"< b > выбрать текст и цвета вкладка < /b > и вашей учётной; Вы можете "
-"выбрать вкладку («фон») цвет и цвет текста переднего плана, который лучше "
-"всего работает с вашей заголовок изображения."
+"<b> Выберите цвета текста и вкладки</b> &mdash; вы можете выбрать цвет (\"фон"
+"\")  вкладки и цвет текста на переднем плане, который лучше всего работает с "
+"вашим верхним изображением."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
-#, fuzzy
 msgid ""
 "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply "
 "mouse over the image above the Submit Theme button, and see how it looks "
 "instantly."
 msgstr ""
-"< b > предварительный просмотр вашего тема < /b > и вашей учётной; Вы готовы "
-"просмотреть вашу тему! Просто наведите курсор мыши на изображение выше "
-"кнопку Отправить тема и как это выглядит мгновенно."
+"<b>Предпросмотр вашей темы</b> &mdash; вы готовы к предпросмотру вашей темы! "
+"Просто наведите курсор мыши на изображение над кнопкой Представить тему и вы "
+"сразу увидите, как она выглядит."
 
 #: apps/devhub/templates/devhub/docs/themes.html:236
-#, fuzzy
 msgid ""
 "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit "
 "Theme button and you're done! You can see all the themes you've authored on "
 "your profile page."
 msgstr ""
-"< b > Добавить свой тема < /b > и вашей учётной; Если все выглядит "
-"правильно, нажмите кнопку Отправить тема и все готово! Вы можете увидеть все "
-"темы, которые вы автором на странице вашего профиля."
+"<b>Представьте вашу тему</b> &mdash; если всё выглядит правильно, щёлкните "
+"по кнопке Представить тему и всё готово! Вы можете увидеть все созданные "
+"вами темы на странице вашего профиля."
 
 #: apps/devhub/templates/devhub/docs/themes.html:243
-#, fuzzy
 msgid ""
 "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure "
 "it complies with the content guidelines and terms of service!"
 msgstr ""
-"< b > Подсказка: < /b >, убедитесь, что ваша тема будет утвержден для "
-"галереи, будьте уверены, он соблюдает правила подбора содержания и условия "
-"обслуживания!"
+"<b> Совет: </b> чтобы убедиться, что ваша тема будет одобрена для галереи, "
+"удостоверьтесь, что она соответствует правилам для содержимого и условиям "
+"службы!"
 
 #: apps/devhub/templates/devhub/docs/themes.html:254
 msgid "Submit Your Theme Now"
@@ -10833,9 +10817,8 @@ msgstr "Информация об теме"
 
 #: apps/devhub/templates/devhub/personas/edit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:36
-#, fuzzy
 msgid "Supply a pretty URL for your detail page."
-msgstr "Поставить красивые URL-адрес для вашей страницы сведений."
+msgstr "Указать красивый URL для вашей страницы со сведеними."
 
 #: apps/devhub/templates/devhub/personas/edit.html:92
 #: apps/devhub/templates/devhub/personas/submit.html:41
@@ -10959,33 +10942,30 @@ msgid "Upload New Design"
 msgstr "Загрузить новый дизайн"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
-#, fuzzy
 msgid ""
 "Upon upload and form submission, the AMO Team will review your updated "
 "design. Your current design will still be public in the meantime."
 msgstr ""
-"После загрузки и отправки формы команда AMO рассмотрит обновленный дизайн. В "
-"то же время по-прежнему будет опубликован ваш текущий дизайн."
+"После загрузки и отправки формы команда AMO рассмотрит ваш обновленный "
+"дизайн. Пока что для публики будет показан ваш текущий дизайн."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
-#, fuzzy
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-"Ваш ранее повторного дизайн, который находится под до проведения обзора."
+msgstr "Ваш ранее представленный дизайн, который ожидает проверки."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr "Ожидание верхней части"
+msgstr "Ожидающее верхнее изображение"
 
 #: apps/devhub/templates/devhub/personas/edit.html:249
 msgid "Pending Footer"
-msgstr "Ожидание нижней части"
+msgstr "Ожидающее нижнее изображение"
 
 #: apps/devhub/templates/devhub/personas/edit.html:257
-#, fuzzy
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
-"После того, как он был одобрен, вы можете обновить ваш тема Дизайн здесь."
+"Вы можете обновить дизайн вашей темы здесь после того, как она будет "
+"одобрена."
 
 #: apps/devhub/templates/devhub/personas/edit.html:262
 msgid "Header"
@@ -11040,66 +11020,59 @@ msgid "Create a New Theme"
 msgstr "Создать новую тему"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
-#, fuzzy
 msgid ""
 "Background themes let you easily personalize the look of your Firefox. "
 "Submit your own design below, or <a href=\"%(submit_url)s\">learn how to "
 "create one</a>!"
 msgstr ""
-"Фон темы позволяют легко персонализировать внешний вид вашего Firefox. "
-"Представить свой собственный дизайн ниже, или < a href = \"%(s ubmit_url) s» "
-"> Узнайте, как создать один < /a >!"
+"Фоновые темы позволяют легко персонализировать внешний вид вашего Firefox. "
+"Представьте ниже свой собственный дизайн, или <a href=\"%(submit_url)s"
+"\">узнайте, как создать его</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
 msgstr "Дайте вашей теме имя."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
-#, fuzzy
 msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target="
 "\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval "
 "according to the standards established in the <a href=\"%(guidelines_url)s\" "
 "target=\"_blank\">Review Guidelines</a>."
 msgstr ""
-"Представления вашей темы, вы соглашаетесь с < a href = \"%(tos _url) s» "
-"целевых = \"_blank\" > темы условия обслуживания < /a >. Ваша тема подлежит "
-"утверждению в соответствии с требованиями, установленными в < a href = "
-"\"%(guid elines_url) s» целевых = \"_blank\" > Обзор руководящих принципов "
-"< /a >."
+"Представляя вашу тему, вы принимаете <a href=\"%(tos_url)s\" target=\"_blank"
+"\"> Условия Службы Тем</a>. Ваша тема подлежит одобрению в соответствии с "
+"требованиями, установленными в <a href=\"%(guidelines_url)s\" target=\"_blank"
+"\">Руководстве рецензента</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
 msgstr "Представить тему"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:11
-#, fuzzy
 msgid ""
 "Your theme has been submitted to the Review Queue. You'll receive an email "
 "once it has been reviewed, typically within 24 hours."
 msgstr ""
-"Ваша тема был представлен в обзоре очередь. Вы будете получать по "
-"электронной почте после того, как он был рассмотрен, обычно в течение 24 "
+"Ваша тема была отправлена в очередь на проверку. Вы получите письмо по "
+"электронной почте после того, как она будет проверена, обычно в течение 24 "
 "часов."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
-#, fuzzy
 msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
-"Предоставить более подробную информацию о вашей теме, < a href = \"%(ed "
-"it_url) s» > Редактирование списка < /a >."
+"Предоставьте более подробную информацию о вашей теме, <a href=\"%(edit_url)s"
+"\">отредактировав её страницу</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
-#, fuzzy
 msgid ""
 "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</"
 "a> to stay updated on reviews, collections, and more."
 msgstr ""
-"Просматривать и подписываться на вашу тему < a href = \"%(feed _url) s \"> "
-"веб-канала активности < /a > чтобы остаться обновленный на обзоры, коллекции "
-"и многое другое."
+"Просмотрите и подпишитесь на <a href=\"%(feed_url)s\">ленту активности</a> "
+"вашей темы, чтобы быть в курсе отзывов, подборок и многого другого."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
@@ -11126,7 +11099,7 @@ msgstr "PNG или JPG"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
-msgstr "Выровнены по верхнему правому"
+msgstr "Выровнена по верхнему правому краю"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
@@ -11142,7 +11115,7 @@ msgstr "3000 &times; 100 пикселей"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:27
 msgid "Aligned to bottom-left"
-msgstr "Выровнены по левому нижнему"
+msgstr "Выровнена по левому нижнему краю"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
@@ -11161,9 +11134,8 @@ msgid "Select the target platform for this file."
 msgstr "Выберите платформу для этого файла."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:36
-#, fuzzy
 msgid "Which review type would you like to nominate for?"
-msgstr "Какой отзыв вы хотели бы выдвинуть для?"
+msgstr "На какой тип проверки вы хотели бы её номинировать?"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -11368,30 +11340,28 @@ msgid ""
 "this is the only public version of your add-on."
 msgstr ""
 "Вы собираетесь удалить текущую версию вашего дополнения. Это может привести "
-"к изменению статуса дополнения, или потере его видимости для публики, если "
-"это единственная публичная версия вашего дополнения."
+"к изменению статуса дополнения, или потере видимости его страницы для "
+"публики, если это единственная публичная версия вашего дополнения."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
 msgstr "Удаление этой версии навсегда удалит:"
 
 #: apps/devhub/templates/devhub/versions/list.html:194
-#, fuzzy
 msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
 msgstr ""
-"< Сильный > важно: < / strong > после удаления версии вы не можете загрузить "
-"новую версию с тем же номером версии."
+"<strong>Важно:</strong> Как только версия была удалена, вы не сможете "
+"загрузить новую версию с тем же номером версии."
 
 #: apps/devhub/templates/devhub/versions/list.html:199
-#, fuzzy
 msgid ""
 "Deleting a version which has already been reviewed may also cause a "
 "significant delay in the review of your next update."
 msgstr ""
-"Удаление версии, которые уже были рассмотрены также могут вызывать "
-"значительные задержки в рассмотрении вашего следующего обновления."
+"Удаление версии, которые уже были проверена, также может вызвать "
+"значительную задержку в проверке вашего следующего обновления."
 
 #: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
@@ -11452,9 +11422,9 @@ msgid "Shopping Made Easy"
 msgstr "Лёгкий Шоппинг"
 
 #: apps/discovery/modules.py:138
-#, fuzzy
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr "Сэкономить на ваши любимые предметы от комфорта вашего браузера."
+msgstr ""
+"Экономьте деньги на покупке ваших любимых вещей из комфорта вашего браузера."
 
 #: apps/discovery/modules.py:146
 msgid "Build the perfect website"
@@ -11577,61 +11547,55 @@ msgstr "Дополнения, которые помогут вам на ваше
 
 #: apps/discovery/modules.py:269
 msgid "Love is in the Air"
-msgstr "Любовь царит в воздухе"
+msgstr "В воздухе царит любовь"
 
 #: apps/discovery/modules.py:270
 msgid "Add some romance to your Firefox."
-msgstr "Добавьте в ваш Firefox немного романтики."
+msgstr "Добавьте в ваш Firefox немного романтики"
 
 #: apps/discovery/modules.py:277
 msgid "Put a Theme on It!"
-msgstr "Разместите на ней тему!"
+msgstr "Украсьте его темой!"
 
 #: apps/discovery/modules.py:278
-#, fuzzy
 msgid ""
 "Visit addons.mozilla.org from Firefox for Android and dress up your mobile "
 "browser to match your style, mood, or the season."
 msgstr ""
-"Посетите addons.mozilla.org от Firefox для Android и одеваются вашего "
-"мобильного браузера в соответствии ваш стиль, настроение или сезона."
+"Посетите addons.mozilla.org из Firefox для Android и оденьте ваш мобильный "
+"браузер под ваш стиль, настроение или сезон."
 
 #: apps/discovery/modules.py:287
 msgid "Get up and move!"
 msgstr "Вставайте и двигайтесь!"
 
 #: apps/discovery/modules.py:288
-#, fuzzy
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
-"Установите эти дополнения фитнес, чтобы держать вас активными и здоровыми."
+msgstr "Установите эти дополнения для фитнесса, чтобы быть активным и здоровым"
 
 #: apps/discovery/modules.py:296
 msgid "New &amp; Now"
-msgstr "Новый и Сейчас"
+msgstr "Новое и Нужное"
 
 #: apps/discovery/modules.py:297
-#, fuzzy
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr "Получите последние, должн иметь дополнения в данный момент."
+msgstr "Получите самые нужные и новейшие дополнения"
 
 #: apps/discovery/modules.py:329
 msgid "Worry-free browsing"
-msgstr "Веб-серфинг без проблем"
+msgstr "Веб-сёрфинг без проблем"
 
 #: apps/discovery/modules.py:330
-#, fuzzy
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Защитите вашу конфиденциальность онлайн с дополнения в этой подборке."
+msgstr "Защитите вашу приватность в Интернете дополнениями из этой подборки"
 
 #: apps/discovery/modules.py:339
-#, fuzzy
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
-"Большие дополнения для работы, развлечения, неприкосновенность частной "
-"жизни, производительности труда и hellip; просто о чем угодно!"
+"Отличные дополнения для работы, развлечений, защиты приватности, ускорения "
+"работы&hellip; просто для чего угодно!"
 
 #: apps/discovery/modules.py:347
 msgid "Add-ons for Australis Contest Winners"
@@ -11743,34 +11707,29 @@ msgid "Shop smart this holiday season"
 msgstr "Умный Шоппинг в этот праздничный сезон"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
-#, fuzzy
 msgid "Find great add-ons to help you with all your holiday shopping needs."
 msgstr ""
-"Найти большие дополнения, чтобы помочь вам с вашего отдыха, торговых "
-"потребностей."
+"Откройте отличные дополнения, которые помогут вам в покупках на праздники"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
-#, fuzzy
 msgid ""
 "Install the Amazon Browser Apps and receive special Amazon features right at "
 "your fingertips."
 msgstr ""
-"Установите Apps браузера Amazon и получить специальные функции Amazon на "
-"кончиках ваших пальцев."
+"Установите браузерные приложения Amazon и получите прямо в свои руки "
+"специальные возможности от Amazon."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
-#, fuzzy
 msgid ""
 "Keep an eye on your eBay activity wherever you are on the web when you "
 "install the eBay Sidebar for Firefox."
 msgstr ""
-"Следите за вашей деятельности eBay, где вы находитесь в Интернете, когда вы "
-"устанавливаете eBay Sidebar для Firefox."
+"Будьте в курсе активности на eBay из любого места Интернета, установив eBay "
+"Sidebar для Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
-#, fuzzy
 msgid "See the entire holiday shopping add-on collection."
-msgstr "Смотрите весь праздник торговый дополнение коллекции."
+msgstr "Посмотрите на всю подборку дополнений для праздничного шопппинга."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -12216,9 +12175,8 @@ msgid "A problem with your Theme submission"
 msgstr "Проблема с представлением вашей темы"
 
 #: apps/editors/tasks.py:88
-#, fuzzy
 msgid "Theme submission flagged for review"
-msgstr "Представление темы, помеченные для обзора"
+msgstr "Представленная тема отмечена для проверки"
 
 #: apps/editors/tasks.py:95
 msgid "A question about your Theme submission"
@@ -12282,15 +12240,14 @@ msgstr[1] "успешно произведено {0} проверки тем (+{
 msgstr[2] "успешно произведено {0} проверок тем (+{1} очков, всего - {2})."
 
 #: apps/editors/views_themes.py:340
-#, fuzzy
 msgid ""
 "Your theme locks have successfully been released. Other reviewers may now "
 "review those released themes. You may have to refresh the page to see the "
 "changes reflected in the table below."
 msgstr ""
-"Ваша тема замки успешно были освобождены. Другие отзывы теперь может "
-"рассмотреть эти выпущенные темы. Возможно, вам придется обновить страницу и "
-"увидеть изменения, отраженные в таблице ниже."
+"Ваши блокировки тем были успешно сняты. Другие рецензенты теперь могут "
+"проверить эти разблокированные темы. Возможно, вам надо обновить страницу, "
+"чтобы увидеть внизу изменения в таблице."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -12886,9 +12843,8 @@ msgid "Clear Search"
 msgstr "Очистить поиск"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
-#, fuzzy
 msgid "Release My Theme Locks"
-msgstr "Могу ли я создать свою собственную тему?"
+msgstr "Снять мои блокировки тем"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
@@ -13315,20 +13271,18 @@ msgid "How do I keep up with what's happening at AMO?"
 msgstr "Как мне быть в курсе того, что происходит на AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
-#, fuzzy
 msgid ""
 "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
-"Есть несколько способов, чтобы узнать последние новости из мира дополнений:"
+"Есть несколько способов быть в курсе последних новостей из мира дополнений:"
 
 #: apps/pages/templates/pages/about.lhtml:29
-#, fuzzy
 msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
 "information for both add-on enthusiasts and developers."
 msgstr ""
-"Наши < a href = \"%(ur l) s» > дополнения блог < /a > регулярно обновляется "
-"с информацией для дополнения энтузиастов, так и для разработчиков."
+"Наш <a href=\"%(url)s\">блог дополнений</a> регулярно пополняется "
+"информацией как от любителей, так и разработчиков дополнений."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
@@ -13339,14 +13293,13 @@ msgstr ""
 "Твиттере, <a href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
-#, fuzzy
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-"
 "ons community and discuss upcoming changes to AMO."
 msgstr ""
-"Наши < a href = \"%(ur l) s» > < /a > форумы являются хорошим местом для "
-"взаимодействия с сообществом дополнения и обсудить предстоящие изменения в "
-"объектах AMO."
+"Наши <a href=\"%(url)s\">форумы</a> являются хорошим местом для "
+"взаимодействия с сообществом дополнений и обсуждения предстоящих изменений "
+"на AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -13355,8 +13308,7 @@ msgstr "Это звучит здорово! Как я могу принять у
 #: apps/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
-"Есть много способов принять участие. Если вы знакомы с технической стороной:"
+msgstr "Есть много способов принять участие. Если вы знакомы с технологиями:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 #, fuzzy
@@ -13369,54 +13321,50 @@ msgstr ""
 "достичь большой аудитории пользователей."
 
 #: apps/pages/templates/pages/about.lhtml:45
-#, fuzzy
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an "
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
-"Если у вас есть опыт разработки дополнения, < a href = \"%(ur l) s» > стать "
-"редактором < /a >! Наши редакторы являются дополнения болельщиков с "
-"техническим образованием, которые Обзор дополнения кода качества и "
-"стабильности."
+"Если у вас есть опыт разработки дополнения, <a href=\"%(url)s\"> станьте "
+"редактором </a>! Наши редакторы - это фанаты дополнений с технической "
+"подготовкой, которые проверяют качество и стабильность кода дополнений."
 
 #: apps/pages/templates/pages/about.lhtml:49
-#, fuzzy
 msgid ""
 "Help improve this website. It's open source, and you can file bugs and "
 "submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our "
 "current bugs."
 msgstr ""
-"Помогите улучшить этот сайт. Он является открытым исходным кодом, и вы "
-"можете регистрировать ошибки и представить патчи. < a href = \"%(ur l) s» > "
-"< /a > Bugzilla содержит все наши текущие ошибки."
+"Помогите улучшить этот веб-сайт. Его исходный код открыт, и вы можете "
+"регистрировать ошибки и отправлять патчи. <a href=\"%(url)s\"> Bugzilla</a> "
+"содержит все наши текущие ошибки."
 
 #: apps/pages/templates/pages/about.lhtml:55
-#, fuzzy
 msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
-"Если вы заинтересованы в дополнения, но не совсем, как технический, есть еще "
-"способы, чтобы помочь:"
+"Если вы заинтересованы в дополнениях, но не совсем дружите с технологиями, у "
+"вас всё же есть способы помочь:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr ""
-"Расскажите своим друзьям! Пусть люди знают, какие дополнения вы используете."
+"Расскажите своим друзьям! Дайте людям знать, какие дополнения вы используете."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "Участвуйте в наших <a href=\"%(url)s\">форумах</a>."
 
 #: apps/pages/templates/pages/about.lhtml:61
-#, fuzzy
 msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
-"Обзор дополнения на сайте. Авторы дополнений больше шансов улучшить свои "
-"дополнения и писать новые, когда они знают, что люди ценят свою работу."
+"Оставляйте на сайте отзывы на дополнения. Авторы дополнений более склонны "
+"улучшать свои дополнения и писать новые, если они знают, что люди ценят их "
+"работу."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -13449,16 +13397,16 @@ msgid "Who works on this website?"
 msgstr "Кто работает над этим веб-сайтом?"
 
 #: apps/pages/templates/pages/about.lhtml:77
-#, fuzzy
 msgid ""
 "Over the years, many people have contributed to this website, including both "
 "volunteers from the community and a dedicated AMO team. A list of "
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
-"С годами многие люди внесли этот веб-сайт, включая оба добровольцев из "
-"сообщества и команда AMO. Список значительных авторов можно найти на нашей < "
-"a href = \"%(ur l) s» > страницы сайта кредиты < /a >."
+"На протяжении лет многие люди внесли вклад в этот веб-сайт - как добровольцы "
+"из сообщества, так и отдельная команда AMO. Список тех, кто внёс "
+"существенный вклад, можно найти на нашей странице <a href=\"%(url)s"
+"\">авторов сайта</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -14670,15 +14618,14 @@ msgstr ""
 "добавлять функции, которые вы видите в других приложениях."
 
 #: apps/pages/templates/pages/faq.html:55
-#, fuzzy
 msgid ""
 "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the "
 "entire appearance of %(app_name)s, usually including icons, colors, dialogs, "
 "and other visual styles."
 msgstr ""
-"< сильный >< href = \"%(br owse_url) s» > полный темы < /a >< / strong > "
-"изменить весь внешний вид %(app_name)s , обычно, включая значки, цвета, "
-"диалоговые окна и другие визуальные стили."
+"<strong><a href=\"%(browse_url)s\">Полные темы</a></strong> целиком меняют "
+"внешний вид %(app_name)s, включая, как правило, значки, цвета, диалоговые "
+"окна и другие визуальные стили."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid ""
