@@ -1,6 +1,5 @@
 from collections import defaultdict
 from datetime import date, datetime, timedelta
-import functools
 import json
 import time
 
@@ -20,7 +19,7 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, CommentLog
@@ -37,47 +36,7 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
-
-def _view_on_get(request):
-    """Returns whether the user can access this page.
-
-    If the user is in a group with rule 'ReviewerTools:View' and the request is
-    a GET request, they are allowed to view.
-    """
-    return (request.method == 'GET' and
-            acl.action_allowed(request, 'ReviewerTools', 'View'))
-
-
-def reviewer_required(only=None, region=None):
-    """Requires the user to be logged in as a reviewer or admin, or allows
-    someone with rule 'ReviewerTools:View' for GET requests.
-
-    Reviewer is someone who is in one of the groups with the following
-    permissions:
-
-        Addons:Review
-        Apps:Review
-        Personas:Review
-
-    If only is provided, it will only check for a certain type of reviewer.
-    Valid values for only are: addon, app, persona.
-
-    """
-    def decorator(f):
-        @login_required
-        @functools.wraps(f)
-        def wrapper(request, *args, **kw):
-            if (acl.check_reviewer(request, only, region=kw.get('region')) or
-                _view_on_get(request)):
-                return f(request, *args, **kw)
-            else:
-                raise PermissionDenied
-        return wrapper
-    # If decorator has no args, and is "paren-less", it's callable.
-    if callable(only):
-        return decorator(only)
-    else:
-        return decorator
+from .decorators import addons_reviewer_required, any_reviewer_required
 
 
 def context(**kw):
@@ -87,7 +46,7 @@ def context(**kw):
     return ctx
 
 
-@reviewer_required
+@addons_reviewer_required
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
@@ -106,14 +65,14 @@ def eventlog(request):
     return render(request, 'editors/eventlog.html', data)
 
 
-@reviewer_required
+@addons_reviewer_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
     data = context(log=log)
     return render(request, 'editors/eventlog_detail.html', data)
 
 
-@reviewer_required
+@any_reviewer_required
 def home(request):
     if (not acl.action_allowed(request, 'Addons', 'Review') and
         acl.action_allowed(request, 'Personas', 'Review')):
@@ -180,7 +139,7 @@ def _editor_progress():
     return (progress, percentage)
 
 
-@reviewer_required
+@addons_reviewer_required
 def performance(request, user_id=False):
     user = request.amo_user
     editors = _recent_editors()
@@ -307,7 +266,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     return monthly_data
 
 
-@reviewer_required
+@addons_reviewer_required
 def motd(request):
     form = None
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
@@ -316,7 +275,7 @@ def motd(request):
     return render(request, 'editors/motd.html', data)
 
 
-@reviewer_required
+@addons_reviewer_required
 @post_required
 def save_motd(request):
     if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
@@ -404,32 +363,32 @@ def queue_counts(type=None, **kw):
     return rv
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue(request):
     return redirect(reverse('editors.queue_pending'))
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_nominated(request):
     return _queue(request, ViewFullReviewQueueTable, 'nominated')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_pending(request):
     return _queue(request, ViewPendingQueueTable, 'pending')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_prelim(request):
     return _queue(request, ViewPreliminaryQueueTable, 'prelim')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_fast_track(request):
     return _queue(request, ViewFastTrackQueueTable, 'fast_track')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_moderated(request):
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
                                  Q(reviewflag__isnull=True))
@@ -460,7 +419,7 @@ def queue_moderated(request):
                           point_types=amo.REVIEWED_AMO))
 
 
-@reviewer_required
+@addons_reviewer_required
 @post_required
 @json_view
 def application_versions_json(request):
@@ -469,7 +428,7 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@reviewer_required
+@addons_reviewer_required
 @addon_view
 def review(request, addon):
     return _review(request, addon)
@@ -600,7 +559,7 @@ def _review(request, addon):
 
 @never_cache
 @json_view
-@reviewer_required
+@addons_reviewer_required
 def review_viewing(request):
     if 'addon_id' not in request.POST:
         return {}
@@ -632,7 +591,7 @@ def review_viewing(request):
 
 @never_cache
 @json_view
-@reviewer_required
+@addons_reviewer_required
 def queue_viewing(request):
     if 'addon_ids' not in request.POST:
         return {}
@@ -653,7 +612,7 @@ def queue_viewing(request):
 
 
 @json_view
-@reviewer_required
+@addons_reviewer_required
 def queue_version_notes(request, addon_id):
     addon = get_object_or_404(Addon, pk=addon_id)
     version = addon.latest_version
@@ -661,7 +620,7 @@ def queue_version_notes(request, addon_id):
             'approvalnotes': version.approvalnotes}
 
 
-@reviewer_required
+@addons_reviewer_required
 def reviewlog(request):
     data = request.GET.copy()
 
@@ -701,7 +660,7 @@ def reviewlog(request):
     return render(request, 'editors/reviewlog.html', data)
 
 
-@reviewer_required
+@addons_reviewer_required
 @addon_view
 def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
@@ -711,7 +670,7 @@ def abuse_reports(request, addon):
                   dict(addon=addon, reports=reports, total=total))
 
 
-@reviewer_required
+@addons_reviewer_required
 def leaderboard(request):
     return render(request, 'editors/leaderboard.html', context(**{
         'scores': ReviewerScore.all_users_by_score(),

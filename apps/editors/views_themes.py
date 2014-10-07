@@ -20,15 +20,16 @@ from amo.utils import paginate
 from devhub.models import ActivityLog
 from editors import forms
 from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
-from editors.views import context, reviewer_required
+from editors.views import context
 from search.views import name_only_query
 from zadmin.decorators import admin_required
+from .decorators import personas_reviewer_required
 
 
 QUEUE_PER_PAGE = 100
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def home(request):
     data = context(
         reviews_total=ActivityLog.objects.total_reviews(theme=True)[:5],
@@ -62,7 +63,7 @@ def queue_counts_themes(request):
     return rv
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_list(request, flagged=False, rereview=False):
     """Themes queue in list format."""
     themes = []
@@ -188,7 +189,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
 
 
 @json_view
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_search(request):
     search_form = forms.ThemeSearchForm(request.GET)
     if search_form.is_valid():
@@ -231,7 +232,7 @@ def themes_search(request):
         return {'objects': themes, 'meta': {'total_count': len(themes)}}
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_queue(request):
     # By default, redirect back to the queue after a commit.
     request.session['theme_redirect_url'] = reverse(
@@ -298,7 +299,7 @@ def _get_rereview_themes(reviewer):
 
 
 @post_required
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_commit(request):
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(request.POST)
@@ -332,7 +333,7 @@ def themes_commit(request):
         return redirect(reverse('editors.themes.queue_themes'))
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def release_locks(request):
     ThemeLock.objects.filter(reviewer=request.user).delete()
     amo.messages.success(
@@ -344,7 +345,7 @@ def release_locks(request):
     return redirect(reverse('editors.themes.list'))
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_single(request, slug):
     """
     Like a detail page, manually review a single theme if it is pending
@@ -414,7 +415,7 @@ def themes_single(request, slug):
     }))
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_logs(request):
     data = request.GET.copy()
 
@@ -475,7 +476,7 @@ def deleted_themes(request):
     })
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_history(request, username):
     if not username:
         username = request.amo_user.username

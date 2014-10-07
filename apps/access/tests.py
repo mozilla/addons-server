@@ -10,7 +10,8 @@ from addons.models import Addon, AddonUser
 from users.models import UserProfile
 
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
-                  check_reviewer, match_rules)
+                  check_addons_reviewer, check_personas_reviewer, is_editor,
+                  match_rules)
 
 
 def test_match_rules():
@@ -197,27 +198,39 @@ class TestHasPerm(TestCase):
 
 
 class TestCheckReviewer(TestCase):
-    fixtures = ['base/user_2519']
+    fixtures = ['base/addon_3615', 'addons/persona']
 
     def setUp(self):
         self.user = UserProfile.objects.get()
+        self.persona = Addon.objects.get(pk=15663)
+        self.addon = Addon.objects.get(pk=3615)
 
     def test_no_perm(self):
         req = req_factory_factory('noop', user=self.user)
-        assert not check_reviewer(req)
-        assert not check_reviewer(req, only='addon')
-        assert not check_reviewer(req, only='persona')
+        assert not check_addons_reviewer(req)
+        assert not check_personas_reviewer(req)
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
         req = req_factory_factory('noop', user=self.user)
-        assert check_reviewer(req)
-        assert check_reviewer(req, only='addon')
-        assert not check_reviewer(req, only='persona')
+        assert check_addons_reviewer(req)
+        assert not check_personas_reviewer(req)
 
     def test_perm_themes(self):
         self.grant_permission(self.user, 'Personas:Review')
         req = req_factory_factory('noop', user=self.user)
-        assert check_reviewer(req)
-        assert not check_reviewer(req, only='addon')
-        assert check_reviewer(req, only='persona')
+        assert not check_addons_reviewer(req)
+        assert check_personas_reviewer(req)
+
+    def test_is_editor_for_addon_reviewer(self):
+        """An addon editor is also a persona editor."""
+        self.grant_permission(self.user, 'Addons:Review')
+        req = req_factory_factory('noop', user=self.user)
+        assert is_editor(req, self.persona)
+        assert is_editor(req, self.addon)
+
+    def test_is_editor_for_persona_reviewer(self):
+        self.grant_permission(self.user, 'Personas:Review')
+        req = req_factory_factory('noop', user=self.user)
+        assert is_editor(req, self.persona)
+        assert not is_editor(req, self.addon)
