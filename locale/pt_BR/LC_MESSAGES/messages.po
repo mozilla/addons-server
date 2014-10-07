@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-09-01 15:35+0000\n"
+"PO-Revision-Date: 2014-10-07 10:38+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1409585748.0\n"
+"X-POOTLE-MTIME: 1412678298.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -3436,7 +3436,7 @@ msgstr "Pacote de idioma (Aplicação)"
 
 #: apps/constants/base.py:165
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Pacote de idioma (complemento)"
 
 #: apps/constants/base.py:166
 msgid "Plugin"
@@ -3459,7 +3459,7 @@ msgstr "Pacotes de idioma (Aplicação)"
 
 #: apps/constants/base.py:178
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Pacotes de idioma (complemento)"
 
 # 85%
 # 100%
@@ -3874,6 +3874,7 @@ msgstr "A versão %s já existe"
 #: apps/devhub/forms.py:564
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
+"Selecione uma opção válida. Essa escolha não é uma das opções disponíveis."
 
 #: apps/devhub/forms.py:595
 msgid "You cannot upload any more files for this version."
@@ -12772,6 +12773,9 @@ msgstr "Essa senha não é permitida."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Como parte da nova política de senha, sua senha deve ter %s caracteres ou "
+"mais. Por favor, atualize sua senha <a href=\"%s\">solicitando a redefinição "
+"da senha</a>"
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
