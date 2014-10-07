@@ -24,7 +24,7 @@ function initAdminValidation(doc) {
                                  ['', gettext('Select an application first')]));
             return;
         }
-        $.post(sel.attr('data-url'), {'application_id': appId}, function(d) {
+        $.post(sel.attr('data-url'), {'application': appId}, function(d) {
             $('option', maxVer).remove();
             $.each(d.choices, function(i, ch) {
                 maxVer.append(format('<option value="{0}">{1}</option>',
