@@ -31,14 +31,14 @@
           <label>{{ _('Which mobile platforms is this file compatible with?') }}</label>
           {{ new_file_form.mobile_platforms }}
         </div>
-       {% if addon.status == amo.STATUS_NULL %}
-        <div class="nomination-type">
-          <label>{{ _('Which review type would you like to nominate for?') }}</label>
-          {{ new_file_form.nomination_type }}
-        </div>
-       {% endif %}
       {% endif %}
       </div>
+      {% if addon.status == amo.STATUS_NULL %}
+      <div class="nomination-type">
+        <label>{{ _('Which review type would you like to nominate for?') }}</label>
+        {{ new_file_form.nomination_type }}
+      </div>
+      {% endif %}
       {% if is_admin %}
       <div class="admin-settings">
         <label>{{ _('Administrative overrides') }}</label>
