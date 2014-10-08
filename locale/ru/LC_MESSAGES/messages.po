@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-08 02:54+0400\n"
+"PO-Revision-Date: 2014-10-08 05:45+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -9985,15 +9985,14 @@ msgstr ""
 "чтобы узнать полные требования. Ниже приведён обзор требований:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
-#, fuzzy
 msgid ""
 "You either own all the elements of your design OR you are authorized "
 "worldwide to reproduce and distribute them (and allow others to do so) by "
 "the owner or the law."
 msgstr ""
-"Вы либо владеют все элементы вашего дизайна или вы всему миру разрешается "
-"воспроизводить и распространять их (и позволить другим сделать это) "
-"собственником или законом."
+"Вы либо владеете всеми элементами вашего дизайна ЛИБО вам разрешено "
+"воспроизводить и распространять их по всему миру (и позволять другим делать "
+"это) владельцем или по закону."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
@@ -10032,7 +10031,6 @@ msgstr ""
 "права любого физического или юридического лица."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:231
-#, fuzzy
 msgid ""
 "Also, note that your design needs to be suitable for the Background Themes "
 "format (see guidelines), of usable quality, and not duplicative of a prior "
@@ -10041,13 +10039,13 @@ msgid ""
 "In some cases, this is necessary for legal reasons, but it also allows us to "
 "maintain the integrity of the site."
 msgstr ""
-"Кроме того Обратите внимание, что ваш дизайн должен быть подходящим для фона "
-"темы формат (см. рекомендации), можно использовать качественные, а не "
-"дублировать предыдущие представления. Наконец в то время как Mozilla "
-"предоставляет руководящие принципы для представления, Mozilla сохраняет за "
-"собой по своему усмотрению отклонять или удалять проекты по любой причине. В "
-"некоторых случаях это необходимо по юридическим причинам, но она также "
-"позволяет нам поддерживать целостность сайта."
+"Также обратите внимание, что ваш дизайн должен подходить под формат Фоновых "
+"тем (см. рекомендации), быть приемлемого качества и не дублировать "
+"предыдущее представление. И наконец, хотя Mozilla предоставляет рекомендации "
+"по представлению, она сохраняет за собой право по своему усмотрению "
+"отклонять или удалять дизайны по любой причине. В некоторых случаях это "
+"необходимо по юридическим причинам, но это также позволяет нам поддерживать "
+"целостность сайта."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:242
 msgid ""
@@ -10062,7 +10060,6 @@ msgid "Yes. Your artwork will always be <em>your</em> artwork."
 msgstr "Да. Ваша работа всегда будет <em>вашей</em> работой."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:260
-#, fuzzy
 msgid ""
 "Yes. If at any point you need to edit or delete your theme design after it "
 "has been submitted to the gallery, you can access it from the <a href="
@@ -10070,11 +10067,11 @@ msgid ""
 "your current designs. By clicking on each, you can make changes to each "
 "design's settings."
 msgstr ""
-"Да. Если в любой момент вам необходимо изменить или удалить ваши Тема Дизайн "
-"после того, как он был представлен в галерею, вы можете получить доступ к "
-"его от < a href = \"%(d ashboard_url) s» > Панель представлений < /a >. От "
-"там можно посмотреть ваши текущие проекты. Нажав на каждой, можно внести "
-"изменения в настройки каждой конструкции."
+"Да. Если в какой-либо момент вам нужно изменить или удалить дизайн вашей "
+"темы после того, как она была представлена в галерее, вы можете получить "
+"доступ к ней из <a href=\"%(dashboard_url)s\">Панели представлений</a>. Там "
+"вы можете посмотреть ваши текущие дизайны. Щёлкнув по каждому из них, вы "
+"можете внести изменения в настройки каждого из дизайнов."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid ""
@@ -12467,9 +12464,8 @@ msgid "Monthly Performance"
 msgstr "Месячная производительность"
 
 #: apps/editors/templates/editors/performance.html:67
-#, fuzzy
 msgid "All-time Point Breakdown by Type"
-msgstr "Небывало точки в разбивке по типу"
+msgstr "Разбиение точками по типу за всё время"
 
 #: apps/editors/templates/editors/performance.html:74
 msgid "Total"
@@ -13233,7 +13229,6 @@ msgid "What is this website?"
 msgstr "Что это за веб-сайт?"
 
 #: apps/pages/templates/pages/about.lhtml:13
-#, fuzzy
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site "
 "for add-ons to Mozilla software, such as Firefox, Thunderbird, and "
@@ -13241,18 +13236,17 @@ msgid ""
 "or application works. Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
-"addons.Mozilla.org, более известный как «Амо», является официальный сайт "
-"Mozilla для дополнения программного обеспечения Mozilla, такие как Firefox, "
-"Thunderbird и SeaMonkey. Дополнения позволяют добавлять новые функции и "
-"изменить способ вашего браузера или приложения работ. Оглянитесь вокруг и "
-"изучить тысячи способов настроить способ делать вещи в Интернете."
+"addons.mozilla.org, также известный как \"AMO\", является официальным сайтом "
+"Mozilla для дополнений к программам Mozilla, таким как Firefox, Thunderbird "
+"и SeaMonkey. Дополнения позволяют вам добавлять новые функции и изменять "
+"способ работы вашего браузера или приложения. Оглянитесь вокруг и откройте "
+"тысячи способов настроить свое пребывание и работу в Интернете."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
 msgstr "Кто создает эти дополнения?"
 
 #: apps/pages/templates/pages/about.lhtml:20
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from "
 "our community, ranging from individual hobbyists to large corporations. All "
@@ -13260,11 +13254,11 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
-"Дополнения, перечисленные здесь были созданы тысячами разработчиков из "
-"нашего сообщества, начиная от отдельных любителей до крупных корпораций. Все "
-"публично перечисленных дополнений рассматриваются Группой редакторов прежде "
-"чем были освобождены. Дополнения, помеченные как экспериментальный, не были "
-"рассмотрены и должен быть установлен только с осторожностью."
+"Расположенные здесь дополнения были созданы тысячами разработчиков из нашего "
+"сообщества, начиная от отдельных любителей и заканчивая крупными "
+"корпорациями. Все доступные для публики дополнения были проверены командой "
+"редакторов перед их выпуском. Дополнения, помеченные как Экспериментальные, "
+"не были проверены, и при их установке нужно соблюдать осторожность."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -13370,26 +13364,23 @@ msgid "I have a question"
 msgstr "У меня есть вопрос"
 
 #: apps/pages/templates/pages/about.lhtml:67
-#, fuzzy
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title="
 "\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer "
 "there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
-"Хорошее место, чтобы начать наш < a href = \"%(faq_ur л) s» >< abbr название "
-"= \"Часто задаваемые вопросы\" > FAQ < / abbr >< /a >. Если вы не нашли там "
-"ответа, вы можете < a href = \"%(for um_url) s» > Спросите на нашем форуме "
-"< /a >."
+"Для начала загляните в наш <a href=\"%(faq_url)s\"><abbr title=\"Часто "
+"задаваемые вопросы\">FAQ</abbr></a>. Если вы не нашли там ответа, вы можете "
+"<a href=\"%(forum_url)s\">задать вопрос на нашем форуме</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
-#, fuzzy
 msgid ""
 "If you really need to contact someone from the Mozilla team, please see our "
 "<a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
 "Если вам действительно нужно связаться с кем-то из команды Mozilla, "
-"пожалуйста, смотрите наш < a href = \"%(ur l) s» > Контактная информация < /"
-"a > страница."
+"пожалуйста, обратитесь к нашей странице с <a href=\"%(url)s\"> контактной "
+"информацией</a>."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -14176,7 +14167,6 @@ msgid "Who reviews my add-on?"
 msgstr "Кто проверяет моё дополнение?"
 
 #: apps/pages/templates/pages/dev_faq.html:416
-#, fuzzy
 msgid ""
 "Add-ons are reviewed by the AMO Editors, a group of talented developers that "
 "volunteer to help the Mozilla project by reviewing add-ons to ensure a "
@@ -14185,13 +14175,13 @@ msgid ""
 "hard to ensure that your add-on is set up correctly and follows the "
 "guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Дополнения проверяются редакторами АМО, группа талантливых разработчиков, "
-"которые добровольно, чтобы помочь проекту Mozilla, просмотрев дополнения для "
-"обеспечения стабильной и безопасной опыт для пользователей Mozilla. При "
-"общении с редакторами, пожалуйста, будьте вежливы, терпение и уважение, как "
-"они работают над убедитесь, что ваше дополнение вверх правильно и следующие "
-"руководящие принципы изложенные в < a href = \"%(ur l) s» > Руководство "
-"редакторов по проверке < /a >."
+"Дополнения проверяются редакторами АМО - группой талантливых разработчиков, "
+"которые добровольно помогают проекту Mozilla в проверке дополнений, чтобы "
+"обеспечить стабильную и безопасную работу пользователей Mozilla. При общении "
+"с редакторами, пожалуйста, будьте вежливы, терпеливы и уважительны, так как "
+"они упорно работают над тем, чтобы удостовериться, что ваше дополнение "
+"работает правильно и следует принципам изложенным в <a href=\"%(url)s"
+"\">Руководстве редакторов по проверке</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:427
 msgid "What are the guidelines used to review my add-on?"
