@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-08 22:09+0000\n"
+"PO-Revision-Date: 2014-10-08 22:25+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1412806163.0\n"
+"X-POOTLE-MTIME: 1412807101.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8242,7 +8242,7 @@ msgstr "autor: <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
 #: apps/devhub/templates/devhub/personas/submit.html:7
 msgid "Create a New Theme"
-msgstr "Vytvoriť novú tému"
+msgstr "Vytvorenie novej témy"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
