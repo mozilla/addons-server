@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-08 21:02+0000\n"
+"PO-Revision-Date: 2014-10-08 21:27+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1412802138.0\n"
+"X-POOTLE-MTIME: 1412803640.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -12803,24 +12803,23 @@ msgstr "iné"
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "algoritmus"
 
 #: apps/users/models.py:64
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:65
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
 msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 
 #: apps/users/models.py:363
-#, fuzzy
 msgid "Your account has been restricted"
-msgstr "Váš účet byl omezen"
+msgstr "Váš účet bol obmedzený"
 
 #: apps/users/models.py:427
 msgid "Please confirm your email address"
@@ -12840,9 +12839,8 @@ msgstr "vývojár doplnku odpovedal na moju recenziu"
 
 # 87%
 #: apps/users/notifications.py:34
-#, fuzzy
 msgid "an app developer replies to my review"
-msgstr "vývojář aplikace odpoví na mou recenzi"
+msgstr "vývojár aplikácie odpovie na moju recenziu"
 
 #: apps/users/notifications.py:41
 msgid "new add-ons or Firefox features are available"
@@ -12862,9 +12860,8 @@ msgstr "niekto napíše recenziu na môj doplnok"
 
 # 86%
 #: apps/users/notifications.py:76
-#, fuzzy
 msgid "someone writes a review of my app"
-msgstr "někdo napíše k mé aplikaci recenzi"
+msgstr "niekto napíše k mojej aplikácií recenziu"
 
 #: apps/users/notifications.py:83
 msgid "add-on contests or events are announced"
@@ -12888,15 +12885,13 @@ msgstr "Mozilla ma potrebuje kontaktovať ohľadne môjho doplnku"
 
 # 85%
 #: apps/users/notifications.py:128
-#, fuzzy
 msgid "my app is reviewed by an editor"
-msgstr "má aplikace je kontrolována redaktorem"
+msgstr "moja aplikácia je kontrolovaná redaktorom"
 
 # 90%
 #: apps/users/notifications.py:134
-#, fuzzy
 msgid "Mozilla needs to contact me about my individual app"
-msgstr "Mozilla mě potřebuje kontaktovat ohledné mé aplikace"
+msgstr "Mozilla ma potrebuje kontaktovať ohľadom mojej aplikácie"
 
 #: apps/users/notifications.py:141
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
@@ -12905,20 +12900,19 @@ msgstr "Mozilla ma chce kontaktovať ohľadne relevantných noviniek a prieskumo
 #: apps/users/notifications.py:152
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla ma chce kontaktovať o pridaní nových regiónov do služby Marketplace"
 
 #: apps/users/notifications.py:160
 msgid "User Notifications"
 msgstr "Notifikácie pre používateľa"
 
 #: apps/users/views.py:88
-#, fuzzy
 msgid "An email address is required."
 msgstr "E-mailová adresa je požadovaná."
 
 #: apps/users/views.py:93
-#, fuzzy
 msgid "A user with that email address does not exist."
-msgstr "Uživatel s touto e-mailovou adresou neexistuje."
+msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 
 #: apps/users/views.py:110
 msgid "Invalid confirmation code!"
@@ -12955,13 +12949,14 @@ msgid "Email Confirmation Sent"
 msgstr "E-mail s potvrdením bol odoslaný"
 
 #: apps/users/views.py:195
-#, fuzzy
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 msgstr ""
-"Na vaši e-mailovou adresu {0} byl zaslán e-mail pro potvrzení vaší nové e-mailové adresy. Pro její nastavení musíte klepnout na odkaz, který je v e-mailu uveden. Do té doby se stále přihlašujte "
-"pomocí vaší aktuální e-mailové adresy."
+"Na vašu e-mailovú adresu {0} bol zaslaný e-mail na potvrdenie vašej novej "
+"e-mailovej adresy. Pre jej nastavenie však musíte kliknúť na odkaz, ktorý je "
+"v tejto správe uvedený. Dovtedy sa stále prihlasujte pomocou vašej "
+"aktuálnej e-mailovej adresy."
 
 #: apps/users/views.py:207
 msgid "Please confirm your email address change at %s"
@@ -13058,14 +13053,17 @@ msgstr ""
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr ""
+"Po kliknutí na \"odstrániť\" bude váš účet <strong>natrvalo "
+"odstránený</strong>. To prakticky znamená:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Už sa nebudete môcť prihlásiť k %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ""
+"Vaše recenzie a hodnotenia nebudú odstránené, ale už s vami nebudú spájané."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13142,20 +13140,19 @@ msgstr "Rozšírené informácie o vás. Všetky tieto políčka sú voliteľné
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Táto URL adresa bude viditeľná, len ak ste vývojár."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
 msgstr "Vybrať fotografiu&hellip;"
 
 #: apps/users/templates/users/edit.html:123
-#, fuzzy
 msgid "Delete current photo"
 msgstr "Odstrániť aktuálnu fotografiu"
 
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr ""
+msgstr "Východzí jazyk pre zobrazenie informácií o vás (napríklad váš popis)."
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -13163,7 +13160,7 @@ msgstr "Predstavte sa komunite, ak chcete! Tento text bude verejne dostupný na 
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Povolené HTML: {0}. Odkazy nie sú povolené."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
@@ -13222,9 +13219,9 @@ msgid "Log In"
 msgstr "Prihlásenie"
 
 #: apps/users/templates/users/login_form.html:20
-#, fuzzy
 msgid "<a href=\"#\" id=\"show-normal-login\">Are you an admin or editor?</a>"
-msgstr "<a href=\"#\" id=\"show-normal-login\">Jste administrátor či redaktor?</a>"
+msgstr ""
+"<a href=\"#\" id=\"show-normal-login\">Ste administrátor alebo redaktor?</a>"
 
 #: apps/users/templates/users/login_form.html:31 apps/users/templates/users/vcard.html:29 apps/users/templates/users/mobile/login.html:40
 msgid "Email address"
@@ -13232,7 +13229,7 @@ msgstr "E-mailová adresa"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:52
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Zapamätať si ma na tomto zariadení"
 
 #: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:63 templates/mobile/header_auth.html:12
 msgid "Log in"
@@ -13285,7 +13282,7 @@ msgstr "Vývojár doplnkov"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
-msgstr ""
+msgstr "Autor tém"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
@@ -13301,11 +13298,11 @@ msgstr "Doplnky, ktoré som vytvoril"
 
 #: apps/users/templates/users/profile.html:75
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Moje najviac populárne témy"
 
 #: apps/users/templates/users/profile.html:77
 msgid "Themes I've created"
-msgstr ""
+msgstr "Témy, ktoré som vytvoril(a)"
 
 #: apps/users/templates/users/profile.html:87
 msgid "Followed by Me"
@@ -13327,13 +13324,11 @@ msgstr "Zatiaľ žiadne recenzie doplnku."
 
 # 90%
 #: apps/users/templates/users/profile.html:123
-#, fuzzy
 msgid "Report User"
-msgstr "Nahlášení uživatele"
+msgstr "Nahlásenie používateľa"
 
 # 87%
 #: apps/users/templates/users/pwreset_complete.html:11
-#, fuzzy
 msgid "Success!"
 msgstr "Zmena úspešná!"
 
@@ -13377,30 +13372,38 @@ msgstr "Prečo sa registrovať?"
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
 msgstr ""
+"Na preberanie a inštaláciu verejných doplnkov <strong>nie je</strong> "
+"registrácia na AMO požadovaná."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Registrácia je nutná len v prípade, ak:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Chcete písať recenzie k doplnkom."
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "Chcete si evidovať svoje obľúbené doplnky do zbierok."
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "Ste vývojár doplnku a chcete ho nahrať do systému AMO."
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
 msgstr ""
+"Pre úspešné dokončenie registrácie vám bude odoslaný potvrdzujúci e-mail na "
+"adresu, ktorú ste zadali. Pre potvrdenie účtu postupujte podľa inštrukcií, "
+"ktoré sú v ňom uvedené."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"Ak chcete, môžete si prečítať <a href=\"%(legal)s\" title=\"Právne "
+"informácie\">právne informácie</a> a <a href=\"%(privacy)s\" title=\"Zásady "
+"ochrany súkromia\">zásady ochrany súkromia</a>."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
@@ -13431,9 +13434,10 @@ msgid "You are successfully unsubscribed!"
 msgstr "Boli ste úspešne odhlásený."
 
 #: apps/users/templates/users/unsubscribe.html:10
-#, fuzzy
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr "Na e-mailovou adresu <strong>%(email)s</strong> již nebudou zasílány zprávy, když:"
+msgstr ""
+"Na e-mailovú adresu <strong>%(email)s</strong> už nebudú odosielané správy, "
+"ak:"
 
 #: apps/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
@@ -13595,9 +13599,8 @@ msgid "Email when finished"
 msgstr "Po dokončení odoslať e-mail"
 
 #: apps/zadmin/forms.py:106
-#, fuzzy
 msgid "Log emails instead of sending"
-msgstr "Logovat e-maily na místo jejich odesílání"
+msgstr "Logovať e-mailové správy na miesto ich odoslania"
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
