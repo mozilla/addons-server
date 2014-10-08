@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-08 14:11+0000\n"
+"PO-Revision-Date: 2014-10-08 21:02+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1412777469.0\n"
+"X-POOTLE-MTIME: 1412802138.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1866,7 +1866,7 @@ msgstr ""
 
 #: apps/amo/log.py:579
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Hodnotenie doplnku {addon} bolo zmenené."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3481,7 +3481,7 @@ msgstr "Téma Persona"
 
 #: apps/constants/base.py:417
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Ručné body kontroly redaktora"
 
 #: apps/constants/base.py:418
 msgid "Full Add-on Review"
@@ -3541,15 +3541,15 @@ msgstr "Kontrola plnej témy"
 
 #: apps/constants/base.py:432
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Predbežná kontrola plných tém"
 
 #: apps/constants/base.py:433
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Kontrola aktualizácie plných tém"
 
 #: apps/constants/base.py:434
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Moderovaná kontrola doplnkov"
 
 #: apps/constants/base.py:478
 msgid "Level 1"
@@ -3809,7 +3809,7 @@ msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 
 #: apps/devhub/forms.py:483
 msgid "Override failed validation"
-msgstr ""
+msgstr "Prepísať neúspešnú kontrolu"
 
 #: apps/devhub/forms.py:524
 msgid "Need at least one platform."
@@ -3825,7 +3825,7 @@ msgstr "Predbežná kontrola"
 
 #: apps/devhub/forms.py:536
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Zvoľte typ nominácie na kontrolu"
 
 #: apps/devhub/forms.py:551
 msgid "Version %s already exists"
@@ -5072,6 +5072,10 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted ever again, even by you. The existing users of your add-on will remain on this update channel "
 "and never receive updates again."
 msgstr ""
+"Odstránením svojho doplnku ho trvalo odstránite z webu a zabránite, aby bol "
+"doplnok s rovnakým GUID znovu nahratý (aj vami). Existujúci používatelia "
+"vášho doplnku ostanú na tomto aktualizačnom kanále, ale už nikdy nezískajú "
+"nové aktualizácie."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -5301,9 +5305,11 @@ msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Pr
 msgstr "Povedzte vašim používateľom vo svojom <a href=\"{0}\">profile vývojára</a> o tom, že ste tento doplnok vytvorili."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:44
-#, fuzzy
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Zobrazte si či odebírejte <a href=\"{0}\">informace o nedávné aktivitě</a> u svého doplňku a zůstaňte tak informování o recenzích, sbírkách a dalších."
+msgstr ""
+"Zobrazte, alebo odoberajte <a href=\"{0}\">informácie o nedávnej aktivite</a> "
+"pri svojom doplnku a zostaňte tak informovaný o recenziách, zbierkach a "
+"ďalších."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
@@ -5497,9 +5503,8 @@ msgid "Which mobile platforms is this file compatible with?"
 msgstr "S akými platformami pre mobilné zariadenia je tento súbor kompatibilný?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:44
-#, fuzzy
 msgid "Administrative overrides"
-msgstr "Akce administrátora"
+msgstr "Zmeny pri administrácií"
 
 #: apps/devhub/templates/devhub/docs/case-studies.html:12
 msgid "StumbleUpon"
