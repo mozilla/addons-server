@@ -201,7 +201,11 @@ var installButton = function() {
     // Calls InstallTrigger.install or AddSearchProvider if we capture a click
     // on something with a .installer class.
     var clickHijack = function() {
-        if (!appSupported && !search || !("InstallTrigger" in window)) return;
+        try {
+            if (!appSupported && !search || !("InstallTrigger" in window)) return;
+        } catch (e) {
+            return;
+        }
 
         $this.addClass('clickHijack'); // So we can disable pointer events
 
