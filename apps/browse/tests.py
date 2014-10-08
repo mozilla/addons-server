@@ -1111,6 +1111,13 @@ class TestLegacyRedirects(amo.tests.TestCase):
         self.redirects('/extensions/feeds-news-blogging/featured',
                        '/extensions/feeds-news-blogging/?sort=featured')
 
+    def test_missing_rss_redirections_749754(self):
+        url = '/en-US/firefox/browse/type:{type}/cat:1/format:rss?sort=updated'
+        r = self.client.get(url.format(type=3))  # Language tools.
+        eq_(r.status_code, 404)
+        r = self.client.get(url.format(type=9))  # Themes.
+        eq_(r.status_code, 404)
+
 
 class TestCategoriesFeed(amo.tests.TestCase):
 
