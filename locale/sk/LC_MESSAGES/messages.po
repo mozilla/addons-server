@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-08 21:27+0000\n"
+"PO-Revision-Date: 2014-10-08 22:09+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1412803640.0\n"
+"X-POOTLE-MTIME: 1412806163.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -11989,14 +11989,12 @@ msgstr[2] "{num} recenzií"
 
 # 87%
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
-#, fuzzy
 msgid "Rated {0} out of 5 stars"
-msgstr "Ohodnoceno {0} z 5 hvězdiček"
+msgstr "Ohodnotené {0} z 5 hviezdičiek"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
-#, fuzzy
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
+msgstr "Ohodnotené %(rating)s z 5 hviezdičiek"
 
 # 75%
 #: apps/reviews/templates/reviews/mobile/add_form.html:3 apps/reviews/templates/reviews/mobile/add_form.html:8
@@ -12117,9 +12115,8 @@ msgstr "Doplnky pre {0}"
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: apps/search/views.py:557
-#, fuzzy
 msgid "Any {0}"
-msgstr "Libovolný {0}"
+msgstr "Ľubovolný {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:592
@@ -12144,9 +12141,10 @@ msgid "Search Unavailable"
 msgstr "Vyhľadávanie nie je dostupné"
 
 #: apps/search/templates/search/down.html:6
-#, fuzzy
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Vyhledávání je dočasně nedostupné. Zkuste to prosím znovu za několik minut."
+msgstr ""
+"Vyhľadávanie je dočasne nedostupné. Vyskúšajte to prosím znova o niekoľko "
+"minút."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
@@ -12503,38 +12501,32 @@ msgid "Change settings."
 msgstr "Zmeniť nastavenie"
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
-#, fuzzy
 msgid "Add-ons Created by Date"
-msgstr "Vytvořené doplňky dle data"
+msgstr "Vytvorené doplnky podľa dátumu"
 
 #: apps/stats/templates/stats/reports/addons_downloaded.html:3
-#, fuzzy
 msgid "Add-ons Downloaded by Date"
-msgstr "Stažené doplňky dle data"
+msgstr "Prevzaté doplnky podľa dátumu"
 
 #: apps/stats/templates/stats/reports/addons_in_use.html:3
-#, fuzzy
 msgid "Add-ons in Use by Date"
-msgstr "Používané doplňky dle data"
+msgstr "Používané doplnky podľa dátumu"
 
 #: apps/stats/templates/stats/reports/addons_updated.html:3
-#, fuzzy
 msgid "Add-ons Updated by Date"
-msgstr "Aktualizované doplňky dle data"
+msgstr "Aktualizované doplnky podľa dátumu"
 
 #: apps/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
 msgstr "Používanie aplikácie podľa dátumu"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
-#, fuzzy
 msgid "Collections Created by Date"
-msgstr "Vytvořené sbírky dle data"
+msgstr "Vytvorené kolekcie podľa dátumu"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
-#, fuzzy
 msgid "Contributions by Date"
-msgstr "Příspěvky dle data"
+msgstr "Príspevky podľa dátumu"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
@@ -12545,22 +12537,22 @@ msgid "How are downloads counted?"
 msgstr "Ako sa získavajú počty prevzatí?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
-#, fuzzy
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Jak jsou počty stažení počítány?</h2> <p> Počty stažení jsou aktualizovány každý večer a zahrnují pouze úvodní stažení doplňku, nikoliv aktualizace. Stažení mohou být zdrojem, z kterého je "
-"stahováno, přerušeny. </p>"
+"<h2>Ako sú počítané počty prevzatí?</h2> <p> Počty prevzatí sú aktualizované "
+"každý večer a zahŕňajú len úvodné prevzatie doplnku a nie jeho "
+"aktualizácie. Prevzatia môžu byť zdrojom, z ktorého sú preberané prerušené. "
+"</p>"
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
 msgstr "Jazyky podľa dátumu"
 
 #: apps/stats/templates/stats/reports/os.html:3
-#, fuzzy
 msgid "Platform usage by Date"
-msgstr "Používanost platforem dle data"
+msgstr "Používané platformy podľa dátumu"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -12599,23 +12591,20 @@ msgid "See more platforms&hellip;"
 msgstr "Ďalšie platformy&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
-#, fuzzy
 msgid "Ratings by Date"
-msgstr "Hodnocení dle data"
+msgstr "Hodnotenia podľa dátumu"
 
 #: apps/stats/templates/stats/reports/reviews_created.html:3
-#, fuzzy
 msgid "Reviews Created by Date"
-msgstr "Vytvořené recenze dle data"
+msgstr "Vytvorené recenzie podľa dátumu"
 
 #: apps/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
 msgstr "Zdroje prevzatí podľa dátumu"
 
 #: apps/stats/templates/stats/reports/sources.html:6
-#, fuzzy
 msgid "About tracking external sources..."
-msgstr "O sledování externích zdrojů..."
+msgstr "O sledovaní externých zdrojov..."
 
 #: apps/stats/templates/stats/reports/sources.html:10
 msgid ""
@@ -12636,18 +12625,16 @@ msgid "Add-on Status by Date"
 msgstr "Stav doplnku podľa dátumu"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
-#, fuzzy
 msgid "Subscribers by Date"
-msgstr "Odběratelé dle data"
+msgstr "Odberatelia podľa dátumu"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
 msgstr "Denní používatelia podľa dátumu"
 
 #: apps/stats/templates/stats/reports/usage.html:6
-#, fuzzy
 msgid "What are daily users?"
-msgstr "Co jsou denní uživatelé?"
+msgstr "Čo sú to denný používatelia?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -12662,9 +12649,8 @@ msgid ""
 msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
-#, fuzzy
 msgid "User Signups by Date"
-msgstr "Přihlášení uživatelé dle data"
+msgstr "Prihlásení používatelia podľa dátumu"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
@@ -12706,6 +12692,8 @@ msgstr "Neuložiť zmeny"
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
+"Chcete odstrániť všetky preklady pre jazyk <b>{0}</b? Táto operácia je "
+"nevratná."
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -12726,6 +12714,9 @@ msgstr "Toto heslo nie je povolené."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Ako súčasť našej novej politiky hesiel požadujeme, aby vaše heslo malo %s, "
+"alebo viac znakov. Aktualizujte svoje heslo pomocou  <a href=\"%s\">jeho "
+"obnovy</a>."
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -12737,12 +12728,13 @@ msgstr "Zadané nesprávne heslo!"
 
 #: apps/users/forms.py:241
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Meno používateľa nesmie obsahovať iba čísla."
 
 #: apps/users/forms.py:243
-#, fuzzy
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Vložte platné uživatelské jméno, které obsahuje znaky abecedy, čísla, podtržítka či pomlčky."
+msgstr ""
+"Zadajte platné používateľské meno, ktoré obsahuje znaky abecedy, čísla, "
+"podčiarky alebo pomlčky."
 
 #: apps/users/forms.py:246
 msgid "This username cannot be used."
