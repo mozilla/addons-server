@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-06 21:24+0000\n"
+"PO-Revision-Date: 2014-10-08 14:11+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1412630640.0\n"
+"X-POOTLE-MTIME: 1412777469.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6470,6 +6470,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
 msgstr ""
+"<a href=\"%(link_featured)s\">Propagované rozšírenia</a> sú vyberané každý "
+"mesiac, <a href=\"%(link_themes)s\">propagované plné témy</a> sú vyberané "
+"štvrťročne."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -6508,9 +6511,10 @@ msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)
 msgstr "musí byť plne schválený redaktorom AMO (predbežné kontroly nie sú dostatočné)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
-#, fuzzy
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
-msgstr "Doplněk musí mít skvělé recenze od uživatelů a jakékoliv problémy či dotazy na podporu musí být vývojářem rychle řešeny."
+msgstr ""
+"Doplnok musí mať výborné recenzie od používateľov a akékoľvek problémy alebo "
+"otázky na podporu musia byť vývojárom rýchlo riešené."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -6760,13 +6764,14 @@ msgid "application start-up or page load performance degradation"
 msgstr "výrazný vplyv na rýchlosť štartu aplikácie, alebo výrazný pokles výkonu"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
-#, fuzzy
 msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
-"Pro informace, jak se těmto problémům vyhnout, se podívejte do sekce <a href=\"%(link_howto)s\">Databáze ukázek, jak na to</a>. Některé z výše uvedených bodů, jako ne například binární kód či kód "
-"je prohnaný skrze obfuskátor, je povolen pod určitými podmínkami, které jsou popsány níže."
+"Pre informácie, ako sa týmto problémom vyhnúť, sa pozrite do sekcie <a "
+"href=\"%(link_howto)s\">Databáza ukážok, ako na to</a>. Niektoré z vyššie "
+"uvedených bodov, ako napríklad binárny kód alebo kód je prejdený cez "
+"obfuskátor, sú povolené pod určitými podmienkami, ktoré sú popísané nižšie."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
