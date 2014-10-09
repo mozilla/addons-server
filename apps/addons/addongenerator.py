@@ -10,7 +10,7 @@ from PIL import Image, ImageColor
 from addons.models import AddonCategory, AddonUser, Category, Preview
 from amo.tests import addon_factory, collection_factory
 from amo.utils import slugify
-from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
+from bandwagon.models import CollectionAddon, FeaturedCollection
 from constants.applications import APPS
 from constants.base import ADDON_EXTENSION
 from devhub.tasks import resize_preview
@@ -61,6 +61,34 @@ categories_choices = {
         (u'Miscellaneous', u'default'),
         (u'Privacy and Security', u'alerts'),
         (u'Tags', u'bookmarks'),
+    ),
+    'android': (
+        # (Label in production, Default icon name),
+        (u'Device Features & Location', u'search'),
+        (u'Experimental', u'alerts'),
+        (u'Feeds, News, & Blogging', u'feeds'),
+        (u'Performance', u'webdev'),
+        (u'Photos & Media', u'photos'),
+        (u'Security & Privacy', u'security'),
+        (u'Shopping', u'shopping'),
+        (u'Social Networking', u'social'),
+        (u'Sports & Games', u'games'),
+        (u'User Interface', u'tabs'),
+    ),
+    'seamonkey': (
+        # (Label in production, Default icon name),
+        (u'Bookmarks', u'bookmarks'),
+        (u'Downloading and File Management', u'downloads'),
+        (u'Interface Customizations', u'appearance'),
+        (u'Language Support & Translation', u'dictionary'),
+        (u'Miscellaneous', u'default'),
+        (u'Photos & Media', u'photos'),
+        (u'Privacy and Security', u'alerts'),
+        (u'RSS, News and Blogging', u'feeds'),
+        (u'Search Tools', u'search'),
+        (u'Site-specific', u'posts'),
+        (u'User Interface', u'tabs'),
+        (u'Web and Developer Tools', u'webdev'),
     ),
 }
 

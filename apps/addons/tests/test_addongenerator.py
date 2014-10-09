@@ -8,8 +8,7 @@ from addons.addongenerator import categories_choices, generate_addon_data
 from constants.applications import APPS
 
 
-class FirefoxAddonGeneratorTests(amo.tests.TestCase):
-    app = APPS['firefox']
+class _BaseAddonGeneratorTests(amo.tests.TestCase):
 
     def test_tinyset(self):
         size = 4
@@ -45,5 +44,17 @@ class FirefoxAddonGeneratorTests(amo.tests.TestCase):
         eq_(len(set(addonname for addonname, cat in data)), size)
 
 
-class ThunderbirdAddonGeneratorTests(FirefoxAddonGeneratorTests):
+class FirefoxAddonGeneratorTests(_BaseAddonGeneratorTests):
+    app = APPS['firefox']
+
+
+class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorTests):
     app = APPS['thunderbird']
+
+
+class AndroidAddonGeneratorTests(_BaseAddonGeneratorTests):
+    app = APPS['android']
+
+
+class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorTests):
+    app = APPS['seamonkey']
