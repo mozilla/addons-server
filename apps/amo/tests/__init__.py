@@ -681,15 +681,16 @@ def version_factory(file_kw={}, **kw):
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    application = kw.pop('application', amo.FIREFOX.id)
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
     if kw.get('addon').type != amo.ADDON_PERSONA:
-        av_min, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=amo.FIREFOX.id,
+        ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=v, min=av_min,
                                                    max=av_max)
     file_factory(version=v, **file_kw)

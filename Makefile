@@ -1,5 +1,5 @@
 .PHONY: help docs test test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex
-NUM_ADDONS=100
+NUM_ADDONS=30
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -42,7 +42,8 @@ initialize_db:
 	python manage.py createsuperuser
 
 populate_data:
-	python manage.py generate_addons $(NUM_ADDONS)
+	python manage.py generate_addons --app firefox $(NUM_ADDONS)
+	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py reindex --wipe --force
 
 update_code:
