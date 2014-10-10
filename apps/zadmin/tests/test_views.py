@@ -35,7 +35,8 @@ from versions.models import ApplicationsVersions, Version
 from zadmin import forms, tasks
 from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
-from zadmin.views import updated_versions, find_files
+from zadmin.tasks import updated_versions
+from zadmin.views import find_files
 
 
 no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
@@ -509,11 +510,11 @@ class TestBulkUpdate(BulkValidationTest):
         log.info = mock.Mock()
         self.create_result(self.job, self.create_file(self.version))
         self.client.post(self.update_url, self.data)
-        eq_(log.info.call_args_list[-4][0][0],
+        eq_(log.info.call_args_list[-8][0][0],
             '[1@None] bulk update stats for job %s: '
             '{bumped: 1, is_dry_run: 0, processed: 1}'
             % self.job.pk)
-        eq_(log.info.call_args_list[-1][0][0],
+        eq_(log.info.call_args_list[-2][0][0],
             '[1@None] bulk email stats for job %s: '
             '{author_emailed: 1, is_dry_run: 0, processed: 1}'
             % self.job.pk)
