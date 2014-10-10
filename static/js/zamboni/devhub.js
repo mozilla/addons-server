@@ -697,14 +697,6 @@ function initVersions() {
             $('.current-version-warning', this).toggle(is_current);
             return true;
         }});
-
-    $('#upload-file-finish').click(function() {
-        var $button = $(this);
-        setTimeout(function() { // Chrome fix
-            $button.attr('disabled', true);
-        }, 50);
-    });
-
 }
 
 function initSubmit() {
