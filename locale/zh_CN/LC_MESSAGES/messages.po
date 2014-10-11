@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-01 23:37+0000\n"
+"PO-Revision-Date: 2014-10-11 23:15+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412206648.0\n"
+"X-POOTLE-MTIME: 1413069342.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8514,7 +8514,7 @@ msgstr "感谢您使用 %(app)s 并支持 <a href=\"%(url)s\">Mozilla 的使命<
 
 #: apps/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
-msgstr "已下载的附加组件："
+msgstr "附加组件总下载次数："
 
 #: apps/discovery/templates/discovery/addons/detail.html:71
 msgid "Active Users"
