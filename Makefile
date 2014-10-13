@@ -1,5 +1,5 @@
 .PHONY: help docs test test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex
-NUM_ADDONS=100
+NUM_ADDONS=15
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -36,13 +36,16 @@ test_failed:
 initialize_db:
 	python manage.py reset_db
 	python manage.py syncdb --noinput
-	python manage.py loaddata apps/access/fixtures/initial.json
+	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
 	schematic --fake migrations/
 	python manage.py createsuperuser
 
 populate_data:
-	python manage.py generate_addons $(NUM_ADDONS)
+	python manage.py generate_addons --app firefox $(NUM_ADDONS)
+	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
+	python manage.py generate_addons --app android $(NUM_ADDONS)
+	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py reindex --wipe --force
 
 update_code:
