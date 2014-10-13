@@ -72,6 +72,12 @@ class TestVersion(amo.tests.TestCase):
             reverse('devhub.file_validation',
                     args=[self.addon.slug, self.version.all_files[0].id]))
 
+    def test_upload_link_label_in_edit_nav(self):
+        url = reverse('devhub.versions.edit', args=(self.addon.slug, self.version.pk))
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('.addon-status>.addon-upload>strong>a').text(), 'Upload a new file')
+
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
         r = self.client.get(self.url)
