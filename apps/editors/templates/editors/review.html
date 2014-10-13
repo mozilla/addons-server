@@ -91,9 +91,15 @@
               {% endfor %}
             </ul>
           {% endif %}
-          {% if version.source and is_admin %}
-            <div><strong>{{ _('Additional sources:') }}</strong></div>
-            <div><a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a></div>
+          {% if version.source %}
+              <div><strong>{{ _('Additional sources:') }}</strong></div>
+              <div>
+                  {% if is_admin %}
+                      <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
+                  {% else %}
+                      {{ _('The developer has provided source code.')}}
+                  {% endif %}
+              </div>
           {% endif %}
         </td>
         <td>

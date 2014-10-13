@@ -6,6 +6,8 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
+from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 from django.utils.datastructures import SortedDict
 from django.test.utils import override_settings
 
@@ -2028,6 +2030,29 @@ class TestReview(ReviewBase):
             reverse('files.compare', args=[f2.pk, f1.pk]),
         ]
         check_links(expected, links, verify=False)
+
+    def test_download_sources_link(self):
+        version = self.addon._latest_version
+        tdir = temp.gettempdir()
+        source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
+        source_file.write('a' * (2 ** 21))
+        source_file.seek(0)
+        version.source = DjangoFile(source_file)
+        version.save()
+
+        url = reverse('editors.review', args=[self.addon.pk])
+
+        # Admin reviewer: able to download sources.
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        self.client.login(username=user.email, password='password')
+        response = self.client.get(url, follow=True)
+        assert 'Download files' in response.content
+
+        # Standard reviewer: should know that sources were provided.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.client.login(username=user.email, password='password')
+        response = self.client.get(url, follow=True)
+        assert 'The developer has provided source code.' in response.content
 
 
 class TestReviewPreliminary(ReviewBase):
