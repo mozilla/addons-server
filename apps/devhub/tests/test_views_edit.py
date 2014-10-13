@@ -990,7 +990,8 @@ class TestEditTechnical(TestEdit):
         data = dict(developer_comments='Test comment!',
                     external_software='on',
                     site_specific='on',
-                    view_source='on')
+                    view_source='on',
+                    whiteboard='Whiteboard info.')
 
         r = self.client.post(self.technical_edit_url, self.formset(data))
         eq_(r.context['form'].errors, {})
@@ -998,6 +999,8 @@ class TestEditTechnical(TestEdit):
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
+                eq_(unicode(getattr(addon, k)), unicode(data[k]))
+            elif k == 'whiteboard':
                 eq_(unicode(getattr(addon, k)), unicode(data[k]))
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)

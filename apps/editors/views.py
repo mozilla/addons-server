@@ -552,7 +552,8 @@ def _review(request, addon):
                   form=form, paging=paging, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal)
+                  actions=actions, actions_minimal=actions_minimal,
+                  whiteboard_form=forms.WhiteboardForm(instance=addon))
 
     return render(request, 'editors/review.html', ctx)
 
@@ -675,3 +676,14 @@ def leaderboard(request):
     return render(request, 'editors/leaderboard.html', context(**{
         'scores': ReviewerScore.all_users_by_score(),
     }))
+
+
+@addons_reviewer_required
+@addon_view
+def whiteboard(request, addon):
+    form = forms.WhiteboardForm(request.POST or None, instance=addon)
+
+    if form.is_valid():
+        addon = form.save()
+        return redirect('editors.review', addon.pk)
+    raise PermissionDenied

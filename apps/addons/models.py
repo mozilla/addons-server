@@ -357,6 +357,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     enable_new_regions = models.BooleanField(default=False, db_index=True)
 
+    whiteboard = models.TextField(blank=True)
+
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
 

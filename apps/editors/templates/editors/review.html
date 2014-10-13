@@ -237,6 +237,23 @@
   </div>
 </form>
 
+<form method="POST" action="{{ url('editors.whiteboard', addon.slug) }}">
+  {{ csrf() }}
+  <div class="whiteboard">
+    <div class="whiteboard-inner">
+      <label for="id_whiteboard">{{ whiteboard_form.whiteboard.label }}</label>
+      {{ whiteboard_form.whiteboard }}
+      {{ form.notify.errors }}
+      <p>{{ _('The whiteboard is the place to exchange information relevant to
+               this addon (whatever the version), between the developer and the
+               editor. This is visible and editable by both.') }}</p>
+      <div class="whiteboard-actions">
+        <input type="submit" value="{{ _('Update the whiteboard') }}" />
+      </div>
+    </div>
+  </div>
+</form>
+
 </div> {# /#primary #}
 
 <div class="secondary scroll_sidebar_parent">
