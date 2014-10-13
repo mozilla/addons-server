@@ -1,6 +1,5 @@
 import collections
 
-from django import http
 from django.conf import settings
 from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
@@ -432,6 +431,8 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
     else:
         cat = get_object_or_404(Category.objects, id=category)
         if format == 'rss':
+            if type_slug in ('language-tools', 'personas'):
+                raise Http404
             url = reverse('browse.%s.rss' % type_slug, args=[cat.slug])
         else:
             url = reverse('browse.%s' % type_slug, args=[cat.slug])
@@ -524,4 +525,4 @@ def moreinfo_redirect(request):
         addon_id = int(request.GET.get('id', ''))
         return redirect('discovery.addons.detail', addon_id, permanent=True)
     except ValueError:
-        raise http.Http404
+        raise Http404
