@@ -259,6 +259,11 @@
 
 
             $upload_field.bind("upload_success_results", function(e, file, results) {
+                    // If the addon is detected as beta, automatically check the "beta" input.
+                    if (results.beta) {
+                      $('#id_beta').prop('checked', true);
+                      $('.beta-status').show();
+                    }
                 if(results.error) {
                     // This shouldn't happen.  But it might.
                     var error = gettext('Unexpected server error while validating.');

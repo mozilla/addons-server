@@ -9,8 +9,24 @@ import amo.tests
 from addons.models import Addon
 from applications.models import AppVersion
 from files.models import File
-from files.utils import find_jetpacks, PackageJSONExtractor
+from files.utils import find_jetpacks, is_beta, PackageJSONExtractor
 from versions.models import Version
+
+
+def test_is_beta():
+    assert not is_beta('1.2')
+    assert is_beta('1.2a')
+    assert is_beta('1.2alpha')
+    assert is_beta('1.2a1')
+    assert is_beta('1.2alpha1')
+    assert is_beta('1.2a123')
+    assert is_beta('1.2alpha123')
+    assert is_beta('1.2b')
+    assert is_beta('1.2beta')
+    assert is_beta('1.2b1')
+    assert is_beta('1.2beta1')
+    assert is_beta('1.2b123')
+    assert is_beta('1.2blpha123')
 
 
 class TestFindJetpacks(amo.tests.TestCase):

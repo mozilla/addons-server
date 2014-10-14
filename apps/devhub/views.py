@@ -47,7 +47,7 @@ from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from devhub.utils import hide_traceback, make_validation_results
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
-from files.utils import parse_addon
+from files.utils import is_beta, parse_addon
 from search.views import BaseAjaxSearch
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -816,6 +816,9 @@ def json_upload_detail(request, upload, addon_slug=None):
             plat_exclude = set(s) - set(supported_platforms)
             plat_exclude = [str(p) for p in plat_exclude]
 
+            # Does the version number look like it's beta?
+            result['beta'] = is_beta(pkg.get('version', ''))
+
     result['platforms_to_exclude'] = plat_exclude
     return result
 
@@ -1181,6 +1184,8 @@ def version_add(request, addon_id, addon):
             platforms=pl,
             source=form.cleaned_data['source']
         )
+        if form.cleaned_data['beta']:
+            v.files.update(status=amo.STATUS_BETA)
         log.info('Version created: %s for: %s' %
                  (v.pk, form.cleaned_data['upload']))
         check_validation_override(request, form, addon, v)
@@ -1205,6 +1210,8 @@ def version_add_file(request, addon_id, addon, version_id):
     upload = form.cleaned_data['upload']
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
                                 parse_addon(upload, addon))
+    if form.cleaned_data['beta']:
+        new_file.update(status=amo.STATUS_BETA)
     source = form.cleaned_data['source']
     if source:
         version.update(source=source)

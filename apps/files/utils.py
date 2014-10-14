@@ -77,6 +77,11 @@ def make_xpi(files):
     return f
 
 
+def is_beta(version):
+    """Return True if the version is believed to be a beta version."""
+    return bool(amo.VERSION_BETA.search(version))
+
+
 class Extractor(object):
     """Extract adon info from an install.rdf or package.json"""
     App = collections.namedtuple('App', 'appdata id min max')

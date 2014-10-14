@@ -2325,11 +2325,12 @@ class TestUploadErrors(UploadTest):
 class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-             override_validation=False, expected_status=200, source=None):
+             override_validation=False, expected_status=200, source=None,
+             beta=False):
         d = dict(upload=self.upload.pk, source=source,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms],
-                 admin_override_validation=override_validation)
+                 admin_override_validation=override_validation, beta=beta)
         r = self.client.post(self.url, d)
         eq_(r.status_code, expected_status)
         return r
@@ -2389,6 +2390,11 @@ class TestAddVersion(AddVersionTest):
         response = self.post(source=source, expected_status=400)
         assert 'source' in json.loads(response.content)
 
+    def test_force_beta(self):
+        self.post(beta=True)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status == amo.STATUS_BETA
+
 
 class TestAddBetaVersion(AddVersionTest):
     fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
@@ -2405,10 +2411,10 @@ class TestAddBetaVersion(AddVersionTest):
         url = reverse('devhub.versions.add_file',
                       args=[self.addon.slug, version.id])
         return self.client.post(url, dict(upload=self.upload.pk,
-                                          platform=platform.id))
+                                          platform=platform.id, beta=True))
 
     def test_add_multi_file_beta(self):
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC])
+        r = self.post(desktop_platforms=[amo.PLATFORM_MAC], beta=True)
 
         version = self.addon.versions.all().order_by('-id')[0]
 
@@ -2423,6 +2429,11 @@ class TestAddBetaVersion(AddVersionTest):
         # Make sure that the additional files are beta
         fle = File.objects.all().order_by('-id')[0]
         eq_(fle.status, amo.STATUS_BETA)
+
+    def test_force_not_beta(self):
+        self.post(beta=False)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status == amo.STATUS_PUBLIC
 
 
 class TestAddVersionValidation(AddVersionTest):
