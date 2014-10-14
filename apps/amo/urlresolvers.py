@@ -205,9 +205,22 @@ def linkify_bounce_url_callback(attrs, new=False):
     return attrs
 
 
-def linkify_with_outgoing(text, nofollow=True):
+def linkify_only_full_urls(attrs, new=False):
+    """Linkify only full links, containing the scheme."""
+    if not new:  # This is an existing <a> tag, leave it be.
+        return attrs
+
+    # If the original text doesn't contain the scheme, don't linkify.
+    if not attrs['_text'].startswith(('http:', 'https:')):
+        return None
+
+    return attrs
+
+
+def linkify_with_outgoing(text, nofollow=True, only_full=False):
     """Wrapper around bleach.linkify: uses get_outgoing_url."""
-    callbacks = [linkify_bounce_url_callback]
+    callbacks = [linkify_only_full_urls] if only_full else []
+    callbacks.append(linkify_bounce_url_callback)
     if nofollow:
         callbacks.append(bleach.callbacks.nofollow)
     return bleach.linkify(unicode(text), callbacks=callbacks)

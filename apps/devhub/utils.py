@@ -82,4 +82,4 @@ def escape_validation(validation):
             # Should get fixed soon in bug 617481
             msg['tier'] = 1
     validation['ending_tier'] = ending_tier
-    return escape_all(validation)
+    return escape_all(validation, linkify_only_full=True)
