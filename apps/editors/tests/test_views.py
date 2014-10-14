@@ -2245,6 +2245,16 @@ class TestStatusFile(ReviewBase):
         self.check_status(unicode(File.STATUS_CHOICES[self.get_file().status]))
 
 
+class TestWhiteboard(ReviewBase):
+
+    def test_whiteboard_addition(self):
+        whiteboard_info = u'Whiteboard info.'
+        url = reverse('editors.whiteboard', args=[self.addon.slug])
+        r = self.client.post(url, {'whiteboard': whiteboard_info})
+        eq_(r.status_code, 302)
+        eq_(self.get_addon().whiteboard, whiteboard_info)
+
+
 class TestAbuseReports(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 

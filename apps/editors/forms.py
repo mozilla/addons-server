@@ -14,7 +14,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 import constants.editors as rvw
-from addons.models import Persona
+from addons.models import Addon, Persona
 from amo.urlresolvers import reverse
 from amo.utils import raise_required
 from applications.models import AppVersion
@@ -458,3 +458,10 @@ class ReviewAppLogForm(ReviewLogForm):
             # L10n: Description of what can be searched for.
             'placeholder': _lazy(u'app, reviewer, or comment'),
             'size': 30}
+
+
+class WhiteboardForm(forms.ModelForm):
+
+    class Meta:
+        model = Addon
+        fields = ['whiteboard']
