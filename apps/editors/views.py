@@ -297,22 +297,6 @@ def _queue(request, TableObj, tab, qs=None):
             qs = search_form.filter_qs(qs)
     else:
         search_form = forms.QueueSearchForm()
-    review_num = request.GET.get('num', None)
-    if review_num:
-        try:
-            review_num = int(review_num)
-        except ValueError:
-            pass
-        else:
-            try:
-                # Force a limit query for efficiency:
-                start = review_num - 1
-                row = qs[start: start + 1][0]
-                return http.HttpResponseRedirect('%s?num=%s' % (
-                                                 TableObj.review_url(row),
-                                                 review_num))
-            except IndexError:
-                pass
     order_by = request.GET.get('sort', TableObj.default_order_by())
     order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
@@ -448,19 +432,6 @@ def _review(request, addon):
                   != 'preliminary' else 'prelim')
     redirect_url = reverse('editors.queue_%s' % queue_type)
 
-    num = request.GET.get('num')
-    paging = {}
-    if num:
-        try:
-            num = int(num)
-        except (ValueError, TypeError):
-            raise http.Http404
-        total = queue_counts(queue_type)
-        paging = {'current': num, 'total': total,
-                  'prev': num > 1, 'next': num < total,
-                  'prev_url': '%s?num=%s' % (redirect_url, num - 1),
-                  'next_url': '%s?num=%s' % (redirect_url, num + 1)}
-
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
     if request.method == 'POST' and form.is_valid():
@@ -549,7 +520,7 @@ def _review(request, addon):
 
     ctx = context(version=version, addon=addon,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
-                  form=form, paging=paging, canned=canned, is_admin=is_admin,
+                  form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,

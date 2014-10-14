@@ -23,7 +23,6 @@ from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
 from amo.tests import check_links, formset, initial
 from amo.urlresolvers import reverse
-from amo.utils import urlparams
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, ReviewerScore
 from files.models import File
@@ -494,8 +493,9 @@ class QueueTest(EditorTest):
             name = '%s %s' % (unicode(addon.name),
                               addon.current_version.version)
             url = reverse('editors.review', args=[addon.slug])
-            expected.append((name, urlparams(url, num=idx + 1)))
-        check_links(expected,
+            expected.append((name, url))
+        check_links(
+            expected,
             pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
             verify=False)
 
@@ -530,21 +530,6 @@ class TestQueueBasics(QueueTest):
     def test_invalid_per_page(self):
         r = self.client.get(self.url, {'per_page': '<garbage>'})
         # No exceptions:
-        eq_(r.status_code, 200)
-
-    def test_redirect_to_review(self):
-        self.generate_files(['Pending One', 'Pending Two'])
-        r = self.client.get(self.url, {'num': 2})
-        slug = self.addons['Pending Two'].slug
-        url = reverse('editors.review', args=[slug])
-        self.assertRedirects(r, url + '?num=2')
-
-    def test_invalid_review_ignored(self):
-        r = self.client.get(self.url, {'num': 1})
-        eq_(r.status_code, 200)
-
-    def test_garbage_review_num_ignored(self):
-        r = self.client.get(self.url, {'num': 'not-a-number'})
         eq_(r.status_code, 200)
 
     def test_grid_headers(self):
@@ -814,10 +799,8 @@ class TestNominatedQueue(QueueTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         expected = [
-            ('Nominated One 0.1',
-             reverse('editors.review', args=[a1.slug]) + '?num=1'),
-            ('Nominated Two 0.2',
-             reverse('editors.review', args=[a2.slug]) + '?num=2'),
+            ('Nominated One 0.1', reverse('editors.review', args=[a1.slug])),
+            ('Nominated Two 0.2', reverse('editors.review', args=[a2.slug])),
         ]
         check_links(expected,
             pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
@@ -1569,26 +1552,6 @@ class TestReview(ReviewBase):
             (unicode(self.addon.name), None),
         ]
         self._test_breadcrumbs(expected)
-
-    def test_paging_none(self):
-        eq_(self.client.get(self.url).context['paging'], {})
-
-    def test_paging_num(self):
-        # 'Pending One' and 'Pending Two' should be the only ones present.
-        self.generate_files()
-
-        paging = self.client.get(self.url, dict(num=1)).context['paging']
-        eq_(paging['prev'], False)
-        eq_(paging['next'], True)
-        eq_(paging['total'], 2)
-
-        paging = self.client.get(self.url, dict(num=2)).context['paging']
-        eq_(paging['prev'], True)
-        eq_(paging['next'], False)
-
-    def test_paging_error(self):
-        response = self.client.get(self.url, dict(num='x'))
-        eq_(response.status_code, 404)
 
     def test_files_shown(self):
         r = self.client.get(self.url)
