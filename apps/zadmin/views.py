@@ -26,6 +26,7 @@ import amo
 import amo.search
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
+from addons.search import get_mappings as get_addons_mappings
 from amo import messages, get_user
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
@@ -38,6 +39,7 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
+from stats.search import get_mappings as get_stats_mappings
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
@@ -633,12 +635,15 @@ def elastic(request):
     es = amo.search.get_es()
 
     indexes = set(settings.ES_INDEXES.values())
-    es_mappings = es.get_mapping(None, indexes)
+    es_mappings = {
+        'addons': get_addons_mappings(),
+        'addons_stats': get_stats_mappings(),
+    }
     ctx = {
         'index': INDEX,
-        'nodes': es.cluster_nodes(),
-        'health': es.cluster_health(),
-        'state': es.cluster_state(),
+        'nodes': es.nodes.stats(),
+        'health': es.cluster.health(),
+        'state': es.cluster.state(),
         'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
     }
     return render(request, 'zadmin/elastic.html', ctx)
