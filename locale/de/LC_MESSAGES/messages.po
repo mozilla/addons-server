@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-01 16:54+0000\n"
+"PO-Revision-Date: 2014-10-15 16:38+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412182476.0\n"
+"X-POOTLE-MTIME: 1413391123.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3734,6 +3734,8 @@ msgstr "Bitte wählen Sie einen Nominierungstyp für die Überprüfung"
 #: apps/devhub/forms.py:540 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Eine Datei mit einer Version, die auf a|alpha|b|beta und einer optionalen "
+"Zahl endet, wird als Beta erkannt."
 
 #: apps/devhub/forms.py:555
 msgid "Version %s already exists"
@@ -4846,13 +4848,18 @@ msgstr "Die UUID dieses Add-ons wird in dessen Install-Manifest festgelegt und i
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Weißwandtafel"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"Auf der Weißwandtafel können Sie dem Redakteur für Ihr Add-on relevante "
+"Informationen angeben, unabhängig von der Version. Sie können dort "
+"Möglichkeiten zum Testen des Add-ons angeben, sowie weitere Informationen, "
+"die helfen könnten. Die Weißwandtafel kann auch von Redakteuren bearbeiten "
+"werden."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -8309,7 +8316,7 @@ msgstr "Für welchen Überprüfungstyp möchten Sie dies nominieren?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:43
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Diese Version nur auf meinem Beta-Kanal veröffentlichen."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9573,7 +9580,7 @@ msgstr "Dateien herunterladen"
 
 #: apps/editors/templates/editors/review.html:100
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Der Entwickler hat Quelltext angegeben."
 
 #: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
@@ -9602,10 +9609,13 @@ msgstr "<strong>Warnung!</strong> Ein anderer Benutzer hat vor Ihnen diese Seite
 #: apps/editors/templates/editors/review.html:247
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
+"Auf der Weißwandtafel können Sie dem Redakteur für Ihr Add-on relevante "
+"Informationen angeben, unabhängig von der Version. Dies kann von beiden "
+"eingesehen und bearbeitet werden."
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Weißwandtafel aktualisieren"
 
 #: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
