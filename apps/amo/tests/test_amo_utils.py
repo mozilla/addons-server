@@ -251,6 +251,22 @@ def test_escape_all():
         yield check, val, expected
 
 
+@mock.patch('amo.helpers.urlresolvers.get_outgoing_url')
+def test_escape_all_linkify_only_full(mock_get_outgoing_url):
+    mock_get_outgoing_url.return_value = 'http://outgoing.firefox.com'
+
+    eq_(escape_all('http://firefox.com', linkify_only_full=True),
+        '<a href="http://outgoing.firefox.com" rel="nofollow">'
+        'http://firefox.com</a>')
+    eq_(escape_all('http://firefox.com', linkify_only_full=False),
+        '<a href="http://outgoing.firefox.com" rel="nofollow">'
+        'http://firefox.com</a>')
+
+    eq_(escape_all('firefox.com', linkify_only_full=True), 'firefox.com')
+    eq_(escape_all('firefox.com', linkify_only_full=False),
+        '<a href="http://outgoing.firefox.com" rel="nofollow">firefox.com</a>')
+
+
 def test_no_jinja_autoescape():
     val = 'some double quote: " and a <'
     tpl = '{{ val }}'

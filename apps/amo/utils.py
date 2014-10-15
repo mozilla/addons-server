@@ -763,18 +763,22 @@ def no_translation(lang=None):
     translation.trans_real.activate(old_lang)
 
 
-def escape_all(v):
-    """Escape html in JSON value, including nested items."""
+def escape_all(v, linkify_only_full=False):
+    """Escape html in JSON value, including nested items.
+
+    Only linkify full urls, including a scheme, if "linkify_only_full" is True.
+
+    """
     if isinstance(v, basestring):
         v = jinja2.escape(smart_unicode(v))
-        v = linkify_with_outgoing(v)
+        v = linkify_with_outgoing(v, only_full=linkify_only_full)
         return v
     elif isinstance(v, list):
         for i, lv in enumerate(v):
-            v[i] = escape_all(lv)
+            v[i] = escape_all(lv, linkify_only_full=linkify_only_full)
     elif isinstance(v, dict):
         for k, lv in v.iteritems():
-            v[k] = escape_all(lv)
+            v[k] = escape_all(lv, linkify_only_full=linkify_only_full)
     elif isinstance(v, Translation):
         v = jinja2.escape(smart_unicode(v.localized_string))
     return v
