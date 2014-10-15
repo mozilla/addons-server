@@ -48,7 +48,7 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         a = pq(self.table.render_addon_name(row))
 
         eq_(a.attr('href'),
-            reverse('editors.review', args=[str(row.addon_slug)]) + '?num=1')
+            reverse('editors.review', args=[str(row.addon_slug)]))
         eq_(a.text(), "フォクすけといっしょ 0.12".decode('utf8'))
 
     def test_addon_type_id(self):
