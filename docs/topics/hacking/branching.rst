@@ -4,7 +4,7 @@
 Push From Master
 ================
 
-We deploy from the `master`_ branch once a week. If you commit something to master
+We deploy from the `master`_ branch once a month. If you commit something to master
 that needs additional QA time, be sure to use a `waffle`_ feature flag.
 
 
