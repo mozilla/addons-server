@@ -9,3 +9,4 @@ Hacking
    style
    contributing
    branching
+   ../../README.rst

@@ -1,5 +1,6 @@
 -r compiled.txt
 -r test.txt
+-r docs.txt
 
 django-debug-toolbar==1.2
 django-fixture-magic==0.0.4
