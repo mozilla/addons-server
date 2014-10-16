@@ -245,16 +245,10 @@
                     }
                     if (self.tooOld) errors.push("tooOld");
                     if (self.tooNew) errors.push("tooNew");
-                } else {
-                    if (!z.appMatchesUserAgent && !z.badBrowser) {
-                        errors.push("badApp");
-                        canInstall = false;
-                    }
-                    if (!platformSupported) {
-                        errors.push("badPlatform");
-                        dom.buttons.hide().eq(0).show();
-                        canInstall = false;
-                    }
+                } else if (!platformSupported) {
+                    errors.push("badPlatform");
+                    dom.buttons.hide().eq(0).show();
+                    canInstall = false;
                 }
 
                 if (platformer) {
