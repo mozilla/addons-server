@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-11 23:15+0000\n"
+"PO-Revision-Date: 2014-10-16 03:27+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413069342.0\n"
+"X-POOTLE-MTIME: 1413430071.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3664,7 +3664,7 @@ msgstr "请选择提交审核的类型"
 
 #: apps/devhub/forms.py:540 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr ""
+msgstr "一个文件具有 a|alpha|b|beta 的版本和一个可选的数字将检测为 beta 版本。"
 
 #: apps/devhub/forms.py:555
 msgid "Version %s already exists"
@@ -4749,13 +4749,15 @@ msgstr "您的附加组件的 UUID 是在附加组件安装清单中指定的唯
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "白板"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"白板用来放置要提供的有关您的附加组件的信息，无论哪个版本，提供给网站编辑。使用它来提供测试附加组件的方法，或者任何可帮助测试的额外信息。此白板也可被网站"
+"编辑所编辑。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -7998,7 +8000,7 @@ msgstr "您希望提交哪个类型的审核？"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:43
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "仅发布此版本到我的测试通道。"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9231,7 +9233,7 @@ msgstr "下载文件"
 
 #: apps/editors/templates/editors/review.html:100
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "开发者已提供源代码。"
 
 #: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
@@ -9259,11 +9261,11 @@ msgstr "<strong>警告！</strong>已有其他用户先于您在查看此页。"
 
 #: apps/editors/templates/editors/review.html:247
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
+msgstr "此白板用来放置有关开发者与网站编辑之间对此附加组件（不限版本）的交流信息。这对两方可见并可编辑。"
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "更新白板"
 
 #: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
