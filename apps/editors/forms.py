@@ -228,7 +228,8 @@ class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
         addon = addon_file.version.addon
         # L10n: 0 = platform, 1 = filename, 2 = status message
         return jinja2.Markup(_(u"<strong>%s</strong> &middot; %s &middot; %s")
-                             % (addon_file.platform, addon_file.filename,
+                             % (addon_file.get_platform_display(),
+                                addon_file.filename,
                                 file_review_status(addon, addon_file)))
 
 
