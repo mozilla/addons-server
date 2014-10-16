@@ -374,13 +374,24 @@ class DiffHelper(object):
         if self.right.is_search_engine():
             return different
 
+        def keep(path):
+            if path not in different:
+                copy = dict(right_files[path])
+                copy.update({'url': self.get_url(file['short']), 'diff': True})
+                different[path] = copy
+
         left_files = self.left.get_files()
         right_files = self.right.get_files()
         for key, file in right_files.items():
             if key not in left_files:
-                copy = right_files[key]
-                copy.update({'url': self.get_url(file['short']), 'diff': True})
-                different[key] = copy
+                # Make sure we have all the parent directories of
+                # deleted files.
+                dir = key
+                while os.path.dirname(dir):
+                    dir = os.path.dirname(dir)
+                    keep(dir)
+
+                keep(key)
 
         return different
 
