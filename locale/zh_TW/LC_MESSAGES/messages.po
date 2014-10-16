@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413431610.0\n"
+"X-POOTLE-MTIME: 1413431632.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -40,7 +40,7 @@ msgstr "尚未審查"
 #: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Experimental"
-msgstr "實驗版"
+msgstr "實驗中"
 
 #: apps/addons/buttons.py:226
 msgid "Add to {0}"
