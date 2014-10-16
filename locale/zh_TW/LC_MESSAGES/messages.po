@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-16 03:53+0000\n"
+"PO-Revision-Date: 2014-10-16 04:00+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413431632.0\n"
+"X-POOTLE-MTIME: 1413432041.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10248,7 +10248,10 @@ msgstr "要如何測試我的附加元件?"
 msgid ""
 "Details on testing your add-on are provided in the <a href=\"%(test_url)s\">Testing</a> &amp; <a href=\"%(debug_url)s\">Debugging Extensions</a> sections of the <a href=\"%(ext_url)s\">Building an "
 "Extension tutorial</a>."
-msgstr "您可以在<a href=\"%(ext_url)s\">附加元件建構教學</a>一文的<a href=\"%(test_url)s\">Testing</a>與<a href=\"%(debug_url)s\">Debugging Extensions</a>這兩節中找到關於測試附加元件的詳細資訊。"
+msgstr ""
+"您可以在<a href=\"%(ext_url)s\">附加元件開發教學</a>一文的<a href=\"%"
+"(test_url)s\">Testing</a>與<a href=\"%(debug_url)s\">Debugging "
+"Extensions</a>這兩節中找到關於測試附加元件的詳細資訊。"
 
 #: apps/pages/templates/pages/dev_faq.html:191
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -11306,7 +11309,7 @@ msgstr "長條棒越長，效能越差"
 #. {0} is an add-on's percentage of slowness
 #: apps/perf/templates/perf/index.html:92
 msgid "<b>{0}%</b> <span>slower</span>"
-msgstr "<span>速度慢了</span> <b>{0}%</b>"
+msgstr "<span>慢了</span> <b>{0}%</b>"
 
 #: apps/perf/templates/perf/index.html:104
 msgid "Show more add-ons"
