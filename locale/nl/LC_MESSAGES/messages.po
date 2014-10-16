@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-02 11:40+0000\n"
+"PO-Revision-Date: 2014-10-16 07:34+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412250013.0\n"
+"X-POOTLE-MTIME: 1413444865.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3731,6 +3731,8 @@ msgstr "Kies een beoordelingsnominatietype"
 #: apps/devhub/forms.py:540 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Een bestand met een versie eindigend op a|alpha|b|beta en een optioneel "
+"nummer wordt als bèta gedetecteerd."
 
 #: apps/devhub/forms.py:555
 msgid "Version %s already exists"
@@ -4838,13 +4840,17 @@ msgstr "De UUID van uw add-on wordt opgegeven in het installatiemanifest en is e
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Notitiebord"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"Het notitiebord is een plek waar u relevante informatie over uw informatie "
+"aan de editor kunt verstrekken, ongeacht de versie. Gebruik het bord om "
+"manieren om de add-on te testen op te geven, naast andere behulpzame "
+"informatie. Het notitiebord kan door editors worden bewerkt."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -8271,7 +8277,7 @@ msgstr "Voor welk beoordelingstype wilt u nomineren?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:43
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Alleen deze versie op mijn bètakanaal publiceren."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9535,7 +9541,7 @@ msgstr "Bestanden downloaden"
 
 #: apps/editors/templates/editors/review.html:100
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "De ontwikkelaar heeft een broncode opgegeven."
 
 #: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
@@ -9564,10 +9570,13 @@ msgstr "<strong>Waarschuwing!</strong> Een andere gebruiker heeft deze pagina v�
 #: apps/editors/templates/editors/review.html:247
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
+"Het notitiebord in de plaats om voor uw add-on relevante informatie uit te "
+"wisselen tussen de ontwikkelaar en de editor (ongeacht de versie). Dit is "
+"voor beiden zichtbaar en te bewerken."
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Notitiebord bijwerken"
 
 #: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
