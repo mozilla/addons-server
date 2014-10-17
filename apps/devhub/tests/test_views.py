@@ -244,6 +244,24 @@ class TestDashboard(HubTest):
         eq_(d.remove('strong').text(),
             strip_whitespace(datetime_filter(addon.last_updated)))
 
+    def test_no_sort_updated_filter_for_themes(self):
+        # Create a theme.
+        addon = addon_factory(type=amo.ADDON_PERSONA)
+        addon.addonuser_set.create(user=self.user_profile)
+
+        # There's no "updated" sort filter, so order by the default: "Name".
+        response = self.client.get(self.themes_url + '?sort=updated')
+        doc = pq(response.content)
+        eq_(doc('#sorter li.selected').text(), 'Name')
+        sorts = doc('#sorter li a.opt')
+        assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
+
+        # There's no "last updated" for themes, so always display "created".
+        eq_(doc('.item-details .date-updated'), [])  # No "updated" in details.
+        d = doc('.item-details .date-created')
+        eq_(d.remove('strong').text(),
+            strip_whitespace(datetime_filter(addon.created)))
+
 
 class TestUpdateCompatibility(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']

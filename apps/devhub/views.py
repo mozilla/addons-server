@@ -73,6 +73,13 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
+class ThemeFilter(BaseFilter):
+    opts = (('name', _lazy(u'Name')),
+            ('created', _lazy(u'Created')),
+            ('popular', _lazy(u'Downloads')),
+            ('rating', _lazy(u'Rating')))
+
+
 def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
@@ -82,7 +89,8 @@ def addon_listing(request, default='name', theme=False):
         qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
                                                        amo.ADDON_PERSONA])
         model = Addon
-    filter = AddonFilter(request, qs, 'sort', default, model=model)
+    filter_cls = ThemeFilter if theme else AddonFilter
+    filter = filter_cls(request, qs, 'sort', default, model=model)
     return filter.qs, filter
 
 

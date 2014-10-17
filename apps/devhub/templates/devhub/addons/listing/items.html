@@ -18,21 +18,9 @@
         </div>
         <ul class="item-details">
           {% if addon.is_persona() %}
-            {% if addon.current_version %}
-              {% set link = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
-              {# L10n: {1} is a version number. #}
-              <li>{{ _('<strong>Latest version:</strong> <a href="{0}">{1}</a>')|
-                       f(link, addon.current_version) }}</li>
-            {% endif %}
-            {% if sorting == 'created' %}
-              {# L10n: {0} is a date. #}
-              <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
-                     f(addon.created|datetime)) }}</li>
-            {% else %}
-              {# L10n: {0} is a date. #}
-              <li class="date-updated">{{ _('<strong>Last updated:</strong> {0}'|
-                     f(addon.last_updated|datetime)) }}</li>
-            {% endif %}
+            {# L10n: {0} is a date. #}
+            <li class="date-created">{{ _('<strong>Created:</strong> {0}'|
+                   f(addon.created|datetime)) }}</li>
             <li id="version-status-item">
               <strong>{{ _('Status:') }}</strong>
               {% if addon.disabled_by_user %}

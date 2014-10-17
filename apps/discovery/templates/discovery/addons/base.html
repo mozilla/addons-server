@@ -19,7 +19,7 @@
         <img class="icon" src="{{ addon.icon_url }}" alt="">
         {{ addon.name }}
         {% set version = addon.current_version %}
-        {% if version %}
+        {% if not addon.is_persona() and version %}
           <span class="version">{{ version.version }}</span>
         {% endif %}
       </h1>
