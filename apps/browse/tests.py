@@ -942,7 +942,7 @@ class TestSearchToolsPages(BaseSearchToolsTest):
             return doc('head link[type="application/rss+xml"]').attr('href')
 
         eq_(get_link(reverse('browse.search-tools')),
-            reverse('browse.search-tools.rss') + '?sort=featured')
+            reverse('browse.search-tools.rss') + '?sort=popular')
 
         eq_(get_link(reverse('browse.search-tools') + '?sort=name'),
             reverse('browse.search-tools.rss') + '?sort=name')

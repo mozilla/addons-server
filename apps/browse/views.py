@@ -447,8 +447,7 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
 
 
 class SearchToolsFilter(AddonFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('name', _lazy(u'Name')),
+    opts = (('name', _lazy(u'Name')),
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
@@ -476,33 +475,13 @@ class SearchExtensionsFilter(AddonFilter):
 
 
 def search_tools(request, category=None):
-    """View the search tools page.
-
-    The default landing page will show you both featured
-    extensions and featured search Add-ons.  However, any
-    other type of sorting on this page will not show extensions.
-
-    Since it's uncommon for a category to have
-    featured add-ons the default view for a category will land you
-    on popular add-ons instead.  Note also that CSS will hide the
-    sort-by-featured link.
-    """
+    """View the search tools page."""
     APP, TYPE = request.APP, amo.ADDON_SEARCH
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
-    types = [TYPE]
-    if category:
-        # Category pages do not have features.
-        # Sort by popular add-ons instead.
-        default = 'popular'
-    else:
-        default = 'featured'
-        # When the non-category page is featured, include extensions.
-        if request.GET.get('sort', default) == 'featured':
-            types.append(amo.ADDON_EXTENSION)
-
-    addons, filter = addon_listing(request, types, SearchToolsFilter, default)
+    addons, filter = addon_listing(request, [TYPE], SearchToolsFilter,
+                                   'popular')
 
     if category:
         category = get_object_or_404(qs, slug=category)
