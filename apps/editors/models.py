@@ -99,6 +99,7 @@ class ViewQueue(RawSQLModel):
     premium_type = models.IntegerField()
     is_restartless = models.BooleanField()
     is_jetpack = models.BooleanField()
+    source = models.CharField(max_length=100)
     latest_version = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
     has_info_request = models.BooleanField()
@@ -128,6 +129,7 @@ class ViewQueue(RawSQLModel):
                                           files.platform_id)"""),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
                 ('is_restartless', 'MAX(files.no_restart)'),
+                ('source', 'versions.source'),
                 ('_application_ids', """GROUP_CONCAT(DISTINCT
                                         apps.application_id)"""),
                 ('waiting_time_days',
@@ -167,6 +169,10 @@ class ViewQueue(RawSQLModel):
         return self.is_restartless and not self.is_jetpack
 
     @property
+    def sources_provided(self):
+        return bool(self.source)
+
+    @property
     def flags(self):
         props = (
             ('admin_review', 'admin-review', _lazy('Admin Review')),
@@ -175,6 +181,8 @@ class ViewQueue(RawSQLModel):
              _lazy('Restartless Add-on')),
             ('has_info_request', 'info', _lazy('More Information Requested')),
             ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
+            ('sources_provided', 'sources-provided',
+             _lazy('Sources provided')),
         )
 
         return [(cls, title) for (prop, cls, title) in props
