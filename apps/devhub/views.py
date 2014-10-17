@@ -545,7 +545,7 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
     plats = perf.PLATFORM_MAP.get(file_.platform, None)
     if plats is None:
         log.info('Unsupported performance platform %s for file %s'
-                 % (file_.platform, file_))
+                 % (file_.get_platform_display(), file_))
         # TODO(Kumar) provide a message about this
         return {'success': False}
 
