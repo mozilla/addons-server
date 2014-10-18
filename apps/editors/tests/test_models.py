@@ -187,6 +187,13 @@ class TestPendingQueue(TestQueue):
         q = self.Queue.objects.get()
         eq_(q.flags, [('restartless', 'Restartless Add-on')])
 
+    def test_flags_sources_provided(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].versions.update(source='/some/source/file')
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('sources-provided', 'Sources provided')])
+
     def test_no_flags(self):
         self.new_file(version=u'0.1')
 
