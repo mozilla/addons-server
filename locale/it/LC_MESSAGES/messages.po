@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-05 19:23+0000\n"
+"PO-Revision-Date: 2014-10-18 15:42+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412537001.0\n"
+"X-POOTLE-MTIME: 1413646955.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3741,6 +3741,8 @@ msgstr "Scegli a che tipo di revisione vuoi essere candidato"
 #: apps/devhub/forms.py:540 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Ogni nome di file che riporti come identificativo della versione il termine "
+"a|alpha|b|beta più un eventuale numero viene rilevato come beta."
 
 #: apps/devhub/forms.py:555
 msgid "Version %s already exists"
@@ -4862,13 +4864,18 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Bacheca"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"La bacheca è il pannello in cui puoi rendere disponibili informazioni chiave "
+"sul componente aggiuntivo (per qualsiasi versione) per gli editori. Puoi "
+"utilizzarla per spiegare i passi da seguire per effettuare i test del "
+"componente aggiuntivo o qualunque altra informazione che ritieni importante. "
+"Essa può essere aggiornata anche dagli editori del Marketplace."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -8314,7 +8321,7 @@ msgstr "Per quale tipo di revisione vuoi candidarti?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:43
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Pubblica questa versione unicamente sul mio canale beta."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9577,7 +9584,7 @@ msgstr "Scarica i file"
 
 #: apps/editors/templates/editors/review.html:100
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Lo sviluppatore ha reso disponibile il codice sorgente."
 
 #: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
@@ -9606,10 +9613,13 @@ msgstr "<strong>Attenzione!</strong> Un altro utente stava visualizzando questa 
 #: apps/editors/templates/editors/review.html:247
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
+"La bacheca è un pannello in cui sviluppatore ed editore possono scambiarsi "
+"informazioni rilevanti sul componente aggiuntivo (per qualunque versione) e "
+"i suoi contenuti possono essere visualizzati e modificati da entrambi."
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Aggiorna bacheca"
 
 #: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
