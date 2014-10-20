@@ -6,8 +6,8 @@ import time
 
 from optparse import make_option
 
+from celery.task import control
 from celery_tasktree import task_with_callbacks, TaskTree
-import elasticsearch
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -19,6 +19,8 @@ from lib.es.utils import (is_reindexing_amo, unflag_reindexing_amo,
                           flag_reindexing_amo, timestamp_index)
 
 logger = logging.getLogger('z.elasticsearch')
+time_limits = settings.CELERY_TIME_LIMITS['lib.es.management.commands.reindex']
+
 
 ES = get_es()
 
@@ -216,6 +218,13 @@ class Command(BaseCommand):
         log('Running all indexation tasks', stdout=self.stdout)
 
         os.environ['FORCE_INDEXING'] = '1'
+
+        # This is a bit convoluted, and more complicated than simply providing
+        # the soft and hard time limits on the @task decorator. But we're not
+        # using the @task decorator here, but a decorator from celery_tasktree.
+        control.time_limit('lib.es.management.commands.reindex.index_data',
+                           soft=time_limits['soft'], hard=time_limits['hard'])
+
         try:
             tree.apply_async()
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
