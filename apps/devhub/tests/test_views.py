@@ -14,7 +14,7 @@ import waffle
 from jingo.helpers import datetime as datetime_filter
 from nose import SkipTest
 from nose.plugins.attrib import attr
-from nose.tools import assert_not_equal, assert_raises, eq_
+from nose.tools import assert_not_equal, assert_raises, eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -2346,6 +2346,25 @@ class TestAddVersion(AddVersionTest):
         self.version.update(version='0.1')
         r = self.post(expected_status=400)
         assert_json_error(r, None, 'Version 0.1 already exists')
+
+    def test_same_version_if_previous_is_rejected(self):
+        # We can have several times the same version number, if the previous
+        # versions have been disabled/rejected.
+        self.version.update(version='0.1', approvalnotes='approval notes')
+        self.version.releasenotes = 'release notes'
+        self.version.save()
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.post(expected_status=200)
+
+        self.version.reload()
+        version = Version.objects.latest()
+        ok_(version.pk != self.version.pk)
+        eq_(version.version, self.version.version)
+
+        # We reuse the release and approval notes from the last rejected
+        # version with the same version number.
+        eq_(version.releasenotes, self.version.releasenotes)
+        eq_(version.approvalnotes, self.version.approvalnotes)
 
     def test_success(self):
         r = self.post()

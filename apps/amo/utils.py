@@ -867,6 +867,22 @@ def smart_decode(s):
         return unicode(s, errors='replace')
 
 
+def translations_for_field(field):
+    """Return all the translations for a given field.
+
+    This returns a dict of locale:localized_string, not Translation objects.
+
+    """
+    if field is None:
+        return {}
+
+    translation_id = getattr(field, 'id')
+    qs = Translation.objects.filter(id=translation_id,
+                                    localized_string__isnull=False)
+    translations = dict(qs.values_list('locale', 'localized_string'))
+    return translations
+
+
 def attach_trans_dict(model, objs):
     """Put all translations into a translations dict."""
     # Get the ids of all the translations we need to fetch.

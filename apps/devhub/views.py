@@ -1184,6 +1184,16 @@ def version_add(request, addon_id, addon):
             platforms=pl,
             source=form.cleaned_data['source']
         )
+        rejected_versions = addon.versions.filter(
+            version=v.version, files__status=amo.STATUS_DISABLED)[:1]
+        if not v.releasenotes and rejected_versions:
+            # Let's reuse the release and approval notes from the previous
+            # rejected version.
+            last_rejected = rejected_versions[0]
+            v.releasenotes = amo.utils.translations_for_field(
+                last_rejected.releasenotes)
+            v.approvalnotes = last_rejected.approvalnotes
+            v.save()
         if form.cleaned_data['beta']:
             v.files.update(status=amo.STATUS_BETA)
         log.info('Version created: %s for: %s' %
