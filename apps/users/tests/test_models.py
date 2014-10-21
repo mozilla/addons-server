@@ -89,8 +89,8 @@ class TestUserProfile(amo.tests.TestCase):
     def test_remove_admin_powers(self):
         Group.objects.create(name='Admins', rules='*:*')
         u = UserProfile.objects.get(username='jbalogh')
-        g = GroupUser.objects.create(group=Group.objects.filter(name='Admins')[0],
-                                     user=u)
+        g = GroupUser.objects.create(
+            group=Group.objects.filter(name='Admins')[0], user=u)
         g.delete()
         assert not u.is_staff
         assert not u.is_superuser

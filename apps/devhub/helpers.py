@@ -138,11 +138,11 @@ def status_choices(addon):
     choices = dict(File.STATUS_CHOICES)
     if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                         amo.STATUS_PUBLIC):
-        choices[amo.STATUS_UNREVIEWED] = \
-                Addon.STATUS_CHOICES[amo.STATUS_NOMINATED]
+        choices[amo.STATUS_UNREVIEWED] = (
+            Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
     else:
-        choices[amo.STATUS_UNREVIEWED] = \
-                Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED]
+        choices[amo.STATUS_UNREVIEWED] = (
+            Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
     return choices
 
 

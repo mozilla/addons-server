@@ -58,7 +58,7 @@ class TestFindJetpacks(amo.tests.TestCase):
         # We upgrade unreviewed files up to the latest reviewed file.
         v = Version.objects.create(addon_id=3615)
         new_file = File.objects.create(version=v, jetpack_version='1.0')
-        v2 = Version.objects.create(addon_id=3615)
+        Version.objects.create(addon_id=3615)
         new_file2 = File.objects.create(version=v, jetpack_version='1.0')
         eq_(new_file.status, amo.STATUS_UNREVIEWED)
         eq_(new_file2.status, amo.STATUS_UNREVIEWED)

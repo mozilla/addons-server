@@ -10,7 +10,6 @@ from nose.tools import eq_
 from PIL import Image
 
 from amo.tests.test_helpers import get_image_path
-from files.helpers import copyfileobj
 from users.tasks import delete_photo, resize_photo
 
 

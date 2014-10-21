@@ -147,7 +147,8 @@ class TestEditBasic(TestEdit):
 
         # Now make sure we don't have escaped content in the rendered form.
         form = AddonFormBasic(instance=self.get_addon(), request=object())
-        eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html().strip(),
+        eq_(pq('<body>%s</body>' % form['summary'])(
+            '[lang="en-us"]').html().strip(),
             '<b>oh my</b>')
 
     def test_edit_as_developer(self):
@@ -158,8 +159,8 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 403)
 
         devuser = UserProfile.objects.get(pk=999)
-        self.get_addon().addonuser_set.create(user=devuser,
-            role=amo.AUTHOR_ROLE_DEV)
+        self.get_addon().addonuser_set.create(
+            user=devuser, role=amo.AUTHOR_ROLE_DEV)
         r = self.client.post(self.basic_edit_url, data)
 
         eq_(r.status_code, 200)
@@ -189,7 +190,8 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'slug',
+        self.assertFormError(
+            r, 'form', 'slug',
             'This slug is already in use. Please choose another.')
 
     def test_edit_add_tag(self):
@@ -206,8 +208,8 @@ class TestEditBasic(TestEdit):
              .get(action=amo.LOG.ADD_TAG.id)).to_string(),
             '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
             '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
-        eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
-                                        count + 1)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.ADD_TAG.id).count(), count + 1)
 
     def test_edit_blacklisted_tag(self):
         Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
@@ -273,8 +275,9 @@ class TestEditBasic(TestEdit):
 
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
-                                                 (len(tags) - amo.MAX_TAGS))
+        self.assertFormError(
+            r, 'form', 'tags',
+            'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS))
 
     def test_edit_tag_empty_after_slug(self):
         start = Tag.objects.all().count()
@@ -300,8 +303,8 @@ class TestEditBasic(TestEdit):
         eq_(sorted(addon_cats), [22, 23])
 
     def _feature_addon(self, addon_id=3615):
-        c = CollectionAddon.objects.create(addon_id=addon_id,
-            collection=Collection.objects.create())
+        c = CollectionAddon.objects.create(
+            addon_id=addon_id, collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c.collection,
                                           application=amo.FIREFOX.id)
 
@@ -375,7 +378,7 @@ class TestEditBasic(TestEdit):
     def test_edit_categories_remove(self):
         c = Category.objects.get(id=23)
         AddonCategory(addon=self.addon, category=c).save()
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
+        eq_([cat.id for cat in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.basic_edit_url, self.get_dict())
@@ -849,8 +852,7 @@ class TestEditDetails(TestEdit):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#edit-addon-details span[lang]').html(),
-                "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
-                '&lt;/script&gt;')
+            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
 
     def test_edit_homepage_optional(self):
         data = dict(description='New description with <em>html</em>!',
@@ -1239,7 +1241,7 @@ class TestAdmin(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertNotContains(r, 'Admin Settings')
         assert 'admin_form' not in r.context, (
-                'AdminForm not expected in context.')
+            'AdminForm not expected in context.')
 
     def test_post_as_admin(self):
         self.login_admin()

@@ -7,9 +7,11 @@ from amo.urlresolvers import reverse
 def admin_site_links():
     return {
         'addons': [
-            ('Search for add-ons by name or id', reverse('zadmin.addon-search')),
+            ('Search for add-ons by name or id',
+             reverse('zadmin.addon-search')),
             ('Featured add-ons', reverse('zadmin.features')),
-            ('Discovery Pane promo modules', reverse('discovery.module_admin')),
+            ('Discovery Pane promo modules',
+             reverse('discovery.module_admin')),
             ('Monthly Pick', reverse('zadmin.monthly_pick')),
             ('Upgrade jetpack add-ons', reverse('zadmin.jetpack')),
             ('Bulk add-on validation', reverse('zadmin.validation')),

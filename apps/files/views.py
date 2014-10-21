@@ -87,7 +87,7 @@ def browse(request, viewer, key=None, type='file'):
     data['form'] = form
 
     if (not waffle.switch_is_active('delay-file-viewer') and
-        not viewer.is_extracted()):
+            not viewer.is_extracted()):
         extract_file(viewer)
 
     if viewer.is_extracted():
@@ -104,8 +104,7 @@ def browse(request, viewer, key=None, type='file'):
     else:
         extract_file.delay(viewer)
 
-    tmpl = ('files/content.html' if type == 'fragment'
-                                 else 'files/viewer.html')
+    tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
 
 
@@ -140,7 +139,7 @@ def compare(request, diff, key=None, type='file'):
     data['form'] = form
 
     if (not waffle.switch_is_active('delay-file-viewer')
-        and not diff.is_extracted()):
+            and not diff.is_extracted()):
         extract_file(diff.left)
         extract_file(diff.right)
 
@@ -161,8 +160,7 @@ def compare(request, diff, key=None, type='file'):
         extract_file.delay(diff.left)
         extract_file.delay(diff.right)
 
-    tmpl = ('files/content.html' if type == 'fragment'
-                                 else 'files/viewer.html')
+    tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
 
 

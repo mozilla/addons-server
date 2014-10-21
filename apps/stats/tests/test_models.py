@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
 
-from django.conf import settings
 from django.core import mail
-from django.db import models
 from django.test.client import RequestFactory
-from django.utils import translation
 
 import phpserialize as php
 from nose.tools import eq_

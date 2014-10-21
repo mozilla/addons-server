@@ -4,7 +4,8 @@ from . import views, feeds
 
 from stats.urls import collection_stats_urls
 
-edit_urls = patterns('',
+edit_urls = patterns(
+    '',
     url('^$', views.edit, name='collections.edit'),
     url('^addons$', views.edit_addons, name='collections.edit_addons'),
     url('^privacy$', views.edit_privacy, name='collections.edit_privacy'),
@@ -12,7 +13,8 @@ edit_urls = patterns('',
         name='collections.edit_contributors'),
 )
 
-detail_urls = patterns('',
+detail_urls = patterns(
+    '',
     url('^$', views.collection_detail, name='collections.detail'),
     url('^format:json$', views.collection_detail_json,
         name='collections.detail.json'),
@@ -29,7 +31,8 @@ detail_urls = patterns('',
         name='collections.detail.rss'),
 )
 
-ajax_urls = patterns('',
+ajax_urls = patterns(
+    '',
     url('^list$', views.ajax_list, name='collections.ajax_list'),
     url('^add$', views.ajax_collection_alter, {'action': 'add'},
         name='collections.ajax_add'),
@@ -38,7 +41,8 @@ ajax_urls = patterns('',
     url('^new$', views.ajax_new, name='collections.ajax_new'),
 )
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
     url('^collections/view/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
     # Remora sharing API uses this:

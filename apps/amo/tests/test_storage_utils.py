@@ -29,16 +29,20 @@ def test_storage_walk():
         results = [(dir, set(subdirs), set(files))
                    for dir, subdirs, files in sorted(walk_storage(tmp))]
 
-        yield (eq_, results.pop(0), (tmp, set(['four', 'one']), set(['file1.txt'])))
-        yield (eq_, results.pop(0), (jn('four'),
-                                     set(['five', 'kristi\xe2\x98\x83']), set([])))
-        yield (eq_, results.pop(0), (jn('four/five'), set([]), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (tmp, set(['four', 'one']), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (jn('four'), set(['five', 'kristi\xe2\x98\x83']), set([])))
+        yield (eq_, results.pop(0),
+               (jn('four/five'), set([]), set(['file1.txt'])))
         yield (eq_, results.pop(0), (jn('four/kristi\xe2\x98\x83'), set([]),
                                      set(['kristi\xe2\x98\x83.txt'])))
         yield (eq_, results.pop(0), (jn('one'), set(['three', 'two']),
                                      set(['file1.txt', 'file2.txt'])))
-        yield (eq_, results.pop(0), (jn('one/three'), set([]), set(['file1.txt'])))
-        yield (eq_, results.pop(0), (jn('one/two'), set([]), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (jn('one/three'), set([]), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (jn('one/two'), set([]), set(['file1.txt'])))
         yield (eq_, len(results), 0)
     finally:
         rm_local_tmp_dir(tmp)

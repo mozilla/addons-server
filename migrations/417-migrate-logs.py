@@ -12,7 +12,7 @@ def run():
     cursor.execute('set foreign_key_checks = 0')
     cursor.execute('insert into log_activity_mkt '
                    'select * from log_activity where id IN %(ids)s;',
-                   {'ids':ids})
+                   {'ids': ids})
     cursor.execute('insert into log_activity_app_mkt '
                    'select id, created, modified, addon_id, activity_log_id '
                    'from log_activity_app;')

@@ -1,9 +1,8 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import bleach
 import hashlib
 import hmac
 import urllib
-import sys
 from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
 
@@ -15,8 +14,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 import jinja2
 
 import amo
-
-from . import logger_log as log
 
 # Get a pointer to Django's reverse and resolve because we're going to hijack
 # them after we define our own.
@@ -187,7 +184,7 @@ def get_outgoing_url(url):
 
     # No double-escaping, and some domain names are excluded.
     if (url_netloc == urlparse(settings.REDIRECT_URL).netloc
-        or url_netloc in settings.REDIRECT_URL_WHITELIST):
+            or url_netloc in settings.REDIRECT_URL_WHITELIST):
         return url
 
     url = encoding.smart_str(jinja2.utils.Markup(url).unescape())

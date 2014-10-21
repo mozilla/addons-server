@@ -7,7 +7,6 @@ import amo
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import urlparams, epoch
-from addons.models import Category
 from tags.models import Tag
 from versions.compare import version_int
 
@@ -39,7 +38,8 @@ def addon_to_dict(addon, disco=False, src='api'):
         'authors': [{'id': a.id, 'name': unicode(a.name),
                      'link': absolutify(a.get_url_path(src=src))}
                     for a in addon.listed_authors],
-        'summary': strip_tags(unicode(addon.summary)) if addon.summary else None,
+        'summary': (
+            strip_tags(unicode(addon.summary)) if addon.summary else None),
         'description': strip_tags(unicode(addon.description)),
         'icon': addon.icon_url,
         'learnmore': learnmore,

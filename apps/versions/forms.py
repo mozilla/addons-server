@@ -24,8 +24,8 @@ class XPIForm(happyforms.Form):
     """
 
     platform = forms.ChoiceField(
-                choices=[(p.shortname, p.name) for p in amo.PLATFORMS.values()
-                         if p != amo.PLATFORM_ANY], required=False,)
+        choices=[(p.shortname, p.name) for p in amo.PLATFORMS.values()
+                 if p != amo.PLATFORM_ANY], required=False,)
     release_notes = forms.CharField(required=False)
     xpi = forms.FileField(required=True)
 
@@ -92,8 +92,8 @@ class XPIForm(happyforms.Form):
         apps = self.cleaned_data['apps']
 
         for app in apps:
-            av = ApplicationsVersions.objects.create(version=version,
-                    min=app.min, max=app.max, application=app.id)
+            av = ApplicationsVersions.objects.create(
+                version=version, min=app.min, max=app.max, application=app.id)
             amo.log(amo.LOG.ADD_APPVERSION,
                     version, version.addon, app.appdata.short, av)
 

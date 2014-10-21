@@ -16,7 +16,7 @@ class TestRedirects(amo.tests.TestCase):
         """`/personas/film and tv` should go to /themes/film-and-tv"""
         r = self.client.get('/personas/film and tv', follow=True)
         assert r.redirect_chain[-1][0].endswith(
-                '/en-US/firefox/themes/film-and-tv')
+            '/en-US/firefox/themes/film-and-tv')
 
     def test_top_tags(self):
         """`/top-tags/?` should 301 to `/tags/top`."""
@@ -30,7 +30,7 @@ class TestRedirects(amo.tests.TestCase):
         r = self.client.get(u'/addon/5326/about', follow=True)
         redirect = r.redirect_chain[-1][0]
         assert redirect.endswith(
-                        '/en-US/firefox/addon/5326/contribute/installed/')
+            '/en-US/firefox/addon/5326/contribute/installed/')
 
     def test_contribute(self):
         """`/addons/contribute/$id` should go to `/addon/$id/contribute`."""
@@ -108,8 +108,9 @@ class TestRedirects(amo.tests.TestCase):
                                    HTTP_ACCEPT_LANGUAGE='xx, yy, zz')
         self.assert3xx(response, '/en-US/firefox/', status_code=301)
 
-        response = self.client.get('/', follow=True,
-                   HTTP_ACCEPT_LANGUAGE='some,thing-very;very,,,broken!\'jj')
+        response = self.client.get(
+            '/', follow=True,
+            HTTP_ACCEPT_LANGUAGE='some,thing-very;very,,,broken!\'jj')
         self.assert3xx(response, '/en-US/firefox/', status_code=301)
 
         response = self.client.get('/', follow=True,

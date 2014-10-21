@@ -1,7 +1,7 @@
 """private_addons will be populated from puppet and placed in this directory"""
 
-from lib.settings_base import *
-from settings_base import *
+from lib.settings_base import *  # noqa
+from settings_base import *  # noqa
 
 import private_addons
 
@@ -10,8 +10,10 @@ SERVER_EMAIL = 'zdev@addons.mozilla.org'
 
 SITE_URL = getattr(private_addons, 'SITE_URL', 'https://' + DOMAIN)
 SERVICES_URL = SITE_URL
-STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-dev-cdn.allizom.org/static/')
-MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons-dev-cdn.allizom.org/user-media/')
+STATIC_URL = getattr(private_addons, 'STATIC_URL',
+                     'https://addons-dev-cdn.allizom.org/static/')
+MEDIA_URL = getattr(private_addons, 'MEDIA_URL',
+                    'https://addons-dev-cdn.allizom.org/user-media/')
 
 CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (MEDIA_URL[:-1],)
@@ -30,7 +32,8 @@ SYSLOG_CSP = "http_app_addons_dev_csp"
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = 'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay'
+PAYPAL_FLOW_URL = (
+    'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay')
 PAYPAL_API_URL = 'https://api-3t.sandbox.paypal.com/nvp'
 PAYPAL_EMAIL = private_addons.PAYPAL_EMAIL
 PAYPAL_APP_ID = private_addons.PAYPAL_APP_ID

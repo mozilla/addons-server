@@ -12,7 +12,7 @@ from ..urls import SwitchToDRF
 
 
 class TestDRFSwitch(TestCase):
-    fixtures = ['base/addon_3615',]
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.factory = RequestFactory()
@@ -34,10 +34,13 @@ class TestDRFSwitch(TestCase):
     def test_responses_with_handler(self):
         view = SwitchToDRF('User', with_handler=True)
         request = self.factory.get(reverse('api.language', args=['2']))
+
         class App():
             id = 1
+
             def __str__(self):
                 return str(self.id)
+
         request.APP = App()
         request.user = AnonymousUser()
         request.amo_user = self.user

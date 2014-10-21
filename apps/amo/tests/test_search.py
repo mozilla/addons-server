@@ -293,7 +293,8 @@ class TestES(amo.tests.ESTestCase):
 
         qs = Addon.search().filter(status=1).extra(query={'type': 1})
         filtered = qs._build_query()['query']['filtered']
-        eq_(filtered['query']['function_score']['query'], {'term': {'type': 1}})
+        eq_(filtered['query']['function_score']['query'],
+            {'term': {'type': 1}})
         eq_(filtered['filter'], [{'term': {'status': 1}}])
 
     def test_extra_filter(self):

@@ -161,7 +161,7 @@ def ajax_compat_update(request, addon_id, addon, version_id):
             compat.save()
         for form in compat_form.forms:
             if (isinstance(form, forms.CompatForm) and
-                'max' in form.changed_data):
+                    'max' in form.changed_data):
                 _log_max_version_change(addon, version, form.instance)
     return render(request, 'devhub/addons/ajax_compat_update.html',
                   dict(addon=addon, version=version, compat_form=compat_form))
@@ -222,7 +222,7 @@ def _get_items(action, addons):
                    status=(amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
-                            amo.LOG.REMOVE_FROM_COLLECTION,),
+                                amo.LOG.REMOVE_FROM_COLLECTION,),
                    reviews=(amo.LOG.ADD_REVIEW,))
 
     filter = filters.get(action)
@@ -344,16 +344,19 @@ def delete(request, addon_id, addon, theme=False):
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
         addon.delete(msg='Removed via devhub', reason=reason)
-        messages.success(request,
+        messages.success(
+            request,
             _('Theme deleted.') if theme else _('Add-on deleted.'))
         return redirect('devhub.%s' % ('themes' if theme else 'addons'))
     else:
         if theme:
-            messages.error(request,
+            messages.error(
+                request,
                 _('Password was incorrect. Theme was not deleted.'))
             return redirect(addon.get_dev_url())
         else:
-            messages.error(request,
+            messages.error(
+                request,
                 _('Password was incorrect. Add-on was not deleted.'))
             return redirect(addon.get_dev_url('versions'))
 
@@ -418,7 +421,7 @@ def ownership(request, addon_id, addon):
             if action:
                 amo.log(action, author.user, author.get_role_display(), addon)
             if (author._original_user_id and
-                author.user_id != author._original_user_id):
+                    author.user_id != author._original_user_id):
                 amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
                         (UserProfile, author._original_user_id),
                         author.get_role_display(), addon)
@@ -912,11 +915,13 @@ def addons_section(request, addon_id, addon, section, editable=False):
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
-        previews = forms.PreviewFormSet(request.POST or None,
+        previews = forms.PreviewFormSet(
+            request.POST or None,
             prefix='files', queryset=addon.previews.all())
 
     elif section == 'technical':
-        dependency_form = forms.DependencyFormSet(request.POST or None,
+        dependency_form = forms.DependencyFormSet(
+            request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
             prefix='dependencies')
 
@@ -1019,7 +1024,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
 
         check = amo.utils.ImageCheck(upload_preview)
         if (not check.is_image() or
-            upload_preview.content_type not in amo.IMG_TYPES):
+                upload_preview.content_type not in amo.IMG_TYPES):
             if is_icon:
                 errors.append(_('Icons must be either PNG or JPG.'))
             else:
@@ -1098,7 +1103,7 @@ def version_edit(request, addon_id, addon, version_id):
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and
-        all([form.is_valid() for form in data.values()])):
+            all([form.is_valid() for form in data.values()])):
         data['version_form'].save()
         data['file_form'].save()
 
@@ -1113,7 +1118,7 @@ def version_edit(request, addon_id, addon, version_id):
                 compat.save()
             for form in data['compat_form'].forms:
                 if (isinstance(form, forms.CompatForm) and
-                    'max' in form.changed_data):
+                        'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1208,7 +1213,7 @@ def version_add(request, addon_id, addon):
                  (v.pk, form.cleaned_data['upload']))
         check_validation_override(request, form, addon, v)
         if (addon.status == amo.STATUS_NULL and
-            form.cleaned_data['nomination_type']):
+                form.cleaned_data['nomination_type']):
             addon.update(status=form.cleaned_data['nomination_type'])
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
@@ -1381,13 +1386,15 @@ def submit_describe(request, addon_id, addon, step):
 @dev_required
 @submit_step(4)
 def submit_media(request, addon_id, addon, step):
-    form_icon = addon_forms.AddonFormMedia(request.POST or None,
-            request.FILES or None, instance=addon, request=request)
-    form_previews = forms.PreviewFormSet(request.POST or None,
-            prefix='files', queryset=addon.previews.all())
+    form_icon = addon_forms.AddonFormMedia(
+        request.POST or None,
+        request.FILES or None, instance=addon, request=request)
+    form_previews = forms.PreviewFormSet(
+        request.POST or None,
+        prefix='files', queryset=addon.previews.all())
 
     if (request.method == 'POST' and
-        form_icon.is_valid() and form_previews.is_valid()):
+            form_icon.is_valid() and form_previews.is_valid()):
         addon = form_icon.save(addon)
 
         for preview in form_previews.forms:

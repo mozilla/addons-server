@@ -353,9 +353,9 @@ class TestLicenseLink(amo.tests.TestCase):
                 'title="Creative Commons">Some rights reserved</a></li></ul>'),
         }
         for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
+            res = render('{{ license_link(lic) }}', {'lic': lic})
+            res = ''.join([s.strip() for s in res.split('\n')])
+            eq_(res, ex)
 
     def test_theme_license_link(self):
         s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_COPYRIGHT})
@@ -404,9 +404,9 @@ class TestLicenseLink(amo.tests.TestCase):
                 'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
         }
         for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
+            res = render('{{ license_link(lic) }}', {'lic': lic})
+            res = ''.join([s.strip() for s in res.split('\n')])
+            eq_(res, ex)
 
 
 def get_image_path(name):

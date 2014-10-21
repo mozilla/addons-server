@@ -6,7 +6,6 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.encoding import iri_to_uri
 from django.utils.http import http_date
 
 from cache_nuggets.lib import Message

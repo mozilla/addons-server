@@ -29,7 +29,7 @@ def extract(collection):
     # index with analyzer if the string's locale matches.
     for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
         if (not settings.ES_USE_PLUGINS and
-            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+                analyzer in amo.SEARCH_ANALYZER_PLUGINS):
             continue
 
         d['name_' + analyzer] = list(

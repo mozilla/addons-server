@@ -6,12 +6,12 @@ To use:
 Visit https://code.google.com/apis/console/ and select "API Access".
 If a client ID for an "installed application" hasn't been created, add one.
 Click "Download JSON" in the box containing information about that client ID.
-Run this script: 'python auth_google_analytics.py --secrets client_secrets.json'
+Run this script:
+    'python auth_google_analytics.py --secrets client_secrets.json'
 (If you are running this on a host with no web browser, pass
 --noauth_local_webserver as well.)
 Paste the printed credentials into the Django settings file.
 """
-import json
 import pprint
 import sys
 
@@ -19,7 +19,8 @@ import gflags
 from oauth2client.client import flow_from_clientsecrets, Storage, EXPIRY_FORMAT
 from oauth2client.tools import run
 
-gflags.DEFINE_string('secrets', None, 'Client secret JSON filename', short_name='f')
+gflags.DEFINE_string(
+    'secrets', None, 'Client secret JSON filename', short_name='f')
 
 gflags.FLAGS(sys.argv)
 
@@ -45,4 +46,3 @@ bits = dict([(str(name), str(getattr(credentials, name))) for name in
 bits['token_expiry'] = credentials.token_expiry.strftime(EXPIRY_FORMAT)
 print 'GOOGLE_ANALYTICS_CREDENTIALS = ',
 pprint.pprint(bits)
-

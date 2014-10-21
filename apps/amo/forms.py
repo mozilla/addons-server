@@ -22,7 +22,7 @@ class AbuseForm(happyforms.Form):
         super(AbuseForm, self).__init__(*args, **kwargs)
 
         if (not self.request.user.is_anonymous() or
-            not settings.RECAPTCHA_PRIVATE_KEY):
+                not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
             self.has_recaptcha = False
 

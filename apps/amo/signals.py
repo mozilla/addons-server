@@ -35,7 +35,7 @@ def hera_disabled():
         _connect()
 
 
-## Hook up test signals here, for lack of a better spot.
+# Hook up test signals here, for lack of a better spot.
 
 def clean_url_prefixes(sender, **kwargs):
     """Wipe the URL prefixer(s) after each test."""

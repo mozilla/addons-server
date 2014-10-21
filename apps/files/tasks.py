@@ -40,7 +40,7 @@ def extract_file(viewer, **kw):
     # This flag is so that we can signal when the extraction is completed.
     flag = Message(viewer._extraction_cache_key())
     task_log.debug('[1@%s] Unzipping %s for file viewer.' % (
-                  extract_file.rate_limit, viewer))
+                   extract_file.rate_limit, viewer))
 
     try:
         flag.save('extracting')  # Set the flag to a truthy value.
@@ -181,7 +181,7 @@ def repackage_jetpack(builder_data, **kw):
         new_file.status = old_file.status
         new_file.save()
         if (addon.status in amo.MIRROR_STATUSES
-            and new_file.status in amo.MIRROR_STATUSES):
+                and new_file.status in amo.MIRROR_STATUSES):
             new_file.copy_to_mirror()
     except Exception:
         jp_log.error(msg('Error syncing old file status.'), exc_info=True)
@@ -257,7 +257,7 @@ def start_upgrade(file_ids, sdk_version=None, priority='low', **kw):
             response = urllib2.urlopen(settings.BUILDER_UPGRADE_URL,
                                        urllib.urlencode(post))
             jp_log.info('Response from builder for %s: [%s] %s' %
-                         (file_.id, response.code, response.read()))
+                        (file_.id, response.code, response.read()))
         except Exception:
             jp_log.error('Could not talk to builder for %s.' % file_.id,
                          exc_info=True)

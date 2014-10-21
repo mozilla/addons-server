@@ -50,7 +50,8 @@ class CurrencyError(PaypalError):
         default = _('There was an error with this currency.')
         if self.paypal_data and 'currencyCode' in self.paypal_data:
             try:
-                return (messages.get(self.id) %
+                return (
+                    messages.get(self.id) %
                     amo.PAYPAL_CURRENCIES[self.paypal_data['currencyCode']])
                 # TODO: figure this out.
             except:
@@ -68,7 +69,7 @@ messages = {'589023': _("The amount is too small for conversion "
                         "into the receiver's currency."),
             '579033': _('The buyer and seller must have different '
                         'PayPal accounts.'),
-            #L10n: {0} is the currency.
+            # L10n: {0} is the currency.
             '559044': _(u'The seller does not accept payments in %s.')}
 
 paypal_log = commonware.log.getLogger('z.paypal')

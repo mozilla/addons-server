@@ -1,5 +1,4 @@
 # -*- coding: utf8 -*-
-from tower import ugettext_lazy as _
 from lib.constants import ALL_CURRENCIES
 
 # Source, PayPal docs, PP_AdaptivePayments.PDF

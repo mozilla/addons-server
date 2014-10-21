@@ -1,17 +1,19 @@
 import amo
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 
+
 def run():
-    addons = (Addon.objects
+    addons = (
+        Addon.objects
         .filter(type=amo.ADDON_EXTENSION, appsupport__app=amo.FIREFOX.id,
                 _current_version__files__jetpack_version__isnull=False)
         .exclude(_current_version__files__jetpack_version='1.14'))
 
     # Fix invalid compat ranges from last migration
     (CompatOverrideRange.objects.filter(
-            compat__addon__in=addons, type=1, app_id=amo.FIREFOX.id,
-            min_app_version='0', max_app_version='21.*', min_version='0')
-        .delete())
+        compat__addon__in=addons, type=1, app_id=amo.FIREFOX.id,
+        min_app_version='0', max_app_version='21.*', min_version='0')
+     .delete())
 
     count = 0
     for addon in addons:

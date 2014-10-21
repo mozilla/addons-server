@@ -224,10 +224,10 @@ def check_spam(review_id, **kw):
     if len(others) > 10:
         spam.add(review, 'numbers')
     if (review.body is not None and
-        bleach.url_re.search(review.body.localized_string)):
+            bleach.url_re.search(review.body.localized_string)):
         spam.add(review, 'urls')
     for other in others:
         if ((review.title and review.title == other.title) or
-            review.body == other.body):
+                review.body == other.body):
             spam.add(review, 'matches')
             break

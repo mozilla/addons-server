@@ -26,7 +26,7 @@ class TestGlobalStats(amo.tests.TestCase):
                                                  name=job).count(), 0)
         tasks.update_global_totals(job, date)
         eq_(len(GlobalStat.objects.no_cache().filter(date=date,
-                                                 name=job)), 1)
+                                                     name=job)), 1)
 
     def test_input(self):
         for x in ['2009-1-1',

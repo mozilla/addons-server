@@ -1,7 +1,7 @@
 from versions.compare import version_int as vint
 from tower import ugettext_lazy as _
 
-from base import *
+from base import *  # noqa
 
 
 class App:
@@ -31,7 +31,7 @@ class FIREFOX(App):
     def matches_user_agent(cls, user_agent):
         matches = cls.user_agent_string in user_agent
         if ('Android' in user_agent or 'Mobile' in user_agent or
-            'Tablet' in user_agent):
+                'Tablet' in user_agent):
             matches = False
         return matches
 

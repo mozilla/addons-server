@@ -95,7 +95,8 @@ class SwitchToDRF(object):
                         (*args, **kwargs))
 
 
-api_patterns = patterns('',
+api_patterns = patterns(
+    '',
     # Addon_details
     url('addon/%s$' % ADDON_ID, SwitchToDRF('AddonDetail'),
         name='api.addon_detail'),
@@ -103,14 +104,17 @@ api_patterns = patterns('',
         name='api.language'),)
 
 for regexp in search_regexps:
-    api_patterns += patterns('',
+    api_patterns += patterns(
+        '',
         url(regexp + '/?$', SwitchToDRF('Search'), name='api.search'))
 
 for regexp in list_regexps:
-    api_patterns += patterns('',
+    api_patterns += patterns(
+        '',
         url(regexp + '/?$', SwitchToDRF('List'), name='api.list'))
 
-piston_patterns = patterns('',
+piston_patterns = patterns(
+    '',
     url(r'^user/$', SwitchToDRF('User', with_handler=True), name='api.user'),
     url(r'^addons/$',
         SwitchToDRF('Addons', with_handler=True, with_viewset=True),
@@ -128,7 +132,8 @@ piston_patterns = patterns('',
         name='api.version'),
 )
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Redirect api requests without versions
     url('^((?:addon|search|list)/.*)$', views.redirect_view),
 

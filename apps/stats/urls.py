@@ -15,7 +15,8 @@ collection_series = dict((type, '%s-%s' % (type, series_re))
                          for type in views.COLLECTION_SERIES)
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('^$', lambda r: redirect('stats.addons_in_use', permanent=False),
         name='stats.dashboard'),
     url('^site%s/%s$' % (format_re, group_date_re),
@@ -41,7 +42,8 @@ for key in keys:
 
 urlpatterns += patterns('', *urls)
 
-collection_stats_urls = patterns('',
+collection_stats_urls = patterns(
+    '',
     url(collection_series['subscribers'], views.collection_series,
         kwargs={'field': 'subscribers'}),
     url(collection_series['ratings'], views.collection_series,
@@ -69,7 +71,8 @@ collection_stats_urls = patterns('',
 )
 
 # Addon specific stats.
-stats_patterns = patterns('',
+stats_patterns = patterns(
+    '',
     # page URLs
     url('^$', views.stats_report, name='stats.overview',
         kwargs={'report': 'overview'}),
