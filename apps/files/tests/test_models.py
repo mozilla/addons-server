@@ -34,12 +34,6 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     Base for tests that mess with file uploads, safely using temp directories.
     """
 
-    def setUp(self):
-        # The validator task (post Addon upload) loads apps.json
-        # so ensure it exists:
-        from django.core.management import call_command
-        call_command('dump_apps')
-
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
 
