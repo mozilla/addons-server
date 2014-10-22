@@ -415,10 +415,6 @@ def application_versions_json(request):
 @addons_reviewer_required
 @addon_view
 def review(request, addon):
-    return _review(request, addon)
-
-
-def _review(request, addon):
     version = addon.latest_version
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):

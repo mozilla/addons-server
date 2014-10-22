@@ -550,7 +550,9 @@ class NewVersionForm(NewAddonForm):
         if not self.errors:
             self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'], self.addon)
-            if self.addon.versions.filter(version=xpi['version']):
+            # Make sure we don't already have the same non-rejected version.
+            if self.addon.versions.filter(version=xpi['version']).exclude(
+                    files__status=amo.STATUS_DISABLED):
                 raise forms.ValidationError(
                     _(u'Version %s already exists') % xpi['version'])
             self._clean_all_platforms()
