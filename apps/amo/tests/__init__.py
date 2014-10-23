@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import math
 import os
 import random
@@ -25,6 +26,7 @@ import tower
 from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
+from PIL import Image, ImageColor
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from test_utils import RequestFactory
@@ -37,9 +39,10 @@ import amo
 import amo.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import (Addon, Persona,
+from addons.models import (Addon, Persona, Review,
                            update_search_index as addon_update_search_index)
 from addons.tasks import unindex_addons
+from amo.helpers import user_media_path
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import AppVersion
 from bandwagon.models import Collection
@@ -565,6 +568,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
+    persona_id = kw.pop('persona_id', None)
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
@@ -597,8 +601,9 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     a.status = status
     if type_ == amo.ADDON_PERSONA:
         a.type = type_
-        Persona.objects.create(addon=a, persona_id=a.id,
-                               popularity=a.weekly_downloads)  # Save 3.
+        persona_id = persona_id if persona_id is not None else a.id
+        Persona.objects.create(addon=a, popularity=a.weekly_downloads,
+                               persona_id=persona_id)  # Save 3.
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -611,6 +616,47 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         # erased at post_save by addons.models.watch_status()
         version.save()
     return a
+
+
+def theme_images_factory(theme, placement, hash_):
+    """
+    Generates 2 images, one in the temp folder and the other in the
+    user-media one. Both are needed to generate previews for themes.
+
+    """
+    color = random.choice(ImageColor.colormap.keys())
+    image = Image.new('RGB', (3000, 200), color)
+    tmp_path = os.path.join(settings.TMP_PATH,
+                            'persona_{placement}'.format(placement=placement))
+    if not os.path.exists(tmp_path):
+        os.makedirs(tmp_path)
+    tmp_loc = os.path.join(tmp_path, hash_)
+    image.save(tmp_loc, 'jpeg')
+    media_path = os.path.join(user_media_path('addons'), str(theme.id))
+    if not os.path.exists(media_path):
+        os.makedirs(media_path)
+    media_loc = os.path.join(media_path, hash_)
+    image.save(media_loc, 'jpeg')
+
+
+def ratings_factory(addon, num):
+    for n in range(1, num + 1):
+        email = 'testuser{n}@example.com'.format(n=n)
+        user, _created = UserProfile.objects.get_or_create(
+            username=email, email=email, display_name=email)
+        Review.objects.create(
+            addon=addon, user=user, rating=random.randrange(0, 6),
+            title='Test Review {n}'.format(n=n), body='review text')
+
+
+def translations_factory(item):
+    fr_prefix = u'(français) '
+    es_prefix = u'(español) '
+    oldname = unicode(item.name)
+    item.name = {'en': oldname,
+                 'fr': fr_prefix + oldname,
+                 'es': es_prefix + oldname}
+    item.save()
 
 
 def collection_factory(**kw):
@@ -681,15 +727,16 @@ def version_factory(file_kw={}, **kw):
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    application = kw.pop('application', amo.FIREFOX.id)
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
     if kw.get('addon').type != amo.ADDON_PERSONA:
-        av_min, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=amo.FIREFOX.id,
+        ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=v, min=av_min,
                                                    max=av_max)
     file_factory(version=v, **file_kw)

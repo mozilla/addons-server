@@ -8,13 +8,13 @@ from itertools import cycle, islice, product
 from PIL import Image, ImageColor
 
 from addons.models import AddonCategory, AddonUser, Category, Preview
-from amo.tests import addon_factory
+from amo.tests import (addon_factory, collection_factory, ratings_factory,
+                       translations_factory)
 from amo.utils import slugify
-from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from constants.applications import FIREFOX
+from bandwagon.models import CollectionAddon, FeaturedCollection
+from constants.applications import APPS
 from constants.base import ADDON_EXTENSION
 from devhub.tasks import resize_preview
-from reviews.models import Review
 from users.models import UserProfile
 
 addongenerator_log = logging.getLogger('z.addongenerator')
@@ -28,46 +28,92 @@ nouns = ['Sandwich', 'Pizza', 'Curry', 'Pierogi', 'Sushi', 'Salad', 'Stew',
 fake_addon_names = [' '.join(parts) for parts in product(adjectives, nouns)]
 
 # Based on production categories.
-categories_choices = (
-    (u'Alerts & Updates', u'alerts'),
-    (u'Appearance', u'appearance'),
-    (u'Bookmarks', u'bookmarks'),
-    (u'Download Management', u'downloads'),
-    (u'Feeds, News & Blogging', u'feeds'),
-    (u'Games & Entertainment', u'games'),
-    (u'Language Support', u'dictionary'),
-    (u'Photos, Music & Videos', u'photos'),
-    (u'Privacy & Security', u'security'),
-    (u'Search Tools', u'search'),
-    (u'Shopping', u'shopping'),
-    (u'Social & Communication', u'social'),
-    (u'Tabs', u'tabs'),
-    (u'Web Development', u'webdev'),
-    (u'Other', u'default'),
-)
+categories_choices = {
+    'firefox': (
+        # (Label in production, Default icon name),
+        (u'Alerts & Updates', u'alerts'),
+        (u'Appearance', u'appearance'),
+        (u'Bookmarks', u'bookmarks'),
+        (u'Download Management', u'downloads'),
+        (u'Feeds, News & Blogging', u'feeds'),
+        (u'Games & Entertainment', u'games'),
+        (u'Language Support', u'dictionary'),
+        (u'Photos, Music & Videos', u'photos'),
+        (u'Privacy & Security', u'security'),
+        (u'Search Tools', u'search'),
+        (u'Shopping', u'shopping'),
+        (u'Social & Communication', u'social'),
+        (u'Tabs', u'tabs'),
+        (u'Web Development', u'webdev'),
+        (u'Other', u'default'),
+    ),
+    'thunderbird': (
+        # (Label in production, Default icon name),
+        (u'Appearance and Customization', u'appearance'),
+        (u'Calendar and Date/Time', u'video'),
+        (u'Chat and IM', u'social'),
+        (u'Contacts', u'music'),
+        (u'Folders and Filters', u'shopping'),
+        (u'Import/Export', u'downloads'),
+        (u'Language Support', u'dictionary'),
+        (u'Message Composition', u'posts'),
+        (u'Message and News Reading', u'feeds'),
+        (u'Miscellaneous', u'default'),
+        (u'Privacy and Security', u'alerts'),
+        (u'Tags', u'bookmarks'),
+    ),
+    'android': (
+        # (Label in production, Default icon name),
+        (u'Device Features & Location', u'search'),
+        (u'Experimental', u'alerts'),
+        (u'Feeds, News, & Blogging', u'feeds'),
+        (u'Performance', u'webdev'),
+        (u'Photos & Media', u'photos'),
+        (u'Security & Privacy', u'security'),
+        (u'Shopping', u'shopping'),
+        (u'Social Networking', u'social'),
+        (u'Sports & Games', u'games'),
+        (u'User Interface', u'tabs'),
+    ),
+    'seamonkey': (
+        # (Label in production, Default icon name),
+        (u'Bookmarks', u'bookmarks'),
+        (u'Downloading and File Management', u'downloads'),
+        (u'Interface Customizations', u'appearance'),
+        (u'Language Support & Translation', u'dictionary'),
+        (u'Miscellaneous', u'default'),
+        (u'Photos & Media', u'photos'),
+        (u'Privacy and Security', u'alerts'),
+        (u'RSS, News and Blogging', u'feeds'),
+        (u'Search Tools', u'search'),
+        (u'Site-specific', u'posts'),
+        (u'User Interface', u'tabs'),
+        (u'Web and Developer Tools', u'webdev'),
+    ),
+}
 
 
-def generate_categories(num):
+def generate_categories(num, app):
     categories = []
-    for i, category_choice in enumerate(categories_choices):
+    for i, category_choice in enumerate(categories_choices[app.short]):
         category, created = Category.objects.get_or_create(
             slug=category_choice[1],
             type=ADDON_EXTENSION,
-            application=FIREFOX.id,
+            application=app.id,
             defaults={
                 'name': category_choice[0],
                 'weight': i,
             })
         if created:
-            generate_translations(category)
+            translations_factory(category)
         categories.append(category)
     return categories
 
 
-def generate_addon_data(num):
-    categories = generate_categories(num)
+def generate_addon_data(num, app):
+    categories = generate_categories(num, app)
     if num > len(fake_addon_names):
-        base_names = islice(cycle(fake_addon_names), 0, num)
+        base_names = islice(cycle(fake_addon_names), num)
         addons = ['{name} {i}'.format(name=name, i=i)
                   for i, name in enumerate(base_names)]
     else:
@@ -90,59 +136,40 @@ def generate_preview(addon, n=1):
     resize_preview(f.name, p)
 
 
-def generate_translations(item):
-    fr_prefix = u'(français) '
-    es_prefix = u'(español) '
-    oldname = unicode(item.name)
-    item.name = {'en': oldname,
-                 'fr': fr_prefix + oldname,
-                 'es': es_prefix + oldname}
-    item.save()
-
-
-def generate_ratings(addon, num):
-    for n in range(num):
-        email = 'testuser{num}@example.com'.format(num=num)
-        user, _ = UserProfile.objects.get_or_create(
-            username=email, email=email, display_name=email)
-        Review.objects.create(
-            addon=addon, user=user, rating=random.randrange(0, 6),
-            title='Test Review {n}'.format(n=n), body='review text')
-
-
-def generate_addon(name, category, user):
+def generate_addon(name, category, user, app):
     # Use default icons from the filesystem given the category.
     icon_type = 'icon/{slug}'.format(slug=category.slug)
-    addon = addon_factory(name=name, icon_type=icon_type)
+    addon = addon_factory(name=name, icon_type=icon_type,
+                          version_kw={'application': app.id})
     AddonUser.objects.create(addon=addon, user=user)
     AddonCategory.objects.create(addon=addon, category=category, feature=True)
     return addon
 
 
-def generate_collections(addon):
-    ca = CollectionAddon.objects.create(addon=addon,
-                                        collection=Collection.objects.create())
-    FeaturedCollection.objects.create(application=FIREFOX.id,
-                                      collection=ca.collection)
+def generate_collections(addon, app):
+    c = collection_factory(application=app.id)
+    translations_factory(c)
+    CollectionAddon.objects.create(addon=addon, collection=c)
+    FeaturedCollection.objects.create(application=app.id, collection=c)
 
 
 def generate_user(email):
-    email = email or 'nobody@mozilla.org'
     username = slugify(email)
     user, _ = UserProfile.objects.get_or_create(
         email=email, defaults={'username': username})
     return user
 
 
-def generate_addons(num, owner=None):
+def generate_addons(num, owner, app_name):
     featured_categories = collections.defaultdict(int)
     user = generate_user(owner)
-    for addonname, category in generate_addon_data(num):
-        addon = generate_addon(addonname, category, user)
+    app = APPS[app_name]
+    for addonname, category in generate_addon_data(num, app):
+        addon = generate_addon(addonname, category, user, app)
         generate_preview(addon)
-        generate_translations(addon)
+        translations_factory(addon)
         # Only feature 5 addons per category at max.
         if featured_categories[category] < 5:
-            generate_collections(addon)
+            generate_collections(addon, app)
             featured_categories[category] += 1
-        generate_ratings(addon, 5)
+        ratings_factory(addon, 5)
