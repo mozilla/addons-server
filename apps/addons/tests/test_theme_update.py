@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import connection
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import amo.tests
@@ -112,17 +111,13 @@ class TestThemeUpdate(amo.tests.TestCase):
         return update
 
     def test_get_json_bad_ids(self):
-        raise SkipTest('Passes locally but fails on Jenkins :(')
-
         eq_(self.get_update('en-US', 999).get_json(), None)
         eq_(self.get_update('en-US', 813).get_json(), None)
 
     def test_get_json_good_ids(self):
-        raise SkipTest('Passes locally but fails on Jenkins :(')
-
         self.addon = Addon.objects.get()
         self.addon.summary = 'yolo'
-        self.addon.current_version = Version.objects.get()
+        self.addon._current_version = Version.objects.get()
         self.addon.save()
         self.addon.increment_version()
 

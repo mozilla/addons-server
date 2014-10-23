@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil.parser import parse as parse_dt
 import re
 from urlparse import urlparse
@@ -11,7 +11,6 @@ from django.utils import http as urllib
 
 from jingo.helpers import datetime as datetime_filter
 import mock
-from nose import SkipTest
 from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -796,7 +795,7 @@ class BaseSearchToolsTest(amo.tests.TestCase):
         # Transform bookmarks into a search category:
         Category.objects.filter(slug='bookmarks').update(type=amo.ADDON_SEARCH)
 
-    def setup_featured_tools_and_extensions(self):
+    def setup_tools_and_extensions(self):
         # Pretend all Add-ons are search-related:
         Addon.objects.update(type=amo.ADDON_SEARCH)
 
@@ -806,7 +805,7 @@ class BaseSearchToolsTest(amo.tests.TestCase):
         limon.type = amo.ADDON_EXTENSION
         limon.status = amo.STATUS_PUBLIC
         limon.save()
-        AppSupport(addon=limon, app_id=amo.FIREFOX.id).save()
+        AppSupport(addon=limon, app=amo.FIREFOX.id).save()
 
         # Another will be a search add-on in the search category:
         readit = Addon.objects.get(name__localized_string='Read It Later')
@@ -814,37 +813,21 @@ class BaseSearchToolsTest(amo.tests.TestCase):
         readit.status = amo.STATUS_PUBLIC
         readit.save()
 
-        # Un-feature all others:
-        Feature.objects.all().delete()
-
-        # Feature foxy :
-        foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
-        Feature(addon=foxy, application=amo.FIREFOX.id,
-                start=datetime.now(),
-                end=datetime.now() + timedelta(days=30)).save()
-
-        # Feature Limon Dictionary and Read It Later as a category feature:
-        s = Category.objects.get(slug='search-tools')
-        s.addoncategory_set.add(AddonCategory(addon=limon, feature=True))
-        s.addoncategory_set.add(AddonCategory(addon=readit, feature=True))
-        s.save()
         cache.clear()
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):
 
     def test_landing_page(self):
-        raise SkipTest()
-        self.setup_featured_tools_and_extensions()
+        self.setup_tools_and_extensions()
         response = self.client.get(reverse('browse.search-tools'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
 
-        # Should have only featured add-ons:
-        eq_(sorted([a.name.localized_string
-                    for a in response.context['addons'].object_list]),
-            [u'FoxyProxy Standard', u'Limon free English-Hebrew dictionary',
-             u'Read It Later'])
+        # Should have add-ons ordered by popularity (weekly downloads):
+        eq_([a.name.localized_string
+             for a in response.context['addons'].object_list],
+            [u'FoxyProxy Standard', u'Read It Later', u'Lady Gaga'])
 
         # Ensure that all heading links have the proper base URL
         # between the category / no category cases.
@@ -954,10 +937,9 @@ class TestSearchToolsPages(BaseSearchToolsTest):
 
 class TestSearchToolsFeed(BaseSearchToolsTest):
 
-    def test_featured_search_tools(self):
-        raise SkipTest()
-        self.setup_featured_tools_and_extensions()
-        url = reverse('browse.search-tools.rss') + '?sort=featured'
+    def test_created_search_tools(self):
+        self.setup_tools_and_extensions()
+        url = reverse('browse.search-tools.rss') + '?sort=created'
         r = self.client.get(url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -965,16 +947,13 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         eq_(doc('rss channel title')[0].text,
             'Search Tools :: Add-ons for Firefox')
         link = doc('rss channel link')[0].text
-        rel_link = reverse('browse.search-tools.rss') + '?sort=featured'
+        rel_link = reverse('browse.search-tools.rss') + '?sort=created'
         assert link.endswith(rel_link), ('Unexpected link: %r' % link)
-        eq_(doc('rss channel description')[0].text,
-            "Search tools and search-related extensions")
+        eq_(doc('rss channel description')[0].text, "Search tools")
 
-        # There should be two features: one search tool and one extension.
-        eq_(sorted([e.text for e in doc('rss channel item title')]),
-            ['FoxyProxy Standard 2.17',
-             'Limon free English-Hebrew dictionary 0.5.3',
-             'Read It Later 2.0.3'])
+        # There should be tools ordered by created date.
+        eq_([e.text for e in doc('rss channel item title')],
+            ['Lady Gaga 0', 'Read It Later 2.0.3', 'FoxyProxy Standard 2.17'])
 
     def test_search_tools_no_sorting(self):
         url = reverse('browse.search-tools.rss')

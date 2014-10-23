@@ -9,7 +9,6 @@ from django.db.models import Q
 from django.test.utils import override_settings
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 from pyquery import PyQuery as pq
@@ -307,10 +306,10 @@ class TestEditBasic(TestEdit):
             addon_id=addon_id, collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c.collection,
                                           application=amo.FIREFOX.id)
+        cache.clear()
 
-    def test_edit_categories_add_creatured(self):
-        raise SkipTest()
-        """Ensure that categories cannot be changed for creatured add-ons."""
+    def test_edit_categories_add_featured(self):
+        """Ensure that categories cannot be changed for featured add-ons."""
         self._feature_addon()
 
         self.cat_initial['categories'] = [22, 23]

@@ -1,7 +1,6 @@
 from django.core import paginator
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import amo
@@ -35,7 +34,6 @@ class TestNoESIndexing(amo.tests.TestCase):
             'TestCase should not have "es" attribute')
 
     def test_not_indexed(self):
-        raise SkipTest
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                      status=amo.STATUS_PUBLIC)
         assert issubclass(
@@ -43,7 +41,6 @@ class TestNoESIndexing(amo.tests.TestCase):
             mock.Mock)
 
     def test_get_es_mocked(self):
-        raise SkipTest
         es = amo.search.get_es()
         assert issubclass(es.__class__, mock.Mock)
 
