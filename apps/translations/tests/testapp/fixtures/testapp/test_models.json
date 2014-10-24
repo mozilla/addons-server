@@ -70,6 +70,17 @@
         }
     },
     {
+        "pk": 7,
+        "model": "translations.translation",
+        "fields": {
+            "id": 5,
+            "locale": "de",
+            "localized_string": "Deutsch name",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
         "pk": 10,
         "model": "translations.translation",
         "fields": {
@@ -133,6 +144,18 @@
         "fields": {
             "id": 4,
             "name": 4,
+            "description": null,
+            "default_locale": "en-US",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "testapp.translatedmodel",
+        "fields": {
+            "id": 5,
+            "name": 5,
             "description": null,
             "default_locale": "en-US",
             "created": "2007-03-05 16:06:55",

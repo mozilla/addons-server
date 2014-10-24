@@ -42,16 +42,22 @@ called when you instanciate a queryset. It does 2 things:
   objects in the wrong language
 - Call ``translations.transformers.get_trans()`` which does the black magic.
 
-``get_trans()`` is called, and calls in turn ``translations.transformer.build_query()``
-and builds a custom SQL query. This query is the heart of the magic. For each
-field, it setups a join on the translations table, trying to find a translation
-in the current language (using ``translation.get_language()``) and then in the
-language returned by ``get_fallback()`` on the instance (for addons, that's
-``default_locale``; if the ``get_fallback()`` method doesn't exist, it will
-use ``settings.LANGUAGE_CODE``, which should be ``en-US`` in olympia).
+``get_trans()`` is called, and calls in turn
+``translations.transformer.build_query()`` and builds a custom SQL query. This
+query is the heart of the magic. For each field, it setups a join on the
+translations table, trying to find a translation in the current language (using
+``translation.get_language()``) and then in the language returned by
+``get_fallback()`` on the instance (for addons, that's ``default_locale``; if
+the ``get_fallback()`` method doesn't exist, it will use
+``settings.LANGUAGE_CODE``, which should be ``en-US`` in olympia).
+As a last resort, if none of the above two locales have translations, it'll try
+the ``en-US`` locale.
 
-Only those 2 languages are considered, and a double join + ``IF`` / ``ELSE`` is
-done every time, for each field.
+Only those 3 languages are considered, and a triple join + ``IF`` / ``ELSE`` is
+done every time, for each field. This triple join is reduced to a double or
+single join depending on the locales tried. If the current language and the
+``get_fallback`` locales are both ``en-US`` for example, only one join will be
+done.
 
 This query is then ran on the slave (``get_trans()`` gets a cursor using
 ``connections[multidb.get_slave()]``) to fetch the translations, and some
@@ -64,12 +70,13 @@ as you'd except, making the whole thing transparent.
 
 When setting
 ------------
-Everytime you set a translated field to a string value, ``TranslationDescriptor``
-``__set__`` method is called. It determines what method to call (because you
-can also assign a dict with multiple translations in multiple languages at the
-same time). In this case, it calls ``translation_from_string()`` method, still
-on the "hidden" ``TranslationDescriptor`` instance. The current language is
-passed at this point, using ``translation_utils.get_language()``.
+Everytime you set a translated field to a string value,
+``TranslationDescriptor`` ``__set__`` method is called. It determines what
+method to call (because you can also assign a dict with multiple translations
+in multiple languages at the same time). In this case, it calls
+``translation_from_string()`` method, still on the "hidden"
+``TranslationDescriptor`` instance. The current language is passed at this
+point, using ``translation_utils.get_language()``.
 
 From there, ``translation_from_string()`` figures out whether it's a new
 translation of a field we had no translation for, or a new translation of a
@@ -100,12 +107,13 @@ The reason why is twofold:
    FK to ``NULL`` and delete the translation normally. However, if there were
    any other translations, instead we temporarily disable the constraints to
    let you delete just the one you want.
-2. Remember how fetching works ? If you deleted a translation that is part of
+2. Remember how fetching works? If you deleted a translation that is part of
    the fallback, then when you fetch that object, depending on your locale
    you'll get an empty string for that field, even if there are ``Translation``
    objects in other languages available !
 
-For additional discussion on this topic, see https://bugzilla.mozilla.org/show_bug.cgi?id=902435
+For additional discussion on this topic, see
+https://bugzilla.mozilla.org/show_bug.cgi?id=902435.
 
 Additional tricks
 -----------------
