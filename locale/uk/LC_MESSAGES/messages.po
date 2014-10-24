@@ -708,10 +708,12 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Як встановити в Thunderbird</strong> <ol> <li>Завантажте та встановіть файл на свій жорсткий диск.</li> <li>У Mozilla Thunderbird, відкрийте Додатки з меню Інструменти.</li> <li>За допомогою кнопки "
+"опції, біля поля пошуку додатків, виберіть \"Встановити додаток з файлу...\" та виберіть завантажений файл.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
+msgstr "Щоб встановити цю тему, <b>отримайте Thunderbird</b>, безплатний клієнт електронної пошти з відкритим кодом від Mozilla та встановіть додаток Personas Plus."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -719,11 +721,11 @@ msgstr "Дізнатись більше про Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "Щоб встановити цю тему, а також тисячі інших, <b>отримайте Firefox</b>, безплатний браузер з відкритим кодом від Mozilla."
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr ""
+msgstr "Цей додаток не був оновлений для роботи з вашою версією %(app)s."
 
 #: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
@@ -731,7 +733,7 @@ msgstr "Все одно встановити"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Цей додаток потребує версію Firefox, яка ще не була випущена."
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
@@ -752,7 +754,7 @@ msgstr "чи преглянути <a href=\"%(href)s\">старіші версі
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Persona потребує %(app)s %(new_version)s. Зараз ви використовуєте %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
@@ -764,7 +766,7 @@ msgstr "<strong>Будь ласка, зауважте:</strong> Цей дода�
 
 #: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Цей додаток несумісний з вашою версією %(app)s у зв'язку з наступним:"
 
 #: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
@@ -866,7 +868,7 @@ msgstr "Відгуки"
 
 #: apps/addons/templates/addons/review_list_box.html:14 apps/addons/templates/addons/impala/review_list_box.html:14 apps/reviews/templates/reviews/review.html:30
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "від %(user)s за %(date)s"
 
 #: apps/addons/templates/addons/review_list_box.html:19 apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
@@ -887,7 +889,7 @@ msgstr "Мітки"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
 msgid "by %(users)s"
-msgstr "%(users)s"
+msgstr "від %(users)s"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1163,7 +1165,7 @@ msgstr "Схвалити / Відхилити"
 
 #: apps/addons/templates/addons/includes/persona.html:25 apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Історія переглядів"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1171,7 +1173,7 @@ msgstr "Вибачте, ця тема в очікуванні. Будь ласк
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Ця тема в очікуванні. Вона невидима для всіх, окрім вас."
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
@@ -1248,7 +1250,7 @@ msgstr "Погодитись"
 
 #: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:48
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Щоб встановлювати додатки, вам потрібен Firefox. <a href=\"http://mozilla.com/mobile\">Дізнатись більше&nbsp;&raquo;</a>"
 
 #: apps/addons/templates/addons/mobile/home.html:15 templates/header_title.html:4 templates/impala/header_title.html:3
 msgid "Return to the {0} Add-ons homepage"
@@ -1274,6 +1276,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
+"Додатки - це програми, які дозволяють розширити можливості та стиль Firefox. Якщо ви помилились при введенні назви сайту, або не можете прочитати зайняту сторінку, існує додаток, який покращує ваш "
+"перегляд в дорозі."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1334,7 +1338,7 @@ msgstr "Мої збірки"
 
 #: apps/amo/context_processors.py:78 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr "Мої улюбленці"
+msgstr "Мої Вподобання"
 
 #: apps/amo/context_processors.py:83 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
@@ -1572,7 +1576,7 @@ msgstr "{addon} відібрано в {0}."
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:282
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} більше не відзначений в {0}."
 
 #: apps/amo/log.py:287
 msgid "{addon} is now featured."
@@ -1602,7 +1606,7 @@ msgstr "Політика {addon} змінена."
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "У {addon} змінилась іконка"
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
@@ -1826,7 +1830,7 @@ msgstr "Ой"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ой! Сталася помилка.</h1> <p>Невдовзі ми її виправимо.</p> <p> Ви можете спробувати оновити сторінку, або повернутися назад на <a href=\"%(home)s\">Домашню сторінку</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
@@ -1887,7 +1891,7 @@ msgstr ""
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:279 apps/search/forms.py:87
 msgid "Top Rated"
-msgstr "Найпопулярніші"
+msgstr "Найвище оцінені"
 
 #: apps/amo/templates/amo/side_nav.html:16
 msgid "Explore"
@@ -2064,16 +2068,16 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Якщо ваша підтримувана програма не потребує файл install.rdf, ви все ж повинні включити його з необхідними властивостями, як зазначено <a href=\"%(url)s\">тут</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Збірки :: %s"
 
 #: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:145
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
+msgstr "Збірки - це групи відповідних додатків, які може створювати та поширювати будь-хто."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
@@ -2106,7 +2110,7 @@ msgstr "Приватність:"
 
 #: apps/bandwagon/forms.py:137
 msgid "Icon"
-msgstr "Позначка"
+msgstr "Іконка"
 
 #: apps/bandwagon/forms.py:150
 msgid "This name cannot be used."
@@ -2122,7 +2126,7 @@ msgstr "Ця адреса URL вже використовується в інш�
 
 #: apps/bandwagon/forms.py:180 apps/devhub/views.py:1016
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Іконки повинні мати формат PNG або JPG."
 
 #: apps/bandwagon/forms.py:185 apps/devhub/views.py:1034 apps/users/forms.py:420
 msgid "Please use images smaller than %dMB."
@@ -2154,15 +2158,15 @@ msgstr "Ввійдіть, щоб проголосувати за цю збірк
 
 #: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr "Додати до обраного"
+msgstr "Додати до вподобань"
 
 #: apps/bandwagon/helpers.py:147
 msgid "Favorite"
-msgstr "Обране"
+msgstr "Вподобання"
 
 #: apps/bandwagon/helpers.py:147 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr "Вилучити з обраного"
+msgstr "Вилучити з вподобань"
 
 #: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:451 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
@@ -2200,7 +2204,7 @@ msgstr "<a href=\"%(url)s\">Переглянути свою збірку</a>, щ
 
 #: apps/bandwagon/views.py:563
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Іконка видалена"
 
 #: apps/bandwagon/templates/bandwagon/add.html:3 apps/bandwagon/templates/bandwagon/add.html:11 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
@@ -2212,7 +2216,7 @@ msgstr "Створити"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24 apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Як зазначено у наших <a href=\"%(legal)s\">Юридичних відомостях</a>, угоди індивідуальних збірок керуються ліцензією Creative Commons Attribution Share-Alike"
 
 #: apps/bandwagon/templates/bandwagon/add.html:33 apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
@@ -2284,11 +2288,11 @@ msgstr "Зробити цю збірку загальнодоступною"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Learn about collections"
-msgstr ""
+msgstr "Дізнатися про збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:93
 msgid "More Options:"
-msgstr ""
+msgstr "Більше опцій:"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:94
 msgid "Edit Collection"
@@ -2327,7 +2331,7 @@ msgstr "Переглянути збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
-msgstr ""
+msgstr "Загальні мітки"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
@@ -2407,11 +2411,11 @@ msgstr "від {0}"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:5 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Stop Following"
-msgstr ""
+msgstr "Не слідкувати"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:6 apps/bandwagon/templates/bandwagon/collection_widgets.html:7 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Слідкувати за цією збіркою"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
@@ -2430,7 +2434,7 @@ msgstr "Вилучити {0}"
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 #: apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133 apps/devhub/templates/devhub/versions/list.html:153
 msgid "Delete"
-msgstr "Стерти"
+msgstr "Вилучити"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
@@ -2527,7 +2531,7 @@ msgstr "Помічник"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
-msgstr "Адмін Налаштування"
+msgstr "Налаштування адміністратора"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
@@ -2596,7 +2600,7 @@ msgstr "Збірки дають змогу з легкістю слідкува�
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:39
 msgid "Collection Icon"
-msgstr ""
+msgstr "Іконка збірки"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:41
 msgid "Reset"
@@ -2604,15 +2608,15 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:50
 msgid "PNG and JPG supported. Image will be resized to 32x32."
-msgstr ""
+msgstr "Підтримуються формати PNG та JPG. Розмір зображення буде змінено до 32x32."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3 apps/localizers/templates/localizers/categories.html:19
 msgid "There are errors in this form. Please correct them below."
-msgstr ""
+msgstr "У цій формі наявні помилки. Виправте будь ласка їх внизу."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Додатки у вашій збірці"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
@@ -2621,7 +2625,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:384 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
-msgstr ""
+msgstr "Додаток"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
@@ -2714,7 +2718,7 @@ msgstr ""
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Відібрані додатки :: %s"
 
 #. L10n: %s is an app name.
 #: apps/browse/feeds.py:138
@@ -2942,7 +2946,7 @@ msgstr[2] ""
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
-msgstr "Немає результатів."
+msgstr "Результатів не знайдено."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
@@ -2983,7 +2987,7 @@ msgstr "Переглянути всі найвище оцінені"
 
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Понад 300,000 тем для зміни вигляду вашого браузера! Наведіть вказівник миші на тему, щоб випробувати її. <a href=\"%(url)s\" class=\"more-info\">Почати огляд</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
@@ -3008,7 +3012,7 @@ msgstr "Не знайдено тем"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Легкі в користуванні теми для Firefox"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
@@ -10851,7 +10855,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:267
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Збірки та Вподобання"
 
 #: apps/pages/templates/pages/faq.html:270
 msgid "What is a collection?"
@@ -11402,7 +11406,7 @@ msgstr "Найпопулярніші цього місяця"
 
 #: apps/search/forms.py:14
 msgid "Most popular all time"
-msgstr "Найпопулярніші усіх часів"
+msgstr "Найпопулярніші за весь час"
 
 #: apps/search/forms.py:24
 msgid "search for add-ons"
@@ -11993,7 +11997,7 @@ msgstr ""
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
 msgid "{0} Top Tags"
-msgstr "Найпопулярніші мітки {0}"
+msgstr "{0} найпопулярніших міток"
 
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
