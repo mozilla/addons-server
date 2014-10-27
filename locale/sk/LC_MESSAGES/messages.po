@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-08 22:25+0000\n"
+"PO-Revision-Date: 2014-10-27 23:06+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1412807101.0\n"
+"X-POOTLE-MTIME: 1414451196.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3756,6 +3756,8 @@ msgstr "Zvoľte typ nominácie na kontrolu"
 #: apps/devhub/forms.py:540 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Súbor s verziou, ktorá končí na a|alpha|b|beta a ľubovolným číslom je "
+"rozpoznaný ako betaverzia."
 
 #: apps/devhub/forms.py:555
 msgid "Version %s already exists"
@@ -4872,13 +4874,17 @@ msgstr "Identifikátor UUID vášho doplnku je zadaný v jeho inštalačnom mani
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Poznámka pre redaktora"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"Poznámka pre redaktora je miesto, kde môžete poskytnúť relevantné informácie "
+"o vašom doplnku redaktorovi. Používajte ho pre informácie typu, ako doplnok "
+"testovať a iné informácie, ktoré by mohli byť nápomocné. Túto poznámku môže "
+"redaktor upravovať."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -5605,9 +5611,9 @@ msgid "Review Add-on Policies"
 msgstr "Prečítajte si zásady pre doplnky"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:124
-#, fuzzy
 msgid "Everything in compliance? Great. There's only one thing left to do&hellip;"
-msgstr "Je vše v pořádku? Skvělé! Nyní zbývá udělat jen jedinou věc&hellip;"
+msgstr ""
+"Je všetko v poriadku? Skvelé! Teraz ostáva urobiť už len jednu vec&hellip;"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:130
 msgid "Submit my Add-on!"
@@ -6481,26 +6487,32 @@ msgstr ""
 "Firefoxu 4 týdny před předpokládaným vydáním, ztrácí svůj status doporučeného doplňku."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
-#, fuzzy
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr "Připojení se k Featured Add-ons Advisory Board"
+msgstr "Pripojenie sa k Featured Add-ons Advisory Board"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
 msgstr ""
+"Každých šesť mesiacov je ustanovený nový Advisory Board, ktorý je zostavený "
+"na základe žiadostí z našej komunity okolo doplnkov. Členovia musia:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
 msgstr ""
+"byť aktívnym členom komunity doplnkov (nezáleží na tom, či je vývojár, "
+"evanjelista, alebo fanúšik)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
 msgstr ""
+"aktívne skúšať všetky nominované doplnky, poskytovať k nim reakcie a "
+"zúčastniť sa každý mesiac hlasovania"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
-#, fuzzy
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
-msgstr "zdržet se hlasování o doplňcích, se kterými je nějak osobně či obchodně spjat, stejně tak nebude hlasovat o svých konkurentech"
+msgstr ""
+"nehlasovať pri doplnkoch, ktoré sú s nim nejako osobne, alebo obchodne "
+"spojené a rovnako tak nebude hlasovať pri svojej konkurencii"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
@@ -6548,6 +6560,11 @@ msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Predbežná kontrola</a></strong> &mdash; jedná "
+"sa o rýchlejšiu kontrolu určenú hlavne pre experimentálne doplnky. V rámci "
+"predbežnej kontroly sa nekontroluje funkcionalita, plná zhoda zo zásadami "
+"pre doplnky a pri doplnku sa na webe zobrazuje varovanie. Funkcie webu sú "
+"pre takéto doplnky obmedzené."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -6768,10 +6785,16 @@ msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
+"Nelegálne alebo kriminálne doplnky a doplnky, ktoré vytvárajú <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">podvodné kliknutia</a>, "
+"umožňujú preberanie <a href=\"http://cs.wikipedia.org/wiki/Warez\">warezu</a>, "
+"pomáhajú vyhľadávať detskú pornografiu atď."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
 msgstr ""
+"Doplnky, ktorých hlavnou funkciou je sprostredkovávať prístup k "
+"pornografickým materiálom, alebo sústrediť takýto materiál v ich popisoch. "
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
@@ -7025,9 +7048,10 @@ msgid "Add-on updates, transferring ownership, user reviews, and what to expect 
 msgstr "Aktualizácie doplnkov, zmena vlastníctva, recenzie od používateľov a čo očakávať po schválení doplnku."
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
-#, fuzzy
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
-msgstr "Jak se doplňky mohou stát doporučenými a co vše v tomto procesu hraje roli."
+msgstr ""
+"Ako sa môžu stať doplnky odporúčanými a čo všetko hrá rolu pri tomto "
+"procese."
 
 #: apps/devhub/templates/devhub/docs/policies.html:106
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
@@ -7064,6 +7088,10 @@ msgstr "cez <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla
 #: apps/devhub/templates/devhub/docs/reference.html:31
 msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
 msgstr ""
+"XUL (XML User Interface Language) je jazyk založený na XML od Mozilly, ktorý "
+"umožňuje vytvárať funkčne bohaté a na platforme nezávislé aplikácie. Tieto "
+"aplikácie môžu k správnej funkcii požadovať pripojenie na Internet (ale "
+"nemusia)."
 
 #: apps/devhub/templates/devhub/docs/reference.html:38
 msgid "XUL Reference"
@@ -7172,6 +7200,8 @@ msgstr "API pre SMILE"
 #: apps/devhub/templates/devhub/docs/reference.html:211
 msgid "SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development."
 msgstr ""
+"SMILE je sada rozšírení podobných FUELu, ktorá zjednodušuje vývoj rozšírení "
+"pre SeaMonkey."
 
 #: apps/devhub/templates/devhub/docs/reference.html:219
 msgid "XPCOM: Cross-Platform Components"
@@ -7626,6 +7656,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
 msgstr ""
+"<b>Náhľad vašej témy</b> &mdash; teraz máte možnosť zobrazenia náhľadu vašej "
+"témy! Jednoducho prejdite  cez obrázok nad tlačidlom pre odoslanie témy a "
+"pozrite sa, ako téma vyzerá."
 
 #: apps/devhub/templates/devhub/docs/themes.html:236
 msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
