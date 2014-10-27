@@ -19,7 +19,7 @@ class DELICIOUS(ServiceBase):
     shortname = 'delicious'
     label = _(u'Add to Delicious')
     url = (u'http://delicious.com/save?url={url}&title={title}'
-            '&notes={description}')
+           u'&notes={description}')
 
 
 class DIGG(ServiceBase):
@@ -27,7 +27,7 @@ class DIGG(ServiceBase):
     shortname = 'digg'
     label = _(u'Digg this!')
     url = (u'http://digg.com/submit?url={url}&title={title}&bodytext='
-            '{description}&media=news&topic=tech_news')
+           u'{description}&media=news&topic=tech_news')
 
     @staticmethod
     def count_term(count):
@@ -57,7 +57,7 @@ class MYSPACE(ServiceBase):
     shortname = 'myspace'
     label = _(u'Post to MySpace')
     url = (u'http://www.myspace.com/index.cfm?fuseaction=postto&t={title}'
-            '&c={description}&u={url}&l=1')
+           u'&c={description}&u={url}&l=1')
 
 
 class TWITTER(ServiceBase):

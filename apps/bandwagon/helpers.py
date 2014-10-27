@@ -162,11 +162,9 @@ def favorites_widget(context, addon, condensed=False):
 def collection_widgets(context, collection, condensed=False):
     """Displays collection widgets"""
     c = dict(context.items())
-    request = c['request']
     if collection:
         c.update({'condensed': condensed,
-                  'c': collection,
-                 })
+                  'c': collection})
         t = env.get_template('bandwagon/collection_widgets.html').render(c)
         return jinja2.Markup(t)
 

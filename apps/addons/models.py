@@ -316,7 +316,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
         help_text=_(u'Users will always be asked in the Add-ons'
-                     ' Manager (Firefox 4 and above)'))
+                    u' Manager (Firefox 4 and above)'))
     enable_thankyou = models.BooleanField(
         default=False, help_text='Should the thank you note be sent to '
                                  'contributors?')
@@ -399,8 +399,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
-        # Check for soft deletion path. Happens only if the addon status isn't 0
-        # (STATUS_INCOMPLETE).
+        # Check for soft deletion path. Happens only if the addon status isn't
+        # 0 (STATUS_INCOMPLETE).
         soft_deletion = self.highest_status or self.status
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
@@ -655,7 +655,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if current:
             firefox_min = current.compatible_apps.get(amo.FIREFOX)
             if (firefox_min and
-                firefox_min.min.version_int > amo.FIREFOX.backup_version):
+                    firefox_min.min.version_int > amo.FIREFOX.backup_version):
                 backup = self.get_version(backup_version=True)
 
         try:
@@ -704,7 +704,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = dict([(k, v) for (k, v) in updated.iteritems() if v != ignore])
+            updated = dict([(k, v) for (k, v) in updated.iteritems()
+                            if v != ignore])
 
         if updated:
             # Pass along _signal to the .update() to prevent it from firing
@@ -715,12 +716,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
                 log.info(u'Version changed from backup: %s to %s, '
-                          'current: %s to %s, latest: %s to %s for addon %s'
-                          % tuple(diff + [self]))
+                         u'current: %s to %s, latest: %s to %s for addon %s'
+                         % tuple(diff + [self]))
             except Exception, e:
                 log.error(u'Could not save version changes backup: %s to %s, '
-                          'current: %s to %s, latest: %s to %s '
-                          'for addon %s (%s)' %
+                          u'current: %s to %s, latest: %s to %s '
+                          u'for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
         return bool(updated)
@@ -740,8 +741,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 platform = None
 
         log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-                   'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
-                                      compat_mode))
+                  u'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
+                                       compat_mode))
         valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
         data = dict(id=self.id, app_id=app_id, platform=platform,
                     valid_file_statuses=valid_file_statuses)
@@ -960,7 +961,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @write
     def update_status(self):
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
-            or self.is_disabled or self.is_persona()):
+                or self.is_disabled or self.is_persona()):
             return
 
         def logit(reason, old=self.status):
@@ -973,7 +974,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not versions.exists():
             status = amo.STATUS_NULL
             logit('no versions')
-        elif not versions.filter(files__status__in=amo.VALID_STATUSES).exists():
+        elif not versions.filter(
+                files__status__in=amo.VALID_STATUSES).exists():
             status = amo.STATUS_NULL
             logit('no version with valid file')
         elif (self.status == amo.STATUS_PUBLIC and
@@ -1148,11 +1150,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not File.objects.filter(version__addon=self):
             return ()
         if (self.is_disabled or
-            self.status in (amo.STATUS_PUBLIC,
-                            amo.STATUS_LITE_AND_NOMINATED,
-                            amo.STATUS_DELETED) or
-            not self.latest_version or
-            not self.latest_version.files.exclude(status=amo.STATUS_DISABLED)):
+                self.status in (amo.STATUS_PUBLIC,
+                                amo.STATUS_LITE_AND_NOMINATED,
+                                amo.STATUS_DELETED) or
+                not self.latest_version or
+                not self.latest_version.files.exclude(
+                    status=amo.STATUS_DISABLED)):
             return ()
         elif self.status == amo.STATUS_NOMINATED:
             return (amo.STATUS_LITE,)
@@ -1307,13 +1310,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         status_change = Max('versions__files__datestatuschanged')
         public = (
-            Addon.objects.no_cache().filter(status=amo.STATUS_PUBLIC,
-                                  versions__files__status=amo.STATUS_PUBLIC)
+            Addon.objects.no_cache().filter(
+                status=amo.STATUS_PUBLIC,
+                versions__files__status=amo.STATUS_PUBLIC)
             .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
-        lite = (Addon.objects.no_cache().filter(status__in=amo.LISTED_STATUSES,
-                                      versions__files__status=amo.STATUS_LITE)
+        lite = (Addon.objects.no_cache()
+                .filter(status__in=amo.LISTED_STATUSES,
+                        versions__files__status=amo.STATUS_LITE)
                 .values('id').annotate(last_updated=status_change))
 
         stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
@@ -1392,7 +1397,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     def get_localepicker(self):
         """For language packs, gets the contents of localepicker."""
         if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
-            and self.current_version):
+                and self.current_version):
             files = (self.current_version.files
                          .filter(platform__in=amo.MOBILE_PLATFORMS.keys()))
             try:
@@ -1405,10 +1410,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return [x.strip() for x in self.mozilla_contact.split(',')]
 
     def can_review(self, user):
-        if user and self.has_author(user):
-            return False
-        else:
-           return True
+        return not(user and self.has_author(user))
 
     @property
     def all_dependencies(self):
@@ -1590,7 +1592,7 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
 
     def is_new_in_queue():
         return (new_status in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
-                and not old_status in amo.UNDER_REVIEW_STATUSES
+                and old_status not in amo.UNDER_REVIEW_STATUSES
                 and old_status != new_status)
 
     def is_updating_addon():
@@ -1691,7 +1693,8 @@ class Persona(caching.CachingMixin, models.Model):
         return self.get_mirror_url(filename)
 
     def _image_path(self, filename):
-        return os.path.join(user_media_path('addons'), str(self.addon.id), filename)
+        return os.path.join(
+            user_media_path('addons'), str(self.addon.id), filename)
 
     def get_mirror_url(self, filename):
         host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled

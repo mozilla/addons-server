@@ -19,7 +19,8 @@ class Command(BaseCommand):
     help = "Clean up __unconverted files"
 
     def handle(self, *args, **kw):
-        z = ((user_media_path('collection_icons'), bandwagon.tasks.resize_icon),
+        z = ((user_media_path('collection_icons'),
+              bandwagon.tasks.resize_icon),
              (user_media_path('userpics'), users.tasks.resize_photo))
         for base, task in z:
             self.fix(base, task)

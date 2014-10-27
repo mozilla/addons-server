@@ -544,8 +544,8 @@ def _site_nav(context):
 
     sorted_cats = lambda qs: sorted(qs, key=attrgetter('weight', 'name'))
 
-    extensions = Category.objects.filter(application=request.APP.id,
-        weight__gte=0, type=amo.ADDON_EXTENSION)
+    extensions = Category.objects.filter(
+        application=request.APP.id, weight__gte=0, type=amo.ADDON_EXTENSION)
     personas = Category.objects.filter(weight__gte=0, type=amo.ADDON_PERSONA)
 
     ctx = dict(request=request, amo=amo,

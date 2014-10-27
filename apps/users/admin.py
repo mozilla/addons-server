@@ -51,7 +51,7 @@ class BlacklistModelAdmin(admin.ModelAdmin):
                         continue
                     try:
                         self.blacklist_model.objects.create(
-                                **{self.model_field: x.lower()})
+                            **{self.model_field: x.lower()})
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added

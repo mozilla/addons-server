@@ -638,7 +638,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self.helper.set_data(data)
         self.helper.handler.process_sandbox()
 
-        assert not 'Tested' in mail.outbox[0].body
+        assert 'Tested' not in mail.outbox[0].body
 
     def test_pending_to_super_review(self):
         for status in helpers.PENDING_STATUSES:

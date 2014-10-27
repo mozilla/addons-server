@@ -81,8 +81,8 @@ class TestSendMail(test.TestCase):
         user = UserProfile.objects.all()[0]
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
-        UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=True)
+        UserNotification.objects.get_or_create(
+            notification_id=n.id, user=user, enabled=True)
 
         # Confirm we're reading from the database
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
@@ -100,8 +100,8 @@ class TestSendMail(test.TestCase):
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
 
-        UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=True)
+        UserNotification.objects.get_or_create(
+            notification_id=n.id, user=user, enabled=True)
 
         assert n.mandatory, "Notification isn't mandatory"
 
@@ -117,8 +117,8 @@ class TestSendMail(test.TestCase):
         user = UserProfile.objects.all()[0]
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
-        UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=False)
+        UserNotification.objects.get_or_create(
+            notification_id=n.id, user=user, enabled=False)
 
         # Confirm we're reading from the database.
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
@@ -160,7 +160,7 @@ class TestSendMail(test.TestCase):
         to = user.email
         translation.activate('zh_TW')
         send_mail('test subject', 'test body', perm_setting='reply',
-                             recipient_list=[to], fail_silently=False)
+                  recipient_list=[to], fail_silently=False)
         eq_(perm_setting[0], u'an add-on developer replies to my review')
 
     def test_send_html_mail_jinja(self):
@@ -207,7 +207,8 @@ class TestSendMail(test.TestCase):
                         mimetypes.guess_type(path)[0])]
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)
-        eq_(attachments, mail.outbox[0].attachments, 'Attachments not included')
+        eq_(attachments, mail.outbox[0].attachments,
+            'Attachments not included')
 
     def test_send_multilines_subjects(self):
         send_mail('test\nsubject', 'test body', from_email='a@example.com',
@@ -216,6 +217,7 @@ class TestSendMail(test.TestCase):
 
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)
+
         def make_backend(*args, **kwargs):
             if next(throw_error):
                 class BrokenMessage(object):
@@ -241,9 +243,9 @@ class TestSendMail(test.TestCase):
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
         assert send_mail('test subject',
-                          'test body',
-                          async=True,
-                          recipient_list=['somebody@mozilla.org'])
+                         'test body',
+                         async=True,
+                         recipient_list=['somebody@mozilla.org'])
 
     @mock.patch('amo.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):

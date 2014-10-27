@@ -1,5 +1,4 @@
 from django import forms
-from django.conf import settings
 from django.forms.util import ErrorDict
 
 import happyforms
@@ -92,6 +91,7 @@ SORT_CHOICES = (
     ('updated', _lazy(u'Recently Updated')),
     ('hotness', _lazy(u'Up & Coming')),
 )
+
 
 class ESSearchForm(happyforms.Form):
     q = forms.CharField(required=False)

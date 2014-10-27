@@ -95,8 +95,8 @@ def cleanup(master, slave, filename):
         time.sleep(1)  # Poor man's rate limiting.
 
     if total[0]:
-        log.info('Dropped %s keys [%.1f%%].' %
-                  (total[1], round(float(total[1]) / total[0] * 100, 1)))
+        log.info('Dropped %s keys [%.1f%%].' % (
+            total[1], round(float(total[1]) / total[0] * 100, 1)))
 
 
 class Command(BaseCommand):

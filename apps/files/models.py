@@ -254,7 +254,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(user_media_path('addons'), str(self.version.addon_id),
+        return os.path.join(user_media_path('addons'),
+                            str(self.version.addon_id),
                             self.filename)
 
     @property
@@ -301,7 +302,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.mv(src, dst, 'Moving disabled file: %s => %s')
         # Remove the file from the mirrors if necessary.
         if (self.mirror_file_path and
-            storage.exists(smart_str(self.mirror_file_path))):
+                storage.exists(smart_str(self.mirror_file_path))):
             log.info('Unmirroring disabled file: %s'
                      % self.mirror_file_path)
             storage.delete(smart_str(self.mirror_file_path))
@@ -611,8 +612,8 @@ class FileValidation(amo.models.ModelBase):
                   warnings=js['warnings'], notices=js['notices'])
         new.valid = new.errors == 0
         if ('metadata' in js and (
-            js['metadata'].get('contains_binary_extension', False) or
-            js['metadata'].get('contains_binary_content', False))):
+                js['metadata'].get('contains_binary_extension', False) or
+                js['metadata'].get('contains_binary_content', False))):
             file.update(binary=True)
         if 'metadata' in js and js['metadata'].get('binary_components', False):
             file.update(binary_components=True)

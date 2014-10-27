@@ -592,7 +592,8 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
 
         # Deleted add-on RQT object.
         addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='', footer='')
+        RereviewQueueTheme.objects.create(
+            theme=addon.persona, header='', footer='')
         addon.delete()
 
         eq_(RereviewQueueTheme.objects.count(), 1)

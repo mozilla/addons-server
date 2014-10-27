@@ -302,7 +302,8 @@ class TestPromos(amo.tests.TestCase):
 
 class TestPane(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/collections',
-                'base/featured', 'base/users', 'bandwagon/featured_collections']
+                'base/featured', 'base/users',
+                'bandwagon/featured_collections']
 
     def setUp(self):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
@@ -399,7 +400,7 @@ class TestDetails(amo.tests.TestCase):
         self.detail_url = reverse('discovery.addons.detail',
                                   args=[self.addon.slug])
         self.eula_url = reverse('discovery.addons.eula',
-                                 args=[self.addon.slug])
+                                args=[self.addon.slug])
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -463,7 +464,8 @@ class TestPersonaDetails(amo.tests.TestCase):
     def test_by(self):
         """Test that the `by ... <authors>` section works."""
         r = self.client.get(self.url)
-        assert pq(r.content)('h2.author').text().startswith('by persona_author')
+        assert pq(r.content)('h2.author').text().startswith(
+            'by persona_author')
 
     def test_no_version(self):
         """Don't display a version number for themes."""

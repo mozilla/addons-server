@@ -52,7 +52,7 @@ urlpatterns = (
         kwargs={'rereview': True}),
     url('^themes/queue/$', views_themes.themes_queue,
         name='editors.themes.queue_themes'),
-        url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
+    url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
         name='editors.themes.queue_flagged'),
     url('^themes/queue/updates$', views_themes.themes_queue_rereview,
         name='editors.themes.queue_rereview'),

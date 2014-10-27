@@ -38,8 +38,7 @@ class Command(BaseCommand):
                     action='store_true',
                     dest='no_save_file',
                     default=False,
-                    help='Do not save the file downloaded from allizom.'),
-        )
+                    help='Do not save the file downloaded from allizom.'))
 
     def handle(self, *args, **kw):
         filename = date.today().strftime('landfill-%Y-%m-%d.sql.gz')
@@ -57,7 +56,8 @@ class Command(BaseCommand):
 
         if kw['no_download']:
             if os.path.exists(file_location):
-                print('Skipping landfill download and using %s' % file_location)
+                print('Skipping landfill download and using %s' %
+                      file_location)
                 landfill_file = GzipFile(filename=file_location,
                                          mode='rb').read()
             else:
@@ -73,7 +73,8 @@ class Command(BaseCommand):
 
         if not kw['no_save_file']:
             if os.path.exists(file_location):
-                print('File already exists not overwriting: %s' % file_location)
+                print('File already exists not overwriting: %s' %
+                      file_location)
             else:
                 with open(file_location, 'wb') as f:
                     print('Saving file to %s' % file_location)

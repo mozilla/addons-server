@@ -7,7 +7,6 @@ from nose.tools import assert_raises, eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
-from amo.urlresolvers import reverse
 from addons.models import Addon
 
 

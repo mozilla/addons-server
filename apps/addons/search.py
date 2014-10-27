@@ -85,7 +85,7 @@ def extract(addon):
     # index with analyzer if the string's locale matches.
     for analyzer, languages in amo.SEARCH_ANALYZER_MAP.iteritems():
         if (not settings.ES_USE_PLUGINS and
-            analyzer in amo.SEARCH_ANALYZER_PLUGINS):
+                analyzer in amo.SEARCH_ANALYZER_PLUGINS):
             continue
 
         d['name_' + analyzer] = list(
@@ -131,10 +131,12 @@ def get_mappings():
             # Turn off analysis on name so we can sort by it.
             'name_sort': {'type': 'string', 'index': 'not_analyzed'},
             # Adding word-delimiter to split on camelcase and punctuation.
-            'name': {'type': 'string', 'analyzer': 'standardPlusWordDelimiter'},
+            'name': {'type': 'string',
+                     'analyzer': 'standardPlusWordDelimiter'},
             'summary': {'type': 'string', 'analyzer': 'snowball'},
             'description': {'type': 'string', 'analyzer': 'snowball'},
-            'tags': {'type': 'string', 'index': 'not_analyzed', 'index_name': 'tag'},
+            'tags': {'type': 'string', 'index': 'not_analyzed',
+                     'index_name': 'tag'},
             'platforms': {'type': 'integer', 'index_name': 'platform'},
             'appversion': {'properties': dict((app.id, appver)
                                               for app in amo.APP_USAGE)},
@@ -166,9 +168,8 @@ def get_mappings():
 
 
 def reindex(index):
-    indexers = [
-        reindex_addons, reindex_collections, reindex_users, compatibility_report
-    ]
+    indexers = [reindex_addons, reindex_collections, reindex_users,
+                compatibility_report]
     for indexer in indexers:
         log.info('Indexing %r' % indexer.__name__)
         try:
@@ -183,7 +184,8 @@ INDEX_SETTINGS = {
         "analyzer": {
             "standardPlusWordDelimiter": {
                 "tokenizer": "standard",
-                "filter": ["standard", "wordDelim", "lowercase", "stop", "dict"]
+                "filter": ["standard", "wordDelim", "lowercase", "stop",
+                           "dict"]
             }
         },
         "filter": {
@@ -201,14 +203,14 @@ INDEX_SETTINGS = {
                     "fix", "input", "clip", "fly", "lang", "up", "down",
                     "persona", "css", "html", "http", "ball", "firefox",
                     "bookmark", "chat", "zilla", "edit", "menu", "menus",
-                    "status", "bar", "with", "easy", "sync", "search", "google",
-                    "time", "window", "js", "super", "scroll", "title", "close",
-                    "undo", "user", "inspect", "inspector", "browser",
-                    "context", "dictionary", "mail", "button", "url",
-                    "password", "secure", "image", "new", "tab", "delete",
-                    "click", "name", "smart", "down", "manager", "open",
-                    "query", "net", "link", "blog", "this", "color", "select",
-                    "key", "keys", "foxy", "translate", "word", ]
+                    "status", "bar", "with", "easy", "sync", "search",
+                    "google", "time", "window", "js", "super", "scroll",
+                    "title", "close", "undo", "user", "inspect", "inspector",
+                    "browser", "context", "dictionary", "mail", "button",
+                    "url", "password", "secure", "image", "new", "tab",
+                    "delete", "click", "name", "smart", "down", "manager",
+                    "open", "query", "net", "link", "blog", "this", "color",
+                    "select", "key", "keys", "foxy", "translate", "word", ]
             }
         }
     }

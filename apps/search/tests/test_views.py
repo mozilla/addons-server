@@ -2,7 +2,6 @@
 import json
 import urlparse
 
-from django.conf import settings
 from django.http import QueryDict
 
 from jingo.helpers import datetime as datetime_filter
@@ -576,10 +575,10 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, dict(q='boop'))
         eq_(self.get_results(r), [])
 
-        AddonUser.objects.create(addon=a,
-            user=UserProfile.objects.create(username='boop'))
-        AddonUser.objects.create(addon=a,
-            user=UserProfile.objects.create(username='ponypet'))
+        AddonUser.objects.create(
+            addon=a, user=UserProfile.objects.create(username='boop'))
+        AddonUser.objects.create(
+            addon=a, user=UserProfile.objects.create(username='ponypet'))
         a.save()
         self.refresh()
         r = self.client.get(self.url, dict(q='garbage'))
@@ -734,13 +733,13 @@ class TestPersonaSearch(SearchBase):
                 'Was not first result for %r. Results: %s' % (sort, results))
             eq_(first.persona.popularity, expected_popularity,
                 'Incorrect popularity for %r. Got %r. Expected %r.' % (
-                sort, first.persona.popularity, results))
+                    sort, first.persona.popularity, results))
             eq_(first.average_daily_users, expected_popularity,
                 'Incorrect users for %r. Got %r. Expected %r.' % (
-                sort, first.average_daily_users, results))
+                    sort, first.average_daily_users, results))
             eq_(first.weekly_downloads, expected_popularity,
                 'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
-                sort, first.weekly_downloads, results))
+                    sort, first.weekly_downloads, results))
 
     def test_results_appver_platform(self):
         self._generate_personas()
@@ -965,7 +964,7 @@ class TestCollectionSearch(SearchBase):
                 'Was not first result for %r. Results: %s' % (sort, results))
             eq_(first.subscribers, expected_subscribers,
                 'Incorrect subscribers for %r. Got %r. Expected %r.' % (
-                sort, first.subscribers, results))
+                    sort, first.subscribers, results))
 
     def test_results_appver_platform(self):
         self._generate()

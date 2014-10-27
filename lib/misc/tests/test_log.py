@@ -49,9 +49,7 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
             'encoder': 'heka.encoders.StdlibPayloadEncoder',
             'stream': {
                 'class': 'heka.streams.logging.StdLibLoggingStream',
-                'logger_name': 'z.heka',
-                }
-            }
+                'logger_name': 'z.heka'}}
         self.heka = client_from_dict_config(HEKA_CONF)
         self.logger = logging.getLogger('z.heka')
 

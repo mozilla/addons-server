@@ -10,7 +10,8 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 
 # These will all start with /addon/<addon_id>/
-detail_patterns = patterns('',
+detail_patterns = patterns(
+    '',
     url('^$', views.addon_detail, name='addons.detail'),
     url('^more$', views.addon_detail, name='addons.detail_more'),
     url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
@@ -31,9 +32,10 @@ detail_patterns = patterns('',
     url('^contribute/(?P<status>cancel|complete)$', views.paypal_result,
         name='addons.paypal'),
 
-    url('^about$', lambda r, addon_id: redirect('addons.installed',
-                                                 addon_id, permanent=True),
-                   name='addons.about'),
+    url('^about$',
+        lambda r, addon_id: redirect('addons.installed',
+                                     addon_id, permanent=True),
+        name='addons.about'),
 
     ('^reviews/', include(review_patterns('addons'))),
     ('^statistics/', include(stats_patterns)),
@@ -41,7 +43,8 @@ detail_patterns = patterns('',
 )
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 
@@ -57,7 +60,7 @@ urlpatterns = patterns('',
     # Remora EULA and Privacy policy URLS
     ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
      lambda r, addon_id, file_id: redirect('addons.eula',
-                                  addon_id, file_id, permanent=True)),
+                                           addon_id, file_id, permanent=True)),
     ('^addons/policy/0/(?P<addon_id>\d+)/',
      lambda r, addon_id: redirect('addons.privacy',
                                   addon_id, permanent=True)),

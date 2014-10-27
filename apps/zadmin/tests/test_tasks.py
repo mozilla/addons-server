@@ -11,7 +11,8 @@ from addons.models import Addon
 from files.utils import make_xpi
 from zadmin import tasks
 
-def RequestMock(response='', headers={}):
+
+def RequestMock(response='', headers=None):
     """Mocks the request objects of urllib2 and requests modules."""
     res = mock.Mock()
 
@@ -27,7 +28,7 @@ def RequestMock(response='', headers={}):
     res.readlines.side_effect = lines
     res.iter_lines.side_effect = lambda: lines().__iter__()
 
-    res.headers = headers
+    res.headers = headers or {}
     res.headers['content-length'] = len(response)
 
     return res

@@ -3,7 +3,6 @@ import re
 
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 from addons.models import Addon
 from addons.tests.test_views import TestPersonas
@@ -20,9 +19,9 @@ def test_emaillink():
 
     # remove junk
     m = re.match(r'<a href="#"><span class="emaillink">(.*?)'
-                  '<span class="i">null</span>(.*)</span></a>'
-                  '<span class="emaillink js-hidden">(.*?)'
-                  '<span class="i">null</span>(.*)</span>', obfuscated)
+                 r'<span class="i">null</span>(.*)</span></a>'
+                 r'<span class="emaillink js-hidden">(.*?)'
+                 r'<span class="i">null</span>(.*)</span>', obfuscated)
     obfuscated = (''.join((m.group(1), m.group(2)))
                   .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
     eq_(email, obfuscated)
@@ -30,8 +29,8 @@ def test_emaillink():
     title = 'E-mail your question'
     obfuscated = unicode(emaillink(email, title))
     m = re.match(r'<a href="#">(.*)</a>'
-                  '<span class="emaillink js-hidden">(.*?)'
-                  '<span class="i">null</span>(.*)</span>', obfuscated)
+                 r'<span class="emaillink js-hidden">(.*?)'
+                 r'<span class="i">null</span>(.*)</span>', obfuscated)
     eq_(title, m.group(1))
     obfuscated = (''.join((m.group(2), m.group(3)))
                   .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
@@ -94,8 +93,8 @@ def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
     u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
     eq_(user_link(u),
-        u'<a href="%s" title="%s">Jürgen Müller</a>' % (u.get_url_path(),
-                                                        u.name))
+        u'<a href="%s" title="%s">Jürgen Müller</a>' % (
+            u.get_url_path(), u.name))
 
     u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
     eq_(user_link(u),

@@ -1,5 +1,5 @@
-from lib.settings_base import *
-from settings_base import *
+from lib.settings_base import *  # noqa
+from settings_base import *  # noqa
 
 import private_addons
 
@@ -10,8 +10,10 @@ SECRET_KEY = private_addons.SECRET_KEY
 
 SITE_URL = getattr(private_addons, 'SITE_URL', 'https://' + DOMAIN)
 SERVICES_URL = 'https://services.addons.mozilla.org'
-STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons.cdn.mozilla.net/static/')
-MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons.cdn.mozilla.net/user-media/')
+STATIC_URL = getattr(private_addons, 'STATIC_URL',
+                     'https://addons.cdn.mozilla.net/static/')
+MEDIA_URL = getattr(private_addons, 'MEDIA_URL',
+                    'https://addons.cdn.mozilla.net/user-media/')
 
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 CSP_FRAME_SRC = ("'self'", "https://*.paypal.com",)
@@ -41,8 +43,6 @@ PAYPAL_EMBEDDED_AUTH = {
 PAYPAL_CGI_AUTH = PAYPAL_EMBEDDED_AUTH
 
 RESPONSYS_ID = private_addons.RESPONSYS_ID
-
-#read_only_mode(globals())
 
 STATSD_PREFIX = 'addons'
 

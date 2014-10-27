@@ -136,7 +136,7 @@ class ShoppingCollection(CollectionPromo):
     cls = 'promo promo-purple'
     title = _(u'Shopping Made Easy')
     subtitle = _(u'Save on your favorite items '
-                  'from the comfort of your browser.')
+                 u'from the comfort of your browser.')
 
 
 class WebdevCollection(CollectionPromo):
@@ -276,8 +276,8 @@ class MobileThemes(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'mobilethemes'
     title = _(u'Put a Theme on It!')
     subtitle = _(u'Visit addons.mozilla.org from Firefox for Android and '
-                  'dress up your mobile browser to match your style, mood, '
-                  'or the season.')
+                 u'dress up your mobile browser to match your style, mood, '
+                 u'or the season.')
 
 
 class Fitness(CollectionPromo):
@@ -286,7 +286,7 @@ class Fitness(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'fitness'
     title = _(u'Get up and move!')
     subtitle = _(u'Install these fitness add-ons to keep you active and '
-                  'healthy.')
+                 u'healthy.')
 
 
 class UpAndComing(CollectionPromo):
@@ -328,7 +328,7 @@ class Privacy(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'privacy'
     title = _(u'Worry-free browsing')
     subtitle = _(u'Protect your privacy online with the add-ons in this '
-                  'collection.')
+                 u'collection.')
 
 
 class Featured(CollectionPromo):
@@ -337,7 +337,7 @@ class Featured(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'featured-add-ons'
     title = _(u'Featured Add-ons')
     subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
-                  'just about anything!')
+                 u'just about anything!')
 
 
 class AustralisContestResults(CollectionPromo):

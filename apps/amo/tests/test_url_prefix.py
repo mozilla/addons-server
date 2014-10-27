@@ -310,8 +310,7 @@ def test_parse_accept_language():
          ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
          ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
          # Consolidated languages.
-         ('es-PE', 'es'),
-    )
+         ('es-PE', 'es'))
     for x, y in d:
         yield check, x, y
 

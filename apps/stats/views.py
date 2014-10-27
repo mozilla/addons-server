@@ -318,13 +318,13 @@ def check_stats_permission(request, addon, for_contributions=False):
     if not for_contributions:
         # Only authors and Stats Viewers allowed.
         if (addon.has_author(request.amo_user) or
-            acl.action_allowed(request, 'Stats', 'View')):
+                acl.action_allowed(request, 'Stats', 'View')):
             return
 
     else:  # For contribution stats.
         # Only authors and Contribution Stats Viewers.
         if (addon.has_author(request.amo_user) or
-            acl.action_allowed(request, 'RevenueStats', 'View')):
+                acl.action_allowed(request, 'RevenueStats', 'View')):
             return
 
     raise PermissionDenied
@@ -351,8 +351,7 @@ def site_stats_report(request, report):
 
 def get_report_view(request):
     """Parse and validate a pair of YYYMMDD date strings."""
-    if ('start' in request.GET and
-        'end' in request.GET):
+    if 'start' in request.GET and 'end' in request.GET:
         try:
             start = request.GET.get('start')
             end = request.GET.get('end')
@@ -418,9 +417,9 @@ def site_events(request, start, end):
 
     releases = product_details.firefox_history_major_releases
 
-    for version, date in releases.items():
+    for version, date_ in releases.items():
         events.append({
-            'start': date,
+            'start': date_,
             'type_pretty': type_pretty,
             'type': amo.SITE_EVENT_RELEASE,
             'description': 'Firefox %s released' % version,
@@ -477,14 +476,13 @@ def fake_collection_stats(request, username, slug, group, start, end, format):
     for single_date in daterange(start, end):
         isodate = strftime("%Y-%m-%d", single_date.timetuple())
         faked.append({
-         'date': isodate,
-         'count': floor(200 + 50 * sin(val + 1)),
-         'data': {
-            'downloads': floor(200 + 50 * sin(2 * val + 2)),
-            'votes_up': floor(200 + 50 * sin(3 * val + 3)),
-            'votes_down': floor(200 + 50 * sin(4 * val + 4)),
-            'subscribers': floor(200 + 50 * sin(5 * val + 5)),
-        }})
+            'date': isodate,
+            'count': floor(200 + 50 * sin(val + 1)),
+            'data': {
+                'downloads': floor(200 + 50 * sin(2 * val + 2)),
+                'votes_up': floor(200 + 50 * sin(3 * val + 3)),
+                'votes_down': floor(200 + 50 * sin(4 * val + 4)),
+                'subscribers': floor(200 + 50 * sin(5 * val + 5))}})
         val += .01
     return faked
 
@@ -529,13 +527,13 @@ def _site_query(period, start, end, field=None, request=None):
     # Process the results into a format that is friendly for render_*.
     default = dict([(k, 0) for k in _CACHED_KEYS])
     result = SortedDict()
-    for name, date, count in cursor.fetchall():
-        date = date.strftime('%Y-%m-%d')
-        if date not in result:
-            result[date] = default.copy()
-            result[date]['date'] = date
-            result[date]['data'] = {}
-        result[date]['data'][_KEYS[name]] = int(count)
+    for name, date_, count in cursor.fetchall():
+        date_ = date_.strftime('%Y-%m-%d')
+        if date_ not in result:
+            result[date_] = default.copy()
+            result[date_]['date'] = date_
+            result[date_]['data'] = {}
+        result[date_]['data'][_KEYS[name]] = int(count)
 
     return result.values(), _CACHED_KEYS
 

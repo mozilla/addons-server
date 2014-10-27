@@ -53,13 +53,11 @@ from versions.models import AppVersion, Version
 
 
 def _get_args(consumer, token=None, callback=False, verifier=None):
-    d = dict(
-            oauth_consumer_key=consumer.key,
-            oauth_nonce=oauth.generate_nonce(),
-            oauth_signature_method='HMAC-SHA1',
-            oauth_timestamp=int(time.time()),
-            oauth_version='1.0',
-            )
+    d = dict(oauth_consumer_key=consumer.key,
+             oauth_nonce=oauth.generate_nonce(),
+             oauth_signature_method='HMAC-SHA1',
+             oauth_timestamp=int(time.time()),
+             oauth_version='1.0')
 
     if callback:
         d['oauth_callback'] = 'http://testserver/foo'
@@ -99,8 +97,9 @@ class OAuthClient(Client):
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
         req.sign_request(self.signature_method, consumer, token)
-        return super(OAuthClient, self).get(req.to_url(), HTTP_HOST='api',
-                     HTTP_AUTHORIZATION='OAuth realm=""', **req)
+        return super(OAuthClient, self).get(
+            req.to_url(), HTTP_HOST='api', HTTP_AUTHORIZATION='OAuth realm=""',
+            **req)
 
     def delete(self, url, consumer=None, token=None, callback=False,
                verifier=None):
@@ -109,8 +108,9 @@ class OAuthClient(Client):
                             parameters=_get_args(consumer, callback=callback,
                                                  verifier=verifier))
         req.sign_request(self.signature_method, consumer, token)
-        return super(OAuthClient, self).delete(req.to_url(), HTTP_HOST='api',
-                     HTTP_AUTHORIZATION='OAuth realm=""', **req)
+        return super(OAuthClient, self).delete(
+            req.to_url(), HTTP_HOST='api', HTTP_AUTHORIZATION='OAuth realm=""',
+            **req)
 
     def post(self, url, consumer=None, token=None, callback=False,
              verifier=None, data={}):
@@ -119,9 +119,9 @@ class OAuthClient(Client):
         params.update(data_keys(data))
         req = oauth.Request(method='POST', url=url, parameters=params)
         req.sign_request(self.signature_method, consumer, token)
-        return super(OAuthClient, self).post(req.to_url(), HTTP_HOST='api',
-                     HTTP_AUTHORIZATION='OAuth realm=""', data=data,
-                     headers=req.to_header())
+        return super(OAuthClient, self).post(
+            req.to_url(), HTTP_HOST='api', HTTP_AUTHORIZATION='OAuth realm=""',
+            data=data, headers=req.to_header())
 
     def put(self, url, consumer=None, token=None, callback=False,
             verifier=None, data={}, content_type=MULTIPART_CONTENT, **kwargs):
@@ -147,7 +147,7 @@ class OAuthClient(Client):
             'QUERY_STRING': query_string,
             'REQUEST_METHOD': 'PUT',
             'wsgi.input': FakePayload(post_data),
-            'HTTP_HOST':  'api',
+            'HTTP_HOST': 'api',
             'HTTP_AUTHORIZATION': 'OAuth realm=""',
         }
         r.update(req)
@@ -157,6 +157,7 @@ class OAuthClient(Client):
 
 oclient = OAuthClient()
 token_keys = ('oauth_token_secret', 'oauth_token',)
+
 
 def get_token_from_response(response):
     data = urlparse.parse_qs(response.content)
@@ -321,38 +322,31 @@ class TestAddon(BaseOAuth):
         xpi = os.path.join(settings.ROOT, path)
         f = open(xpi)
 
-        self.create_data = dict(
-                builtin=0,
-                name='FREEDOM',
-                text='This is FREE!',
-                platform='mac',
-                xpi=f,
-                )
+        self.create_data = dict(builtin=0,
+                                name='FREEDOM',
+                                text='This is FREE!',
+                                platform='mac',
+                                xpi=f)
 
         path = 'apps/files/fixtures/files/extension-0.2.xpi'
-        self.version_data = dict(
-                builtin=2,
-                platform='windows',
-                xpi=open(os.path.join(settings.ROOT, path)),
-                )
-        self.update_data = dict(
-                name='fu',
-                default_locale='fr',
-                homepage='mozilla.com',
-                support_email='go@away.com',
-                support_url='http://google.com/',
-                description='awesome',
-                summary='sucks',
-                developer_comments='i made it for you',
-                eula='love it',
-                privacy_policy='aybabtu',
-                the_reason='for shits',
-                the_future='is gone',
-                view_source=1,
-                prerelease=1,
-                binary=False,
-                site_specific=1,
-        )
+        self.version_data = dict(builtin=2, platform='windows',
+                                 xpi=open(os.path.join(settings.ROOT, path)))
+        self.update_data = dict(name='fu',
+                                default_locale='fr',
+                                homepage='mozilla.com',
+                                support_email='go@away.com',
+                                support_url='http://google.com/',
+                                description='awesome',
+                                summary='sucks',
+                                developer_comments='i made it for you',
+                                eula='love it',
+                                privacy_policy='aybabtu',
+                                the_reason='for shits',
+                                the_future='is gone',
+                                view_source=1,
+                                prerelease=1,
+                                binary=False,
+                                site_specific=1)
 
     def make_create_request(self, data):
         return oclient.post('api.addons', self.accepted_consumer, self.token,
@@ -604,11 +598,8 @@ class TestAddon(BaseOAuth):
 
     def test_update_version_no_license(self):
         a, v, path = self.create_for_update()
-        data = dict(
-                release_notes='fukyeah',
-                platform='windows',
-                xpi=open(os.path.join(settings.ROOT, path)),
-                )
+        data = dict(release_notes='fukyeah', platform='windows',
+                    xpi=open(os.path.join(settings.ROOT, path)))
         r = oclient.put(('api.version', a.id, v.id), self.accepted_consumer,
                         self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 200, r.content)
@@ -618,24 +609,16 @@ class TestAddon(BaseOAuth):
 
     def test_update_version_bad_license(self):
         a, v, path = self.create_for_update()
-        data = dict(
-                release_notes='fukyeah',
-                builtin=3,
-                platform='windows',
-                xpi=open(os.path.join(settings.ROOT, path)),
-                )
+        data = dict(release_notes='fukyeah', builtin=3, platform='windows',
+                    xpi=open(os.path.join(settings.ROOT, path)))
         r = oclient.put(('api.version', a.id, v.id), self.accepted_consumer,
                         self.token, data=data, content_type=MULTIPART_CONTENT)
         eq_(r.status_code, 400, r.content)
 
     def test_update_version(self):
         a, v, path = self.create_for_update()
-        data = dict(
-                release_notes='fukyeah',
-                builtin=2,
-                platform='windows',
-                xpi=open(os.path.join(settings.ROOT, path)),
-                )
+        data = dict(release_notes='fukyeah', builtin=2, platform='windows',
+                    xpi=open(os.path.join(settings.ROOT, path)))
         log_count = activitylog_count()
         # upload new version
         r = oclient.put(('api.version', a.id, v.id), self.accepted_consumer,
@@ -660,10 +643,7 @@ class TestAddon(BaseOAuth):
 
         eq_(v.version, '0.1')
 
-        data = dict(
-                release_notes='fukyeah',
-                platform='windows',
-                )
+        data = dict(release_notes='fukyeah', platform='windows')
 
         # upload new version
         r = oclient.put(('api.version', id, v.id), self.accepted_consumer,
@@ -881,7 +861,7 @@ class TestPerformanceAPI(BaseOAuth):
 
     def make_create_request(self, data):
         return oclient.post('api.performance.add', self.accepted_consumer,
-                           self.token, data=data)
+                            self.token, data=data)
 
     def test_form_fails(self):
         res = self.make_create_request({})

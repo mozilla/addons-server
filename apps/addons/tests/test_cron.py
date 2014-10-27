@@ -5,8 +5,6 @@ import time
 from nose.tools import eq_
 import mock
 
-from django.conf import settings
-
 import amo
 import amo.tests
 from addons import cron

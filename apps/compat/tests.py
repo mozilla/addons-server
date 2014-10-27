@@ -187,7 +187,8 @@ class TestReporterDetail(amo.tests.TestCase):
 
     def test_appver_all(self):
         self._generate()
-        self.check_table(good=3, bad=7, appver='',
+        self.check_table(
+            good=3, bad=7, appver='',
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_firefox_single(self):
@@ -213,7 +214,8 @@ class TestReporterDetail(amo.tests.TestCase):
         self._generate()
         # If we have a bad app/version combination, we don't apply any filters.
         appver = '%s-%s' % (amo.FIREFOX.id, '0.9999')
-        self.check_table(data={'appver': appver}, good=3, bad=7,
+        self.check_table(
+            data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_thunderbird_multiple(self):
@@ -225,7 +227,8 @@ class TestReporterDetail(amo.tests.TestCase):
     def test_thunderbird_unknown(self):
         self._generate()
         appver = '%s-%s' % (amo.THUNDERBIRD.id, '0.9999')
-        self.check_table(data={'appver': appver}, good=3, bad=7,
+        self.check_table(
+            data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_seamonkey_multiple(self):
@@ -237,14 +240,16 @@ class TestReporterDetail(amo.tests.TestCase):
     def test_seamonkey_unknown(self):
         self._generate()
         appver = '%s-%s' % (amo.SEAMONKEY.id, '0.9999')
-        self.check_table(data={'appver': appver}, good=3, bad=7,
+        self.check_table(
+            data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_app_unknown(self):
         # Testing for some unknown application such as 'Conkeror'.
         app_guid = '{a79fe89b-6662-4ff4-8e88-09950ad4dfde}'
-        report = CompatReport.objects.create(guid=self.addon.guid,
-            app_guid=app_guid, app_version='0.9.3', works_properly=True)
+        report = CompatReport.objects.create(
+            guid=self.addon.guid, app_guid=app_guid, app_version='0.9.3',
+            works_properly=True)
         self.reports.append(report.pk)
         r = self.check_table(good=1, bad=0, appver='', report_pks=[0])
         msg = 'Unknown (%s)' % app_guid

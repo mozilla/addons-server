@@ -93,7 +93,8 @@ class TestThemeUpdate(amo.tests.TestCase):
                     assert got.startswith('http'), (
                         'Expected absolute URL for "%s": %s' % (k, got))
                     assert got.endswith(v), (
-                        'Expected "%s" to end with "%s". Got "%s".' % (k, v, got))
+                        'Expected "%s" to end with "%s". Got "%s".' % (
+                            k, v, got))
                 else:
                     assert got.find('?') > -1, (
                         '"%s" must contain "?" for modified timestamp' % k)
@@ -102,7 +103,8 @@ class TestThemeUpdate(amo.tests.TestCase):
                     got = got.rsplit('?')[0]
 
                     assert got.endswith(v), (
-                        'Expected "%s" to end with "%s". Got "%s".' % (k, v, got))
+                        'Expected "%s" to end with "%s". Got "%s".' % (
+                            k, v, got))
 
     def get_update(self, *args):
         update = theme_update.ThemeUpdate(*args)
@@ -110,13 +112,13 @@ class TestThemeUpdate(amo.tests.TestCase):
         return update
 
     def test_get_json_bad_ids(self):
-        raise SkipTest, 'Passes locally but fails on Jenkins :('
+        raise SkipTest('Passes locally but fails on Jenkins :(')
 
         eq_(self.get_update('en-US', 999).get_json(), None)
         eq_(self.get_update('en-US', 813).get_json(), None)
 
     def test_get_json_good_ids(self):
-        raise SkipTest, 'Passes locally but fails on Jenkins :('
+        raise SkipTest('Passes locally but fails on Jenkins :(')
 
         self.addon = Addon.objects.get()
         self.addon.summary = 'yolo'

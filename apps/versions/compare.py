@@ -69,7 +69,7 @@ def version_int(version):
     d['alpha'] = atrans.get(d['alpha'], 2)
     d['pre'] = 0 if d['pre'] else 1
 
-    v = "%d%02d%02d%02d%d%02d%d%02d" % (d['major'], d['minor1'],
-            d['minor2'], d['minor3'], d['alpha'], d['alpha_ver'], d['pre'],
-            d['pre_ver'])
+    v = "%d%02d%02d%02d%d%02d%d%02d" % (
+        d['major'], d['minor1'], d['minor2'], d['minor3'], d['alpha'],
+        d['alpha_ver'], d['pre'], d['pre_ver'])
     return min(int(v), MAXVERSION)

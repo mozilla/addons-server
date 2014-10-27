@@ -4,7 +4,6 @@ from django.core import mail
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-import amo.utils
 from users.models import UserProfile
 
 log = logging.getLogger('z.mailer')
@@ -19,9 +18,10 @@ class Command(BaseCommand):
 
 
 def sendmail():
-    addrs = set(UserProfile.objects.values_list('email', flat=True)
-                # whoa
-                .filter(addons__versions__files__jetpack_version__isnull=False))
+    addrs = set(
+        UserProfile.objects.values_list('email', flat=True)
+        # whoa
+        .filter(addons__versions__files__jetpack_version__isnull=False))
     log.info('There are %d emails to send.' % len(addrs))
     count = 0
     for addr in addrs:

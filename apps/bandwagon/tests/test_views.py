@@ -371,7 +371,7 @@ class TestCRUD(amo.tests.TestCase):
 
     def login_regular(self):
         assert self.client.login(username='regular@mozilla.com',
-                                  password='password')
+                                 password='password')
 
     def create_collection(self, **kw):
         self.data.update(kw)
@@ -757,7 +757,7 @@ class TestCRUD(amo.tests.TestCase):
         eq_(r.status_code, 200)
 
     def test_delete_link(self):
-         # Create an addon by user 1.
+        # Create an addon by user 1.
         self.create_collection()
 
         url = reverse('collections.edit_contributors',
@@ -953,9 +953,11 @@ class AjaxTest(amo.tests.TestCase):
 
     def test_new_collection(self):
         num_collections = Collection.objects.all().count()
-        r = self.client.post(reverse('collections.ajax_new'),
-                {'addon_id': 5299, 'name': 'foo', 'slug': 'auniqueone',
-                 'description': 'yermom', 'listed': True}, follow=True)
+        r = self.client.post(
+            reverse('collections.ajax_new'),
+            {'addon_id': 5299, 'name': 'foo', 'slug': 'auniqueone',
+             'description': 'yermom', 'listed': True},
+            follow=True)
         doc = pq(r.content)
         eq_(len(doc('li.selected')), 1, "The new collection is not selected.")
         eq_(Collection.objects.all().count(), num_collections + 1)
@@ -1217,13 +1219,13 @@ class TestCollectionForm(amo.tests.TestCase):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
         form = forms.CollectionForm(
-                        {'listed': collection.listed,
-                         'slug': collection.slug,
-                         'name': collection.name},
-                        instance=collection,
-                        files={'icon': get_uploaded_file('transparent.png')},
-                        initial={'author': collection.author,
-                                 'application': collection.application})
+            {'listed': collection.listed,
+             'slug': collection.slug,
+             'name': collection.name},
+            instance=collection,
+            files={'icon': get_uploaded_file('transparent.png')},
+            initial={'author': collection.author,
+                     'application': collection.application})
         assert form.is_valid()
         form.save()
         assert update_mock.called

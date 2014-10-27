@@ -126,7 +126,7 @@ class TestCollections(amo.tests.TestCase):
         addons = list(Addon.objects.values_list('id', flat=True))
         c = Collection.objects.create(author=self.user)
 
-        c.set_addons(addons, {addons[0]: 'This is a comment.'});
+        c.set_addons(addons, {addons[0]: 'This is a comment.'})
         collection_addon = CollectionAddon.objects.get(collection=c,
                                                        addon=addons[0])
         eq_(collection_addon.comments, 'This is a comment.')
@@ -185,7 +185,7 @@ class TestCollections(amo.tests.TestCase):
 
         # Bad user.
         fake_request.amo_user = UserProfile.objects.create(
-                                    username='scrub', email='ez@dee')
+            username='scrub', email='ez@dee')
         eq_(c.can_view_stats(fake_request), False)
 
         # Member of group with Collections:Edit permission.

@@ -51,8 +51,8 @@ class TestContribForm(amo.tests.TestCase):
             'Please enter a suggested amount greater than 0.')
 
     def test_max_suggested_amount(self):
-        form = forms.ContribForm({'suggested_amount':
-                            settings.MAX_CONTRIBUTION + 10})
+        form = forms.ContribForm(
+            {'suggested_amount': settings.MAX_CONTRIBUTION + 10})
         assert not form.is_valid()
         eq_(form.errors['suggested_amount'][0],
             'Please enter a suggested amount less than $%s.' %

@@ -67,8 +67,8 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
 
             for i, (option_value, option_label) in group:
                 if has_id:
-                    final_attrs = dict(final_attrs, id='%s_%s' % (
-                            attrs['id'], i))
+                    final_attrs = dict(final_attrs,
+                                       id='%s_%s' % (attrs['id'], i))
                     label_for = u' for="%s"' % final_attrs['id']
                 else:
                     label_for = ''
@@ -79,7 +79,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
                 rendered_cb = cb.render(name, option_value)
                 option_label = conditional_escape(force_unicode(option_label))
                 output.append(u'<li><label%s>%s %s</label></li>' % (
-                        label_for, rendered_cb, option_label))
+                    label_for, rendered_cb, option_label))
 
             output.append(u'</ul>')
 

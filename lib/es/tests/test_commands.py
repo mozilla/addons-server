@@ -4,7 +4,6 @@ import threading
 from nose import SkipTest
 from nose.tools import eq_
 
-from django.conf import settings
 from django.core import management
 from django.db import connection
 

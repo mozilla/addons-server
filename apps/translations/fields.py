@@ -236,8 +236,10 @@ class _TransField(object):
         return value
 
     def _has_changed(self, initial, data):
-        # This used to be called on the field's widget and always returned False!
+        # This used to be called on the field's widget and always returned
+        # False!
         return False
+
 
 class LocaleValidationError(forms.ValidationError):
 

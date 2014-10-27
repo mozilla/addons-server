@@ -16,7 +16,6 @@ def run():
         pc.delete()
         print 'Deleted PriceCurrency of {0} for CO'.format(tier)
 
-
     for tier, amount in [('14.99', '31280.00'),
                          ('19.99', '41720.00'),
                          ('24.99', '52160.00')]:

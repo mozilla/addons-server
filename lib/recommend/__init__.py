@@ -17,6 +17,6 @@ def similarity(xs, ys):
 
 
 try:
-    from _recommend import symmetric_diff_count, similarity
+    from _recommend import symmetric_diff_count, similarity  # noqa
 except ImportError:
     pass
