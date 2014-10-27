@@ -149,7 +149,7 @@ class Command(BaseCommand):
             if confirm == 'yes':
                 unflag_database(stdout=self.stdout)
                 for index in set(MODULES[m].get_alias() for m in modules):
-                    ES.indices.delete(index)
+                    ES.indices.delete(index, ignore=404)
             else:
                 raise CommandError("Aborted.")
         elif force:
@@ -222,8 +222,10 @@ class Command(BaseCommand):
         # This is a bit convoluted, and more complicated than simply providing
         # the soft and hard time limits on the @task decorator. But we're not
         # using the @task decorator here, but a decorator from celery_tasktree.
-        control.time_limit('lib.es.management.commands.reindex.index_data',
-                           soft=time_limits['soft'], hard=time_limits['hard'])
+        if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
+            control.time_limit('lib.es.management.commands.reindex.index_data',
+                               soft=time_limits['soft'],
+                               hard=time_limits['hard'])
 
         try:
             tree.apply_async()

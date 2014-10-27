@@ -4,15 +4,18 @@ from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
-from addons.addongenerator import categories_choices, generate_addon_data
+from addons.models import Addon, Persona
 from constants.applications import APPS
+from landfill.categories import addons_categories, themes_categories
+from landfill.generators import _yield_name_and_cat, create_addon, create_theme
+from versions.models import Version
 
 
 class _BaseAddonGeneratorTests(amo.tests.TestCase):
 
     def test_tinyset(self):
         size = 4
-        data = list(generate_addon_data(size, self.app))
+        data = list(_yield_name_and_cat(size, self.app))
         eq_(len(data), size)
         # Names are unique.
         eq_(len(set(addonname for addonname, cat in data)), size)
@@ -21,20 +24,23 @@ class _BaseAddonGeneratorTests(amo.tests.TestCase):
 
     def test_smallset(self):
         size = 60
-        data = list(generate_addon_data(size, self.app))
+        data = list(_yield_name_and_cat(size, self.app))
         eq_(len(data), size)
         # Addons are split up equally within each categories.
         categories = collections.defaultdict(int)
         for addonname, category in data:
             categories[category.slug] += 1
-        eq_(set(categories.values()),
-            set([size / len(categories_choices[self.app.short])]))
+        if self.app is None:
+            length = len(themes_categories)
+        else:
+            length = len(addons_categories[self.app.short])
+        eq_(set(categories.values()), set([size / length]))
         eq_(len(set(addonname for addonname, cat in data)), size)
         ok_(not any(addonname[-1].isdigit() for addonname, cat in data))
 
     def test_bigset(self):
         size = 300
-        data = list(generate_addon_data(size, self.app))
+        data = list(_yield_name_and_cat(size, self.app))
         eq_(len(data), size)
         categories = collections.defaultdict(int)
         for addonname, cat in data:
@@ -59,3 +65,24 @@ class AndroidAddonGeneratorTests(_BaseAddonGeneratorTests):
 
 class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorTests):
     app = APPS['seamonkey']
+
+
+class ThemeGeneratorTests(_BaseAddonGeneratorTests):
+    app = None
+
+
+class CreateGeneratorTests(amo.tests.TestCase):
+
+    def test_create_addon(self):
+        addon = create_addon('foo', 'icon/default', APPS['android'])
+        eq_(Addon.objects.last().name, addon.name)
+        eq_(amo.STATUS_PUBLIC, addon.status)
+        eq_(Version.objects.last(), addon._current_version)
+
+    def test_create_theme(self):
+        theme = create_theme('bar')
+        eq_(Addon.objects.last().name, theme.name)
+        eq_(amo.STATUS_PUBLIC, theme.status)
+        eq_(amo.ADDON_PERSONA, theme.type)
+        eq_(Persona.objects.last(), theme.persona)
+        eq_(Version.objects.last(), theme._current_version)
