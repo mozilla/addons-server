@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-08 22:38+0000\n"
+"PO-Revision-Date: 2014-10-27 11:17+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1412807898.0\n"
+"X-POOTLE-MTIME: 1414408650.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -3798,6 +3798,8 @@ msgstr "Por favor, escolha um tipo de nomeação para revisão"
 #: apps/devhub/forms.py:540 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Um arquivo com uma versão terminando com a|alpha|b|beta e um número opcional "
+"é detectado como beta."
 
 #: apps/devhub/forms.py:555
 msgid "Version %s already exists"
@@ -4915,13 +4917,17 @@ msgstr "O UUID do seu complemento é especificado em seu manifesto de instalaç�
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Quadro branco"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"O quadro branco é um site para fornecer informação relevante para o seu "
+"complemento, qualquer que seja a versão, para o editor. Utilize-o para "
+"fornecer formas de testar o complemento e qualquer informação adicional que "
+"possa ajudar. O quadro branco é também editável pelos editores."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -8358,7 +8364,7 @@ msgstr "Para que tipo de revisão gostaria de nomear?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:43
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Publicar esta versão apenas no meu canal beta."
 
 # %s is the version number.
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -9656,7 +9662,7 @@ msgstr "Baixar arquivos"
 
 #: apps/editors/templates/editors/review.html:100
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "O desenvolvedor forneceu o código fonte."
 
 #: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
@@ -9685,10 +9691,13 @@ msgstr "<strong>Aviso!</strong> Outro usuário estava visualizando essa página 
 #: apps/editors/templates/editors/review.html:247
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
+"O quadro branco é o site para trocar informação relevante para este "
+"complemento (qualquer que seja a versão), entre o desenvolvedor e o editor. "
+"Isto é visível e editável por ambos."
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Atualizar o quadro branco"
 
 #: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
