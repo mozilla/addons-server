@@ -1,7 +1,5 @@
 from inspect import isclass
 
-from django.conf import settings
-
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
 

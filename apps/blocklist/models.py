@@ -99,10 +99,10 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
     description = models.CharField(max_length=255, blank=True, null=True)
     filename = models.CharField(max_length=255, blank=True, null=True)
     severity = models.SmallIntegerField(blank=True, null=True)
-    vulnerability_status = models.SmallIntegerField(blank=True, null=True,
-                                                    choices=(
-                                                    (1, 'update available'),
-                                                    (2, 'update unavailable')))
+    vulnerability_status = models.SmallIntegerField(
+        blank=True, null=True,
+        choices=((1, 'update available'),
+                 (2, 'update unavailable')))
     info_url = models.URLField(blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
 

@@ -75,7 +75,7 @@ def eventlog_detail(request, id):
 @any_reviewer_required
 def home(request):
     if (not acl.action_allowed(request, 'Addons', 'Review') and
-        acl.action_allowed(request, 'Personas', 'Review')):
+            acl.action_allowed(request, 'Personas', 'Review')):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
     durations = (('new', _('New Add-ons (Under 5 days)')),
@@ -87,8 +87,11 @@ def home(request):
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
         ActivityLog.objects.monthly_reviews()[:reviews_max_display])
-    reviews_total_count = ActivityLog.objects.user_approve_reviews(request.user).count()
-    reviews_monthly_count = ActivityLog.objects.current_month_user_approve_reviews(request.user).count()
+    reviews_total_count = ActivityLog.objects.user_approve_reviews(
+        request.user).count()
+    reviews_monthly_count = (
+        ActivityLog.objects.current_month_user_approve_reviews(
+            request.user).count())
 
     # Try to read user position from retrieved reviews.
     # If not available, query for it.
@@ -245,7 +248,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     for row in sql.all():
         label = row.approval_created.isoformat()[:7]
 
-        if not label in monthly_data:
+        if label not in monthly_data:
             xaxis = row.approval_created.strftime('%b %Y')
             monthly_data[label] = dict(teamcount=0, usercount=0,
                                        teamamt=0, label=xaxis)

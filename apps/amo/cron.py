@@ -38,13 +38,15 @@ def gc(test_result=True):
     # Paypal only keeps retrying to verify transactions for up to 3 days. If we
     # still have an unverified transaction after 6 days, we might as well get
     # rid of it.
-    contributions_to_delete = (Contribution.objects
-            .filter(transaction_id__isnull=True, created__lt=days_ago(6))
-            .values_list('id', flat=True))
+    contributions_to_delete = (
+        Contribution.objects
+        .filter(transaction_id__isnull=True, created__lt=days_ago(6))
+        .values_list('id', flat=True))
 
-    collections_to_delete = (Collection.objects.filter(
-            created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS)
-            .values_list('id', flat=True))
+    collections_to_delete = (
+        Collection.objects.filter(created__lt=days_ago(2),
+                                  type=amo.COLLECTION_ANONYMOUS)
+        .values_list('id', flat=True))
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)

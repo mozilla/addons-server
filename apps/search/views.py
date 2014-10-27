@@ -334,7 +334,8 @@ def name_query(q):
     #   specific analyzer (boost=0.1).
     # * Look for matches inside tags (boost=0.1).
     more = dict(summary__match={'query': q, 'boost': 0.8, 'type': 'phrase'},
-                description__match={'query': q, 'boost': 0.3, 'type': 'phrase'},
+                description__match={'query': q, 'boost': 0.3,
+                                    'type': 'phrase'},
                 tags__match={'query': q.split(), 'boost': 0.1})
 
     analyzer = _get_locale_analyzer()
@@ -570,7 +571,7 @@ def version_sidebar(request, form_data, facets):
 
     for version, floated in zip(versions, map(float, versions)):
         if (floated not in exclude_versions
-            and floated > request.APP.min_display_version):
+                and floated > request.APP.min_display_version):
             rv.append(FacetLink('%s %s' % (app, version), dict(appver=version),
                                 appver == version))
     return rv

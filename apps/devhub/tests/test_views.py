@@ -1237,7 +1237,7 @@ class TestSubmitStep3(TestSubmitBase):
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
-        category_ids_new = [c.id for c in self.get_addon().all_categories]
+        category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         eq_(category_ids_new, [22])
 
     def test_check_version(self):
@@ -1538,8 +1538,8 @@ class TestSubmitStep7(TestSubmitBase):
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
             'full_review': False,
         }
-        send_welcome_email_mock.assert_called_with(self.addon.id,
-            ['del@icio.us'], context)
+        send_welcome_email_mock.assert_called_with(
+            self.addon.id, ['del@icio.us'], context)
 
     @mock.patch('devhub.tasks.send_welcome_email.delay')
     def test_no_welcome_email(self, send_welcome_email_mock):
@@ -2862,7 +2862,8 @@ class TestXssOnAddonName(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
+        self.escaped = (
+            "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;")
         self.addon.name = self.name
         self.addon.save()
 

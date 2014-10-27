@@ -316,7 +316,7 @@ class TestHome(EditorTest):
         review = self.make_review()
         amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
                 details=dict(addon_name='test', addon_id=review.addon.pk,
-                is_flagged=True))
+                             is_flagged=True))
         r = self.client.get(self.url)
         row = pq(r.content)('.row')
         assert 'approved' in row.text(), (
@@ -802,7 +802,8 @@ class TestNominatedQueue(QueueTest):
             ('Nominated One 0.1', reverse('editors.review', args=[a1.slug])),
             ('Nominated Two 0.2', reverse('editors.review', args=[a2.slug])),
         ]
-        check_links(expected,
+        check_links(
+            expected,
             pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
             verify=False)
 
@@ -1401,7 +1402,7 @@ class TestQueueSearchVersionSpecific(SearchTest):
                           amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
                           addon_type=amo.ADDON_THEME)
         self.bieber = Version.objects.filter(
-                addon__name__localized_string='Justin Bieber Theme')
+            addon__name__localized_string='Justin Bieber Theme')
 
     def update_beiber(self, days):
         new_created = datetime.now() - timedelta(days=days)
@@ -1469,8 +1470,8 @@ class TestReview(ReviewBase):
     def test_not_anonymous(self):
         self.client.logout()
         r = self.client.head(self.url)
-        self.assertRedirects(r,
-            '%s?to=%s' % (reverse('users.login'), self.url))
+        self.assertRedirects(
+            r, '%s?to=%s' % (reverse('users.login'), self.url))
 
     @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_not_author(self):
@@ -1659,11 +1660,11 @@ class TestReview(ReviewBase):
         av = AppVersion.objects.all()[0]
         v = self.addon.versions.all()[0]
 
-        ApplicationsVersions.objects.create(version=v,
-                application=amo.THUNDERBIRD.id, min=av, max=av)
+        ApplicationsVersions.objects.create(
+            version=v, application=amo.THUNDERBIRD.id, min=av, max=av)
 
-        ApplicationsVersions.objects.create(version=v,
-                application=amo.SEAMONKEY.id, min=av, max=av)
+        ApplicationsVersions.objects.create(
+            version=v, application=amo.SEAMONKEY.id, min=av, max=av)
 
         eq_(self.addon.versions.count(), 1)
         url = reverse('editors.review', args=[self.addon.slug])
@@ -2080,13 +2081,13 @@ class TestReviewPreliminary(ReviewBase):
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
     def test_prelim_multiple_files(self):
-        f = self.version.files.all()[0]
-        f.pk = None
-        f.status = amo.STATUS_DISABLED
-        f.save()
+        file_ = self.version.files.all()[0]
+        file_.pk = None
+        file_.status = amo.STATUS_DISABLED
+        file_.save()
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
-        data['addon_files'] = [f.pk]
+        data['addon_files'] = [file_.pk]
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
             [f.status for f in self.version.files.all().order_by('status')])
@@ -2301,7 +2302,8 @@ class TestXssOnAddonName(amo.tests.TestCase):
     def setUp(self):
         self.addon = Addon.objects.get(id=3615)
         self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
+        self.escaped = (
+            "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;")
         self.addon.name = self.name
         self.addon.save()
         u = UserProfile.objects.get(email='del@icio.us')

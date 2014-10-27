@@ -13,42 +13,42 @@
 # analyzer for the language.
 
 SEARCH_ANALYZER_MAP = {
-#    '':          ['af'],    # Afrikaans
-    'arabic':     ['ar'],
-    'bulgarian':  ['bg'],
-    'catalan':    ['ca'],
-    'czech':      ['cs'],
-    'danish':     ['da'],
-    'german':     ['de'],
-    'greek':      ['el'],
-    'english':    ['en-us'],
-    'spanish':    ['es'],
-    'basque':     ['eu'],
-    'persian':    ['fa'],
-    'finnish':    ['fi'],
-    'french':     ['fr'],
-#    '':          ['ga-ie'], # Gaelic - Ireland
-#    '':          ['he'],    # Hebrew
-    'hungarian':  ['hu'],
+    #'': ['af'],    # Afrikaans
+    'arabic': ['ar'],
+    'bulgarian': ['bg'],
+    'catalan': ['ca'],
+    'czech': ['cs'],
+    'danish': ['da'],
+    'german': ['de'],
+    'greek': ['el'],
+    'english': ['en-us'],
+    'spanish': ['es'],
+    'basque': ['eu'],
+    'persian': ['fa'],
+    'finnish': ['fi'],
+    'french': ['fr'],
+    #'': ['ga-ie'], # Gaelic - Ireland
+    #'': ['he'],    # Hebrew
+    'hungarian': ['hu'],
     'indonesian': ['id'],
-    'italian':    ['it'],
-    'cjk':        ['ja', 'ko'],
-#    '':          ['mn'],    # Mongolian
-    'dutch':      ['nl'],
-# Polish requires the Elasticsearch plugin:
-# https://github.com/elasticsearch/elasticsearch-analysis-stempel
-    'polish':     ['pl'],
-    'brazilian':  ['pt-br'],
+    'italian': ['it'],
+    'cjk': ['ja', 'ko'],
+    #'': ['mn'],    # Mongolian
+    'dutch': ['nl'],
+    # Polish requires the Elasticsearch plugin:
+    # https://github.com/elasticsearch/elasticsearch-analysis-stempel
+    'polish': ['pl'],
+    'brazilian': ['pt-br'],
     'portuguese': ['pt-pt'],
-    'romanian':   ['ro'],
-    'russian':    ['ru'],
-#    '':          ['sk'],    # Slovak
-#    '':          ['sl'],    # Slovenian
-#    '':          ['sq'],    # Albanian
-    'swedish':    ['sv-se'],
-#    '':          ['uk'],    # Ukrainian
-#    '':          ['vi'],    # Vietnamese
-    'chinese':    ['zh-cn', 'zh-tw'],
+    'romanian': ['ro'],
+    'russian': ['ru'],
+    #'': ['sk'],    # Slovak
+    #'': ['sl'],    # Slovenian
+    #'': ['sq'],    # Albanian
+    'swedish': ['sv-se'],
+    #'': ['uk'],    # Ukrainian
+    #'': ['vi'],    # Vietnamese
+    'chinese': ['zh-cn', 'zh-tw'],
 }
 
 

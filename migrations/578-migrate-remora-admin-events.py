@@ -14,6 +14,7 @@ group_map = {
     2: 'Add-on Reviewers'
 }
 
+
 def run():
     new_groups = Group.objects.filter(name__in=group_map.values())
     new_groups = dict((g.name, g) for g in new_groups)

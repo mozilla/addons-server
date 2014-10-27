@@ -181,10 +181,10 @@ class EmailPreviewTopic(object):
                   from_email=settings.DEFAULT_FROM_EMAIL,
                   recipient_list=tuple([])):
         return EmailPreview.objects.create(
-                        topic=self.topic,
-                        subject=subject, body=body,
-                        recipient_list=u','.join(recipient_list),
-                        from_email=from_email)
+            topic=self.topic,
+            subject=subject, body=body,
+            recipient_list=u','.join(recipient_list),
+            from_email=from_email)
 
 
 class EmailPreview(amo.models.ModelBase):
@@ -276,7 +276,8 @@ class SiteEvent(models.Model):
 
     start = models.DateField(db_index=True,
                              help_text='The time at which the event began.')
-    end = models.DateField(db_index=True, null=True, blank=True,
+    end = models.DateField(
+        db_index=True, null=True, blank=True,
         help_text='If the event was a range, the time at which it ended.')
     event_type = models.PositiveIntegerField(choices=SITE_EVENT_CHOICES,
                                              db_index=True, default=0)

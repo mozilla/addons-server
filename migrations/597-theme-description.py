@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-from addons.models import Addon
-import amo
-
 
 def run():
     """

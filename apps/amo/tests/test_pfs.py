@@ -2,7 +2,7 @@ import amo
 import amo.tests
 from services.pfs import get_output
 
-from  pyquery import PyQuery as pq
+from pyquery import PyQuery as pq
 
 
 class TestPfs(amo.tests.TestCase):

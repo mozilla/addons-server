@@ -8,10 +8,11 @@ from jingo import env
 
 """
 This file was created because AMO wants to have multi-line messages including a
-title and some content.  Django's messages framework only takes a single string.
+title and some content.  Django's messages framework only takes a single
+string.
 Importing this file should behave exactly like Django's messages framework
-except it will take a 3rd argument as message content (the second is the message
-title).
+except it will take a 3rd argument as message content (the second is the
+message title).
 """
 
 

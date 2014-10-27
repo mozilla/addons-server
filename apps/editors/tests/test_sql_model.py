@@ -145,11 +145,11 @@ class TestSQLModel(unittest.TestCase):
 
     def test_slice3(self):
         qs = Summary.objects.all()[:2]
-        eq_(sorted([c.category for c in qs]), ['apparel','safety'])
+        eq_(sorted([c.category for c in qs]), ['apparel', 'safety'])
 
     def test_slice4(self):
         qs = Summary.objects.all()[0:]
-        eq_(sorted([c.category for c in qs]), ['apparel','safety'])
+        eq_(sorted([c.category for c in qs]), ['apparel', 'safety'])
 
     def test_slice5(self):
         eq_([c.product for c in
@@ -164,7 +164,7 @@ class TestSQLModel(unittest.TestCase):
 
     @raises(IndexError)
     def test_negative_slices_not_supported(self):
-        qs = Summary.objects.all()[:-1]
+        Summary.objects.all()[:-1]
 
     def test_order_by(self):
         c = Summary.objects.all().order_by('category')[0]
@@ -180,7 +180,7 @@ class TestSQLModel(unittest.TestCase):
 
     @raises(ValueError)
     def test_order_by_injection(self):
-        qs = Summary.objects.order_by('category; drop table foo;')[0]
+        Summary.objects.order_by('category; drop table foo;')[0]
 
     def test_filter(self):
         c = Summary.objects.all().filter(category='apparel')[0]
@@ -235,7 +235,7 @@ class TestSQLModel(unittest.TestCase):
 
     @raises(ValueError)
     def test_invalid_raw_filter_spec(self):
-        c = Summary.objects.all().filter_raw(
+        Summary.objects.all().filter_raw(
             """category = 'apparel'; drop table foo;
                select * from foo where category = 'apparel'""", 'apparel')[0]
 
@@ -257,11 +257,11 @@ class TestSQLModel(unittest.TestCase):
         # NOTE: this reaches into MySQLdb's cursor :(
         executed = query._cursor.cursor._executed
         assert "c.name = '\\'apparel\\'; drop table foo;" in executed, (
-                    'Exepected query to be escaped: %s' % executed)
+            'Expected query to be escaped: %s' % executed)
 
     def check_type(self, val, types):
         assert isinstance(val, types), (
-                    'Unexpected type: %s for %s' % (type(val), val))
+            'Unexpected type: %s for %s' % (type(val), val))
 
     def test_types(self):
         row = Summary.objects.all().order_by('category')[0]

@@ -3,7 +3,6 @@ import itertools
 import logging
 import operator
 import os
-import stat
 import subprocess
 import time
 from datetime import datetime, timedelta
@@ -80,8 +79,8 @@ def _update_addons_current_version(data, **kw):
     if not waffle.switch_is_active('current_version_crons'):
         return
 
-    task_log.info("[%s@%s] Updating addons current_versions." %
-                   (len(data), _update_addons_current_version.rate_limit))
+    task_log.info('[%s@%s] Updating addons current_versions.' %
+                  (len(data), _update_addons_current_version.rate_limit))
     for pk in data:
         try:
             addon = Addon.objects.get(pk=pk[0])
@@ -131,8 +130,6 @@ def _update_addon_average_daily_users(data, **kw):
             task_log.info('Readjusted ADU count for addon %s' % addon.slug)
             addon.update(average_daily_users=addon.total_downloads)
         else:
-            #task_log.debug('Updating "%s" :: ADU %s -> %s' %
-            #               (addon.slug, addon.average_daily_users, count))
             addon.update(average_daily_users=count)
 
 
@@ -183,8 +180,8 @@ def update_addon_download_totals():
 
 @task
 def _update_addon_download_totals(data, **kw):
-    task_log.info("[%s] Updating add-ons download+average totals." %
-                   (len(data)))
+    task_log.info('[%s] Updating add-ons download+average totals.' %
+                  (len(data)))
 
     for pk, avg, sum in data:
         try:
@@ -193,7 +190,7 @@ def _update_addon_download_totals(data, **kw):
             # sends us data doesn't filter out deleted addons, or the addon may
             # be unpopular, this can reduce a lot of unnecessary save queries.
             if (addon.average_daily_downloads != avg or
-                addon.total_downloads != sum):
+                    addon.total_downloads != sum):
                 addon.update(average_daily_downloads=avg, total_downloads=sum)
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
@@ -312,7 +309,7 @@ def unhide_disabled_files():
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
                 if (file_.version.addon.status in amo.MIRROR_STATUSES
-                    and file_.status in amo.MIRROR_STATUSES):
+                        and file_.status in amo.MIRROR_STATUSES):
                     file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning('File object does not exist for: %s.' % filepath)
@@ -420,8 +417,9 @@ def _dump_recs(sims):
     # addon_recommendations table.
     cursor = connections['default'].cursor()
     addons = sims.keys()
-    vals = [(addon, other, score) for addon, others in sims.items()
-                                  for other, score in others]
+    vals = [(addon, other, score)
+            for addon, others in sims.items()
+            for other, score in others]
     cursor.execute('BEGIN')
     cursor.execute('DELETE FROM addon_recommendations WHERE addon_id IN %s',
                    [addons])

@@ -5,7 +5,8 @@ from . import views
 
 def review_detail_patterns(prefix):
     # These all start with /addon/:id/reviews/:review_id/.
-    return patterns('',
+    return patterns(
+        '',
         url('^$', views.review_list, name='%s.reviews.detail' % prefix),
         url('^reply$', views.reply, name='%s.reviews.reply' % prefix),
         url('^flag$', views.flag, name='%s.reviews.flag' % prefix),
@@ -17,7 +18,8 @@ def review_detail_patterns(prefix):
 
 
 def review_patterns(prefix):
-    return patterns('',
+    return patterns(
+        '',
         url('^$', views.review_list, name='%s.reviews.list' % prefix),
         url('^add$', views.add, name='%s.reviews.add' % prefix),
         url('^(?P<review_id>\d+)/', include(review_detail_patterns(prefix))),

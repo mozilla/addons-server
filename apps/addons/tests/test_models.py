@@ -1365,7 +1365,8 @@ class TestAddonModels(amo.tests.TestCase):
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         eq_(addon.versions.latest().nomination, current_nomination)
 
-    def test_nomination_not_reset_if_changing_review_process_under_review(self):
+    def test_nomination_not_reset_if_changing_review_process_under_review(
+            self):
         """
         When under review, adding a new version should not reset nomination.
         """
@@ -1458,24 +1459,25 @@ class TestAddonDelete(amo.tests.TestCase):
     def test_cascades(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
-        AddonCategory.objects.create(addon=addon,
+        AddonCategory.objects.create(
+            addon=addon,
             category=Category.objects.create(type=amo.ADDON_EXTENSION))
-        AddonDependency.objects.create(addon=addon,
-            dependent_addon=addon)
-        AddonDeviceType.objects.create(addon=addon,
-            device_type=DEVICE_TYPES.keys()[0])
-        AddonRecommendation.objects.create(addon=addon,
-            other_addon=addon, score=0)
-        AddonUser.objects.create(addon=addon,
-            user=UserProfile.objects.create())
+        AddonDependency.objects.create(
+            addon=addon, dependent_addon=addon)
+        AddonDeviceType.objects.create(
+            addon=addon, device_type=DEVICE_TYPES.keys()[0])
+        AddonRecommendation.objects.create(
+            addon=addon, other_addon=addon, score=0)
+        AddonUser.objects.create(
+            addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
         CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
         Persona.objects.create(addon=addon, persona_id=0)
         Preview.objects.create(addon=addon)
 
-        AddonLog.objects.create(addon=addon,
-            activity_log=ActivityLog.objects.create(action=0))
+        AddonLog.objects.create(
+            addon=addon, activity_log=ActivityLog.objects.create(action=0))
         RssKey.objects.create(addon=addon)
         SubmitStep.objects.create(addon=addon, step=0)
 
@@ -1505,7 +1507,8 @@ class TestUpdateStatus(amo.tests.TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status,
+            amo.STATUS_UNREVIEWED)
         Version.objects.create(addon=addon)
         eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
 
@@ -1515,7 +1518,8 @@ class TestUpdateStatus(amo.tests.TestCase):
         f = File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status,
+            amo.STATUS_UNREVIEWED)
         f.status = amo.STATUS_DISABLED
         f.save()
         eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
@@ -1849,7 +1853,8 @@ class TestAddonDependencies(amo.tests.TestCase):
         addon = Addon.objects.get(id=5299)
 
         for dependent_id in ids:
-            AddonDependency(addon=addon,
+            AddonDependency(
+                addon=addon,
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
         eq_(sorted([a.id for a in addon.dependencies.all()]), sorted(ids))
@@ -2247,7 +2252,8 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_extract_no_file(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'), status=amo.STATUS_PUBLIC)
+                            filename=self.xpi_path('langpack'),
+                            status=amo.STATUS_PUBLIC)
         eq_(self.addon.reload().get_localepicker(), '')
 
     def test_extract_no_files(self):

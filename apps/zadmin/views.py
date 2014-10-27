@@ -19,7 +19,6 @@ import commonware.log
 import jinja2
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
-from tower import ugettext as _
 
 import amo
 import amo.search
@@ -223,17 +222,17 @@ def find_files(job):
     # STATUS_NULL and STATUS_DISABLED.
     current = job.curr_max_version.version_int
     target = job.target_version.version_int
-    addons = (Addon.objects.filter(
-                        status__in=amo.VALID_STATUSES,
-                        disabled_by_user=False,
-                        versions__apps__application=job.application,
-                        versions__apps__max__version_int__gte=current,
-                        versions__apps__max__version_int__lt=target)
-                           # Exclude lang packs and themes.
-                           .exclude(type__in=[amo.ADDON_LPAPP,
-                                              amo.ADDON_THEME])
-                           .no_transforms().values_list("pk", flat=True)
-                           .distinct())
+    addons = (
+        Addon.objects.filter(status__in=amo.VALID_STATUSES,
+                             disabled_by_user=False,
+                             versions__apps__application=job.application,
+                             versions__apps__max__version_int__gte=current,
+                             versions__apps__max__version_int__lt=target)
+        # Exclude lang packs and themes.
+        .exclude(type__in=[amo.ADDON_LPAPP,
+                           amo.ADDON_THEME])
+        .no_transforms().values_list("pk", flat=True)
+        .distinct())
     for pks in chunked(addons, 100):
         tasks.add_validation_jobs.delay(pks, job.pk)
 
@@ -366,8 +365,8 @@ def jetpack(request):
     repack_status = upgrader.files()  # The files being repacked.
 
     show = request.GET.get('show', upgrading or minver)
-    subset = filter(lambda f: not f.needs_upgrade and
-                              f.jetpack_version == show, jetpacks)
+    subset = filter(
+        lambda f: not f.needs_upgrade and f.jetpack_version == show, jetpacks)
     need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
     repacked = []
 

@@ -101,26 +101,30 @@ class TestPackager(amo.tests.TestCase):
     def test_name_trademarks(self):
         """Test that the add-on name cannot contain Mozilla trademarks."""
         r = self.client.post(self.url, self._form_data({'name': 'Mozilla <3'}))
-        self.assertFormError(r, 'basic_form', 'name',
+        self.assertFormError(
+            r, 'basic_form', 'name',
             'Add-on names should not contain Mozilla trademarks.')
 
     def test_name_taken(self):
         """Test that the add-on name is not already taken."""
         data = self._form_data({'name': 'Delicious Bookmarks'})
         r = self.client.post(self.url, data)
-        self.assertFormError(r, 'basic_form', 'name',
+        self.assertFormError(
+            r, 'basic_form', 'name',
             'This name is already in use. Please choose another.')
 
     def test_name_minlength(self):
         data = self._form_data({'name': 'abcd'})
         r = self.client.post(self.url, data)
-        self.assertFormError(r, 'basic_form', 'name',
+        self.assertFormError(
+            r, 'basic_form', 'name',
             'Ensure this value has at least 5 characters (it has 4).')
 
     def test_name_maxlength(self):
         data = self._form_data({'name': 'x' * 51})
         r = self.client.post(self.url, data)
-        self.assertFormError(r, 'basic_form', 'name',
+        self.assertFormError(
+            r, 'basic_form', 'name',
             'Ensure this value has at most 50 characters (it has 51).')
 
     def test_package_name_required(self):
@@ -131,13 +135,15 @@ class TestPackager(amo.tests.TestCase):
     def test_package_name_minlength(self):
         data = self._form_data({'package_name': 'abcd'})
         r = self.client.post(self.url, data)
-        self.assertFormError(r, 'basic_form', 'package_name',
+        self.assertFormError(
+            r, 'basic_form', 'package_name',
             'Ensure this value has at least 5 characters (it has 4).')
 
     def test_package_name_maxlength(self):
         data = self._form_data({'package_name': 'x' * 51})
         r = self.client.post(self.url, data)
-        self.assertFormError(r, 'basic_form', 'package_name',
+        self.assertFormError(
+            r, 'basic_form', 'package_name',
             'Ensure this value has at most 50 characters (it has 51).')
 
     def test_package_name_format(self):
@@ -179,8 +185,8 @@ class TestPackager(amo.tests.TestCase):
         """Test that the add-on id is properly validated."""
         r = self.client.post(self.url, self._form_data({'id': 'invalid id'}))
         self.assertFormError(
-                r, 'basic_form', 'id',
-                'The add-on ID must be a UUID string or an email address.')
+            r, 'basic_form', 'id',
+            'The add-on ID must be a UUID string or an email address.')
 
     def test_firefox_required(self):
         """Ensure that at least one target application is required."""

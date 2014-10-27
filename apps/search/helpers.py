@@ -41,16 +41,17 @@ def showing(query, tag, pager):
     # Foo tagged with Bar" without having more if/elif/else statements?
 
     if query and tag:
-        showing = _(u'Showing {0} - {1} of {2} results for '
-                '<strong>{3}</strong>'
-                ' tagged with <strong>{4}</strong>').format(
+        showing = _(
+            u'Showing {0} - {1} of {2} results for <strong>{3}</strong>'
+            u' tagged with <strong>{4}</strong>').format(
                 *(format_opts + (query, tag,)))
     elif query and not tag:
         showing = _(u'Showing {0} - {1} of {2} results for '
                     '<strong>{3}</strong>').format(*(format_opts + (query,)))
     elif not query and tag:
-        showing = _(u'Showing {0} - {1} of {2} results tagged with '
-                '<strong>{3}</strong>').format(*(format_opts + (tag,)))
+        showing = _(
+            u'Showing {0} - {1} of {2} results tagged with '
+            u'<strong>{3}</strong>').format(*(format_opts + (tag,)))
     else:
         showing = _(u'Showing {0} - {1} of {2} results').format(*format_opts)
 

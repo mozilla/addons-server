@@ -43,6 +43,6 @@ class TestRedirects(amo.tests.TestCase):
         self._check({
             '/en-US/pages/developer_faq': reverse('pages.dev_faq'),
             '/en-US/pages/review_guide': reverse('pages.review_guide'),
-            '/en-US/pages/developer_agreement': reverse('devhub.docs',
-                args=['policies', 'agreement']),
+            '/en-US/pages/developer_agreement': reverse(
+                'devhub.docs', args=['policies', 'agreement']),
         })

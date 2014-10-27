@@ -147,7 +147,10 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
 
 
 AbstractBaseUser._meta.get_field('password').max_length = 255
-class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUser):
+
+
+class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
+                  AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -275,7 +278,8 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
     def picture_dir(self):
         from amo.helpers import user_media_path
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return os.path.join(user_media_path('userpics'), split_id.group(2) or '0',
+        return os.path.join(user_media_path('userpics'),
+                            split_id.group(2) or '0',
                             split_id.group(1) or '0')
 
     @property
@@ -394,10 +398,10 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
             return valid
 
         algo, salt, hsh = self.password.split('$')
-        #Complication due to getpersonas account migration; we don't
-        #know if passwords were utf-8 or latin-1 when hashed. If you
-        #can prove that they are one or the other, you can delete one
-        #of these branches.
+        # Complication due to getpersonas account migration; we don't
+        # know if passwords were utf-8 or latin-1 when hashed. If you
+        # can prove that they are one or the other, you can delete one
+        # of these branches.
         if '+base64' in algo and isinstance(raw_password, unicode):
             if hsh == get_hexdigest(algo, salt, raw_password.encode('utf-8')):
                 return True
@@ -447,12 +451,14 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase, AbstractBaseUs
                                  'failed_login_attempts'])
 
     def mobile_collection(self):
-        return self.special_collection(amo.COLLECTION_MOBILE,
+        return self.special_collection(
+            amo.COLLECTION_MOBILE,
             defaults={'slug': 'mobile', 'listed': False,
                       'name': _('My Mobile Add-ons')})
 
     def favorites_collection(self):
-        return self.special_collection(amo.COLLECTION_FAVORITES,
+        return self.special_collection(
+            amo.COLLECTION_FAVORITES,
             defaults={'slug': 'favorites', 'listed': False,
                       'name': _('My Favorite Add-ons')})
 

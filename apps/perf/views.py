@@ -1,7 +1,5 @@
-from django import http
 from django.conf import settings
-from django.db.models import Avg
-from django.shortcuts import get_list_or_404, render
+from django.shortcuts import render
 from django.views.decorators.cache import cache_control
 
 import redisutils
@@ -15,7 +13,7 @@ from .models import Performance, PerformanceOSVersion
 # TODO(wraithan): remove this as the code the powers this is no longer around
 @cache_control(max_age=60 * 60 * 24)  # Cache for a day.
 def index(request):
-    if settings.PERFORMANCE_NOTES == False:
+    if not settings.PERFORMANCE_NOTES:
         return render(request, 'perf/index.html', {'addons': []})
     # By default don't show less than 25; bug 647398
     threshold = Performance.get_threshold()
@@ -30,8 +28,9 @@ def index(request):
         ids = [a.id for a in addons]
         redis = redisutils.connections['master']
         os_perf = dict(zip(ids, redis.hmget(Performance.ALL_PLATFORMS, ids)))
-        platforms = dict((unicode(p), p.id)
-                         for p in PerformanceOSVersion.objects.no_cache().all())
+        platforms = dict(
+            (unicode(p), p.id)
+            for p in PerformanceOSVersion.objects.no_cache().all())
         ctx.update(
             os_perf=os_perf,
             platforms=platforms,

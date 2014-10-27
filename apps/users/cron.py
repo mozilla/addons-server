@@ -50,6 +50,7 @@ def update_user_ratings():
 def reindex_users(index=None):
     from . import tasks
     ids = UserProfile.objects.values_list('id', flat=True)
-    taskset = [tasks.index_users.subtask(args=[chunk], kwargs=dict(index=index))
+    taskset = [tasks.index_users.subtask(args=[chunk],
+                                         kwargs=dict(index=index))
                for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(taskset).apply_async()

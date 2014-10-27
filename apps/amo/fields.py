@@ -26,11 +26,12 @@ class DecimalCharField(models.DecimalField):
     __metaclass__ = models.SubfieldBase
 
     def __init__(self, verbose_name=None, name=None, max_digits=None,
-            decimal_places=None, nullify_invalid=False, **kwargs):
+                 decimal_places=None, nullify_invalid=False, **kwargs):
         self.nullify_invalid = nullify_invalid
         kwargs['max_length'] = max_digits + 1
-        super(DecimalCharField, self).__init__(verbose_name, name,
-            max_digits=max_digits, decimal_places=decimal_places, **kwargs)
+        super(DecimalCharField, self).__init__(
+            verbose_name, name, max_digits=max_digits,
+            decimal_places=decimal_places, **kwargs)
 
     def get_internal_type(self):
         return "CharField"

@@ -68,7 +68,7 @@ class ButtonTest(amo.tests.TestCase):
         """Proxy for calling install_button."""
         template_mock = Mock()
         t_mock.return_value = template_mock
-        if not 'show_backup' in kwargs:
+        if 'show_backup' not in kwargs:
             kwargs['show_backup'] = True
         install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
