@@ -1,8 +1,8 @@
+from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
+
 from mock import Mock
 from nose.tools import eq_
-from test_utils import RequestFactory
-
-from django.contrib.auth.models import AnonymousUser
 
 from amo.tests import TestCase
 from amo.urlresolvers import reverse

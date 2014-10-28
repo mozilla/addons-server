@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django import http, test
 from django.conf import settings
+from django.test.client import RequestFactory
 
 from commonware.middleware import ScrubRequestOnException
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo.tests
 from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware

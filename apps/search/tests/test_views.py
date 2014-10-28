@@ -3,12 +3,12 @@ import json
 import urlparse
 
 from django.http import QueryDict
+from django.test.client import RequestFactory
 
 import mock
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 from tower import strip_whitespace
 
 import amo

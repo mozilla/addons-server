@@ -6,11 +6,11 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import encoding
 
 import jingo
-import test_utils
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery
@@ -243,7 +243,7 @@ def test_epoch():
 
 
 def test_locale_url():
-    rf = test_utils.RequestFactory()
+    rf = RequestFactory()
     request = rf.get('/de', SCRIPT_NAME='/z')
     prefixer = urlresolvers.Prefixer(request)
     urlresolvers.set_url_prefix(prefixer)
