@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-28 13:11+0000\n"
+"PO-Revision-Date: 2014-10-28 13:14+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1414501903.0\n"
+"X-POOTLE-MTIME: 1414502049.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10601,7 +10601,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Використання додатків"
 
 #: apps/pages/templates/pages/faq.html:15
 msgid "What is an add-on?"
@@ -10615,7 +10615,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Чи будуть додатки працювати з моїм браузером чи програмою?"
 
 #: apps/pages/templates/pages/faq.html:27
 msgid ""
