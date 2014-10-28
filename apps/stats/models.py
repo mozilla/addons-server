@@ -17,7 +17,7 @@ from amo.fields import DecimalCharField
 from amo.utils import get_locale_from_lang, send_mail_jinja
 from zadmin.models import DownloadSource
 
-from .db import StatsDictField
+from .db import LargeStatsDictField, StatsDictField
 
 
 def update_inc(initial, key, count):
@@ -104,7 +104,7 @@ class UpdateCountTmp(StatsSearchMixin, models.Model):
     date = models.DateField()
     versions = StatsDictField(db_column='version', null=True)
     statuses = StatsDictField(db_column='status', null=True)
-    applications = StatsDictField(db_column='application', null=True)
+    applications = LargeStatsDictField(db_column='application', null=True)
     oses = StatsDictField(db_column='os', null=True)
     locales = StatsDictField(db_column='locale', null=True)
 
