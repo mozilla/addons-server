@@ -13,5 +13,5 @@
 {% if show_disclaimer %}
 #
 #    This data is provided "AS IS" and is subject to Mozilla's Legal Disclaimers
-#    and Limitations policy, available at http://www.mozilla.com/en-US/about/legal.html
+#    and Limitations policy, available at http://www.mozilla.org/legal/
 {% endif %}
