@@ -29,7 +29,7 @@ from django import forms
 from django.conf import settings
 from django.core import mail
 from django.test.client import (encode_multipart, Client, FakePayload,
-                                BOUNDARY, MULTIPART_CONTENT)
+                                BOUNDARY, MULTIPART_CONTENT, RequestFactory)
 
 import oauth2 as oauth
 from mock import Mock, patch
@@ -46,7 +46,6 @@ from devhub.models import ActivityLog, SubmitStep
 from files.models import File
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
-from test_utils import RequestFactory
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import AppVersion, Version

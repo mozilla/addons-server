@@ -16,12 +16,11 @@ from django.core.cache import cache
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
 from django.utils import translation
 
 import caching
 import mock
-import test_utils
 import tower
 from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
@@ -29,7 +28,7 @@ from nose.tools import eq_, nottest
 from PIL import Image, ImageColor
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
-from test_utils import RequestFactory
+from test_utils import TestCase as TestUtilsTestCase
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -249,7 +248,7 @@ class MockEsMixin(object):
                 Mocked_ES.stop()
 
 
-class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
+class TestCase(MockEsMixin, RedisTest, TestUtilsTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
@@ -276,7 +275,7 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         old_app = old_prefix.app
         old_locale = translation.get_language()
         if locale:
-            rf = test_utils.RequestFactory()
+            rf = RequestFactory()
             prefixer = Prefixer(rf.get('/%s/' % (locale,)))
             tower.activate(locale)
         if app:
