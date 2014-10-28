@@ -13,7 +13,6 @@ from django.utils.encoding import iri_to_uri
 
 import fudge
 from mock import patch
-from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
@@ -1408,14 +1407,15 @@ class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
 class TestMobileHome(TestMobile):
 
     def test_addons(self):
-        # Uncomment when redis gets fixed in CI.
-        raise SkipTest
-
         r = self.client.get('/', follow=True)
         eq_(r.status_code, 200)
         app, lang = r.context['APP'], r.context['LANG']
         featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 3)
+        # Careful here: we can't be sure of the number of featured addons,
+        # that's why we're not testing len(featured). There's a corner case
+        # when there's less than 3 featured addons: some of the 3 random
+        # featured IDs could correspond to a Persona, and they're filtered out
+        # in the mobilized version of addons.views.home.
         assert all(a.is_featured(app, lang) for a in featured)
         eq_(len(popular), 3)
         eq_([a.id for a in popular],

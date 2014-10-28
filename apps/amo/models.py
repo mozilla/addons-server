@@ -308,6 +308,7 @@ class SearchMixin(object):
 
     @classmethod
     def unindex(cls, id, index=None):
+        id = str(id)
         es = search.get_es()
         try:
             es.delete(index or cls._get_index(), cls._meta.db_table, id)
