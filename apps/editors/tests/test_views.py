@@ -1604,7 +1604,8 @@ class TestReview(ReviewBase):
             eq_(td.find('th').text(), 'Preliminarily approved')
             eq_(td.find('td a').text(), self.editor.display_name)
 
-    def generate_deleted_versions(self):
+    @patch('lib.crypto.packaged.sign')
+    def generate_deleted_versions(self, mock_sign):
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                           name=u'something')
         self.url = reverse('editors.review', args=[self.addon.slug])
@@ -1883,7 +1884,8 @@ class TestReview(ReviewBase):
         eq_(ths.length, 2)
         assert '0.1' in ths.text()
 
-    def review_version(self, version, url):
+    @patch('lib.crypto.packaged.sign')
+    def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
         d = dict(action='prelim', operating_systems='win',
                  applications='something', comments='something',
@@ -2074,7 +2076,8 @@ class TestReviewPreliminary(ReviewBase):
         self.client.post(self.url, self.prelim_dict())
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
-    def test_prelim_from_unreviewed(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_prelim_from_unreviewed(self, mock_sign):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.prelim_dict())
         eq_(response.status_code, 302)

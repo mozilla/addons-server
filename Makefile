@@ -2,6 +2,8 @@
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
+UNAME_S := $(shell uname -s)
+
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  docs              to builds the docs for Zamboni"
@@ -55,6 +57,12 @@ update_code:
 	git checkout master && git pull
 
 update_deps:
+ifeq ($(UNAME_S),Linux)
+	DEB_HOST_MULTIARCH=x86_64-linux-gnu pip install -I --exists-action=w "git+git://anonscm.debian.org/collab-maint/m2crypto.git@debian/0.21.1-3#egg=M2Crypto"
+else
+	pip install --find-links https://pyrepo.addons.mozilla.org/ --exists-action=w --download-cache=/tmp/pip-cache "m2crypto==0.21.1"
+endif
+
 	pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
 	npm install
 
