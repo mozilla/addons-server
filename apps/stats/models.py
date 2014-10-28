@@ -72,33 +72,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
         db_table = 'download_counts'
 
 
-# TODO: remove when the script is proven to work correctly.
-class DownloadCountTmp(StatsSearchMixin, models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-    sources = StatsDictField(db_column='src', null=True)
-
-    class Meta:
-        db_table = 'download_counts_tmp'
-
-
 class UpdateCount(StatsSearchMixin, models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-    versions = StatsDictField(db_column='version', null=True)
-    statuses = StatsDictField(db_column='status', null=True)
-    applications = StatsDictField(db_column='application', null=True)
-    oses = StatsDictField(db_column='os', null=True)
-    locales = StatsDictField(db_column='locale', null=True)
-
-    class Meta:
-        db_table = 'update_counts'
-
-
-# TODO: remove when the script is proven to work correctly.
-class UpdateCountTmp(StatsSearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -109,7 +83,7 @@ class UpdateCountTmp(StatsSearchMixin, models.Model):
     locales = StatsDictField(db_column='locale', null=True)
 
     class Meta:
-        db_table = 'update_counts_tmp'
+        db_table = 'update_counts'
 
 
 class ThemeUpdateCountManager(models.Manager):

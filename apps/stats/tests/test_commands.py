@@ -9,12 +9,9 @@ from django.core import management
 
 import amo.search
 import amo.tests
-# TODO: use DownloadCount and UpdateCount when the script is proven
-# to work correctly.
 from addons.models import Persona
-from stats.models import (DownloadCountTmp as DownloadCount, ThemeUpdateCount,
-                          UpdateCountTmp as UpdateCount)
 from stats.management.commands.download_counts_from_file import is_valid_source
+from stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
 from zadmin.models import DownloadSource
 
 
