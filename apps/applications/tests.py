@@ -70,3 +70,14 @@ class TestCommands(amo.tests.TestCase):
                 "%s: %r" % (app.short, versions))
             eq_(data['name'], app.short)
             eq_(data['guid'], app.guid)
+
+    def test_addnewversion(self):
+        new_version = '123.456'
+        eq_(len(AppVersion.objects.filter(application=amo.FIREFOX.id,
+                                          version=new_version)), 0)
+
+        call_command('addnewversion', 'firefox', new_version)
+
+        eq_(len(AppVersion.objects.filter(application=amo.FIREFOX.id,
+                                          version=new_version)),
+            1)
