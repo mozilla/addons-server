@@ -113,8 +113,8 @@ class CollectionFilter(BaseFilter):
 def get_filter(request, base=None):
     if base is None:
         base = Collection.objects.listed()
-    base = base.filter((Q(application=request.APP.id) | Q(application=None))
-                       & ~Q(addons=None))
+    base = (base.filter(Q(application=request.APP.id) | Q(application=None))
+            .exclude(addon_count=0))
     return CollectionFilter(request, base, key='sort', default='featured')
 
 

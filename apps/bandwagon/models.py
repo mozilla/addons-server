@@ -414,9 +414,22 @@ class CollectionAddon(amo.models.ModelBase):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
 
+    @staticmethod
+    def post_save_or_delete(sender, instance, **kwargs):
+        """Update Collection.addon_count."""
+        from . import tasks
+        tasks.collection_meta.delay(instance.collection_id, using='default')
+
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
                                 dispatch_uid='coll_addon_translations')
+# Update Collection.addon_count.
+models.signals.post_save.connect(CollectionAddon.post_save_or_delete,
+                                 sender=CollectionAddon,
+                                 dispatch_uid='coll.post_save')
+models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
+                                   sender=CollectionAddon,
+                                   dispatch_uid='coll.post_save')
 
 
 class CollectionFeature(amo.models.ModelBase):
