@@ -27,7 +27,7 @@ def do_addnewversion(application, version):
     if application not in amo.APPS:
         raise CommandError('Application %r does not exist.' % application)
     try:
-        AppVersion.objects.create(application_id=amo.APPS[application].id,
+        AppVersion.objects.create(application=amo.APPS[application].id,
                                   version=version)
     except IntegrityError, e:
         raise CommandError('Version %r already exists: %r' % (version, e))
