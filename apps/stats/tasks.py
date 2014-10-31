@@ -168,10 +168,10 @@ def _get_daily_jobs(date=None):
     """Return a dictionary of statistics queries.
 
     If a date is specified and applies to the job it will be used.  Otherwise
-    the date will default to today().
+    the date will default to the previous day.
     """
     if not date:
-        date = datetime.date.today()
+        date = datetime.date.today() - datetime.timedelta(days=1)
 
     # Passing through a datetime would not generate an error,
     # but would pass and give incorrect values.
@@ -227,7 +227,7 @@ def _get_daily_jobs(date=None):
     # If we're processing today's stats, we'll do some extras.  We don't do
     # these for re-processed stats because they change over time (eg. add-ons
     # move from sandbox -> public
-    if date == datetime.date.today():
+    if date == (datetime.date.today() - datetime.timedelta(days=1)):
         stats.update({
             'addon_count_experimental': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_UNREVIEWED,
