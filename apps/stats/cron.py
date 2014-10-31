@@ -50,7 +50,8 @@ def update_global_totals(date=None):
 
     if date:
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
-    today = date or datetime.date.today()
+    # Assume that we want to populate yesterday's stats by default.
+    today = date or datetime.date.today() - datetime.timedelta(days=1)
     today_jobs = [dict(job=job, date=today) for job in
                   tasks._get_daily_jobs(date)]
 
