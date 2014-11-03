@@ -45,7 +45,7 @@ from translations.fields import (LinkifiedField, PurifiedField, save_signal,
 from translations.query import order_by_translation
 from users.models import UserForeignKey, UserProfile
 from versions.compare import version_int
-from versions.models import Version
+from versions.models import inherit_nomination, Version
 
 from . import query, signals
 
@@ -1533,9 +1533,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                          viewer=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
-    def reset_nomination_time(self, force=False):
-        if self.latest_version:
-            self.latest_version.reset_nomination_time(force=force)
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -1576,33 +1573,33 @@ def update_search_index(sender, instance, **kw):
 @Addon.on_change
 def watch_status(old_attr={}, new_attr={}, instance=None,
                  sender=None, **kw):
-    """Set nomination date if self.status asks for full review.
+    """
+    Set nomination date if the addon is new in queue or updating.
 
-    The nomination date cannot be reset, say, when a developer cancels their
-    request for full review and re-requests full review.
+    The nomination date cannot be reset, say, when a developer cancels
+    their request for full review and re-requests full review.
 
-    If a version is rejected after nomination, the developer has to upload a
-    new version.
+    If a version is rejected after nomination, the developer has
+    to upload a new version.
+
     """
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
-    if not new_status:
+    if not new_status or not instance.latest_version:
         return
-    addon = instance
 
-    def is_new_in_queue():
-        return (new_status in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
-                and old_status not in amo.UNDER_REVIEW_STATUSES
-                and old_status != new_status)
-
-    def is_updating_addon():
-        return (new_status in amo.REVIEWED_STATUSES
-                and addon.latest_version
-                and addon.latest_version.has_files)
-
-    if is_new_in_queue() or is_updating_addon():
+    if (new_status in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
+            and old_status not in amo.UNDER_REVIEW_STATUSES
+            and old_status != new_status):  # New in queue.
         # Will reset nomination only if it's None.
-        addon.reset_nomination_time(force=False)
+        instance.latest_version.reset_nomination_time()
+    elif (new_status in amo.REVIEWED_STATUSES
+            and instance.latest_version.has_files):  # Updating addon.
+        # Inherit nomination from last nominated version.
+        # Calls `inherit_nomination` manually given that signals are
+        # deactivated to avoid circular calls.
+        if not inherit_nomination(None, instance.latest_version):
+            instance.latest_version.reset_nomination_time()
 
 
 @Addon.on_change

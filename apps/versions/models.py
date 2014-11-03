@@ -458,10 +458,11 @@ class Version(amo.models.ModelBase):
     def developer_name(self):
         return self._developer_name
 
-    def reset_nomination_time(self, force=False):
-        if not self.nomination or force:
+    def reset_nomination_time(self, nomination=None):
+        if not self.nomination or nomination:
+            nomination = nomination or datetime.datetime.now()
             # We need signal=False not to call update_status (which calls us).
-            self.update(nomination=datetime.datetime.now(), _signal=False)
+            self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
 
@@ -480,8 +481,12 @@ def update_status(sender, instance, **kw):
 
 
 def inherit_nomination(sender, instance, **kw):
-    """For new versions pending review, ensure nomination date
+    """
+    For new versions pending review, ensure nomination date
     is inherited from last nominated version.
+
+    Return either True or False if the nomination time has been reseted.
+
     """
     if kw.get('raw'):
         return
@@ -492,8 +497,9 @@ def inherit_nomination(sender, instance, **kw):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():
-            instance.update(nomination=last_ver[0].nomination,
-                            _signal=False)
+            instance.reset_nomination_time(nomination=last_ver[0].nomination)
+            return True
+    return False
 
 
 def update_incompatible_versions(sender, instance, **kw):

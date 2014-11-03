@@ -1289,6 +1289,28 @@ class TestAddonModels(amo.tests.TestCase):
         a.save()
         assert hide_mock.called
 
+    def test_category_transform(self):
+        addon = Addon.objects.get(id=3615)
+        cats = addon.categories.filter(application=amo.FIREFOX.id)
+        names = [c.name for c in cats]
+        assert addon.get_category(amo.FIREFOX.id).name in names
+
+    def test_binary_property(self):
+        addon = Addon.objects.get(id=3615)
+        file = addon.current_version.files.all()[0]
+        file.update(binary=True)
+        eq_(addon.binary, True)
+
+    def test_binary_components_property(self):
+        addon = Addon.objects.get(id=3615)
+        file = addon.current_version.files.all()[0]
+        file.update(binary_components=True)
+        eq_(addon.binary_components, True)
+
+
+class TestAddonNomination(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
     def test_set_nomination(self):
         a = Addon.objects.get(id=3615)
         for s in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
@@ -1349,109 +1371,57 @@ class TestAddonModels(amo.tests.TestCase):
         addon.update(status=amo.STATUS_NOMINATED)
         eq_(addon.versions.latest().nomination.date(), earlier.date())
 
-    def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
-        addon = Addon.objects.create(type=1)
+    def setup_nomination(self, status=amo.STATUS_UNREVIEWED):
+        addon = Addon.objects.create()
         version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        File.objects.create(status=status, version=version)
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
-        # This is a preliminary review.
-        addon.update(status=amo.STATUS_UNREVIEWED)
-        current_nomination = addon.versions.latest().nomination
-        assert current_nomination
-        version = Version.objects.create(addon=addon)
+        addon.update(status=status)
+        nomination = addon.versions.latest().nomination
+        assert nomination
+        return addon, nomination
+
+    def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
+        addon, nomination = self.setup_nomination()
+        version = Version.objects.create(addon=addon, version='0.2')
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        eq_(addon.versions.latest().nomination, current_nomination)
+        eq_(addon.versions.latest().nomination, nomination)
 
     def test_nomination_not_reset_if_changing_review_process_under_review(
             self):
         """
         When under review, adding a new version should not reset nomination.
         """
-        addon = Addon.objects.create(type=1)
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        # Cheating date to make sure we don't have a date on the same second
-        # the code we test is running.
-        past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
-        # This is a preliminary review.
-        addon.update(status=amo.STATUS_UNREVIEWED)
-        current_nomination = addon.versions.latest().nomination
-        assert current_nomination
+        addon, nomination = self.setup_nomination()
         # Now switch to a full review.
         addon.update(status=amo.STATUS_NOMINATED)
-        eq_(addon.versions.latest().nomination, current_nomination)
+        eq_(addon.versions.latest().nomination, nomination)
         # Then again to a preliminary.
         addon.update(status=amo.STATUS_UNREVIEWED)
-        eq_(addon.versions.latest().nomination, current_nomination)
+        eq_(addon.versions.latest().nomination, nomination)
+
+    def check_nomination_reset_with_new_version(self, addon, nomination):
+        version = Version.objects.create(addon=addon, version="0.2")
+        assert version.nomination is None
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        assert_not_equal(addon.versions.latest().nomination, nomination)
 
     def test_new_version_of_public_addon_should_reset_nomination(self):
-        addon = Addon.objects.create(type=1)
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_LITE, version=version)
-        # The addon has been prelimarily reviewed.
-        addon.update(status=amo.STATUS_LITE)
-        # Cheating to make sure we don't have a date on the same second
-        # of the running code.
-        past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
-        old_nomination = addon.versions.latest().nomination
-        assert old_nomination
-
+        addon, nomination = self.setup_nomination(status=amo.STATUS_LITE)
         # Update again, but without a new version.
         addon.update(status=amo.STATUS_LITE)
         # Check that nomination has been reset.
-        eq_(addon.versions.latest().nomination, old_nomination)
-
+        eq_(addon.versions.latest().nomination, nomination)
         # Now create a new version with an attached file, and update status.
-        version = Version.objects.create(addon=addon, version="0.2")
-        assert version.nomination is None
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        new_nomination = addon.versions.latest().nomination
-        assert new_nomination
-        assert_not_equal(new_nomination, old_nomination)
+        self.check_nomination_reset_with_new_version(addon, nomination)
 
     def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
-        addon = Addon.objects.create(type=1)
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
-        # The addon has been fully reviewed.
-        addon.update(status=amo.STATUS_PUBLIC)
-        # Cheating to make sure we don't have a date on the same second
-        # of the running code.
-        past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
-        old_nomination = addon.versions.latest().nomination
-        assert old_nomination
-
+        addon, nomination = self.setup_nomination(status=amo.STATUS_PUBLIC)
         # Now create a new version with an attached file, and update status.
-        version = Version.objects.create(addon=addon, version="0.2")
-        assert version.nomination is None
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        new_nomination = addon.versions.latest().nomination
-        assert new_nomination
-        assert_not_equal(new_nomination, old_nomination)
-
-    def test_category_transform(self):
-        addon = Addon.objects.get(id=3615)
-        cats = addon.categories.filter(application=amo.FIREFOX.id)
-        names = [c.name for c in cats]
-        assert addon.get_category(amo.FIREFOX.id).name in names
-
-    def test_binary_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary=True)
-        eq_(addon.binary, True)
-
-    def test_binary_components_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary_components=True)
-        eq_(addon.binary_components, True)
+        self.check_nomination_reset_with_new_version(addon, nomination)
 
 
 class TestAddonDelete(amo.tests.TestCase):
