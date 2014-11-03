@@ -10,11 +10,12 @@ from celeryutils import task
 
 import amo
 from amo.utils import chunked, slugify
-from bandwagon.models import (Collection, SyncedCollection, CollectionUser,
-                              CollectionVote, CollectionWatcher)
+from bandwagon.models import (Collection, SyncedCollection, CollectionVote,
+                              CollectionWatcher)
 import cronjobs
 
 task_log = commonware.log.getLogger('z.task')
+
 
 @cronjobs.register
 def update_collections_subscribers():
@@ -31,8 +32,8 @@ def update_collections_subscribers():
 
 @task(rate_limit='15/m')
 def _update_collections_subscribers(data, **kw):
-    task_log.info("[%s@%s] Updating collections' subscribers totals." %
-                   (len(data), _update_collections_subscribers.rate_limit))
+    task_log.info("[%s@%s] Updating collections' subscribers totals." % (
+                  len(data), _update_collections_subscribers.rate_limit))
     cursor = connection.cursor()
     today = date.today()
     for var in data:
@@ -70,8 +71,8 @@ def update_collections_votes():
 
 @task(rate_limit='15/m')
 def _update_collections_votes(data, stat, **kw):
-    task_log.info("[%s@%s] Updating collections' votes totals." %
-                   (len(data), _update_collections_votes.rate_limit))
+    task_log.info("[%s@%s] Updating collections' votes totals." % (
+                  len(data), _update_collections_votes.rate_limit))
     cursor = connection.cursor()
     for var in data:
         q = ('REPLACE INTO stats_collections(`date`, `name`, '
@@ -111,8 +112,8 @@ def cleanup_synced_collections():
 @task(rate_limit='1/m')
 @transaction.commit_on_success
 def _cleanup_synced_collections(**kw):
-    task_log.info("[300@%s] Dropping synced collections." %
-                   _cleanup_synced_collections.rate_limit)
+    task_log.info("[300@%s] Dropping synced collections." % (
+                  _cleanup_synced_collections.rate_limit))
 
     thirty_days = date.today() - timedelta(days=30)
     ids = (SyncedCollection.objects.filter(created__lte=thirty_days)
@@ -133,8 +134,8 @@ def drop_collection_recs():
 @task(rate_limit='1/m')
 @transaction.commit_on_success
 def _drop_collection_recs(**kw):
-    task_log.info("[300@%s] Dropping recommended collections." %
-                   _drop_collection_recs.rate_limit)
+    task_log.info("[300@%s] Dropping recommended collections." % (
+                  _drop_collection_recs.rate_limit))
     # Get the first 300 collections and delete them in smaller chunks.
     types = amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_RECOMMENDED
     ids = (Collection.objects.filter(type__in=types, author__isnull=True)
@@ -153,6 +154,7 @@ def reindex_collections(index=None):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)
            .values_list('id', flat=True))
-    taskset = [tasks.index_collections.subtask(args=[chunk], kwargs=dict(index=index))
+    taskset = [tasks.index_collections.subtask(args=[chunk],
+                                               kwargs=dict(index=index))
                for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(taskset).apply_async()

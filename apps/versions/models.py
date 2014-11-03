@@ -74,7 +74,8 @@ class Version(amo.models.ModelBase):
     _developer_name = models.CharField(max_length=255, default='',
                                        editable=False)
 
-    source = models.FileField(upload_to=source_upload_path, null=True, blank=True)
+    source = models.FileField(
+        upload_to=source_upload_path, null=True, blank=True)
 
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
@@ -106,7 +107,8 @@ class Version(amo.models.ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, send_signal=True, source=None):
+    def from_upload(cls, upload, addon, platforms, send_signal=True,
+                    source=None):
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -579,11 +581,13 @@ class License(amo.models.ModelBase):
     url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
-    on_form = models.BooleanField(default=False,
-        help_text='Is this a license choice in the devhub?')
-    some_rights = models.BooleanField(default=False,
+    on_form = models.BooleanField(
+        default=False, help_text='Is this a license choice in the devhub?')
+    some_rights = models.BooleanField(
+        default=False,
         help_text='Show "Some Rights Reserved" instead of the license name?')
-    icons = models.CharField(max_length=255, null=True,
+    icons = models.CharField(
+        max_length=255, null=True,
         help_text='Space-separated list of icon identifiers.')
 
     objects = LicenseManager()
@@ -632,7 +636,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         if (self.version.is_compatible[0] and
-            self.version.is_compatible_app(amo.APP_IDS[self.application])):
+                self.version.is_compatible_app(amo.APP_IDS[self.application])):
             return _(u'{app} {min} and later').format(
                 app=self.get_application_display(),
                 min=self.min

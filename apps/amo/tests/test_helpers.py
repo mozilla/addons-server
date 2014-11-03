@@ -6,11 +6,11 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import encoding
 
 import jingo
-import test_utils
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery
@@ -243,7 +243,7 @@ def test_epoch():
 
 
 def test_locale_url():
-    rf = test_utils.RequestFactory()
+    rf = RequestFactory()
     request = rf.get('/de', SCRIPT_NAME='/z')
     prefixer = urlresolvers.Prefixer(request)
     urlresolvers.set_url_prefix(prefixer)
@@ -353,9 +353,9 @@ class TestLicenseLink(amo.tests.TestCase):
                 'title="Creative Commons">Some rights reserved</a></li></ul>'),
         }
         for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
+            res = render('{{ license_link(lic) }}', {'lic': lic})
+            res = ''.join([s.strip() for s in res.split('\n')])
+            eq_(res, ex)
 
     def test_theme_license_link(self):
         s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_COPYRIGHT})
@@ -404,9 +404,9 @@ class TestLicenseLink(amo.tests.TestCase):
                 'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
         }
         for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
+            res = render('{{ license_link(lic) }}', {'lic': lic})
+            res = ''.join([s.strip() for s in res.split('\n')])
+            eq_(res, ex)
 
 
 def get_image_path(name):

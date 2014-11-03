@@ -20,7 +20,7 @@ class TestPerf(amo.tests.TestCase):
 
     def setUp(self):
         self.file = File.objects.get(
-                            version__addon__slug='searchaddon11102010')
+            version__addon__slug='searchaddon11102010')
 
     def start(self, *args, **kw):
         return start_perf_test(self.file, *args, **kw)

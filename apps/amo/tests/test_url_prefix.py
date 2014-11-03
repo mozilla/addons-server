@@ -1,9 +1,9 @@
 from django import test, shortcuts
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
+from django.test.client import RequestFactory
 
 from nose.tools import eq_, assert_not_equal
-import test_utils
 
 import amo.tests
 from amo import urlresolvers
@@ -14,7 +14,7 @@ class MiddlewareTest(test.TestCase):
     """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
-        self.rf = test_utils.RequestFactory()
+        self.rf = RequestFactory()
         self.middleware = LocaleAndAppURLMiddleware()
 
     def test_redirection(self):
@@ -128,7 +128,7 @@ class TestPrefixer:
     def test_split_path(self):
 
         def split_eq(url, locale, app, path):
-            rf = test_utils.RequestFactory()
+            rf = RequestFactory()
             prefixer = urlresolvers.Prefixer(rf.get(url))
             actual = (prefixer.locale, prefixer.app, prefixer.shortened_path)
             eq_(actual, (locale, app, path))
@@ -149,7 +149,7 @@ class TestPrefixer:
         split_eq('/foo/', '', '', 'foo/')
 
     def test_fix(self):
-        rf = test_utils.RequestFactory()
+        rf = RequestFactory()
         prefixer = urlresolvers.Prefixer(rf.get('/'))
 
         eq_(prefixer.fix('/'), '/en-US/firefox/')
@@ -187,7 +187,7 @@ class TestPrefixer:
         eq_(func.__name__, 'home')
 
     def test_script_name(self):
-        rf = test_utils.RequestFactory()
+        rf = RequestFactory()
         request = rf.get('/foo', SCRIPT_NAME='/oremj')
         prefixer = urlresolvers.Prefixer(request)
         eq_(prefixer.fix(prefixer.shortened_path), '/oremj/en-US/firefox/foo')
@@ -310,8 +310,7 @@ def test_parse_accept_language():
          ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
          ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
          # Consolidated languages.
-         ('es-PE', 'es'),
-    )
+         ('es-PE', 'es'))
     for x, y in d:
         yield check, x, y
 

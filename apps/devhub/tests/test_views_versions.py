@@ -73,10 +73,12 @@ class TestVersion(amo.tests.TestCase):
                     args=[self.addon.slug, self.version.all_files[0].id]))
 
     def test_upload_link_label_in_edit_nav(self):
-        url = reverse('devhub.versions.edit', args=(self.addon.slug, self.version.pk))
+        url = reverse('devhub.versions.edit',
+                      args=(self.addon.slug, self.version.pk))
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('.addon-status>.addon-upload>strong>a').text(), 'Upload a new file')
+        eq_(doc('.addon-status>.addon-upload>strong>a').text(),
+            'Upload a new file')
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
@@ -539,10 +541,10 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(ActivityLog.objects.count(), 2)
         log = ActivityLog.objects.order_by('created')[1]
         eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi deleted'
-                              ' from <a href="/en-US/firefox/addon/a3615'
-                              '/versions/2.1.072">Version 2.1.072</a> of <a '
-                              'href="/en-US/firefox/addon/a3615/">Delicious '
-                              'Bookmarks</a>.')
+                             ' from <a href="/en-US/firefox/addon/a3615'
+                             '/versions/2.1.072">Version 2.1.072</a> of <a '
+                             'href="/en-US/firefox/addon/a3615/">Delicious '
+                             'Bookmarks</a>.')
         eq_(r.status_code, 302)
         eq_(self.version.files.count(), 0)
         r = self.client.get(self.url)
@@ -582,8 +584,8 @@ class TestVersionEditFiles(TestVersionEdit):
         version = self.addon.current_version
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
 
-        File.objects.create(version=self.version,
-                    platform=amo.PLATFORM_MAC.id)
+        File.objects.create(
+            version=self.version, platform=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         # A test that we don't check the platform for deleted files.
@@ -676,8 +678,8 @@ class TestPlatformSearch(TestVersionEdit):
     def test_changing_platform_search_engine(self):
         dd = self.formset({'id': int(self.file.pk),
                            'platform': amo.PLATFORM_LINUX.id},
-                           prefix='files', releasenotes='xx',
-                           approvalnotes='yy')
+                          prefix='files', releasenotes='xx',
+                          approvalnotes='yy')
         response = self.client.post(self.url, dd)
         eq_(response.status_code, 302)
         file_ = Version.objects.no_cache().get(id=42352).files.all()[0]

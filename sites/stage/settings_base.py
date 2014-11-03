@@ -5,7 +5,8 @@ import os
 
 import dj_database_url
 
-from lib.settings_base import CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, HOSTNAME
+from lib.settings_base import (
+    CACHE_PREFIX, ES_INDEXES, KNOWN_PROXIES, LOGGING, HOSTNAME)
 
 from .. import splitstrip
 import private_base as private
@@ -55,7 +56,7 @@ SECRET_KEY = private.SECRET_KEY
 
 LOG_LEVEL = logging.DEBUG
 
-## Celery
+# Celery
 BROKER_URL = private.BROKER_URL
 
 CELERY_IGNORE_RESULT = True
@@ -92,7 +93,9 @@ CACHE_MACHINE_USE_REDIS = True
 
 RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
+RECAPTCHA_URL = (
+    'https://www.google.com/recaptcha/api/challenge?k=%s' %
+    RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -113,7 +116,8 @@ RESPONSYS_ID = private.RESPONSYS_ID
 CRONJOB_LOCK_PREFIX = 'marketplace-stage'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = "https://builder-addons.allizom.org/repackage/sdk-versions/"
+BUILDER_VERSIONS_URL = (
+    "https://builder-addons.allizom.org/repackage/sdk-versions/")
 
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
@@ -159,7 +163,8 @@ KNOWN_PROXIES += ['10.2.83.105',
 
 NEW_FEATURES = True
 
-PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
+PERF_TEST_URL = (
+    'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi')
 
 REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 

@@ -81,7 +81,7 @@ class VersionsRss(Feed):
         # L10n: This is the Title for this Version of the Addon
         return u'{name} {version} - {created}'.format(
             name=self.addon.name, version=version.version,
-                 created=datetime(version.created))
+            created=datetime(version.created))
 
     def item_description(self, version):
         """Description for particular version (<item><description>)"""

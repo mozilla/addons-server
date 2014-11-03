@@ -22,11 +22,11 @@ def _install_button(context, addon, version=None, show_contrib=True,
     app, lang = context['APP'], context['LANG']
     src = src or context.get('src') or request.GET.get('src', '')
     collection = ((collection.uuid if hasattr(collection, 'uuid') else None)
-                   or collection
-                   or context.get('collection')
-                   or request.GET.get('collection')
-                   or request.GET.get('collection_id')
-                   or request.GET.get('collection_uuid'))
+                  or collection
+                  or context.get('collection')
+                  or request.GET.get('collection')
+                  or request.GET.get('collection_id')
+                  or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version, show_contrib,
                                     show_warning, src, collection, size,
                                     detailed, impala)
@@ -156,7 +156,7 @@ class InstallButton(object):
         rv = {}
         addon = self.addon
         if (self._show_contrib and addon.takes_contributions
-            and addon.annoying == amo.CONTRIB_AFTER):
+                and addon.annoying == amo.CONTRIB_AFTER):
             rv['data-after'] = 'contrib'
         if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'
@@ -176,7 +176,7 @@ class InstallButton(object):
     def file_details(self, file):
         platform = file.platform
         if self.latest and (
-            self.addon.status == file.status == amo.STATUS_PUBLIC):
+                self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
         else:
             url = file.get_url_path(self.src)

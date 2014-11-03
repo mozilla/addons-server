@@ -3,7 +3,6 @@ import shutil
 import tempfile
 
 from django.conf import settings
-from django.core import mail
 
 import mock
 from nose.tools import eq_

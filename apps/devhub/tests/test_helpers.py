@@ -66,7 +66,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
     def test_with_items(self):
         s = render("""{{ dev_breadcrumbs(items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}'""",
-                  {'request': self.request})
+                   {'request': self.request})
         doc = pq(s)
         crumbs = doc('li>a')
         eq_(len(crumbs), 4)
@@ -95,7 +95,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
         addon.id = 1843
         addon.slug = 'fbug'
         addon.get_dev_url.return_value = reverse('devhub.addons.edit',
-                                                   args=[addon.slug])
+                                                 args=[addon.slug])
         s = render("""{{ dev_breadcrumbs(addon,
                                          items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}""",

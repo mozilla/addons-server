@@ -16,8 +16,6 @@ def share(request, obj, name, description):
     if not service:
         raise http.Http404()
 
-    is_webapp = hasattr(obj, 'is_webapp') and obj.is_webapp()
-
     form = ShareForm({
         'title': page_title({'request': request}, name),
         'url': u(obj.get_url_path()),

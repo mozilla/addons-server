@@ -2,14 +2,13 @@
 import json
 import urlparse
 
-from django.conf import settings
 from django.http import QueryDict
+from django.test.client import RequestFactory
 
+import mock
 from jingo.helpers import datetime as datetime_filter
-from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 from tower import strip_whitespace
 
 import amo
@@ -17,9 +16,10 @@ import amo.tests
 from amo.helpers import locale_url, numberfmt, urlparams
 from amo.urlresolvers import reverse
 from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
+from bandwagon.tasks import unindex_collections
 from search import views
 from search.utils import floor_version
-from search.views import DEFAULT_NUM_PERSONAS, version_sidebar
+from search.views import version_sidebar
 from tags.models import AddonTag, Tag
 from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
@@ -576,10 +576,10 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, dict(q='boop'))
         eq_(self.get_results(r), [])
 
-        AddonUser.objects.create(addon=a,
-            user=UserProfile.objects.create(username='boop'))
-        AddonUser.objects.create(addon=a,
-            user=UserProfile.objects.create(username='ponypet'))
+        AddonUser.objects.create(
+            addon=a, user=UserProfile.objects.create(username='boop'))
+        AddonUser.objects.create(
+            addon=a, user=UserProfile.objects.create(username='ponypet'))
         a.save()
         self.refresh()
         r = self.client.get(self.url, dict(q='garbage'))
@@ -680,7 +680,6 @@ class TestPersonaSearch(SearchBase):
         eq_(doc('.listing-footer').length, 0)
 
     def test_results_name_query(self):
-        raise SkipTest
         self._generate_personas()
 
         p1 = self.personas[0]
@@ -734,13 +733,13 @@ class TestPersonaSearch(SearchBase):
                 'Was not first result for %r. Results: %s' % (sort, results))
             eq_(first.persona.popularity, expected_popularity,
                 'Incorrect popularity for %r. Got %r. Expected %r.' % (
-                sort, first.persona.popularity, results))
+                    sort, first.persona.popularity, results))
             eq_(first.average_daily_users, expected_popularity,
                 'Incorrect users for %r. Got %r. Expected %r.' % (
-                sort, first.average_daily_users, results))
+                    sort, first.average_daily_users, results))
             eq_(first.weekly_downloads, expected_popularity,
                 'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
-                sort, first.weekly_downloads, results))
+                    sort, first.weekly_downloads, results))
 
     def test_results_appver_platform(self):
         self._generate_personas()
@@ -752,22 +751,15 @@ class TestPersonaSearch(SearchBase):
         self.url = self.url.replace('firefox', 'thunderbird')
         self.check_name_results({}, sorted(p.id for p in self.personas))
 
+    # Pretend we only want 2 personas per result page.
+    @mock.patch('search.views.DEFAULT_NUM_PERSONAS', 2)
     def test_pagination(self):
-        # TODO: Figure out why ES wonks out when we index a plethora of junk.
-        raise SkipTest
+        self._generate_personas()  # This creates 3 public personas.
 
-        # Generate some (22) personas to get us to two pages.
-        left_to_add = DEFAULT_NUM_PERSONAS - len(self.personas) + 1
-        for x in xrange(left_to_add):
-            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-            self.personas.append(addon)
-            self._addons.append(addon)
-        self.refresh()
-
-        # Page one should show 21 personas.
+        # Page one should show 2 personas.
         r = self.client.get(self.url, follow=True)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('.personas-grid li').length, DEFAULT_NUM_PERSONAS)
+        eq_(pq(r.content)('.personas-grid li').length, 2)
 
         # Page two should show 1 persona.
         r = self.client.get(self.url + '&page=2', follow=True)
@@ -777,25 +769,27 @@ class TestPersonaSearch(SearchBase):
 
 class TestCollectionSearch(SearchBase):
 
-    @classmethod
-    def setUpClass(cls):
-        # Set up the mapping.
-        super(TestCollectionSearch, cls).setUpClass()
-
     def setUp(self):
+        super(TestCollectionSearch, self).setUp()
         self.url = urlparams(reverse('search.search'), cat='collections')
+        self._collections = []
+
+    def tearDown(self):
+        unindex_collections([c.id for c in self._collections])
+        super(TestCollectionSearch, self).tearDown()
 
     def _generate(self):
         # Add some public collections.
         self.collections = []
         for x in xrange(3):
-            self.collections.append(
-                amo.tests.collection_factory(name='Collection %s' % x))
+            coll = amo.tests.collection_factory(name='Collection %s' % x)
+            self.collections.append(coll)
+            self._collections.append(coll)
 
         # Synchronized, favorites, and unlisted collections should be excluded.
         for type_ in (amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES):
-            amo.tests.collection_factory(type=type_)
-        amo.tests.collection_factory(listed=False)
+            self._collections.append(amo.tests.collection_factory(type=type_))
+        self._collections.append(amo.tests.collection_factory(listed=False))
 
         self.refresh()
 
@@ -889,7 +883,7 @@ class TestCollectionSearch(SearchBase):
 
     def test_heading(self):
         # One is a lonely number. But that's all we need.
-        amo.tests.collection_factory()
+        self._collections.append(amo.tests.collection_factory())
         self.check_heading()
 
     def test_results_blank_query(self):
@@ -903,8 +897,6 @@ class TestCollectionSearch(SearchBase):
         eq_(doc('.listing-footer').length, 0)
 
     def test_results_name_query(self):
-        raise SkipTest('Fails randomly (bug 1050754)')
-
         self._generate()
 
         c1 = self.collections[0]
@@ -942,30 +934,44 @@ class TestCollectionSearch(SearchBase):
     def test_results_popularity(self):
         collections = [
             ('Traveler Pack', 2000),
+        ]
+        webdev_collections = [
             ('Tools for Developer', 67),
             ('Web Developer', 250),
             ('Web Developer Necessities', 50),
             ('Web Pro', 200),
             ('Web Developer Pack', 242),
         ]
-        for name, subscribers in collections:
-            amo.tests.collection_factory(name=name, subscribers=subscribers,
-                                         weekly_subscribers=subscribers)
+        sorted_webdev_collections = sorted(
+            webdev_collections, key=lambda x: x[1], reverse=True)
+
+        # Create collections, in "random" order, with an additional collection
+        # that isn't relevant to our query.
+        for name, subscribers in (collections + webdev_collections):
+            self._collections.append(
+                amo.tests.collection_factory(
+                    name=name, subscribers=subscribers,
+                    weekly_subscribers=subscribers))
         self.refresh()
 
-        # "Web Developer Collection" should be the #1 most relevant result.
-        expected_name, expected_subscribers = collections[2]
+        # No sort = sort by weekly subscribers, 'all' = sort by subscribers.
         for sort in ('', 'all'):
-            r = self.client.get(urlparams(self.url, q='web developer',
-                                          sort=sort), follow=True)
+            if sort:
+                r = self.client.get(urlparams(self.url, q='web developer',
+                                              sort=sort), follow=True)
+            else:
+                r = self.client.get(urlparams(self.url, q='web developer'),
+                                    follow=True)
             eq_(r.status_code, 200)
             results = list(r.context['pager'].object_list)
-            first = results[0]
-            eq_(unicode(first.name), expected_name,
-                'Was not first result for %r. Results: %s' % (sort, results))
-            eq_(first.subscribers, expected_subscribers,
-                'Incorrect subscribers for %r. Got %r. Expected %r.' % (
-                sort, first.subscribers, results))
+            eq_(len(results), len(webdev_collections))
+            for coll, expected in zip(results, sorted_webdev_collections):
+                eq_(unicode(coll.name), expected[0],
+                    'Wrong order for sort %r. Got: %s, expected: %s' % (
+                        sort, results, sorted_webdev_collections))
+                eq_(coll.subscribers, expected[1],
+                    'Incorrect subscribers for %r. Got %s. Expected %s.' % (
+                    sort, coll.subscribers, expected[1]))
 
     def test_results_appver_platform(self):
         self._generate()
@@ -975,8 +981,10 @@ class TestCollectionSearch(SearchBase):
     def test_results_other_applications(self):
         tb_collection = amo.tests.collection_factory(
             application=amo.THUNDERBIRD.id)
+        self._collections.append(tb_collection)
         sm_collection = amo.tests.collection_factory(
             application=amo.SEAMONKEY.id)
+        self._collections.append(sm_collection)
         self.refresh()
 
         r = self.client.get(self.url)

@@ -12,15 +12,17 @@ from nose.tools import eq_
 import amo.tests
 import paypal
 
-good_response = ('responseEnvelope.timestamp='
-            '2011-01-28T06%3A16%3A33.259-08%3A00&responseEnvelope.ack=Success'
-            '&responseEnvelope.correlationId=7377e6ae1263c'
-            '&responseEnvelope.build=1655692'
-            '&payKey=AP-9GD76073HJ780401K&paymentExecStatus=CREATED')
+good_response = (
+    'responseEnvelope.timestamp='
+    '2011-01-28T06%3A16%3A33.259-08%3A00&responseEnvelope.ack=Success'
+    '&responseEnvelope.correlationId=7377e6ae1263c'
+    '&responseEnvelope.build=1655692'
+    '&payKey=AP-9GD76073HJ780401K&paymentExecStatus=CREATED')
 
-auth_error = ('error(0).errorId=520003'
-            '&error(0).message=Authentication+failed.+API+'
-            'credentials+are+incorrect.')
+auth_error = (
+    'error(0).errorId=520003'
+    '&error(0).message=Authentication+failed.+API+'
+    'credentials+are+incorrect.')
 
 other_error = ('error(0).errorId=520001&error(0).message=Foo')
 
@@ -118,7 +120,6 @@ class TestPayKey(amo.tests.TestCase):
         # Remove _ and run if you'd like to try unmocked.
         data = self.data.copy()
         data['email'] = 'andy_1318364497_biz@gmail.com'
-        #data['chains'] = ((13.4, 'wtf_1315341929_biz@gmail.com'),)
         return paypal.get_paykey(data)
 
     def _test_check_purchase_no_mock(self):

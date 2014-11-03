@@ -17,7 +17,7 @@ from amo.fields import DecimalCharField
 from amo.utils import get_locale_from_lang, send_mail_jinja
 from zadmin.models import DownloadSource
 
-from .db import StatsDictField
+from .db import LargeStatsDictField, StatsDictField
 
 
 def update_inc(initial, key, count):
@@ -72,44 +72,18 @@ class DownloadCount(StatsSearchMixin, models.Model):
         db_table = 'download_counts'
 
 
-# TODO: remove when the script is proven to work correctly.
-class DownloadCountTmp(StatsSearchMixin, models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-    sources = StatsDictField(db_column='src', null=True)
-
-    class Meta:
-        db_table = 'download_counts_tmp'
-
-
 class UpdateCount(StatsSearchMixin, models.Model):
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
     versions = StatsDictField(db_column='version', null=True)
     statuses = StatsDictField(db_column='status', null=True)
-    applications = StatsDictField(db_column='application', null=True)
+    applications = LargeStatsDictField(db_column='application', null=True)
     oses = StatsDictField(db_column='os', null=True)
     locales = StatsDictField(db_column='locale', null=True)
 
     class Meta:
         db_table = 'update_counts'
-
-
-# TODO: remove when the script is proven to work correctly.
-class UpdateCountTmp(StatsSearchMixin, models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-    versions = StatsDictField(db_column='version', null=True)
-    statuses = StatsDictField(db_column='status', null=True)
-    applications = StatsDictField(db_column='application', null=True)
-    oses = StatsDictField(db_column='os', null=True)
-    locales = StatsDictField(db_column='locale', null=True)
-
-    class Meta:
-        db_table = 'update_counts_tmp'
 
 
 class ThemeUpdateCountManager(models.Manager):
@@ -221,7 +195,6 @@ class Contribution(amo.models.ModelBase):
     suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
                                         nullify_invalid=True, null=True)
 
-
     class Meta:
         db_table = 'stats_contributions'
 
@@ -304,7 +277,7 @@ class Contribution(amo.models.ModelBase):
         url_parts[1] = locale.language
 
         subject = _('Thanks for contributing to {addon_name}').format(
-                    addon_name=self.addon.name)
+            addon_name=self.addon.name)
 
         # Send the email.
         send_mail_jinja(
@@ -313,7 +286,7 @@ class Contribution(amo.models.ModelBase):
                                            strip=True),
              'addon_name': self.addon.name,
              'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
-                                                 '/'.join(url_parts)),
+                                                  '/'.join(url_parts)),
              'domain': settings.DOMAIN},
             from_email, [to_email], fail_silently=True,
             perm_setting='dev_thanks')

@@ -219,14 +219,14 @@ def add(request, addon, template=None):
         raise PermissionDenied
     form = forms.ReviewForm(request.POST or None)
     if (request.method == 'POST' and form.is_valid() and
-        not request.POST.get('detailed')):
+            not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
         review = Review.objects.create(**details)
         if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
             rf = ReviewFlag(review=review,
-                        user_id=request.user.id,
-                        flag=ReviewFlag.OTHER,
-                        note='URLs')
+                            user_id=request.user.id,
+                            flag=ReviewFlag.OTHER,
+                            note='URLs')
             rf.save()
 
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
@@ -300,8 +300,9 @@ def spam(request):
         ids = spam.redis.smembers(reason)
         key = reason.split(':')[-1]
         buckets[key] = Review.objects.no_cache().filter(id__in=ids)
-    reviews = dict((review.addon_id, review) for bucket in buckets.values()
-                                             for review in bucket)
+    reviews = dict((review.addon_id, review)
+                   for bucket in buckets.values()
+                   for review in bucket)
     for addon in Addon.objects.no_cache().filter(id__in=reviews):
         reviews[addon.id].addon = addon
     return render(request, 'reviews/spam.html',

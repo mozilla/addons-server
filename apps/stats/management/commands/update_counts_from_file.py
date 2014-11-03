@@ -10,8 +10,7 @@ import commonware.log
 
 import amo
 from addons.models import Addon
-# TODO: use UpdateCount when the script is proven to work correctly.
-from stats.models import update_inc, UpdateCountTmp as UpdateCount
+from stats.models import update_inc, UpdateCount
 
 from . import get_date_from_file
 

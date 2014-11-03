@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 import mock
-from nose import SkipTest
 from nose.tools import eq_
 
 import amo.tests
@@ -65,19 +64,6 @@ def test_json_view_response_status():
     eq_(response.content, '{"msg": "error"}')
     eq_(response['Content-Type'], 'application/json')
     eq_(response.status_code, 202)
-
-
-@mock.patch('django.db.transaction.commit_on_success')
-def test_write(commit_on_success):
-    # Until we can figure out celery.delay issues.
-    raise SkipTest
-
-    @decorators.write
-    def some_func():
-        pass
-    assert not commit_on_success.called
-    some_func()
-    assert commit_on_success.called
 
 
 class TestTaskUser(amo.tests.TestCase):

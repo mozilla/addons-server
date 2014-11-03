@@ -138,7 +138,7 @@ def language_tools(request, category=None):
     addon_ids = addons.values_list('pk', flat=True)
     return render(request, 'browse/language_tools.html',
                   {'locales': list(locales), 'lang_addons': list(lang_addons),
-                   #pass keys separately so only IDs get cached
+                   # Pass keys separately so only IDs get cached.
                    'addons': addon_ids,
                    'search_cat': '%s,0' % amo.ADDON_DICT})
 
@@ -203,7 +203,7 @@ def es_extensions(request, category=None, template=None):
         category = get_object_or_404(q, slug=category)
 
     if ('sort' not in request.GET and not request.MOBILE
-        and category and category.count > 4):
+            and category and category.count > 4):
         return category_landing(request, category)
 
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
@@ -317,7 +317,7 @@ def personas_listing(request, category_slug=None):
             # Maybe it's a Complete Theme?
             try:
                 cat = Category.objects.filter(slug=category_slug,
-                    type=amo.ADDON_THEME)[0]
+                                              type=amo.ADDON_THEME)[0]
             except IndexError:
                 raise Http404
             else:
@@ -360,7 +360,8 @@ def personas(request, category=None, template=None):
     addons = amo.utils.paginate(request, filter_.qs, PAGINATE_PERSONAS_BY,
                                 count=count)
 
-    if ('sort' not in request.GET and ((request.MOBILE and not cat) or
+    if ('sort' not in request.GET and (
+            (request.MOBILE and not cat) or
             (not request.MOBILE and count > MIN_COUNT_FOR_LANDING))):
         template += 'category_landing.html'
     else:

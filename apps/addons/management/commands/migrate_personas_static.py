@@ -42,6 +42,7 @@ class Command(BaseCommand):
                         print "%s --> %s" % (persona, target)
                         shutil.copytree(persona, target)
                     except KeyError, e:
-                        print "Skipping unknown persona: Persona is on disk but not in the database: %s" % e
+                        print('Skipping unknown persona: Persona is on disk '
+                              'but not in the database: %s' % e)
                     except Exception, e:
-                        print "Unknown error: %s" % e
+                        print 'Unknown error: %s' % e

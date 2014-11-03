@@ -930,8 +930,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
         assert storage.exists(self.upload.path)
-        with storage.open(self.upload.path) as f:
-            uploaded_hash = hashlib.md5(f.read()).hexdigest()
+        with storage.open(self.upload.path) as file_:
+            uploaded_hash = hashlib.md5(file_.read()).hexdigest()
         version = Version.from_upload(self.upload, self.addon, platforms)
         assert not storage.exists(self.upload.path), (
             "Expected original upload to move but it still exists.")
@@ -944,12 +944,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 amo.PLATFORM_LINUX.shortname),
              u'delicious_bookmarks-0.1-fx-%s.xpi' % (
                  amo.PLATFORM_MAC.shortname)])
-        for file in files:
-            with storage.open(file.file_path) as f:
+        for file_ in files:
+            with storage.open(file_.file_path) as f:
                 eq_(uploaded_hash,
                     hashlib.md5(f.read()).hexdigest(),
-                    "md5 hash of %r does not match uploaded file" %
-                                                        file.file_path)
+                    "md5 hash of %r does not match uploaded file" % (
+                        file_.file_path))
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):

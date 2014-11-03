@@ -1,7 +1,7 @@
 """private_addons will be populated from puppet and placed in this directory"""
 
-from lib.settings_base import *
-from settings_base import *
+from lib.settings_base import *  # noqa
+from settings_base import *  # noqa
 
 import private_addons
 
@@ -17,17 +17,19 @@ MIRROR_URL = STATIC_URL + 'storage/public-staging'
 CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 
-ADDON_ICON_URL = STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
-PREVIEW_THUMBNAIL_URL = (STATIC_URL +
-        'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-PREVIEW_FULL_URL = (STATIC_URL +
-        'img/uploads/previews/full/%s/%d.png?modified=%d')
+ADDON_ICON_URL = (
+    STATIC_URL + 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
+PREVIEW_THUMBNAIL_URL = (
+    STATIC_URL + 'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
+PREVIEW_FULL_URL = (
+    STATIC_URL + 'img/uploads/previews/full/%s/%d.png?modified=%d')
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # paths for uploaded extensions
 USERPICS_URL = STATIC_URL + 'img/uploads/userpics/%s/%s/%s.png?modified=%d'
-COLLECTION_ICON_URL = STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s'
+COLLECTION_ICON_URL = (
+    STATIC_URL + '/img/uploads/collection_icons/%s/%s.png?m=%s')
 
 MEDIA_URL = STATIC_URL + 'media/'
 
@@ -43,7 +45,8 @@ SYSLOG_CSP = "http_app_addons_landfill_csp"
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = 'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay'
+PAYPAL_FLOW_URL = (
+    'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay')
 PAYPAL_API_URL = 'https://api-3t.sandbox.paypal.com/nvp'
 PAYPAL_EMAIL = private_addons.PAYPAL_EMAIL
 PAYPAL_APP_ID = private_addons.PAYPAL_APP_ID
@@ -54,10 +57,9 @@ PAYPAL_EMBEDDED_AUTH = {
     'PASSWORD': private_addons.PAYPAL_EMBEDDED_AUTH_PASSWORD,
     'SIGNATURE': private_addons.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
 }
-PAYPAL_CGI_AUTH = { 'USER': private_addons.PAYPAL_CGI_AUTH_USER,
-                    'PASSWORD': private_addons.PAYPAL_CGI_AUTH_PASSWORD,
-                    'SIGNATURE': private_addons.PAYPAL_CGI_AUTH_SIGNATURE,
-}
+PAYPAL_CGI_AUTH = {'USER': private_addons.PAYPAL_CGI_AUTH_USER,
+                   'PASSWORD': private_addons.PAYPAL_CGI_AUTH_PASSWORD,
+                   'SIGNATURE': private_addons.PAYPAL_CGI_AUTH_SIGNATURE}
 
 PAYPAL_CHAINS = (
     (30, private_addons.PAYPAL_CHAINS_EMAIL),

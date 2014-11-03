@@ -4,7 +4,8 @@ from versions.feeds import VersionsRss
 from addons.urls import ADDON_ID
 from . import views
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('^$', views.version_list, name='addons.versions'),
     url('^format:rss$', VersionsRss(), name='addons.versions.rss'),
     url('^(?P<version_num>[^/]+)$', views.version_detail,
@@ -13,7 +14,8 @@ urlpatterns = patterns('',
         name='addons.versions.update_info'),
 )
 
-download_patterns = patterns('',
+download_patterns = patterns(
+    '',
     # .* at the end to match filenames.
     # /file/:id/type:attachment
     url('^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',

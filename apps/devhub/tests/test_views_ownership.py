@@ -1,7 +1,6 @@
 """Tests related to the ``devhub.addons.owner`` view."""
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests

@@ -272,7 +272,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(addon.binary, True)
 
     @mock.patch('validator.validate.validate')
-    def test_validator_sets_binary_flag_for_extensions(self, v):
+    def test_validator_sets_tier(self, v):
         self.client.post(reverse('devhub.json_file_validation',
                                  args=[self.addon.slug, self.file.id]),
                          follow=True)
@@ -440,7 +440,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
                                  password='password')
         self.addon = Addon.objects.get(slug='addon-compat-results')
         self.result = ValidationResult.objects.get(
-                                        file__version__addon=self.addon)
+            file__version__addon=self.addon)
         self.job = self.result.validation_job
 
     def validate(self, expected_status=200):
@@ -453,7 +453,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
     def test_login_protected(self):
         self.client.logout()
         r = self.client.get(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
+                                    args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 302)
         r = self.client.post(reverse('devhub.json_bulk_compat_result',
                                      args=[self.addon.slug, self.result.id]))
@@ -470,7 +470,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
 
     def test_app_trans(self):
         r = self.client.get(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
+                                    args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         trans = json.loads(doc('.results').attr('data-app-trans'))
@@ -479,7 +479,7 @@ class TestCompatibilityResults(amo.tests.TestCase):
 
     def test_app_version_change_links(self):
         r = self.client.get(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
+                                    args=[self.addon.slug, self.result.id]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         trans = json.loads(doc('.results').attr('data-version-change-links'))
@@ -624,7 +624,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         doc = pq(res.content)
         data = {'application': amo.FIREFOX.id,
                 'csrfmiddlewaretoken':
-                            doc('input[name=csrfmiddlewaretoken]').val()}
+                    doc('input[name=csrfmiddlewaretoken]').val()}
         r = self.client.post(doc('#id_application').attr('data-url'),
                              data)
         eq_(r.status_code, 200)

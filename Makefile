@@ -1,4 +1,4 @@
-.PHONY: help docs test test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex
+.PHONY: help docs test test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -17,6 +17,7 @@ help:
 	@echo "  full_init         to init the code, the dependencies and the database"
 	@echo "  full_update       to update the code, the dependencies and the database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
+	@echo "  flake8            to run the flake8 linter"
 	@echo "Check the Makefile  to know exactly what each target is doing. If you see a "
 
 docs:
@@ -70,3 +71,6 @@ full_update: update_code update_deps update_db update_assets
 
 reindex:
 	python manage.py reindex $(ARGS)
+
+flake8:
+	flake8 --ignore=E265 --exclude=services,wsgi,docs,node_modules,build*.py .

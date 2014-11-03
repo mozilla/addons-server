@@ -34,8 +34,8 @@ admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 class PasswordMixin:
     min_length = 8
-    error_msg = {'min_length': _lazy('Must be %s characters or more.')
-                               % min_length}
+    error_msg = {
+        'min_length': _lazy('Must be %s characters or more.') % min_length}
 
     @classmethod
     def widget(cls, **kw):
@@ -110,7 +110,8 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
 
     def save(self, **kw):
         if not self.users_cache:
-            log.info("Unknown email used for password reset: {email}".format(**self.cleaned_data))
+            log.info("Unknown email used for password reset: {email}".format(
+                **self.cleaned_data))
             return
         for user in self.users_cache:
             log.info(u'Password reset email sent for user (%s)' % user)
@@ -131,7 +132,7 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
         except SMTPException, e:
             log.error("Failed to send mail for (%s): %s" % (user, e))
 
-    #copypaste from superclass
+    # Copypaste from superclass.
     def base_save(
             self, domain_override=None,
             subject_template_name='registration/password_reset_subject.txt',
@@ -227,7 +228,7 @@ class UserDeleteForm(forms.Form):
             # This is tampering because the form isn't shown on the page if the
             # user is a developer
             log.warning(u'[Tampering] Attempt to delete developer account (%s)'
-                                                          % self.request.user)
+                        % self.request.user)
             raise forms.ValidationError("")
 
 
@@ -238,8 +239,10 @@ class UsernameMixin:
         # All-digits usernames are disallowed since they can be
         # confused for user IDs in URLs. (See bug 862121.)
         if name.isdigit():
-            raise forms.ValidationError(_('Usernames cannot contain only digits.'))
-        slug_validator(name, lower=False,
+            raise forms.ValidationError(
+                _('Usernames cannot contain only digits.'))
+        slug_validator(
+            name, lower=False,
             message=_('Enter a valid username consisting of letters, numbers, '
                       'underscores or hyphens.'))
         if BlacklistedName.blocked(name):
@@ -329,8 +332,9 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
 
 
 class UserEditForm(UserRegisterForm, PasswordMixin):
-    oldpassword = forms.CharField(max_length=255, required=False,
-                            widget=forms.PasswordInput(render_value=False))
+    oldpassword = forms.CharField(
+        max_length=255, required=False,
+        widget=forms.PasswordInput(render_value=False))
     password = forms.CharField(max_length=255, required=False,
                                min_length=PasswordMixin.min_length,
                                error_messages=PasswordMixin.error_msg,
@@ -340,10 +344,10 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     notifications = forms.MultipleChoiceField(
-            choices=[],
-            widget=NotificationsSelectMultiple,
-            initial=email.NOTIFICATIONS_DEFAULT,
-            required=False)
+        choices=[],
+        widget=NotificationsSelectMultiple,
+        initial=email.NOTIFICATIONS_DEFAULT,
+        required=False)
 
     lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
                                   choices=LOCALES)
@@ -412,12 +416,12 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         if photo.content_type not in ('image/png', 'image/jpeg'):
             raise forms.ValidationError(
-                    _('Images must be either PNG or JPG.'))
+                _('Images must be either PNG or JPG.'))
 
         if photo.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise forms.ValidationError(
-                    _('Please use images smaller than %dMB.' %
-                      (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1)))
+                _('Please use images smaller than %dMB.' %
+                  (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1)))
 
         return photo
 
@@ -454,8 +458,8 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         for (i, n) in email.NOTIFICATIONS_BY_ID.items():
             enabled = n.mandatory or (str(i) in data['notifications'])
-            UserNotification.update_or_create(user=u, notification_id=i,
-                    update={'enabled': enabled})
+            UserNotification.update_or_create(
+                user=u, notification_id=i, update={'enabled': enabled})
 
         log.debug(u'User (%s) updated their profile' % u)
 
@@ -474,14 +478,14 @@ class BaseAdminUserEditForm(object):
     def changes(self):
         """A dictionary of changed fields, old, new. Hides password."""
         details = dict([(k, (self.initial[k], self.cleaned_data[k]))
-                           for k in self.changed_fields()])
+                        for k in self.changed_fields()])
         if 'password' in self.changed_data:
             details['password'] = ['****', '****']
         return details
 
     def clean_anonymize(self):
         if (self.cleaned_data['anonymize'] and
-            self.changed_fields() != set(['anonymize'])):
+                self.changed_fields() != set(['anonymize'])):
             raise forms.ValidationError(_('To anonymize, enter a reason for'
                                           ' the change but do not change any'
                                           ' other field.'))
@@ -537,7 +541,7 @@ class BlacklistedNameAddForm(forms.Form):
 class BlacklistedEmailDomainAddForm(forms.Form):
     """Form for adding blacklisted user e-mail domains in bulk fashion."""
     domains = forms.CharField(
-            widget=forms.Textarea(attrs={'cols': 40, 'rows': 16}))
+        widget=forms.Textarea(attrs={'cols': 40, 'rows': 16}))
 
     def clean(self):
         super(BlacklistedEmailDomainAddForm, self).clean()

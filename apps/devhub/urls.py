@@ -3,7 +3,6 @@ from django.shortcuts import redirect
 
 from lib.misc.urlconf_decorator import decorate
 
-import amo
 from addons.urls import ADDON_ID
 from amo.decorators import write
 
@@ -13,7 +12,8 @@ PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 
 
 # These will all start with /addon/<addon_id>/submit/
-submit_patterns = patterns('',
+submit_patterns = patterns(
+    '',
     url('^$', lambda r, addon_id: redirect('devhub.submit.7', addon_id)),
     url('^3$', views.submit_describe, name='devhub.submit.3'),
     url('^4$', views.submit_media, name='devhub.submit.4'),
@@ -25,7 +25,8 @@ submit_patterns = patterns('',
 
 
 # These will all start with /theme/<slug>/
-theme_detail_patterns = patterns('',
+theme_detail_patterns = patterns(
+    '',
     url('^$', lambda r,
         addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
     url('^delete$', views.delete, name='devhub.themes.delete'),
@@ -39,7 +40,8 @@ theme_detail_patterns = patterns('',
 
 
 # These will all start with /addon/<addon_id>/
-detail_patterns = patterns('',
+detail_patterns = patterns(
+    '',
     # Redirect to the edit page from the base.
     url('^$', lambda r, addon_id: redirect('devhub.addons.edit', addon_id,
                                            permanent=True)),
@@ -102,7 +104,8 @@ detail_patterns = patterns('',
 )
 
 # These will all start with /ajax/addon/<addon_id>/
-ajax_patterns = patterns('',
+ajax_patterns = patterns(
+    '',
     url('^dependencies$', views.ajax_dependencies,
         name='devhub.ajax.dependencies'),
     url('^versions/compatibility/status$',
@@ -118,7 +121,8 @@ ajax_patterns = patterns('',
         views.file_perf_tests_start, name='devhub.file_perf_tests_start'),
 )
 
-packager_patterns = patterns('',
+packager_patterns = patterns(
+    '',
     url('^$', views.package_addon, name='devhub.package_addon'),
     url('^download/%s.zip$' % PACKAGE_NAME, views.package_addon_download,
         name='devhub.package_addon_download'),
@@ -128,7 +132,8 @@ packager_patterns = patterns('',
         name='devhub.package_addon_success'),
 )
 
-redirect_patterns = patterns('',
+redirect_patterns = patterns(
+    '',
     ('^addon/edit/(\d+)',
      lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
     ('^addon/status/(\d+)',
@@ -139,7 +144,8 @@ redirect_patterns = patterns('',
 )
 
 
-urlpatterns = decorate(write, patterns('',
+urlpatterns = decorate(write, patterns(
+    '',
     url('^$', views.index, name='devhub.index'),
     url('', include(redirect_patterns)),
 

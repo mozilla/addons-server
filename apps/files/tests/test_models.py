@@ -151,14 +151,14 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         fo.save()
         assert not storage.exists(fo.file_path), 'file not hidden'
         assert not storage.exists(fo.mirror_file_path), (
-                        'file not removed from mirror')
+            'file not removed from mirror')
 
         fo = File.objects.get(pk=67442)
         fo.status = amo.STATUS_PUBLIC
         fo.save()
         assert storage.exists(fo.file_path), 'file not un-hidden'
         assert storage.exists(fo.mirror_file_path), (
-                        'file not copied back to mirror')
+            'file not copied back to mirror')
 
     @mock.patch('files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
@@ -642,8 +642,7 @@ class TestFileUpload(UploadTest):
                 "message": "Some warning",
                 "type": "warning",
                 "id": [],
-                "uid": "bb9948b604b111e09dfdc42c0301fe38"
-                }] * 12,
+                "uid": "bb9948b604b111e09dfdc42c0301fe38"}] * 12,
             "metadata": {}
         }
         upload = FileUpload(validation=json.dumps(data))

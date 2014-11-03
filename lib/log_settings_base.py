@@ -3,7 +3,6 @@ import logging.handlers
 
 from django.conf import settings
 
-from raven.contrib.django.handlers import SentryHandler
 import commonware.log
 import dictconfig
 

@@ -43,7 +43,8 @@ class Command(BaseCommand):
 
             all_ac = (CollectionAddon.objects.filter(user_id=user_id)
                       .exclude(collection__type=amo.COLLECTION_FAVORITES)
-                      .filter(created__gt='2013-01-01', created__lt='2013-04-13'))
+                      .filter(created__gt='2013-01-01',
+                              created__lt='2013-04-13'))
             if not all_ac.exists():
                 print '[OK] User #%s has the correct favourites' % user_id
                 continue
@@ -59,7 +60,7 @@ class Command(BaseCommand):
                     except IntegrityError:
                         ac.delete()
                         print('[OK] Removed CollectionAddon #%s - already '
-                             'fave (from Collection #%s)' % (ac.id, faves_id))
+                              'fave (from Collection #%s)' % (ac.id, faves_id))
                         unchanged += 1
                     else:
                         print('[OK] Changed CollectionAddon #%s (from '
@@ -68,7 +69,7 @@ class Command(BaseCommand):
                         changed += 1
                 else:
                     print('[OK] Skipped CollectionAddon #%s (from Collection '
-                         '#%s)' % (ac.id, faves_id))
+                          '#%s)' % (ac.id, faves_id))
                     unchanged += 1
 
         print '\nDone. Total time: %s seconds' % (time() - t_start)

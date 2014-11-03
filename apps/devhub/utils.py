@@ -59,8 +59,7 @@ def limit_validation_results(validation, is_compatibility=False):
                               'After addressing the visible messages, '
                               "you'll be able to see the others.")
                             % (leftover_count,)),
-                'compatibility_type': None,
-                })
+                'compatibility_type': None})
     if is_compatibility:
         compat = validation['compatibility_summary']
         for k in ('errors', 'warnings', 'notices'):

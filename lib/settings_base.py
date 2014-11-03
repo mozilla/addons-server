@@ -364,7 +364,7 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'lib.urls_base'
 
 INSTALLED_APPS = (
-    #import ordering issues ahoy
+    # Import ordering issues ahoy.
     'djcelery',
 
     'amo',  # amo comes first so it always takes precedence.
@@ -989,7 +989,7 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
                       'AddonReviews#Step_2:_Automatic_validation')
 
 
-## Celery
+# Celery
 BROKER_URL = 'amqp://olympia:olympia@localhost:5672/olympia'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
@@ -1058,7 +1058,7 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 # a separate, shorter timeout for validation tasks.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-## Fixture Magic
+# Fixture Magic
 CUSTOM_DUMPS = {
     'addon': {  # ./manage.py custom_dump addon id
         'primary': 'addons.addon',  # This is our reference model.
@@ -1077,11 +1077,10 @@ CUSTOM_DUMPS = {
     }
 }
 
-## Hera (http://github.com/clouserw/hera)
+# Hera (http://github.com/clouserw/hera)
 HERA = [{'USERNAME': '',
-        'PASSWORD': '',
-        'LOCATION': '',
-       }]
+         'PASSWORD': '',
+         'LOCATION': ''}]
 
 # Logging
 LOG_LEVEL = logging.DEBUG
@@ -1117,21 +1116,17 @@ HEKA_CONF = {
         'cef': ('heka_cef.cef_plugin:config_plugin', {
             'syslog_facility': 'LOCAL4',
             'syslog_ident': 'http_app_addons_marketplace',
-            'syslog_priority': 'ALERT',
-            }),
+            'syslog_priority': 'ALERT'}),
 
         # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
         'raven': ('heka_raven.raven_plugin:config_plugin',
-            {'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
-        },
+                  {'dsn': 'udp://username:password@127.0.0.1:9000/2'})},
     'stream': {
         'class': 'heka.streams.UdpStream',
         'host': '127.0.0.1',
-        'port': 5565,
-    },
-}
+        'port': 5565}}
 
 HEKA = client_from_dict_config(HEKA_CONF)
 
@@ -1276,7 +1271,7 @@ BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
                         'sdk-versions/')
 
-## elasticsearch
+# elasticsearch
 ES_HOSTS = ['127.0.0.1:9200']
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {

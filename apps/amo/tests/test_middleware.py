@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django import http, test
 from django.conf import settings
+from django.test.client import RequestFactory
 
 from commonware.middleware import ScrubRequestOnException
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo.tests
 from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
@@ -42,10 +42,11 @@ class TestMiddleware(amo.tests.TestCase):
 
 
 def test_redirect_with_unicode_get():
-    response = test.Client().get('/da/firefox/addon/5457?from=/da/firefox/'
-            'addon/5457%3Fadvancedsearch%3D1&lang=ja&utm_source=Google+%E3'
-            '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
-            'E3%82%BA')
+    response = test.Client().get(
+        '/da/firefox/addon/5457?from=/da/firefox/'
+        'addon/5457%3Fadvancedsearch%3D1&lang=ja&utm_source=Google+%E3'
+        '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
+        'E3%82%BA')
     eq_(response.status_code, 301)
 
 

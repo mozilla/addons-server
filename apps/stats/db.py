@@ -49,3 +49,11 @@ class StatsDictField(models.TextField):
 
     def value_to_string(self, obj):
         return str(obj)
+
+
+class LargeStatsDictField(StatsDictField):
+
+    description = 'Same as StatsDictField with a MEDIUMTEXT MySQL field.'
+
+    def db_type(self, connection):
+        return 'mediumtext'

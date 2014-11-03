@@ -28,7 +28,6 @@ class InstallTests(TestCase):
         r = self.client.get(urlparams(url, addon_id='prism'))
         assert 'prompted to install Prism for Firefox' in r.content
 
-
     def test_redirect(self):
         url = reverse('api.install')
         r = self.client.get(urlparams(url, addon_id=424))
@@ -47,5 +46,10 @@ class InstallTests(TestCase):
 
     def test_xss(self):
         url = reverse('api.install')
-        r = self.client.get(url + '?' + 'addon_id=252539%3C/script%3E%3CBODY%20ONLOAD=alert%28%27XSS%27%29%3E&addon_name=F1%20by%20Mozilla%20Labs&src=external-f1home')
+        url = '{url}?{path}'.format(
+            url=url,
+            path='addon_id=252539%3C/script%3E%3CBODY%20ONLOAD=alert%28%27XSS'
+                 '%27%29%3E&addon_name=F1%20by%20Mozilla%20Labs'
+                 '&src=external-f1home')
+        r = self.client.get(url)
         assert '<BODY' not in r.content

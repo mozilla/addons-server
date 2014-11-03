@@ -80,7 +80,7 @@ class CEFLogger:
                             environ, **kwargs)
         else:
             return _log_cef('%s %s' % (self.msg_prefix, msg),
-                     severity, environ, **kwargs)
+                            severity, environ, **kwargs)
 
 
 class ReceiptCEFLogger(CEFLogger):

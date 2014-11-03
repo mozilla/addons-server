@@ -145,7 +145,7 @@ class TestFlag(ReviewTest):
         response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
         eq_(response.status_code, 200)
         eq_(response.content, '{"msg": "Thanks; this review has been '
-                                       'flagged for editor approval."}')
+                              'flagged for editor approval."}')
         eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
         eq_(Review.objects.filter(editorreview=True).count(), 1)
 
@@ -350,8 +350,8 @@ class TestCreate(ReviewTest):
             note reviews that contain URL like patterns for editorial review
         """
         for body in ['url http://example.com', 'address 127.0.0.1',
-                'url https://example.com/foo/bar', 'host example.org',
-                'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
+                     'url https://example.com/foo/bar', 'host example.org',
+                     'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
             self.client.post(self.add, {'body': body, 'rating': 2})
             ff = Review.objects.filter(addon=self.addon)
             rf = ReviewFlag.objects.filter(review=ff[0])

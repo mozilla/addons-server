@@ -23,8 +23,9 @@ def static_url(request):
 
 def i18n(request):
     return {'LANGUAGES': settings.LANGUAGES,
-            'LANG': settings.LANGUAGE_URL_MAP.get(translation.get_language())
-                    or translation.get_language(),
+            'LANG': (
+                settings.LANGUAGE_URL_MAP.get(translation.get_language())
+                or translation.get_language()),
             'DIR': 'rtl' if translation.get_language_bidi() else 'ltr',
             }
 
@@ -103,7 +104,7 @@ def global_settings(request):
             tools_links.append({'text': _('Localizer Tools'),
                                 'href': '/localizers'})
         if (acl.action_allowed(request, 'Admin', '%') or
-            acl.action_allowed(request, 'AdminTools', 'View')):
+                acl.action_allowed(request, 'AdminTools', 'View')):
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 

@@ -9,8 +9,7 @@ from django.core.management.base import BaseCommand, CommandError
 import commonware.log
 
 from addons.models import File
-# TODO: use DownloadCount when the script is proven to work correctly.
-from stats.models import update_inc, DownloadCountTmp as DownloadCount
+from stats.models import update_inc, DownloadCount
 from zadmin.models import DownloadSource
 
 from . import get_date_from_file
