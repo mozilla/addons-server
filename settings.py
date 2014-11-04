@@ -13,6 +13,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 # These apps are great during development.
 INSTALLED_APPS += (
     'django_extensions',
+    'landfill',
 )
 
 # Using locmem deadlocks in certain scenarios. This should all be fixed,

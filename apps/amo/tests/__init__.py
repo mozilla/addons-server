@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import math
 import os
 import random
@@ -25,7 +24,6 @@ import tower
 from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
-from PIL import Image, ImageColor
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from test_utils import TestCase as TestUtilsTestCase
@@ -38,10 +36,9 @@ import amo
 import amo.search
 import stats.search
 from access.models import Group, GroupUser
-from addons.models import (Addon, Persona, Review,
+from addons.models import (Addon, Persona,
                            update_search_index as addon_update_search_index)
 from addons.tasks import unindex_addons
-from amo.helpers import user_media_path
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
 from applications.models import AppVersion
 from bandwagon.models import Collection
@@ -577,7 +574,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     name = kw.pop('name', u'Addon %s' % unicode(uuid.uuid4()).replace('-', ''))
 
     kwargs = {
-        # Set artificially the status to STATUS_PUBLIC for now, , the real
+        # Set artificially the status to STATUS_PUBLIC for now, the real
         # status will be set a few lines below, after the update_version()
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
@@ -618,47 +615,6 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         # erased at post_save by addons.models.watch_status()
         version.save()
     return a
-
-
-def theme_images_factory(theme, placement, hash_):
-    """
-    Generates 2 images, one in the temp folder and the other in the
-    user-media one. Both are needed to generate previews for themes.
-
-    """
-    color = random.choice(ImageColor.colormap.keys())
-    image = Image.new('RGB', (3000, 200), color)
-    tmp_path = os.path.join(settings.TMP_PATH,
-                            'persona_{placement}'.format(placement=placement))
-    if not os.path.exists(tmp_path):
-        os.makedirs(tmp_path)
-    tmp_loc = os.path.join(tmp_path, hash_)
-    image.save(tmp_loc, 'jpeg')
-    media_path = os.path.join(user_media_path('addons'), str(theme.id))
-    if not os.path.exists(media_path):
-        os.makedirs(media_path)
-    media_loc = os.path.join(media_path, hash_)
-    image.save(media_loc, 'jpeg')
-
-
-def ratings_factory(addon, num):
-    for n in range(1, num + 1):
-        email = 'testuser{n}@example.com'.format(n=n)
-        user, _created = UserProfile.objects.get_or_create(
-            username=email, email=email, display_name=email)
-        Review.objects.create(
-            addon=addon, user=user, rating=random.randrange(0, 6),
-            title='Test Review {n}'.format(n=n), body='review text')
-
-
-def translations_factory(item):
-    fr_prefix = u'(français) '
-    es_prefix = u'(español) '
-    oldname = unicode(item.name)
-    item.name = {'en': oldname,
-                 'fr': fr_prefix + oldname,
-                 'es': es_prefix + oldname}
-    item.save()
 
 
 def collection_factory(**kw):
