@@ -402,7 +402,7 @@ if (addon_ac.length) {
         if (!$("#addons-list input[value=" + item.id + "]").length) {
             return $('<li>')
                 .data('item.autocomplete', item)
-                .append('<a><img src="' + item.icons['32'] + '" alt="">' + item.name + '</a>')
+                .append('<a><img src="' + item.icons['32'] + '" alt="">' + _.escape(item.name) + '</a>')
                 .appendTo(ul);
         }
     };
