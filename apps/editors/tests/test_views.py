@@ -2296,31 +2296,12 @@ class TestLeaderboard(EditorTest):
              users[0].display_name])
 
 
-class TestXssOnAddonName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'users/test_backends', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = (
-            "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;")
-        self.addon.name = self.name
-        self.addon.save()
-        u = UserProfile.objects.get(email='del@icio.us')
-        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
-                                 user=u)
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_editors_abuse_report_page(self):
         url = reverse('editors.abuse_reports', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_editors_review_page(self):
         url = reverse('editors.review', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
