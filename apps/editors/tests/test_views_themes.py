@@ -698,3 +698,21 @@ class TestDashboard(amo.tests.TestCase):
         eq_(doc('.editor-stats-table:first-child td.int').text(), '3')
         # Reviews monthly.
         eq_(doc('.editor-stats-table:last-child td.int').text(), '3')
+
+
+class TestXssOnThemeName(amo.tests.TestXss):
+
+    def setUp(self):
+        super(TestXssOnThemeName, self).setUp()
+        self.theme = addon_factory(type=amo.ADDON_PERSONA,
+                                   status=amo.STATUS_PENDING,
+                                   name=self.name)
+        persona = self.theme.persona
+        persona.persona_id = 0
+        persona.header = 'header'
+        persona.footer = 'footer'
+        persona.save()
+
+    def test_queue_page(self):
+        url = reverse('editors.themes.single', args=[self.theme.slug])
+        self.assertNameAndNoXSS(url)

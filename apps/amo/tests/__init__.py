@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import math
 import os
 import random
@@ -789,3 +790,24 @@ class ESTestCase(TestCase):
             settings.ES_INDEXES[index],
             body={"query": {"match_all": {}}}
         )
+
+
+class TestXss(TestCase):
+    fixtures = ['base/addon_3615', 'users/test_backends', ]
+
+    def setUp(self):
+        self.addon = Addon.objects.get(id=3615)
+        self.name = "<script>alert('hé')</script>"
+        self.escaped = (
+            "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;")
+        self.addon.name = self.name
+        self.addon.save()
+        u = UserProfile.objects.get(email='del@icio.us')
+        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
+                                 user=u)
+        self.client.login(username='del@icio.us', password='password')
+
+    def assertNameAndNoXSS(self, url):
+        response = self.client.get(url)
+        assert self.name not in response.content
+        assert self.escaped in response.content
