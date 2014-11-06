@@ -10,7 +10,6 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
-from addons.models import Addon
 from bandwagon.models import Collection
 from stats import views, tasks
 from stats import search
