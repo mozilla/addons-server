@@ -9,7 +9,7 @@ from django.core import management
 
 import amo.search
 import amo.tests
-from addons.models import Persona
+from addons.models import Addon, Persona
 from stats.management.commands.download_counts_from_file import is_valid_source
 from stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
 from zadmin.models import DownloadSource
@@ -18,27 +18,35 @@ from zadmin.models import DownloadSource
 hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
 
 
-class TestADICommand(amo.tests.TestCase):
-    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona')
-
-    def setUp(self):
-        self.clean_up_files()
-        shutil.copytree(os.path.join(hive_folder, 'src'),
-                        os.path.join(hive_folder, '2014-07-10'))
-
-    def tearDown(self):
-        self.clean_up_files()
+class FixturesFolderMixin(object):
+    # You have to define these two values in your subclasses.
+    date = 'YYYY-MM-DD'
+    source_folder = 'dummy'
 
     def clean_up_files(self):
-        dirpath = os.path.join(hive_folder, '2014-07-10')
+        dirpath = os.path.join(hive_folder, self.date)
         if os.path.isdir(dirpath):
             for name in os.listdir(dirpath):
                 os.unlink(os.path.join(dirpath, name))
             os.rmdir(dirpath)
 
+    def setUp(self):
+        self.clean_up_files()
+        shutil.copytree(os.path.join(hive_folder, self.source_folder),
+                        os.path.join(hive_folder, self.date))
+
+    def tearDown(self):
+        self.clean_up_files()
+
+
+class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
+    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona')
+    date = '2014-07-10'
+    source_folder = 'src'
+
     def test_update_counts_from_file(self):
         management.call_command('update_counts_from_file', hive_folder,
-                                date='2014-07-10')
+                                date=self.date)
         eq_(UpdateCount.objects.all().count(), 1)
         update_count = UpdateCount.objects.last()
         eq_(update_count.count, 5)
@@ -55,7 +63,7 @@ class TestADICommand(amo.tests.TestCase):
         DownloadSource.objects.create(name='coll', type='prefix')
 
         management.call_command('download_counts_from_file', hive_folder,
-                                date='2014-07-10')
+                                date=self.date)
         eq_(DownloadCount.objects.all().count(), 1)
         download_count = DownloadCount.objects.last()
         eq_(download_count.count, 2)
@@ -64,7 +72,7 @@ class TestADICommand(amo.tests.TestCase):
 
     def test_theme_update_counts_from_file(self):
         management.call_command('theme_update_counts_from_file', hive_folder,
-                                date='2014-07-10')
+                                date=self.date)
         eq_(ThemeUpdateCount.objects.all().count(), 2)
         eq_(ThemeUpdateCount.objects.get(addon_id=3615).count, 2)
         # Persona 813 has addon id 15663: we need the count to be the sum of
@@ -118,3 +126,27 @@ class TestADICommand(amo.tests.TestCase):
         assert not is_valid_source('ba',
                                    fulls=['foo', 'bar'],
                                    prefixes=['baz', 'cruux'])
+
+
+class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
+    date = '2014-11-06'
+    source_folder = '1093699'
+
+    def test_update_counts_from_file_bug_1093699(self):
+        Addon.objects.create(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
+                             type=amo.ADDON_THEME)
+        management.call_command('update_counts_from_file', hive_folder,
+                                date=self.date)
+        eq_(UpdateCount.objects.all().count(), 1)
+        uc = UpdateCount.objects.last()
+        eq_(uc.count, 1320)
+        eq_(uc.date, date(2014, 11, 06))
+        eq_(uc.versions,
+            {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
+             u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})
+        eq_(uc.statuses,
+            {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58})
+        eq_(uc.oses, {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84})
+        eq_(uc.locales[u'es_es'], 20)
+        eq_(uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'],
+            {u'2.30': 3})

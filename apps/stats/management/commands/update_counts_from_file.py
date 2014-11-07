@@ -82,7 +82,7 @@ class Command(BaseCommand):
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
         guids_to_addon = (dict(Addon.objects.exclude(guid__isnull=True)
-                                            .filter(type=amo.ADDON_EXTENSION)
+                                            .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
 
         index = -1
@@ -106,6 +106,7 @@ class Command(BaseCommand):
                     else:
                         day, addon_guid, data, count, update_type = splitted
 
+                    addon_guid = addon_guid.strip()
                     if update_type:
                         update_type.strip()
 
@@ -133,10 +134,12 @@ class Command(BaseCommand):
                                   update_type)
                         continue
 
-                    # Does this addon exit?
-                    if addon_guid.strip() and addon_guid in guids_to_addon:
+                    # Does this addon exist?
+                    if addon_guid and addon_guid in guids_to_addon:
                         addon_id = guids_to_addon[addon_guid]
                     else:
+                        log.debug("Addon {guid} doesn't exist."
+                                  .format(guid=addon_guid.strip()))
                         continue
 
                     # Memoize the UpdateCount.
