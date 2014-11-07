@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-27 11:17+0000\n"
+"PO-Revision-Date: 2014-11-07 18:40+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1414408650.0\n"
+"X-POOTLE-MTIME: 1415385601.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -2955,7 +2955,7 @@ msgstr "Extensões por Nome"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por Downloads semanais"
+msgstr "Extensões mais baixadas semanalmente"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
