@@ -544,9 +544,6 @@ def profile(request, user):
         addons = user.addons.reviewed().filter(
             addonuser__user=user, addonuser__listed=True)
 
-        # TODO: temporary, remove this when 1020465 has landed.
-        addons = addons.exclude(type=amo.ADDON_WEBAPP)
-
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
             '-persona__popularity')
         if personas.count() > THEMES_LIMIT:
@@ -557,10 +554,7 @@ def profile(request, user):
             '-weekly_downloads')
         addons = amo.utils.paginate(request, addons, 5)
 
-    reviews = amo.utils.paginate(
-        request,
-        # TODO: temporary, remove the exclude when 1020465 has landed.
-        user.reviews.all().exclude(addon__type=amo.ADDON_WEBAPP))
+    reviews = amo.utils.paginate(request, user.reviews.all())
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,

@@ -129,13 +129,6 @@ var purchases = {
         if ($install.hasClass('premium')) {
             $install.removeClass('premium');
             $button.removeClass('premium');
-            if ($install.hasClass('webapp')) {
-                $button.unbind().attr('href', '#');
-                $button.find('span').text(gettext('Install App'));
-                $install.attr('data-manifest-url',
-                              $('.trigger_app_install', $modalish).attr('data-manifest-url'));
-                $install.removeAttr('data-start-purchase');
-            }
             $install.installButton();
         }
     },

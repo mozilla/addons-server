@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
-from amo.helpers import absolutify, shared_url, url
+from amo import helpers
 
 from addons.models import Addon, Review
 
@@ -14,13 +14,10 @@ class ReviewsRss(Feed):
 
     addon = None
 
-    def get_object(self, request, addon_id=None, app_slug=None):
+    def get_object(self, request, addon_id=None):
         """Get the Addon for which we are about to output
            the RSS feed of it Review"""
-        if app_slug:
-            self.addon = get_object_or_404(Addon, app_slug=app_slug)
-        else:
-            self.addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
+        self.addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
         return self.addon
 
     def title(self, addon):
@@ -29,7 +26,7 @@ class ReviewsRss(Feed):
 
     def link(self, addon):
         """Link for the feed"""
-        return absolutify(url('home'))
+        return helpers.absolutify(helpers.url('home'))
 
     def description(self, addon):
         """Description for the feed"""
@@ -42,8 +39,9 @@ class ReviewsRss(Feed):
 
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
-        return absolutify(shared_url('reviews.detail', self.addon,
-                                     review.id))
+        return helpers.absolutify(helpers.url('addons.reviews.detail',
+                                              self.addon.slug,
+                                              review.id))
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""
@@ -62,7 +60,8 @@ class ReviewsRss(Feed):
 
     def item_guid(self, review):
         """Guid for a particuar review  (<item><guid>)"""
-        guid_url = absolutify(shared_url('reviews.list', self.addon))
+        guid_url = helpers.absolutify(helpers.url('addons.reviews.list',
+                                                  self.addon.slug))
         return guid_url + urllib.quote(str(review.id))
 
     def item_author_name(self, review):

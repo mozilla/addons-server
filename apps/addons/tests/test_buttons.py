@@ -33,7 +33,6 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
         self.addon.backup_version = None
-        self.addon.app_slug = 'app_slug'
 
         self.version = v = Mock()
         v.is_compatible = False

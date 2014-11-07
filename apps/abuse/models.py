@@ -53,7 +53,7 @@ class AbuseReport(amo.models.ModelBase):
         Returns AbuseReport objects for the given threshold over the given time
         period (in days). Filters by addon_id or addon_type if provided.
 
-        E.g. Greater than 5 abuse reports for all webapps in the past 7 days.
+        E.g. Greater than 5 abuse reports for all addons in the past 7 days.
         """
         abuse_sql = ['''
             SELECT `abuse_reports`.*,

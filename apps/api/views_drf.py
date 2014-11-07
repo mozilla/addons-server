@@ -110,8 +110,7 @@ class AddonDetailView(DRFView):
                             template_name=self.error_template_name, status=403)
         # Retrieve addon.
         try:
-            addon = (Addon.objects.id_or_slug(addon_id)
-                                  .exclude(type=amo.ADDON_WEBAPP).get())
+            addon = Addon.objects.id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
             return Response({'msg': 'Add-on not found!'},
                             template_name=self.error_template_name, status=404)
@@ -251,7 +250,7 @@ class ListView(DRFView):
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
-        qs = Addon.objects.listed(APP).exclude(type=amo.ADDON_WEBAPP)
+        qs = Addon.objects.listed(APP)
         shuffle = True
 
         if list_type in ('by_adu', 'featured'):
@@ -407,8 +406,7 @@ class AddonsViewSet(DRFView, ModelViewSet):
 
 class VersionsViewSet(CORSMixin, RetrieveModelMixin, UpdateModelMixin,
                       GenericViewSet):
-    queryset = Version.objects.exclude(addon__type=amo.ADDON_WEBAPP,
-                                       addon__status=amo.STATUS_DELETED)
+    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authorization_classes = []
     permission_classes = [AnyOf(AllowRelatedAppOwner,

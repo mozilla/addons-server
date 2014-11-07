@@ -21,9 +21,9 @@ from versions.models import Version
 
 # pulling tasks from cron
 from . import cron, search  # NOQA
-from .models import (Addon, AddonCategory, AddonDependency, AddonUser,
-                     attach_categories, attach_tags, attach_translations,
-                     CompatOverride, IncompatibleVersions, Preview)
+from .models import (Addon, attach_categories, attach_tags,
+                     attach_translations, CompatOverride, IncompatibleVersions,
+                     Preview)
 
 
 log = logging.getLogger('z.task')
@@ -370,111 +370,3 @@ def calc_checksum(theme_id, **kw):
         theme.save()
     except IOError as e:
         log.error(str(e))
-
-
-def get_translations(webapp):
-    """Get all translations for a given webapp."""
-    translated_fields = ['name', 'homepage', 'support_email', 'support_url',
-                         'description', 'summary', 'developer_comments',
-                         'eula', 'privacy_policy', 'the_reason', 'the_future',
-                         'thankyou_note']
-
-    translation_list = []
-
-    log.info('Deleting webapp translations for webapp id: %s' % webapp.pk)
-    try:
-        for f in translated_fields:
-            # Delete all translations for the field f of the webapp.
-            # What this is doing is (if f == 'name'):
-            #     app.name.__class_.objects.filter(id=app.name_id).delete()
-            field = getattr(webapp, f)
-            trans_id = getattr(webapp, '%s_id' % f)
-            if trans_id:
-                translations = field.__class__.objects.filter(id=trans_id)
-                log.info('Deleting %s translations for field %s' % (
-                         len(translations), f))
-                translation_list.extend(list(translations))
-    except Exception, err:
-        log.error('Failed to delete webapp translations for webapp id: %s, %s'
-                  % (webapp.pk, err))
-    return translation_list
-
-
-def delete_translations(translations):
-    """Actually delete the translations, like, for real this time."""
-    log.info('Deleting translations for all deleted webapps')
-    try:
-        for trans in translations:
-            trans.delete()
-    except Exception, err:
-        log.error('Failed to delete translation with autoid: %s'
-                  % (trans, err))
-
-
-def delete_foreign_keys(webapp):
-    """Delete all foreign keys for a given webapp."""
-    foreign_key_fields = ['charity', '_current_version', '_backup_version',
-                          '_latest_version']
-
-    log.info('Deleting webapp foreign keys for webapp id: %s' % webapp.pk)
-    try:
-        for f in foreign_key_fields:
-            # Delete the object pointed to by the FK, if any.
-            field = getattr(webapp, f)
-            if field:
-                log.info('Deleting foreign key %s' % field)
-                field.delete()
-    except Exception, err:
-        log.error('Failed to delete webapp foreign keys for webapp id: %s, %s'
-                  % (webapp.pk, err))
-
-
-def delete_throughs(webapp):
-    """Delete all the through entries for the M2M of a webapp."""
-    many_to_many_throughs = [AddonUser, AddonCategory, AddonDependency]
-
-    log.info('Deleting webapp throughs for webapp id: %s' % webapp.pk)
-
-    try:
-        for through in many_to_many_throughs:
-            # Delete the entry in the through table used for the m2m.
-            log.info('Deleting entry in through table %s' % through)
-            through.objects.filter(addon=webapp).delete()
-    except Exception, err:
-        log.error('Failed to delete webapp throughs for webapp id: %s, %s'
-                  % (webapp.pk, err))
-
-
-def delete_versions(webapp):
-    """Delete all the versions of a webapp."""
-    log.info('Deleting versions for webapp id: %s' % webapp.pk)
-    try:
-        webapp.versions.all().delete()
-    except Exception, err:
-        log.error('Failed to delete webapp versions for webapp id: %s, %s'
-                  % (webapp.pk, err))
-
-
-@task(rate_limit='4/m')
-@write
-def delete_webapps(ids, **kw):
-    log.info('[%s@%s] Deleting webapp relations starting with id: %s...'
-             % (len(ids), delete_webapps.rate_limit, ids[0]))
-    webapps = Addon.with_deleted.filter(pk__in=ids)
-    translations = []
-
-    for webapp in webapps:
-        # We can't nullify a translation in an Addon, so we can't delete the
-        # translations just right now. We'll postpone that to after the webapp
-        # has been deleted.
-        translations.extend(get_translations(webapp))
-        delete_foreign_keys(webapp)
-        delete_throughs(webapp)
-
-        # When deleting a webapp, it deletes versions in cascade. However,
-        # our code can't deal with deleting versions for soft deleted
-        # webapps. We thus have to manually delete the versions first.
-        delete_versions(webapp)
-    log.info('Finally deleting the webapps themselves.')
-    webapps.delete()
-    delete_translations(translations)

@@ -7,7 +7,6 @@ from celery import chord, group
 
 import amo
 from addons.models import Addon
-from addons.tasks import delete_webapps
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
 
@@ -25,8 +24,6 @@ tasks = {
     'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
-    'delete_webapps': {'method': delete_webapps,
-                       'qs': [Q(type=amo.ADDON_WEBAPP)]}
 }
 
 
@@ -44,8 +41,6 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
                     dest='task', help='Run task on the addons.'),
-        make_option('--with-deleted', action='store_true', dest='with_deleted',
-                    help='Include soft deleted'),
     )
 
     def handle(self, *args, **options):
@@ -53,12 +48,9 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        manager = Addon.objects
-        if options.get('with_deleted'):
-            manager = Addon.with_deleted
-        pks = (manager.filter(*task['qs'])
-                      .values_list('pk', flat=True)
-                      .order_by('-last_updated'))
+        pks = (Addon.objects.filter(*task['qs'])
+                            .values_list('pk', flat=True)
+                            .order_by('-last_updated'))
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)

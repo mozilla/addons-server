@@ -96,111 +96,6 @@ th {
     background-color: #2a4364;
 }
 
-#featured-webapps {
-    margin-top: 15px;
-}
-.app-container {
-    background-color: #eee;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-}
-.featured-app {
-    border-radius: 5px;
-    float: left;
-    margin: 0;
-}
-.featured-app .dashboard {
-    display: inline-block;
-    border-radius: 5px;
-    background: #fff;
-    padding: 1px 5px;
-}
-.featured-app .dashboard em {
-    margin-left: 4px;
-    vertical-align: middle;
-}
-.featured-app .dashboard a:hover {
-    text-decoration: none;
-}
-.featured-app .homepage {
-    float: right;
-}
-.featured-app h2 {
-    font-size: 16px;
-    display: inline-block;
-    line-height: 32px;
-    margin: 0 15px 0 10px;
-}
-.featured-app h2 a {
-    color: #c63717;
-}
-.featured-app li {
-    vertical-align: middle;
-}
-.featured-app img.logo {
-    position: relative;
-    top: 10px;
-}
-.app-intro p {
-    font-size: 10px;
-}
-.featured-app p {
-    display: inline-block;
-    margin: 0;
-}
-.featured-app .icon {
-    display: inline-block;
-    background: url(../../img/impala/reviewer-icons.png) no-repeat 0 0;
-    height: 16px;
-    width: 16px;
-}
-.featured-app .icon.warning {background-position: 0 -32px;}
-.featured-app .icon.sponsored {background-position: -32px 0;}
-#featured-webapps .side {
-    float: right;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    width: 250px;
-}
-#featured-webapps .side p {
-    float: right;
-    margin: 0;
-}
-#featured-webapps .side li {
-    font-size: 10px;
-}
-#featured-webapps .side label {
-    display: block;
-    font-size: 12px;
-}
-#featured-webapps .side .devicelist {
-    float: left;
-    margin: 0 10px 0 0;
-
-}
-.featured-app .dates {
-    padding-top: 10px;
-}
-.featured-app .dates label {
-    display: inline-block;
-    margin-right: 15px;
-}
-.featured-app input[type=date], #featured-webapps input.placeholder {
-    border: 0;
-    line-height: 22px;
-    height: 22px;
-    border-radius: 5px;
-}
-#featured-webapps input.placeholder {
-    border: 1px solid #ccc;
-    width: 350px;
-}
-.featured-app .app-intro {
-    padding-bottom: 15px;
-}
 a.remove {
     margin-left: 10px;
     text-indent: -99999px;
@@ -218,25 +113,11 @@ li.ui-menu-item .ui-corner-all.ui-state-hover {
 ul.ui-autocomplete {
     border-radius: 5px;
 }
-.app-intro h2 {
-    white-space: nowrap;
-    max-width: 390px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: bottom;
-}
 #ui-datepicker-div {
     display: none;
 }
 .ui-datepicker .ui-datepicker-header {
     height: 25px;
-}
-.featured-app .manage-link {
-    text-indent: -9999px;
-    display: inline-block;
-    width: 23px;
-    height: 23px;
-    background: url(../../img/impala/settings.png) no-repeat 0 -24px;
 }
 .localepicker {
     height: 150px;
