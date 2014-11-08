@@ -86,8 +86,7 @@ def addon_listing(request, default='name', theme=False):
         qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
         model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
-                                                       amo.ADDON_PERSONA])
+        qs = request.amo_user.addons.exclude(type=amo.ADDON_PERSONA)
         model = Addon
     filter_cls = ThemeFilter if theme else AddonFilter
     filter = filter_cls(request, qs, 'sort', default, model=model)

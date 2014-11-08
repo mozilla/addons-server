@@ -2,12 +2,12 @@
 {% if not amo_user %}
   <h2 id="add-review">{{ _('Add a Review') }}</h2>
   <section class="copy">
-    <a href="{{ shared_url('reviews.add', addon) }}" class="login-button button">{{ _('Log in to add a review') }}</a>
+    <a href="{{ url('addons.reviews.add', addon.slug) }}" class="login-button button">{{ _('Log in to add a review') }}</a>
   </section>
 {% elif addon.can_review(amo_user) %}
   <h2 id="add-review">{{ _('Add a Review') }}</h2>
   <form method="post" class="form-mobile review-form" id="review-form"
-        action="{{ shared_url('reviews.add', addon) }}">
+        action="{{ url('addons.reviews.add', addon.slug) }}">
     {{ csrf() }}
     <p>
       <label for="id_title">{{ _('Title:') }} <span class="optional">{{ _('(optional)') }}</span></label>

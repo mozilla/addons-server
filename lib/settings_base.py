@@ -432,7 +432,6 @@ TEST_INSTALLED_APPS = (
 TEST_RUNNER = 'amo.runner.RadicalTestSuiteRunnerWithExtraApps'
 NOSE_ARGS = [
     '--with-fixture-bundling',
-    '--exclude=mkt/*',
 ]
 
 # Tells the extract script what files to look for l10n in and what function
@@ -1035,9 +1034,6 @@ CELERY_ROUTES = {
 
     # AMO validator.
     'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
-
-    # Comm.
-    'mkt.comm.tasks.migrate_activity_log': {'queue': 'limited'},
 }
 
 # This is just a place to store these values, you apply them in your

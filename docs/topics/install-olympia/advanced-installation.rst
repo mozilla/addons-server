@@ -96,7 +96,7 @@ your local settings.
 First, we need to install node and npm::
 
     brew install node
-    curl http://npmjs.org/install.sh | sh
+    curl https://www.npmjs.org/install.sh | sh
 
 Optionally make the local scripts available on your path if you don't already
 have this in your profile::
