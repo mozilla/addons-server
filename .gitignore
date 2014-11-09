@@ -20,6 +20,7 @@ media/build_id.txt
 media/manifest.appcache
 media/external/*
 .DS_Store
+.idea
 /media/img/uploads
 *.js.tmp
 *.css.tmp

@@ -1,7 +1,7 @@
 {
     // JSHint configurations for node-jshint.
     // install with "npm install -g jshint"
-    // run with "jshint <file(s)> --config config.json"
+    // run with "jshint <file(s)> --config .jshintrc"
 
     "asi"       : false, // Semicolons required! we minify.
     "undef"     : false, // var early, var often
