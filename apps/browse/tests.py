@@ -27,6 +27,7 @@ from browse import feeds
 from browse.views import (AddonFilter, locale_display_name,
                           MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY,
                           ThemeFilter)
+from constants.applications import THUNDERBIRD
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
@@ -1088,6 +1089,13 @@ class TestLegacyRedirects(amo.tests.TestCase):
                        '/themes/feeds-news-blogging?sort=rating')
 
     def test_creatured(self):
+        self.redirects('/extensions/feeds-news-blogging/featured',
+                       '/extensions/feeds-news-blogging/?sort=featured')
+
+    def test_creatured_with_more_than_one_category_slug(self):
+        Category.objects.create(application=THUNDERBIRD.id,
+                                type=amo.ADDON_EXTENSION,
+                                slug='feeds-news-blogging')
         self.redirects('/extensions/feeds-news-blogging/featured',
                        '/extensions/feeds-news-blogging/?sort=featured')
 
