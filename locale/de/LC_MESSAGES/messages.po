@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-15 16:38+0000\n"
+"PO-Revision-Date: 2014-11-11 19:44+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413391123.0\n"
+"X-POOTLE-MTIME: 1415735084.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1158,7 +1158,9 @@ msgstr "Chronik der Bewertungen"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Es tut uns Leid, dieses Theme wurde noch nicht überprüft. Bitte kommen Sie später wieder."
+msgstr ""
+"Es tut uns leid, dieses Theme wurde noch nicht überprüft. Bitte kommen Sie "
+"später wieder."
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
