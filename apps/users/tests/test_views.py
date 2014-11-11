@@ -441,6 +441,12 @@ class TestEmailChange(UserViewBase):
         u = UserProfile.objects.get(id=self.user.id)
         self.assertEqual(u.email, 'nobody@mozilla.org')
 
+    def test_email_change_to_an_existing_user_email(self):
+        token, hash_ = EmailResetCode.create(self.user.id, 'testo@example.com')
+        url = reverse('users.emailchange', args=[self.user.id, token, hash_])
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 400)
+
 
 class TestLogin(UserViewBase):
     fixtures = ['users/test_backends', 'base/addon_3615']
