@@ -262,6 +262,12 @@ def emailchange(request, user, token, hash):
                     (_uid, user))
         return http.HttpResponse(status=400)
 
+    if UserProfile.objects.filter(email=newemail).exists():
+        log.warning((u"[Tampering] User (%s) tries to change his email to "
+                     u"an existing account with the same email address (%s)") %
+                    (user, newemail))
+        return http.HttpResponse(status=400)
+
     user.email = newemail
     user.save()
 

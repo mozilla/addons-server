@@ -274,6 +274,12 @@ class TestUserEditForm(UserFormBase):
         eq_(username_input.attr('required'), 'required')
         eq_(username_input.attr('aria-required'), 'true')
 
+    def test_existing_email(self):
+        data = {'email': 'testo@example.com'}
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'form', 'email',
+                             [u'User profile with this Email already exists.'])
+
 
 class TestAdminUserEditForm(UserFormBase):
     fixtures = ['base/users']
