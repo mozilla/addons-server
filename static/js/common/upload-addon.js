@@ -205,7 +205,7 @@
 
             });
 
-            $upload_field.bind("upload_finished", function(e, file, results) {
+            $upload_field.bind("upload_finished", function() {
                 upload_box.removeClass("ajax-loading");
                 upload_status_cancel.remove();
             });
@@ -282,7 +282,7 @@
                             success: function(r) {
                                 $upload_field.trigger("upload_success_results", [file, r]);
                             },
-                            error: function(xhr, textStatus, errorThrown) {
+                            error: function(xhr) {
                                 var errOb = parseErrorsFromJson(xhr.responseText);
                                 $upload_field.trigger("upload_errors", [file, errOb.errors, errOb.json]);
                                 $upload_field.trigger("upload_finished", [file]);
@@ -404,7 +404,7 @@
                             results.platforms_to_exclude.length) {
                             // e.g. after uploading a Mobile add-on
                             var excluded = false;
-                            $('input.platform').each(function(e) {
+                            $('input.platform').each(function() {
                                 var $input = $(this);
                                 if ($.inArray($input.val(),
                                               results.platforms_to_exclude) !== -1) {

@@ -2,9 +2,6 @@
  * extended by addonUploader().  Eventually imageUploader() should as well */
 
 (function($) {
-    var instance_id = 0,
-    boundary = "BoUnDaRyStRiNg";
-
     function getErrors(results) {
         return results.errors;
     }
@@ -16,7 +13,6 @@
         return $(this).each(function(){
             var $upload_field = $(this),
                 formData = false,
-                $form = $upload_field.closest('form'),
                 errors = false,
                 aborted = false;
 
@@ -26,12 +22,12 @@
 
             $upload_field.bind({"change": uploaderStart});
 
-            $(settings['cancel']).click(_pd(function(){
+            $(settings.cancel).click(_pd(function(){
                 $upload_field.trigger('upload_action_abort');
             }));
 
-            function uploaderStart(e) {
-                if($upload_field[0].files.length == 0) {
+            function uploaderStart() {
+                if($upload_field[0].files.length === 0) {
                     return;
                 }
 
@@ -50,12 +46,12 @@
                 /* Disable uploading while something is uploading */
                 $upload_field.attr('disabled', true);
                 $upload_field.parent().find('a').addClass("disabled");
-                $upload_field.bind("reenable_uploader", function(e) {
+                $upload_field.bind("reenable_uploader", function() {
                     $upload_field.attr('disabled', false);
                     $upload_field.parent().find('a').removeClass("disabled");
                 });
 
-                var exts = new RegExp("\\\.("+settings['filetypes'].join('|')+")$", "i");
+                var exts = new RegExp("\\\.("+settings.filetypes.join('|')+")$", "i");
 
                 if(!file.name.match(exts)) {
                     errors = [gettext("The filetype you uploaded isn't recognized.")];
@@ -92,7 +88,7 @@
                     }
                 }, false);
 
-                formData.xhr.onreadystatechange = function(e){
+                formData.xhr.onreadystatechange = function(){
                     $upload_field.trigger("upload_onreadystatechange",
                                           [file, formData.xhr, aborted]);
                 };
@@ -101,5 +97,5 @@
             }
         });
 
-    }
+    };
 })(jQuery);

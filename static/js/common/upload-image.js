@@ -55,8 +55,7 @@ $.fn.objectUrl = function(offset) {
 
 
 (function($) {
-    var instance_id = 0,
-        boundary = "BoUnDaRyStRiNg";
+    var instance_id = 0;
 
     $.fn.imageUploader = function() {
         var $upload_field = this,

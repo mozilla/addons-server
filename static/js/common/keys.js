@@ -20,5 +20,5 @@ z.keys = {
     'COMMAND_RIGHT': 93,
     'WINDOWS_LEFT_OPERA': 219,
     'WINDOWS_RIGHT_OPERA': 220,
-    'APPLE': 24,
+    'APPLE': 24
 };
