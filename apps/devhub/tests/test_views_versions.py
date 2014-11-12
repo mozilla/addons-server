@@ -463,7 +463,9 @@ class TestVersionEditDetails(TestVersionEdit):
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
             eq_(response.status_code, 302)
-            assert Version.objects.get(pk=self.version.pk).source
+            version = Version.objects.get(pk=self.version.pk)
+            assert version.source
+            assert version.addon.admin_review
 
     def test_should_not_accept_exe_source_file(self):
         tdir = temp.gettempdir()
@@ -475,6 +477,29 @@ class TestVersionEditDetails(TestVersionEdit):
             response = self.client.post(self.url, data)
             eq_(response.status_code, 200)
             assert not Version.objects.get(pk=self.version.pk).source
+
+    def test_dont_reset_admin_review_flag_if_no_new_source(self):
+        tdir = temp.gettempdir()
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=tdir) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+            eq_(response.status_code, 302)
+            version = Version.objects.get(pk=self.version.pk)
+            assert version.source
+            assert version.addon.admin_review
+
+        # Unset the "admin review" flag, and re save the version. It shouldn't
+        # reset the flag, as the source hasn't changed.
+        version.addon.update(admin_review=False)
+        data = self.formset(name='some other name')
+        response = self.client.post(self.url, data)
+        eq_(response.status_code, 302)
+        version = Version.objects.get(pk=self.version.pk)
+        assert version.source
+        assert not version.addon.admin_review
 
 
 class TestVersionEditSearchEngine(TestVersionEdit):

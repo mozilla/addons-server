@@ -53,7 +53,7 @@ def source_upload_path(instance, filename):
     )
 
 
-class Version(amo.models.ModelBase):
+class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
@@ -465,6 +465,15 @@ class Version(amo.models.ModelBase):
             self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
+
+
+@Version.on_change
+def watch_source(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+    """Set the "admin_review" flag on the addon if a source file was added."""
+    # Only admins may review addons with source files attached.
+    if old_attr.get('source') != new_attr.get('source'):
+        instance.addon.admin_review = True
+        instance.addon.save()
 
 
 @use_master
