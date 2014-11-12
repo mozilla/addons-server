@@ -8,6 +8,7 @@ from django.views.decorators.cache import cache_page
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 
+import addons.views
 import blocklist.views
 import versions.urls
 
@@ -29,8 +30,8 @@ urlpatterns = patterns(
         blocklist.views.blocklist, name='blocklist'),
     ('^blocked/', include('blocklist.urls')),
 
-    # AMO homepage or Marketplace Developer Hub? Choose your destiny.
-    url('^$', settings.HOME, name='home'),
+    # Home.
+    url('^$', addons.views.home, name='home'),
 
     # Add-ons.
     ('', include('addons.urls')),

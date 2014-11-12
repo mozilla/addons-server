@@ -1320,9 +1320,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 # Super temporary. Or Not.
 MARKETPLACE = False
 
-# Name of view to use for homepage.
-HOME = 'addons.views.home'
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 
