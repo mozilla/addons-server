@@ -48,15 +48,6 @@ def test_redirect_with_unicode_get():
         '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
         'E3%82%BA')
     eq_(response.status_code, 301)
-    assert response['Location'].endswith('&utm_term=Google+%E3%83%90%E3%82%BA')
-
-
-def test_source_with_wrong_unicode_get():
-    response = test.Client().get(
-        str('/firefox/collections/mozmj/autumn/'
-            '?source=firefoxsocialmedia\x14\x85'))
-    eq_(response.status_code, 301)
-    assert response['Location'].endswith('?source=firefoxsocialmedia%14')
 
 
 def test_trailing_slash_middleware():
