@@ -5,6 +5,7 @@ import traceback
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 
 import mock
 from nose.plugins.attrib import attr
@@ -162,7 +163,11 @@ class TestFileValidation(amo.tests.TestCase):
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_post(self, has_been_validated):
         has_been_validated.__nonzero__.return_value = False
-        eq_(self.client.post(self.json_url).status_code, 200)
+        with transaction.atomic():
+            # The json_file_validation view will raise an IntegrityError when
+            # trying to save a FileValidation, as it's already been created by
+            # the fixture addon-validation-1.
+            eq_(self.client.post(self.json_url).status_code, 200)
         has_been_validated.__nonzero__.return_value = True
         eq_(self.client.post(self.json_url).status_code, 200)
 

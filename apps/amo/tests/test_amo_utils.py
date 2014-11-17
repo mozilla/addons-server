@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import tempfile
-import unittest
 
 from django.conf import settings
 from django.core.cache import cache
@@ -12,6 +11,7 @@ import jingo
 import mock
 from nose.tools import eq_, assert_raises, raises
 
+from amo.tests import BaseTestCase
 from amo.utils import (cache_ns_key, escape_all, find_language,
                        LocalFileStorage, no_jinja_autoescape, no_translation,
                        resize_image, rm_local_tmp_dir, slugify, slug_validator,
@@ -125,7 +125,7 @@ def test_no_translation():
     translation.activate(lang)
 
 
-class TestLocalFileStorage(unittest.TestCase):
+class TestLocalFileStorage(BaseTestCase):
 
     def setUp(self):
         self.tmp = tempfile.mkdtemp()
@@ -201,7 +201,7 @@ class TestLocalFileStorage(unittest.TestCase):
         eq_(os.path.exists(dp), True)
 
 
-class TestCacheNamespaces(unittest.TestCase):
+class TestCacheNamespaces(BaseTestCase):
 
     def setUp(self):
         cache.clear()

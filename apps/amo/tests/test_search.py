@@ -13,10 +13,16 @@ class TestESIndexing(amo.tests.ESTestCase):
     mock_es = False
     test_es = True
 
+    @classmethod
+    def setUpClass(cls):
+        super(TestESIndexing, cls).setUpClass()
+        cls.setUpIndex()
+
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
         # Did all the right addons get indexed?
-        eq_(Addon.search().filter(type=1, is_disabled=False).count(),
+        count = Addon.search().filter(type=1, is_disabled=False).count()
+        eq_(count,
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
 
@@ -226,8 +232,8 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query()['fields'], ['id', 'name'])
 
     def test_values_result(self):
-        addons = [([a.id], [a.slug]) for a in self._addons]
-        qs = Addon.search().values('slug').order_by('id')
+        addons = [{'id': [a.id], 'slug': [a.slug]} for a in self._addons]
+        qs = Addon.search().values_dict('slug').order_by('id')
         eq_(list(qs), addons)
 
     def test_values_dict(self):

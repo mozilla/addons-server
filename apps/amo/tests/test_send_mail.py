@@ -1,7 +1,6 @@
 import mimetypes
 import os.path
 
-from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
@@ -13,13 +12,14 @@ import mock
 from nose.tools import eq_
 
 from amo.models import FakeEmail
+from amo.tests import BaseTestCase
 from amo.utils import send_mail, send_html_mail_jinja
 from devhub.tests.test_models import ATTACHMENTS_DIR
 from users.models import UserProfile, UserNotification
 import users.notifications
 
 
-class TestSendMail(test.TestCase):
+class TestSendMail(BaseTestCase):
     fixtures = ['base/users']
 
     def setUp(self):

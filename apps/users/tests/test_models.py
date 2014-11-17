@@ -13,7 +13,6 @@ from django.utils import encoding, translation
 
 from mock import patch
 from nose.tools import eq_
-from test_utils import trans_eq
 
 import amo
 import amo.tests
@@ -205,11 +204,12 @@ class TestUserProfile(amo.tests.TestCase):
         """Return the translation for the locale fallback."""
         user = UserProfile.objects.create(
             lang='fr', bio={'en-US': 'my bio', 'fr': 'ma bio'})
-        trans_eq(user.bio, 'my bio', 'en-US')  # Uses current locale.
+        self.trans_eq(user.bio, 'my bio', 'en-US')  # Uses current locale.
 
         with self.activate(locale='de'):
             user = UserProfile.objects.get(pk=user.pk)  # Reload.
-            trans_eq(user.bio, 'ma bio', 'fr')  # Uses the default fallback.
+            # Uses the default fallback.
+            self.trans_eq(user.bio, 'ma bio', 'fr')
 
 
 class TestPasswords(amo.tests.TestCase):

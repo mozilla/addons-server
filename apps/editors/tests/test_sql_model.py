@@ -4,12 +4,12 @@
 Currently these tests are coupled tighly with MySQL
 """
 from datetime import datetime
-import unittest
 
 from django.db import connection, models
 from django.db.models import Q
 from nose.tools import eq_, raises
 
+from amo.tests import BaseTestCase
 from editors.sql_model import RawSQLModel
 
 
@@ -105,7 +105,7 @@ class ProductDetail(RawSQLModel):
         }
 
 
-class TestSQLModel(unittest.TestCase):
+class TestSQLModel(BaseTestCase):
 
     def test_all(self):
         eq_(sorted([s.category for s in Summary.objects.all()]),

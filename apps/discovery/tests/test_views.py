@@ -39,6 +39,7 @@ class TestRecs(amo.tests.TestCase):
         test.Client().get('/')
 
     def setUp(self):
+        super(TestRecs, self).setUp()
         self.url = reverse('discovery.recs', args=['3.6', 'Darwin'])
         self.guids = ('bettergcal@ginatrapani.org',
                       'foxyproxy@eric.h.jung',

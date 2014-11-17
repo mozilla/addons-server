@@ -429,7 +429,7 @@ TEST_INSTALLED_APPS = (
 )
 
 # Tests
-TEST_RUNNER = 'amo.runner.RadicalTestSuiteRunnerWithExtraApps'
+TEST_RUNNER = 'amo.runner.DiscoverRunnerWithExtraApps'
 NOSE_ARGS = [
     '--with-fixture-bundling',
 ]

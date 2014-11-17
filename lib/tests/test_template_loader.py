@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from django.test import TestCase
-
+from amo.tests import BaseTestCase
 from lib.template_loader import Loader
 
 
-class TestLoader(TestCase):
+class TestLoader(BaseTestCase):
 
     def test_valid_template(self):
         loader = Loader()

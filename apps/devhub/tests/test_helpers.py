@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import unittest
 import urllib
 
 from django.utils import translation
@@ -40,7 +39,7 @@ def test_dev_page_title():
     eq_(s1, s2)
 
 
-class TestDevBreadcrumbs(unittest.TestCase):
+class TestDevBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
         self.request = Mock()
@@ -138,7 +137,7 @@ def test_log_action_class():
         eq_(render('{{ log_action_class(id) }}', {'id': v.id}), cls)
 
 
-class TestDisplayUrl(unittest.TestCase):
+class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def setUp(self):
         self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')

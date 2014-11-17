@@ -88,6 +88,7 @@ class TestVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
+        super(TestVersion, self).setUp()
         self.version = Version.objects.get(pk=81551)
 
     def named_plat(self, ids):

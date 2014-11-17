@@ -191,10 +191,17 @@ class TestPersonaRedirect(amo.tests.TestCase):
     def test_persona_redirect_addon_no_exist(self):
         """When the persona exists but not its addon, throw a 404."""
         # Got get shady to separate Persona/Addons.
-        connection.cursor().execute("""
-            SET FOREIGN_KEY_CHECKS = 0;
-            TRUNCATE addons;
-            SET FOREIGN_KEY_CHECKS = 1;
-        """)
-        r = self.client.get('/persona/813', follow=True)
-        eq_(r.status_code, 404)
+        try:
+            connection.cursor().execute("""
+                SET FOREIGN_KEY_CHECKS = 0;
+                UPDATE personas SET addon_id=123 WHERE persona_id=813;
+                SET FOREIGN_KEY_CHECKS = 1;
+            """)
+            r = self.client.get('/persona/813', follow=True)
+            eq_(r.status_code, 404)
+        finally:
+            connection.cursor().execute("""
+                SET FOREIGN_KEY_CHECKS = 0;
+                UPDATE personas SET addon_id=15663 WHERE persona_id=813;
+                SET FOREIGN_KEY_CHECKS = 1;
+            """)

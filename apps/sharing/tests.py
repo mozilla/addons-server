@@ -1,4 +1,3 @@
-from django import test
 from django.conf import settings
 from django.utils import translation, encoding
 
@@ -11,6 +10,7 @@ from addons.models import Addon
 import amo
 import sharing
 import sharing.views
+from amo.tests import BaseTestCase
 from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
@@ -18,7 +18,7 @@ from sharing import DIGG, FACEBOOK
 from users.models import UserProfile
 
 
-class SharingHelpersTestCase(test.TestCase):
+class SharingHelpersTestCase(BaseTestCase):
     fixtures = ['base/addon_3615']
 
     def test_sharing_box(self):
@@ -41,7 +41,7 @@ class SharingHelpersTestCase(test.TestCase):
                 'Sharing link target must either be blank or self.')
 
 
-class SharingModelsTestCase(test.TestCase):
+class SharingModelsTestCase(BaseTestCase):
     fixtures = ['base/addon_3615', 'sharing/share_counts']
 
     def test_share_count(self):

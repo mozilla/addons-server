@@ -1,7 +1,6 @@
 from django.utils import translation
 
 from nose.tools import eq_
-import test_utils
 
 import amo.tests
 from addons.models import Addon
@@ -18,21 +17,21 @@ class TestReviewModel(amo.tests.TestCase):
 
         # There's en-US and de translations.  We should get en-US.
         r1 = Review.objects.get(id=1)
-        test_utils.trans_eq(r1.title, 'r1 title en', 'en-US')
+        self.trans_eq(r1.title, 'r1 title en', 'en-US')
 
         # There's only a de translation, so we get that.
         r2 = Review.objects.get(id=2)
-        test_utils.trans_eq(r2.title, 'r2 title de', 'de')
+        self.trans_eq(r2.title, 'r2 title de', 'de')
 
         translation.activate('de')
 
         # en and de exist, we get de.
         r1 = Review.objects.get(id=1)
-        test_utils.trans_eq(r1.title, 'r1 title de', 'de')
+        self.trans_eq(r1.title, 'r1 title de', 'de')
 
         # There's only a de translation, so we get that.
         r2 = Review.objects.get(id=2)
-        test_utils.trans_eq(r2.title, 'r2 title de', 'de')
+        self.trans_eq(r2.title, 'r2 title de', 'de')
 
 
 class TestGroupedRating(amo.tests.TestCase):

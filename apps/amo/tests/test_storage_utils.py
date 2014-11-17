@@ -1,7 +1,6 @@
 from functools import partial
 import os
 import tempfile
-import unittest
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
@@ -10,6 +9,7 @@ from nose.tools import eq_
 
 from amo.storage_utils import (walk_storage, copy_stored_file,
                                move_stored_file, rm_stored_dir)
+from amo.tests import BaseTestCase
 from amo.utils import rm_local_tmp_dir
 
 
@@ -71,7 +71,7 @@ def test_rm_stored_dir():
         rm_local_tmp_dir(tmp)
 
 
-class TestFileOps(unittest.TestCase):
+class TestFileOps(BaseTestCase):
 
     def setUp(self):
         self.tmp = tempfile.mkdtemp()

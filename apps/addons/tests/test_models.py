@@ -1833,11 +1833,9 @@ class TestAddonDependencies(amo.tests.TestCase):
         a = Addon.objects.get(id=5299)
         b = Addon.objects.get(id=3615)
         AddonDependency.objects.create(addon=a, dependent_addon=b)
-        try:
-            AddonDependency.objects.create(addon=a, dependent_addon=b)
-        except IntegrityError:
-            pass
         eq_(list(a.dependencies.values_list('id', flat=True)), [3615])
+        with self.assertRaises(IntegrityError):
+            AddonDependency.objects.create(addon=a, dependent_addon=b)
 
 
 class TestListedAddonTwoVersions(amo.tests.TestCase):
