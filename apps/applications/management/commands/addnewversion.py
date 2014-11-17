@@ -31,4 +31,3 @@ def do_addnewversion(application, version):
                                   version=version)
     except IntegrityError, e:
         raise CommandError('Version %r already exists: %r' % (version, e))
-

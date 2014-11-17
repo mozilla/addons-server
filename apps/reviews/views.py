@@ -14,7 +14,7 @@ import amo
 from amo import messages
 from amo.decorators import (json_view, login_required, post_required,
                             restricted_content)
-from amo.helpers import absolutify, shared_url
+from amo import helpers
 import amo.utils
 from access import acl
 from addons.decorators import addon_view_factory
@@ -194,18 +194,19 @@ def reply(request, addon, review_id):
         log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
 
         if new:
-            reply_url = shared_url('reviews.detail', addon, review.id,
-                                   add_prefix=False)
+            reply_url = helpers.url('addons.reviews.detail', addon.slug,
+                                    review.id, add_prefix=False)
             data = {'name': addon.name,
                     'reply_title': reply.title,
                     'reply': reply.body,
-                    'reply_url': absolutify(reply_url)}
+                    'reply_url': helpers.absolutify(reply_url)}
             emails = [review.user.email]
             sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
             send_mail('reviews/emails/reply_review.ltxt',
                       sub, emails, Context(data), 'reply')
 
-        return redirect(shared_url('reviews.detail', addon, review_id))
+        return redirect(helpers.url('addons.reviews.detail', addon.slug,
+                                    review_id))
     ctx = dict(review=review, form=form, addon=addon)
     return render(request, 'reviews/reply.html', ctx)
 
@@ -219,32 +220,32 @@ def add(request, addon, template=None):
         raise PermissionDenied
     form = forms.ReviewForm(request.POST or None)
     if (request.method == 'POST' and form.is_valid() and
-        not request.POST.get('detailed')):
+            not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
         review = Review.objects.create(**details)
         if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
             rf = ReviewFlag(review=review,
-                        user_id=request.user.id,
-                        flag=ReviewFlag.OTHER,
-                        note='URLs')
+                            user_id=request.user.id,
+                            flag=ReviewFlag.OTHER,
+                            note='URLs')
             rf.save()
 
         amo.log(amo.LOG.ADD_REVIEW, addon, review)
         log.debug('New review: %s' % review.id)
 
-        reply_url = shared_url('reviews.reply', addon, review.id,
-                               add_prefix=False)
+        reply_url = helpers.url('addons.reviews.reply', addon.slug, review.id,
+                                add_prefix=False)
         data = {'name': addon.name,
                 'rating': '%s out of 5 stars' % details['rating'],
                 'review': details['body'],
-                'reply_url': absolutify(reply_url)}
+                'reply_url': helpers.absolutify(reply_url)}
 
         emails = [a.email for a in addon.authors.all()]
         send_mail('reviews/emails/add_review.ltxt',
                   u'Mozilla Add-on User Review: %s' % addon.name,
                   emails, Context(data), 'new_review')
 
-        return redirect(shared_url('reviews.list', addon))
+        return redirect(helpers.url('addons.reviews.list', addon.slug))
     return render(request, template, dict(addon=addon, form=form))
 
 
@@ -300,8 +301,9 @@ def spam(request):
         ids = spam.redis.smembers(reason)
         key = reason.split(':')[-1]
         buckets[key] = Review.objects.no_cache().filter(id__in=ids)
-    reviews = dict((review.addon_id, review) for bucket in buckets.values()
-                                             for review in bucket)
+    reviews = dict((review.addon_id, review)
+                   for bucket in buckets.values()
+                   for review in bucket)
     for addon in Addon.objects.no_cache().filter(id__in=reviews):
         reviews[addon.id].addon = addon
     return render(request, 'reviews/spam.html',

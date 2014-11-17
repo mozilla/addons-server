@@ -95,7 +95,7 @@
             {% if waffle.switch('reviews-translate') %}
               &middot;
               <a class="translate" rel="nofollow" target="_blank"
-                 href="{{ shared_url('reviews.translate', review.instance.addon, review.instance.id, LANG) }}">{{ _('translate') }}</a>
+                 href="{{ url('addons.reviews.translate', review.instance.addon.slug, review.instance.id, LANG) }}">{{ _('translate') }}</a>
             {% endif %}
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>

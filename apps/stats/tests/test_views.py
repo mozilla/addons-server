@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
 import datetime
-from decimal import Decimal
 import json
 
 import mock
@@ -11,7 +10,6 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
-from addons.models import Addon
 from bandwagon.models import Collection
 from stats import views, tasks
 from stats import search
@@ -562,59 +560,23 @@ class TestResponses(ESStatsTest):
         # dates in between filled with zeroes.
         expected_data = [
             {"date": "2009-09-03",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-08-03",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-07-03",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-28",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-20",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-12",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-07",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-02",
-             "data": {
-                 "downloads": 0,
-                 "updates": 1500,
-             },
-            },
+             "data": {"downloads": 0, "updates": 1500}},
             {"date": "2009-06-01",
-             "data": {
-                 "downloads": 10,
-                 "updates": 1000,
-             },
-            }
+             "data": {"downloads": 10, "updates": 1000}}
         ]
         actual_data = json.loads(r.content)
         # Make sure they match up at the front and back.
@@ -674,43 +636,35 @@ class TestResponses(ESStatsTest):
             {"count": 10,
              "date": "2009-09-03",
              "end": "2009-09-03",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-08-03",
              "end": "2009-08-03",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-07-03",
              "end": "2009-07-03",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-28",
              "end": "2009-06-28",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-20",
              "end": "2009-06-20",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-12",
              "end": "2009-06-12",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-07",
              "end": "2009-06-07",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-01",
              "end": "2009-06-01",
-             "data": {"api": 2, "search": 3}
-            }
+             "data": {"api": 2, "search": 3}}
         ])
 
     def test_downloads_sources_csv(self):
@@ -911,22 +865,8 @@ class TestCollections(amo.tests.ESTestCase):
         eq_(content[1]['date'], day_before.strftime('%Y-%m-%d'))
 
 
-class TestXssOnAddonName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
-        self.addon.name = self.name
-        self.addon.save()
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_stats_page(self):
         url = reverse('stats.overview', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)

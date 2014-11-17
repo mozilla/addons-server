@@ -182,7 +182,7 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     # We prefer add-ons that support the current locale.
     lang = translation.get_language()
-    partitioner = lambda x: (x.description != None and
+    partitioner = lambda x: (x.description is not None and
                              (x.description.locale == lang))
     groups = dict(partition(addons, partitioner))
     good, others = groups.get(True, []), groups.get(False, [])
@@ -227,7 +227,8 @@ class APIView(object):
         """
 
         if self.format == 'xml':
-            return render_xml(self.request, 'api/message.xml',
+            return render_xml(
+                self.request, 'api/message.xml',
                 {'error_level': error_level, 'msg': msg}, *args, **kwargs)
         else:
             return HttpResponse(json.dumps({'msg': _(msg)}), *args, **kwargs)
@@ -254,8 +255,8 @@ class AddonDetailView(APIView):
         try:
             addon = Addon.objects.id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
-            return self.render_msg('Add-on not found!', ERROR, status=404,
-                mimetype=self.mimetype)
+            return self.render_msg(
+                'Add-on not found!', ERROR, status=404, mimetype=self.mimetype)
 
         if addon.is_disabled:
             return self.render_msg('Add-on disabled.', ERROR, status=404,
@@ -301,7 +302,7 @@ def guid_search(request, api_version, guids):
                 addons_xml[key] = addon_xml
 
     cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
-                                                    if k in dirty_keys))
+                        if k in dirty_keys))
 
     compat = (CompatOverride.objects.filter(guid__in=guids)
               .transform(CompatOverride.transformer))
@@ -502,9 +503,9 @@ def performance_add(request):
         return form.show_error()
 
     os, created = (PerformanceOSVersion
-                        .objects.safer_get_or_create(**form.os_version))
+                   .objects.safer_get_or_create(**form.os_version))
     app, created = (PerformanceAppVersions
-                        .objects.safer_get_or_create(**form.app_version))
+                    .objects.safer_get_or_create(**form.app_version))
 
     data = form.performance
     data.update({'osversion': os, 'appversion': app})

@@ -63,16 +63,15 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
     app = amo.APP_GUIDS.get(app_guid)
     appver = AppVersion.objects.get(application=app.id, version=appversion_str)
     try:
-        result = run_validator(upload.path,
-                               for_appversions={app_guid: [appversion_str]},
-                               test_all_tiers=True,
-                               # Ensure we only check compatibility
-                               # against this one specific version:
-                               overrides={'targetapp_minVersion':
-                                                {app_guid: appversion_str},
-                                          'targetapp_maxVersion':
-                                                {app_guid: appversion_str}},
-                               compat=True)
+        result = run_validator(
+            upload.path,
+            for_appversions={app_guid: [appversion_str]},
+            test_all_tiers=True,
+            # Ensure we only check compatibility against this one specific
+            # version:
+            overrides={'targetapp_minVersion': {app_guid: appversion_str},
+                       'targetapp_maxVersion': {app_guid: appversion_str}},
+            compat=True)
         upload.validation = result
         upload.compat_with_app = app.id
         upload.compat_with_appver = appver
@@ -234,11 +233,13 @@ def resize_preview(src, instance, **kw):
                                       remove_src=False)
         instance.sizes = sizes
         instance.save()
-        # Finally delete the temporary now useless source file.
-        os.unlink(src)
         return True
     except Exception, e:
         log.error("Error saving preview: %s" % e)
+    finally:
+        # Finally delete the temporary now useless source file.
+        if os.path.exists(src):
+            os.unlink(src)
 
 
 @task

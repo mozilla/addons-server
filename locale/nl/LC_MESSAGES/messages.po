@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-01 09:25-0700\n"
-"PO-Revision-Date: 2014-10-02 11:40+0000\n"
+"POT-Creation-Date: 2014-10-15 09:05-0700\n"
+"PO-Revision-Date: 2014-10-16 07:34+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1412250013.0\n"
+"X-POOTLE-MTIME: 1413444865.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -50,80 +50,80 @@ msgstr "Experimenteel"
 msgid "Add to {0}"
 msgstr "Toevoegen aan {0}"
 
-#: apps/addons/forms.py:47
+#: apps/addons/forms.py:48
 msgid "This name is already in use. Please choose another."
 msgstr "Deze naam wordt al gebruikt. Kies een andere naam."
 
-#: apps/addons/forms.py:58
+#: apps/addons/forms.py:59
 msgid "This slug is already in use. Please choose another."
 msgstr "Deze code wordt al gebruikt. Kies een andere."
 
-#: apps/addons/forms.py:61
+#: apps/addons/forms.py:62
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "De code kan niet “%s” zijn. Kies een andere."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:80
+#: apps/addons/forms.py:81
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Ongeldig label: {0}"
 msgstr[1] "Ongeldige labels: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:90
+#: apps/addons/forms.py:91
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "“{0}” is een gereserveerd label en mag niet worden gebruikt."
 msgstr[1] "“{0}” zijn gereserveerde labels en mogen niet worden gebruikt."
 
-#: apps/addons/forms.py:98
+#: apps/addons/forms.py:99
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "U hebt {0} label te veel."
 msgstr[1] "U hebt {0} labels te veel."
 
-#: apps/addons/forms.py:103
+#: apps/addons/forms.py:104
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "Alle labels dienen na verwijdering van ongeldige tekens ten hoogste %s tekens te bevatten."
 
-#: apps/addons/forms.py:107
+#: apps/addons/forms.py:108
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle labels dienen uit ten minste {0} teken te bestaan."
 msgstr[1] "Alle labels dienen uit ten minste {0} tekens te bestaan."
 
-#: apps/addons/forms.py:216
+#: apps/addons/forms.py:217
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Categorieën kunnen niet worden gewijzigd als uw add-on voor deze toepassing wordt aanbevolen."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:220
+#: apps/addons/forms.py:221
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "U kunt slechts {0} categorie gebruiken."
 msgstr[1] "U kunt slechts {0} categorieën gebruiken."
 
-#: apps/addons/forms.py:228
+#: apps/addons/forms.py:229
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "De categorie diversen kan niet met extra categorieën worden gecombineerd."
 
-#: apps/addons/forms.py:351
+#: apps/addons/forms.py:352
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Voordat u uw standaardlocale wijzigt dient u een naam, samenvatting en beschrijving voor die locale in te geven. Momenteel ontbreekt %s."
 
-#: apps/addons/forms.py:464 apps/addons/forms.py:553
+#: apps/addons/forms.py:466 apps/addons/forms.py:555
 msgid "A license must be selected."
 msgstr "U dient een licentie te selecteren."
 
-#: apps/addons/forms.py:534
+#: apps/addons/forms.py:536
 msgid "Give Your Theme a Name."
 msgstr "Geef uw thema een naam."
 
-#: apps/addons/forms.py:540 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:542 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Beschrijf uw thema."
 
-#: apps/addons/forms.py:681
+#: apps/addons/forms.py:683
 msgid "Enter a new author's email address"
 msgstr "Voor het e-mailadres van een nieuwe schrijver toe"
 
@@ -133,21 +133,21 @@ msgstr "Niet beoordeeld"
 
 #: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:55 apps/browse/views.py:69 apps/browse/views.py:232 apps/browse/views.py:449
+#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231 apps/browse/views.py:450
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "Aanbevolen"
 
-#: apps/addons/models.py:310
+#: apps/addons/models.py:309
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Gebruikers hebben de keuze om meer of minder dan dit bedrag bij te dragen."
 
-#: apps/addons/models.py:319
+#: apps/addons/models.py:318
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Gebruikers wordt altijd gevraagd in de Add-onbeheerder (Firefox 4 en hoger)"
 
 # Column name in a table.
-#: apps/addons/models.py:1886
+#: apps/addons/models.py:1887
 msgid "Listed"
 msgstr "Vermeld"
 
@@ -155,37 +155,26 @@ msgstr "Vermeld"
 msgid "Popular"
 msgstr "Populair"
 
-#: apps/addons/views.py:320 apps/browse/views.py:235 apps/browse/views.py:278 apps/browse/views.py:474
+#: apps/addons/views.py:320 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:475
 msgid "Recently Added"
 msgstr "Onlangs toegevoegd"
 
-#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:61 apps/browse/views.py:72 apps/search/forms.py:17 apps/search/forms.py:92
+#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:17 apps/search/forms.py:92
 msgid "Recently Updated"
 msgstr "Onlangs bijgewerkt"
 
 # %1 is an add-on name.
-#: apps/addons/views.py:502
+#: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "Bijdrage voor {0}"
 
-#: apps/addons/views.py:590
+#: apps/addons/views.py:592
 msgid "Abuse reported."
 msgstr "Misbruik gerapporteerd."
 
 #: apps/addons/widgets.py:50
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Mijn add-on past niet in een van de categorieën"
-
-#: apps/addons/templates/addons/author_other_addons.html:4 apps/addons/templates/addons/impala/details-more.html:72
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Overige add-ons door %(author)s"
-msgstr[1] "Overige add-ons door deze schrijvers"
-
-#: apps/addons/templates/addons/author_other_addons.html:27
-msgctxt "addons_author_addons_submit"
-msgid "Go"
-msgstr "Indienen"
 
 #: apps/addons/templates/addons/button.html:27 apps/addons/templates/addons/impala/button.html:11 apps/addons/templates/addons/mobile/button.html:11
 msgid "No compatible versions"
@@ -221,76 +210,6 @@ msgstr "Deze add-on is niet door Mozilla beoordeeld. <a href=\"%(url)s\">Meer in
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Deze add-on is voorlopig door Mozilla beoordeeld. <a href=\"%(url)s\">Meer info</a>"
 
-#: apps/addons/templates/addons/collections_sidebar.html:11 apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26
-#: apps/addons/templates/addons/impala/theme_grid.html:22 apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
-msgid "by %(users)s"
-msgstr "door %(users)s"
-
-# {0} is the count of addons in a collection
-#. {0} is the number of add-ons.
-#: apps/addons/templates/addons/collections_sidebar.html:21
-msgid "<strong>{0}</strong> add-on"
-msgid_plural "<strong>{0}</strong> add-ons"
-msgstr[0] "<strong>{0}</strong> add-on"
-msgstr[1] "<strong>{0}</strong> add-ons"
-
-#. {0} is the number of subscribers.
-#: apps/addons/templates/addons/collections_sidebar.html:29
-msgid "<span>{0}</span> follower"
-msgid_plural "<span>{0}</span> followers"
-msgstr[0] "<span>{0}</span> volger"
-msgstr[1] "<span>{0}</span> volgers"
-
-#: apps/addons/templates/addons/collections_teaser.html:7
-msgid "Introduction"
-msgstr "Introductie"
-
-#: apps/addons/templates/addons/collections_teaser.html:15 apps/discovery/templates/discovery/pane.html:24
-msgid "What are Add-ons?"
-msgstr "Wat zijn add-ons?"
-
-#: apps/addons/templates/addons/collections_teaser.html:19
-msgid "Extras"
-msgstr "Extra’s"
-
-#: apps/addons/templates/addons/collections_teaser.html:22
-msgid "<strong>Over 5000 free extras</strong> that let you customize and extend Firefox to meet your needs."
-msgstr "<strong>Meer dan 5000 gratis extra’s</strong> waarmee u Firefox naar wens kunt aanpassen en uitbreiden."
-
-#. {0} is a category name. Ex: "Sports"
-#. {0} is a category name, such as Nature.
-#: apps/addons/templates/addons/collections_teaser.html:30 apps/addons/templates/addons/mobile/home.html:39 apps/amo/templates/amo/site_nav.html:32 apps/browse/feeds.py:107
-#: apps/browse/templates/browse/impala/base_listing.html:38 apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42
-#: apps/browse/templates/browse/personas/category_landing.html:21 apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38
-#: apps/browse/templates/browse/personas/grid.html:7 apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:19 apps/constants/base.py:180 apps/devhub/templates/devhub/nav.html:45
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7 apps/devhub/templates/devhub/docs/themes.html:28
-#: apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26 apps/editors/templates/editors/performance.html:73
-#: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
-msgid "Themes"
-msgstr "Thema’s"
-
-#: apps/addons/templates/addons/collections_teaser.html:33
-msgid "Toolbars, themes and search providers that <strong>help you perform common tasks.</strong>"
-msgstr "Werkbalken, thema’s en zoekmachines die <strong>u helpen uw dagelijkse taken uit te voeren.</strong>"
-
-#: apps/addons/templates/addons/collections_teaser.html:41
-msgid "Install"
-msgstr "Installeren"
-
-#: apps/addons/templates/addons/collections_teaser.html:44
-msgid "<strong>Easy to install</strong> and keep up-to-date."
-msgstr "<strong>Eenvoudig te installeren</strong> en bij te houden."
-
-#: apps/addons/templates/addons/collections_teaser.html:63
-msgid "Learn more about this add-on"
-msgstr "Meer over deze add-on"
-
-# {0} is the HTML collection name link.
-#: apps/addons/templates/addons/collections_teaser.html:73
-msgid "Like these? Find more add-ons in the {0} collection."
-msgstr "Leuke add-ons? Vind er meer in de collectie {0}."
-
 #: apps/addons/templates/addons/contribution.html:11 apps/addons/templates/addons/impala/developers.html:44
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "De ontwikkelaar van deze add-on vraagt uw steun voor verdere ontwikkeling door middel van een kleine bijdrage."
@@ -313,8 +232,8 @@ msgstr "Bijdragen"
 #: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/impala/contribution.html:32
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
-#: apps/devhub/templates/devhub/addons/edit/technical.html:142 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:61 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -421,7 +340,7 @@ msgid "Add-on Information for {0}"
 msgstr "Add-on-informatie voor {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:451 apps/devhub/views.py:70
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:452 apps/devhub/views.py:70
 msgid "Updated"
 msgstr "Bijgewerkt"
 
@@ -526,20 +445,6 @@ msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
 
-#: apps/addons/templates/addons/disabled.html:17 apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109
-#: apps/addons/templates/addons/mobile/details.html:23 apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27
-#: apps/editors/templates/editors/review.html:31 apps/perf/templates/perf/index.html:78
-msgid "by"
-msgstr "door"
-
-#: apps/addons/templates/addons/disabled.html:23 apps/addons/templates/addons/impala/disabled.html:17
-msgid "This add-on has been removed by its author."
-msgstr "Deze add-on is verwijderd door de schrijver."
-
-#: apps/addons/templates/addons/disabled.html:25 apps/addons/templates/addons/impala/disabled.html:19
-msgid "This add-on has been disabled by an administrator."
-msgstr "Deze add-on is uitgeschakeld door een beheerder."
-
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: apps/addons/templates/addons/eula.html:6 apps/discovery/templates/discovery/addons/eula.html:5
@@ -574,7 +479,7 @@ msgid "Popular Extensions"
 msgstr "Populaire extensies"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
-#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:233 apps/browse/views.py:279 apps/browse/views.py:473
+#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:278 apps/browse/views.py:474
 msgid "Most Popular"
 msgstr "Populairst"
 
@@ -595,7 +500,7 @@ msgstr "Aankomende extensies"
 msgid "Featured Themes"
 msgstr "Aanbevolen thema’s"
 
-#: apps/addons/templates/addons/home.html:77 apps/bandwagon/templates/bandwagon/collection_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
+#: apps/addons/templates/addons/home.html:77 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
 msgstr "Aanbevolen collecties"
 
@@ -679,6 +584,12 @@ msgstr "Meer…"
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
 msgstr "Installatie van deze add-on kan het opstarten van Firefox met <b>%(amount)s%%</b> vertragen."
 
+#: apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109 apps/addons/templates/addons/mobile/details.html:23
+#: apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27 apps/editors/templates/editors/review.html:31
+#: apps/perf/templates/perf/index.html:78
+msgid "by"
+msgstr "door"
+
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
@@ -698,7 +609,7 @@ msgid "See all Themes by this Artist"
 msgstr "Alle thema’s van deze kunstenaar"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:274
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:287
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "Categorieën"
@@ -748,7 +659,7 @@ msgstr "Toevoegen"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:254
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:267
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -888,8 +799,8 @@ msgstr "Rapport verzenden"
 #: apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
-#: apps/devhub/templates/devhub/addons/edit/technical.html:145 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:62 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
@@ -940,7 +851,7 @@ msgstr "Beoordelingsrichtlijnen"
 msgid "Detailed Review"
 msgstr "Gedetailleerde beoordeling"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:764 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:762 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Beoordelingen"
@@ -963,6 +874,11 @@ msgstr[1] "Bekijk alle %(cnt)s beoordelingen van deze add-on"
 msgctxt "tags_header_tags_title"
 msgid "Tags"
 msgstr "Labels"
+
+#: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
+msgid "by %(users)s"
+msgstr "door %(users)s"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1007,6 +923,12 @@ msgstr "Vaak gebruikt met…"
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
 msgstr "Onderdeel van deze collecties"
+
+#: apps/addons/templates/addons/impala/details-more.html:72
+msgid "Other add-ons by %(author)s"
+msgid_plural "Other add-ons by these authors"
+msgstr[0] "Overige add-ons door %(author)s"
+msgstr[1] "Overige add-ons door deze schrijvers"
 
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -1153,6 +1075,14 @@ msgstr "Geen foto"
 msgid "Who is {0}?"
 msgstr "Wie is {0}?"
 
+#: apps/addons/templates/addons/impala/disabled.html:17
+msgid "This add-on has been removed by its author."
+msgstr "Deze add-on is verwijderd door de schrijver."
+
+#: apps/addons/templates/addons/impala/disabled.html:19
+msgid "This add-on has been disabled by an administrator."
+msgstr "Deze add-on is uitgeschakeld door een beheerder."
+
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
 msgstr "Broncodelicentie voor {addon}"
@@ -1191,7 +1121,7 @@ msgstr "Deze add-on is nog niet beoordeeld."
 msgid "Be the first!"
 msgstr "Wees de eerste!"
 
-#: apps/addons/templates/addons/impala/listing/sorter.html:14 apps/devhub/templates/devhub/addons/listing/item_actions.html:49 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:36
+#: apps/addons/templates/addons/impala/listing/sorter.html:14 apps/devhub/templates/devhub/addons/listing/item_actions.html:49
 msgid "More"
 msgstr "Meer"
 
@@ -1203,7 +1133,7 @@ msgstr "Toevoegen aan collectie"
 msgid "My Add-ons"
 msgstr "Mijn add-ons"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:66
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:67
 msgid "My Themes"
 msgstr "Mijn thema’s"
 
@@ -1258,11 +1188,11 @@ msgstr "Meer lezen"
 msgid "Users"
 msgstr "Gebruikers"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:91
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:91
 msgid "Weekly Downloads"
 msgstr "Wekelijkse downloads"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:948 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:956 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Versie"
 
@@ -1335,6 +1265,18 @@ msgstr ""
 "Add-ons zijn toepassingen waarmee u Firefox van extra functionaliteit en stijl kunt voorzien. Of u nu de naam van een website verkeerd intypt of een drukke pagina niet kunt lezen, er is altijd wel "
 "een add-on die uw surfervaring verbetert."
 
+#. {0} is a category name. Ex: "Sports"
+#. {0} is a category name, such as Nature.
+#: apps/addons/templates/addons/mobile/home.html:39 apps/amo/templates/amo/site_nav.html:32 apps/browse/feeds.py:107 apps/browse/templates/browse/impala/base_listing.html:38
+#: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
+#: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
+#: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
+#: apps/constants/base.py:180 apps/devhub/templates/devhub/nav.html:45 apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7
+#: apps/devhub/templates/devhub/docs/themes.html:28 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
+msgid "Themes"
+msgstr "Thema’s"
+
 #: apps/addons/templates/addons/mobile/home.html:47
 msgid "View all Featured add-ons"
 msgstr "Alle aanbevolen add-ons bekijken"
@@ -1352,7 +1294,7 @@ msgid "Highest Rated"
 msgstr "Best gewaardeerd"
 
 #: apps/addons/templates/addons/mobile/home.html:70 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:89
-#: apps/browse/views.py:58 apps/browse/views.py:68 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:88
+#: apps/browse/views.py:57 apps/browse/views.py:67 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:16 apps/search/forms.py:88
 msgid "Newest"
 msgstr "Nieuwste"
 
@@ -1368,53 +1310,53 @@ msgstr "Thema-informatie &raquo;"
 msgid "Tools"
 msgstr "Hulpmiddelen"
 
-#: apps/amo/context_processors.py:63 apps/discovery/templates/discovery/pane_account.html:8 apps/users/templates/users/includes/navigation.html:2
+#: apps/amo/context_processors.py:64 apps/discovery/templates/discovery/pane_account.html:8 apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
 msgstr "Mijn profiel"
 
-#: apps/amo/context_processors.py:69 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3
+#: apps/amo/context_processors.py:70 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
 msgstr "Accountinstellingen"
 
-#: apps/amo/context_processors.py:72 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
+#: apps/amo/context_processors.py:73 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "Mijn collecties"
 
-#: apps/amo/context_processors.py:77 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
+#: apps/amo/context_processors.py:78 apps/discovery/templates/discovery/pane_account.html:10 apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
 msgstr "Mijn favorieten"
 
-#: apps/amo/context_processors.py:82 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
+#: apps/amo/context_processors.py:83 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
 msgstr "Afmelden"
 
-#: apps/amo/context_processors.py:87 apps/devhub/templates/devhub/addons/dashboard.html:4
+#: apps/amo/context_processors.py:88 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
 msgstr "Mijn bijdragen beheren"
 
-#: apps/amo/context_processors.py:90 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
+#: apps/amo/context_processors.py:91 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
 msgstr "Een nieuwe add-on indienen"
 
-#: apps/amo/context_processors.py:92 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
+#: apps/amo/context_processors.py:93 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "Een nieuw thema indienen"
 
-#: apps/amo/context_processors.py:94 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
+#: apps/amo/context_processors.py:95 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "Ontwikkelaarshub"
 
-#: apps/amo/context_processors.py:99 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:100 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Editorhulpmiddelen"
 
-#: apps/amo/context_processors.py:102
+#: apps/amo/context_processors.py:103
 msgid "Localizer Tools"
 msgstr "Vertaalhulpmiddelen"
 
-#: apps/amo/context_processors.py:106
+#: apps/amo/context_processors.py:107
 msgid "Admin Tools"
 msgstr "Beheerhulpmiddelen"
 
@@ -1427,7 +1369,6 @@ msgid "Enter at least one value."
 msgstr "Voer ten minste één waarde in."
 
 #: apps/amo/helpers.py:181 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
-#: apps/bandwagon/templates/bandwagon/collection_listing.html:20 apps/bandwagon/templates/bandwagon/collection_listing.html:28 apps/bandwagon/templates/bandwagon/collection_listing.html:30
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:24 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
@@ -1588,7 +1529,7 @@ msgstr "Superbeoordeling aangevraagd"
 msgid "Comment on {addon} {version}."
 msgstr "Opmerking over {addon} {version}."
 
-#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:412
+#: apps/amo/log.py:234 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:410
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Opmerking"
@@ -1942,8 +1883,8 @@ msgstr ""
 "<p> Voer <strong>alle onderstaande woorden in</strong>, <strong>indien nodig gescheiden door een spatie</strong>. </p> <p> Als dit moeilijk leesbaar is, kunt u <a href=\"#\" id=\"recaptcha_different"
 "\">andere woorden proberen</a> of <a href=\"#\" id=\"recaptcha_audio\">een ander soort captcha proberen</a>. </p>"
 
-#: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:57
-#: apps/browse/views.py:67 apps/browse/views.py:234 apps/browse/views.py:280 apps/search/forms.py:87
+#: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
+#: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:279 apps/search/forms.py:87
 msgid "Top Rated"
 msgstr "Best beoordeeld"
 
@@ -2182,11 +2123,11 @@ msgstr "Koppelingen zijn niet toegestaan."
 msgid "This url is already in use by another collection"
 msgstr "Deze URL wordt al door een andere collectie gebruikt"
 
-#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1013
+#: apps/bandwagon/forms.py:180 apps/devhub/views.py:1016
 msgid "Icons must be either PNG or JPG."
 msgstr "Pictogrammen dienen in PNG- of JPG-opmaak te zijn."
 
-#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1031 apps/users/forms.py:420
+#: apps/bandwagon/forms.py:185 apps/devhub/views.py:1034 apps/users/forms.py:420
 msgid "Please use images smaller than %dMB."
 msgstr "Gebruik afbeeldingen kleiner dan %d MB."
 
@@ -2226,7 +2167,7 @@ msgstr "Favoriet"
 msgid "Remove from favorites"
 msgstr "Verwijderen uit favorieten"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:59 apps/browse/views.py:70 apps/browse/views.py:450 apps/devhub/views.py:69
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:451 apps/devhub/views.py:69
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:18
 #: apps/search/forms.py:90 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2305,11 +2246,11 @@ msgstr "of <a id=\"collections-new-cancel\" href=\"#\">Annuleer</a>"
 msgid "To rate collections, you must have an add-ons account."
 msgstr "Om collecties te waarderen dient u een add-ons-account te hebben."
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:179
+#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:137 templates/impala/base.html:180
 msgid "Create an Add-ons Account"
 msgstr "Add-ons-account aanmaken"
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:182
+#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:140 templates/impala/base.html:183
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "of <a href=\"%(login)s\">meld u aan bij uw account</a>"
 
@@ -2433,22 +2374,6 @@ msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> volger"
 msgstr[1] "<span>%(followers)s</span> volgers"
 
-#: apps/bandwagon/templates/bandwagon/collection_listing.html:5
-msgid "Popular Collections"
-msgstr "Populaire collecties"
-
-#: apps/bandwagon/templates/bandwagon/collection_listing.html:6
-msgid "Highest Rated Collections"
-msgstr "Best gewaardeerde collecties"
-
-#: apps/bandwagon/templates/bandwagon/collection_listing.html:7
-msgid "Recently Added Collections"
-msgstr "Onlangs toegevoegde collecties"
-
-#: apps/bandwagon/templates/bandwagon/collection_listing.html:32 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Collecties zijn groepen gerelateerde add-ons die iedereen kan maken en delen. Verken collecties van andere gebruikers of <a href=\"%(url)s\">maak uw eigen collectie</a>."
-
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
 #.                      Like Twitter followers.
@@ -2501,9 +2426,8 @@ msgstr "Statistieken"
 msgid "Delete {0}"
 msgstr "{0} verwijderen"
 
-#: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
-#: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35 apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133
-#: apps/devhub/templates/devhub/versions/list.html:153
+#: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
+#: apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133 apps/devhub/templates/devhub/versions/list.html:153
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -2540,7 +2464,7 @@ msgstr "Medewerkers en meer"
 #: apps/bandwagon/templates/bandwagon/edit.html:54 apps/bandwagon/templates/bandwagon/edit.html:67 apps/bandwagon/templates/bandwagon/edit.html:82
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:59 apps/devhub/templates/devhub/addons/profile.html:42
 #: apps/devhub/templates/devhub/addons/edit/admin.html:101 apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84
-#: apps/devhub/templates/devhub/addons/edit/support.html:66 apps/devhub/templates/devhub/addons/edit/technical.html:142 apps/devhub/templates/devhub/addons/forms_shared/media.html:148
+#: apps/devhub/templates/devhub/addons/edit/support.html:66 apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148
 #: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300
 #: apps/devhub/templates/devhub/versions/edit.html:139 apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
@@ -2650,6 +2574,10 @@ msgstr "Onlangs bijgewerkte collecties"
 msgid "Recently Popular Collections"
 msgstr "Onlangs populaire collecties"
 
+#: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
+msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
+msgstr "Collecties zijn groepen gerelateerde add-ons die iedereen kan maken en delen. Verken collecties van andere gebruikers of <a href=\"%(url)s\">maak uw eigen collectie</a>."
+
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
 msgstr "Abonneren"
@@ -2706,7 +2634,7 @@ msgstr "Voer de naam van de op te nemen add-on in"
 msgid "Add to Collection"
 msgstr "Toevoegen aan collectie"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:779 apps/editors/helpers.py:799
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:777 apps/editors/helpers.py:797
 msgid "Pending"
 msgstr "In behandeling"
 
@@ -2813,24 +2741,24 @@ msgstr "Zoekhulpmiddelen en zoekgerelateerde extensies"
 msgid "Search tools"
 msgstr "Zoekhulpmiddelen"
 
-#: apps/browse/views.py:56 apps/browse/views.py:66 apps/search/forms.py:86
+#: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:86
 msgid "Most Users"
 msgstr "Meeste gebruikers"
 
-#: apps/browse/views.py:62 apps/browse/views.py:73 apps/browse/views.py:277 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
+#: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:276 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:93
 msgid "Up & Coming"
 msgstr "Aankomend"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:71
+#: apps/browse/views.py:453 apps/devhub/views.py:71
 msgid "Created"
 msgstr "Aangemaakt"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:72 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:454 apps/devhub/views.py:72 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Downloads"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:455 apps/devhub/views.py:73 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Waardering"
@@ -3210,7 +3138,7 @@ msgstr "Filteren op toepassing"
 msgid "Report Type"
 msgstr "Rapporttype"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:945 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:953 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Toepassing"
 
@@ -3315,7 +3243,7 @@ msgstr "Voorlopig beoordeeld"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Voorlopig beoordeeld en wacht op volledige beoordeling"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:767 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:765 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Verwijderd"
 
@@ -3560,7 +3488,7 @@ msgstr "Label"
 msgid "Duplicate"
 msgstr "Duplicaat"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:403 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
+#: apps/constants/editors.py:17 apps/editors/helpers.py:401 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
 msgid "Reject"
 msgstr "Afwijzen"
 
@@ -3768,7 +3696,7 @@ msgstr "Niet-ondersteund bestandstype, upload een archiefbestand {extensions}."
 msgid "View current"
 msgstr "Huidige weergeven"
 
-#: apps/devhub/forms.py:436 apps/devhub/forms.py:872
+#: apps/devhub/forms.py:436 apps/devhub/forms.py:880
 msgid "Invalid version range."
 msgstr "Ongeldig versiebereik."
 
@@ -3800,167 +3728,173 @@ msgstr "Voorlopige beoordeling"
 msgid "Please choose a review nomination type"
 msgstr "Kies een beoordelingsnominatietype"
 
-#: apps/devhub/forms.py:551
+#: apps/devhub/forms.py:540 apps/devhub/forms.py:574
+msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
+msgstr ""
+"Een bestand met een versie eindigend op a|alpha|b|beta en een optioneel "
+"nummer wordt als bèta gedetecteerd."
+
+#: apps/devhub/forms.py:555
 msgid "Version %s already exists"
 msgstr "Versie %s bestaat al"
 
-#: apps/devhub/forms.py:564
+#: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Selecteer een geldige keuze. Die keuze is niet beschikbaar."
 
-#: apps/devhub/forms.py:595
+#: apps/devhub/forms.py:603
 msgid "You cannot upload any more files for this version."
 msgstr "U kunt geen bestanden meer uploaden voor deze versie."
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:609
 msgid "Version doesn't match"
 msgstr "Versie komt niet overeen"
 
-#: apps/devhub/forms.py:634
+#: apps/devhub/forms.py:642
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "U kunt een bestand niet verwijderen als het beoordelingsproces is gestart. U dient de gehele versie te verwijderen."
 
-#: apps/devhub/forms.py:654
+#: apps/devhub/forms.py:662
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Het platform Alle kan niet met specifieke platformen worden gecombineerd."
 
-#: apps/devhub/forms.py:659
+#: apps/devhub/forms.py:667
 msgid "A platform can only be chosen once."
 msgstr "Een platform kan slechts één keer worden gekozen."
 
-#: apps/devhub/forms.py:672
+#: apps/devhub/forms.py:680
 msgid "A review type must be selected."
 msgstr "Er dient een beoordelingstype te worden geselecteerd."
 
-#: apps/devhub/forms.py:750
+#: apps/devhub/forms.py:758
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Geef uw add-on een naam. De meest succesvolle add-ons geven een indicatie van hun functie in de naam."
 
-#: apps/devhub/forms.py:754
+#: apps/devhub/forms.py:762
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Beschrijf uw add-on kort in één zin. Deze verschijnt in de add-onbeheerder."
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:765
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Voer uw initiële versienummer is. Afhankelijk van het aantal releases en uw voorkeuren is dit gewoonlijk 0.1 of 1.0"
 
-#: apps/devhub/forms.py:761
+#: apps/devhub/forms.py:769
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Elke add-on vereist een uniek kenmerk in de vorm van een UUID of een e-mailadres, zoals addon-naam@ontwikkelaar.com. Het e-mailadres hoeft niet geldig te zijn."
 
-#: apps/devhub/forms.py:766
+#: apps/devhub/forms.py:774
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "De pakketnaam van uw add-on die in de browser wordt gebruikt. Dit dient een korte vorm van de naam te zijn (bijvoorbeeld Test Extensie kan test_extensie zijn)."
 
-#: apps/devhub/forms.py:771
+#: apps/devhub/forms.py:779
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Voer de naam in van de persoon of entiteit die moet worden weergegeven als de schrijver van deze add-on."
 
-#: apps/devhub/forms.py:774
+#: apps/devhub/forms.py:782
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Voer de namen in van alle overige medewerkers voor deze extensie, één per regel."
 
-#: apps/devhub/forms.py:783
+#: apps/devhub/forms.py:791
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Add-on-namen mogen geen handelsmerken van Mozilla bevatten."
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:798
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Voer een geldige pakketnaam in die bestaat uit letters, cijfers of lage strepen."
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:802
 msgid "This package name is already in use."
 msgstr "Deze pakketnaam wordt al gebruikt."
 
-#: apps/devhub/forms.py:797
+#: apps/devhub/forms.py:805
 msgid "The package name cannot be: %s."
 msgstr "De pakketnaam kan niet %s zijn."
 
-#: apps/devhub/forms.py:808
+#: apps/devhub/forms.py:816
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "Het add-on-ID moet een UUID-string of een e-mailadres zijn."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:822
 msgid "The version string is invalid."
 msgstr "De versiestring is ongeldig."
 
-#: apps/devhub/forms.py:822
+#: apps/devhub/forms.py:830
 msgid "Minimum"
 msgstr "Minimum"
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:833
 msgid "Maximum"
 msgstr "Maximum"
 
-#: apps/devhub/forms.py:876
+#: apps/devhub/forms.py:884
 msgid "Min version must be less than Max version."
 msgstr "De minimumversie dient lager te zijn dan de maximumversie."
 
-#: apps/devhub/forms.py:901
+#: apps/devhub/forms.py:909
 msgid "{0} is a required target application."
 msgstr "{0} is een verplichte doeltoepassing."
 
-#: apps/devhub/forms.py:913
+#: apps/devhub/forms.py:921
 msgid "About dialog"
 msgstr "Dialoogvenster Over"
 
-#: apps/devhub/forms.py:914
+#: apps/devhub/forms.py:922
 msgid "Creates a standard About dialog for your extension"
 msgstr "Creëert een standaard-dialoogvenster Over voor uw extensie"
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:926
 msgid "Preferences dialog"
 msgstr "Voorkeursdialoogvenster"
 
-#: apps/devhub/forms.py:919
+#: apps/devhub/forms.py:927
 msgid "Creates an example Preferences window"
 msgstr "Creëert een voorbeeldvenster Voorkeuren"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:930
 msgid "Toolbar"
 msgstr "Werkbalk"
 
-#: apps/devhub/forms.py:923
+#: apps/devhub/forms.py:931
 msgid "Creates an example toolbar for your extension"
 msgstr "Creëert een voorbeeldwerkbalk voor uw extensie"
 
-#: apps/devhub/forms.py:926
+#: apps/devhub/forms.py:934
 msgid "Toolbar button"
 msgstr "Werkbalkknop"
 
-#: apps/devhub/forms.py:927
+#: apps/devhub/forms.py:935
 msgid "Creates an example button on the browser toolbar"
 msgstr "Creëert een voorbeeldknop op de browserwerkbalk"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:939
 msgid "Main menu command"
 msgstr "Hoofdmenuopdracht"
 
-#: apps/devhub/forms.py:932
+#: apps/devhub/forms.py:940
 msgid "Creates an item on the Tools menu"
 msgstr "Creëert een item in het menu Extra"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:943
 msgid "Context menu command"
 msgstr "Contextmenuopdracht"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:944
 msgid "Creates a context menu item for images"
 msgstr "Creëert een contextmenu-item voor afbeeldingen"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:947
 msgid "Sidebar support"
 msgstr "Zijbalkondersteuning"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:948
 msgid "Creates an example sidebar panel"
 msgstr "Creëert een voorbeeld-zijbalkpaneel"
 
-#: apps/devhub/forms.py:949 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:957 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
-#: apps/devhub/forms.py:1001
+#: apps/devhub/forms.py:1009
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Er mogen niet meer dan 3 verplichte add-ons zijn."
 
@@ -3994,16 +3928,16 @@ msgstr[1] "{0} waarschuwingen"
 msgid "Review"
 msgstr "Beoordeling"
 
-#: apps/devhub/tasks.py:324
+#: apps/devhub/tasks.py:326
 msgid "%s responded with %s (%s)."
 msgstr "%s heeft geantwoord met %s (%s)."
 
 # consistent w/ products (& verbindingen verlopen niet)
-#: apps/devhub/tasks.py:328
+#: apps/devhub/tasks.py:330
 msgid "Connection to \"%s\" timed out."
 msgstr "Wachttijd voor verbinding met “%s” verstreken."
 
-#: apps/devhub/tasks.py:330
+#: apps/devhub/tasks.py:332
 msgid "Could not contact host at \"%s\"."
 msgstr "Kan geen verbinding maken met de host op “%s”."
 
@@ -4035,11 +3969,11 @@ msgstr "Gebruikerscollecties"
 msgid "User Reviews"
 msgstr "Gebruikersbeoordelingen"
 
-#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1107
+#: apps/devhub/views.py:312 apps/devhub/views.py:316 apps/devhub/views.py:426 apps/devhub/views.py:455 apps/devhub/views.py:506 apps/devhub/views.py:1110
 msgid "Changes successfully saved."
 msgstr "Wijzigingen met succes opgeslagen."
 
-#: apps/devhub/views.py:319 apps/devhub/views.py:1509
+#: apps/devhub/views.py:319 apps/devhub/views.py:1516
 msgid "Please check the form for errors."
 msgstr "Controleer het formulier op fouten."
 
@@ -4079,48 +4013,48 @@ msgstr "Add-on-compatibiliteit controleren"
 msgid "There was an error with the submission."
 msgstr "Er is een fout opgetreden bij het indienen."
 
-#: apps/devhub/views.py:1015 apps/users/forms.py:415
+#: apps/devhub/views.py:1018 apps/users/forms.py:415
 msgid "Images must be either PNG or JPG."
 msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 
-#: apps/devhub/views.py:1019
+#: apps/devhub/views.py:1022
 msgid "Icons cannot be animated."
 msgstr "Pictogrammen mogen niet bewegend zijn."
 
-#: apps/devhub/views.py:1021
+#: apps/devhub/views.py:1024
 msgid "Images cannot be animated."
 msgstr "Afbeeldingen mogen niet bewegend zijn."
 
-#: apps/devhub/views.py:1034
+#: apps/devhub/views.py:1037
 msgid "Images cannot be larger than %dKB."
 msgstr "Afbeeldingen mogen niet groter zijn dan %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1044
+#: apps/devhub/views.py:1047
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Afbeeldingen dienen exact {0} pixels breed en {1} pixels hoog te zijn."
 
-#: apps/devhub/views.py:1048
+#: apps/devhub/views.py:1051
 msgid "There was an error uploading your preview."
 msgstr "Er is een fout opgetreden bij het uploaden van uw voorbeeld."
 
-#: apps/devhub/views.py:1146
+#: apps/devhub/views.py:1149
 msgid "Version %s disabled."
 msgstr "Versie %s uitgeschakeld."
 
-#: apps/devhub/views.py:1149
+#: apps/devhub/views.py:1152
 msgid "Version %s deleted."
 msgstr "Versie %s verwijderd."
 
-#: apps/devhub/views.py:1159
+#: apps/devhub/views.py:1162
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "De validatie van deze upload is mislukt en er ontbreken mogelijk volledige validatieresultaten. Let goed op bij de beoordeling."
 
-#: apps/devhub/views.py:1555
+#: apps/devhub/views.py:1562
 msgid "Preliminary Review Requested."
 msgstr "Voorlopige beoordeling aangevraagd."
 
-#: apps/devhub/views.py:1556
+#: apps/devhub/views.py:1563
 msgid "Full Review Requested."
 msgstr "Volledige beoordeling aangevraagd."
 
@@ -4235,7 +4169,7 @@ msgstr "Positie in wachtrij:"
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s van %(total)s"
 
-#: apps/devhub/templates/devhub/index.html:74 apps/devhub/templates/devhub/includes/addons_edit_nav.html:18
+#: apps/devhub/templates/devhub/index.html:74 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
 msgstr "Nieuwe versie uploaden"
 
@@ -4612,7 +4546,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Nog een toepassing toevoegen…"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:124 templates/impala/base.html:142 templates/impala/base.html:152
+#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Sluiten"
 
@@ -4631,9 +4565,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> thema’s"
 
-#: apps/devhub/templates/devhub/addons/edit.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:25 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:25
-#: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:7 apps/devhub/templates/devhub/includes/addons_edit_nav.html:2 apps/devhub/templates/devhub/personas/edit.html:6
-#: apps/editors/templates/editors/themes/single.html:37
+#: apps/devhub/templates/devhub/addons/edit.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:25 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:7
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:2 apps/devhub/templates/devhub/personas/edit.html:6 apps/editors/templates/editors/themes/single.html:37
 msgid "Edit Listing"
 msgstr "Lijstvermelding bewerken"
 
@@ -4646,7 +4579,7 @@ msgstr "Geen"
 msgid "Manage Authors & License"
 msgstr "Schrijvers en licentie beheren"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:267
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:280
 msgid "Authors"
 msgstr "Schrijvers"
 
@@ -4705,8 +4638,8 @@ msgstr "Add-on-URL"
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Kies een korte, unieke URL-referentie voor uw add-on."
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:46
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:252 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:265 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "Lijst bekijken"
 
@@ -4905,6 +4838,20 @@ msgstr "UUID"
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr "De UUID van uw add-on wordt opgegeven in het installatiemanifest en is een unieke identificatie. U kunt de UUID na indienen niet meer wijzigen."
 
+#: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
+msgid "Whiteboard"
+msgstr "Notitiebord"
+
+#: apps/devhub/templates/devhub/addons/edit/technical.html:142
+msgid ""
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by editors."
+msgstr ""
+"Het notitiebord is een plek waar u relevante informatie over uw informatie "
+"aan de editor kunt verstrekken, ongeacht de versie. Gebruik het bord om "
+"manieren om de add-on te testen op te geven, naast andere behulpzame "
+"informatie. Het notitiebord kan door editors worden bewerkt."
+
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
 msgstr "Deze afhankelijke add-on verwijderen"
@@ -5010,7 +4957,7 @@ msgstr "Bovenzijde"
 msgid "Delete Theme"
 msgstr "Thema verwijderen"
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/includes/addons_edit_nav.html:41
 msgid "Delete Add-on"
 msgstr "Add-on verwijderen"
 
@@ -5038,8 +4985,7 @@ msgstr "Vertel ons waarom u uw thema verwijdert:"
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Vertel ons waarom u uw add-on verwijdert:"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:1
-#: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:250
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:263
 msgid "Actions"
 msgstr "Acties"
 
@@ -5047,7 +4993,7 @@ msgstr "Acties"
 msgid "Resume the submission process for this add-on."
 msgstr "Het indieningsproces voor deze add-on hervatten."
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:8 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:8
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:8
 msgid "Resume"
 msgstr "Hervatten"
 
@@ -5071,8 +5017,8 @@ msgstr "Nieuwe versie"
 msgid "Daily statistics on downloads and users."
 msgstr "Dagelijkse statistieken over downloads en gebruikers."
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:54 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:33 apps/devhub/templates/devhub/includes/addons_edit_nav.html:5
-#: apps/devhub/templates/devhub/payments/payments.html:3 apps/devhub/templates/devhub/payments/tier.html:4
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:54 apps/devhub/templates/devhub/includes/addons_edit_nav.html:5 apps/devhub/templates/devhub/payments/payments.html:3
+#: apps/devhub/templates/devhub/payments/tier.html:4
 msgid "Manage Payments"
 msgstr "Betalingen beheren"
 
@@ -5084,34 +5030,10 @@ msgstr "Status en versies beheren"
 msgid "View Add-on Listing"
 msgstr "Add-onvermelding bekijken"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:63 apps/devhub/templates/devhub/addons/listing/item_actions_app.html:50
-#: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19 apps/devhub/templates/devhub/includes/addons_edit_nav.html:48 apps/devhub/templates/devhub/personas/edit.html:58
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:63 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:49 apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
 msgstr "Recente wijzigingen bekijken"
-
-#: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:7
-msgid "Resume the submission process for this app."
-msgstr "Het indieningsproces voor deze app hervatten."
-
-#: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:14
-msgid "Delete this app."
-msgstr "Deze app verwijderen."
-
-#: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:24
-msgid "Edit details about this app's listing."
-msgstr "Details van deze app wijzigen."
-
-#: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:39
-msgid "Manage Status"
-msgstr "Status beheren"
-
-#: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:42
-msgid "Manage In-App Payments"
-msgstr "In-app-betalingen beheren"
-
-#: apps/devhub/templates/devhub/addons/listing/item_actions_app.html:49
-msgid "View App Listing"
-msgstr "App-lijstweergave bekijken"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
@@ -5444,7 +5366,7 @@ msgstr "Met welke desktopplatformen is dit bestand compatibel?"
 msgid "Which mobile platforms is this file compatible with?"
 msgstr "Met welke mobiele platformen is dit bestand compatibel?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:48
 msgid "Administrative overrides"
 msgstr "Negeerhandelingen van beheer"
 
@@ -7902,31 +7824,31 @@ msgstr "Of het nu een idee was terwijl u in de rij stond bij de kruidenier of de
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Door uw gebruikers te vertellen wat er aan zit te komen geeft u ze iets om naar uit te kijken."
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:22
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
 msgstr "Alles bekijken"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:34
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
 msgid "Enable Add-on"
 msgstr "Add-on inschakelen"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:36 apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:242
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37 apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:242
 msgid "Disable Add-on"
 msgstr "Add-on uitschakelen"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:51
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:52
 msgid "View Statistics Dashboard"
 msgstr "Statistiekendashboard bekijken"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:54
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:55
 msgid "Compatibility Reports"
 msgstr "Compatibiliteitsrapporten"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:56
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:57
 msgid "{0} failure reports"
 msgstr "{0} foutrapporten"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:58
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:59
 msgid "{0} success reports"
 msgstr "{0} succesrapporten"
 
@@ -8349,9 +8271,13 @@ msgstr "Bestanden die worden toegevoegd aan beoordeelde versies dienen te worden
 msgid "Select the target platform for this file."
 msgstr "Selecteer het doelplatform voor dit bestand."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:36
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
 msgid "Which review type would you like to nominate for?"
 msgstr "Voor welk beoordelingstype wilt u nomineren?"
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+msgid "Only publish this version to my beta channel."
+msgstr "Alleen deze versie op mijn bètakanaal publiceren."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8375,7 +8301,7 @@ msgstr "Bestanden"
 msgid "Upload Another File"
 msgstr "Nog een bestand uploaden"
 
-#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:103
+#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:109
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
 
@@ -8391,7 +8317,7 @@ msgstr ""
 msgid "Approval Status"
 msgstr "Goedkeuringsstatus"
 
-#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:113
+#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:119
 msgid "Notes for Reviewers"
 msgstr "Opmerkingen voor beoordelaars"
 
@@ -8407,7 +8333,7 @@ msgstr "Broncode"
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr "Als uw add-on binaire of verborgen code bevat, stel dan de bron hier beschikbaar aan beoordelaars."
 
-#: apps/devhub/templates/devhub/versions/edit.html:145
+#: apps/devhub/templates/devhub/versions/edit.html:145 apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
 msgstr "Een nieuw bestand uploaden"
 
@@ -8746,6 +8672,10 @@ msgstr "Winnaars Add-ons voor Australis-wedstijd"
 msgid "Discover Add-ons"
 msgstr "Ontdek add-ons"
 
+#: apps/discovery/templates/discovery/pane.html:24
+msgid "What are Add-ons?"
+msgstr "Wat zijn add-ons?"
+
 #: apps/discovery/templates/discovery/pane.html:29
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
@@ -9079,7 +9009,7 @@ msgstr "Type"
 msgid "Waiting Time"
 msgstr "Wachttijd"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:282
+#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:295
 msgid "Flags"
 msgstr "Labels"
 
@@ -9091,69 +9021,69 @@ msgstr "Toepassingen"
 msgid "Additional"
 msgstr "Aanvullend"
 
-#: apps/editors/helpers.py:217
+#: apps/editors/helpers.py:215
 msgid "Site Specific"
 msgstr "Website-specifiek"
 
-#: apps/editors/helpers.py:219
+#: apps/editors/helpers.py:217
 msgid "Requires External Software"
 msgstr "Vereist externe software"
 
-#: apps/editors/helpers.py:221
+#: apps/editors/helpers.py:219
 msgid "Binary Components"
 msgstr "Binaire componenten"
 
 # is this preceded by a number?
-#: apps/editors/helpers.py:245
+#: apps/editors/helpers.py:243
 msgid "moments ago"
 msgstr "kortgeleden"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:248
+#: apps/editors/helpers.py:246
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minuut"
 msgstr[1] "{0} minuten"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:252
+#: apps/editors/helpers.py:250
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} uur"
 msgstr[1] "{0} uur"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:256
+#: apps/editors/helpers.py:254
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} dag"
 msgstr[1] "{0} dagen"
 
-#: apps/editors/helpers.py:397
+#: apps/editors/helpers.py:395
 msgid "Push to public"
 msgstr "Publiceren"
 
-#: apps/editors/helpers.py:406
+#: apps/editors/helpers.py:404
 msgid "Request more information"
 msgstr "Meer informatie aanvragen"
 
-#: apps/editors/helpers.py:409
+#: apps/editors/helpers.py:407
 msgid "Request super-review"
 msgstr "Superbeoordeling aanvragen"
 
-#: apps/editors/helpers.py:420
+#: apps/editors/helpers.py:418
 msgid "Grant preliminary review"
 msgstr "Voorlopige beoordeling toekennen"
 
-#: apps/editors/helpers.py:421
+#: apps/editors/helpers.py:419
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Dit markeert de bestanden als voorlopig beoordeeld."
 
-#: apps/editors/helpers.py:423
+#: apps/editors/helpers.py:421
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "Gebruik dit formulier om meer informatie aan de schrijver te vragen. Deze ontvangt een e-mailbericht en kan vervolgens hier antwoorden. U krijgt een e-mailbericht als er antwoord is gegeven."
 
-#: apps/editors/helpers.py:427
+#: apps/editors/helpers.py:425
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -9161,55 +9091,55 @@ msgstr ""
 "Als u vraagtekens hebt bij de veiligheid, auteursrechtproblemen van deze add-on of andere zorgen hebt waar een beheerder naar zou moeten kijken, voer dan hieronder uw opmerkingen in. Deze worden "
 "naar de beheerders verstuurd, niet naar de schrijver."
 
-#: apps/editors/helpers.py:433
+#: apps/editors/helpers.py:431
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Dit wijst de add-on af en verwijdert deze uit de beoordelingswachtrij."
 
-#: apps/editors/helpers.py:435
+#: apps/editors/helpers.py:433
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Maak een opmerking over deze versie. De schrijver kan dit niet zien."
 
-#: apps/editors/helpers.py:439
+#: apps/editors/helpers.py:437
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Dit wijst de bestanden af en verwijdert ze uit de beoordelingswachtrij."
 
-#: apps/editors/helpers.py:443
+#: apps/editors/helpers.py:441
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Dit markeert de add-on als voorlopig beoordeeld. Toekomstige versies zullen een voorlopige beoordeling ondergaan."
 
-#: apps/editors/helpers.py:448
+#: apps/editors/helpers.py:446
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Dit markeert de bestanden als voorlopig beoordeeld. Toekomstige versies zullen een voorlopige beoordeling ondergaan."
 
-#: apps/editors/helpers.py:453
+#: apps/editors/helpers.py:451
 msgid "Retain preliminary review"
 msgstr "Voorlopige beoordeling behouden"
 
-#: apps/editors/helpers.py:454
+#: apps/editors/helpers.py:452
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Dit houdt de add-on aan als voorlopig beoordeeld. Toekomstige versies zullen een voorlopige beoordeling ondergaan."
 
-#: apps/editors/helpers.py:459
+#: apps/editors/helpers.py:457
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Dit keurt een versie in de sandbox van een publieke add-on goed, zodat deze gepubliceerd wordt."
 
-#: apps/editors/helpers.py:462
+#: apps/editors/helpers.py:460
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Dit wijst een versie van een publieke add-on af en verwijdert deze uit de wachtrij."
 
-#: apps/editors/helpers.py:465
+#: apps/editors/helpers.py:463
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Dit markeert de add-on en de meest recente versie en bestanden als publiek. Toekomstige versies worden in de sandbox geplaatst tot ze zijn beoordeeld door een editor."
 
-#: apps/editors/helpers.py:533
+#: apps/editors/helpers.py:531
 msgid "add-on"
 msgstr "add-on"
 
-#: apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/editors/helpers.py:781 apps/editors/helpers.py:801
 msgid "Flagged"
 msgstr "Gemarkeerd"
 
-#: apps/editors/helpers.py:787 apps/editors/helpers.py:806
+#: apps/editors/helpers.py:785 apps/editors/helpers.py:804
 msgid "Updates"
 msgstr "Updates"
 
@@ -9253,62 +9183,62 @@ msgstr "Ingediend thema gelabeld voor beoordeling"
 msgid "A question about your Theme submission"
 msgstr "Een vraag over uw ingediende thema"
 
-#: apps/editors/views.py:122
+#: apps/editors/views.py:81
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nieuwe add-ons (minder dan 5 dagen)"
 
-#: apps/editors/views.py:123
+#: apps/editors/views.py:82
 msgid "Passable (5 to 10 days)"
 msgstr "Toelaatbaar (5 tot 10 dagen)"
 
-#: apps/editors/views.py:124
+#: apps/editors/views.py:83
 msgid "Overdue (Over 10 days)"
 msgstr "Verlaat (meer dan 10 dagen)"
 
-#: apps/editors/views.py:452
+#: apps/editors/views.py:395
 msgid "An unknown error occurred"
 msgstr "Er is een onbekende fout opgetreden"
 
-#: apps/editors/views.py:482
+#: apps/editors/views.py:425
 msgid "Self-reviews are not allowed."
 msgstr "Zelfbeoordelingen zijn niet toegestaan."
 
-#: apps/editors/views.py:514
+#: apps/editors/views.py:444
 msgid "Review successfully processed."
 msgstr "Beoordeling met succes verwerkt."
 
-#: apps/editors/views.py:692
+#: apps/editors/views.py:623
 msgid "was approved"
 msgstr "is goedgekeurd"
 
-#: apps/editors/views.py:693
+#: apps/editors/views.py:624
 msgid "given preliminary review"
 msgstr "is voorlopig beoordeeld"
 
-#: apps/editors/views.py:694
+#: apps/editors/views.py:625
 msgid "rejected"
 msgstr "is afgewezen"
 
-#: apps/editors/views.py:695
+#: apps/editors/views.py:626
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "is geëscaleerd"
 
-#: apps/editors/views.py:697
+#: apps/editors/views.py:628
 msgid "needs more information"
 msgstr "heeft meer informatie nodig"
 
-#: apps/editors/views.py:698
+#: apps/editors/views.py:629
 msgid "needs super review"
 msgstr "vereist superbeoordeling"
 
-#: apps/editors/views_themes.py:325
+#: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} themabeoordeling succesvol verwerkt (+{1} punten, {2} totaal)."
 msgstr[1] "{0} themabeoordelingen succesvol verwerkt (+{1} punten, {2} totaal)."
 
-#: apps/editors/views_themes.py:340
+#: apps/editors/views_themes.py:341
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 "Uw themablokkades zijn met succes opgeheven. Andere beoordelaars kunnen nu die vrijgegevens thema’s beoordelen. U dient mogelijk de pagina te vernieuwen om de wijzigingen in onderstaande tabel te "
@@ -9463,7 +9393,7 @@ msgstr "Bericht van de dag"
 msgid "Update message of the day"
 msgstr "Bericht van de dag bijwerken"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:228
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:234
 msgid "Save"
 msgstr "Opslaan"
 
@@ -9577,7 +9507,7 @@ msgstr "Gids voor editors"
 msgid "Review {0}"
 msgstr "Beoordeling {0}"
 
-#: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:263
+#: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:276
 msgid "Add-on History"
 msgstr "Add-ongeschiedenis"
 
@@ -9605,55 +9535,66 @@ msgstr "Compatibiliteit:"
 msgid "Additional sources:"
 msgstr "Aanvullende bronnen:"
 
-#: apps/editors/templates/editors/review.html:96
+#: apps/editors/templates/editors/review.html:98
 msgid "Download files"
 msgstr "Bestanden downloaden"
 
-#: apps/editors/templates/editors/review.html:129
+#: apps/editors/templates/editors/review.html:100
+msgid "The developer has provided source code."
+msgstr "De ontwikkelaar heeft een broncode opgegeven."
+
+#: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
 msgstr "Deze versie is niet beoordeeld."
 
-#: apps/editors/templates/editors/review.html:159
+#: apps/editors/templates/editors/review.html:165
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "U kunt dit formulier nog steeds indienen, maar doe dit alleen als u weet dat er geen conflicten zullen optreden."
 
-#: apps/editors/templates/editors/review.html:166
+#: apps/editors/templates/editors/review.html:172
 msgid "Insert canned response..."
 msgstr "Voorgedefinieerd antwoord invoegen…"
 
-#: apps/editors/templates/editors/review.html:186
+#: apps/editors/templates/editors/review.html:192
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr "Opmerking: Beoordeel alleen meerdere bestanden als u <strong>elk</strong> geselecteerd bestand hebt getest."
 
-#: apps/editors/templates/editors/review.html:194
+#: apps/editors/templates/editors/review.html:200
 msgid "Tested on:"
 msgstr "Getest op:"
 
-#: apps/editors/templates/editors/review.html:224
+#: apps/editors/templates/editors/review.html:230
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Waarschuwing!</strong> Een andere gebruiker heeft deze pagina vóór u bekeken."
 
-#: apps/editors/templates/editors/review.html:243
-msgid "%(current)s of %(total)s"
-msgstr "%(current)s van %(total)s"
+#: apps/editors/templates/editors/review.html:247
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
+msgstr ""
+"Het notitiebord in de plaats om voor uw add-on relevante informatie uit te "
+"wisselen tussen de ontwikkelaar en de editor (ongeacht de versie). Dit is "
+"voor beiden zichtbaar en te bewerken."
 
-#: apps/editors/templates/editors/review.html:254 apps/editors/templates/editors/review.html:255
+#: apps/editors/templates/editors/review.html:251
+msgid "Update the whiteboard"
+msgstr "Notitiebord bijwerken"
+
+#: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
 msgstr "(beheer)"
 
-#: apps/editors/templates/editors/review.html:255
+#: apps/editors/templates/editors/review.html:268
 msgid "Admin Page"
 msgstr "Beheerderspagina"
 
-#: apps/editors/templates/editors/review.html:260
+#: apps/editors/templates/editors/review.html:273
 msgid "Review This Add-on"
 msgstr "Deze add-on beoordelen"
 
-#: apps/editors/templates/editors/review.html:262
+#: apps/editors/templates/editors/review.html:275
 msgid "More Information"
 msgstr "Meer informatie"
 
-#: apps/editors/templates/editors/review.html:264
+#: apps/editors/templates/editors/review.html:277
 msgid "Resolution"
 msgstr "Resolutie"
 
@@ -9942,47 +9883,47 @@ msgstr "Er is een fout opgetreden bij het openen van het bestand %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Er is een fout opgetreden bij het openen van het bestand %s."
 
-#: apps/files/utils.py:245
+#: apps/files/utils.py:250
 msgid "Could not parse uploaded file."
 msgstr "Kan geüpload bestand niet uitpakken."
 
-#: apps/files/utils.py:282
+#: apps/files/utils.py:287
 msgid "Invalid file name in archive: {0}"
 msgstr "Ongeldige bestandsnaam in archief: {0}"
 
-#: apps/files/utils.py:290
+#: apps/files/utils.py:295
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Te groot bestand in archief: {0}"
 
-#: apps/files/utils.py:340
+#: apps/files/utils.py:345
 msgid "Invalid archive."
 msgstr "Ongeldig archief."
 
-#: apps/files/utils.py:430 apps/files/utils.py:433
+#: apps/files/utils.py:435 apps/files/utils.py:438
 msgid "Could not parse install.rdf."
 msgstr "Kan install.rdf niet ontleden."
 
-#: apps/files/utils.py:443
+#: apps/files/utils.py:448
 msgid "Could not find a UUID."
 msgstr "Kan geen UUID vinden."
 
-#: apps/files/utils.py:445
+#: apps/files/utils.py:450
 msgid "UUID doesn't match add-on."
 msgstr "UUID komt niet overeen met add-on."
 
-#: apps/files/utils.py:449
+#: apps/files/utils.py:454
 msgid "Duplicate UUID found."
 msgstr "Dubbele UUID gevonden."
 
-#: apps/files/utils.py:452
+#: apps/files/utils.py:457
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Versienummers mogen uit niet meer dan 32 tekens bestaan."
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens bevatten: +*.-_."
 
-#: apps/files/utils.py:472
+#: apps/files/utils.py:477
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> komt niet overeen met add-on"
 
@@ -12625,10 +12566,7 @@ msgstr "Dat wachtwoord is niet toegestaan."
 
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-"Ten gevolge van ons nieuwe wachtwoordbeleid dient uw wachtwoord uit ten "
-"minste %s tekens te bestaan. Werk uw wachtwoord bij door <a href=\"%s\">uw "
-"wachtwoord opnieuw in te stellen</a>."
+msgstr "Ten gevolge van ons nieuwe wachtwoordbeleid dient uw wachtwoord uit ten minste %s tekens te bestaan. Werk uw wachtwoord bij door <a href=\"%s\">uw wachtwoord opnieuw in te stellen</a>."
 
 #: apps/users/forms.py:187 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -13384,11 +13322,11 @@ msgstr "Gemiddelde waardering van de add-ons van de ontwikkelaar"
 msgid "Log in with BrowserID"
 msgstr "Aanmelden met BrowserID"
 
-#: apps/versions/feeds.py:27
+#: apps/versions/feeds.py:61
 msgid "%s Version History"
 msgstr "%s-versiegeschiedenis"
 
-#: apps/versions/feeds.py:35
+#: apps/versions/feeds.py:69
 msgid "Version History with Changelogs"
 msgstr "Versiegeschiedenis met overzicht van wijzigingen"
 
@@ -13488,19 +13426,19 @@ msgstr "Andere talen"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-add-ons"
 
-#: templates/base.html:63 templates/impala/base.html:107
+#: templates/base.html:65 templates/impala/base.html:108
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Enkele functies zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Binnenkort zijn we weer volledig beschikbaar."
 
-#: templates/base.html:81 templates/impala/base.html:73
+#: templates/base.html:83 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
 msgstr "Add-ons voor andere toepassingen zoeken"
 
-#: templates/base.html:82 templates/impala/base.html:73
+#: templates/base.html:84 templates/impala/base.html:74
 msgid "Other Applications"
 msgstr "Andere toepassingen"
 
-#: templates/base.html:131 templates/impala/base.html:175
+#: templates/base.html:133 templates/impala/base.html:176
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Om uw eigen collecties aan te maken dient u een Mozilla-add-ons-account te hebben."
 
@@ -13610,28 +13548,28 @@ msgstr "Welkom {0}"
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registreer</a> of <a href=\"%(login)s\">meld u aan</a>"
 
-#: templates/impala/base.html:118
+#: templates/impala/base.html:119
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "Download <a href=\"%(url)s\">Mozilla Firefox</a>, een snelle, gratis manier om op het Web te surfen, om de duizenden hier beschikbare add-ons te proberen!"
 
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:129
+#: templates/impala/base.html:130
 msgid "Welcome to {0} Add-ons."
 msgstr "Welkom bij {0}-add-ons."
 
-#: templates/impala/base.html:132
+#: templates/impala/base.html:133
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "Kies uit duizenden extra functies en stijlen om Firefox van u te maken."
 
-#: templates/impala/base.html:137
+#: templates/impala/base.html:138
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "Voeg extra functies en stijlen toe om %(app)s helemaal van u te maken."
 
-#: templates/impala/base.html:145
+#: templates/impala/base.html:146
 msgid "On the go?"
 msgstr "Onderweg?"
 
-#: templates/impala/base.html:147
+#: templates/impala/base.html:148
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "Kijk eens op onze <a class=\"mobile-link\" href=\"#\">Mobiel-add-onswebsite</a>."
 

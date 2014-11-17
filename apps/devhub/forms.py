@@ -15,7 +15,6 @@ import commonware
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
-import waffle
 
 from access import acl
 import amo
@@ -116,9 +115,10 @@ class LicenseRadioInput(forms.widgets.RadioInput):
 
 
 class LicenseForm(AMOModelForm):
-    builtin = forms.TypedChoiceField(choices=[], coerce=int,
-                        widget=forms.RadioSelect(attrs={'class': 'license'},
-                                                 renderer=LicenseChoiceRadio))
+    builtin = forms.TypedChoiceField(
+        choices=[], coerce=int,
+        widget=forms.RadioSelect(attrs={'class': 'license'},
+                                 renderer=LicenseChoiceRadio))
     name = forms.CharField(widget=TranslationTextInput(),
                            label=_lazy(u"What is your license's name?"),
                            required=False, initial=_('Custom License'))
@@ -205,14 +205,17 @@ class LicenseForm(AMOModelForm):
 
 class PolicyForm(TranslationFormMixin, AMOModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
-    has_eula = forms.BooleanField(required=False,
+    has_eula = forms.BooleanField(
+        required=False,
         label=_lazy(u'This add-on has an End-User License Agreement'))
-    eula = TransField(widget=TransTextarea(), required=False,
+    eula = TransField(
+        widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's "
                     "End-User License Agreement:"))
     has_priv = forms.BooleanField(
         required=False, label=_lazy(u"This add-on has a Privacy Policy"))
-    privacy_policy = TransField(widget=TransTextarea(), required=False,
+    privacy_policy = TransField(
+        widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's Privacy Policy:"))
 
     def __init__(self, *args, **kw):
@@ -256,11 +259,11 @@ def ProfileForm(*args, **kw):
 
     class _Form(TranslationFormMixin, happyforms.ModelForm):
         the_reason = TransField(widget=TransTextarea(),
-                                     required=fields_required,
-                                     label=the_reason_label)
+                                required=fields_required,
+                                label=the_reason_label)
         the_future = TransField(widget=TransTextarea(),
-                                     required=fields_required,
-                                     label=the_future_label)
+                                required=fields_required,
+                                label=the_future_label)
 
         class Meta:
             model = Addon
@@ -293,8 +296,9 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
                   ('moz', _lazy(u'The Mozilla Foundation')),
                   ('org', _lazy(u'An organization of my choice')))
 
-    recipient = forms.ChoiceField(choices=RECIPIENTS,
-                    widget=forms.RadioSelect(attrs={'class': 'recipient'}))
+    recipient = forms.ChoiceField(
+        choices=RECIPIENTS,
+        widget=forms.RadioSelect(attrs={'class': 'recipient'}))
     thankyou_note = TransField(widget=TransTextarea(), required=False)
 
     class Meta:
@@ -337,7 +341,7 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
             raise forms.ValidationError(msg)
         if amount > settings.MAX_CONTRIBUTION:
             msg = _(u'Please enter a suggested amount less than ${0}.').format(
-                    settings.MAX_CONTRIBUTION)
+                settings.MAX_CONTRIBUTION)
             raise forms.ValidationError(msg)
         return amount
 
@@ -366,7 +370,8 @@ class WithSourceMixin(object):
         if source and not source.name.endswith(self.VALID_SOURCE_EXTENSIONS):
             raise forms.ValidationError(
                 _('Unsupported file type, please upload an archive file '
-                  '{extensions}.'.format(extensions=self.VALID_SOURCE_EXTENSIONS))
+                  '{extensions}.'.format(
+                      extensions=self.VALID_SOURCE_EXTENSIONS))
             )
         return source
 
@@ -490,7 +495,8 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
     def _clean_upload(self):
         if not (self.cleaned_data['upload'].valid or
                 self.cleaned_data['admin_override_validation'] and
-                acl.action_allowed(self.request, 'ReviewerAdminTools', 'View')):
+                acl.action_allowed(self.request, 'ReviewerAdminTools',
+                                   'View')):
             raise forms.ValidationError(_(u'There was an error with your '
                                           u'upload. Please try again.'))
 
@@ -520,7 +526,7 @@ class NewAddonForm(AddonUploadForm):
 
     def _clean_all_platforms(self):
         if (not self.cleaned_data['desktop_platforms']
-            and not self.cleaned_data['mobile_platforms']):
+                and not self.cleaned_data['mobile_platforms']):
             raise forms.ValidationError(_('Need at least one platform.'))
 
 
@@ -535,6 +541,10 @@ class NewVersionForm(NewAddonForm):
         error_messages={
             'required': _lazy(u'Please choose a review nomination type')
         })
+    beta = forms.BooleanField(
+        required=False,
+        help_text=_lazy(u'A file with a version ending with a|alpha|b|beta and'
+                        u' an optional number is detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
@@ -546,7 +556,9 @@ class NewVersionForm(NewAddonForm):
         if not self.errors:
             self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'], self.addon)
-            if self.addon.versions.filter(version=xpi['version']):
+            # Make sure we don't already have the same non-rejected version.
+            if self.addon.versions.filter(version=xpi['version']).exclude(
+                    files__status=amo.STATUS_DISABLED):
                 raise forms.ValidationError(
                     _(u'Version %s already exists') % xpi['version'])
             self._clean_all_platforms()
@@ -565,6 +577,10 @@ class NewFileForm(AddonUploadForm):
                                     u'not one of the available choices.')
         }
     )
+    beta = forms.BooleanField(
+        required=False,
+        help_text=_lazy(u'A file with a version ending with a|alpha|b|beta and'
+                        u' an optional number is detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
@@ -746,23 +762,27 @@ class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
 
 
 class PackagerBasicForm(forms.Form):
-    name = forms.CharField(min_length=5, max_length=50,
+    name = forms.CharField(
+        min_length=5, max_length=50,
         help_text=_lazy(u'Give your add-on a name. The most successful '
                         'add-ons give some indication of their function in '
                         'their name.'))
-    description = forms.CharField(required=False, widget=forms.Textarea,
+    description = forms.CharField(
+        required=False, widget=forms.Textarea,
         help_text=_lazy(u'Briefly describe your add-on in one sentence. '
                         'This appears in the Add-ons Manager.'))
-    version = forms.CharField(max_length=32,
+    version = forms.CharField(
+        max_length=32,
         help_text=_lazy(u'Enter your initial version number. Depending on the '
-                         'number of releases and your preferences, this is '
-                         'usually 0.1 or 1.0'))
+                        'number of releases and your preferences, this is '
+                        'usually 0.1 or 1.0'))
     id = forms.CharField(
         help_text=_lazy(u'Each add-on requires a unique ID in the form of a '
                         'UUID or an email address, such as '
                         'addon-name@developer.com. The email address does not '
                         'have to be valid.'))
-    package_name = forms.CharField(min_length=5, max_length=50,
+    package_name = forms.CharField(
+        min_length=5, max_length=50,
         help_text=_lazy(u'The package name of your add-on used within the '
                         'browser. This should be a short form of its name '
                         '(for example, Test Extension might be '
@@ -770,9 +790,10 @@ class PackagerBasicForm(forms.Form):
     author_name = forms.CharField(
         help_text=_lazy(u'Enter the name of the person or entity to be '
                         'listed as the author of this add-on.'))
-    contributors = forms.CharField(required=False, widget=forms.Textarea,
-       help_text=_lazy(u'Enter the names of any other contributors to this '
-                       'extension, one per line.'))
+    contributors = forms.CharField(
+        required=False, widget=forms.Textarea,
+        help_text=_lazy(u'Enter the names of any other contributors to this '
+                        'extension, one per line.'))
 
     def clean_name(self):
         name = self.cleaned_data['name']
@@ -799,9 +820,9 @@ class PackagerBasicForm(forms.Form):
 
     def clean_id(self):
         id_regex = re.compile(
-                """(\{[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}\} |  # GUID
-                   [a-z0-9-\.\+_]*\@[a-z0-9-\._]+)  # Email format""",
-                re.I | re.X)
+            """(\{[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}\} |  # GUID
+               [a-z0-9-\.\+_]*\@[a-z0-9-\._]+)  # Email format""",
+            re.I | re.X)
 
         if not id_regex.match(self.cleaned_data['id']):
             raise forms.ValidationError(
@@ -903,50 +924,50 @@ class PackagerCompatBaseFormSet(BaseFormSet):
         return self.cleaned_data
 
 
-PackagerCompatFormSet = formset_factory(PackagerCompatForm,
-    formset=PackagerCompatBaseFormSet, extra=0)
+PackagerCompatFormSet = formset_factory(
+    PackagerCompatForm, formset=PackagerCompatBaseFormSet, extra=0)
 
 
 class PackagerFeaturesForm(forms.Form):
     about_dialog = forms.BooleanField(
-            required=False,
-            label=_lazy(u'About dialog'),
-            help_text=_lazy(u'Creates a standard About dialog for your '
-                            'extension'))
+        required=False,
+        label=_lazy(u'About dialog'),
+        help_text=_lazy(u'Creates a standard About dialog for your '
+                        'extension'))
     preferences_dialog = forms.BooleanField(
-            required=False,
-            label=_lazy(u'Preferences dialog'),
-            help_text=_lazy(u'Creates an example Preferences window'))
+        required=False,
+        label=_lazy(u'Preferences dialog'),
+        help_text=_lazy(u'Creates an example Preferences window'))
     toolbar = forms.BooleanField(
-            required=False,
-            label=_lazy(u'Toolbar'),
-            help_text=_lazy(u'Creates an example toolbar for your extension'))
+        required=False,
+        label=_lazy(u'Toolbar'),
+        help_text=_lazy(u'Creates an example toolbar for your extension'))
     toolbar_button = forms.BooleanField(
-            required=False,
-            label=_lazy(u'Toolbar button'),
-            help_text=_lazy(u'Creates an example button on the browser '
-                            'toolbar'))
+        required=False,
+        label=_lazy(u'Toolbar button'),
+        help_text=_lazy(u'Creates an example button on the browser '
+                        'toolbar'))
     main_menu_command = forms.BooleanField(
-            required=False,
-            label=_lazy(u'Main menu command'),
-            help_text=_lazy(u'Creates an item on the Tools menu'))
+        required=False,
+        label=_lazy(u'Main menu command'),
+        help_text=_lazy(u'Creates an item on the Tools menu'))
     context_menu_command = forms.BooleanField(
-            required=False,
-            label=_lazy(u'Context menu command'),
-            help_text=_lazy(u'Creates a context menu item for images'))
+        required=False,
+        label=_lazy(u'Context menu command'),
+        help_text=_lazy(u'Creates a context menu item for images'))
     sidebar_support = forms.BooleanField(
-            required=False,
-            label=_lazy(u'Sidebar support'),
-            help_text=_lazy(u'Creates an example sidebar panel'))
+        required=False,
+        label=_lazy(u'Sidebar support'),
+        help_text=_lazy(u'Creates an example sidebar panel'))
 
 
 class CheckCompatibilityForm(happyforms.Form):
     application = forms.ChoiceField(
-                label=_lazy(u'Application'),
-                choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
+        label=_lazy(u'Application'),
+        choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
     app_version = forms.ChoiceField(
-                label=_lazy(u'Version'),
-                choices=[('', _lazy(u'Select an application first'))])
+        label=_lazy(u'Version'),
+        choices=[('', _lazy(u'Select an application first'))])
 
     def __init__(self, *args, **kw):
         super(CheckCompatibilityForm, self).__init__(*args, **kw)

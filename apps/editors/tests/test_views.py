@@ -6,6 +6,8 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
+from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 from django.utils.datastructures import SortedDict
 from django.test.utils import override_settings
 
@@ -21,7 +23,6 @@ from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
 from amo.tests import check_links, formset, initial
 from amo.urlresolvers import reverse
-from amo.utils import urlparams
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, ReviewerScore
 from files.models import File
@@ -315,7 +316,7 @@ class TestHome(EditorTest):
         review = self.make_review()
         amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
                 details=dict(addon_name='test', addon_id=review.addon.pk,
-                is_flagged=True))
+                             is_flagged=True))
         r = self.client.get(self.url)
         row = pq(r.content)('.row')
         assert 'approved' in row.text(), (
@@ -492,8 +493,9 @@ class QueueTest(EditorTest):
             name = '%s %s' % (unicode(addon.name),
                               addon.current_version.version)
             url = reverse('editors.review', args=[addon.slug])
-            expected.append((name, urlparams(url, num=idx + 1)))
-        check_links(expected,
+            expected.append((name, url))
+        check_links(
+            expected,
             pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
             verify=False)
 
@@ -528,21 +530,6 @@ class TestQueueBasics(QueueTest):
     def test_invalid_per_page(self):
         r = self.client.get(self.url, {'per_page': '<garbage>'})
         # No exceptions:
-        eq_(r.status_code, 200)
-
-    def test_redirect_to_review(self):
-        self.generate_files(['Pending One', 'Pending Two'])
-        r = self.client.get(self.url, {'num': 2})
-        slug = self.addons['Pending Two'].slug
-        url = reverse('editors.review', args=[slug])
-        self.assertRedirects(r, url + '?num=2')
-
-    def test_invalid_review_ignored(self):
-        r = self.client.get(self.url, {'num': 1})
-        eq_(r.status_code, 200)
-
-    def test_garbage_review_num_ignored(self):
-        r = self.client.get(self.url, {'num': 'not-a-number'})
         eq_(r.status_code, 200)
 
     def test_grid_headers(self):
@@ -812,12 +799,11 @@ class TestNominatedQueue(QueueTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         expected = [
-            ('Nominated One 0.1',
-             reverse('editors.review', args=[a1.slug]) + '?num=1'),
-            ('Nominated Two 0.2',
-             reverse('editors.review', args=[a2.slug]) + '?num=2'),
+            ('Nominated One 0.1', reverse('editors.review', args=[a1.slug])),
+            ('Nominated Two 0.2', reverse('editors.review', args=[a2.slug])),
         ]
-        check_links(expected,
+        check_links(
+            expected,
             pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
             verify=False)
 
@@ -1416,7 +1402,7 @@ class TestQueueSearchVersionSpecific(SearchTest):
                           amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
                           addon_type=amo.ADDON_THEME)
         self.bieber = Version.objects.filter(
-                addon__name__localized_string='Justin Bieber Theme')
+            addon__name__localized_string='Justin Bieber Theme')
 
     def update_beiber(self, days):
         new_created = datetime.now() - timedelta(days=days)
@@ -1484,8 +1470,8 @@ class TestReview(ReviewBase):
     def test_not_anonymous(self):
         self.client.logout()
         r = self.client.head(self.url)
-        self.assertRedirects(r,
-            '%s?to=%s' % (reverse('users.login'), self.url))
+        self.assertRedirects(
+            r, '%s?to=%s' % (reverse('users.login'), self.url))
 
     @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_not_author(self):
@@ -1567,26 +1553,6 @@ class TestReview(ReviewBase):
             (unicode(self.addon.name), None),
         ]
         self._test_breadcrumbs(expected)
-
-    def test_paging_none(self):
-        eq_(self.client.get(self.url).context['paging'], {})
-
-    def test_paging_num(self):
-        # 'Pending One' and 'Pending Two' should be the only ones present.
-        self.generate_files()
-
-        paging = self.client.get(self.url, dict(num=1)).context['paging']
-        eq_(paging['prev'], False)
-        eq_(paging['next'], True)
-        eq_(paging['total'], 2)
-
-        paging = self.client.get(self.url, dict(num=2)).context['paging']
-        eq_(paging['prev'], True)
-        eq_(paging['next'], False)
-
-    def test_paging_error(self):
-        response = self.client.get(self.url, dict(num='x'))
-        eq_(response.status_code, 404)
 
     def test_files_shown(self):
         r = self.client.get(self.url)
@@ -1694,11 +1660,11 @@ class TestReview(ReviewBase):
         av = AppVersion.objects.all()[0]
         v = self.addon.versions.all()[0]
 
-        ApplicationsVersions.objects.create(version=v,
-                application=amo.THUNDERBIRD.id, min=av, max=av)
+        ApplicationsVersions.objects.create(
+            version=v, application=amo.THUNDERBIRD.id, min=av, max=av)
 
-        ApplicationsVersions.objects.create(version=v,
-                application=amo.SEAMONKEY.id, min=av, max=av)
+        ApplicationsVersions.objects.create(
+            version=v, application=amo.SEAMONKEY.id, min=av, max=av)
 
         eq_(self.addon.versions.count(), 1)
         url = reverse('editors.review', args=[self.addon.slug])
@@ -2029,6 +1995,29 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, links, verify=False)
 
+    def test_download_sources_link(self):
+        version = self.addon._latest_version
+        tdir = temp.gettempdir()
+        source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
+        source_file.write('a' * (2 ** 21))
+        source_file.seek(0)
+        version.source = DjangoFile(source_file)
+        version.save()
+
+        url = reverse('editors.review', args=[self.addon.pk])
+
+        # Admin reviewer: able to download sources.
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        self.client.login(username=user.email, password='password')
+        response = self.client.get(url, follow=True)
+        assert 'Download files' in response.content
+
+        # Standard reviewer: should know that sources were provided.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.client.login(username=user.email, password='password')
+        response = self.client.get(url, follow=True)
+        assert 'The developer has provided source code.' in response.content
+
 
 class TestReviewPreliminary(ReviewBase):
 
@@ -2092,13 +2081,13 @@ class TestReviewPreliminary(ReviewBase):
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
     def test_prelim_multiple_files(self):
-        f = self.version.files.all()[0]
-        f.pk = None
-        f.status = amo.STATUS_DISABLED
-        f.save()
+        file_ = self.version.files.all()[0]
+        file_.pk = None
+        file_.status = amo.STATUS_DISABLED
+        file_.save()
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
-        data['addon_files'] = [f.pk]
+        data['addon_files'] = [file_.pk]
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
             [f.status for f in self.version.files.all().order_by('status')])
@@ -2220,6 +2209,16 @@ class TestStatusFile(ReviewBase):
         self.check_status(unicode(File.STATUS_CHOICES[self.get_file().status]))
 
 
+class TestWhiteboard(ReviewBase):
+
+    def test_whiteboard_addition(self):
+        whiteboard_info = u'Whiteboard info.'
+        url = reverse('editors.whiteboard', args=[self.addon.slug])
+        r = self.client.post(url, {'whiteboard': whiteboard_info})
+        eq_(r.status_code, 302)
+        eq_(self.get_addon().whiteboard, whiteboard_info)
+
+
 class TestAbuseReports(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -2297,30 +2296,12 @@ class TestLeaderboard(EditorTest):
              users[0].display_name])
 
 
-class TestXssOnAddonName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'users/test_backends', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
-        self.addon.name = self.name
-        self.addon.save()
-        u = UserProfile.objects.get(email='del@icio.us')
-        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
-                                 user=u)
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_editors_abuse_report_page(self):
         url = reverse('editors.abuse_reports', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_editors_review_page(self):
         url = reverse('editors.review', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)

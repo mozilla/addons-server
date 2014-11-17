@@ -59,8 +59,7 @@ def limit_validation_results(validation, is_compatibility=False):
                               'After addressing the visible messages, '
                               "you'll be able to see the others.")
                             % (leftover_count,)),
-                'compatibility_type': None,
-                })
+                'compatibility_type': None})
     if is_compatibility:
         compat = validation['compatibility_summary']
         for k in ('errors', 'warnings', 'notices'):
@@ -82,4 +81,4 @@ def escape_validation(validation):
             # Should get fixed soon in bug 617481
             msg['tier'] = 1
     validation['ending_tier'] = ending_tier
-    return escape_all(validation)
+    return escape_all(validation, linkify_only_full=True)

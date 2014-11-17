@@ -1,5 +1,6 @@
 language: python
 python:
+  - "2.6"
   - "2.7"
 services:
   - memcached
@@ -8,14 +9,13 @@ before_install:
   - sudo /usr/share/elasticsearch/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
 install:
   - make update_deps
-  - pip install --no-deps -r requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/
-  - pip install --no-deps -r requirements/compiled.txt --find-links https://pyrepo.addons.mozilla.org/
   - npm install
 before_script:
   - mysql -e 'create database olympia;'
   - make update_assets
 script:
-  - FORCE_DB=1 DJANGO_SETTINGS_MODULE=settings_ci make test
+  - FORCE_DB=1 DJANGO_SETTINGS_MODULE=settings_ci make flake8 && make test
+  - make docs SPHINXOPTS='-nW'
 notifications:
   irc:
     channels:

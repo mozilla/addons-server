@@ -350,7 +350,7 @@ class TestDiffHelper(amo.tests.TestCase):
 
 class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
-    #TODO(andym): get full coverage for existing SafeUnzip methods, most
+    # TODO(andym): get full coverage for existing SafeUnzip methods, most
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):

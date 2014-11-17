@@ -4,7 +4,6 @@ from decimal import Decimal
 
 from django import http
 from django.conf import settings
-from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -12,7 +11,6 @@ import phpserialize as php
 import requests
 from django_statsd.clients import statsd
 
-import amo
 from amo.decorators import post_required, write
 from paypal import paypal_log_cef
 from stats.db import StatsDictField
@@ -62,8 +60,7 @@ def _log_error_with_data(msg, post):
              'payment_status': post.get('payment_status'),
              'payment_type': post.get('payment_type'),
              'mc_gross': post.get('mc_gross'),
-             'item_number': post.get('item_number'),
-            }
+             'item_number': post.get('item_number')}
 
     paypal_log.error("[%s] PayPal Data: %s" % (id, logme))
 
@@ -136,7 +133,7 @@ def _paypal(request):
     # There could be multiple transactions on the IPN. This will deal
     # with them appropriately or cope if we don't know how to deal with
     # any of them.
-    methods = {'completed': paypal_completed,}
+    methods = {'completed': paypal_completed}
     result = None
     called = False
     # Ensure that we process 0, then 1 etc.
@@ -162,6 +159,7 @@ def _paypal(request):
         return http.HttpResponse('Ignoring %s' % post.get('txn_id', ''))
 
     return result
+
 
 def paypal_completed(request, transaction_id, serialize=None, amount=None):
     # Make sure transaction has not yet been processed.

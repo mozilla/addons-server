@@ -11,7 +11,8 @@ import multidb.pinning
 import queryset_transform
 
 from . import search
-from . import signals  # Needed to set up url prefix signals.
+# Needed to set up url prefix signals.
+from . import signals  # noqa
 
 
 _locals = threading.local()
@@ -57,8 +58,8 @@ def annotate(self, *args, **kwargs):
 
     # Add the aggregates to the query
     for (alias, aggregate_expr) in kwargs.items():
-        obj.query.add_aggregate(aggregate_expr, self.model, alias,
-            is_summary=False)
+        obj.query.add_aggregate(
+            aggregate_expr, self.model, alias, is_summary=False)
 
     return obj
 
@@ -307,6 +308,7 @@ class SearchMixin(object):
 
     @classmethod
     def unindex(cls, id, index=None):
+        id = str(id)
         es = search.get_es()
         try:
             es.delete(index or cls._get_index(), cls._meta.db_table, id)
@@ -399,9 +401,9 @@ def manual_order(qs, pks, pk_name='id'):
     if not pks:
         return qs.none()
     return qs.filter(id__in=pks).extra(
-            select={'_manual': 'FIELD(%s, %s)'
-                % (pk_name, ','.join(map(str, pks)))},
-            order_by=['_manual'])
+        select={'_manual': 'FIELD(%s, %s)' % (pk_name,
+                                              ','.join(map(str, pks)))},
+        order_by=['_manual'])
 
 
 class BlobField(models.Field):

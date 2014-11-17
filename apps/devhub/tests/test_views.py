@@ -12,9 +12,8 @@ from django.core.files import temp
 import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
-from nose import SkipTest
 from nose.plugins.attrib import attr
-from nose.tools import assert_not_equal, assert_raises, eq_
+from nose.tools import assert_not_equal, assert_raises, eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -243,6 +242,24 @@ class TestDashboard(HubTest):
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
             strip_whitespace(datetime_filter(addon.last_updated)))
+
+    def test_no_sort_updated_filter_for_themes(self):
+        # Create a theme.
+        addon = addon_factory(type=amo.ADDON_PERSONA)
+        addon.addonuser_set.create(user=self.user_profile)
+
+        # There's no "updated" sort filter, so order by the default: "Name".
+        response = self.client.get(self.themes_url + '?sort=updated')
+        doc = pq(response.content)
+        eq_(doc('#sorter li.selected').text(), 'Name')
+        sorts = doc('#sorter li a.opt')
+        assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
+
+        # There's no "last updated" for themes, so always display "created".
+        eq_(doc('.item-details .date-updated'), [])  # No "updated" in details.
+        d = doc('.item-details .date-created')
+        eq_(d.remove('strong').text(),
+            strip_whitespace(datetime_filter(addon.created)))
 
 
 class TestUpdateCompatibility(amo.tests.TestCase):
@@ -616,8 +633,6 @@ class TestPaymentsProfile(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        raise SkipTest
-
         self.addon = a = self.get_addon()
         self.url = self.addon.get_dev_url('payments')
         # Make sure all the payment/profile data is clear.
@@ -919,7 +934,6 @@ class TestProfileStatusBar(TestProfileBase):
         eq_(doc('#status-bar button').text(), 'Remove Both')
 
     def test_remove_profile(self):
-        raise SkipTest
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
         self.client.post(self.remove_url)
@@ -939,7 +953,6 @@ class TestProfileStatusBar(TestProfileBase):
         eq_(addon.the_future, None)
 
     def test_remove_both(self):
-        raise SkipTest
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.wants_contributions = True
         self.addon.paypal_id = 'xxx'
@@ -1219,7 +1232,7 @@ class TestSubmitStep3(TestSubmitBase):
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
-        category_ids_new = [c.id for c in self.get_addon().all_categories]
+        category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         eq_(category_ids_new, [22])
 
     def test_check_version(self):
@@ -1520,8 +1533,8 @@ class TestSubmitStep7(TestSubmitBase):
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
             'full_review': False,
         }
-        send_welcome_email_mock.assert_called_with(self.addon.id,
-            ['del@icio.us'], context)
+        send_welcome_email_mock.assert_called_with(
+            self.addon.id, ['del@icio.us'], context)
 
     @mock.patch('devhub.tasks.send_welcome_email.delay')
     def test_no_welcome_email(self, send_welcome_email_mock):
@@ -2325,11 +2338,12 @@ class TestUploadErrors(UploadTest):
 class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-             override_validation=False, expected_status=200, source=None):
+             override_validation=False, expected_status=200, source=None,
+             beta=False):
         d = dict(upload=self.upload.pk, source=source,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms],
-                 admin_override_validation=override_validation)
+                 admin_override_validation=override_validation, beta=beta)
         r = self.client.post(self.url, d)
         eq_(r.status_code, expected_status)
         return r
@@ -2345,6 +2359,25 @@ class TestAddVersion(AddVersionTest):
         self.version.update(version='0.1')
         r = self.post(expected_status=400)
         assert_json_error(r, None, 'Version 0.1 already exists')
+
+    def test_same_version_if_previous_is_rejected(self):
+        # We can have several times the same version number, if the previous
+        # versions have been disabled/rejected.
+        self.version.update(version='0.1', approvalnotes='approval notes')
+        self.version.releasenotes = 'release notes'
+        self.version.save()
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.post(expected_status=200)
+
+        self.version.reload()
+        version = Version.objects.latest()
+        ok_(version.pk != self.version.pk)
+        eq_(version.version, self.version.version)
+
+        # We reuse the release and approval notes from the last rejected
+        # version with the same version number.
+        eq_(version.releasenotes, self.version.releasenotes)
+        eq_(version.approvalnotes, self.version.approvalnotes)
 
     def test_success(self):
         r = self.post()
@@ -2389,6 +2422,11 @@ class TestAddVersion(AddVersionTest):
         response = self.post(source=source, expected_status=400)
         assert 'source' in json.loads(response.content)
 
+    def test_force_beta(self):
+        self.post(beta=True)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status == amo.STATUS_BETA
+
 
 class TestAddBetaVersion(AddVersionTest):
     fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
@@ -2405,10 +2443,10 @@ class TestAddBetaVersion(AddVersionTest):
         url = reverse('devhub.versions.add_file',
                       args=[self.addon.slug, version.id])
         return self.client.post(url, dict(upload=self.upload.pk,
-                                          platform=platform.id))
+                                          platform=platform.id, beta=True))
 
     def test_add_multi_file_beta(self):
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC])
+        r = self.post(desktop_platforms=[amo.PLATFORM_MAC], beta=True)
 
         version = self.addon.versions.all().order_by('-id')[0]
 
@@ -2423,6 +2461,11 @@ class TestAddBetaVersion(AddVersionTest):
         # Make sure that the additional files are beta
         fle = File.objects.all().order_by('-id')[0]
         eq_(fle.status, amo.STATUS_BETA)
+
+    def test_force_not_beta(self):
+        self.post(beta=False)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status == amo.STATUS_PUBLIC
 
 
 class TestAddVersionValidation(AddVersionTest):
@@ -2808,38 +2851,21 @@ class TestSearch(amo.tests.TestCase):
         self.assertContains(r, '<h1>Search Results</h1>')
 
 
-class TestXssOnAddonName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
-        self.addon.name = self.name
-        self.addon.save()
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_devhub_feed_page(self):
         url = reverse('devhub.feed', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_devhub_addon_edit_page(self):
         url = reverse('devhub.addons.edit', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_edit_page(self):
         url = reverse('devhub.versions.edit', args=[self.addon.slug,
                       self.addon.latest_version.id])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_list_page(self):
-        url = reverse('devhub.addons.versions', args=[self.addon.slug, ])
-        self.client.login(username='del@icio.us', password='password')
+        url = reverse('devhub.addons.versions', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)

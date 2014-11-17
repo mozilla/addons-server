@@ -16,19 +16,18 @@ from django.core.cache import cache
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
 from django.utils import translation
 
 import caching
 import mock
-import test_utils
 import tower
 from dateutil.parser import parse as dateutil_parser
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
-from test_utils import RequestFactory
+from test_utils import TestCase as TestUtilsTestCase
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -247,7 +246,7 @@ class MockEsMixin(object):
                 Mocked_ES.stop()
 
 
-class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
+class TestCase(MockEsMixin, RedisTest, TestUtilsTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
@@ -274,7 +273,7 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         old_app = old_prefix.app
         old_locale = translation.get_language()
         if locale:
-            rf = test_utils.RequestFactory()
+            rf = RequestFactory()
             prefixer = Prefixer(rf.get('/%s/' % (locale,)))
             tower.activate(locale)
         if app:
@@ -321,8 +320,8 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
         # is good, but bad for assertRedirects which will fail.
-        self.assert3xx(response,
-            '%s?to=%s' % (reverse('users.login'), to), status_code)
+        self.assert3xx(
+            response, '%s?to=%s' % (reverse('users.login'), to), status_code)
 
     def assert3xx(self, response, expected_url, status_code=302,
                   target_status_code=200):
@@ -334,24 +333,27 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         """
         if hasattr(response, 'redirect_chain'):
             # The request was a followed redirect
-            self.assertTrue(len(response.redirect_chain) > 0,
+            self.assertTrue(
+                len(response.redirect_chain) > 0,
                 "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" %
-                    (response.status_code, status_code))
+                " code was %d (expected %d)" % (response.status_code,
+                                                status_code))
 
             url, status_code = response.redirect_chain[-1]
 
-            self.assertEqual(response.status_code, target_status_code,
+            self.assertEqual(
+                response.status_code, target_status_code,
                 "Response didn't redirect as expected: Final"
-                " Response code was %d (expected %d)" %
-                    (response.status_code, target_status_code))
+                " Response code was %d (expected %d)" % (response.status_code,
+                                                         target_status_code))
 
         else:
             # Not a followed redirect
-            self.assertEqual(response.status_code, status_code,
+            self.assertEqual(
+                response.status_code, status_code,
                 "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" %
-                    (response.status_code, status_code))
+                " code was %d (expected %d)" % (response.status_code,
+                                                status_code))
             url = response['Location']
 
         scheme, netloc, path, query, fragment = urlsplit(url)
@@ -361,7 +363,8 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
 
-        self.assertEqual(url, expected_url,
+        self.assertEqual(
+            url, expected_url,
             "Response redirected to '%s', expected '%s'" % (url, expected_url))
 
     def assertLoginRequired(self, response, status_code=302):
@@ -370,13 +373,12 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         get the matched status code and bounced to the correct login page.
         """
         assert response.status_code == status_code, (
-                'Response returned: %s, expected: %s'
-                % (response.status_code, status_code))
+            'Response returned: %s, expected: %s' % (response.status_code,
+                                                     status_code))
 
         path = urlsplit(response['Location'])[2]
         assert path == reverse('users.login'), (
-                'Redirected to: %s, expected: %s'
-                % (path, reverse('users.login')))
+            'Redirected to: %s, expected: %s' % (path, reverse('users.login')))
 
     def assertSetEqual(self, a, b, message=None):
         """
@@ -566,13 +568,14 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
+    persona_id = kw.pop('persona_id', None)
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addon %s' % unicode(uuid.uuid4()).replace('-', ''))
 
     kwargs = {
-        # Set artificially the status to STATUS_PUBLIC for now, , the real
+        # Set artificially the status to STATUS_PUBLIC for now, the real
         # status will be set a few lines below, after the update_version()
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
@@ -598,8 +601,9 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     a.status = status
     if type_ == amo.ADDON_PERSONA:
         a.type = type_
-        Persona.objects.create(addon=a, persona_id=a.id,
-                               popularity=a.weekly_downloads)  # Save 3.
+        persona_id = persona_id if persona_id is not None else a.id
+        Persona.objects.create(addon=a, popularity=a.weekly_downloads,
+                               persona_id=persona_id)  # Save 3.
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -682,15 +686,16 @@ def version_factory(file_kw={}, **kw):
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    application = kw.pop('application', amo.FIREFOX.id)
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
     if kw.get('addon').type != amo.ADDON_PERSONA:
-        av_min, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=amo.FIREFOX.id,
+        ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=v, min=av_min,
                                                    max=av_max)
     file_factory(version=v, **file_kw)

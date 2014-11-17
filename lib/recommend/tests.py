@@ -30,4 +30,4 @@ def test_symmetric_diff_count():
 
 # The algorithm is in flux so this is minimal coverage.
 def test_similarity():
-    eq_(1/2., recommend.similarity([1], [1, 2]))
+    eq_(1 / 2., recommend.similarity([1], [1, 2]))

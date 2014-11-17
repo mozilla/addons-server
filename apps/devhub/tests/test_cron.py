@@ -16,7 +16,7 @@ class TestRSS(amo.tests.TestCase):
 
     def test_rss_cron(self):
         url = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'rss_feeds', 'blog.xml')
+                           'rss_feeds', 'blog.xml')
 
         settings.DEVELOPER_BLOG_URL = url
 

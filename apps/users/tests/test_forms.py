@@ -38,22 +38,21 @@ class TestSetPasswordForm(UserFormBase):
         eq_(r.status_code, 404)
 
         r = self.client.get('/en-US/firefox/users/pwreset/%s/12-345' %
-                                                                self.uidb64
-)
+                            self.uidb64)
         self.assertContains(r, "Password reset unsuccessful")
 
     def test_set_fail(self):
         url = self._get_reset_url()
         r = self.client.post(url, {'new_password1': '', 'new_password2': ''})
         self.assertFormError(r, 'form', 'new_password1',
-                                   "This field is required.")
+                             "This field is required.")
         self.assertFormError(r, 'form', 'new_password2',
-                                   "This field is required.")
+                             "This field is required.")
 
         r = self.client.post(url, {'new_password1': 'onelonger',
                                    'new_password2': 'twolonger'})
         self.assertFormError(r, 'form', 'new_password2',
-                                   "The two password fields didn't match.")
+                             "The two password fields didn't match.")
 
     def test_set_blacklisted(self):
         BlacklistedPassword.objects.create(password='password')
@@ -275,6 +274,12 @@ class TestUserEditForm(UserFormBase):
         eq_(username_input.attr('required'), 'required')
         eq_(username_input.attr('aria-required'), 'true')
 
+    def test_existing_email(self):
+        data = {'email': 'testo@example.com'}
+        r = self.client.post(self.url, data)
+        self.assertFormError(r, 'form', 'email',
+                             [u'User profile with this Email already exists.'])
+
 
 class TestAdminUserEditForm(UserFormBase):
     fixtures = ['base/users']
@@ -315,9 +320,9 @@ class TestUserLoginForm(UserFormBase):
                              {'username': 'jbalogh@mozilla.com',
                               'password': 'shortpw'})
         error_msg = (u'As part of our new password policy, your password must '
-                      'be 8 characters or more. Please update your password '
-                      'by <a href="/en-US/firefox/users/pwreset">issuing a '
-                      'password reset</a>.')
+                     u'be 8 characters or more. Please update your password '
+                     u'by <a href="/en-US/firefox/users/pwreset">issuing a '
+                     u'password reset</a>.')
         self.assertFormError(r, 'form', 'password', error_msg)
 
     def test_credential_success(self):
@@ -469,7 +474,7 @@ class TestUserRegisterForm(UserFormBase):
                 'password2': 'new2longer', }
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'password2',
-                                            'The passwords did not match.')
+                             'The passwords did not match.')
         eq_(len(mail.outbox), 0)
 
     def test_invalid_username(self):
@@ -478,7 +483,8 @@ class TestUserRegisterForm(UserFormBase):
                 'password2': 'xxxlonger',
                 'username': 'Todd/Rochelle', }
         r = self.client.post('/en-US/firefox/users/register', data)
-        self.assertFormError(r, 'form', 'username',
+        self.assertFormError(
+            r, 'form', 'username',
             'Enter a valid username consisting of letters, numbers, '
             'underscores or hyphens.')
 

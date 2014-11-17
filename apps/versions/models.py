@@ -74,7 +74,8 @@ class Version(amo.models.ModelBase):
     _developer_name = models.CharField(max_length=255, default='',
                                        editable=False)
 
-    source = models.FileField(upload_to=source_upload_path, null=True, blank=True)
+    source = models.FileField(
+        upload_to=source_upload_path, null=True, blank=True)
 
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
@@ -106,7 +107,8 @@ class Version(amo.models.ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, send_signal=True, source=None):
+    def from_upload(cls, upload, addon, platforms, send_signal=True,
+                    source=None):
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -456,10 +458,11 @@ class Version(amo.models.ModelBase):
     def developer_name(self):
         return self._developer_name
 
-    def reset_nomination_time(self, force=False):
-        if not self.nomination or force:
+    def reset_nomination_time(self, nomination=None):
+        if not self.nomination or nomination:
+            nomination = nomination or datetime.datetime.now()
             # We need signal=False not to call update_status (which calls us).
-            self.update(nomination=datetime.datetime.now(), _signal=False)
+            self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
 
@@ -478,8 +481,12 @@ def update_status(sender, instance, **kw):
 
 
 def inherit_nomination(sender, instance, **kw):
-    """For new versions pending review, ensure nomination date
+    """
+    For new versions pending review, ensure nomination date
     is inherited from last nominated version.
+
+    Return either True or False if the nomination time has been reseted.
+
     """
     if kw.get('raw'):
         return
@@ -490,8 +497,9 @@ def inherit_nomination(sender, instance, **kw):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():
-            instance.update(nomination=last_ver[0].nomination,
-                            _signal=False)
+            instance.reset_nomination_time(nomination=last_ver[0].nomination)
+            return True
+    return False
 
 
 def update_incompatible_versions(sender, instance, **kw):
@@ -579,11 +587,13 @@ class License(amo.models.ModelBase):
     url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
-    on_form = models.BooleanField(default=False,
-        help_text='Is this a license choice in the devhub?')
-    some_rights = models.BooleanField(default=False,
+    on_form = models.BooleanField(
+        default=False, help_text='Is this a license choice in the devhub?')
+    some_rights = models.BooleanField(
+        default=False,
         help_text='Show "Some Rights Reserved" instead of the license name?')
-    icons = models.CharField(max_length=255, null=True,
+    icons = models.CharField(
+        max_length=255, null=True,
         help_text='Space-separated list of icon identifiers.')
 
     objects = LicenseManager()
@@ -632,7 +642,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         if (self.version.is_compatible[0] and
-            self.version.is_compatible_app(amo.APP_IDS[self.application])):
+                self.version.is_compatible_app(amo.APP_IDS[self.application])):
             return _(u'{app} {min} and later').format(
                 app=self.get_application_display(),
                 min=self.min

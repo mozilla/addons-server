@@ -1,8 +1,11 @@
 #!/usr/bin/env python
-import os, time, sys, re
+import os
+import re
+import time
 
 towatch = []
 includes = {}
+
 
 def say(s):
     t = time.strftime('%X')
@@ -38,7 +41,7 @@ for root, dirs, files in os.walk('./media'):
         m = re.search('@import \'([a-zA-Z0-9_-]+)\';', body)
         if m:
             k = root + '/' + m.group(1) + '.less'
-            if not k in includes:
+            if k not in includes:
                 includes[k] = []
             includes[k].append(f)
     if '.git' in dirs:

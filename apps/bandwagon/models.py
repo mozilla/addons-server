@@ -109,7 +109,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
     default_locale = models.CharField(max_length=10, default='en-US',
                                       db_column='defaultlocale')
     type = models.PositiveIntegerField(db_column='collection_type',
-            choices=TYPE_CHOICES, default=0)
+                                       choices=TYPE_CHOICES, default=0)
     icontype = models.CharField(max_length=25, blank=True)
 
     listed = models.BooleanField(
@@ -128,7 +128,8 @@ class Collection(CollectionBase, amo.models.ModelBase):
     upvotes = models.PositiveIntegerField(default=0)
     downvotes = models.PositiveIntegerField(default=0)
     rating = models.FloatField(default=0)
-    all_personas = models.BooleanField(default=False,
+    all_personas = models.BooleanField(
+        default=False,
         help_text='Does this collection only contain Themes?')
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
@@ -136,9 +137,10 @@ class Collection(CollectionBase, amo.models.ModelBase):
     author = models.ForeignKey(UserProfile, null=True,
                                related_name='collections')
     users = models.ManyToManyField(UserProfile, through='CollectionUser',
-                                  related_name='collections_publishable')
+                                   related_name='collections_publishable')
 
-    addon_index = models.CharField(max_length=40, null=True, db_index=True,
+    addon_index = models.CharField(
+        max_length=40, null=True, db_index=True,
         help_text='Custom index for the add-ons in this collection')
 
     # This gets overwritten in the transformer.
@@ -196,7 +198,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
 
     def get_url_path(self):
         return reverse('collections.detail',
-                        args=[self.author_username, self.slug])
+                       args=[self.author_username, self.slug])
 
     def get_abs_url(self):
         return absolutify(self.get_url_path())
@@ -219,7 +221,7 @@ class Collection(CollectionBase, amo.models.ModelBase):
 
     def watch_url(self):
         return reverse('collections.watch',
-                        args=[self.author_username, self.slug])
+                       args=[self.author_username, self.slug])
 
     def delete_url(self):
         return reverse('collections.delete',
@@ -406,7 +408,8 @@ class CollectionAddon(amo.models.ModelBase):
     downloads = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(UserProfile, null=True)
 
-    ordering = models.PositiveIntegerField(default=0,
+    ordering = models.PositiveIntegerField(
+        default=0,
         help_text='Add-ons are displayed in ascending order '
                   'based on this field.')
 
@@ -492,8 +495,9 @@ models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(UserProfile)
-    role = models.SmallIntegerField(default=1,
-            choices=amo.COLLECTION_AUTHOR_CHOICES.items())
+    role = models.SmallIntegerField(
+        default=1,
+        choices=amo.COLLECTION_AUTHOR_CHOICES.items())
 
     class Meta:
         db_table = 'collections_users'
@@ -542,8 +546,9 @@ class SyncedCollection(CollectionBase, amo.models.ModelBase):
     to generate recommendations and may be used for other data mining in the
     future.
     """
-    addon_index = models.CharField(max_length=40, null=True,
-                                   db_index=True, unique=True,
+    addon_index = models.CharField(
+        max_length=40, null=True,
+        db_index=True, unique=True,
         help_text='md5 of addon ids in this collection for fast comparisons')
     addons = models.ManyToManyField(Addon, through='SyncedCollectionAddon',
                                     related_name='synced_collections')

@@ -16,12 +16,13 @@ from .models import Collection, CollectionUser
 from . import tasks
 
 privacy_choices = (
-        (False, _lazy(u'Only I can view this collection.')),
-        (True, _lazy(u'Anybody can view this collection.')))
+    (False, _lazy(u'Only I can view this collection.')),
+    (True, _lazy(u'Anybody can view this collection.')))
 
 apps = (('', None),) + tuple((a.id, a.pretty) for a in amo.APP_USAGE)
-collection_types = ((k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
-        if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
+collection_types = (
+    (k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
+    if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
 
 
 log = commonware.log.getLogger('z.collections')
@@ -76,7 +77,7 @@ class ContributorsForm(Form):
     """This form is related to adding contributors to a collection."""
 
     contributor = forms.CharField(widget=forms.MultipleHiddenInput,
-                                 required=False)
+                                  required=False)
 
     new_owner = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
@@ -103,7 +104,7 @@ class ContributorsForm(Form):
             collection.author = new_owner
 
             cu, created = CollectionUser.objects.get_or_create(
-                    collection=collection, user=old_owner)
+                collection=collection, user=old_owner)
             if created:
                 cu.save()
 
@@ -118,21 +119,19 @@ class ContributorsForm(Form):
 class CollectionForm(ModelForm):
 
     name = forms.CharField(
-            label=_lazy(u'Give your collection a name.'),
-            widget=TranslationTextInput,
-            )
+        label=_lazy(u'Give your collection a name.'),
+        widget=TranslationTextInput)
     slug = forms.CharField(label=_lazy(u'URL:'))
     description = forms.CharField(
-            label=_lazy(u'Describe your collection (no links allowed).'),
-            widget=TranslationTextarea(attrs={'rows': 3}),
-            max_length=200,
-            required=False)
+        label=_lazy(u'Describe your collection (no links allowed).'),
+        widget=TranslationTextarea(attrs={'rows': 3}),
+        max_length=200,
+        required=False)
     listed = forms.ChoiceField(
-            label=_lazy(u'Privacy:'),
-            widget=forms.RadioSelect,
-            choices=privacy_choices,
-            initial=True,
-            )
+        label=_lazy(u'Privacy:'),
+        widget=forms.RadioSelect,
+        choices=privacy_choices,
+        initial=True)
 
     icon = forms.FileField(label=_lazy(u'Icon'),
                            required=False)
@@ -141,7 +140,7 @@ class CollectionForm(ModelForm):
         super(CollectionForm, self).__init__(*args, **kw)
         # You can't edit the slugs for the special types.
         if (self.instance and
-            self.instance.type in amo.COLLECTION_SPECIAL_SLUGS):
+                self.instance.type in amo.COLLECTION_SPECIAL_SLUGS):
             del self.fields['slug']
 
     def clean_name(self):
@@ -167,7 +166,7 @@ class CollectionForm(ModelForm):
         author = self.initial['author']
         if author.collections.filter(slug=slug).count():
             raise forms.ValidationError(
-                    _('This url is already in use by another collection'))
+                _('This url is already in use by another collection'))
 
         return slug
 
@@ -177,12 +176,12 @@ class CollectionForm(ModelForm):
             return
         if icon.content_type not in ('image/png', 'image/jpeg'):
             raise forms.ValidationError(
-                    _('Icons must be either PNG or JPG.'))
+                _('Icons must be either PNG or JPG.'))
 
         if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
             raise forms.ValidationError(
-                    _('Please use images smaller than %dMB.' %
-                      (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
+                _('Please use images smaller than %dMB.' %
+                  (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1)))
         return icon
 
     def save(self, default_locale=None):

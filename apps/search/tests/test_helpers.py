@@ -21,7 +21,7 @@ def test_showing_helper():
     eq_('Showing 1 - 20 of 1000 results', render(tpl, c))
     c['tag'] = 'foo'
     eq_('Showing 1 - 20 of 1000 results tagged with <strong>foo</strong>',
-            render(tpl, c))
+        render(tpl, c))
     c['query'] = 'balls'
     eq_('Showing 1 - 20 of 1000 results for <strong>balls</strong> '
         'tagged with <strong>foo</strong>', render(tpl, c))

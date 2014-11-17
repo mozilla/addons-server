@@ -1,9 +1,8 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import bleach
 import hashlib
 import hmac
 import urllib
-import sys
 from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
 
@@ -15,8 +14,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 import jinja2
 
 import amo
-
-from . import logger_log as log
 
 # Get a pointer to Django's reverse and resolve because we're going to hijack
 # them after we define our own.
@@ -187,7 +184,7 @@ def get_outgoing_url(url):
 
     # No double-escaping, and some domain names are excluded.
     if (url_netloc == urlparse(settings.REDIRECT_URL).netloc
-        or url_netloc in settings.REDIRECT_URL_WHITELIST):
+            or url_netloc in settings.REDIRECT_URL_WHITELIST):
         return url
 
     url = encoding.smart_str(jinja2.utils.Markup(url).unescape())
@@ -205,9 +202,22 @@ def linkify_bounce_url_callback(attrs, new=False):
     return attrs
 
 
-def linkify_with_outgoing(text, nofollow=True):
+def linkify_only_full_urls(attrs, new=False):
+    """Linkify only full links, containing the scheme."""
+    if not new:  # This is an existing <a> tag, leave it be.
+        return attrs
+
+    # If the original text doesn't contain the scheme, don't linkify.
+    if not attrs['_text'].startswith(('http:', 'https:')):
+        return None
+
+    return attrs
+
+
+def linkify_with_outgoing(text, nofollow=True, only_full=False):
     """Wrapper around bleach.linkify: uses get_outgoing_url."""
-    callbacks = [linkify_bounce_url_callback]
+    callbacks = [linkify_only_full_urls] if only_full else []
+    callbacks.append(linkify_bounce_url_callback)
     if nofollow:
         callbacks.append(bleach.callbacks.nofollow)
     return bleach.linkify(unicode(text), callbacks=callbacks)

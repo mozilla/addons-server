@@ -20,7 +20,7 @@ class LogTest(amo.tests.TestCase):
         we put in.
         """
         a = Addon.objects.create(name='kumar is awesome',
-                                type=amo.ADDON_EXTENSION)
+                                 type=amo.ADDON_EXTENSION)
         magic = dict(title='no', body='way!')
         al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
 

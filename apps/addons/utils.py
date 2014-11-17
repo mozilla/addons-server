@@ -8,8 +8,6 @@ from django.utils.encoding import smart_str
 import commonware.log
 from cache_nuggets.lib import memoize
 
-import amo
-
 
 safe_key = lambda x: hashlib.md5(smart_str(x).lower().strip()).hexdigest()
 

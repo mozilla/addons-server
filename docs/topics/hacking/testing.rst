@@ -4,9 +4,9 @@
 Testing
 =======
 
-We're using a mix of `Django's Unit Testing`_, :mod:`nose <nose>`, and
-:mod:`Selenium <selenium>` for our automated testing. This gives us a lot of
-power and flexibility to test all aspects of the site.
+We're using a mix of `Django's Unit Testing`_ and `nose`_
+`Selenium`_ for our automated testing. This gives us a lot of power and
+flexibility to test all aspects of the site.
 
 Selenium tests are maintained in a seperate `Selenium repository`_.
 
@@ -90,7 +90,7 @@ below but remember, if you're confused look at existing tests for examples.
 Unit/Functional Tests
 ~~~~~~~~~~~~~~~~~~~~~
 Most tests are in this category.  Our test classes extend
-:class:`test_utils.TestCase` and follow the standard rules for unit tests.
+``test_utils.TestCase`` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
 External calls
@@ -124,6 +124,8 @@ need to recompile the .mo files manually, for example::
 
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
+.. _`nose`: https://nose.readthedocs.org/en/latest/
+.. _`Selenium`: http://www.seleniumhq.org/
 .. _`Selenium repository`: https://github.com/mozilla/Addon-Tests/
 .. _`the docs`: http://docs.djangoproject.com/en/dev/topics/testing#id1
 .. _mock: http://pypi.python.org/pypi/mock

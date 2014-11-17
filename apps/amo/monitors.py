@@ -93,12 +93,13 @@ def elastic():
     elastic_results = None
     status = ''
     try:
-        health = amo.search.get_es().cluster_health()
+        es = amo.search.get_es()
+        health = es.cluster.health()
         if health['status'] == 'red':
             status = 'ES is red'
         elastic_results = health
     except Exception:
-        elastic_results = traceback.format_exc()
+        elastic_results = {'exception': traceback.format_exc()}
 
     return status, elastic_results
 

@@ -513,7 +513,7 @@ class PurifiedTranslationTest(TestCase):
     def test_allowed_tags(self):
         s = u'<b>bold text</b> or <code>code</code>'
         x = PurifiedTranslation(localized_string=s)
-        eq_(x.__html__(),  u'<b>bold text</b> or <code>code</code>')
+        eq_(x.__html__(), u'<b>bold text</b> or <code>code</code>')
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script>'
@@ -573,7 +573,7 @@ class NoLinksTranslationTest(TestCase):
     def test_allowed_tags(self):
         s = u'<b>bold text</b> or <code>code</code>'
         x = NoLinksTranslation(localized_string=s)
-        eq_(x.__html__(),  u'<b>bold text</b> or <code>code</code>')
+        eq_(x.__html__(), u'<b>bold text</b> or <code>code</code>')
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script>'

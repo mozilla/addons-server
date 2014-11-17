@@ -1,5 +1,3 @@
-from urlparse import urlparse, parse_qs
-
 from django import test
 from django.conf import settings
 from django.utils import translation, encoding
@@ -18,6 +16,7 @@ from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
 
 from users.models import UserProfile
+
 
 class SharingHelpersTestCase(test.TestCase):
     fixtures = ['base/addon_3615']

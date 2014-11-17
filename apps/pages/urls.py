@@ -8,7 +8,8 @@ from amo.urlresolvers import reverse
 from . import views
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('^about$',
         TemplateView.as_view(template_name='pages/about.lhtml'),
         name='pages.about'),

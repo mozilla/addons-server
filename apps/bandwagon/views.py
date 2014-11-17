@@ -37,7 +37,7 @@ log = commonware.log.getLogger('z.collections')
 
 def get_collection(request, username, slug):
     if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
-        and request.amo_user.username == username):
+            and request.amo_user.username == username):
         return getattr(request.amo_user, slug + '_collection')()
     else:
         return get_object_or_404(Collection.objects,
@@ -320,7 +320,8 @@ def add(request):
     """Displays/processes a form to create a collection."""
     data = {}
     if request.method == 'POST':
-        form = forms.CollectionForm(request.POST, request.FILES,
+        form = forms.CollectionForm(
+            request.POST, request.FILES,
             initial=initial_data_from_request(request))
         aform = forms.AddonsForm(request.POST)
         if form.is_valid():
@@ -344,7 +345,8 @@ def add(request):
 @write
 @login_required(redirect=False)
 def ajax_new(request):
-    form = forms.CollectionForm(request.POST or None,
+    form = forms.CollectionForm(
+        request.POST or None,
         initial={'author': request.amo_user,
                  'application': request.APP.id},
     )

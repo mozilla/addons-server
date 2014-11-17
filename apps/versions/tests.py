@@ -27,7 +27,7 @@ from devhub.models import ActivityLog
 from files.models import File
 from files.tests.test_models import UploadTest
 from users.models import UserProfile
-from versions import views
+from versions import feeds, views
 from versions.models import Version, ApplicationsVersions
 from versions.compare import (MAXVERSION, version_int, dict_from_int,
                               version_dict)
@@ -478,15 +478,24 @@ class TestViews(amo.tests.TestCase):
 
 
 class TestFeeds(amo.tests.TestCase):
-    fixtures = ['addons/eula+contrib-addon']
+    fixtures = ['addons/eula+contrib-addon', 'addons/default-to-compat']
+    rel_ns = {'atom': 'http://www.w3.org/2005/Atom'}
+
+    def setUp(self):
+        patcher = mock.patch.object(feeds, 'PER_PAGE', 1)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def get_feed(self, slug, **kwargs):
+        url = reverse('addons.versions.rss', args=[slug])
+        r = self.client.get(url, kwargs, follow=True)
+        return PyQuery(r.content)
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
-        url = reverse('addons.versions.rss', args=['a11730'])
-        r = self.client.get(url, follow=True)
-        doc = PyQuery(r.content)
+        doc = self.get_feed('a11730')
         eq_(doc('rss channel title')[0].text,
-                'IPv6 Google Search Version History')
+            'IPv6 Google Search Version History')
         assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
         # assert <description> is present
         assert len(doc('rss channel description')[0].text) > 0
@@ -503,6 +512,51 @@ class TestFeeds(amo.tests.TestCase):
         # proper date format for item
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
+
+    def assert_page_relations(self, doc, page_relations):
+        rel = doc[0].xpath('//channel/atom:link', namespaces=self.rel_ns)
+        relations = dict((link.get('rel'), link.get('href')) for link in rel)
+        assert relations.pop('first').endswith('format:rss')
+
+        eq_(len(relations), len(page_relations))
+        for rel, href in relations.iteritems():
+            page = page_relations[rel]
+            assert href.endswith('format:rss' if page == 1 else
+                                 'format:rss?page=%s' % page)
+
+    def test_feed_first_page(self):
+        """first page has the right elements and page relations"""
+        doc = self.get_feed('addon-337203', page=1)
+        eq_(doc('rss item title')[0].text,
+            'Addon for DTC 1.3 - December  5, 2011')
+        self.assert_page_relations(doc, {'self': 1, 'next': 2, 'last': 4})
+
+    def test_feed_middle_page(self):
+        """a middle page has the right elements and page relations"""
+        doc = self.get_feed('addon-337203', page=2)
+        eq_(doc('rss item title')[0].text,
+            'Addon for DTC 1.2 - December  5, 2011')
+        self.assert_page_relations(doc, {'previous': 1, 'self': 2, 'next': 3,
+                                         'last': 4})
+
+    def test_feed_last_page(self):
+        """last page has the right elements and page relations"""
+        doc = self.get_feed('addon-337203', page=4)
+        eq_(doc('rss item title')[0].text,
+            'Addon for DTC 1.0 - December  5, 2011')
+        self.assert_page_relations(doc, {'previous': 3, 'self': 4, 'last': 4})
+
+    def test_feed_invalid_page(self):
+        """an invalid page falls back to page 1"""
+        doc = self.get_feed('addon-337203', page=5)
+        eq_(doc('rss item title')[0].text,
+            'Addon for DTC 1.3 - December  5, 2011')
+
+    def test_feed_no_page(self):
+        """no page defaults to page 1"""
+        doc = self.get_feed('addon-337203')
+        eq_(doc('rss item title')[0].text,
+            'Addon for DTC 1.3 - December  5, 2011')
 
 
 class TestDownloadsBase(amo.tests.TestCase):
@@ -876,8 +930,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
         assert storage.exists(self.upload.path)
-        with storage.open(self.upload.path) as f:
-            uploaded_hash = hashlib.md5(f.read()).hexdigest()
+        with storage.open(self.upload.path) as file_:
+            uploaded_hash = hashlib.md5(file_.read()).hexdigest()
         version = Version.from_upload(self.upload, self.addon, platforms)
         assert not storage.exists(self.upload.path), (
             "Expected original upload to move but it still exists.")
@@ -890,12 +944,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 amo.PLATFORM_LINUX.shortname),
              u'delicious_bookmarks-0.1-fx-%s.xpi' % (
                  amo.PLATFORM_MAC.shortname)])
-        for file in files:
-            with storage.open(file.file_path) as f:
+        for file_ in files:
+            with storage.open(file_.file_path) as f:
                 eq_(uploaded_hash,
                     hashlib.md5(f.read()).hexdigest(),
-                    "md5 hash of %r does not match uploaded file" %
-                                                        file.file_path)
+                    "md5 hash of %r does not match uploaded file" % (
+                        file_.file_path))
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
@@ -933,27 +987,12 @@ class TestStatusFromUpload(TestVersionFromUpload):
     def setUp(self):
         super(TestStatusFromUpload, self).setUp()
         self.current = self.addon.current_version
-        # We need one public file to stop the addon update signal
-        # moving the addon away from public. Only public addons check
-        # for beta status on from_upload.
         self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
-        File.objects.create(version=self.current, status=amo.STATUS_PUBLIC)
-        self.addon.update(status=amo.STATUS_PUBLIC)
 
     def test_status(self):
-        qs = File.objects.filter(version=self.current)
         Version.from_upload(self.upload, self.addon, [self.platform])
-        eq_(sorted([q.status for q in qs.all()]),
-            [amo.STATUS_PUBLIC, amo.STATUS_DISABLED])
-
-    @mock.patch('files.utils.parse_addon')
-    def test_status_beta(self, parse_addon):
-        parse_addon.return_value = {'version': u'0.1beta'}
-
-        qs = File.objects.filter(version=self.current)
-        Version.from_upload(self.upload, self.addon, [self.platform])
-        eq_(sorted([q.status for q in qs.all()]),
-            [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC])
+        eq_(File.objects.filter(version=self.current)[0].status,
+            amo.STATUS_DISABLED)
 
 
 class TestMobileVersions(TestMobile):

@@ -308,7 +308,8 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(result, 3)
         result = ActivityLog.objects.user_approve_reviews(other).count()
         eq_(result, 2)
-        another = UserProfile.objects.create(email="no@mtrala.la", username="a")
+        another = UserProfile.objects.create(
+            email="no@mtrala.la", username="a")
         result = ActivityLog.objects.user_approve_reviews(another).count()
         eq_(result, 0)
 
@@ -316,7 +317,8 @@ class TestActivityLogCount(amo.tests.TestCase):
         self.add_approve_logs(3)
         ActivityLog.objects.update(created=self.days_ago(40))
         self.add_approve_logs(2)
-        result = ActivityLog.objects.current_month_user_approve_reviews(self.user).count()
+        result = ActivityLog.objects.current_month_user_approve_reviews(
+            self.user).count()
         eq_(result, 2)
 
     def test_log_admin(self):

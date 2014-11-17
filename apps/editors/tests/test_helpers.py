@@ -48,7 +48,7 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         a = pq(self.table.render_addon_name(row))
 
         eq_(a.attr('href'),
-            reverse('editors.review', args=[str(row.addon_slug)]) + '?num=1')
+            reverse('editors.review', args=[str(row.addon_slug)]))
         eq_(a.text(), "フォクすけといっしょ 0.12".decode('utf8'))
 
     def test_addon_type_id(self):
@@ -638,7 +638,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self.helper.set_data(data)
         self.helper.handler.process_sandbox()
 
-        assert not 'Tested' in mail.outbox[0].body
+        assert 'Tested' not in mail.outbox[0].body
 
     def test_pending_to_super_review(self):
         for status in helpers.PENDING_STATUSES:

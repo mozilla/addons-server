@@ -1,5 +1,4 @@
 import codecs
-import json
 import mimetypes
 import os
 import stat
@@ -25,9 +24,9 @@ from validator.testcases.packagelayout import (blacklisted_extensions,
 
 # Allow files with a shebang through.
 blacklisted_magic_numbers = [b for b in list(blacklisted_magic_numbers)
-                               if b != (0x23, 0x21)]
+                             if b != (0x23, 0x21)]
 blacklisted_extensions = [b for b in list(blacklisted_extensions)
-                            if b != 'sh']
+                          if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
 
 
@@ -174,11 +173,10 @@ class FileViewer(object):
                 return cont.decode(codec)
             except UnicodeDecodeError:
                 cont = cont.decode(codec, 'ignore')
-                #L10n: {0} is the filename.
+                # L10n: {0} is the filename.
                 self.selected['msg'] = (
                     _('Problems decoding {0}.').format(codec))
                 return cont
-
 
     def select(self, file_):
         self.selected = self.get_files().get(file_)
@@ -337,7 +335,6 @@ class DiffHelper(object):
                        args=[self.left.file.id, self.right.file.id,
                              'file', short])
 
-    #@memoize(prefix='file-viewer-get-files', time=60 * 60)
     def get_files(self):
         """
         Get the files from the primary and:
@@ -363,7 +360,6 @@ class DiffHelper(object):
 
         return left_files
 
-    #@memoize(prefix='file-viewer-get-deleted-files', time=60 * 60)
     def get_deleted_files(self):
         """
         Get files that exist in right, but not in left. These
@@ -374,13 +370,24 @@ class DiffHelper(object):
         if self.right.is_search_engine():
             return different
 
+        def keep(path):
+            if path not in different:
+                copy = dict(right_files[path])
+                copy.update({'url': self.get_url(file['short']), 'diff': True})
+                different[path] = copy
+
         left_files = self.left.get_files()
         right_files = self.right.get_files()
         for key, file in right_files.items():
             if key not in left_files:
-                copy = right_files[key]
-                copy.update({'url': self.get_url(file['short']), 'diff': True})
-                different[key] = copy
+                # Make sure we have all the parent directories of
+                # deleted files.
+                dir = key
+                while os.path.dirname(dir):
+                    dir = os.path.dirname(dir)
+                    keep(dir)
+
+                keep(key)
 
         return different
 

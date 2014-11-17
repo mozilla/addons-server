@@ -120,7 +120,6 @@
             "enable_thankyou": false,
             "total_downloads": 0,
             "premium_type": 0,
-            "app_slug": null,
             "developer_comments": null,
             "_current_version": 1268884,
             "average_daily_downloads": 0,
@@ -220,7 +219,7 @@
         "fields": {
             "has_info_request": false,
             "license": null,
-            "created": "2011-12-05 14:46:43",
+            "created": "2011-12-05 14:46:44",
             "has_editor_comment": false,
             "releasenotes": null,
             "approvalnotes": "",
@@ -248,7 +247,7 @@
         "fields": {
             "has_info_request": false,
             "license": null,
-            "created": "2011-12-05 14:46:43",
+            "created": "2011-12-05 14:46:45",
             "has_editor_comment": false,
             "releasenotes": null,
             "approvalnotes": "",
@@ -276,7 +275,7 @@
         "fields": {
             "has_info_request": false,
             "license": null,
-            "created": "2011-12-05 14:46:43",
+            "created": "2011-12-05 14:46:46",
             "has_editor_comment": false,
             "releasenotes": null,
             "approvalnotes": "",

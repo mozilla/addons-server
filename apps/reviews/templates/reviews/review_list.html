@@ -68,7 +68,7 @@
     </section>
     <section>
       {% if amo_user and addon.can_review(amo_user) %}
-        <a class="button" id="add-review" href="{{ shared_url('reviews.add', addon) }}">
+        <a class="button" id="add-review" href="{{ url('addons.reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}
     </section>
@@ -77,7 +77,7 @@
     {% block review_list %}
     {% if not reviews.object_list %}
       {% if addon.can_review(amo_user) %}
-        <p id="add-first-review"><a href="{{ shared_url('reviews.add', addon) }}">
+        <p id="add-first-review"><a href="{{ url('addons.reviews.add', addon.slug) }}">
           {{ _('Be the first to write a review.') }}</a><p>
       {% else %}
         <p id="no-add-first-review">

@@ -27,9 +27,9 @@ class TestReviewActions(amo.tests.TestCase):
     def set_status(self, status):
         self.addon.update(status=status)
         form = get_review_form({'addon_files': [self.file.pk]},
-                                request=self.request,
-                                addon=self.addon,
-                                version=self.version)
+                               request=self.request,
+                               addon=self.addon,
+                               version=self.version)
         return form.helper.get_actions()
 
     def test_lite_nominated(self):
@@ -79,7 +79,8 @@ class TestCannedResponses(TestReviewActions):
         # choices is grouped by the sort_group, where choices[0] is the
         # default "Choose a response..." option.
         # Within that, it's paired by [group, [[response, name],...]].
-        # So above, choices[1][1] gets the first real group's list of responses.
+        # So above, choices[1][1] gets the first real group's list of
+        # responses.
         eq_(len(choices), 1)
         assert self.cr_addon.response in choices[0]
         assert self.cr_app.response not in choices[0]

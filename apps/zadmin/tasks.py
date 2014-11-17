@@ -14,6 +14,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
+from django.db.models import Sum
 from django.template import Context, Template
 from django.utils.translation import trans_real as translation
 
@@ -26,7 +27,7 @@ from amo import set_user
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse
-from amo.utils import send_mail
+from amo.utils import chunked, send_mail, sorted_groupby
 from devhub.tasks import run_validator
 from files.models import FileUpload
 from files.utils import parse_addon
@@ -152,8 +153,8 @@ def add_validation_jobs(pks, job_pk, **kw):
                                      apps__max__version_int__lt=target_ver)
 
         already_compat = addon.versions.filter(
-                                    files__status=amo.STATUS_PUBLIC,
-                                    apps__max__version_int__gte=target_ver)
+            files__status=amo.STATUS_PUBLIC,
+            apps__max__version_int__gte=target_ver)
         if already_compat.count():
             log.info('Addon %s already has a public version %r which is '
                      'compatible with target version of app %s %s (or newer)'
@@ -207,14 +208,13 @@ def get_context(addon, version, job, results, fileob=None):
     if fileob and fileob.platform != amo.PLATFORM_ALL.id:
         addon_name = u'%s (%s)' % (addon_name, fileob.get_platform_display())
     return Context({
-            'ADDON_NAME': addon_name,
-            'ADDON_VERSION': version.version,
-            'APPLICATION': str(job.application),
-            'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
-                                              args=[addon.pk, version.pk])),
-            'RESULT_LINKS': ' '.join(result_links),
-            'VERSION': job.target_version.version,
-        })
+        'ADDON_NAME': addon_name,
+        'ADDON_VERSION': version.version,
+        'APPLICATION': str(job.application),
+        'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
+                                          args=[addon.pk, version.pk])),
+        'RESULT_LINKS': ' '.join(result_links),
+        'VERSION': job.target_version.version})
 
 
 @task
@@ -231,7 +231,6 @@ def update_maxversions(version_pks, job_pk, data, **kw):
     stats['is_dry_run'] = int(dry_run)
     for version in Version.objects.filter(pk__in=version_pks):
         stats['processed'] += 1
-        addon = version.addon
         file_pks = version.files.values_list('pk', flat=True)
         errors = (ValidationResult.objects.filter(validation_job=job,
                                                   file__pk__in=file_pks)
@@ -244,9 +243,9 @@ def update_maxversions(version_pks, job_pk, data, **kw):
             continue
 
         for app in version.apps.filter(
-                        application=job.curr_max_version.application,
-                        max__version_int__gte=job.curr_max_version.version_int,
-                        max__version_int__lt=job.target_version.version_int):
+                application=job.curr_max_version.application,
+                max__version_int__gte=job.curr_max_version.version_int,
+                max__version_int__lt=job.target_version.version_int):
             stats['bumped'] += 1
             log.info('Updating version %s%s for addon %s from version %s '
                      'to version %s'
@@ -270,9 +269,111 @@ def update_maxversions(version_pks, job_pk, data, **kw):
                           for k in sorted(stats.keys()))))
 
 
+def _completed_versions(job, prefix=''):
+    filter = dict(files__validation_results__validation_job=job,
+                  files__validation_results__completed__isnull=False)
+    if not prefix:
+        return filter
+
+    res = {}
+    for k, v in filter.iteritems():
+        res['%s__%s' % (prefix, k)] = v
+    return res
+
+
+def updated_versions(job):
+    return (
+        Version.objects
+        .filter(files__validation_results__validation_job=job,
+                files__validation_results__errors=0,
+                files__validation_results__completed__isnull=False,
+                apps__application=job.curr_max_version.application,
+                apps__max__version_int__gte=job.curr_max_version.version_int,
+                apps__max__version_int__lt=job.target_version.version_int)
+        .exclude(files__validation_results__errors__gt=0)
+        .values_list('pk', flat=True).distinct())
+
+
+def completed_version_authors(job):
+    return (
+        Version.objects
+        .filter(**_completed_versions(job))
+        # Prevent sorting by version creation date and
+        # thereby breaking `.distinct()`.
+        .order_by('addon__authors__pk')
+        .values_list('addon__authors__pk', flat=True).distinct())
+
+
+@task
+def notify_compatibility(job, params):
+    dry_run = params['preview_only']
+
+    log.info('[@None] Starting validation email/update process for job %d.'
+             ' dry_run=%s.' % (job.pk, dry_run))
+
+    log.info('[@None] Starting validation version bumps for job %d.' % job.pk)
+
+    version_list = updated_versions(job)
+    total = version_list.count()
+
+    for chunk in chunked(version_list, 100):
+        log.info('[%d@%d] Updating versions for job %d.' % (
+            len(chunk), total, job.pk))
+        update_maxversions.delay(chunk, job.pk, params)
+
+    log.info('[@None] Starting validation email run for job %d.' % job.pk)
+
+    updated_authors = completed_version_authors(job)
+    total = updated_authors.count()
+    for chunk in chunked(updated_authors, 100):
+        log.info('[%d@%d] Notifying authors for validation job %d'
+                 % (len(chunk), total, job.pk))
+
+        # There are times when you want to punch django's ORM in
+        # the face. This may be one of those times.
+        users_addons = list(
+            UserProfile.objects.filter(pk__in=chunk)
+                       .filter(**_completed_versions(job,
+                                                     'addons__versions'))
+                       .values_list('pk', 'addons__pk').distinct())
+
+        users = list(UserProfile.objects.filter(
+                     pk__in=set(u for u, a in users_addons)))
+
+        # Annotate fails in tests when using cached results
+        addons = (Addon.objects.no_cache()
+                  .filter(**{
+                      'pk__in': set(a for u, a in users_addons),
+                      'versions__files__'
+                      'validation_results__validation_job': job
+                  })
+                  .annotate(errors=Sum(
+                      'versions__files__validation_results__errors')))
+        addons = dict((a.id, a) for a in addons)
+
+        users_addons = dict((u, [addons[a] for u, a in row])
+                            for u, row in sorted_groupby(users_addons,
+                                                         lambda k: k[0]))
+
+        log.info('[%d@%d] Notifying %d authors about %d addons for '
+                 'validation job %d'
+                 % (len(chunk), total, len(users), len(addons.keys()), job.pk))
+
+        for u in users:
+            addons = users_addons[u.pk]
+
+            u.passing_addons = [a for a in addons if a.errors == 0]
+            u.failing_addons = [a for a in addons if a.errors > 0]
+
+        notify_compatibility_chunk.delay(users, job, params)
+
+    log.info('[@None] Completed validation email/update process '
+             'for job %d. dry_run=%s.' % (job.pk, dry_run))
+
+
 @task
 @write
-def notify_compatibility(users, job, data, **kw):
+def notify_compatibility_chunk(users, job, data, **kw):
     log.info('[%s@%s] Sending notification mail for job %s.'
              % (len(users), notify_compatibility.rate_limit, job.pk))
     set_user(get_task_user())
@@ -304,7 +405,6 @@ def notify_compatibility(users, job, data, **kw):
                               % (user.email, a.slug,
                                  task_error[0], task_error[1]), exc_info=False)
 
-
             context = Context({
                 'APPLICATION': unicode(amo.APP_IDS[job.application].pretty),
                 'VERSION': job.target_version.version,
@@ -327,12 +427,13 @@ def notify_compatibility(users, job, data, **kw):
             else:
                 stats['author_emailed'] += 1
                 send_mail(*args, **kwargs)
-                amo.log(amo.LOG.BULK_VALIDATION_USER_EMAILED,
-                        user,
-                        details={'passing': [a.id for a in user.passing_addons],
-                                 'failing': [a.id for a in user.failing_addons],
-                                 'target': job.target_version.version,
-                                 'application': app_id})
+                amo.log(
+                    amo.LOG.BULK_VALIDATION_USER_EMAILED,
+                    user,
+                    details={'passing': [a.id for a in user.passing_addons],
+                             'failing': [a.id for a in user.failing_addons],
+                             'target': job.target_version.version,
+                             'application': app_id})
         except:
             task_error = sys.exc_info()
             log.error(u'Bulk validation email error for user %s: %s: %s'

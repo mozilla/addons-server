@@ -45,7 +45,7 @@ $.fn.ratingwidget = function(classes) {
             if (t.attr('data-stars')) {
                 showStars(t.attr('data-stars'));
             }
-        }).mouseout(function(evt) {
+        }).mouseout(function() {
             showStars(rating || 0);
         }).bind('touchmove touchend', function(e) {
             var wid = $widget.width();

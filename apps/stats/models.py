@@ -195,7 +195,6 @@ class Contribution(amo.models.ModelBase):
     suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
                                         nullify_invalid=True, null=True)
 
-
     class Meta:
         db_table = 'stats_contributions'
 
@@ -278,7 +277,7 @@ class Contribution(amo.models.ModelBase):
         url_parts[1] = locale.language
 
         subject = _('Thanks for contributing to {addon_name}').format(
-                    addon_name=self.addon.name)
+            addon_name=self.addon.name)
 
         # Send the email.
         send_mail_jinja(
@@ -287,7 +286,7 @@ class Contribution(amo.models.ModelBase):
                                            strip=True),
              'addon_name': self.addon.name,
              'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
-                                                 '/'.join(url_parts)),
+                                                  '/'.join(url_parts)),
              'domain': settings.DOMAIN},
             from_email, [to_email], fail_silently=True,
             perm_setting='dev_thanks')

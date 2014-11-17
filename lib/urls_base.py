@@ -8,6 +8,7 @@ from django.views.decorators.cache import cache_page
 from amo.urlresolvers import reverse
 from amo.utils import urlparams
 
+import addons.views
 import blocklist.views
 import versions.urls
 
@@ -18,7 +19,8 @@ handler404 = 'amo.views.handler404'
 handler500 = 'amo.views.handler500'
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('discovery.urls')),
 
@@ -28,8 +30,8 @@ urlpatterns = patterns('',
         blocklist.views.blocklist, name='blocklist'),
     ('^blocked/', include('blocklist.urls')),
 
-    # AMO homepage or Marketplace Developer Hub? Choose your destiny.
-    url('^$', settings.HOME, name='home'),
+    # Home.
+    url('^$', addons.views.home, name='home'),
 
     # Add-ons.
     ('', include('addons.urls')),
@@ -106,13 +108,13 @@ urlpatterns = patterns('',
 
     # Redirect patterns.
     ('^bookmarks/?$',
-      lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
+     lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
 
     ('^reviews/display/(\d+)',
-      lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
+     lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
 
     ('^reviews/add/(\d+)',
-      lambda r, id: redirect('addons.reviews.add', id, permanent=True)),
+     lambda r, id: redirect('addons.reviews.add', id, permanent=True)),
 
     ('^users/info/(\d+)',
      lambda r, id: redirect('users.profile', id, permanent=True)),
@@ -170,7 +172,8 @@ urlpatterns = patterns('',
 
 )
 
-urlpatterns += patterns('piston.authentication.oauth.views',
+urlpatterns += patterns(
+    'piston.authentication.oauth.views',
     url(r'^oauth/request_token/$', 'get_request_token',
         name='oauth.request_token'),
     url(r'^oauth/authorize/$', 'authorize_request_token',
@@ -185,11 +188,13 @@ if settings.TEMPLATE_DEBUG:
 
     if 'debug_toolbar' in settings.INSTALLED_APPS:
         import debug_toolbar
-        urlpatterns += patterns('',
+        urlpatterns += patterns(
+            '',
             url(r'^__debug__/', include(debug_toolbar.urls)),
         )
 
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )

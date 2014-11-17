@@ -12,8 +12,6 @@ from django.db import (IntegrityError, connection as django_connection,
 
 import MySQLdb as mysql
 
-from addons import cron
-import amo
 
 BIOS_TO_IMPORT = os.environ.get('BIOS', 'bios_to_import.py')
 
@@ -148,7 +146,10 @@ class Command(BaseCommand):
             'bio': user['description']
         }
         try:
-            data['bio'] = re.sub('&([^;]+);', lambda m: unichr(htmlentitydefs.name2codepoint[m.group(1)]), data['bio'])
+            data['bio'] = re.sub(
+                '&([^;]+);',
+                lambda m: (unichr(htmlentitydefs.name2codepoint[m.group(1)]),
+                           data['bio']))
         except:
             data['bio'] = ""
 
@@ -201,13 +202,14 @@ class Command(BaseCommand):
             except IntegrityError:
                 # Can mean they already own the personas (eg. you've run this
                 # script before) or a persona doesn't exist in the db.
-                self.log(' Failed adding (%s) as owner of (%s) personas. Rows: %s' %
-                         (user['username'], len(rows), values))
+                self.log(' Failed adding (%s) as owner of (%s) personas. '
+                         'Rows: %s' % (user['username'], len(rows), values))
 
         # Now hook up any favorites
         try:
             self.cursor_z.execute(
-                'SELECT id FROM collections WHERE author_id = %s', data['user_id'])
+                'SELECT id FROM collections WHERE author_id = %s',
+                data['user_id'])
             collection_id = self.cursor_z.fetchone()[0]
         except TypeError:
             uuid_ = unicode(uuid.uuid4())
@@ -239,8 +241,8 @@ class Command(BaseCommand):
                 self.log(' Adding %s favs for user %s' %
                          (len(rows), user['username']))
             except IntegrityError:
-                self.log(' Failed to import (%s) favorites for user (%s). Rows: %s' %
-                         (len(rows), user['username'], values))
+                self.log(' Failed to import (%s) favorites for user (%s). '
+                         'Rows: %s' % (len(rows), user['username'], values))
 
     @transaction.commit_manually
     def handle(self, *args, **options):
@@ -273,7 +275,7 @@ class Command(BaseCommand):
             self.commit_or_not(options.get('commit'))
             # Let's not do this programmatically with how this script is acting
             #if options.get('commit') == 'yes':
-                #self.log("Kicking off cron to reindex personas...")
-                #cron.reindex_addons(addon_type=amo.ADDON_PERSONA)
+            #    self.log("Kicking off cron to reindex personas...")
+            #    cron.reindex_addons(addon_type=amo.ADDON_PERSONA)
 
         self.log("Done. Total time: %s seconds" % (time() - t_total_start))

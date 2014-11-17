@@ -51,7 +51,7 @@ CACHES = {
 }
 
 
-## Celery
+# Celery
 BROKER_URL = private.BROKER_URL
 
 CELERY_IGNORE_RESULT = True
@@ -97,7 +97,9 @@ CACHE_MACHINE_USE_REDIS = True
 
 RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
+RECAPTCHA_URL = (
+    'https://www.google.com/recaptcha/api/challenge?k=%s' %
+    RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -105,7 +107,8 @@ PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 PERF_THRESHOLD = None
-PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
+PERF_TEST_URL = (
+    'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi')
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 

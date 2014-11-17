@@ -19,11 +19,15 @@ def admin_required(reviewers=False, theme_reviewers=False):
         def wrapper(request, *args, **kw):
             admin = (action_allowed(request, 'Admin', '%') or
                      action_allowed(request, 'AdminTools', 'View'))
-            if reviewers == True:
+            # Yes, the "is True" is here on purpose... because this decorator
+            # takes optional arguments, but doesn't do it properly (so if
+            # you're not giving it arguments, it takes the decorated function
+            # as the first argument, and then "reviewers" is truthy.
+            if reviewers is True:
                 admin = (
                     admin or
                     action_allowed(request, 'ReviewerAdminTools', 'View'))
-            if theme_reviewers == True:
+            if theme_reviewers is True:
                 admin = (
                     admin or
                     action_allowed(request, 'SeniorPersonasTools', 'View'))

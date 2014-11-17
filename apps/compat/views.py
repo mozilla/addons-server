@@ -55,8 +55,8 @@ def index(request, version=None):
         ('top_95', qs.query(**{'top_95_all.%s' % app: True})),
         ('all', qs),
     )
-    compat_levels = [(key, version_compat(qs, compat, app, binary))
-                     for key, qs in compat_queries]
+    compat_levels = [(key, version_compat(queryset, compat, app, binary))
+                     for key, queryset in compat_queries]
     usage_addons, usage_total = usage_stats(request, compat, app, binary)
     return render(request, template,
                   {'version': version, 'usage_addons': usage_addons,

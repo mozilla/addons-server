@@ -14,7 +14,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 
 import amo
 import constants.editors as rvw
-from addons.models import Persona
+from addons.models import Addon, Persona
 from amo.urlresolvers import reverse
 from amo.utils import raise_required
 from applications.models import AppVersion
@@ -86,8 +86,8 @@ class ReviewLogForm(happyforms.Form):
 
 class QueueSearchForm(happyforms.Form):
     text_query = forms.CharField(
-                    required=False,
-                    label=_lazy(u'Search by add-on name / author email'))
+        required=False,
+        label=_lazy(u'Search by add-on name / author email'))
     searching = forms.BooleanField(widget=forms.HiddenInput, required=False,
                                    initial=True)
     admin_review = forms.ChoiceField(required=False,
@@ -96,29 +96,29 @@ class QueueSearchForm(happyforms.Form):
                                               ('0', _lazy(u'no'))],
                                      label=_lazy(u'Admin Flag'))
     application_id = forms.ChoiceField(
-                required=False,
-                label=_lazy(u'Application'),
-                choices=([('', '')] +
-                         [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
+        required=False,
+        label=_lazy(u'Application'),
+        choices=([('', '')] +
+                 [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
     max_version = forms.ChoiceField(
-                required=False,
-                label=_lazy(u'Max. Version'),
-                choices=[('', _lazy(u'Select an application first'))])
+        required=False,
+        label=_lazy(u'Max. Version'),
+        choices=[('', _lazy(u'Select an application first'))])
     waiting_time_days = forms.ChoiceField(
-                required=False,
-                label=_lazy(u'Days Since Submission'),
-                choices=([('', '')] +
-                         [(i, i) for i in range(1, 10)] + [('10+', '10+')]))
+        required=False,
+        label=_lazy(u'Days Since Submission'),
+        choices=([('', '')] +
+                 [(i, i) for i in range(1, 10)] + [('10+', '10+')]))
     addon_type_ids = forms.MultipleChoiceField(
-                required=False,
-                label=_lazy(u'Add-on Types'),
-                choices=((id, tp) for id, tp in amo.ADDON_TYPES.items()))
+        required=False,
+        label=_lazy(u'Add-on Types'),
+        choices=((id, tp) for id, tp in amo.ADDON_TYPES.items()))
     platform_ids = forms.MultipleChoiceField(
-                required=False,
-                label=_lazy(u'Platforms'),
-                choices=[(p.id, p.name)
-                         for p in amo.PLATFORMS.values()
-                         if p not in (amo.PLATFORM_ANY, amo.PLATFORM_ALL)])
+        required=False,
+        label=_lazy(u'Platforms'),
+        choices=[(p.id, p.name)
+                 for p in amo.PLATFORMS.values()
+                 if p not in (amo.PLATFORM_ANY, amo.PLATFORM_ALL)])
 
     def __init__(self, *args, **kw):
         super(QueueSearchForm, self).__init__(*args, **kw)
@@ -141,7 +141,7 @@ class QueueSearchForm(happyforms.Form):
     def clean_application_id(self):
         if self.cleaned_data['application_id']:
             choices = self.version_choices_for_app_id(
-                                        self.cleaned_data['application_id'])
+                self.cleaned_data['application_id'])
             self.fields['max_version'].choices = choices
         return self.cleaned_data['application_id']
 
@@ -193,24 +193,24 @@ class QueueSearchForm(happyforms.Form):
                          supportemail_default.locale=addons.defaultlocale)""",
                 """LEFT JOIN translations AS supportemail_local ON
                         (supportemail_local.id = addons.supportemail AND
-                         supportemail_local.locale=%%(%s)s)"""
-                         % qs._param(lang),
+                         supportemail_local.locale=%%(%s)s)""" %
+                qs._param(lang),
                 """LEFT JOIN translations AS ad_name_local ON
                         (ad_name_local.id = addons.name AND
-                         ad_name_local.locale=%%(%s)s)"""
-                         % qs._param(lang)]
+                         ad_name_local.locale=%%(%s)s)""" %
+                qs._param(lang)]
             qs.base_query['from'].extend(joins)
             fuzzy_q = u'%' + data['text_query'] + u'%'
             qs = qs.filter_raw(
-                    Q('addon_name LIKE', fuzzy_q) |
-                    # Search translated add-on names / support emails in
-                    # the editor's locale:
-                    Q('ad_name_local.localized_string LIKE', fuzzy_q) |
-                    Q('supportemail_default.localized_string LIKE', fuzzy_q) |
-                    Q('supportemail_local.localized_string LIKE', fuzzy_q) |
-                    Q('au.role IN', [amo.AUTHOR_ROLE_OWNER,
-                                     amo.AUTHOR_ROLE_DEV],
-                      'u.email LIKE', fuzzy_q))
+                Q('addon_name LIKE', fuzzy_q) |
+                # Search translated add-on names / support emails in
+                # the editor's locale:
+                Q('ad_name_local.localized_string LIKE', fuzzy_q) |
+                Q('supportemail_default.localized_string LIKE', fuzzy_q) |
+                Q('supportemail_local.localized_string LIKE', fuzzy_q) |
+                Q('au.role IN', [amo.AUTHOR_ROLE_OWNER,
+                                 amo.AUTHOR_ROLE_DEV],
+                  'u.email LIKE', fuzzy_q))
         if data['waiting_time_days']:
             if data['waiting_time_days'] == '10+':
                 # Special case
@@ -228,7 +228,8 @@ class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
         addon = addon_file.version.addon
         # L10n: 0 = platform, 1 = filename, 2 = status message
         return jinja2.Markup(_(u"<strong>%s</strong> &middot; %s &middot; %s")
-                             % (addon_file.platform, addon_file.filename,
+                             % (addon_file.get_platform_display(),
+                                addon_file.filename,
                                 file_review_status(addon, addon_file)))
 
 
@@ -239,9 +240,10 @@ class NonValidatingChoiceField(forms.ChoiceField):
 
 
 class ReviewAddonForm(happyforms.Form):
-    addon_files = AddonFilesMultipleChoiceField(required=False,
-            queryset=File.objects.none(), label=_lazy(u'Files:'),
-            widget=forms.CheckboxSelectMultiple())
+    addon_files = AddonFilesMultipleChoiceField(
+        required=False,
+        queryset=File.objects.none(), label=_lazy(u'Files:'),
+        widget=forms.CheckboxSelectMultiple())
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
@@ -269,10 +271,11 @@ class ReviewAddonForm(happyforms.Form):
         self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewAddonForm, self).__init__(*args, **kw)
         self.fields['addon_files'].queryset = self.helper.all_files
-        self.addon_files_disabled = (self.helper.all_files
-                # We can't review disabled, and public are already reviewed.
-                .filter(status__in=[amo.STATUS_DISABLED, amo.STATUS_PUBLIC])
-                .values_list('pk', flat=True))
+        self.addon_files_disabled = (
+            self.helper.all_files
+            # We can't review disabled, and public are already reviewed.
+            .filter(status__in=[amo.STATUS_DISABLED, amo.STATUS_PUBLIC])
+            .values_list('pk', flat=True))
 
         # We're starting with an empty one, which will be hidden via CSS.
         canned_choices = [['', [('', _('Choose a canned response...'))]]]
@@ -294,8 +297,8 @@ class ReviewAddonForm(happyforms.Form):
                 canned_choices.append([r.response, r.name])
 
         self.fields['canned_response'].choices = canned_choices
-        self.fields['action'].choices = [(k, v['label']) for k, v
-                                          in self.helper.actions.items()]
+        self.fields['action'].choices = [
+            (k, v['label']) for k, v in self.helper.actions.items()]
 
 
 class ReviewFileForm(ReviewAddonForm):
@@ -350,8 +353,8 @@ class ThemeReviewForm(happyforms.Form):
         choices=rvw.THEME_REJECT_REASONS.items() + [('duplicate', '')],
         widget=forms.HiddenInput(attrs={'class': 'reject-reason'}),
         required=False, coerce=int, empty_value=None)
-    comment = forms.CharField(required=False,
-        widget=forms.HiddenInput(attrs={'class': 'comment'}))
+    comment = forms.CharField(
+        required=False, widget=forms.HiddenInput(attrs={'class': 'comment'}))
 
     def clean_theme(self):
         theme = self.cleaned_data['theme']
@@ -365,7 +368,7 @@ class ThemeReviewForm(happyforms.Form):
     def clean_reject_reason(self):
         reject_reason = self.cleaned_data.get('reject_reason', None)
         if (self.cleaned_data.get('action') == rvw.ACTION_REJECT
-            and reject_reason is None):
+                and reject_reason is None):
             raise_required()
         return reject_reason
 
@@ -435,8 +438,8 @@ class ThemeReviewForm(happyforms.Form):
         score = 0
         if action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE,
                       rvw.ACTION_APPROVE):
-            score = ReviewerScore.award_points(theme_lock.reviewer, theme.addon,
-                                               theme.addon.status)
+            score = ReviewerScore.award_points(
+                theme_lock.reviewer, theme.addon, theme.addon.status)
         theme_lock.delete()
 
         return score
@@ -458,3 +461,10 @@ class ReviewAppLogForm(ReviewLogForm):
             # L10n: Description of what can be searched for.
             'placeholder': _lazy(u'app, reviewer, or comment'),
             'size': 30}
+
+
+class WhiteboardForm(forms.ModelForm):
+
+    class Meta:
+        model = Addon
+        fields = ['whiteboard']

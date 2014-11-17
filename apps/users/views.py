@@ -65,7 +65,7 @@ def user_view(f):
             key = 'username'
             # If the username is `me` then show the current user's profile.
             if (user_id == 'me' and request.amo_user and
-                request.amo_user.username):
+                    request.amo_user.username):
                 user_id = request.amo_user.username
         user = get_object_or_404(UserProfile, **{key: user_id})
         return f(request, user, *args, **kw)
@@ -129,9 +129,9 @@ def confirm_resend(request, user):
     user.email_confirmation_code()
 
     msg = _(u'An email has been sent to your address {0} to confirm '
-             'your account. Before you can log in, you have to activate '
-             'your account by clicking on the link provided in this '
-             'email.').format(user.email)
+            u'your account. Before you can log in, you have to activate '
+            u'your account by clicking on the link provided in this '
+            u'email.').format(user.email)
     messages.info(request, _('Confirmation Email Sent'), msg)
 
     return redirect('users.login')
@@ -190,13 +190,14 @@ def edit(request):
                      'mail1': original_email,
                      'mail2': amouser.email}
                 log.info(u"User (%(user)s) has requested email change from "
-                          "(%(mail1)s) to (%(mail2)s)" % l)
-                messages.info(request, _('Email Confirmation Sent'),
+                         u"(%(mail1)s) to (%(mail2)s)" % l)
+                messages.info(
+                    request, _('Email Confirmation Sent'),
                     _(u'An email has been sent to {0} to confirm your new '
-                       'email address. For the change to take effect, you '
-                       'need to click on the link provided in this email. '
-                       'Until then, you can keep logging in with your '
-                       'current email address.').format(amouser.email))
+                      u'email address. For the change to take effect, you '
+                      u'need to click on the link provided in this email. '
+                      u'Until then, you can keep logging in with your '
+                      u'current email address.').format(amouser.email))
 
                 token, hash_ = EmailResetCode.create(amouser.id, amouser.email)
                 url = '%s%s' % (settings.SITE_URL,
@@ -204,8 +205,9 @@ def edit(request):
                                         args=[amouser.id, token, hash_]))
                 t = loader.get_template('users/email/emailchange.ltxt')
                 c = {'domain': settings.DOMAIN, 'url': url}
-                send_mail(_('Please confirm your email address '
-                            'change at %s' % settings.DOMAIN),
+                send_mail(
+                    _('Please confirm your email address '
+                      'change at %s' % settings.DOMAIN),
                     t.render(Context(c)), None, [amouser.email],
                     use_blacklist=False, real_email=True)
 
@@ -216,10 +218,11 @@ def edit(request):
             return redirect('users.edit')
         else:
 
-            messages.error(request, _('Errors Found'),
-                                    _('There were errors in the changes '
-                                      'you made. Please correct them and '
-                                      'resubmit.'))
+            messages.error(
+                request,
+                _('Errors Found'),
+                _('There were errors in the changes you made. Please correct '
+                  'them and resubmit.'))
     else:
         form = forms.UserEditForm(instance=amouser, request=request)
     return render(request, 'users/edit.html',
@@ -255,8 +258,14 @@ def emailchange(request, user, token, hash):
         # could be any number of things, but this is a targeted attack from
         # one user account to another
         log.warning((u"[Tampering] Valid email reset code for UID (%s) "
-                     "attempted to change email address for user (%s)")
-                                                        % (_uid, user))
+                     u"attempted to change email address for user (%s)") %
+                    (_uid, user))
+        return http.HttpResponse(status=400)
+
+    if UserProfile.objects.filter(email=newemail).exists():
+        log.warning((u"[Tampering] User (%s) tries to change his email to "
+                     u"an existing account with the same email address (%s)") %
+                    (user, newemail))
         return http.HttpResponse(status=400)
 
     user.email = newemail
@@ -264,8 +273,9 @@ def emailchange(request, user, token, hash):
 
     l = {'user': user, 'newemail': newemail}
     log.info(u"User (%(user)s) confirmed new email address (%(newemail)s)" % l)
-    messages.success(request, _('Your email address was changed successfully'),
-            _(u'From now on, please use {0} to log in.').format(newemail))
+    messages.success(
+        request, _('Your email address was changed successfully'),
+        _(u'From now on, please use {0} to log in.').format(newemail))
 
     return http.HttpResponseRedirect(reverse('users.edit'))
 
@@ -355,7 +365,6 @@ def browserid_authenticate(request, assertion, is_mobile=False,
 @csrf_exempt
 @post_required
 @transaction.commit_on_success
-#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def browserid_login(request, browserid_audience=None):
     msg = ''
     if waffle.switch_is_active('browserid-login'):
@@ -382,14 +391,12 @@ def browserid_login(request, browserid_audience=None):
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
-#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login_modal(request, template=None):
     return _login(request, template=template)
 
 
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
-#@ratelimit(block=True, rate=settings.LOGIN_RATELIMIT_ALL_USERS)
 def login(request, template=None):
     return _login(request, template=template)
 
@@ -458,15 +465,15 @@ def _login(request, template=None, data=None, dont_redirect=False):
             logout(request)
             log.info(u'Attempt to log in with unconfirmed account (%s)' % user)
             msg1 = _(u'A link to activate your user account was sent by email '
-                      'to your address {0}. You have to click it before you '
-                      'can log in.').format(user.email)
+                     u'to your address {0}. You have to click it before you '
+                     u'can log in.').format(user.email)
             url = "%s%s" % (settings.SITE_URL,
                             reverse('users.confirm.resend', args=[user.id]))
             msg2 = _('If you did not receive the confirmation email, make '
-                      'sure your email service did not mark it as "junk '
-                      'mail" or "spam". If you need to, you can have us '
-                      '<a href="%s">resend the confirmation message</a> '
-                      'to your email address mentioned above.') % url
+                     'sure your email service did not mark it as "junk '
+                     'mail" or "spam". If you need to, you can have us '
+                     '<a href="%s">resend the confirmation message</a> '
+                     'to your email address mentioned above.') % url
             messages.error(request, _('Activation Email Sent'), msg1)
             messages.info(request, _('Having Trouble?'), msg2,
                           title_safe=True, message_safe=True)
@@ -477,8 +484,9 @@ def _login(request, template=None, data=None, dont_redirect=False):
         rememberme = request.POST.get('rememberme', None)
         if rememberme:
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
-            log.debug((u'User (%s) logged in successfully with '
-                                        '"remember me" set') % user)
+            log.debug(
+                u'User (%s) logged in successfully with "remember me" set' %
+                user)
 
         login_status = True
 
@@ -542,9 +550,6 @@ def profile(request, user):
         addons = user.addons.reviewed().filter(
             addonuser__user=user, addonuser__listed=True)
 
-        # TODO: temporary, remove this when 1020465 has landed.
-        addons = addons.exclude(type=amo.ADDON_WEBAPP)
-
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
             '-persona__popularity')
         if personas.count() > THEMES_LIMIT:
@@ -555,10 +560,7 @@ def profile(request, user):
             '-weekly_downloads')
         addons = amo.utils.paginate(request, addons, 5)
 
-    reviews = amo.utils.paginate(
-        request,
-        # TODO: temporary, remove the exclude when 1020465 has landed.
-        user.reviews.all().exclude(addon__type=amo.ADDON_WEBAPP))
+    reviews = amo.utils.paginate(request, user.reviews.all())
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,
@@ -582,7 +584,8 @@ def themes(request, user, category=None):
     }
 
     if user.is_artist:
-        base = user.addons.reviewed().filter(type=amo.ADDON_PERSONA,
+        base = user.addons.reviewed().filter(
+            type=amo.ADDON_PERSONA,
             addonuser__user=user, addonuser__listed=True)
 
         if category:
@@ -663,7 +666,7 @@ def register(request):
         elif mkt_user.exists():
             # Handle BrowserID
             if (mkt_user.count() == 1 and
-                mkt_user[0].source in amo.LOGIN_SOURCE_BROWSERIDS):
+                    mkt_user[0].source in amo.LOGIN_SOURCE_BROWSERIDS):
                 messages.info(request, _('You already have an account.'))
                 form = None
             else:
@@ -675,7 +678,7 @@ def register(request):
                 return render(request, 'users/newpw_sent.html', {})
         else:
             messages.error(request, _('There are errors in this form'),
-                            _('Please correct them and resubmit.'))
+                           _('Please correct them and resubmit.'))
     else:
         form = forms.UserRegisterForm()
 
@@ -768,8 +771,9 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
                              if not l.mandatory]
         else:
             perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
-            UserNotification.update_or_create(update={'enabled': False},
-                    user=user, notification_id=perm_setting.id)
+            UserNotification.update_or_create(
+                update={'enabled': False},
+                user=user, notification_id=perm_setting.id)
             perm_settings = [perm_setting]
     else:
         unsubscribed = False

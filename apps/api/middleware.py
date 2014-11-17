@@ -42,7 +42,7 @@ class RestOAuthMiddleware(object):
 
         auth_header_value = request.META.get('HTTP_AUTHORIZATION')
         if (not auth_header_value and
-            'oauth_token' not in request.META['QUERY_STRING']):
+                'oauth_token' not in request.META['QUERY_STRING']):
             self.user = AnonymousUser()
             log.info('No HTTP_AUTHORIZATION header')
             return

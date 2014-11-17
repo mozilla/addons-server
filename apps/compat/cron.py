@@ -107,9 +107,9 @@ def compatibility_report(index=None):
     for compat in amo.COMPAT:
         app, ver = compat['app'], vint(compat['previous'])
         # Find all the docs that have a max_version compatible with ver.
-        supported = [doc for doc in docs.values()
-                     if app in doc.get('support', {})
-                        and doc['support'][app]['max'] >= ver]
+        supported = [compat_doc for compat_doc in docs.values()
+                     if (app in compat_doc.get('support', {})
+                         and compat_doc['support'][app]['max'] >= ver)]
         # Sort by count so we can get the top 95% most-used add-ons.
         supported = sorted(supported, key=lambda d: d['count'], reverse=True)
         total = sum(doc['count'] for doc in supported)

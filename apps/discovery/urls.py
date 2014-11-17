@@ -7,7 +7,8 @@ from . import views
 
 
 # These will all start with /addon/<addon_id>/
-addon_patterns = patterns('',
+addon_patterns = patterns(
+    '',
     url('^$', views.addon_detail, name='discovery.addons.detail'),
     url('^eula/(?P<file_id>\d+)?$', views.addon_eula,
         name='discovery.addons.eula'),
@@ -22,7 +23,8 @@ def pane_redirect(req, **kw):
     return redirect(reverse('discovery.pane', kwargs=kw), permanent=False)
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Force the match so this doesn't get picked up by the wide open
     # /:version/:platform regex.
     ('^addon/%s$' % ADDON_ID,
@@ -42,5 +44,4 @@ urlpatterns = patterns('',
     url('^pane/promos/%s$' % (browser_re + compat_mode_re), views.pane_promos,
         name='discovery.pane.promos'),
     url('^modules$', views.module_admin, name='discovery.module_admin'),
-    url('^what-the-rec$', views.recs_debug, name='discovery.recs.debug'),
 )

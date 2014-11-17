@@ -25,26 +25,6 @@ var D2C_MAX_VERSIONS = {
     thunderbird: '5.0'
 };
 
-var webappButton = function() {
-    var $this = $(this),
-        premium = $this.hasClass('premium'),
-        manifestURL = $this.attr('data-manifest-url');
-    if (manifestURL) {
-        $this.find('.button')
-            .removeClass('disabled')
-            .addClass('add')
-            .click(function(e) {
-                e.preventDefault();
-                purchases.record($this, function(receipt) {
-                  purchases.install_app(manifestURL, receipt);
-                });
-            });
-    }
-    if (premium) {
-        return premiumButton.call($this);
-    }
-};
-
 var premiumButton = function() {
     // Pass in the button wrapper and this will check to see if its been
     // purchased and alter if appropriate. Will return the purchase state.
@@ -67,11 +47,6 @@ var installButton = function() {
     var self = this,
         $this = $(this),
         $button = $this.find('.button');
-
-    if ($this.hasClass('webapp')) {
-         webappButton.call(this);
-         return;
-    }
 
     // Unreviewed and self-hosted buttons point to the add-on detail page for
     // non-js safety.  Flip them to the real xpi url here.
@@ -99,7 +74,6 @@ var installButton = function() {
         search = $this.hasattr('data-search'),
         premium = $this.hasClass('premium'),
         accept_eula = $this.hasClass('accept'),
-        webapp = $this.hasattr('data-manifest-url'),
         compatible = $this.attr('data-is-compatible') == 'true',
         compatible_app = $this.attr('data-is-compatible-app') == 'true',
         has_overrides = $this.hasattr('data-compat-overrides'),
@@ -399,7 +373,7 @@ var installButton = function() {
         search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
 
-    if (unreviewed && !(eula || contrib || beta || webapp)) {
+    if (unreviewed && !(eula || contrib || beta)) {
         $button.addPopup(message('unreviewed'));
     }
 

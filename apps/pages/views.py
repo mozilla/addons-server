@@ -10,20 +10,22 @@ from users.models import UserProfile
 def credits(request):
 
     developers = (UserProfile.objects
-        .exclude(display_name=None)
-        .filter(groupuser__group__name='Developers Credits')
-        .order_by('display_name')
-        .distinct())
+                  .exclude(display_name=None)
+                  .filter(groupuser__group__name='Developers Credits')
+                  .order_by('display_name')
+                  .distinct())
     past_developers = (UserProfile.objects
-        .exclude(display_name=None)
-        .filter(groupuser__group__name='Past Developers Credits')
-        .order_by('display_name')
-        .distinct())
+                       .exclude(display_name=None)
+                       .filter(
+                           groupuser__group__name='Past Developers Credits')
+                       .order_by('display_name')
+                       .distinct())
     other_contribs = (UserProfile.objects
-        .exclude(display_name=None)
-        .filter(groupuser__group__name='Other Contributors Credits')
-        .order_by('display_name')
-        .distinct())
+                      .exclude(display_name=None)
+                      .filter(
+                          groupuser__group__name='Other Contributors Credits')
+                      .order_by('display_name')
+                      .distinct())
 
     languages = sorted(list(
         set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
@@ -32,10 +34,10 @@ def credits(request):
     localizers = []
     for lang in languages:
         users = (UserProfile.objects
-            .exclude(display_name=None)
-            .filter(groupuser__group__name='%s Localizers' % lang)
-            .order_by('display_name')
-            .distinct())
+                 .exclude(display_name=None)
+                 .filter(groupuser__group__name='%s Localizers' % lang)
+                 .order_by('display_name')
+                 .distinct())
         if users:
             localizers.append((lang, users))
 

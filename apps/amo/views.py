@@ -28,10 +28,20 @@ log = commonware.log.getLogger('z.amo')
 monitor_log = commonware.log.getLogger('z.monitor')
 jp_log = commonware.log.getLogger('z.jp.repack')
 
-flash_re = re.compile(r'^(Win|(PPC|Intel) Mac OS X|Linux.+i\d86)|SunOs', re.IGNORECASE)
-quicktime_re = re.compile(r'^(application/(sdp|x-(mpeg|rtsp|sdp))|audio/(3gpp(2)?|AMR|aiff|basic|mid(i)?|mp4|mpeg|vnd\.qcelp|wav|x-(aiff|m4(a|b|p)|midi|mpeg|wav))|image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))|video/(3gpp(2)?|flc|mp4|mpeg|quicktime|sd-video|x-mpeg))$')
-java_re = re.compile(r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;version=(1\.(1(\.[1-3])?|(2|4)(\.[1-2])?|3(\.1)?|5)))?|vm)$')
-wmp_re = re.compile(r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
+
+flash_re = re.compile(r'^(Win|(PPC|Intel) Mac OS X|Linux.+i\d86)|SunOs',
+                      re.IGNORECASE)
+quicktime_re = re.compile(
+    r'^(application/(sdp|x-(mpeg|rtsp|sdp))|audio/(3gpp(2)?|AMR|aiff|basic|'
+    r'mid(i)?|mp4|mpeg|vnd\.qcelp|wav|x-(aiff|m4(a|b|p)|midi|mpeg|wav))|'
+    r'image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))|'
+    r'video/(3gpp(2)?|flc|mp4|mpeg|quicktime|sd-video|x-mpeg))$')
+java_re = re.compile(
+    r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;'
+    r'version=(1\.(1(\.[1-3])?|(2|4)(\.[1-2])?|3(\.1)?|5)))?|vm)$')
+wmp_re = re.compile(
+    r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|'
+    r'wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
 
 
 @never_cache
@@ -169,6 +179,5 @@ def record(request):
 
 
 def plugin_check_redirect(request):
-    return http.HttpResponseRedirect('%s?%s' %
-            (settings.PFS_URL,
-             iri_to_uri(request.META.get('QUERY_STRING', ''))))
+    return http.HttpResponseRedirect('%s?%s' % (
+        settings.PFS_URL, iri_to_uri(request.META.get('QUERY_STRING', ''))))

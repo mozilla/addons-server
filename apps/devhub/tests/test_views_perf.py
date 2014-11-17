@@ -36,7 +36,7 @@ class TestPerfViews(amo.tests.TestCase):
             self.perf_calls = [tuple(c) for c in
                                self.perf_test.call_args_list]
         assert expected_call in self.perf_calls, (
-                                'Call was not made: %s' % str(expected_call))
+            'Call was not made: %s' % str(expected_call))
 
     def start(self):
         re = self.client.get(reverse('devhub.file_perf_tests_start',

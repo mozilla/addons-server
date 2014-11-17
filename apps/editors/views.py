@@ -75,7 +75,7 @@ def eventlog_detail(request, id):
 @any_reviewer_required
 def home(request):
     if (not acl.action_allowed(request, 'Addons', 'Review') and
-        acl.action_allowed(request, 'Personas', 'Review')):
+            acl.action_allowed(request, 'Personas', 'Review')):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
     durations = (('new', _('New Add-ons (Under 5 days)')),
@@ -87,8 +87,11 @@ def home(request):
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
         ActivityLog.objects.monthly_reviews()[:reviews_max_display])
-    reviews_total_count = ActivityLog.objects.user_approve_reviews(request.user).count()
-    reviews_monthly_count = ActivityLog.objects.current_month_user_approve_reviews(request.user).count()
+    reviews_total_count = ActivityLog.objects.user_approve_reviews(
+        request.user).count()
+    reviews_monthly_count = (
+        ActivityLog.objects.current_month_user_approve_reviews(
+            request.user).count())
 
     # Try to read user position from retrieved reviews.
     # If not available, query for it.
@@ -245,7 +248,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     for row in sql.all():
         label = row.approval_created.isoformat()[:7]
 
-        if not label in monthly_data:
+        if label not in monthly_data:
             xaxis = row.approval_created.strftime('%b %Y')
             monthly_data[label] = dict(teamcount=0, usercount=0,
                                        teamamt=0, label=xaxis)
@@ -297,22 +300,6 @@ def _queue(request, TableObj, tab, qs=None):
             qs = search_form.filter_qs(qs)
     else:
         search_form = forms.QueueSearchForm()
-    review_num = request.GET.get('num', None)
-    if review_num:
-        try:
-            review_num = int(review_num)
-        except ValueError:
-            pass
-        else:
-            try:
-                # Force a limit query for efficiency:
-                start = review_num - 1
-                row = qs[start: start + 1][0]
-                return http.HttpResponseRedirect('%s?num=%s' % (
-                                                 TableObj.review_url(row),
-                                                 review_num))
-            except IndexError:
-                pass
     order_by = request.GET.get('sort', TableObj.default_order_by())
     order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
@@ -431,10 +418,6 @@ def application_versions_json(request):
 @addons_reviewer_required
 @addon_view
 def review(request, addon):
-    return _review(request, addon)
-
-
-def _review(request, addon):
     version = addon.latest_version
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
@@ -447,19 +430,6 @@ def _review(request, addon):
     queue_type = (form.helper.review_type if form.helper.review_type
                   != 'preliminary' else 'prelim')
     redirect_url = reverse('editors.queue_%s' % queue_type)
-
-    num = request.GET.get('num')
-    paging = {}
-    if num:
-        try:
-            num = int(num)
-        except (ValueError, TypeError):
-            raise http.Http404
-        total = queue_counts(queue_type)
-        paging = {'current': num, 'total': total,
-                  'prev': num > 1, 'next': num < total,
-                  'prev_url': '%s?num=%s' % (redirect_url, num - 1),
-                  'next_url': '%s?num=%s' % (redirect_url, num + 1)}
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
@@ -549,10 +519,11 @@ def _review(request, addon):
 
     ctx = context(version=version, addon=addon,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
-                  form=form, paging=paging, canned=canned, is_admin=is_admin,
+                  form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal)
+                  actions=actions, actions_minimal=actions_minimal,
+                  whiteboard_form=forms.WhiteboardForm(instance=addon))
 
     return render(request, 'editors/review.html', ctx)
 
@@ -675,3 +646,14 @@ def leaderboard(request):
     return render(request, 'editors/leaderboard.html', context(**{
         'scores': ReviewerScore.all_users_by_score(),
     }))
+
+
+@addons_reviewer_required
+@addon_view
+def whiteboard(request, addon):
+    form = forms.WhiteboardForm(request.POST or None, instance=addon)
+
+    if form.is_valid():
+        addon = form.save()
+        return redirect('editors.review', addon.pk)
+    raise PermissionDenied

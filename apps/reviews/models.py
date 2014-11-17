@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import logging
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 
@@ -10,7 +9,7 @@ from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
-from amo.helpers import shared_url
+from amo import helpers
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 
@@ -59,9 +58,7 @@ class Review(amo.models.ModelBase):
         ordering = ('-created',)
 
     def get_url_path(self):
-        if 'mkt.ratings' in settings.INSTALLED_APPS:
-            return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
-        return shared_url('reviews.detail', self.addon, self.id)
+        return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,
@@ -224,10 +221,10 @@ def check_spam(review_id, **kw):
     if len(others) > 10:
         spam.add(review, 'numbers')
     if (review.body is not None and
-        bleach.url_re.search(review.body.localized_string)):
+            bleach.url_re.search(review.body.localized_string)):
         spam.add(review, 'urls')
     for other in others:
         if ((review.title and review.title == other.title) or
-            review.body == other.body):
+                review.body == other.body):
             spam.add(review, 'matches')
             break

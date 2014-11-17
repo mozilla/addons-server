@@ -200,9 +200,7 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         verbose_name=_lazy(u'Additional'), sortable=False)
 
     def render_addon_name(self, row):
-        url = '%s?num=%s' % (reverse('editors.review',
-                                     args=[row.addon_slug]),
-                             self.item_number)
+        url = reverse('editors.review', args=[row.addon_slug])
         self.increment_item()
         return u'<a href="%s">%s <em>%s</em></a>' % (
             url, jinja2.escape(row.addon_name),

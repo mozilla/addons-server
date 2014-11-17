@@ -104,8 +104,8 @@ function normalizeRange(range) {
         ret.start = Date.ago(range);
         ret.end = (new Date());
     } else if (typeof range == "object") {
-        ret.start = Date.iso(range.start);
-        ret.end = Date.iso(range.end);
+        ret.start = new Date(range.start);
+        ret.end = new Date(range.end);
     } else {
         throw "Invalid range values found.";
     }

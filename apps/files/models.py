@@ -78,9 +78,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # file, used for default to compatible.
     binary_components = models.BooleanField(default=False, db_index=True)
 
-    # Whether a webapp uses flash or not.
-    uses_flash = models.BooleanField(default=False, db_index=True)
-
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
@@ -150,11 +147,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if version.addon.status == amo.STATUS_PUBLIC:
-            if amo.VERSION_BETA.search(parse_data.get('version', '')):
-                f.status = amo.STATUS_BETA
-            elif version.addon.trusted:
-                f.status = amo.STATUS_PUBLIC
+        if version.addon.status == amo.STATUS_PUBLIC and version.addon.trusted:
+            f.status = amo.STATUS_PUBLIC
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
@@ -257,7 +251,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(user_media_path('addons'), str(self.version.addon_id),
+        return os.path.join(user_media_path('addons'),
+                            str(self.version.addon_id),
                             self.filename)
 
     @property
@@ -304,7 +299,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.mv(src, dst, 'Moving disabled file: %s => %s')
         # Remove the file from the mirrors if necessary.
         if (self.mirror_file_path and
-            storage.exists(smart_str(self.mirror_file_path))):
+                storage.exists(smart_str(self.mirror_file_path))):
             log.info('Unmirroring disabled file: %s'
                      % self.mirror_file_path)
             storage.delete(smart_str(self.mirror_file_path))
@@ -510,7 +505,6 @@ class FileUpload(amo.models.ModelBase):
     hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
     valid = models.BooleanField(default=False)
-    is_webapp = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     _escaped_validation = models.TextField(
         null=True, db_column='escaped_validation')
@@ -614,8 +608,8 @@ class FileValidation(amo.models.ModelBase):
                   warnings=js['warnings'], notices=js['notices'])
         new.valid = new.errors == 0
         if ('metadata' in js and (
-            js['metadata'].get('contains_binary_extension', False) or
-            js['metadata'].get('contains_binary_content', False))):
+                js['metadata'].get('contains_binary_extension', False) or
+                js['metadata'].get('contains_binary_content', False))):
             file.update(binary=True)
         if 'metadata' in js and js['metadata'].get('binary_components', False):
             file.update(binary_components=True)

@@ -3,10 +3,10 @@ from optparse import make_option
 from time import time
 
 from django.core.management.base import BaseCommand
-from django.db import (IntegrityError, connection as django_connection,
-                       transaction)
+from django.db import connection as django_connection, transaction
 
 import MySQLdb as mysql
+
 
 def debake(s):
     for c in s:
@@ -89,7 +89,8 @@ class Command(BaseCommand):
 
     def get_original_descs(self, ids):
         qs = ', '.join(['%s'] * len(ids))
-        self.cursor.execute("SELECT description from personas where id in (%s)" % qs, ids)
+        self.cursor.execute(
+            "SELECT description from personas where id in (%s)" % qs, ids)
         return (x[0] for x in self.cursor.fetchall())
 
     def fix_descs(self, targets):
@@ -101,7 +102,8 @@ class Command(BaseCommand):
                 print "SKIPPED", id
                 continue
             self.cursor_z.execute(
-                'UPDATE translations AS t, personas AS p SET t.localized_string = %s, '
+                'UPDATE translations AS t, personas AS p '
+                'SET t.localized_string = %s, '
                 't.localized_string_clean = NULL '
                 'WHERE t.id = p.description AND p.persona_id = %s', [desc, id])
 

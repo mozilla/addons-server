@@ -66,8 +66,8 @@ def get_trans(items):
         return
 
     model = items[0].__class__
-    # FIXME: if we knew which db the queryset we are transforming used, we could
-    # make sure we are re-using the same one.
+    # FIXME: if we knew which db the queryset we are transforming used, we
+    # could make sure we are re-using the same one.
     dbname = router.db_for_read(model)
     connection = connections[dbname]
     sql, params = build_query(model, connection)
@@ -82,6 +82,6 @@ def get_trans(items):
         item = item_dict[row[0]]
         for index, field in enumerate(model._meta.translated_fields):
             start = 1 + step * index
-            t = Translation(*row[start:start+step])
+            t = Translation(*row[start:start + step])
             if t.id is not None and t.localized_string is not None:
                 setattr(item, field.name, t)
