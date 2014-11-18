@@ -186,6 +186,7 @@ class TestAddonManager(amo.tests.TestCase):
                 'bandwagon/featured_collections', 'base/addon_5299_gcal']
 
     def setUp(self):
+        super(TestAddonManager, self).setUp()
         set_user(None)
 
     def test_featured(self):
@@ -314,6 +315,7 @@ class TestAddonModels(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestAddonModels, self).setUp()
         TranslationSequence.objects.create(id=99243)
         # TODO(andym): use Mock appropriately here.
         self.old_version = amo.FIREFOX.latest_version
@@ -321,6 +323,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def tearDown(self):
         amo.FIREFOX.latest_version = self.old_version
+        super(TestAddonModels, self).tearDown()
 
     def test_current_version(self):
         """
@@ -1498,6 +1501,7 @@ class TestGetVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615', ]
 
     def setUp(self):
+        super(TestGetVersion, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
@@ -1575,6 +1579,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
                 'base/addon_3615', 'base/collections', 'base/featured']
 
     def setUp(self):
+        super(TestAddonModelsFeatured, self).setUp()
         # Addon._featured keeps an in-process cache we need to clear.
         if hasattr(Addon, '_featured'):
             del Addon._featured
@@ -1595,6 +1600,7 @@ class TestBackupVersion(amo.tests.TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
+        super(TestBackupVersion, self).setUp()
         self.version_1_2_0 = 105387
         self.addon = Addon.objects.get(pk=1865)
         set_user(None)
@@ -1675,6 +1681,7 @@ class TestPersonaModel(amo.tests.TestCase):
     fixtures = ['addons/persona']
 
     def setUp(self):
+        super(TestPersonaModel, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.persona.header = 'header.png'
@@ -1854,6 +1861,7 @@ class TestFlushURLs(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
+        super(TestFlushURLs, self).setUp()
         settings.ADDON_ICON_URL = (
             settings.STATIC_URL +
             'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
@@ -1867,6 +1875,7 @@ class TestFlushURLs(amo.tests.TestCase):
 
     def tearDown(self):
         _disconnect()
+        super(TestFlushURLs, self).tearDown()
 
     def is_url_hashed(self, url):
         return urlparse(url).query.find('modified') > -1
@@ -2031,6 +2040,7 @@ class TestRemoveLocale(amo.tests.TestCase):
 class TestUpdateNames(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestUpdateNames, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.addon.name = self.names = {'en-US': 'woo'}
         self.addon.save()
@@ -2119,6 +2129,7 @@ class TestUpdateNames(amo.tests.TestCase):
 class TestAddonWatchDisabled(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestAddonWatchDisabled, self).setUp()
         self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
                            status=amo.STATUS_PUBLIC)
         self.addon.save()
@@ -2244,6 +2255,7 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 class TestCompatOverride(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestCompatOverride, self).setUp()
         self.app = amo.APP_IDS[1]
 
         one = CompatOverride.objects.create(guid='one')
@@ -2382,6 +2394,7 @@ class TestCompatOverride(amo.tests.TestCase):
 class TestIncompatibleVersions(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestIncompatibleVersions, self).setUp()
         self.app = amo.APP_IDS[amo.FIREFOX.id]
         self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
 

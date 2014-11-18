@@ -23,6 +23,7 @@ class UserFormBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(UserFormBase, self).setUp()
         self.user = self.user_profile = UserProfile.objects.get(id='4043307')
         self.uidb64 = urlsafe_base64_encode(str(self.user.id))
         self.token = default_token_generator.make_token(self.user)

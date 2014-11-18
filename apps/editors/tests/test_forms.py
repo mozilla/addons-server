@@ -15,6 +15,7 @@ class TestReviewActions(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
+        super(TestReviewActions, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon.versions.all()[0]
 

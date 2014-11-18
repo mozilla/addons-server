@@ -62,6 +62,7 @@ class TestContribForm(amo.tests.TestCase):
 class TestCharityForm(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestCharityForm, self).setUp()
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
         paypal.check_paypal_id = self.paypal_mock
@@ -102,6 +103,7 @@ class TestPreviewForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestPreviewForm, self).setUp()
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
@@ -135,6 +137,7 @@ class TestThemeForm(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
+        super(TestThemeForm, self).setUp()
         self.populate()
         self.request = mock.Mock()
         self.request.groups = ()
@@ -380,6 +383,7 @@ class TestEditThemeForm(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
+        super(TestEditThemeForm, self).setUp()
         self.populate()
         self.request = mock.Mock()
         self.request.groups = ()
@@ -576,6 +580,7 @@ class TestEditThemeOwnerForm(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestEditThemeOwnerForm, self).setUp()
         self.instance = Addon.objects.create(
             type=amo.ADDON_PERSONA,
             status=amo.STATUS_PUBLIC, slug='swag-overload',

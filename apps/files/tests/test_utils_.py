@@ -33,6 +33,7 @@ class TestFindJetpacks(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestFindJetpacks, self).setUp()
         File.objects.update(jetpack_version='1.0')
         self.file = File.objects.filter(version__addon=3615).get()
 

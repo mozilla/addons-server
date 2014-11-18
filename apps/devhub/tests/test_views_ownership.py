@@ -15,6 +15,7 @@ class TestOwnership(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestOwnership, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('owner')

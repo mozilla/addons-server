@@ -95,6 +95,7 @@ def _uploader(resize_size, final_size):
 class TestValidator(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestValidator, self).setUp()
         self.upload = FileUpload.objects.create()
         assert not self.upload.valid
 
@@ -127,6 +128,7 @@ class TestFlagBinary(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestFlagBinary, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
 
     @mock.patch('devhub.tasks.run_validator')

@@ -97,6 +97,7 @@ class TestFileValidation(amo.tests.TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
 
     def setUp(self):
+        super(TestFileValidation, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file_validation = FileValidation.objects.get(pk=1)
@@ -215,9 +216,9 @@ class TestValidateFile(BaseUploadTest):
         self.addon = self.file.version.addon
 
     def tearDown(self):
-        super(TestValidateFile, self).tearDown()
         if storage.exists(self.file.file_path):
             storage.delete(self.file.file_path)
+        super(TestValidateFile, self).tearDown()
 
     @attr('validator')
     def test_lazy_validate(self):

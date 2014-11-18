@@ -241,6 +241,7 @@ class TestPackagerDownload(amo.tests.TestCase):
     fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
 
     def setUp(self):
+        super(TestPackagerDownload, self).setUp()
         self.url = lambda f: reverse('devhub.package_addon_json', args=[f])
 
     def _prep_mock_package(self, name):

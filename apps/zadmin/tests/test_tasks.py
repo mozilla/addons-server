@@ -66,6 +66,7 @@ class TestLangpackFetcher(amo.tests.TestCase):
     LISTING = 'pretend-this-is-a-sha256-sum  win32/xpi/de-DE.xpi\n'
 
     def setUp(self):
+        super(TestLangpackFetcher, self).setUp()
         request_patch = mock.patch('zadmin.tasks.requests.get')
         self.mock_request = request_patch.start()
         self.addCleanup(request_patch.stop)

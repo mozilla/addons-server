@@ -128,11 +128,13 @@ def test_no_translation():
 class TestLocalFileStorage(BaseTestCase):
 
     def setUp(self):
+        super(TestLocalFileStorage, self).setUp()
         self.tmp = tempfile.mkdtemp()
         self.stor = LocalFileStorage()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
+        super(TestLocalFileStorage, self).tearDown()
 
     def test_read_write(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
@@ -204,6 +206,7 @@ class TestLocalFileStorage(BaseTestCase):
 class TestCacheNamespaces(BaseTestCase):
 
     def setUp(self):
+        super(TestCacheNamespaces, self).setUp()
         cache.clear()
         self.namespace = 'redis-is-dead'
 

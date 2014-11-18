@@ -48,6 +48,7 @@ class DecimalCharFieldTestCase(amo.tests.TestCase):
 class SeparatedValuesFieldTestCase(amo.tests.TestCase):
 
     def setUp(self):
+        super(SeparatedValuesFieldTestCase, self).setUp()
         self.field = SeparatedValuesField(forms.EmailField)
 
     def test_email_field(self):

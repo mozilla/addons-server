@@ -42,6 +42,7 @@ def test_dev_page_title():
 class TestDevBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestDevBreadcrumbs, self).setUp()
         self.request = Mock()
         self.request.APP = None
 
@@ -140,6 +141,7 @@ def test_log_action_class():
 class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestDisplayUrl, self).setUp()
         self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')
 
     def test_utf8(self):
@@ -162,6 +164,7 @@ class TestDisplayUrl(amo.tests.BaseTestCase):
 class TestDevFilesStatus(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestDevFilesStatus, self).setUp()
         self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,

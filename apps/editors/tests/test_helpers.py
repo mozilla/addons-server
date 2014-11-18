@@ -162,6 +162,8 @@ class TestReviewHelper(amo.tests.TestCase):
     preamble = 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
 
     def setUp(self):
+        super(TestReviewHelper, self).setUp()
+
         class FakeRequest:
             amo_user = UserProfile.objects.get(pk=10482)
             user = amo_user
@@ -698,6 +700,7 @@ class TestCompareLink(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestCompareLink, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.current = File.objects.get(pk=67442)
         self.version = Version.objects.create(addon=self.addon)

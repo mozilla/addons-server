@@ -11,6 +11,7 @@ from users.models import UserProfile
 
 class LogTest(amo.tests.TestCase):
     def setUp(self):
+        super(LogTest, self).setUp()
         u = UserProfile.objects.create(username='foo')
         amo.set_user(u)
 

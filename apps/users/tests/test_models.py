@@ -350,10 +350,12 @@ class TestFlushURLs(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
+        super(TestFlushURLs, self).setUp()
         _connect()
 
     def tearDown(self):
         _disconnect()
+        super(TestFlushURLs, self).tearDown()
 
     @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
     def test_flush(self, flush):

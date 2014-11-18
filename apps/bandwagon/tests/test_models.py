@@ -33,6 +33,7 @@ class TestCollections(amo.tests.TestCase):
                 'base/user_4043307')
 
     def setUp(self):
+        super(TestCollections, self).setUp()
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
         amo.set_user(self.user)

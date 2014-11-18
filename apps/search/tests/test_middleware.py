@@ -11,6 +11,7 @@ from search.middleware import ElasticsearchExceptionMiddleware as ESM
 class TestElasticsearchExceptionMiddleware(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestElasticsearchExceptionMiddleware, self).setUp()
         self.request = RequestFactory()
 
     @mock.patch('search.middleware.render')

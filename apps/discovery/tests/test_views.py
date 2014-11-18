@@ -307,6 +307,7 @@ class TestPane(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestPane, self).setUp()
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_my_account(self):
@@ -397,6 +398,7 @@ class TestDetails(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592']
 
     def setUp(self):
+        super(TestDetails, self).setUp()
         self.addon = self.get_addon()
         self.detail_url = reverse('discovery.addons.detail',
                                   args=[self.addon.slug])
@@ -455,6 +457,7 @@ class TestPersonaDetails(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
+        super(TestPersonaDetails, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.url = reverse('discovery.addons.detail', args=[self.addon.slug])
 
@@ -500,6 +503,7 @@ class TestDownloadSources(amo.tests.TestCase):
                 'discovery/discoverymodules']
 
     def setUp(self):
+        super(TestDownloadSources, self).setUp()
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_detail(self):
@@ -546,6 +550,7 @@ class TestMonthlyPick(amo.tests.TestCase):
                 'discovery/discoverymodules']
 
     def setUp(self):
+        super(TestMonthlyPick, self).setUp()
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
@@ -600,6 +605,7 @@ class TestPaneMoreAddons(amo.tests.TestCase):
     fixtures = ['base/appversion']
 
     def setUp(self):
+        super(TestPaneMoreAddons, self).setUp()
         self.addon1 = addon_factory(hotness=99,
                                     version_kw=dict(max_app_version='5.0'))
         self.addon2 = addon_factory(hotness=0,

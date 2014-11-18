@@ -80,9 +80,10 @@ class TestTaskUser(amo.tests.TestCase):
         eq_(get_user().pk, 999)
 
 
-class TestLoginRequired(object):
+class TestLoginRequired(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestLoginRequired, self).setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = mock.Mock()
@@ -145,6 +146,7 @@ class TestSetModifiedOn(amo.tests.TestCase):
 class TestPermissionRequired(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestPermissionRequired, self).setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = mock.Mock()

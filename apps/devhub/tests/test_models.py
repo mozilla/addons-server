@@ -26,6 +26,7 @@ class TestActivityLog(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestActivityLog, self).setUp()
         u = UserProfile.objects.create(username='yolo')
         self.request = Mock()
         self.request.amo_user = self.user = u
@@ -33,6 +34,7 @@ class TestActivityLog(amo.tests.TestCase):
 
     def tearDown(self):
         amo.set_user(None)
+        super(TestActivityLog, self).tearDown()
 
     def test_basic(self):
         a = Addon.objects.get()
@@ -178,6 +180,7 @@ class TestVersion(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
 
     def setUp(self):
+        super(TestVersion, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = Version.objects.get(pk=81551)
         self.file = File.objects.get(pk=67442)
@@ -233,6 +236,7 @@ class TestActivityLogCount(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestActivityLogCount, self).setUp()
         now = datetime.now()
         bom = datetime(now.year, now.month, 1)
         self.lm = bom - timedelta(days=1)

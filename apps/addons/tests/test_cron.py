@@ -117,6 +117,7 @@ class TestHideDisabledFiles(amo.tests.TestCase):
     msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):
+        super(TestHideDisabledFiles, self).setUp()
         p = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)

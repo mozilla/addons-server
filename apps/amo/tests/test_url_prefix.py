@@ -15,6 +15,7 @@ class MiddlewareTest(BaseTestCase):
     """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
+        super(MiddlewareTest, self).setUp()
         self.rf = RequestFactory()
         self.middleware = LocaleAndAppURLMiddleware()
 
@@ -120,11 +121,12 @@ class MiddlewareTest(BaseTestCase):
         check('/en-US/firefox?lang=es-PE', '/es/firefox/')
 
 
-class TestPrefixer:
+class TestPrefixer(BaseTestCase):
 
     def tearDown(self):
         urlresolvers.clean_url_prefixes()
         set_script_prefix('/')
+        super(TestPrefixer, self).tearDown()
 
     def test_split_path(self):
 
@@ -170,6 +172,7 @@ class TestPrefixer:
 
     def test_reverse(self):
         # Make sure it works outside the request.
+        urlresolvers.clean_url_prefixes()  # Modified in BaseTestCase.
         eq_(urlresolvers.reverse('home'), '/')
 
         # With a request, locale and app prefixes work.

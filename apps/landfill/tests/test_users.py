@@ -11,6 +11,7 @@ from landfill.user import generate_addon_user_and_category, generate_user
 class RatingsTests(amo.tests.TestCase):
 
     def setUp(self):
+        super(RatingsTests, self).setUp()
         self.email = 'nobody@mozilla.org'
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 

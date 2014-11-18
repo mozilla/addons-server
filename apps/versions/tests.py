@@ -427,12 +427,14 @@ class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
+        super(TestViews, self).setUp()
         self.old_perpage = views.PER_PAGE
         views.PER_PAGE = 1
         self.addon = Addon.objects.get(id=11730)
 
     def tearDown(self):
         views.PER_PAGE = self.old_perpage
+        super(TestViews, self).tearDown()
 
     def test_version_detail(self):
         base = '/en-US/firefox/addon/%s/versions/' % self.addon.slug
@@ -483,6 +485,7 @@ class TestFeeds(amo.tests.TestCase):
     rel_ns = {'atom': 'http://www.w3.org/2005/Atom'}
 
     def setUp(self):
+        super(TestFeeds, self).setUp()
         patcher = mock.patch.object(feeds, 'PER_PAGE', 1)
         patcher.start()
         self.addCleanup(patcher.stop)
@@ -564,6 +567,7 @@ class TestDownloadsBase(amo.tests.TestCase):
     fixtures = ['base/addon_5299_gcal', 'base/users']
 
     def setUp(self):
+        super(TestDownloadsBase, self).setUp()
         self.addon = Addon.objects.get(id=5299)
         self.file = File.objects.get(id=33046)
         self.beta_file = File.objects.get(id=64874)
@@ -786,6 +790,7 @@ class TestDownloadSource(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/admin', ]
 
     def setUp(self):
+        super(TestDownloadSource, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon._latest_version
         tdir = temp.gettempdir()
@@ -1007,6 +1012,7 @@ class TestMobileVersions(TestMobile):
 class TestApplicationsVersions(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestApplicationsVersions, self).setUp()
         self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
 
     def test_repr_when_compatible(self):

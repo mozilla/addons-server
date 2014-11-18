@@ -862,6 +862,7 @@ class TestXss(TestCase):
     fixtures = ['base/addon_3615', 'users/test_backends', ]
 
     def setUp(self):
+        super(TestXss, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.name = "<script>alert('hé')</script>"
         self.escaped = (

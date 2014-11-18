@@ -343,6 +343,7 @@ class TestPaginator(amo.tests.ESTestCase):
         cls.setUpIndex()
 
     def setUp(self):
+        super(TestPaginator, self).setUp()
         self.request = request = mock.Mock()
         request.GET.get.return_value = 1
         request.GET.urlencode.return_value = ''

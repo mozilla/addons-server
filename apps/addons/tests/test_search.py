@@ -10,6 +10,7 @@ class TestExtract(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestExtract, self).setUp()
         self.attrs = ('id', 'slug', 'created', 'last_updated',
                       'weekly_downloads', 'average_daily_users', 'status',
                       'type', 'hotness', 'is_disabled', 'premium_type')

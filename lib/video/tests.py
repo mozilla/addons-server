@@ -60,6 +60,7 @@ TOTEM_INFO_HAS_AUDIO=False
 class TestFFmpegVideo(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestFFmpegVideo, self).setUp()
         self.video = ffmpeg.Video(files['good'])
         if not ffmpeg.Video.library_available():
             raise SkipTest
@@ -105,6 +106,7 @@ class TestFFmpegVideo(amo.tests.TestCase):
 class TestBadFFmpegVideo(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestBadFFmpegVideo, self).setUp()
         self.video = ffmpeg.Video(files['bad'])
         if not self.video.library_available():
             raise SkipTest
@@ -129,6 +131,7 @@ class TestBadFFmpegVideo(amo.tests.TestCase):
 class TestTotemVideo(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestTotemVideo, self).setUp()
         self.video = totem.Video(files['good'])
         self.video._call_indexer = Mock()
 
@@ -189,6 +192,7 @@ class TestTask(amo.tests.TestCase):
     # up all the time.
 
     def setUp(self):
+        super(TestTask, self).setUp()
         waffle.models.Switch.objects.create(name='video-encode', active=True)
         self.mock = Mock()
         self.mock.thumbnail_path = tempfile.mkstemp()[1]

@@ -28,13 +28,14 @@ not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
 
 
-class FilesBase:
+class FilesBase(object):
 
     def login_as_editor(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
 
     def setUp(self):
+        super(FilesBase, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.dev = self.addon.authors.all()[0]
         self.regular = UserProfile.objects.get(pk=999)
@@ -73,6 +74,7 @@ class FilesBase:
 
     def tearDown(self):
         self.file_viewer.cleanup()
+        super(FilesBase, self).tearDown()
 
     def files_redirect(self, file):
         return reverse('files.redirect', args=[self.file.pk, file])

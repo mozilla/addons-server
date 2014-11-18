@@ -74,10 +74,12 @@ def test_rm_stored_dir():
 class TestFileOps(BaseTestCase):
 
     def setUp(self):
+        super(TestFileOps, self).setUp()
         self.tmp = tempfile.mkdtemp()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
+        super(TestFileOps, self).tearDown()
 
     def path(self, path):
         return os.path.join(self.tmp, path)

@@ -715,6 +715,7 @@ class TestResponses(ESStatsTest):
 class TestSiteQuery(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestSiteQuery, self).setUp()
         self.start = datetime.date(2012, 1, 1)
         self.end = datetime.date(2012, 1, 31)
         for k in xrange(0, 15):

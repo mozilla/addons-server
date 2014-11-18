@@ -126,6 +126,7 @@ class TestPerformanceNote(amo.tests.TestCase):
     not_listing = '<div class="notification performance-note">'
 
     def setUp(self):
+        super(TestPerformanceNote, self).setUp()
         request_mock = Mock()
         request_mock.APP = amo.FIREFOX
         self.ctx = {'request': request_mock, 'amo': amo}

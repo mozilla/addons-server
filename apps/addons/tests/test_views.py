@@ -71,6 +71,7 @@ def test_hovercards(self, doc, addons, src=''):
 class TestHomepage(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
     def test_thunderbird(self):
@@ -103,6 +104,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestHomepageFeatures, self).setUp()
         self.url = reverse('home')
 
     def test_no_unreviewed(self):
@@ -165,6 +167,7 @@ class TestContributeInstalled(amo.tests.TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
     def setUp(self):
+        super(TestContributeInstalled, self).setUp()
         self.addon = Addon.objects.get(pk=592)
         self.url = reverse('addons.installed', args=['a592'])
 
@@ -195,6 +198,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
+        super(TestContributeEmbedded, self).setUp()
         self.addon = Addon.objects.get(pk=592)
         self.detail_url = self.addon.get_url_path()
 
@@ -447,6 +451,7 @@ class TestLicensePage(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestLicensePage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
@@ -500,6 +505,7 @@ class TestDetailPage(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
+        super(TestDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
 
@@ -834,6 +840,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
+        super(TestImpalaDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
@@ -1015,6 +1022,7 @@ class TestPersonas(object):
 class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
 
     def setUp(self):
+        super(TestPersonas, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
@@ -1089,6 +1097,7 @@ class TestStatus(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'addons/persona']
 
     def setUp(self):
+        super(TestStatus, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.file = self.version.all_files[0]
@@ -1197,6 +1206,7 @@ class TestEula(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
+        super(TestEula, self).setUp()
         self.addon = Addon.objects.get(id=11730)
         self.url = self.get_url()
 
@@ -1299,6 +1309,7 @@ class TestPrivacyPolicy(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
+        super(TestPrivacyPolicy, self).setUp()
         self.addon = Addon.objects.get(id=11730)
         self.url = reverse('addons.privacy', args=[self.addon.slug])
 
@@ -1333,6 +1344,7 @@ class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestReportAbuse, self).setUp()
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
     @patch('captcha.fields.ReCaptchaField.clean')

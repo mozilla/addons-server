@@ -89,6 +89,7 @@ class TestTagsForm(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestTagsForm, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         category = Category.objects.get(pk=22)
         category.name = 'test'
@@ -215,6 +216,7 @@ class TestIconForm(amo.tests.TestCase):
     # TODO: AddonFormMedia save() method could do with cleaning up
     # so this isn't necessary
     def setUp(self):
+        super(TestIconForm, self).setUp()
         self.temp_dir = tempfile.mkdtemp()
         self.addon = Addon.objects.get(pk=3615)
 
@@ -227,6 +229,7 @@ class TestIconForm(amo.tests.TestCase):
 
     def tearDown(self):
         rm_local_tmp_dir(self.temp_dir)
+        super(TestIconForm, self).tearDown()
 
     def get_icon_paths(self):
         path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))

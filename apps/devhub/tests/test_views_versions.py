@@ -23,7 +23,8 @@ class TestVersion(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        assert self.client.login(username='del@icio.us', password='password')
+        super(TestVersion, self).setUp()
+        self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
@@ -344,19 +345,7 @@ class TestVersion(amo.tests.TestCase):
             set(['checkbox']))
 
 
-class TestVersionEdit(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
-
-    def setUp(self):
-        assert self.client.login(username='del@icio.us', password='password')
-        self.addon = self.get_addon()
-        self.version = self.get_version()
-        self.url = reverse('devhub.versions.edit',
-                           args=['a3615', self.version.id])
-        self.v1, _created = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='1.0')
-        self.v5, _created = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='5.0')
+class TestVersionEditMixin(object):
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -370,7 +359,23 @@ class TestVersionEdit(amo.tests.TestCase):
         return formset(*args, **defaults)
 
 
-class TestVersionEditMobile(TestVersionEdit):
+class TestVersionEditBase(TestVersionEditMixin, amo.tests.TestCase):
+    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
+
+    def setUp(self):
+        super(TestVersionEditBase, self).setUp()
+        self.client.login(username='del@icio.us', password='password')
+        self.addon = self.get_addon()
+        self.version = self.get_version()
+        self.url = reverse('devhub.versions.edit',
+                           args=['a3615', self.version.id])
+        self.v1, _created = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='1.0')
+        self.v5, _created = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='5.0')
+
+
+class TestVersionEditMobile(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditMobile, self).setUp()
@@ -391,7 +396,7 @@ class TestVersionEditMobile(TestVersionEdit):
             ['android', 'maemo'])
 
 
-class TestVersionEditDetails(TestVersionEdit):
+class TestVersionEditDetails(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditDetails, self).setUp()
@@ -477,13 +482,14 @@ class TestVersionEditDetails(TestVersionEdit):
             assert not Version.objects.get(pk=self.version.pk).source
 
 
-class TestVersionEditSearchEngine(TestVersionEdit):
+class TestVersionEditSearchEngine(TestVersionEditMixin,
+                                  amo.tests.BaseTestCase):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        super(TestVersionEditSearchEngine, self).setUp()
+        self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
 
@@ -515,7 +521,7 @@ class TestVersionEditSearchEngine(TestVersionEdit):
         assert doc('a.add-file')
 
 
-class TestVersionEditFiles(TestVersionEdit):
+class TestVersionEditFiles(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditFiles, self).setUp()
@@ -659,12 +665,12 @@ class TestVersionEditFiles(TestVersionEdit):
             sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
 
 
-class TestPlatformSearch(TestVersionEdit):
+class TestPlatformSearch(TestVersionEditMixin, amo.tests.BaseTestCase):
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        super(TestPlatformSearch, self).setUp()
+        self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
         self.version = Version.objects.get(id=42352)
@@ -686,7 +692,7 @@ class TestPlatformSearch(TestVersionEdit):
         eq_(amo.PLATFORM_ALL.id, file_.platform)
 
 
-class TestVersionEditCompat(TestVersionEdit):
+class TestVersionEditCompat(TestVersionEditBase):
 
     def get_form(self, url=None):
         if not url:

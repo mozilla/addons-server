@@ -1259,6 +1259,7 @@ class TestThemeEdit(amo.tests.TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):
+        super(TestThemeEdit, self).setUp()
         self.addon = addon_factory(type=amo.ADDON_PERSONA)
         self.user = UserProfile.objects.get()
         self.addon.addonuser_set.create(user=self.user)

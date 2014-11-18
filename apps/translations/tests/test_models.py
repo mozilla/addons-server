@@ -83,9 +83,9 @@ class TranslationTestCase(BaseTestCase):
         translation.activate('en-US')
 
     def tearDown(self):
-        super(TranslationTestCase, self).tearDown()
         settings.REDIRECT_URL = self.redirect_url
         settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
+        super(TranslationTestCase, self).tearDown()
 
     def test_meta_translated_fields(self):
         assert not hasattr(UntranslatedModel._meta, 'translated_fields')

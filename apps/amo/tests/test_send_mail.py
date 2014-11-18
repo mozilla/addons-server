@@ -23,11 +23,13 @@ class TestSendMail(BaseTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestSendMail, self).setUp()
         self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))
 
     def tearDown(self):
         translation.activate('en_US')
         settings.EMAIL_BLACKLIST = self._email_blacklist
+        super(TestSendMail, self).tearDown()
 
     def test_send_string(self):
         to = 'f@f.com'
