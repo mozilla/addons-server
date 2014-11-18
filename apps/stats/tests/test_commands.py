@@ -55,7 +55,7 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         eq_(update_count.statuses, {u'userEnabled': 5})
         eq_(update_count.applications[u'{app-id}'], {u'30.0': 18})
         eq_(update_count.oses, {u'WINNT': 5})
-        eq_(update_count.locales, {u'en_us': 5})
+        eq_(update_count.locales, {u'en-US': 4, u'en_us': 1})
 
     def test_download_counts_from_file(self):
         # Create the necessary "valid download sources" entries.
@@ -147,6 +147,6 @@ class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
         eq_(uc.statuses,
             {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58})
         eq_(uc.oses, {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84})
-        eq_(uc.locales[u'es_es'], 20)
+        eq_(uc.locales[u'es-ES'], 20)
         eq_(uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'],
             {u'2.30': 3})

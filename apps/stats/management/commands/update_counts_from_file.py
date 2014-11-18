@@ -175,8 +175,6 @@ class Command(BaseCommand):
                         # Drop incorrect locales sizes.
                         if len(data) > 10:
                             continue
-                        # Collapse locales to `xx_yy` if possible.
-                        data = data.strip().lower().replace('-', '_')
                         uc.locales = update_inc(uc.locales, data, count)
 
         # Create in bulk: this is much faster.
