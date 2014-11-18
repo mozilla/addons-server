@@ -13,10 +13,10 @@ class TestESIndexing(amo.tests.ESTestCase):
     mock_es = False
     test_es = True
 
-    @classmethod
-    def setUpClass(cls):
-        super(TestESIndexing, cls).setUpClass()
-        cls.setUpIndex()
+    def setUp(self):
+        super(TestESIndexing, self).setUp()
+        self.setUpIndex()
+        self.addCleanup(lambda: self.empty_index('default'))
 
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):

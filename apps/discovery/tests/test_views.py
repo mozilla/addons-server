@@ -52,7 +52,9 @@ class TestRecs(amo.tests.TestCase):
         # The view is limited to returning 9 add-ons.
         self.expected_recs = Recs.expected_recs()[:9]
 
-        self.min_id, self.max_id = 1, 364  # see test_min_max_appversion
+        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
+        self.min_id = versions.order_by('version_int')[0].id
+        self.max_id = versions.order_by('-version_int')[0].id
         for addon in Addon.objects.all():
             v = Version.objects.create(addon=addon)
             File.objects.create(version=v, status=amo.STATUS_PUBLIC)
@@ -62,15 +64,6 @@ class TestRecs(amo.tests.TestCase):
             addon.update(_current_version=v)
             addons.signals.version_changed.send(sender=addon)
         Addon.objects.update(status=amo.STATUS_PUBLIC, disabled_by_user=False)
-
-    def test_min_max_appversion(self):
-        # These version numbers are hardcoded for speed, make sure the
-        # assumption is correct.
-        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
-        min_ = versions.order_by('version_int')[0]
-        max_ = versions.order_by('-version_int')[0]
-        eq_(self.min_id, min_.id)
-        eq_(self.max_id, max_.id)
 
     def test_get(self):
         """GET should find method not allowed."""

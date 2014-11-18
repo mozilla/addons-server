@@ -112,5 +112,9 @@ def test_get_services_in_ja_locale():
         'translated-localservice1']
 
     with patch.object(sharing, 'LOCALSERVICE1', testo):
-        tower.activate('ja')
-        assert expected == [s.shortname for s in sharing.get_services()]
+        old_locale = translation.get_language()
+        try:
+            tower.activate('ja')
+            assert expected == [s.shortname for s in sharing.get_services()]
+        finally:
+            tower.activate(old_locale)
