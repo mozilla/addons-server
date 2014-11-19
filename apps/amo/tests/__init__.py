@@ -23,6 +23,7 @@ import caching
 import mock
 import tower
 from dateutil.parser import parse as dateutil_parser
+from django_nose import FastFixtureTestCase
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
@@ -258,7 +259,7 @@ def default_prefixer():
     amo.urlresolvers.set_url_prefix(prefixer)
 
 
-class BaseTestCase(test.TestCase):
+class BaseTestCase(FastFixtureTestCase):
     """Base test case that each and every test cases should inherit from."""
 
     def _pre_setup(self):
@@ -302,6 +303,8 @@ class BaseTestCase(test.TestCase):
 
         # Reset the prefixer.
         default_prefixer()
+
+        self.client = self.client_class()
 
     def _post_teardown(self):
         amo.set_user(None)
