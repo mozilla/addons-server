@@ -4,7 +4,6 @@ Miscellaneous helpers that make Django compatible with AMO.
 import threading
 
 import commonware.log
-from caching.base import CachingQuerySet
 
 from product_details import product_details
 
@@ -73,6 +72,7 @@ class CachedProperty(object):
         value = obj.__dict__.get(self.__name__, _missing)
         if value is _missing:
             value = self.func(obj)
+            from caching.base import CachingQuerySet
             if isinstance(value, CachingQuerySet):
                 # Work around a bug in django-cache-machine that
                 # causes deadlock or infinite recursion if

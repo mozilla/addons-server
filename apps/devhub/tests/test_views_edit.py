@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.test.utils import override_settings
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 
@@ -594,7 +594,7 @@ class TestEditMedia(TestEdit):
         eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.STATIC_ROOT
+        img = "static/img/notifications/error.png"
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -629,7 +629,7 @@ class TestEditMedia(TestEdit):
         eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def check_image_type(self, url, msg):
-        img = '%s/js/zamboni/devhub.js' % settings.STATIC_ROOT
+        img = 'static/js/zamboni/devhub.js'
         src_image = open(img, 'rb')
 
         res = self.client.post(url, {'upload_image': src_image})
@@ -869,30 +869,37 @@ class TestEditDetails(TestEdit):
         description, homepage = map(unicode, [self.addon.description,
                                               self.addon.homepage])
         # TODO: description should get fixed up with the form.
-        fields = ['description', 'name', 'summary']
         error = ('Before changing your default locale you must have a name, '
                  'summary, and description in that locale. '
-                 'You are missing %s.')
-        missing = lambda f: error % ', '.join(map(repr, f))
+                 'You are missing ')
 
         d = dict(description=description, homepage=homepage,
                  default_locale='fr')
         r = self.client.post(self.details_edit_url, d)
-        self.assertFormError(r, 'form', None, missing(fields))
+        # We can't use assertFormError here, because the missing fields are
+        # stored in a dict, which isn't ordered.
+        form_error = r.context['form'].non_field_errors()[0]
+        ok_(form_error.startswith(error))
+        ok_("'description'" in form_error)
+        ok_("'name'" in form_error)
+        ok_("'summary'" in form_error)
 
         # Now we have a name.
         self.addon.name = {'fr': 'fr name'}
         self.addon.save()
-        fields.remove('name')
         r = self.client.post(self.details_edit_url, d)
-        self.assertFormError(r, 'form', None, missing(fields))
+        form_error = r.context['form'].non_field_errors()[0]
+        ok_(form_error.startswith(error))
+        ok_("'description'" in form_error)
+        ok_("'summary'" in form_error)
 
         # Now we have a summary.
         self.addon.summary = {'fr': 'fr summary'}
         self.addon.save()
-        fields.remove('summary')
         r = self.client.post(self.details_edit_url, d)
-        self.assertFormError(r, 'form', None, missing(fields))
+        form_error = r.context['form'].non_field_errors()[0]
+        ok_(form_error.startswith(error))
+        ok_("'description'" in form_error)
 
         # Now we're sending an fr description with the form.
         d['description_fr'] = 'fr description'

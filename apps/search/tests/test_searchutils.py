@@ -1,6 +1,10 @@
+import pytest
 from nose.tools import eq_
 
 from search.utils import floor_version
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_floor_version():

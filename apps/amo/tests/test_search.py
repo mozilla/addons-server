@@ -1,7 +1,7 @@
 from django.core import paginator
 
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.search
@@ -9,19 +9,13 @@ import amo.tests
 from addons.models import Addon
 
 
-class TestESIndexing(amo.tests.ESTestCase):
-    mock_es = False
-    test_es = True
-
-    def setUp(self):
-        super(TestESIndexing, self).setUp()
-        self.setUpIndex()
-        self.addCleanup(lambda: self.empty_index('default'))
+class TestESIndexing(amo.tests.ESTestCaseWithAddons):
 
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
         # Did all the right addons get indexed?
         count = Addon.search().filter(type=1, is_disabled=False).count()
+        eq_(count, 4)  # Created in the setUpClass.
         eq_(count,
             Addon.objects.filter(disabled_by_user=False,
                                  status__in=amo.VALID_STATUSES).count())
@@ -32,7 +26,6 @@ class TestESIndexing(amo.tests.ESTestCase):
 
 
 class TestNoESIndexing(amo.tests.TestCase):
-
     mock_es = True
 
     def test_no_es(self):
@@ -51,13 +44,7 @@ class TestNoESIndexing(amo.tests.TestCase):
         assert issubclass(es.__class__, mock.Mock)
 
 
-class TestES(amo.tests.ESTestCase):
-    test_es = True
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestES, cls).setUpClass()
-        cls.setUpIndex()
+class TestES(amo.tests.ESTestCaseWithAddons):
 
     def test_clone(self):
         # Doing a filter creates a new ES object.
@@ -78,8 +65,12 @@ class TestES(amo.tests.ESTestCase):
 
     def test_and(self):
         qs = Addon.search().filter(type=1, category__in=[1, 2])
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [{'term': {'type': 1}}, {'in': {'category': [1, 2]}}]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [{'term': {'type': 1}}, {'in': {'category': [1, 2]}}]}
+        eq_(filters.keys(), ['and'])
+        ok_({'term': {'type': 1}} in filters['and'])
+        ok_({'in': {'category': [1, 2]}} in filters['and'])
 
     def test_query(self):
         qs = Addon.search().query(type=1)
@@ -93,30 +84,54 @@ class TestES(amo.tests.ESTestCase):
 
     def test_query_multiple_and_range(self):
         qs = Addon.search().query(type=1, status__gte=1)
-        eq_(qs._build_query()['query']['function_score']['query'],
-            {'bool': {'must': [{'term': {'type': 1}},
-                               {'range': {'status': {'gte': 1}}}, ]}})
+        query = qs._build_query()['query']['function_score']['query']
+        # Query:
+        # {'bool': {'must': [{'term': {'type': 1}},
+        #                    {'range': {'status': {'gte': 1}}}, ]}}
+        eq_(query.keys(), ['bool'])
+        eq_(query['bool'].keys(), ['must'])
+        ok_({'term': {'type': 1}} in query['bool']['must'])
+        ok_({'range': {'status': {'gte': 1}}} in query['bool']['must'])
 
     def test_query_or(self):
         qs = Addon.search().query(or_=dict(type=1, status__gte=2))
-        eq_(qs._build_query()['query']['function_score']['query'],
-            {'bool': {'should': [{'term': {'type': 1}},
-                                 {'range': {'status': {'gte': 2}}}, ]}})
+        query = qs._build_query()['query']['function_score']['query']
+        # Query:
+        # {'bool': {'should': [{'term': {'type': 1}},
+        #                      {'range': {'status': {'gte': 2}}}, ]}}
+        eq_(query.keys(), ['bool'])
+        eq_(query['bool'].keys(), ['should'])
+        ok_({'term': {'type': 1}} in query['bool']['should'])
+        ok_({'range': {'status': {'gte': 2}}} in query['bool']['should'])
 
     def test_query_or_and(self):
         qs = Addon.search().query(or_=dict(type=1, status__gte=2), category=2)
-        eq_(qs._build_query()['query']['function_score']['query'],
-            {'bool': {'must': [{'term': {'category': 2}},
-                               {'bool': {'should': [
-                                   {'term': {'type': 1}},
-                                   {'range': {'status': {'gte': 2}}}, ]}}]}})
+        query = qs._build_query()['query']['function_score']['query']
+        # Query:
+        # {'bool': {'must': [{'term': {'category': 2}},
+        #                    {'bool': {'should': [
+        #                        {'term': {'type': 1}},
+        #                        {'range': {'status': {'gte': 2}}}, ]}}]}})
+        eq_(query.keys(), ['bool'])
+        eq_(query['bool'].keys(), ['must'])
+        ok_({'term': {'category': 2}} in query['bool']['must'])
+        sub_clause = sorted(query['bool']['must'])[0]
+        eq_(sub_clause.keys(), ['bool'])
+        eq_(sub_clause['bool'].keys(), ['should'])
+        ok_({'range': {'status': {'gte': 2}}} in sub_clause['bool']['should'])
+        ok_({'term': {'type': 1}} in sub_clause['bool']['should'])
 
     def test_query_fuzzy(self):
         fuzz = {'boost': 2, 'value': 'woo'}
         qs = Addon.search().query(or_=dict(type=1, status__fuzzy=fuzz))
-        eq_(qs._build_query()['query']['function_score']['query'],
-            {'bool': {'should': [{'fuzzy': {'status': fuzz}},
-                                 {'term': {'type': 1}}, ]}})
+        query = qs._build_query()['query']['function_score']['query']
+        # Query:
+        # {'bool': {'should': [{'fuzzy': {'status': fuzz}},
+        #                      {'term': {'type': 1}}, ]}})
+        eq_(query.keys(), ['bool'])
+        eq_(query['bool'].keys(), ['should'])
+        ok_({'term': {'type': 1}} in query['bool']['should'])
+        ok_({'fuzzy': {'status': fuzz}} in query['bool']['should'])
 
     def test_order_by_desc(self):
         qs = Addon.search().order_by('-rating')
@@ -137,18 +152,32 @@ class TestES(amo.tests.ESTestCase):
 
     def test_filter_or(self):
         qs = Addon.search().filter(type=1).filter(or_=dict(status=1, app=2))
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [
-                {'term': {'type': 1}},
-                {'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]},
-            ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [
+        #     {'term': {'type': 1}},
+        #     {'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]},
+        # ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'term': {'type': 1}} in filters['and'])
+        or_clause = sorted(filters['and'])[0]
+        eq_(or_clause.keys(), ['or'])
+        ok_({'term': {'status': 1}} in or_clause['or'])
+        ok_({'term': {'app': 2}} in or_clause['or'])
 
         qs = Addon.search().filter(type=1, or_=dict(status=1, app=2))
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [
-                {'term': {'type': 1}},
-                {'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]},
-            ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [
+        #     {'term': {'type': 1}},
+        #     {'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]},
+        # ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'term': {'type': 1}} in filters['and'])
+        or_clause = sorted(filters['and'])[0]
+        eq_(or_clause.keys(), ['or'])
+        ok_({'term': {'status': 1}} in or_clause['or'])
+        ok_({'term': {'app': 2}} in or_clause['or'])
 
     def test_slice_stop(self):
         qs = Addon.search()[:6]
@@ -182,35 +211,51 @@ class TestES(amo.tests.ESTestCase):
 
     def test_gte(self):
         qs = Addon.search().filter(type__in=[1, 2], status__gte=4)
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [
-                {'in': {'type': [1, 2]}},
-                {'range': {'status': {'gte': 4}}},
-            ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [
+        #     {'in': {'type': [1, 2]}},
+        #     {'range': {'status': {'gte': 4}}},
+        # ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'in': {'type': [1, 2]}} in filters['and'])
+        ok_({'range': {'status': {'gte': 4}}} in filters['and'])
 
     def test_lte(self):
         qs = Addon.search().filter(type__in=[1, 2], status__lte=4)
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [
-                {'in': {'type': [1, 2]}},
-                {'range': {'status': {'lte': 4}}},
-            ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [
+        #     {'in': {'type': [1, 2]}},
+        #     {'range': {'status': {'lte': 4}}},
+        # ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'in': {'type': [1, 2]}} in filters['and'])
+        ok_({'range': {'status': {'lte': 4}}} in filters['and'])
 
     def test_gt(self):
         qs = Addon.search().filter(type__in=[1, 2], status__gt=4)
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [
-                {'in': {'type': [1, 2]}},
-                {'range': {'status': {'gt': 4}}},
-            ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [
+        #     {'in': {'type': [1, 2]}},
+        #     {'range': {'status': {'gt': 4}}},
+        # ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'in': {'type': [1, 2]}} in filters['and'])
+        ok_({'range': {'status': {'gt': 4}}} in filters['and'])
 
     def test_lt(self):
         qs = Addon.search().filter(type__in=[1, 2], status__lt=4)
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [
-                {'range': {'status': {'lt': 4}}},
-                {'in': {'type': [1, 2]}},
-            ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [
+        #     {'range': {'status': {'lt': 4}}},
+        #     {'in': {'type': [1, 2]}},
+        # ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'range': {'status': {'lt': 4}}} in filters['and'])
+        ok_({'in': {'type': [1, 2]}} in filters['and'])
 
     def test_lt2(self):
         qs = Addon.search().filter(status__lt=4)
@@ -307,19 +352,35 @@ class TestES(amo.tests.ESTestCase):
 
         qs = (Addon.search().filter(type=1)
               .extra(filter={'category__in': [1, 2]}))
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [{'term': {'type': 1}}, {'in': {'category': [1, 2]}}, ]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [{'term': {'type': 1}}, {'in': {'category': [1, 2]}}, ]}
+        eq_(filters.keys(), ['and'])
+        ok_({'term': {'type': 1}} in filters['and'])
+        ok_({'in': {'category': [1, 2]}} in filters['and'])
 
     def test_extra_filter_or(self):
         qs = Addon.search().extra(filter={'or_': {'status': 1, 'app': 2}})
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            [{'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]}])
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # [{'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]}])
+        eq_(len(filters), 1)
+        eq_(filters[0].keys(), ['or'])
+        ok_({'term': {'status': 1}} in filters[0]['or'])
+        ok_({'term': {'app': 2}} in filters[0]['or'])
 
         qs = (Addon.search().filter(type=1)
               .extra(filter={'or_': {'status': 1, 'app': 2}}))
-        eq_(qs._build_query()['query']['filtered']['filter'],
-            {'and': [{'term': {'type': 1}},
-                     {'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]}]})
+        filters = qs._build_query()['query']['filtered']['filter']
+        # Filters:
+        # {'and': [{'term': {'type': 1}},
+        #          {'or': [{'term': {'status': 1}}, {'term': {'app': 2}}]}]})
+        eq_(filters.keys(), ['and'])
+        ok_({'term': {'type': 1}} in filters['and'])
+        or_clause = sorted(filters['and'])[0]
+        eq_(or_clause.keys(), ['or'])
+        ok_({'term': {'status': 1}} in or_clause['or'])
+        ok_({'term': {'app': 2}} in or_clause['or'])
 
     def test_facet_range(self):
         facet = {'range': {'status': [{'lte': 3}, {'gte': 5}]}}
@@ -334,13 +395,7 @@ class TestES(amo.tests.ESTestCase):
         eq_(qs._build_query()['_source'], ['versions'])
 
 
-class TestPaginator(amo.tests.ESTestCase):
-    test_es = True
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestPaginator, cls).setUpClass()
-        cls.setUpIndex()
+class TestPaginator(amo.tests.ESTestCaseWithAddons):
 
     def setUp(self):
         super(TestPaginator, self).setUp()

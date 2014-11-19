@@ -8,11 +8,12 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial, wraps
-from urlparse import urlsplit, urlunsplit
+from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, http, test
 from django.conf import settings
 from django.core.cache import cache
+from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
@@ -21,10 +22,9 @@ from django.utils import translation
 
 import caching
 import mock
+import pytest
 import tower
 from dateutil.parser import parse as dateutil_parser
-from django_nose import FastFixtureTestCase
-from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
@@ -39,14 +39,14 @@ import stats.search
 from access.models import Group, GroupUser
 from addons.models import (Addon, Persona,
                            update_search_index as addon_update_search_index)
-from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
+from addons.tasks import unindex_addons
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from files.models import File
 from lib.es.signals import process, reset
 from translations.hold import clean_translations
-from translations.models import delete_translation, Translation
+from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
 
@@ -141,6 +141,17 @@ def check_links(expected, elements, selected=None, verify=True):
 
 def check_selected(expected, links, selected):
     check_links(expected, links, verify=True, selected=selected)
+
+
+def assert_url_equal(url, other, compare_host=False):
+    """Compare url paths and query strings."""
+    parsed = urlparse(url)
+    parsed_other = urlparse(other)
+    eq_(parsed.path, parsed_other.path)  # Paths are equal.
+    eq_(parse_qs(parsed.path),
+        parse_qs(parsed_other.path))  # Params are equal.
+    if compare_host:
+        eq_(parsed.netloc, parsed_other.netloc)
 
 
 class RedisTest(object):
@@ -259,7 +270,7 @@ def default_prefixer():
     amo.urlresolvers.set_url_prefix(prefixer)
 
 
-class BaseTestCase(FastFixtureTestCase):
+class BaseTestCase(test.TestCase):
     """Base test case that each and every test cases should inherit from."""
 
     def _pre_setup(self):
@@ -323,6 +334,11 @@ class BaseTestCase(FastFixtureTestCase):
         eq_(Translation.objects.get(id=trans.id,
                                     locale=locale).localized_string,
             localized_string)
+
+    def assertUrlEqual(self, url, other, compare_host=False,
+                       compare_scheme=False):
+        """Compare url paths and query strings."""
+        assert_url_equal(url, other, compare_host=compare_host)
 
 
 class TestCase(MockEsMixin, RedisTest, BaseTestCase):
@@ -559,6 +575,17 @@ class TestCase(MockEsMixin, RedisTest, BaseTestCase):
         """
         return pq(pq(html)(template_selector).html())
 
+    def assertUrlEqual(self, url, other, compare_host=False,
+                       compare_scheme=False):
+        """Compare url paths and query strings."""
+        parsed = urlparse(url)
+        parsed_other = urlparse(other)
+        eq_(parsed.path, parsed_other.path)  # Paths are equal.
+        eq_(parse_qs(parsed.path),
+            parse_qs(parsed_other.path))  # Params are equal.
+        if compare_host:
+            eq_(parsed.netloc, parsed_other.netloc)
+
 
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
@@ -760,18 +787,16 @@ def version_factory(file_kw={}, **kw):
     return v
 
 
+@pytest.mark.es_tests
 class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
-    test_es = True
     mock_es = False
     exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
 
     @classmethod
     def setUpClass(cls):
-        if not settings.RUN_ES_TESTS:
-            raise SkipTest('ES disabled')
         cls.es = amo.search.get_es(timeout=settings.ES_TIMEOUT)
 
         # The ES setting are set before we call super()
@@ -784,9 +809,10 @@ class ESTestCase(TestCase):
         try:
             cls.es.cluster.health()
         except Exception, e:
-            e.args = tuple([u'%s (it looks like ES is not running, '
-                            'try starting it or set RUN_ES_TESTS=False)'
-                            % e.args[0]] + list(e.args[1:]))
+            e.args = tuple(
+                [u"%s (it looks like ES is not running, try starting it or "
+                 u"don't run ES tests: make test_no_es)" % e.args[0]] +
+                list(e.args[1:]))
             raise
 
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
@@ -803,28 +829,8 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        try:
-            if hasattr(cls, '_addons'):
-                addons = Addon.objects.filter(
-                    pk__in=[a.id for a in cls._addons])
-                # First delete all the translations.
-                for addon in addons:
-                    for field in addon._meta.translated_fields:
-                        delete_translation(addon, field.name)
-                # Then delete the addons themselves.
-                addons.delete()
-                unindex_addons([a.id for a in cls._addons])
-            amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
-        finally:
-            # Make sure we're calling super's tearDownClass even if something
-            # went wrong in the code above, as otherwise we'd run into bug
-            # 960598.
-            super(ESTestCase, cls).tearDownClass()
-
-    @classmethod
-    def setUpIndex(cls):
-        cls.add_addons()
-        cls.refresh()
+        amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        super(ESTestCase, cls).tearDownClass()
 
     @classmethod
     def send(cls):
@@ -843,22 +849,36 @@ class ESTestCase(TestCase):
         cls.refresh(index)
 
     @classmethod
-    def add_addons(cls):
-        cls._addons = [
-            addon_factory(name='user-disabled', disabled_by_user=True),
-            addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED),
-            addon_factory(status=amo.STATUS_UNREVIEWED),
-            addon_factory(),
-            addon_factory(),
-            addon_factory(),
-        ]
-
-    @classmethod
     def empty_index(cls, index):
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
             body={"query": {"match_all": {}}}
         )
+
+
+class ESTestCaseWithAddons(ESTestCase):
+
+    @classmethod
+    def setUp(cls):
+        super(ESTestCaseWithAddons, cls).setUpClass()
+        # Load the fixture here, to not be overloaded by a child class'
+        # fixture attribute.
+        call_command('loaddata', 'addons/base_es')
+        addon_ids = [1, 2, 3, 4, 5, 6]  # From the addons/base_es fixture.
+        cls._addons = list(Addon.objects.filter(pk__in=addon_ids)
+                           .order_by('id'))
+        from addons.tasks import index_addons
+        index_addons(addon_ids)
+        # Refresh ES.
+        cls.refresh()
+
+    @classmethod
+    def tearDown(cls):
+        try:
+            unindex_addons([a.id for a in cls._addons])
+            cls._addons = []
+        finally:
+            super(ESTestCaseWithAddons, cls).tearDownClass()
 
 
 class TestXss(TestCase):

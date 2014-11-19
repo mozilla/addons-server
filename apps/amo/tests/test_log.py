@@ -1,4 +1,5 @@
 """Tests for the activitylog."""
+import json
 from datetime import datetime
 
 from nose.tools import eq_
@@ -26,7 +27,7 @@ class LogTest(amo.tests.TestCase):
         al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
 
         eq_(al.details, magic)
-        eq_(al._details, '{"body": "way!", "title": "no"}')
+        eq_(al._details, json.dumps(magic))
 
     def test_created(self):
         """

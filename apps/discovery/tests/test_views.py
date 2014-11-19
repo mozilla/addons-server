@@ -211,7 +211,8 @@ class TestModuleAdmin(amo.tests.TestCase):
         d = dict(app=amo.FIREFOX.id, module='xx', locales='en-US he he fa fa')
         form = DiscoveryModuleForm(d)
         assert form.is_valid()
-        eq_(form.cleaned_data['locales'], 'fa en-US he')
+        cleaned_locales = form.cleaned_data['locales'].split()
+        eq_(sorted(cleaned_locales), ['en-US', 'fa', 'he'])
 
 
 class TestUrls(amo.tests.TestCase):

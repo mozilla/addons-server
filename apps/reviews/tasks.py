@@ -44,8 +44,8 @@ def addon_review_aggregates(*addons, **kw):
     stats = dict((x[0], x[1:]) for x in
                  Review.objects.valid().no_cache().using(using)
                  .filter(addon__in=addons, is_latest=True)
-                 .values_list('addon')
-                 .annotate(Avg('rating'), Count('addon')))
+                 .annotate(Avg('rating'), Count('addon'))
+                 .values_list('addon', 'rating__avg', 'addon__count'))
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
         addon.update(total_reviews=reviews, average_rating=rating)

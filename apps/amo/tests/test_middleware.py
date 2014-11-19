@@ -3,6 +3,7 @@ from django import http, test
 from django.conf import settings
 from django.test.client import RequestFactory
 
+import pytest
 from commonware.middleware import ScrubRequestOnException
 from mock import Mock, patch
 from nose.tools import eq_
@@ -12,6 +13,9 @@ import amo.tests
 from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
+
+
+pytestmark = pytest.mark.django_db
 
 
 class TestMiddleware(amo.tests.TestCase):

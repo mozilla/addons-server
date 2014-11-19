@@ -11,7 +11,7 @@ from landfill.generators import _yield_name_and_cat, create_addon, create_theme
 from versions.models import Version
 
 
-class _BaseAddonGeneratorTests(amo.tests.TestCase):
+class _BaseAddonGeneratorMixin(object):
 
     def test_tinyset(self):
         size = 4
@@ -51,23 +51,25 @@ class _BaseAddonGeneratorTests(amo.tests.TestCase):
         eq_(len(set(addonname for addonname, cat in data)), size)
 
 
-class FirefoxAddonGeneratorTests(_BaseAddonGeneratorTests):
+class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, amo.tests.TestCase):
     app = APPS['firefox']
 
 
-class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorTests):
+class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorMixin,
+                                     amo.tests.TestCase):
     app = APPS['thunderbird']
 
 
-class AndroidAddonGeneratorTests(_BaseAddonGeneratorTests):
+class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, amo.tests.TestCase):
     app = APPS['android']
 
 
-class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorTests):
+class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorMixin,
+                                   amo.tests.TestCase):
     app = APPS['seamonkey']
 
 
-class ThemeGeneratorTests(_BaseAddonGeneratorTests):
+class ThemeGeneratorTests(_BaseAddonGeneratorMixin, amo.tests.TestCase):
     app = None
 
 

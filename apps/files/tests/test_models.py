@@ -13,6 +13,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+import pytest
 from nose.tools import eq_
 
 import amo
@@ -27,6 +28,9 @@ from files.models import File, FileUpload, FileValidation, nfd_str
 from files.helpers import copyfileobj
 from files.utils import check_xpi_info, JetpackUpgrader, parse_addon, parse_xpi
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -597,18 +601,19 @@ class TestFileUpload(UploadTest):
         assert not upload.validation
         assert not upload._escaped_validation
         validation = '{"the": "validation"}'
-        escaped_validation = '{"the": "validation", "ending_tier": 0}'
+        escaped_validation = {"the": "validation", "ending_tier": 0}
         upload.validation = validation
         upload.save()
         eq_(upload.validation, validation)
-        eq_(upload._escaped_validation, escaped_validation)
+        eq_(json.loads(upload._escaped_validation), escaped_validation)
 
     def test_escaped_validation_is_escaped(self):
         validation = '''{"the": "valid<script>alert('owned')</script>ation"}'''
-        escaped_validation = ('''{"the": "valid&lt;script&gt;alert('owned')'''
-                              '''&lt;/script&gt;ation", "ending_tier": 0}''')
+        escaped_validation = {
+            "the": "valid&lt;script&gt;alert('owned')&lt;/script&gt;ation",
+            "ending_tier": 0}
         upload = FileUpload.objects.create(validation=validation)
-        eq_(upload._escaped_validation, escaped_validation)
+        eq_(json.loads(upload._escaped_validation), escaped_validation)
 
     def test_escaped_validation_ignores_bad_json(self):
         upload = FileUpload(validation='wtf')
@@ -622,8 +627,8 @@ class TestFileUpload(UploadTest):
         upload = FileUpload(validation='{"messages": [{"the": "validation"}]}')
         assert not upload._escaped_validation
         upload.escaped_validation()
-        eq_(upload._escaped_validation,
-            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
+        eq_(json.loads(upload._escaped_validation),
+            {"ending_tier": 0, "messages": [{"the": "validation"}]})
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):

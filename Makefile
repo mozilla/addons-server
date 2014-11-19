@@ -1,4 +1,4 @@
-.PHONY: help docs test test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8
+.PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -26,16 +26,22 @@ docs:
 	$(MAKE) -C docs html
 
 test:
-	REUSE_DB=1 python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	py.test $(ARGS)
+
+test_es:
+	py.test -m es_tests $(ARGS)
+
+test_no_es:
+	py.test -m "not es_tests" $(ARGS)
 
 test_force_db:
-	python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	py.test --create-db $(ARGS)
 
 tdd:
-	REUSE_DB=1 python manage.py test --with-blockage --noinput --failfast --pdb --with-id -v 2 $(ARGS)
+	py.test -x --pdb $(ARGS)
 
 test_failed:
-	REUSE_DB=1 python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
+	py.test --lf $(ARGS)
 
 initialize_db:
 	python manage.py reset_db

@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils import translation
 
 import jingo
+import pytest
 from mock import Mock, patch
 from nose.tools import eq_
 
@@ -12,6 +13,9 @@ from translations import helpers
 from translations.fields import save_signal
 from translations.models import PurifiedTranslation
 from translations.tests.testapp.models import TranslatedModel
+
+
+pytestmark = pytest.mark.django_db
 
 
 def super():

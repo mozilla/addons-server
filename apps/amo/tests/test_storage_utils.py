@@ -5,12 +5,16 @@ import tempfile
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 
+import pytest
 from nose.tools import eq_
 
 from amo.storage_utils import (walk_storage, copy_stored_file,
                                move_stored_file, rm_stored_dir)
 from amo.tests import BaseTestCase
 from amo.utils import rm_local_tmp_dir
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_storage_walk():

@@ -46,3 +46,6 @@ media/marketplace-stats
 *.po~
 site-static/*
 user-media/*
+.tox/
+.cache/
+MANIFEST

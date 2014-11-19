@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 import mock
+import pytest
 from nose.tools import eq_
 
 import amo.tests
@@ -12,6 +13,9 @@ from amo import decorators, get_user, set_user
 from amo.urlresolvers import reverse
 
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_post_required():

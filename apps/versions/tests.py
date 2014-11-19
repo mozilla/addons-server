@@ -11,6 +11,7 @@ from django.core.files.base import File as DjangoFile
 from django.test.utils import override_settings
 
 import mock
+import pytest
 from nose.tools import eq_
 from pyquery import PyQuery
 
@@ -31,6 +32,9 @@ from versions import feeds, views
 from versions.models import Version, ApplicationsVersions
 from versions.compare import (MAXVERSION, version_int, dict_from_int,
                               version_dict)
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_version_int():

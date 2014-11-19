@@ -1,6 +1,7 @@
 from django.http import HttpRequest
 
 import mock
+import pytest
 from nose.tools import assert_false
 
 import amo
@@ -12,6 +13,9 @@ from users.models import UserProfile
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
                   check_addons_reviewer, check_personas_reviewer, is_editor,
                   match_rules)
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_match_rules():

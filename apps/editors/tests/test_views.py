@@ -341,15 +341,15 @@ class TestHome(EditorTest):
         doc = pq(self.client.get(url).content)
 
         dts, dds = doc('dt'), doc('dd')
-        expected = [
-            ('is_flagged', 'True'),
-            ('addon_id', str(review.addon.pk)),
-            ('addon_name', 'test'),
-        ]
-        for idx, pair in enumerate(expected):
-            dt, dd = pair
-            eq_(dts.eq(idx).text(), dt)
-            eq_(dds.eq(idx).text(), dd)
+        expected = {
+            'is_flagged': 'True',
+            'addon_id': str(review.addon.pk),
+            'addon_name': 'test',
+        }
+        eq_(len(dts), 3)
+        eq_(len(dds), 3)
+        for dt, dd in zip(dts, dds):
+            eq_(dd.text, expected[dt.text])
 
     def test_stats_total(self):
         self.approve_reviews()

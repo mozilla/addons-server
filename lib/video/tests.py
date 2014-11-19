@@ -2,6 +2,7 @@ import os
 import stat
 import tempfile
 
+import pytest
 from mock import Mock, patch
 from nose import SkipTest
 from nose.tools import eq_
@@ -17,6 +18,9 @@ from lib.video import get_library
 from lib.video import ffmpeg, totem
 from lib.video.tasks import resize_video
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 files = {
     'good': os.path.join(os.path.dirname(__file__),
