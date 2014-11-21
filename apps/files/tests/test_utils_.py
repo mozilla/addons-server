@@ -184,6 +184,22 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
             eq_(apps[1].min, thunderbird_version)
             eq_(apps[1].max, thunderbird_version)
 
+    def test_invalid_app_versions_are_ignored(self):
+        """Valid engines with invalid versions are ignored."""
+        firefox_version = self.create_appversion('firefox', '33.0a1')
+        data = {
+            'engines': {
+                'firefox': '>=33.0a1',
+                'fennec': '>=33.0a1',
+            },
+        }
+        with self.extractor(data) as extractor:
+            apps = extractor.parse()['apps']
+            eq_(len(apps), 1)
+            eq_(apps[0].appdata.short, 'firefox')
+            eq_(apps[0].min, firefox_version)
+            eq_(apps[0].max, firefox_version)
+
     def test_fennec_is_treated_as_android(self):
         """Treat the fennec engine as android."""
         android_version = self.create_appversion('android', '33.0a1')
