@@ -91,7 +91,7 @@ def browse(request, viewer, key=None, type='file'):
         extract_file(viewer)
 
     if viewer.is_extracted():
-        data.update({'status': True, 'files': viewer.get_files()})
+        data.update({'status': True, 'files': viewer.files})
         key = viewer.get_default(key)
         if key not in data['files']:
             raise http.Http404
@@ -145,7 +145,7 @@ def compare(request, diff, key=None, type='file'):
 
     if diff.is_extracted():
         data.update({'status': True,
-                     'files': diff.get_files(),
+                     'files': diff.files,
                      'files_deleted': diff.get_deleted_files()})
         key = diff.left.get_default(key)
         if key not in data['files'] and key not in data['files_deleted']:
@@ -179,7 +179,7 @@ def serve(request, viewer, key):
     This is to serve files off of st.a.m.o, not standard a.m.o. For this we
     use token based authentication.
     """
-    files = viewer.get_files()
+    files = viewer.files
     obj = files.get(key)
     if not obj:
         log.error(u'Couldn\'t find %s in %s (%d entries) for file %s' %

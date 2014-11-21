@@ -1,4 +1,5 @@
 import codecs
+import json
 import mimetypes
 import os
 import stat
@@ -179,7 +180,7 @@ class FileViewer(object):
                 return cont
 
     def select(self, file_):
-        self.selected = self.get_files().get(file_)
+        self.selected = self.files.get(file_)
 
     def is_binary(self):
         if self.selected:
@@ -199,7 +200,7 @@ class FileViewer(object):
     def get_default(self, key=None):
         """Gets the default file and copes with search engines."""
         if self.is_search_engine() and not key:
-            files = self.get_files()
+            files = self.files
             return files.keys()[0] if files else None
 
         if key:
@@ -207,7 +208,8 @@ class FileViewer(object):
 
         return 'install.rdf'
 
-    def get_files(self):
+    @property
+    def files(self):
         """
         Returns a SortedDict, ordered by the filename of all the files in the
         addon-file. Full of all the useful information you'll need to serve
@@ -225,6 +227,10 @@ class FileViewer(object):
             return self._files
         except (OSError, IOError):
             return {}
+
+    @files.setter
+    def files(self, files):
+        self._files = files
 
     def truncate(self, filename, pre_length=15,
                  post_length=10, ellipsis=u'..'):
@@ -251,8 +257,8 @@ class FileViewer(object):
         """
         if filename:
             short = os.path.splitext(filename)[1][1:]
-            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js',
-                          'json': 'js'}
+            syntax_map = {'xbl': 'xml', 'xul': 'xml', 'rdf': 'xml',
+                          'jsm': 'js', 'json': 'js'}
             short = syntax_map.get(short, short)
             if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
                          'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
@@ -265,9 +271,10 @@ class FileViewer(object):
 
     @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self):
-        all_files, res = [], SortedDict()
-        # Not using os.path.walk so we get just the right order.
+        all_files = []
+        res = SortedDict()
 
+        # Not using os.path.walk so we get just the right order.
         def iterate(path):
             path_dirs, path_files = storage.listdir(path)
             for dirname in sorted(path_dirs):
@@ -335,30 +342,143 @@ class DiffHelper(object):
                        args=[self.left.file.id, self.right.file.id,
                              'file', short])
 
-    def get_files(self):
+    _files = None
+
+    @property
+    def files(self):
         """
         Get the files from the primary and:
         - remap any diffable ones to the compare url as opposed to the other
         - highlight any diffs
         """
-        left_files = self.left.get_files()
-        right_files = self.right.get_files()
-        different = []
-        for key, file in left_files.items():
-            file['url'] = self.get_url(file['short'])
-            diff = file['md5'] != right_files.get(key, {}).get('md5')
-            file['diff'] = diff
-            if diff:
-                different.append(file)
+        if not self._files:
+            self.right.files = self._remap_filenames()
 
-        # Now mark every directory above each different file as different.
-        for diff in different:
-            for depth in range(diff['depth']):
-                key = '/'.join(diff['short'].split('/')[:depth + 1])
-                if key in left_files:
-                    left_files[key]['diff'] = True
+            left_files = self.left.files
+            right_files = self.right.files
+            different = []
+            for key, file in left_files.items():
+                file['url'] = self.get_url(file['short'])
+                diff = file['md5'] != right_files.get(key, {}).get('md5')
+                file['diff'] = diff
+                if diff:
+                    different.append(file)
 
-        return left_files
+            # Now mark every directory above each different file as different.
+            for diff in different:
+                for depth in range(diff['depth']):
+                    key = '/'.join(diff['short'].split('/')[:depth + 1])
+                    if key in left_files:
+                        left_files[key]['diff'] = True
+
+            self._files = left_files
+        return self._files
+
+    @memoize(prefix='file-viewer-remap-files', time=60 * 60)
+    def _remap_filenames(self):
+        """
+        Remap the filenames of add-ons whose directory contents have
+        been re-arranged. Currently handles SDK add-ons moving from
+        the `cfx` packaging format to the `jpm` format.
+        """
+        left = self.left.files
+        right = self.right.files
+
+        if u'harness-options.json' not in right or u'package.json' not in left:
+            return right
+
+        try:
+            with storage.open(right[u'harness-options.json']['full']) as f:
+                harness_options = json.load(f)
+
+            with storage.open(left['package.json']['full']) as f:
+                package = json.load(f)
+
+            assert isinstance(harness_options['mainPath'], basestring)
+            assert '/' in harness_options['mainPath']
+        except:
+            # Any errors here, just bail. Something is malformed in
+            # the add-on, and there's nothing we can do about it.
+            return right
+
+        main = '%s.js' % harness_options['mainPath'].replace('/', '/lib/')
+        new_main = package.get('main', 'index.js')
+        main_package = main[:main.index('/')]
+
+        have_modules = left.get('node_modules', {}).get('directory')
+        if have_modules:
+            # Need to create a 'node_modules' directory in the right
+            # file tree, just to try to ward off any possible
+            # issues. Easiest thing is to steal it from the left
+            # side.
+            right['node_modules'] = dict(left['node_modules'])
+
+        def move(src, dst):
+            if dst not in right:
+                right[dst] = right[src]
+                del right[src]
+
+        package = None
+        prefix = '/'
+        new_prefix = None
+
+        # No iterators here. We're going to be modifying the dict,
+        # so they'll break.
+        for path in right.keys():
+            if path.startswith('resources/'):
+                p = path[len('resources/'):]
+
+                if p == main:
+                    # Always try to move the old main module to the
+                    # location of the new main, regardless of
+                    # package.
+                    move(path, new_main)
+                elif p.startswith('addon-sdk/') or p == 'addon-sdk':
+                    # No longer used. Just drop.
+                    del right[path]
+                elif '/' not in p:
+                    # Package directory
+                    package = p
+                    prefix = '%s/' % p
+                    if package == main_package:
+                        new_prefix = ''
+                    else:
+                        if have_modules:
+                            new_prefix = 'node_modules/%s/' % p
+                        else:
+                            new_prefix = '%s/' % p
+
+                        move(path, new_prefix[:-1])
+                # This should always be true, but just in case.
+                elif p.startswith(prefix):
+                    # File in a new package. Try to find where it
+                    # belongs.
+                    f = p[len(prefix):]
+
+                    targets = [f]
+                    for pfx in 'lib/', 'data/':
+                        if f.startswith(pfx):
+                            targets.append(f[len(pfx):])
+
+                    for target in targets:
+                        t = ''.join((new_prefix, target))
+                        if t in left:
+                            move(path, t)
+                            break
+
+                    # If no match found, just give up and dump it in
+                    # the package directory.
+                    if path in right and path not in left:
+                        # But strip off the leading 'lib/' first.
+                        if f.startswith('lib/'):
+                            f = f[len('lib/'):]
+
+                        move(path, new_prefix + f)
+                else:
+                    # This shouldn't happen...
+                    pass
+
+        return right
 
     def get_deleted_files(self):
         """
@@ -376,8 +496,8 @@ class DiffHelper(object):
                 copy.update({'url': self.get_url(file['short']), 'diff': True})
                 different[path] = copy
 
-        left_files = self.left.get_files()
-        right_files = self.right.get_files()
+        left_files = self.left.files
+        right_files = self.right.files
         for key, file in right_files.items():
             if key not in left_files:
                 # Make sure we have all the parent directories of

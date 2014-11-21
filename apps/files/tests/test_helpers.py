@@ -19,7 +19,7 @@ from files.models import File
 from files.utils import SafeUnzip
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
-get_file = lambda x: '%s/%s' % (root, x)
+get_file = lambda x: os.path.join(root, x)
 
 
 def make_file(pk, file_path, **kwargs):
@@ -59,7 +59,7 @@ class TestFileHelper(amo.tests.TestCase):
     def test_recurse_contents(self):
         self.viewer.src = get_file('recurse.xpi')
         self.viewer.extract()
-        files = self.viewer.get_files()
+        files = self.viewer.files
         nm = ['recurse/recurse.xpi/chrome/test-root.txt',
               'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
               'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test']
@@ -106,16 +106,16 @@ class TestFileHelper(amo.tests.TestCase):
             eq_(truncate(x), y)
 
     def test_get_files_not_extracted(self):
-        assert not self.viewer.get_files()
+        assert not self.viewer.files
 
     def test_get_files_size(self):
         self.viewer.extract()
-        files = self.viewer.get_files()
+        files = self.viewer.files
         eq_(len(files), 14)
 
     def test_get_files_directory(self):
         self.viewer.extract()
-        files = self.viewer.get_files()
+        files = self.viewer.files
         eq_(files['install.js']['directory'], False)
         eq_(files['install.js']['binary'], False)
         eq_(files['__MACOSX']['directory'], True)
@@ -123,14 +123,14 @@ class TestFileHelper(amo.tests.TestCase):
 
     def test_url_file(self):
         self.viewer.extract()
-        files = self.viewer.get_files()
+        files = self.viewer.files
         url = reverse('files.list', args=[self.viewer.file.id,
                                           'file', 'install.js'])
         assert files['install.js']['url'].endswith(url)
 
     def test_get_files_depth(self):
         self.viewer.extract()
-        files = self.viewer.get_files()
+        files = self.viewer.files
         eq_(files['dictionaries/license.txt']['depth'], 1)
 
     def test_bom(self):
@@ -157,14 +157,14 @@ class TestFileHelper(amo.tests.TestCase):
         os.mkdir(subdir)
         open(os.path.join(subdir, 'foo'), 'w')
         cache.clear()
-        files = self.viewer.get_files().keys()
+        files = self.viewer.files.keys()
         rt = files.index(u'chrome')
         eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'dictionaries'])
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
         self.viewer.extract()
-        self.viewer.get_files()
+        self.viewer.files
         self.viewer.select('install.js')
         res = self.viewer.read_file()
         eq_(res, '')
@@ -174,7 +174,7 @@ class TestFileHelper(amo.tests.TestCase):
     def test_file_size_unicode(self):
         with self.activate(locale='he'):
             self.viewer.extract()
-            self.viewer.get_files()
+            self.viewer.files
             self.viewer.select('install.js')
             res = self.viewer.read_file()
             eq_(res, '')
@@ -199,7 +199,7 @@ class TestFileHelper(amo.tests.TestCase):
     def test_delete_mid_tree(self, get_md5):
         get_md5.side_effect = IOError('ow')
         self.viewer.extract()
-        eq_({}, self.viewer.get_files())
+        eq_({}, self.viewer.files)
 
 
 class TestSearchEngineHelper(amo.tests.TestCase):
@@ -240,7 +240,7 @@ class TestDiffSearchEngine(amo.tests.TestCase):
 
     def setUp(self):
         super(TestDiffSearchEngine, self).setUp()
-        src = os.path.join(settings.ROOT, get_file('search.xml'))
+        src = get_file('search.xml')
         if not storage.exists(src):
             with storage.open(src, 'w') as f:
                 f.write(open(src).read())
@@ -261,62 +261,70 @@ class TestDiffSearchEngine(amo.tests.TestCase):
         eq_(len(self.helper.get_deleted_files()), 0)
 
 
-class TestDiffHelper(amo.tests.TestCase):
+class TestDiffHelperBase(amo.tests.TestCase):
 
     def setUp(self):
-        super(TestDiffHelper, self).setUp()
-        src = os.path.join(settings.ROOT, get_file('dictionary-test.xpi'))
+        super(TestDiffHelperBase, self).setUp()
+        src = get_file('dictionary-test.xpi')
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):
         self.helper.cleanup()
-        super(TestDiffHelper, self).tearDown()
+        super(TestDiffHelperBase, self).tearDown()
+
+    def change(self, file, text, filename='install.js'):
+        path = os.path.join(file, filename)
+        data = open(path, 'r').read()
+        data += text
+        open(path, 'w').write(data)
+
+
+class TestDiffHelper(TestDiffHelperBase):
 
     def test_files_not_extracted(self):
         eq_(self.helper.is_extracted(), False)
 
-    def test_files_extracted(self):
+    def test_get_files(self):
+        eq_(self.helper.left.files,
+            self.helper.files)
+
+
+class TestDiffHelperExtracted(TestDiffHelperBase):
+
+    def setUp(self):
+        super(TestDiffHelperExtracted, self).setUp()
         self.helper.extract()
+
+    def test_files_extracted(self):
         eq_(self.helper.is_extracted(), True)
 
-    def test_get_files(self):
-        eq_(self.helper.left.get_files(),
-            self.helper.get_files())
-
     def test_diffable(self):
-        self.helper.extract()
         self.helper.select('install.js')
         assert self.helper.is_diffable()
 
     def test_diffable_one_missing(self):
-        self.helper.extract()
         os.remove(os.path.join(self.helper.right.dest, 'install.js'))
         self.helper.select('install.js')
         assert self.helper.is_diffable()
 
     def test_diffable_allow_empty(self):
-        self.helper.extract()
         self.assertRaises(AssertionError, self.helper.right.read_file)
         eq_(self.helper.right.read_file(allow_empty=True), '')
 
     def test_diffable_both_missing(self):
-        self.helper.extract()
         self.helper.select('foo.js')
         assert not self.helper.is_diffable()
 
     def test_diffable_deleted_files(self):
-        self.helper.extract()
         os.remove(os.path.join(self.helper.left.dest, 'install.js'))
         eq_('install.js' in self.helper.get_deleted_files(), True)
 
     def test_diffable_one_binary_same(self):
-        self.helper.extract()
         self.helper.select('install.js')
         self.helper.left.selected['binary'] = True
         assert self.helper.is_binary()
 
     def test_diffable_one_binary_diff(self):
-        self.helper.extract()
         self.change(self.helper.left.dest, 'asd')
         cache.clear()
         self.helper.select('install.js')
@@ -324,7 +332,6 @@ class TestDiffHelper(amo.tests.TestCase):
         assert self.helper.is_binary()
 
     def test_diffable_two_binary_diff(self):
-        self.helper.extract()
         self.change(self.helper.left.dest, 'asd')
         self.change(self.helper.right.dest, 'asd123')
         cache.clear()
@@ -334,26 +341,83 @@ class TestDiffHelper(amo.tests.TestCase):
         assert self.helper.is_binary()
 
     def test_diffable_one_directory(self):
-        self.helper.extract()
         self.helper.select('install.js')
         self.helper.left.selected['directory'] = True
         assert not self.helper.is_diffable()
         assert self.helper.left.selected['msg'].startswith('This file')
 
     def test_diffable_parent(self):
-        self.helper.extract()
         self.change(self.helper.left.dest, 'asd',
                     filename='__MACOSX/._dictionaries')
         cache.clear()
-        files = self.helper.get_files()
+        files = self.helper.files
         eq_(files['__MACOSX/._dictionaries']['diff'], True)
         eq_(files['__MACOSX']['diff'], True)
 
-    def change(self, file, text, filename='install.js'):
-        path = os.path.join(file, filename)
-        data = open(path, 'r').read()
-        data += text
-        open(path, 'w').write(data)
+
+class TestDiffHelperRemapping(TestDiffHelperBase):
+    """
+    Tests remapping of files in an SDK add-on when moving from CFX
+    to JPM.
+    """
+
+    def get_helper(self, left='jpm-a'):
+        # Old file is always the CFX version
+        right = get_file('diff-remapping/cfx.xpi')
+        left = get_file('diff-remapping/%s.xpi' % left)
+
+        helper = DiffHelper(make_file(1, left), make_file(2, right))
+        helper.extract()
+        return helper
+
+    def dump(self, files):
+        print 'Files:'
+        for key, data in sorted(files.items()):
+            print '    %s: %s' % (key, data.get('short'))
+
+    def assert_remapped(self, files):
+        left = self.helper.files
+        right = self.helper.right.files
+
+        for right_path, left_path in files:
+            # Paths in the right package should have been remapped
+            # to the corresponding file in the left package.
+            assert left_path in left
+            assert left_path in right
+            eq_(left[left_path]['short'], left_path)
+            eq_(right[left_path]['short'], right_path)
+
+    def test_trivial_remapping(self):
+        self.helper = self.get_helper()
+
+        PATHS = ('lib/main.js',
+                 'lib/foo.js',
+                 'data/thing.js')
+
+        BASE = 'resources/test-jetpack/%s'
+        self.assert_remapped((BASE % path, path)
+                             for path in PATHS)
+
+    def test_flat_remapping(self):
+        self.helper = self.get_helper('jpm-b')
+
+        BASE = 'resources/test-jetpack/%s'
+        self.assert_remapped({
+            BASE % 'lib/main.js': 'index.js',
+            BASE % 'lib/foo.js': 'foo.js',
+            BASE % 'data/thing.js': 'thing.js',
+        }.iteritems())
+
+    def test_package_remapping(self):
+        self.helper = self.get_helper()
+
+        FILES = ('addon-pathfinder/lib/panic.js',
+                 'addon-pathfinder/lib/addon/unload.js')
+
+        self.assert_remapped(
+            ('resources/%s' % path,
+             'node_modules/%s' % path.replace('/lib/', '/'))
+            for path in FILES)
 
 
 class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
