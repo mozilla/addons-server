@@ -138,7 +138,7 @@ class Command(BaseCommand):
                     if addon_guid and addon_guid in guids_to_addon:
                         addon_id = guids_to_addon[addon_guid]
                     else:
-                        log.debug("Addon {guid} doesn't exist."
+                        log.debug(u"Addon {guid} doesn't exist."
                                   .format(guid=addon_guid.strip()))
                         continue
 
