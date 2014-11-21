@@ -31,7 +31,7 @@ from applications.models import AppVersion
 from versions.compare import version_int as vint
 
 
-log = logging.getLogger('files.utils')
+log = logging.getLogger('z.files.utils')
 
 
 class ParseError(forms.ValidationError):
