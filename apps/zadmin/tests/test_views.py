@@ -330,7 +330,7 @@ class TestBulkValidation(BulkValidationTest):
 
     def test_application_versions_json(self):
         r = self.client.post(reverse('zadmin.application_versions_json'),
-                             {'application_id': amo.FIREFOX.id})
+                             {'application': amo.FIREFOX.id})
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         empty = True
