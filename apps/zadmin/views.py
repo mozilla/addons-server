@@ -198,7 +198,7 @@ def fix_disabled_file(request):
 @post_required
 @json_view
 def application_versions_json(request):
-    app_id = request.POST['application_id']
+    app_id = request.POST['application']
     f = BulkValidationForm()
     return {'choices': f.version_choices_for_app_id(app_id)}
 
