@@ -119,16 +119,20 @@ class PackageJSONExtractor(object):
             <AppVersion: 33.0a1>
             """
             version = re.sub('>?=?<?', '', version_req)
-            return AppVersion.objects.get(
-                application=app.id, version=version)
+            try:
+                return AppVersion.objects.get(
+                    application=app.id, version=version)
+            except AppVersion.DoesNotExist:
+                return None
 
         for engine, version in self.get('engines', {}).items():
             name = 'android' if engine == 'fennec' else engine
             app = amo.APPS.get(name)
             if app and app.guid in amo.APP_GUIDS:
                 appversion = find_appversion(app, version)
-                yield Extractor.App(
-                    appdata=app, id=app.id, min=appversion, max=appversion)
+                if appversion:
+                    yield Extractor.App(
+                        appdata=app, id=app.id, min=appversion, max=appversion)
 
     def parse(self):
         return {
