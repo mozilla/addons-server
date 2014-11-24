@@ -93,7 +93,7 @@
 
 <div class="hidden">
     <div class="popup" id="notify">
-        <form method="post" action="" data-url="{{ url('zadmin.notify.syntax') }}">
+        <form method="post" data-url="{{ url('zadmin.notify.syntax') }}">
             {{ csrf() }}
             <p>{# placeholder for form text #}</p>
             <p>Available variables: {{ ', '.join(notify_form.variables) }}</p>

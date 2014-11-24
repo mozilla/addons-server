@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Celery Stats</h2>
 <p>The time is {{ now|babel_datetime }}.</p>
-<form method="post" action="">
+<form method="post">
   {{ csrf() }}
   <input name="reset" type="submit" value="Reset">
 </form>

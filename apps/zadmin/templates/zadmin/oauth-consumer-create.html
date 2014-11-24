@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Create Consumer for OAuth</h2>
 <p>Creates a consumer application for OAuth, automatically generating the consumer key and secret.</p>
-<form method="post" action="">
+<form method="post">
     {{ csrf() }}
     {{ form.as_p() }}
     <input type="submit" value="Create" />

@@ -12,7 +12,7 @@
 {% block content %}
   <h2>{{ title }}</h2>
 
-  <form action="" method=POST>
+  <form method="post">
     {{ csrf() }}
     {{ form.as_p() }}
     <input type="submit" value="Add New Event">

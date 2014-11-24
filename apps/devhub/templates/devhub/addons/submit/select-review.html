@@ -14,7 +14,7 @@
     the review process below that best fits your add-on.
   {% endtrans %}
 </p>
-<form class="select-review" action="" method="post">
+<form class="select-review" method="post">
   {{ csrf() }}
   {{ review_type_form.non_field_errors() }}
   {{ review_type_form.review_type }}

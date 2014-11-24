@@ -315,6 +315,14 @@ class TestHome(EditorTest):
         for addon in Addon.objects.all():
             amo.log(amo.LOG['APPROVE_VERSION'], addon, addon.current_version)
 
+    def delete_review(self):
+        review = self.make_review()
+        review.delete()
+        amo.log(amo.LOG.DELETE_REVIEW, review.addon, review,
+                details=dict(addon_title='test', title='foo', body='bar',
+                             is_flagged=True))
+        return review
+
     def test_approved_review(self):
         review = self.make_review()
         amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
@@ -327,29 +335,62 @@ class TestHome(EditorTest):
         assert row('a[href*=yermom]'), 'Expected links to approved addon'
 
     def test_deleted_review(self):
-        review = self.make_review()
-        amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon,
-                details=dict(addon_name='test', addon_id=review.addon.pk,
-                             is_flagged=True))
+        self.delete_review()
         doc = pq(self.client.get(self.url).content)
 
         eq_(doc('.row').eq(0).text().strip().split('.')[0],
-            'editor deleted %d for yermom ' % review.id)
+            'editor deleted Review for yermom ')
 
         al_id = ActivityLog.objects.all()[0].id
         url = reverse('editors.eventlog.detail', args=[al_id])
         doc = pq(self.client.get(url).content)
 
-        dts, dds = doc('dt'), doc('dd')
-        expected = {
-            'is_flagged': 'True',
-            'addon_id': str(review.addon.pk),
-            'addon_name': 'test',
-        }
-        eq_(len(dts), 3)
-        eq_(len(dds), 3)
-        for dt, dd in zip(dts, dds):
-            eq_(dd.text, expected[dt.text])
+        elems = zip(doc('dt'), doc('dd'))
+        expected = [
+            ('Add-on Title', 'test'),
+            ('Review Title', 'foo'),
+            ('Review Text', 'bar'),
+        ]
+        for (dt, dd), texts in zip(elems, expected):
+            eq_(dt.text, texts[0])
+            eq_(dd.text, texts[1])
+
+    def undelete_review(self, review, allowed):
+        al = ActivityLog.objects.order_by('-id')[0]
+        eq_(al.arguments[1], review)
+
+        url = reverse('editors.eventlog.detail', args=[al.id])
+        doc = pq(self.client.get(url).content)
+
+        eq_(doc('#submit-undelete-review').attr('value') == 'Undelete',
+            allowed)
+
+        r = self.client.post(url, {'action': 'undelete'})
+        assert r.status_code in (302, 403)
+        post = r.status_code == 302
+
+        eq_(post, allowed)
+
+    def test_undelete_review_own(self):
+        review = self.delete_review()
+        # Undeleting a review you deleted is always allowed.
+        self.undelete_review(review, allowed=True)
+
+    def test_undelete_review_other(self):
+        amo.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
+        review = self.delete_review()
+
+        # Normal editors undeleting reviews deleted by other editors is
+        # not allowed.
+        amo.set_user(self.user)
+        self.undelete_review(review, allowed=False)
+
+    def test_undelete_review_admin(self):
+        review = self.delete_review()
+
+        # Admins can always undelete reviews.
+        self.login_as_admin()
+        self.undelete_review(review, allowed=True)
 
     def test_stats_total(self):
         self.approve_reviews()
@@ -916,6 +957,8 @@ class TestModeratedQueue(QueueTest):
 
         # Make sure it was actually deleted.
         eq_(Review.objects.filter(addon=1865).count(), 1)
+        # But make sure it wasn't *actually* deleted.
+        eq_(Review.with_deleted.filter(addon=1865).count(), 2)
 
     def test_remove_fails_for_own_addon(self):
         """

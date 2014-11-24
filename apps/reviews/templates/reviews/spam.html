@@ -22,7 +22,7 @@
     <div>
       <h3>{{ title }}</h3>
       {% for review in buckets[key] %}
-        <form method="post" action="" style="margin-bottom: 2em">
+        <form method="post" style="margin-bottom: 2em">
           {{ csrf() }}
           {% with addon = review.addon %}
             {% include "reviews/review.html" %}

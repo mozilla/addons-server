@@ -390,9 +390,10 @@ class ReviewerScore(amo.models.ModelBase):
         return score
 
     @classmethod
-    def award_moderation_points(cls, user, addon, review_id):
+    def award_moderation_points(cls, user, addon, review_id, undo=False):
         """Awards points to user based on moderated review."""
-        event = amo.REVIEWED_ADDON_REVIEW
+        event = (amo.REVIEWED_ADDON_REVIEW if not undo else
+                 amo.REVIEWED_ADDON_REVIEW_POORLY)
         score = amo.REVIEWED_SCORES.get(event)
 
         cls.objects.create(user=user, addon=addon, score=score, note_key=event)

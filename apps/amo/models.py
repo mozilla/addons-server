@@ -387,7 +387,9 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
                 if attrs[k] != v:
                     kw[k] = v
                     setattr(self, k, v)
-        cls.objects.filter(pk=self.pk).update(**kw)
+        # We want this to not fail mysteriously for soft deleted objects.
+        objects = getattr(cls, 'with_deleted', cls.objects)
+        objects.filter(pk=self.pk).update(**kw)
         if signal:
             models.signals.post_save.send(sender=cls, instance=self,
                                           created=False)

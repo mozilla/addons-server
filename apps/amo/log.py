@@ -339,8 +339,8 @@ class DELETE_REVIEW(_LOG):
     """Requires review.id and add-on objects."""
     id = 41
     action_class = 'review'
-    format = _(u'Review {0} for {addon} deleted.')
-    editor_format = _(u'{user} deleted {0} for {addon}.')
+    format = _(u'Review {review} for {addon} deleted.')
+    editor_format = _(u'{user} deleted {review} for {addon}.')
     keep = True
     editor_event = True
 
