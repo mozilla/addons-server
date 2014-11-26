@@ -129,7 +129,7 @@ var installButton = function() {
             compatible = false;
         }
         // TODO: Figure out if this needs to handle other apps.
-        if (z.browserVersion != 0 && VersionCompare.compareVersions(z.browserVersion, '10.0') < 0) {
+        if (z.browserVersion !== 0 && VersionCompare.compareVersions(z.browserVersion, '10.0') < 0) {
             $d2c_reasons.append($('<li>', {text: gettext('You need to be using Firefox 10.0 or higher.')}));
             compatible = false;
         }
@@ -157,7 +157,7 @@ var installButton = function() {
             // Get the xpi link for the first visible button.
             params.url = escape_($button.filter(':visible').attr('href'));
             return format(z.button.messages[msg], params);
-        }
+        };
     };
 
     var addWarning = function(msg, type) {
@@ -191,11 +191,12 @@ var installButton = function() {
             // If the click was on a.installer or a child, call the special
             // install method.  We can't bind this directly because we add
             // more .installers dynamically.
-            var $target = $(e.target);
+            var $target = $(e.target),
+                $installer = '';
             if ($target.hasClass('installer')) {
-                var installer = $target;
+                installer = $target;
             } else {
-                var installer =  $target.parents('.installer').first();
+                installer =  $target.parents('.installer').first();
                 if (_.indexOf($this.find('.installer'), installer[0]) == -1) {
                     return;
                 }
@@ -210,8 +211,7 @@ var installButton = function() {
             // For premium add-ons this will be undefined.
             var hash = hashes[installer.attr('href')];
 
-            var f = _.haskey(z.button.after, after)
-                    ? z.button.after[after] : _.identity,
+            var f = _.haskey(z.button.after, after) ? z.button.after[after] : _.identity,
                 callback = _.bind(f, self),
                 install = search ? z.installSearch : z.installAddon;
 
@@ -251,14 +251,14 @@ var installButton = function() {
         // Popup message helpers.
         var pmsg = addExtra(function() {
             var links = $.map(platforms, function(o) {
-                return format(z.button.messages['platform_link'], o);
+                return format(z.button.messages.platform_link, o);
             });
-            return format(z.button.messages['bad_platform'],
+            return format(z.button.messages.bad_platform,
                           {platforms: links.join('')});
         });
         var vmsg = addExtra(function() {
-            params['new_version'] = max;
-            params['old_version'] = z.browserVersion;
+            params.new_version = max;
+            params.old_version = z.browserVersion;
             return message(newerBrowser ? 'not_updated' : 'newer_version')();
         });
         var nocompat = addExtra(function() {
@@ -318,10 +318,10 @@ var installButton = function() {
                     $button.addPopup(pmsg);
                 } else if (!compatible) {
                     // Show compatibility message.
-                    params['versions_url'] = versions_url;
-                    params['reasons'] = $d2c_reasons.html();
+                    params.versions_url = versions_url;
+                    params.reasons = $d2c_reasons.html();
 
-                    $button.addPopup(params['reasons'] ? nocompat : nocompat_noreason);
+                    $button.addPopup(params.reasons ? nocompat : nocompat_noreason);
                 } else {
                     // Bad version.
                     $button.addPopup(vmsg);
@@ -366,11 +366,10 @@ var installButton = function() {
     };
 
     // What kind of button are we dealing with?
-    var beta = $this.hasClass('beta');
+    var beta = $this.hasClass('beta'),
         unreviewed = $this.hasClass('unreviewed') && !beta,
         persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
-        search = $this.hasattr('data-search'),
         eula = $this.hasClass('eula');
 
     if (unreviewed && !(eula || contrib || beta)) {
@@ -392,7 +391,7 @@ var installButton = function() {
             $button.addClass('concealed');
             if (z.appMatchesUserAgent) {
                 // Need upgrade
-                params['old_version'] = z.browserVersion;
+                params.old_version = z.browserVersion;
                 $button.addPopup(message('personas_need_upgrade'));
             } else {
                 $button.addPopup(message('learn_more_personas'));
@@ -423,7 +422,7 @@ var installButton = function() {
 
 var data_purchases = $('body').attr('data-purchases') || "",
     addons_purchased = $.map(data_purchases.split(','),
-                             function(v) { return parseInt(v, 10) });
+                             function(v) { return parseInt(v, 10); });
 
 jQuery.fn.installButton = function() {
     return this.each(installButton);
@@ -452,7 +451,7 @@ jQuery.fn.showBackupButton = function() {
             }
         }
     });
-}
+};
 
 jQuery.fn.addPaypal = function(html, allowClick) {
     function checkForAddon(el) {
@@ -480,9 +479,9 @@ jQuery.fn.addPaypal = function(html, allowClick) {
                     });
                 });
             }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
-        };
+        }
     }));
-}
+};
 
 // Create a popup box when the element is clicked.  html can be a function.
 jQuery.fn.addPopup = function(html, allowClick) {
@@ -537,13 +536,13 @@ jQuery.fn.addPopup = function(html, allowClick) {
                     _html.remove();
                     $body.unbind('click newPopup', cb);
                     $body.trigger('closeStatic');
-                }
+                };
                 // Trampoline the binding so it isn't triggered by the current click.
                 setTimeout(function(){ $body.bind('click newPopup', cb); }, 0);
             });
         }
     });
-}
+};
 
 
 /* Install an XPI or a JAR (or something like that).
@@ -559,7 +558,7 @@ z.installAddon = function(name, url, icon, hash, callback) {
         toString: function() { return url; }
     };
     if (hash) {
-        params[name]['Hash'] = hash;
+        params[name].Hash = hash;
     }
     // InstallTrigger is a Gecko API.
     InstallTrigger.install(params, callback);

@@ -865,63 +865,81 @@ class TestFileFromUpload(UploadTest):
     def test_beta_version_non_public(self):
         # Only public add-ons can get beta versions.
         upload = self.upload('beta-extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
         eq_(self.addon.status, amo.STATUS_LITE)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
+
+    def test_public_to_beta(self):
+        upload = self.upload('beta-extension')
+        d = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        f = File.from_upload(upload, self.version, self.platform, is_beta=True,
+                             parse_data=d)
+        eq_(f.status, amo.STATUS_BETA)
+
+    def test_trusted_public_to_beta(self):
+        upload = self.upload('beta-extension')
+        d = parse_addon(upload.path)
+        self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        f = File.from_upload(upload, self.version, self.platform, is_beta=True,
+                             parse_data=d)
+        eq_(f.status, amo.STATUS_BETA)
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_public_to_public(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_PUBLIC)
 
     def test_lite_to_unreviewed(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
         eq_(self.addon.status, amo.STATUS_LITE)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_lite_to_lite(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE, trusted=True)
         eq_(self.addon.status, amo.STATUS_LITE)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_LITE)
 
     def test_litenominated_to_unreviewed(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         with mock.patch('addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_litenominated_to_litenominated(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         with mock.patch('addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED,
                               trusted=True)
         eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
     def test_file_hash_paranoia(self):
@@ -931,8 +949,8 @@ class TestFileFromUpload(UploadTest):
 
     def test_strict_compat(self):
         upload = self.upload('strict-compat')
-        data = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.strict_compatibility, True)
 
     def test_theme_extension(self):
