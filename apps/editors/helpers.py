@@ -598,6 +598,9 @@ class ReviewAddon(ReviewBase):
         self.set_addon(highest_status=amo.STATUS_PUBLIC,
                        status=amo.STATUS_PUBLIC)
 
+        # Sign addon.
+        self.addon.sign_version_files(self.version.pk)
+
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
                           u'Mozilla Add-ons: %s %s Fully Reviewed')
@@ -652,6 +655,9 @@ class ReviewAddon(ReviewBase):
         self.set_addon(**changes)
         self.set_files(amo.STATUS_LITE, self.version.files.all(),
                        copy_to_mirror=True)
+
+        # Sign addon.
+        self.addon.sign_version_files(self.version.pk)
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,

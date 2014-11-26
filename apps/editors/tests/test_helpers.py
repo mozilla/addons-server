@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 
-from mock import Mock
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -397,7 +397,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    def test_nomination_to_public(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_nomination_to_public(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_public()
@@ -410,13 +411,15 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
+            sign_mock.assert_called_with(self.version.pk, False)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    def test_nomination_to_preliminary(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_nomination_to_preliminary(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -431,6 +434,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
+            sign_mock.assert_called_with(self.version.pk, False)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
