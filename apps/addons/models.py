@@ -692,10 +692,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self._latest_version_id != latest_id:
             updated.update({'_latest_version': latest})
 
-        # Only admin should review source files
-        if not self.admin_review and current and current.source:
-            updated.update({'admin_review': True})
-
         # update_version can be called by a post_delete signal (such
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
