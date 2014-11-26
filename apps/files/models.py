@@ -134,7 +134,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(urlparams(url, src=src))
 
     @classmethod
-    def from_upload(cls, upload, version, platform, parse_data={}):
+    def from_upload(cls, upload, version, platform, is_beta=False,
+                    parse_data={}):
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
@@ -151,8 +152,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if version.addon.status == amo.STATUS_PUBLIC and version.addon.trusted:
-            f.status = amo.STATUS_PUBLIC
+        if version.addon.status == amo.STATUS_PUBLIC:
+            if is_beta:
+                f.status = amo.STATUS_BETA
+            elif version.addon.trusted:
+                f.status = amo.STATUS_PUBLIC
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
