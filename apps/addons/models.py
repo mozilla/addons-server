@@ -36,6 +36,7 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
+from lib.crypto import packaged
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
@@ -690,10 +691,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # changes.
         if self._latest_version_id != latest_id:
             updated.update({'_latest_version': latest})
-
-        # Only admin should review source files
-        if not self.admin_review and current and current.source:
-            updated.update({'admin_review': True})
 
         # update_version can be called by a post_delete signal (such
         # as File's) when deleting a version. If so, we should avoid putting
@@ -1431,6 +1428,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def sign_if_packaged(self, version_pk, reviewer=False):
         raise NotImplementedError('Not available for add-ons.')
+
+    def sign_version_files(self, version_pk, reviewer=False):
+        return packaged.sign(version_pk, reviewer)
 
     def update_names(self, new_names):
         """

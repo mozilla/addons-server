@@ -112,6 +112,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                        not self.version.addon.disabled_by_user)
         return is_eligible
 
+    def can_be_signed(self):
+        """True only if extension is xpi"""
+        return os.path.splitext(self.filename)[1] == '.xpi'
+
     def get_mirror(self, addon, attachment=False):
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
@@ -130,7 +134,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(urlparams(url, src=src))
 
     @classmethod
-    def from_upload(cls, upload, version, platform, parse_data={}):
+    def from_upload(cls, upload, version, platform, is_beta=False,
+                    parse_data={}):
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
@@ -147,8 +152,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        if version.addon.status == amo.STATUS_PUBLIC and version.addon.trusted:
-            f.status = amo.STATUS_PUBLIC
+        if version.addon.status == amo.STATUS_PUBLIC:
+            if is_beta:
+                f.status = amo.STATUS_BETA
+            elif version.addon.trusted:
+                f.status = amo.STATUS_PUBLIC
         elif (version.addon.status in amo.LITE_STATUSES
               and version.addon.trusted):
             f.status = version.addon.status
@@ -271,6 +279,16 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def guarded_file_path(self):
         return os.path.join(user_media_path('guarded_addons'),
                             str(self.version.addon_id), self.filename)
+
+    @property
+    def signed_file_path(self):
+        return os.path.join(user_media_path('signed_addons'),
+                            str(self.version.addon_id), self._signed())
+
+    @property
+    def signed_reviewer_file_path(self):
+        return os.path.join(user_media_path('signed_addons_reviewer'),
+                            str(self.version.addon_id), self._signed())
 
     def _signed(self):
         split = self.filename.rsplit('.', 1)

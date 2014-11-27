@@ -1231,9 +1231,8 @@ def version_add_file(request, addon_id, addon, version_id):
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
+                                form.cleaned_data['beta'],
                                 parse_addon(upload, addon))
-    if form.cleaned_data['beta']:
-        new_file.update(status=amo.STATUS_BETA)
     source = form.cleaned_data['source']
     if source:
         version.update(source=source)
