@@ -1194,7 +1194,8 @@ def version_add(request, addon_id, addon):
             upload=form.cleaned_data['upload'],
             addon=addon,
             platforms=pl,
-            source=form.cleaned_data['source']
+            source=form.cleaned_data['source'],
+            is_beta=form.cleaned_data['beta']
         )
         rejected_versions = addon.versions.filter(
             version=v.version, files__status=amo.STATUS_DISABLED)[:1]
@@ -1206,8 +1207,6 @@ def version_add(request, addon_id, addon):
                 last_rejected.releasenotes)
             v.approvalnotes = last_rejected.approvalnotes
             v.save()
-        if form.cleaned_data['beta']:
-            v.files.update(status=amo.STATUS_BETA)
         log.info('Version created: %s for: %s' %
                  (v.pk, form.cleaned_data['upload']))
         check_validation_override(request, form, addon, v)

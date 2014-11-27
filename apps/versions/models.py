@@ -108,7 +108,7 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon, platforms, send_signal=True,
-                    source=None):
+                    source=None, is_beta=False):
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -136,7 +136,8 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
             platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
-            File.from_upload(upload, v, platform, parse_data=data)
+            File.from_upload(upload, v, platform, parse_data=data,
+                             is_beta=is_beta)
 
         v.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.

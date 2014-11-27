@@ -994,6 +994,25 @@ class TestStatusFromUpload(TestVersionFromUpload):
         eq_(File.objects.filter(version=self.current)[0].status,
             amo.STATUS_DISABLED)
 
+    def test_status_beta(self):
+        # Create a version and switch the add-on status to public.
+        Version.from_upload(self.upload, self.addon, [self.platform])
+        File.objects.all().update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        # Create an under review version.
+        upload = self.get_upload('extension-0.2.xpi')
+        Version.from_upload(upload, self.addon, [self.platform])
+        # Create a beta version.
+        upload = self.get_upload('extension-0.2b1.xpi')
+        version = Version.from_upload(upload, self.addon, [self.platform],
+                                      is_beta=True)
+        # Check that it doesn't modify the public status and that the
+        # created file is in the beta status.
+        eq_(File.objects.filter(version=self.current)[0].status,
+            amo.STATUS_PUBLIC)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(File.objects.filter(version=version)[0].status, amo.STATUS_BETA)
+
 
 class TestMobileVersions(TestMobile):
 
