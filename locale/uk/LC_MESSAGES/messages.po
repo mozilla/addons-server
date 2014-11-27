@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-28 13:14+0000\n"
+"PO-Revision-Date: 2014-11-27 11:34+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1414502049.0\n"
+"X-POOTLE-MTIME: 1417088058.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -470,7 +470,7 @@ msgstr "%(addon_name)s потребує, щоб перед встановлен�
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr "Повернутися до {0}..."
+msgstr "Повернутися до {0}…"
 
 #: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:254
 msgid "Add-ons for {0}"
@@ -930,7 +930,7 @@ msgstr "Пов'язані категорії"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Often used with&hellip;"
-msgstr "Часто використовується з…"
+msgstr "Часто використовується з&hellip;"
 
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
@@ -1526,7 +1526,7 @@ msgstr "Запитаний розгляд"
 
 #: apps/amo/log.py:216
 msgid "{addon} {version} more information requested."
-msgstr "Запитано більше інформації про {addon} {version}"
+msgstr "Запитано більше інформації про {addon} {version}."
 
 #: apps/amo/log.py:217
 msgid "More information requested"
@@ -1607,7 +1607,7 @@ msgstr "Політика {addon} змінена."
 
 #: apps/amo/log.py:328
 msgid "{addon} icon changed."
-msgstr "У {addon} змінилась іконка"
+msgstr "Іконка {addon} змінена."
 
 #: apps/amo/log.py:334
 msgid "{review} for {addon} approved."
@@ -2143,11 +2143,11 @@ msgstr "Додати до Вподобань"
 
 #: apps/bandwagon/helpers.py:74
 msgid "Add a positive vote for this collection"
-msgstr "Додати голос за цю збірку:"
+msgstr "Додати позитивний голос для цієї збірки"
 
 #: apps/bandwagon/helpers.py:75
 msgid "Add a negative vote for this collection"
-msgstr "Додати голос проти цієї збірки:"
+msgstr "Додати негативний голос для цієї збірки"
 
 #: apps/bandwagon/helpers.py:76
 msgid "Remove my vote for this collection"
@@ -2155,7 +2155,7 @@ msgstr "Вилучити мій голос за цю збірку"
 
 #: apps/bandwagon/helpers.py:87
 msgid "Log in to vote for this collection"
-msgstr "Ввійдіть, щоб проголосувати за цю збірку."
+msgstr "Увійдіть, щоб проголосувати за цю збірку"
 
 #: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
@@ -9743,7 +9743,7 @@ msgstr "Оновити"
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:24
 msgid "Want to get in touch with the {0} L10n team?"
-msgstr "Хочете бути на зв'язку з командою {0} L10n"
+msgstr "Хочете зв'язатися з командою L10n {0}?"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:28
@@ -10516,15 +10516,20 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:550
 msgid "Why is my add-on no longer listed as Recommended?"
-msgstr ""
+msgstr "Чому мій додаток більше не значиться, як рекомендований?"
 
 #: apps/pages/templates/pages/dev_faq.html:559
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
+"Як мені відповісти користувачу, який розмістив негативний відгук на мій "
+"додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:561
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
+"Розробник може відповісти на будь-який відгук, розміщений на його додаток, "
+"якщо він увійшов до AMO. Крім того, будь-який користувач може відмітити "
+"відгук як:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:568 apps/reviews/models.py:131
@@ -10544,27 +10549,34 @@ msgstr "Неправильно розміщений звіт про ваду ч�
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:574
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Інше (виводить виринаючий запит для вводу інформації)"
 
 #: apps/pages/templates/pages/dev_faq.html:577
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
 msgstr ""
+"В даний час AMO не надає механізму для прямого зв'язку з рецензентом, але ця "
+"можливість зараз розглядається для включення у майбутнє оновлення."
 
 #: apps/pages/templates/pages/dev_faq.html:584
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Чи можу я дати запит на вилучення негативного відгуку?"
 
 #: apps/pages/templates/pages/dev_faq.html:586
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
 msgstr ""
+"Ні. Ми не вилучаємо негативних відгуків на додатки, якщо тільки їх не буде "
+"визнано помилковими."
 
 #: apps/pages/templates/pages/dev_faq.html:592
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
+msgstr "Чи можу я дати запит на вилучення некоректного відгуку?"
 
 #: apps/pages/templates/pages/dev_faq.html:594
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
 msgstr ""
+"Якщо автор зв'язується з нами та просить вилучити відгук, який містить "
+"неправильну чи неточну інформацію, ми перевіряємо відгук та приймаємо "
+"рішення."
 
 #: apps/pages/templates/pages/dev_faq.html:603
 msgid ""
@@ -10573,16 +10585,33 @@ msgid ""
 "are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
 "neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
+"Потрібно більше інформації про різні ліцензії для відкритого програмного "
+"коду? Заплутались у виборі ліцензії? Хочете знати, які права надає певна "
+"ліцензія? Хоча немає нічого кращого, ніж ознайомлення з усіма умовами "
+"ліцензії, внизу зазначено деякі сайти з інформацією про основні ліцензії для "
+"відкритого програмного коду, які можуть допомогти вам у визначенні "
+"відмінностей між ними. Ці сайти було надано виключно для вашої зручності та "
+"в якості рекомендації для особистого користування. Ці ресурси не являються "
+"юридичною консультацією та не повинні використовуватись замість таких "
+"консультацій. Mozilla не гарантує та не несе відповідальність за вміст цих "
+"сайтів чи за використання вами цього вмісту."
 
 #: apps/pages/templates/pages/dev_faq.html:618
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
+"На додачу до повного тексту Mozilla Public License(\"MPL\"), додається також "
+"анотовану версію MPL та <abbr title=\"Часті питання\">ЧаП</abbr>, щоб "
+"допомогти вам, якщо ви захочете використовувати чи розповсюджувати код на її "
+"умовах."
 
 #: apps/pages/templates/pages/dev_faq.html:632
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
 msgstr ""
+"Порівняльна таблиця сумарних показників покриття деякими основними "
+"ліцензіями для відкритого програмного коду дистрибуцій, зв'язку з "
+"посиланнями на власне програмне забезпечення та поширення зміненого коду."
 
 #: apps/pages/templates/pages/dev_faq.html:645
 msgid ""
@@ -10597,7 +10626,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:672
 msgid "Wikipedia listing of known open source licenses."
-msgstr ""
+msgstr "Список відомих ліцензій для відкритого програмного коду в Вікіпедії."
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
@@ -11545,7 +11574,7 @@ msgstr "Додати до Delicious"
 
 #: apps/sharing/__init__.py:28
 msgid "Digg this!"
-msgstr "Надіслати на Digg"
+msgstr "Відправити на Digg!"
 
 #: apps/sharing/__init__.py:34
 msgid "{0} digg"
@@ -12277,7 +12306,9 @@ msgstr ""
 
 #: apps/users/views.py:220
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Були помилки у змінах, які ви внесли. Будь ласка, виправте і знову надішліть…"
+msgstr ""
+"У зроблених вами змінах є помилки. Будь ласка, виправте їх та відправте "
+"заново."
 
 #: apps/users/views.py:267
 msgid "Your email address was changed successfully"
@@ -13022,7 +13053,7 @@ msgstr "Щоб спробувати тисячі наявних тут дода�
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:130
 msgid "Welcome to {0} Add-ons."
-msgstr "Ласкаво просимо до {0} Додатків"
+msgstr "Ласкаво просимо до додатків {0}."
 
 #: templates/impala/base.html:133
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
