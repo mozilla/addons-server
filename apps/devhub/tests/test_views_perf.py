@@ -27,9 +27,9 @@ class TestPerfViews(amo.tests.TestCase):
         self.perf_calls = None
 
     def tearDown(self):
-        super(TestPerfViews, self).tearDown()
         for p in self.patches:
             p.stop()
+        super(TestPerfViews, self).tearDown()
 
     def assert_call(self, expected_call):
         if not self.perf_calls:

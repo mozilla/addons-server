@@ -77,9 +77,10 @@ def test_page_title():
                 'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
 
 
-class TestBreadcrumbs(object):
+class TestBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestBreadcrumbs, self).setUp()
         self.req_noapp = Mock()
         self.req_noapp.APP = None
         self.req_app = Mock()

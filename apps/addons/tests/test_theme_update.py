@@ -18,6 +18,7 @@ from services import theme_update
 class TestWSGIApplication(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestWSGIApplication, self).setUp()
         self.environ = {'wsgi.input': StringIO()}
         self.start_response = mock.Mock()
 
@@ -65,6 +66,7 @@ class TestThemeUpdate(amo.tests.TestCase):
     fixtures = ['addons/persona']
 
     def setUp(self):
+        super(TestThemeUpdate, self).setUp()
         self.good = {
             'username': 'persona_author',
             'description': 'yolo',

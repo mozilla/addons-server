@@ -59,6 +59,7 @@ class EditorTest(amo.tests.TestCase):
 class TestEventLog(EditorTest):
 
     def setUp(self):
+        super(TestEventLog, self).setUp()
         self.login_as_editor()
         self.url = reverse('editors.eventlog')
         amo.set_user(UserProfile.objects.get(username='editor'))
@@ -118,6 +119,7 @@ class TestReviewLog(EditorTest):
     fixtures = EditorTest.fixtures + ['base/addon_3615']
 
     def setUp(self):
+        super(TestReviewLog, self).setUp()
         self.login_as_editor()
         self.url = reverse('editors.reviewlog')
 
@@ -300,6 +302,7 @@ class TestHome(EditorTest):
     fixtures = EditorTest.fixtures + ['base/addon_3615']
 
     def setUp(self):
+        super(TestHome, self).setUp()
         self.login_as_editor()
         self.url = reverse('editors.home')
         self.user = UserProfile.objects.get(id=5497308)
@@ -1090,6 +1093,7 @@ class TestPerformance(QueueTest):
 class SearchTest(EditorTest):
 
     def setUp(self):
+        super(SearchTest, self).setUp()
         self.login_as_editor()
 
     def named_addons(self, request):
@@ -1440,6 +1444,7 @@ class TestQueueSearchVersionSpecific(SearchTest):
 class ReviewBase(QueueTest):
 
     def setUp(self):
+        super(QueueTest, self).setUp()
         self.login_as_editor()
         self.addons = {}
 
@@ -2246,6 +2251,7 @@ class TestLeaderboard(EditorTest):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestLeaderboard, self).setUp()
         self.url = reverse('editors.leaderboard')
 
         self.user = UserProfile.objects.get(email='editor@mozilla.com')

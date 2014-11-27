@@ -48,6 +48,7 @@ class TestSiteEvents(amo.tests.TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
 
     def setUp(self):
+        super(TestSiteEvents, self).setUp()
         self.client.login(username='admin@mozilla.com', password='password')
 
     def test_get(self):
@@ -147,6 +148,7 @@ class BulkValidationTest(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/appversion', 'base/users']
 
     def setUp(self):
+        super(BulkValidationTest, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.addon = Addon.objects.get(pk=3615)
@@ -167,6 +169,7 @@ class BulkValidationTest(amo.tests.TestCase):
 
     def tearDown(self):
         settings.TASK_USER_ID = self.old_task_user
+        super(BulkValidationTest, self).tearDown()
 
     def appversion(self, version, application=amo.FIREFOX.id):
         return AppVersion.objects.get(application=application,
@@ -1119,6 +1122,7 @@ class TestEmailPreview(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestEmailPreview, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         addon = Addon.objects.get(pk=3615)
@@ -1141,6 +1145,7 @@ class TestMonthlyPick(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestMonthlyPick, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('zadmin.monthly_pick')
@@ -1215,6 +1220,7 @@ class TestFeatures(amo.tests.TestCase):
     fixtures = ['base/users', 'base/collections', 'base/addon_3615.json']
 
     def setUp(self):
+        super(TestFeatures, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('zadmin.features')
@@ -1326,6 +1332,7 @@ class TestOAuth(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestOAuth, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 
@@ -1341,6 +1348,7 @@ class TestLookup(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestLookup, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.user = UserProfile.objects.get(pk=999)
@@ -1392,6 +1400,7 @@ class TestAddonSearch(amo.tests.ESTestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestAddonSearch, self).setUp()
         self.reindex(Addon)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
@@ -1407,6 +1416,7 @@ class TestAddonAdmin(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestAddonAdmin, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('admin:addons_addon_changelist')
@@ -1424,6 +1434,7 @@ class TestAddonManagement(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestAddonManagement, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.url = reverse('zadmin.addon_manage', args=[self.addon.slug])
         self.client.login(username='admin@mozilla.com', password='password')
@@ -1488,6 +1499,7 @@ class TestJetpack(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestJetpack, self).setUp()
         self.url = reverse('zadmin.jetpack')
         self.client.login(username='admin@mozilla.com', password='password')
 
@@ -1603,6 +1615,7 @@ class TestCompat(amo.tests.ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestCompat, self).setUp()
         self.url = reverse('zadmin.compat')
         self.client.login(username='admin@mozilla.com', password='password')
         self.app = amo.FIREFOX
@@ -1774,6 +1787,7 @@ class TestMemcache(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestMemcache, self).setUp()
         self.url = reverse('zadmin.memcache')
         cache.set('foo', 'bar')
         self.client.login(username='admin@mozilla.com', password='password')
@@ -1795,6 +1809,7 @@ class TestElastic(amo.tests.ESTestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestElastic, self).setUp()
         self.url = reverse('zadmin.elastic')
         self.client.login(username='admin@mozilla.com', password='password')
 
@@ -1809,6 +1824,7 @@ class TestEmailDevs(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestEmailDevs, self).setUp()
         self.login('admin')
         self.addon = Addon.objects.get(pk=3615)
 

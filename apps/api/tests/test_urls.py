@@ -15,6 +15,7 @@ class TestDRFSwitch(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestDRFSwitch, self).setUp()
         self.factory = RequestFactory()
         self.user = UserProfile.objects.get(email='del@icio.us')
 

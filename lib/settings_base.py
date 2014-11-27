@@ -423,13 +423,13 @@ INSTALLED_APPS = (
 )
 
 # These apps are only needed in a testing environment. They are added to
-# INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
+# INSTALLED_APPS by the amo.runner.TestRunner test runner.
 TEST_INSTALLED_APPS = (
     'translations.tests.testapp',
 )
 
 # Tests
-TEST_RUNNER = 'amo.runner.RadicalTestSuiteRunnerWithExtraApps'
+TEST_RUNNER = 'amo.runner.TestRunner'
 NOSE_ARGS = [
     '--with-fixture-bundling',
 ]

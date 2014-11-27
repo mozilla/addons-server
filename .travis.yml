@@ -15,7 +15,7 @@ before_script:
   - mysql -e 'create database olympia;'
   - make update_assets
 script:
-  - FORCE_DB=1 DJANGO_SETTINGS_MODULE=settings_ci make flake8 && make test
+  - DJANGO_SETTINGS_MODULE=settings_ci make flake8 && DJANGO_SETTINGS_MODULE=settings_ci make test
   - make docs SPHINXOPTS='-nW'
 notifications:
   irc:

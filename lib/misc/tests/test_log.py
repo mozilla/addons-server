@@ -45,6 +45,7 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
     """
 
     def setUp(self):
+        super(TestHekaStdLibLogging, self).setUp()
         HEKA_CONF = {
             'encoder': 'heka.encoders.StdlibPayloadEncoder',
             'stream': {
@@ -67,6 +68,7 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
 
     def tearDown(self):
         self.logger.handlers = self._orig_handlers
+        super(TestHekaStdLibLogging, self).tearDown()
 
     def test_oldstyle_sends_msg(self):
         msg = 'an error'
@@ -109,6 +111,7 @@ class TestRaven(amo.tests.TestCase):
         We need to set the settings.HEKA instance to use a
         DebugCaptureStream so that we can inspect the sent messages.
         """
+        super(TestRaven, self).setUp()
 
         heka = settings.HEKA
         HEKA_CONF = {

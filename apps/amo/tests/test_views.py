@@ -27,6 +27,7 @@ class Test403(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(Test403, self).setUp()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
 
@@ -63,6 +64,7 @@ class TestCommon(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/addon_3615')
 
     def setUp(self):
+        super(TestCommon, self).setUp()
         self.url = reverse('home')
 
     def login(self, user=None, get=False):
@@ -337,6 +339,7 @@ class TestOtherStuff(amo.tests.TestCase):
 class TestCSP(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestCSP, self).setUp()
         self.url = reverse('amo.csp.report')
         self.create_sample(name='csp-store-reports')
 

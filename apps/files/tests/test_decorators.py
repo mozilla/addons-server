@@ -11,6 +11,7 @@ from files.decorators import allowed
 class AllowedTest(amo.tests.TestCase):
 
     def setUp(self):
+        super(AllowedTest, self).setUp()
         self.request = Mock()
         self.file = Mock()
 

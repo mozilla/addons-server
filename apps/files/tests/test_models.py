@@ -290,6 +290,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 class TestParseXpi(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestParseXpi, self).setUp()
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
@@ -429,6 +430,7 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
 
     def setUp(self):
+        super(TestParseAlternateXpi, self).setUp()
         for version in ('3.0', '4.0b3pre'):
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
@@ -1049,6 +1051,7 @@ class TestCheckJetpackVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestCheckJetpackVersion, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         JetpackUpgrader().jetpack_versions('1.0', '1.1')
 

@@ -39,6 +39,7 @@ class TestRecs(amo.tests.TestCase):
         test.Client().get('/')
 
     def setUp(self):
+        super(TestRecs, self).setUp()
         self.url = reverse('discovery.recs', args=['3.6', 'Darwin'])
         self.guids = ('bettergcal@ginatrapani.org',
                       'foxyproxy@eric.h.jung',
@@ -51,7 +52,9 @@ class TestRecs(amo.tests.TestCase):
         # The view is limited to returning 9 add-ons.
         self.expected_recs = Recs.expected_recs()[:9]
 
-        self.min_id, self.max_id = 1, 364  # see test_min_max_appversion
+        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
+        self.min_id = versions.order_by('version_int')[0].id
+        self.max_id = versions.order_by('-version_int')[0].id
         for addon in Addon.objects.all():
             v = Version.objects.create(addon=addon)
             File.objects.create(version=v, status=amo.STATUS_PUBLIC)
@@ -61,15 +64,6 @@ class TestRecs(amo.tests.TestCase):
             addon.update(_current_version=v)
             addons.signals.version_changed.send(sender=addon)
         Addon.objects.update(status=amo.STATUS_PUBLIC, disabled_by_user=False)
-
-    def test_min_max_appversion(self):
-        # These version numbers are hardcoded for speed, make sure the
-        # assumption is correct.
-        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
-        min_ = versions.order_by('version_int')[0]
-        max_ = versions.order_by('-version_int')[0]
-        eq_(self.min_id, min_.id)
-        eq_(self.max_id, max_.id)
 
     def test_get(self):
         """GET should find method not allowed."""
@@ -306,6 +300,7 @@ class TestPane(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestPane, self).setUp()
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_my_account(self):
@@ -396,6 +391,7 @@ class TestDetails(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592']
 
     def setUp(self):
+        super(TestDetails, self).setUp()
         self.addon = self.get_addon()
         self.detail_url = reverse('discovery.addons.detail',
                                   args=[self.addon.slug])
@@ -454,6 +450,7 @@ class TestPersonaDetails(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
+        super(TestPersonaDetails, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.url = reverse('discovery.addons.detail', args=[self.addon.slug])
 
@@ -499,6 +496,7 @@ class TestDownloadSources(amo.tests.TestCase):
                 'discovery/discoverymodules']
 
     def setUp(self):
+        super(TestDownloadSources, self).setUp()
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_detail(self):
@@ -545,6 +543,7 @@ class TestMonthlyPick(amo.tests.TestCase):
                 'discovery/discoverymodules']
 
     def setUp(self):
+        super(TestMonthlyPick, self).setUp()
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
@@ -599,6 +598,7 @@ class TestPaneMoreAddons(amo.tests.TestCase):
     fixtures = ['base/appversion']
 
     def setUp(self):
+        super(TestPaneMoreAddons, self).setUp()
         self.addon1 = addon_factory(hotness=99,
                                     version_kw=dict(max_app_version='5.0'))
         self.addon2 = addon_factory(hotness=0,

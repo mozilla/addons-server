@@ -60,6 +60,7 @@ sample_contribution = {
 class PaypalTest(amo.tests.TestCase):
 
     def setUp(self):
+        super(PaypalTest, self).setUp()
         self.url = reverse('amo.paypal')
         self.item = 1234567890
         self.client = Client()

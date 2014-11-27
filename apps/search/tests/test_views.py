@@ -134,6 +134,7 @@ class TestESSearch(SearchBase):
         cls.setUpIndex()
 
     def setUp(self):
+        super(TestESSearch, self).setUp()
         self.url = reverse('search.search')
         self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                            disabled_by_user=False)
@@ -622,6 +623,7 @@ class TestPersonaSearch(SearchBase):
         cls.setUpIndex()
 
     def setUp(self):
+        super(TestPersonaSearch, self).setUp()
         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
 
     def _generate_personas(self):
@@ -1167,6 +1169,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 class TestSearchSuggestions(TestAjaxSearch):
 
     def setUp(self):
+        super(TestSearchSuggestions, self).setUp()
         self.url = reverse('search.suggestions')
         self._addons += [
             amo.tests.addon_factory(name='addon persona',

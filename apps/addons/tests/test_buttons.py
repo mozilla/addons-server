@@ -23,6 +23,7 @@ def setup():
 class ButtonTest(amo.tests.TestCase):
 
     def setUp(self):
+        super(ButtonTest, self).setUp()
         self.addon = Mock()
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False

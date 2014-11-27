@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from functools import partial, wraps
 from urlparse import urlsplit, urlunsplit
 
-from django import forms
+from django import forms, http, test
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models.signals import post_save
@@ -23,11 +23,11 @@ import caching
 import mock
 import tower
 from dateutil.parser import parse as dateutil_parser
+from django_nose import FastFixtureTestCase
 from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
-from test_utils import TestCase as TestUtilsTestCase
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -46,7 +46,7 @@ from bandwagon.models import Collection
 from files.models import File
 from lib.es.signals import process, reset
 from translations.hold import clean_translations
-from translations.models import Translation
+from translations.models import delete_translation, Translation
 from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
 
@@ -246,25 +246,88 @@ class MockEsMixin(object):
                 Mocked_ES.stop()
 
 
-class TestCase(MockEsMixin, RedisTest, TestUtilsTestCase):
-    """Base class for all amo tests."""
-    client_class = TestClient
+JINJA_INSTRUMENTED = False
+
+
+def default_prefixer():
+    """Make sure each test starts with a default URL prefixer."""
+    request = http.HttpRequest()
+    request.META['SCRIPT_NAME'] = ''
+    prefixer = amo.urlresolvers.Prefixer(request)
+    prefixer.app = settings.DEFAULT_APP
+    prefixer.locale = settings.LANGUAGE_CODE
+    amo.urlresolvers.set_url_prefix(prefixer)
+
+
+class BaseTestCase(FastFixtureTestCase):
+    """Base test case that each and every test cases should inherit from."""
+
+    def _pre_setup(self):
+        super(BaseTestCase, self)._pre_setup()
+
+        # If we have a settings_test.py let's roll it into our settings.
+        try:
+            import settings_test
+            # Use setattr to update Django's proxies:
+            for k in dir(settings_test):
+                setattr(settings, k, getattr(settings_test, k))
+        except ImportError:
+            pass
+
+        cache.clear()
+        # Override django-cache-machine caching.base.TIMEOUT because it's
+        # computed too early, before settings_test.py is imported.
+        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+
+        translation.trans_real.deactivate()
+        # Django fails to clear this cache.
+        translation.trans_real._translations = {}
+        translation.trans_real.activate(settings.LANGUAGE_CODE)
+
+        # Make sure the "templates" list in a response is properly updated,
+        # even though we're using Jinja2 and not the default django template
+        # engine.
+        global JINJA_INSTRUMENTED
+        if not JINJA_INSTRUMENTED:
+            import jinja2
+            old_render = jinja2.Template.render
+
+            def instrumented_render(self, *args, **kwargs):
+                context = dict(*args, **kwargs)
+                test.signals.template_rendered.send(
+                    sender=self, template=self, context=context)
+                return old_render(self, *args, **kwargs)
+
+            jinja2.Template.render = instrumented_render
+            JINJA_INSTRUMENTED = True
+
+        # Reset the prefixer.
+        default_prefixer()
+
+        self.client = self.client_class()
+
+    def _post_teardown(self):
+        amo.set_user(None)
+        clean_translations(None)  # Make sure queued translations are removed.
+
+        # Make sure we revert everything we might have changed to prefixers.
+        amo.urlresolvers.clean_url_prefixes()
+
+        super(BaseTestCase, self)._post_teardown()
 
     def shortDescription(self):
         # Stop nose using the test docstring and instead the test method name.
         pass
 
-    def _post_teardown(self):
-        amo.set_user(None)
-        clean_translations(None)  # Make sure queued translations are removed.
-        super(TestCase, self)._post_teardown()
+    def trans_eq(self, trans, localized_string, locale):
+        eq_(Translation.objects.get(id=trans.id,
+                                    locale=locale).localized_string,
+            localized_string)
 
-    def _pre_setup(self):
-        super(TestCase, self)._pre_setup()
-        cache.clear()
-        # Override django-cache-machine caching.base.TIMEOUT because it's
-        # computed too early, before settings_test.py is imported.
-        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+
+class TestCase(MockEsMixin, RedisTest, BaseTestCase):
+    """Base class for all amo tests."""
+    client_class = TestClient
 
     @contextmanager
     def activate(self, locale=None, app=None):
@@ -483,11 +546,6 @@ class TestCase(MockEsMixin, RedisTest, TestUtilsTestCase):
         if '@' not in email:
             email += '@mozilla.com'
         assert self.client.login(username=email, password='password')
-
-    def trans_eq(self, trans, locale, localized_string):
-        eq_(Translation.objects.get(id=trans.id,
-                                    locale=locale).localized_string,
-            localized_string)
 
     def extract_script_template(self, html, template_selector):
         """Extracts the inner JavaScript text/template from a html page.
@@ -747,8 +805,14 @@ class ESTestCase(TestCase):
     def tearDownClass(cls):
         try:
             if hasattr(cls, '_addons'):
-                Addon.objects.filter(
-                    pk__in=[a.id for a in cls._addons]).delete()
+                addons = Addon.objects.filter(
+                    pk__in=[a.id for a in cls._addons])
+                # First delete all the translations.
+                for addon in addons:
+                    for field in addon._meta.translated_fields:
+                        delete_translation(addon, field.name)
+                # Then delete the addons themselves.
+                addons.delete()
                 unindex_addons([a.id for a in cls._addons])
             amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
         finally:
@@ -801,6 +865,7 @@ class TestXss(TestCase):
     fixtures = ['base/addon_3615', 'users/test_backends', ]
 
     def setUp(self):
+        super(TestXss, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.name = "<script>alert('hé')</script>"
         self.escaped = (

@@ -33,6 +33,7 @@ good_token = urllib.urlencode({'token': 'foo', 'secret': 'bar'})
 
 class TestPayKey(amo.tests.TestCase):
     def setUp(self):
+        super(TestPayKey, self).setUp()
         self.data = {'slug': 'xx',
                      'amount': 10,
                      'email': 'someone@somewhere.com',

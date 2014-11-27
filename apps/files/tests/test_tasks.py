@@ -99,6 +99,7 @@ class TestRepackageJetpack(amo.tests.TestCase):
 
     def tearDown(self):
         storage.delete(self.tmp_file_path)
+        super(TestRepackageJetpack, self).tearDown()
 
     def create_temp_file(self):
         path = tempfile.mktemp(dir=settings.TMP_PATH)

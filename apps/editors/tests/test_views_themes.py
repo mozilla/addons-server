@@ -26,6 +26,7 @@ class ThemeReviewTestMixin(object):
                 'editors/user_senior_persona_reviewer']
 
     def setUp(self):
+        super(ThemeReviewTestMixin, self).setUp()
         self.reviewer_count = 0
         self.status = amo.STATUS_PENDING
         self.flagged = False
@@ -605,6 +606,7 @@ class TestDeletedThemeLookup(amo.tests.TestCase):
                 'editors/user_senior_persona_reviewer']
 
     def setUp(self):
+        super(TestDeletedThemeLookup, self).setUp()
         self.deleted = addon_factory(type=amo.ADDON_PERSONA)
         self.deleted.update(status=amo.STATUS_DELETED)
 
@@ -625,6 +627,7 @@ class TestThemeSearch(amo.tests.ESTestCase):
     fixtures = ['editors/user_senior_persona_reviewer']
 
     def setUp(self):
+        super(TestThemeSearch, self).setUp()
         self.addon = addon_factory(type=amo.ADDON_PERSONA, name='themeteam',
                                    status=amo.STATUS_PENDING)
         self.refresh('default')
@@ -658,6 +661,7 @@ class TestDashboard(amo.tests.TestCase):
     fixtures = ['editors/user_senior_persona_reviewer']
 
     def setUp(self):
+        super(TestDashboard, self).setUp()
         self.request = amo.tests.req_factory_factory(
             reverse('editors.themes.home'), user=UserProfile.objects.get())
 

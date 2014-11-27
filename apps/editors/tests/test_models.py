@@ -330,6 +330,7 @@ class TestEditorSubscription(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestEditorSubscription, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon.current_version
         self.user_one = UserProfile.objects.get(pk=55021)
@@ -387,6 +388,7 @@ class TestReviewerScore(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestReviewerScore, self).setUp()
         self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 

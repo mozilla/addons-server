@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import unittest
 import urllib
 
 from django.utils import translation
@@ -40,9 +39,10 @@ def test_dev_page_title():
     eq_(s1, s2)
 
 
-class TestDevBreadcrumbs(unittest.TestCase):
+class TestDevBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestDevBreadcrumbs, self).setUp()
         self.request = Mock()
         self.request.APP = None
 
@@ -138,9 +138,10 @@ def test_log_action_class():
         eq_(render('{{ log_action_class(id) }}', {'id': v.id}), cls)
 
 
-class TestDisplayUrl(unittest.TestCase):
+class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestDisplayUrl, self).setUp()
         self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')
 
     def test_utf8(self):
@@ -163,6 +164,7 @@ class TestDisplayUrl(unittest.TestCase):
 class TestDevFilesStatus(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestDevFilesStatus, self).setUp()
         self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,

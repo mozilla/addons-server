@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import tempfile
-import unittest
 
 from django.conf import settings
 from django.core.cache import cache
@@ -12,6 +11,7 @@ import jingo
 import mock
 from nose.tools import eq_, assert_raises, raises
 
+from amo.tests import BaseTestCase
 from amo.utils import (cache_ns_key, escape_all, find_language,
                        LocalFileStorage, no_jinja_autoescape, no_translation,
                        resize_image, rm_local_tmp_dir, slugify, slug_validator,
@@ -125,14 +125,16 @@ def test_no_translation():
     translation.activate(lang)
 
 
-class TestLocalFileStorage(unittest.TestCase):
+class TestLocalFileStorage(BaseTestCase):
 
     def setUp(self):
+        super(TestLocalFileStorage, self).setUp()
         self.tmp = tempfile.mkdtemp()
         self.stor = LocalFileStorage()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
+        super(TestLocalFileStorage, self).tearDown()
 
     def test_read_write(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
@@ -201,9 +203,10 @@ class TestLocalFileStorage(unittest.TestCase):
         eq_(os.path.exists(dp), True)
 
 
-class TestCacheNamespaces(unittest.TestCase):
+class TestCacheNamespaces(BaseTestCase):
 
     def setUp(self):
+        super(TestCacheNamespaces, self).setUp()
         cache.clear()
         self.namespace = 'redis-is-dead'
 

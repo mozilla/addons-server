@@ -10,6 +10,7 @@ from landfill.ratings import generate_ratings
 class RatingsTests(amo.tests.TestCase):
 
     def setUp(self):
+        super(RatingsTests, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
     def test_ratings_generation(self):

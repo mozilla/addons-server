@@ -28,6 +28,7 @@ class ReadOnlyModeTest(amo.tests.TestCase):
     extra = ('amo.middleware.ReadOnlyMiddleware',)
 
     def setUp(self):
+        super(ReadOnlyModeTest, self).setUp()
         models.signals.pre_save.connect(self.db_error)
         models.signals.pre_delete.connect(self.db_error)
         self.old_settings = dict((k, quickcopy(getattr(settings, k)))
@@ -49,6 +50,7 @@ class ReadOnlyModeTest(amo.tests.TestCase):
                 pass
         models.signals.pre_save.disconnect(self.db_error)
         models.signals.pre_delete.disconnect(self.db_error)
+        super(ReadOnlyModeTest, self).tearDown()
 
     def db_error(self, *args, **kwargs):
         raise mysql.OperationalError("You can't do this in read-only mode.")

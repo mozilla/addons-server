@@ -1,10 +1,9 @@
-from django import test
-
 from nose.tools import eq_
 from mock import Mock
 from pyquery import PyQuery as pq
 import jingo
 
+from amo.tests import BaseTestCase
 from amo.urlresolvers import reverse
 from bandwagon.helpers import (barometer, collection_favorite,
                                user_collection_list)
@@ -12,7 +11,7 @@ from bandwagon.models import Collection
 from users.models import UserProfile
 
 
-class TestHelpers(test.TestCase):
+class TestHelpers(BaseTestCase):
 
     def test_collection_favorite(self):
         self.user = UserProfile.objects.create(username='uniq', email='uniq')

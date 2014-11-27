@@ -46,6 +46,7 @@ class TestModelBase(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestModelBase, self).setUp()
         self.saved_cb = amo.models._on_change_callbacks.copy()
         amo.models._on_change_callbacks.clear()
         self.cb = Mock()
@@ -54,6 +55,7 @@ class TestModelBase(TestCase):
 
     def tearDown(self):
         amo.models._on_change_callbacks = self.saved_cb
+        super(TestModelBase, self).tearDown()
 
     def test_multiple_ignored(self):
         cb = Mock()

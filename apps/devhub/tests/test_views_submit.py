@@ -15,6 +15,7 @@ class TestSubmitPersona(amo.tests.TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):
+        super(TestSubmitPersona, self).setUp()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.url = reverse('devhub.themes.submit')

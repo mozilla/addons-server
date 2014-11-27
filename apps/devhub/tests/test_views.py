@@ -47,6 +47,7 @@ class HubTest(amo.tests.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
+        super(HubTest, self).setUp()
         self.url = reverse('devhub.index')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
@@ -266,6 +267,7 @@ class TestUpdateCompatibility(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']
 
     def setUp(self):
+        super(TestUpdateCompatibility, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons')
 
@@ -275,6 +277,7 @@ class TestUpdateCompatibility(amo.tests.TestCase):
 
     def tearDown(self):
         amo.FIREFOX.latest_version, amo.MOBILE.latest_version = self._versions
+        super(TestUpdateCompatibility, self).tearDown()
 
     def test_no_compat(self):
         self.client.logout()
@@ -331,6 +334,7 @@ class TestDevRequired(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestDevRequired, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.get_url = self.addon.get_dev_url('payments')
         self.post_url = self.addon.get_dev_url('payments.disable')
@@ -375,6 +379,7 @@ class TestVersionStats(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestVersionStats, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 
@@ -398,6 +403,7 @@ class TestEditPayments(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestEditPayments, self).setUp()
         self.addon = self.get_addon()
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
@@ -606,6 +612,7 @@ class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestDisablePayments, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
@@ -633,6 +640,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestPaymentsProfile, self).setUp()
         self.addon = a = self.get_addon()
         self.url = self.addon.get_dev_url('payments')
         # Make sure all the payment/profile data is clear.
@@ -716,6 +724,7 @@ class TestDelete(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestDelete, self).setUp()
         self.get_addon = lambda: Addon.objects.filter(id=3615)
         assert self.client.login(username='del@icio.us', password='password')
         self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
@@ -744,6 +753,7 @@ class TestHome(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestHome, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.index')
 
@@ -879,6 +889,7 @@ class TestProfileBase(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestProfileBase, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('profile')
@@ -1035,6 +1046,7 @@ class TestSubmitBase(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
+        super(TestSubmitBase, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = self.get_addon()
 
@@ -1078,6 +1090,7 @@ class TestSubmitStep2(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestSubmitStep2, self).setUp()
         self.client.login(username='regular@mozilla.com', password='password')
 
     def test_step_2_with_cookie(self):
@@ -1678,6 +1691,7 @@ class TestSubmitSteps(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestSubmitSteps, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
 
     def assert_linked(self, doc, numbers):
@@ -2616,6 +2630,7 @@ class TestDeleteAddon(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestDeleteAddon, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_dev_url('delete')
         self.client.login(username='admin@mozilla.com', password='password')
@@ -2638,6 +2653,7 @@ class TestRequestReview(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestRequestReview, self).setUp()
         self.addon = Addon.objects.create(type=1, name='xxx')
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
@@ -2741,6 +2757,7 @@ class TestRedirects(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestRedirects, self).setUp()
         self.base = reverse('devhub.index')
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
@@ -2798,6 +2815,7 @@ class TestRemoveLocale(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestRemoveLocale, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.addons.remove-locale', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')

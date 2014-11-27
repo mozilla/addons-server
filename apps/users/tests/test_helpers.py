@@ -105,6 +105,7 @@ def test_user_link_unicode():
 class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
 
     def setUp(self):
+        super(TestAddonUsersList, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.create_addon_user(self.addon)

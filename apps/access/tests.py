@@ -79,6 +79,7 @@ class TestHasPerm(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestHasPerm, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
@@ -201,6 +202,7 @@ class TestCheckReviewer(TestCase):
     fixtures = ['base/addon_3615', 'addons/persona']
 
     def setUp(self):
+        super(TestCheckReviewer, self).setUp()
         self.user = UserProfile.objects.get()
         self.persona = Addon.objects.get(pk=15663)
         self.addon = Addon.objects.get(pk=3615)

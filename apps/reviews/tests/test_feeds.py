@@ -11,6 +11,7 @@ class FeedTest(amo.tests.TestCase):
     # Rub some unicode all over the reviews feed.
 
     def setUp(self):
+        super(FeedTest, self).setUp()
         self.feed = feeds.ReviewsRss()
         self.u = u'Ελληνικά'
         self.wut = Translation(localized_string=self.u, locale='el')

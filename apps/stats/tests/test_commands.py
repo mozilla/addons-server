@@ -31,12 +31,14 @@ class FixturesFolderMixin(object):
             os.rmdir(dirpath)
 
     def setUp(self):
+        super(FixturesFolderMixin, self).setUp()
         self.clean_up_files()
         shutil.copytree(os.path.join(hive_folder, self.source_folder),
                         os.path.join(hive_folder, self.date))
 
     def tearDown(self):
         self.clean_up_files()
+        super(FixturesFolderMixin, self).tearDown()
 
 
 class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):

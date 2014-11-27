@@ -164,6 +164,7 @@ class TestListing(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
+        super(TestListing, self).setUp()
         cache.clear()
         self.url = reverse('browse.extensions')
 
@@ -400,6 +401,7 @@ class TestFeeds(amo.tests.TestCase):
                 'base/addon_3615']
 
     def setUp(self):
+        super(TestFeeds, self).setUp()
         cache.clear()
         self.url = reverse('browse.extensions')
         self.rss_url = reverse('browse.extensions.rss')
@@ -494,6 +496,7 @@ class TestFeaturedLocale(amo.tests.TestCase):
                 'base/addon_3615_featuredcollection']
 
     def setUp(self):
+        super(TestFeaturedLocale, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.persona = Addon.objects.get(pk=15679)
         self.extension = Addon.objects.get(pk=2464)
@@ -729,6 +732,7 @@ class TestListingByStatus(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestListingByStatus, self).setUp()
         self.addon = Addon.objects.get(id=3615)
 
     def get_addon(self, addon_status, file_status):
@@ -1110,6 +1114,7 @@ class TestLegacyRedirects(amo.tests.TestCase):
 class TestCategoriesFeed(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestCategoriesFeed, self).setUp()
         self.feed = feeds.CategoriesRss()
         self.u = u'Ελληνικά'
         self.wut = Translation(localized_string=self.u, locale='el')
@@ -1162,6 +1167,7 @@ class TestPersonas(amo.tests.TestCase):
                 'addons/featured', 'addons/persona')
 
     def setUp(self):
+        super(TestPersonas, self).setUp()
         self.landing_url = reverse('browse.personas')
         self.upandcoming_url = '{path}?sort=up-and-coming'.format(
             path=self.landing_url)
@@ -1341,6 +1347,7 @@ class TestMobileHeader(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestMobileHeader, self).setUp()
         self.url = reverse('browse.extensions')
 
     def get_pq(self):

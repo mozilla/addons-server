@@ -44,6 +44,7 @@ class TestIndex(amo.tests.TestCase):
     # TODO: Test valid version processing here.
 
     def setUp(self):
+        super(TestIndex, self).setUp()
         self.url = reverse('compat.index', args=[amo.COMPAT[0]['main']])
         CompatTotals.objects.create(app=1, total=1)
 
@@ -71,6 +72,7 @@ class TestIndex(amo.tests.TestCase):
 class TestIncoming(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestIncoming, self).setUp()
         self.url = reverse('compat.incoming')
         self.data = dict(incoming_data)
         self.json = json.dumps(self.data)
@@ -133,6 +135,7 @@ class TestReporterDetail(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestReporterDetail, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('compat.reporter_detail', args=[self.addon.guid])
         self.reports = []

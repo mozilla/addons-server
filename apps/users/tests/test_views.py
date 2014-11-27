@@ -56,6 +56,7 @@ class UserViewBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(UserViewBase, self).setUp()
         self.client = amo.tests.TestClient()
         self.client.get('/')
         self.user = UserProfile.objects.get(id='4043307')
@@ -293,6 +294,7 @@ class TestEditAdmin(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestEditAdmin, self).setUp()
         self.client.login(username='admin@mozilla.com', password='password')
         self.regular = self.get_user()
         self.url = reverse('users.admin_edit', args=[self.regular.pk])
@@ -388,6 +390,7 @@ class TestPasswordAdmin(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestPasswordAdmin, self).setUp()
         self.client.login(username='editor@mozilla.com', password='password')
         self.url = reverse('users.edit')
         self.correct = {'username': 'editor',
@@ -950,6 +953,7 @@ class TestUnsubscribe(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestUnsubscribe, self).setUp()
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def test_correct_url_update_notification(self):
@@ -1021,6 +1025,7 @@ class TestReset(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestReset, self).setUp()
         user = UserProfile.objects.get(email='editor@mozilla.com')
         self.token = [urlsafe_base64_encode(str(user.id)),
                       default_token_generator.make_token(user)]
@@ -1128,6 +1133,7 @@ class TestRegistration(UserViewBase):
 class TestProfileView(UserViewBase):
 
     def setUp(self):
+        super(TestProfileView, self).setUp()
         self.user = UserProfile.objects.create(homepage='http://example.com')
         self.url = reverse('users.profile', args=[self.user.id])
 
@@ -1203,6 +1209,7 @@ class TestProfileSections(amo.tests.TestCase):
                 'reviews/dev-reply']
 
     def setUp(self):
+        super(TestProfileSections, self).setUp()
         self.user = UserProfile.objects.get(id=10482)
         self.url = reverse('users.profile', args=[self.user.id])
 
@@ -1413,6 +1420,7 @@ class TestThemesProfile(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
+        super(TestThemesProfile, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
         self.url = self.user.get_user_url('themes')
 
@@ -1475,6 +1483,7 @@ class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestReportAbuse, self).setUp()
         self.full_page = reverse('users.abuse', args=[10482])
 
     @patch('captcha.fields.ReCaptchaField.clean')

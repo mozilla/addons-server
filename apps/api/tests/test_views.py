@@ -66,6 +66,7 @@ class UtilsTest(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(UtilsTest, self).setUp()
         self.a = Addon.objects.get(pk=3615)
 
     def test_dict(self):
@@ -695,6 +696,7 @@ class AddonFilterTest(TestCase):
     fixtures = ['base/appversion']
 
     def setUp(self):
+        super(AddonFilterTest, self).setUp()
         # Start with 2 compatible add-ons.
         self.addon1 = addon_factory(version_kw=dict(max_app_version='5.0'))
         self.addon2 = addon_factory(version_kw=dict(max_app_version='6.0'))
@@ -822,6 +824,7 @@ class TestGuidSearch(TestCase):
             '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
 
     def setUp(self):
+        super(TestGuidSearch, self).setUp()
         addon = Addon.objects.get(id=3615)
         c = CompatOverride.objects.create(guid=addon.guid)
         app = addon.compatible_apps.keys()[0]
@@ -932,6 +935,7 @@ class SearchTest(ESTestCase):
     no_results = """<searchresults total_results="0">"""
 
     def setUp(self):
+        super(SearchTest, self).setUp()
         self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                            disabled_by_user=False)
         t = Tag.objects.create(tag_text='ballin')
@@ -1271,12 +1275,10 @@ class LanguagePacks(UploadTest):
     fixtures = ['addons/listed']
 
     def setUp(self):
+        super(LanguagePacks, self).setUp()
         self.url = reverse('api.language', args=['1.5'])
         self.tb_url = self.url.replace('firefox', 'thunderbird')
         self.addon = Addon.objects.get(pk=3723)
-
-    def tearDown(self):
-        pass
 
     def test_search_language_pack(self):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)

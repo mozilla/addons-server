@@ -26,16 +26,16 @@ docs:
 	$(MAKE) -C docs html
 
 test:
-	python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	REUSE_DB=1 python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
 
 test_force_db:
-	FORCE_DB=1 python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
+	python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 $(ARGS)
 
 tdd:
-	python manage.py test --with-blockage --noinput --failfast --pdb --with-id -v 2 $(ARGS)
+	REUSE_DB=1 python manage.py test --with-blockage --noinput --failfast --pdb --with-id -v 2 $(ARGS)
 
 test_failed:
-	python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
+	REUSE_DB=1 python manage.py test --with-blockage --noinput --logging-clear-handlers --with-id -v 2 --failed $(ARGS)
 
 initialize_db:
 	python manage.py reset_db

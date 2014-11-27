@@ -238,6 +238,7 @@ class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(TestPrivacy, self).setUp()
         # The favorites collection is created automatically.
         self.url = reverse('collections.detail', args=['jbalogh', 'favorites'])
         self.client.login(username='jbalogh@mozilla.com', password='password')
@@ -287,6 +288,7 @@ class TestVotes(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(TestVotes, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='password')
         args = ['fligtar', 'slug']
         Collection.objects.create(slug='slug', author_id=9945)
@@ -351,6 +353,7 @@ class TestCRUD(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615', 'base/collections')
 
     def setUp(self):
+        super(TestCRUD, self).setUp()
         self.client = HappyUnicodeClient()
         self.add_url = reverse('collections.add')
         self.login_admin()
@@ -824,6 +827,7 @@ class TestChangeAddon(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(TestChangeAddon, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='password')
         self.add = reverse('collections.alter',
                            args=['jbalogh', 'mobile', 'add'])
@@ -924,6 +928,7 @@ class AjaxTest(amo.tests.TestCase):
                 'base/addon_5299_gcal', 'base/collections')
 
     def setUp(self):
+        super(AjaxTest, self).setUp()
         assert self.client.login(username='clouserw@gmail.com',
                                  password='password')
         self.user = UserProfile.objects.get(email='clouserw@gmail.com')
@@ -992,6 +997,7 @@ class TestWatching(amo.tests.TestCase):
     fixtures = ['base/users', 'base/collection_57181']
 
     def setUp(self):
+        super(TestWatching, self).setUp()
         self.collection = c = Collection.objects.get(id=57181)
         self.url = reverse('collections.watch',
                            args=[c.author.username, c.slug])
@@ -1064,6 +1070,7 @@ class TestCollectionListing(amo.tests.TestCase):
                 'base/collections', 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestCollectionListing, self).setUp()
         cache.clear()
         self.url = reverse('collections.list')
 
@@ -1168,6 +1175,7 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
     def setUp(self):
+        super(TestCollectionDetailFeed, self).setUp()
         self.collection = c = Collection.objects.get(id=57181)
         self.feed_url = reverse('collections.detail.rss',
                                 args=[c.author.username, c.slug])

@@ -36,6 +36,7 @@ class TestPurify(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestPurify, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
 
     def test_no_html(self):

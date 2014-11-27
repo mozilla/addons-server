@@ -37,6 +37,7 @@ class TestEmail(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestEmail, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.user = UserProfile.objects.get(pk=999)
 

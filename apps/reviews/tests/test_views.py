@@ -17,6 +17,7 @@ class ReviewTest(amo.tests.TestCase):
     fixtures = ['reviews/dev-reply.json', 'base/admin']
 
     def setUp(self):
+        super(ReviewTest, self).setUp()
         self.addon = Addon.objects.get(id=1865)
 
     def login_dev(self):
@@ -469,6 +470,7 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
     fixtures = ['reviews/dev-reply.json', 'base/admin', 'base/users']
 
     def setUp(self):
+        super(TestMobileReviews, self).setUp()
         self.addon = Addon.objects.get(id=1865)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.login_regular()

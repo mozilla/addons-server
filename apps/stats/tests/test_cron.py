@@ -86,6 +86,7 @@ class TestIndexStats(amo.tests.TestCase):
     fixtures = ['stats/test_models']
 
     def setUp(self):
+        super(TestIndexStats, self).setUp()
         self.downloads = (DownloadCount.objects.order_by('-date')
                           .values_list('id', flat=True))
         self.updates = (UpdateCount.objects.order_by('-date')

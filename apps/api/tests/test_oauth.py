@@ -185,6 +185,7 @@ class BaseOAuth(TestCase):
     fixtures = ['base/users', 'base/appversion', 'base/licenses']
 
     def setUp(self):
+        super(BaseOAuth, self).setUp()
         self.editor = UserProfile.objects.get(email='editor@mozilla.com')
         self.admin = UserProfile.objects.get(email='admin@mozilla.com')
         consumers = []
