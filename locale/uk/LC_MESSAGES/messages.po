@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-11-27 11:34+0000\n"
+"PO-Revision-Date: 2014-11-27 11:49+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1417088058.0\n"
+"X-POOTLE-MTIME: 1417088992.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5845,26 +5845,29 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
 msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
 msgstr ""
+"Дізнайтесь у цьому посібнику, як можна легко розширити Firefox за допомогою "
+"Jetpack."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
 msgid "Jetpack API Documentation"
-msgstr ""
+msgstr "Документація Jetpack API"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
 msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
 msgstr ""
+"Ця документація по Jetpack API є обов'язковою при роботі з вашим Jetpack."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
 msgid "How to Create Themes"
-msgstr ""
+msgstr "Як створювати теми"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
 msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr ""
+msgstr "Дізнайтесь з цієї офіційної інструкції, як створювати свою власну тему."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
 msgid "Search Plug-ins"
-msgstr ""
+msgstr "Пошукові плагіни"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
 msgid "Creating OpenSearch Plug-ins for Firefox"
