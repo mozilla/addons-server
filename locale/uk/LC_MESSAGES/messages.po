@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-11-27 11:49+0000\n"
+"PO-Revision-Date: 2014-12-01 14:55+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1417088992.0\n"
+"X-POOTLE-MTIME: 1417445732.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5871,35 +5871,40 @@ msgstr "Пошукові плагіни"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
 msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr ""
+msgstr "Створення плагінів OpenSearch для Firefox"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
 msgid "This article explains the structure and requirements of search plug-ins in Firefox."
-msgstr ""
+msgstr "Ця стаття пояснює структуру і вимоги до пошукових плагінів Firefox."
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
 msgid "Plug-ins"
-msgstr ""
+msgstr "Плагіни"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
 msgid "Plug-in Documentation Index"
-msgstr ""
+msgstr "Індекс документації плагінів"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
 msgid ""
 "Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in "
 "documentation index to learn more."
 msgstr ""
+"Плагіни для програм на основі Mozilla - це бінарні компоненти, які можуть "
+"відображувати вміст, який не може відобразити сама програма. Перегляньте "
+"індекс документації по плагінам у центрі розробника Mozilla, щоб дізнатись "
+"більше."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3 apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
 #: apps/devhub/templates/devhub/docs/how-to.html:111
 msgid "Theme Development"
-msgstr ""
+msgstr "Розробка тем"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11 apps/devhub/templates/devhub/docs/how-to.html:115
 msgid "Style Mozilla applications the way you want with pixel-perfect themes."
 msgstr ""
+"Надайте програмам Mozilla свій стиль з точністю до пікселя за допомогою тем."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
 msgid "Creating a Skin for Firefox"
@@ -6285,16 +6290,22 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
 msgstr ""
+"Цей додаток повинен бути сумісним з останнім випуском Firefox, а також бета "
+"версіями за 4 тижні перед їх фінальним випуском."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
+"<strong>Найважливіше</strong>, додаток повинен викликати широкий інтерес у "
+"користувачів Firefox та бути визначним майже в усіх відношеннях: "
+"користувацький інтерфейс, швидкодія, безпека, бути корисним чи цікавим. "
+"Відібрані повні теми також повинні бути візуально привабливими."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
-msgstr ""
+msgstr "Номінація додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "amo-featured at mozilla dot org"
@@ -7322,27 +7333,36 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:100
 msgid "Online Image Editor Resources"
-msgstr ""
+msgstr "Онлайн-сервіси редагування зображень"
 
 #: apps/devhub/templates/devhub/docs/themes.html:103
 msgid "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and easy-to-use tools for creating and editing images within a browser."
 msgstr ""
+"<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr пропонує професійні та легкі "
+"в користуванні інструменти для створення та редагування зображень прямо в "
+"браузері."
 
 #: apps/devhub/templates/devhub/docs/themes.html:110
 msgid "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch up photos with Photoshop&reg; Express, a free online photo editor."
 msgstr ""
+"<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Змінюйте, повертайте та "
+"ретушуйте фотографії з безкоштовним онлайновим редактором фотографій "
+"Photoshop&reg; Express."
 
 #: apps/devhub/templates/devhub/docs/themes.html:118
 msgid "Creating a Theme Footer Image"
-msgstr ""
+msgstr "Створення нижнього зображення теми"
 
 #: apps/devhub/templates/devhub/docs/themes.html:120
 msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
 msgstr ""
+"Нижнє зображення показується в якості тла нижньої частини вікна браузера, за "
+"панелями додатків та пошуку. Воно буде прив'язане до нижнього лівого кута "
+"браузера."
 
 #: apps/devhub/templates/devhub/docs/themes.html:128
 msgid "View a sample Theme Footer here."
-msgstr ""
+msgstr "Перегляньте зразок нижнього зображення теми тут."
 
 #: apps/devhub/templates/devhub/docs/themes.html:133
 msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
@@ -8135,44 +8155,51 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:186
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Видалити версію {version}"
 
 #: apps/devhub/templates/devhub/versions/list.html:187
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Ви збираєтесь видалити поточну версію свого додатку. Це може призвести до "
+"зміни статусу додатку чи втрати видимості його сторінки для публіки, якщо це "
+"єдина публічна версія вашого додатку."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Видалення цієї версії назавжди видалить:"
 
 #: apps/devhub/templates/devhub/versions/list.html:194
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
+"<strong>Важливо:</strong> Як тільки версія буде видалена, ви не зможете "
+"вивантажити нову версію з таким самим номером."
 
 #: apps/devhub/templates/devhub/versions/list.html:199
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr ""
+"Видалення версії, яка вже була перевірена, також може спричинити значну "
+"затримку при перевірці вашого наступного оновлення."
 
 #: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Ви дійсно бажаєте видалити цю версію?"
 
 #: apps/devhub/templates/devhub/versions/list.html:207
 msgid "Delete Version"
-msgstr ""
+msgstr "Видалити версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Disable Version"
-msgstr ""
+msgstr "Відключити версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Add a new Version"
-msgstr ""
+msgstr "Додати нову версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:218
 msgid "Add Version"
-msgstr ""
+msgstr "Додати версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:227
 msgid "Disabling your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -8229,6 +8256,7 @@ msgstr ""
 #: apps/discovery/modules.py:170
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
+"Швидко порівнюйте ціни при покупках в Інтернеті чи бронюванні авіаквитків."
 
 #: apps/discovery/modules.py:180
 msgid "Firefox 4 Collection"
