@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-12-01 14:55+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2014-12-02 13:52+0000\n"
+"Last-Translator: 6c6c6 <6c6c6.ukr@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1417445732.0\n"
+"X-POOTLE-MTIME: 1417528341.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -661,7 +661,7 @@ msgstr[2] "<strong>{0}</strong> користувачів"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Наведіть для попереднього перегляду"
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
@@ -961,7 +961,7 @@ msgstr "Керувати"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Піктограма {0}"
 
 #: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -1115,7 +1115,7 @@ msgstr "{0} користувачів"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "постійне посилання"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
@@ -1534,11 +1534,11 @@ msgstr "Запитано більше інформації"
 
 #: apps/amo/log.py:225
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Запитано спеціальний огляд {addon} {version}."
 
 #: apps/amo/log.py:226
 msgid "Super review requested"
-msgstr ""
+msgstr "Запитано спеціальний огляд"
 
 #: apps/amo/log.py:233
 msgid "Comment on {addon} {version}."
@@ -1679,7 +1679,7 @@ msgstr ""
 
 #: apps/amo/log.py:416
 msgid "App disabled"
-msgstr ""
+msgstr "Застосунок вимкнено"
 
 #: apps/amo/log.py:423
 msgid "{addon} escalated because of high number of abuse reports."
@@ -1687,7 +1687,7 @@ msgstr ""
 
 #: apps/amo/log.py:424
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Багато скарг"
 
 #: apps/amo/log.py:431
 msgid "{addon} escalated by reviewer."
@@ -1707,7 +1707,7 @@ msgstr "Відео вилучено"
 
 #: apps/amo/log.py:447
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Повторний розгляд {addon} через додавання нових пристроїв."
 
 #: apps/amo/log.py:448
 msgid "Device(s) Added"
@@ -1715,11 +1715,11 @@ msgstr "Пристрій(-ої) додано"
 
 #: apps/amo/log.py:455
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "Підтримку пристроїв {addon} вручну змінено рецензентом."
 
 #: apps/amo/log.py:456
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Пристрої змінено рецензентом"
 
 #: apps/amo/log.py:473
 msgid "Created: {0}."
@@ -1739,11 +1739,11 @@ msgstr "Відредаговано користувачем {user} по прич
 
 #: apps/amo/log.py:497
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Користувача {user} анонімізовано."
 
 #: apps/amo/log.py:503
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Користувача {user} обмежено."
 
 #: apps/amo/log.py:509
 msgid "Admin {0} viewed activity log for {user}."
@@ -1767,7 +1767,7 @@ msgstr "Користувач {0.name} вилучений з {group}."
 
 #: apps/amo/log.py:543
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "Мінімальні вимоги {addon} змінено вручну рецензентом."
 
 #: apps/amo/log.py:544
 msgid "Requirements Changed by Reviewer"
@@ -1789,7 +1789,7 @@ msgstr "Статус {version} змінено на {0}."
 #. L10n: {0} is the status
 #: apps/amo/log.py:567
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Користувача {0.name} {0.id} видалено через інструмент пошуку."
 
 #: apps/amo/log.py:573
 msgid "{addon} content rating changed to Adult."
@@ -1824,6 +1824,21 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
+"<h1>Вибачте, проте ми не можемо знайти те, що ви шукали.</h1> <p>Запитану "
+"сторінка або файл не знайдено на нашому сайті. Можливо, ви натиснули "
+"застаріле посилання або зробили помилку в адресі.</p> <ul> <li>Якщо ви "
+"вводили адресу, будь ласка, переконайтесь у вірності її написання.</li> "
+"<li>Якщо ви звідкілясь перейшли за посиланням, будь ласка, повідомте нам про "
+"це за адресою<a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Повідомте "
+"нам, звідкіля ви прийшли та що ви шукаєте, і ми зробимо все можливе, щоб "
+"виправити це.</li> </ul> <p>Або ви можете перейти до деяких популярних "
+"сторінок на нашому сайті.</p> <ul> <li>Можливо вас зацікавить <a href=\"%"
+"(rec)s\">список обраних додатків</a>?</li> <li> Чи ви хочете <a href=\"%"
+"(search)s\">знайти додаток</a>? Ви можете перейти до <a href=\"%"
+"(search)s\">сторінки пошуку</a> або просто використати поле пошуку, "
+"розташоване вище.</li> <li>Якщо ви хочете розпочати з початку, просто "
+"перейдіть до <a href=\"%(home)s\">головної сторінки додатків</a>.</li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1989,7 +2004,7 @@ msgstr "Надано недійсні дані: {0}"
 
 #: apps/api/handlers.py:64
 msgid "Add-on did not validate: %s"
-msgstr ""
+msgstr "Додаток не перевірено: %s"
 
 #: apps/api/views.py:247
 msgid "Not implemented yet."
