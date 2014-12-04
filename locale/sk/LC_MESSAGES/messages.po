@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-12-04 13:53+0000\n"
+"PO-Revision-Date: 2014-12-04 15:04+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1417701183.0\n"
+"X-POOTLE-MTIME: 1417705495.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6247,9 +6247,11 @@ msgstr ""
 "každá verze musí být zkontrolována redaktorem."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
-#, fuzzy
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
-msgstr "Nové verze budou zařazeny do fronty na kontrolu a jakékoliv další odeslané verze, které budou přidány před schválením té předchozí, posunou verzi na konec fronty."
+msgstr ""
+"Nové verzie budú zaradené do fronty na kontrolu a akékoľvek ďalšie odoslané "
+"verzie, ktoré budú pridané pred schválením tej predchádzajúcej, posunú "
+"verziu na koniec fronty."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
@@ -6266,13 +6268,14 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
-#, fuzzy
 msgid ""
 "Once a file meeting this criteria is uploaded to AMO, it will automatically be marked as a beta version. Users of add-ons with these unique version numbers will automatically be served the newest "
 "beta updates."
 msgstr ""
-"Jakmile jsou splněna kritéria pro pojmenování soubor a ten je nahrán na AMO, je automaticky označen jako betaverze. Uživatelům doplňků s takto unikátními verzemi budou automaticky betaverze "
-"nainstalovány."
+"Okamžite, ako budú splnené kritériá pre pomenovanie súboru a ten bude "
+"nahraný na AMO, bude automaticky označený ako betaverzia. Používateľom "
+"doplnku s takto unikátnymi verziami budú automaticky betaverzie "
+"nainštalované."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid ""
@@ -6432,9 +6435,8 @@ msgstr "Nominácie doplnku"
 
 # 80%
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
-#, fuzzy
 msgid "amo-featured at mozilla dot org"
-msgstr "amo-featured zavináč mozilla tečka org"
+msgstr "amo-featured zavináč mozilla bodka org"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
@@ -7464,14 +7466,20 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:203
 msgid "Your design does not contain sexually explicit or offensive content."
 msgstr ""
+"Váš dizajn neobsahuje žiadny provokatívny, ofenzívny ani sexuálne ladený "
+"obsah."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:208
 msgid "Your design does not include identifiable elements of any non-celebrity person(s) other than yourself or individuals who have given you permission to do so."
 msgstr ""
+"Váš dizajn neobsahuje identifikovateľné prvky akejkoľvek neznámej osoby "
+"okrem vás, alebo osôb, ktoré k tomu dali súhlas."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:215
 msgid "Your design does not depict violence or Nazi imagery, nor is it discriminatory or hateful."
 msgstr ""
+"Váš dizajn neobsahuje násilie, alebo nacistické obrázky. Nie je "
+"diskriminačný ani nenávistný."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:221
 msgid "Your design does not relate to gambling."
@@ -7589,7 +7597,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/themes.html:100
 msgid "Online Image Editor Resources"
-msgstr ""
+msgstr "Online editory obrázkov"
 
 #: apps/devhub/templates/devhub/docs/themes.html:103
 msgid "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and easy-to-use tools for creating and editing images within a browser."
