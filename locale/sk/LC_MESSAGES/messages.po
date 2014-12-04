@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-10-27 23:06+0000\n"
+"PO-Revision-Date: 2014-12-04 13:53+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1414451196.0\n"
+"X-POOTLE-MTIME: 1417701183.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6334,13 +6334,14 @@ msgid "Code Disputes"
 msgstr "Otázky ku kódu"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:90
-#, fuzzy
 msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
-"Řada doplňků umožňuje, aby byl jejich kód veřejně zobrazitelný. To však neznamená, že je zdrojový kód open source nebo že je dostupný pro použití v jiném doplňku. Původní autor si může ponechat "
-"práva na svou vlastní práci, pokud není v licenci doplňku řečeno jinak."
+"Veľa doplnkov umožňuje, aby bolo možné ich kód verejne zobraziť. Tento fakt "
+"však neznamená, že je daný kód open source, alebo je k dispozícií pre "
+"použitie v inom doplnku. Pôvodný autor si môže ponechať práva na svoju "
+"vlastnú prácu, ak to v licencii doplnku nie je definované inak."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
@@ -6682,12 +6683,22 @@ msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
+"Viacero z hore uvedených obmedzení je testovaných automaticky procesom "
+"kontroly doplnkov, ktorý na problémy upozorňuje redaktora pri kontrole. Viac "
+"informácií o tejto kontrole si môžete prečítať v dokumente <a href=\"%"
+"(link_validation)s\">pomoc pri kontrole</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
+"Ak je doplnok určený pre konkrétnu stránku, je odporúčané, aby bol v rámci "
+"kontroly poskytnutý testovací účet pre spomínanú stránku (ak je požadovaný). "
+"Tiež je dobré redaktorovi poskytnúť informácie, ktoré mu pomôžu lepšie "
+"pochopiť funkciu doplnku a tým mu zjednodušia aj proces kontroly. Takáto "
+"informácia môže byť vložená do poľa s poznámkou pre redaktora pri pridávaní "
+"novej verzie v rámci stránok pre vývojárov."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
