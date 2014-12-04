@@ -993,31 +993,36 @@ class TestStatusFromUpload(TestVersionFromUpload):
     def setUp(self):
         super(TestStatusFromUpload, self).setUp()
         self.current = self.addon.current_version
-        self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
 
     def test_status(self):
+        self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
         Version.from_upload(self.upload, self.addon, [self.platform])
         eq_(File.objects.filter(version=self.current)[0].status,
             amo.STATUS_DISABLED)
 
     def test_status_beta(self):
-        # Create a version and switch the add-on status to public.
-        Version.from_upload(self.upload, self.addon, [self.platform])
-        File.objects.all().update(status=amo.STATUS_PUBLIC)
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        # Create an under review version.
-        upload = self.get_upload('extension-0.2.xpi')
-        Version.from_upload(upload, self.addon, [self.platform])
-        # Create a beta version.
-        upload = self.get_upload('extension-0.2b1.xpi')
-        version = Version.from_upload(upload, self.addon, [self.platform],
-                                      is_beta=True)
-        # Check that it doesn't modify the public status and that the
-        # created file is in the beta status.
+        # Check that the add-on + files are in the public status.
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
         eq_(File.objects.filter(version=self.current)[0].status,
             amo.STATUS_PUBLIC)
+        # Create a new under review version with a pending file.
+        upload = self.get_upload('extension-0.2.xpi')
+        new_version = Version.from_upload(upload, self.addon, [self.platform])
+        new_version.files.all()[0].update(status=amo.STATUS_PENDING)
+        # Create a beta version.
+        upload = self.get_upload('extension-0.2b1.xpi')
+        beta_version = Version.from_upload(upload, self.addon, [self.platform],
+                                           is_beta=True)
+        # Check that it doesn't modify the public status.
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        eq_(File.objects.filter(version=version)[0].status, amo.STATUS_BETA)
+        eq_(File.objects.filter(version=self.current)[0].status,
+            amo.STATUS_PUBLIC)
+        # Check that the file created with the beta version is in beta status.
+        eq_(File.objects.filter(version=beta_version)[0].status,
+            amo.STATUS_BETA)
+        # Check that the previously uploaded version is still pending.
+        eq_(File.objects.filter(version=new_version)[0].status,
+            amo.STATUS_PENDING)
 
 
 class TestMobileVersions(TestMobile):
