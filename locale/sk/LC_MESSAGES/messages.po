@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-15 09:05-0700\n"
-"PO-Revision-Date: 2014-12-04 15:04+0000\n"
+"PO-Revision-Date: 2014-12-04 15:41+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1417705495.0\n"
+"X-POOTLE-MTIME: 1417707705.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7886,15 +7886,18 @@ msgstr "Pokud váš doplněk přenáší jakákoliv data z počítače uživatel
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
+"Ak váš doplnok obsahuje binárny alebo obfuskovaný kód a nejedná sa o známu "
+"knižnicu, nahrajte pre kontrolu jeho zdrojový kód."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Prečítajte si viac o zásadách pre kontrolu zdrojového kódu."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
-#, fuzzy
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "Po zahájení procesu kontroly nemůžete odebrat konkrétní soubor. Musíte smazat celou verzi."
+msgstr ""
+"Po zahájení procesu kontroly nemôžete odobrať konkrétny súbor. Musíte "
+"odstrániť celú verziu."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -7926,7 +7929,7 @@ msgstr "Doplnok zahrnutý v našom programe pre príspevky môže žiadať od po
 
 #: apps/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "Umožnite používateľom v Centre pre vývojárov podporovať váš doplnok."
 
 #: apps/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
@@ -8078,16 +8081,19 @@ msgstr "Môžu ďalší vytvárať odvodené diela z vašej témy?"
 #: apps/devhub/templates/devhub/personas/edit.html:174 apps/devhub/templates/devhub/personas/submit.html:120
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
+"Autor dáva ostatným právo kopírovať, distribuovať, zobrazovať a upravovať. "
+"Dáva tiež dovolenie na vytváranie odvodených diel."
 
 #: apps/devhub/templates/devhub/personas/edit.html:182 apps/devhub/templates/devhub/personas/submit.html:128
-#, fuzzy
 msgid "Yes, as long as they share alike"
-msgstr "Ano, pokud je respektována původní licence"
+msgstr "Áno, ak je rešpektovaná pôvodná licencia"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
-#, fuzzy
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Licence umožňuje ostatním distribuovat odvozenou práci pouze pod stejnou licencí či jinou, která je slučitelná s licencí původního díla."
+msgstr ""
+"Licencia umožňuje ostatným distribuovať odvodenú prácu len pod rovnakou "
+"licenciou, prípadne inou, ktorá je však zlúčiteľná s licenciou pôvodného "
+"diela."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -8193,9 +8199,8 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
-#, fuzzy
 msgid "Submit Theme"
-msgstr "Přidat motiv"
+msgstr "Pridať tému"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:11
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
@@ -8364,9 +8369,9 @@ msgstr "Verzia {0}"
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} súbor"
+msgstr[1] "{0} súbory"
+msgstr[2] "{0} súborov"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8374,7 +8379,7 @@ msgstr "0 súborov"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Pozícia vo fronte: %(pos)s z %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8443,19 +8448,25 @@ msgstr "Odstránenie verzie {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Chystáte sa odstrániť aktuálnu verziu svojho doplnku. Táto akcia môže "
+"vykonať zmenu stavu vášho doplnku, alebo skryť verejne dostupnú stránku "
+"doplnku, ak sa jedná o jedinú jeho verejnú verziu."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
-#, fuzzy
 msgid "Deleting this version will permanently delete:"
-msgstr "Smazáním této verze trvale smažete:"
+msgstr "Odstránením tejto verzie doplnku natrvalo odstránite:"
 
 #: apps/devhub/templates/devhub/versions/list.html:194
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
+"<strong>Dôležité:</strong> Okamžite ako je verzia odstránená, nemôžete "
+"nahrať novú verziu s rovnakým číslom verzie."
 
 #: apps/devhub/templates/devhub/versions/list.html:199
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr ""
+"Odstránením verzie, ktorá už bola skontrolovaná, môžete spôsobiť zdržanie "
+"pri kontrole vašej budúcej aktualizácie."
 
 #: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
@@ -8478,18 +8489,20 @@ msgid "Add Version"
 msgstr "Pridať verziu"
 
 #: apps/devhub/templates/devhub/versions/list.html:227
-#, fuzzy
 msgid "Disabling your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Zakázáním svého doplňku zamezíte jeho zobrazování v naší galerii a uživatelé k němu přestanou získávat automatické aktualizace."
+msgstr ""
+"Zakázaním svojho doplnku zabránite jeho zobrazovaniu v našej galérii a "
+"používatelia k nemu prestanú získavať automatické aktualizácie."
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to disable your add-on?"
 msgstr "Naozaj chcete zakázať svoj doplnok?"
 
 #: apps/devhub/templates/devhub/versions/list.html:256
-#, fuzzy
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Zrušením vaší žádosti o kontrolu ponecháte svůj doplněk předběžně zkontrolovaným."
+msgstr ""
+"Zrušením vašej žiadosti o kontrolu ponecháte svoj doplnok predbežne "
+"skontrolovaným."
 
 #: apps/devhub/templates/devhub/versions/list.html:261
 #, fuzzy
