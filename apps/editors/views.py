@@ -432,8 +432,15 @@ def review(request, addon):
     redirect_url = reverse('editors.queue_%s' % queue_type)
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
-
+    import ipdb; ipdb.set_trace()
     if request.method == 'POST' and form.is_valid():
+        if addon.admin_review and not acl.action_allowed(
+                request, 'EditorAdminTools', 'View'):
+            amo.messages.warning(
+                request, _('Insufficient privileges to review add-on flagged '
+                           'for super-review.'))
+            return redirect(reverse('editors.queue'))
+
         form.helper.process()
         if form.cleaned_data.get('notify'):
             EditorSubscription.objects.get_or_create(user=request.amo_user,

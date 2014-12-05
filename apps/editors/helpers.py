@@ -364,7 +364,7 @@ class ReviewHelper:
         self.addon = addon
         self.all_files = version.files.all() if version else []
         self.get_review_type(request, addon, version)
-        self.actions = self.get_actions()
+        self.actions = self.get_actions(request, addon)
 
     def set_data(self, data):
         self.handler.set_data(data)
@@ -385,21 +385,22 @@ class ReviewHelper:
             self.review_type = 'pending'
             self.handler = ReviewFiles(request, addon, version, 'pending')
 
-    def get_actions(self):
+    def get_actions(self, request, addon):
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if self.review_type != 'preliminary':
-            actions['public'] = {'method': self.handler.process_public,
-                                 'minimal': False,
-                                 'label': _lazy('Push to public')}
-
-        actions['prelim'] = {'method': self.handler.process_preliminary,
-                             'label': labels['prelim'],
-                             'minimal': False}
-        actions['reject'] = {'method': self.handler.process_sandbox,
-                             'label': _lazy('Reject'),
-                             'minimal': False}
+        if not addon.admin_review or acl.action_allowed(
+                request, 'ReviewerAdminTools', 'View'):
+            if self.review_type != 'preliminary':
+                actions['public'] = {'method': self.handler.process_public,
+                                     'minimal': False,
+                                     'label': _lazy('Push to public')}
+            actions['prelim'] = {'method': self.handler.process_preliminary,
+                                 'label': labels['prelim'],
+                                 'minimal': False}
+            actions['reject'] = {'method': self.handler.process_sandbox,
+                                 'label': _lazy('Reject'),
+                                 'minimal': False}
         actions['info'] = {'method': self.handler.request_information,
                            'label': _lazy('Request more information'),
                            'minimal': True}

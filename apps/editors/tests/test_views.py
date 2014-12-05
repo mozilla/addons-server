@@ -2025,6 +2025,31 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
+    def test_admin_flagged_addon_actions_as_admin(self):
+        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        # Test with an admin editor.
+        self.login_as_admin()
+
+        response = self.client.post(self.url, self.get_dict(action='public'))
+        eq_(response.status_code, 302)
+        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+
+    def test_admin_flagged_addon_actions_as_editor(self):
+        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        # Test with a non-admin editor.
+        self.login_as_editor()
+
+        response = self.client.post(self.url, self.get_dict(action='public'),
+                                    follow=True)
+        eq_(response.status_code, 200)
+        # They add-on status must not change as non-admin editors are not
+        # allowed to review admin-flagged add-ons.
+        eq_(self.get_addon().status, amo.STATUS_NOMINATED)
+        eq_(pq(response.content)('.notification-box').text(),
+            'Insufficient privileges to review add-on '
+            'flagged for super-review.')
+
 
 class TestReviewPreliminary(ReviewBase):
 
