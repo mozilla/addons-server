@@ -96,12 +96,11 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         p1 = Persona.objects.get(pk=559)
         p2 = Persona.objects.get(pk=575)
 
-        # TODO: remove _tmp from the fields when we use the ADI stuff for real
         # The popularity is the average over the last 7 days, and as we created
         # entries with one more user per day in the past (or 100 more), the
         # calculation is "sum(range(7)) / 7" (or "sum(range(7)) * 100 / 7").
-        eq_(p1.popularity_tmp, 3)  # sum(range(7)) / 7
-        eq_(p2.popularity_tmp, 300)  # sum(range(7)) * 100 / 7
+        eq_(p1.popularity, 3)  # sum(range(7)) / 7
+        eq_(p2.popularity, 300)  # sum(range(7)) * 100 / 7
 
         # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
         # The movers is computed with the following formula:
@@ -109,9 +108,9 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         # movers: (popularity - previous_3_weeks) / previous_3_weeks
         # The calculation for the previous_3_weeks is:
         # previous_3_weeks: (sum(range(28) - sum(range(7))) * 100 / 21 == 1700.
-        eq_(p1.movers_tmp, 0.0)  # Because the popularity is <= 100.
+        eq_(p1.movers, 0.0)  # Because the popularity is <= 100.
         # We round the results to cope with floating point imprecision.
-        eq_(round(p2.movers_tmp, 5), round((300.0 - 1700) / 1700, 5))
+        eq_(round(p2.movers, 5), round((300.0 - 1700) / 1700, 5))
 
     def test_is_valid_source(self):
         assert is_valid_source('foo',

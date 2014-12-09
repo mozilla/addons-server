@@ -68,11 +68,10 @@ class Command(BaseCommand):
         ThemeUpdateCountBulk.objects.bulk_create(temp_update_counts, 100)
 
         # Update in bulk from the above temp table: again, much faster.
-        # TODO: remove _tmp from the fields when the ADI stuff is used
         raw_query = """
             UPDATE personas p, theme_update_counts_bulk t
-            SET p.popularity_tmp=t.popularity,
-                p.movers_tmp=t.movers
+            SET p.popularity=t.popularity,
+                p.movers=t.movers
             WHERE t.persona_id=p.id
         """
         cursor = connection.cursor()
