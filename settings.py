@@ -4,6 +4,8 @@ If you need to overload settings, please do so in a local_settings.py file (it
 won't be tracked in git).
 
 """
+import os
+
 from lib.settings_base import *  # noqa
 
 DEBUG = True
@@ -31,7 +33,7 @@ INSTALLED_APPS += (
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.MemcachedCache',
-        'LOCATION': 'localhost:11211',
+        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     }
 }
 

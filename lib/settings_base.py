@@ -5,6 +5,7 @@ import logging
 import os
 import socket
 
+import dj_database_url
 from django.utils.functional import lazy
 from heka.config import client_from_dict_config
 
@@ -78,28 +79,22 @@ MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
 ABUSE_EMAIL = 'marketplace-staff+abuse@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
-DATABASES = {
-    'default': {
-        'NAME': 'olympia',
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
-        'PORT': '',
-        'USER': 'root',
-        'PASSWORD': '',
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-        'TEST_CHARSET': 'utf8',
-        'TEST_COLLATION': 'utf8_general_ci',
-    },
-}
+DATABASE_URL = os.environ.get('DATABASE_URL',
+                              'mysql://root:@localhost/olympia')
+DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['default']['TEST_CHARSET'] = 'utf8'
+DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django
 # database connection, only some values are supported.
 SERVICES_DATABASE = {
-    'NAME': 'olympia',
-    'USER': 'root',
-    'PASSWORD': '',
-    'HOST': '',
+    'NAME': DATABASES['default']['NAME'],
+    'USER': DATABASES['default']['USER'],
+    'PASSWORD': DATABASES['default']['PASSWORD'],
+    'HOST': DATABASES['default']['HOST'],
+    'PORT': DATABASES['default']['PORT'],
 }
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
@@ -1208,7 +1203,10 @@ PERF_THRESHOLD = 25
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
 
-REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
+REDIS_BACKENDS = {
+    'master': 'redis://{location}?socket_timeout=0.5'.format(
+        location=REDIS_LOCATION)}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator
@@ -1267,8 +1265,8 @@ BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
                         'sdk-versions/')
 
-# elasticsearch
-ES_HOSTS = ['127.0.0.1:9200']
+## elasticsearch
+ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
     'default': 'addons',
