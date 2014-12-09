@@ -1349,11 +1349,6 @@ SIGNING_OMIT_PER_FILE_SIGS = True
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
 
-# Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
-# Flip this on in your local settings or set an environment variable to
-# experience the joy of ES tests.
-RUN_ES_TESTS = False
-
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.
 SOLITUDE_HOSTS = ('',)

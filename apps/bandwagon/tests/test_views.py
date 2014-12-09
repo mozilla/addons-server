@@ -8,6 +8,7 @@ import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
 
+import pytest
 from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -27,6 +28,9 @@ from bandwagon.views import CollectionFilter
 from browse.tests import TestFeeds
 from devhub.models import ActivityLog
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_addons_form():

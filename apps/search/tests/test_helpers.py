@@ -1,10 +1,14 @@
 from django.utils import translation
 
 import jingo
+import pytest
 from mock import Mock
 from nose.tools import eq_
 
 from amo.tests.test_helpers import render
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_showing_helper():

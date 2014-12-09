@@ -17,6 +17,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
+from django.utils.translation import force_text
 
 import commonware
 from cache_nuggets.lib import memoize
@@ -85,7 +86,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return unicode(self.id)
 
     def get_platform_display(self):
-        return unicode(amo.PLATFORMS[self.platform].name)
+        return force_text(amo.PLATFORMS[self.platform].name)
 
     @property
     def has_been_validated(self):

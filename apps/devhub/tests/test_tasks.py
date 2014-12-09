@@ -5,6 +5,7 @@ import tempfile
 from django.conf import settings
 
 import mock
+import pytest
 from nose.tools import eq_
 from PIL import Image
 
@@ -15,6 +16,9 @@ from amo.helpers import user_media_path
 from amo.tests.test_helpers import get_image_path
 from devhub import tasks
 from files.models import FileUpload
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_resize_icon_shrink():

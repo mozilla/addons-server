@@ -9,6 +9,7 @@ from django.utils import translation
 
 import jingo
 import mock
+import pytest
 from nose.tools import eq_, assert_raises, raises
 
 from amo.tests import BaseTestCase
@@ -17,6 +18,9 @@ from amo.utils import (cache_ns_key, escape_all, find_language,
                        resize_image, rm_local_tmp_dir, slugify, slug_validator,
                        to_language)
 from product_details import product_details
+
+
+pytestmark = pytest.mark.django_db
 
 u = u'Ελληνικά'
 
@@ -100,6 +104,9 @@ def test_find_language():
         yield check, a, b
 
 
+@pytest.mark.skipif(
+    not product_details.last_update,
+    reason="We don't want to download product_details on travis")
 def test_spotcheck():
     """Check a couple product-details files to make sure they're available."""
     languages = product_details.languages

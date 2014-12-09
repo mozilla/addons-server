@@ -37,26 +37,6 @@ pip install -U --exists-action=w --no-deps -q \
 	-f https://pyrepo.addons.mozilla.org/ \
 	-r requirements/compiled.txt -r requirements/test.txt
 
-# Create paths we want for addons
-if [ ! -d "/tmp/warez" ]; then
-    mkdir /tmp/warez
-fi
-
-if [ ! -d "$LOCALE" ]; then
-    echo "No locale dir?  Cloning..."
-    svn co http://svn.mozilla.org/addons/trunk/site/app/locale/ $LOCALE
-fi
-
-# Install node deps locally.
-npm install
-export PATH="./node_modules/.bin/:${PATH}"
-
-if [ -z $SET_ES_TESTS ]; then
-    RUN_ES_TESTS=False
-else
-    RUN_ES_TESTS=True
-fi
-
 cat > local_settings.py <<SETTINGS
 from settings_ci import *
 
@@ -76,30 +56,10 @@ RUNNING_IN_JENKINS = True
 
 SETTINGS
 
-# Update product details to pull in any changes (namely, 'dbg' locale)
-echo "Updating product details..."
-python manage.py update_product_details
-
-
-# Manage statics (collect and compress).
-echo "collecting statics..." `date`
-
-python manage.py collectstatic --noinput
-
-echo "building assets..." `date`
-
-python manage.py compress_assets
-
 
 echo "Starting tests..." `date`
-export FORCE_DB='yes sir'
 
-if [[ $3 = 'with-coverage' ]]; then
-    coverage run manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit
-    coverage xml $(find apps lib -name '*.py')
-else
-    python manage.py test -v 2 --noinput --logging-clear-handlers --with-xunit --with-blockage --http-whitelist=127.0.0.1,localhost,${ES_HOST}
-fi
+py.test -v
 
 
 echo "Building documentation..." `date`

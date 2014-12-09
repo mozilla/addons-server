@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 
+import pytest
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -21,6 +22,9 @@ from users.models import UserProfile
 from versions.models import Version
 
 from . test_models import create_addon_file
+
+
+pytestmark = pytest.mark.django_db
 
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,

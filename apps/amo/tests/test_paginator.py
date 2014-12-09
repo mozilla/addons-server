@@ -1,7 +1,11 @@
+import pytest
 from mock import Mock
 from nose.tools import eq_
 
 from amo.helpers import Paginator
+
+
+pytestmark = pytest.mark.django_db
 
 
 def mock_pager(page_number, num_pages, count):

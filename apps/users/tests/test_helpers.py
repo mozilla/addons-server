@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 
+import pytest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -11,6 +12,9 @@ import amo.tests
 from users.helpers import (addon_users_list, emaillink, user_data, user_link,
                            users_list)
 from users.models import UserProfile, RequestUser
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_emaillink():

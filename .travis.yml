@@ -1,7 +1,12 @@
 language: python
 python:
   - "2.6"
-  - "2.7"
+env:
+  - TOX_ENV=flake8
+  - TOX_ENV=docs
+  - TOX_ENV=es
+  - TOX_ENV=addons-devhub-editors
+  - TOX_ENV=main
 services:
   - memcached
 before_install:
@@ -9,14 +14,11 @@ before_install:
   - wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.deb && sudo dpkg -i elasticsearch-1.3.2.deb
   - sudo /usr/share/elasticsearch/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
 install:
-  - make update_deps
-  - npm install
+  - pip install tox
 before_script:
   - mysql -e 'create database olympia;'
-  - make update_assets
 script:
-  - DJANGO_SETTINGS_MODULE=settings_ci make flake8 && DJANGO_SETTINGS_MODULE=settings_ci make test
-  - make docs SPHINXOPTS='-nW'
+  - tox -v -e $TOX_ENV --recreate
 notifications:
   irc:
     channels:

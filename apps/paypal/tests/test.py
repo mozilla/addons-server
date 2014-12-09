@@ -6,11 +6,15 @@ import urlparse
 from django.conf import settings
 
 import mock
+import pytest
 from mock import Mock
 from nose.tools import eq_
 
 import amo.tests
 import paypal
+
+
+pytestmark = pytest.mark.django_db
 
 good_response = (
     'responseEnvelope.timestamp='

@@ -1361,7 +1361,7 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.STATIC_ROOT
+        img = "static/img/notifications/error.png"
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)

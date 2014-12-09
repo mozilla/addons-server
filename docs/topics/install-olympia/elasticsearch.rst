@@ -91,12 +91,19 @@ Testing with Elasticsearch
 --------------------------
 
 All test cases using Elasticsearch should inherit from ``amo.tests.ESTestCase``.
-All such tests will be skipped by the test runner unless::
+All such tests are marked with the ``es_tests`` pytest_ marker. To run only
+those tests::
 
-    RUN_ES_TESTS = True
+    py.test -m es_tests
 
-This is done as a performance optimization to keep the run time of the test
-suite down, unless necessary.
+or
+
+::
+
+    make test_es
+
+.. _pytest: http://pytest.org/latest/
+
 
 Troubleshooting
 ---------------

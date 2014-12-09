@@ -2,6 +2,7 @@ import json
 from contextlib import contextmanager
 from tempfile import NamedTemporaryFile
 
+import pytest
 from nose.tools import eq_
 
 import amo
@@ -11,6 +12,9 @@ from applications.models import AppVersion
 from files.models import File
 from files.utils import find_jetpacks, is_beta, PackageJSONExtractor
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_is_beta():

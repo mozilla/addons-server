@@ -63,8 +63,6 @@ UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
-# Overload in local_settings.py to run elasticsearch related tests.
-RUN_ES_TESTS = False
 
 SITE_URL = 'http://localhost:8000/'
 SERVICES_DOMAIN = 'localhost:8000'

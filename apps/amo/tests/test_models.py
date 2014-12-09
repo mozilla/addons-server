@@ -1,4 +1,4 @@
-
+import pytest
 from mock import Mock
 from nose.tools import eq_
 
@@ -7,6 +7,9 @@ from amo.models import manual_order
 from amo.tests import TestCase
 from amo import models as context
 from addons.models import Addon
+
+
+pytestmark = pytest.mark.django_db
 
 
 class ManualOrderTest(TestCase):
