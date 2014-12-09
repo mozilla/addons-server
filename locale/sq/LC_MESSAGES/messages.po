@@ -475,7 +475,7 @@ msgstr "Përditësuar"
 #: apps/devhub/templates/devhub/addons/edit/support.html:42
 #: apps/discovery/templates/discovery/addons/detail.html:81
 msgid "Website"
-msgstr "Sajt Web"
+msgstr "Sajt"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51
@@ -6042,7 +6042,7 @@ msgid ""
 "your website is localized into other languages, multiple translations of "
 "this field can be added."
 msgstr ""
-"Nëse shtesa juaj ka një sajt web ose forum asistence, jepeni adresën e tij "
+"Nëse shtesa juaj ka një sajt ose forum asistence, jepeni adresën e tij "
 "këtu. Nëse sajti juaj web është i përkthyer në gjuhë të tjera, mund të "
 "shtohen përkthime shumëfishe të kësaj fushe."
 
@@ -7574,7 +7574,7 @@ msgid ""
 msgstr ""
 "Ky artikull ju tregon si të ndryshohet zgjerimi për panel gjendjesh i "
 "krijuar sipas përkujdesores më sipër përmes prurjes në intervale të "
-"rregullta të lëndës nga një sajt web."
+"rregullta të lëndës nga një sajt."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:175
 msgid "Adding Preferences to an Extension"
@@ -11541,7 +11541,7 @@ msgstr "Shtesa për mësues, prindër, dhe studentë që i kthehen shkollës."
 
 #: apps/discovery/modules.py:243
 msgid "Would you like to know which websites you can trust?"
-msgstr "Dëshironi të dini se cilit sajt web mund t'i zini besë?"
+msgstr "Dëshironi të dini se cilit sajt mund t'i zini besë?"
 
 #: apps/discovery/modules.py:244
 msgid "Xmarks is the #1 bookmarking add-on."
@@ -13260,7 +13260,7 @@ msgstr "Rreth Shtesave Mozilla"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr "Për çfarë është ky sajt web?"
+msgstr "Për çfarë është ky sajt?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -13362,7 +13362,7 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our "
 "current bugs."
 msgstr ""
-"Ndihmoni të përmirësohet ky sajt web. Është me burim të hapur, dhe mund të "
+"Ndihmoni të përmirësohet ky sajt. Është me burim të hapur, dhe mund të "
 "njoftoni një të metë dhe të parashtroni për të arnime. <a href=\"%(url)s\"> "
 "Bugzilla</a> përmban krejt të metat tona aktuale."
 
@@ -13416,7 +13416,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr "Kush merret me këtë sajt web?"
+msgstr "Kush merret me këtë sajt?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
@@ -13425,7 +13425,7 @@ msgid ""
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
-"Përgjatë vitesh, shumë vetë kanë dhënë ndihmesë për këtë sajt web, përfshi "
+"Përgjatë vitesh, shumë vetë kanë dhënë ndihmesë për këtë sajt, përfshi "
 "si vullnetarë nga bashkësia, ashtu edhe një ekip posaçrisht për AMO-n. Te "
 "faqja jonë <a href=\"%(url)s\"> Kredite Sajti</a> mund të gjeni një listë të "
 "kontribuesve më me peshë."
