@@ -12190,7 +12190,7 @@ msgstr "{0} :: Painel de estatísticas"
 
 #: apps/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Painel de estatísticas :: Extras para {1}"
+msgstr "Painel de estatísticas :: Extras para {0}"
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
