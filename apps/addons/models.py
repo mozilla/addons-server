@@ -1569,21 +1569,18 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     """
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
-    if not new_status or not instance.latest_version:
+    if (new_status not in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
+            or not new_status or not instance.latest_version):
         return
 
-    if (new_status in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
-            and old_status not in amo.UNDER_REVIEW_STATUSES
-            and old_status != new_status):  # New in queue.
-        # Will reset nomination only if it's None.
+    if old_status not in amo.UNDER_REVIEW_STATUSES:
+        # New: will (re)set nomination only if it's None.
         instance.latest_version.reset_nomination_time()
-    elif (new_status in amo.REVIEWED_STATUSES
-            and instance.latest_version.has_files):  # Updating addon.
-        # Inherit nomination from last nominated version.
+    elif instance.latest_version.has_files:
+        # Updating: inherit nomination from last nominated version.
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.
-        if not inherit_nomination(None, instance.latest_version):
-            instance.latest_version.reset_nomination_time()
+        inherit_nomination(None, instance.latest_version)
 
 
 @Addon.on_change
@@ -1638,9 +1635,6 @@ class Persona(caching.CachingMixin, models.Model):
     approve = models.DateTimeField(null=True)
     movers = models.FloatField(null=True, db_index=True)
     popularity = models.IntegerField(null=False, default=0, db_index=True)
-    # TODO: remove the following two fields when the ADI stuff is used for real
-    movers_tmp = models.FloatField(null=True)
-    popularity_tmp = models.IntegerField(null=False, default=0)
     license = models.PositiveIntegerField(
         choices=amo.PERSONA_LICENSES_CHOICES, null=True, blank=True)
 

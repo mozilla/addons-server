@@ -404,7 +404,6 @@ class TestAddonModels(amo.tests.TestCase):
         Tests that `compatible_version()` won't return a lited version for a
         fully-reviewed add-on.
         """
-
         a = Addon.objects.get(pk=3615)
         eq_(a.status, amo.STATUS_PUBLIC)
 
@@ -636,7 +635,6 @@ class TestAddonModels(amo.tests.TestCase):
     def test_has_profile(self):
         """Test if an add-on's developer profile is (partially or entirely)
         completed.
-
         """
         addon = lambda: Addon.objects.get(pk=3615)
         assert not addon().has_profile()
@@ -1315,17 +1313,17 @@ class TestAddonNomination(amo.tests.TestCase):
 
     def test_set_nomination(self):
         a = Addon.objects.get(id=3615)
-        for s in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
+        for status in amo.UNDER_REVIEW_STATUSES:
             a.update(status=amo.STATUS_NULL)
             a.versions.latest().update(nomination=None)
-            a.update(status=s)
+            a.update(status=status)
             assert a.versions.latest().nomination
 
     def test_new_version_inherits_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for st in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
-            a.update(status=st)
+        for status in amo.UNDER_REVIEW_STATUSES:
+            a.update(status=status)
             old_ver = a.versions.latest()
             v = Version.objects.create(addon=a, version=str(ver))
             eq_(v.nomination, old_ver.nomination)
@@ -1346,8 +1344,7 @@ class TestAddonNomination(amo.tests.TestCase):
 
     def test_lone_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
-        for v in Version.objects.all():
-            v.delete()
+        Version.objects.all().delete()
         v = Version.objects.create(addon=a, version='1.0')
         eq_(v.nomination, None)
 
@@ -1392,10 +1389,9 @@ class TestAddonNomination(amo.tests.TestCase):
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         eq_(addon.versions.latest().nomination, nomination)
 
-    def test_nomination_not_reset_if_changing_review_process_under_review(
-            self):
+    def test_nomination_not_reset_if_changing_addon_status(self):
         """
-        When under review, adding a new version should not reset nomination.
+        When under review, switching status should not reset nomination.
         """
         addon, nomination = self.setup_nomination()
         # Now switch to a full review.
@@ -1403,6 +1399,28 @@ class TestAddonNomination(amo.tests.TestCase):
         eq_(addon.versions.latest().nomination, nomination)
         # Then again to a preliminary.
         addon.update(status=amo.STATUS_UNREVIEWED)
+        eq_(addon.versions.latest().nomination, nomination)
+        # Finally back to a reviewed status.
+        addon.update(status=amo.STATUS_PUBLIC)
+        eq_(addon.versions.latest().nomination, nomination)
+
+    def test_nomination_not_reset_if_adding_new_versions_and_files(self):
+        """
+        When under review, adding new versions and files should not
+        reset nomination.
+        """
+        addon, nomination = self.setup_nomination()
+        # Switching it to a public status.
+        version = Version.objects.create(addon=addon, version="0.1")
+        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
+        eq_(addon.versions.latest().nomination, nomination)
+        # Adding a new unreviewed version.
+        version = Version.objects.create(addon=addon, version="0.2")
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        eq_(addon.versions.latest().nomination, nomination)
+        # Adding a new unreviewed version.
+        version = Version.objects.create(addon=addon, version="0.3")
+        File.objects.create(status=amo.STATUS_NOMINATED, version=version)
         eq_(addon.versions.latest().nomination, nomination)
 
     def check_nomination_reset_with_new_version(self, addon, nomination):
@@ -1782,8 +1800,10 @@ class TestPreviewModel(amo.tests.TestCase):
         assert 'webm' in preview.image_path
 
     def check_delete(self, preview, filename):
-        """Test that when the Preview object is deleted, its image and thumb
-        are deleted from the filesystem."""
+        """
+        Test that when the Preview object is deleted, its image and thumb
+        are deleted from the filesystem.
+        """
         try:
             with storage.open(filename, 'w') as f:
                 f.write('sample data\n')
@@ -2170,7 +2190,6 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
 
 
 class TestSearchSignals(amo.tests.ESTestCase):
-    test_es = True
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()

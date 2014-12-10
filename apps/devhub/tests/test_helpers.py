@@ -3,6 +3,7 @@ import urllib
 
 from django.utils import translation
 
+import pytest
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -15,6 +16,9 @@ from addons.models import Addon
 from devhub import helpers
 from files.models import File
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_dev_page_title():

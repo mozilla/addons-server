@@ -7,55 +7,12 @@ from datetime import datetime
 
 from django.db import connection, models
 from django.db.models import Q
+
+import pytest
 from nose.tools import eq_, raises
 
 from amo.tests import BaseTestCase
 from editors.sql_model import RawSQLModel
-
-
-def setup():
-    sql = """
-    create table sql_model_test_product (
-        id int(11) not null auto_increment primary key,
-        name varchar(255) not null,
-        created datetime not null
-    );
-    create table sql_model_test_cat (
-        id int(11) not null auto_increment primary key,
-        name varchar(255) not null
-    );
-    create table sql_model_test_product_cat (
-        id int(11) not null auto_increment primary key,
-        cat_id int(11) not null references sql_model_test_cat (id),
-        product_id int(11) not null references sql_model_test_product (id)
-    );
-    insert into sql_model_test_product (id, name, created)
-                            values (1, 'defilbrilator', UTC_TIMESTAMP());
-    insert into sql_model_test_cat (id, name)
-                            values (1, 'safety');
-    insert into sql_model_test_product_cat (product_id, cat_id)
-                            values (1, 1);
-    insert into sql_model_test_product (id, name, created)
-                            values (2, 'life jacket', UTC_TIMESTAMP());
-    insert into sql_model_test_product_cat (product_id, cat_id)
-                            values (2, 1);
-    insert into sql_model_test_product (id, name, created)
-                            values (3, 'snake skin jacket', UTC_TIMESTAMP());
-    insert into sql_model_test_cat (id, name)
-                            values (2, 'apparel');
-    insert into sql_model_test_product_cat (product_id, cat_id)
-                            values (3, 2);
-    """.split(';')
-    execute_all(sql)
-
-
-def teardown():
-    sql = """
-    drop table sql_model_test_product_cat;
-    drop table sql_model_test_cat;
-    drop table sql_model_test_product;
-    """.split(';')
-    execute_all(sql)
 
 
 def execute_all(statements):
@@ -106,6 +63,58 @@ class ProductDetail(RawSQLModel):
 
 
 class TestSQLModel(BaseTestCase):
+
+    @pytest.fixture(autouse=True)
+    def setup(self, request):
+        sql = """
+        create table if not exists sql_model_test_product (
+            id int(11) not null auto_increment primary key,
+            name varchar(255) not null,
+            created datetime not null
+        );
+        create table if not exists sql_model_test_cat (
+            id int(11) not null auto_increment primary key,
+            name varchar(255) not null
+        );
+        create table if not exists sql_model_test_product_cat (
+            id int(11) not null auto_increment primary key,
+            cat_id int(11) not null references sql_model_test_cat (id),
+            product_id int(11) not null references sql_model_test_product (id)
+        );
+        insert into sql_model_test_product (id, name, created)
+               values (1, 'defilbrilator', UTC_TIMESTAMP());
+        insert into sql_model_test_cat (id, name)
+               values (1, 'safety');
+        insert into sql_model_test_product_cat (product_id, cat_id)
+               values (1, 1);
+        insert into sql_model_test_product (id, name, created)
+               values (2, 'life jacket', UTC_TIMESTAMP());
+        insert into sql_model_test_product_cat (product_id, cat_id)
+               values (2, 1);
+        insert into sql_model_test_product (id, name, created)
+               values (3, 'snake skin jacket',UTC_TIMESTAMP());
+        insert into sql_model_test_cat (id, name)
+               values (2, 'apparel');
+        insert into sql_model_test_product_cat (product_id, cat_id)
+               values (3, 2);
+        """.split(';')
+
+        def teardown():
+            try:
+                sql = """
+                drop table if exists sql_model_test_product_cat;
+                drop table if exists sql_model_test_cat;
+                drop table if exists sql_model_test_product;
+                """.split(';')
+                execute_all(sql)
+            except:
+                pass  # No failing here.
+
+        teardown()
+
+        execute_all(sql)
+
+        request.addfinalizer(teardown)
 
     def test_all(self):
         eq_(sorted([s.category for s in Summary.objects.all()]),

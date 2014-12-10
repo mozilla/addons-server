@@ -3,11 +3,15 @@ import django.contrib.messages as django_messages
 from django.contrib.messages.storage import default_storage
 from django.http import HttpRequest
 
+import pytest
 from jingo import env
 from nose.tools import eq_
 from tower import ugettext as _
 
 from amo.messages import _make_message, info
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_xss():

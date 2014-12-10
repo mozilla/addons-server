@@ -3,12 +3,16 @@ from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
 from django.test.client import Client, RequestFactory
 
+import pytest
 from nose.tools import eq_, assert_not_equal
 
 import amo.tests
 from amo import urlresolvers
 from amo.middleware import LocaleAndAppURLMiddleware
 from amo.tests import BaseTestCase
+
+
+pytestmark = pytest.mark.django_db
 
 
 class MiddlewareTest(BaseTestCase):
@@ -108,7 +112,7 @@ class MiddlewareTest(BaseTestCase):
     def test_get_lang(self):
         def check(url, expected):
             response = self.process(url)
-            eq_(response['Location'], expected)
+            self.assertUrlEqual(response['Location'], expected)
 
         check('/services?lang=fr', '/services')
         check('/en-US/firefox?lang=fr', '/fr/firefox/')

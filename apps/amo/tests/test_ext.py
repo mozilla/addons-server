@@ -3,7 +3,11 @@ import mock
 
 from django.shortcuts import render
 
+import pytest
 from nose.tools import eq_
+
+
+pytestmark = pytest.mark.django_db
 
 
 @mock.patch('caching.ext.cache._cache_support')

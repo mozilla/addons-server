@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.utils import translation, encoding
 
+import pytest
+import tower
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import tower
 
 from addons.models import Addon
 import amo
@@ -16,6 +17,9 @@ from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
 
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 
 class SharingHelpersTestCase(BaseTestCase):

@@ -6,6 +6,7 @@ from django.http import QueryDict
 from django.test.client import RequestFactory
 
 import mock
+import pytest
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -25,12 +26,10 @@ from users.models import UserProfile
 from versions.compare import num as vnum, version_int as vint, MAXVERSION
 
 
-class TestSearchboxTarget(amo.tests.ESTestCase):
+pytestmark = pytest.mark.django_db
 
-    @classmethod
-    def setUpClass(cls):
-        super(TestSearchboxTarget, cls).setUpClass()
-        cls.setUpIndex()
+
+class TestSearchboxTarget(amo.tests.ESTestCaseWithAddons):
 
     def check(self, url, placeholder, cat=None, action=None, q=None):
         # Checks that we search within addons, personas, collections, etc.
@@ -66,7 +65,7 @@ class TestSearchboxTarget(amo.tests.ESTestCase):
                    'search for add-ons', q='ballin')
 
 
-class SearchBase(amo.tests.ESTestCase):
+class SearchBase(amo.tests.ESTestCaseWithAddons):
 
     def get_results(self, r, sort=True):
         """Return pks of add-ons shown on search results page."""
@@ -127,11 +126,6 @@ class SearchBase(amo.tests.ESTestCase):
 
 class TestESSearch(SearchBase):
     fixtures = ['base/category']
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestESSearch, cls).setUpClass()
-        cls.setUpIndex()
 
     def setUp(self):
         super(TestESSearch, self).setUp()
@@ -234,7 +228,12 @@ class TestESSearch(SearchBase):
         to = ('?sort=updated&advancedsearch=1&appver=1.0'
               '&tag=dearbhair&cat=4%2C84')
         r = self.client.get(url + from_)
-        self.assertRedirects(r, url + to, status_code=301)
+        eq_(r.status_code, 301)
+        redirected = r.url
+        parsed = urlparse.urlparse(redirected)
+        params = parsed.query
+        eq_(parsed.path, url)
+        eq_(urlparse.parse_qs(params), urlparse.parse_qs(to[1:]))
 
     def check_platform_filters(self, platform, expected=None):
         r = self.client.get('%s?platform=%s' % (self.url, platform),
@@ -617,11 +616,6 @@ class TestESSearch(SearchBase):
 
 class TestPersonaSearch(SearchBase):
 
-    @classmethod
-    def setUpClass(cls):
-        super(TestPersonaSearch, cls).setUpClass()
-        cls.setUpIndex()
-
     def setUp(self):
         super(TestPersonaSearch, self).setUp()
         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
@@ -644,7 +638,7 @@ class TestPersonaSearch(SearchBase):
         self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
                                                     disabled_by_user=True))
 
-        # NOTE: There are also some add-ons in `setUpIndex` for good measure.
+        # NOTE: There are also some add-ons in the setUpClass for good measure.
 
         self.refresh()
 
@@ -796,6 +790,7 @@ class TestCollectionSearch(SearchBase):
         self.refresh()
 
     def test_legacy_redirect(self):
+        self._generate()
         # Ensure `sort=newest` redirects to `sort=created`.
         r = self.client.get(urlparams(self.url, sort='newest'))
         self.assertRedirects(r, urlparams(self.url, sort='created'), 301)
@@ -1067,12 +1062,7 @@ def test_search_redirects():
         yield same, qs
 
 
-class TestAjaxSearch(amo.tests.ESTestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestAjaxSearch, cls).setUpClass()
-        cls.setUpIndex()
+class TestAjaxSearch(amo.tests.ESTestCaseWithAddons):
 
     def search_addons(self, url, params, addons=[], types=amo.ADDON_TYPES,
                       src=None):

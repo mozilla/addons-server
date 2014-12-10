@@ -56,8 +56,8 @@ class TestIndex(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('h2.c a').attr('href'),
-            '{url}?page=1&previous=1'.format(url=self.url))
+        self.assertUrlEqual(doc('h2.c a').attr('href'),
+                            '{url}?page=1&previous=1'.format(url=self.url))
 
     def test_previous_version_link_with_active_pagination(self):
         # The current pagination is not kept when we switch to previous
@@ -65,7 +65,8 @@ class TestIndex(amo.tests.TestCase):
         r = self.client.get(self.url, {'page': 2, 'type': 'all'})
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('h2.c a').attr('href'),
+        self.assertUrlEqual(
+            doc('h2.c a').attr('href'),
             '{url}?type=all&page=1&previous=1'.format(url=self.url))
 
 

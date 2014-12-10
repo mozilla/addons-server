@@ -7,6 +7,7 @@ from django.test.client import Client
 from django.utils import translation
 
 import jingo
+import pytest
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -27,6 +28,9 @@ from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File
 from files.tests.test_models import UploadTest
 from tags.models import AddonTag, Tag
+
+
+pytestmark = pytest.mark.django_db
 
 
 def api_url(x, app='firefox', lang='en-US', version=1.2):
@@ -434,17 +438,26 @@ class APITest(TestCase):
             'preview position="0">',
             '<caption>TwitterBar places an icon in the address bar.</caption>',
             'full type="image/png">',
-            urlparams('full/%s/%d.%s' %
-                      ('20', 20397, 'png'), src='api', modified=1209834208),
             '<thumbnail type="image/png">',
-            urlparams('thumbs/%s/%d.png' %
-                      ('20', 20397), src='api', modified=1209834208),
             ('<developer_comments>Embrace hug love hug meow meow'
              '</developer_comments>'),
             'size="100352"',
             ('<homepage>http://www.chrisfinke.com/addons/twitterbar/'
              '</homepage>'),
             '<support>http://www.chrisfinke.com/addons/twitterbar/</support>')
+
+        # For urls with several parameters, we need to use self.assertUrlEqual,
+        # as the parameters could be in random order. Dicts aren't ordered!
+        url_needles = {
+            "full": urlparams(
+                '{previews}full/20/20397.png'.format(
+                    previews=helpers.user_media_url('previews')),
+                src='api', modified=1209834208),
+            "thumbnail": urlparams(
+                '{previews}thumbs/20/20397.png'.format(
+                    previews=helpers.user_media_url('previews')),
+                src='api', modified=1209834208),
+        }
 
         response = make_call('addon/4664', version=1.5)
         doc = pq(response.content)
@@ -465,6 +478,10 @@ class APITest(TestCase):
 
         for needle in needles:
             self.assertContains(response, needle)
+
+        for tag, needle in url_needles.iteritems():
+            url = doc(tag).text()
+            self.assertUrlEqual(url, needle)
 
     def test_no_contribs_until_approved(self):
         Addon.objects.filter(id=4664).update(status=amo.STATUS_LITE)
@@ -588,7 +605,11 @@ class DRFAPITest(DRFMixin, APITest):
     """
     Run all APITest tests with DRF.
     """
-    test_module_url = reverse('api.addon_detail', args=['1.5', 999999])
+
+    def setUp(self):
+        super(DRFAPITest, self).setUp()
+        self.test_module_url = reverse('api.addon_detail',
+                                       args=['1.5', 999999])
 
 
 class ListTest(TestCase):
@@ -688,7 +709,10 @@ class DRFListTest(DRFMixin, ListTest):
     """
     Run all ListTest tests with DRF.
     """
-    test_module_url = reverse('api.list', args=['1.5', 'featured'])
+
+    def setUp(self):
+        super(DRFListTest, self).setUp()
+        self.test_module_url = reverse('api.list', args=['1.5', 'featured'])
 
 
 class AddonFilterTest(TestCase):
@@ -1268,14 +1292,17 @@ class DRFSearchTest(DRFMixin, SearchTest):
     """
     Run all SearchTest tests with DRF.
     """
-    test_module_url = reverse('api.search', args=['1.5', 'delicious'])
+
+    def setUp(self):
+        super(DRFSearchTest, self).setUp()
+        self.test_module_url = reverse('api.search', args=['1.5', 'delicious'])
 
 
-class LanguagePacks(UploadTest):
+class LanguagePacksTest(UploadTest):
     fixtures = ['addons/listed']
 
     def setUp(self):
-        super(LanguagePacks, self).setUp()
+        super(LanguagePacksTest, self).setUp()
         self.url = reverse('api.language', args=['1.5'])
         self.tb_url = self.url.replace('firefox', 'thunderbird')
         self.addon = Addon.objects.get(pk=3723)
@@ -1332,8 +1359,11 @@ class LanguagePacks(UploadTest):
                                                 ]]></strings>"""))
 
 
-class DRFLanguagePacks(DRFMixin, LanguagePacks):
+class DRFLanguagePacksTest(DRFMixin, LanguagePacksTest):
     """
     Run all LanguagePack tests with DRF.
     """
-    test_module_url = reverse('api.language', args=['1.5'])
+
+    def setUp(self):
+        super(DRFLanguagePacksTest, self).setUp()
+        self.test_module_url = reverse('api.language', args=['1.5'])

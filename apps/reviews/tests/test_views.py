@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -445,7 +446,7 @@ class TestTranslate(ReviewTest):
                           review.id, 'fr')
         r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(r.status_code, 200)
-        eq_(r.content, '{"body": "oui", "title": "oui"}')
+        eq_(json.loads(r.content), {"body": "oui", "title": "oui"})
 
     @mock.patch('waffle.switch_is_active', lambda x: True)
     @mock.patch('reviews.views.requests')

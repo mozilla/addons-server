@@ -157,7 +157,6 @@ class TestIndexStats(amo.tests.TestCase):
 
 
 class TestIndexLatest(amo.tests.ESTestCase):
-    test_es = True
 
     def test_index_latest(self):
         latest = datetime.date.today() - datetime.timedelta(days=5)

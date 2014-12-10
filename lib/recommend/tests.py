@@ -1,7 +1,11 @@
+import pytest
 from array import array
 from nose.tools import eq_
 
-import recommend
+from lib import recommend
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_symmetric_diff_count():

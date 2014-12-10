@@ -16,8 +16,8 @@ class CategoriesTests(amo.tests.TestCase):
         eq_(len(data), 15)
 
     def test_categories_themes_translations(self):
-        data = generate_categories()
         with self.activate(locale='es'):
+            data = generate_categories()
             ok_(unicode(data[0].name).startswith(u'(español) '))
 
     def test_categories_addons_generation(self):
@@ -26,6 +26,6 @@ class CategoriesTests(amo.tests.TestCase):
         eq_(len(data), 10)
 
     def test_categories_addons_translations(self):
-        data = generate_categories(APPS['android'])
         with self.activate(locale='es'):
+            data = generate_categories(APPS['android'])
             ok_(unicode(data[0].name).startswith(u'(español) '))

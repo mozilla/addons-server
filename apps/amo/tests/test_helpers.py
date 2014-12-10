@@ -11,6 +11,7 @@ from django.test.utils import override_settings
 from django.utils import encoding
 
 import jingo
+import pytest
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery
@@ -20,6 +21,9 @@ import amo.tests
 from amo import urlresolvers, utils, helpers
 from amo.utils import ImageCheck
 from versions.models import License
+
+
+pytestmark = pytest.mark.django_db
 
 
 def render(s, context={}):
@@ -188,7 +192,7 @@ def test_urlparams():
 
     # Adding query with existing params.
     s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
-    eq_(s, '%s?sort=name&amp;x=y#frag' % url)
+    amo.tests.assert_url_equal(s, '%s?sort=name&amp;x=y#frag' % url)
 
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
@@ -422,6 +426,7 @@ class TestAnimatedImages(amo.tests.TestCase):
 
 
 def test_site_nav():
+    amo.tests.default_prefixer()
     r = Mock()
     r.APP = amo.FIREFOX
     assert 'id="site-nav"' in helpers.site_nav({'request': r})
@@ -453,11 +458,19 @@ def test_f():
     eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
 
 
-def test_inline_css():
+def test_inline_css(monkeypatch):
     jingo.load_helpers()
     env = jingo.env
     t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
+
+    # Monkeypatch settings.LESS_BIN to not call the less compiler. We don't
+    # need nor want it in tests.
+    monkeypatch.setattr(settings, 'LESS_BIN', 'ls')
+    # Monkeypatch jingo_minify.helpers.is_external to counter-effect the
+    # autouse fixture in conftest.py.
+    monkeypatch.setattr(amo.helpers, 'is_external', lambda css: False)
     s = t.render()
+
     ok_('background-image: url(/static/img/icons/stars.png);' in s)
 
 

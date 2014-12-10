@@ -697,7 +697,7 @@ def render_csv(request, addon, stats, fields,
     writer.writeheader()
     writer.writerows(stats)
 
-    fudge_headers(response, list)
+    fudge_headers(response, stats)
     response['Content-Type'] = 'text/csv; charset=utf-8'
     return response
 

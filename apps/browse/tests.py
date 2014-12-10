@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils import http as urllib
 
+import pytest
 from jingo.helpers import datetime as datetime_filter
 import mock
 from nose.tools import eq_, assert_raises, nottest
@@ -31,6 +32,9 @@ from constants.applications import THUNDERBIRD
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 @nottest
@@ -58,13 +62,7 @@ def test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
     test_listing_sort(self, sort, key, reverse, sel_class)
 
 
-class ExtensionTestCase(amo.tests.ESTestCase):
-    test_es = True
-
-    @classmethod
-    def setUpClass(cls):
-        super(ExtensionTestCase, cls).setUpClass()
-        cls.setUpIndex()
+class ExtensionTestCase(amo.tests.ESTestCaseWithAddons):
 
     def setUp(self):
         super(ExtensionTestCase, self).setUp()
@@ -83,7 +81,6 @@ class TestUpdatedSort(ExtensionTestCase):
 
 
 class TestESExtensions(ExtensionTestCase):
-    test_es = True
 
     def test_landing(self):
         r = self.client.get(self.url)
@@ -847,9 +844,9 @@ class TestSearchToolsPages(BaseSearchToolsTest):
 
         links = doc('#search-tools-sidebar a')
 
-        eq_([a.text.strip() for a in links],
-            ['Most Popular', 'Recently Added',  # Search Extensions.
-             'Bookmarks'])  # Search Providers.
+        eq_(sorted([a.text.strip() for a in links]),
+            sorted(['Most Popular', 'Recently Added',  # Search Extensions.
+                    'Bookmarks']))  # Search Providers.
 
         search_ext_url = urlparse(reverse('browse.extensions',
                                   kwargs=dict(category='search-tools')))

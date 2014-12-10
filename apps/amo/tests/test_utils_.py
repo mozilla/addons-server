@@ -1,6 +1,7 @@
 import collections
 import tempfile
 
+import pytest
 from nose.tools import eq_, ok_
 
 
@@ -8,6 +9,9 @@ import amo
 from amo.utils import attach_trans_dict, translations_for_field, walkfiles
 from addons.models import Addon
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 class TestAttachTransDict(amo.tests.TestCase):
