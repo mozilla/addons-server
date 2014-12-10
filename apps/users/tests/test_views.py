@@ -1035,6 +1035,11 @@ class TestReset(UserViewBase):
                                       args=self.token))
         assert 'For your account' in res.content
 
+    def test_csrf_token_presence(self):
+        res = self.client.get(reverse('users.pwreset_confirm',
+                                      args=self.token))
+        assert 'csrfmiddlewaretoken' in res.content
+
     def test_reset_fails(self):
         res = self.client.post(reverse('users.pwreset_confirm',
                                        args=self.token),
@@ -1042,6 +1047,13 @@ class TestReset(UserViewBase):
                                      'new_password2': 'spassword'})
         eq_(res.context['form'].errors['new_password1'][0],
             'Letters and numbers required.')
+
+    def test_reset_succeeds(self):
+        res = self.client.post(reverse('users.pwreset_confirm',
+                                       args=self.token),
+                               data={'new_password1': 'password1',
+                                     'new_password2': 'password1'})
+        eq_(res.status_code, 302)
 
 
 class TestLogout(UserViewBase):

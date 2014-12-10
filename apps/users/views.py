@@ -712,6 +712,7 @@ def remove_locale(request, user):
 
 
 @never_cache
+@anonymous_csrf
 def password_reset_confirm(request, uidb64=None, token=None):
     """
     Pulled from django contrib so that we can add user into the form
