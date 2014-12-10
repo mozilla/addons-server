@@ -269,7 +269,6 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         Note: The lowest maxVersion compat check needs to be checked
               separately.
         Note: This does not take into account the client conditions.
-
         """
         compat = True
         reasons = []
@@ -300,7 +299,6 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         If not ranges, returns empty list.  Otherwise, this will return all
         the app version ranges that this particular version is incompatible
         with.
-
         """
         from addons.models import CompatOverride
         cos = CompatOverride.objects.filter(addon=self.addon)
@@ -334,9 +332,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         return [(f.id, f.status) for f in self.all_files]
 
     def is_allowed_upload(self):
-        """Check that a file can be uploaded based on the files
-        per platform for that type of addon."""
-
+        """
+        Check that a file can be uploaded based on the files
+        per platform for that type of addon.
+        """
         num_files = len(self.all_files)
         if self.addon.type == amo.ADDON_SEARCH:
             return num_files == 0
@@ -494,9 +493,6 @@ def inherit_nomination(sender, instance, **kw):
     """
     For new versions pending review, ensure nomination date
     is inherited from last nominated version.
-
-    Return either True or False if the nomination time has been reseted.
-
     """
     if kw.get('raw'):
         return
@@ -508,12 +504,11 @@ def inherit_nomination(sender, instance, **kw):
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():
             instance.reset_nomination_time(nomination=last_ver[0].nomination)
-            return True
-    return False
 
 
 def update_incompatible_versions(sender, instance, **kw):
-    """When a new version is added or deleted, send to task to update if it
+    """
+    When a new version is added or deleted, send to task to update if it
     matches any compat overrides.
     """
     try:
