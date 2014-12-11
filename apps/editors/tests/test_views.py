@@ -2025,6 +2025,28 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
+    @patch.object(Addon, 'sign_version_files', lambda self, pk: True)
+    def test_admin_flagged_addon_actions_as_admin(self):
+        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        response = self.client.post(self.url, self.get_dict(action='public'),
+                                    follow=True)
+        eq_(response.status_code, 200)
+        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+
+    def test_admin_flagged_addon_actions_as_editor(self):
+        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.login_as_editor()
+        response = self.client.post(self.url, self.get_dict(action='public'))
+        eq_(response.status_code, 200)  # Form error.
+        # The add-on status must not change as non-admin editors are not
+        # allowed to review admin-flagged add-ons.
+        eq_(self.get_addon().status, amo.STATUS_NOMINATED)
+        eq_(response.context['form'].errors['action'],
+            [u'Select a valid choice. public is not one of the available '
+             u'choices.'])
+
 
 class TestReviewPreliminary(ReviewBase):
 
