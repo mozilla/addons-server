@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-10-16 04:00+0000\n"
+"PO-Revision-Date: 2014-12-11 04:34+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413432041.0\n"
+"X-POOTLE-MTIME: 1418272485.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8888,7 +8888,7 @@ msgstr "含有審核者的意見"
 
 #: apps/editors/models.py:185
 msgid "Sources provided"
-msgstr ""
+msgstr "已提供來源"
 
 #: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
@@ -10126,6 +10126,8 @@ msgstr "附加元件開發者常見問題"
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 msgstr ""
+"<h3>我要如何打造附加元件？</h3><p>Mozilla 在 <a href=\"%(url)s\">Mozilla Developer "
+"Network</a> 提供打造附加元件的相關文件。</p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -10133,11 +10135,11 @@ msgstr "其他資源還包含:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "附加元件部落格上的 \"How to develop a Firefox extension\" 文章"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Mozilla 附加元件部落格"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -10159,10 +10161,16 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a "
+"href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-"
+"plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
 msgstr ""
+"您也可以在 <a href=\"%(url)s\">Setting up extension development environment</a> 這篇 "
+"MDN 文件中了解關於如何設定您的開發環境的更多資訊。"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -10220,14 +10228,18 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
+"可以，但這些程式庫提供的某些功能需透過 XPCOM、XUL 或 JavaScript 來達成。另外，作者必須注意這些程式庫是否會修改物件的原始 "
+"prototype（String.prototype、Date.prototype 等等）及/或定義全域變數（例如 $ "
+"函數）。這些東西可能會與其他附加元件相衝，尤其是當別的附加元件使用了不同版本的程式庫的時候。開發者使用這些東西時必須非常小心。Mozilla "
+"不提供如何使用這些程式庫開發附加元件的相關文件。"
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "我要如何對我的附加元件除錯？"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "您可以使用 <a href=\"%(url)s\">Add-on Debugger</a>。"
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -10239,16 +10251,21 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"為了確保與最新版本 Mozilla 軟體的相容性，在有更新可用時就下載安裝，並測試您的附加元件是否還能正常使用就相當重要。大部分情況下，Mozilla "
+"軟體的最新版可能只是 Beta 測試版，而因為這些版本常常有一些會影響您附加元件功能的架構變更，我們強烈建議您參與我們的 Beta "
+"測試流程，以確保您附加元件的使用者在安裝新的最終發行版的 Mozilla 軟體後不會遇到問題。"
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "如何改善我的附加元件效能？"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
 "\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
+"寫得不好的擴充套件可能會影響使用者的瀏覽體驗，包含 Firefox 本身的效能。下列頁面包含許多不錯的 <a href=\"%"
+"(url)s\">指南</a>，能夠幫務您在不論是開發 Mozilla 核心功能或附加元件時改善效能。"
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -10259,6 +10276,9 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"可以。可以在 <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization "
+"page</a> 找到關於讓您的附加元件能夠在地化的詳細資訊。<a href=\"%(bz_url)s\">BabelZilla 專案</a> "
+"也是一個讓您了解在地化與加入幫忙翻譯附加元件的好所在。"
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -10277,7 +10297,7 @@ msgstr "#amo（將您的附加元件上架至 AMO 的技術討論）"
 #. #jetpack is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
-msgstr ""
+msgstr "#jetpack（關於以往稱為 Jetpack 的附加元件 SDK 及 cfx/jpm 的相關討論）"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -10296,11 +10316,11 @@ msgstr "Google 網上論壇"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "附加元件討論區"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -10319,6 +10339,9 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
 "\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"可以，您可以在 <a href=\"%(forum_url)s\">附加元件討論區</a>、<a href=\"%"
+"(list_url)s\">mozilla.jobs 郵件群組</a>、<a href=\"%(mz_url)s\">mozillaZine 討論區</a> "
+"和 <a href=\"%(wiki_url)s\">Mozilla Wiki</a> 上找到第三方開發者。Mozilla 並不特別推薦某位開發者。"
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -10469,6 +10492,9 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
+"Mozilla 編輯團隊在測試附加元件是否可上架到 AMO 時會依照 <a href=\"%(url)s\">Editors Reviewing "
+"Guide</a> "
+"當中的規則。附加元件開發者在送交審查前請先閱讀此指南，確保您送出的附加元件並無指南中「常見問題」一節的的問題。如此可幫助編輯加速審查過程。"
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -10660,11 +10686,11 @@ msgstr "Open Source Initiative 提供了一些重要的開放原始碼授權的�
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "維基百科上關於常見開放原始碼授權的比較條目。"
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
+msgstr "一個幫助您選擇開放原始碼專案授權的指南網站"
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
