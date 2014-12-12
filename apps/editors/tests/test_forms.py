@@ -1,4 +1,5 @@
-from nose.tools import eq_
+import mock
+from nose.tools import eq_, ok_
 
 from django.utils.encoding import force_unicode
 
@@ -31,7 +32,7 @@ class TestReviewActions(amo.tests.TestCase):
                                request=self.request,
                                addon=self.addon,
                                version=self.version)
-        return form.helper.get_actions()
+        return form.helper.get_actions(self.request, self.addon)
 
     def test_lite_nominated(self):
         status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
@@ -58,6 +59,20 @@ class TestReviewActions(amo.tests.TestCase):
         # If the file is unreviewed then there is no option to reject,
         # so the length of the actions is one shorter
         eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 5)
+
+    @mock.patch('access.acl.action_allowed')
+    def test_admin_flagged_addon_actions(self, action_allowed_mock):
+        self.addon.update(admin_review=True)
+        # Test with an admin editor.
+        action_allowed_mock.return_value = True
+        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        ok_('public' in status.keys())
+        ok_('prelim' in status.keys())
+        # Test with an non-admin editor.
+        action_allowed_mock.return_value = False
+        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        ok_('public' not in status.keys())
+        ok_('prelim' not in status.keys())
 
 
 class TestCannedResponses(TestReviewActions):
