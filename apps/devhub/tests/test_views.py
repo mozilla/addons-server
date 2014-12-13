@@ -1327,12 +1327,9 @@ class TestSubmitStep4(TestSubmitBase):
             eq_(unicode(getattr(addon, k)), data[k])
 
     def test_edit_media_uploadedicon(self):
-        img = get_image_path('mozilla.png')
-        src_image = open(img, 'rb')
-
-        data = dict(upload_image=src_image)
-
-        response = self.client.post(self.icon_upload, data)
+        with open(get_image_path('mozilla.png'), 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            response = self.client.post(self.icon_upload, data)
         response_json = json.loads(response.content)
         addon = self.get_addon()
 
@@ -1361,12 +1358,9 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "static/img/notifications/error.png"
-        src_image = open(img, 'rb')
-
-        data = dict(upload_image=src_image)
-
-        response = self.client.post(self.icon_upload, data)
+        with open('static/img/notifications/error.png', 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            response = self.client.post(self.icon_upload, data)
         response_json = json.loads(response.content)
         addon = self.get_addon()
 
@@ -1394,29 +1388,30 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def test_client_lied(self):
-        filehandle = open(get_image_path('non-animated.gif'), 'rb')
-
-        data = {'upload_image': filehandle}
-
-        res = self.client.post(self.preview_upload, data)
+        with open(get_image_path('non-animated.gif'), 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            res = self.client.post(self.preview_upload, data)
         response_json = json.loads(res.content)
-
         eq_(response_json['errors'][0], u'Images must be either PNG or JPG.')
 
-    def test_icon_animated(self):
-        filehandle = open(get_image_path('animated.png'), 'rb')
-        data = {'upload_image': filehandle}
+    def test_client_error_triggers_tmp_image_cleanup(self):
+        with open(get_image_path('non-animated.gif'), 'rb') as filehandle:
+            data = {'upload_image': filehandle, 'upload_type': 'preview'}
+            self.client.post(self.preview_upload, data)
+        assert not os.listdir(os.path.join(settings.TMP_PATH, 'preview'))
 
-        res = self.client.post(self.preview_upload, data)
+    def test_image_animated(self):
+        with open(get_image_path('animated.png'), 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            res = self.client.post(self.preview_upload, data)
         response_json = json.loads(res.content)
-
         eq_(response_json['errors'][0], u'Images cannot be animated.')
 
     def test_icon_non_animated(self):
-        filehandle = open(get_image_path('non-animated.png'), 'rb')
-        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        data_formset = self.formset_media(**data)
-        res = self.client.post(self.url, data_formset)
+        with open(get_image_path('non-animated.png'), 'rb') as filehandle:
+            data = {'icon_type': 'image/png', 'icon_upload': filehandle}
+            data_formset = self.formset_media(**data)
+            res = self.client.post(self.url, data_formset)
         eq_(res.status_code, 302)
         eq_(self.get_step().step, 5)
 
