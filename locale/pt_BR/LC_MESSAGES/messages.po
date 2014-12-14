@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-11-07 18:40+0000\n"
+"PO-Revision-Date: 2014-12-14 18:17+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1415385601.0\n"
+"X-POOTLE-MTIME: 1418581075.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -68,31 +68,33 @@ msgstr "O identificador não pode ser \"%s\". Por favor, escolha outro."
 #: apps/addons/forms.py:81
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] "Tag inválida: {0}"
-msgstr[1] "Tags inválidas: {0}"
+msgstr[0] "Etiqueta inválida: {0}"
+msgstr[1] "Etiquetas inválidas: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:91
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" é uma tag reservada e não pode ser usada."
-msgstr[1] "\"{0}\" são tags reservadas e não podem ser usadas."
+msgstr[0] "\"{0}\" é uma etiqueta reservada e não pode ser usada."
+msgstr[1] "\"{0}\" são etiquetas reservadas e não podem ser usadas."
 
 #: apps/addons/forms.py:99
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Você tem {0} tag em excesso."
-msgstr[1] "Você tem {0} tags em excesso."
+msgstr[0] "Você tem {0} etiqueta em excesso."
+msgstr[1] "Você tem {0} etiquetas em excesso."
 
 #: apps/addons/forms.py:105
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Todas as tags devem ter %s caracteres ou menos após os caracteres inválidos serem removidos."
+msgstr ""
+"Todas as etiquetas devem ter %s caracteres ou menos após os caracteres "
+"inválidos serem removidos."
 
 #: apps/addons/forms.py:109
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Todas as tags devem ter pelo menos {0} caractere."
-msgstr[1] "Todas as tags devem ter pelo menos {0} caracteres."
+msgstr[0] "Todas as etiquetas devem ter pelo menos {0} caractere."
+msgstr[1] "Todas as etiquetas devem ter pelo menos {0} caracteres."
 
 #: apps/addons/forms.py:219
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -496,7 +498,7 @@ msgstr "Mais populares"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr "Todos&nbsp;»"
+msgstr "Todos »"
 
 #: apps/addons/templates/addons/home.html:52 apps/addons/templates/addons/home.html:61 apps/addons/templates/addons/home.html:70 apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
@@ -689,8 +691,9 @@ msgstr "por {0} em {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
+#, fuzzy
 msgid "Not yet rated"
-msgstr "Ainda sem avaliações"
+msgstr "Ainda não foi avaliado"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
@@ -714,12 +717,17 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Como Instalar no Thunderbird</strong> <ol> <li>Baixe e salve o arquivo no seu disco rígido.</li> <li>No Mozilla Thunderbird, abra Complementos no menu Ferramentas.</li> <li>No botão de "
-"opções, ao lado do campo de pesquisa de complementos, selecione \"Instalar de um arquivo…\" e localize o complemento que você salvou.</li> </ol>"
+"<strong>Como instalar no Thunderbird</strong> <ol> <li>Baixe e salve o "
+"arquivo no seu disco.</li> <li>No Mozilla Thunderbird, abra Complementos no "
+"menu Ferramentas.</li> <li>No botão de opções, ao lado do campo de pesquisa "
+"de complementos, selecione \"Instalar de um arquivo…\" e localize o "
+"complemento baixado.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Para instalar este tema, <b>baixe o Thunderbird</b>, um cliente de e-mails gratuito e de código-aberto da Mozilla Messaging, e instale o complemento Persona Plus."
+msgstr ""
+"Para instalar este tema, <b>baixe o Thunderbird</b>, um cliente de e-mails "
+"gratuito e de código aberto da Mozilla e instale o complemento Persona Plus."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -744,7 +752,7 @@ msgstr "Esse complemento requer uma versão do Firefox que ainda não foi lança
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr "Ajude a testar as novas versões do Firefox"
+msgstr "Ajude a testar novas versões do Firefox"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
@@ -753,11 +761,11 @@ msgstr "Esse complemento requer o %(app)s {new_version}. Você está usando atua
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
 msgid "Upgrade {0}"
-msgstr "Atualize o {0}"
+msgstr "Atualizar {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ou veja <a href=\"%(href)s\">versões anteriores desse complemento</a>."
+msgstr "ou veja as <a href=\"%(href)s\">versões anteriores desse complemento</a>."
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
@@ -770,7 +778,9 @@ msgstr "<strong>Cuidado:</strong> esse complemento não foi analisado pela Mozil
 # %1$s is an application name and version.  Example: Firefox 3.1
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Atenção:</strong> esse complemento não é compatível com o seu sistema operacional."
+msgstr ""
+"<strong>Atenção:</strong> este complemento não é compatível com o seu "
+"sistema operacional."
 
 #: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
@@ -862,7 +872,9 @@ msgstr ""
 # %1 is the support section link
 #: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr "Veja a <a href=\"%(support)s\">seção de suporte</a> para descobrir onde conseguir ajuda para esse complemento."
+msgstr ""
+"Veja a <a href=\"%(support)s\">seção de suporte</a> para descobrir onde "
+"conseguir ajuda para este complemento."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:47
@@ -896,7 +908,7 @@ msgstr[1] "Ver todas as %(cnt)s análises desse complemento"
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
 msgid "Tags"
-msgstr "Tags"
+msgstr "Etiquetas"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1822,7 +1834,7 @@ msgstr "Status da {version} alterado para {0}"
 #. L10n: {0} is the status
 #: apps/amo/log.py:565
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "O usuário {0.name} - {0.id} foi removido pela ferramenta."
+msgstr "O usuário {0.name} - {0.id} foi excluído pela ferramenta de pesquisa."
 
 #: apps/amo/log.py:571
 msgid "{addon} content rating changed to Adult."
@@ -2069,8 +2081,11 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> %(consumer)s quer ser autorizado a agir em seu nome. Isto pode incluir: </p><ul><li>Enviar, alterar ou remover complementos em seu nome.</li> <li>Enviar, alterar ou remover versões de "
-"complementos em seu nome.</li> <li> Saber informações pessoais sobre você, como seu nome de usuário e endereço de e-mail (mas não sua senha).</li></ul>"
+"<p> %(consumer)s quer ser autorizado a agir em seu nome. Isto pode incluir: "
+"</p><ul><li>Enviar, alterar ou remover complementos em seu nome.</li> "
+"<li>Enviar, alterar ou remover versões de complementos em seu nome.</li> "
+"<li> Saber suas informações pessoais, como seu nome de usuário e endereço de "
+"e-mail (mas não a sua senha).</li></ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -2380,7 +2395,7 @@ msgstr "Explorar coleções"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
-msgstr "Tags comuns"
+msgstr "Etiquetas comuns"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
@@ -2483,7 +2498,7 @@ msgstr "Excluir {0}"
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 #: apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133 apps/devhub/templates/devhub/versions/list.html:153
 msgid "Delete"
-msgstr "Apagar"
+msgstr "Excluir"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
@@ -2554,8 +2569,10 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Você pode adicionar vários colaboradores a essa coleção. Um colaborador pode adicionar e remover complementos da coleção, mas não pode alterar seu nome nem sua descrição. Para adicionar um "
-"colaborador, insira seu e-mail no campo abaixo. Colaboradores devem ter uma conta no Mozilla Add-ons."
+"Você pode adicionar vários colaboradores a essa coleção. Um colaborador pode "
+"adicionar e remover complementos da coleção, mas não pode alterar seu nome "
+"nem sua descrição. Para adicionar um colaborador, insira seu e-mail no campo "
+"abaixo. Colaboradores devem ter uma conta nos complementos da Mozilla."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -3817,7 +3834,9 @@ msgstr "A versão não corresponde"
 
 #: apps/devhub/forms.py:650
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
-msgstr "Você não pode excluir um arquivo uma vez que o processo de análise começou. Você deve excluir a versão inteira."
+msgstr ""
+"Você não pode excluir um arquivo depois do processo de análise começar. Você "
+"deve excluir a versão inteira."
 
 #: apps/devhub/forms.py:670
 msgid "The platform All cannot be combined with specific platforms."
@@ -4682,7 +4701,7 @@ msgstr "Atualmente o seu <a href=\"%(url)s\">perfil de desenvolvedor</a> é <str
 
 #: apps/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
-msgstr "Excluir ambos"
+msgstr "Remover ambos"
 
 # %1 is a URL.
 #: apps/devhub/templates/devhub/addons/profile.html:27
@@ -4691,7 +4710,7 @@ msgstr "Atualmente o seu <a href=\"%(url)s\">perfil de desenvolvedor</a> é <str
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
 msgid "Remove Profile"
-msgstr "Excluir perfil"
+msgstr "Remover perfil"
 
 #: apps/devhub/templates/devhub/addons/profile.html:42
 msgid "Create Profile"
@@ -4740,11 +4759,14 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
-msgstr "Tags"
+msgstr "Etiquetas"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Tags ajudam os usuários a encontrar o seu complemento e devem ser descrições curtas como abas, barra de ferramentas ou twitter. Você pode ter, no máximo, {0} tags."
+msgstr ""
+"As etiquetas ajudam os usuários a encontrar o seu complemento e devem ser "
+"descrições curtas como abas, barra de ferramentas ou twitter. Você pode ter, "
+"no máximo, {0} etiquetas."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:128 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4759,8 +4781,8 @@ msgstr "Exemplo: escuro, cinema, noir. Limite: 20."
 #: apps/devhub/templates/devhub/addons/edit/basic.html:135
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] "Tag reservada:"
-msgstr[1] "Tags reservadas:"
+msgstr[0] "Etiqueta reservada:"
+msgstr[1] "Etiquetas reservadas:"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
@@ -5039,15 +5061,17 @@ msgstr "Excluir complemento"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Excluir seu tema o removerá permanentemente do site."
+msgstr "Excluir seu tema irá removê-lo permanentemente do site."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted ever again, even by you. The existing users of your add-on will remain on this update channel "
 "and never receive updates again."
 msgstr ""
-"Excluir seu complemento o removerá permanentemente do site e evitará que seu UUID seja enviado novamente, mesmo que por você. Os usuários existentes do seu complemento permanecerão nesse canal de "
-"atualizações e nunca receberão atualizações novamente."
+"Excluir seu complemento irá removê-lo permanentemente do site e impedir que "
+"o seu UUID seja enviado novamente, mesmo que por você. Os usuários do seu "
+"complemento irão permanecer nesse canal de atualizações e nunca mais irão "
+"receber atualizações."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -5055,11 +5079,11 @@ msgstr "Digite sua senha para confirmar sua decisão:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
-msgstr "Por favor, nos diga porquê você está apagando seu tema:"
+msgstr "Por favor, nos diga porquê está excluindo o seu tema:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your add-on:"
-msgstr "Por favor, nos diga porquê você está apagando seu complemento:"
+msgstr "Por favor, nos diga porquê está excluindo o seu complemento:"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:263
 msgid "Actions"
@@ -5076,7 +5100,7 @@ msgstr "Continuar"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr "Excluir esse complemento."
+msgstr "Excluir este complemento."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -5135,11 +5159,13 @@ msgstr "Transferir propriedade"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
-msgstr "Apagar este tema."
+msgstr "Excluir este tema."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr "Esse complemento será excluído automaticamente após alguns dias caso o processo de envio não seja completado."
+msgstr ""
+"Este complemento será excluído automaticamente após alguns dias caso o "
+"processo de envio não seja completado."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
@@ -5715,7 +5741,9 @@ msgstr "Respecting the JavaScript Global Namespace"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
 msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
-msgstr "Nessa postagem em seu blog, Mark Ziesemer explica como evitar poluição no namespace global ao encapsular as variáveis da sua extensão."
+msgstr ""
+"Neste artigo, Mark Ziesemer explica como prevenir poluição do espaço de "
+"nomes globais encapsulando as variáveis da sua extensão."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36 apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
@@ -6105,7 +6133,8 @@ msgstr "First Steps in Theme Design"
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
 msgid "This blog post by Lim Chee Aun explains the use of -moz-image-region in themes."
-msgstr "Esta postagem de Lim Chee Aun explica o uso da propriedade -moz-image-region em temas."
+msgstr ""
+"Este artigo de Lim Chee Aun explica o uso de -moz-image-region em temas."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:81
 msgid "Making Sure Your Theme Works with RTL Locales"
@@ -7596,8 +7625,11 @@ msgid ""
 "Yes. If at any point you need to edit or delete your theme design after it has been submitted to the gallery, you can access it from the <a href=\"%(dashboard_url)s\">Submissions dashboard</a>. "
 "From there, you can view your current designs. By clicking on each, you can make changes to each design's settings."
 msgstr ""
-"Sim. Se a qualquer momento você precisar editar ou apagar um tema após ele ter sido enviado para a galeria, você pode acessar através da <a href=\"%(dashboard_url)s\">Painel de Submissões</a>. Ali "
-"você pode ver seus designs atuais. Clicando em algum deles, você pode fazer as alterações em qualquer configuração do design."
+"Sim. Se a qualquer momento você precisar editar ou excluir um tema após ele "
+"ter sido enviado para a galeria, você pode acessar através da <a href=\"%"
+"(dashboard_url)s\">Painel de Submissões</a>. Ali você pode ver seus designs "
+"atuais. Clicando em algum deles, você pode fazer as alterações em qualquer "
+"configuração do design."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:268
 msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
@@ -7736,8 +7768,10 @@ msgid ""
 "<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
 "and/or tags are unrelated to your theme."
 msgstr ""
-"<b>Selecione uma categoria e tags</b> &mdash; selecione uma categoria e insira tags que melhor descrevem seu tma. Tenha em mente que um editor pode rejeitar seu tema se for óbvio que acategoria/"
-"tags não forem relacionados ao seu tema."
+"<b>Selecione uma categoria e as etiquetas</b> &mdash; selecione uma "
+"categoria e insira etiquetas que melhor descrevem o seu tema. Tenha em mente "
+"que um editor pode rejeitar seu tema se for óbvio que a categoria e ou "
+"etiquetas não forem relacionadas com o seu tema."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid ""
@@ -8127,7 +8161,7 @@ msgstr "Selecione a categoria que descreve melhor o seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:95 apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr "Adicione algumas tags que descrevem seu tema."
+msgstr "Adicione algumas etiquetas para descrever o seu tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106 apps/devhub/templates/devhub/personas/submit.html:54
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
@@ -8535,23 +8569,27 @@ msgstr "Excluir versão {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Você está prestes a apagar a versão atual do seu complemento. Isso pode fazer com o seu estado mude ou sua listagem e perca visibilidade pública, se esta é a única versão pública do seu complemento."
+"Você está prestes a excluir a versão atual deste complemento. Isso pode "
+"fazer com que o seu estado mude ou que sua listagem perca visibilidade "
+"pública, se esta for a única versão pública do seu complemento."
 
 #: apps/devhub/templates/devhub/versions/list.html:188
 msgid "Deleting this version will permanently delete:"
-msgstr "Excluir essa versão irá apagar permanentemente:"
+msgstr "Excluindo essa versão irá excluir permanentemente:"
 
 #: apps/devhub/templates/devhub/versions/list.html:194
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Importante:</strong> Uma vez que uma versão foi apagada, você não pode enviar uma nova versão com o mesmo número de versão."
+msgstr ""
+"<strong>Importante:</strong> Assim que uma versão for excluída, não poderá "
+"enviar uma nova versão com o mesmo número de versão."
 
 #: apps/devhub/templates/devhub/versions/list.html:199
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr "Apagar uma versão que já foi revisada também pode causar um atraso significativo na revisão da sua próxima atualização."
+msgstr "Tem certeza de que deseja excluir esta versão?"
 
 #: apps/devhub/templates/devhub/versions/list.html:202
 msgid "Are you sure you wish to delete this version?"
-msgstr "Tem certeza de que quer excluir essa versão?"
+msgstr "Tem certeza de que deseja excluir essa versão?"
 
 #: apps/devhub/templates/devhub/versions/list.html:207
 msgid "Delete Version"
@@ -8583,7 +8621,10 @@ msgstr "Cancelar sua solicitação de análise manterá seu complemento como ana
 
 #: apps/devhub/templates/devhub/versions/list.html:261
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
-msgstr "Cancelar sua solicitação de análise marcará seu complemento como incompleto. Se você não completar seu complemento solicitando uma nova análise após vários dias, ele será excluído."
+msgstr ""
+"Cancelar sua solicitação de análise marcará seu complemento como incompleto. "
+"Se não completar seu complemento solicitando uma nova análise após vários "
+"dias, ele será excluído."
 
 #: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Are you sure you wish to cancel your review request?"
@@ -9796,7 +9837,7 @@ msgstr "Editores"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr "Temas apagados"
+msgstr "Temas excluídos"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
@@ -9804,7 +9845,7 @@ msgstr "Data da exclusão"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr "Nenhum tema apagado neste período."
+msgstr "Nenhum tema excluido neste período."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -10926,8 +10967,12 @@ msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
 "\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"É por isso que é muito importante ler o <a href=\"%(g_url)s\">Guia de análise para editores</a> para garantir que seu complemento seja processado conforme esperado. Também é uma ótima ideia ler a "
-"postagem <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, que fornece uma excelente visão do processo, assegurando uma análise tranquila do seu complemento."
+"É por isso que é muito importante ler o <a href=\"%(g_url)s\">Guia de análise "
+"para editores</a> para garantir que seu complemento seja processado conforme "
+"esperado. Também é uma ótima ideia ler o artigo <a href=\"%"
+"(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, que fornece uma "
+"excelente visão do processo, assegurando uma análise tranquila do seu "
+"complemento."
 
 #: apps/pages/templates/pages/dev_faq.html:447
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -11062,7 +11107,10 @@ msgstr "Eu posso solicitar que uma análise seja removida caso ela seja imprecis
 
 #: apps/pages/templates/pages/dev_faq.html:574
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr "Se um autor entrar em contato conosco e pedir que uma análise contendo informações falsas ou imprecisas seja removida, nós analisaremos a postagem e consideraremos sua remoção."
+msgstr ""
+"Se um autor entrar em contato conosco e pedir que uma análise contendo "
+"informações falsas ou imprecisas seja removida, nós analisaremos e "
+"consideraremos a sua remoção."
 
 #: apps/pages/templates/pages/dev_faq.html:583
 msgid ""
@@ -11676,8 +11724,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
 "or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor, denuncie ou marque análises questionáveis clicando em \"Denunciar essa análise\" e ela será submetida à moderação do site. Os editores consultarão o Guia de análise para editores para "
-"decidir se a análise deve ser removida ou republicada no site."
+"Por favor, denuncie ou marque análises questionáveis clicando em \"Denunciar "
+"essa análise\" e ela será submetida à moderação do site. Os editores "
+"consultarão o Guia de análise para editores para decidir se a análise deve "
+"ser excluída ou republicada no site."
 
 #: apps/pages/templates/pages/review_guide.html:222
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11696,8 +11746,12 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that "
 "is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"Em geral, não. Mas se a análise não cumprir os critérios destacados acima, você pode clicar em \"Denunciar essa análise\" para indicá-la para moderação por um editor. Se uma análise incluir uma "
-"reclamação que não é mais válida devido a uma atualização do seu complemento, nós podemos considerar a remoção da análise. Envie sua solicitação detalhada para amo-editors@mozilla.org."
+"Em geral, não. Mas se a análise não cumprir os critérios destacados acima, "
+"você pode clicar em \"Denunciar essa análise\" para indicá-la para moderação "
+"por um editor. Se uma análise incluir uma reclamação que não é mais válida "
+"devido a uma atualização do seu complemento, nós podemos considerar a "
+"exclusão da análise. Envie sua solicitação detalhada para amo-"
+"editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -12057,7 +12111,9 @@ msgstr "Resultados <strong>{0}</strong> a <strong>{1}</strong> de <strong>{2}</s
 # {4} is a word (the add-on is tagged with it)
 #: apps/search/helpers.py:44
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "Exibindo resultados {0} a {1} de {2} com <strong>{3}</strong> e com a tag <strong>{4}</strong>"
+msgstr ""
+"Exibindo resultados {0} a {1} de {2} com <strong>{3}</strong> e com a "
+"etiqueta <strong>{4}</strong>"
 
 # {0} is a number
 # {1} is a number
@@ -12073,7 +12129,8 @@ msgstr "Exibindo resultados {0} a {1} de {2} com <strong>{3}</strong>"
 # {3} is a word (the add-on is tagged with it)
 #: apps/search/helpers.py:52
 msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "Exibindo resultados {0} a {1} de {2} com a tag <strong>{3}</strong>"
+msgstr ""
+"Exibindo resultados {0} a {1} de {2} com a etiqueta <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
@@ -12100,7 +12157,7 @@ msgstr "Todos os sistemas"
 
 #: apps/search/views.py:604
 msgid "All Tags"
-msgstr "Qualquer"
+msgstr "Todas as etiquetas"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/collections.html:8
@@ -12131,12 +12188,12 @@ msgstr "Resultados da pesquisa de temas"
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr "{0} :: Tag"
+msgstr "{0} :: Etiqueta"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr "Resultados da pesquisa para a tag \"{0}\""
+msgstr "Resultados da pesquisa para a etiqueta \"{0}\""
 
 #: apps/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
@@ -12154,7 +12211,7 @@ msgstr "Categoria"
 
 #: apps/search/templates/search/results.html:84
 msgid "Tag"
-msgstr "Tag"
+msgstr "Etiqueta"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
@@ -12626,12 +12683,12 @@ msgstr "Versões do complemento por Data"
 # {0} is a number
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr "{0} principais tags"
+msgstr "{0} etiquetas mais populares"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
 msgid "{0} Top Tags"
-msgstr "Tags principais do {0}"
+msgstr "Etiquetas populares {0}"
 
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -12999,12 +13056,17 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Você não pode excluir sua conta se estiver listado como um <a href=\"%(link)s\">autor de algum complemento</a>. Para excluir sua conta, peça a outra pessoa do seu grupo de desenvolvimento para "
-"removê-lo da lista de autores dos seus complementos. Após isso, você poderá excluir aqui a sua conta."
+"Você não pode excluir sua conta se estiver listado como um <a href=\"%"
+"(link)s\">autor de algum complemento</a>. Para excluir sua conta, peça a "
+"outra pessoa do seu grupo de desenvolvimento para excluí-lo da lista de "
+"autores dos seus complementos. Após isso, você poderá excluir aqui a sua "
+"conta."
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Ao clicar em \"Apagar\" sua conta vai ser <strong>removida permanentemente</strong>. Isso significa que:"
+msgstr ""
+"Ao clicar em \"Excluir\" sua conta vai ser <strong>removida "
+"permanentemente</strong>. Isso significa que:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
@@ -13012,7 +13074,9 @@ msgstr "Você não será capaz de entrar no %(site)s mais."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Seus comentários e as avaliações não serão apagados, mas eles deixarão de ser associado com você."
+msgstr ""
+"Seus comentários e avaliações não serão excluídos, mas deixarão de estar "
+"associados a você."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
