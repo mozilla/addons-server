@@ -600,9 +600,13 @@ class TestDownloadsBase(amo.tests.TestCase):
         url = settings.SITE_URL + user_media_url('addons')
         self.assert_served_by_host(response, url, file_)
 
+    def assert_served_signed(self, response):
+        url = settings.SITE_URL + self.file.get_mirror(
+            self.addon, media_root='signed_addons')
+        eq_(response['Location'], url)
+
 
 class TestDownloads(TestDownloadsBase):
-
     def test_file_404(self):
         r = self.client.get(reverse('downloads.file', args=[234]))
         eq_(r.status_code, 404)
@@ -708,6 +712,17 @@ class TestDownloads(TestDownloadsBase):
         self.addon.update(status=amo.STATUS_BETA)
         self.file.update(status=amo.STATUS_BETA)
         self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_public_signed_file(self):
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.file.status, amo.STATUS_PUBLIC)
+
+        # If not signed, serve the standard xpi.
+        self.assert_served_locally(self.client.get(self.file_url))
+
+        # If signed, serve the signed one instead.
+        with mock.patch('versions.views.storage.exists', lambda fname: True):
+            self.assert_served_signed(self.client.get(self.file_url))
 
 
 class TestDownloadsLatest(TestDownloadsBase):

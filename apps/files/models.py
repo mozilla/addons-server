@@ -117,13 +117,13 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         """True only if extension is xpi"""
         return os.path.splitext(self.filename)[1] == '.xpi'
 
-    def get_mirror(self, addon, attachment=False):
+    def get_mirror(self, addon, attachment=False, media_root='addons'):
         if attachment:
-            host = posixpath.join(user_media_url('addons'), '_attachments')
+            host = posixpath.join(user_media_url(media_root), '_attachments')
         elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
             host = settings.PRIVATE_MIRROR_URL
         else:
-            host = user_media_url('addons')
+            host = user_media_url(media_root)
 
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 
