@@ -27,6 +27,8 @@ from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import File
 from files.tests.test_models import UploadTest
+from lib.crypto import packaged
+from lib.crypto.tests import mock_sign
 from users.models import UserProfile
 from versions import feeds, views
 from versions.models import Version, ApplicationsVersions
@@ -600,9 +602,13 @@ class TestDownloadsBase(amo.tests.TestCase):
         url = settings.SITE_URL + user_media_url('addons')
         self.assert_served_by_host(response, url, file_)
 
+    def assert_served_signed(self, response):
+        url = settings.SITE_URL + self.file.get_mirror(
+            self.addon, media_root='signed_addons')
+        eq_(response['Location'], url)
+
 
 class TestDownloads(TestDownloadsBase):
-
     def test_file_404(self):
         r = self.client.get(reverse('downloads.file', args=[234]))
         eq_(r.status_code, 404)
@@ -708,6 +714,60 @@ class TestDownloads(TestDownloadsBase):
         self.addon.update(status=amo.STATUS_BETA)
         self.file.update(status=amo.STATUS_BETA)
         self.assert_served_locally(self.client.get(self.file_url))
+
+
+class TestDownloadsSigned(TestDownloadsBase):
+    def setUp(self):
+        super(TestDownloadsSigned, self).setUp()
+
+        # Create a fake XPI downloadable file.
+        import zipfile
+        if not os.path.exists(os.path.dirname(self.file.file_path)):
+            os.makedirs(os.path.dirname(self.file.file_path))
+
+        fp = zipfile.ZipFile(self.file.file_path, 'w')
+        fp.writestr('install.rdf', '<?xml version="1.0"?><RDF></RDF>')
+        fp.close()
+
+    def tearDown(self):
+        super(TestDownloadsSigned, self).tearDown()
+        os.unlink(self.file.signed_file_path)
+
+    @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
+    @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_public_signed_file(self):
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.file.status, amo.STATUS_PUBLIC)
+        self.assert_served_signed(self.client.get(self.file_url))
+
+    @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
+    @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_public_unreviewed_signed_file(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.file.update(status=amo.STATUS_UNREVIEWED)
+        self.assert_served_signed(self.client.get(self.file_url))
+
+    @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
+    @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_public_prelim_signed_file(self):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.file.update(status=amo.STATUS_NOMINATED)
+        self.assert_served_signed(self.client.get(self.file_url))
+
+    @mock.patch.object(settings, 'SIGNING_SERVER_ACTIVE', True)
+    @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_public_signed_once(self):
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        eq_(self.file.status, amo.STATUS_PUBLIC)
+
+        with mock.patch('lib.crypto.packaged.sign') as mock_sign:
+            self.client.get(self.file_url)
+            assert mock_sign.called
+
+        self.assert_served_signed(self.client.get(self.file_url))
+
+        with mock.patch('lib.crypto.packaged.sign') as mock_sign:
+            assert not mock_sign.called
 
 
 class TestDownloadsLatest(TestDownloadsBase):
