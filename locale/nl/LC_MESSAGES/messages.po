@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-08 10:43+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2014-12-15 07:33+0000\n"
+"Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418035381.0\n"
+"X-POOTLE-MTIME: 1418628804.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -9156,7 +9156,7 @@ msgstr "Bevat editoropmerking"
 
 #: apps/editors/models.py:185
 msgid "Sources provided"
-msgstr ""
+msgstr "Bronnen geleverd"
 
 #: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
@@ -10403,6 +10403,9 @@ msgstr "Veelgestelde vragen voor add-on-ontwikkelaars"
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 msgstr ""
+"<h3>Hoe bouw ik een add-on?</h3> <p>Mozilla biedt documentatie over het "
+"bouwen van een add-on via het <a href=\"%(url)s\">Mozilla Developer "
+"Network</a>. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -10410,11 +10413,11 @@ msgstr "Overige informatiebronnen:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Bericht “Hoe wordt een Firefox-extensie ontwikkeld” in de add-onsblog"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Mozilla add-onsblog"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -10438,10 +10441,16 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a "
+"href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-"
+"plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
 msgstr ""
+"U kunt ook meer lezen over het instellen van uw ontwikkelomgeving via het "
+"MDN-artikel <a href=\"%(url)s\">Ontwikkelomgeving voor extensies instellen</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -10506,35 +10515,58 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
+"Ja. Het is mogelijk, maar sommige door deze bibliotheken geboden functies "
+"zijn beschikbaar via XPCOM, XUL en JavaScript. Daarnaast moeten schrijvers "
+"opletten als bibliotheken primitieve objectprototypes (String.prototype, "
+"Date.prototype, enz.) aanpassen en/of algemene functies (zoals de functie $) "
+"definiëren. Deze zijn gevoelig voor conflicten met andere add-ons, vooral "
+"verschillende add-ons verschillende versies van bibliotheken enzovoorts "
+"gebruiken. Ontwikkelaars dienen zeer voorzichtig te zijn bij het gebruik "
+"ervan. Mozilla biedt geen documentatie over het gebruik bij het bouwen van "
+"add-ons."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Hoe spoor ik fouten in mijn add-on op?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "U kunt de <a href=\"%(url)s\">Add-on Debugger</a> gebruiken."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Hoe test ik op compatibiliteit met de laatste versie van Mozilla-software?"
 
+# YOU’RE??!!
 #: apps/pages/templates/pages/dev_faq.html:175
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Om compatibiliteit met de laatste Mozilla-software te garanderen is het "
+"belangrijk om updates zodra deze beschikbaar komen te downloaden en uw add-"
+"on te testen om te bezien of deze nog altijd volgens verwachting "
+"functioneert. In veel gevallen kan de laatste versie van Mozilla-software "
+"een bèta-uitgave zijn. Aangezien deze uitgaven soms architectuurwijzigingen "
+"introduceren die mogelijk effect hebben op de functionaliteit van uw add-on, "
+"is het belangrijk om actief deel te nemen aan het bèta-proces om ervoor te "
+"zorgen dat de gebruikers van uw add-on geen negatieve gevolgen ondervinden "
+"bij de definitieve uitgave van Mozilla-software."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Hoe verbeter ik de prestaties van mijn add-on?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
 "\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
+"Slecht geschreven extensies kunnen grote gevolgen hebben op de surfervaring, "
+"alsmede op de prestaties van Firefox zelf. De volgende pagina bevat vele "
+"goede <a href=\"%(url)s\">gidsen</a> die u de prestaties helpen verbeteren, of "
+"u nu kerncode voor Mozilla codeert of een add-on."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -10545,6 +10577,11 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Ja. Details over lokaliseren van uw add-on kunnen worden gevonden op de "
+"pagina <a href=\"%(l10n_url)s\">Lozalization op het Mozilla Developer "
+"Network</a>. <a href=\"%(bz_url)s\">Het BabelZilla-project</a> is ook een "
+"geweldige bron om te leren over lokaliseren en vrijwillig helpen bij het "
+"vertalen van add-ons."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -10564,6 +10601,7 @@ msgstr "#amo (voor ondersteuning met betrekking tot het hosten van uw add-on op 
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
 msgstr ""
+"#jetpack (voor discussies over de Add-ons SDK en cfx/jpm - voorheen Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -10582,11 +10620,11 @@ msgstr "Google discussiegroep"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Add-onsforum"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -10605,6 +10643,10 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
 "\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"Ja. U kunt externe ontwikkelaars vinden via het <a href=\"%(forum_url)s\">Add-"
+"onsforum</a>, <a href=\"%(list_url)s\">de mozilla.jobs-lijst</a>, <a href=\"%"
+"(mz_url)s\">mozillaZine-forums</a> of <a href=\"%(wiki_url)s\">de Mozilla-"
+"wiki</a>. Mozilla doet geen aanbevelingen voor ontwikkelaars."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -10765,6 +10807,12 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
+"Het Mozilla-editorteam volgt de <a href=\"%(url)s\">Beoordelingsgids voor "
+"editors</a> bij het testen van een add-on voor acceptatie op AMO. Het is "
+"belangrijk dat add-onontwikkelaars deze gids doornemen om ervoor te zorgen "
+"dat veelvoorkomende probleemgebieden zijn geadresseerd voordat hun add-on "
+"voor beoordeling wordt ingediend. Hierdoor wordt het beoordelingsproces "
+"aanzienlijk versneld."
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -10973,11 +11021,13 @@ msgstr "Open Source Initiative geeft de voorwaarden van enkele van de belangrijk
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Een vergelijking van bekende opensourcelicenties op Wikipedia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr ""
+"Een website met neutrale tips voor het kiezen van een licentie voor uw "
+"opensourceproject."
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
