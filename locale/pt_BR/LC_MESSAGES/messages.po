@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-14 18:17+0000\n"
+"PO-Revision-Date: 2014-12-16 13:21+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1418581075.0\n"
+"X-POOTLE-MTIME: 1418736095.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -98,7 +98,9 @@ msgstr[1] "Todas as etiquetas devem ter pelo menos {0} caracteres."
 
 #: apps/addons/forms.py:219
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "As categorias não podem ser alteradas enquanto seu complemento estiver indicado para essa aplicação."
+msgstr ""
+"As categorias não podem ser alteradas enquanto seu complemento é destaque "
+"para este aplicativo."
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:223
@@ -109,7 +111,7 @@ msgstr[1] "Você pode ter apenas {0} categorias."
 
 #: apps/addons/forms.py:231
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "A categoria 'Outros' não pode ser combinada com outras categorias."
+msgstr "A categoria diversos não pode ser combinada com outras categorias."
 
 #: apps/addons/forms.py:354
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -216,15 +218,21 @@ msgstr "Esse complemento foi analisado preliminarmente pela Mozilla. <a href=\"%
 
 #: apps/addons/templates/addons/contribution.html:11 apps/addons/templates/addons/impala/developers.html:44
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "O desenvolvedor desse complemento pede que você ajude seu desenvolvimento deixando uma pequena contribuição."
+msgstr ""
+"O desenvolvedor deste complemento pede que o ajude na continuação do "
+"desenvolvimento, fazendo uma pequena contribuição."
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "O desenvolvedor desse complemento pede que você mostre o seu apoio fazendo uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr ""
+"O desenvolvedor deste complemento pede que mostre o seu apoio fazendo uma "
+"doação para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "O desenvolvedor desse complemento pede que você mostre o seu apoio deixando uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr ""
+"O desenvolvedor desse complemento pede que mostre o seu apoio, fazendo uma "
+"pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:25
 msgid "Contribute"
@@ -256,41 +264,54 @@ msgstr "O que é isso?"
 
 #: apps/addons/templates/addons/contribution.html:63
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "O desenvolvedor desse complemento gostaria que você considerasse fazer uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso você goste de usá-lo."
+msgstr ""
+"O desenvolvedor desse complemento gostaria que considerasse fazer uma doação "
+"para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso goste de usá-lo."
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "O desenvolvedor desse complemento gostaria que você considerasse deixar uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso você goste de usá-lo."
+msgstr ""
+"O desenvolvedor desse complemento gostaria que considerasse fazer uma "
+"pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> "
+"caso goste de usá-lo."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "A Mozilla está empenhada em apoiar e manter um vibrante e saudável ecossistema de desenvolvedores. Sua contribuição opcional ajudará no desenvolvimento futuro desse complemento."
+msgstr ""
+"A Mozilla está comprometida com o desenvolvimento de um ecossistema de "
+"desenvolvedores saudável e vibrante. Sua doação pode contribuir para o "
+"desenvolvimento deste complemento."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr "Deixar uma contribuição"
+msgstr "Fazer uma contribuição"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Ajude a apoiar o desenvolvimento contínuo de <strong>%(addon_name)s</strong> deixando uma pequena contribuição usando o <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr ""
+"Ajude no desenvolvimento contínuo de <strong>%(addon_name)s</strong> fazendo "
+"uma pequena contribuição usando o <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Para mostrar o seu apoio a <b>%(addon_name)s</b>, o desenvolvedor pede que você faça uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> usando o <a href=\"%(paypal_url)s\">PayPal</a>."
+"Para mostrar o seu apoio a <b>%(addon_name)s</b>, o desenvolvedor solicita "
+"uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> usando o <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"Para mostrar o seu apoio a <b>%(addon_name)s</b>, o desenvolvedor pede que você deixe uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> usando o <a href=\"%(paypal_url)s"
-"\">PayPal</a>."
+"Para mostrar o seu apoio a <b>%(addon_name)s</b>, o desenvolvedor solicita "
+"que faça uma pequena contribuição para <a href=\"%(charity_url)s\">%"
+"(charity_name)s</a> usando o <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr "Com quanto você gostaria de contribuir?"
+msgstr "Com quanto deseja contribuir?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
@@ -326,7 +347,7 @@ msgstr "(opcional)"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
-msgstr "Deixar uma contribuição"
+msgstr "Fazer uma contribuição"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
@@ -399,7 +420,7 @@ msgstr "Política de privacidade"
 
 #: apps/addons/templates/addons/details_box.html:115 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
-msgstr "Ver a Política de privacidade"
+msgstr "Ver a política de privacidade"
 
 #: apps/addons/templates/addons/details_box.html:121
 msgid "EULA"
@@ -420,15 +441,17 @@ msgstr "Comentários do desenvolvedor"
 
 #: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
-msgstr "Canal de Desenvolvimento"
+msgstr "Canal de desenvolvimento"
 
 #: apps/addons/templates/addons/details_box.html:193 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"O Canal de Desenvolvimento permite que você teste um nova versão experimental desse complemento antes dele ser lançado ao público em geral. Uma vez instalada a versão em desenvolvimento, você "
-"continuará a receber atualizações desse canal."
+"O canal de desenvolvimento permite que teste um nova versão experimental "
+"deste complemento antes dele ser lançado ao público em geral. Uma vez "
+"instalada a versão em desenvolvimento, você continuará a receber "
+"atualizações desse canal."
 
 #: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
@@ -469,7 +492,9 @@ msgstr "Acordo de Licença"
 # %s is the name of the add-on
 #: apps/addons/templates/addons/eula.html:23 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s precisa que você aceite o Acordo de Licença a seguir antes de prosseguir a instalação:"
+msgstr ""
+"%(addon_name)s precisa que aceite o acordo de licenciamento a seguir antes "
+"de prosseguir a instalação:"
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
@@ -691,7 +716,6 @@ msgstr "por {0} em {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
-#, fuzzy
 msgid "Not yet rated"
 msgstr "Ainda não foi avaliado"
 
@@ -10573,6 +10597,9 @@ msgstr "Dúvidas comuns de desenvolvedores de complementos"
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 msgstr ""
+"<h3>Como faço para criar um complemento?</h3> <p>A Mozilla fornece "
+"documentação sobre como criar um complemento através do <a href=\"%"
+"(url)s\">Mozilla Developer Network</a>.</p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -10580,11 +10607,11 @@ msgstr "Outros recursos incluem:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Artigo \"Como desenvolver uma extensão do Firefox\" no blog Add-ons"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Blog Mozilla Add-ons"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -10608,10 +10635,17 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a "
+"href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-"
+"plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
 msgstr ""
+"Você também pode aprender mais sobre como configurar seu ambiente de "
+"desenvolvimento, através do artigo <a href=\"%(url)s\">Configurando o ambiente "
+"de desenvolvimento de extensão</a> no MDN"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -10679,11 +10713,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Como faço para depurar o meu complemento?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Você pode usar o <a href=\"%(url)s\">Add-on Debugger</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -10698,7 +10732,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Como melhorar o desempenho do meu complemento?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
@@ -10752,11 +10786,11 @@ msgstr "Grupo do Google"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Fórum sobre complementos"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -11152,7 +11186,7 @@ msgstr "A Open Source Initiative fornece os termos de algumas das principais lic
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Comparação das licenças mais comuns de código aberto na Wikipédia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
