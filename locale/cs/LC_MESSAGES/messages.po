@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-10-17 13:42+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2014-12-16 20:30+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1413553372.0\n"
+"X-POOTLE-MTIME: 1418761855.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10393,6 +10393,9 @@ msgstr "Časté dotazy vývojářů doplňků"
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 msgstr ""
+"<h3>Jak mohu vytvořit doplněk?</h3><p>Mozilla poskytuje dokumentaci k tomu, "
+"jak vytvořit doplněk, na <a href=\"%(url)s\">Mozilla Developer "
+"Network</a>.</p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -10400,11 +10403,11 @@ msgstr "Další zajímavé zdroje:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Článek \"How to develop a Firefox extension\" na blogu o doplňcích"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Blog o doplňcích Mozilla"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -10426,10 +10429,16 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a "
+"href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-"
+"plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
 msgstr ""
+"Více o nastavení vývojového prostředí se můžete dozvědět v článku na MDN <a "
+"href=\"%(url)s\">Setting up extension development environment</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -10497,7 +10506,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Jak mohu ladit svůj doplněk?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
@@ -10516,13 +10525,17 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Jak zlepším rychlost a odezvu svého doplňku?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
 "\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
+"Hůře napsané doplňky mohou mít dopad na fungování prohlížeče, včetně "
+"rychlosti a odezvy samotného Firefoxu. Následující stránka obsahuje několik "
+"dobrých <a href=\"%(url)s\">rad</a>, které vám pomohou zlepšit fungování, ať "
+"už pracujete na doplňku nebo kódu jádra Mozilly."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -10574,7 +10587,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -10954,7 +10967,7 @@ msgstr "Open Source Initiative poskytuje informace o některých nejrozšířen�
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Porovnání známých open source licencí na Wikipedii."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
