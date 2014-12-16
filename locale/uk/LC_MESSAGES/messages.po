@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-10 13:43+0000\n"
+"PO-Revision-Date: 2014-12-16 14:30+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418219037.0\n"
+"X-POOTLE-MTIME: 1418740229.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3732,47 +3733,55 @@ msgstr ""
 
 #: apps/devhub/forms.py:563
 msgid "Version %s already exists"
-msgstr ""
+msgstr "Версія %s вже існує"
 
 #: apps/devhub/forms.py:576
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "Зробіть правильний вибір. Цей вибір не є одним з доступних варіантів."
 
 #: apps/devhub/forms.py:611
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Ви більше не можете вивантажувати файли для цієї версії."
 
 #: apps/devhub/forms.py:617
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Версія не підходить"
 
 #: apps/devhub/forms.py:650
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr ""
+"Ви не можете видалити файл, якщо почався процес перевірки. Ви повинні "
+"видалити повністю всю версію."
 
 #: apps/devhub/forms.py:670
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Платформа Все не може бути об'єднана з конкретними платформами."
 
 #: apps/devhub/forms.py:675
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Платформа може бути вибрана тільки один раз."
 
 #: apps/devhub/forms.py:688
 msgid "A review type must be selected."
-msgstr ""
+msgstr "Повинен бути вибраний тип перевірки."
 
 #: apps/devhub/forms.py:767
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr ""
+"Назвіть свій додаток. Найуспішніші додатки використовують ім'я, яке дає "
+"певне уявлення про їх функції."
 
 #: apps/devhub/forms.py:772
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr ""
+"Коротко опишіть свій додаток одним реченням. Це з'являється у вікні "
+"керування додатками."
 
 #: apps/devhub/forms.py:776
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr ""
+"Введіть початковий номер версії. В залежності від кількості випусків та "
+"ваших вподобань, це зазвичай 0.1 чи 1.0"
 
 #: apps/devhub/forms.py:780
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
