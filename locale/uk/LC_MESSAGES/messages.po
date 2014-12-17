@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-16 14:30+0000\n"
+"PO-Revision-Date: 2014-12-17 14:49+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418740229.0\n"
+"X-POOTLE-MTIME: 1418827746.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3786,54 +3786,65 @@ msgstr ""
 #: apps/devhub/forms.py:780
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr ""
+"Кожен додаток потребує унікальний ID у вигляді UUID чи адреси ел. пошти, "
+"такого як addon-name@developer.com. Адреса ел. пошти не повинна бути "
+"дійсною."
 
 #: apps/devhub/forms.py:786
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr ""
+"Ім'я пакета вашого додатку, яке використовується всередині браузера. Це "
+"повинна бути коротка форма його назви (наприклад, Test Extension може бути "
+"test_extension)."
 
 #: apps/devhub/forms.py:791
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr ""
+"Введіть ім'я людини чи організації, яка повинна бути зазначена в якості "
+"автора цього додатку."
 
 #: apps/devhub/forms.py:795
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr ""
+"Введіть імена всіх інших помічників цього розширення, по одному в кожному "
+"рядку."
 
 #: apps/devhub/forms.py:804
 msgid "Add-on names should not contain Mozilla trademarks."
-msgstr ""
+msgstr "Назви додатків не повинні містити торгових знаків Mozilla."
 
 #: apps/devhub/forms.py:811
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr ""
+"Введіть дійсну назву пакета, яка складається з літер, цифр та підкреслювань."
 
 #: apps/devhub/forms.py:815
 msgid "This package name is already in use."
-msgstr ""
+msgstr "Така назва пакета вже використовується."
 
 #: apps/devhub/forms.py:818
 msgid "The package name cannot be: %s."
-msgstr ""
+msgstr "Назва пакета не може бути: %s."
 
 #: apps/devhub/forms.py:829
 msgid "The add-on ID must be a UUID string or an email address."
-msgstr ""
+msgstr "ID додатку повинен бути рядком UUID чи адресою ел. пошти."
 
 #: apps/devhub/forms.py:835
 msgid "The version string is invalid."
-msgstr ""
+msgstr "Рядок версії неправильний."
 
 #: apps/devhub/forms.py:843
 msgid "Minimum"
-msgstr ""
+msgstr "Найменше"
 
 #: apps/devhub/forms.py:846
 msgid "Maximum"
-msgstr ""
+msgstr "Найбільше"
 
 #: apps/devhub/forms.py:897
 msgid "Min version must be less than Max version."
-msgstr ""
+msgstr "Найменша версія повинна бути меншою, ніж найбільша."
 
 #: apps/devhub/forms.py:922
 msgid "{0} is a required target application."
@@ -3845,7 +3856,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:935
 msgid "Creates a standard About dialog for your extension"
-msgstr ""
+msgstr "Створює стандартний діалог About для вашого розширення"
 
 #: apps/devhub/forms.py:939
 msgid "Preferences dialog"
@@ -3853,15 +3864,15 @@ msgstr ""
 
 #: apps/devhub/forms.py:940
 msgid "Creates an example Preferences window"
-msgstr ""
+msgstr "Створює приклад вікна налаштувань"
 
 #: apps/devhub/forms.py:943
 msgid "Toolbar"
-msgstr ""
+msgstr "Панель інструментів"
 
 #: apps/devhub/forms.py:944
 msgid "Creates an example toolbar for your extension"
-msgstr ""
+msgstr "Створює приклад панелі інструментів для вашого розширення"
 
 #: apps/devhub/forms.py:947
 msgid "Toolbar button"
@@ -3913,7 +3924,7 @@ msgstr ""
 
 #: apps/devhub/helpers.py:103
 msgid "Developer Docs"
-msgstr ""
+msgstr "Документація розробника"
 
 #. L10n: first parameter is the number of errors
 #: apps/devhub/helpers.py:206
@@ -3941,7 +3952,7 @@ msgstr ""
 
 #: apps/devhub/tasks.py:331
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Час очікування з'єднання з \"%s\" завершився."
 
 #: apps/devhub/tasks.py:333
 msgid "Could not contact host at \"%s\"."
@@ -3953,7 +3964,7 @@ msgstr ""
 
 #: apps/devhub/views.py:175
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Всі мої додатки"
 
 #: apps/devhub/views.py:202
 msgid "All Activity"
@@ -3973,19 +3984,19 @@ msgstr "Збірки користувача"
 
 #: apps/devhub/views.py:206 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
-msgstr ""
+msgstr "Відгуки користувачів"
 
 #: apps/devhub/views.py:319 apps/devhub/views.py:323 apps/devhub/views.py:436 apps/devhub/views.py:465 apps/devhub/views.py:516 apps/devhub/views.py:1122
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Зміни успішно збережені."
 
 #: apps/devhub/views.py:326 apps/devhub/views.py:1538
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Перевірте форму на наявність помилок."
 
 #: apps/devhub/views.py:338
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Додаток неможливо видалити. Натомість відключіть його."
 
 #: apps/devhub/views.py:348
 msgid "Theme deleted."
@@ -4017,40 +4028,42 @@ msgstr ""
 
 #: apps/devhub/views.py:667
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Під час відправлення сталася помилка."
 
 #: apps/devhub/views.py:1030 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Зображення повинні бути у форматі PNG чи JPG."
 
 #: apps/devhub/views.py:1034
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Іконки не можуть бути з анімацією."
 
 #: apps/devhub/views.py:1036
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Зображення не можуть бути з анімацією."
 
 #: apps/devhub/views.py:1049
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Зображення не можуть перевищувати розмір %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: apps/devhub/views.py:1059
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
+"Зображення повинно бути точно {0} пікселів завширшки та {1} пікселів "
+"заввишки."
 
 #: apps/devhub/views.py:1063
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "При вивантаженні вашого попереднього перегляду сталася помилка."
 
 #: apps/devhub/views.py:1161
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Версію %s відключено."
 
 #: apps/devhub/views.py:1164
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Версію %s видалено."
 
 #: apps/devhub/views.py:1174
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
