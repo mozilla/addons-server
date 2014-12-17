@@ -71,12 +71,11 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-FLIGTAR = 'marketplace-staff+random-goings-on@mozilla.org'
+FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
-SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
+SENIOR_EDITORS_EMAIL = 'amo-editors+somethingbad@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
-MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
-ABUSE_EMAIL = 'marketplace-staff+abuse@mozilla.org'
+ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
 DATABASE_URL = os.environ.get('DATABASE_URL',
