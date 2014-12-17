@@ -160,9 +160,8 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
     themes = list(themes)[:num]
     expiry = get_updated_expiry()
     for theme in themes:
-        if rereview:
-            theme = theme.theme
-        ThemeLock.objects.create(theme=theme, reviewer=reviewer, expiry=expiry)
+        ThemeLock.objects.create(theme=_rereview_to_theme(rereview, theme),
+                                 reviewer=reviewer, expiry=expiry)
 
     # Empty pool? Go look for some expired locks.
     if not themes:
@@ -178,7 +177,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
             locks = expired_locks
 
     if rereview:
-        return (RereviewQueueTheme.objects
+        return (RereviewQueueTheme.objects.no_cache()
                 .filter(theme__themelock__reviewer=reviewer)
                 .exclude(theme__addon__status=amo.STATUS_REJECTED))
 
@@ -284,15 +283,18 @@ def _calc_num_themes_checkout(locks):
 
 def _get_rereview_themes(reviewer):
     """Check out re-uploaded themes."""
-    locks = ThemeLock.objects.select_related().filter(
-        reviewer=reviewer, theme__rereviewqueuetheme__isnull=False)
+    locks = (ThemeLock.objects.select_related().no_cache()
+             .filter(reviewer=reviewer,
+                     theme__rereviewqueuetheme__isnull=False)
+             .exclude(theme__addon__status=amo.STATUS_REJECTED))
 
     num, updated_locks = _calc_num_themes_checkout(locks)
     if updated_locks:
         locks = updated_locks
 
-    themes = RereviewQueueTheme.objects.filter(theme__addon__isnull=False,
-                                               theme__themelock=None)
+    themes = (RereviewQueueTheme.objects.no_cache()
+              .filter(theme__addon__isnull=False, theme__themelock=None)
+              .exclude(theme__addon__status=amo.STATUS_REJECTED))
     return num, themes, locks
 
 
