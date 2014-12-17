@@ -1059,6 +1059,9 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                 errors.append(_('Image must be exactly {0} pixels wide '
                                 'and {1} pixels tall.')
                               .format(expected_size[0], expected_size[1]))
+        if errors and upload_type == 'preview' and os.path.exists(loc):
+            # Delete the temporary preview file in case of error.
+            os.unlink(loc)
     else:
         errors.append(_('There was an error uploading your preview.'))
 
