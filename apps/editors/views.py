@@ -68,7 +68,30 @@ def eventlog(request):
 @addons_reviewer_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
-    data = context(log=log)
+
+    review = None
+    # I really cannot express the depth of the insanity incarnate in
+    # our logging code...
+    if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
+        review = log.arguments[1]
+
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+
+    can_undelete = review and review.deleted and (
+        is_admin or request.user.pk == log.user.pk)
+
+    if request.method == 'POST':
+        # A Form seems overkill for this.
+        if request.POST['action'] == 'undelete':
+            if not can_undelete:
+                raise PermissionDenied
+
+            ReviewerScore.award_moderation_points(
+                log.user, review.addon, review.id, undo=True)
+            review.undelete()
+        return redirect('editors.eventlog.detail', id)
+
+    data = context(log=log, can_undelete=can_undelete)
     return render(request, 'editors/eventlog_detail.html', data)
 
 

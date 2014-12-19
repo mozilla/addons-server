@@ -5,7 +5,7 @@
 {% block content %}
 <img title="What Would Jorge Do?" src="https://static.addons.mozilla.net/img/uploads/userpics/0/4/4230.png?modified=1292626484" alt="">
 <p>Enter the id of the file you want to rescue from the disabled abyss.</p>
-<form method="post" action="">
+<form method="post">
   {{ csrf() }}
   <input type="number" name="file" value="{{ file_id }}">
   {% if file %}

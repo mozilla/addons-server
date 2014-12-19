@@ -93,7 +93,7 @@ $(function() {
   {{ 'are being' if upgrading else 'will be' }} upgraded.
   <a href="#" id="change-range">Select a different range.</a>
 </p>
-<form id="ranges" method="post" action=""
+<form id="ranges" method="post"
       class="highlight{{ ' hidden' if not form.errors }}">
   {{ csrf() }}
   {{ form.minver }} to {{ form.maxver }}
@@ -101,7 +101,7 @@ $(function() {
   or <a href="#" id="cancel-range">Cancel</a>
 </form>
 
-<form id="proceed" method="post" action=""
+<form id="proceed" method="post"
       class="highlight{{ ' upgrading' if upgrading }}{{ ' hidden' if form.errors }}">
   {{ csrf() }}
   {% if upgrading %}
@@ -179,7 +179,7 @@ $(function() {
     {% endfor %}
     <th colspan="0">
       Show all repacked for version
-      <form action="" class="go">
+      <form class="go">
         <select name="show">
           {% for version, _ in by_version.items()|sort %}
             <option{% if version == show %} selected{% endif %}>

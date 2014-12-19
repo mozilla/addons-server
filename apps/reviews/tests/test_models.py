@@ -33,6 +33,20 @@ class TestReviewModel(amo.tests.TestCase):
         r2 = Review.objects.get(id=2)
         self.trans_eq(r2.title, 'r2 title de', 'de')
 
+    def test_soft_delete(self):
+        eq_(Review.objects.count(), 2)
+        eq_(Review.with_deleted.count(), 2)
+
+        Review.objects.get(id=1).delete()
+
+        eq_(Review.objects.count(), 1)
+        eq_(Review.with_deleted.count(), 2)
+
+        Review.objects.filter(id=2).delete()
+
+        eq_(Review.objects.count(), 0)
+        eq_(Review.with_deleted.count(), 2)
+
 
 class TestGroupedRating(amo.tests.TestCase):
     fixtures = ['reviews/dev-reply']
