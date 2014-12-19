@@ -276,15 +276,6 @@ class BaseTestCase(test.TestCase):
     def _pre_setup(self):
         super(BaseTestCase, self)._pre_setup()
 
-        # If we have a settings_test.py let's roll it into our settings.
-        try:
-            import settings_test
-            # Use setattr to update Django's proxies:
-            for k in dir(settings_test):
-                setattr(settings, k, getattr(settings_test, k))
-        except ImportError:
-            pass
-
         cache.clear()
         # Override django-cache-machine caching.base.TIMEOUT because it's
         # computed too early, before settings_test.py is imported.
