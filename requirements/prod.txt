@@ -29,7 +29,6 @@ django-filter==0.7
 django-memcached-pool==0.4.1
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
-django-nose==1.2
 django-quieter-formset==0.4
 django-pymemcache==0.1.1-fixserial
 django-raven-heka==0.3

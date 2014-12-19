@@ -138,7 +138,7 @@ need to recompile the .mo files manually, for example::
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
 .. _`pytest`: http://pytest.org/latest/
-.. _`pytest-django`: https://nose.readthedocs.org/en/latest/
+.. _`pytest-django`: https://pytest-django.readthedocs.org/en/latest/
 .. _`Selenium`: http://www.seleniumhq.org/
 .. _`Selenium repository`: https://github.com/mozilla/Addon-Tests/
 .. _mock: http://pypi.python.org/pypi/mock

@@ -3,7 +3,6 @@
 -r prod.txt
 
 execnet==1.2
-nose-blockage==0.1.2
 psutil==0.2.0
 py==1.4.26
 pytest==2.6.4

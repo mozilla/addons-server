@@ -397,7 +397,6 @@ INSTALLED_APPS = (
 
     # Third party apps
     'django_extensions',
-    'django_nose',
     'gunicorn',
     'raven.contrib.django',
     'piston',
@@ -421,12 +420,6 @@ INSTALLED_APPS = (
 TEST_INSTALLED_APPS = (
     'translations.tests.testapp',
 )
-
-# Tests
-TEST_RUNNER = 'amo.runner.TestRunner'
-NOSE_ARGS = [
-    '--with-fixture-bundling',
-]
 
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
@@ -1095,7 +1088,6 @@ LOGGING = {
         'z.es': {'level': logging.INFO},
         'z.heka': {'level': logging.INFO},
         's.client': {'level': logging.INFO},
-        'nose': {'level': logging.WARNING},
     },
 }
 
