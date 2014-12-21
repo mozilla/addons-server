@@ -510,10 +510,17 @@ class NewAddonForm(AddonUploadForm):
         coerce=int
     )
     mobile_platforms = forms.TypedMultipleChoiceField(
-        choices=amo.MOBILE_PLATFORMS_CHOICES,
+        choices=((amo.PLATFORM_ANDROID.id, amo.PLATFORM_ANDROID.name),),
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
         required=False,
-        coerce=int
+        coerce=int,
+        label=_lazy('Android'),
+        # We don't want the id value of the field to be output to the user
+        # when choice is invalid. Make a generic error message instead.
+        error_messages={
+            'invalid_choice': _lazy(u'Select a valid choice. That choice is '
+                                    u'not one of the available choices.')
+        }
     )
 
     def clean(self):
@@ -597,12 +604,6 @@ class NewFileForm(AddonUploadForm):
         if len(to_exclude):
             to_exclude.add(amo.PLATFORM_ALL.id)
 
-        # Always exclude PLATFORM_ALL_MOBILE because it's not supported for
-        # downloads yet. The developer can choose Android + Maemo for now.
-        # TODO(Kumar) Allow this option when it's supported everywhere.
-        # See bug 646268.
-        to_exclude.add(amo.PLATFORM_ALL_MOBILE.id)
-
         field.choices = [p for p in field.choices if p[0] not in to_exclude]
 
     def clean(self):
@@ -631,10 +632,6 @@ class FileForm(happyforms.ModelForm):
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()
-            # TODO(Kumar) Allow PLATFORM_ALL_MOBILE when it's supported.
-            # See bug 646268.
-            if amo.PLATFORM_ALL_MOBILE.id in compat:
-                del compat[amo.PLATFORM_ALL_MOBILE.id]
             pid = int(kw['instance'].platform)
             plats = [(p.id, p.name) for p in compat.values()]
             if pid not in compat:

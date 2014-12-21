@@ -118,13 +118,12 @@ class TestVersion(amo.tests.TestCase):
         self.version.apps.all().delete()
         self.target_mobile()
         eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            ['allmobile', u'android', u'maemo'])
+            [u'android'])
 
     def test_mixed_version_supports_all_platforms(self):
         self.target_mobile()
         eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            ['all', 'allmobile', 'android', 'linux', 'mac', 'maemo',
-             'windows'])
+            ['all', 'android', 'linux', 'mac', 'windows'])
 
     def test_non_mobile_version_supports_non_mobile_platforms(self):
         eq_(sorted(self.named_plat(self.version.compatible_platforms())),
@@ -249,11 +248,6 @@ class TestVersion(amo.tests.TestCase):
     def test_version_is_allowed_upload_all(self):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
-
-    def test_mobile_all_version_is_not_allowed_upload(self):
-        self.target_mobile()
-        self.version.files.all().update(platform=amo.PLATFORM_ALL_MOBILE.id)
-        assert not self.version.is_allowed_upload()
 
     @mock.patch('files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
@@ -900,24 +894,14 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         files = version.all_files
         eq_(files[0].filename, u'delicious_bookmarks-0.1-fx.xpi')
 
-    def test_mobile_all_creates_platform_files(self):
+    def test_android_creates_platform_files(self):
         version = Version.from_upload(self.upload, self.addon,
-                                      [amo.PLATFORM_ALL_MOBILE.id])
+                                      [amo.PLATFORM_ANDROID.id])
         files = version.all_files
         eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['android', 'maemo'])
+            ['android'])
 
-    def test_mobile_all_desktop_all_creates_all(self):
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            [amo.PLATFORM_ALL.id, amo.PLATFORM_ALL_MOBILE.id]
-        )
-        files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['all'])
-
-    def test_desktop_all_with_mixed_mobile_creates_platform_files(self):
+    def test_desktop_all_android_creates_all(self):
         version = Version.from_upload(
             self.upload,
             self.addon,
@@ -925,17 +909,17 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         files = version.all_files
         eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['android', 'linux', 'mac', 'windows'])
+            ['all', 'android'])
 
-    def test_mobile_all_with_mixed_desktop_creates_platform_files(self):
+    def test_android_with_mixed_desktop_creates_platform_files(self):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            [amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL_MOBILE.id]
+            [amo.PLATFORM_LINUX.id, amo.PLATFORM_ANDROID.id]
         )
         files = version.all_files
         eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['android', 'linux', 'maemo'])
+            ['android', 'linux'])
 
     def test_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]

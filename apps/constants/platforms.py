@@ -21,13 +21,6 @@ class PLATFORM_ALL:
     api_name = u'ALL'
 
 
-class PLATFORM_ALL_MOBILE:
-    id = 9
-    name = _(u'All Mobile Platforms')
-    shortname = 'allmobile'
-    api_name = u'ALL_mobile'
-
-
 class PLATFORM_LINUX:
     id = 2
     name = _(u'Linux')
@@ -70,25 +63,15 @@ class PLATFORM_ANDROID:
     api_name = u'Android'
 
 
-class PLATFORM_MAEMO:
-    id = 8
-    name = _(u'Maemo')
-    shortname = u'maemo'
-    api_name = u'Maemo'
-
 # Contains historic platforms that are no longer supported.
 # These exist so that legacy files can still be edited.
 PLATFORMS = {PLATFORM_ANY.id: PLATFORM_ANY, PLATFORM_ALL.id: PLATFORM_ALL,
              PLATFORM_LINUX.id: PLATFORM_LINUX, PLATFORM_MAC.id: PLATFORM_MAC,
              PLATFORM_BSD.id: PLATFORM_BSD, PLATFORM_WIN.id: PLATFORM_WIN,
              PLATFORM_SUN.id: PLATFORM_SUN,
-             PLATFORM_ALL_MOBILE.id: PLATFORM_ALL_MOBILE,
-             PLATFORM_ANDROID.id: PLATFORM_ANDROID,
-             PLATFORM_MAEMO.id: PLATFORM_MAEMO}
+             PLATFORM_ANDROID.id: PLATFORM_ANDROID}
 
-MOBILE_PLATFORMS = SortedDict([(PLATFORM_ALL_MOBILE.id, PLATFORM_ALL_MOBILE),
-                               (PLATFORM_ANDROID.id, PLATFORM_ANDROID),
-                               (PLATFORM_MAEMO.id, PLATFORM_MAEMO)])
+MOBILE_PLATFORMS = SortedDict([(PLATFORM_ANDROID.id, PLATFORM_ANDROID)])
 
 DESKTOP_PLATFORMS = SortedDict([(PLATFORM_ALL.id, PLATFORM_ALL),
                                 (PLATFORM_LINUX.id, PLATFORM_LINUX),
@@ -100,8 +83,6 @@ SUPPORTED_PLATFORMS.update(MOBILE_PLATFORMS)
 DESKTOP_PLATFORMS_CHOICES = tuple(
     (p.id, p.name) for p in DESKTOP_PLATFORMS.values()
 )
-MOBILE_PLATFORMS_CHOICES = tuple((p.id, p.name)
-                                 for p in MOBILE_PLATFORMS.values())
 SUPPORTED_PLATFORMS_CHOICES = tuple(
     (p.id, p.name) for p in SUPPORTED_PLATFORMS.values()
 )
@@ -121,9 +102,7 @@ PLATFORM_DICT = {
     'sun': PLATFORM_SUN,
     'sunos': PLATFORM_SUN,
     'solaris': PLATFORM_SUN,
-    'mobile': PLATFORM_ALL_MOBILE,
     'android': PLATFORM_ANDROID,
-    'maemo': PLATFORM_MAEMO,
 }
 
 _platforms = {'desktop': DESKTOP_PLATFORMS, 'mobile': MOBILE_PLATFORMS}

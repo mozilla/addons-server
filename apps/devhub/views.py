@@ -817,7 +817,7 @@ def json_upload_detail(request, upload, addon_slug=None):
             supported_platforms = []
             for app in (amo.MOBILE, amo.ANDROID):
                 if app.id in app_ids:
-                    supported_platforms.extend(amo.MOBILE_PLATFORMS.keys())
+                    supported_platforms.extend((amo.PLATFORM_ANDROID.id,))
                     app_ids.remove(app.id)
             if len(app_ids):
                 # Targets any other non-mobile app:

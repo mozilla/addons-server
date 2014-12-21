@@ -239,14 +239,14 @@ function initPlatformChooser() {
             parent = form,
             val = $(this).val(),
             container = $(this).parents('div:eq(0)');
-        $.each(['desktop-platforms', 'mobile-platforms'], function (i, cls) {
+        $.each(['desktop-platforms'], function (i, cls) {
             if (container.hasClass(cls)) {
                 parent = container;
                 return false;
             }
         });
-        if (val == '1' || val == '9') {
-            // Platform=ALL or Platform=ALL Mobile
+        if (val == '1') {
+            // Platform=ALL
             if ($(this).attr('checked')) {
                 // Uncheck all other platforms:
                 $(format('input.platform:not([value="{0}"])', val),
@@ -255,7 +255,7 @@ function initPlatformChooser() {
         } else {
             if ($(this).attr('checked')) {
                 // Any other platform was checked so uncheck Platform=ALL
-                $('input.platform[value="1"],input.platform[value="9"]',
+                $('input.platform[value="1"]',
                   parent).attr('checked', false);
             }
         }

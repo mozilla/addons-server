@@ -156,26 +156,20 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         """
         pl_set = set(platforms)
 
-        if pl_set == set([amo.PLATFORM_ALL_MOBILE.id, amo.PLATFORM_ALL.id]):
+        if pl_set == set((amo.PLATFORM_ALL.id,)):
             # Make it really ALL:
             return [amo.PLATFORM_ALL.id]
 
-        has_mobile = any(p in amo.MOBILE_PLATFORMS for p in pl_set)
+        has_mobile = amo.PLATFORM_ANDROID in pl_set
         has_desktop = any(p in amo.DESKTOP_PLATFORMS for p in pl_set)
-        has_all = any(p in (amo.PLATFORM_ALL_MOBILE.id,
-                            amo.PLATFORM_ALL.id) for p in pl_set)
+        has_all = amo.PLATFORM_ALL in pl_set
         is_mixed = has_mobile and has_desktop
         if (is_mixed and has_all) or has_mobile:
             # Mixing desktop and mobile w/ ALL is not safe;
             # we have to split the files into exact platforms.
-            # Additionally, it is not safe to use all-mobile.
             new_plats = []
             for platform in platforms:
-                if platform == amo.PLATFORM_ALL_MOBILE.id:
-                    plats = amo.MOBILE_PLATFORMS.keys()
-                    plats.remove(amo.PLATFORM_ALL_MOBILE.id)
-                    new_plats.extend(plats)
-                elif platform == amo.PLATFORM_ALL.id:
+                if platform == amo.PLATFORM_ALL.id:
                     plats = amo.DESKTOP_PLATFORMS.keys()
                     plats.remove(amo.PLATFORM_ALL.id)
                     new_plats.extend(plats)
@@ -343,12 +337,9 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
             return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
             return False
-        elif amo.PLATFORM_ALL_MOBILE in self.supported_platforms:
-            return False
         else:
             compatible = (v for k, v in self.compatible_platforms().items()
-                          if k not in (amo.PLATFORM_ALL.id,
-                                       amo.PLATFORM_ALL_MOBILE.id))
+                          if k != amo.PLATFORM_ALL.id)
             return bool(set(compatible) - set(self.supported_platforms))
 
     def is_public(self):
