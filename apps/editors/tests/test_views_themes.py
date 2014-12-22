@@ -497,15 +497,15 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         for the last 6 months! #liberation
         """
         # Normal RQT object.
-        RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
+        theme = addon_factory(type=amo.ADDON_PERSONA)
+        RereviewQueueTheme.objects.create(header='', footer='',
+                                          theme=theme.persona)
 
         # Deleted add-on RQT object.
-        addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='',
-                                          footer='')
-        addon.delete()
+        theme = addon_factory(type=amo.ADDON_PERSONA)
+        RereviewQueueTheme.objects.create(header='', footer='',
+                                          theme=theme.persona)
+        theme.delete()
 
         self.login('senior_persona_reviewer@mozilla.com')
         r = self.client.get(self.queue_url)
@@ -514,23 +514,30 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(doc('.theme').length, 1)
         eq_(RereviewQueueTheme.with_deleted.count(), 2)
 
-    def test_rejected_addon(self):
-        """Test rejected addons are not displayed in review lists."""
-        # Normal RQT object.
-        RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
-            footer='')
-
-        # Rejected add-on RQT object.
-        addon = addon_factory(type=amo.ADDON_PERSONA,
-                              status=amo.STATUS_REJECTED)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='',
-                                          footer='')
-
+    def test_rejected_addon_in_rqt(self):
+        """Test rejected addons in RQT are not displayed in review lists."""
+        self.theme_factory(status=amo.STATUS_PUBLIC)
+        self.theme_factory(status=amo.STATUS_REJECTED)
         self.login('senior_persona_reviewer@mozilla.com')
         r = self.client.get(self.queue_url)
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.theme').length, 1)
+
+    def test_rejected_addon_in_locks(self):
+        """Test rejected addons in locks are not displayed in review lists."""
+        reviewer = UserProfile.objects.get(
+            email='persona_reviewer@mozilla.com')
+        # Either public or rejected locked themes should not showing up.
+        public_theme = self.theme_factory(status=amo.STATUS_PUBLIC)
+        ThemeLock.objects.create(reviewer=reviewer, expiry=self.days_ago(-1),
+                                 theme=public_theme.persona)
+        rejected_theme = self.theme_factory(status=amo.STATUS_REJECTED)
+        ThemeLock.objects.create(reviewer=reviewer, expiry=self.days_ago(-1),
+                                 theme=rejected_theme.persona)
+        self.login('senior_persona_reviewer@mozilla.com')
+        r = self.client.get(self.queue_url)
+        eq_(r.status_code, 200)
+        eq_(pq(r.content)('.theme').length, 0)
 
     @mock.patch('editors.tasks.send_mail_jinja')
     @mock.patch('editors.tasks.copy_stored_file')
