@@ -130,7 +130,7 @@ def check_links(expected, elements, selected=None, verify=True):
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
                 e = e.find('a')
-            eq_(e.attr('href'), link)
+            assert_url_equal(e.attr('href'), link)
             if verify and link != '#':
                 eq_(Client().head(link, follow=True).status_code, 200,
                     '%r is dead' % link)
