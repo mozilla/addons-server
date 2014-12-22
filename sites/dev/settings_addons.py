@@ -30,6 +30,12 @@ SYSLOG_TAG = "http_app_addons_dev"
 SYSLOG_TAG2 = "http_app_addons_dev_timer"
 SYSLOG_CSP = "http_app_addons_dev_csp"
 
+# Signing
+SIGNING_SERVER_ACTIVE = True
+SIGNING_REVIEWER_SERVER_ACTIVE = True
+SIGNING_SERVER = private_addons.SIGNING_SERVER
+SIGNING_REVIEWER_SERVER = private_addons.SIGNING_REVIEWER_SERVER
+
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
 PAYPAL_FLOW_URL = (

@@ -31,6 +31,12 @@ SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons_timer"
 SYSLOG_CSP = "http_app_addons_addons_csp"
 
+# Signing
+SIGNING_SERVER_ACTIVE = True
+SIGNING_REVIEWER_SERVER_ACTIVE = True
+SIGNING_SERVER = private_addons.SIGNING_SERVER
+SIGNING_REVIEWER_SERVER = private_addons.SIGNING_REVIEWER_SERVER
+
 FETCH_BY_ID = True
 
 PAYPAL_APP_ID = private_addons.PAYPAL_APP_ID
