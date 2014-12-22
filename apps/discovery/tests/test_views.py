@@ -4,11 +4,12 @@ from django import test
 from django.core.cache import cache
 from django.test.utils import override_settings
 
+import mock
+import waffle
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
-import waffle
 
 import amo
 import amo.tests
@@ -199,8 +200,9 @@ class TestModuleAdmin(amo.tests.TestCase):
         check()
 
         # The deleted module is removed.
-        registry.popitem()
-        check()
+        with mock.patch.dict(registry):
+            registry.popitem()
+            check()
 
     def test_discovery_module_form_bad_locale(self):
         d = dict(app=1, module='xx', locales='fake')
