@@ -142,11 +142,7 @@ class TestThemeUpdate(amo.tests.TestCase):
         up = self.get_update('en-US', 15663)
         up.get_update()
         image_path = up.image_path('foo.png')
-        # This is ugly. It's needed because services.theme_update imports
-        # settings, and settings_test is overriding MEDIA_ROOT.
-        import settings
-        with self.settings(MEDIA_ROOT=settings.MEDIA_ROOT):
-            assert user_media_path('addons') in image_path
+        assert user_media_path('addons') in image_path
 
     def test_image_url(self):
         up = self.get_update('en-US', 15663)

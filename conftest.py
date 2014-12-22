@@ -1,19 +1,12 @@
-# The following line is needed for all the hackery done to the python path.
-import manage  # noqa
-
-from django.conf import settings
-from django.db.models import loading
+import os
 
 import pytest
 
 
-@pytest.fixture(autouse=True, scope='session')
-def _load_testapp():
-    extra_apps = getattr(settings, 'TEST_INSTALLED_APPS')
-    if extra_apps:
-        installed_apps = getattr(settings, 'INSTALLED_APPS')
-        setattr(settings, 'INSTALLED_APPS', installed_apps + extra_apps)
-        loading.cache.loaded = False
+def pytest_configure():
+    # The following line is needed for all the hackery done to the python path.
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_test'
+    import manage  # noqa
 
 
 @pytest.fixture(autouse=True)
