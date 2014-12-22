@@ -107,22 +107,29 @@ you suck.  See the git-bisect man page for more details.
 Running Tests
 ~~~~~~~~~~~~~
 
-* Run your tests like this::
+Run your tests like this::
 
-      python manage.py test --noinput --logging-clear-handlers
-
-  * ``--noinput`` tells Django not to ask about creating or destroying test
-    databases.
-  * ``--logging-clear-handlers`` tells nose that you don't want to see any
-    logging output.  Without this, our debug logging will spew all over your
-    console during test runs.  This can be useful for debugging, but it's not that
-    great most of the time.  See the docs for more stuff you can do with
-    :mod:`nose and logging <nose.plugins.logcapture>`.
+    py.test
 
 There's also a few useful makefile targets like ``test``, ``tdd`` and
 ``test_force_db``::
 
     make test
+
+If you want to only run a few tests, you can specify which ones using different
+methods:
+
+* `py.test -m es_tests` to run the tests that are marked_ as `es_tests`
+* `py.test -k test_no_license` to run all the tests that have
+  `test_no_license` in their name
+* `py.test apps/addons/tests/test_views.py::TestLicensePage::test_no_license`
+  to run only this specific test
+
+You'll find more documentation on this on the `Pytest usage documentation`_.
+
+.. _marked: http://pytest.org/latest/mark.html
+.. _Pytest usage documentation:
+    http://pytest.org/latest/usage.html#specifying-tests-selecting-tests
 
 
 Building Docs

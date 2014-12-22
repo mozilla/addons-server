@@ -204,7 +204,6 @@ intersphinx_mapping = {
     'http://docs.djangoproject.com/en/dev': 'django.inv',
     'http://jinja.pocoo.org/2/documentation/': 'jinja.inv',
     'http://sphinx.pocoo.org/': 'jinja.inv',
-    'http://somethingaboutorange.com/mrl/projects/nose/0.11.1/': 'nose.inv',
     }
 
 for key, val in intersphinx_mapping.items():
