@@ -1211,7 +1211,7 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
             unicode(theme.persona.persona_id))
 
         assert data['addons'][0]['theme']['header']
-        assert data['addons'][0]['theme']['footer']
+        assert data['addons'][0]['theme']['footer'] == ''
 
 
 class TestMobileCollections(TestMobile):

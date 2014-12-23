@@ -1776,6 +1776,18 @@ class TestPersonaModel(amo.tests.TestCase):
                 'https://vamo/fr/themes/update-check/' + id_)
             eq_(data['version'], '1.0')
 
+    def test_image_urls_without_footer(self):
+        self.persona.footer = ''
+        self.persona.save()
+        assert self.persona.footer_url == ''
+
+    def test_json_data_without_footer(self):
+        self.persona.footer = ''
+        self.persona.save()
+        data = self.persona.theme_data
+        assert data['footerURL'] == ''
+        assert data['footer'] == ''
+
 
 class TestPreviewModel(amo.tests.TestCase):
     fixtures = ['base/previews']
