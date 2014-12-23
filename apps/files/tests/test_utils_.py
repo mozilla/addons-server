@@ -91,7 +91,6 @@ class TestFindJetpacks(amo.tests.TestCase):
 
 
 class TestPackageJSONExtractor(amo.tests.TestCase):
-    fixtures = ['applications/all_apps.json']
 
     @contextmanager
     def extractor(self, base_data):
@@ -162,17 +161,17 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         }
         with self.extractor(data) as extractor:
             apps = extractor.parse()['apps']
-            eq_(apps[0].appdata.short, 'firefox')
-            eq_(apps[0].min, firefox_version)
-            eq_(apps[0].max, firefox_version)
-            eq_(apps[1].appdata.short, 'thunderbird')
-            eq_(apps[1].min, thunderbird_version)
-            eq_(apps[1].max, thunderbird_version)
+            apps_dict = dict((app.appdata.short, app) for app in apps)
+            assert sorted(apps_dict.keys()) == ['firefox', 'thunderbird']
+            assert apps_dict['firefox'].min == firefox_version
+            assert apps_dict['firefox'].max == firefox_version
+            assert apps_dict['thunderbird'].min == thunderbird_version
+            assert apps_dict['thunderbird'].max == thunderbird_version
 
     def test_unknown_apps_are_ignored(self):
         """Unknown engines get ignored."""
-        firefox_version = self.create_appversion('firefox', '33.0a1')
-        thunderbird_version = self.create_appversion('thunderbird', '33.0a1')
+        self.create_appversion('firefox', '33.0a1')
+        self.create_appversion('thunderbird', '33.0a1')
         data = {
             'engines': {
                 'firefox': '>=33.0a1',
@@ -182,12 +181,8 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         }
         with self.extractor(data) as extractor:
             apps = extractor.parse()['apps']
-            eq_(apps[0].appdata.short, 'firefox')
-            eq_(apps[0].min, firefox_version)
-            eq_(apps[0].max, firefox_version)
-            eq_(apps[1].appdata.short, 'thunderbird')
-            eq_(apps[1].min, thunderbird_version)
-            eq_(apps[1].max, thunderbird_version)
+            engines = [app.appdata.short for app in apps]
+            assert sorted(engines) == ['firefox', 'thunderbird']  # Not node.
 
     def test_invalid_app_versions_are_ignored(self):
         """Valid engines with invalid versions are ignored."""
