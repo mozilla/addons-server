@@ -390,6 +390,7 @@ $(document).ready(function() {
     var $theme_queue = $('.theme-queue');
     if ($theme_queue.length) {
         $('.zoombox').zoomBox();
+        $('.zoombox img').previewPersona();
         $theme_queue.themeQueue();
         $('.sidebar').themeQueueOptions('.theme-queue');
         $('#commit').click(_pd(function(e) {
