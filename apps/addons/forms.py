@@ -468,7 +468,7 @@ class ThemeForm(ThemeFormBase):
     header = forms.FileField(required=False)
     header_hash = forms.CharField(widget=forms.HiddenInput)
     footer = forms.FileField(required=False)
-    footer_hash = forms.CharField(widget=forms.HiddenInput)
+    footer_hash = forms.CharField(widget=forms.HiddenInput, required=False)
     # Native color picker doesn't allow real time tracking of user input
     # and empty values, thus force the JavaScript color picker for now.
     # See bugs 1005206 and 1003575.
@@ -506,7 +506,8 @@ class ThemeForm(ThemeFormBase):
         p.persona_id = 0
         p.addon = addon
         p.header = 'header.png'
-        p.footer = 'footer.png'
+        if data['footer_hash']:
+            p.footer = 'footer.png'
         if data['accentcolor']:
             p.accentcolor = data['accentcolor'].lstrip('#')
         if data['textcolor']:
