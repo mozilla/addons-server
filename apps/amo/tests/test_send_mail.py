@@ -150,6 +150,30 @@ class TestSendMail(BaseTestCase):
         eq_(FakeEmail.objects.count(), 1)
         eq_(FakeEmail.objects.get().message.endswith('test body'), True)
 
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
+    def test_qa_whitelist(self):
+        assert send_mail('test subject', 'test body',
+                         recipient_list=['nobody@mozilla.org'],
+                         fail_silently=False)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject.find('test subject'), 0)
+        eq_(mail.outbox[0].body.find('test body'), 0)
+        eq_(FakeEmail.objects.count(), 1)
+        eq_(FakeEmail.objects.get().message.endswith('test body'), True)
+
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
+    def test_qa_whitelist_with_mixed_emails(self):
+        assert send_mail('test subject', 'test body',
+                         recipient_list=['nobody@mozilla.org', 'b@example.fr'],
+                         fail_silently=False)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, set(['nobody@mozilla.org']))
+        eq_(FakeEmail.objects.count(), 1)
+
     @mock.patch('amo.utils.Context')
     def test_dont_localize(self, fake_Context):
         perm_setting = []
