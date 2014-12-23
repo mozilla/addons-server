@@ -28,7 +28,7 @@ from addons.search import get_mappings as get_addons_mappings
 from amo import messages, get_user
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
-from amo.mail import FakeEmailBackend
+from amo.mail import DevEmailBackend
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from bandwagon.models import Collection
@@ -546,7 +546,7 @@ def elastic(request):
 
 @admin.site.admin_view
 def mail(request):
-    backend = FakeEmailBackend()
+    backend = DevEmailBackend()
     if request.method == 'POST':
         backend.clear()
         return redirect('zadmin.mail')

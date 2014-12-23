@@ -14,6 +14,7 @@ ENGAGE_ROBOTS = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = private.EMAIL_HOST
+EMAIL_QA_WHITELIST = private.EMAIL_QA_WHITELIST
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG

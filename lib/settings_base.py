@@ -970,6 +970,9 @@ EMAIL_BLACKLIST = (
     'nobody@mozilla.org',
 )
 
+# Please use all lowercase for the QA whitelist.
+EMAIL_QA_WHITELIST = ()
+
 # URL for Add-on Validation FAQ.
 VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
                       'AddonReviews#Step_2:_Automatic_validation')
