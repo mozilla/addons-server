@@ -50,11 +50,11 @@
       <img src="{{ header_url or theme.header_url }}" width="1250" height="100" alt="">
     </div>
     <div class="header zoombox">
-      <img src="{{ header_url or theme.header_url }}" width="2500" height="200" alt="">
+      <img src="{{ header_url or theme.header_url }}" width="2500" height="200" alt="" data-browsertheme="{{ theme.json_data }}">
     </div>
     {% if footer_url or theme.footer_url %}
       <div class="footer zoombox">
-        <img src="{{ footer_url or theme.footer_url }}" width="2500" height="100" alt="">
+        <img src="{{ footer_url or theme.footer_url }}" width="2500" height="100" alt="" data-browsertheme="{{ theme.json_data }}">
       </div>
     {% endif %}
 
