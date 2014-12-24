@@ -1,3 +1,4 @@
+import os
 
 from django.conf import settings
 from django.utils.translation import override
@@ -9,6 +10,7 @@ from tower import ugettext as _
 import constants.editors as rvw
 from addons.tasks import create_persona_preview_images
 from amo.decorators import write
+from amo.helpers import user_media_path
 from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.utils import LocalFileStorage, send_mail_jinja
 from devhub.models import ActivityLog, CommentLog, VersionLog
@@ -127,12 +129,20 @@ def approve_rereview(theme):
                              reupload.theme.preview_path, storage=storage)
 
         move_stored_file(
-            reupload.header_path, reupload.theme.header_path,
-            storage=storage)
-    if reupload.footer_path != reupload.theme.footer_path:
+            reupload.header_path, reupload.theme.header_path, storage=storage)
+
+    theme = reupload.theme
+    footer_path = theme.footer_path
+    if reupload.footer_path != footer_path:
+        if not footer_path:
+            dst_root = os.path.join(user_media_path('addons'),
+                                    str(theme.addon.id))
+            footer_path = os.path.join(dst_root, 'footer.png')
+            theme.footer = 'footer.png'
+            theme.save()
+
         move_stored_file(
-            reupload.footer_path, reupload.theme.footer_path,
-            storage=storage)
+            reupload.footer_path, footer_path, storage=storage)
     rereview.delete()
 
     theme.addon.increment_version()

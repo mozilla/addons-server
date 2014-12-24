@@ -17,7 +17,7 @@
   </li>
   <li id="persona-footer" class="row">
     {{ pretty_field(form.footer, label=_('Select a footer image for your Theme.'),
-                    tag=None, req=required) }}
+                    tag=None) }}
     {{ form.footer_hash.as_widget(attrs={'required': ''}) }}
     {{ form.footer_hash.errors }}
     <ul class="note">

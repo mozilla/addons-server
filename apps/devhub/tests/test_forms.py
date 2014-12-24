@@ -238,10 +238,9 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(self.form.is_valid(), False)
         eq_(self.form.errors, {'header_hash': ['This field is required.']})
 
-    def test_footer_hash_required(self):
+    def test_footer_hash_optional(self):
         self.post(footer_hash='')
-        eq_(self.form.is_valid(), False)
-        eq_(self.form.errors, {'footer_hash': ['This field is required.']})
+        eq_(self.form.is_valid(), True, self.form.errors)
 
     def test_accentcolor_optional(self):
         self.post(accentcolor='')

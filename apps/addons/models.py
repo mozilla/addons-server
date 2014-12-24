@@ -1744,7 +1744,7 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def footer_url(self):
-        return self._image_url(self.footer)
+        return self.footer and self._image_url(self.footer) or ''
 
     @amo.cached_property
     def header_path(self):
@@ -1752,7 +1752,7 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def footer_path(self):
-        return self._image_path(self.footer)
+        return self.footer and self._image_path(self.footer) or ''
 
     @amo.cached_property
     def update_url(self):
@@ -1778,9 +1778,9 @@ class Persona(caching.CachingMixin, models.Model):
             'author': self.display_username,
             'description': unicode(addon.description),
             'header': self.header_url,
-            'footer': self.footer_url,
+            'footer': self.footer_url or '',
             'headerURL': self.header_url,
-            'footerURL': self.footer_url,
+            'footerURL': self.footer_url or '',
             'previewURL': self.thumb_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
