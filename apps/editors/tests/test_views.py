@@ -2090,6 +2090,37 @@ class TestReview(ReviewBase):
             [u'Select a valid choice. public is not one of the available '
              u'choices.'])
 
+    def test_user_changes_log(self):
+        # Activity logs related to user changes should be displayed.
+        # Create an activy log for each of the following: user addition, role
+        # change and deletion.
+        author = self.addon.addonuser_set.get()
+        from amo import set_user
+        set_user(author.user)
+        amo.log(amo.LOG.ADD_USER_WITH_ROLE,
+                author.user, author.get_role_display(), self.addon)
+        amo.log(amo.LOG.CHANGE_USER_WITH_ROLE,
+                author.user, author.get_role_display(), self.addon)
+        amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
+                author.user, author.get_role_display(), self.addon)
+
+        response = self.client.get(self.url)
+        assert 'user_changes' in response.context
+        user_changes_log = response.context['user_changes']
+        actions = [log.activity_log.action for log in user_changes_log]
+        assert actions == [
+            amo.LOG.ADD_USER_WITH_ROLE.id,
+            amo.LOG.CHANGE_USER_WITH_ROLE.id,
+            amo.LOG.REMOVE_USER_WITH_ROLE.id]
+
+        # Make sure the logs are displayed in the page.
+        doc = pq(response.content)
+        user_changes = doc('#user-changes li')
+        assert len(user_changes) == 3
+        assert '(Owner) added to ' in user_changes[0].text
+        assert 'role changed to Owner for ' in user_changes[1].text
+        assert '(Owner) removed from ' in user_changes[2].text
+
 
 class TestReviewPreliminary(ReviewBase):
 
