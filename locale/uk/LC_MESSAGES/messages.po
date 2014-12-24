@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-17 14:49+0000\n"
+"PO-Revision-Date: 2014-12-24 06:36+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418827746.0\n"
+"X-POOTLE-MTIME: 1419403003.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4746,7 +4746,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "Коментарі розробника"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:23
 msgid ""
@@ -4758,79 +4758,85 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
-msgstr ""
+msgstr "Обмеження 3"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:68
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Прапорці додатку"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons."
-msgstr ""
+msgstr "Ці прапорці використовуються для класифікації додатків."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:73
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "Це спеціальний додаток для сайту."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:76
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Цей додаток потребує сторонню програму."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:88
 msgid "View Source?"
-msgstr ""
+msgstr "Переглянути програмний код?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:89
 msgid "Whether the source of your add-on can be displayed in our online viewer."
 msgstr ""
+"Ситуації, в яких програмний код вашого додатку може бути показаним у нашому "
+"мережевому переглядачі."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:93
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Програмний код цього додатку є загальнодоступним."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:95
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Програмний код цього додатку не є загальнодоступним."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:100
 msgid "Public Stats?"
-msgstr ""
+msgstr "Публічна статистика?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
 msgstr ""
+"Ситуації, в яких статистика завантажень та використання вашого додатку може "
+"бути показана у нашому мережевому переглядачі."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:105
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Статистика цього додатку є загальнодоступною."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Статистика цього додатку не є загальнодоступною."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:113
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Оновити SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:114
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
 msgstr ""
+"Якщо вибрано, ми спробуємо автоматично оновити ваш додаток, коли буде "
+"випущено нову версію SDK."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:117
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Цей додаток буде автоматично оновлений до нових версій SDK додатку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:119
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Оновлення цього додатку буде проводитись вручну."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:125
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Універсальний унікальний ідентифікатор"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:126
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:128
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
@@ -4882,19 +4888,21 @@ msgstr ""
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:47
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Використовується на сторінках опису додатку."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:55
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Вивантажити власну іконку..."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
+"Підтримуються формати PNG та JPG. Великі зображення будуть зменшені до "
+"розміру 64х64 пікселів."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
 msgid "Screenshots"
@@ -4963,6 +4971,10 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted ever again, even by you. The existing users of your add-on will remain on this update channel "
 "and never receive updates again."
 msgstr ""
+"Видалення вашого додатку повністю видалить його з сайту та в майбутньому не "
+"дозволить використовувати його GUID, навіть вами. Існуючі користувачі вашого "
+"додатку залишаться на цьому каналі оновлень і надалі не будуть отримувати "
+"оновлень."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -4994,7 +5006,7 @@ msgstr "Вилучити цей додаток."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Редагувати інформацію про сторінку цього додатку."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
@@ -5019,7 +5031,7 @@ msgstr "Керування статусом і версіями"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:62
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Показати сторінку додатку"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:63 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:49 apps/devhub/templates/devhub/personas/edit.html:58
@@ -5028,11 +5040,11 @@ msgstr "Переглянути нещодавні зміни"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Редагувати інформацію про сторінку цієї теми."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
-msgstr ""
+msgstr "Переглянути публічну сторінку цієї теми."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
@@ -5040,7 +5052,7 @@ msgstr "Переглянути популярність цієї теми про
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Змінити власника цієї теми."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
@@ -5149,6 +5161,8 @@ msgstr "Подальші кроки:"
 #: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr ""
+"<a href=\"{0}\">Вивантажити</a> інший специфічний файл для платформи до цієї "
+"версії."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:40
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
