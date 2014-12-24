@@ -54,6 +54,7 @@ initialize_db:
 	$(FIG_PREFIX) python manage.py import_prod_versions
 	$(FIG_PREFIX) schematic --fake migrations/
 	$(FIG_PREFIX) python manage.py createsuperuser
+	$(FIG_PREFIX) python manage.py loaddata zadmin/users
 
 populate_data:
 	$(FIG_PREFIX) python manage.py generate_addons --app firefox $(NUM_ADDONS)
