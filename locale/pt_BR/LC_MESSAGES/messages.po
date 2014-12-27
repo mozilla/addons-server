@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-16 13:21+0000\n"
+"PO-Revision-Date: 2014-12-27 15:29+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1418736095.0\n"
+"X-POOTLE-MTIME: 1419694173.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -9324,7 +9324,7 @@ msgstr "Contém comentários do editor"
 
 #: apps/editors/models.py:185
 msgid "Sources provided"
-msgstr ""
+msgstr "Fontes disponíveis"
 
 #: apps/editors/tasks.py:68
 msgid "Duplicate Submission"
@@ -10710,6 +10710,15 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
+"Sim. É possível, porém algumas das funcionalidades fornecidas por estas "
+"bibliotecas estão disponíveis através do XPCOM, XUL, e JavaScript. Além "
+"disso, autores devem observar se as bibliotecas modificam tipos de objetos "
+"primitivos (String.prototype, Date.prototype, etc.) e/ou definem funções "
+"globais (por exemplo a função $). Estas são propicias a causar conflitos com "
+"outros complementos, principalmente se diferentes complementos utilizarem "
+"versões diferentes de bibliotecas, entre outros. Desenvolvedores devem ter "
+"extrema atenção ao as utilizarem. A Mozilla não fornece documentação de como "
+"usa-las para a construção de complementos."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
@@ -10729,6 +10738,15 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Para garantir a compatibilidade com a última versão do software da Mozilla, "
+"é importante baixar as atualizações a medida que elas se tornam disponíveis "
+"e testar seu complemento a fim de garantir que ele ainda continua "
+"funcionando como esperado. Em muitos casos, a última versão do software da "
+"Mozilla pode ser uma versão beta. Dado que estes lançamentos podem "
+"introduzir mudanças arquiteturais e que podem impactar na funcionalidade do "
+"seu complemento, é importante que se esteja ativamente envolvido na fase "
+"beta a fim de garantir que os utilizadores do seu complemento não sejam "
+"impactados de forma negativa na versão final do software da Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -10739,6 +10757,11 @@ msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
 "\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
+"Extensões mal escritas podem ter um impacto significativo na experiência de "
+"navegação, incluindo na performance geral do próprio Firefox. A página "
+"seguinte contém bons <a href=\"%(url)s\">guias</a> que podem ajudá-lo a "
+"melhorar o desempenho, esteja desenvolvendo código central para a Mozilla ou "
+"um complemento."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -10749,6 +10772,10 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Sim. Detalhes sobre como traduzir o seu complemento podem ser encontrados na "
+"<a href=\"%(l10n_url)s\">página de Tradução do Mozilla Developer Network</a>. "
+"<a href=\"%(bz_url)s\">O projeto BabelZilla</a> é também um ótimo recurso "
+"para saber mais sobre tradução e contribuir com a tradução de complementos."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -10768,6 +10795,8 @@ msgstr "#amo (para suporte relacionado à hospedagem do seu complemento no AMO)"
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
 msgstr ""
+"#jetpack (para discussões sobre o Add-ons SDK e cfx/jpm - anteriormente "
+"conhecido como Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -10809,6 +10838,11 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
 "\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"Sim. Você pode encontrar desenvolvedores no <a href=\"%(forum_url)s\">Add-ons "
+"forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%"
+"(mz_url)s\">mozillaZine forums</a> ou <a href=\"%(wiki_url)s\">Mozilla "
+"Wiki</a>. Por favor, note que a Mozilla não oferece recomendações para "
+"desenvolvedores."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -10972,6 +11006,12 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
+"A equipa editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão para "
+"editores</a> ao testar um complemento para ser aceito no AMO. É importante "
+"que os desenvolvedores de complementos analisem esse guia para garantir que "
+"áreas problemáticas comuns são trabalhadas antes de enviar os seus "
+"complementos para revisão. Isto irá tornar o processo de revisão mais "
+"rápido."
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -11191,6 +11231,8 @@ msgstr "Comparação das licenças mais comuns de código aberto na Wikipédia."
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr ""
+"Um site para prover um guia imparcial sobre a escolha da licença para seu "
+"projeto de código aberto."
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
