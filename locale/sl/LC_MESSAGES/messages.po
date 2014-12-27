@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-23 18:26+0000\n"
+"PO-Revision-Date: 2014-12-27 12:41+0000\n"
 "Last-Translator: upwinxp <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419359210.0\n"
+"X-POOTLE-MTIME: 1419684109.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1914,8 +1914,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Prosimo, vnesite <strong>vse besede</strong> spodaj, <strong>ki jih po potrebi ločite s presledkom</strong>. </p> <p> Če jih težko preberete, lahko <a href=\"#\" id=\"recaptcha_different"
-"\">poskusite z drugimi besedami</a> ali namesto tega <a href=\"#\" id=\"recaptcha_audio\">poskusite drugačen izziv</a>.</p>"
+"<p> Prosimo, vnesite <strong>vse spodnje besede</strong>, <strong>ki jih po "
+"potrebi ločite s presledkom</strong>. </p> <p> Če jih težko preberete, lahko "
+"<a href=\"#\" id=\"recaptcha_different\">poskusite z drugimi besedami</a> ali "
+"namesto tega <a href=\"#\" id=\"recaptcha_audio\">poskusite drugačen izziv</a>. "
+"</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:279 apps/search/forms.py:86
@@ -4954,7 +4957,10 @@ msgstr "Sličica za dodatek"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr "Naložite sličico za dodatek ali pa izberite eno od naših. Sličico se kaže skoraj povsod, kjer se vaš dodatek pojavlja. [Naložene slike morajo biti v naslednjih formatih: .png, .jpg"
+msgstr ""
+"Naložite sličico za dodatek ali pa izberite eno od naših. Sličico se kaže "
+"skoraj povsod, kjer se vaš dodatek pojavlja. Naložene slike morajo biti v "
+"naslednjih formatih: .png, .jpg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
 msgid "Select an icon for your add-on:"
@@ -5873,7 +5879,8 @@ msgstr "Pakiranje več postavk"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
 msgid "This article explains how to create an extension package with multiple items \"extensions\"."
-msgstr "Ta članek razloži, kako ustvariti dodatkeni paket z več temami (podatki)."
+msgstr ""
+"Ta članek razloži, kako ustvariti dodatkovni paket z več temami (dodatki)."
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
 msgid "Extension Documentation Index"
@@ -7002,8 +7009,11 @@ msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
-"Dodatek lahko vsebuje binarno, zapleteno in minificirano izvorno kodo, vendar je treba Mozilli omogočiti, da pregleda berljivo kopijo izvorne kode za vsako različico dodatka, ki se jo predloži v "
-"pregled Ti dodatki za predhodni pregled niso ustrezni in zanje morate izbrati celoten proces pregleda."
+"Dodatek lahko vsebuje binarno, zapleteno in minificirano izvorno kodo, "
+"vendar je treba Mozilli omogočiti, da pregleda berljivo kopijo izvorne kode "
+"za vsako različico dodatka, ki se jo predloži v pregled. Ti dodatki za "
+"predhodni pregled niso ustrezni in zanje morate izbrati celoten proces "
+"pregleda."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid ""
@@ -7071,11 +7081,18 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>Ali ste dodatek korenito preizkusili in ali je brez očitnih ali resnih pomanjkljivosti?</strong> Pri ocenah uporabnikov  smo posebno pozorni na to, ali njihovi pregledi kažejo, da je "
-"dodatek bil temeljito preverjen in da z njim ni resnih težav, ki bi lahko negativno vplivale na brskalnik. Če uredniki poročajo o problemih, kot so resne težave pri delovanju, zrušenja, pogoste "
-"težave pri uporabi dodatka, ali pa da prihaja do poplave sporočil na konzolo o napakah, si boste ta poročila morali vzeti k srcu in dodatek poslati v ponoven pregled, ko ste probleme po svoji "
-"najboljši volji in zmožnostih rešili. . Ne pričakujemo, da izdelek boste popolnoma optimizirati in da bo brez hroščev - Firefox sam doživlja stalne izboljšave na teh področjih - vendar pa želimo, "
-"da se kolikor je mogoče potrudite in da za preostale probleme jasno obvestite uporabnika, kako se jim izogniti."
+"<strong>Ali ste dodatek korenito preizkusili in ali je brez očitnih ali "
+"resnih pomanjkljivosti?</strong> Pri ocenah uporabnikov smo posebno pozorni "
+"na to, ali njihovi pregledi kažejo, da je dodatek bil temeljito preverjen in "
+"da z njim ni resnih težav, ki bi lahko negativno vplivale na brskalnik. Če "
+"uredniki poročajo o problemih, kot so resne težave pri delovanju, sesutja, "
+"pogoste težave pri uporabi dodatka, ali pa da prihaja do poplave sporočil na "
+"konzolo o napakah, si boste ta poročila morali vzeti k srcu in dodatek "
+"poslati v ponoven pregled, ko ste probleme po svoji najboljši volji in "
+"zmožnostih rešili. Ne pričakujemo, da boste izdelek popolnoma optimizirali "
+"in da bo brez hroščev - Firefox sam doživlja stalne izboljšave na teh "
+"področjih - vendar pa želimo, da se kolikor je mogoče potrudite in da za "
+"preostale probleme jasno obvestite uporabnika, kako se jim izogniti."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -7092,8 +7109,11 @@ msgid ""
 "<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
 "your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
-"<strong> Je dodatek koristen za primerno širok delež uporabnikov Firefoxa? </strong> Za vaš dodatek ni nujno, da bo naslednji Greasemonkey ali Firebug, če pa je samo koristen za vaše kolege v "
-"podjetju ali le za majhen del uporabnikov spleta, bomo lahko da mnenja, da je vprašljivo nuditi ga vsem našim uporabnikom."
+"<strong>Je dodatek koristen za primerno širok delež uporabnikov "
+"Firefoxa?</strong> Za vaš dodatek ni nujno, da bo naslednji Greasemonkey ali "
+"Firebug, če pa je samo koristen za vaše kolege v podjetju ali le za majhen "
+"del uporabnikov spleta, bomo morda mnenja, da je vprašljivo nuditi ga vsem "
+"našim uporabnikom."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:55
 msgid ""
@@ -7510,7 +7530,10 @@ msgstr "Celotne Teme spremenijo videz brskalnika s pomočjo slogov za okenski ok
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
-msgstr "Teme za ozadnje v brskalniku spremenijo le področja za glavo in nogo. Ogledate si jih lahko na licu mesta in jih namestite s klikom, ne da bi bilo treba Firefox ponovno zagnati. "
+msgstr ""
+"Teme za ozadje v brskalniku spremenijo le področja za glavo in nogo. "
+"Ogledate si jih lahko na licu mesta in jih namestite s klikom, ne da bi bilo "
+"treba Firefox ponovno zagnati."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid ""
@@ -7518,9 +7541,14 @@ msgid ""
 "\"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you "
 "wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
 msgstr ""
-"Traja samo nekaj sekund in tema se namesti in spremeni videz vašega Firefoxa. Vse teme lahko predogledate tako, da greste z miško prek njih; glava v brskalniku se bo spremenila, tako da jo lahko  "
-"takoj \"pomerite\". Če se odločite zanjo, kliknite na zeleni gumb <code>Dodaj v Firefox</code>. Ko je enkrat nameščena, temo Urednik za dodatke shrani, tako da jo lahko ktivirate ali pa odstranite, "
-"kot vam odgovarja. Odprite enostavno na meni <code>Orodja</code> &gt; <code>Dodatki</code> in kliknite na  <code>Videz</code> tab."
+"Traja samo nekaj sekund in tema se namesti in spremeni videz vašega "
+"Firefoxa. Vse teme lahko predogledate tako, da greste z miško prek njih; "
+"glava v brskalniku se bo spremenila, tako da jo lahko  takoj \"pomerite\". Če "
+"se odločite zanjo, kliknite na zeleni gumb <code>Dodaj v Firefox</code>. Ko "
+"je enkrat nameščena, temo Upravitelj dodatkov shrani, tako da jo lahko "
+"aktivirate ali pa odstranite, kot vam odgovarja. Preprosto odprite meni "
+"<code>Orodja</code> &gt; <code>Dodatki</code> in kliknite na zavihek "
+"<code>Videz</code>."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:105
 msgid "Yes. Themes are free to download and free to use."
@@ -7671,7 +7699,10 @@ msgstr "Kako predložiti svojo temo"
 
 #: apps/devhub/templates/devhub/docs/themes.html:35
 msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
-msgstr "Teme sestavljata dve datoteki s slikama&mdash; slika za  \"glavo\" in slika za \"nogo\" &mdash; Firefox ju uporablja kot kožo za prednastavljeno ozadje v vmesniku za uporabnika. "
+msgstr ""
+"Teme sestavljata dve datoteki s slikama&mdash;slika za \"glavo\" in slika za "
+"\"nogo\"&mdash;Firefox ju uporablja kot preobleko za privzeto ozadje v "
+"vmesniku za uporabnika."
 
 #: apps/devhub/templates/devhub/docs/themes.html:41
 msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
@@ -7784,8 +7815,10 @@ msgid ""
 "<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
 "and/or tags are unrelated to your theme."
 msgstr ""
-"<b>Izberite kategorijo in oznake</b> &mdash; izberite kategorijo in nekaj oznak, ki vašo temo najbolje opišejo. Zavedajte se pri tem, da bo recenzent vašo temo zavrnil, če kategorija in/ali oznake "
-"z vašo temo nimajo nič skupnega. "
+"<b>Izberite kategorijo in oznake</b> &mdash; izberite kategorijo in nekaj "
+"oznak, ki vašo temo najbolje opišejo. Zavedajte se pri tem, da bo recenzent "
+"vašo temo zavrnil, če kategorija in/ali oznake z vašo temo nimajo nič "
+"skupnega."
 
 #: apps/devhub/templates/devhub/docs/themes.html:194
 msgid ""
@@ -7794,7 +7827,10 @@ msgstr "<b>Opišite svojo temo</b> &mdash; sestavite kratek opis svoje teme. Mis
 
 #: apps/devhub/templates/devhub/docs/themes.html:201
 msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
-msgstr "<b>Izberite licenco za svojo temo</b> &mdash; premislite, za kakšno licenco se boste odločili<a href=\"%(cc_url)s\">Preberite več o licencah Creative Common.</a>"
+msgstr ""
+"<b>Izberite licenco za svojo temo</b> &mdash; premislite, za kakšno licenco "
+"se boste odločili. <a href=\"%(cc_url)s\">Preberite več o licencah Creative "
+"Common.</a>"
 
 #: apps/devhub/templates/devhub/docs/themes.html:208
 msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
@@ -7806,7 +7842,10 @@ msgstr "<b>Prenesite svoje slike</b> &mdash; pazite, da ne bodo večje kot 300 K
 
 #: apps/devhub/templates/devhub/docs/themes.html:222
 msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr "<b>Izberite barve za besedilo in oznake</b> &mdash; lahko izberete barvo za zaznamke (\"ozadje\") in bravo za besedila, ki se najbolje skladata z vašo sliko za glavo. "
+msgstr ""
+"<b>Izberite barve za besedilo in oznake</b> &mdash; lahko izberete barvo za "
+"zaznamke (\"ozadje\") in barvo za besedila, ki se najbolje skladata z vašo "
+"sliko za glavo."
 
 #: apps/devhub/templates/devhub/docs/themes.html:229
 msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
@@ -10788,7 +10827,9 @@ msgid ""
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
 "Da. Podrobnosti o lokaliziranju svojega dodatka lahko najdete na <a href=\"%"
-"(l10n_url)s\">strani Mozilla Developer Network Localization</a>."
+"(l10n_url)s\">strani Mozilla Developer Network Localization</a>.  <a href=\"%"
+"(bz_url)s\">Projekt BabelZilla</a> je tudi odličen vir za učenje o "
+"lokalizaciji in prostovoljni pomoči pri prevajanju dodatkov."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -12615,7 +12656,7 @@ msgstr "ponastavi povečavo"
 
 #: apps/stats/templates/stats/stats.html:40
 msgid "Group by:"
-msgstr "Združi po: "
+msgstr "Združi po:"
 
 #: apps/stats/templates/stats/stats.html:42
 msgid "day"
@@ -12761,7 +12802,7 @@ msgstr "Nalaganje..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> uporabnikov povprečno na dan "
+msgstr "<b>{0}</b> uporabnikov povprečno na dan"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
