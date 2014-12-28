@@ -48,8 +48,8 @@
         <tr>
           <th>{{ locale.display }}</th>
           <td lang="{{ lang }}">{{ locale.native }}</td>
-          <td>{{ langtool(locale.dicts, install_dict) }}</td>
-          <td>{{ langtool(locale.packs, install_pack) }}</td>
+          <td>{{ langtool(locale.dicts, install_dict) }}<br><br></td>
+          <td>{{ langtool(locale.packs, install_pack) }}<br><br></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -70,8 +70,8 @@
       <tr>
         <th>{{ locale.display }}</th>
         <td lang="{{ lang }}">{{ locale.native }}</td>
-        <td>{{ langtool(locale.dicts, install_dict) }}</td>
-        <td>{{ langtool(locale.packs, install_pack) }}</td>
+        <td>{{ langtool(locale.dicts, install_dict) }}<br><br></td>
+        <td>{{ langtool(locale.packs, install_pack) }}<br><br></td>
       </tr>
       {% endfor %}
     </tbody>
