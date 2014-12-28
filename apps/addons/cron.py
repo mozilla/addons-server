@@ -79,8 +79,8 @@ def _update_addons_current_version(data, **kw):
     if not waffle.switch_is_active('current_version_crons'):
         return
 
-    task_log.info("[%s@%s] Updating addons current_versions." %
-                   (len(data), _update_addons_current_version.rate_limit))
+    task_log.info('[%s@%s] Updating addons current_versions.' %
+                  (len(data), _update_addons_current_version.rate_limit))
     for pk in data:
         try:
             addon = Addon.objects.get(pk=pk[0])
@@ -130,8 +130,6 @@ def _update_addon_average_daily_users(data, **kw):
             task_log.info('Readjusted ADU count for addon %s' % addon.slug)
             addon.update(average_daily_users=addon.total_downloads)
         else:
-            #task_log.debug('Updating "%s" :: ADU %s -> %s' %
-            #               (addon.slug, addon.average_daily_users, count))
             addon.update(average_daily_users=count)
 
 
@@ -182,8 +180,8 @@ def update_addon_download_totals():
 
 @task
 def _update_addon_download_totals(data, **kw):
-    task_log.info("[%s] Updating add-ons download+average totals." %
-                   (len(data)))
+    task_log.info('[%s] Updating add-ons download+average totals.' %
+                  (len(data)))
 
     for pk, avg, sum in data:
         try:
@@ -192,7 +190,7 @@ def _update_addon_download_totals(data, **kw):
             # sends us data doesn't filter out deleted addons, or the addon may
             # be unpopular, this can reduce a lot of unnecessary save queries.
             if (addon.average_daily_downloads != avg or
-                addon.total_downloads != sum):
+                    addon.total_downloads != sum):
                 addon.update(average_daily_downloads=avg, total_downloads=sum)
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
@@ -279,19 +277,6 @@ def _update_appsupport(ids, **kw):
 
 
 @cronjobs.register
-def addons_add_slugs():
-    """Give slugs to any slugless addons."""
-    Addon._meta.get_field('modified').auto_now = False
-    q = Addon.objects.filter(slug=None).order_by('id')
-
-    # Chunk it so we don't do huge queries.
-    for chunk in chunked(q, 300):
-        task_log.info('Giving slugs to %s slugless addons' % len(chunk))
-        for addon in chunk:
-            addon.save()
-
-
-@cronjobs.register
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
@@ -324,7 +309,7 @@ def unhide_disabled_files():
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
                 if (file_.version.addon.status in amo.MIRROR_STATUSES
-                    and file_.status in amo.MIRROR_STATUSES):
+                        and file_.status in amo.MIRROR_STATUSES):
                     file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning('File object does not exist for: %s.' % filepath)
@@ -432,8 +417,9 @@ def _dump_recs(sims):
     # addon_recommendations table.
     cursor = connections['default'].cursor()
     addons = sims.keys()
-    vals = [(addon, other, score) for addon, others in sims.items()
-                                  for other, score in others]
+    vals = [(addon, other, score)
+            for addon, others in sims.items()
+            for other, score in others]
     cursor.execute('BEGIN')
     cursor.execute('DELETE FROM addon_recommendations WHERE addon_id IN %s',
                    [addons])
@@ -463,16 +449,6 @@ def _group_addons(qs):
 
 
 @cronjobs.register
-@transaction.commit_on_success
-def give_personas_versions():
-    cursor = connections['default'].cursor()
-    path = os.path.join(settings.ROOT, 'migrations/149-personas-versions.sql')
-    with open(path) as f:
-        cursor.execute(f.read())
-        log.info('Gave versions to %s personas.' % cursor.rowcount)
-
-
-@cronjobs.register
 def reindex_addons(index=None, addon_type=None):
     from . import tasks
     ids = (Addon.objects.values_list('id', flat=True)
@@ -484,3 +460,26 @@ def reindex_addons(index=None, addon_type=None):
     ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
           for chunk in chunked(sorted(list(ids)), 150)]
     TaskSet(ts).apply_async()
+
+
+@cronjobs.register
+def cleanup_image_files():
+    """
+    Clean up all header and footer images files for themes.
+
+    We use these images to asynchronuously generate thumbnails with
+    tasks, here we delete images that are older than one day.
+
+    """
+    log.info('Removing one day old temporary image files for themes.')
+    for folder in ('persona_footer', 'persona_header'):
+        root = os.path.join(settings.TMP_PATH, folder)
+        if not os.path.exists(root):
+            continue
+        for path in os.listdir(root):
+            full_path = os.path.join(root, path)
+            age = time.time() - os.stat(full_path).st_atime
+            if age > 60 * 60 * 24:  # One day.
+                log.debug('Removing image file: %s, %dsecs old.' %
+                          (full_path, age))
+                os.unlink(full_path)

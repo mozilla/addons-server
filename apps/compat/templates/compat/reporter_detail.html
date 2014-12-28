@@ -24,7 +24,7 @@
   <header>
     <h1>{{ _('{addon} Compatibility Reports')|fe(addon=name) }}</h1>
     {% if reports.object_list %}
-      <form class="go" action="" id="compat-form">
+      <form class="go" id="compat-form">
         <label>{{ _('Filter by Application') }}: {{ form.appver }}</label>
         <noscript><button type="submit">{{ _('Go') }}</button></noscript>
       </form>

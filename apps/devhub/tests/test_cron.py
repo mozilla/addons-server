@@ -16,7 +16,7 @@ class TestRSS(amo.tests.TestCase):
 
     def test_rss_cron(self):
         url = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'rss_feeds', 'blog.xml')
+                           'rss_feeds', 'blog.xml')
 
         settings.DEVELOPER_BLOG_URL = url
 
@@ -36,6 +36,7 @@ class TestPurify(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestPurify, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
 
     def test_no_html(self):

@@ -4,8 +4,7 @@
 Packaging in Olympia
 ====================
 
-There are two ways of getting packages for olympia. The first is to install
-everything using pip. We have our packages separated into three files:
+We have our packages separated into three files:
 
 :src:`requirements/compiled.txt`
     All packages that require (or go faster with) compilation. These can't be
@@ -24,6 +23,12 @@ everything using pip. We have our packages separated into three files:
 Installing through pip
 ----------------------
 
-You can get a development environment with ::
+You can get a development environment with::
 
-    pip install --no-deps -r requirements/dev.txt
+    pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
+
+Or more simply with::
+
+    make update_deps
+
+The latter will also install the npm dependencies.

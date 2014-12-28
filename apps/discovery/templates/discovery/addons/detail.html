@@ -72,9 +72,15 @@
     <p class="users">{{ addon.average_daily_users|numberfmt }}</p>
   </li>
   <li>
+  {% if addon.is_persona() %}
+    <h3>{{ _('Created') }}</h3>
+    <p><time datetime="{{ addon.created|isotime }}">{{
+      addon.created|datetime }}</time></p>
+  {% else %}
     <h3>{{ _('Last Updated') }}</h3>
     <p><time datetime="{{ addon.last_updated|isotime }}">{{
       addon.last_updated|datetime }}</time></p>
+  {% endif %}
   </li>
   {% if addon.homepage %}
     <li>

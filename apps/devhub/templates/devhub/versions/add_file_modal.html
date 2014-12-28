@@ -31,13 +31,17 @@
           <label>{{ _('Which mobile platforms is this file compatible with?') }}</label>
           {{ new_file_form.mobile_platforms }}
         </div>
-       {% if addon.status == amo.STATUS_NULL %}
-        <div class="nomination-type">
-          <label>{{ _('Which review type would you like to nominate for?') }}</label>
-          {{ new_file_form.nomination_type }}
-        </div>
-       {% endif %}
       {% endif %}
+      </div>
+      {% if addon.status == amo.STATUS_NULL %}
+      <div class="nomination-type">
+        <label>{{ _('Which review type would you like to nominate for?') }}</label>
+        {{ new_file_form.nomination_type }}
+      </div>
+      {% endif %}
+      <div class="beta-status hide">
+        <label>{{ new_file_form.beta }} {{ _('Only publish this version to my beta channel.') }}</label>
+        <span class="tip tooltip" title="{{ new_file_form.beta.help_text }}">?</span>
       </div>
       {% if is_admin %}
       <div class="admin-settings">

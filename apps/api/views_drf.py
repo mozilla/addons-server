@@ -32,7 +32,7 @@ from versions.models import Version
 
 from .authentication import RestOAuthAuthentication
 from .authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
-    AllowRelatedAppOwner, AnyOf, ByHttpMethod)
+                            AllowRelatedAppOwner, AnyOf, ByHttpMethod)
 from .handlers import _form_error, _xpi_form_error
 from .permissions import GroupPermission
 from .renderers import JSONRenderer, XMLTemplateRenderer
@@ -104,14 +104,13 @@ class AddonDetailView(DRFView):
     def get(self, request, addon_id, api_version, format=None):
         # Check valid version.
         if (self.api_version < api.MIN_VERSION
-            or self.api_version > api.MAX_VERSION):
+                or self.api_version > api.MAX_VERSION):
             msg = OUT_OF_DATE.format(self.api_version, api.CURRENT_VERSION)
             return Response({'msg': msg},
                             template_name=self.error_template_name, status=403)
         # Retrieve addon.
         try:
-            addon = (Addon.objects.id_or_slug(addon_id)
-                                  .exclude(type=amo.ADDON_WEBAPP).get())
+            addon = Addon.objects.id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
             return Response({'msg': 'Add-on not found!'},
                             template_name=self.error_template_name, status=404)
@@ -251,7 +250,7 @@ class ListView(DRFView):
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
-        qs = Addon.objects.listed(APP).exclude(type=amo.ADDON_WEBAPP)
+        qs = Addon.objects.listed(APP)
         shuffle = True
 
         if list_type in ('by_adu', 'featured'):
@@ -288,8 +287,8 @@ class UserView(RetrieveAPIView, DRFView):
     serializer_class = UserSerializer
     lookup_param = 'email'
     model = UserProfile
-    permission_classes = [GroupPermission('API.Users', 'View'),]
-    authentication_classes = [RestOAuthAuthentication,]
+    permission_classes = [GroupPermission('API.Users', 'View')]
+    authentication_classes = [RestOAuthAuthentication]
 
     def check_permissions(self, request):
         """
@@ -319,7 +318,7 @@ class UserView(RetrieveAPIView, DRFView):
 class AddonsViewSet(DRFView, ModelViewSet):
     serializer_class = AddonSerializer
     queryset = Addon.objects.all()
-    authentication_classes = [RestOAuthAuthentication,]
+    authentication_classes = [RestOAuthAuthentication]
     permission_classes = [ByHttpMethod({
         'options': AllowAny,  # Needed for CORS.
         'get': AllowAny,
@@ -407,8 +406,7 @@ class AddonsViewSet(DRFView, ModelViewSet):
 
 class VersionsViewSet(CORSMixin, RetrieveModelMixin, UpdateModelMixin,
                       GenericViewSet):
-    queryset = Version.objects.exclude(addon__type=amo.ADDON_WEBAPP,
-                                       addon__status=amo.STATUS_DELETED)
+    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
     serializer_class = VersionSerializer
     authorization_classes = []
     permission_classes = [AnyOf(AllowRelatedAppOwner,

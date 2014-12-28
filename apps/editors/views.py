@@ -1,6 +1,5 @@
 from collections import defaultdict
 from datetime import date, datetime, timedelta
-import functools
 import json
 import time
 
@@ -20,7 +19,7 @@ from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view
 from addons.models import Addon, Version
-from amo.decorators import json_view, login_required, post_required
+from amo.decorators import json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog, CommentLog
@@ -37,47 +36,7 @@ from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
-
-def _view_on_get(request):
-    """Returns whether the user can access this page.
-
-    If the user is in a group with rule 'ReviewerTools:View' and the request is
-    a GET request, they are allowed to view.
-    """
-    return (request.method == 'GET' and
-            acl.action_allowed(request, 'ReviewerTools', 'View'))
-
-
-def reviewer_required(only=None, region=None):
-    """Requires the user to be logged in as a reviewer or admin, or allows
-    someone with rule 'ReviewerTools:View' for GET requests.
-
-    Reviewer is someone who is in one of the groups with the following
-    permissions:
-
-        Addons:Review
-        Apps:Review
-        Personas:Review
-
-    If only is provided, it will only check for a certain type of reviewer.
-    Valid values for only are: addon, app, persona.
-
-    """
-    def decorator(f):
-        @login_required
-        @functools.wraps(f)
-        def wrapper(request, *args, **kw):
-            if (acl.check_reviewer(request, only, region=kw.get('region')) or
-                _view_on_get(request)):
-                return f(request, *args, **kw)
-            else:
-                raise PermissionDenied
-        return wrapper
-    # If decorator has no args, and is "paren-less", it's callable.
-    if callable(only):
-        return decorator(only)
-    else:
-        return decorator
+from .decorators import addons_reviewer_required, any_reviewer_required
 
 
 def context(**kw):
@@ -87,7 +46,7 @@ def context(**kw):
     return ctx
 
 
-@reviewer_required
+@addons_reviewer_required
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
@@ -106,17 +65,40 @@ def eventlog(request):
     return render(request, 'editors/eventlog.html', data)
 
 
-@reviewer_required
+@addons_reviewer_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.editor_events(), pk=id)
-    data = context(log=log)
+
+    review = None
+    # I really cannot express the depth of the insanity incarnate in
+    # our logging code...
+    if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
+        review = log.arguments[1]
+
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+
+    can_undelete = review and review.deleted and (
+        is_admin or request.user.pk == log.user.pk)
+
+    if request.method == 'POST':
+        # A Form seems overkill for this.
+        if request.POST['action'] == 'undelete':
+            if not can_undelete:
+                raise PermissionDenied
+
+            ReviewerScore.award_moderation_points(
+                log.user, review.addon, review.id, undo=True)
+            review.undelete()
+        return redirect('editors.eventlog.detail', id)
+
+    data = context(log=log, can_undelete=can_undelete)
     return render(request, 'editors/eventlog_detail.html', data)
 
 
-@reviewer_required
+@any_reviewer_required
 def home(request):
     if (not acl.action_allowed(request, 'Addons', 'Review') and
-        acl.action_allowed(request, 'Personas', 'Review')):
+            acl.action_allowed(request, 'Personas', 'Review')):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
     durations = (('new', _('New Add-ons (Under 5 days)')),
@@ -128,8 +110,11 @@ def home(request):
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
         ActivityLog.objects.monthly_reviews()[:reviews_max_display])
-    reviews_total_count = ActivityLog.objects.user_approve_reviews(request.user).count()
-    reviews_monthly_count = ActivityLog.objects.current_month_user_approve_reviews(request.user).count()
+    reviews_total_count = ActivityLog.objects.user_approve_reviews(
+        request.user).count()
+    reviews_monthly_count = (
+        ActivityLog.objects.current_month_user_approve_reviews(
+            request.user).count())
 
     # Try to read user position from retrieved reviews.
     # If not available, query for it.
@@ -180,7 +165,7 @@ def _editor_progress():
     return (progress, percentage)
 
 
-@reviewer_required
+@addons_reviewer_required
 def performance(request, user_id=False):
     user = request.amo_user
     editors = _recent_editors()
@@ -286,7 +271,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     for row in sql.all():
         label = row.approval_created.isoformat()[:7]
 
-        if not label in monthly_data:
+        if label not in monthly_data:
             xaxis = row.approval_created.strftime('%b %Y')
             monthly_data[label] = dict(teamcount=0, usercount=0,
                                        teamamt=0, label=xaxis)
@@ -307,7 +292,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
     return monthly_data
 
 
-@reviewer_required
+@addons_reviewer_required
 def motd(request):
     form = None
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
@@ -316,7 +301,7 @@ def motd(request):
     return render(request, 'editors/motd.html', data)
 
 
-@reviewer_required
+@addons_reviewer_required
 @post_required
 def save_motd(request):
     if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
@@ -338,22 +323,6 @@ def _queue(request, TableObj, tab, qs=None):
             qs = search_form.filter_qs(qs)
     else:
         search_form = forms.QueueSearchForm()
-    review_num = request.GET.get('num', None)
-    if review_num:
-        try:
-            review_num = int(review_num)
-        except ValueError:
-            pass
-        else:
-            try:
-                # Force a limit query for efficiency:
-                start = review_num - 1
-                row = qs[start: start + 1][0]
-                return http.HttpResponseRedirect('%s?num=%s' % (
-                                                 TableObj.review_url(row),
-                                                 review_num))
-            except IndexError:
-                pass
     order_by = request.GET.get('sort', TableObj.default_order_by())
     order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
@@ -404,32 +373,32 @@ def queue_counts(type=None, **kw):
     return rv
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue(request):
     return redirect(reverse('editors.queue_pending'))
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_nominated(request):
     return _queue(request, ViewFullReviewQueueTable, 'nominated')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_pending(request):
     return _queue(request, ViewPendingQueueTable, 'pending')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_prelim(request):
     return _queue(request, ViewPreliminaryQueueTable, 'prelim')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_fast_track(request):
     return _queue(request, ViewFastTrackQueueTable, 'fast_track')
 
 
-@reviewer_required
+@addons_reviewer_required
 def queue_moderated(request):
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
                                  Q(reviewflag__isnull=True))
@@ -460,7 +429,7 @@ def queue_moderated(request):
                           point_types=amo.REVIEWED_AMO))
 
 
-@reviewer_required
+@addons_reviewer_required
 @post_required
 @json_view
 def application_versions_json(request):
@@ -469,13 +438,9 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@reviewer_required
+@addons_reviewer_required
 @addon_view
 def review(request, addon):
-    return _review(request, addon)
-
-
-def _review(request, addon):
     version = addon.latest_version
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
@@ -488,19 +453,6 @@ def _review(request, addon):
     queue_type = (form.helper.review_type if form.helper.review_type
                   != 'preliminary' else 'prelim')
     redirect_url = reverse('editors.queue_%s' % queue_type)
-
-    num = request.GET.get('num')
-    paging = {}
-    if num:
-        try:
-            num = int(num)
-        except (ValueError, TypeError):
-            raise http.Http404
-        total = queue_counts(queue_type)
-        paging = {'current': num, 'total': total,
-                  'prev': num > 1, 'next': num < total,
-                  'prev_url': '%s?num=%s' % (redirect_url, num - 1),
-                  'next_url': '%s?num=%s' % (redirect_url, num + 1)}
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
@@ -590,17 +542,18 @@ def _review(request, addon):
 
     ctx = context(version=version, addon=addon,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
-                  form=form, paging=paging, canned=canned, is_admin=is_admin,
+                  form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
-                  actions=actions, actions_minimal=actions_minimal)
+                  actions=actions, actions_minimal=actions_minimal,
+                  whiteboard_form=forms.WhiteboardForm(instance=addon))
 
     return render(request, 'editors/review.html', ctx)
 
 
 @never_cache
 @json_view
-@reviewer_required
+@addons_reviewer_required
 def review_viewing(request):
     if 'addon_id' not in request.POST:
         return {}
@@ -632,7 +585,7 @@ def review_viewing(request):
 
 @never_cache
 @json_view
-@reviewer_required
+@addons_reviewer_required
 def queue_viewing(request):
     if 'addon_ids' not in request.POST:
         return {}
@@ -653,7 +606,7 @@ def queue_viewing(request):
 
 
 @json_view
-@reviewer_required
+@addons_reviewer_required
 def queue_version_notes(request, addon_id):
     addon = get_object_or_404(Addon, pk=addon_id)
     version = addon.latest_version
@@ -661,7 +614,7 @@ def queue_version_notes(request, addon_id):
             'approvalnotes': version.approvalnotes}
 
 
-@reviewer_required
+@addons_reviewer_required
 def reviewlog(request):
     data = request.GET.copy()
 
@@ -701,7 +654,7 @@ def reviewlog(request):
     return render(request, 'editors/reviewlog.html', data)
 
 
-@reviewer_required
+@addons_reviewer_required
 @addon_view
 def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
@@ -711,8 +664,19 @@ def abuse_reports(request, addon):
                   dict(addon=addon, reports=reports, total=total))
 
 
-@reviewer_required
+@addons_reviewer_required
 def leaderboard(request):
     return render(request, 'editors/leaderboard.html', context(**{
         'scores': ReviewerScore.all_users_by_score(),
     }))
+
+
+@addons_reviewer_required
+@addon_view
+def whiteboard(request, addon):
+    form = forms.WhiteboardForm(request.POST or None, instance=addon)
+
+    if form.is_valid():
+        addon = form.save()
+        return redirect('editors.review', addon.pk)
+    raise PermissionDenied

@@ -60,7 +60,7 @@ that line from your ``local_settings.py``.
 
 
 -------------
-elasticsearch
+Elasticsearch
 -------------
 
 See :doc:`./elasticsearch` for more instructions.
@@ -96,7 +96,7 @@ your local settings.
 First, we need to install node and npm::
 
     brew install node
-    curl http://npmjs.org/install.sh | sh
+    curl https://www.npmjs.org/install.sh | sh
 
 Optionally make the local scripts available on your path if you don't already
 have this in your profile::
@@ -150,3 +150,37 @@ If you want syntax highlighting, try:
  * emacs: http://jdhuntington.com/emacs/less-css-mode.el
  * TextMate: https://github.com/appden/less.tmbundle
  * Coda: http://groups.google.com/group/coda-users/browse_thread/thread/b3327b0cb893e439?pli=1
+
+
+-----------------------------
+Generating additional add-ons
+-----------------------------
+
+.. note:: If you previously used the ``make full_init`` command during
+          the :doc:`./installation` process, it's not necessary to generate
+          additional add-ons for initialisation/development purpose.
+
+If you need more add-ons, you can generate additional ones using
+the following command::
+
+    python manage.py generate_addons <num_addons> [--owner <email>] [--app <application>]
+
+
+where ``num_addons`` is the number of add-ons that you want to generate,
+``email`` (optional) is the email address of the owner of the generated
+add-ons and ``application`` (optional) the name of the application
+(either ``firefox``, ``thunderbird``, ``seamonkey`` or ``android``).
+
+By default the ``email`` will be ``nobody@mozilla.org`` and the
+``application`` will be ``firefox`` if not specified.
+
+Add-ons will have 1 preview image, 2 translations (French and
+Spanish), 5 ratings and might be featured randomly.
+
+If you didn't run the ``make full_init`` command during the
+:doc:`./installation` process, categories from production
+(Alerts & Updates, Appearance, and so on) will be created and randomly
+populated with generated add-ons.
+Otherwise, the existing categories will be filled with newly generated
+add-ons.
+

@@ -28,4 +28,3 @@ def update_blog_posts():
         BlogPost.objects.create(**post)
 
     log.info('Adding %d blog posts.' % BlogPost.objects.count())
-

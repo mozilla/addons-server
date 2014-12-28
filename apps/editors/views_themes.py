@@ -20,15 +20,16 @@ from amo.utils import paginate
 from devhub.models import ActivityLog
 from editors import forms
 from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
-from editors.views import context, reviewer_required
+from editors.views import context
 from search.views import name_only_query
 from zadmin.decorators import admin_required
+from .decorators import personas_reviewer_required
 
 
 QUEUE_PER_PAGE = 100
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def home(request):
     data = context(
         reviews_total=ActivityLog.objects.total_reviews(theme=True)[:5],
@@ -62,7 +63,7 @@ def queue_counts_themes(request):
     return rv
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_list(request, flagged=False, rereview=False):
     """Themes queue in list format."""
     themes = []
@@ -85,17 +86,15 @@ def themes_list(request, flagged=False, rereview=False):
     pager = paginate(request, themes, per_page)
 
     return render(request, 'editors/themes/queue_list.html', context(
-        **{
-        'addons': pager.object_list,
-        'flagged': flagged,
-        'pager': pager,
-        'rereview': rereview,
-        'theme_search_form': search_form,
-        'statuses': dict((k, unicode(v)) for k, v in
-                         amo.STATUS_CHOICES_API.items()),
-        'tab': ('rereview_themes' if rereview else
-                'flagged_themes' if flagged else 'pending_themes'),
-    }))
+        **{'addons': pager.object_list,
+           'flagged': flagged,
+           'pager': pager,
+           'rereview': rereview,
+           'theme_search_form': search_form,
+           'statuses': dict((k, unicode(v)) for k, v in
+                            amo.STATUS_CHOICES_API.items()),
+           'tab': ('rereview_themes' if rereview else
+                   'flagged_themes' if flagged else 'pending_themes')}))
 
 
 def _themes_queue(request, flagged=False, rereview=False):
@@ -109,17 +108,17 @@ def _themes_queue(request, flagged=False, rereview=False):
                  in themes])
 
     return render(request, 'editors/themes/queue.html', context(
-        **{
-        'actions': get_actions_json(),
-        'formset': formset,
-        'flagged': flagged,
-        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
-        'rereview': rereview,
-        'reviewable': True,
-        'theme_formsets': zip(themes, formset),
-        'theme_count': len(themes),
-        'tab': 'flagged' if flagged else 'rereview' if rereview else 'pending'
-    }))
+        **{'actions': get_actions_json(),
+           'formset': formset,
+           'flagged': flagged,
+           'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+           'rereview': rereview,
+           'reviewable': True,
+           'theme_formsets': zip(themes, formset),
+           'theme_count': len(themes),
+           'tab': (
+               'flagged' if flagged else
+               'rereview' if rereview else 'pending')}))
 
 
 def _get_themes(request, reviewer, flagged=False, rereview=False):
@@ -151,7 +150,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
 
     # Don't allow self-reviews.
     if (not settings.ALLOW_SELF_REVIEWS and
-        not acl.action_allowed(request, 'Admin', '%')):
+            not acl.action_allowed(request, 'Admin', '%')):
         if rereview:
             themes = themes.exclude(theme__addon__addonuser__user=reviewer)
         else:
@@ -161,11 +160,10 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
     themes = list(themes)[:num]
     expiry = get_updated_expiry()
     for theme in themes:
-        if rereview:
-            theme = theme.theme
-        ThemeLock.objects.create(theme=theme, reviewer=reviewer, expiry=expiry)
+        ThemeLock.objects.create(theme=_rereview_to_theme(rereview, theme),
+                                 reviewer=reviewer, expiry=expiry)
 
-   # Empty pool? Go look for some expired locks.
+    # Empty pool? Go look for some expired locks.
     if not themes:
         expired_locks = ThemeLock.objects.filter(
             expiry__lte=datetime.datetime.now(),
@@ -179,7 +177,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
             locks = expired_locks
 
     if rereview:
-        return (RereviewQueueTheme.objects
+        return (RereviewQueueTheme.objects.no_cache()
                 .filter(theme__themelock__reviewer=reviewer)
                 .exclude(theme__addon__status=amo.STATUS_REJECTED))
 
@@ -188,7 +186,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
 
 
 @json_view
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_search(request):
     search_form = forms.ThemeSearchForm(request.GET)
     if search_form.is_valid():
@@ -201,8 +199,8 @@ def themes_search(request):
         if rereview:
             themes = themes.filter(has_theme_rereview=True)
         else:
-            themes = themes.filter(status=amo.STATUS_REVIEW_PENDING if flagged
-                                          else amo.STATUS_PENDING,
+            themes = themes.filter(status=(amo.STATUS_REVIEW_PENDING if flagged
+                                           else amo.STATUS_PENDING),
                                    has_theme_rereview=False)
         themes = themes.query(or_=name_only_query(q))[:100]
 
@@ -231,7 +229,7 @@ def themes_search(request):
         return {'objects': themes, 'meta': {'total_count': len(themes)}}
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_queue(request):
     # By default, redirect back to the queue after a commit.
     request.session['theme_redirect_url'] = reverse(
@@ -285,20 +283,23 @@ def _calc_num_themes_checkout(locks):
 
 def _get_rereview_themes(reviewer):
     """Check out re-uploaded themes."""
-    locks = ThemeLock.objects.select_related().filter(
-        reviewer=reviewer, theme__rereviewqueuetheme__isnull=False)
+    locks = (ThemeLock.objects.select_related().no_cache()
+             .filter(reviewer=reviewer,
+                     theme__rereviewqueuetheme__isnull=False)
+             .exclude(theme__addon__status=amo.STATUS_REJECTED))
 
     num, updated_locks = _calc_num_themes_checkout(locks)
     if updated_locks:
         locks = updated_locks
 
-    themes = RereviewQueueTheme.objects.filter(theme__addon__isnull=False,
-                                               theme__themelock=None)
+    themes = (RereviewQueueTheme.objects.no_cache()
+              .filter(theme__addon__isnull=False, theme__themelock=None)
+              .exclude(theme__addon__status=amo.STATUS_REJECTED))
     return num, themes, locks
 
 
 @post_required
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_commit(request):
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
     formset = ThemeReviewFormset(request.POST)
@@ -332,7 +333,7 @@ def themes_commit(request):
         return redirect(reverse('editors.themes.queue_themes'))
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def release_locks(request):
     ThemeLock.objects.filter(reviewer=request.user).delete()
     amo.messages.success(
@@ -344,7 +345,7 @@ def release_locks(request):
     return redirect(reverse('editors.themes.list'))
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_single(request, slug):
     """
     Like a detail page, manually review a single theme if it is pending
@@ -356,19 +357,19 @@ def themes_single(request, slug):
     # Don't review an already reviewed theme.
     theme = get_object_or_404(Persona, addon__slug=slug)
     if (theme.addon.status != amo.STATUS_PENDING and
-        not theme.rereviewqueuetheme_set.all()):
+            not theme.rereviewqueuetheme_set.all()):
         reviewable = False
 
     if (not settings.ALLOW_SELF_REVIEWS and
-        not acl.action_allowed(request, 'Admin', '%') and
-        theme.addon.has_author(request.amo_user)):
+            not acl.action_allowed(request, 'Admin', '%') and
+            theme.addon.has_author(request.amo_user)):
         reviewable = False
     else:
         # Don't review a locked theme (that's not locked to self).
         try:
             lock = theme.themelock
             if (lock.reviewer.id != reviewer.id and
-                lock.expiry > datetime.datetime.now()):
+                    lock.expiry > datetime.datetime.now()):
                 reviewable = False
             elif (lock.reviewer.id != reviewer.id and
                   lock.expiry < datetime.datetime.now()):
@@ -394,27 +395,25 @@ def themes_single(request, slug):
                                                     args=[theme.addon.slug])
 
     rereview = (theme.rereviewqueuetheme_set.all()[0] if
-        theme.rereviewqueuetheme_set.exists() else None)
+                theme.rereviewqueuetheme_set.exists() else None)
     return render(request, 'editors/themes/single.html', context(
-        **{
-        'formset': formset,
-        'theme': rereview if rereview else theme,
-        'theme_formsets': zip([rereview if rereview else theme], formset),
-        'theme_reviews': paginate(request, ActivityLog.objects.filter(
-            action=amo.LOG.THEME_REVIEW.id,
-            _arguments__contains=theme.addon.id)),
-        'actions': get_actions_json(),
-        'theme_count': 1,
-        'rereview': rereview,
-        'reviewable': reviewable,
-        'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
-        'action_dict': rvw.REVIEW_ACTIONS,
-        'tab': ('flagged' if theme.addon.status == amo.STATUS_REVIEW_PENDING
-                else 'rereview' if rereview else 'pending')
-    }))
+        **{'formset': formset,
+           'theme': rereview if rereview else theme,
+           'theme_formsets': zip([rereview if rereview else theme], formset),
+           'theme_reviews': paginate(request, ActivityLog.objects.filter(
+               action=amo.LOG.THEME_REVIEW.id,
+               _arguments__contains=theme.addon.id)),
+           'actions': get_actions_json(),
+           'theme_count': 1,
+           'rereview': rereview,
+           'reviewable': reviewable,
+           'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+           'action_dict': rvw.REVIEW_ACTIONS,
+           'tab': ('flagged' if theme.addon.status == amo.STATUS_REVIEW_PENDING
+                   else 'rereview' if rereview else 'pending')}))
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_logs(request):
     data = request.GET.copy()
 
@@ -475,20 +474,19 @@ def deleted_themes(request):
     })
 
 
-@reviewer_required('persona')
+@personas_reviewer_required
 def themes_history(request, username):
     if not username:
         username = request.amo_user.username
 
     return render(request, 'editors/themes/history.html', context(
-        **{
-        'theme_reviews': paginate(request, ActivityLog.objects.filter(
-            action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),
-        'user_history': True,
-        'username': username,
-        'reject_reasons': rvw.THEME_REJECT_REASONS,
-        'action_dict': rvw.REVIEW_ACTIONS,
-    }))
+        **{'theme_reviews':
+            paginate(request, ActivityLog.objects.filter(
+                action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),
+           'user_history': True,
+           'username': username,
+           'reject_reasons': rvw.THEME_REJECT_REASONS,
+           'action_dict': rvw.REVIEW_ACTIONS}))
 
 
 def get_actions_json():
@@ -504,4 +502,3 @@ def get_actions_json():
 def get_updated_expiry():
     return (datetime.datetime.now() +
             datetime.timedelta(minutes=rvw.THEME_LOCK_EXPIRY))
-

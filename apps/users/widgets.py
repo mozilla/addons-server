@@ -33,7 +33,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
                 notes.append(u'<span title="required" class="req">*</span>')
 
             if (hasattr(self.form_instance, 'choices_status') and
-                self.form_instance.choices_status.get(idx)):
+                    self.form_instance.choices_status.get(idx)):
                 notes.append(u'<sup class="msg">%s</sup>' % _('new'))
 
             cb = forms.CheckboxInput(
@@ -43,9 +43,8 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
             label_for = u' for="%s"' % cb_attrs['id']
 
             groups.setdefault(notification.group, []).append(
-                    u'<li><label class="check" %s>%s %s %s</label></li>' % (
-                    label_for, rendered_cb, label, ''.join(notes)
-                ))
+                u'<li><label class="check" %s>%s %s %s</label></li>' % (
+                    label_for, rendered_cb, label, ''.join(notes)))
 
         output = []
         template_url = 'users/edit_notification_checkboxes.html'

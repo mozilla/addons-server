@@ -1,3 +1,4 @@
+import codecs
 from datetime import datetime, timedelta
 from optparse import make_option
 from os import path, unlink
@@ -9,8 +10,7 @@ import commonware.log
 
 import amo
 from addons.models import Addon
-# TODO: use UpdateCount when the script is proven to work correctly.
-from stats.models import update_inc, UpdateCountTmp as UpdateCount
+from stats.models import update_inc, UpdateCount
 
 from . import get_date_from_file
 
@@ -82,12 +82,12 @@ class Command(BaseCommand):
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
         guids_to_addon = (dict(Addon.objects.exclude(guid__isnull=True)
-                                            .filter(type=amo.ADDON_EXTENSION)
+                                            .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
 
         index = -1
         for group, filepath in group_filepaths:
-            with open(filepath) as results_file:
+            with codecs.open(filepath, encoding='utf8') as results_file:
                 for line in results_file:
                     index += 1
                     if index and (index % 1000000) == 0:
@@ -106,6 +106,7 @@ class Command(BaseCommand):
                     else:
                         day, addon_guid, data, count, update_type = splitted
 
+                    addon_guid = addon_guid.strip()
                     if update_type:
                         update_type.strip()
 
@@ -133,10 +134,12 @@ class Command(BaseCommand):
                                   update_type)
                         continue
 
-                    # Does this addon exit?
-                    if addon_guid.strip() and addon_guid in guids_to_addon:
+                    # Does this addon exist?
+                    if addon_guid and addon_guid in guids_to_addon:
                         addon_id = guids_to_addon[addon_guid]
                     else:
+                        log.debug(u"Addon {guid} doesn't exist."
+                                  .format(guid=addon_guid.strip()))
                         continue
 
                     # Memoize the UpdateCount.
@@ -172,8 +175,6 @@ class Command(BaseCommand):
                         # Drop incorrect locales sizes.
                         if len(data) > 10:
                             continue
-                        # Collapse locales to `xx_yy` if possible.
-                        data = data.strip().lower().replace('-', '_')
                         uc.locales = update_inc(uc.locales, data, count)
 
         # Create in bulk: this is much faster.

@@ -1,7 +1,11 @@
+import pytest
 from nose.tools import eq_
 
 from translations.models import Translation
 from translations.utils import transfield_changed, truncate, truncate_text
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_truncate_text():

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
 import urllib
 
 from django.utils import translation
 
+import pytest
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -16,6 +16,9 @@ from addons.models import Addon
 from devhub import helpers
 from files.models import File
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_dev_page_title():
@@ -40,9 +43,10 @@ def test_dev_page_title():
     eq_(s1, s2)
 
 
-class TestDevBreadcrumbs(unittest.TestCase):
+class TestDevBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestDevBreadcrumbs, self).setUp()
         self.request = Mock()
         self.request.APP = None
 
@@ -66,7 +70,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
     def test_with_items(self):
         s = render("""{{ dev_breadcrumbs(items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}'""",
-                  {'request': self.request})
+                   {'request': self.request})
         doc = pq(s)
         crumbs = doc('li>a')
         eq_(len(crumbs), 4)
@@ -95,7 +99,7 @@ class TestDevBreadcrumbs(unittest.TestCase):
         addon.id = 1843
         addon.slug = 'fbug'
         addon.get_dev_url.return_value = reverse('devhub.addons.edit',
-                                                   args=[addon.slug])
+                                                 args=[addon.slug])
         s = render("""{{ dev_breadcrumbs(addon,
                                          items=[('/foo', 'foo'),
                                                 ('/bar', 'bar')]) }}""",
@@ -138,9 +142,10 @@ def test_log_action_class():
         eq_(render('{{ log_action_class(id) }}', {'id': v.id}), cls)
 
 
-class TestDisplayUrl(unittest.TestCase):
+class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestDisplayUrl, self).setUp()
         self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')
 
     def test_utf8(self):
@@ -163,6 +168,7 @@ class TestDisplayUrl(unittest.TestCase):
 class TestDevFilesStatus(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestDevFilesStatus, self).setUp()
         self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,

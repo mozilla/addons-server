@@ -17,7 +17,7 @@
 </header>
 <section class="primary devhub-form edit-version" role="main">
   <h3>{{ title }}</h3>
-  <form method="post" action="" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data">
     <div class="item">
       <div class="item_wrapper">
         {{ csrf() }}
@@ -146,5 +146,6 @@
                     url('devhub.versions.add_file', addon.slug, version.id),
                     url('devhub.upload_for_addon', addon.slug), _('Add File') )}}
 </section>
+{% set upload_file_label = _('Upload a new file') %}
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}

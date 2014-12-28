@@ -8,7 +8,8 @@ from amo.urlresolvers import reverse
 from . import views
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # AMO stuff.
     url('^$', views.index, name='zadmin.index'),
     url('^models$', lambda r: redirect('admin:index'), name='zadmin.home'),

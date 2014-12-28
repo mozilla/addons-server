@@ -5,6 +5,7 @@ import logging
 import os
 import socket
 
+import dj_database_url
 from django.utils.functional import lazy
 from heka.config import client_from_dict_config
 
@@ -70,36 +71,29 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-FLIGTAR = 'marketplace-staff+random-goings-on@mozilla.org'
+FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
-SENIOR_EDITORS_EMAIL = 'amo-admin-reviews@mozilla.org'
+SENIOR_EDITORS_EMAIL = 'amo-editors+somethingbad@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
-MARKETPLACE_EMAIL = 'marketplace-staff@mozilla.org'
-ABUSE_EMAIL = 'marketplace-staff+abuse@mozilla.org'
+ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
-DATABASES = {
-    'default': {
-        'NAME': 'olympia',
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': '',
-        'PORT': '',
-        'USER': 'root',
-        'PASSWORD': '',
-        'OPTIONS': {'init_command': 'SET storage_engine=InnoDB'},
-        'TEST_CHARSET': 'utf8',
-        'TEST_COLLATION': 'utf8_general_ci',
-    },
-}
+DATABASE_URL = os.environ.get('DATABASE_URL',
+                              'mysql://root:@localhost/olympia')
+DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['default']['TEST_CHARSET'] = 'utf8'
+DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django
 # database connection, only some values are supported.
 SERVICES_DATABASE = {
-    'NAME': 'olympia',
-    'USER': 'root',
-    'PASSWORD': '',
-    'HOST': '',
+    'NAME': DATABASES['default']['NAME'],
+    'USER': DATABASES['default']['USER'],
+    'PASSWORD': DATABASES['default']['PASSWORD'],
+    'HOST': DATABASES['default']['HOST'],
+    'PORT': DATABASES['default']['PORT'],
 }
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
@@ -364,7 +358,7 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'lib.urls_base'
 
 INSTALLED_APPS = (
-    #import ordering issues ahoy
+    # Import ordering issues ahoy.
     'djcelery',
 
     'amo',  # amo comes first so it always takes precedence.
@@ -403,7 +397,6 @@ INSTALLED_APPS = (
 
     # Third party apps
     'django_extensions',
-    'django_nose',
     'gunicorn',
     'raven.contrib.django',
     'piston',
@@ -423,17 +416,10 @@ INSTALLED_APPS = (
 )
 
 # These apps are only needed in a testing environment. They are added to
-# INSTALLED_APPS by the RadicalTestSuiteRunnerWithExtraApps test runner.
+# INSTALLED_APPS by the amo.runner.TestRunner test runner.
 TEST_INSTALLED_APPS = (
     'translations.tests.testapp',
 )
-
-# Tests
-TEST_RUNNER = 'amo.runner.RadicalTestSuiteRunnerWithExtraApps'
-NOSE_ARGS = [
-    '--with-fixture-bundling',
-    '--exclude=mkt/*',
-]
 
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction.  The Tower library expects this.
@@ -984,12 +970,15 @@ EMAIL_BLACKLIST = (
     'nobody@mozilla.org',
 )
 
+# Please use all lowercase for the QA whitelist.
+EMAIL_QA_WHITELIST = ()
+
 # URL for Add-on Validation FAQ.
 VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
                       'AddonReviews#Step_2:_Automatic_validation')
 
 
-## Celery
+# Celery
 BROKER_URL = 'amqp://olympia:olympia@localhost:5672/olympia'
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
@@ -1035,9 +1024,6 @@ CELERY_ROUTES = {
 
     # AMO validator.
     'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
-
-    # Comm.
-    'mkt.comm.tasks.migrate_activity_log': {'queue': 'limited'},
 }
 
 # This is just a place to store these values, you apply them in your
@@ -1046,6 +1032,8 @@ CELERY_ROUTES = {
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
     'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
+    # The reindex management command can take up to 3 hours to run.
+    'lib.es.management.commands.reindex': {'soft': 10800, 'hard': 14400},
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
@@ -1056,7 +1044,7 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 # a separate, shorter timeout for validation tasks.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-## Fixture Magic
+# Fixture Magic
 CUSTOM_DUMPS = {
     'addon': {  # ./manage.py custom_dump addon id
         'primary': 'addons.addon',  # This is our reference model.
@@ -1075,11 +1063,10 @@ CUSTOM_DUMPS = {
     }
 }
 
-## Hera (http://github.com/clouserw/hera)
+# Hera (http://github.com/clouserw/hera)
 HERA = [{'USERNAME': '',
-        'PASSWORD': '',
-        'LOCATION': '',
-       }]
+         'PASSWORD': '',
+         'LOCATION': ''}]
 
 # Logging
 LOG_LEVEL = logging.DEBUG
@@ -1104,7 +1091,6 @@ LOGGING = {
         'z.es': {'level': logging.INFO},
         'z.heka': {'level': logging.INFO},
         's.client': {'level': logging.INFO},
-        'nose': {'level': logging.WARNING},
     },
 }
 
@@ -1115,21 +1101,17 @@ HEKA_CONF = {
         'cef': ('heka_cef.cef_plugin:config_plugin', {
             'syslog_facility': 'LOCAL4',
             'syslog_ident': 'http_app_addons_marketplace',
-            'syslog_priority': 'ALERT',
-            }),
+            'syslog_priority': 'ALERT'}),
 
         # Sentry accepts messages over UDP, you'll need to
         # configure this URL so that logstash can relay the message
         # properly
         'raven': ('heka_raven.raven_plugin:config_plugin',
-            {'dsn': 'udp://username:password@127.0.0.1:9000/2'}),
-        },
+                  {'dsn': 'udp://username:password@127.0.0.1:9000/2'})},
     'stream': {
         'class': 'heka.streams.UdpStream',
         'host': '127.0.0.1',
-        'port': 5565,
-    },
-}
+        'port': 5565}}
 
 HEKA = client_from_dict_config(HEKA_CONF)
 
@@ -1215,7 +1197,10 @@ PERF_THRESHOLD = 25
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
 
-REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
+REDIS_BACKENDS = {
+    'master': 'redis://{location}?socket_timeout=0.5'.format(
+        location=REDIS_LOCATION)}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator
@@ -1275,7 +1260,7 @@ BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
                         'sdk-versions/')
 
 ## elasticsearch
-ES_HOSTS = ['127.0.0.1:9200']
+ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
     'default': 'addons',
@@ -1327,9 +1312,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 # Super temporary. Or Not.
 MARKETPLACE = False
 
-# Name of view to use for homepage.
-HOME = 'addons.views.home'
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 
@@ -1345,20 +1327,19 @@ VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
 # Turn on/off the use of the signing server and all the related things. This
 # is a temporary flag that we will remove.
 SIGNING_SERVER_ACTIVE = False
+# The reviewers equivalent to the above.
+SIGNING_REVIEWER_SERVER_ACTIVE = False
 # This is the signing REST server for signing receipts.
 SIGNING_SERVER = ''
+# This is the signing REST server for signing apps with the reviewers cert.
+SIGNING_REVIEWER_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
-# The domains that we will accept certificate issuers for receipts.
-SIGNING_VALID_ISSUERS = []
+# Send the more terse manifest signatures to the app signing server.
+SIGNING_OMIT_PER_FILE_SIGS = True
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
-
-# Until bug 753421 gets fixed, we're skipping ES tests. Sad times. I know.
-# Flip this on in your local settings or set an environment variable to
-# experience the joy of ES tests.
-RUN_ES_TESTS = False
 
 # The configuration for the client that speaks to solitude.
 # A tuple of the solitude hosts.

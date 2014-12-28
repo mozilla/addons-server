@@ -17,6 +17,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_str
+from django.utils.translation import force_text
 
 import commonware
 from cache_nuggets.lib import memoize
@@ -48,6 +49,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     version = models.ForeignKey('versions.Version', related_name='files')
     platform = models.PositiveIntegerField(
+        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,
         db_column="platform_id"
     )
@@ -77,9 +79,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # file, used for default to compatible.
     binary_components = models.BooleanField(default=False, db_index=True)
 
-    # Whether a webapp uses flash or not.
-    uses_flash = models.BooleanField(default=False, db_index=True)
-
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
 
@@ -87,7 +86,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return unicode(self.id)
 
     def get_platform_display(self):
-        return unicode(amo.PLATFORMS[self.platform].name)
+        return force_text(amo.PLATFORMS[self.platform].name)
 
     @property
     def has_been_validated(self):
@@ -114,6 +113,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                        not self.version.addon.disabled_by_user)
         return is_eligible
 
+    def can_be_signed(self):
+        """True only if extension is xpi"""
+        return os.path.splitext(self.filename)[1] == '.xpi'
+
     def get_mirror(self, addon, attachment=False):
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
@@ -132,7 +135,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return absolutify(urlparams(url, src=src))
 
     @classmethod
-    def from_upload(cls, upload, version, platform, parse_data={}):
+    def from_upload(cls, upload, version, platform, is_beta=False,
+                    parse_data={}):
         f = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
@@ -150,7 +154,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
         if version.addon.status == amo.STATUS_PUBLIC:
-            if amo.VERSION_BETA.search(parse_data.get('version', '')):
+            if is_beta:
                 f.status = amo.STATUS_BETA
             elif version.addon.trusted:
                 f.status = amo.STATUS_PUBLIC
@@ -256,7 +260,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(user_media_path('addons'), str(self.version.addon_id),
+        return os.path.join(user_media_path('addons'),
+                            str(self.version.addon_id),
                             self.filename)
 
     @property
@@ -275,6 +280,16 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def guarded_file_path(self):
         return os.path.join(user_media_path('guarded_addons'),
                             str(self.version.addon_id), self.filename)
+
+    @property
+    def signed_file_path(self):
+        return os.path.join(user_media_path('signed_addons'),
+                            str(self.version.addon_id), self._signed())
+
+    @property
+    def signed_reviewer_file_path(self):
+        return os.path.join(user_media_path('signed_addons_reviewer'),
+                            str(self.version.addon_id), self._signed())
 
     def _signed(self):
         split = self.filename.rsplit('.', 1)
@@ -303,7 +318,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.mv(src, dst, 'Moving disabled file: %s => %s')
         # Remove the file from the mirrors if necessary.
         if (self.mirror_file_path and
-            storage.exists(smart_str(self.mirror_file_path))):
+                storage.exists(smart_str(self.mirror_file_path))):
             log.info('Unmirroring disabled file: %s'
                      % self.mirror_file_path)
             storage.delete(smart_str(self.mirror_file_path))
@@ -509,7 +524,6 @@ class FileUpload(amo.models.ModelBase):
     hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', null=True)
     valid = models.BooleanField(default=False)
-    is_webapp = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     _escaped_validation = models.TextField(
         null=True, db_column='escaped_validation')
@@ -613,8 +627,8 @@ class FileValidation(amo.models.ModelBase):
                   warnings=js['warnings'], notices=js['notices'])
         new.valid = new.errors == 0
         if ('metadata' in js and (
-            js['metadata'].get('contains_binary_extension', False) or
-            js['metadata'].get('contains_binary_content', False))):
+                js['metadata'].get('contains_binary_extension', False) or
+                js['metadata'].get('contains_binary_content', False))):
             file.update(binary=True)
         if 'metadata' in js and js['metadata'].get('binary_components', False):
             file.update(binary_components=True)

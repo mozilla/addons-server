@@ -15,7 +15,7 @@ from nose.tools import eq_
 
 import amo
 import amo.tests
-from amo.helpers import absolutify, user_media_path
+from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from addons.models import Addon
 from applications.models import AppVersion
@@ -67,7 +67,7 @@ class TestUpgradeJetpacks(amo.tests.TestCase):
         args = dict(urlparse.parse_qsl(args))
         eq_(args['location'], file_.get_url_path('builder'))
         assert 'package_key' not in args, (
-                                    'Unexpected keys: %s' % args.keys())
+            'Unexpected keys: %s' % args.keys())
 
 
 class TestRepackageJetpack(amo.tests.TestCase):
@@ -99,6 +99,7 @@ class TestRepackageJetpack(amo.tests.TestCase):
 
     def tearDown(self):
         storage.delete(self.tmp_file_path)
+        super(TestRepackageJetpack, self).tearDown()
 
     def create_temp_file(self):
         path = tempfile.mktemp(dir=settings.TMP_PATH)

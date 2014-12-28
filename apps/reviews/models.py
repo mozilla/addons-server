@@ -1,16 +1,16 @@
 from datetime import datetime, timedelta
 import logging
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 
 import bleach
+import caching.base as caching
 from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
-from amo.helpers import shared_url
+from amo import helpers
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 
@@ -19,10 +19,30 @@ log = logging.getLogger('z.review')
 
 class ReviewManager(amo.models.ManagerBase):
 
+    def __init__(self, include_deleted=False):
+        super(ReviewManager, self).__init__()
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super(ReviewManager, self).get_queryset()
+        qs = qs._clone(klass=ReviewQuerySet)
+        if not self.include_deleted:
+            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
+        return qs
+
     def valid(self):
         """Get all reviews that aren't replies."""
-        # Use extra because Django wants to do a LEFT OUTER JOIN.
-        return self.extra(where=['reply_to IS NULL'])
+        return self.filter(reply_to__isnull=True)
+
+
+class ReviewQuerySet(caching.CachingQuerySet):
+    """
+    A queryset modified for soft deletion.
+    """
+
+    def delete(self):
+        for review in self:
+            review.delete()
 
 
 class Review(amo.models.ModelBase):
@@ -43,6 +63,8 @@ class Review(amo.models.ModelBase):
     sandbox = models.BooleanField(default=False)
     client_data = models.ForeignKey('stats.ClientData', null=True, blank=True)
 
+    deleted = models.BooleanField(default=False)
+
     # Denormalized fields for easy lookup queries.
     # TODO: index on addon, user, latest
     is_latest = models.BooleanField(
@@ -53,15 +75,14 @@ class Review(amo.models.ModelBase):
         help_text="How many previous reviews by the user for this add-on?")
 
     objects = ReviewManager()
+    with_deleted = ReviewManager(include_deleted=True)
 
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
 
     def get_url_path(self):
-        if 'mkt.ratings' in settings.INSTALLED_APPS:
-            return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
-        return shared_url('reviews.detail', self.addon, self.id)
+        return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
 
     def flush_urls(self):
         urls = ['*/addon/%d/' % self.addon_id,
@@ -70,6 +91,16 @@ class Review(amo.models.ModelBase):
                 '*/addon/%d/reviews/%d/' % (self.addon_id, self.id),
                 '*/user/%d/' % self.user_id, ]
         return urls
+
+    def delete(self):
+        self.update(deleted=True)
+        # This should happen in the `post_save` hook.
+        # self.refresh(update_denorm=True)
+
+    def undelete(self):
+        self.update(deleted=False)
+        # This should happen in the `post_save` hook.
+        # self.refresh(update_denorm=True)
 
     @classmethod
     def get_replies(cls, reviews):
@@ -85,12 +116,6 @@ class Review(amo.models.ModelBase):
         if created:
             # Avoid slave lag with the delay.
             check_spam.apply_async(args=[instance.id], countdown=600)
-
-    @staticmethod
-    def post_delete(sender, instance, **kwargs):
-        if kwargs.get('raw'):
-            return
-        instance.refresh(update_denorm=True)
 
     def refresh(self, update_denorm=False):
         from addons.models import update_search_index
@@ -115,8 +140,6 @@ class Review(amo.models.ModelBase):
 
 models.signals.post_save.connect(Review.post_save, sender=Review,
                                  dispatch_uid='review_post_save')
-models.signals.post_delete.connect(Review.post_delete, sender=Review,
-                                   dispatch_uid='review_post_delete')
 models.signals.pre_save.connect(save_signal, sender=Review,
                                 dispatch_uid='review_translations')
 
@@ -224,10 +247,10 @@ def check_spam(review_id, **kw):
     if len(others) > 10:
         spam.add(review, 'numbers')
     if (review.body is not None and
-        bleach.url_re.search(review.body.localized_string)):
+            bleach.url_re.search(review.body.localized_string)):
         spam.add(review, 'urls')
     for other in others:
         if ((review.title and review.title == other.title) or
-            review.body == other.body):
+                review.body == other.body):
             spam.add(review, 'matches')
             break

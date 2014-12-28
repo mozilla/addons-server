@@ -6,12 +6,15 @@ import tempfile
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
+import pytest
 from nose.tools import eq_
 from PIL import Image
 
 from amo.tests.test_helpers import get_image_path
-from files.helpers import copyfileobj
 from users.tasks import delete_photo, resize_photo
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_delete_photo():

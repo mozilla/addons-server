@@ -9,7 +9,6 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
-from django.db.models import Sum
 from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
@@ -20,16 +19,16 @@ import commonware.log
 import jinja2
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
-from tower import ugettext as _
 
 import amo
 import amo.search
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser, CompatOverride
+from addons.search import get_mappings as get_addons_mappings
 from amo import messages, get_user
 from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
-from amo.mail import FakeEmailBackend
+from amo.mail import DevEmailBackend
 from amo.urlresolvers import reverse
 from amo.utils import chunked, sorted_groupby
 from bandwagon.models import Collection
@@ -38,6 +37,7 @@ from devhub.models import ActivityLog
 from files.models import Approval, File
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
+from stats.search import get_mappings as get_stats_mappings
 from users.models import UserProfile
 from versions.compare import version_int as vint
 from versions.models import Version
@@ -198,7 +198,7 @@ def fix_disabled_file(request):
 @post_required
 @json_view
 def application_versions_json(request):
-    app_id = request.POST['application_id']
+    app_id = request.POST['application']
     f = BulkValidationForm()
     return {'choices': f.version_choices_for_app_id(app_id)}
 
@@ -222,17 +222,17 @@ def find_files(job):
     # STATUS_NULL and STATUS_DISABLED.
     current = job.curr_max_version.version_int
     target = job.target_version.version_int
-    addons = (Addon.objects.filter(
-                        status__in=amo.VALID_STATUSES,
-                        disabled_by_user=False,
-                        versions__apps__application=job.application,
-                        versions__apps__max__version_int__gte=current,
-                        versions__apps__max__version_int__lt=target)
-                           # Exclude lang packs and themes.
-                           .exclude(type__in=[amo.ADDON_LPAPP,
-                                              amo.ADDON_THEME])
-                           .no_transforms().values_list("pk", flat=True)
-                           .distinct())
+    addons = (
+        Addon.objects.filter(status__in=amo.VALID_STATUSES,
+                             disabled_by_user=False,
+                             versions__apps__application=job.application,
+                             versions__apps__max__version_int__gte=current,
+                             versions__apps__max__version_int__lt=target)
+        # Exclude lang packs and themes.
+        .exclude(type__in=[amo.ADDON_LPAPP,
+                           amo.ADDON_THEME])
+        .no_transforms().values_list("pk", flat=True)
+        .distinct())
     for pks in chunked(addons, 100):
         tasks.add_validation_jobs.delay(pks, job.pk)
 
@@ -272,41 +272,6 @@ def job_status(request):
     return all_stats
 
 
-def _completed_versions(job, prefix=''):
-    filter = dict(files__validation_results__validation_job=job,
-                  files__validation_results__completed__isnull=False)
-    if not prefix:
-        return filter
-
-    res = {}
-    for k, v in filter.iteritems():
-        res['%s__%s' % (prefix, k)] = v
-    return res
-
-
-def updated_versions(job):
-    return (Version.objects
-                   .filter(files__validation_results__validation_job=job,
-                           files__validation_results__errors=0,
-                           files__validation_results__completed__isnull=False,
-                           apps__application=job.curr_max_version.application,
-                           apps__max__version_int__gte=
-                                job.curr_max_version.version_int,
-                           apps__max__version_int__lt=
-                                job.target_version.version_int)
-                   .exclude(files__validation_results__errors__gt=0)
-                   .values_list('pk', flat=True).distinct())
-
-
-def completed_version_authors(job):
-    return (Version.objects
-                   .filter(**_completed_versions(job))
-                   # Prevent sorting by version creation date and
-                   # thereby breaking `.distinct()`
-                   .order_by('addon__authors__pk')
-                   .values_list('addon__authors__pk', flat=True).distinct())
-
-
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View'),
@@ -333,75 +298,7 @@ def notify(request, job):
     if not notify_form.is_valid():
         messages.error(request, notify_form)
     else:
-        dry_run = notify_form.cleaned_data['preview_only']
-
-        log.info('[@None] Starting validation email/update process for job %d.'
-                 ' dry_run=%s.' % (job.pk, dry_run))
-
-        log.info('[@None] Starting validation version bumps for job %d.'
-                    % (job.pk,))
-
-        version_list = updated_versions(job)
-        total = version_list.count()
-
-        for chunk in chunked(version_list, 100):
-            log.info('[%d@%d] Updating versions for job %d.' % (
-                len(chunk), total, job.pk))
-            tasks.update_maxversions.delay(chunk, job.pk,
-                                           notify_form.cleaned_data)
-
-        log.info('[@None] Starting validation email run for job %d.'
-                    % (job.pk,))
-
-        updated_authors = completed_version_authors(job)
-        total = updated_authors.count()
-        for chunk in chunked(updated_authors, 100):
-            log.info('[%d@%d] Notifying authors for validation job %d'
-                        % (len(chunk), total, job.pk))
-
-            # There are times when you want to punch django's ORM in
-            # the face. This may be one of those times.
-            # TODO: Offload most of this work to the task?
-            users_addons = list(
-                UserProfile.objects.filter(pk__in=chunk)
-                           .filter(**_completed_versions(job,
-                                                         'addons__versions'))
-                           .values_list('pk', 'addons__pk').distinct())
-
-            users = list(UserProfile.objects.filter(
-                             pk__in=set(u for u, a in users_addons)))
-
-            # Annotate fails in tests when using cached results
-            addons = (Addon.objects.no_cache()
-                           .filter(**{
-                               'pk__in': set(a for u, a in users_addons),
-                               'versions__files__'
-                                    'validation_results__validation_job': job
-                           })
-                           .annotate(errors=Sum(
-                               'versions__files__validation_results__errors')))
-            addons = dict((a.id, a) for a in addons)
-
-            users_addons = dict((u, [addons[a] for u, a in row])
-                                for u, row in sorted_groupby(users_addons,
-                                                             lambda k: k[0]))
-
-            log.info('[%d@%d] Notifying %d authors about %d addons for '
-                     'validation job %d'
-                        % (len(chunk), total, len(users), len(addons.keys()),
-                           job.pk))
-
-            for u in users:
-                addons = users_addons[u.pk]
-
-                u.passing_addons = [a for a in addons if a.errors == 0]
-                u.failing_addons = [a for a in addons if a.errors > 0]
-
-            tasks.notify_compatibility.delay(users, job,
-                                             notify_form.cleaned_data)
-
-        log.info('[@None] Completed validation email/update process '
-                 'for job %d. dry_run=%s.' % (job.pk, dry_run))
+        tasks.notify_compatibility.delay(job, notify_form.cleaned_data)
 
     return redirect(reverse('zadmin.validation'))
 
@@ -468,8 +365,8 @@ def jetpack(request):
     repack_status = upgrader.files()  # The files being repacked.
 
     show = request.GET.get('show', upgrading or minver)
-    subset = filter(lambda f: not f.needs_upgrade and
-                              f.jetpack_version == show, jetpacks)
+    subset = filter(
+        lambda f: not f.needs_upgrade and f.jetpack_version == show, jetpacks)
     need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
     repacked = []
 
@@ -633,12 +530,15 @@ def elastic(request):
     es = amo.search.get_es()
 
     indexes = set(settings.ES_INDEXES.values())
-    es_mappings = es.get_mapping(None, indexes)
+    es_mappings = {
+        'addons': get_addons_mappings(),
+        'addons_stats': get_stats_mappings(),
+    }
     ctx = {
         'index': INDEX,
-        'nodes': es.cluster_nodes(),
-        'health': es.cluster_health(),
-        'state': es.cluster_state(),
+        'nodes': es.nodes.stats(),
+        'health': es.cluster.health(),
+        'state': es.cluster.state(),
         'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
     }
     return render(request, 'zadmin/elastic.html', ctx)
@@ -646,7 +546,7 @@ def elastic(request):
 
 @admin.site.admin_view
 def mail(request):
-    backend = FakeEmailBackend()
+    backend = DevEmailBackend()
     if request.method == 'POST':
         backend.clear()
         return redirect('zadmin.mail')

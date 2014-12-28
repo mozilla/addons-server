@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import math
 import os
 import random
@@ -7,27 +8,26 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial, wraps
-from urlparse import urlsplit, urlunsplit
+from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
-from django import forms
+from django import forms, http, test
 from django.conf import settings
 from django.core.cache import cache
+from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
-from django.test.client import Client
+from django.test.client import Client, RequestFactory
 from django.utils import translation
 
 import caching
 import mock
-import test_utils
+import pytest
 import tower
 from dateutil.parser import parse as dateutil_parser
-from nose.exc import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
-from test_utils import RequestFactory
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -39,8 +39,8 @@ import stats.search
 from access.models import Group, GroupUser
 from addons.models import (Addon, Persona,
                            update_search_index as addon_update_search_index)
-from addons.tasks import unindex_addons
 from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
+from addons.tasks import unindex_addons
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from files.models import File
@@ -57,7 +57,7 @@ from users.models import RequestUser, UserProfile
 # running middlewares, and thus not activating a language, and thus not
 # installing gettext in the globals, and thus not have it in the context when
 # rendering templates.
-tower.activate('en')
+tower.activate('en-us')
 
 
 def formset(*args, **kw):
@@ -130,7 +130,7 @@ def check_links(expected, elements, selected=None, verify=True):
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
                 e = e.find('a')
-            eq_(e.attr('href'), link)
+            assert_url_equal(e.attr('href'), link)
             if verify and link != '#':
                 eq_(Client().head(link, follow=True).status_code, 200,
                     '%r is dead' % link)
@@ -141,6 +141,17 @@ def check_links(expected, elements, selected=None, verify=True):
 
 def check_selected(expected, links, selected):
     check_links(expected, links, verify=True, selected=selected)
+
+
+def assert_url_equal(url, other, compare_host=False):
+    """Compare url paths and query strings."""
+    parsed = urlparse(url)
+    parsed_other = urlparse(other)
+    eq_(parsed.path, parsed_other.path)  # Paths are equal.
+    eq_(parse_qs(parsed.path),
+        parse_qs(parsed_other.path))  # Params are equal.
+    if compare_host:
+        eq_(parsed.netloc, parsed_other.netloc)
 
 
 class RedisTest(object):
@@ -246,25 +257,84 @@ class MockEsMixin(object):
                 Mocked_ES.stop()
 
 
-class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
-    """Base class for all amo tests."""
-    client_class = TestClient
+JINJA_INSTRUMENTED = False
+
+
+def default_prefixer():
+    """Make sure each test starts with a default URL prefixer."""
+    request = http.HttpRequest()
+    request.META['SCRIPT_NAME'] = ''
+    prefixer = amo.urlresolvers.Prefixer(request)
+    prefixer.app = settings.DEFAULT_APP
+    prefixer.locale = settings.LANGUAGE_CODE
+    amo.urlresolvers.set_url_prefix(prefixer)
+
+
+class BaseTestCase(test.TestCase):
+    """Base test case that each and every test cases should inherit from."""
+
+    def _pre_setup(self):
+        super(BaseTestCase, self)._pre_setup()
+
+        cache.clear()
+        # Override django-cache-machine caching.base.TIMEOUT because it's
+        # computed too early, before settings_test.py is imported.
+        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+
+        translation.trans_real.deactivate()
+        # Django fails to clear this cache.
+        translation.trans_real._translations = {}
+        translation.trans_real.activate(settings.LANGUAGE_CODE)
+
+        # Make sure the "templates" list in a response is properly updated,
+        # even though we're using Jinja2 and not the default django template
+        # engine.
+        global JINJA_INSTRUMENTED
+        if not JINJA_INSTRUMENTED:
+            import jinja2
+            old_render = jinja2.Template.render
+
+            def instrumented_render(self, *args, **kwargs):
+                context = dict(*args, **kwargs)
+                test.signals.template_rendered.send(
+                    sender=self, template=self, context=context)
+                return old_render(self, *args, **kwargs)
+
+            jinja2.Template.render = instrumented_render
+            JINJA_INSTRUMENTED = True
+
+        # Reset the prefixer.
+        default_prefixer()
+
+        self.client = self.client_class()
+
+    def _post_teardown(self):
+        amo.set_user(None)
+        clean_translations(None)  # Make sure queued translations are removed.
+
+        # Make sure we revert everything we might have changed to prefixers.
+        amo.urlresolvers.clean_url_prefixes()
+
+        super(BaseTestCase, self)._post_teardown()
 
     def shortDescription(self):
         # Stop nose using the test docstring and instead the test method name.
         pass
 
-    def _post_teardown(self):
-        amo.set_user(None)
-        clean_translations(None)  # Make sure queued translations are removed.
-        super(TestCase, self)._post_teardown()
+    def trans_eq(self, trans, localized_string, locale):
+        eq_(Translation.objects.get(id=trans.id,
+                                    locale=locale).localized_string,
+            localized_string)
 
-    def _pre_setup(self):
-        super(TestCase, self)._pre_setup()
-        cache.clear()
-        # Override django-cache-machine caching.base.TIMEOUT because it's
-        # computed too early, before settings_test.py is imported.
-        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+    def assertUrlEqual(self, url, other, compare_host=False,
+                       compare_scheme=False):
+        """Compare url paths and query strings."""
+        assert_url_equal(url, other, compare_host=compare_host)
+
+
+class TestCase(MockEsMixin, RedisTest, BaseTestCase):
+    """Base class for all amo tests."""
+    client_class = TestClient
 
     @contextmanager
     def activate(self, locale=None, app=None):
@@ -273,7 +343,7 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         old_app = old_prefix.app
         old_locale = translation.get_language()
         if locale:
-            rf = test_utils.RequestFactory()
+            rf = RequestFactory()
             prefixer = Prefixer(rf.get('/%s/' % (locale,)))
             tower.activate(locale)
         if app:
@@ -320,8 +390,8 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
         # is good, but bad for assertRedirects which will fail.
-        self.assert3xx(response,
-            '%s?to=%s' % (reverse('users.login'), to), status_code)
+        self.assert3xx(
+            response, '%s?to=%s' % (reverse('users.login'), to), status_code)
 
     def assert3xx(self, response, expected_url, status_code=302,
                   target_status_code=200):
@@ -333,24 +403,27 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         """
         if hasattr(response, 'redirect_chain'):
             # The request was a followed redirect
-            self.assertTrue(len(response.redirect_chain) > 0,
+            self.assertTrue(
+                len(response.redirect_chain) > 0,
                 "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" %
-                    (response.status_code, status_code))
+                " code was %d (expected %d)" % (response.status_code,
+                                                status_code))
 
             url, status_code = response.redirect_chain[-1]
 
-            self.assertEqual(response.status_code, target_status_code,
+            self.assertEqual(
+                response.status_code, target_status_code,
                 "Response didn't redirect as expected: Final"
-                " Response code was %d (expected %d)" %
-                    (response.status_code, target_status_code))
+                " Response code was %d (expected %d)" % (response.status_code,
+                                                         target_status_code))
 
         else:
             # Not a followed redirect
-            self.assertEqual(response.status_code, status_code,
+            self.assertEqual(
+                response.status_code, status_code,
                 "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" %
-                    (response.status_code, status_code))
+                " code was %d (expected %d)" % (response.status_code,
+                                                status_code))
             url = response['Location']
 
         scheme, netloc, path, query, fragment = urlsplit(url)
@@ -360,7 +433,8 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
 
-        self.assertEqual(url, expected_url,
+        self.assertEqual(
+            url, expected_url,
             "Response redirected to '%s', expected '%s'" % (url, expected_url))
 
     def assertLoginRequired(self, response, status_code=302):
@@ -369,13 +443,12 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         get the matched status code and bounced to the correct login page.
         """
         assert response.status_code == status_code, (
-                'Response returned: %s, expected: %s'
-                % (response.status_code, status_code))
+            'Response returned: %s, expected: %s' % (response.status_code,
+                                                     status_code))
 
         path = urlsplit(response['Location'])[2]
         assert path == reverse('users.login'), (
-                'Redirected to: %s, expected: %s'
-                % (path, reverse('users.login')))
+            'Redirected to: %s, expected: %s' % (path, reverse('users.login')))
 
     def assertSetEqual(self, a, b, message=None):
         """
@@ -481,11 +554,6 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
             email += '@mozilla.com'
         assert self.client.login(username=email, password='password')
 
-    def trans_eq(self, trans, locale, localized_string):
-        eq_(Translation.objects.get(id=trans.id,
-                                    locale=locale).localized_string,
-            localized_string)
-
     def extract_script_template(self, html, template_selector):
         """Extracts the inner JavaScript text/template from a html page.
 
@@ -497,6 +565,17 @@ class TestCase(MockEsMixin, RedisTest, test_utils.TestCase):
         Returns a PyQuery object that you can refine using jQuery selectors.
         """
         return pq(pq(html)(template_selector).html())
+
+    def assertUrlEqual(self, url, other, compare_host=False,
+                       compare_scheme=False):
+        """Compare url paths and query strings."""
+        parsed = urlparse(url)
+        parsed_other = urlparse(other)
+        eq_(parsed.path, parsed_other.path)  # Paths are equal.
+        eq_(parse_qs(parsed.path),
+            parse_qs(parsed_other.path))  # Params are equal.
+        if compare_host:
+            eq_(parsed.netloc, parsed_other.netloc)
 
 
 class AMOPaths(object):
@@ -565,13 +644,14 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
+    persona_id = kw.pop('persona_id', None)
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addon %s' % unicode(uuid.uuid4()).replace('-', ''))
 
     kwargs = {
-        # Set artificially the status to STATUS_PUBLIC for now, , the real
+        # Set artificially the status to STATUS_PUBLIC for now, the real
         # status will be set a few lines below, after the update_version()
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
@@ -597,8 +677,9 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     a.status = status
     if type_ == amo.ADDON_PERSONA:
         a.type = type_
-        Persona.objects.create(addon=a, persona_id=a.id,
-                               popularity=a.weekly_downloads)  # Save 3.
+        persona_id = persona_id if persona_id is not None else a.id
+        Persona.objects.create(addon=a, popularity=a.weekly_downloads,
+                               persona_id=persona_id)  # Save 3.
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -681,33 +762,32 @@ def version_factory(file_kw={}, **kw):
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    application = kw.pop('application', amo.FIREFOX.id)
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
     if kw.get('addon').type != amo.ADDON_PERSONA:
-        av_min, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+        av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=amo.FIREFOX.id,
+        ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=v, min=av_min,
                                                    max=av_max)
     file_factory(version=v, **file_kw)
     return v
 
 
+@pytest.mark.es_tests
 class ESTestCase(TestCase):
     """Base class for tests that require elasticsearch."""
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
-    test_es = True
     mock_es = False
     exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
 
     @classmethod
     def setUpClass(cls):
-        if not settings.RUN_ES_TESTS:
-            raise SkipTest('ES disabled')
         cls.es = amo.search.get_es(timeout=settings.ES_TIMEOUT)
 
         # The ES setting are set before we call super()
@@ -720,9 +800,10 @@ class ESTestCase(TestCase):
         try:
             cls.es.cluster.health()
         except Exception, e:
-            e.args = tuple([u'%s (it looks like ES is not running, '
-                            'try starting it or set RUN_ES_TESTS=False)'
-                            % e.args[0]] + list(e.args[1:]))
+            e.args = tuple(
+                [u"%s (it looks like ES is not running, try starting it or "
+                 u"don't run ES tests: make test_no_es)" % e.args[0]] +
+                list(e.args[1:]))
             raise
 
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
@@ -739,22 +820,8 @@ class ESTestCase(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        try:
-            if hasattr(cls, '_addons'):
-                Addon.objects.filter(
-                    pk__in=[a.id for a in cls._addons]).delete()
-                unindex_addons([a.id for a in cls._addons])
-            amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
-        finally:
-            # Make sure we're calling super's tearDownClass even if something
-            # went wrong in the code above, as otherwise we'd run into bug
-            # 960598.
-            super(ESTestCase, cls).tearDownClass()
-
-    @classmethod
-    def setUpIndex(cls):
-        cls.add_addons()
-        cls.refresh()
+        amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
+        super(ESTestCase, cls).tearDownClass()
 
     @classmethod
     def send(cls):
@@ -773,19 +840,55 @@ class ESTestCase(TestCase):
         cls.refresh(index)
 
     @classmethod
-    def add_addons(cls):
-        cls._addons = [
-            addon_factory(name='user-disabled', disabled_by_user=True),
-            addon_factory(name='admin-disabled', status=amo.STATUS_DISABLED),
-            addon_factory(status=amo.STATUS_UNREVIEWED),
-            addon_factory(),
-            addon_factory(),
-            addon_factory(),
-        ]
-
-    @classmethod
     def empty_index(cls, index):
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
             body={"query": {"match_all": {}}}
         )
+
+
+class ESTestCaseWithAddons(ESTestCase):
+
+    @classmethod
+    def setUp(cls):
+        super(ESTestCaseWithAddons, cls).setUpClass()
+        # Load the fixture here, to not be overloaded by a child class'
+        # fixture attribute.
+        call_command('loaddata', 'addons/base_es')
+        addon_ids = [1, 2, 3, 4, 5, 6]  # From the addons/base_es fixture.
+        cls._addons = list(Addon.objects.filter(pk__in=addon_ids)
+                           .order_by('id'))
+        from addons.tasks import index_addons
+        index_addons(addon_ids)
+        # Refresh ES.
+        cls.refresh()
+
+    @classmethod
+    def tearDown(cls):
+        try:
+            unindex_addons([a.id for a in cls._addons])
+            cls._addons = []
+        finally:
+            super(ESTestCaseWithAddons, cls).tearDownClass()
+
+
+class TestXss(TestCase):
+    fixtures = ['base/addon_3615', 'users/test_backends', ]
+
+    def setUp(self):
+        super(TestXss, self).setUp()
+        self.addon = Addon.objects.get(id=3615)
+        self.name = "<script>alert('hé')</script>"
+        self.escaped = (
+            "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;")
+        self.addon.name = self.name
+        self.addon.save()
+        u = UserProfile.objects.get(email='del@icio.us')
+        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
+                                 user=u)
+        self.client.login(username='del@icio.us', password='password')
+
+    def assertNameAndNoXSS(self, url):
+        response = self.client.get(url)
+        assert self.name not in response.content
+        assert self.escaped in response.content

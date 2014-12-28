@@ -103,8 +103,8 @@ class RawSQLManager(object):
                 'get() returned more than one row -- it returned %s!' % cnt)
         elif cnt == 0:
             raise clone.sql_model.DoesNotExist(
-                '%s matching query does not exist.'
-                    % self.sql_model.__class__.__name__)
+                '%s matching query does not exist.' %
+                self.sql_model.__class__.__name__)
         else:
             return clone[0:1][0]
 
@@ -182,8 +182,8 @@ class RawSQLManager(object):
         clone.order_by('-%s' % column)
         if clone.count() == 0:
             raise clone.sql_model.DoesNotExist(
-                '%s matching query does not exist.'
-                    % self.sql_model.__class__.__name__)
+                '%s matching query does not exist.' %
+                self.sql_model.__class__.__name__)
         return clone[0]
 
     def order_by(self, spec):
@@ -373,8 +373,10 @@ class RawSQLModel(object):
     building a query with many different types of where clauses.
     """
     __metaclass__ = RawSQLModelMeta
+
     class DoesNotExist(ObjectDoesNotExist):
         pass
+
     MultipleObjectsReturned = MultipleObjectsReturned
 
     def __init__(self, **kwargs):

@@ -1,4 +1,5 @@
-from nose.tools import eq_
+import mock
+from nose.tools import eq_, ok_
 
 from django.utils.encoding import force_unicode
 
@@ -15,6 +16,7 @@ class TestReviewActions(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
+        super(TestReviewActions, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon.versions.all()[0]
 
@@ -27,10 +29,10 @@ class TestReviewActions(amo.tests.TestCase):
     def set_status(self, status):
         self.addon.update(status=status)
         form = get_review_form({'addon_files': [self.file.pk]},
-                                request=self.request,
-                                addon=self.addon,
-                                version=self.version)
-        return form.helper.get_actions()
+                               request=self.request,
+                               addon=self.addon,
+                               version=self.version)
+        return form.helper.get_actions(self.request, self.addon)
 
     def test_lite_nominated(self):
         status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
@@ -58,6 +60,20 @@ class TestReviewActions(amo.tests.TestCase):
         # so the length of the actions is one shorter
         eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 5)
 
+    @mock.patch('access.acl.action_allowed')
+    def test_admin_flagged_addon_actions(self, action_allowed_mock):
+        self.addon.update(admin_review=True)
+        # Test with an admin editor.
+        action_allowed_mock.return_value = True
+        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        ok_('public' in status.keys())
+        ok_('prelim' in status.keys())
+        # Test with an non-admin editor.
+        action_allowed_mock.return_value = False
+        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        ok_('public' not in status.keys())
+        ok_('prelim' not in status.keys())
+
 
 class TestCannedResponses(TestReviewActions):
     fixtures = ('base/users', 'base/addon_3615')
@@ -79,7 +95,8 @@ class TestCannedResponses(TestReviewActions):
         # choices is grouped by the sort_group, where choices[0] is the
         # default "Choose a response..." option.
         # Within that, it's paired by [group, [[response, name],...]].
-        # So above, choices[1][1] gets the first real group's list of responses.
+        # So above, choices[1][1] gets the first real group's list of
+        # responses.
         eq_(len(choices), 1)
         assert self.cr_addon.response in choices[0]
         assert self.cr_app.response not in choices[0]

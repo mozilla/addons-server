@@ -39,7 +39,7 @@ if (typeof diff_match_patch !== 'undefined') {
 
 var config = {
     diff_context: 2,
-    needreview_pattern: /\.(js|jsm|xul|xml|x?html?|manifest|webapp|sh|py)$/i
+    needreview_pattern: /\.(js|jsm|xul|xml|x?html?|manifest|sh|py)$/i
 };
 
 if (typeof SyntaxHighlighter !== 'undefined') {

@@ -57,6 +57,7 @@ class TestCategory(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestCategory, self).setUp()
         self.cat1 = Category.objects.create(name='Causes',
                                             type=amo.ADDON_EXTENSION)
         self.cat1.name = {'es': u'Campañas', 'zh-CN': u'原因'}

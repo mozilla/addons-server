@@ -31,7 +31,7 @@ from applications.models import AppVersion
 from versions.compare import version_int as vint
 
 
-log = logging.getLogger('files.utils')
+log = logging.getLogger('z.files.utils')
 
 
 class ParseError(forms.ValidationError):
@@ -77,6 +77,11 @@ def make_xpi(files):
     return f
 
 
+def is_beta(version):
+    """Return True if the version is believed to be a beta version."""
+    return bool(amo.VERSION_BETA.search(version))
+
+
 class Extractor(object):
     """Extract adon info from an install.rdf or package.json"""
     App = collections.namedtuple('App', 'appdata id min max')
@@ -114,16 +119,20 @@ class PackageJSONExtractor(object):
             <AppVersion: 33.0a1>
             """
             version = re.sub('>?=?<?', '', version_req)
-            return AppVersion.objects.get(
-                application=app.id, version=version)
+            try:
+                return AppVersion.objects.get(
+                    application=app.id, version=version)
+            except AppVersion.DoesNotExist:
+                return None
 
         for engine, version in self.get('engines', {}).items():
             name = 'android' if engine == 'fennec' else engine
             app = amo.APPS.get(name)
             if app and app.guid in amo.APP_GUIDS:
                 appversion = find_appversion(app, version)
-                yield Extractor.App(
-                    appdata=app, id=app.id, min=appversion, max=appversion)
+                if appversion:
+                    yield Extractor.App(
+                        appdata=app, id=app.id, min=appversion, max=appversion)
 
     def parse(self):
         return {
@@ -213,7 +222,7 @@ class RDFExtractor(object):
             app = amo.APP_GUIDS.get(self.find('id', ctx))
             if not app:
                 continue
-            if not app.guid in amo.APP_GUIDS:
+            if app.guid not in amo.APP_GUIDS:
                 continue
             try:
                 qs = AppVersion.objects.filter(application=app.id)
@@ -522,7 +531,7 @@ def find_jetpacks(minver, maxver, from_builder_only=False):
         file_.needs_upgrade = False
     # If any files for this add-on are reviewed, take the last reviewed file
     # plus all newer files.  Otherwise, only upgrade the latest file.
-    for _, fs in groupby(files, key=lambda f: f.version.addon_id):
+    for _group, fs in groupby(files, key=lambda f: f.version.addon_id):
         fs = list(fs)
         if any(f.status in amo.REVIEWED_STATUSES for f in fs):
             for file_ in reversed(fs):

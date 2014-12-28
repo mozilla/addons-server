@@ -22,8 +22,8 @@ from versions.models import Version
 # pulling tasks from cron
 from . import cron, search  # NOQA
 from .models import (Addon, attach_categories, attach_tags,
-                     attach_translations, CompatOverride,
-                     IncompatibleVersions, Preview)
+                     attach_translations, CompatOverride, IncompatibleVersions,
+                     Preview)
 
 
 log = logging.getLogger('z.task')
@@ -266,7 +266,8 @@ def update_incompatible_appversions(data, **kw):
 
 def make_checksum(header_path, footer_path):
     ls = LocalFileStorage()
-    raw_checksum = ls._open(header_path).read() + ls._open(footer_path).read()
+    footer = footer_path and ls._open(footer_path).read() or ''
+    raw_checksum = ls._open(header_path).read() + footer
     return hashlib.sha224(raw_checksum).hexdigest()
 
 
@@ -294,13 +295,15 @@ def save_theme(header, footer, addon, **kw):
     """Save theme image and calculates checksum after theme save."""
     dst_root = os.path.join(user_media_path('addons'), str(addon.id))
     header = os.path.join(settings.TMP_PATH, 'persona_header', header)
-    footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
     header_dst = os.path.join(dst_root, 'header.png')
-    footer_dst = os.path.join(dst_root, 'footer.png')
+    if footer:
+        footer = os.path.join(settings.TMP_PATH, 'persona_footer', footer)
+        footer_dst = os.path.join(dst_root, 'footer.png')
 
     try:
         save_persona_image(src=header, full_dst=header_dst)
-        save_persona_image(src=footer, full_dst=footer_dst)
+        if footer:
+            save_persona_image(src=footer, full_dst=footer_dst)
         create_persona_preview_images(
             src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
                                   os.path.join(dst_root, 'icon.png')],

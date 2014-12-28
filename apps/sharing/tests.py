@@ -1,25 +1,28 @@
-from urlparse import urlparse, parse_qs
-
-from django import test
 from django.conf import settings
 from django.utils import translation, encoding
 
+import pytest
+import tower
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import tower
 
 from addons.models import Addon
 import amo
 import sharing
 import sharing.views
+from amo.tests import BaseTestCase
 from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
 from sharing import DIGG, FACEBOOK
 
 from users.models import UserProfile
 
-class SharingHelpersTestCase(test.TestCase):
+
+pytestmark = pytest.mark.django_db
+
+
+class SharingHelpersTestCase(BaseTestCase):
     fixtures = ['base/addon_3615']
 
     def test_sharing_box(self):
@@ -42,7 +45,7 @@ class SharingHelpersTestCase(test.TestCase):
                 'Sharing link target must either be blank or self.')
 
 
-class SharingModelsTestCase(test.TestCase):
+class SharingModelsTestCase(BaseTestCase):
     fixtures = ['base/addon_3615', 'sharing/share_counts']
 
     def test_share_count(self):
@@ -113,5 +116,9 @@ def test_get_services_in_ja_locale():
         'translated-localservice1']
 
     with patch.object(sharing, 'LOCALSERVICE1', testo):
-        tower.activate('ja')
-        assert expected == [s.shortname for s in sharing.get_services()]
+        old_locale = translation.get_language()
+        try:
+            tower.activate('ja')
+            assert expected == [s.shortname for s in sharing.get_services()]
+        finally:
+            tower.activate(old_locale)

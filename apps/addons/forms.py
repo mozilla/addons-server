@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 import os
 
 from django import forms
@@ -100,8 +101,9 @@ def clean_tags(request, tags):
         raise forms.ValidationError(msg)
 
     if any(t for t in target if len(t) > max_len):
-        raise forms.ValidationError(_('All tags must be %s characters '
-                'or less after invalid characters are removed.' % max_len))
+        raise forms.ValidationError(
+            _('All tags must be %s characters or less after invalid characters'
+              ' are removed.' % max_len))
 
     if any(t for t in target if len(t) < min_len):
         msg = ngettext("All tags must be at least {0} character.",
@@ -213,8 +215,9 @@ class CategoryForm(forms.Form):
         max_cat = amo.MAX_CATEGORIES
 
         if getattr(self, 'disabled', False) and total:
-            raise forms.ValidationError(_('Categories cannot be changed '
-                'while your add-on is featured for this application.'))
+            raise forms.ValidationError(
+                _('Categories cannot be changed while your add-on is featured '
+                  'for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(ngettext(
@@ -280,12 +283,12 @@ CategoryFormSet = formset_factory(form=CategoryForm,
 def icons():
     """
     Generates a list of tuples for the default icons for add-ons,
-    in the format (psuedo-mime-type, description).
+    in the format (pseudo-mime-type, description).
     """
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
     dirs, files = storage.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
     for fname in files:
-        if '32' in fname and not 'default' in fname:
+        if '32' in fname and 'default' not in fname:
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return icons
@@ -293,7 +296,7 @@ def icons():
 
 class AddonFormMedia(AddonFormBase):
     icon_type = forms.CharField(widget=forms.RadioSelect(
-            renderer=IconWidgetRenderer, choices=[]), required=False)
+        renderer=IconWidgetRenderer, choices=[]), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
@@ -366,8 +369,6 @@ class AddonFormSupport(AddonFormBase):
         super(AddonFormSupport, self).__init__(*args, **kw)
 
     def save(self, addon, commit=True):
-        instance = self.instance
-        url = instance.support_url.localized_string
         return super(AddonFormSupport, self).save(commit)
 
 
@@ -377,7 +378,8 @@ class AddonFormTechnical(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('developer_comments', 'view_source', 'site_specific',
-                  'external_software', 'auto_repackage', 'public_stats')
+                  'external_software', 'auto_repackage', 'public_stats',
+                  'whiteboard')
 
 
 class AddonForm(happyforms.ModelForm):
@@ -424,7 +426,7 @@ class AbuseForm(happyforms.Form):
         super(AbuseForm, self).__init__(*args, **kwargs)
 
         if (not self.request.user.is_anonymous() or
-            not settings.RECAPTCHA_PRIVATE_KEY):
+                not settings.RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
 
 
@@ -459,13 +461,14 @@ class ThemeForm(ThemeFormBase):
                                   max_length=500, required=False)
     tags = forms.CharField(required=False)
 
-    license = forms.TypedChoiceField(choices=amo.PERSONA_LICENSES_CHOICES,
+    license = forms.TypedChoiceField(
+        choices=amo.PERSONA_LICENSES_CHOICES,
         coerce=int, empty_value=None, widget=forms.HiddenInput,
         error_messages={'required': _lazy(u'A license must be selected.')})
     header = forms.FileField(required=False)
     header_hash = forms.CharField(widget=forms.HiddenInput)
     footer = forms.FileField(required=False)
-    footer_hash = forms.CharField(widget=forms.HiddenInput)
+    footer_hash = forms.CharField(widget=forms.HiddenInput, required=False)
     # Native color picker doesn't allow real time tracking of user input
     # and empty values, thus force the JavaScript color picker for now.
     # See bugs 1005206 and 1003575.
@@ -488,7 +491,8 @@ class ThemeForm(ThemeFormBase):
 
     def save(self, commit=False):
         data = self.cleaned_data
-        addon = Addon.objects.create(slug=data.get('slug'),
+        addon = Addon.objects.create(
+            slug=data.get('slug'),
             status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
         addon.name = {'en-US': data['name']}
         if data.get('description'):
@@ -502,7 +506,8 @@ class ThemeForm(ThemeFormBase):
         p.persona_id = 0
         p.addon = addon
         p.header = 'header.png'
-        p.footer = 'footer.png'
+        if data['footer_hash']:
+            p.footer = 'footer.png'
         if data['accentcolor']:
             p.accentcolor = data['accentcolor'].lstrip('#')
         if data['textcolor']:
@@ -579,7 +584,7 @@ class EditThemeForm(AddonFormBase):
         for trans in Translation.objects.filter(id=self.initial['name']):
             self.initial['name_' + trans.locale.lower()] = trans
         for trans in Translation.objects.filter(
-            id=self.initial['description']):
+                id=self.initial['description']):
             self.initial['description_' + trans.locale.lower()] = trans
 
         self.old_tags = self.get_tags(addon)
@@ -719,4 +724,4 @@ class EditThemeOwnerForm(happyforms.Form):
 
 
 class ContributionForm(happyforms.Form):
-    amount = forms.DecimalField(required=True)
+    amount = forms.DecimalField(required=True, min_value=Decimal('0.01'))

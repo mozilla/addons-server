@@ -147,7 +147,6 @@ ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
-ADDON_WEBAPP = 11  # Calling this ADDON_* is gross but we've gotta ship code.
 
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
@@ -389,7 +388,6 @@ CANNED_RESPONSE_CHOICES = {
 # For use in urls.
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
-APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 # Reviewer Incentive Scores.
 # Note: Don't change these since they're used as keys in the database.
@@ -412,7 +410,7 @@ REVIEWED_THEME_FULL = 60
 REVIEWED_THEME_PRELIM = 61
 REVIEWED_THEME_UPDATE = 62
 REVIEWED_ADDON_REVIEW = 80
-REVIEWED_APP_REVIEW = 81
+REVIEWED_ADDON_REVIEW_POORLY = 81
 
 REVIEWED_CHOICES = {
     REVIEWED_MANUAL: _('Manual Reviewer Points'),
@@ -433,7 +431,7 @@ REVIEWED_CHOICES = {
     REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
     REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
     REVIEWED_ADDON_REVIEW: _('Moderated Addon Review'),
-    REVIEWED_APP_REVIEW: _('Moderated App Review'),
+    REVIEWED_ADDON_REVIEW_POORLY: _('Addon Review Moderation Reverted'),
 }
 
 REVIEWED_SCORES = {
@@ -455,7 +453,7 @@ REVIEWED_SCORES = {
     REVIEWED_THEME_PRELIM: 40,
     REVIEWED_THEME_UPDATE: 80,
     REVIEWED_ADDON_REVIEW: 1,
-    REVIEWED_APP_REVIEW: 1,
+    REVIEWED_ADDON_REVIEW_POORLY: -1,  # -REVIEWED_ADDON_REVIEW
 }
 
 REVIEWED_AMO = (

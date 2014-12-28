@@ -27,16 +27,16 @@ class TestPerfViews(amo.tests.TestCase):
         self.perf_calls = None
 
     def tearDown(self):
-        super(TestPerfViews, self).tearDown()
         for p in self.patches:
             p.stop()
+        super(TestPerfViews, self).tearDown()
 
     def assert_call(self, expected_call):
         if not self.perf_calls:
             self.perf_calls = [tuple(c) for c in
                                self.perf_test.call_args_list]
         assert expected_call in self.perf_calls, (
-                                'Call was not made: %s' % str(expected_call))
+            'Call was not made: %s' % str(expected_call))
 
     def start(self):
         re = self.client.get(reverse('devhub.file_perf_tests_start',

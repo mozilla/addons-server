@@ -14,6 +14,7 @@ ENGAGE_ROBOTS = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = private.EMAIL_HOST
+EMAIL_QA_WHITELIST = private.EMAIL_QA_WHITELIST
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -56,7 +57,7 @@ SECRET_KEY = private.SECRET_KEY
 
 LOG_LEVEL = logging.DEBUG
 
-## Celery
+# Celery
 BROKER_URL = private.BROKER_URL
 
 CELERY_IGNORE_RESULT = True
@@ -85,10 +86,10 @@ LOGGING['loggers'].update({
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.hera': {'level': logging.INFO},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
@@ -124,14 +125,16 @@ RESPONSYS_ID = private.RESPONSYS_ID
 CRONJOB_LOCK_PREFIX = 'marketplace-altdev'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
+BUILDER_VERSIONS_URL = (
+    "https://builder-addons-dev.allizom.org/repackage/sdk-versions/")
 
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_altdev' % v) for k, v in ES_INDEXES.items())
 
-BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
+BUILDER_UPGRADE_URL = (
+    "https://builder-addons-dev.allizom.org/repackage/rebuild/")
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
@@ -168,7 +171,8 @@ KNOWN_PROXIES += ['10.2.83.105',
 
 NEW_FEATURES = True
 
-PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
+PERF_TEST_URL = (
+    'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi')
 
 REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 

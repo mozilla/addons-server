@@ -56,6 +56,7 @@ class UserViewBase(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(UserViewBase, self).setUp()
         self.client = amo.tests.TestClient()
         self.client.get('/')
         self.user = UserProfile.objects.get(id='4043307')
@@ -235,7 +236,8 @@ class TestEdit(UserViewBase):
 
     def test_edit_notifications(self):
         # Make jbalogh a developer.
-        AddonUser.objects.create(user=self.user,
+        AddonUser.objects.create(
+            user=self.user,
             addon=Addon.objects.create(type=amo.ADDON_EXTENSION))
 
         choices = email.NOTIFICATIONS_CHOICES
@@ -292,6 +294,7 @@ class TestEditAdmin(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestEditAdmin, self).setUp()
         self.client.login(username='admin@mozilla.com', password='password')
         self.regular = self.get_user()
         self.url = reverse('users.admin_edit', args=[self.regular.pk])
@@ -387,6 +390,7 @@ class TestPasswordAdmin(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestPasswordAdmin, self).setUp()
         self.client.login(username='editor@mozilla.com', password='password')
         self.url = reverse('users.edit')
         self.correct = {'username': 'editor',
@@ -439,6 +443,12 @@ class TestEmailChange(UserViewBase):
         eq_(r.status_code, 200)
         u = UserProfile.objects.get(id=self.user.id)
         self.assertEqual(u.email, 'nobody@mozilla.org')
+
+    def test_email_change_to_an_existing_user_email(self):
+        token, hash_ = EmailResetCode.create(self.user.id, 'testo@example.com')
+        url = reverse('users.emailchange', args=[self.user.id, token, hash_])
+        r = self.client.get(url, follow=True)
+        eq_(r.status_code, 400)
 
 
 class TestLogin(UserViewBase):
@@ -576,7 +586,6 @@ class TestLogin(UserViewBase):
         self.client.post(self.url, data={'username': self.data['username']})
         eq_(user.get().failed_login_attempts, 4)
 
-
     def test_doubled_account(self):
         """
         Logging in to an account that shares a User object with another
@@ -592,13 +601,15 @@ class TestLogin(UserViewBase):
         profile2.set_password('foopassword')
         profile2.save()
 
-        res = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                               'password': 'wrongpassword'})
+        res = self.client.post(self.url,
+                               data={'username': 'charlie@example.com',
+                                     'password': 'wrongpassword'})
         eq_(res.status_code, 200)
         eq_(UserProfile.objects.get(email='charlie@example.com')
             .failed_login_attempts, 1)
-        res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                                'password': 'bazpassword'})
+        res2 = self.client.post(self.url,
+                                data={'username': 'charlie@example.com',
+                                      'password': 'bazpassword'})
         eq_(res2.status_code, 302)
         res3 = self.client.post(self.url, data={'username': 'bob@example.com',
                                                 'password': 'foopassword'})
@@ -614,13 +625,15 @@ class TestLogin(UserViewBase):
         profile.email = 'charlie@example.com'
         profile.save()
 
-        res = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                               'password': 'wrongpassword'})
+        res = self.client.post(self.url,
+                               data={'username': 'charlie@example.com',
+                                     'password': 'wrongpassword'})
         eq_(res.status_code, 200)
         eq_(UserProfile.objects.get(email='charlie@example.com')
             .failed_login_attempts, 1)
-        res2 = self.client.post(self.url, data={'username': 'charlie@example.com',
-                                                'password': 'bazpassword'})
+        res2 = self.client.post(self.url,
+                                data={'username': 'charlie@example.com',
+                                      'password': 'bazpassword'})
         eq_(res2.status_code, 302)
 
 
@@ -639,9 +652,9 @@ class TestPersonaLogin(UserViewBase):
         A success response from BrowserID results in successful login.
         """
         url = reverse('users.browserid_login')
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)
@@ -698,7 +711,7 @@ class TestPersonaLogin(UserViewBase):
 
     def _browserid_login(self, email, http_request):
         http_request.return_value = FakeResponse(
-                200, json.dumps({'status': 'okay', 'email': email}))
+            200, json.dumps({'status': 'okay', 'email': email}))
         return self.client.post(reverse('users.browserid_login'),
                                 data=dict(assertion='fake-assertion',
                                           audience='fakeamo.org'))
@@ -743,9 +756,9 @@ class TestPersonaLogin(UserViewBase):
                                              email='bob@example.com')
         profile.email = 'charlie@example.com'
         profile.save()
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'charlie@example.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'okay', 'email': 'charlie@example.com'}))
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)
@@ -761,9 +774,9 @@ class TestPersonaLogin(UserViewBase):
         UserProfile.objects.get(email="jbalogh@mozilla.com").update(
             email="badnews@example.com")
         UserProfile.objects.create(email="jbalogh@mozilla.com")
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
         res = self.client.post(url, data=dict(assertion='fake-assertion',
                                               audience='fakeamo.org'))
         eq_(res.status_code, 200)
@@ -782,8 +795,9 @@ class TestPersonaLogin(UserViewBase):
         """
         A failure response from BrowserID results in login failure.
         """
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'busted'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'busted'}))
         res = self.client.post(reverse('users.browserid_login'),
                                data=dict(assertion='fake-assertion',
                                          audience='fakeamo.org'))
@@ -828,17 +842,17 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
     def test_mobile_persona_login(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
                                    is_mobile='1'))
         http_request.assert_called_with(
-                settings.NATIVE_BROWSERID_VERIFICATION_URL,
-                verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
-                headers=ANY)
+            settings.NATIVE_BROWSERID_VERIFICATION_URL,
+            verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
+            headers=ANY)
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
         eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
@@ -849,9 +863,9 @@ class TestPersonaLogin(UserViewBase):
     @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
     @patch('requests.post')
     def test_non_mobile_persona_login(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org'))
@@ -860,7 +874,7 @@ class TestPersonaLogin(UserViewBase):
         eq_(data['audience'], 'http://testserver')
         eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
         assert 'experimental_allowUnverified' not in data, (
-                'not allowing unverfied when not native')
+            'not allowing unverfied when not native')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
@@ -870,8 +884,8 @@ class TestPersonaLogin(UserViewBase):
     @patch('requests.post')
     def test_mobile_persona_login_without_issuer(self, http_request):
         http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+            {'status': 'okay',
+             'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
@@ -879,14 +893,14 @@ class TestPersonaLogin(UserViewBase):
         data = http_request.call_args[1]['data']
         eq_(data['audience'], 'http://testserver')
         assert 'experimental_forceIssuer' not in data, (
-                'not forcing issuer when the setting is blank')
+            'not forcing issuer when the setting is blank')
 
     @patch.object(waffle, 'switch_is_active', lambda x: True)
     @patch('requests.post')
     def test_mobile_persona_login_ignores_garbage(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-                {'status': 'okay',
-                 'email': 'jbalogh@mozilla.com'}))
+        http_request.return_value = FakeResponse(
+            200,
+            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
         self.client.post(reverse('users.browserid_login'),
                          data=dict(assertion='fake-assertion',
                                    audience='fakeamo.org',
@@ -939,6 +953,7 @@ class TestUnsubscribe(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestUnsubscribe, self).setUp()
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
     def test_correct_url_update_notification(self):
@@ -1010,14 +1025,20 @@ class TestReset(UserViewBase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestReset, self).setUp()
         user = UserProfile.objects.get(email='editor@mozilla.com')
         self.token = [urlsafe_base64_encode(str(user.id)),
                       default_token_generator.make_token(user)]
 
     def test_reset_msg(self):
         res = self.client.get(reverse('users.pwreset_confirm',
-                                       args=self.token))
+                                      args=self.token))
         assert 'For your account' in res.content
+
+    def test_csrf_token_presence(self):
+        res = self.client.get(reverse('users.pwreset_confirm',
+                                      args=self.token))
+        assert 'csrfmiddlewaretoken' in res.content
 
     def test_reset_fails(self):
         res = self.client.post(reverse('users.pwreset_confirm',
@@ -1026,6 +1047,13 @@ class TestReset(UserViewBase):
                                      'new_password2': 'spassword'})
         eq_(res.context['form'].errors['new_password1'][0],
             'Letters and numbers required.')
+
+    def test_reset_succeeds(self):
+        res = self.client.post(reverse('users.pwreset_confirm',
+                                       args=self.token),
+                               data={'new_password1': 'password1',
+                                     'new_password2': 'password1'})
+        eq_(res.status_code, 302)
 
 
 class TestLogout(UserViewBase):
@@ -1117,6 +1145,7 @@ class TestRegistration(UserViewBase):
 class TestProfileView(UserViewBase):
 
     def setUp(self):
+        super(TestProfileView, self).setUp()
         self.user = UserProfile.objects.create(homepage='http://example.com')
         self.url = reverse('users.profile', args=[self.user.id])
 
@@ -1192,6 +1221,7 @@ class TestProfileSections(amo.tests.TestCase):
                 'reviews/dev-reply']
 
     def setUp(self):
+        super(TestProfileSections, self).setUp()
         self.user = UserProfile.objects.get(id=10482)
         self.url = reverse('users.profile', args=[self.user.id])
 
@@ -1402,6 +1432,7 @@ class TestThemesProfile(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
+        super(TestThemesProfile, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
         self.url = self.user.get_user_url('themes')
 
@@ -1444,7 +1475,8 @@ class TestThemesProfile(amo.tests.TestCase):
         self.theme.addonuser_set.create(user=self.user, listed=True)
         cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
 
-        res = self.client.get(self.user.get_user_url('themes', args=[cat.slug]))
+        res = self.client.get(
+            self.user.get_user_url('themes', args=[cat.slug]))
         eq_(res.status_code, 200)
 
     def test_themes_category(self):
@@ -1453,7 +1485,8 @@ class TestThemesProfile(amo.tests.TestCase):
         cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
         self.theme.addoncategory_set.create(category=cat)
 
-        res = self.client.get(self.user.get_user_url('themes', args=[cat.slug]))
+        res = self.client.get(
+            self.user.get_user_url('themes', args=[cat.slug]))
         self._test_good(res)
 
 
@@ -1462,6 +1495,7 @@ class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestReportAbuse, self).setUp()
         self.full_page = reverse('users.abuse', args=[10482])
 
     @patch('captcha.fields.ReCaptchaField.clean')

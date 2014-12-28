@@ -23,6 +23,7 @@ def setup():
 class ButtonTest(amo.tests.TestCase):
 
     def setUp(self):
+        super(ButtonTest, self).setUp()
         self.addon = Mock()
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
@@ -33,7 +34,6 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
         self.addon.backup_version = None
-        self.addon.app_slug = 'app_slug'
 
         self.version = v = Mock()
         v.is_compatible = False
@@ -68,7 +68,7 @@ class ButtonTest(amo.tests.TestCase):
         """Proxy for calling install_button."""
         template_mock = Mock()
         t_mock.return_value = template_mock
-        if not 'show_backup' in kwargs:
+        if 'show_backup' not in kwargs:
             kwargs['show_backup'] = True
         install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
@@ -326,7 +326,8 @@ class TestButton(ButtonTest):
         eq_(b.fix_link('foo.com'), 'foo.com?collection_id=xxx')
 
         b = self.get_button(collection=collection, src='src')
-        eq_(b.fix_link('foo.com'), 'foo.com?src=src&collection_id=xxx')
+        self.assertUrlEqual(b.fix_link('foo.com'),
+                            'foo.com?src=src&collection_id=xxx')
 
     def test_links(self):
         self.version.all_files = self.platform_files

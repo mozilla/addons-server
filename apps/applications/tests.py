@@ -1,4 +1,5 @@
 import json
+import tempfile
 
 from django.core.management import call_command
 from django.db import IntegrityError
@@ -8,7 +9,6 @@ import amo
 import amo.tests
 from amo.helpers import url
 from applications.models import AppVersion
-from applications.management.commands import dump_apps
 
 
 class TestAppVersion(amo.tests.TestCase):
@@ -59,14 +59,29 @@ class TestCommands(amo.tests.TestCase):
     fixtures = ['base/appversion']
 
     def test_dump_apps(self):
-        call_command('dump_apps')
-        with open(dump_apps.Command.JSON_PATH, 'r') as f:
-            apps = json.load(f)
-        for idx, app in amo.APP_IDS.iteritems():
-            data = apps[str(app.id)]
-            versions = sorted([a.version for a in
-                               AppVersion.objects.filter(application=app.id)])
-            eq_("%s: %r" % (app.short, sorted(data['versions'])),
-                "%s: %r" % (app.short, versions))
-            eq_(data['name'], app.short)
-            eq_(data['guid'], app.guid)
+        tmpdir = tempfile.mkdtemp()
+        with self.settings(MEDIA_ROOT=tmpdir):  # Don't overwrite apps.json.
+            from applications.management.commands import dump_apps
+            call_command('dump_apps')
+            with open(dump_apps.Command.JSON_PATH, 'r') as f:
+                apps = json.load(f)
+            for idx, app in amo.APP_IDS.iteritems():
+                data = apps[str(app.id)]
+                versions = sorted([a.version for a in
+                                   AppVersion.objects.filter(
+                                       application=app.id)])
+                eq_("%s: %r" % (app.short, sorted(data['versions'])),
+                    "%s: %r" % (app.short, versions))
+                eq_(data['name'], app.short)
+                eq_(data['guid'], app.guid)
+
+    def test_addnewversion(self):
+        new_version = '123.456'
+        eq_(len(AppVersion.objects.filter(application=amo.FIREFOX.id,
+                                          version=new_version)), 0)
+
+        call_command('addnewversion', 'firefox', new_version)
+
+        eq_(len(AppVersion.objects.filter(application=amo.FIREFOX.id,
+                                          version=new_version)),
+            1)

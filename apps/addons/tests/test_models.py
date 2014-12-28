@@ -9,6 +9,7 @@ from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ValidationError
+from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -185,6 +186,7 @@ class TestAddonManager(amo.tests.TestCase):
                 'bandwagon/featured_collections', 'base/addon_5299_gcal']
 
     def setUp(self):
+        super(TestAddonManager, self).setUp()
         set_user(None)
 
     def test_featured(self):
@@ -313,6 +315,7 @@ class TestAddonModels(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestAddonModels, self).setUp()
         TranslationSequence.objects.create(id=99243)
         # TODO(andym): use Mock appropriately here.
         self.old_version = amo.FIREFOX.latest_version
@@ -320,6 +323,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def tearDown(self):
         amo.FIREFOX.latest_version = self.old_version
+        super(TestAddonModels, self).tearDown()
 
     def test_current_version(self):
         """
@@ -400,7 +404,6 @@ class TestAddonModels(amo.tests.TestCase):
         Tests that `compatible_version()` won't return a lited version for a
         fully-reviewed add-on.
         """
-
         a = Addon.objects.get(pk=3615)
         eq_(a.status, amo.STATUS_PUBLIC)
 
@@ -433,7 +436,6 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(addon.status, amo.STATUS_DELETED)
         eq_(addon.slug, None)
         eq_(addon.current_version, None)
-        eq_(addon.app_slug, None)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
@@ -633,7 +635,6 @@ class TestAddonModels(amo.tests.TestCase):
     def test_has_profile(self):
         """Test if an add-on's developer profile is (partially or entirely)
         completed.
-
         """
         addon = lambda: Addon.objects.get(pk=3615)
         assert not addon().has_profile()
@@ -1288,19 +1289,41 @@ class TestAddonModels(amo.tests.TestCase):
         a.save()
         assert hide_mock.called
 
+    def test_category_transform(self):
+        addon = Addon.objects.get(id=3615)
+        cats = addon.categories.filter(application=amo.FIREFOX.id)
+        names = [c.name for c in cats]
+        assert addon.get_category(amo.FIREFOX.id).name in names
+
+    def test_binary_property(self):
+        addon = Addon.objects.get(id=3615)
+        file = addon.current_version.files.all()[0]
+        file.update(binary=True)
+        eq_(addon.binary, True)
+
+    def test_binary_components_property(self):
+        addon = Addon.objects.get(id=3615)
+        file = addon.current_version.files.all()[0]
+        file.update(binary_components=True)
+        eq_(addon.binary_components, True)
+
+
+class TestAddonNomination(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
     def test_set_nomination(self):
         a = Addon.objects.get(id=3615)
-        for s in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
+        for status in amo.UNDER_REVIEW_STATUSES:
             a.update(status=amo.STATUS_NULL)
             a.versions.latest().update(nomination=None)
-            a.update(status=s)
+            a.update(status=status)
             assert a.versions.latest().nomination
 
     def test_new_version_inherits_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for st in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED):
-            a.update(status=st)
+        for status in amo.UNDER_REVIEW_STATUSES:
+            a.update(status=status)
             old_ver = a.versions.latest()
             v = Version.objects.create(addon=a, version=str(ver))
             eq_(v.nomination, old_ver.nomination)
@@ -1321,8 +1344,7 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_lone_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
-        for v in Version.objects.all():
-            v.delete()
+        Version.objects.all().delete()
         v = Version.objects.create(addon=a, version='1.0')
         eq_(v.nomination, None)
 
@@ -1348,108 +1370,78 @@ class TestAddonModels(amo.tests.TestCase):
         addon.update(status=amo.STATUS_NOMINATED)
         eq_(addon.versions.latest().nomination.date(), earlier.date())
 
-    def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
-        addon = Addon.objects.create(type=1)
+    def setup_nomination(self, status=amo.STATUS_UNREVIEWED):
+        addon = Addon.objects.create()
         version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        File.objects.create(status=status, version=version)
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
-        # This is a preliminary review.
-        addon.update(status=amo.STATUS_UNREVIEWED)
-        current_nomination = addon.versions.latest().nomination
-        assert current_nomination
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        eq_(addon.versions.latest().nomination, current_nomination)
+        addon.update(status=status)
+        nomination = addon.versions.latest().nomination
+        assert nomination
+        return addon, nomination
 
-    def test_nomination_not_reset_if_changing_review_process_under_review(self):
-        """
-        When under review, adding a new version should not reset nomination.
-        """
-        addon = Addon.objects.create(type=1)
-        version = Version.objects.create(addon=addon)
+    def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
+        addon, nomination = self.setup_nomination()
+        version = Version.objects.create(addon=addon, version='0.2')
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        # Cheating date to make sure we don't have a date on the same second
-        # the code we test is running.
-        past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
-        # This is a preliminary review.
-        addon.update(status=amo.STATUS_UNREVIEWED)
-        current_nomination = addon.versions.latest().nomination
-        assert current_nomination
+        eq_(addon.versions.latest().nomination, nomination)
+
+    def test_nomination_not_reset_if_changing_addon_status(self):
+        """
+        When under review, switching status should not reset nomination.
+        """
+        addon, nomination = self.setup_nomination()
         # Now switch to a full review.
         addon.update(status=amo.STATUS_NOMINATED)
-        eq_(addon.versions.latest().nomination, current_nomination)
+        eq_(addon.versions.latest().nomination, nomination)
         # Then again to a preliminary.
         addon.update(status=amo.STATUS_UNREVIEWED)
-        eq_(addon.versions.latest().nomination, current_nomination)
+        eq_(addon.versions.latest().nomination, nomination)
+        # Finally back to a reviewed status.
+        addon.update(status=amo.STATUS_PUBLIC)
+        eq_(addon.versions.latest().nomination, nomination)
+
+    def test_nomination_not_reset_if_adding_new_versions_and_files(self):
+        """
+        When under review, adding new versions and files should not
+        reset nomination.
+        """
+        addon, nomination = self.setup_nomination()
+        # Switching it to a public status.
+        version = Version.objects.create(addon=addon, version="0.1")
+        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
+        eq_(addon.versions.latest().nomination, nomination)
+        # Adding a new unreviewed version.
+        version = Version.objects.create(addon=addon, version="0.2")
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        eq_(addon.versions.latest().nomination, nomination)
+        # Adding a new unreviewed version.
+        version = Version.objects.create(addon=addon, version="0.3")
+        File.objects.create(status=amo.STATUS_NOMINATED, version=version)
+        eq_(addon.versions.latest().nomination, nomination)
+
+    def check_nomination_reset_with_new_version(self, addon, nomination):
+        version = Version.objects.create(addon=addon, version="0.2")
+        assert version.nomination is None
+        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        assert_not_equal(addon.versions.latest().nomination, nomination)
 
     def test_new_version_of_public_addon_should_reset_nomination(self):
-        addon = Addon.objects.create(type=1)
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_LITE, version=version)
-        # The addon has been prelimarily reviewed.
-        addon.update(status=amo.STATUS_LITE)
-        # Cheating to make sure we don't have a date on the same second
-        # of the running code.
-        past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
-        old_nomination = addon.versions.latest().nomination
-        assert old_nomination
-
+        addon, nomination = self.setup_nomination(status=amo.STATUS_LITE)
         # Update again, but without a new version.
         addon.update(status=amo.STATUS_LITE)
         # Check that nomination has been reset.
-        eq_(addon.versions.latest().nomination, old_nomination)
-
+        eq_(addon.versions.latest().nomination, nomination)
         # Now create a new version with an attached file, and update status.
-        version = Version.objects.create(addon=addon, version="0.2")
-        assert version.nomination is None
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        new_nomination = addon.versions.latest().nomination
-        assert new_nomination
-        assert_not_equal(new_nomination, old_nomination)
+        self.check_nomination_reset_with_new_version(addon, nomination)
 
     def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
-        addon = Addon.objects.create(type=1)
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
-        # The addon has been fully reviewed.
-        addon.update(status=amo.STATUS_PUBLIC)
-        # Cheating to make sure we don't have a date on the same second
-        # of the running code.
-        past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
-        old_nomination = addon.versions.latest().nomination
-        assert old_nomination
-
+        addon, nomination = self.setup_nomination(status=amo.STATUS_PUBLIC)
         # Now create a new version with an attached file, and update status.
-        version = Version.objects.create(addon=addon, version="0.2")
-        assert version.nomination is None
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        new_nomination = addon.versions.latest().nomination
-        assert new_nomination
-        assert_not_equal(new_nomination, old_nomination)
-
-    def test_category_transform(self):
-        addon = Addon.objects.get(id=3615)
-        cats = addon.categories.filter(application=amo.FIREFOX.id)
-        names = [c.name for c in cats]
-        assert addon.get_category(amo.FIREFOX.id).name in names
-
-    def test_binary_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary=True)
-        eq_(addon.binary, True)
-
-    def test_binary_components_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary_components=True)
-        eq_(addon.binary_components, True)
+        self.check_nomination_reset_with_new_version(addon, nomination)
 
 
 class TestAddonDelete(amo.tests.TestCase):
@@ -1457,24 +1449,25 @@ class TestAddonDelete(amo.tests.TestCase):
     def test_cascades(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
-        AddonCategory.objects.create(addon=addon,
+        AddonCategory.objects.create(
+            addon=addon,
             category=Category.objects.create(type=amo.ADDON_EXTENSION))
-        AddonDependency.objects.create(addon=addon,
-            dependent_addon=addon)
-        AddonDeviceType.objects.create(addon=addon,
-            device_type=DEVICE_TYPES.keys()[0])
-        AddonRecommendation.objects.create(addon=addon,
-            other_addon=addon, score=0)
-        AddonUser.objects.create(addon=addon,
-            user=UserProfile.objects.create())
+        AddonDependency.objects.create(
+            addon=addon, dependent_addon=addon)
+        AddonDeviceType.objects.create(
+            addon=addon, device_type=DEVICE_TYPES.keys()[0])
+        AddonRecommendation.objects.create(
+            addon=addon, other_addon=addon, score=0)
+        AddonUser.objects.create(
+            addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
         CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
         Persona.objects.create(addon=addon, persona_id=0)
         Preview.objects.create(addon=addon)
 
-        AddonLog.objects.create(addon=addon,
-            activity_log=ActivityLog.objects.create(action=0))
+        AddonLog.objects.create(
+            addon=addon, activity_log=ActivityLog.objects.create(action=0))
         RssKey.objects.create(addon=addon)
         SubmitStep.objects.create(addon=addon, step=0)
 
@@ -1504,7 +1497,8 @@ class TestUpdateStatus(amo.tests.TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status,
+            amo.STATUS_UNREVIEWED)
         Version.objects.create(addon=addon)
         eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
 
@@ -1514,7 +1508,8 @@ class TestUpdateStatus(amo.tests.TestCase):
         f = File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_UNREVIEWED)
+        eq_(Addon.objects.no_cache().get(pk=addon.pk).status,
+            amo.STATUS_UNREVIEWED)
         f.status = amo.STATUS_DISABLED
         f.save()
         eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
@@ -1524,6 +1519,7 @@ class TestGetVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615', ]
 
     def setUp(self):
+        super(TestGetVersion, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
@@ -1601,6 +1597,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
                 'base/addon_3615', 'base/collections', 'base/featured']
 
     def setUp(self):
+        super(TestAddonModelsFeatured, self).setUp()
         # Addon._featured keeps an in-process cache we need to clear.
         if hasattr(Addon, '_featured'):
             del Addon._featured
@@ -1621,6 +1618,7 @@ class TestBackupVersion(amo.tests.TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
+        super(TestBackupVersion, self).setUp()
         self.version_1_2_0 = 105387
         self.addon = Addon.objects.get(pk=1865)
         set_user(None)
@@ -1701,6 +1699,7 @@ class TestPersonaModel(amo.tests.TestCase):
     fixtures = ['addons/persona']
 
     def setUp(self):
+        super(TestPersonaModel, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.persona.header = 'header.png'
@@ -1777,6 +1776,18 @@ class TestPersonaModel(amo.tests.TestCase):
                 'https://vamo/fr/themes/update-check/' + id_)
             eq_(data['version'], '1.0')
 
+    def test_image_urls_without_footer(self):
+        self.persona.footer = ''
+        self.persona.save()
+        assert self.persona.footer_url == ''
+
+    def test_json_data_without_footer(self):
+        self.persona.footer = ''
+        self.persona.save()
+        data = self.persona.theme_data
+        assert data['footerURL'] == ''
+        assert data['footer'] == ''
+
 
 class TestPreviewModel(amo.tests.TestCase):
     fixtures = ['base/previews']
@@ -1799,6 +1810,29 @@ class TestPreviewModel(amo.tests.TestCase):
         preview.update(filetype='video/webm')
         assert 'png' in preview.thumbnail_path
         assert 'webm' in preview.image_path
+
+    def check_delete(self, preview, filename):
+        """
+        Test that when the Preview object is deleted, its image and thumb
+        are deleted from the filesystem.
+        """
+        try:
+            with storage.open(filename, 'w') as f:
+                f.write('sample data\n')
+            assert storage.exists(filename)
+            preview.delete()
+            assert not storage.exists(filename)
+        finally:
+            if storage.exists(filename):
+                storage.delete(filename)
+
+    def test_delete_image(self):
+        preview = Preview.objects.get(pk=24)
+        self.check_delete(preview, preview.image_path)
+
+    def test_delete_thumbnail(self):
+        preview = Preview.objects.get(pk=24)
+        self.check_delete(preview, preview.thumbnail_path)
 
 
 class TestAddonRecommendations(amo.tests.TestCase):
@@ -1827,7 +1861,8 @@ class TestAddonDependencies(amo.tests.TestCase):
         addon = Addon.objects.get(id=5299)
 
         for dependent_id in ids:
-            AddonDependency(addon=addon,
+            AddonDependency(
+                addon=addon,
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
         eq_(sorted([a.id for a in addon.dependencies.all()]), sorted(ids))
@@ -1837,11 +1872,9 @@ class TestAddonDependencies(amo.tests.TestCase):
         a = Addon.objects.get(id=5299)
         b = Addon.objects.get(id=3615)
         AddonDependency.objects.create(addon=a, dependent_addon=b)
-        try:
-            AddonDependency.objects.create(addon=a, dependent_addon=b)
-        except IntegrityError:
-            pass
         eq_(list(a.dependencies.values_list('id', flat=True)), [3615])
+        with self.assertRaises(IntegrityError):
+            AddonDependency.objects.create(addon=a, dependent_addon=b)
 
 
 class TestListedAddonTwoVersions(amo.tests.TestCase):
@@ -1860,6 +1893,7 @@ class TestFlushURLs(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
+        super(TestFlushURLs, self).setUp()
         settings.ADDON_ICON_URL = (
             settings.STATIC_URL +
             'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
@@ -1873,6 +1907,7 @@ class TestFlushURLs(amo.tests.TestCase):
 
     def tearDown(self):
         _disconnect()
+        super(TestFlushURLs, self).tearDown()
 
     def is_url_hashed(self, url):
         return urlparse(url).query.find('modified') > -1
@@ -2037,6 +2072,7 @@ class TestRemoveLocale(amo.tests.TestCase):
 class TestUpdateNames(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestUpdateNames, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.addon.name = self.names = {'en-US': 'woo'}
         self.addon.save()
@@ -2125,6 +2161,7 @@ class TestUpdateNames(amo.tests.TestCase):
 class TestAddonWatchDisabled(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestAddonWatchDisabled, self).setUp()
         self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
                            status=amo.STATUS_PUBLIC)
         self.addon.save()
@@ -2165,7 +2202,6 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
 
 
 class TestSearchSignals(amo.tests.ESTestCase):
-    test_es = True
 
     def setUp(self):
         super(TestSearchSignals, self).setUp()
@@ -2225,7 +2261,8 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_extract_no_file(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'), status=amo.STATUS_PUBLIC)
+                            filename=self.xpi_path('langpack'),
+                            status=amo.STATUS_PUBLIC)
         eq_(self.addon.reload().get_localepicker(), '')
 
     def test_extract_no_files(self):
@@ -2249,6 +2286,7 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
 class TestCompatOverride(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestCompatOverride, self).setUp()
         self.app = amo.APP_IDS[1]
 
         one = CompatOverride.objects.create(guid='one')
@@ -2387,6 +2425,7 @@ class TestCompatOverride(amo.tests.TestCase):
 class TestIncompatibleVersions(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestIncompatibleVersions, self).setUp()
         self.app = amo.APP_IDS[amo.FIREFOX.id]
         self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
 

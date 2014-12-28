@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import tempfile
-import unittest
 
 from django.conf import settings
 from django.core.cache import cache
@@ -10,13 +9,18 @@ from django.utils import translation
 
 import jingo
 import mock
+import pytest
 from nose.tools import eq_, assert_raises, raises
 
+from amo.tests import BaseTestCase
 from amo.utils import (cache_ns_key, escape_all, find_language,
                        LocalFileStorage, no_jinja_autoescape, no_translation,
                        resize_image, rm_local_tmp_dir, slugify, slug_validator,
                        to_language)
 from product_details import product_details
+
+
+pytestmark = pytest.mark.django_db
 
 u = u'Ελληνικά'
 
@@ -100,6 +104,9 @@ def test_find_language():
         yield check, a, b
 
 
+@pytest.mark.skipif(
+    not product_details.last_update,
+    reason="We don't want to download product_details on travis")
 def test_spotcheck():
     """Check a couple product-details files to make sure they're available."""
     languages = product_details.languages
@@ -125,14 +132,16 @@ def test_no_translation():
     translation.activate(lang)
 
 
-class TestLocalFileStorage(unittest.TestCase):
+class TestLocalFileStorage(BaseTestCase):
 
     def setUp(self):
+        super(TestLocalFileStorage, self).setUp()
         self.tmp = tempfile.mkdtemp()
         self.stor = LocalFileStorage()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
+        super(TestLocalFileStorage, self).tearDown()
 
     def test_read_write(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
@@ -201,9 +210,10 @@ class TestLocalFileStorage(unittest.TestCase):
         eq_(os.path.exists(dp), True)
 
 
-class TestCacheNamespaces(unittest.TestCase):
+class TestCacheNamespaces(BaseTestCase):
 
     def setUp(self):
+        super(TestCacheNamespaces, self).setUp()
         cache.clear()
         self.namespace = 'redis-is-dead'
 
@@ -249,6 +259,21 @@ def test_escape_all():
     ]
     for val, expected in s:
         yield check, val, expected
+
+
+@mock.patch('amo.helpers.urlresolvers.get_outgoing_url')
+@mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
+def test_escape_all_linkify_only_full(mock_get_outgoing_url):
+    mock_get_outgoing_url.return_value = 'http://outgoing.firefox.com'
+
+    eq_(escape_all('http://firefox.com', linkify_only_full=True),
+        '<a href="http://outgoing.firefox.com">http://firefox.com</a>')
+    eq_(escape_all('http://firefox.com', linkify_only_full=False),
+        '<a href="http://outgoing.firefox.com">http://firefox.com</a>')
+
+    eq_(escape_all('firefox.com', linkify_only_full=True), 'firefox.com')
+    eq_(escape_all('firefox.com', linkify_only_full=False),
+        '<a href="http://outgoing.firefox.com">firefox.com</a>')
 
 
 def test_no_jinja_autoescape():

@@ -15,7 +15,7 @@
 {% block content %}
 
 <h2>{{ self.title() }}</h2>
-<form method="post" action="">
+<form method="post">
   {{ csrf() }}
   <label for="url">Paste your disco pane url here:</label>
   <textarea id="url" name="url" rows="2" cols="90"

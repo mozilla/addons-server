@@ -697,14 +697,6 @@ function initVersions() {
             $('.current-version-warning', this).toggle(is_current);
             return true;
         }});
-
-    $('#upload-file-finish').click(function() {
-        var $button = $(this);
-        setTimeout(function() { // Chrome fix
-            $button.attr('disabled', true);
-        }, 50);
-    });
-
 }
 
 function initSubmit() {
@@ -1273,7 +1265,7 @@ function initAddonCompatCheck($doc) {
             return;
         }
         $.post($sel.attr('data-url'),
-               {application_id: appId,
+               {application: appId,
                 csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']", $form).val()},
             function(d) {
                 $('option', $appVer).remove();

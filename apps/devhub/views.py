@@ -47,7 +47,7 @@ from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from devhub.utils import hide_traceback, make_validation_results
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
-from files.utils import parse_addon
+from files.utils import is_beta, parse_addon
 from search.views import BaseAjaxSearch
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -73,16 +73,23 @@ class AddonFilter(BaseFilter):
             ('rating', _lazy(u'Rating')))
 
 
+class ThemeFilter(BaseFilter):
+    opts = (('name', _lazy(u'Name')),
+            ('created', _lazy(u'Created')),
+            ('popular', _lazy(u'Downloads')),
+            ('rating', _lazy(u'Rating')))
+
+
 def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
         qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
         model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type__in=[amo.ADDON_WEBAPP,
-                                                       amo.ADDON_PERSONA])
+        qs = request.amo_user.addons.exclude(type=amo.ADDON_PERSONA)
         model = Addon
-    filter = AddonFilter(request, qs, 'sort', default, model=model)
+    filter_cls = ThemeFilter if theme else AddonFilter
+    filter = filter_cls(request, qs, 'sort', default, model=model)
     return filter.qs, filter
 
 
@@ -153,7 +160,7 @@ def ajax_compat_update(request, addon_id, addon, version_id):
             compat.save()
         for form in compat_form.forms:
             if (isinstance(form, forms.CompatForm) and
-                'max' in form.changed_data):
+                    'max' in form.changed_data):
                 _log_max_version_change(addon, version, form.instance)
     return render(request, 'devhub/addons/ajax_compat_update.html',
                   dict(addon=addon, version=version, compat_form=compat_form))
@@ -214,7 +221,7 @@ def _get_items(action, addons):
                    status=(amo.LOG.USER_DISABLE, amo.LOG.USER_ENABLE,
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
-                            amo.LOG.REMOVE_FROM_COLLECTION,),
+                                amo.LOG.REMOVE_FROM_COLLECTION,),
                    reviews=(amo.LOG.ADD_REVIEW,))
 
     filter = filters.get(action)
@@ -336,16 +343,19 @@ def delete(request, addon_id, addon, theme=False):
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
         addon.delete(msg='Removed via devhub', reason=reason)
-        messages.success(request,
+        messages.success(
+            request,
             _('Theme deleted.') if theme else _('Add-on deleted.'))
         return redirect('devhub.%s' % ('themes' if theme else 'addons'))
     else:
         if theme:
-            messages.error(request,
+            messages.error(
+                request,
                 _('Password was incorrect. Theme was not deleted.'))
             return redirect(addon.get_dev_url())
         else:
-            messages.error(request,
+            messages.error(
+                request,
                 _('Password was incorrect. Add-on was not deleted.'))
             return redirect(addon.get_dev_url('versions'))
 
@@ -410,7 +420,7 @@ def ownership(request, addon_id, addon):
             if action:
                 amo.log(action, author.user, author.get_role_display(), addon)
             if (author._original_user_id and
-                author.user_id != author._original_user_id):
+                    author.user_id != author._original_user_id):
                 amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
                         (UserProfile, author._original_user_id),
                         author.get_role_display(), addon)
@@ -545,7 +555,7 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
     plats = perf.PLATFORM_MAP.get(file_.platform, None)
     if plats is None:
         log.info('Unsupported performance platform %s for file %s'
-                 % (file_.platform, file_))
+                 % (file_.get_platform_display(), file_))
         # TODO(Kumar) provide a message about this
         return {'success': False}
 
@@ -816,6 +826,9 @@ def json_upload_detail(request, upload, addon_slug=None):
             plat_exclude = set(s) - set(supported_platforms)
             plat_exclude = [str(p) for p in plat_exclude]
 
+            # Does the version number look like it's beta?
+            result['beta'] = is_beta(pkg.get('version', ''))
+
     result['platforms_to_exclude'] = plat_exclude
     return result
 
@@ -901,11 +914,13 @@ def addons_section(request, addon_id, addon, section, editable=False):
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
-        previews = forms.PreviewFormSet(request.POST or None,
+        previews = forms.PreviewFormSet(
+            request.POST or None,
             prefix='files', queryset=addon.previews.all())
 
     elif section == 'technical':
-        dependency_form = forms.DependencyFormSet(request.POST or None,
+        dependency_form = forms.DependencyFormSet(
+            request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
             prefix='dependencies')
 
@@ -1008,7 +1023,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
 
         check = amo.utils.ImageCheck(upload_preview)
         if (not check.is_image() or
-            upload_preview.content_type not in amo.IMG_TYPES):
+                upload_preview.content_type not in amo.IMG_TYPES):
             if is_icon:
                 errors.append(_('Icons must be either PNG or JPG.'))
             else:
@@ -1044,6 +1059,9 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                 errors.append(_('Image must be exactly {0} pixels wide '
                                 'and {1} pixels tall.')
                               .format(expected_size[0], expected_size[1]))
+        if errors and upload_type == 'preview' and os.path.exists(loc):
+            # Delete the temporary preview file in case of error.
+            os.unlink(loc)
     else:
         errors.append(_('There was an error uploading your preview.'))
 
@@ -1087,7 +1105,7 @@ def version_edit(request, addon_id, addon, version_id):
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and
-        all([form.is_valid() for form in data.values()])):
+            all([form.is_valid() for form in data.values()])):
         data['version_form'].save()
         data['file_form'].save()
 
@@ -1102,7 +1120,7 @@ def version_edit(request, addon_id, addon, version_id):
                 compat.save()
             for form in data['compat_form'].forms:
                 if (isinstance(form, forms.CompatForm) and
-                    'max' in form.changed_data):
+                        'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1179,13 +1197,24 @@ def version_add(request, addon_id, addon):
             upload=form.cleaned_data['upload'],
             addon=addon,
             platforms=pl,
-            source=form.cleaned_data['source']
+            source=form.cleaned_data['source'],
+            is_beta=form.cleaned_data['beta']
         )
+        rejected_versions = addon.versions.filter(
+            version=v.version, files__status=amo.STATUS_DISABLED)[:1]
+        if not v.releasenotes and rejected_versions:
+            # Let's reuse the release and approval notes from the previous
+            # rejected version.
+            last_rejected = rejected_versions[0]
+            v.releasenotes = amo.utils.translations_for_field(
+                last_rejected.releasenotes)
+            v.approvalnotes = last_rejected.approvalnotes
+            v.save()
         log.info('Version created: %s for: %s' %
                  (v.pk, form.cleaned_data['upload']))
         check_validation_override(request, form, addon, v)
         if (addon.status == amo.STATUS_NULL and
-            form.cleaned_data['nomination_type']):
+                form.cleaned_data['nomination_type']):
             addon.update(status=form.cleaned_data['nomination_type'])
         url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
         return dict(url=url)
@@ -1204,6 +1233,7 @@ def version_add_file(request, addon_id, addon, version_id):
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
+                                form.cleaned_data['beta'],
                                 parse_addon(upload, addon))
     source = form.cleaned_data['source']
     if source:
@@ -1356,13 +1386,15 @@ def submit_describe(request, addon_id, addon, step):
 @dev_required
 @submit_step(4)
 def submit_media(request, addon_id, addon, step):
-    form_icon = addon_forms.AddonFormMedia(request.POST or None,
-            request.FILES or None, instance=addon, request=request)
-    form_previews = forms.PreviewFormSet(request.POST or None,
-            prefix='files', queryset=addon.previews.all())
+    form_icon = addon_forms.AddonFormMedia(
+        request.POST or None,
+        request.FILES or None, instance=addon, request=request)
+    form_previews = forms.PreviewFormSet(
+        request.POST or None,
+        prefix='files', queryset=addon.previews.all())
 
     if (request.method == 'POST' and
-        form_icon.is_valid() and form_previews.is_valid()):
+            form_icon.is_valid() and form_previews.is_valid()):
         addon = form_icon.save(addon)
 
         for preview in form_previews.forms:

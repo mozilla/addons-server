@@ -45,28 +45,22 @@
 
     <h2 id="developing">{{ _('Developing an Add-on') }}</h2>
 
-    {% trans url='https://developer.mozilla.org/En/Building_an_Extension' %}
+    {% trans url='https://developer.mozilla.org/Add-ons' %}
       <h3>How do I build an Add-on?</h3>
       <p>
         Mozilla provides documentation on how to build an add-on via the
-        Mozilla Developer Center. The tutorial, <a href="{{ url }}">Building
-        an Extension</a>, will help explain how to setup your work environment
-        and move forward with creating an add-on.
+        <a href="{{ url }}">Mozilla Developer Network</a>.
       </p>
     {% endtrans %}
 
     <p>{{ _('Other resources include:') }}</p>
     <ul>
       <li>
-        <a href="https://developer.mozilla.org/En/Firefox_addons_dev_guide">{{ _('Firefox Add-ons Developer Guide') }}</a>
+        <a href="https://blog.mozilla.org/addons/2014/06/05/how-to-develop-firefox-extension/">
+          {{ _('"How to develop a Firefox extension" post in the Add-ons Blog') }}</a>
       </li>
       <li>
-        <a href="http://blog.mozilla.com/addons/2009/01/28/how-to-develop-a-firefox-extension/">
-            {{ _('Robert Nyman\'s article "How to develop a Firefox extension"') }}</a>
-      </li>
-      <li>
-        <a href="http://blog.mozilla.com/addons/2009/03/18/video-tutorial-extensions-bootcamp-zero-to-hello-world-in-45-minutes/">
-            {{ _('Myk Melez\'s video tutorial "Video Tutorial - Extensions Bootcamp: Zero to \'Hello World\' in 45 Minutes"') }}</a>
+        <a href="https://blog.mozilla.org/addons/">{{ _('Mozilla Add-ons Blog') }}</a>
       </li>
     </ul>
 
@@ -90,25 +84,17 @@
     <ul>
       {# L10n: This is a list of popular code editors.  Feel free to adjust as you like. #}
       {% trans %}
-        <li><a href="http://www.activestate.com/komodo_edit/">Komodo Edit</a></li>
+        <li><a href="http://komodoide.com/komodo-edit/">Komodo Edit</a></li>
         <li><a href="http://macromates.com/">TextMate</a></li>
-        <li><a href="http://notepad-plus.sourceforge.net/uk/site.htm">Notepad++</a></li>
+        <li><a href="http://notepad-plus-plus.org/">Notepad++</a></li>
         <li><a href="http://www.eclipse.org/">Eclipse IDE</a></li>
       {% endtrans %}
     </ul>
 
     <p>
-      {% trans url='https://developer.mozilla.org/en/Setting_up_extension_development_environment' %}
+      {% trans url='https://developer.mozilla.org/Add-ons/Setting_up_extension_development_environment' %}
         You can also learn more about setting up your development environment
-        via the MDC article <a href="{{ url }}">Setting up extension development environment</a>
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('Where can I find documentation on building add-ons?') }}</h3>
-    <p>
-      {% trans url='https://developer.mozilla.org/En' %}
-        All Mozilla documentation on add-on development including tutorials
-        and APIs can be found via the <a href="{{ url }}">Mozilla Developer Center</a>.
+        via the MDN article <a href="{{ url }}">Setting up extension development environment</a>
       {% endtrans %}
     </p>
 
@@ -133,7 +119,7 @@
 
     <h3>{{ _('What is the "install.rdf" file used for?') }}</h3>
     <p>
-      {% trans url='https://developer.mozilla.org/en/Install_Manifests' %}
+      {% trans url='https://developer.mozilla.org/Add-ons/Install_Manifests' %}
         This file, called an <a href="{{ url }}">Install Manifest</a>,
         is used by Add-on Manager-enabled XUL applications to determine
         information about an add-on as it is being installed. It contains
@@ -155,7 +141,7 @@
 
     <h3>{{ _('Can my add-on contain binary components?') }}</h3>
     <p>
-      {% trans url='https://developer.mozilla.org/en/XPCOM' %}
+      {% trans url='https://developer.mozilla.org/docs/Mozilla/Tech/XPCOM' %}
         Yes. You can use Mozilla's <a href="{{ url }}">XPCOM component object model</a>
         to enhance your add-ons. XPCOM components be used and implemented in
         JavaScript, Java, and Python in addition to C++.
@@ -166,7 +152,7 @@
     <p>
       {% trans %}
         Yes. It's possible, but some of the functionality provided by these
-        libraries are available through XPCOM, XUL, and JS 1.8. In addition,
+        libraries are available through XPCOM, XUL, and JavaScript. In addition,
         authors should take care if libraries modify primitive object
         prototypes (String.prototype, Date.prototype, etc.) and/or define
         global functions (eg. the $ function). These are prone to cause
@@ -177,57 +163,42 @@
       {% endtrans %}
     </p>
 
-    <h3>{{ _('How do I test my add-on?') }}</h3>
+    <h3>{{ _('How do I debug my add-on?') }}</h3>
     <p>
-      {% trans test_url='https://developer.mozilla.org/en/Building_an_Extension#Test',
-               debug_url='https://developer.mozilla.org/en/Building_an_Extension#Debugging_Extensions',
-               ext_url='https://developer.mozilla.org/en/Building_an_Extension' %}
-        Details on testing your add-on are provided in the <a href="{{ test_url }}">Testing</a> &amp;
-        <a href="{{ debug_url }}">Debugging Extensions</a> sections of the
-        <a href="{{ ext_url }}">Building an Extension tutorial</a>.
+      {% trans url='https://developer.mozilla.org/Add-ons/Add-on_Debugger' %}
+        You can use the <a href="{{ url }}">Add-on Debugger</a>.
       {% endtrans %}
     </p>
 
     <h3>{{ _('How do I test for compatibility with the latest version of Mozilla software?') }}</h3>
     <p>
-      {% trans ext_url='https://developer.mozilla.org/en/Building_an_Extension',
-               test_url='https://developer.mozilla.org/en/Building_an_Extension#Test' %}
+      {% trans  %}
         To ensure compatibility with the latest Mozilla software, it's important
         to download updates as they become available and test your add-on to
-        ensure that it is still functioning as expected. It's best to follow the
-        steps outlined in the <a href="{{ ext_url }}">Building an Extension</a>
-        tutorial for <a href="{{ test_url }}">testing your add-on</a>.  In many
-        cases, the latest version of Mozilla software may be a beta release.
-        Since these releases at times introduce architectural changes that may
-        impact the functionality of your add-on, it's important to be actively
-        involved in the beta process to ensure that you're add-on users are not
-        negatively impacted upon final release of Mozilla software.
+        ensure that it is still functioning as expected. In many cases, the latest
+        version of Mozilla software may be a beta release. Since these releases at
+        times introduce architectural changes that may impact the functionality of your
+        add-on, it's important to be actively involved in the beta process to ensure
+        that your add-on users are not negatively impacted upon final release of Mozilla software.
       {% endtrans %}
     </p>
 
-    <h3>{{ _('What is leak testing?') }}</h3>
+    <h3>{{ _('How to improve the performance of my add-on?') }}</h3>
     <p>
-    {% trans leak_url='https://wiki.mozilla.org/Performance:Leak_Tools',
-             wiki_url='https://wiki.mozilla.org/QA:Home_Page:Firefox_3.0_TestPlan:Leaks:LeakTesting-How-To' %}
-        Memory leaks are typically bugs in the source code used to build
-        applications which consume system memory without properly releasing it
-        once the application has finished. Leak testing allows you to pinpoint
-        which bit of code is causing the memory leak. The following is a good
-        <a href="{{ wiki_url }}">guide to finding tools and strategies</a> that
-        help manage leak testing.  Mozilla's Carsten Book has also written an
-        excellent HOW-TO article on the subject of
-        <a href="{{ leak_url }}">leak testing in Firefox</a>.
+    {% trans url='https://developer.mozilla.org/docs/Mozilla/Performance' %}
+        Poorly written extensions can have a severe impact on the browsing experience,
+        including on the overall performance of Firefox itself. The following page contains
+        many good <a href="{{ url }}">guides</a> that help you improve performance, whether
+        you're developing core Mozilla code or an add-on.
       {% endtrans %}
     </p>
 
     <h3>{{ _('Can my add-on support multiple locales?') }}</h3>
     <p>
-      {% trans ext_url='https://developer.mozilla.org/en/Building_an_Extension#Localization',
-               l10n_url='https://developer.mozilla.org/en/Localization',
+      {% trans l10n_url='https://developer.mozilla.org/docs/Mozilla/Localization/Localizing_an_extension',
                bz_url='http://www.babelzilla.org/' %}
-       Yes. Details on localizing your add-on can be found in the
-       <a href="{{ ext_url }}">Building an Extension</a> tutorial as well as the
-       <a href="{{ l10n_url }}">Mozilla Developer Center Localization page</a>.
+       Yes. Details on localizing your add-on can be found in the the
+       <a href="{{ l10n_url }}">Mozilla Developer Network Localization page</a>.
        <a href="{{ bz_url }}">The BabelZilla project</a> is also a great resource
        for learning about localization and volunteering to help translate add-ons.
       {% endtrans %}
@@ -238,7 +209,6 @@
     <h2 id="support-resources">{{ _('Support Resources') }}</h2>
 
     <h3>{{ _('I need some advice building my add-on. Where can I find help?') }}</h3>
-    <p>{{ _('Mozilla offers the following support options for add-on developers:') }}</p>
     <ul>
       <li>
         irc://irc.mozilla.org/
@@ -247,7 +217,9 @@
           <li>{{ _('#extdev (for add-on development discussions)') }}</li>
           {# L10n: #amo is the name of the IRC channel.  do not change. #}
           <li>{{ _('#amo (for support relating to hosting your add-on on AMO)') }}</li>
-        </ul>
+          {# L10n: #jetpack is the name of the IRC channel.  do not change. #}
+          <li>{{ _('#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)') }}</li>
+          </ul>
       </li>
       <li><a href="https://lists.mozilla.org/listinfo/dev-extensions">
         {# L10n: Label for a link to the extension developers mailing list #}
@@ -261,17 +233,25 @@
         {# L10n: Label for a link to the extension developers Google Group #}
         {{ _('Google Group') }}
       </a></li>
-    </ul>
+      <li><a href="https://forums.mozilla.org/">
+        {{ _('Add-ons forum') }}
+      </a></li>
+      <li><a href="http://stackoverflow.com/questions/tagged/firefox-addon-sdk">
+        {{ _('Stack Overflow') }}
+      </a></li>
+      </ul>
 
     <h3>{{ _('Does Mozilla offer development services?') }}</h3>
     <p>{{ _('No.') }}</p>
 
     <h3>{{ _('Are there 3rd party developers that I can hire to build my add-on?') }}</h3>
     <p>
-      {% trans list_url='http://www.mozilla.org/community/developer-forums.html#projectwide-forums',
+      {% trans forum_url='https://forums.mozilla.org/viewforum.php?f=18',
+               list_url='https://www.mozilla.org/about/forums/#projectwide-forums',
                mz_url='http://forums.mozillazine.org/',
                wiki_url='https://wiki.mozilla.org/Consulting' %}
        Yes. You may find 3rd party developers via the
+       <a href="{{ forum_url }}">Add-ons forum</a>,
        <a href="{{ list_url }}">mozilla.jobs list</a>,
        <a href="{{ mz_url }}">mozillaZine forums</a> or
        <a href="{{ wiki_url }}">the Mozilla Wiki</a>.
@@ -432,7 +412,7 @@
         It is important that add-on developers review this guide to ensure
         that common problem areas are addressed prior to submitting their
         add-on for review. This will greatly assist in expediting the review
-        process
+        process.
       {% endtrans %}
     </p>
 
@@ -613,7 +593,7 @@
       {% endtrans %}
     </p>
 
-    <h3><a href="http://www.mozilla.org/MPL/">http://www.mozilla.org/MPL/</a></h3>
+    <h3><a href="https://www.mozilla.org/MPL/">https://www.mozilla.org/MPL/</a></h3>
     <p>
       {% trans %}
         In addition to the full text of the Mozilla Public
@@ -624,8 +604,8 @@
     </p>
 
     <h3>
-      <a href="http://techbase.kde.org/Policies/Licensing_Policy">
-        http://techbase.kde.org/Policies/Licensing_Policy
+      <a href="https://techbase.kde.org/Policies/Licensing_Policy">
+        https://techbase.kde.org/Policies/Licensing_Policy
       </a>
     </h3>
     <p>
@@ -637,8 +617,8 @@
     </p>
 
     <h3>
-      <a href="http://www.fsf.org/licensing/licenses/">
-        http://www.fsf.org/licensing/licenses/
+      <a href="http://www.gnu.org/licenses/license-list.html">
+        http://www.gnu.org/licenses/license-list.html
       </a>
     </h3>
     <p>
@@ -654,8 +634,8 @@
     </p>
 
     <h3>
-      <a href="http://www.opensource.org/licenses/category">
-        http://www.opensource.org/licenses/category
+      <a href="http://opensource.org/licenses/category">
+        http://opensource.org/licenses/category
       </a>
     </h3>
     <p>
@@ -665,10 +645,16 @@
       {% endtrans %}
     </p>
     <h3>
-      <a href="http://en.wikipedia.org/wiki/Open_source_license">
-        http://en.wikipedia.org/wiki/Open_source_license
+      <a href="https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses">
+        https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses
       </a>
     </h3>
-    <p>{{ _('Wikipedia listing of known open source licenses.') }}</p>
+    <p>{{ _('A comparison of known open source licenses on Wikipedia.') }}</p>
+    <h3>
+      <a href="http://choosealicense.com/">
+        http://choosealicense.com/
+      </a>
+    </h3>
+    <p>{{ _('A site to provide non-judgmental guidance on choosing a license for your open source project.') }}</p>
 </section>
 {% endblock %}

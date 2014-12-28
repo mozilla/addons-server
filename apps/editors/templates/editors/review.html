@@ -91,9 +91,15 @@
               {% endfor %}
             </ul>
           {% endif %}
-          {% if version.source and is_admin %}
-            <div><strong>{{ _('Additional sources:') }}</strong></div>
-            <div><a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a></div>
+          {% if version.source %}
+              <div><strong>{{ _('Additional sources:') }}</strong></div>
+              <div>
+                  {% if is_admin %}
+                      <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
+                  {% else %}
+                      {{ _('The developer has provided source code.')}}
+                  {% endif %}
+              </div>
           {% endif %}
         </td>
         <td>
@@ -231,21 +237,28 @@
   </div>
 </form>
 
+<form method="POST" action="{{ url('editors.whiteboard', addon.slug) }}">
+  {{ csrf() }}
+  <div class="whiteboard">
+    <div class="whiteboard-inner">
+      <label for="id_whiteboard">{{ whiteboard_form.whiteboard.label }}</label>
+      {{ whiteboard_form.whiteboard }}
+      {{ form.notify.errors }}
+      <p>{{ _('The whiteboard is the place to exchange information relevant to
+               this addon (whatever the version), between the developer and the
+               editor. This is visible and editable by both.') }}</p>
+      <div class="whiteboard-actions">
+        <input type="submit" value="{{ _('Update the whiteboard') }}" />
+      </div>
+    </div>
+  </div>
+</form>
+
 </div> {# /#primary #}
 
 <div class="secondary scroll_sidebar_parent">
   <div id="scroll_sidebar">
   <div class="currently_viewing_warning"></div>
-  {{ num }}
-  {% if paging %}
-  <div class="review-paging">
-    {% if paging.prev %}<a href="{{ paging.prev_url }}">&laquo;</a> &nbsp; {% endif %}
-    {% trans current=paging.current, total=paging.total %}
-    {{ current }} of {{ total }}
-    {% endtrans %}
-    {% if paging.next %} &nbsp; <a href="{{ paging.next_url }}">&raquo;</a>{% endif %}
-  </div>
-  {% endif %}
 
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">

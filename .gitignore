@@ -20,6 +20,7 @@ media/build_id.txt
 media/manifest.appcache
 media/external/*
 .DS_Store
+.idea
 /media/img/uploads
 *.js.tmp
 *.css.tmp
@@ -45,3 +46,6 @@ media/marketplace-stats
 *.po~
 site-static/*
 user-media/*
+.tox/
+.cache/
+MANIFEST

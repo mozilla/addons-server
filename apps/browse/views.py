@@ -1,6 +1,5 @@
 import collections
 
-from django import http
 from django.conf import settings
 from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
@@ -139,7 +138,7 @@ def language_tools(request, category=None):
     addon_ids = addons.values_list('pk', flat=True)
     return render(request, 'browse/language_tools.html',
                   {'locales': list(locales), 'lang_addons': list(lang_addons),
-                   #pass keys separately so only IDs get cached
+                   # Pass keys separately so only IDs get cached.
                    'addons': addon_ids,
                    'search_cat': '%s,0' % amo.ADDON_DICT})
 
@@ -204,7 +203,7 @@ def es_extensions(request, category=None, template=None):
         category = get_object_or_404(q, slug=category)
 
     if ('sort' not in request.GET and not request.MOBILE
-        and category and category.count > 4):
+            and category and category.count > 4):
         return category_landing(request, category)
 
     qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
@@ -318,7 +317,7 @@ def personas_listing(request, category_slug=None):
             # Maybe it's a Complete Theme?
             try:
                 cat = Category.objects.filter(slug=category_slug,
-                    type=amo.ADDON_THEME)[0]
+                                              type=amo.ADDON_THEME)[0]
             except IndexError:
                 raise Http404
             else:
@@ -361,7 +360,8 @@ def personas(request, category=None, template=None):
     addons = amo.utils.paginate(request, filter_.qs, PAGINATE_PERSONAS_BY,
                                 count=count)
 
-    if ('sort' not in request.GET and ((request.MOBILE and not cat) or
+    if ('sort' not in request.GET and (
+            (request.MOBILE and not cat) or
             (not request.MOBILE and count > MIN_COUNT_FOR_LANDING))):
         template += 'category_landing.html'
     else:
@@ -417,11 +417,11 @@ def legacy_fulltheme_redirects(request, category=None):
     return redirect(url, permanent=not settings.DEBUG)
 
 
+@cache_page(60 * 60 * 24 * 365)
 def legacy_creatured_redirect(request, category):
-    cat = get_object_or_404(Category.objects, slug=category)
-    type_ = amo.ADDON_EXTENSION
-    sort = 'featured'
-    return legacy_redirects(request, type_, cat.id, sort)
+    category = get_object_or_404(Category.objects, slug=category,
+                                 application=request.APP.id)
+    return legacy_redirects(request, amo.ADDON_EXTENSION, category, 'featured')
 
 
 @cache_page(60 * 60 * 24 * 365)
@@ -430,11 +430,14 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
     if not category or category == 'all':
         url = reverse('browse.%s' % type_slug)
     else:
-        cat = get_object_or_404(Category.objects, id=category)
+        if not isinstance(category, Category):
+            category = get_object_or_404(Category.objects, id=category)
         if format == 'rss':
-            url = reverse('browse.%s.rss' % type_slug, args=[cat.slug])
+            if type_slug in ('language-tools', 'personas'):
+                raise Http404
+            url = reverse('browse.%s.rss' % type_slug, args=[category.slug])
         else:
-            url = reverse('browse.%s' % type_slug, args=[cat.slug])
+            url = reverse('browse.%s' % type_slug, args=[category.slug])
     mapping = {'updated': 'updated', 'newest': 'created', 'name': 'name',
                'weeklydownloads': 'popular', 'averagerating': 'rating',
                'featured': 'featured'}
@@ -446,8 +449,7 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
 
 
 class SearchToolsFilter(AddonFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('name', _lazy(u'Name')),
+    opts = (('name', _lazy(u'Name')),
             ('updated', _lazy(u'Updated')),
             ('created', _lazy(u'Created')),
             ('popular', _lazy(u'Downloads')),
@@ -475,33 +477,13 @@ class SearchExtensionsFilter(AddonFilter):
 
 
 def search_tools(request, category=None):
-    """View the search tools page.
-
-    The default landing page will show you both featured
-    extensions and featured search Add-ons.  However, any
-    other type of sorting on this page will not show extensions.
-
-    Since it's uncommon for a category to have
-    featured add-ons the default view for a category will land you
-    on popular add-ons instead.  Note also that CSS will hide the
-    sort-by-featured link.
-    """
+    """View the search tools page."""
     APP, TYPE = request.APP, amo.ADDON_SEARCH
     qs = Category.objects.filter(application=APP.id, type=TYPE)
     categories = order_by_translation(qs, 'name')
 
-    types = [TYPE]
-    if category:
-        # Category pages do not have features.
-        # Sort by popular add-ons instead.
-        default = 'popular'
-    else:
-        default = 'featured'
-        # When the non-category page is featured, include extensions.
-        if request.GET.get('sort', default) == 'featured':
-            types.append(amo.ADDON_EXTENSION)
-
-    addons, filter = addon_listing(request, types, SearchToolsFilter, default)
+    addons, filter = addon_listing(request, [TYPE], SearchToolsFilter,
+                                   'popular')
 
     if category:
         category = get_object_or_404(qs, slug=category)
@@ -524,4 +506,4 @@ def moreinfo_redirect(request):
         addon_id = int(request.GET.get('id', ''))
         return redirect('discovery.addons.detail', addon_id, permanent=True)
     except ValueError:
-        raise http.Http404
+        raise Http404

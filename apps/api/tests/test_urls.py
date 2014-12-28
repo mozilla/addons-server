@@ -1,8 +1,8 @@
+from django.contrib.auth.models import AnonymousUser
+from django.test.client import RequestFactory
+
 from mock import Mock
 from nose.tools import eq_
-from test_utils import RequestFactory
-
-from django.contrib.auth.models import AnonymousUser
 
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
@@ -12,9 +12,10 @@ from ..urls import SwitchToDRF
 
 
 class TestDRFSwitch(TestCase):
-    fixtures = ['base/addon_3615',]
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestDRFSwitch, self).setUp()
         self.factory = RequestFactory()
         self.user = UserProfile.objects.get(email='del@icio.us')
 
@@ -34,10 +35,13 @@ class TestDRFSwitch(TestCase):
     def test_responses_with_handler(self):
         view = SwitchToDRF('User', with_handler=True)
         request = self.factory.get(reverse('api.language', args=['2']))
+
         class App():
             id = 1
+
             def __str__(self):
                 return str(self.id)
+
         request.APP = App()
         request.user = AnonymousUser()
         request.amo_user = self.user

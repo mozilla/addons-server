@@ -12,7 +12,6 @@ import amo.tests
 from addons.models import Addon
 from amo.urlresolvers import reverse
 from stats.models import Contribution
-from users.models import UserProfile
 
 
 URL_ENCODED = 'application/x-www-form-urlencoded'
@@ -61,6 +60,7 @@ sample_contribution = {
 class PaypalTest(amo.tests.TestCase):
 
     def setUp(self):
+        super(PaypalTest, self).setUp()
         self.url = reverse('amo.paypal')
         self.item = 1234567890
         self.client = Client()
@@ -145,8 +145,8 @@ class TestPaypal(PaypalTest):
     def test_duplicate_complete(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
         add = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        con = Contribution.objects.create(addon_id=add.pk,
-                         transaction_id=sample_contribution['tracking_id'])
+        Contribution.objects.create(
+            addon_id=add.pk, transaction_id=sample_contribution['tracking_id'])
 
         response = self.client.post(self.url, sample_contribution)
         eq_(response.status_code, 200)

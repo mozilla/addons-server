@@ -11,7 +11,8 @@ from addons.models import Addon
 from files.utils import make_xpi
 from zadmin import tasks
 
-def RequestMock(response='', headers={}):
+
+def RequestMock(response='', headers=None):
     """Mocks the request objects of urllib2 and requests modules."""
     res = mock.Mock()
 
@@ -27,7 +28,7 @@ def RequestMock(response='', headers={}):
     res.readlines.side_effect = lines
     res.iter_lines.side_effect = lambda: lines().__iter__()
 
-    res.headers = headers
+    res.headers = headers or {}
     res.headers['content-length'] = len(response)
 
     return res
@@ -65,6 +66,7 @@ class TestLangpackFetcher(amo.tests.TestCase):
     LISTING = 'pretend-this-is-a-sha256-sum  win32/xpi/de-DE.xpi\n'
 
     def setUp(self):
+        super(TestLangpackFetcher, self).setUp()
         request_patch = mock.patch('zadmin.tasks.requests.get')
         self.mock_request = request_patch.start()
         self.addCleanup(request_patch.stop)

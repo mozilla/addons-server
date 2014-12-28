@@ -1,4 +1,5 @@
 """Tests for the activitylog."""
+import json
 from datetime import datetime
 
 from nose.tools import eq_
@@ -11,6 +12,7 @@ from users.models import UserProfile
 
 class LogTest(amo.tests.TestCase):
     def setUp(self):
+        super(LogTest, self).setUp()
         u = UserProfile.objects.create(username='foo')
         amo.set_user(u)
 
@@ -20,12 +22,12 @@ class LogTest(amo.tests.TestCase):
         we put in.
         """
         a = Addon.objects.create(name='kumar is awesome',
-                                type=amo.ADDON_EXTENSION)
+                                 type=amo.ADDON_EXTENSION)
         magic = dict(title='no', body='way!')
         al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
 
         eq_(al.details, magic)
-        eq_(al._details, '{"body": "way!", "title": "no"}')
+        eq_(al._details, json.dumps(magic))
 
     def test_created(self):
         """

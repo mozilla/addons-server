@@ -9,8 +9,7 @@ from django.db.models import Q
 from django.test.utils import override_settings
 
 import mock
-from nose import SkipTest
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 
@@ -147,7 +146,8 @@ class TestEditBasic(TestEdit):
 
         # Now make sure we don't have escaped content in the rendered form.
         form = AddonFormBasic(instance=self.get_addon(), request=object())
-        eq_(pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html().strip(),
+        eq_(pq('<body>%s</body>' % form['summary'])(
+            '[lang="en-us"]').html().strip(),
             '<b>oh my</b>')
 
     def test_edit_as_developer(self):
@@ -158,8 +158,8 @@ class TestEditBasic(TestEdit):
         eq_(r.status_code, 403)
 
         devuser = UserProfile.objects.get(pk=999)
-        self.get_addon().addonuser_set.create(user=devuser,
-            role=amo.AUTHOR_ROLE_DEV)
+        self.get_addon().addonuser_set.create(
+            user=devuser, role=amo.AUTHOR_ROLE_DEV)
         r = self.client.post(self.basic_edit_url, data)
 
         eq_(r.status_code, 200)
@@ -189,7 +189,8 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'slug',
+        self.assertFormError(
+            r, 'form', 'slug',
             'This slug is already in use. Please choose another.')
 
     def test_edit_add_tag(self):
@@ -206,8 +207,8 @@ class TestEditBasic(TestEdit):
              .get(action=amo.LOG.ADD_TAG.id)).to_string(),
             '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
             '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
-        eq_(ActivityLog.objects.filter(action=amo.LOG.ADD_TAG.id).count(),
-                                        count + 1)
+        eq_(ActivityLog.objects.filter(
+            action=amo.LOG.ADD_TAG.id).count(), count + 1)
 
     def test_edit_blacklisted_tag(self):
         Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
@@ -273,8 +274,9 @@ class TestEditBasic(TestEdit):
 
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'tags', 'You have %d too many tags.' %
-                                                 (len(tags) - amo.MAX_TAGS))
+        self.assertFormError(
+            r, 'form', 'tags',
+            'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS))
 
     def test_edit_tag_empty_after_slug(self):
         start = Tag.objects.all().count()
@@ -300,14 +302,14 @@ class TestEditBasic(TestEdit):
         eq_(sorted(addon_cats), [22, 23])
 
     def _feature_addon(self, addon_id=3615):
-        c = CollectionAddon.objects.create(addon_id=addon_id,
-            collection=Collection.objects.create())
+        c = CollectionAddon.objects.create(
+            addon_id=addon_id, collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c.collection,
                                           application=amo.FIREFOX.id)
+        cache.clear()
 
-    def test_edit_categories_add_creatured(self):
-        raise SkipTest()
-        """Ensure that categories cannot be changed for creatured add-ons."""
+    def test_edit_categories_add_featured(self):
+        """Ensure that categories cannot be changed for featured add-ons."""
         self._feature_addon()
 
         self.cat_initial['categories'] = [22, 23]
@@ -375,7 +377,7 @@ class TestEditBasic(TestEdit):
     def test_edit_categories_remove(self):
         c = Category.objects.get(id=23)
         AddonCategory(addon=self.addon, category=c).save()
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
+        eq_([cat.id for cat in self.get_addon().all_categories], [22, 23])
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.basic_edit_url, self.get_dict())
@@ -592,7 +594,7 @@ class TestEditMedia(TestEdit):
         eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.STATIC_ROOT
+        img = "static/img/notifications/error.png"
         src_image = open(img, 'rb')
 
         data = dict(upload_image=src_image)
@@ -627,7 +629,7 @@ class TestEditMedia(TestEdit):
         eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def check_image_type(self, url, msg):
-        img = '%s/js/zamboni/devhub.js' % settings.STATIC_ROOT
+        img = 'static/js/zamboni/devhub.js'
         src_image = open(img, 'rb')
 
         res = self.client.post(url, {'upload_image': src_image})
@@ -849,8 +851,7 @@ class TestEditDetails(TestEdit):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#edit-addon-details span[lang]').html(),
-                "This<br/><b>IS</b>&lt;script&gt;alert('awesome')"
-                '&lt;/script&gt;')
+            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
 
     def test_edit_homepage_optional(self):
         data = dict(description='New description with <em>html</em>!',
@@ -868,30 +869,37 @@ class TestEditDetails(TestEdit):
         description, homepage = map(unicode, [self.addon.description,
                                               self.addon.homepage])
         # TODO: description should get fixed up with the form.
-        fields = ['description', 'name', 'summary']
         error = ('Before changing your default locale you must have a name, '
                  'summary, and description in that locale. '
-                 'You are missing %s.')
-        missing = lambda f: error % ', '.join(map(repr, f))
+                 'You are missing ')
 
         d = dict(description=description, homepage=homepage,
                  default_locale='fr')
         r = self.client.post(self.details_edit_url, d)
-        self.assertFormError(r, 'form', None, missing(fields))
+        # We can't use assertFormError here, because the missing fields are
+        # stored in a dict, which isn't ordered.
+        form_error = r.context['form'].non_field_errors()[0]
+        ok_(form_error.startswith(error))
+        ok_("'description'" in form_error)
+        ok_("'name'" in form_error)
+        ok_("'summary'" in form_error)
 
         # Now we have a name.
         self.addon.name = {'fr': 'fr name'}
         self.addon.save()
-        fields.remove('name')
         r = self.client.post(self.details_edit_url, d)
-        self.assertFormError(r, 'form', None, missing(fields))
+        form_error = r.context['form'].non_field_errors()[0]
+        ok_(form_error.startswith(error))
+        ok_("'description'" in form_error)
+        ok_("'summary'" in form_error)
 
         # Now we have a summary.
         self.addon.summary = {'fr': 'fr summary'}
         self.addon.save()
-        fields.remove('summary')
         r = self.client.post(self.details_edit_url, d)
-        self.assertFormError(r, 'form', None, missing(fields))
+        form_error = r.context['form'].non_field_errors()[0]
+        ok_(form_error.startswith(error))
+        ok_("'description'" in form_error)
 
         # Now we're sending an fr description with the form.
         d['description_fr'] = 'fr description'
@@ -990,7 +998,8 @@ class TestEditTechnical(TestEdit):
         data = dict(developer_comments='Test comment!',
                     external_software='on',
                     site_specific='on',
-                    view_source='on')
+                    view_source='on',
+                    whiteboard='Whiteboard info.')
 
         r = self.client.post(self.technical_edit_url, self.formset(data))
         eq_(r.context['form'].errors, {})
@@ -998,6 +1007,8 @@ class TestEditTechnical(TestEdit):
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
+                eq_(unicode(getattr(addon, k)), unicode(data[k]))
+            elif k == 'whiteboard':
                 eq_(unicode(getattr(addon, k)), unicode(data[k]))
             else:
                 eq_(getattr(addon, k), True if data[k] == 'on' else False)
@@ -1236,7 +1247,7 @@ class TestAdmin(amo.tests.TestCase):
         eq_(r.status_code, 200)
         self.assertNotContains(r, 'Admin Settings')
         assert 'admin_form' not in r.context, (
-                'AdminForm not expected in context.')
+            'AdminForm not expected in context.')
 
     def test_post_as_admin(self):
         self.login_admin()
@@ -1255,6 +1266,7 @@ class TestThemeEdit(amo.tests.TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):
+        super(TestThemeEdit, self).setUp()
         self.addon = addon_factory(type=amo.ADDON_PERSONA)
         self.user = UserProfile.objects.get()
         self.addon.addonuser_set.create(user=self.user)

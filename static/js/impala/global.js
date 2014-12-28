@@ -149,12 +149,6 @@ function initBanners(delegate) {
         $delegate.find('#acr-pitch').show();
     }
 
-    // Show the pitch for App Runtime Firefox extension if not installed.
-    if (z.browser.firefox && !z.visitor.get('seen_appruntime_pitch') &&
-        !z.capabilities.app_runtime) {
-        $delegate.find('#appruntime-pitch').show();
-    }
-
     // Allow dismissal of site-balloons.
     $delegate.delegate('.site-balloon .close, .site-tip .close', 'click', _pd(function() {
         var $parent = $(this).closest('.site-balloon, .site-tip');

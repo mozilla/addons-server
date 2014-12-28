@@ -46,15 +46,13 @@
   </ul>
 </div>
 
-{% if not webapp %}
-  <div id="editor-pitch" class="action-needed">
-    <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
-    <p>
-      {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
-      <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
-        {{ _('Learn More') }}</a>
-    </p>
-  </div>
-{% endif %}
+<div id="editor-pitch" class="action-needed">
+<h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
+<p>
+  {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
+  <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
+    {{ _('Learn More') }}</a>
+</p>
+</div>
 
 {% endblock %}

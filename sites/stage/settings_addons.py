@@ -1,7 +1,7 @@
 """private_addons will be populated from puppet and placed in this directory"""
 
-from lib.settings_base import *
-from settings_base import *
+from lib.settings_base import *  # noqa
+from settings_base import *  # noqa
 
 import private_addons
 
@@ -10,8 +10,10 @@ SERVER_EMAIL = 'zstage@addons.mozilla.org'
 
 SITE_URL = 'https://addons.allizom.org'
 SERVICES_URL = SITE_URL
-STATIC_URL = getattr(private_addons, 'STATIC_URL', 'https://addons-stage-cdn.allizom.org/static/')
-MEDIA_URL = getattr(private_addons, 'MEDIA_URL', 'https://addons-stage-cdn.allizom.org/user-media/')
+STATIC_URL = getattr(private_addons, 'STATIC_URL',
+                     'https://addons-stage-cdn.allizom.org/static/')
+MEDIA_URL = getattr(private_addons, 'MEDIA_URL',
+                    'https://addons-stage-cdn.allizom.org/user-media/')
 
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
 CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
@@ -27,10 +29,15 @@ GRAPHITE_PREFIX = STATSD_PREFIX
 CEF_PRODUCT = STATSD_PREFIX
 
 
-
 SYSLOG_TAG = "http_app_addons_stage"
 SYSLOG_TAG2 = "http_app_addons_stage_timer"
 SYSLOG_CSP = "http_app_addons_stage_csp"
+
+# Signing
+SIGNING_SERVER_ACTIVE = True
+SIGNING_REVIEWER_SERVER_ACTIVE = True
+SIGNING_SERVER = private_addons.SIGNING_SERVER
+SIGNING_REVIEWER_SERVER = private_addons.SIGNING_REVIEWER_SERVER
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
@@ -45,10 +52,9 @@ PAYPAL_EMBEDDED_AUTH = {
     'PASSWORD': private_addons.PAYPAL_EMBEDDED_AUTH_PASSWORD,
     'SIGNATURE': private_addons.PAYPAL_EMBEDDED_AUTH_SIGNATURE,
 }
-PAYPAL_CGI_AUTH = { 'USER': private_addons.PAYPAL_CGI_AUTH_USER,
-                    'PASSWORD': private_addons.PAYPAL_CGI_AUTH_PASSWORD,
-                    'SIGNATURE': private_addons.PAYPAL_CGI_AUTH_SIGNATURE,
-}
+PAYPAL_CGI_AUTH = {'USER': private_addons.PAYPAL_CGI_AUTH_USER,
+                   'PASSWORD': private_addons.PAYPAL_CGI_AUTH_PASSWORD,
+                   'SIGNATURE': private_addons.PAYPAL_CGI_AUTH_SIGNATURE}
 
 PAYPAL_CHAINS = (
     (30, private_addons.PAYPAL_CHAINS_EMAIL),

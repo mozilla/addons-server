@@ -9,6 +9,7 @@ import commonware.log
 
 log = commonware.log.getLogger('z.users')
 
+
 class Group(amo.models.ModelBase):
 
     name = models.CharField(max_length=255, default='')

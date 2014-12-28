@@ -1,7 +1,5 @@
 import json
 
-from django.conf import settings
-
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -15,6 +13,7 @@ class TestSubmitPersona(amo.tests.TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):
+        super(TestSubmitPersona, self).setUp()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.url = reverse('devhub.themes.submit')
@@ -43,7 +42,7 @@ class TestSubmitPersona(amo.tests.TestCase):
                                    'and %s pixels tall.' % (w, h)])
 
     def test_img_wrongtype(self):
-        img = open('%s/js/impala/global.js' % settings.STATIC_ROOT, 'rb')
+        img = open('static/js/impala/global.js', 'rb')
         for url in self.get_img_urls():
             r_ajax = self.client.post(url, {'upload_image': img})
             r_json = json.loads(r_ajax.content)

@@ -175,7 +175,7 @@ class ActivityLogManager(amo.models.ManagerBase):
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)
-                    .values_list('activity_log', flat=True))
+                .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
     def for_developer(self):

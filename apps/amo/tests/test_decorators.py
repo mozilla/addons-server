@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 import mock
-from nose import SkipTest
+import pytest
 from nose.tools import eq_
 
 import amo.tests
@@ -13,6 +13,9 @@ from amo import decorators, get_user, set_user
 from amo.urlresolvers import reverse
 
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_post_required():
@@ -67,19 +70,6 @@ def test_json_view_response_status():
     eq_(response.status_code, 202)
 
 
-@mock.patch('django.db.transaction.commit_on_success')
-def test_write(commit_on_success):
-    # Until we can figure out celery.delay issues.
-    raise SkipTest
-
-    @decorators.write
-    def some_func():
-        pass
-    assert not commit_on_success.called
-    some_func()
-    assert commit_on_success.called
-
-
 class TestTaskUser(amo.tests.TestCase):
     fixtures = ['base/users']
 
@@ -94,9 +84,10 @@ class TestTaskUser(amo.tests.TestCase):
         eq_(get_user().pk, 999)
 
 
-class TestLoginRequired(object):
+class TestLoginRequired(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestLoginRequired, self).setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = mock.Mock()
@@ -159,6 +150,7 @@ class TestSetModifiedOn(amo.tests.TestCase):
 class TestPermissionRequired(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestPermissionRequired, self).setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
         self.request = mock.Mock()

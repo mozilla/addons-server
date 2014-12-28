@@ -12,9 +12,8 @@ from django.core.files import temp
 import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
-from nose import SkipTest
 from nose.plugins.attrib import attr
-from nose.tools import assert_not_equal, assert_raises, eq_
+from nose.tools import assert_not_equal, assert_raises, eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
@@ -48,6 +47,7 @@ class HubTest(amo.tests.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
+        super(HubTest, self).setUp()
         self.url = reverse('devhub.index')
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
@@ -244,11 +244,30 @@ class TestDashboard(HubTest):
         eq_(d.remove('strong').text(),
             strip_whitespace(datetime_filter(addon.last_updated)))
 
+    def test_no_sort_updated_filter_for_themes(self):
+        # Create a theme.
+        addon = addon_factory(type=amo.ADDON_PERSONA)
+        addon.addonuser_set.create(user=self.user_profile)
+
+        # There's no "updated" sort filter, so order by the default: "Name".
+        response = self.client.get(self.themes_url + '?sort=updated')
+        doc = pq(response.content)
+        eq_(doc('#sorter li.selected').text(), 'Name')
+        sorts = doc('#sorter li a.opt')
+        assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
+
+        # There's no "last updated" for themes, so always display "created".
+        eq_(doc('.item-details .date-updated'), [])  # No "updated" in details.
+        d = doc('.item-details .date-created')
+        eq_(d.remove('strong').text(),
+            strip_whitespace(datetime_filter(addon.created)))
+
 
 class TestUpdateCompatibility(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']
 
     def setUp(self):
+        super(TestUpdateCompatibility, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.addons')
 
@@ -258,6 +277,7 @@ class TestUpdateCompatibility(amo.tests.TestCase):
 
     def tearDown(self):
         amo.FIREFOX.latest_version, amo.MOBILE.latest_version = self._versions
+        super(TestUpdateCompatibility, self).tearDown()
 
     def test_no_compat(self):
         self.client.logout()
@@ -314,6 +334,7 @@ class TestDevRequired(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestDevRequired, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.get_url = self.addon.get_dev_url('payments')
         self.post_url = self.addon.get_dev_url('payments.disable')
@@ -358,6 +379,7 @@ class TestVersionStats(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestVersionStats, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 
@@ -381,6 +403,7 @@ class TestEditPayments(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestEditPayments, self).setUp()
         self.addon = self.get_addon()
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
@@ -589,6 +612,7 @@ class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestDisablePayments, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
@@ -616,8 +640,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        raise SkipTest
-
+        super(TestPaymentsProfile, self).setUp()
         self.addon = a = self.get_addon()
         self.url = self.addon.get_dev_url('payments')
         # Make sure all the payment/profile data is clear.
@@ -701,6 +724,7 @@ class TestDelete(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestDelete, self).setUp()
         self.get_addon = lambda: Addon.objects.filter(id=3615)
         assert self.client.login(username='del@icio.us', password='password')
         self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
@@ -729,6 +753,7 @@ class TestHome(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestHome, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.index')
 
@@ -864,6 +889,7 @@ class TestProfileBase(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestProfileBase, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('profile')
@@ -919,7 +945,6 @@ class TestProfileStatusBar(TestProfileBase):
         eq_(doc('#status-bar button').text(), 'Remove Both')
 
     def test_remove_profile(self):
-        raise SkipTest
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.save()
         self.client.post(self.remove_url)
@@ -939,7 +964,6 @@ class TestProfileStatusBar(TestProfileBase):
         eq_(addon.the_future, None)
 
     def test_remove_both(self):
-        raise SkipTest
         self.addon.the_reason = self.addon.the_future = '...'
         self.addon.wants_contributions = True
         self.addon.paypal_id = 'xxx'
@@ -1022,6 +1046,7 @@ class TestSubmitBase(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
+        super(TestSubmitBase, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.addon = self.get_addon()
 
@@ -1065,6 +1090,7 @@ class TestSubmitStep2(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestSubmitStep2, self).setUp()
         self.client.login(username='regular@mozilla.com', password='password')
 
     def test_step_2_with_cookie(self):
@@ -1219,7 +1245,7 @@ class TestSubmitStep3(TestSubmitBase):
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
-        category_ids_new = [c.id for c in self.get_addon().all_categories]
+        category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         eq_(category_ids_new, [22])
 
     def test_check_version(self):
@@ -1301,12 +1327,9 @@ class TestSubmitStep4(TestSubmitBase):
             eq_(unicode(getattr(addon, k)), data[k])
 
     def test_edit_media_uploadedicon(self):
-        img = get_image_path('mozilla.png')
-        src_image = open(img, 'rb')
-
-        data = dict(upload_image=src_image)
-
-        response = self.client.post(self.icon_upload, data)
+        with open(get_image_path('mozilla.png'), 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            response = self.client.post(self.icon_upload, data)
         response_json = json.loads(response.content)
         addon = self.get_addon()
 
@@ -1335,12 +1358,9 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(Image.open(storage.open(dest)).size, (32, 12))
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "%s/img/notifications/error.png" % settings.STATIC_ROOT
-        src_image = open(img, 'rb')
-
-        data = dict(upload_image=src_image)
-
-        response = self.client.post(self.icon_upload, data)
+        with open('static/img/notifications/error.png', 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            response = self.client.post(self.icon_upload, data)
         response_json = json.loads(response.content)
         addon = self.get_addon()
 
@@ -1368,29 +1388,30 @@ class TestSubmitStep4(TestSubmitBase):
         eq_(Image.open(storage.open(dest)).size, (48, 48))
 
     def test_client_lied(self):
-        filehandle = open(get_image_path('non-animated.gif'), 'rb')
-
-        data = {'upload_image': filehandle}
-
-        res = self.client.post(self.preview_upload, data)
+        with open(get_image_path('non-animated.gif'), 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            res = self.client.post(self.preview_upload, data)
         response_json = json.loads(res.content)
-
         eq_(response_json['errors'][0], u'Images must be either PNG or JPG.')
 
-    def test_icon_animated(self):
-        filehandle = open(get_image_path('animated.png'), 'rb')
-        data = {'upload_image': filehandle}
+    def test_client_error_triggers_tmp_image_cleanup(self):
+        with open(get_image_path('non-animated.gif'), 'rb') as filehandle:
+            data = {'upload_image': filehandle, 'upload_type': 'preview'}
+            self.client.post(self.preview_upload, data)
+        assert not os.listdir(os.path.join(settings.TMP_PATH, 'preview'))
 
-        res = self.client.post(self.preview_upload, data)
+    def test_image_animated(self):
+        with open(get_image_path('animated.png'), 'rb') as filehandle:
+            data = {'upload_image': filehandle}
+            res = self.client.post(self.preview_upload, data)
         response_json = json.loads(res.content)
-
         eq_(response_json['errors'][0], u'Images cannot be animated.')
 
     def test_icon_non_animated(self):
-        filehandle = open(get_image_path('non-animated.png'), 'rb')
-        data = {'icon_type': 'image/png', 'icon_upload': filehandle}
-        data_formset = self.formset_media(**data)
-        res = self.client.post(self.url, data_formset)
+        with open(get_image_path('non-animated.png'), 'rb') as filehandle:
+            data = {'icon_type': 'image/png', 'icon_upload': filehandle}
+            data_formset = self.formset_media(**data)
+            res = self.client.post(self.url, data_formset)
         eq_(res.status_code, 302)
         eq_(self.get_step().step, 5)
 
@@ -1520,8 +1541,8 @@ class TestSubmitStep7(TestSubmitBase):
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
             'full_review': False,
         }
-        send_welcome_email_mock.assert_called_with(self.addon.id,
-            ['del@icio.us'], context)
+        send_welcome_email_mock.assert_called_with(
+            self.addon.id, ['del@icio.us'], context)
 
     @mock.patch('devhub.tasks.send_welcome_email.delay')
     def test_no_welcome_email(self, send_welcome_email_mock):
@@ -1665,6 +1686,7 @@ class TestSubmitSteps(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestSubmitSteps, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
 
     def assert_linked(self, doc, numbers):
@@ -2325,11 +2347,12 @@ class TestUploadErrors(UploadTest):
 class AddVersionTest(UploadTest):
 
     def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
-             override_validation=False, expected_status=200, source=None):
+             override_validation=False, expected_status=200, source=None,
+             beta=False):
         d = dict(upload=self.upload.pk, source=source,
                  desktop_platforms=[p.id for p in desktop_platforms],
                  mobile_platforms=[p.id for p in mobile_platforms],
-                 admin_override_validation=override_validation)
+                 admin_override_validation=override_validation, beta=beta)
         r = self.client.post(self.url, d)
         eq_(r.status_code, expected_status)
         return r
@@ -2345,6 +2368,25 @@ class TestAddVersion(AddVersionTest):
         self.version.update(version='0.1')
         r = self.post(expected_status=400)
         assert_json_error(r, None, 'Version 0.1 already exists')
+
+    def test_same_version_if_previous_is_rejected(self):
+        # We can have several times the same version number, if the previous
+        # versions have been disabled/rejected.
+        self.version.update(version='0.1', approvalnotes='approval notes')
+        self.version.releasenotes = 'release notes'
+        self.version.save()
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.post(expected_status=200)
+
+        self.version.reload()
+        version = Version.objects.latest()
+        ok_(version.pk != self.version.pk)
+        eq_(version.version, self.version.version)
+
+        # We reuse the release and approval notes from the last rejected
+        # version with the same version number.
+        eq_(version.releasenotes, self.version.releasenotes)
+        eq_(version.approvalnotes, self.version.approvalnotes)
 
     def test_success(self):
         r = self.post()
@@ -2389,6 +2431,11 @@ class TestAddVersion(AddVersionTest):
         response = self.post(source=source, expected_status=400)
         assert 'source' in json.loads(response.content)
 
+    def test_force_beta(self):
+        self.post(beta=True)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status == amo.STATUS_BETA
+
 
 class TestAddBetaVersion(AddVersionTest):
     fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
@@ -2405,10 +2452,10 @@ class TestAddBetaVersion(AddVersionTest):
         url = reverse('devhub.versions.add_file',
                       args=[self.addon.slug, version.id])
         return self.client.post(url, dict(upload=self.upload.pk,
-                                          platform=platform.id))
+                                          platform=platform.id, beta=True))
 
     def test_add_multi_file_beta(self):
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC])
+        r = self.post(desktop_platforms=[amo.PLATFORM_MAC], beta=True)
 
         version = self.addon.versions.all().order_by('-id')[0]
 
@@ -2423,6 +2470,11 @@ class TestAddBetaVersion(AddVersionTest):
         # Make sure that the additional files are beta
         fle = File.objects.all().order_by('-id')[0]
         eq_(fle.status, amo.STATUS_BETA)
+
+    def test_force_not_beta(self):
+        self.post(beta=False)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status == amo.STATUS_PUBLIC
 
 
 class TestAddVersionValidation(AddVersionTest):
@@ -2573,6 +2625,7 @@ class TestDeleteAddon(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestDeleteAddon, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_dev_url('delete')
         self.client.login(username='admin@mozilla.com', password='password')
@@ -2595,6 +2648,7 @@ class TestRequestReview(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestRequestReview, self).setUp()
         self.addon = Addon.objects.create(type=1, name='xxx')
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
@@ -2698,6 +2752,7 @@ class TestRedirects(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestRedirects, self).setUp()
         self.base = reverse('devhub.index')
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
@@ -2755,6 +2810,7 @@ class TestRemoveLocale(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestRemoveLocale, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.addons.remove-locale', args=['a3615'])
         assert self.client.login(username='del@icio.us', password='password')
@@ -2808,38 +2864,21 @@ class TestSearch(amo.tests.TestCase):
         self.assertContains(r, '<h1>Search Results</h1>')
 
 
-class TestXssOnAddonName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
-        self.addon.name = self.name
-        self.addon.save()
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_devhub_feed_page(self):
         url = reverse('devhub.feed', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_devhub_addon_edit_page(self):
         url = reverse('devhub.addons.edit', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_edit_page(self):
         url = reverse('devhub.versions.edit', args=[self.addon.slug,
                       self.addon.latest_version.id])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_list_page(self):
-        url = reverse('devhub.addons.versions', args=[self.addon.slug, ])
-        self.client.login(username='del@icio.us', password='password')
+        url = reverse('devhub.addons.versions', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)

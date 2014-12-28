@@ -93,7 +93,7 @@ var methods = {
                     oldVal = $elem.attr(attr),
                     newVal = oldVal.replace(options.prefix, newNum);
                 $elem.attr(attr, newVal);
-            })
+            });
         });
 
         // Insert new row

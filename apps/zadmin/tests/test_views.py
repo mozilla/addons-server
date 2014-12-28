@@ -35,7 +35,8 @@ from versions.models import ApplicationsVersions, Version
 from zadmin import forms, tasks
 from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
-from zadmin.views import updated_versions, find_files
+from zadmin.tasks import updated_versions
+from zadmin.views import find_files
 
 
 no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
@@ -47,6 +48,7 @@ class TestSiteEvents(amo.tests.TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
 
     def setUp(self):
+        super(TestSiteEvents, self).setUp()
         self.client.login(username='admin@mozilla.com', password='password')
 
     def test_get(self):
@@ -146,6 +148,7 @@ class BulkValidationTest(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/appversion', 'base/users']
 
     def setUp(self):
+        super(BulkValidationTest, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.addon = Addon.objects.get(pk=3615)
@@ -166,6 +169,7 @@ class BulkValidationTest(amo.tests.TestCase):
 
     def tearDown(self):
         settings.TASK_USER_ID = self.old_task_user
+        super(BulkValidationTest, self).tearDown()
 
     def appversion(self, version, application=amo.FIREFOX.id):
         return AppVersion.objects.get(application=application,
@@ -265,7 +269,7 @@ class TestBulkValidation(BulkValidationTest):
             self.assertNoFormErrors(r)
             self.assertRedirects(r, reverse('zadmin.validation'))
             assert not bulk_validate_file.delay.called, (
-                            'Addon with status %s should be ignored' % status)
+                'Addon with status %s should be ignored' % status)
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_ignore_lang_packs(self, bulk_validate_file):
@@ -280,7 +284,7 @@ class TestBulkValidation(BulkValidationTest):
         self.assertNoFormErrors(r)
         self.assertRedirects(r, reverse('zadmin.validation'))
         assert not bulk_validate_file.delay.called, (
-                        'Lang pack addons should be ignored')
+            'Lang pack addons should be ignored')
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_ignore_themes(self, bulk_validate_file):
@@ -292,7 +296,7 @@ class TestBulkValidation(BulkValidationTest):
                           'target_version': target_ver,
                           'finish_email': 'fliggy@mozilla.com'})
         assert not bulk_validate_file.delay.called, (
-                        'Theme addons should be ignored')
+            'Theme addons should be ignored')
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
     def test_validate_all_non_disabled_addons(self, bulk_validate_file):
@@ -329,7 +333,7 @@ class TestBulkValidation(BulkValidationTest):
 
     def test_application_versions_json(self):
         r = self.client.post(reverse('zadmin.application_versions_json'),
-                             {'application_id': amo.FIREFOX.id})
+                             {'application': amo.FIREFOX.id})
         eq_(r.status_code, 200)
         data = json.loads(r.content)
         empty = True
@@ -358,7 +362,7 @@ class TestBulkValidation(BulkValidationTest):
         job.update(completed=datetime.now())
         data = get_data()
         assert data['completed_timestamp'] != '', (
-                            'Unexpected: %s' % data['completed_timestamp'])
+            'Unexpected: %s' % data['completed_timestamp'])
 
 
 class TestBulkUpdate(BulkValidationTest):
@@ -509,11 +513,11 @@ class TestBulkUpdate(BulkValidationTest):
         log.info = mock.Mock()
         self.create_result(self.job, self.create_file(self.version))
         self.client.post(self.update_url, self.data)
-        eq_(log.info.call_args_list[-4][0][0],
+        eq_(log.info.call_args_list[-8][0][0],
             '[1@None] bulk update stats for job %s: '
             '{bumped: 1, is_dry_run: 0, processed: 1}'
             % self.job.pk)
-        eq_(log.info.call_args_list[-1][0][0],
+        eq_(log.info.call_args_list[-2][0][0],
             '[1@None] bulk email stats for job %s: '
             '{author_emailed: 1, is_dry_run: 0, processed: 1}'
             % self.job.pk)
@@ -533,7 +537,7 @@ class TestBulkUpdate(BulkValidationTest):
                           'subject': '..'})
         body = mail.outbox[0].body
         assert all((reverse('devhub.bulk_compat_result',
-                           args=(self.addon.slug, result.pk))
+                            args=(self.addon.slug, result.pk))
                     in body)
                    for result in results)
 
@@ -753,7 +757,7 @@ class TestBulkValidationTask(BulkValidationTest):
         res = ValidationResult.objects.get()
         err = res.task_error.strip()
         assert err.endswith('RuntimeError: validation error'), (
-                                                    'Unexpected: %s' % err)
+            'Unexpected: %s' % err)
         self.assertCloseToNow(res.completed)
         eq_(res.validation_job.stats['total'], 1)
         eq_(res.validation_job.stats['errors'], 1)
@@ -798,42 +802,34 @@ class TestBulkValidationTask(BulkValidationTest):
             "notices": 1,
             "ending_tier": 5,
             "messages": [
-            {
-                "description": "A global function was called ...",
-                "tier": 3,
-                "message": "Global called in dangerous manner",
-                "uid": "de93a48831454e0b9d965642f6d6bf8f",
-                "id": [],
-                "compatibility_type": None,
-                "for_appversions": None,
-                "type": "warning",
-            },
-            {
-                "description": ("...no longer indicate the language "
-                                "of Firefox's UI..."),
-                "tier": 5,
-                "message": "navigator.language may not behave as expected",
-                "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
-                "id": [],
-                "compatibility_type": "error",
-                "for_appversions": {
-                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre",
-                                                               "5.0a2",
-                                                               "6.0a1"]
-                },
-                "type": "warning"
-            }],
+                {"description": "A global function was called ...",
+                 "tier": 3,
+                 "message": "Global called in dangerous manner",
+                 "uid": "de93a48831454e0b9d965642f6d6bf8f",
+                 "id": [],
+                 "compatibility_type": None,
+                 "for_appversions": None,
+                 "type": "warning"},
+                {"description": ("...no longer indicate the language "
+                                 "of Firefox's UI..."),
+                 "tier": 5,
+                 "message": "navigator.language may not behave as expected",
+                 "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
+                 "id": [],
+                 "compatibility_type": "error",
+                 "for_appversions": {
+                     "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": ["4.2a1pre",
+                                                                "5.0a2",
+                                                                "6.0a1"]},
+                 "type": "warning"}],
             "compatibility_summary": {
                 "notices": 1,
                 "errors": 6,
-                "warnings": 0
-            },
+                "warnings": 0},
             "metadata": {
                 "version": "1.0",
                 "name": "FastestFox",
-                "id": "<id>"
-            }
-        }
+                "id": "<id>"}}
         run_validator.return_value = json.dumps(data)
         res = self.create_result(self.create_job(), self.create_file(), **{})
         tasks.bulk_validate_file(res.id)
@@ -1057,28 +1053,22 @@ class TestTallyValidationErrors(BulkValidationTest):
             "warnings": 1,
             "notices": 0,
             "messages": [
-            {
-                "message": "message one",
-                "description": ["message one long"],
-                "id": ["path", "to", "test_one"],
-                "uid": "de93a48831454e0b9d965642f6d6bf8f",
-                "type": "error",
-            },
-            {
-                "message": "message two",
-                "description": "message two long",
-                "id": ["path", "to", "test_two"],
-                "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
-                "compatibility_type": "error",
-                "type": "warning"
-            }],
+                {"message": "message one",
+                 "description": ["message one long"],
+                 "id": ["path", "to", "test_one"],
+                 "uid": "de93a48831454e0b9d965642f6d6bf8f",
+                 "type": "error"},
+                {"message": "message two",
+                 "description": "message two long",
+                 "id": ["path", "to", "test_two"],
+                 "uid": "f44c1930887c4d9e8bd2403d4fe0253a",
+                 "compatibility_type": "error",
+                 "type": "warning"}],
             "metadata": {},
             "compatibility_summary": {
                 "errors": 1,
                 "warnings": 1,
-                "notices": 0
-            }
-        }
+                "notices": 0}}
 
     def csv(self, job_id):
         r = self.client.get(reverse('zadmin.validation_tally_csv',
@@ -1132,6 +1122,7 @@ class TestEmailPreview(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestEmailPreview, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         addon = Addon.objects.get(pk=3615)
@@ -1154,6 +1145,7 @@ class TestMonthlyPick(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestMonthlyPick, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('zadmin.monthly_pick')
@@ -1228,6 +1220,7 @@ class TestFeatures(amo.tests.TestCase):
     fixtures = ['base/users', 'base/collections', 'base/addon_3615.json']
 
     def setUp(self):
+        super(TestFeatures, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('zadmin.features')
@@ -1339,6 +1332,7 @@ class TestOAuth(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestOAuth, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 
@@ -1354,6 +1348,7 @@ class TestLookup(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestLookup, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.user = UserProfile.objects.get(pk=999)
@@ -1405,6 +1400,7 @@ class TestAddonSearch(amo.tests.ESTestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestAddonSearch, self).setUp()
         self.reindex(Addon)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
@@ -1420,6 +1416,7 @@ class TestAddonAdmin(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestAddonAdmin, self).setUp()
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         self.url = reverse('admin:addons_addon_changelist')
@@ -1437,6 +1434,7 @@ class TestAddonManagement(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestAddonManagement, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.url = reverse('zadmin.addon_manage', args=[self.addon.slug])
         self.client.login(username='admin@mozilla.com', password='password')
@@ -1501,6 +1499,7 @@ class TestJetpack(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestJetpack, self).setUp()
         self.url = reverse('zadmin.jetpack')
         self.client.login(username='admin@mozilla.com', password='password')
 
@@ -1556,9 +1555,11 @@ class TestJetpack(amo.tests.TestCase):
     def test_change_range_unknown(self):
         r = self.client.post(self.url, {'minver': '9.0', 'maxver': '99.0'})
         eq_(r.status_code, 200)
-        self.assertFormError(r, 'form', 'minver',
+        self.assertFormError(
+            r, 'form', 'minver',
             'Select a valid choice. 9.0 is not one of the available choices.')
-        self.assertFormError(r, 'form', 'maxver',
+        self.assertFormError(
+            r, 'form', 'maxver',
             'Select a valid choice. 99.0 is not one of the available choices.')
 
     def set_range(self, min_, max_):
@@ -1614,6 +1615,7 @@ class TestCompat(amo.tests.ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestCompat, self).setUp()
         self.url = reverse('zadmin.compat')
         self.client.login(username='admin@mozilla.com', password='password')
         self.app = amo.FIREFOX
@@ -1713,7 +1715,8 @@ class TestCompat(amo.tests.ESTestCase):
 
         # Add an override for this current app version.
         compat = CompatOverride.objects.create(addon=addon, guid=addon.guid)
-        CompatOverrideRange.objects.create(compat=compat,
+        CompatOverrideRange.objects.create(
+            compat=compat,
             app=amo.FIREFOX.id, min_app_version=self.app_version + 'a1',
             max_app_version=self.app_version + '*')
 
@@ -1784,6 +1787,7 @@ class TestMemcache(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestMemcache, self).setUp()
         self.url = reverse('zadmin.memcache')
         cache.set('foo', 'bar')
         self.client.login(username='admin@mozilla.com', password='password')
@@ -1805,12 +1809,14 @@ class TestElastic(amo.tests.ESTestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestElastic, self).setUp()
         self.url = reverse('zadmin.elastic')
         self.client.login(username='admin@mozilla.com', password='password')
 
     def test_login(self):
         self.client.logout()
-        self.assertRedirects(self.client.get(self.url),
+        self.assertRedirects(
+            self.client.get(self.url),
             reverse('users.login') + '?to=/en-US/admin/elastic')
 
 
@@ -1818,6 +1824,7 @@ class TestEmailDevs(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestEmailDevs, self).setUp()
         self.login('admin')
         self.addon = Addon.objects.get(pk=3615)
 

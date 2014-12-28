@@ -7,11 +7,6 @@ z.capabilities = {
     'chromeless': window.locationbar && !window.locationbar.visible,
     'localStorage': false,
     'sessionStorage': false,
-    'webApps': !!(navigator.mozApps && navigator.mozApps.install),
-    'app_runtime': !!(
-        navigator.mozApps &&
-        typeof navigator.mozApps.html5Implementation === 'undefined'
-    ),
     'fileAPI': !!window.FileReader,
     'performance': !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance),
     'webactivities': !!(window.setMessageHandler || window.mozSetMessageHandler)

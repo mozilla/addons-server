@@ -4,11 +4,11 @@
 Testing
 =======
 
-We're using a mix of `Django's Unit Testing`_, :mod:`nose <nose>`, and
-:mod:`Selenium <selenium>` for our automated testing. This gives us a lot of
-power and flexibility to test all aspects of the site.
+We're using a mix of `Django's Unit Testing`_ and `pytest`_ with
+`pytest-django`_, and `Selenium`_ for our automated testing. This gives us a
+lot of power and flexibility to test all aspects of the site.
 
-Selenium tests are maintained in a seperate `Selenium repository`_.
+Selenium tests are maintained in a separate `Selenium repository`_.
 
 Configuration
 -------------
@@ -19,9 +19,18 @@ has full permissions to modify a database with ``test_`` prepended to it. By
 default the database name is ``olympia``, so the test database is
 ``test_olympia``.
 Optionally, in particular if the code you are working on is related to search,
-you'll want to run Elasticsearch tests. For this, you need to set the setting
-``RUN_ES_TESTS=True``. Obviously, you need Elasticsearch to be installed. See
-:ref:`elasticsearch` page for details.
+you'll want to run Elasticsearch tests. Obviously, you need Elasticsearch to be
+installed. See :ref:`elasticsearch` page for details.
+
+If you don't want to run the Elasticsearch tests, you can use the
+``test_no_es`` target in the Makefile::
+
+    make test_no_es
+
+On the contrary, if you only want to run Elasticsearch tests, use the
+``test_es`` target::
+
+    make test_es
 
 
 Running Tests
@@ -29,22 +38,19 @@ Running Tests
 
 To run the whole shebang use::
 
-    python manage.py test
+    py.test
 
-There are a lot of options you can pass to adjust the output.  Read `the docs`_
-for the full set, but some common ones are:
+There are a lot of options you can pass to adjust the output.  Read `pytest`_
+and `pytest-django`_ docs for the full set, but some common ones are:
 
-* ``--noinput`` tells Django not to ask about creating or destroying test
-  databases.
-* ``--logging-clear-handlers`` tells nose that you don't want to see any
-  logging output.  Without this, our debug logging will spew all over your
-  console during test runs.  This can be useful for debugging, but it's not that
-  great most of the time.  See the docs for more stuff you can do with
-  :mod:`nose and logging <nose.plugins.logcapture>`.
-
-Our continuous integration server adds some additional flags for other features
-(for example, coverage statistics).  To see what those commands are check out
-the build script at :src:`scripts/build.sh`.
+* ``-v`` to provide more verbose information about the test run
+* ``-s`` tells pytest to not capture the logging output
+* ``--create-db`` tells pytest-django to recreate the database instead of
+  reusing the one from the previous run
+* ``-x --pdb`` to stop on the first failure, and drop into a python debugger
+* ``--lf`` to re-run the last test failed
+* ``-m test_es`` will only run tests that are marked with the ``test_es`` mark
+* ``-k foobar`` will only run tests that contain ``foobar`` in their name
 
 There are a few useful makefile targets that you can use:
 
@@ -63,10 +69,9 @@ To fail and stop running tests on the first failure::
 If you wish to add arguments, or run a specific test, overload the variables
 (check the Makefile for more information)::
 
-    make ARGS='--verbosity 2 olympia.apps.amo.tests.test_url_prefix:MiddlewareTest.test_get_app' test
+    make test ARGS='-v apps/amo/tests/test_url_prefix.py::MiddlewareTest::test_get_app'
 
-Those targets include some useful options, like the ``--with-id`` which allows
-you to re-run only the tests failed from the previous run::
+If you wish to re-run only the tests failed from the previous run::
 
     make test_failed
 
@@ -74,11 +79,17 @@ you to re-run only the tests failed from the previous run::
 Database Setup
 ~~~~~~~~~~~~~~
 
-Our test runner will try as hard as it can to skip creating a fresh database
-every time.  If you really want to make a new database (e.g. when models have
-changed), set the environment variable ``FORCE_DB``. ::
+Our test runner is configured by default to reuse the database between each
+test run.  If you really want to make a new database (e.g. when models have
+changed), use the ``--create-db`` parameter::
 
-    FORCE_DB=true python manage.py test
+    py.test --create-db
+
+or
+
+::
+
+    make test_force_db
 
 
 Writing Tests
@@ -86,11 +97,16 @@ Writing Tests
 We support two types of automated tests right now and there are some details
 below but remember, if you're confused look at existing tests for examples.
 
+Also, take some time to get familiar with `pytest`_ way of dealing with
+dependency injection, which they call `fixtures`_ (which should not be confused
+with Django's fixtures). They are very powerful, and can make your tests much
+more independent, cleaner, shorter, and more readable.
+
 
 Unit/Functional Tests
 ~~~~~~~~~~~~~~~~~~~~~
 Most tests are in this category.  Our test classes extend
-:class:`test_utils.TestCase` and follow the standard rules for unit tests.
+``django.test.TestCase`` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
 External calls
@@ -98,15 +114,12 @@ External calls
 Connecting to remote services in tests is not recommended, developers should
 mock_ out those calls instead.
 
-To enforce this we run Jenkins with the `nose-blockage`_ plugin, that
-will raise errors if you have an HTTP calls in your tests apart from calls to
-the whitelisted domains of `127.0.0.1` and `localhost`.
-
 Why Tests Fail
 --------------
 Tests usually fail for one of two reasons: The code has changed or the data has
 changed.  An third reason is **time**.  Some tests have time-dependent data
-usually in the fixtues.  For example, some featured items have expiration dates.
+usually in the fixtures.  For example, some featured items have expiration
+dates.
 
 We can usually save our future-selves time by setting these expirations far in
 the future.
@@ -124,7 +137,9 @@ need to recompile the .mo files manually, for example::
 
 
 .. _`Django's Unit Testing`: http://docs.djangoproject.com/en/dev/topics/testing
+.. _`pytest`: http://pytest.org/latest/
+.. _`pytest-django`: https://pytest-django.readthedocs.org/en/latest/
+.. _`Selenium`: http://www.seleniumhq.org/
 .. _`Selenium repository`: https://github.com/mozilla/Addon-Tests/
-.. _`the docs`: http://docs.djangoproject.com/en/dev/topics/testing#id1
 .. _mock: http://pypi.python.org/pypi/mock
-.. _`nose-blockage`: https://github.com/andymckay/nose-blockage
+.. _fixtures: http://pytest.org/latest/fixture.html

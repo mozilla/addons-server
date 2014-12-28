@@ -19,7 +19,7 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block tabzilla_css %}
-      <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
+      <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
@@ -40,6 +40,8 @@
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
+
+    <script src="https://cdn.optimizely.com/js/2006260574.js"></script>
     {{ js('preload') }}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
@@ -151,7 +153,7 @@
         <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
       {% endblock %}
       {% block tabzilla_js %}
-        <script src="//mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
+        <script src="https://mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
       {% endblock %}
       {% block js %}{% endblock %}
       {% block footer %}

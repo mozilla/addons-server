@@ -61,7 +61,8 @@ class LocaleAndAppURLMiddleware(object):
             full_path = urllib.quote(full_path.encode('utf-8'))
 
             if query_string:
-                full_path = "%s?%s" % (full_path, query_string)
+                query_string = query_string.decode('utf-8', 'ignore')
+                full_path = u'%s?%s' % (full_path, query_string)
 
             response = redirect_type(full_path)
             # Cache the redirect for a year.
@@ -128,9 +129,9 @@ class RemoveSlashMiddleware(object):
 
     def process_response(self, request, response):
         if (response.status_code == 404
-            and request.path_info.endswith('/')
-            and not is_valid_path(request.path_info)
-            and is_valid_path(request.path_info[:-1])):
+                and request.path_info.endswith('/')
+                and not is_valid_path(request.path_info)
+                and is_valid_path(request.path_info[:-1])):
             # Use request.path because we munged app/locale in path_info.
             newurl = request.path[:-1]
             if request.GET:

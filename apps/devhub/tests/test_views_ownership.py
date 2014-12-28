@@ -1,7 +1,6 @@
 """Tests related to the ``devhub.addons.owner`` view."""
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -16,6 +15,7 @@ class TestOwnership(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestOwnership, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('owner')

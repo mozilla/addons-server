@@ -1,7 +1,11 @@
+import pytest
 from array import array
 from nose.tools import eq_
 
-import recommend
+from lib import recommend
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_symmetric_diff_count():
@@ -30,4 +34,4 @@ def test_symmetric_diff_count():
 
 # The algorithm is in flux so this is minimal coverage.
 def test_similarity():
-    eq_(1/2., recommend.similarity([1], [1, 2]))
+    eq_(1 / 2., recommend.similarity([1], [1, 2]))

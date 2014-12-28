@@ -1,7 +1,8 @@
+from django.test.client import RequestFactory
+
 import mock
 from elasticsearch import TransportError
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 import amo.tests
 from search.middleware import ElasticsearchExceptionMiddleware as ESM
@@ -10,6 +11,7 @@ from search.middleware import ElasticsearchExceptionMiddleware as ESM
 class TestElasticsearchExceptionMiddleware(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestElasticsearchExceptionMiddleware, self).setUp()
         self.request = RequestFactory()
 
     @mock.patch('search.middleware.render')

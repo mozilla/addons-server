@@ -12,7 +12,7 @@ def _task(**kw):
     # 3 - Canada
     # 5 - Australia
     # 6 - New Zealand
-    aers = AddonExcludedRegion.objects.filter(region__in=[3, 5, 6]).delete()
+    AddonExcludedRegion.objects.filter(region__in=[3, 5, 6]).delete()
 
 
 def run():

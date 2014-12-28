@@ -38,13 +38,15 @@ def gc(test_result=True):
     # Paypal only keeps retrying to verify transactions for up to 3 days. If we
     # still have an unverified transaction after 6 days, we might as well get
     # rid of it.
-    contributions_to_delete = (Contribution.objects
-            .filter(transaction_id__isnull=True, created__lt=days_ago(6))
-            .values_list('id', flat=True))
+    contributions_to_delete = (
+        Contribution.objects
+        .filter(transaction_id__isnull=True, created__lt=days_ago(6))
+        .values_list('id', flat=True))
 
-    collections_to_delete = (Collection.objects.filter(
-            created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS)
-            .values_list('id', flat=True))
+    collections_to_delete = (
+        Collection.objects.filter(created__lt=days_ago(2),
+                                  type=amo.COLLECTION_ANONYMOUS)
+        .values_list('id', flat=True))
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
@@ -252,46 +254,4 @@ def weekly_downloads():
             ON addons.id = tmp_wd.addon_id
         SET weeklydownloads = tmp_wd.count""")
     cursor.execute("DROP TABLE IF EXISTS tmp_wd")
-    transaction.commit_unless_managed()
-
-
-@cronjobs.register
-def personas_adu():
-    """
-    Update average_daily_users from the personas database.
-    """
-    cursor = connection.cursor()
-    # Get all the persona that AMO knows about.
-
-    cursor.execute('SELECT persona_id from personas')
-    persona_ids = [str(x[0]) for x in cursor.fetchall()]
-
-    if not len(persona_ids):
-        return 0
-
-    # Get popularity numbers from the personas db.
-    p = ','.join(['%s'] * len(persona_ids))
-    cursor.execute("""
-                   SELECT id, IFNULL(popularity, 0) FROM personas
-                   WHERE id IN (%s)
-                   """ % p, persona_ids)
-    stats = cursor.fetchall()
-
-    cursor.execute("""
-                   CREATE TEMPORARY TABLE tmp_personas
-                   (persona_id INT PRIMARY KEY, popularity INT)
-                   """)
-    cursor.execute('INSERT INTO tmp_personas VALUES %s' %
-                   ','.join(['(%s,%s)'] * len(stats)),
-                   list(itertools.chain(*stats)))
-
-    cursor.execute("""
-        UPDATE addons
-        INNER JOIN personas ON (addons.id = personas.addon_id)
-        INNER JOIN tmp_personas
-            ON (tmp_personas.persona_id = personas.persona_id)
-        SET addons.average_daily_users = tmp_personas.popularity
-        """)
-
-    cursor.execute("DROP TABLE IF EXISTS tmp_personas")
     transaction.commit_unless_managed()

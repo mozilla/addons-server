@@ -1,28 +1,27 @@
 from decimal import Decimal
 
 from django import forms
-from django.core.cache import cache
 from django.core import exceptions
+from django.db import models
 
 from nose.tools import eq_
-from test_utils import ExtraAppTestCase
 
 import amo
-from amo.fields import SeparatedValuesField
-from fieldtestapp.models import DecimalCharFieldModel
+from amo.fields import DecimalCharField, SeparatedValuesField
 
 
-class DecimalCharFieldTestCase(ExtraAppTestCase):
-    fixtures = ['fieldtestapp/test_models.json']
-    extra_apps = ['amo.tests.fieldtestapp']
+class DecimalCharFieldModel(models.Model):
+    strict = DecimalCharField(max_digits=10, decimal_places=2)
+    loose = DecimalCharField(max_digits=10, decimal_places=2,
+                             nullify_invalid=True, null=True)
 
-    def setUp(self):
-        cache.clear()
 
-    def test_fetch(self):
-        o = DecimalCharFieldModel.objects.get(id=1)
-        eq_(o.strict, Decimal('1.23'))
-        eq_(o.loose, None)
+class DecimalCharFieldTestCase(amo.tests.TestCase):
+
+    def test_basic(self):
+        obj = DecimalCharFieldModel(strict='1.23', loose='foo')
+        eq_(obj.strict, Decimal('1.23'))
+        eq_(obj.loose, None)
 
     def test_nullify_invalid_false(self):
         val = Decimal('1.5')
@@ -45,20 +44,11 @@ class DecimalCharFieldTestCase(ExtraAppTestCase):
         o.loose = 'not a decimal'
         eq_(o.loose, None, 'expected None')
 
-    def test_save(self):
-        a = DecimalCharFieldModel()
-        a.strict = '1.23'
-        a.loose = 'this had better be NULL'
-        a.save()
-
-        b = DecimalCharFieldModel.objects.get(pk=a.id)
-        eq_(b.strict, Decimal('1.23'))
-        eq_(b.loose, None)
-
 
 class SeparatedValuesFieldTestCase(amo.tests.TestCase):
 
     def setUp(self):
+        super(SeparatedValuesFieldTestCase, self).setUp()
         self.field = SeparatedValuesField(forms.EmailField)
 
     def test_email_field(self):

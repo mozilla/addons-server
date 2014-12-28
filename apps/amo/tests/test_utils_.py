@@ -1,12 +1,17 @@
 import collections
 import tempfile
 
+import pytest
 from nose.tools import eq_, ok_
 
 
 import amo
-from amo.utils import attach_trans_dict, walkfiles
+from amo.utils import attach_trans_dict, translations_for_field, walkfiles
 from addons.models import Addon
+from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
 
 
 class TestAttachTransDict(amo.tests.TestCase):
@@ -82,6 +87,20 @@ class TestAttachTransDict(amo.tests.TestCase):
             set([('en-us', 'English 2 Name'),
                  ('es', 'Spanish 2 Name'),
                  ('fr', 'French 2 Name')]))
+
+    def test_translations_for_field(self):
+        version = Version.objects.create(addon=Addon.objects.create())
+
+        # No translations.
+        eq_(translations_for_field(version.releasenotes), {})
+
+        # With translations.
+        initial = {'en-us': 'release notes', 'fr': 'notes de version'}
+        version.releasenotes = initial
+        version.save()
+
+        translations = translations_for_field(version.releasenotes)
+        eq_(translations, initial)
 
 
 def test_has_links():

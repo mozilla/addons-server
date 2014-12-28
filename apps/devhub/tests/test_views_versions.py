@@ -23,7 +23,8 @@ class TestVersion(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        assert self.client.login(username='del@icio.us', password='password')
+        super(TestVersion, self).setUp()
+        self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
@@ -71,6 +72,14 @@ class TestVersion(amo.tests.TestCase):
         eq_(doc('td.file-validation a').attr('href'),
             reverse('devhub.file_validation',
                     args=[self.addon.slug, self.version.all_files[0].id]))
+
+    def test_upload_link_label_in_edit_nav(self):
+        url = reverse('devhub.versions.edit',
+                      args=(self.addon.slug, self.version.pk))
+        r = self.client.get(url)
+        doc = pq(r.content)
+        eq_(doc('.addon-status>.addon-upload>strong>a').text(),
+            'Upload a new file')
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
@@ -336,19 +345,7 @@ class TestVersion(amo.tests.TestCase):
             set(['checkbox']))
 
 
-class TestVersionEdit(amo.tests.TestCase):
-    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
-
-    def setUp(self):
-        assert self.client.login(username='del@icio.us', password='password')
-        self.addon = self.get_addon()
-        self.version = self.get_version()
-        self.url = reverse('devhub.versions.edit',
-                           args=['a3615', self.version.id])
-        self.v1, _created = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='1.0')
-        self.v5, _created = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='5.0')
+class TestVersionEditMixin(object):
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -362,7 +359,23 @@ class TestVersionEdit(amo.tests.TestCase):
         return formset(*args, **defaults)
 
 
-class TestVersionEditMobile(TestVersionEdit):
+class TestVersionEditBase(TestVersionEditMixin, amo.tests.TestCase):
+    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
+
+    def setUp(self):
+        super(TestVersionEditBase, self).setUp()
+        self.client.login(username='del@icio.us', password='password')
+        self.addon = self.get_addon()
+        self.version = self.get_version()
+        self.url = reverse('devhub.versions.edit',
+                           args=['a3615', self.version.id])
+        self.v1, _created = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='1.0')
+        self.v5, _created = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='5.0')
+
+
+class TestVersionEditMobile(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditMobile, self).setUp()
@@ -383,7 +396,7 @@ class TestVersionEditMobile(TestVersionEdit):
             ['android', 'maemo'])
 
 
-class TestVersionEditDetails(TestVersionEdit):
+class TestVersionEditDetails(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditDetails, self).setUp()
@@ -455,7 +468,9 @@ class TestVersionEditDetails(TestVersionEdit):
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
             eq_(response.status_code, 302)
-            assert Version.objects.get(pk=self.version.pk).source
+            version = Version.objects.get(pk=self.version.pk)
+            assert version.source
+            assert version.addon.admin_review
 
     def test_should_not_accept_exe_source_file(self):
         tdir = temp.gettempdir()
@@ -468,14 +483,38 @@ class TestVersionEditDetails(TestVersionEdit):
             eq_(response.status_code, 200)
             assert not Version.objects.get(pk=self.version.pk).source
 
+    def test_dont_reset_admin_review_flag_if_no_new_source(self):
+        tdir = temp.gettempdir()
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=tdir) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+            eq_(response.status_code, 302)
+            version = Version.objects.get(pk=self.version.pk)
+            assert version.source
+            assert version.addon.admin_review
 
-class TestVersionEditSearchEngine(TestVersionEdit):
+        # Unset the "admin review" flag, and re save the version. It shouldn't
+        # reset the flag, as the source hasn't changed.
+        version.addon.update(admin_review=False)
+        data = self.formset(name='some other name')
+        response = self.client.post(self.url, data)
+        eq_(response.status_code, 302)
+        version = Version.objects.get(pk=self.version.pk)
+        assert version.source
+        assert not version.addon.admin_review
+
+
+class TestVersionEditSearchEngine(TestVersionEditMixin,
+                                  amo.tests.BaseTestCase):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        super(TestVersionEditSearchEngine, self).setUp()
+        self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
 
@@ -507,7 +546,7 @@ class TestVersionEditSearchEngine(TestVersionEdit):
         assert doc('a.add-file')
 
 
-class TestVersionEditFiles(TestVersionEdit):
+class TestVersionEditFiles(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditFiles, self).setUp()
@@ -533,10 +572,10 @@ class TestVersionEditFiles(TestVersionEdit):
         eq_(ActivityLog.objects.count(), 2)
         log = ActivityLog.objects.order_by('created')[1]
         eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi deleted'
-                              ' from <a href="/en-US/firefox/addon/a3615'
-                              '/versions/2.1.072">Version 2.1.072</a> of <a '
-                              'href="/en-US/firefox/addon/a3615/">Delicious '
-                              'Bookmarks</a>.')
+                             ' from <a href="/en-US/firefox/addon/a3615'
+                             '/versions/2.1.072">Version 2.1.072</a> of <a '
+                             'href="/en-US/firefox/addon/a3615/">Delicious '
+                             'Bookmarks</a>.')
         eq_(r.status_code, 302)
         eq_(self.version.files.count(), 0)
         r = self.client.get(self.url)
@@ -576,8 +615,8 @@ class TestVersionEditFiles(TestVersionEdit):
         version = self.addon.current_version
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
 
-        File.objects.create(version=self.version,
-                    platform=amo.PLATFORM_MAC.id)
+        File.objects.create(
+            version=self.version, platform=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         # A test that we don't check the platform for deleted files.
@@ -651,12 +690,12 @@ class TestVersionEditFiles(TestVersionEdit):
             sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
 
 
-class TestPlatformSearch(TestVersionEdit):
+class TestPlatformSearch(TestVersionEditMixin, amo.tests.BaseTestCase):
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        super(TestPlatformSearch, self).setUp()
+        self.client.login(username='admin@mozilla.com', password='password')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
         self.version = Version.objects.get(id=42352)
@@ -670,15 +709,15 @@ class TestPlatformSearch(TestVersionEdit):
     def test_changing_platform_search_engine(self):
         dd = self.formset({'id': int(self.file.pk),
                            'platform': amo.PLATFORM_LINUX.id},
-                           prefix='files', releasenotes='xx',
-                           approvalnotes='yy')
+                          prefix='files', releasenotes='xx',
+                          approvalnotes='yy')
         response = self.client.post(self.url, dd)
         eq_(response.status_code, 302)
         file_ = Version.objects.no_cache().get(id=42352).files.all()[0]
         eq_(amo.PLATFORM_ALL.id, file_.platform)
 
 
-class TestVersionEditCompat(TestVersionEdit):
+class TestVersionEditCompat(TestVersionEditBase):
 
     def get_form(self, url=None):
         if not url:

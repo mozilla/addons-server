@@ -92,7 +92,7 @@ def restricted_content(f):
     def wrapper(request, *args, **kw):
         from access import acl
         if (acl.action_allowed(request, '*', '*')
-            or not acl.action_allowed(request, 'Restricted', 'UGC')):
+                or not acl.action_allowed(request, 'Restricted', 'UGC')):
             return f(request, *args, **kw)
         else:
             raise PermissionDenied
@@ -188,8 +188,8 @@ def set_modified_on(f):
                               (obj.__class__.__name__, obj.pk))
                 set_modified_on_object.apply_async(
                     args=[obj], kwargs=None,
-                    eta=datetime.datetime.now() +
-                        datetime.timedelta(seconds=settings.NFS_LAG_DELAY))
+                    eta=(datetime.datetime.now() +
+                         datetime.timedelta(seconds=settings.NFS_LAG_DELAY)))
         return result
     return wrapper
 

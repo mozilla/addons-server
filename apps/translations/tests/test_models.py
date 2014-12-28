@@ -4,18 +4,20 @@ from contextlib import nested
 import django
 from django.conf import settings
 from django.db import connections, reset_queries
+from django.test import TransactionTestCase
 from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.functional import lazy
 
 import jinja2
 import multidb
+import pytest
 from mock import patch
 from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import trans_eq, TestCase
 
+from amo.tests import BaseTestCase
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 from translations import widgets
 from translations.query import order_by_translation
@@ -25,11 +27,14 @@ from translations.models import (LinkifiedTranslation, NoLinksTranslation,
                                  TranslationSequence)
 
 
+pytestmark = pytest.mark.django_db
+
+
 def ids(qs):
     return [o.id for o in qs]
 
 
-class TranslationFixturelessTestCase(TestCase):
+class TranslationFixturelessTestCase(BaseTestCase):
     "We want to be able to rollback stuff."
 
     def test_whitespace(self):
@@ -38,7 +43,7 @@ class TranslationFixturelessTestCase(TestCase):
         eq_('khaaaaaan!', t.localized_string)
 
 
-class TranslationSequenceTestCase(TestCase):
+class TranslationSequenceTestCase(BaseTestCase):
     """
     Make sure automatic translation sequence generation works
     as expected.
@@ -71,7 +76,7 @@ class TranslationSequenceTestCase(TestCase):
             'Translation sequence needs to keep increasing.')
 
 
-class TranslationTestCase(TestCase):
+class TranslationTestCase(BaseTestCase):
     fixtures = ['testapp/test_models.json']
 
     def setUp(self):
@@ -83,9 +88,9 @@ class TranslationTestCase(TestCase):
         translation.activate('en-US')
 
     def tearDown(self):
-        super(TranslationTestCase, self).tearDown()
         settings.REDIRECT_URL = self.redirect_url
         settings.REDIRECT_SECRET_KEY = self.redirect_secret_key
+        super(TranslationTestCase, self).tearDown()
 
     def test_meta_translated_fields(self):
         assert not hasattr(UntranslatedModel._meta, 'translated_fields')
@@ -102,8 +107,8 @@ class TranslationTestCase(TestCase):
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
         o = TranslatedModel.objects.get(id=1)
-        trans_eq(o.name, 'some name', 'en-US')
-        trans_eq(o.description, 'some description', 'en-US')
+        self.trans_eq(o.name, 'some name', 'en-US')
+        self.trans_eq(o.description, 'some description', 'en-US')
 
     def test_fetch_no_translations(self):
         """Make sure models with no translations aren't harmed."""
@@ -115,15 +120,15 @@ class TranslationTestCase(TestCase):
         try:
             translation.activate('de')
             o = TranslatedModel.objects.get(id=1)
-            trans_eq(o.name, 'German!! (unst unst)', 'de')
-            trans_eq(o.description, 'some description', 'en-US')
+            self.trans_eq(o.name, 'German!! (unst unst)', 'de')
+            self.trans_eq(o.description, 'some description', 'en-US')
         finally:
             translation.deactivate()
 
     def test_create_translation(self):
         o = TranslatedModel.objects.create(name='english name')
         get_model = lambda: TranslatedModel.objects.get(id=o.id)
-        trans_eq(o.name, 'english name', 'en-US')
+        self.trans_eq(o.name, 'english name', 'en-US')
         eq_(o.description, None)
 
         # Make sure the translation id is stored on the model, not the autoid.
@@ -132,14 +137,14 @@ class TranslationTestCase(TestCase):
         # Check that a different locale creates a new row with the same id.
         translation.activate('de')
         german = get_model()
-        trans_eq(o.name, 'english name', 'en-US')
+        self.trans_eq(o.name, 'english name', 'en-US')
 
         german.name = u'Gemütlichkeit name'
         german.description = u'clöüserw description'
         german.save()
 
-        trans_eq(german.name, u'Gemütlichkeit name', 'de')
-        trans_eq(german.description, u'clöüserw description', 'de')
+        self.trans_eq(german.name, u'Gemütlichkeit name', 'de')
+        self.trans_eq(german.description, u'clöüserw description', 'de')
 
         # ids should be the same, autoids are different.
         eq_(o.name.id, german.name.id)
@@ -147,13 +152,13 @@ class TranslationTestCase(TestCase):
 
         # Check that de finds the right translation.
         fresh_german = get_model()
-        trans_eq(fresh_german.name, u'Gemütlichkeit name', 'de')
-        trans_eq(fresh_german.description, u'clöüserw description', 'de')
+        self.trans_eq(fresh_german.name, u'Gemütlichkeit name', 'de')
+        self.trans_eq(fresh_german.description, u'clöüserw description', 'de')
 
         # Check that en-US has the right translations.
         translation.deactivate()
         english = get_model()
-        trans_eq(english.name, 'english name', 'en-US')
+        self.trans_eq(english.name, 'english name', 'en-US')
         english.debug = True
         eq_(english.description, None)
 
@@ -161,7 +166,8 @@ class TranslationTestCase(TestCase):
         english.save()
 
         fresh_english = get_model()
-        trans_eq(fresh_english.description, 'english description', 'en-US')
+        self.trans_eq(
+            fresh_english.description, 'english description', 'en-US')
         eq_(fresh_english.description.id, fresh_german.description.id)
 
     def test_update_translation(self):
@@ -172,7 +178,7 @@ class TranslationTestCase(TestCase):
         o.save()
 
         o = TranslatedModel.objects.get(id=1)
-        trans_eq(o.name, 'new name', 'en-US')
+        self.trans_eq(o.name, 'new name', 'en-US')
         # Make sure it was an update, not an insert.
         eq_(o.name.autoid, translation_id)
 
@@ -182,21 +188,21 @@ class TranslationTestCase(TestCase):
         o = TranslatedModel.objects.create(name=strings)
 
         # Make sure we get the English text since we're in en-US.
-        trans_eq(o.name, 'right language', 'en-US')
+        self.trans_eq(o.name, 'right language', 'en-US')
 
         # Check that de was set.
         translation.activate('de')
         o = TranslatedModel.objects.get(id=o.id)
-        trans_eq(o.name, 'wrong language', 'de')
+        self.trans_eq(o.name, 'wrong language', 'de')
 
         # We're in de scope, so we should see the de text.
         de = TranslatedModel.objects.create(name=strings)
-        trans_eq(o.name, 'wrong language', 'de')
+        self.trans_eq(o.name, 'wrong language', 'de')
 
         # Make sure en-US was still set.
         translation.deactivate()
         o = TranslatedModel.objects.get(id=de.id)
-        trans_eq(o.name, 'right language', 'en-US')
+        self.trans_eq(o.name, 'right language', 'en-US')
 
     def test_update_with_dict(self):
         # There's existing en-US and de strings.
@@ -211,15 +217,15 @@ class TranslationTestCase(TestCase):
         m.save()
 
         # en-US was not touched.
-        trans_eq(get_model().name, 'some name', 'en-US')
+        self.trans_eq(get_model().name, 'some name', 'en-US')
 
         # de was updated to NULL, so it falls back to en-US.
         translation.activate('de')
-        trans_eq(get_model().name, 'some name', 'en-US')
+        self.trans_eq(get_model().name, 'some name', 'en-US')
 
         # fr was added.
         translation.activate('fr')
-        trans_eq(get_model().name, 'oui', 'fr')
+        self.trans_eq(get_model().name, 'oui', 'fr')
 
     def test_dict_with_hidden_locale(self):
         with self.settings(HIDDEN_LANGUAGES=('xxx',)):
@@ -430,7 +436,7 @@ class TranslationTestCase(TestCase):
         eq_(obj.name.locale, 'de')
 
 
-class TranslationMultiDbTests(TestCase):
+class TranslationMultiDbTests(TransactionTestCase):
     fixtures = ['testapp/test_models.json']
 
     def setUp(self):
@@ -500,7 +506,7 @@ class TranslationMultiDbTests(TestCase):
                 eq_(len(connections['slave-2'].queries), 0)
 
 
-class PurifiedTranslationTest(TestCase):
+class PurifiedTranslationTest(BaseTestCase):
 
     def test_output(self):
         assert isinstance(PurifiedTranslation().__html__(), unicode)
@@ -513,7 +519,7 @@ class PurifiedTranslationTest(TestCase):
     def test_allowed_tags(self):
         s = u'<b>bold text</b> or <code>code</code>'
         x = PurifiedTranslation(localized_string=s)
-        eq_(x.__html__(),  u'<b>bold text</b> or <code>code</code>')
+        eq_(x.__html__(), u'<b>bold text</b> or <code>code</code>')
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script>'
@@ -549,7 +555,7 @@ class PurifiedTranslationTest(TestCase):
         assert doc('b')[0].text == 'markup'
 
 
-class LinkifiedTranslationTest(TestCase):
+class LinkifiedTranslationTest(BaseTestCase):
 
     @patch('amo.urlresolvers.get_outgoing_url')
     def test_allowed_tags(self, get_outgoing_url_mock):
@@ -568,12 +574,12 @@ class LinkifiedTranslationTest(TestCase):
             '&lt;b&gt;bold&lt;/b&gt;')
 
 
-class NoLinksTranslationTest(TestCase):
+class NoLinksTranslationTest(BaseTestCase):
 
     def test_allowed_tags(self):
         s = u'<b>bold text</b> or <code>code</code>'
         x = NoLinksTranslation(localized_string=s)
-        eq_(x.__html__(),  u'<b>bold text</b> or <code>code</code>')
+        eq_(x.__html__(), u'<b>bold text</b> or <code>code</code>')
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script>'
@@ -601,7 +607,7 @@ class NoLinksTranslationTest(TestCase):
                           u'&lt;script&gt;forbidden tags&lt;/script&gt; and')
 
 
-class NoLinksNoMarkupTranslationTest(TestCase):
+class NoLinksNoMarkupTranslationTest(BaseTestCase):
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script> <b>bold</b>'

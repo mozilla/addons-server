@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 from django import http, test
 from django.conf import settings
+from django.test.client import RequestFactory
 
+import pytest
 from commonware.middleware import ScrubRequestOnException
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from test_utils import RequestFactory
 
 import amo.tests
 from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
 from amo.urlresolvers import reverse
 from zadmin.models import Config, _config_cache
+
+
+pytestmark = pytest.mark.django_db
 
 
 class TestMiddleware(amo.tests.TestCase):
@@ -42,11 +46,21 @@ class TestMiddleware(amo.tests.TestCase):
 
 
 def test_redirect_with_unicode_get():
-    response = test.Client().get('/da/firefox/addon/5457?from=/da/firefox/'
-            'addon/5457%3Fadvancedsearch%3D1&lang=ja&utm_source=Google+%E3'
-            '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
-            'E3%82%BA')
+    response = test.Client().get(
+        '/da/firefox/addon/5457?from=/da/firefox/'
+        'addon/5457%3Fadvancedsearch%3D1&lang=ja&utm_source=Google+%E3'
+        '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
+        'E3%82%BA')
     eq_(response.status_code, 301)
+    assert response['Location'].endswith('&utm_term=Google+%E3%83%90%E3%82%BA')
+
+
+def test_source_with_wrong_unicode_get():
+    # The following url is a string (bytes), not unicode.
+    response = test.Client().get('/firefox/collections/mozmj/autumn/'
+                                 '?source=firefoxsocialmedia\x14\x85')
+    eq_(response.status_code, 301)
+    assert response['Location'].endswith('?source=firefoxsocialmedia%14')
 
 
 def test_trailing_slash_middleware():

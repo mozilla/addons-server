@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 
 import commonware.log
 from product_details import product_details
+from tower import ugettext as _
 
 import amo
 from access.models import Group
@@ -34,7 +35,7 @@ def set_motd(request):
     msg = request.POST.get('msg')
 
     if (lang != '' and lang not in settings.AMO_LANGUAGES and
-        lang not in settings.HIDDEN_LANGUAGES or msg is None):
+            lang not in settings.HIDDEN_LANGUAGES or msg is None):
         return json_view.error(_('An error occurred saving this message.'))
 
     if _permission_to_edit_locale(lang):
@@ -146,11 +147,11 @@ def categories(request, locale_code):
                     continue
                 # The localized string has changed.
                 # Make sure we don't save an empty string value.
-                if name == '' and category_names.get(pk) == None:
+                if name == '' and category_names.get(pk) is None:
                     # If the form field was left blank and there was no
                     # previous translation, do nothing.
                     continue
-                elif name == '' and category_names.get(pk) != None:
+                elif name == '' and category_names.get(pk) is not None:
                     # If the name is blank and there was a prior translation,
                     # assume they want to remove this translation.
                     #

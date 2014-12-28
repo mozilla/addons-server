@@ -102,8 +102,9 @@ varname = re.compile(r'{{\s*([a-zA-Z0-9_]+)\s*}}')
 
 class NotifyForm(happyforms.Form):
     subject = forms.CharField(widget=forms.TextInput, required=True)
-    preview_only = forms.BooleanField(initial=True, required=False,
-                            label=_lazy(u'Log emails instead of sending'))
+    preview_only = forms.BooleanField(
+        initial=True, required=False,
+        label=_lazy(u'Log emails instead of sending'))
     text = forms.CharField(widget=forms.Textarea, required=True)
     variables = ['{{PASSING_ADDONS}}', '{{FAILING_ADDONS}}', '{{APPLICATION}}',
                  '{{VERSION}}']
@@ -167,13 +168,15 @@ class BaseFeaturedCollectionFormSet(BaseModelFormSet):
         super(BaseFeaturedCollectionFormSet, self).__init__(*args, **kw)
         for form in self.initial_forms:
             try:
-                form.initial['collection'] = (FeaturedCollection.objects
+                form.initial['collection'] = (
+                    FeaturedCollection.objects
                     .get(id=form.instance.id).collection.id)
             except (FeaturedCollection.DoesNotExist, Collection.DoesNotExist):
                 form.initial['collection'] = None
 
 
-FeaturedCollectionFormSet = modelformset_factory(FeaturedCollection,
+FeaturedCollectionFormSet = modelformset_factory(
+    FeaturedCollection,
     form=FeaturedCollectionForm, formset=BaseFeaturedCollectionFormSet,
     can_delete=True, extra=0)
 
@@ -270,14 +273,13 @@ class CompatForm(BaseCompatForm):
 
 class GenerateErrorForm(happyforms.Form):
     error = forms.ChoiceField(choices=(
-                    ['zerodivisionerror', 'Zero Division Error (will email)'],
-                    ['iorequesterror', 'IORequest Error (no email)'],
-                    ['heka_statsd', 'Heka statsd message'],
-                    ['heka_json', 'Heka JSON message'],
-                    ['heka_cef', 'Heka CEF message'],
-                    ['heka_sentry', 'Heka Sentry message'],
-                    ['amo_cef', 'AMO CEF message'],
-                    ))
+        ['zerodivisionerror', 'Zero Division Error (will email)'],
+        ['iorequesterror', 'IORequest Error (no email)'],
+        ['heka_statsd', 'Heka statsd message'],
+        ['heka_json', 'Heka JSON message'],
+        ['heka_cef', 'Heka CEF message'],
+        ['heka_sentry', 'Heka Sentry message'],
+        ['amo_cef', 'AMO CEF message']))
 
     def explode(self):
         error = self.cleaned_data.get('error')
@@ -290,24 +292,26 @@ class GenerateErrorForm(happyforms.Form):
             raise IOError('request data read error')
         elif error == 'heka_cef':
             environ = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
-                            'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
-                            'HTTP_USER_AGENT': 'MySuperBrowser'}
+                       'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
+                       'HTTP_USER_AGENT': 'MySuperBrowser'}
 
             config = {'cef.version': '0',
-                           'cef.vendor': 'Mozilla',
-                           'cef.device_version': '3',
-                           'cef.product': 'zamboni',
-                           'cef': True}
+                      'cef.vendor': 'Mozilla',
+                      'cef.device_version': '3',
+                      'cef.product': 'zamboni',
+                      'cef': True}
 
-            settings.HEKA.cef('xx\nx|xx\rx', 5, environ, config,
-                    username='me', ext1='ok=ok', ext2='ok\\ok',
-                    logger_info='settings.HEKA')
+            settings.HEKA.cef(
+                'xx\nx|xx\rx', 5, environ, config,
+                username='me', ext1='ok=ok', ext2='ok\\ok',
+                logger_info='settings.HEKA')
         elif error == 'heka_statsd':
             settings.HEKA.incr(name=LOGGER_NAME)
         elif error == 'heka_json':
-            settings.HEKA.heka(type="heka_json",
-                    fields={'foo': 'bar', 'secret': 42,
-                            'logger_type': 'settings.HEKA'})
+            settings.HEKA.heka(
+                type="heka_json",
+                fields={'foo': 'bar', 'secret': 42,
+                        'logger_type': 'settings.HEKA'})
 
         elif error == 'heka_sentry':
             # These are local variables only used
@@ -323,8 +327,8 @@ class GenerateErrorForm(happyforms.Form):
         elif error == 'amo_cef':
             from amo.utils import log_cef
             env = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
-                            'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
-                            'HTTP_USER_AGENT': 'MySuperBrowser'}
+                   'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
+                   'HTTP_USER_AGENT': 'MySuperBrowser'}
             log_cef(settings.STATSD_PREFIX, 6, env)
 
 

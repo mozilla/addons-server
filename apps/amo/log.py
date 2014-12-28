@@ -1,7 +1,5 @@
 from inspect import isclass
 
-from django.conf import settings
-from django.core.files.storage import get_storage_class
 
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
@@ -341,8 +339,8 @@ class DELETE_REVIEW(_LOG):
     """Requires review.id and add-on objects."""
     id = 41
     action_class = 'review'
-    format = _(u'Review {0} for {addon} deleted.')
-    editor_format = _(u'{user} deleted {0} for {addon}.')
+    format = _(u'Review {review} for {addon} deleted.')
+    editor_format = _(u'{user} deleted {review} for {addon}.')
     keep = True
     editor_event = True
 
@@ -438,7 +436,7 @@ class ESCALATE_MANUAL(_LOG):
 class VIDEO_ERROR(_LOG):
     id = 74
     format = _(u'Video removed from {addon} because of a problem with '
-                'the video. ')
+               u'the video. ')
     short = _(u'Video removed')
 
 
@@ -593,8 +591,8 @@ LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
 # Logs *not* to show to the developer.
 LOG_HIDE_DEVELOPER = [l.id for l in LOGS
-                           if (getattr(l, 'hide_developer', False)
-                               or l.id in LOG_ADMINS)]
+                      if (getattr(l, 'hide_developer', False)
+                          or l.id in LOG_ADMINS)]
 
 
 def log(action, *args, **kw):

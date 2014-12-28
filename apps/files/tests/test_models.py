@@ -13,6 +13,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+import pytest
 from nose.tools import eq_
 
 import amo
@@ -29,16 +30,13 @@ from files.utils import check_xpi_info, JetpackUpgrader, parse_addon, parse_xpi
 from versions.models import Version
 
 
+pytestmark = pytest.mark.django_db
+
+
 class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
-
-    def setUp(self):
-        # The validator task (post Addon upload) loads apps.json
-        # so ensure it exists:
-        from django.core.management import call_command
-        call_command('dump_apps')
 
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
@@ -157,14 +155,14 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         fo.save()
         assert not storage.exists(fo.file_path), 'file not hidden'
         assert not storage.exists(fo.mirror_file_path), (
-                        'file not removed from mirror')
+            'file not removed from mirror')
 
         fo = File.objects.get(pk=67442)
         fo.status = amo.STATUS_PUBLIC
         fo.save()
         assert storage.exists(fo.file_path), 'file not un-hidden'
         assert storage.exists(fo.mirror_file_path), (
-                        'file not copied back to mirror')
+            'file not copied back to mirror')
 
     @mock.patch('files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
@@ -296,6 +294,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 class TestParseXpi(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestParseXpi, self).setUp()
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
@@ -435,6 +434,7 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
 
     def setUp(self):
+        super(TestParseAlternateXpi, self).setUp()
         for version in ('3.0', '4.0b3pre'):
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
@@ -601,18 +601,19 @@ class TestFileUpload(UploadTest):
         assert not upload.validation
         assert not upload._escaped_validation
         validation = '{"the": "validation"}'
-        escaped_validation = '{"the": "validation", "ending_tier": 0}'
+        escaped_validation = {"the": "validation", "ending_tier": 0}
         upload.validation = validation
         upload.save()
         eq_(upload.validation, validation)
-        eq_(upload._escaped_validation, escaped_validation)
+        eq_(json.loads(upload._escaped_validation), escaped_validation)
 
     def test_escaped_validation_is_escaped(self):
         validation = '''{"the": "valid<script>alert('owned')</script>ation"}'''
-        escaped_validation = ('''{"the": "valid&lt;script&gt;alert('owned')'''
-                              '''&lt;/script&gt;ation", "ending_tier": 0}''')
+        escaped_validation = {
+            "the": "valid&lt;script&gt;alert('owned')&lt;/script&gt;ation",
+            "ending_tier": 0}
         upload = FileUpload.objects.create(validation=validation)
-        eq_(upload._escaped_validation, escaped_validation)
+        eq_(json.loads(upload._escaped_validation), escaped_validation)
 
     def test_escaped_validation_ignores_bad_json(self):
         upload = FileUpload(validation='wtf')
@@ -626,8 +627,8 @@ class TestFileUpload(UploadTest):
         upload = FileUpload(validation='{"messages": [{"the": "validation"}]}')
         assert not upload._escaped_validation
         upload.escaped_validation()
-        eq_(upload._escaped_validation,
-            '{"ending_tier": 0, "messages": [{"the": "validation"}]}')
+        eq_(json.loads(upload._escaped_validation),
+            {"ending_tier": 0, "messages": [{"the": "validation"}]})
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
@@ -648,8 +649,7 @@ class TestFileUpload(UploadTest):
                 "message": "Some warning",
                 "type": "warning",
                 "id": [],
-                "uid": "bb9948b604b111e09dfdc42c0301fe38"
-                }] * 12,
+                "uid": "bb9948b604b111e09dfdc42c0301fe38"}] * 12,
             "metadata": {}
         }
         upload = FileUpload(validation=json.dumps(data))
@@ -872,79 +872,81 @@ class TestFileFromUpload(UploadTest):
     def test_beta_version_non_public(self):
         # Only public add-ons can get beta versions.
         upload = self.upload('beta-extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
         eq_(self.addon.status, amo.STATUS_LITE)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, is_beta=True,
+                             parse_data=d)
         eq_(f.status, amo.STATUS_BETA)
 
     def test_trusted_public_to_beta(self):
         upload = self.upload('beta-extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, is_beta=True,
+                             parse_data=d)
         eq_(f.status, amo.STATUS_BETA)
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_public_to_public(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
         eq_(self.addon.status, amo.STATUS_PUBLIC)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_PUBLIC)
 
     def test_lite_to_unreviewed(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
         eq_(self.addon.status, amo.STATUS_LITE)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_lite_to_lite(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE, trusted=True)
         eq_(self.addon.status, amo.STATUS_LITE)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_LITE)
 
     def test_litenominated_to_unreviewed(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         with mock.patch('addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_UNREVIEWED)
 
     def test_trusted_litenominated_to_litenominated(self):
         upload = self.upload('extension')
-        data = parse_addon(upload.path)
+        d = parse_addon(upload.path)
         with mock.patch('addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED,
                               trusted=True)
         eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
 
     def test_file_hash_paranoia(self):
@@ -954,8 +956,8 @@ class TestFileFromUpload(UploadTest):
 
     def test_strict_compat(self):
         upload = self.upload('strict-compat')
-        data = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, data)
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         eq_(f.strict_compatibility, True)
 
     def test_theme_extension(self):
@@ -1054,6 +1056,7 @@ class TestCheckJetpackVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestCheckJetpackVersion, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         JetpackUpgrader().jetpack_versions('1.0', '1.1')
 

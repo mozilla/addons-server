@@ -15,7 +15,8 @@
     <p class="addon-upload">
       {% if not addon.is_incomplete() and not addon.is_disabled %}
         <strong>
-          <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload">{{ _('Upload New Version') }}</a>
+          <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload"
+          >{{ upload_file_label|default(_('Upload New Version')) }}</a>
         </strong>
         &middot;
       {% endif %}

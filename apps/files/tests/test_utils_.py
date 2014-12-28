@@ -2,6 +2,7 @@ import json
 from contextlib import contextmanager
 from tempfile import NamedTemporaryFile
 
+import pytest
 from nose.tools import eq_
 
 import amo
@@ -9,14 +10,34 @@ import amo.tests
 from addons.models import Addon
 from applications.models import AppVersion
 from files.models import File
-from files.utils import find_jetpacks, PackageJSONExtractor
+from files.utils import find_jetpacks, is_beta, PackageJSONExtractor
 from versions.models import Version
+
+
+pytestmark = pytest.mark.django_db
+
+
+def test_is_beta():
+    assert not is_beta('1.2')
+    assert is_beta('1.2a')
+    assert is_beta('1.2alpha')
+    assert is_beta('1.2a1')
+    assert is_beta('1.2alpha1')
+    assert is_beta('1.2a123')
+    assert is_beta('1.2alpha123')
+    assert is_beta('1.2b')
+    assert is_beta('1.2beta')
+    assert is_beta('1.2b1')
+    assert is_beta('1.2beta1')
+    assert is_beta('1.2b123')
+    assert is_beta('1.2blpha123')
 
 
 class TestFindJetpacks(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestFindJetpacks, self).setUp()
         File.objects.update(jetpack_version='1.0')
         self.file = File.objects.filter(version__addon=3615).get()
 
@@ -42,7 +63,7 @@ class TestFindJetpacks(amo.tests.TestCase):
         # We upgrade unreviewed files up to the latest reviewed file.
         v = Version.objects.create(addon_id=3615)
         new_file = File.objects.create(version=v, jetpack_version='1.0')
-        v2 = Version.objects.create(addon_id=3615)
+        Version.objects.create(addon_id=3615)
         new_file2 = File.objects.create(version=v, jetpack_version='1.0')
         eq_(new_file.status, amo.STATUS_UNREVIEWED)
         eq_(new_file2.status, amo.STATUS_UNREVIEWED)
@@ -70,7 +91,6 @@ class TestFindJetpacks(amo.tests.TestCase):
 
 
 class TestPackageJSONExtractor(amo.tests.TestCase):
-    fixtures = ['applications/all_apps.json']
 
     @contextmanager
     def extractor(self, base_data):
@@ -141,17 +161,17 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         }
         with self.extractor(data) as extractor:
             apps = extractor.parse()['apps']
-            eq_(apps[0].appdata.short, 'firefox')
-            eq_(apps[0].min, firefox_version)
-            eq_(apps[0].max, firefox_version)
-            eq_(apps[1].appdata.short, 'thunderbird')
-            eq_(apps[1].min, thunderbird_version)
-            eq_(apps[1].max, thunderbird_version)
+            apps_dict = dict((app.appdata.short, app) for app in apps)
+            assert sorted(apps_dict.keys()) == ['firefox', 'thunderbird']
+            assert apps_dict['firefox'].min == firefox_version
+            assert apps_dict['firefox'].max == firefox_version
+            assert apps_dict['thunderbird'].min == thunderbird_version
+            assert apps_dict['thunderbird'].max == thunderbird_version
 
     def test_unknown_apps_are_ignored(self):
         """Unknown engines get ignored."""
-        firefox_version = self.create_appversion('firefox', '33.0a1')
-        thunderbird_version = self.create_appversion('thunderbird', '33.0a1')
+        self.create_appversion('firefox', '33.0a1')
+        self.create_appversion('thunderbird', '33.0a1')
         data = {
             'engines': {
                 'firefox': '>=33.0a1',
@@ -161,12 +181,24 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         }
         with self.extractor(data) as extractor:
             apps = extractor.parse()['apps']
+            engines = [app.appdata.short for app in apps]
+            assert sorted(engines) == ['firefox', 'thunderbird']  # Not node.
+
+    def test_invalid_app_versions_are_ignored(self):
+        """Valid engines with invalid versions are ignored."""
+        firefox_version = self.create_appversion('firefox', '33.0a1')
+        data = {
+            'engines': {
+                'firefox': '>=33.0a1',
+                'fennec': '>=33.0a1',
+            },
+        }
+        with self.extractor(data) as extractor:
+            apps = extractor.parse()['apps']
+            eq_(len(apps), 1)
             eq_(apps[0].appdata.short, 'firefox')
             eq_(apps[0].min, firefox_version)
             eq_(apps[0].max, firefox_version)
-            eq_(apps[1].appdata.short, 'thunderbird')
-            eq_(apps[1].min, thunderbird_version)
-            eq_(apps[1].max, thunderbird_version)
 
     def test_fennec_is_treated_as_android(self):
         """Treat the fennec engine as android."""

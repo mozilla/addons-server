@@ -44,6 +44,7 @@ class TestIndex(amo.tests.TestCase):
     # TODO: Test valid version processing here.
 
     def setUp(self):
+        super(TestIndex, self).setUp()
         self.url = reverse('compat.index', args=[amo.COMPAT[0]['main']])
         CompatTotals.objects.create(app=1, total=1)
 
@@ -55,8 +56,8 @@ class TestIndex(amo.tests.TestCase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('h2.c a').attr('href'),
-            '{url}?page=1&previous=1'.format(url=self.url))
+        self.assertUrlEqual(doc('h2.c a').attr('href'),
+                            '{url}?page=1&previous=1'.format(url=self.url))
 
     def test_previous_version_link_with_active_pagination(self):
         # The current pagination is not kept when we switch to previous
@@ -64,13 +65,15 @@ class TestIndex(amo.tests.TestCase):
         r = self.client.get(self.url, {'page': 2, 'type': 'all'})
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('h2.c a').attr('href'),
+        self.assertUrlEqual(
+            doc('h2.c a').attr('href'),
             '{url}?type=all&page=1&previous=1'.format(url=self.url))
 
 
 class TestIncoming(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestIncoming, self).setUp()
         self.url = reverse('compat.incoming')
         self.data = dict(incoming_data)
         self.json = json.dumps(self.data)
@@ -133,6 +136,7 @@ class TestReporterDetail(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestReporterDetail, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('compat.reporter_detail', args=[self.addon.guid])
         self.reports = []
@@ -187,7 +191,8 @@ class TestReporterDetail(amo.tests.TestCase):
 
     def test_appver_all(self):
         self._generate()
-        self.check_table(good=3, bad=7, appver='',
+        self.check_table(
+            good=3, bad=7, appver='',
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_firefox_single(self):
@@ -213,7 +218,8 @@ class TestReporterDetail(amo.tests.TestCase):
         self._generate()
         # If we have a bad app/version combination, we don't apply any filters.
         appver = '%s-%s' % (amo.FIREFOX.id, '0.9999')
-        self.check_table(data={'appver': appver}, good=3, bad=7,
+        self.check_table(
+            data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_thunderbird_multiple(self):
@@ -225,7 +231,8 @@ class TestReporterDetail(amo.tests.TestCase):
     def test_thunderbird_unknown(self):
         self._generate()
         appver = '%s-%s' % (amo.THUNDERBIRD.id, '0.9999')
-        self.check_table(data={'appver': appver}, good=3, bad=7,
+        self.check_table(
+            data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_seamonkey_multiple(self):
@@ -237,14 +244,16 @@ class TestReporterDetail(amo.tests.TestCase):
     def test_seamonkey_unknown(self):
         self._generate()
         appver = '%s-%s' % (amo.SEAMONKEY.id, '0.9999')
-        self.check_table(data={'appver': appver}, good=3, bad=7,
+        self.check_table(
+            data={'appver': appver}, good=3, bad=7,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_app_unknown(self):
         # Testing for some unknown application such as 'Conkeror'.
         app_guid = '{a79fe89b-6662-4ff4-8e88-09950ad4dfde}'
-        report = CompatReport.objects.create(guid=self.addon.guid,
-            app_guid=app_guid, app_version='0.9.3', works_properly=True)
+        report = CompatReport.objects.create(
+            guid=self.addon.guid, app_guid=app_guid, app_version='0.9.3',
+            works_properly=True)
         self.reports.append(report.pk)
         r = self.check_table(good=1, bad=0, appver='', report_pks=[0])
         msg = 'Unknown (%s)' % app_guid

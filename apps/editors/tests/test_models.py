@@ -187,6 +187,13 @@ class TestPendingQueue(TestQueue):
         q = self.Queue.objects.get()
         eq_(q.flags, [('restartless', 'Restartless Add-on')])
 
+    def test_flags_sources_provided(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].versions.update(source='/some/source/file')
+
+        q = self.Queue.objects.get()
+        eq_(q.flags, [('sources-provided', 'Sources provided')])
+
     def test_no_flags(self):
         self.new_file(version=u'0.1')
 
@@ -323,6 +330,7 @@ class TestEditorSubscription(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestEditorSubscription, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.version = self.addon.current_version
         self.user_one = UserProfile.objects.get(pk=55021)
@@ -380,6 +388,7 @@ class TestReviewerScore(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestReviewerScore, self).setUp()
         self.addon = amo.tests.addon_factory(status=amo.STATUS_NOMINATED)
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
 
@@ -585,7 +594,8 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
 
         # Deleted add-on RQT object.
         addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='', footer='')
+        RereviewQueueTheme.objects.create(
+            theme=addon.persona, header='', footer='')
         addon.delete()
 
         eq_(RereviewQueueTheme.objects.count(), 1)

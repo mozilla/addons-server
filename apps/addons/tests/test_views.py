@@ -13,10 +13,8 @@ from django.utils.encoding import iri_to_uri
 
 import fudge
 from mock import patch
-from nose import SkipTest
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
-import waffle
 
 import amo
 import amo.tests
@@ -73,6 +71,7 @@ def test_hovercards(self, doc, addons, src=''):
 class TestHomepage(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
     def test_thunderbird(self):
@@ -105,6 +104,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestHomepageFeatures, self).setUp()
         self.url = reverse('home')
 
     def test_no_unreviewed(self):
@@ -167,6 +167,7 @@ class TestContributeInstalled(amo.tests.TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
     def setUp(self):
+        super(TestContributeInstalled, self).setUp()
         self.addon = Addon.objects.get(pk=592)
         self.url = reverse('addons.installed', args=['a592'])
 
@@ -197,6 +198,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
+        super(TestContributeEmbedded, self).setUp()
         self.addon = Addon.objects.get(pk=592)
         self.detail_url = self.addon.get_url_path()
 
@@ -251,6 +253,13 @@ class TestContributeEmbedded(amo.tests.TestCase):
         eq_(data['paykey'], '')
         eq_(data['error'], 'Invalid data.')
 
+    def test_amount_length(self):
+        response = self.client_post(rev=['a592'], data={'onetime-amount': '0',
+                                                        'type': 'onetime'})
+        data = json.loads(response.content)
+        eq_(data['paykey'], '')
+        eq_(data['error'], 'Invalid data.')
+
     def test_ppal_json_switch(self):
         response = self.client_post(rev=['a592'], qs='?result_type=json')
         eq_(response.status_code, 200)
@@ -262,11 +271,17 @@ class TestContributeEmbedded(amo.tests.TestCase):
         assert json.loads(response.content)['url'].startswith('http')
 
     def test_unicode_comment(self):
-        res = self.client_post(rev=['a592'],
-                            data={'comment': u'版本历史记录'})
+        res = self.client_post(rev=['a592'], data={'comment': u'版本历史记录'})
         eq_(res.status_code, 302)
         assert settings.PAYPAL_FLOW_URL in res._headers['location'][1]
         eq_(Contribution.objects.all()[0].comment, u'版本历史记录')
+
+    def test_comment_too_long(self):
+        response = self.client_post(rev=['a592'], data={'comment': u'a' * 256})
+
+        data = json.loads(response.content)
+        eq_(data['paykey'], '')
+        eq_(data['error'], 'Invalid data.')
 
     def test_organization(self):
         c = Charity.objects.create(name='moz', url='moz.com',
@@ -436,6 +451,7 @@ class TestLicensePage(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestLicensePage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
@@ -489,6 +505,7 @@ class TestDetailPage(amo.tests.TestCase):
                 'addons/persona']
 
     def setUp(self):
+        super(TestDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
 
@@ -691,8 +708,8 @@ class TestDetailPage(amo.tests.TestCase):
 
         policy = str(doc(".policy-statement"))
         assert policy.startswith(
-                    '<div class="policy-statement">&lt;script'), (
-                                            'Unexpected: %s' % policy[0:50])
+            '<div class="policy-statement">&lt;script'), (
+                'Unexpected: %s' % policy[0:50])
 
     def test_button_size(self):
         """Make sure install buttons on the detail page are prominent."""
@@ -823,6 +840,7 @@ class TestImpalaDetailPage(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
+        super(TestImpalaDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
@@ -984,12 +1002,13 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(self.get_more_pq()('#author-addons').length, 0)
 
     def test_categories(self):
-        c = self.addon.all_categories[0]
-        c.application = amo.THUNDERBIRD.id
-        c.save()
+        cat = self.addon.all_categories[0]
+        cat.application = amo.THUNDERBIRD.id
+        cat.save()
         links = self.get_more_pq()('#related ul:first').find('a')
-        expected = [(unicode(c.name), c.get_url_path()) for c in
-                    self.addon.categories.filter(application=amo.FIREFOX.id)]
+        expected = [(unicode(c.name), c.get_url_path())
+                    for c in self.addon.categories.filter(
+                        application=amo.FIREFOX.id)]
         amo.tests.check_links(expected, links)
 
 
@@ -1003,6 +1022,7 @@ class TestPersonas(object):
 class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
 
     def setUp(self):
+        super(TestPersonas, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.url = self.addon.get_url_path()
@@ -1015,7 +1035,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         style = doc('#persona div[data-browsertheme]').attr('style')
         assert self.persona.preview_url in style, (
             'style attribute %s does not link to %s' % (
-            style, self.persona.preview_url))
+                style, self.persona.preview_url))
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
@@ -1077,6 +1097,7 @@ class TestStatus(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'addons/persona']
 
     def setUp(self):
+        super(TestStatus, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.file = self.version.all_files[0]
@@ -1185,6 +1206,7 @@ class TestEula(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
+        super(TestEula, self).setUp()
         self.addon = Addon.objects.get(id=11730)
         self.url = self.get_url()
 
@@ -1255,20 +1277,7 @@ class TestEula(amo.tests.TestCase):
         check_cat_sidebar(self.url, self.addon)
 
 
-class TestXssOnName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'users/test_backends', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
-        self.addon.name = self.name
-        self.addon.save()
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnName(amo.tests.TestXss):
 
     def test_eula_page(self):
         url = reverse('addons.eula', args=[self.addon.slug])
@@ -1300,6 +1309,7 @@ class TestPrivacyPolicy(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
+        super(TestPrivacyPolicy, self).setUp()
         self.addon = Addon.objects.get(id=11730)
         self.url = reverse('addons.privacy', args=[self.addon.slug])
 
@@ -1334,6 +1344,7 @@ class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
 
     def setUp(self):
+        super(TestReportAbuse, self).setUp()
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
     @patch('captcha.fields.ReCaptchaField.clean')
@@ -1394,14 +1405,15 @@ class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
 class TestMobileHome(TestMobile):
 
     def test_addons(self):
-        # Uncomment when redis gets fixed in CI.
-        raise SkipTest
-
         r = self.client.get('/', follow=True)
         eq_(r.status_code, 200)
         app, lang = r.context['APP'], r.context['LANG']
         featured, popular = r.context['featured'], r.context['popular']
-        eq_(len(featured), 3)
+        # Careful here: we can't be sure of the number of featured addons,
+        # that's why we're not testing len(featured). There's a corner case
+        # when there's less than 3 featured addons: some of the 3 random
+        # featured IDs could correspond to a Persona, and they're filtered out
+        # in the mobilized version of addons.views.home.
         assert all(a.is_featured(app, lang) for a in featured)
         eq_(len(popular), 3)
         eq_([a.id for a in popular],

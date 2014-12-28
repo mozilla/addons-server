@@ -68,7 +68,7 @@
                                     addon.created|datetime(dt)) }}
           </p>
           {% if addon.total_reviews %}
-            <a href="{{ shared_url('reviews.list', addon) }}">
+            <a href="{{ url('addons.reviews.list', addon.slug) }}">
               {{ addon.average_rating|float|stars }}
               {{ addon.total_reviews }}</a>
           {% else %}

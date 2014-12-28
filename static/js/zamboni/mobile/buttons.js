@@ -130,27 +130,10 @@
                     install;
                 if (attr.search) {
                     install = z.installSearch;
-                } else if (classes.webapp) {
-                    if (classes.premium && !attr.purchased) {
-                        install = z.startPurchase;
-                        processing_text = gettext('Purchasing...');
-                    } else {
-                        install = apps.install;
-                    }
                 } else {
                     install = z.installAddon;
                 }
-                if (classes.webapp) {
-                    dom.buttons.addClass('waiting');
-                    dom.buttons.text(processing_text);
-                    install(attr.manifest_url, {
-                        url: href,
-                        el: el,
-                        mobile: true
-                    });
-                } else {
-                    install(attr.name, href, attr.icon, hash);
-                }
+                install(attr.name, href, attr.icon, hash);
                 return true;
             }]);
 
@@ -228,7 +211,6 @@
                 'contrib'     : b.hasClass('contrib'),
                 'search'      : b.hasattr('data-search'),
                 'eula'        : b.hasClass('eula'),
-                'webapp'      : b.hasClass('webapp'),
                 'premium'     : b.hasClass('premium')
             };
 
@@ -263,16 +245,10 @@
                     }
                     if (self.tooOld) errors.push("tooOld");
                     if (self.tooNew) errors.push("tooNew");
-                } else {
-                    if (!z.appMatchesUserAgent && !(z.badBrowser || !(z.capabilities.webApps && self.classes.webapp))) {
-                        errors.push("badApp");
-                        canInstall = false;
-                    }
-                    if (!platformSupported) {
-                        errors.push("badPlatform");
-                        dom.buttons.hide().eq(0).show();
-                        canInstall = false;
-                    }
+                } else if (!platformSupported) {
+                    errors.push("badPlatform");
+                    dom.buttons.hide().eq(0).show();
+                    canInstall = false;
                 }
 
                 if (platformer) {
@@ -312,7 +288,7 @@
                 }
             }
 
-            if (z.badBrowser && !(z.capabilities.webApps && self.classes.webapp)) {
+            if (z.badBrowser) {
                 canInstall = false;
             }
 

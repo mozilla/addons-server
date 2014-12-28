@@ -7,6 +7,7 @@ from django.test.client import Client
 from django.utils import translation
 
 import jingo
+import pytest
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -27,6 +28,9 @@ from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from files.models import File
 from files.tests.test_models import UploadTest
 from tags.models import AddonTag, Tag
+
+
+pytestmark = pytest.mark.django_db
 
 
 def api_url(x, app='firefox', lang='en-US', version=1.2):
@@ -66,6 +70,7 @@ class UtilsTest(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(UtilsTest, self).setUp()
         self.a = Addon.objects.get(pk=3615)
 
     def test_dict(self):
@@ -78,7 +83,8 @@ class UtilsTest(TestCase):
     def test_dict_disco(self):
         """Check for correct add-on detail URL for discovery pane."""
         d = addon_to_dict(self.a, disco=True, src='discovery-personalrec')
-        u = '%s%s?src=discovery-personalrec' % (settings.SERVICES_URL,
+        u = '%s%s?src=discovery-personalrec' % (
+            settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
         eq_(d['learnmore'], u)
 
@@ -200,8 +206,8 @@ class APITest(TestCase):
         """
         response = self.client.get('/en-US/firefox/api/addon/12', follow=True)
         last_link = response.redirect_chain[-1]
-        assert last_link[0].endswith('en-US/firefox/api/%.1f/addon/12' %
-            api.CURRENT_VERSION)
+        assert last_link[0].endswith(
+            'en-US/firefox/api/%.1f/addon/12' % api.CURRENT_VERSION)
 
     def test_forbidden_api(self):
         """
@@ -210,16 +216,19 @@ class APITest(TestCase):
         """
 
         response = self.client.get('/en-US/firefox/api/0.9/addon/12')
-        self.assertContains(response, 'The API version, %.1f, you are using '
-            'is not valid. Please upgrade to the current version %.1f '
-            'API.' % (0.9, api.CURRENT_VERSION), status_code=403)
+        self.assertContains(
+            response,
+            'The API version, %.1f, you are using is not valid. Please upgrade'
+            ' to the current version %.1f API.' % (
+                0.9, api.CURRENT_VERSION),
+            status_code=403)
 
     def test_addon_detail_missing(self):
         """
         Check missing addons.
         """
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/999' %
-            api.CURRENT_VERSION)
+        response = self.client.get(
+            '/en-US/firefox/api/%.1f/addon/999' % api.CURRENT_VERSION)
 
         self.assertContains(response, 'Add-on not found!', status_code=404)
 
@@ -257,8 +266,8 @@ class APITest(TestCase):
         """
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
                                    api.CURRENT_VERSION)
-        self.assertContains(response,
-                '<appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>')
+        self.assertContains(
+            response, '<appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>')
 
     def test_addon_detail_empty_eula(self):
         """
@@ -281,12 +290,12 @@ class APITest(TestCase):
 
         self.assertContains(response, "<name>Delicious Bookmarks</name>")
         self.assertContains(response, """id="1">Extension</type>""")
-        self.assertContains(response,
-                """<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>""")
+        self.assertContains(
+            response, "<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>")
         self.assertContains(response, "<version>2.1.072</version>")
         self.assertContains(response, '<status id="4">Fully Reviewed</status>')
-        self.assertContains(response,
-            u'<author>55021 \u0627\u0644\u062a\u0637\u0628</author>')
+        self.assertContains(
+            response, u'<author>55021 \u0627\u0644\u062a\u0637\u0628</author>')
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
         self.assertContains(response, "<description>This extension integrates")
 
@@ -301,11 +310,12 @@ class APITest(TestCase):
         self.assertContains(response, "<eula>")
         self.assertContains(response, "/icons/no-preview.png</thumbnail>")
         self.assertContains(response, "<rating>3</rating>")
-        self.assertContains(response,
-                "/en-US/firefox/addon/a3615/?src=api</learnmore>")
-        self.assertContains(response,
-                """hash="sha256:3808b13ef8341378b9c8305ca64820095"""
-                '4ee7dcd8dce09fef55f2673458bc31f"')
+        self.assertContains(
+            response, "/en-US/firefox/addon/a3615/?src=api</learnmore>")
+        self.assertContains(
+            response,
+            'hash="sha256:3808b13ef8341378b9c8305ca648200954ee7dcd8dce09fef55f'
+            '2673458bc31f"')
 
     def test_addon_detail_json(self):
         addon = Addon.objects.get(id=3615)
@@ -326,7 +336,8 @@ class APITest(TestCase):
             '(http://delicious.com), the leading social bookmarking '
             'service on the Web.')
         eq_(data['icon'],
-            '%s3/3615-32.png?modified=1275062517' % helpers.user_media_url('addon_icons'))
+            '%s3/3615-32.png?modified=1275062517' % helpers.user_media_url(
+                'addon_icons'))
         eq_(data['compatible_apps'],
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
         eq_(data['eula'], unicode(addon.eula))
@@ -408,52 +419,54 @@ class APITest(TestCase):
             return e(helpers.urlparams(x, *args, **kwargs))
 
         needles = (
-                '<addon id="4664">',
-                "<contribution_data>",
-                "%s/en-US/firefox/addon/4664/contribute/?src=api</link>"
-                    % settings.SITE_URL,
-                "<meet_developers>",
-                "%s/en-US/firefox/addon/4664/developers?src=api"
-                    % settings.SITE_URL,
-                "</meet_developers>",
-                """<reviews num="131">""",
-                "%s/en-US/firefox/addon/4664/reviews/?src=api"
-                    % settings.SITE_URL,
-                "<total_downloads>1352192</total_downloads>",
-                "<weekly_downloads>13849</weekly_downloads>",
-                "<daily_users>67075</daily_users>",
-                '<author id="2519"',
-                "%s/en-US/firefox/user/cfinke/?src=api</link>"
-                    % settings.SITE_URL,
-                "<previews>",
-                """<preview position="0">""",
-                "<caption>"
-                    "TwitterBar places an icon in the address bar.</caption>",
-                """<full type="image/png">""",
-                urlparams('full/%s/%d.%s' %
-                          ('20', 20397, 'png'), src='api', modified=1209834208),
-                """<thumbnail type="image/png">""",
-                urlparams('thumbs/%s/%d.png' %
-                          ('20', 20397), src='api', modified=1209834208),
-                "<developer_comments>Embrace hug love hug meow meow"
-                    "</developer_comments>",
-                'size="100352"',
-                '<homepage>http://www.chrisfinke.com/addons/twitterbar/'
-                    '</homepage>',
-                '<support>http://www.chrisfinke.com/addons/twitterbar/'
-                    '</support>',
-                )
+            '<addon id="4664">',
+            '<contribution_data>',
+            '%s/en-US/firefox/addon/4664/contribute/?src=api</link>' % (
+                settings.SITE_URL),
+            '<meet_developers>',
+            '%s/en-US/firefox/addon/4664/developers?src=api' % (
+                settings.SITE_URL),
+            '</meet_developers>',
+            '<reviews num="131">',
+            '%s/en-US/firefox/addon/4664/reviews/?src=api' % settings.SITE_URL,
+            '<total_downloads>1352192</total_downloads>',
+            '<weekly_downloads>13849</weekly_downloads>',
+            '<daily_users>67075</daily_users>',
+            '<author id="2519"',
+            '%s/en-US/firefox/user/cfinke/?src=api</link>' % settings.SITE_URL,
+            '<previews>',
+            'preview position="0">',
+            '<caption>TwitterBar places an icon in the address bar.</caption>',
+            'full type="image/png">',
+            '<thumbnail type="image/png">',
+            ('<developer_comments>Embrace hug love hug meow meow'
+             '</developer_comments>'),
+            'size="100352"',
+            ('<homepage>http://www.chrisfinke.com/addons/twitterbar/'
+             '</homepage>'),
+            '<support>http://www.chrisfinke.com/addons/twitterbar/</support>')
+
+        # For urls with several parameters, we need to use self.assertUrlEqual,
+        # as the parameters could be in random order. Dicts aren't ordered!
+        url_needles = {
+            "full": urlparams(
+                '{previews}full/20/20397.png'.format(
+                    previews=helpers.user_media_url('previews')),
+                src='api', modified=1209834208),
+            "thumbnail": urlparams(
+                '{previews}thumbs/20/20397.png'.format(
+                    previews=helpers.user_media_url('previews')),
+                src='api', modified=1209834208),
+        }
 
         response = make_call('addon/4664', version=1.5)
         doc = pq(response.content)
 
         tags = {
-                'suggested_amount': (
-                    {'currency': 'USD', 'amount': '5.00'}, '$5.00'),
-                'created': ({'epoch': '1174134235'}, '2007-03-17T12:23:55Z'),
-                'last_updated': (
-                    {'epoch': '1272326983'}, '2010-04-27T00:09:43Z'),
-                }
+            'suggested_amount': (
+                {'currency': 'USD', 'amount': '5.00'}, '$5.00'),
+            'created': ({'epoch': '1174134235'}, '2007-03-17T12:23:55Z'),
+            'last_updated': ({'epoch': '1272326983'}, '2010-04-27T00:09:43Z')}
 
         for tag, v in tags.items():
             attrs, text = v
@@ -465,6 +478,10 @@ class APITest(TestCase):
 
         for needle in needles:
             self.assertContains(response, needle)
+
+        for tag, needle in url_needles.iteritems():
+            url = doc(tag).text()
+            self.assertUrlEqual(url, needle)
 
     def test_no_contribs_until_approved(self):
         Addon.objects.filter(id=4664).update(status=amo.STATUS_LITE)
@@ -504,8 +521,8 @@ class APITest(TestCase):
         self.assertContains(make_call('addon/5299', version=1.5),
                             '<featured>0</featured>')
         c = CollectionAddon.objects.create(
-                addon=Addon.objects.get(id=5299),
-                collection=Collection.objects.create())
+            addon=Addon.objects.get(id=5299),
+            collection=Collection.objects.create())
         FeaturedCollection.objects.create(
             locale='ja', application=amo.FIREFOX.id, collection=c.collection)
         for lang, app, result in [('ja', 'firefox', 1),
@@ -588,7 +605,11 @@ class DRFAPITest(DRFMixin, APITest):
     """
     Run all APITest tests with DRF.
     """
-    test_module_url = reverse('api.addon_detail', args=['1.5', 999999])
+
+    def setUp(self):
+        super(DRFAPITest, self).setUp()
+        self.test_module_url = reverse('api.addon_detail',
+                                       args=['1.5', 999999])
 
 
 class ListTest(TestCase):
@@ -654,7 +675,7 @@ class ListTest(TestCase):
         c.f.: https://bugzilla.mozilla.org/show_bug.cgi?id=548114
         """
         response = make_call('list/featured/all/10/Linux/3.7a2pre',
-                            version=1.3)
+                             version=1.3)
         self.assertContains(response, "<addons>")
 
     def test_average_daily_users(self):
@@ -688,7 +709,10 @@ class DRFListTest(DRFMixin, ListTest):
     """
     Run all ListTest tests with DRF.
     """
-    test_module_url = reverse('api.list', args=['1.5', 'featured'])
+
+    def setUp(self):
+        super(DRFListTest, self).setUp()
+        self.test_module_url = reverse('api.list', args=['1.5', 'featured'])
 
 
 class AddonFilterTest(TestCase):
@@ -696,6 +720,7 @@ class AddonFilterTest(TestCase):
     fixtures = ['base/appversion']
 
     def setUp(self):
+        super(AddonFilterTest, self).setUp()
         # Start with 2 compatible add-ons.
         self.addon1 = addon_factory(version_kw=dict(max_app_version='5.0'))
         self.addon2 = addon_factory(version_kw=dict(max_app_version='6.0'))
@@ -823,6 +848,7 @@ class TestGuidSearch(TestCase):
             '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}')
 
     def setUp(self):
+        super(TestGuidSearch, self).setUp()
         addon = Addon.objects.get(id=3615)
         c = CompatOverride.objects.create(guid=addon.guid)
         app = addon.compatible_apps.keys()[0]
@@ -933,6 +959,7 @@ class SearchTest(ESTestCase):
     no_results = """<searchresults total_results="0">"""
 
     def setUp(self):
+        super(SearchTest, self).setUp()
         self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                            disabled_by_user=False)
         t = Tag.objects.create(tag_text='ballin')
@@ -959,7 +986,7 @@ class SearchTest(ESTestCase):
         For API < 1.5 we use double escaping in search.
         """
         resp = make_call('search/%25E6%2596%25B0%25E5%2590%258C%25E6%2596%'
-                '2587%25E5%25A0%2582/all/10/WINNT/3.6', version=1.2)
+                         '2587%25E5%25A0%2582/all/10/WINNT/3.6', version=1.2)
         self.assertContains(resp, '<addon id="6113">')
 
     def test_zero_results(self):
@@ -1021,7 +1048,7 @@ class SearchTest(ESTestCase):
         Test that we limit our results correctly.
         """
         response = self.client.get(
-                "/en-US/firefox/api/1.2/search/delicious/all/1")
+            "/en-US/firefox/api/1.2/search/delicious/all/1")
         eq_(response.content.count("<addon id"), 1)
 
     def test_total_results(self):
@@ -1030,7 +1057,7 @@ class SearchTest(ESTestCase):
         limit (and therefore show) only 1.
         """
         response = self.client.get(
-                "/en-US/firefox/api/1.2/search/firefox/all/1")
+            "/en-US/firefox/api/1.2/search/firefox/all/1")
         self.assertContains(response, """<searchresults total_results="3">""")
         self.assertContains(response, "</addon>", 1)
 
@@ -1265,19 +1292,20 @@ class DRFSearchTest(DRFMixin, SearchTest):
     """
     Run all SearchTest tests with DRF.
     """
-    test_module_url = reverse('api.search', args=['1.5', 'delicious'])
+
+    def setUp(self):
+        super(DRFSearchTest, self).setUp()
+        self.test_module_url = reverse('api.search', args=['1.5', 'delicious'])
 
 
-class LanguagePacks(UploadTest):
+class LanguagePacksTest(UploadTest):
     fixtures = ['addons/listed']
 
     def setUp(self):
+        super(LanguagePacksTest, self).setUp()
         self.url = reverse('api.language', args=['1.5'])
         self.tb_url = self.url.replace('firefox', 'thunderbird')
         self.addon = Addon.objects.get(pk=3723)
-
-    def tearDown(self):
-        pass
 
     def test_search_language_pack(self):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
@@ -1331,8 +1359,11 @@ class LanguagePacks(UploadTest):
                                                 ]]></strings>"""))
 
 
-class DRFLanguagePacks(DRFMixin, LanguagePacks):
+class DRFLanguagePacksTest(DRFMixin, LanguagePacksTest):
     """
     Run all LanguagePack tests with DRF.
     """
-    test_module_url = reverse('api.language', args=['1.5'])
+
+    def setUp(self):
+        super(DRFLanguagePacksTest, self).setUp()
+        self.test_module_url = reverse('api.language', args=['1.5'])

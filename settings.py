@@ -4,6 +4,8 @@ If you need to overload settings, please do so in a local_settings.py file (it
 won't be tracked in git).
 
 """
+import os
+
 from lib.settings_base import *  # noqa
 
 DEBUG = True
@@ -13,6 +15,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
 # These apps are great during development.
 INSTALLED_APPS += (
     'django_extensions',
+    'landfill',
 )
 
 # Using locmem deadlocks in certain scenarios. This should all be fixed,
@@ -30,7 +33,7 @@ INSTALLED_APPS += (
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.MemcachedCache',
-        'LOCATION': 'localhost:11211',
+        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     }
 }
 
@@ -62,8 +65,6 @@ UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
-# Overload in local_settings.py to run elasticsearch related tests.
-RUN_ES_TESTS = False
 
 SITE_URL = 'http://localhost:8000/'
 SERVICES_DOMAIN = 'localhost:8000'

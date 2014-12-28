@@ -2,6 +2,7 @@ import os
 import stat
 import tempfile
 
+import pytest
 from mock import Mock, patch
 from nose import SkipTest
 from nose.tools import eq_
@@ -17,6 +18,9 @@ from lib.video import get_library
 from lib.video import ffmpeg, totem
 from lib.video.tasks import resize_video
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 files = {
     'good': os.path.join(os.path.dirname(__file__),
@@ -60,6 +64,7 @@ TOTEM_INFO_HAS_AUDIO=False
 class TestFFmpegVideo(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestFFmpegVideo, self).setUp()
         self.video = ffmpeg.Video(files['good'])
         if not ffmpeg.Video.library_available():
             raise SkipTest
@@ -105,6 +110,7 @@ class TestFFmpegVideo(amo.tests.TestCase):
 class TestBadFFmpegVideo(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestBadFFmpegVideo, self).setUp()
         self.video = ffmpeg.Video(files['bad'])
         if not self.video.library_available():
             raise SkipTest
@@ -129,6 +135,7 @@ class TestBadFFmpegVideo(amo.tests.TestCase):
 class TestTotemVideo(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestTotemVideo, self).setUp()
         self.video = totem.Video(files['good'])
         self.video._call_indexer = Mock()
 
@@ -189,6 +196,7 @@ class TestTask(amo.tests.TestCase):
     # up all the time.
 
     def setUp(self):
+        super(TestTask, self).setUp()
         waffle.models.Switch.objects.create(name='video-encode', active=True)
         self.mock = Mock()
         self.mock.thumbnail_path = tempfile.mkstemp()[1]
@@ -202,8 +210,8 @@ class TestTask(amo.tests.TestCase):
         with self.assertRaises(ValueError):
             resize_video(files['good'], self.mock, user=user)
         assert self.mock.delete.called
-        assert UserLog.objects.filter(user=user,
-                        activity_log__action=amo.LOG.VIDEO_ERROR.id).exists()
+        assert UserLog.objects.filter(
+            user=user, activity_log__action=amo.LOG.VIDEO_ERROR.id).exists()
 
     @patch('lib.video.tasks._resize_video')
     def test_resize_failed(self, _resize_video):

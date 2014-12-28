@@ -37,10 +37,12 @@ def make_file(pk, file_path, **kwargs):
 class TestFileHelper(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestFileHelper, self).setUp()
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
 
     def tearDown(self):
         self.viewer.cleanup()
+        super(TestFileHelper, self).tearDown()
 
     def test_files_not_extracted(self):
         eq_(self.viewer.is_extracted(), False)
@@ -204,6 +206,7 @@ class TestSearchEngineHelper(amo.tests.TestCase):
     fixtures = ['base/addon_4594_a9']
 
     def setUp(self):
+        super(TestSearchEngineHelper, self).setUp()
         self.left = File.objects.get(pk=25753)
         self.viewer = FileViewer(self.left)
 
@@ -214,6 +217,7 @@ class TestSearchEngineHelper(amo.tests.TestCase):
 
     def tearDown(self):
         self.viewer.cleanup()
+        super(TestSearchEngineHelper, self).tearDown()
 
     def test_is_search_engine(self):
         assert self.viewer.is_search_engine()
@@ -235,6 +239,7 @@ class TestSearchEngineHelper(amo.tests.TestCase):
 class TestDiffSearchEngine(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestDiffSearchEngine, self).setUp()
         src = os.path.join(settings.ROOT, get_file('search.xml'))
         if not storage.exists(src):
             with storage.open(src, 'w') as f:
@@ -244,6 +249,7 @@ class TestDiffSearchEngine(amo.tests.TestCase):
 
     def tearDown(self):
         self.helper.cleanup()
+        super(TestDiffSearchEngine, self).tearDown()
 
     @patch('files.helpers.FileViewer.is_search_engine')
     def test_diff_search(self, is_search_engine):
@@ -258,11 +264,13 @@ class TestDiffSearchEngine(amo.tests.TestCase):
 class TestDiffHelper(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestDiffHelper, self).setUp()
         src = os.path.join(settings.ROOT, get_file('dictionary-test.xpi'))
         self.helper = DiffHelper(make_file(1, src), make_file(2, src))
 
     def tearDown(self):
         self.helper.cleanup()
+        super(TestDiffHelper, self).tearDown()
 
     def test_files_not_extracted(self):
         eq_(self.helper.is_extracted(), False)
@@ -350,7 +358,7 @@ class TestDiffHelper(amo.tests.TestCase):
 
 class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
-    #TODO(andym): get full coverage for existing SafeUnzip methods, most
+    # TODO(andym): get full coverage for existing SafeUnzip methods, most
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):

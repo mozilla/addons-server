@@ -1,9 +1,7 @@
 from django import http
-from django.core.exceptions import PermissionDenied
 
 import mock
 from nose.tools import eq_
-from test_utils import RequestFactory
 
 import amo.tests
 from addons import decorators as dec
@@ -13,6 +11,7 @@ from addons.models import Addon
 class TestAddonView(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestAddonView, self).setUp()
         self.addon = Addon.objects.create(slug='x', type=1)
         self.func = mock.Mock()
         self.func.return_value = mock.sentinel.OK

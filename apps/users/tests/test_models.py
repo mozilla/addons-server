@@ -13,7 +13,6 @@ from django.utils import encoding, translation
 
 from mock import patch
 from nose.tools import eq_
-from test_utils import trans_eq
 
 import amo
 import amo.tests
@@ -89,8 +88,8 @@ class TestUserProfile(amo.tests.TestCase):
     def test_remove_admin_powers(self):
         Group.objects.create(name='Admins', rules='*:*')
         u = UserProfile.objects.get(username='jbalogh')
-        g = GroupUser.objects.create(group=Group.objects.filter(name='Admins')[0],
-                                     user=u)
+        g = GroupUser.objects.create(
+            group=Group.objects.filter(name='Admins')[0], user=u)
         g.delete()
         assert not u.is_staff
         assert not u.is_superuser
@@ -205,11 +204,12 @@ class TestUserProfile(amo.tests.TestCase):
         """Return the translation for the locale fallback."""
         user = UserProfile.objects.create(
             lang='fr', bio={'en-US': 'my bio', 'fr': 'ma bio'})
-        trans_eq(user.bio, 'my bio', 'en-US')  # Uses current locale.
+        self.trans_eq(user.bio, 'my bio', 'en-US')  # Uses current locale.
 
         with self.activate(locale='de'):
             user = UserProfile.objects.get(pk=user.pk)  # Reload.
-            trans_eq(user.bio, 'ma bio', 'fr')  # Uses the default fallback.
+            # Uses the default fallback.
+            self.trans_eq(user.bio, 'ma bio', 'fr')
 
 
 class TestPasswords(amo.tests.TestCase):
@@ -350,10 +350,12 @@ class TestFlushURLs(amo.tests.TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
+        super(TestFlushURLs, self).setUp()
         _connect()
 
     def tearDown(self):
         _disconnect()
+        super(TestFlushURLs, self).tearDown()
 
     @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
     def test_flush(self, flush):

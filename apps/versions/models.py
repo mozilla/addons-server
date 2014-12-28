@@ -53,7 +53,7 @@ def source_upload_path(instance, filename):
     )
 
 
-class Version(amo.models.ModelBase):
+class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
@@ -74,7 +74,8 @@ class Version(amo.models.ModelBase):
     _developer_name = models.CharField(max_length=255, default='',
                                        editable=False)
 
-    source = models.FileField(upload_to=source_upload_path, null=True, blank=True)
+    source = models.FileField(
+        upload_to=source_upload_path, null=True, blank=True)
 
     objects = VersionManager()
     with_deleted = VersionManager(include_deleted=True)
@@ -106,7 +107,8 @@ class Version(amo.models.ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, send_signal=True, source=None):
+    def from_upload(cls, upload, addon, platforms, send_signal=True,
+                    source=None, is_beta=False):
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -134,7 +136,8 @@ class Version(amo.models.ModelBase):
             platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
-            File.from_upload(upload, v, platform, parse_data=data)
+            File.from_upload(upload, v, platform, parse_data=data,
+                             is_beta=is_beta)
 
         v.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
@@ -266,7 +269,6 @@ class Version(amo.models.ModelBase):
         Note: The lowest maxVersion compat check needs to be checked
               separately.
         Note: This does not take into account the client conditions.
-
         """
         compat = True
         reasons = []
@@ -297,7 +299,6 @@ class Version(amo.models.ModelBase):
         If not ranges, returns empty list.  Otherwise, this will return all
         the app version ranges that this particular version is incompatible
         with.
-
         """
         from addons.models import CompatOverride
         cos = CompatOverride.objects.filter(addon=self.addon)
@@ -331,9 +332,10 @@ class Version(amo.models.ModelBase):
         return [(f.id, f.status) for f in self.all_files]
 
     def is_allowed_upload(self):
-        """Check that a file can be uploaded based on the files
-        per platform for that type of addon."""
-
+        """
+        Check that a file can be uploaded based on the files
+        per platform for that type of addon.
+        """
         num_files = len(self.all_files)
         if self.addon.type == amo.ADDON_SEARCH:
             return num_files == 0
@@ -456,12 +458,22 @@ class Version(amo.models.ModelBase):
     def developer_name(self):
         return self._developer_name
 
-    def reset_nomination_time(self, force=False):
-        if not self.nomination or force:
+    def reset_nomination_time(self, nomination=None):
+        if not self.nomination or nomination:
+            nomination = nomination or datetime.datetime.now()
             # We need signal=False not to call update_status (which calls us).
-            self.update(nomination=datetime.datetime.now(), _signal=False)
+            self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
+
+
+@Version.on_change
+def watch_source(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+    """Set the "admin_review" flag on the addon if a source file was added."""
+    # Only admins may review addons with source files attached.
+    if old_attr.get('source') != new_attr.get('source'):
+        instance.addon.admin_review = True
+        instance.addon.save()
 
 
 @use_master
@@ -478,7 +490,8 @@ def update_status(sender, instance, **kw):
 
 
 def inherit_nomination(sender, instance, **kw):
-    """For new versions pending review, ensure nomination date
+    """
+    For new versions pending review, ensure nomination date
     is inherited from last nominated version.
     """
     if kw.get('raw'):
@@ -490,12 +503,12 @@ def inherit_nomination(sender, instance, **kw):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():
-            instance.update(nomination=last_ver[0].nomination,
-                            _signal=False)
+            instance.reset_nomination_time(nomination=last_ver[0].nomination)
 
 
 def update_incompatible_versions(sender, instance, **kw):
-    """When a new version is added or deleted, send to task to update if it
+    """
+    When a new version is added or deleted, send to task to update if it
     matches any compat overrides.
     """
     try:
@@ -579,11 +592,13 @@ class License(amo.models.ModelBase):
     url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
-    on_form = models.BooleanField(default=False,
-        help_text='Is this a license choice in the devhub?')
-    some_rights = models.BooleanField(default=False,
+    on_form = models.BooleanField(
+        default=False, help_text='Is this a license choice in the devhub?')
+    some_rights = models.BooleanField(
+        default=False,
         help_text='Show "Some Rights Reserved" instead of the license name?')
-    icons = models.CharField(max_length=255, null=True,
+    icons = models.CharField(
+        max_length=255, null=True,
         help_text='Space-separated list of icon identifiers.')
 
     objects = LicenseManager()
@@ -632,7 +647,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     def __unicode__(self):
         if (self.version.is_compatible[0] and
-            self.version.is_compatible_app(amo.APP_IDS[self.application])):
+                self.version.is_compatible_app(amo.APP_IDS[self.application])):
             return _(u'{app} {min} and later').format(
                 app=self.get_application_display(),
                 min=self.min

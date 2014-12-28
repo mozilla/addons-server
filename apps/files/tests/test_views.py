@@ -6,7 +6,6 @@ import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
-from django.utils.encoding import iri_to_uri
 from django.utils.http import http_date
 
 from cache_nuggets.lib import Message
@@ -29,13 +28,14 @@ not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
 
 
-class FilesBase:
+class FilesBase(object):
 
     def login_as_editor(self):
         assert self.client.login(username='editor@mozilla.com',
                                  password='password')
 
     def setUp(self):
+        super(FilesBase, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.dev = self.addon.authors.all()[0]
         self.regular = UserProfile.objects.get(pk=999)
@@ -74,6 +74,7 @@ class FilesBase:
 
     def tearDown(self):
         self.file_viewer.cleanup()
+        super(FilesBase, self).tearDown()
 
     def files_redirect(self, file):
         return reverse('files.redirect', args=[self.file.pk, file])
@@ -288,14 +289,15 @@ class FilesBase:
         res = self.client.get(self.file_url())
         doc = pq(res.content)
 
-        files = doc('#id_left > optgroup > option')
-        eq_([f.text for f in files],
-            [str(self.files[0].get_platform_display()),
-             '%s, %s' % (self.files[1].get_platform_display(),
-                         self.files[2].get_platform_display())])
+        unreviewed_file = doc('#id_left > optgroup > option.status-unreviewed')
+        public_file = doc('#id_left > optgroup > option.status-public')
+        eq_(public_file.text(), str(self.files[0].get_platform_display()))
+        eq_(unreviewed_file.text(),
+            '%s, %s' % (self.files[1].get_platform_display(),
+                        self.files[2].get_platform_display()))
 
-        eq_(files.eq(0).attr('value'), str(self.files[0].id))
-        eq_(files.eq(1).attr('value'), str(self.files[1].id))
+        eq_(public_file.attr('value'), str(self.files[0].id))
+        eq_(unreviewed_file.attr('value'), str(self.files[1].id))
 
     def test_file_chooser_disabled_coalescing(self):
         self.files[1].update(status=amo.STATUS_DISABLED)
@@ -303,8 +305,8 @@ class FilesBase:
         res = self.client.get(self.file_url())
         doc = pq(res.content)
 
-        files = doc('#id_left > optgroup > option')
-        eq_(files.eq(1).attr('value'), str(self.files[2].id))
+        disabled_file = doc('#id_left > optgroup > option.status-disabled')
+        eq_(disabled_file.attr('value'), str(self.files[2].id))
 
 
 class TestFileViewer(FilesBase, amo.tests.TestCase):
@@ -446,11 +448,11 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
             str(self.files[0].id))
         eq_(len(doc('#id_right option[value][selected]')), 0)
 
-    @patch.object(amo.PLATFORM_LINUX, 'name', u'所有移动平台')
     def test_file_chooser_non_ascii_platform(self):
-        with self.activate(locale='zh-CN'):
-            PLATFORM_NAME = u'所有移动平台'
-            f = self.files[0]
+        PLATFORM_NAME = u'所有移动平台'
+        f = self.files[0]
+        with patch.object(File, 'get_platform_display',
+                          lambda self: PLATFORM_NAME):
             eq_(f.get_platform_display(), PLATFORM_NAME)
 
             res = self.client.get(self.file_url())

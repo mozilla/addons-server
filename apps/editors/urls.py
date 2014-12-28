@@ -37,6 +37,8 @@ urlpatterns = (
     url(r'^abuse-reports/%s$' % ADDON_ID, views.abuse_reports,
         name='editors.abuse_reports'),
     url(r'^leaderboard/$', views.leaderboard, name='editors.leaderboard'),
+    url(r'^whiteboard/%s$' % ADDON_ID, views.whiteboard,
+        name='editors.whiteboard'),
 
     url('^themes$', views_themes.home,
         name='editors.themes.home'),
@@ -50,7 +52,7 @@ urlpatterns = (
         kwargs={'rereview': True}),
     url('^themes/queue/$', views_themes.themes_queue,
         name='editors.themes.queue_themes'),
-        url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
+    url('^themes/queue/flagged$', views_themes.themes_queue_flagged,
         name='editors.themes.queue_flagged'),
     url('^themes/queue/updates$', views_themes.themes_queue_rereview,
         name='editors.themes.queue_rereview'),

@@ -4,9 +4,12 @@ from django import test
 from django.core.cache import cache
 from django.test.utils import override_settings
 
+import mock
+import waffle
+from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-import waffle
+from tower import strip_whitespace
 
 import amo
 import amo.tests
@@ -37,6 +40,7 @@ class TestRecs(amo.tests.TestCase):
         test.Client().get('/')
 
     def setUp(self):
+        super(TestRecs, self).setUp()
         self.url = reverse('discovery.recs', args=['3.6', 'Darwin'])
         self.guids = ('bettergcal@ginatrapani.org',
                       'foxyproxy@eric.h.jung',
@@ -49,7 +53,9 @@ class TestRecs(amo.tests.TestCase):
         # The view is limited to returning 9 add-ons.
         self.expected_recs = Recs.expected_recs()[:9]
 
-        self.min_id, self.max_id = 1, 364  # see test_min_max_appversion
+        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
+        self.min_id = versions.order_by('version_int')[0].id
+        self.max_id = versions.order_by('-version_int')[0].id
         for addon in Addon.objects.all():
             v = Version.objects.create(addon=addon)
             File.objects.create(version=v, status=amo.STATUS_PUBLIC)
@@ -59,15 +65,6 @@ class TestRecs(amo.tests.TestCase):
             addon.update(_current_version=v)
             addons.signals.version_changed.send(sender=addon)
         Addon.objects.update(status=amo.STATUS_PUBLIC, disabled_by_user=False)
-
-    def test_min_max_appversion(self):
-        # These version numbers are hardcoded for speed, make sure the
-        # assumption is correct.
-        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
-        min_ = versions.order_by('version_int')[0]
-        max_ = versions.order_by('-version_int')[0]
-        eq_(self.min_id, min_.id)
-        eq_(self.max_id, max_.id)
 
     def test_get(self):
         """GET should find method not allowed."""
@@ -203,8 +200,9 @@ class TestModuleAdmin(amo.tests.TestCase):
         check()
 
         # The deleted module is removed.
-        registry.popitem()
-        check()
+        with mock.patch.dict(registry):
+            registry.popitem()
+            check()
 
     def test_discovery_module_form_bad_locale(self):
         d = dict(app=1, module='xx', locales='fake')
@@ -215,7 +213,8 @@ class TestModuleAdmin(amo.tests.TestCase):
         d = dict(app=amo.FIREFOX.id, module='xx', locales='en-US he he fa fa')
         form = DiscoveryModuleForm(d)
         assert form.is_valid()
-        eq_(form.cleaned_data['locales'], 'fa en-US he')
+        cleaned_locales = form.cleaned_data['locales'].split()
+        eq_(sorted(cleaned_locales), ['en-US', 'fa', 'he'])
 
 
 class TestUrls(amo.tests.TestCase):
@@ -300,9 +299,11 @@ class TestPromos(amo.tests.TestCase):
 
 class TestPane(amo.tests.TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/collections',
-                'base/featured', 'base/users', 'bandwagon/featured_collections']
+                'base/featured', 'base/users',
+                'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestPane, self).setUp()
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_my_account(self):
@@ -393,11 +394,12 @@ class TestDetails(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592']
 
     def setUp(self):
+        super(TestDetails, self).setUp()
         self.addon = self.get_addon()
         self.detail_url = reverse('discovery.addons.detail',
                                   args=[self.addon.slug])
         self.eula_url = reverse('discovery.addons.eula',
-                                 args=[self.addon.slug])
+                                args=[self.addon.slug])
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -451,10 +453,8 @@ class TestPersonaDetails(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
+        super(TestPersonaDetails, self).setUp()
         self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.persona.author = self.persona.author
-        self.persona.save()
         self.url = reverse('discovery.addons.detail', args=[self.addon.slug])
 
     def test_page(self):
@@ -464,7 +464,33 @@ class TestPersonaDetails(amo.tests.TestCase):
     def test_by(self):
         """Test that the `by ... <authors>` section works."""
         r = self.client.get(self.url)
-        assert pq(r.content)('h2.author').text().startswith('by persona_author')
+        assert pq(r.content)('h2.author').text().startswith(
+            'by persona_author')
+
+    def test_no_version(self):
+        """Don't display a version number for themes."""
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('h1 .version'), [])
+
+    def test_created_not_updated(self):
+        """Don't display the updated date but the created date for themes."""
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        details = doc('.addon-info li')
+
+        # There's no "Last Updated" entry.
+        assert not any('Last Updated' in node.text_content()
+                       for node in details)
+
+        # But there's a "Created" entry.
+        for detail in details:
+            if detail.find('h3').text_content() == 'Created':
+                created = detail.find('p').text_content()
+                eq_(created,
+                    strip_whitespace(datetime_filter(self.addon.created)))
+                break  # Needed, or we go in the "else" clause.
+        else:
+            assert False, 'No "Created" entry found.'
 
 
 class TestDownloadSources(amo.tests.TestCase):
@@ -473,6 +499,7 @@ class TestDownloadSources(amo.tests.TestCase):
                 'discovery/discoverymodules']
 
     def setUp(self):
+        super(TestDownloadSources, self).setUp()
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_detail(self):
@@ -519,6 +546,7 @@ class TestMonthlyPick(amo.tests.TestCase):
                 'discovery/discoverymodules']
 
     def setUp(self):
+        super(TestMonthlyPick, self).setUp()
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
@@ -573,6 +601,7 @@ class TestPaneMoreAddons(amo.tests.TestCase):
     fixtures = ['base/appversion']
 
     def setUp(self):
+        super(TestPaneMoreAddons, self).setUp()
         self.addon1 = addon_factory(hotness=99,
                                     version_kw=dict(max_app_version='5.0'))
         self.addon2 = addon_factory(hotness=0,

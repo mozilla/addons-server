@@ -17,7 +17,6 @@ import amo.tests
 from access import acl
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
-from amo.helpers import absolutify
 from amo.pyquery_wrapper import PyQuery
 from amo.tests import check_links
 from amo.urlresolvers import reverse
@@ -28,6 +27,7 @@ class Test403(amo.tests.TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(Test403, self).setUp()
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
 
@@ -64,6 +64,7 @@ class TestCommon(amo.tests.TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/addon_3615')
 
     def setUp(self):
+        super(TestCommon, self).setUp()
         self.url = reverse('home')
 
     def login(self, user=None, get=False):
@@ -302,13 +303,13 @@ class TestOtherStuff(amo.tests.TestCase):
         e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
         eq_(e.text, "Firefox Add-ons")
 
-    def test_login_link(self):
+    def test_login_link_encoding(self):
         # Test that the login link encodes parameters correctly.
         r = test.Client().get('/?your=mom', follow=True)
         doc = pq(r.content)
         assert doc('.account.anonymous a')[1].attrib['href'].endswith(
-                '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), ("Got %s" %
-                doc('.account.anonymous a')[1].attrib['href'])
+            '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), (
+            "Got %s" % doc('.account.anonymous a')[1].attrib['href'])
 
         r = test.Client().get(u'/ar/firefox/?q=འ')
         doc = pq(r.content)
@@ -324,18 +325,21 @@ class TestOtherStuff(amo.tests.TestCase):
                               'clientOS=Windows%20NT%205.1&'
                               'chromeLocale=en-US&appRelease=10.0.2')
         self.assertEquals(r.status_code, 302)
-        self.assertEquals(r['Location'], ('https://pfs.mozilla.org/pfs.py?'
-                          'mimetype=application%2Fx-shockwave-flash&'
-                          'appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&'
-                          'appVersion=20120215223356&'
-                          'clientOS=Windows%20NT%205.1&'
-                          'chromeLocale=en-US&appRelease=10.0.2'))
+        self.assertEquals(
+            r['Location'],
+            ('https://pfs.mozilla.org/pfs.py?'
+             'mimetype=application%2Fx-shockwave-flash&'
+             'appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&'
+             'appVersion=20120215223356&'
+             'clientOS=Windows%20NT%205.1&'
+             'chromeLocale=en-US&appRelease=10.0.2'))
 
 
 @mock.patch('amo.views.log_cef')
 class TestCSP(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestCSP, self).setUp()
         self.url = reverse('amo.csp.report')
         self.create_sample(name='csp-store-reports')
 

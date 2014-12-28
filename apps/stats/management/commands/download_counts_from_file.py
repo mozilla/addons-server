@@ -1,3 +1,4 @@
+import codecs
 from datetime import datetime, timedelta
 from optparse import make_option
 from os import path, unlink
@@ -8,8 +9,7 @@ from django.core.management.base import BaseCommand, CommandError
 import commonware.log
 
 from addons.models import File
-# TODO: use DownloadCount when the script is proven to work correctly.
-from stats.models import update_inc, DownloadCountTmp as DownloadCount
+from stats.models import update_inc, DownloadCount
 from zadmin.models import DownloadSource
 
 from . import get_date_from_file
@@ -95,7 +95,7 @@ class Command(BaseCommand):
         prefixes = DownloadSource.objects.filter(type='prefix').values_list(
             'name', flat=True)
 
-        with open(filepath) as count_file:
+        with codecs.open(filepath, encoding='utf8') as count_file:
             for index, line in enumerate(count_file):
                 if index and (index % 1000000) == 0:
                     log.info('Processed %s lines' % index)

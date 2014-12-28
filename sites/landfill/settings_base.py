@@ -47,8 +47,8 @@ SLAVE_DATABASES = ['slave']
 CACHES = {
     'default': {
         'BACKEND': 'caching.backends.memcached.MemcachedCache',
-#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#        'BACKEND': 'memcachepool.cache.UMemcacheCache',
+        #'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        #'BACKEND': 'memcachepool.cache.UMemcacheCache',
         'LOCATION': splitstrip(private.CACHES_DEFAULT_LOCATION),
         'TIMEOUT': 500,
         'KEY_PREFIX': CACHE_PREFIX,
@@ -59,7 +59,7 @@ SECRET_KEY = private.SECRET_KEY
 
 LOG_LEVEL = logging.DEBUG
 
-## Celery
+# Celery
 BROKER_URL = private.BROKER_URL
 
 CELERY_ALWAYS_EAGER = True
@@ -84,10 +84,10 @@ PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
 
 HERA = []
 LOGGING['loggers'].update({
-    'z.task': { 'level': logging.DEBUG },
-    'z.hera': { 'level': logging.INFO },
-    'z.redis': { 'level': logging.DEBUG },
-    'z.pool': { 'level': logging.ERROR },
+    'z.task': {'level': logging.DEBUG},
+    'z.hera': {'level': logging.INFO},
+    'z.redis': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 REDIS_BACKEND = private.REDIS_BACKENDS_CACHE
@@ -101,7 +101,9 @@ CACHE_MACHINE_USE_REDIS = True
 
 RECAPTCHA_PUBLIC_KEY = private.RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = private.RECAPTCHA_PRIVATE_KEY
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' % RECAPTCHA_PUBLIC_KEY)
+RECAPTCHA_URL = (
+    'https://www.google.com/recaptcha/api/challenge?k=%s' %
+    RECAPTCHA_PUBLIC_KEY)
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -122,14 +124,16 @@ RESPONSYS_ID = private.RESPONSYS_ID
 CRONJOB_LOCK_PREFIX = 'addons-landfill'
 
 BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = "https://builder-addons-dev.allizom.org/repackage/sdk-versions/"
+BUILDER_VERSIONS_URL = (
+    "https://builder-addons-dev.allizom.org/repackage/sdk-versions/")
 
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_landfill' % v) for k, v in ES_INDEXES.items())
 
-BUILDER_UPGRADE_URL = "https://builder-addons-dev.allizom.org/repackage/rebuild/"
+BUILDER_UPGRADE_URL = (
+    "https://builder-addons-dev.allizom.org/repackage/rebuild/")
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
@@ -166,7 +170,8 @@ KNOWN_PROXIES += ['10.2.83.105',
 
 NEW_FEATURES = True
 
-PERF_TEST_URL = 'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi'
+PERF_TEST_URL = (
+    'http://talos-addon-master1.amotest.scl1.mozilla.com/trigger/trigger.cgi')
 
 REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 
@@ -177,7 +182,7 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 240
 
 LESS_PREPROCESS = True
 
-XSENDFILE_HEADER  = 'X-Accel-Redirect'
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 ALLOW_SELF_REVIEWS = True
 

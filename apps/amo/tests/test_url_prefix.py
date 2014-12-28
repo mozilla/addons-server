@@ -1,20 +1,26 @@
-from django import test, shortcuts
+from django import shortcuts
 from django.conf import settings
 from django.core.urlresolvers import set_script_prefix
+from django.test.client import Client, RequestFactory
 
+import pytest
 from nose.tools import eq_, assert_not_equal
-import test_utils
 
 import amo.tests
 from amo import urlresolvers
 from amo.middleware import LocaleAndAppURLMiddleware
+from amo.tests import BaseTestCase
 
 
-class MiddlewareTest(test.TestCase):
+pytestmark = pytest.mark.django_db
+
+
+class MiddlewareTest(BaseTestCase):
     """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
-        self.rf = test_utils.RequestFactory()
+        super(MiddlewareTest, self).setUp()
+        self.rf = RequestFactory()
         self.middleware = LocaleAndAppURLMiddleware()
 
     def test_redirection(self):
@@ -106,7 +112,7 @@ class MiddlewareTest(test.TestCase):
     def test_get_lang(self):
         def check(url, expected):
             response = self.process(url)
-            eq_(response['Location'], expected)
+            self.assertUrlEqual(response['Location'], expected)
 
         check('/services?lang=fr', '/services')
         check('/en-US/firefox?lang=fr', '/fr/firefox/')
@@ -119,16 +125,17 @@ class MiddlewareTest(test.TestCase):
         check('/en-US/firefox?lang=es-PE', '/es/firefox/')
 
 
-class TestPrefixer:
+class TestPrefixer(BaseTestCase):
 
     def tearDown(self):
         urlresolvers.clean_url_prefixes()
         set_script_prefix('/')
+        super(TestPrefixer, self).tearDown()
 
     def test_split_path(self):
 
         def split_eq(url, locale, app, path):
-            rf = test_utils.RequestFactory()
+            rf = RequestFactory()
             prefixer = urlresolvers.Prefixer(rf.get(url))
             actual = (prefixer.locale, prefixer.app, prefixer.shortened_path)
             eq_(actual, (locale, app, path))
@@ -149,7 +156,7 @@ class TestPrefixer:
         split_eq('/foo/', '', '', 'foo/')
 
     def test_fix(self):
-        rf = test_utils.RequestFactory()
+        rf = RequestFactory()
         prefixer = urlresolvers.Prefixer(rf.get('/'))
 
         eq_(prefixer.fix('/'), '/en-US/firefox/')
@@ -169,11 +176,11 @@ class TestPrefixer:
 
     def test_reverse(self):
         # Make sure it works outside the request.
+        urlresolvers.clean_url_prefixes()  # Modified in BaseTestCase.
         eq_(urlresolvers.reverse('home'), '/')
 
         # With a request, locale and app prefixes work.
-        client = test.Client()
-        client.get('/')
+        Client().get('/')
         eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
 
     def test_resolve(self):
@@ -181,13 +188,12 @@ class TestPrefixer:
         eq_(func.__name__, 'home')
 
         # With a request with locale and app prefixes, it still works.
-        client = test.Client()
-        client.get('/')
+        Client().get('/')
         func, args, kwargs = urlresolvers.resolve('/en-US/firefox/')
         eq_(func.__name__, 'home')
 
     def test_script_name(self):
-        rf = test_utils.RequestFactory()
+        rf = RequestFactory()
         request = rf.get('/foo', SCRIPT_NAME='/oremj')
         prefixer = urlresolvers.Prefixer(request)
         eq_(prefixer.fix(prefixer.shortened_path), '/oremj/en-US/firefox/foo')
@@ -218,7 +224,7 @@ class TestPrefixerActivate(amo.tests.TestCase):
 
 def test_redirect():
     """Make sure django.shortcuts.redirect uses our reverse."""
-    test.Client().get('/')
+    Client().get('/')
     redirect = shortcuts.redirect('home')
     eq_(redirect['Location'], '/en-US/firefox/')
 
@@ -310,8 +316,7 @@ def test_parse_accept_language():
          ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
          ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
          # Consolidated languages.
-         ('es-PE', 'es'),
-    )
+         ('es-PE', 'es'))
     for x, y in d:
         yield check, x, y
 

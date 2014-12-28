@@ -8,6 +8,7 @@ import django.test
 from django.utils.datastructures import MultiValueDict
 from django.utils import encoding
 
+import pytest
 from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -27,6 +28,9 @@ from bandwagon.views import CollectionFilter
 from browse.tests import TestFeeds
 from devhub.models import ActivityLog
 from users.models import UserProfile
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_addons_form():
@@ -238,6 +242,7 @@ class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(TestPrivacy, self).setUp()
         # The favorites collection is created automatically.
         self.url = reverse('collections.detail', args=['jbalogh', 'favorites'])
         self.client.login(username='jbalogh@mozilla.com', password='password')
@@ -287,6 +292,7 @@ class TestVotes(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(TestVotes, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='password')
         args = ['fligtar', 'slug']
         Collection.objects.create(slug='slug', author_id=9945)
@@ -351,6 +357,7 @@ class TestCRUD(amo.tests.TestCase):
     fixtures = ('base/users', 'base/addon_3615', 'base/collections')
 
     def setUp(self):
+        super(TestCRUD, self).setUp()
         self.client = HappyUnicodeClient()
         self.add_url = reverse('collections.add')
         self.login_admin()
@@ -371,7 +378,7 @@ class TestCRUD(amo.tests.TestCase):
 
     def login_regular(self):
         assert self.client.login(username='regular@mozilla.com',
-                                  password='password')
+                                 password='password')
 
     def create_collection(self, **kw):
         self.data.update(kw)
@@ -757,7 +764,7 @@ class TestCRUD(amo.tests.TestCase):
         eq_(r.status_code, 200)
 
     def test_delete_link(self):
-         # Create an addon by user 1.
+        # Create an addon by user 1.
         self.create_collection()
 
         url = reverse('collections.edit_contributors',
@@ -824,6 +831,7 @@ class TestChangeAddon(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
+        super(TestChangeAddon, self).setUp()
         self.client.login(username='jbalogh@mozilla.com', password='password')
         self.add = reverse('collections.alter',
                            args=['jbalogh', 'mobile', 'add'])
@@ -924,6 +932,7 @@ class AjaxTest(amo.tests.TestCase):
                 'base/addon_5299_gcal', 'base/collections')
 
     def setUp(self):
+        super(AjaxTest, self).setUp()
         assert self.client.login(username='clouserw@gmail.com',
                                  password='password')
         self.user = UserProfile.objects.get(email='clouserw@gmail.com')
@@ -953,9 +962,11 @@ class AjaxTest(amo.tests.TestCase):
 
     def test_new_collection(self):
         num_collections = Collection.objects.all().count()
-        r = self.client.post(reverse('collections.ajax_new'),
-                {'addon_id': 5299, 'name': 'foo', 'slug': 'auniqueone',
-                 'description': 'yermom', 'listed': True}, follow=True)
+        r = self.client.post(
+            reverse('collections.ajax_new'),
+            {'addon_id': 5299, 'name': 'foo', 'slug': 'auniqueone',
+             'description': 'yermom', 'listed': True},
+            follow=True)
         doc = pq(r.content)
         eq_(len(doc('li.selected')), 1, "The new collection is not selected.")
         eq_(Collection.objects.all().count(), num_collections + 1)
@@ -990,6 +1001,7 @@ class TestWatching(amo.tests.TestCase):
     fixtures = ['base/users', 'base/collection_57181']
 
     def setUp(self):
+        super(TestWatching, self).setUp()
         self.collection = c = Collection.objects.get(id=57181)
         self.url = reverse('collections.watch',
                            args=[c.author.username, c.slug])
@@ -1062,6 +1074,7 @@ class TestCollectionListing(amo.tests.TestCase):
                 'base/collections', 'bandwagon/featured_collections']
 
     def setUp(self):
+        super(TestCollectionListing, self).setUp()
         cache.clear()
         self.url = reverse('collections.list')
 
@@ -1166,6 +1179,7 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
     fixtures = ['base/collection_57181']
 
     def setUp(self):
+        super(TestCollectionDetailFeed, self).setUp()
         self.collection = c = Collection.objects.get(id=57181)
         self.feed_url = reverse('collections.detail.rss',
                                 args=[c.author.username, c.slug])
@@ -1197,7 +1211,7 @@ class TestCollectionDetailFeed(amo.tests.TestCase):
             unicode(theme.persona.persona_id))
 
         assert data['addons'][0]['theme']['header']
-        assert data['addons'][0]['theme']['footer']
+        assert data['addons'][0]['theme']['footer'] == ''
 
 
 class TestMobileCollections(TestMobile):
@@ -1217,13 +1231,13 @@ class TestCollectionForm(amo.tests.TestCase):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
         form = forms.CollectionForm(
-                        {'listed': collection.listed,
-                         'slug': collection.slug,
-                         'name': collection.name},
-                        instance=collection,
-                        files={'icon': get_uploaded_file('transparent.png')},
-                        initial={'author': collection.author,
-                                 'application': collection.application})
+            {'listed': collection.listed,
+             'slug': collection.slug,
+             'name': collection.name},
+            instance=collection,
+            files={'icon': get_uploaded_file('transparent.png')},
+            initial={'author': collection.author,
+                     'application': collection.application})
         assert form.is_valid()
         form.save()
         assert update_mock.called

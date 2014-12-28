@@ -116,8 +116,10 @@ class Command(BaseCommand):
             user['username'], data['user_id'])
 
         try:
-            data['bio'] = re.sub('&([^;]+);', lambda m: unichr(
-                htmlentitydefs.name2codepoint[m.group(1)]), data['description'])
+            data['bio'] = re.sub(
+                '&([^;]+);',
+                lambda m: (unichr(htmlentitydefs.name2codepoint[m.group(1)]),
+                           data['description']))
         except:
             data['bio'] = ''
 
@@ -137,8 +139,8 @@ class Command(BaseCommand):
             if addon_id:
                 rows.append('(%s, %s, 5)' % (addon_id, data['user_id']))
             else:
-                self.log('\t\tSkipping unknown persona (%s) for user with username (%s)' %
-                         (persona_id[0], user['username']))
+                self.log('\t\tSkipping unknown persona (%s) for user with '
+                         'username (%s)' % (persona_id[0], user['username']))
 
         if rows:
             values = ', '.join(rows)
@@ -151,13 +153,14 @@ class Command(BaseCommand):
             except IntegrityError:
                 # Can mean they already own the personas (eg. you've run this
                 # script before) or a persona doesn't exist in the db.
-                self.log('\t\tUser (%s) already an owner of (%s) personas. Rows: %s' %
-                         (user['username'], len(rows), values))
+                self.log('\t\tUser (%s) already an owner of (%s) personas. '
+                         'Rows: %s' % (user['username'], len(rows), values))
 
         # Now hook up any favorites
         try:
             self.cursor_z.execute(
-                'SELECT id FROM collections WHERE author_id = %s', data['user_id'])
+                'SELECT id FROM collections WHERE author_id = %s',
+                data['user_id'])
             collection_id = self.cursor_z.fetchone()[0]
         except TypeError:
             uuid_ = unicode(uuid.uuid4())
@@ -204,7 +207,8 @@ class Command(BaseCommand):
 
         self.connect(**options)
 
-        self.log("You're running a script to import getpersonas.com users to AMO!")
+        self.log(
+            "You're running a script to import getpersonas.com users to AMO!")
 
         try:
             # Read usernames from a file.

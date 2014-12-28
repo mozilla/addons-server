@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
 
-from django.conf import settings
 from django.core import mail
-from django.db import models
 from django.test.client import RequestFactory
-from django.utils import translation
 
 import phpserialize as php
 from nose.tools import eq_
@@ -41,6 +37,7 @@ class TestEmail(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
+        super(TestEmail, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.user = UserProfile.objects.get(pk=999)
 

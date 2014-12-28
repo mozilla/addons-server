@@ -26,7 +26,7 @@ class TestGlobalStats(amo.tests.TestCase):
                                                  name=job).count(), 0)
         tasks.update_global_totals(job, date)
         eq_(len(GlobalStat.objects.no_cache().filter(date=date,
-                                                 name=job)), 1)
+                                                     name=job)), 1)
 
     def test_input(self):
         for x in ['2009-1-1',
@@ -86,6 +86,7 @@ class TestIndexStats(amo.tests.TestCase):
     fixtures = ['stats/test_models']
 
     def setUp(self):
+        super(TestIndexStats, self).setUp()
         self.downloads = (DownloadCount.objects.order_by('-date')
                           .values_list('id', flat=True))
         self.updates = (UpdateCount.objects.order_by('-date')
@@ -156,7 +157,6 @@ class TestIndexStats(amo.tests.TestCase):
 
 
 class TestIndexLatest(amo.tests.ESTestCase):
-    test_es = True
 
     def test_index_latest(self):
         latest = datetime.date.today() - datetime.timedelta(days=5)

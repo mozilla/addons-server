@@ -12,6 +12,7 @@ class TestModels(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5299_gcal', 'perf/index']
 
     def setUp(self):
+        super(TestModels, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.results = self.addon.performance.all()
         self.result = self.results[0]

@@ -88,10 +88,8 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                 review = form.instance
                 addon = review.addon
                 if action == reviews.REVIEW_MODERATE_DELETE:
-                    review_addon = review.addon
-                    review_id = review.id
                     review.delete()
-                    amo.log(amo.LOG.DELETE_REVIEW, review_addon, review_id,
+                    amo.log(amo.LOG.DELETE_REVIEW, addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,
@@ -99,11 +97,11 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.amo_user, addon, review_id)
+                            self.request.amo_user, addon, review.id)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
-                    amo.log(amo.LOG.APPROVE_REVIEW, review.addon, review,
+                    amo.log(amo.LOG.APPROVE_REVIEW, addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
                                          addon_id=addon.id,

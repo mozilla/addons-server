@@ -1,16 +1,20 @@
 from functools import partial
 import os
 import tempfile
-import unittest
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 
+import pytest
 from nose.tools import eq_
 
 from amo.storage_utils import (walk_storage, copy_stored_file,
                                move_stored_file, rm_stored_dir)
+from amo.tests import BaseTestCase
 from amo.utils import rm_local_tmp_dir
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_storage_walk():
@@ -29,16 +33,20 @@ def test_storage_walk():
         results = [(dir, set(subdirs), set(files))
                    for dir, subdirs, files in sorted(walk_storage(tmp))]
 
-        yield (eq_, results.pop(0), (tmp, set(['four', 'one']), set(['file1.txt'])))
-        yield (eq_, results.pop(0), (jn('four'),
-                                     set(['five', 'kristi\xe2\x98\x83']), set([])))
-        yield (eq_, results.pop(0), (jn('four/five'), set([]), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (tmp, set(['four', 'one']), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (jn('four'), set(['five', 'kristi\xe2\x98\x83']), set([])))
+        yield (eq_, results.pop(0),
+               (jn('four/five'), set([]), set(['file1.txt'])))
         yield (eq_, results.pop(0), (jn('four/kristi\xe2\x98\x83'), set([]),
                                      set(['kristi\xe2\x98\x83.txt'])))
         yield (eq_, results.pop(0), (jn('one'), set(['three', 'two']),
                                      set(['file1.txt', 'file2.txt'])))
-        yield (eq_, results.pop(0), (jn('one/three'), set([]), set(['file1.txt'])))
-        yield (eq_, results.pop(0), (jn('one/two'), set([]), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (jn('one/three'), set([]), set(['file1.txt'])))
+        yield (eq_, results.pop(0),
+               (jn('one/two'), set([]), set(['file1.txt'])))
         yield (eq_, len(results), 0)
     finally:
         rm_local_tmp_dir(tmp)
@@ -67,13 +75,15 @@ def test_rm_stored_dir():
         rm_local_tmp_dir(tmp)
 
 
-class TestFileOps(unittest.TestCase):
+class TestFileOps(BaseTestCase):
 
     def setUp(self):
+        super(TestFileOps, self).setUp()
         self.tmp = tempfile.mkdtemp()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)
+        super(TestFileOps, self).tearDown()
 
     def path(self, path):
         return os.path.join(self.tmp, path)

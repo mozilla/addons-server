@@ -6,11 +6,12 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import encoding
 
 import jingo
-import test_utils
+import pytest
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery
@@ -20,6 +21,9 @@ import amo.tests
 from amo import urlresolvers, utils, helpers
 from amo.utils import ImageCheck
 from versions.models import License
+
+
+pytestmark = pytest.mark.django_db
 
 
 def render(s, context={}):
@@ -77,9 +81,10 @@ def test_page_title():
                 'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
 
 
-class TestBreadcrumbs(object):
+class TestBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
+        super(TestBreadcrumbs, self).setUp()
         self.req_noapp = Mock()
         self.req_noapp.APP = None
         self.req_app = Mock()
@@ -187,7 +192,7 @@ def test_urlparams():
 
     # Adding query with existing params.
     s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
-    eq_(s, '%s?sort=name&amp;x=y#frag' % url)
+    amo.tests.assert_url_equal(s, '%s?sort=name&amp;x=y#frag' % url)
 
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
@@ -207,25 +212,6 @@ def test_urlparams_unicode():
     utils.urlparams(url)
 
 
-class TestSharedURL(amo.tests.TestCase):
-
-    def setUp(self):
-        self.addon = Mock()
-        self.addon.type = amo.ADDON_EXTENSION
-        self.addon.slug = 'addon'
-
-    def test_addonurl(self):
-        expected = '/en-US/firefox/addon/addon/'
-        eq_(helpers.shared_url('addons.detail', self.addon), expected)
-        eq_(helpers.shared_url('apps.detail', self.addon), expected)
-        eq_(helpers.shared_url('detail', self.addon), expected)
-        eq_(helpers.shared_url('detail', self.addon, add_prefix=False),
-            '/addon/addon/')
-        eq_(helpers.shared_url('reviews.detail', self.addon, 1,
-                               add_prefix=False),
-            '/addon/addon/reviews/1/')
-
-
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
@@ -243,7 +229,7 @@ def test_epoch():
 
 
 def test_locale_url():
-    rf = test_utils.RequestFactory()
+    rf = RequestFactory()
     request = rf.get('/de', SCRIPT_NAME='/z')
     prefixer = urlresolvers.Prefixer(request)
     urlresolvers.set_url_prefix(prefixer)
@@ -353,9 +339,9 @@ class TestLicenseLink(amo.tests.TestCase):
                 'title="Creative Commons">Some rights reserved</a></li></ul>'),
         }
         for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
+            res = render('{{ license_link(lic) }}', {'lic': lic})
+            res = ''.join([s.strip() for s in res.split('\n')])
+            eq_(res, ex)
 
     def test_theme_license_link(self):
         s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_COPYRIGHT})
@@ -404,9 +390,9 @@ class TestLicenseLink(amo.tests.TestCase):
                 'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
         }
         for lic, ex in expected.items():
-            s = render('{{ license_link(lic) }}', {'lic': lic})
-            s = ''.join([s.strip() for s in s.split('\n')])
-            eq_(s, ex)
+            res = render('{{ license_link(lic) }}', {'lic': lic})
+            res = ''.join([s.strip() for s in res.split('\n')])
+            eq_(res, ex)
 
 
 def get_image_path(name):
@@ -440,6 +426,7 @@ class TestAnimatedImages(amo.tests.TestCase):
 
 
 def test_site_nav():
+    amo.tests.default_prefixer()
     r = Mock()
     r.APP = amo.FIREFOX
     assert 'id="site-nav"' in helpers.site_nav({'request': r})
@@ -471,11 +458,19 @@ def test_f():
     eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
 
 
-def test_inline_css():
+def test_inline_css(monkeypatch):
     jingo.load_helpers()
     env = jingo.env
     t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
+
+    # Monkeypatch settings.LESS_BIN to not call the less compiler. We don't
+    # need nor want it in tests.
+    monkeypatch.setattr(settings, 'LESS_BIN', 'ls')
+    # Monkeypatch jingo_minify.helpers.is_external to counter-effect the
+    # autouse fixture in conftest.py.
+    monkeypatch.setattr(amo.helpers, 'is_external', lambda css: False)
     s = t.render()
+
     ok_('background-image: url(/static/img/icons/stars.png);' in s)
 
 

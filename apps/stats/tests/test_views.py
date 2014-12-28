@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
 import datetime
-from decimal import Decimal
 import json
 
 import mock
@@ -11,7 +10,6 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
-from addons.models import Addon
 from bandwagon.models import Collection
 from stats import views, tasks
 from stats import search
@@ -89,6 +87,15 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         user_counts = ThemeUserCount.objects.values_list('id', flat=True)
         tasks.index_theme_user_counts(list(user_counts))
         self.refresh('stats')
+
+    def csv_eq(self, response, expected):
+        content = csv.DictReader(
+            # Drop lines that are comments.
+            filter(lambda row: row[0] != '#', response.content.splitlines()))
+        expected = csv.DictReader(
+            # Strip any extra spaces from the expected content.
+            line.strip() for line in expected.splitlines())
+        self.assertEqual(tuple(content), tuple(expected))
 
 
 class TestSeriesSecurity(StatsTest):
@@ -171,21 +178,23 @@ class TestSeriesSecurity(StatsTest):
         self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
 
 
-class _TestCSVs(StatsTest):
+class TestCSVs(ESStatsTest):
     """Tests for CSV output of all known series views."""
-    first_row = 5
 
     def test_downloads_series(self):
         response = self.get_view_response('stats.downloads_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 2, 'unexpected row length')
-        date, count = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '50', 'unexpected count value: %s' % count)
+        self.csv_eq(response, """date,count
+                                 2009-09-03,10
+                                 2009-08-03,10
+                                 2009-07-03,10
+                                 2009-06-28,10
+                                 2009-06-20,10
+                                 2009-06-12,10
+                                 2009-06-07,10
+                                 2009-06-01,10""")
 
     def test_usage_series(self):
         for url_args in [self.url_args, self.url_args_theme]:
@@ -195,111 +204,82 @@ class _TestCSVs(StatsTest):
                                               group='month', format='csv')
 
             eq_(response.status_code, 200, 'unexpected http status')
-            rows = list(csv.reader(response.content.split('\n')))
-            # The first row of data after the header.
-            row = rows[self.first_row]
-            eq_(len(row), 2, 'unexpected row length')
-            date, ave = row
-            eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-            eq_(ave, '83', 'unexpected ADU average: %s' % ave)
+            self.csv_eq(response, """date,count
+                                     2009-06-02,1500
+                                     2009-06-01,1000""")
 
     def test_contributions_series(self):
         response = self.get_view_response('stats.contributions_series',
                                           group='day', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 4, 'unexpected row length')
-        date, total, count, ave = row
-        eq_(date, '2009-06-02', 'unexpected date string: %s' % date)
-        eq_(total, '4.98', 'unexpected contribution total: %s' % total)
-        eq_(count, '2', 'unexpected contribution count: %s' % count)
-        eq_(ave, '2.49', 'unexpected contribution average: %s' % ave)
+        self.csv_eq(response, """date,total,count,average
+                                 2009-06-02,4.98,2,2.49
+                                 2009-06-01,5.0,1,5.0""")
 
     def test_sources_series(self):
         response = self.get_view_response('stats.sources_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 5, 'unexpected row length')
-        date, count, source1, source2, source3 = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '50', 'unexpected count: %s' % count)
-        eq_(source1, '25', 'unexpected source1 count: %s' % source1)
-        eq_(source2, '15', 'unexpected source2 count: %s' % source2)
-        eq_(source3, '10', 'unexpected source3 count: %s' % source3)
+        self.csv_eq(response, """date,count,search,api
+                                 2009-09-03,10,3,2
+                                 2009-08-03,10,3,2
+                                 2009-07-03,10,3,2
+                                 2009-06-28,10,3,2
+                                 2009-06-20,10,3,2
+                                 2009-06-12,10,3,2
+                                 2009-06-07,10,3,2
+                                 2009-06-01,10,3,2""")
 
     def test_os_series(self):
         response = self.get_view_response('stats.os_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 5, 'unexpected row length')
-        date, count, os1, os2, os3 = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '83', 'unexpected count: %s' % count)
-        eq_(os1, '30', 'unexpected os1 count: %s' % os1)
-        eq_(os2, '30', 'unexpected os2 count: %s' % os2)
-        eq_(os3, '23', 'unexpected os3 count: %s' % os3)
+        self.csv_eq(response, """date,count,Windows,Linux
+                                 2009-06-02,1500,500,400
+                                 2009-06-01,1000,400,300""")
 
     def test_locales_series(self):
         response = self.get_view_response('stats.locales_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 3, 'unexpected row length')
-        date, count, locale1 = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '83', 'unexpected count: %s' % count)
-        eq_(locale1, '83', 'unexpected locale1 count: %s' % locale1)
+        self.csv_eq(
+            response,
+            """date,count,English (US) (en-us),"""
+            """\xce\x95\xce\xbb\xce\xbb\xce\xb7\xce\xbd\xce\xb9\xce\xba"""
+            """\xce\xac (el)
+               2009-06-02,1500,300,400
+               2009-06-01,1000,300,400""")
 
     def test_statuses_series(self):
         response = self.get_view_response('stats.statuses_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 4, 'unexpected row length')
-        date, count, status1, status2 = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '83', 'unexpected count: %s' % count)
-        eq_(status1, '77', 'unexpected status1 count: %s' % status1)
-        eq_(status2, '6', 'unexpected status2 count: %s' % status2)
+        self.csv_eq(response, """date,count,userEnabled,userDisabled
+                                 2009-06-02,1500,1370,130
+                                 2009-06-01,1000,950,50""")
 
     def test_versions_series(self):
         response = self.get_view_response('stats.versions_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 4, 'unexpected row length')
-        date, count, version1, version2 = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '83', 'unexpected count: %s' % count)
-        eq_(version1, '58', 'unexpected version1 count: %s' % version1)
-        eq_(version2, '25', 'unexpected version2 count: %s' % version2)
+        self.csv_eq(response, """date,count,2.0,1.0
+                                 2009-06-02,1500,950,550
+                                 2009-06-01,1000,800,200""")
 
     def test_apps_series(self):
         response = self.get_view_response('stats.apps_series',
                                           group='month', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        rows = list(csv.reader(response.content.split('\n')))
-        row = rows[self.first_row]  # the first row of data after the header
-        eq_(len(row), 3, 'unexpected row length')
-        date, count, app1 = row
-        eq_(date, '2009-06-01', 'unexpected date string: %s' % date)
-        eq_(count, '83', 'unexpected count: %s' % count)
-        eq_(app1, '83', 'unexpected app1 count: %s' % app1)
+        self.csv_eq(response, """date,count,Firefox 4.0
+                                 2009-06-02,1500,1500
+                                 2009-06-01,1000,1000""")
 
     def test_no_cache(self):
         """Test that the csv or json is not caching, due to lack of data."""
@@ -325,10 +305,7 @@ class _TestCSVs(StatsTest):
                                               group='day', format='csv')
 
             eq_(response.status_code, 200)
-            rows = list(csv.reader(response.content.split('\n')))
-            eq_(len(rows), 6)
-            eq_(rows[4], [])  # No fields
-            eq_(rows[self.first_row], [])  # There is no data
+            self.csv_eq(response, """date,count""")
 
 
 class TestCacheControl(StatsTest):
@@ -361,14 +338,6 @@ class TestLayout(StatsTest):
 
 
 class TestResponses(ESStatsTest):
-    test_es = True
-
-    def csv_eq(self, response, expected):
-        # Drop the first 4 lines, which contain the header comment.
-        content = response.content.splitlines()[4:]
-        # Strip any extra spaces from the expected content.
-        expected = [line.strip() for line in expected.splitlines()]
-        self.assertListEqual(content, expected)
 
     def test_usage_json(self):
         for url_args in [self.url_args, self.url_args_theme]:
@@ -562,59 +531,23 @@ class TestResponses(ESStatsTest):
         # dates in between filled with zeroes.
         expected_data = [
             {"date": "2009-09-03",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-08-03",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-07-03",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-28",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-20",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-12",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-07",
-             "data": {
-                 "downloads": 10,
-                 "updates": 0,
-             },
-            },
+             "data": {"downloads": 10, "updates": 0}},
             {"date": "2009-06-02",
-             "data": {
-                 "downloads": 0,
-                 "updates": 1500,
-             },
-            },
+             "data": {"downloads": 0, "updates": 1500}},
             {"date": "2009-06-01",
-             "data": {
-                 "downloads": 10,
-                 "updates": 1000,
-             },
-            }
+             "data": {"downloads": 10, "updates": 1000}}
         ]
         actual_data = json.loads(r.content)
         # Make sure they match up at the front and back.
@@ -674,43 +607,35 @@ class TestResponses(ESStatsTest):
             {"count": 10,
              "date": "2009-09-03",
              "end": "2009-09-03",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-08-03",
              "end": "2009-08-03",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-07-03",
              "end": "2009-07-03",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-28",
              "end": "2009-06-28",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-20",
              "end": "2009-06-20",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-12",
              "end": "2009-06-12",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-07",
              "end": "2009-06-07",
-             "data": {"api": 2, "search": 3}
-            },
+             "data": {"api": 2, "search": 3}},
             {"count": 10,
              "date": "2009-06-01",
              "end": "2009-06-01",
-             "data": {"api": 2, "search": 3}
-            }
+             "data": {"api": 2, "search": 3}}
         ])
 
     def test_downloads_sources_csv(self):
@@ -761,6 +686,7 @@ class TestResponses(ESStatsTest):
 class TestSiteQuery(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestSiteQuery, self).setUp()
         self.start = datetime.date(2012, 1, 1)
         self.end = datetime.date(2012, 1, 31)
         for k in xrange(0, 15):
@@ -911,22 +837,8 @@ class TestCollections(amo.tests.ESTestCase):
         eq_(content[1]['date'], day_before.strftime('%Y-%m-%d'))
 
 
-class TestXssOnAddonName(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', ]
-
-    def setUp(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;"
-        self.addon.name = self.name
-        self.addon.save()
-
-    def assertNameAndNoXSS(self, url):
-        response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_stats_page(self):
         url = reverse('stats.overview', args=[self.addon.slug])
-        self.client.login(username='del@icio.us', password='password')
         self.assertNameAndNoXSS(url)

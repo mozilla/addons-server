@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 
-from mock import Mock
+import pytest
+from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -21,6 +22,9 @@ from users.models import UserProfile
 from versions.models import Version
 
 from . test_models import create_addon_file
+
+
+pytestmark = pytest.mark.django_db
 
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
@@ -48,7 +52,7 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         a = pq(self.table.render_addon_name(row))
 
         eq_(a.attr('href'),
-            reverse('editors.review', args=[str(row.addon_slug)]) + '?num=1')
+            reverse('editors.review', args=[str(row.addon_slug)]))
         eq_(a.text(), "フォクすけといっしょ 0.12".decode('utf8'))
 
     def test_addon_type_id(self):
@@ -162,6 +166,8 @@ class TestReviewHelper(amo.tests.TestCase):
     preamble = 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
 
     def setUp(self):
+        super(TestReviewHelper, self).setUp()
+
         class FakeRequest:
             amo_user = UserProfile.objects.get(pk=10482)
             user = amo_user
@@ -397,7 +403,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    def test_nomination_to_public(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_nomination_to_public(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_public()
@@ -410,13 +417,15 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
+            sign_mock.assert_called_with(self.version.pk, False)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    def test_nomination_to_preliminary(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_nomination_to_preliminary(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_preliminary()
@@ -431,6 +440,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
+            sign_mock.assert_called_with(self.version.pk, False)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
@@ -638,7 +648,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self.helper.set_data(data)
         self.helper.handler.process_sandbox()
 
-        assert not 'Tested' in mail.outbox[0].body
+        assert 'Tested' not in mail.outbox[0].body
 
     def test_pending_to_super_review(self):
         for status in helpers.PENDING_STATUSES:
@@ -698,6 +708,7 @@ class TestCompareLink(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestCompareLink, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.current = File.objects.get(pk=67442)
         self.version = Version.objects.create(addon=self.addon)

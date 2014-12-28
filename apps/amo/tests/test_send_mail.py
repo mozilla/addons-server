@@ -1,7 +1,6 @@
 import mimetypes
 import os.path
 
-from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
@@ -13,21 +12,24 @@ import mock
 from nose.tools import eq_
 
 from amo.models import FakeEmail
+from amo.tests import BaseTestCase
 from amo.utils import send_mail, send_html_mail_jinja
 from devhub.tests.test_models import ATTACHMENTS_DIR
 from users.models import UserProfile, UserNotification
 import users.notifications
 
 
-class TestSendMail(test.TestCase):
+class TestSendMail(BaseTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
+        super(TestSendMail, self).setUp()
         self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))
 
     def tearDown(self):
         translation.activate('en_US')
         settings.EMAIL_BLACKLIST = self._email_blacklist
+        super(TestSendMail, self).tearDown()
 
     def test_send_string(self):
         to = 'f@f.com'
@@ -81,8 +83,8 @@ class TestSendMail(test.TestCase):
         user = UserProfile.objects.all()[0]
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
-        UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=True)
+        UserNotification.objects.get_or_create(
+            notification_id=n.id, user=user, enabled=True)
 
         # Confirm we're reading from the database
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
@@ -100,8 +102,8 @@ class TestSendMail(test.TestCase):
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
 
-        UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=True)
+        UserNotification.objects.get_or_create(
+            notification_id=n.id, user=user, enabled=True)
 
         assert n.mandatory, "Notification isn't mandatory"
 
@@ -117,8 +119,8 @@ class TestSendMail(test.TestCase):
         user = UserProfile.objects.all()[0]
         to = user.email
         n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
-        UserNotification.objects.get_or_create(notification_id=n.id,
-                user=user, enabled=False)
+        UserNotification.objects.get_or_create(
+            notification_id=n.id, user=user, enabled=False)
 
         # Confirm we're reading from the database.
         eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
@@ -148,6 +150,30 @@ class TestSendMail(test.TestCase):
         eq_(FakeEmail.objects.count(), 1)
         eq_(FakeEmail.objects.get().message.endswith('test body'), True)
 
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
+    def test_qa_whitelist(self):
+        assert send_mail('test subject', 'test body',
+                         recipient_list=['nobody@mozilla.org'],
+                         fail_silently=False)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].subject.find('test subject'), 0)
+        eq_(mail.outbox[0].body.find('test body'), 0)
+        eq_(FakeEmail.objects.count(), 1)
+        eq_(FakeEmail.objects.get().message.endswith('test body'), True)
+
+    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
+    @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
+    def test_qa_whitelist_with_mixed_emails(self):
+        assert send_mail('test subject', 'test body',
+                         recipient_list=['nobody@mozilla.org', 'b@example.fr'],
+                         fail_silently=False)
+        eq_(len(mail.outbox), 1)
+        eq_(mail.outbox[0].to, set(['nobody@mozilla.org']))
+        eq_(FakeEmail.objects.count(), 1)
+
     @mock.patch('amo.utils.Context')
     def test_dont_localize(self, fake_Context):
         perm_setting = []
@@ -160,7 +186,7 @@ class TestSendMail(test.TestCase):
         to = user.email
         translation.activate('zh_TW')
         send_mail('test subject', 'test body', perm_setting='reply',
-                             recipient_list=[to], fail_silently=False)
+                  recipient_list=[to], fail_silently=False)
         eq_(perm_setting[0], u'an add-on developer replies to my review')
 
     def test_send_html_mail_jinja(self):
@@ -207,7 +233,8 @@ class TestSendMail(test.TestCase):
                         mimetypes.guess_type(path)[0])]
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)
-        eq_(attachments, mail.outbox[0].attachments, 'Attachments not included')
+        eq_(attachments, mail.outbox[0].attachments,
+            'Attachments not included')
 
     def test_send_multilines_subjects(self):
         send_mail('test\nsubject', 'test body', from_email='a@example.com',
@@ -216,6 +243,7 @@ class TestSendMail(test.TestCase):
 
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)
+
         def make_backend(*args, **kwargs):
             if next(throw_error):
                 class BrokenMessage(object):
@@ -241,9 +269,9 @@ class TestSendMail(test.TestCase):
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
         assert send_mail('test subject',
-                          'test body',
-                          async=True,
-                          recipient_list=['somebody@mozilla.org'])
+                         'test body',
+                         async=True,
+                         recipient_list=['somebody@mozilla.org'])
 
     @mock.patch('amo.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):

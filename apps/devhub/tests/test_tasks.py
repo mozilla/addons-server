@@ -3,9 +3,9 @@ import shutil
 import tempfile
 
 from django.conf import settings
-from django.core import mail
 
 import mock
+import pytest
 from nose.tools import eq_
 from PIL import Image
 
@@ -16,6 +16,9 @@ from amo.helpers import user_media_path
 from amo.tests.test_helpers import get_image_path
 from devhub import tasks
 from files.models import FileUpload
+
+
+pytestmark = pytest.mark.django_db
 
 
 def test_resize_icon_shrink():
@@ -96,6 +99,7 @@ def _uploader(resize_size, final_size):
 class TestValidator(amo.tests.TestCase):
 
     def setUp(self):
+        super(TestValidator, self).setUp()
         self.upload = FileUpload.objects.create()
         assert not self.upload.valid
 
@@ -128,6 +132,7 @@ class TestFlagBinary(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
+        super(TestFlagBinary, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
 
     @mock.patch('devhub.tasks.run_validator')

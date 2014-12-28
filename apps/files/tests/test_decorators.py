@@ -11,18 +11,19 @@ from files.decorators import allowed
 class AllowedTest(amo.tests.TestCase):
 
     def setUp(self):
+        super(AllowedTest, self).setUp()
         self.request = Mock()
         self.file = Mock()
 
-    @patch.object(acl, 'check_reviewer', lambda x: True)
+    @patch.object(acl, 'check_addons_reviewer', lambda x: True)
     def test_reviewer_allowed(self):
         self.assertTrue(allowed(self.request, self.file))
 
-    @patch.object(acl, 'check_reviewer', lambda x: False)
+    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     def test_reviewer_unallowed(self):
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
 
-    @patch.object(acl, 'check_reviewer', lambda x: False)
+    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     def test_addon_not_found(self):
         class MockVersion():
             @property

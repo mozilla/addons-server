@@ -4,18 +4,17 @@ Miscellaneous helpers that make Django compatible with AMO.
 import threading
 
 import commonware.log
-from caching.base import CachingQuerySet
 
 from product_details import product_details
 
 from apps.search.utils import floor_version
-from constants.applications import *
-from constants.base import *
-from constants.licenses import *
-from constants.payments import *
-from constants.platforms import *
-from constants.search import *
-from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,
+from constants.applications import *  # noqa
+from constants.base import *  # noqa
+from constants.licenses import *  # noqa
+from constants.payments import *  # noqa
+from constants.platforms import *  # noqa
+from constants.search import *  # noqa
+from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,  # noqa
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
 
@@ -73,6 +72,7 @@ class CachedProperty(object):
         value = obj.__dict__.get(self.__name__, _missing)
         if value is _missing:
             value = self.func(obj)
+            from caching.base import CachingQuerySet
             if isinstance(value, CachingQuerySet):
                 # Work around a bug in django-cache-machine that
                 # causes deadlock or infinite recursion if
@@ -89,8 +89,10 @@ class CachedProperty(object):
 
 # For unproven performance gains put firefox and thunderbird parsing
 # here instead of constants
-FIREFOX.latest_version = product_details.firefox_versions['LATEST_FIREFOX_VERSION']
-THUNDERBIRD.latest_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
+FIREFOX.latest_version = product_details.firefox_versions[
+    'LATEST_FIREFOX_VERSION']
+THUNDERBIRD.latest_version = product_details.thunderbird_versions[
+    'LATEST_THUNDERBIRD_VERSION']
 MOBILE.latest_version = FIREFOX.latest_version
 
 
@@ -116,9 +118,11 @@ if FIREFOX.latest_version:
     # This is because the oldest Thunderbird version is 6.0, and
     # we need to include these older Firefox versions.
     COMPAT[FIREFOX.id] += (
-        {'app': FIREFOX.id, 'main': '5.0', 'versions': ('5.0', '5.0a2', '5.0a1'),
+        {'app': FIREFOX.id, 'main': '5.0',
+         'versions': ('5.0', '5.0a2', '5.0a1'),
          'previous': '4.0'},
-        {'app': FIREFOX.id, 'main': '4.0', 'versions': ('4.0', '4.0a1', '3.7a'),
+        {'app': FIREFOX.id, 'main': '4.0',
+         'versions': ('4.0', '4.0a1', '3.7a'),
          'previous': '3.6'},
     )
 
@@ -148,4 +152,4 @@ else:
 # We need to import waffle here to avoid a circular import with jingo which
 # loads all INSTALLED_APPS looking for helpers.py files, but some of those apps
 # import jingo.
-import waffle
+import waffle  # noqa

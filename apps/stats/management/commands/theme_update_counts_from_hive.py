@@ -1,3 +1,4 @@
+# flake8: noqa
 from . import HiveQueryToFileCommand
 
 
@@ -31,15 +32,12 @@ class Command(HiveQueryToFileCommand):
         from v2_raw_logs
         where true
           and domain = "versioncheck.addons.mozilla.org"
-          and ds = '%s'
-          -- fast filters:
-          and request_url like '%%update-check%%'
-          -- takes more time but it's the correct filter:
+          and ds = '{day}'
           and regexp_extract(request_url, '^/([-\\w]+)(/themes/update-check/)(\\d+).*', 2) = '/themes/update-check/'
           group by
              ds
            , regexp_extract(request_url, '^/([-\\w]+)(/themes/update-check/)(\\d+).*', 3)
            , parse_url(concat('http://www.a.com',request_url), 'QUERY', 'src')
         -- limit
-        %s
+        {limit}
     """  # noqa

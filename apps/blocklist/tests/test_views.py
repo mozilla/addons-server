@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import base64
 from datetime import datetime
 from xml.dom import minidom
@@ -6,7 +6,7 @@ from xml.dom import minidom
 from django.conf import settings
 from django.core.cache import cache
 
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import amo
 import amo.tests
@@ -229,7 +229,10 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         eq_(self.vr()[0].getAttribute('minVersion'), '0.1')
 
         self.item.update(max='0.2')
-        eq_(self.vr()[0].attributes.keys(), ['minVersion', 'maxVersion'])
+        keys = self.vr()[0].attributes.keys()
+        eq_(len(keys), 2)
+        ok_('minVersion' in keys)
+        ok_('maxVersion' in keys)
         eq_(self.vr()[0].getAttribute('minVersion'), '0.1')
         eq_(self.vr()[0].getAttribute('maxVersion'), '0.2')
 

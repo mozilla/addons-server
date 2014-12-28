@@ -139,7 +139,7 @@ def run():
     for currency, prices in currencies.items():
         for k, v in prices.items():
             try:
-                tier  = Price.objects.get(name__localized_string=k)
+                tier = Price.objects.get(name__localized_string=k)
                 PriceCurrency.objects.create(tier=tier,
                                              price=Decimal(v),
                                              currency=currency)

@@ -19,8 +19,9 @@ class TestPerf(amo.tests.TestCase):
     fixtures = ['devhub/addon-validation-1']
 
     def setUp(self):
+        super(TestPerf, self).setUp()
         self.file = File.objects.get(
-                            version__addon__slug='searchaddon11102010')
+            version__addon__slug='searchaddon11102010')
 
     def start(self, *args, **kw):
         return start_perf_test(self.file, *args, **kw)
