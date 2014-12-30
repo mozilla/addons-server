@@ -3,14 +3,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2011-03-07 14:07+0100\n"
-"Last-Translator: Pontus Freyhult <pontus_amo_translate@soua.net>\n"
+"PO-Revision-Date: 2014-12-30 15:05+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
-"Language: \n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1419951918.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -689,7 +691,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr "Lär dig mer of Thunderbird"
+msgstr "Lär dig mer om Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -1778,21 +1780,20 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1>\n"
-"<p>Sidan eller filen du ville nå hittades inte på vår webbplats. Det är möjligt att du klickade på en gammal länk eller skrev in adressen fel.</p>\n"
-"<ul>\n"
-"<li>Om du skrev in adressen, dubbelkolla stavningen.</li>\n"
-"<li>Om du följde en länk hit, berätta för oss på <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Berätta var du kom ifrån och vad du letade efter så ska vi göra vårt bästa för "
-"att fixa det (skriv på engelska).\n"
-"</li>\n"
-"</ul>\n"
-"<p>\n"
-"Eller så kan du hoppa över till några av de mest populära sidorna på webbplats.</p>\n"
-"<ul> \n"
-"<li>Är du intresserad av <a href=\"%(rec)s\">en lista över uppmärksammade tillägg</a>?<li>\n"
-"<li>Vill du <a href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå till <a href=\"%(search)s\">söksidan</a> eller helt enkelt använda sökfältet ovan.</li>\n"
-"<li>Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">add-ons förstasida</a>.</li>\n"
-"</ul>"
+"<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller "
+"filen du ville nå hittades inte på vår webbplats. Det är möjligt att du "
+"klickade på en gammal länk eller skrev in adressen fel.</p> <ul> <li>Om du "
+"skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk "
+"hit, berätta för oss på <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Berätta var "
+"du kom ifrån och vad du letade efter så ska vi göra vårt bästa för att fixa "
+"det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några "
+"av de mest populära sidorna på webbplats.</p>< ul> <li>Är du intresserad av "
+"<a href=\"%(rec)s\">en lista över uppmärksammade tillägg</a>?</li> <li> Vill "
+"du <a href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå till <a href=\"%"
+"(search)s\">söksidan</a> eller helt enkelt använda sökfältet ovan.</li> <li> "
+"Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">add-ons "
+"förstasida</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -2540,7 +2541,10 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Samlingar är grupper av närligande tillägg som vem som helst kan skapa och dela med sig av. Utforska samlingar skapade av andra eller <a href=\"%(url)s\">skapa din egen</a>."
+msgstr ""
+"Samlingar är grupper av närliggande tillägg som vem som helst kan skapa och "
+"dela med sig av. Utforska samlingar skapade av andra eller <a href=\"%"
+"(url)s\">skapa din egen</a>."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
@@ -3906,7 +3910,7 @@ msgstr "Tilläggsuppdateringar"
 
 #: apps/devhub/views.py:204
 msgid "Add-on Status"
-msgstr "Tilläggstatus"
+msgstr "Status för tillägg"
 
 #: apps/devhub/views.py:205
 msgid "User Collections"
@@ -4202,7 +4206,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:54
 msgid "Add-on Validator"
-msgstr "Tillägsvalidator"
+msgstr "Tilläggsvalidator"
 
 #: apps/devhub/templates/devhub/index.html:193
 msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
@@ -4612,11 +4616,11 @@ msgstr[1] ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
-msgstr "Tillägsdetaljer"
+msgstr "Tilläggsdetaljer"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:15
 msgid "Add-on Details for {0}"
-msgstr "Tillägsdetaljer för {0}"
+msgstr "Tilläggsdetaljer för {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page."
@@ -4949,7 +4953,7 @@ msgstr "Visa tilläggslistning"
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:63 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:49 apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
-msgstr "Visa närtida ändringar"
+msgstr "Visa senaste ändringar"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
@@ -11875,7 +11879,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "Tilläggstatus efter dag"
+msgstr "Status för tillägg efter datum"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
@@ -12496,7 +12500,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:32
 msgid "Add-ons Developer"
-msgstr "Tillägsutvecklare"
+msgstr "Tilläggsutvecklare"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
@@ -12556,7 +12560,7 @@ msgstr "Bekräfta lösenord"
 
 #: apps/users/templates/users/pwreset_confirm.html:41
 msgid "Password reset unsuccessful"
-msgstr "Lösenordetsåterställningen misslyckades."
+msgstr "Lösenordsåterställning misslyckades"
 
 #: apps/users/templates/users/pwreset_confirm.html:42
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
