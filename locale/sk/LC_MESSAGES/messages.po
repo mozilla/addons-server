@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2014-12-04 15:41+0000\n"
+"PO-Revision-Date: 2015-01-03 22:30+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1417707705.0\n"
+"X-POOTLE-MTIME: 1420324245.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8159,7 +8159,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Vyberte obrázok hlavičky pre vašu tému."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:8
 msgid "3000 &times; 200 pixels"
@@ -8183,7 +8183,7 @@ msgstr "Zvoľte iný obrázok hlavičky"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:19
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Vyberte obrázok päty pre vašu tému."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:24
 msgid "3000 &times; 100 pixels"
@@ -9414,7 +9414,6 @@ msgid "All-time Point Breakdown by Type"
 msgstr ""
 
 #: apps/editors/templates/editors/performance.html:74
-#, fuzzy
 msgid "Total"
 msgstr "Spolu"
 
@@ -9424,11 +9423,11 @@ msgstr "Mesiac"
 
 #: apps/editors/templates/editors/performance.html:86
 msgid "Year"
-msgstr ""
+msgstr "Rok"
 
 #: apps/editors/templates/editors/performance.html:93
 msgid "All-Time"
-msgstr ""
+msgstr "Po celý čas"
 
 #: apps/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
@@ -9443,28 +9442,24 @@ msgid "Process Reviews"
 msgstr "Spracovať recenzie"
 
 #: apps/editors/templates/editors/queue.html:80
-#, fuzzy
 msgid "Moderation actions:"
-msgstr "Akce moderátora:"
+msgstr "Kroky moderátora:"
 
 #: apps/editors/templates/editors/queue.html:90
-#, fuzzy
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "od %(user)s dne %(date)s %(stars)s (%(locale)s)"
+msgstr "od %(user)s dňa %(date)s %(stars)s (%(locale)s)"
 
 #: apps/editors/templates/editors/queue.html:106
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dňa %(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:119
-#, fuzzy
 msgid "All reviews have been moderated. Good work!"
-msgstr "Všechny recenze byly zkontrolovány. Skvělá práce!"
+msgstr "Všetky recenzie boli skontrolované. Výborná práca!"
 
 #: apps/editors/templates/editors/queue.html:161
-#, fuzzy
 msgid "Version Notes / Notes for Reviewer"
-msgstr "Poznámky k verzi / Poznámky pro redaktora"
+msgstr "Poznámky k verzii / Poznámky pre redaktora"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
@@ -9488,19 +9483,18 @@ msgid "Review {0}"
 msgstr "Recenzia {0}"
 
 #: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:276
-#, fuzzy
 msgid "Add-on History"
-msgstr "Historie doplňku"
+msgstr "História doplnku"
 
 #: apps/editors/templates/editors/review.html:52
-#, fuzzy
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Verze %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr ""
+"Verzia %(version)s &middot; %(created)s <span class=\"light\">&middot; %"
+"(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:61
-#, fuzzy
 msgid "Files in this version:"
-msgstr "Soubory v této verzi:"
+msgstr "Súbory v tejto verzii:"
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Contents"
@@ -9516,42 +9510,45 @@ msgstr "Kompatibilita:"
 
 #: apps/editors/templates/editors/review.html:95
 msgid "Additional sources:"
-msgstr ""
+msgstr "Ďalšie zdroje:"
 
 #: apps/editors/templates/editors/review.html:98
 msgid "Download files"
-msgstr ""
+msgstr "Prevziať súbory"
 
 #: apps/editors/templates/editors/review.html:100
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Vývojár poskytol zdrojový kód."
 
 #: apps/editors/templates/editors/review.html:135
 msgid "This version has not been reviewed."
 msgstr "Táto verzia nebola skontrolovaná."
 
 #: apps/editors/templates/editors/review.html:165
-#, fuzzy
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Stále můžete tento formulář odeslat, ale udělejte to pouze tehdy, když víte, že to nezpůsobí konflikt."
+msgstr ""
+"Stále môžete tento formulár odoslať, ale urobte tak len vtedy, ak viete, že "
+"to nespôsobí konflikt."
 
 #: apps/editors/templates/editors/review.html:172
 msgid "Insert canned response..."
 msgstr "Vyberte pripravenú odpoveď..."
 
 #: apps/editors/templates/editors/review.html:192
-#, fuzzy
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
-msgstr "Poznámka: Schvalte více než jeden souboru pouze tehdy, pokud jste testovali <strong>každý</strong> soubor, který jste zvolili."
+msgstr ""
+"Poznámka: Schvaľujte viac ako jeden súbor len vtedy, ak ste naozaj testovali "
+"<strong>každý</strong> z vybraných súborov."
 
 #: apps/editors/templates/editors/review.html:200
 msgid "Tested on:"
 msgstr "Testované na:"
 
 #: apps/editors/templates/editors/review.html:230
-#, fuzzy
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Upozornění!</strong> Jiný uživatel před vámi tuto stránku prohlížel."
+msgstr ""
+"<strong>Upozornenie!</strong> Iný používateľ pred vami túto stránku "
+"prezeral."
 
 #: apps/editors/templates/editors/review.html:247
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
@@ -9559,7 +9556,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:251
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Aktualizovať poznámku pre redaktora"
 
 #: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
 msgid "(admin)"
@@ -9578,9 +9575,8 @@ msgid "More Information"
 msgstr "Ďalšie informácie"
 
 #: apps/editors/templates/editors/review.html:277
-#, fuzzy
 msgid "Resolution"
-msgstr "Řešení"
+msgstr "Riešenie"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/reviewlog.html:21
@@ -9590,10 +9586,9 @@ msgstr "Filtrovať"
 
 # 100%
 #: apps/editors/templates/editors/reviewlog.html:27
-#, fuzzy
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Review Log"
-msgstr "Záznam kontroly doplnku"
+msgstr "Záznamy kontrol doplnku"
 
 #: apps/editors/templates/editors/reviewlog.html:34
 msgctxt "editorcp_reviewlog_column_date"
@@ -9621,14 +9616,12 @@ msgid "No reviews found for this period."
 msgstr "Za toto obdobie neboli nájdené žiadne recenzie."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
-#, fuzzy
 msgid "Dismiss this announcement"
-msgstr "Skrýt toto oznámení"
+msgstr "Skryť toto oznámenie"
 
 #: apps/editors/templates/editors/includes/history.html:6
-#, fuzzy
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Od %(user)s dne %(date)s</div>"
+msgstr "<div>Od %(user)s dňa %(date)s</div>"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
@@ -9639,25 +9632,22 @@ msgid "Newer"
 msgstr "Novší"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
-#, fuzzy
 msgid "Recent Points"
-msgstr "Nedávno přidělené body"
+msgstr "Nedávno pridelené body"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Doteraz ste nezískal žiadny bod."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
-#, fuzzy
 msgid "Top Reviewers (past 7 days)"
-msgstr "Aktivní redaktoři (posledních 7 dní)"
+msgstr "Aktívni redaktori (za posledných 7 dní)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
 msgstr ""
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
-#, fuzzy
 msgid "All Time"
 msgstr "Celý čas"
 
@@ -9673,19 +9663,19 @@ msgstr "Recenzent"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Odstránené témy"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Dátum odstránenia"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "V tomto období neboli nájdené žiadne odstránené témy."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "História kontrol tém pre {0}"
 
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
@@ -9700,9 +9690,8 @@ msgid "Reason"
 msgstr "Dôvod"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
-#, fuzzy
 msgid "There are currently no reviews."
-msgstr "V moderovaní nie sú momentálne žiadne recenzie."
+msgstr "Aktuálne nie sú dostupné žiadne kontroly."
 
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
@@ -9825,27 +9814,23 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:95
 msgid "Approve Theme"
-msgstr ""
+msgstr "Schváliť tému"
 
 #: apps/editors/templates/editors/themes/themes.html:102
-#, fuzzy
 msgid "Field required"
-msgstr "Pole je vyžadováno"
+msgstr "Pole je vyžadované"
 
 #: apps/editors/templates/editors/themes/themes.html:106
-#, fuzzy
 msgid "Enter the ID or URL of the duplicate"
-msgstr "Vložte ID či URL duplikátu"
+msgstr "Zadajte ID alebo URL adresu duplikátu"
 
 #: apps/editors/templates/editors/themes/themes.html:112
-#, fuzzy
 msgid "Select a reason for rejection"
-msgstr "Zvolte důvod odmítnutí"
+msgstr "Vyberte dôvod zamietnutia"
 
 #: apps/editors/templates/editors/themes/themes.html:123
-#, fuzzy
 msgid "Describe your reason for rejection"
-msgstr "Popište důvod odmítnutí"
+msgstr "Popíšte dôvod zamietnutia"
 
 #: apps/editors/templates/editors/themes/themes.html:129
 msgid "Ask a question to the artist"
