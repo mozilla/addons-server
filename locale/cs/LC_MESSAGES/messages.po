@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-10 09:48-0700\n"
-"PO-Revision-Date: 2015-01-01 12:06+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2015-01-05 16:01+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420114016.0\n"
+"X-POOTLE-MTIME: 1420473669.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10503,6 +10503,14 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
+"Ano. Je to možné, ale některé funkce poskytované těmito knihovnami jsou "
+"dostupné skrze XPCOM, XUL a JavaScript. Autoři by také měli hlídat, zda "
+"knihovny neupravují prototypy primitivních objektů (String.prototype, "
+"Date.prototype, apod.) a nebo nedefinují globální funkce (např. $ funkci). "
+"Takové knihovny jsou náchylné způsobovat konflikty s dalšími doplňky, např. "
+"pokud jiný doplněk používá jinou verzi stejné knihovny atd. Vývojáři musí "
+"být velmi opatrní, pokud se rozhodnou je používat. Mozilla tak neposkytuje "
+"dokumentaci, jak je při tvorbě doplňků používat."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
@@ -10510,7 +10518,7 @@ msgstr "Jak mohu ladit svůj doplněk?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Můžete použít <a href=\"%(url)s\">Add-on Debugger</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -10522,6 +10530,13 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Pro zajištění kompatibility s nejnovějším softwarem Mozilla je důležité "
+"stahovat aktualizace jakmile jsou dostupné, a následně váš doplněk "
+"otestovat, že je plně funkční. V mnoha případech je nejnovější verzí "
+"softwaru Mozilla beta verze. Tato vydání mohou obsahovat změny architektury, "
+"které také mohou ovlivnit fungování vašeho doplňku. Je důležité se aktivně "
+"zapojit do beta testování a mít tak jistotu, že uživatelé doplňku nebudou "
+"negativně překvapeni při vydání nové verze softwaru Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -10546,6 +10561,10 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Ano. Podrobnosti k lokalizaci vašeho doplňku můžete nalézt <a href=\"%"
+"(l10n_url)s\">na stránce Mozilla Developer Network Localization</a>. <a "
+"href=\"%(bz_url)s\">Projekt BabelZilla</a> je také vynikajícím zdrojem "
+"informací o lokalizaci a přispívání s překlady doplňků."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -10565,6 +10584,7 @@ msgstr "#amo (pro podporu související s hostováním doplňků na AMO)"
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
 msgstr ""
+"#jetpack (pro diskuze o Add-ons SDK a cfx/jpm - dříve známých jako Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -10583,7 +10603,7 @@ msgstr "Skupiny Google"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Add-ons forum"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
