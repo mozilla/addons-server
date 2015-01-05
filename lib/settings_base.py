@@ -160,9 +160,7 @@ RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 # Tower / L10n
-LOCALE_PATHS = (path('locale'),)
-TEXT_DOMAIN = 'messages'
-STANDALONE_DOMAINS = [TEXT_DOMAIN, 'javascript']
+STANDALONE_DOMAINS = ['messages', 'javascript']
 TOWER_KEYWORDS = {
     '_lazy': None,
 }
@@ -438,11 +436,11 @@ DOMAIN_METHODS = {
         # We can't say **.js because that would dive into mochikit and timeplot
         # and all the other baggage we're carrying.  Timeplot, in particular,
         # crashes the extractor with bad unicode data.
-        ('media/js/*.js', 'javascript'),
-        ('media/js/amo2009/**.js', 'javascript'),
-        ('media/js/common/**.js', 'javascript'),
-        ('media/js/impala/**.js', 'javascript'),
-        ('media/js/zamboni/**.js', 'javascript'),
+        ('static/js/*.js', 'javascript'),
+        ('static/js/amo2009/**.js', 'javascript'),
+        ('static/js/common/**.js', 'javascript'),
+        ('static/js/impala/**.js', 'javascript'),
+        ('static/js/zamboni/**.js', 'javascript'),
     ],
 }
 

@@ -94,6 +94,7 @@ SQLAlchemy==0.7.5
 statsd==2.0.3
 suds==0.4
 thrift==0.9.1
+tower==0.4.1
 urllib3==1.9
 
 ## Not on pypi.
@@ -119,7 +120,6 @@ urllib3==1.9
 
 ## Out of date or not sure on pypi.
 -e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
--e git+https://github.com/clouserw/tower.git@ce2eba049a5146918fa5239d827bdde9e36eadb7#egg=tower-dev
 
 # Fix bug 963188. Once a version above 1.3.0 is available, move back to a PyPI release.
 -e git+https://github.com/nose-devs/nose.git@79102e33fda8a67292e7c79aafea85ea74334288#egg=nose-dev
