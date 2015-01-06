@@ -52,7 +52,7 @@ def test_redirect_with_unicode_get():
         '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
         'E3%82%BA')
     eq_(response.status_code, 301)
-    assert response['Location'].endswith('&utm_term=Google+%E3%83%90%E3%82%BA')
+    assert 'utm_term=Google+%E3%83%90%E3%82%BA' in response['Location']
 
 
 def test_source_with_wrong_unicode_get():
