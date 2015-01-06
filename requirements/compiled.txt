@@ -4,8 +4,8 @@
 Jinja2==2.7.2
 MarkupSafe==0.18
 lxml==2.2.6
-Pillow==2.3.0
 m2crypto==0.22.3
+Pillow==2.7.0
 
 # For the addon validator, including C speedups.
 simplejson==2.3.2
