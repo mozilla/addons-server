@@ -10,8 +10,8 @@ import urllib2
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.management import call_command
 
+from cache_nuggets.lib import memoize
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
@@ -20,11 +20,11 @@ import amo
 from amo.decorators import write, set_modified_on
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
-from applications.management.commands import dump_apps
 from applications.models import AppVersion
 from devhub import perf
 from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
+from zadmin.models import get_config
 
 from PIL import Image
 
@@ -94,6 +94,38 @@ def file_validator(file_id, **kw):
     return FileValidation.from_json(file, result)
 
 
+@memoize('validator-apps', 60 * 60)
+def get_apps():
+    apps = {}
+    for id, app in amo.APP_IDS.iteritems():
+        apps[id] = dict(guid=app.guid, versions=[],
+                        name=amo.APPS_ALL[id].short)
+
+    versions = (AppVersion.objects.values_list('application', 'version')
+                .order_by('version_int'))
+    for app, version in versions:
+        try:
+            apps[app]['versions'].append(version)
+        except KeyError:
+            # Sunbird is still in the database but shouldn't show up here.
+            pass
+
+    return apps
+
+
+@memoize('validator-libraries', 60 * 60)
+def get_libraries():
+    data = get_config('validator-known-libraries')
+
+    if data is None:
+        # This should generally only happen in tests.
+        import validator
+        path = os.path.join(validator.__path__[0], 'libraries.json')
+        data = open(path, 'r').read()
+
+    return json.loads(data)
+
+
 def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                   overrides=None, compat=False):
     """A pre-configured wrapper around the addon validator.
@@ -132,10 +164,6 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
 
     from validator.validate import validate
 
-    apps = dump_apps.Command.JSON_PATH
-    if not os.path.exists(apps):
-        call_command('dump_apps')
-
     path = file_path
     if path and not os.path.exists(path) and storage.exists(path):
         path = tempfile.mktemp(suffix='_' + os.path.basename(file_path))
@@ -152,7 +180,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                             # When False, this flag says to stop testing after
                             # one tier fails.
                             determined=test_all_tiers,
-                            approved_applications=apps,
+                            approved_applications=get_apps(),
+                            library_metadata=get_libraries(),
                             spidermonkey=settings.SPIDERMONKEY,
                             overrides=overrides,
                             timeout=settings.VALIDATOR_TIMEOUT,

@@ -69,14 +69,14 @@ class OAuthServer(oauth1.Server):
         # This method must take the same amount of time/db lookups for
         # success and failure to prevent timing attacks.
         return Token.objects.filter(token_type=REQUEST_TOKEN,
-                                    creds__key=client_key,
+                                    consumer__key=client_key,
                                     key=request_token).exists()
 
     def validate_access_token(self, client_key, access_token):
         # This method must take the same amount of time/db lookups for
         # success and failure to prevent timing attacks.
         return Token.objects.filter(token_type=ACCESS_TOKEN,
-                                    creds__key=client_key,
+                                    consumer__key=client_key,
                                     key=access_token).exists()
 
     def validate_verifier(self, client_key, request_token, verifier):
@@ -93,7 +93,7 @@ class OAuthServer(oauth1.Server):
         # This method must take the same amount of time/db lookups for
         # success and failure to prevent timing attacks.
         try:
-            t = Token.objects.get(key=request_token, creds__key=client_key,
+            t = Token.objects.get(key=request_token, consumer__key=client_key,
                                   token_type=REQUEST_TOKEN)
             return t.secret
         except Token.DoesNotExist:
@@ -103,7 +103,7 @@ class OAuthServer(oauth1.Server):
         # This method must take the same amount of time/db lookups for
         # success and failure to prevent timing attacks.
         try:
-            t = Token.objects.get(key=request_token, creds__key=client_key,
+            t = Token.objects.get(key=request_token, consumer__key=client_key,
                                   token_type=ACCESS_TOKEN)
         except Token.DoesNotExist:
             return DUMMY_SECRET

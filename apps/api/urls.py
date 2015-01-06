@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
+from django.views.decorators.csrf import csrf_exempt
 
 import waffle
 from piston.resource import Resource
@@ -129,6 +130,9 @@ piston_patterns = patterns(
         SwitchToDRF('Versions', with_handler=True, with_viewset=True,
                     only_detail=True),
         name='api.version'),
+    # This requires a signed OAuth request. CSRF is not necessary.
+    url(r'validator-checksums$', csrf_exempt(SwitchToDRF('Checksums')),
+        name='api.checksums'),
 )
 
 urlpatterns = patterns(

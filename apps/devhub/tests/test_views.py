@@ -2876,6 +2876,74 @@ class TestRemoveLocale(amo.tests.TestCase):
         eq_(len(doc('div.trans textarea')), 2)
 
 
+class TestKnownLibraries(amo.tests.TestCase):
+
+    def setUp(self):
+        self.url = reverse('devhub.known-libraries')
+        self.json_url = reverse('devhub.known-libraries.json')
+
+    def test_json_api(self):
+        req = self.client.get(self.json_url)
+        eq_(req.status_code, 200)
+        assert json.dumps(tasks.get_libraries()) == req.content
+
+    def test_allowed_library(self):
+        req = self.client.get(self.url)
+        doc = pq(req.content)
+
+        sect = doc('#library-data-libraries-jquery')
+
+        eq_(sect.children('h2').text().strip(),
+            'jQuery')
+        eq_(sect.children('h2').attr('class'), '')
+
+        version = sect('.libraries-list-versions > section').eq(1)
+
+        eq_(version.children('h2').text().strip(),
+            '1.0.0')
+        eq_(version.children('h2').attr('class'), '')
+
+        eq_(version.find('.content > h4').eq(0).text().strip(),
+            'Sources:')
+        eq_(version.find('.content > ul').eq(0).text().strip(),
+            'https://code.jquery.com/jquery-1.0.js '
+            'https://code.jquery.com/jquery-1.0.pack.js')
+
+        eq_(version.find('.content > h4').eq(1).text().strip(),
+            'Files:')
+        eq_(version.find('.content > ul').eq(1).text().strip(),
+            'packed/jquery-1.0.pack.js '
+            'uncompressed/jquery-1.0.js')
+
+    def test_banned_library(self):
+        req = self.client.get(self.url)
+        doc = pq(req.content)
+
+        sect = doc('#library-data-frameworks-conduit')
+
+        eq_(sect.children('h2').attr('class'), 'library-banned')
+
+        eq_(sect.find('.library-banned-message').text().strip(),
+            'This library is banned and may not be used in any add-on '
+            'uploaded to AMO.')
+        eq_(sect.find('.library-message').text().strip(),
+            'The Conduit framework has many issues which prevent its '
+            'acceptance on AMO. There are currently no plans to allow its '
+            'use in the future.')
+
+    def test_banned_version(self):
+        req = self.client.get(self.url)
+        doc = pq(req.content)
+
+        sect = doc('#library-data-frameworks-jetpack')
+
+        version = sect('.libraries-list-versions > section').eq(1)
+
+        eq_(version.children('h2').text().strip(),
+            '0.1')
+        eq_(version.children('h2').attr('class'), 'library-banned')
+
+
 class TestSearch(amo.tests.TestCase):
 
     def test_search_titles(self):

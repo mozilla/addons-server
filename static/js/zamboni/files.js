@@ -386,9 +386,15 @@ function bind_viewer(nodes) {
                 this.known_files = {};
                 var metadata = data.validation.metadata;
                 if (metadata) {
-                    if (metadata.jetpack_sdk_version) {
-                        $('#jetpack-version').show()
-                            .find('span').text(metadata.jetpack_sdk_version);
+                    if (metadata.framework) {
+                        $('#framework-name').show()
+                            .find('span').text([metadata.framework.name,
+                                                metadata.framework.version].join(' '));
+                    }
+                    else if (metadata.jetpack_sdk_version) {
+                        // Old validator output.
+                        $('#framework-name').show()
+                            .find('span').text('Jetpack ' + metadata.jetpack);
                     }
 
                     var identified_files = {};
@@ -416,12 +422,25 @@ function bind_viewer(nodes) {
                     var known = viewer.known_files[$self.attr('data-short')];
                     if (known) {
                         var msg = ['Identified:'];
-                        if ('library' in known) {
+                        if ('sources' in known) {
+                            // New validator output contains a list of
+                            // sources for cases when the same file
+                            // appears in multiple frameworks or
+                            // versions.
+                            _.each(known.sources, function (source) {
+                                // source = [<library>, <version>, <original-path>]
+                                msg.push(
+                                    format('    Library: {0} {1} {2}',
+                                           source));
+                            });
+                        }
+                        else if ('library' in known) {
                             msg.push(
-                                format('    Library: {library} {version}\n',
+                                format('    Library: {library} {version}',
                                        known));
                         }
-                        msg.push(format('    Original path: {0}', known.path));
+                        if ('path' in known)
+                            msg.push(format('    Original path: {0}', known.path));
 
                         $self.attr('title', msg.join('\n'))
                              .addClass('known')

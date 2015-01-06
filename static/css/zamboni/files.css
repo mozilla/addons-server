@@ -120,7 +120,7 @@
 
 .collapsed-files .command,
 .collapsed-files #toggle-known-container,
-.collapsed-files #jetpack-version,
+.collapsed-files #framework-name,
 .collapsed-files #tab-stops-container {
     display: none !important;
 }
@@ -481,6 +481,10 @@ td.gutter, td.code {
 #tab-stops-container {
     display: none;
     margin: .5em 0;
+}
+
+#tab-stops {
+    width: 2.5em;
 }
 
 #toggle-known-container {

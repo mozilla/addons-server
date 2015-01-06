@@ -1,0 +1,23 @@
+
+{% if banned == True %}
+  <p class="library-banned-message">
+    {% trans %}
+    This library is banned and may not be used in any add-on uploaded to AMO.
+    {% endtrans %}
+  </p>
+{% elif banned %}
+  <p class="library-banned-message">
+    {% trans %}
+    This library may be accepted in add-ons submitted to AMO, but only under limited
+    circumstances.
+    {% endtrans %}
+  </p>
+{% endif %}
+
+{% if messages %}
+  {% for message in messages %}
+    <p class="library-message">
+      {{ message }}
+    </p>
+  {% endfor %}
+{% endif %}

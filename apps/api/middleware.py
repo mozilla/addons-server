@@ -40,15 +40,25 @@ class RestOAuthMiddleware(object):
         if not hasattr(request, 'authed_from'):
             request.authed_from = []
 
+        three_legged = False
+        if three_legged:
+            oauth_param = 'oauth_token'
+            require_resource_owner = True
+        else:
+            oauth_param = 'oauth_consumer_key'
+            require_resource_owner = False
+
         auth_header_value = request.META.get('HTTP_AUTHORIZATION')
-        if (not auth_header_value and
-                'oauth_token' not in request.META['QUERY_STRING']):
+        if not (auth_header_value or
+                oauth_param in request.GET or
+                oauth_param in request.POST):
             self.user = AnonymousUser()
             log.info('No HTTP_AUTHORIZATION header')
             return
 
         # Set up authed_from attribute.
-        auth_header = {'Authorization': auth_header_value}
+        headers = {'Authorization': auth_header_value,
+                   'Content-Type': request.META.get('CONTENT_TYPE')}
         method = getattr(request, 'signed_method', request.method)
         oauth = OAuthServer()
 
@@ -57,8 +67,8 @@ class RestOAuthMiddleware(object):
         try:
             valid, oauth_request = oauth.verify_request(
                 request.build_absolute_uri(),
-                method, headers=auth_header,
-                require_resource_owner=False)
+                method, headers=headers, body=request.body,
+                require_resource_owner=require_resource_owner)
         except ValueError:
             log.error('ValueError on verifying_request', exc_info=True)
             return
@@ -83,7 +93,7 @@ class RestOAuthMiddleware(object):
             log.info(u'Attempt to use API with denied role, user: %s'
                      % request.amo_user.pk)
             # Set request attributes back to None.
-            request.user = request.amo_user = None
+            request.user = request.amo_user = AnonymousUser()
             return
 
         if request.user:

@@ -159,7 +159,6 @@ def update():
     execute(compress_assets)
     execute(collectstatic)
     execute(schematic)
-    managecmd('dump_apps')
     managecmd('statsd_ping --key=update')
 
 

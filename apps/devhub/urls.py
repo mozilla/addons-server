@@ -193,6 +193,11 @@ urlpatterns = decorate(write, patterns(
         views.ajax_upload_image, name='devhub.personas.upload_persona'),
     url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
+    url('^known-libraries$', views.known_libraries,
+        name='devhub.known-libraries'),
+    url('^known-libraries/format:json$', views.known_libraries_json,
+        name='devhub.known-libraries.json'),
+
     # Add-on SDK page
     url('builder$', lambda r: redirect(views.MDN_BASE)),
 

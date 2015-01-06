@@ -7,6 +7,7 @@ import json
 import random
 import urllib
 from datetime import date, timedelta
+from functools import update_wrapper, wraps
 
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponsePermanentRedirect
@@ -25,19 +26,22 @@ from tower import ugettext as _, ugettext_lazy
 
 import amo
 import api
+from access import acl
 from addons.models import Addon, CompatOverride
 from amo.decorators import post_required, allow_cross_site_request, json_view
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
 from api.authentication import AMOOAuthAuthentication
-from api.forms import PerformanceForm
+from api.forms import ChecksumsForm, PerformanceForm
 from api.utils import addon_to_dict, extract_filters
+from devhub.tasks import get_libraries
 from perf.models import (Performance, PerformanceAppVersions,
                          PerformanceOSVersion)
 from search.views import (AddonSuggestionsAjax, PersonaSuggestionsAjax,
                           name_query)
 from versions.compare import version_int
+from zadmin.models import set_config
 
 
 ERROR = 'error'
@@ -59,6 +63,26 @@ MAX_LIMIT, BUFFER = 30, 10
 NEW_DAYS = 10
 
 log = commonware.log.getLogger('z.api')
+
+
+def auth_required(fn=None, permission=None):
+    def decorator(fn):
+        @wraps(fn)
+        def wrapper(request, *args, **kw):
+            if not (AMOOAuthAuthentication(two_legged=True)
+                    .is_authenticated(request)):
+                return rc.FORBIDDEN
+
+            if permission and not acl.action_allowed(request, *permission):
+                return rc.FORBIDDEN
+
+            return fn(request, *args, **kw)
+        update_wrapper(wrapper, fn)
+        return wrapper
+
+    if callable(fn):
+        return decorator(fn)
+    return decorator
 
 
 def partition(seq, key):
@@ -215,10 +239,16 @@ class APIView(object):
     Base view class for all API views.
     """
 
+    FORMATS = 'xml', 'json'
+
     def __call__(self, request, api_version, *args, **kwargs):
 
         self.version = float(api_version)
-        self.format = request.REQUEST.get('format', 'xml')
+        self.format = request.REQUEST.get('format', self.FORMATS[0])
+        if self.format not in self.FORMATS:
+            return self.render_msg('Invalid format', ERROR, status=404,
+                                   mimetype='application/xml')
+
         self.mimetype = ('text/xml' if self.format == 'xml'
                          else 'application/json')
         self.request = request
@@ -480,6 +510,37 @@ class LanguageView(APIView):
                                             'show_localepicker': True})
 
 
+# Why am I doing this...
+class ChecksumsView(object):
+    """
+    Returns or updates the checksums metadata used by the validator.
+    """
+
+    def __call__(self, request):
+        if request.method == 'GET':
+            return self.get(request)
+        return self.post(request)
+
+    def get(self, request):
+        return HttpResponse(json.dumps(get_libraries()),
+                            mimetype='application/json')
+
+    @staticmethod
+    @auth_required(permission=('ReviewerAdminTools', 'View'))
+    @post_required
+    def post(request):
+        form = ChecksumsForm(request.POST)
+        if not form.is_valid():
+            resp = {'status': 'failed',
+                    'errors': form.errors}
+            return HttpResponse(json.dumps(resp))
+
+        set_config('validator-known-libraries',
+                   json.dumps(form.cleaned_data['checksum_json']))
+
+        return rc.ALL_OK
+
+
 # pylint: disable-msg=W0613
 def redirect_view(request, url):
     """
@@ -500,14 +561,12 @@ def request_token_ready(request, token):
 
 @csrf_exempt
 @post_required
+@auth_required
 def performance_add(request):
     """
     A wrapper around adding in performance data that is easier than
     using the piston API.
     """
-    # Trigger OAuth.
-    if not AMOOAuthAuthentication(two_legged=True).is_authenticated(request):
-        return rc.FORBIDDEN
 
     form = PerformanceForm(request.POST)
     if not form.is_valid():

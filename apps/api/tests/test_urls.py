@@ -56,8 +56,8 @@ class TestDRFSwitch(TestCase):
         request.GET = {'format': 'foo'}
         request.user = AnonymousUser()
         response = view(request, api_version=1.5)
-        eq_(response.content, '{"msg": "Not implemented yet."}')
-        eq_(response.status_code, 200)
+        eq_(response.content, '{"msg": "Invalid format"}')
+        eq_(response.status_code, 404)
         self.create_switch('drf', db=True)
         response = view(request, api_version=1.5)
         self.assertTrue('<error>Not found</error>'
