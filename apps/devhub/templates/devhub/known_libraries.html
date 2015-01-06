@@ -1,0 +1,98 @@
+{% extends 'devhub/base_impala.html' %}
+
+{% block title %}{{ dev_page_title(_('Known Library Versions')) }}{% endblock %}
+
+{% block bodyclass %} known-libraries gutter{% endblock %}
+
+{% block content %}
+<section class="primary prose island">
+  <h1>
+    {% trans %}
+    Recognized third-party libraries
+    {% endtrans %}
+  </h1>
+  <p>
+  {% trans %}
+    This page contains a complete list of third-party libraries and add-on
+    frameworks currently recognized by our validator, along with the URL
+    which we consider to be the official source of that version. Versions
+    which do not appear in this list should be avoided. Libraries which are
+    not automatically recognized may be accepted, but their use will likely
+    cause your review to be delayed.
+  {% endtrans %}
+  <p>
+  {% trans %}
+    Add-on frameworks which do not appear in this list may not be used for
+    add-ons submitted to AMO, nor may any frameworks, or framework versions,
+    marked here as forbidden.
+  {% endtrans %}
+  </p>
+  <p>
+  {% trans mail_editors=emaillink('amo-editors@mozilla.org', _('amo-editors at mozilla dot org')) %}
+    If you have further questions or concerns, please email
+    {{ mail_editors }} for more information.
+  {% endtrans %}
+  </p>
+</section>
+
+<section class="primary island">
+  {% for key, name in library_types %}
+    <section class="library-type expando" id="library-type-{{ key }}">
+      <h2>{{ name }}<a class="toggle"><b></b></a></h2>
+
+      <div class="content prose">
+        <section id="libraries-list-{{ key }}" class="libraries-list island">
+          {% for id, data in library_data[key]|dictsort(by='key') %}
+            <section class="expando" id="library-data-{{ key }}-{{ id }}">
+              <h2 class="{{ library_class(data) }}">
+                {{ data.name or id }}<a class="toggle"><b></b></a>
+              </h2>
+              <div class="content">
+                {{ library_messages(data) }}
+
+                {% if data.versions %}
+                  <section class="libraries-list-versions island">
+                    <section class="expando"><h3>Versions:</h3></section>
+                    {% for version, data in sort_versions(data.versions.items()) %}
+                      <section class="expando">
+                        <h2 class="{{ library_class(data) }}">
+                          {{ version }}<a class="toggle"><b></b></a>
+                        </h2>
+                        <div class="content">
+                          {{ library_messages(data) }}
+
+                          {% if data.source %}
+                            {% if data.source.values %}
+                              <h4><strong>{{ _('Sources:') }}</strong></h4>
+                              <ul>
+                                {% for filename, source in data.source|dictsort(by='value') %}
+                                  <li><a href="{{ source }}">{{ source }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            {% else %}
+                              <p><strong>{{ _('Source: ') }}</strong> <a href="{{ data.source }}">{{ data.source }}</a></p>
+                            {% endif %}
+                          {% endif %}
+                          {% if data.files %}
+                            <h4><strong>{{ _('Files:') }}</strong></h4>
+                            <ul>
+                              {% for filename, hash in data.files|dictsort(by='key') %}
+                                <li>{{ filename }}</li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </div>
+                      </section>
+                    {% endfor %}
+                  </section>
+                {% endif %}
+              </div>
+            </section>
+          {% endfor %}
+        </section>
+      </div>
+    </section>
+  {% endfor %}
+</section>
+{% endblock %}
+

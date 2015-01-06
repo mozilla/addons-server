@@ -202,7 +202,7 @@ function initValidator($doc) {
             msg.description = [];
         } else if (typeof(msg.description) === 'string') {
             // Currently it can be either of these:
-            //      descripion: "foo"
+            //      description: "foo"
             //      description: ["foo", "bar"]
             msg.description = [msg.description];
         }

@@ -87,10 +87,10 @@
                       {{ cats|join(' &middot; ')|safe }}
                     </p>
                     <p>
-                      {% trans email='amo-editors@mozilla.org' %}
+                      {% trans mail_editors=emaillink('amo-editors@mozilla.org', _('amo-editors at mozilla dot org')) %}
                         Categories cannot be changed while your add-on is
                         featured for this application. Please email
-                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                        {{ mail_editors }} if there is
                         a reason you need to modify your categories.
                       {% endtrans %}
                     </p>

@@ -10,7 +10,6 @@ from PIL import Image
 
 import amo.search
 from amo.helpers import user_media_path
-from applications.management.commands import dump_apps
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -114,8 +113,7 @@ def path():
           user_media_path('collection_icons'),
           user_media_path('previews'),
           user_media_path('userpics'),
-          user_media_path('reviewer_attachments'),
-          dump_apps.Command.JSON_PATH,)
+          user_media_path('reviewer_attachments'),)
     r = [os.path.join(settings.ROOT, 'locale'),
          # The deploy process will want write access to this.
          # We do not want Django to have write access though.

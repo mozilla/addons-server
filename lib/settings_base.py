@@ -356,6 +356,8 @@ AUTHENTICATION_BACKENDS = (
 )
 AUTH_USER_MODEL = 'users.UserProfile'
 
+AUTH_THREE_LEGGED = False
+
 # Override this in the site settings.
 ROOT_URLCONF = 'lib.urls_base'
 

@@ -167,7 +167,7 @@ class RedisTest(object):
 
 
 class MobileTest(object):
-    """Mixing for when you want to hit a mobile view."""
+    """Mixin for when you want to hit a mobile view."""
 
     def _pre_setup(self):
         super(MobileTest, self)._pre_setup()
