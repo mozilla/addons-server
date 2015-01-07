@@ -2,6 +2,8 @@
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from django.core import mail
+
 import amo
 import amo.tests
 from amo.tests import formset
@@ -222,6 +224,14 @@ class TestEditAuthor(TestOwnership):
         self.assertRedirects(r, self.url, 302)
         eq_(list(q.all()), [55021, 999])
 
+        # An email has been sent to the authors to warn them.
+        author_added = mail.outbox[0]
+        assert author_added.subject == ('An author has been added to your '
+                                        'add-on')
+        # Make sure all the authors are aware of the addition.
+        assert 'del@icio.us' in author_added.to  # The original author.
+        assert 'regular@mozilla.com' in author_added.to  # The new one.
+
     def test_success_edit_user(self):
         # Add an author b/c we can't edit anything about the current one.
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -241,6 +251,32 @@ class TestEditAuthor(TestOwnership):
         self.assertRedirects(r, self.url, 302)
         eq_(AddonUser.objects.no_cache().get(addon=3615, user=999).listed,
             False)
+
+    def test_change_user_role(self):
+        # Add an author b/c we can't edit anything about the current one.
+        f = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u = dict(user='regular@mozilla.com', listed=True,
+                 role=amo.AUTHOR_ROLE_DEV, position=1)
+        data = self.formset(f.initial, u, initial_count=1)
+        self.client.post(self.url, data)
+        eq_(AddonUser.objects.get(addon=3615, user=999).listed, True)
+
+        # Edit the user we just added.
+        user_form = self.client.get(self.url).context['user_form']
+        one, two = user_form.initial_forms
+        two.initial['role'] = amo.AUTHOR_ROLE_VIEWER
+        empty = dict(user='', listed=True, role=5, position=0)
+        data = self.formset(one.initial, two.initial, empty, initial_count=2)
+        r = self.client.post(self.url, data)
+        self.assertRedirects(r, self.url, 302)
+
+        # An email has been sent to the authors to warn them.
+        author_edit = mail.outbox[1]  # First mail was for the addition.
+        assert author_edit.subject == ('An author has a role changed on your '
+                                       'add-on')
+        # Make sure all the authors are aware of the addition.
+        assert 'del@icio.us' in author_edit.to  # The original author.
+        assert 'regular@mozilla.com' in author_edit.to  # The edited one.
 
     def test_add_user_twice(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -265,6 +301,14 @@ class TestEditAuthor(TestOwnership):
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
         eq_(999, AddonUser.objects.get(addon=3615).user_id)
+
+        # An email has been sent to the authors to warn them.
+        author_delete = mail.outbox[1]  # First mail was for the addition.
+        assert author_delete.subject == ('An author has been removed from your'
+                                         ' add-on')
+        # Make sure all the authors are aware of the addition.
+        assert 'del@icio.us' in author_delete.to  # The original author.
+        assert 'regular@mozilla.com' in author_delete.to  # The removed one.
 
     def test_switch_owner(self):
         # See if we can transfer ownership in one POST.

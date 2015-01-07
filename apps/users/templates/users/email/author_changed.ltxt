@@ -1,0 +1,5 @@
+{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans with addon_url=addon.get_absolute_url addon_name=addon.name author_url=author.user.get_absolute_url author_name=author.user.name author_role=author.get_role_display %}
+The following author has been changed on your addon <a href="{{ addon_url }}">{{ addon_name }}</a>:
+
+<a href="{{ author_url }}">{{ author_name }}</a>: {{ author_role }}
+{% endblocktrans %}

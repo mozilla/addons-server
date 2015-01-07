@@ -15,6 +15,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template import Context, loader
 from django.utils.http import urlquote
 from django.utils.timezone import now
 from django.views.decorators.cache import never_cache
@@ -405,16 +406,39 @@ def ownership(request, addon_id, addon):
     ctx.update(policy_form=policy_form)
     fs.append(policy_form)
 
+    def mail_user_changes(author, title, template_part, recipients):
+        from amo.utils import send_mail
+
+        t = loader.get_template(
+            'users/email/{part}.ltxt'.format(part=template_part))
+        send_mail(title,
+                  t.render(Context({'author': author, 'addon': addon})),
+                  None, recipients, use_blacklist=False, real_email=True)
+
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
         authors = user_form.save(commit=False)
+        addon_authors_emails = list(
+            addon.authors.values_list('email', flat=True))
+        authors_emails = set(addon_authors_emails +
+                             [author.user.email for author in authors])
         for author in authors:
             action = None
             if not author.id or author.user_id != author._original_user_id:
                 action = amo.LOG.ADD_USER_WITH_ROLE
                 author.addon = addon
+                mail_user_changes(
+                    author=author,
+                    title=_('An author has been added to your add-on'),
+                    template_part='author_added',
+                    recipients=authors_emails)
             elif author.role != author._original_role:
                 action = amo.LOG.CHANGE_USER_WITH_ROLE
+                mail_user_changes(
+                    author=author,
+                    title=_('An author has a role changed on your add-on'),
+                    template_part='author_changed',
+                    recipients=authors_emails)
 
             author.save()
             if action:
@@ -428,6 +452,12 @@ def ownership(request, addon_id, addon):
         for author in user_form.deleted_objects:
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
+            authors_emails.add(author.user.email)
+            mail_user_changes(
+                author=author,
+                title=_('An author has been removed from your add-on'),
+                template_part='author_removed',
+                recipients=authors_emails)
 
         if license_form in fs:
             license_form.save()

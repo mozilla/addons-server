@@ -22,7 +22,7 @@ from addons.models import Addon, Version
 from amo.decorators import json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
-from devhub.models import ActivityLog, CommentLog
+from devhub.models import ActivityLog, AddonLog, CommentLog
 from editors import forms
 from editors.models import (AddonCannedResponse, EditorSubscription, EventLog,
                             PerformanceGraph, ReviewerScore,
@@ -540,13 +540,21 @@ def review(request, addon):
     except ViewQueue.DoesNotExist:
         flags = []
 
+    user_changes_actions = [
+        amo.LOG.ADD_USER_WITH_ROLE.id,
+        amo.LOG.CHANGE_USER_WITH_ROLE.id,
+        amo.LOG.REMOVE_USER_WITH_ROLE.id]
+    user_changes_log = AddonLog.objects.filter(
+        activity_log__action__in=user_changes_actions,
+        addon=addon).order_by('id')
     ctx = context(version=version, addon=addon,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
-                  whiteboard_form=forms.WhiteboardForm(instance=addon))
+                  whiteboard_form=forms.WhiteboardForm(instance=addon),
+                  user_changes=user_changes_log)
 
     return render(request, 'editors/review.html', ctx)
 
