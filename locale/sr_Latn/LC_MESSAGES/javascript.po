@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:39-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2014-07-07 10:02+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,878 +14,1230 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1404727345.0\n"
 
-#~ msgid "{0} star"
-#~ msgid_plural "{0} stars"
-#~ msgstr[0] "{0} zvedica"
-#~ msgstr[1] "{0} zvedice"
-#~ msgstr[2] "{0} zvedica"
-
-#~ msgid "There was a problem contacting the server."
-#~ msgstr "Došlo je do problema pri kontaktiranju servera."
-
-#~ msgid "Select a file..."
-#~ msgstr "Izaberite datoteku..."
-
-#~ msgid "Your add-on should end with .xpi, .jar or .xml"
-#~ msgstr "Vaš dodatak se treba završiti sa .xpi, .jar ili .xml"
-
-#~ msgid "{0}% complete"
-#~ msgstr "{0}% završeno"
-
-#~ msgid "{0} of {1}"
-#~ msgstr "{0} od {1}"
-
-#~ msgid "Cancel"
-#~ msgstr "Otkaži"
-
-#~ msgid "Uploading {0}"
-#~ msgstr "Otpremam {0}"
-
-#~ msgid "Error with {0}"
-#~ msgstr "Greška sa {0}"
-
-#~ msgid "Your add-on failed validation with {0} error."
-#~ msgid_plural "Your add-on failed validation with {0} errors."
-#~ msgstr[0] "Vaš dodatak nije prošao proveru - {0} greška."
-#~ msgstr[1] "Vaš dodatak nije prošao proveru - {0} greške."
-#~ msgstr[2] "Vaš dodatak nije prošao proveru - {0} grešaka."
-
-#~ msgid "&hellip;and {0} more"
-#~ msgid_plural "&hellip;and {0} more"
-#~ msgstr[0] "&hellip;i još {0}"
-#~ msgstr[1] "&hellip;i još {0}"
-#~ msgstr[2] "&hellip;i još {0}"
-
-#~ msgid "See full validation report"
-#~ msgstr "Pogledajte potpuni izveštaj pregleda"
-
-#~ msgid "Validating {0}"
-#~ msgstr "Proveravam {0}"
-
-#~ msgid "Received an empty response from the server; status: {0}"
-#~ msgstr "Dobijen je prazan odgovor od servera; status: {0}"
-
-#~ msgid "Unexpected server error while validating."
-#~ msgstr "Neočekivana greška na serveru tokom provere."
-
-#~ msgid "Finished validating {0}"
-#~ msgstr "Završena provera {0}"
-
-#~ msgid "Your add-on passed validation with no errors and {0} message."
-#~ msgid_plural "Your add-on passed validation with no errors and {0} messages."
-#~ msgstr[0] "Vaš dodatak je prošao proveru bez grešaka i {0} porukom."
-#~ msgstr[1] "Vaš dodatak je prošao proveru bez grešaka i {0} poruke."
-#~ msgstr[2] "Vaš dodatak je prošao proveru bez grešaka i {0} poruka."
-
-#~ msgid "Your add-on passed validation with no errors or warnings."
-#~ msgstr "Vaš dodatak je prošao proveru bez grešaka ili upozorenja."
-
-#~ msgid "Some platforms are not available for this type of add-on."
-#~ msgstr "Neke platforme nisu dostupne za ovaj tip dodatka."
-
-#~ msgid "Sorry, no supported platform has been found."
-#~ msgstr "Nažalost nije nađena ni jedna podržana platforma."
-
-#~ msgid "The filetype you uploaded isn't recognized."
-#~ msgstr "Tip datoteke koju ste poslali nije prepoznat."
-
-#~ msgid "You cancelled the upload."
-#~ msgstr "Otkazali ste otpremanje."
-
-#~ msgid "Images must be either PNG or JPG."
-#~ msgstr "Slike moraju biti PNG ili JPG."
-
-#~ msgid "Videos must be in WebM."
-#~ msgstr "Video snimci moraju biti u WebM formatu."
-
-#~ msgid "Your packaged app should end with <code>.zip</code>."
-#~ msgstr "Vaša upakovana aplikacija se mora završavati sa <code>.zip</code>."
-
-#~ msgid "Your app failed validation with {0} error."
-#~ msgid_plural "Your app failed validation with {0} errors."
-#~ msgstr[0] "Vaša aplikacija nije prošla proveru zbog {0} greške."
-#~ msgstr[1] "Vaša aplikacija nije prošla proveru zbog {0} greške."
-#~ msgstr[2] "Vaša aplikacija nije prošla proveru zbog {0} grešaka."
-
-#~ msgid "Your app passed validation with no errors and {0} warning."
-#~ msgid_plural "Your app passed validation with no errors and {0} warnings."
-#~ msgstr[0] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenjem."
-#~ msgstr[1] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenja."
-#~ msgstr[2] "Vaša aplikacija je prošla proveru bez grešaka i {0} upozorenja."
-
-#~ msgid "Your app passed validation with no errors or warnings."
-#~ msgstr "Vaša aplikacija je prošla proveru bez grešaka ili upozorenja."
-
-#~ msgid "Follow this Collection"
-#~ msgstr "Prati ovu kolekciju"
-
-#~ msgid "Stop Following"
-#~ msgstr "Prekini praćenje"
-
-#~ msgid "Following"
-#~ msgstr "Praćenje"
-
-#~ msgid "This theme is incompatible with your version of {0}"
-#~ msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
-
-#~ msgid "All Rights Reserved"
-#~ msgstr "Sva prava su zadržana"
-
-#~ msgid "Creative Commons Attribution 3.0"
-#~ msgstr "Creative Commons Attribution 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#~ msgid "Creative Commons Attribution-NoDerivs 3.0"
-#~ msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#~ msgid "Creative Commons Attribution-ShareAlike 3.0"
-#~ msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#~ msgid "Your Theme's Name"
-#~ msgstr "Naziv Vaše teme"
-
-#~ msgid "Flagged for review"
-#~ msgstr "Naznačeno za pregled"
-
-#~ msgid "Your input is required"
-#~ msgstr "Vaš odziv je neophodan"
-
-#~ msgid "Marked for deletion"
-#~ msgstr "Obeleženo za brisanje"
-
-#~ msgid "Updating results&hellip;"
-#~ msgstr "Ažuriram rezultate&hellip;"
-
-#~ msgid "Category"
-#~ msgstr "Kategorija"
-
-#~ msgid "Search themes for <b>{0}</b>"
-#~ msgstr "Pretraži teme za termin <b>{0}</b>"
-
-#~ msgid "Search apps for <b>{0}</b>"
-#~ msgstr "Pretraži aplikacije za termin <b>{0}</b>"
-
-#~ msgid "Search add-ons for <b>{0}</b>"
-#~ msgstr "Pretraži dodatke za termin <b>{0}</b>"
-
-#~ msgid "use original"
-#~ msgstr "koristi original"
-
-#~ msgid "Week of {0}"
-#~ msgstr "Sedmica od {0}"
-
-#~ msgid "downloads"
-#~ msgstr "preuzimanja"
-
-#~ msgid "{0} users"
-#~ msgstr "{0} korisnika"
-
-#~ msgid "{0} add-ons"
-#~ msgstr "{0} dodataka"
-
-#~ msgid "{0} collections"
-#~ msgstr "{0} kolekcije"
-
-#~ msgid "{0} reviews"
-#~ msgstr "{0} recenzija"
-
-#~ msgid "{0} sales"
-#~ msgstr "{0} prodaja"
-
-#~ msgid "{0} refunds"
-#~ msgstr "{0} refunkdacija"
-
-#~ msgid "{0} installs"
-#~ msgstr "{0} instalacija"
-
-#~ msgid "Downloads"
-#~ msgstr "Preuzimanja"
-
-#~ msgid "Daily Users"
-#~ msgstr "Broj korisnika po danu"
-
-#~ msgid "Amount, in USD"
-#~ msgstr "Količina, u valuti USD"
-
-#~ msgid "Number of Contributions"
-#~ msgstr "Broj doprinosa"
-
-#~ msgid "More Info..."
-#~ msgstr "Više informacija..."
-
-#~ msgid "Details for {0}"
-#~ msgstr "Detalji o {0}"
-
-#~ msgid "Collections Created"
-#~ msgstr "Napravljene kolekcije"
-
-#~ msgid "Add-ons in Use"
-#~ msgstr "Dodaci koji se koriste"
-
-#~ msgid "Add-ons Created"
-#~ msgstr "Dodataka napravljeno"
-
-#~ msgid "Add-ons Downloaded"
-#~ msgstr "Dodataka preuzeto"
-
-#~ msgid "Add-ons Updated"
-#~ msgstr "Dodataka ažurirano"
-
-#~ msgid "Reviews Written"
-#~ msgstr "Recenzija napisano"
-
-#~ msgid "User Signups"
-#~ msgstr "Prijave korisnika"
-
-#~ msgid "Subscribers"
-#~ msgstr "Pretplatnici"
-
-#~ msgid "Ratings"
-#~ msgstr "Ocene"
-
-#~ msgid "Sales"
-#~ msgstr "Prodaje"
-
-#~ msgid "Installs"
-#~ msgstr "Instalacije"
-
-#~ msgid "Unknown"
-#~ msgstr "Nepoznato"
-
-#~ msgid "Add-ons Manager"
-#~ msgstr "Menadžer dodataka"
-
-#~ msgid "Search Results"
-#~ msgstr "Rezultati pretrage"
-
-#~ msgid "Homepage Promo"
-#~ msgstr "Promocija na početnoj strani"
-
-#~ msgid "Homepage Featured"
-#~ msgstr "Izdvojeno na početnoj strani"
-
-#~ msgid "Homepage Up and Coming"
-#~ msgstr "Nadolazeće na početnoj strani"
-
-#~ msgid "Homepage Most Popular"
-#~ msgstr "Najpopularnije na početnoj strani"
-
-#~ msgid "Detail Page"
-#~ msgstr "Dodatne informacije"
-
-#~ msgid "Detail Page (bottom)"
-#~ msgstr "Dodatne informacije (dole)"
-
-#~ msgid "Detail Page (Development Channel)"
-#~ msgstr "Dodatne informacije (Kanal za razvoj)"
-
-#~ msgid "Often Used With"
-#~ msgstr "Često korišćeno uz"
-
-#~ msgid "Others By Author"
-#~ msgstr "Ostalo od autora"
-
-#~ msgid "Dependencies"
-#~ msgstr "Zavisi od"
-
-#~ msgid "Upsell"
-#~ msgstr "Tehnike uvećanja prodaje"
-
-#~ msgid "Sharing"
-#~ msgstr "Deljenje"
-
-#~ msgid "Category Pages"
-#~ msgstr "Stranice kategorija"
-
-#~ msgid "Collections"
-#~ msgstr "Kolekcije"
-
-#~ msgid "Category Landing Featured Carousel"
-#~ msgstr "Klizač izdvojenih apl. na početnoj strani kategorije"
-
-#~ msgid "Category Landing Top Rated"
-#~ msgstr "Najbolje ocenjene apl. na početnoj strani kategorije"
-
-#~ msgid "Category Landing Most Popular"
-#~ msgstr "Najpopularnije apl. na početnoj strani kategorije"
-
-#~ msgid "Category Landing Recently Added"
-#~ msgstr "Skoro dodate apl. na početnoj strani kategorije"
-
-#~ msgid "Browse Listing Featured Sort"
-#~ msgstr "Pregled sortirane liste istaknutih aplikacija"
-
-#~ msgid "Browse Listing Users Sort"
-#~ msgstr "Pregled sortirane liste korisnika"
-
-#~ msgid "Browse Listing Rating Sort"
-#~ msgstr "Pregled sortirane liste ocena"
-
-#~ msgid "Browse Listing Created Sort"
-#~ msgstr "Pregled sortirane liste kreiranih aplikacija"
-
-#~ msgid "Browse Listing Name Sort"
-#~ msgstr "Pregled sortirane liste naziva"
-
-#~ msgid "Browse Listing Popular Sort"
-#~ msgstr "Pregled sortirane liste popularnih aplikacija"
-
-#~ msgid "Browse Listing Updated Sort"
-#~ msgstr "Pregled sortirane liste ažuriranih aplikacija"
-
-#~ msgid "Browse Listing Up and Coming Sort"
-#~ msgstr "Pregled sortirane liste nadolazećih aplikacija"
-
-#~ msgid "Total Amount Contributed"
-#~ msgstr "Ukupan broj doprinosa"
-
-#~ msgid "Average Contribution"
-#~ msgstr "Prosek doprinosa"
-
-#~ msgid "Usage"
-#~ msgstr "Upotreba"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Mozilla"
-#~ msgstr "Mozilla"
-
-#~ msgid "Thunderbird"
-#~ msgstr "Thunderbird"
-
-#~ msgid "Sunbird"
-#~ msgstr "Sunbird"
-
-#~ msgid "SeaMonkey"
-#~ msgstr "SeaMonkey"
-
-#~ msgid "Fennec"
-#~ msgstr "Fennec"
-
-#~ msgid "Downloads and Daily Users, last {0} days"
-#~ msgstr "Preuzimanja i dnevni korisnici, poslednjih {0} dana"
-
-#~ msgid "Downloads and Daily Users from {0} to {1}"
-#~ msgstr "Preuzimanja i dnevni korisnici od {0} do {1}"
-
-#~ msgid "Installs and Daily Users, last {0} days"
-#~ msgstr "Instalacije i dnevni korisnici, poslednjih {0} dana"
-
-#~ msgid "Installs and Daily Users from {0} to {1}"
-#~ msgstr "Instalacije i dnevni korisnici od {0} do {1}"
-
-#~ msgid "Downloads, last {0} days"
-#~ msgstr "Preuzimanja, poslednjih {0} dana"
-
-#~ msgid "Downloads from {0} to {1}"
-#~ msgstr "Preuzimanja od {0} do {1}"
-
-#~ msgid "Daily Users, last {0} days"
-#~ msgstr "Dnevni korisnici, poslednjih {0} dana"
-
-#~ msgid "Daily Users from {0} to {1}"
-#~ msgstr "Dnevni korisnici od {0} do {1}"
-
-#~ msgid "Applications, last {0} days"
-#~ msgstr "Aplikacije, poslednjih {0} dana"
-
-#~ msgid "Applications from {0} to {1}"
-#~ msgstr "Aplikacije od {0} do {1}"
-
-#~ msgid "Platforms, last {0} days"
-#~ msgstr "Platforme, poslednjih {0} dana"
-
-#~ msgid "Platforms from {0} to {1}"
-#~ msgstr "Platforme od {0} do {1}"
-
-#~ msgid "Languages, last {0} days"
-#~ msgstr "Jezici, poslednjih {0} dana"
-
-#~ msgid "Languages from {0} to {1}"
-#~ msgstr "Jezici od {0} do {1}"
-
-#~ msgid "Add-on Versions, last {0} days"
-#~ msgstr "Verzije dodataka, poslednjih {0} dana"
-
-#~ msgid "Add-on Versions from {0} to {1}"
-#~ msgstr "Verzije dodataka od {0} do {1}"
-
-#~ msgid "Add-on Status, last {0} days"
-#~ msgstr "Status dodataka, poslednjih {0} dana"
-
-#~ msgid "Add-on Status from {0} to {1}"
-#~ msgstr "Status dodataka, od {0} do {1}"
-
-#~ msgid "Download Sources, last {0} days"
-#~ msgstr "Izvori preuzimanja, poslednjih {0} dana"
-
-#~ msgid "Download Sources from {0} to {1}"
-#~ msgstr "Izvori preuzimanja od {0} do {1}"
-
-#~ msgid "Contributions, last {0} days"
-#~ msgstr "Doprinosi, poslednjih {0} dana"
-
-#~ msgid "Contributions from {0} to {1}"
-#~ msgstr "Doprinosi od {0} do {1}"
-
-#~ msgid "Site Metrics, last {0} days"
-#~ msgstr "Pokazatelji za sajt, poslednjih {0} dana"
-
-#~ msgid "Site Metrics from {0} to {1}"
-#~ msgstr "Pokazatelji za sajt od {0} do {1}"
-
-#~ msgid "Add-ons in Use, last {0} days"
-#~ msgstr "Dodaci u upotrebi, poslednjih {0} dana"
-
-#~ msgid "Add-ons in Use from {0} to {1}"
-#~ msgstr "Dodaci u upotrebi od {0} do {1}"
-
-#~ msgid "Add-ons Downloaded, last {0} days"
-#~ msgstr "Dodataka preuzeto, poslednjih {0} dana"
-
-#~ msgid "Add-ons Downloaded from {0} to {1}"
-#~ msgstr "Dodataka preuzeto od {0} do {1}"
-
-#~ msgid "Add-ons Created, last {0} days"
-#~ msgstr "Dodataka napravljeno, poslednjih {0} dana"
-
-#~ msgid "Add-ons Created from {0} to {1}"
-#~ msgstr "Dodataka napravljeno od {0} do {1}"
-
-#~ msgid "Add-ons Updated, last {0} days"
-#~ msgstr "Dodataka ažurirano, poslednjih {0} dana"
-
-#~ msgid "Add-ons Updated from {0} to {1}"
-#~ msgstr "Dodataka ažurirano od {0} do {1}"
-
-#~ msgid "Reviews Written, last {0} days"
-#~ msgstr "Recenzija napisano, poslednjih {0} dana"
-
-#~ msgid "Reviews Written from {0} to {1}"
-#~ msgstr "Recenzija napisano od {0} do {1}"
-
-#~ msgid "User Signups, last {0} days"
-#~ msgstr "Registracije korisnika, poslednjih {0} dana"
-
-#~ msgid "User Signups from {0} to {1}"
-#~ msgstr "Registracije korisnika od {0} do {1}"
-
-#~ msgid "Collections Created, last {0} days"
-#~ msgstr "Kolekcija napravljeno, poslednjih {0} dana"
-
-#~ msgid "Collections Created from {0} to {1}"
-#~ msgstr "Kolekcija napravljeno od {0} do {1}"
-
-#~ msgid "Subscribers, last {0} days"
-#~ msgstr "Pretplatnici, poslednjih {0} dana"
-
-#~ msgid "Subscribers from {0} to {1}"
-#~ msgstr "Pretplatnici od {0} do {1}"
-
-#~ msgid "Ratings, last {0} days"
-#~ msgstr "Ocenjivanja, poslednjih {0} dana"
-
-#~ msgid "Ratings from {0} to {1}"
-#~ msgstr "Ocenjivanja od {0} do {1}"
-
-#~ msgid "Sales, last {0} days"
-#~ msgstr "Prodaja, poslednjih {0} dana"
-
-#~ msgid "Sales from {0} to {1}"
-#~ msgstr "Prodaja od {0} do {1}"
-
-#~ msgid "Installs, last {0} days"
-#~ msgstr "Instalacije, poslednjih {0} dana"
-
-#~ msgid "Installs from {0} to {1}"
-#~ msgstr "Instalacije, od {0} do {1}"
-
-#~ msgid "<b>{0}</b> in last {1} days"
-#~ msgstr "<b>{0}</b> u poslednjih {1} dana"
-
-#~ msgid "<b>{0}</b> from {1} to {2}"
-#~ msgstr "<b>{0}</b> od {1} do {2}"
-
-#~ msgid "<b>{0}</b> average in last {1} days"
-#~ msgstr "<b>{0}</b> prosečne u poslednjih {1} dana"
-
-#~ msgid "No data available."
-#~ msgstr "Nema dostupnih podataka."
-
-#~ msgid "Date"
-#~ msgstr "Datum"
-
-#~ msgid "Other"
-#~ msgstr "Ostali"
-
-#~ msgid "Select an application first"
-#~ msgstr "Prvo izaberite aplikaciju"
-
-#~ msgid "Set {0} add-on to a max version of {1} and email the author."
-#~ msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-#~ msgstr[0] "Podesite {0} dodatak na maksimalnu verziju od {1} i pošalji e-poštu autoru."
-#~ msgstr[1] "Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-poštu autorima."
-#~ msgstr[2] "Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-poštu autorima."
-
-#~ msgid "Email author of {2} add-on which failed validation."
-#~ msgid_plural "Email authors of {2} add-ons which failed validation."
-#~ msgstr[0] "Autor e-pošte ima {2} dodatak koji nije prošao proveru valjanosti."
-#~ msgstr[1] "Autor e-pošte ima {2} dodatka koji nisu prošli proveru valjanosti."
-#~ msgstr[2] "Autor e-pošte ima {2} dodatka koji nisu prošli proveru valjanosti."
-
-#~ msgid "App installation not allowed."
-#~ msgstr "Nije dozvoljena instalacija aplikacije."
-
-#~ msgid "App manifest is malformed."
-#~ msgstr "Manifest aplikacije je u pogrešnom formatu."
-
-#~ msgid "App host could not be reached."
-#~ msgstr "Host aplikacije nije dostupan."
-
-#~ msgid "App manifest is unparsable."
-#~ msgstr "Manifest aplikacije se ne može uporediti."
-
-#~ msgid "App manifest is invalid."
-#~ msgstr "Manifest aplikacije je neispravan."
-
-#~ msgid "Install failed. Please try again later."
-#~ msgstr "Instalacija neuspešna. Molimo Vas pokušajte kasnije."
-
-#~ msgid "App installation failed."
-#~ msgstr "Instalacija aplikacije nije uspela."
-
-#~ msgid "This system does not support installing apps."
-#~ msgstr "Ovaj sistem ne podržava isntalacije aplikacija."
-
-#~ msgid "Admins and editors must provide a password to log in."
-#~ msgstr "Administratori i urednici moraju ukucati lozinku za prijavljivanje."
-
-#~ msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-#~ msgstr "Prijava preko BrowserID-a neuspela. Možda nemate nalog sa tom adresom e-pošte?"
-
-#~ msgid "Accept and Install"
-#~ msgstr "Prihvati i instaliraj"
-
-#~ msgid "Add to {0}"
-#~ msgstr "Dodaj u {0}"
-
-#~ msgid "Download Now"
-#~ msgstr "Preuzmi odmah"
-
-#~ msgid "Add-on has not been updated to support default-to-compatible."
-#~ msgstr "Dodatak nije ažuriran da podržava default-to-compatible."
-
-#~ msgid "You need to be using Firefox 10.0 or higher."
-#~ msgstr "Morate koristiti Firefox 10.0 ili novije."
-
-#~ msgid "Mozilla has marked this version as incompatible with your Firefox version."
-#~ msgstr "Mozilla je označila ovu verziju kao nekompatabilnu sa Vašom verzijom Firefox-a."
-
-#~ msgid "Install for {0} anyway"
-#~ msgstr "Instaliraj za {0} u svakom slučaju"
-
-#~ msgid "Download for {0} anyway"
-#~ msgstr "Preuzmi za {0} u svakom slučaju"
-
-#~ msgid "Not available for your platform"
-#~ msgstr "Nije dostupno za Vašu platformu"
-
-#~ msgid "Not available for {0} {1}"
-#~ msgstr "Nije dostupno za {0} {1}"
-
-#~ msgid "Works with {app} {min} - {max}"
-#~ msgstr "Radi sa {app} {min} - {max}"
-
-#~ msgid "View other versions"
-#~ msgstr "Pogledaj ostale verzije"
-
-#~ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-#~ msgstr "Žao nam je, treba Vam pregledač baziran na tehnologiji Mozilla fondacije (kao što je Firefox) da biste instalirali priključak za pretraživanje."
-
-#~ msgid "clear recently viewed"
-#~ msgstr "obriši skorije gledano"
-
-#~ msgid "Adding to Favorites&hellip;"
-#~ msgstr "Dodajem u Omiljeno&hellip;"
-
-#~ msgid "Removing Favorite&hellip;"
-#~ msgstr "Brišem iz Omiljenih&hellip;"
-
-#~ msgid "Add to Favorites"
-#~ msgstr "Dodaj u Omiljene"
-
-#~ msgid "Remove from Favorites"
-#~ msgstr "Izbriši iz Omiljenih"
-
-#~ msgid "Pending"
-#~ msgstr "Na čekanju"
-
-#~ msgid "Add a comment"
-#~ msgstr "Dodaj komentar"
-
-#~ msgid "Comment"
-#~ msgstr "Komentar"
-
-#~ msgid "Remove this add-on from the collection"
-#~ msgstr "Izbriši ovaj dodatak iz kolekcije"
-
-#~ msgid "Remove"
-#~ msgstr "Izbriši"
-
-#~ msgid "Remove this user as a contributor"
-#~ msgstr "Ukloni korisnika kao saradnika"
-
-#~ msgid "An email address is required."
-#~ msgstr "Adresa e-pošte je obavezna."
-
-#~ msgid "You cannot add yourself as a contributor."
-#~ msgstr "Ne možete sebe dodati kao saradnika."
-
-#~ msgid "You have already added that user."
-#~ msgstr "Već ste dodali tog korisnika."
-
-#~ msgid "Add to favorites"
-#~ msgstr "Dodaj u omiljene"
-
-#~ msgid "Remove from favorites"
-#~ msgstr "Izbriši iz omiljenih"
-
-#~ msgid "Stop following"
-#~ msgstr "Prekini praćenje"
-
-#~ msgid "Install App"
-#~ msgstr "Instaliraj aplikaciju"
-
-#~ msgid "Your browser does not support the video tag"
-#~ msgstr "Vaš pregledač ne podržava oznake video snimaka"
-
-#~ msgid "Changes Saved"
-#~ msgstr "Izmene sačuvane"
-
-#~ msgid "Enter a new author's email address"
-#~ msgstr "Unesite adresu e-pošte novog autora"
-
-#~ msgid "There was an error uploading your file."
-#~ msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
-
-#~ msgid "{files} file"
-#~ msgid_plural "{files} files"
-#~ msgstr[0] "{files} datoteka"
-#~ msgstr[1] "{files} datoteke"
-#~ msgstr[2] "{files} datoteka"
-
-#~ msgid "Learn more"
-#~ msgstr "Saznajte više"
-
-#~ msgid "Example"
-#~ msgstr "Primer"
-
-#~ msgid "Image changes being processed"
-#~ msgstr "Izmene na slici se obrađuju"
-
-#~ msgid "Starting tests..."
-#~ msgstr "Pokrećem testova..."
-
-#~ msgid "Waiting for test results..."
-#~ msgstr "Čekam rezultate testova..."
-
-#~ msgid "Internal Server Error"
-#~ msgstr "Serverska greška"
-
-#~ msgid "Must be a valid e-mail address."
-#~ msgstr "Adresa e-pošte mora biti ispravna."
-
-#~ msgid "No results found."
-#~ msgstr "Nema rezultata."
-
-#~ msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-#~ msgstr "Žao nam je, nismo uspeli naći preporuke za Vas.<br>Molimo posetite <a href=\"{0}\">stranicu sa dodacima</a> da bi pronašli dodatke pogodne za Vas."
-
-#~ msgid "Finding recommendations&hellip;"
-#~ msgstr "Tražim preporuke&hellip;"
-
-#~ msgid "Updating recommendations&hellip;"
-#~ msgstr "Ažuriram preporuke&hellip;"
-
-#~ msgid "{name} was viewing this page first."
-#~ msgstr "{name} je prvi gledao ovu stranicu."
-
-#~ msgid "Receipt checked by app."
-#~ msgstr "Potvrda proverena od strane aplikacije."
-
-#~ msgid "Receipt was not checked by app."
-#~ msgstr "Potvrda nije proverena od strane aplikacije."
-
-#~ msgid "{name} was viewing this add-on first."
-#~ msgstr "{name} je prvi pregledavao ovaj dodatak."
-
-#~ msgid "Loading&hellip;"
-#~ msgstr "Učitavam&hellip;"
-
-#~ msgid "Version Notes"
-#~ msgstr "Beleške o verziji"
-
-#~ msgid "Notes for Reviewers"
-#~ msgstr "Beleške za recenzente"
-
-#~ msgid "No version notes found"
-#~ msgstr "Nije nađena ni jedna beleška o verziji"
-
-#~ msgid "Average Reviews"
-#~ msgstr "Prosečne recenzije"
-
-#~ msgid "Number of Reviews"
-#~ msgstr "Broj recenzija"
-
-#~ msgid "Error loading translation"
-#~ msgstr "Greška pri učitavanju prevoda"
-
-#~ msgid "Loading..."
-#~ msgstr "Učitavanje..."
-
-#~ msgid "<b>{0}</b> character left."
-#~ msgid_plural "<b>{0}</b> characters left."
-#~ msgstr[0] "<b>{0}</b> karakter preostao."
-#~ msgstr[1] "<b>{0}</b> karaktera preostala."
-#~ msgstr[2] "<b>{0}</b> karaktera preostalo."
-
-#~ msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-#~ msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
-
-#~ msgid "Remove this localization"
-#~ msgstr "Ukloni ovu lokalizaciju"
-
-#~ msgid "Download {0}"
-#~ msgstr "Preuzmi {0}"
-
-#~ msgid "Password strength:"
-#~ msgstr "Jačina lozinke:"
-
-#~ msgid "At least {0} character left."
-#~ msgid_plural "At least {0} characters left."
-#~ msgstr[0] "Ostao je još najmanje {0} karater."
-#~ msgstr[1] "Ostalo je još najmanje {0} karatera."
-#~ msgstr[2] "Ostalo je još najmanje {0} karatera."
-
-#~ msgid "All"
-#~ msgstr "Sve"
-
-#~ msgid "Requested Info"
-#~ msgstr "Zahtevane informacije"
-
-#~ msgid "Flagged"
-#~ msgstr "Označeno"
-
-#~ msgid "Duplicate"
-#~ msgstr "Duplikat"
-
-#~ msgid "Rejected"
-#~ msgstr "Odbijeno"
-
-#~ msgid "Approved"
-#~ msgstr "Odobreno"
-
-#~ msgid "All tests passed successfully."
-#~ msgstr "Svi testovi su uspešno završeni."
-
-#~ msgid "These tests were not run."
-#~ msgstr "Ovi testovi nisu izvršeni."
-
-#~ msgid "Tests"
-#~ msgstr "Testovi"
-
-#~ msgid "Error"
-#~ msgstr "Greška"
-
-#~ msgid "Warning"
-#~ msgstr "Upozorenje"
-
-#~ msgid "Compatibility Tests"
-#~ msgstr "Testovi kompatibilnosti"
-
-#~ msgid "App failed validation."
-#~ msgstr "Aplikacija nije prošla validaciju."
-
-#~ msgid "App passed validation."
-#~ msgstr "Aplikacija je prošla validaciju."
-
-#~ msgid "Add-on failed validation."
-#~ msgstr "Dodatak nije prošao proveru."
-
-#~ msgid "Add-on passed validation."
-#~ msgstr "Dodatak je prošao proveru."
-
-#~ msgid "{0} error"
-#~ msgid_plural "{0} errors"
-#~ msgstr[0] "{0} greška"
-#~ msgstr[1] "{0} greške"
-#~ msgstr[2] "{0} grešaka"
-
-#~ msgid "{0} warning"
-#~ msgid_plural "{0} warnings"
-#~ msgstr[0] "{0} upozorenje"
-#~ msgstr[1] "{0} upozorenja"
-#~ msgstr[2] "{0} upozorenja"
-
-#~ msgid "{0} notice"
-#~ msgid_plural "{0} notices"
-#~ msgstr[0] "{0} obaveštenje"
-#~ msgstr[1] "{0} obaveštenja"
-#~ msgstr[2] "{0} obaveštenja"
-
-#~ msgid "Validation task could not complete or completed with errors"
-#~ msgstr "Zadatak provere nije mogao biti završen ili je završen sa greškama"
-
-#~ msgid "Internal server error"
-#~ msgstr "Greška na serveru"
-
-#~ msgid "Not Updated for {0} {1}"
-#~ msgstr "Nije ažurirano za {0} {1}"
-
-#~ msgid "Requires Newer Version of {0}"
-#~ msgstr "Zahteva verziju noviju od {0}"
-
-#~ msgid "Unreviewed"
-#~ msgstr "Neocenjeno"
-
-#~ msgid "Experimental <span>(Learn More)</span>"
-#~ msgstr "Eksperimentalno <span>(Saznaj više)</span>"
-
-#~ msgid "Not Available for {0}"
-#~ msgstr "Nije dostupno za {0}"
-
-#~ msgid "Experimental"
-#~ msgstr "Eksperimentalno"
-
-#~ msgid "Themes Require Newer Version of {0}"
-#~ msgstr "Teme zahtevaju noviju verziju od {0}"
-
-#~ msgid "Themes Require {0}"
-#~ msgstr "Teme zahtevaju {0}"
-
-#~ msgid "Installing..."
-#~ msgstr "Instaliram..."
-
-#~ msgid "Purchasing..."
-#~ msgstr "Kupujem..."
-
-#~ msgid "This add-on has been preliminarily reviewed by Mozilla."
-#~ msgstr "Ovaj dodatak je preliminarno pregledan od Mozilla-e."
-
-#~ msgid "Keep it"
-#~ msgstr "Zadrži"
-
-#~ msgid "You're trying it on!"
-#~ msgstr "Isprobavate je!"
-
-#~ msgid "Added to Firefox"
-#~ msgstr "Dodato u Firefox"
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} zvedica"
+msgstr[1] "{0} zvedice"
+msgstr[2] "{0} zvedica"
+
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "Došlo je do problema pri kontaktiranju servera."
+
+#: static/js/common/upload-addon.js:52
+msgid "Select a file..."
+msgstr "Izaberite datoteku..."
+
+#: static/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "Vaš dodatak se treba završiti sa .xpi, .jar ili .xml"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:87
+msgid "{0}% complete"
+msgstr "{0}% završeno"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:90
+msgid "{0} of {1}"
+msgstr "{0} od {1}"
+
+#: static/js/common/upload-addon.js:120
+msgid "Cancel"
+msgstr "Otkaži"
+
+#: static/js/common/upload-addon.js:142
+msgid "Uploading {0}"
+msgstr "Otpremam {0}"
+
+#: static/js/common/upload-addon.js:169
+msgid "Error with {0}"
+msgstr "Greška sa {0}"
+
+#: static/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "Vaš dodatak nije prošao proveru - {0} greška."
+msgstr[1] "Vaš dodatak nije prošao proveru - {0} greške."
+msgstr[2] "Vaš dodatak nije prošao proveru - {0} grešaka."
+
+#: static/js/common/upload-addon.js:188
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;i još {0}"
+msgstr[1] "&hellip;i još {0}"
+msgstr[2] "&hellip;i još {0}"
+
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+msgid "See full validation report"
+msgstr "Pogledajte potpuni izveštaj pregleda"
+
+#: static/js/common/upload-addon.js:214
+msgid "Validating {0}"
+msgstr "Proveravam {0}"
+
+#. L10n: first argument is an HTTP status code
+#: static/js/common/upload-addon.js:253
+msgid "Received an empty response from the server; status: {0}"
+msgstr "Dobijen je prazan odgovor od servera; status: {0}"
+
+#: static/js/common/upload-addon.js:269
+msgid "Unexpected server error while validating."
+msgstr "Neočekivana greška na serveru tokom provere."
+
+#: static/js/common/upload-addon.js:307
+msgid "Finished validating {0}"
+msgstr "Završena provera {0}"
+
+#: static/js/common/upload-addon.js:313
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] "Vaš dodatak je prošao proveru bez grešaka i {0} porukom."
+msgstr[1] "Vaš dodatak je prošao proveru bez grešaka i {0} poruke."
+msgstr[2] "Vaš dodatak je prošao proveru bez grešaka i {0} poruka."
+
+#: static/js/common/upload-addon.js:318
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr "Vaš dodatak je prošao proveru bez grešaka ili upozorenja."
+
+#: static/js/common/upload-addon.js:334
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:335
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:348
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:350
+msgid "Add-on submission checklist"
+msgstr ""
+
+#: static/js/common/upload-addon.js:351
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:353
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+
+#: static/js/common/upload-addon.js:371
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:388
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr ""
+
+#: static/js/common/upload-addon.js:425
+msgid "Some platforms are not available for this type of add-on."
+msgstr "Neke platforme nisu dostupne za ovaj tip dodatka."
+
+#: static/js/common/upload-addon.js:427
+msgid "Sorry, no supported platform has been found."
+msgstr "Nažalost nije nađena ni jedna podržana platforma."
+
+#: static/js/common/upload-base.js:57
+msgid "The filetype you uploaded isn't recognized."
+msgstr "Tip datoteke koju ste poslali nije prepoznat."
+
+#: static/js/common/upload-base.js:79
+msgid "You cancelled the upload."
+msgstr "Otkazali ste otpremanje."
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "Slike moraju biti PNG ili JPG."
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "Video snimci moraju biti u WebM formatu."
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "Prati ovu kolekciju"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Prekini praćenje"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "Praćenje"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "Sva prava su zadržana"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "Naziv Vaše teme"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "Naznačeno za pregled"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "Vaš odziv je neophodan"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "Obeleženo za brisanje"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "Ažuriram rezultate&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "Kategorija"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Pretraži teme za termin <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Pretraži aplikacije za termin <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Pretraži dodatke za termin <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "koristi original"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "Sedmica od {0}"
+
+#: static/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr "preuzimanja"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} korisnika"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} dodataka"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} kolekcije"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} recenzija"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} prodaja"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0} refunkdacija"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} instalacija"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+msgid "Downloads"
+msgstr "Preuzimanja"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+msgid "Daily Users"
+msgstr "Broj korisnika po danu"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "Količina, u valuti USD"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+msgid "Number of Contributions"
+msgstr "Broj doprinosa"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "Više informacija..."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "Detalji o {0}"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "Napravljene kolekcije"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "Dodaci koji se koriste"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "Dodataka napravljeno"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "Dodataka preuzeto"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "Dodataka ažurirano"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "Recenzija napisano"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "Prijave korisnika"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "Pretplatnici"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "Ocene"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+msgid "Sales"
+msgstr "Prodaje"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+msgid "Installs"
+msgstr "Instalacije"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "Menadžer dodataka"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Search Results"
+msgstr "Rezultati pretrage"
+
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+msgid "Homepage Promo"
+msgstr "Promocija na početnoj strani"
+
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+msgid "Homepage Featured"
+msgstr "Izdvojeno na početnoj strani"
+
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Up and Coming"
+msgstr "Nadolazeće na početnoj strani"
+
+#: static/js/impala/stats/csv_keys.js:52
+msgid "Homepage Most Popular"
+msgstr "Najpopularnije na početnoj strani"
+
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+msgid "Detail Page"
+msgstr "Dodatne informacije"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+msgid "Detail Page (bottom)"
+msgstr "Dodatne informacije (dole)"
+
+#: static/js/impala/stats/csv_keys.js:57
+msgid "Detail Page (Development Channel)"
+msgstr "Dodatne informacije (Kanal za razvoj)"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+msgid "Often Used With"
+msgstr "Često korišćeno uz"
+
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+msgid "Others By Author"
+msgstr "Ostalo od autora"
+
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Dependencies"
+msgstr "Zavisi od"
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Upsell"
+msgstr "Tehnike uvećanja prodaje"
+
+#: static/js/impala/stats/csv_keys.js:68
+msgid "Sharing"
+msgstr "Deljenje"
+
+#: static/js/impala/stats/csv_keys.js:69
+msgid "Category Pages"
+msgstr "Stranice kategorija"
+
+#: static/js/impala/stats/csv_keys.js:70
+msgid "Collections"
+msgstr "Kolekcije"
+
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+msgid "Category Landing Featured Carousel"
+msgstr "Klizač izdvojenih apl. na početnoj strani kategorije"
+
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+msgid "Category Landing Top Rated"
+msgstr "Najbolje ocenjene apl. na početnoj strani kategorije"
+
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+msgid "Category Landing Most Popular"
+msgstr "Najpopularnije apl. na početnoj strani kategorije"
+
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+msgid "Category Landing Recently Added"
+msgstr "Skoro dodate apl. na početnoj strani kategorije"
+
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+msgid "Browse Listing Featured Sort"
+msgstr "Pregled sortirane liste istaknutih aplikacija"
+
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+msgid "Browse Listing Users Sort"
+msgstr "Pregled sortirane liste korisnika"
+
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+msgid "Browse Listing Rating Sort"
+msgstr "Pregled sortirane liste ocena"
+
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+msgid "Browse Listing Created Sort"
+msgstr "Pregled sortirane liste kreiranih aplikacija"
+
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+msgid "Browse Listing Name Sort"
+msgstr "Pregled sortirane liste naziva"
+
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+msgid "Browse Listing Popular Sort"
+msgstr "Pregled sortirane liste popularnih aplikacija"
+
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+msgid "Browse Listing Updated Sort"
+msgstr "Pregled sortirane liste ažuriranih aplikacija"
+
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+msgid "Browse Listing Up and Coming Sort"
+msgstr "Pregled sortirane liste nadolazećih aplikacija"
+
+#: static/js/impala/stats/csv_keys.js:98
+msgid "Total Amount Contributed"
+msgstr "Ukupan broj doprinosa"
+
+#: static/js/impala/stats/csv_keys.js:99
+msgid "Average Contribution"
+msgstr "Prosek doprinosa"
+
+#: static/js/impala/stats/csv_keys.js:108
+msgid "Usage"
+msgstr "Upotreba"
+
+#: static/js/impala/stats/csv_keys.js:111
+msgid "Firefox"
+msgstr "Firefox"
+
+#: static/js/impala/stats/csv_keys.js:112
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: static/js/impala/stats/csv_keys.js:113
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: static/js/impala/stats/csv_keys.js:114
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: static/js/impala/stats/csv_keys.js:116
+msgid "Fennec"
+msgstr "Fennec"
+
+#: static/js/impala/stats/csv_keys.js:117
+msgid "Android"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:122
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "Preuzimanja i dnevni korisnici, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "Preuzimanja i dnevni korisnici od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:128
+msgid "Installs and Daily Users, last {0} days"
+msgstr "Instalacije i dnevni korisnici, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:130
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "Instalacije i dnevni korisnici od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:134
+msgid "Downloads, last {0} days"
+msgstr "Preuzimanja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:136
+msgid "Downloads from {0} to {1}"
+msgstr "Preuzimanja od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:140
+msgid "Daily Users, last {0} days"
+msgstr "Dnevni korisnici, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:142
+msgid "Daily Users from {0} to {1}"
+msgstr "Dnevni korisnici od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:146
+msgid "Applications, last {0} days"
+msgstr "Aplikacije, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:148
+msgid "Applications from {0} to {1}"
+msgstr "Aplikacije od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:152
+msgid "Platforms, last {0} days"
+msgstr "Platforme, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:154
+msgid "Platforms from {0} to {1}"
+msgstr "Platforme od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:158
+msgid "Languages, last {0} days"
+msgstr "Jezici, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:160
+msgid "Languages from {0} to {1}"
+msgstr "Jezici od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:164
+msgid "Add-on Versions, last {0} days"
+msgstr "Verzije dodataka, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:166
+msgid "Add-on Versions from {0} to {1}"
+msgstr "Verzije dodataka od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:170
+msgid "Add-on Status, last {0} days"
+msgstr "Status dodataka, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:172
+msgid "Add-on Status from {0} to {1}"
+msgstr "Status dodataka, od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:176
+msgid "Download Sources, last {0} days"
+msgstr "Izvori preuzimanja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:178
+msgid "Download Sources from {0} to {1}"
+msgstr "Izvori preuzimanja od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:182
+msgid "Contributions, last {0} days"
+msgstr "Doprinosi, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:184
+msgid "Contributions from {0} to {1}"
+msgstr "Doprinosi od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:188
+msgid "Site Metrics, last {0} days"
+msgstr "Pokazatelji za sajt, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:190
+msgid "Site Metrics from {0} to {1}"
+msgstr "Pokazatelji za sajt od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:194
+msgid "Add-ons in Use, last {0} days"
+msgstr "Dodaci u upotrebi, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:196
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "Dodaci u upotrebi od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:200
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "Dodataka preuzeto, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:202
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "Dodataka preuzeto od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:206
+msgid "Add-ons Created, last {0} days"
+msgstr "Dodataka napravljeno, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:208
+msgid "Add-ons Created from {0} to {1}"
+msgstr "Dodataka napravljeno od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:212
+msgid "Add-ons Updated, last {0} days"
+msgstr "Dodataka ažurirano, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:214
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "Dodataka ažurirano od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:218
+msgid "Reviews Written, last {0} days"
+msgstr "Recenzija napisano, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:220
+msgid "Reviews Written from {0} to {1}"
+msgstr "Recenzija napisano od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:224
+msgid "User Signups, last {0} days"
+msgstr "Registracije korisnika, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:226
+msgid "User Signups from {0} to {1}"
+msgstr "Registracije korisnika od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:230
+msgid "Collections Created, last {0} days"
+msgstr "Kolekcija napravljeno, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:232
+msgid "Collections Created from {0} to {1}"
+msgstr "Kolekcija napravljeno od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:236
+msgid "Subscribers, last {0} days"
+msgstr "Pretplatnici, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:238
+msgid "Subscribers from {0} to {1}"
+msgstr "Pretplatnici od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:242
+msgid "Ratings, last {0} days"
+msgstr "Ocenjivanja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:244
+msgid "Ratings from {0} to {1}"
+msgstr "Ocenjivanja od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:248
+msgid "Sales, last {0} days"
+msgstr "Prodaja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:250
+msgid "Sales from {0} to {1}"
+msgstr "Prodaja od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:254
+msgid "Installs, last {0} days"
+msgstr "Instalacije, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:256
+msgid "Installs from {0} to {1}"
+msgstr "Instalacije, od {0} do {1}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:262
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b> u poslednjih {1} dana"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b> od {1} do {2}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:268
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "<b>{0}</b> prosečne u poslednjih {1} dana"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "Nema dostupnih podataka."
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "Datum"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "Ostali"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+msgid "Select an application first"
+msgstr "Prvo izaberite aplikaciju"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] "Podesite {0} dodatak na maksimalnu verziju od {1} i pošalji e-poštu autoru."
+msgstr[1] "Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-poštu autorima."
+msgstr[2] "Podesite {0} dodataka na maksimalnu verziju od {1} i pošalji e-poštu autorima."
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] "Autor e-pošte ima {2} dodatak koji nije prošao proveru valjanosti."
+msgstr[1] "Autor e-pošte ima {2} dodatka koji nisu prošli proveru valjanosti."
+msgstr[2] "Autor e-pošte ima {2} dodatka koji nisu prošli proveru valjanosti."
+
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "Nije dozvoljena instalacija aplikacije."
+
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "Manifest aplikacije je u pogrešnom formatu."
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Host aplikacije nije dostupan."
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Manifest aplikacije se ne može uporediti."
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Manifest aplikacije je neispravan."
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Instalacija neuspešna. Molimo Vas pokušajte kasnije."
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "Instalacija aplikacije nije uspela."
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "Ovaj sistem ne podržava isntalacije aplikacija."
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "Administratori i urednici moraju ukucati lozinku za prijavljivanje."
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Prijava preko BrowserID-a neuspela. Možda nemate nalog sa tom adresom e-pošte?"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "Prihvati i instaliraj"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "Dodaj u {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "Preuzmi odmah"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "Dodatak nije ažuriran da podržava default-to-compatible."
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "Morate koristiti Firefox 10.0 ili novije."
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla je označila ovu verziju kao nekompatabilnu sa Vašom verzijom Firefox-a."
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "Instaliraj za {0} u svakom slučaju"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "Preuzmi za {0} u svakom slučaju"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "Nije dostupno za Vašu platformu"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "Nije dostupno za {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "Radi sa {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "Pogledaj ostale verzije"
+
+#: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Žao nam je, treba Vam pregledač baziran na tehnologiji Mozilla fondacije (kao što je Firefox) da biste instalirali priključak za pretraživanje."
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "obriši skorije gledano"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "Dodajem u Omiljeno&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "Brišem iz Omiljenih&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "Dodaj u Omiljene"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "Izbriši iz Omiljenih"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "Na čekanju"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "Dodaj komentar"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "Komentar"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "Izbriši ovaj dodatak iz kolekcije"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "Izbriši"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "Ukloni korisnika kao saradnika"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "Adresa e-pošte je obavezna."
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "Ne možete sebe dodati kao saradnika."
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "Već ste dodali tog korisnika."
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "Dodaj u omiljene"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "Izbriši iz omiljenih"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "Prekini praćenje"
+
+#: static/js/zamboni/devhub.js:127
+msgid "Your browser does not support the video tag"
+msgstr "Vaš pregledač ne podržava oznake video snimaka"
+
+#: static/js/zamboni/devhub.js:382
+msgid "Changes Saved"
+msgstr "Izmene sačuvane"
+
+#: static/js/zamboni/devhub.js:398
+msgid "Enter a new author's email address"
+msgstr "Unesite adresu e-pošte novog autora"
+
+#: static/js/zamboni/devhub.js:545
+msgid "There was an error uploading your file."
+msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
+
+#: static/js/zamboni/devhub.js:690
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} datoteka"
+msgstr[1] "{files} datoteke"
+msgstr[2] "{files} datoteka"
+
+#: static/js/zamboni/devhub.js:693
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: static/js/zamboni/devhub.js:805
+msgid "Learn more"
+msgstr "Saznajte više"
+
+#: static/js/zamboni/devhub.js:809
+msgid "Example"
+msgstr "Primer"
+
+#: static/js/zamboni/devhub.js:1165
+msgid "Image changes being processed"
+msgstr "Izmene na slici se obrađuju"
+
+#: static/js/zamboni/devhub.js:1292
+msgid "Starting tests..."
+msgstr "Pokrećem testova..."
+
+#: static/js/zamboni/devhub.js:1299
+msgid "Waiting for test results..."
+msgstr "Čekam rezultate testova..."
+
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+msgid "Internal Server Error"
+msgstr "Serverska greška"
+
+#: static/js/zamboni/devhub.js:1341
+msgid "Must be a valid e-mail address."
+msgstr "Adresa e-pošte mora biti ispravna."
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "Nema rezultata."
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Žao nam je, nismo uspeli naći preporuke za Vas.<br>Molimo posetite <a href=\"{0}\">stranicu sa dodacima</a> da bi pronašli dodatke pogodne za Vas."
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "Tražim preporuke&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "Ažuriram preporuke&hellip;"
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "{name} je prvi gledao ovu stranicu."
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "Potvrda proverena od strane aplikacije."
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "Potvrda nije proverena od strane aplikacije."
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr "{name} je prvi pregledavao ovaj dodatak."
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "Učitavam&hellip;"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "Beleške o verziji"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "Beleške za recenzente"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "Nije nađena ni jedna beleška o verziji"
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "Prosečne recenzije"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "Broj recenzija"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr "Greška pri učitavanju prevoda"
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "Učitavanje..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> karakter preostao."
+msgstr[1] "<b>{0}</b> karaktera preostala."
+msgstr[2] "<b>{0}</b> karaktera preostalo."
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Ukloni ovu lokalizaciju"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "Preuzmi {0}"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "Jačina lozinke:"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "Ostao je još najmanje {0} karater."
+msgstr[1] "Ostalo je još najmanje {0} karatera."
+msgstr[2] "Ostalo je još najmanje {0} karatera."
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "Sve"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Zahtevane informacije"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Označeno"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Duplikat"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Odbijeno"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Odobreno"
+
+#: static/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "Svi testovi su uspešno završeni."
+
+#: static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "Ovi testovi nisu izvršeni."
+
+#: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "Testovi"
+
+#: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "Greška"
+
+#: static/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "Upozorenje"
+
+#: static/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "Testovi kompatibilnosti"
+
+#: static/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "Aplikacija nije prošla validaciju."
+
+#: static/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "Aplikacija je prošla validaciju."
+
+#: static/js/zamboni/validator.js:337
+msgid "Add-on failed validation."
+msgstr "Dodatak nije prošao proveru."
+
+#: static/js/zamboni/validator.js:339
+msgid "Add-on passed validation."
+msgstr "Dodatak je prošao proveru."
+
+#: static/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} greška"
+msgstr[1] "{0} greške"
+msgstr[2] "{0} grešaka"
+
+#: static/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} upozorenje"
+msgstr[1] "{0} upozorenja"
+msgstr[2] "{0} upozorenja"
+
+#: static/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0} obaveštenje"
+msgstr[1] "{0} obaveštenja"
+msgstr[2] "{0} obaveštenja"
+
+#: static/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "Zadatak provere nije mogao biti završen ili je završen sa greškama"
+
+#: static/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "Greška na serveru"
+
+#: static/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr "Nije ažurirano za {0} {1}"
+
+#: static/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr "Zahteva verziju noviju od {0}"
+
+#: static/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr "Neocenjeno"
+
+#: static/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "Eksperimentalno <span>(Saznaj više)</span>"
+
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr "Nije dostupno za {0}"
+
+#: static/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr "Eksperimentalno"
+
+#: static/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr "Teme zahtevaju noviju verziju od {0}"
+
+#: static/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr "Teme zahtevaju {0}"
+
+#: static/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "Instaliram..."
+
+#: static/js/zamboni/mobile/buttons.js:148
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "Ovaj dodatak je preliminarno pregledan od Mozilla-e."
+
+#: static/js/zamboni/mobile/buttons.js:275
+msgid "Keep it"
+msgstr "Zadrži"
+
+#: static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr "Isprobavate je!"
+
+#: static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr "Dodato u Firefox"

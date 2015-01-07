@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:39-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2014-07-14 13:11+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -14,884 +14,1230 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1405343468.0\n"
 
-#~ msgid "{0} star"
-#~ msgid_plural "{0} stars"
-#~ msgstr[0] "{0} hvězdička"
-#~ msgstr[1] "{0} hvězdičky"
-#~ msgstr[2] "{0} hvězdiček"
-
-#~ msgid "There was a problem contacting the server."
-#~ msgstr "Vyskytl se problém při kontaktování serveru."
-
-#~ msgid "Select a file..."
-#~ msgstr "Volba souboru..."
-
-#~ msgid "Your add-on should end with .xpi, .jar or .xml"
-#~ msgstr "Váš doplněk by měl končit příponou .xpi, .jar nebo .xml"
-
-#~ msgid "{0}% complete"
-#~ msgstr "{0}% dokončeno"
-
-#~ msgid "{0} of {1}"
-#~ msgstr "{0} z {1}"
-
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"
-
-#~ msgid "Uploading {0}"
-#~ msgstr "Probíhá nahrávání {0}"
-
-#~ msgid "Error with {0}"
-#~ msgstr "Chyba s {0}"
-
-#~ msgid "Your add-on failed validation with {0} error."
-#~ msgid_plural "Your add-on failed validation with {0} errors."
-#~ msgstr[0] "Váš doplněk neprošel kontrolou s {0} chybou."
-#~ msgstr[1] "Váš doplněk neprošel kontrolou s {0} chybami."
-#~ msgstr[2] "Váš doplněk neprošel kontrolou s {0} chybami."
-
-#~ msgid "&hellip;and {0} more"
-#~ msgid_plural "&hellip;and {0} more"
-#~ msgstr[0] "&hellip;a {0} další"
-#~ msgstr[1] "&hellip;a {0} další"
-#~ msgstr[2] "&hellip;a {0} další"
-
-#~ msgid "See full validation report"
-#~ msgstr "Zobrazit podrobný report"
-
-#~ msgid "Validating {0}"
-#~ msgstr "Probíhá kontrola {0}"
-
-#~ msgid "Received an empty response from the server; status: {0}"
-#~ msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
-
-#~ msgid "Unexpected server error while validating."
-#~ msgstr "Při kontrole nastala neočekávaná chyba serveru."
-
-#~ msgid "Finished validating {0}"
-#~ msgstr "Dokončena kontrola {0}"
-
-#~ msgid "Your add-on passed validation with no errors and {0} message."
-#~ msgid_plural "Your add-on passed validation with no errors and {0} messages."
-#~ msgstr[0] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávou."
-#~ msgstr[1] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
-#~ msgstr[2] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
-
-#~ msgid "Your add-on passed validation with no errors or warnings."
-#~ msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
-
-#~ msgid "Some platforms are not available for this type of add-on."
-#~ msgstr "Některé platformy nejsou pro tento typ doplňků dostupné."
-
-#~ msgid "Sorry, no supported platform has been found."
-#~ msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
-
-#~ msgid "The filetype you uploaded isn't recognized."
-#~ msgstr "Typ souboru, který jste nahrával(a), nebyl rozpoznán."
-
-#~ msgid "You cancelled the upload."
-#~ msgstr "Zrušil(a) jste nahrávání."
-
-#~ msgid "Images must be either PNG or JPG."
-#~ msgstr "Obrázky musí být v PNG či JPG."
-
-#~ msgid "Videos must be in WebM."
-#~ msgstr "Videa musí být ve formátu WebM"
-
-#~ msgid "Your packaged app should end with <code>.zip</code>."
-#~ msgstr "Vaše zabalená aplikace musí mít koncovku <code>.zip</code>."
-
-#~ msgid "Your app failed validation with {0} error."
-#~ msgid_plural "Your app failed validation with {0} errors."
-#~ msgstr[0] "Kontrola vaší aplikace skončila s {0} chybou."
-#~ msgstr[1] "Kontrola vaší aplikace skončila s {0} chybama."
-#~ msgstr[2] "Kontrola vaší aplikace skončila s {0} chybama."
-
-#~ msgid "Your app passed validation with no errors and {0} warning."
-#~ msgid_plural "Your app passed validation with no errors and {0} warnings."
-#~ msgstr[0] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováním."
-#~ msgstr[1] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováními."
-#~ msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a s {0} varováními."
-
-#~ msgid "Your app passed validation with no errors or warnings."
-#~ msgstr "Vaše aplikace prošla kontrolou bez chyby či varování."
-
-#~ msgid "Follow this Collection"
-#~ msgstr "Sledovat kolekci"
-
-#~ msgid "Stop Following"
-#~ msgstr "Ukončit sledování"
-
-#~ msgid "Following"
-#~ msgstr "Začít sledovat"
-
-#~ msgid "This theme is incompatible with your version of {0}"
-#~ msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní."
-
-#~ msgid "All Rights Reserved"
-#~ msgstr "Všechna práva vyhrazena"
-
-#~ msgid "Creative Commons Attribution 3.0"
-#~ msgstr "Creative Commons Attribution 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#~ msgid "Creative Commons Attribution-NoDerivs 3.0"
-#~ msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#~ msgid "Creative Commons Attribution-ShareAlike 3.0"
-#~ msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#~ msgid "Your Theme's Name"
-#~ msgstr "Jméno vašeho motivu"
-
-#~ msgid "Flagged for review"
-#~ msgstr "Označeno na kontrolu"
-
-#~ msgid "Your input is required"
-#~ msgstr "Je vyžadována vaše akce"
-
-#~ msgid "Marked for deletion"
-#~ msgstr "Označeno pro smazání"
-
-#~ msgid "Updating results&hellip;"
-#~ msgstr "Probíhá aktualizace výsledků..."
-
-#~ msgid "Category"
-#~ msgstr "Kategorie"
-
-#~ msgid "Search themes for <b>{0}</b>"
-#~ msgstr "Vyhledávání motivů dle <b>{0}</b>"
-
-#~ msgid "Search apps for <b>{0}</b>"
-#~ msgstr "Vyhledávání aplikací pro <b>{0}</b>"
-
-#~ msgid "Search add-ons for <b>{0}</b>"
-#~ msgstr "Vyhledávání doplňků pro <b>{0}</b>"
-
-#~ msgid "use original"
-#~ msgstr "použít originál"
-
-#~ msgid "Week of {0}"
-#~ msgstr "Týden {0}"
-
-#~ msgid "downloads"
-#~ msgstr "stažení"
-
-#~ msgid "{0} users"
-#~ msgstr "{0} uživatelů"
-
-#~ msgid "{0} add-ons"
-#~ msgstr "{0} doplňků"
-
-#~ msgid "{0} collections"
-#~ msgstr "{0} sbírek"
-
-#~ msgid "{0} reviews"
-#~ msgstr "{0} recenzí"
-
-#~ msgid "{0} sales"
-#~ msgstr "{0} prodejů"
-
-#~ msgid "{0} refunds"
-#~ msgstr "{0} vrácení plateb"
-
-#~ msgid "{0} installs"
-#~ msgstr "{0} instalací"
-
-#~ msgid "Downloads"
-#~ msgstr "Stažení"
-
-#~ msgid "Daily Users"
-#~ msgstr "Denní uživatelé"
-
-#~ msgid "Amount, in USD"
-#~ msgstr "Množství, v USD"
-
-#~ msgid "Number of Contributions"
-#~ msgstr "Počet příspěvků"
-
-#~ msgid "More Info..."
-#~ msgstr "Více informací..."
-
-#~ msgid "Details for {0}"
-#~ msgstr "Detaily pro {0}"
-
-#~ msgid "Collections Created"
-#~ msgstr "Vytvořené sbírky"
-
-#~ msgid "Add-ons in Use"
-#~ msgstr "Používané doplňky"
-
-#~ msgid "Add-ons Created"
-#~ msgstr "Vytvořené doplňky"
-
-#~ msgid "Add-ons Downloaded"
-#~ msgstr "Stažené doplňky"
-
-#~ msgid "Add-ons Updated"
-#~ msgstr "Aktualizované doplňky"
-
-#~ msgid "Reviews Written"
-#~ msgstr "Napsané recenze"
-
-#~ msgid "User Signups"
-#~ msgstr "Přihlášení uživatelé"
-
-#~ msgid "Subscribers"
-#~ msgstr "Odběry"
-
-#~ msgid "Ratings"
-#~ msgstr "Hodnocení"
-
-#~ msgid "Sales"
-#~ msgstr "Prodeje"
-
-#~ msgid "Installs"
-#~ msgstr "Instalace"
-
-#~ msgid "Unknown"
-#~ msgstr "Neznámé"
-
-#~ msgid "Add-ons Manager"
-#~ msgstr "Správce doplňků"
-
-#~ msgid "Search Results"
-#~ msgstr "Výsledky vyhledávání"
-
-#~ msgid "Homepage Promo"
-#~ msgstr "Domovská stránka (propagace)"
-
-#~ msgid "Homepage Featured"
-#~ msgstr "Domovská stránka (doporučené)"
-
-#~ msgid "Homepage Up and Coming"
-#~ msgstr "Domovská stránka (zajímavé)"
-
-#~ msgid "Homepage Most Popular"
-#~ msgstr "Domovská stránka (populární)"
-
-#~ msgid "Detail Page"
-#~ msgstr "Stránka detailu"
-
-#~ msgid "Detail Page (bottom)"
-#~ msgstr "Stránka detailu (dole)"
-
-#~ msgid "Detail Page (Development Channel)"
-#~ msgstr "Stránka detailu (vývojářský kanál)"
-
-#~ msgid "Often Used With"
-#~ msgstr "Často používán spolu"
-
-#~ msgid "Others By Author"
-#~ msgstr "Ostatní aplikace autora"
-
-#~ msgid "Dependencies"
-#~ msgstr "Závislosti"
-
-#~ msgid "Upsell"
-#~ msgstr "Přechod na placenou variantu"
-
-#~ msgid "Sharing"
-#~ msgstr "Sdílení"
-
-#~ msgid "Category Pages"
-#~ msgstr "Stránky kategorií"
-
-#~ msgid "Collections"
-#~ msgstr "Sbírky"
-
-#~ msgid "Category Landing Featured Carousel"
-#~ msgstr "Kategorie s doporučenými doplňky"
-
-#~ msgid "Category Landing Top Rated"
-#~ msgstr "Kategorie nejlépe hodnocených"
-
-#~ msgid "Category Landing Most Popular"
-#~ msgstr "Kategorie nejvíce populárních"
-
-#~ msgid "Category Landing Recently Added"
-#~ msgstr "Kategorie naposledy přidaných"
-
-#~ msgid "Browse Listing Featured Sort"
-#~ msgstr "Seznam doplňků dle oblíbenosti"
-
-#~ msgid "Browse Listing Users Sort"
-#~ msgstr "Seznam doplňků dle počtu uživatelů"
-
-#~ msgid "Browse Listing Rating Sort"
-#~ msgstr "Seznam doplňků dle hodnocení"
-
-#~ msgid "Browse Listing Created Sort"
-#~ msgstr "Seznam doplňků dle data vytvoření"
-
-#~ msgid "Browse Listing Name Sort"
-#~ msgstr "Seznam doplňků dle jména"
-
-#~ msgid "Browse Listing Popular Sort"
-#~ msgstr "Seznam doplňků dle popularity"
-
-#~ msgid "Browse Listing Updated Sort"
-#~ msgstr "Seznam doplňků dle data aktualizace"
-
-#~ msgid "Browse Listing Up and Coming Sort"
-#~ msgstr "Seznam doplňků dle žádanosti"
-
-#~ msgid "Total Amount Contributed"
-#~ msgstr "Celkově přispěno"
-
-#~ msgid "Average Contribution"
-#~ msgstr "Průměrný příspěvek"
-
-#~ msgid "Usage"
-#~ msgstr "Používání"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Mozilla"
-#~ msgstr "Mozilla"
-
-#~ msgid "Thunderbird"
-#~ msgstr "Thunderbird"
-
-#~ msgid "Sunbird"
-#~ msgstr "Sunbird"
-
-#~ msgid "SeaMonkey"
-#~ msgstr "SeaMonkey"
-
-#~ msgid "Fennec"
-#~ msgstr "Fennec"
-
-#~ msgid "Downloads and Daily Users, last {0} days"
-#~ msgstr "Stažení a denní uživatelé, posledních {0} dní"
-
-#~ msgid "Downloads and Daily Users from {0} to {1}"
-#~ msgstr "Počty stažení a denní uživatelé od {0} do {1}"
-
-#~ msgid "Installs and Daily Users, last {0} days"
-#~ msgstr "Instalace a denní uživatelé, posledních {0} dní"
-
-#~ msgid "Installs and Daily Users from {0} to {1}"
-#~ msgstr "Instalace a denní uživatelé od {0} do {1}"
-
-#~ msgid "Downloads, last {0} days"
-#~ msgstr "Stažení, posledních {0} dní"
-
-#~ msgid "Downloads from {0} to {1}"
-#~ msgstr "Počty stažení od {0} do {1}"
-
-#~ msgid "Daily Users, last {0} days"
-#~ msgstr "Denní uživatelé, posledních {0} dní"
-
-#~ msgid "Daily Users from {0} to {1}"
-#~ msgstr "Denní uživatelé od {0} do {1}"
-
-#~ msgid "Applications, last {0} days"
-#~ msgstr "Aplikace, poslední {0} dní"
-
-#~ msgid "Applications from {0} to {1}"
-#~ msgstr "Aplikace od {0} do {1}"
-
-#~ msgid "Platforms, last {0} days"
-#~ msgstr "Platformy, posledních {0} dní"
-
-#~ msgid "Platforms from {0} to {1}"
-#~ msgstr "Platformy od {0} do {1}"
-
-#~ msgid "Languages, last {0} days"
-#~ msgstr "Jazyky, poslední {0} dní"
-
-#~ msgid "Languages from {0} to {1}"
-#~ msgstr "Jazyky od {0} do {1}"
-
-#~ msgid "Add-on Versions, last {0} days"
-#~ msgstr "Verze doplňku, posledních {0} dní"
-
-#~ msgid "Add-on Versions from {0} to {1}"
-#~ msgstr "Verze doplňku od {0} do {1}"
-
-#~ msgid "Add-on Status, last {0} days"
-#~ msgstr "Stav doplňku, posledních {0} dní"
-
-#~ msgid "Add-on Status from {0} to {1}"
-#~ msgstr "Stav doplňku od {0} do {1}"
-
-#~ msgid "Download Sources, last {0} days"
-#~ msgstr "Zdroje stažení, posledních {0} dní"
-
-#~ msgid "Download Sources from {0} to {1}"
-#~ msgstr "Zdroje stažení od {0} do {1}"
-
-#~ msgid "Contributions, last {0} days"
-#~ msgstr "Příspěvky, posledních {0} dní"
-
-#~ msgid "Contributions from {0} to {1}"
-#~ msgstr "Přispěvatelé od {0} do {1}"
-
-#~ msgid "Site Metrics, last {0} days"
-#~ msgstr "Statistika webu, posledních {0} dní"
-
-#~ msgid "Site Metrics from {0} to {1}"
-#~ msgstr "Statistika webu od {0} do {1}"
-
-#~ msgid "Add-ons in Use, last {0} days"
-#~ msgstr "Používané doplňky, posledních {0} dní"
-
-#~ msgid "Add-ons in Use from {0} to {1}"
-#~ msgstr "Používané doplňky od {0} do {1}"
-
-#~ msgid "Add-ons Downloaded, last {0} days"
-#~ msgstr "Stažené doplňky, posledních {0} dní"
-
-#~ msgid "Add-ons Downloaded from {0} to {1}"
-#~ msgstr "Stažené doplňky od {0} do {1}"
-
-#~ msgid "Add-ons Created, last {0} days"
-#~ msgstr "Vytvořené doplňky, posledních {0} dní"
-
-#~ msgid "Add-ons Created from {0} to {1}"
-#~ msgstr "Doplňky vytvořené od {0} do {1}"
-
-#~ msgid "Add-ons Updated, last {0} days"
-#~ msgstr "Aktualizované doplňky, posledních {0} dní"
-
-#~ msgid "Add-ons Updated from {0} to {1}"
-#~ msgstr "Aktualizované doplňk od {0} do {1}"
-
-#~ msgid "Reviews Written, last {0} days"
-#~ msgstr "Napsané recenze, posledních {0} dní"
-
-#~ msgid "Reviews Written from {0} to {1}"
-#~ msgstr "Napsané recenze od {0} do {1}"
-
-#~ msgid "User Signups, last {0} days"
-#~ msgstr "Přihlášení uživatele, poseldních {0} dní"
-
-#~ msgid "User Signups from {0} to {1}"
-#~ msgstr "Přihlášení uživatele od {0} do {1}"
-
-#~ msgid "Collections Created, last {0} days"
-#~ msgstr "Vytvořené sbírky, posledních {0} dní"
-
-#~ msgid "Collections Created from {0} to {1}"
-#~ msgstr "Vytvořené sbírky od {0} do {1}"
-
-#~ msgid "Subscribers, last {0} days"
-#~ msgstr "Odběry, posledních {0} dní"
-
-#~ msgid "Subscribers from {0} to {1}"
-#~ msgstr "Odběry od {0} do {1}"
-
-#~ msgid "Ratings, last {0} days"
-#~ msgstr "Hodnocení, posledních {0} dní"
-
-#~ msgid "Ratings from {0} to {1}"
-#~ msgstr "Hodnocení od {0} do {1}"
-
-#~ msgid "Sales, last {0} days"
-#~ msgstr "Prodeje, posledních {0} dní"
-
-#~ msgid "Sales from {0} to {1}"
-#~ msgstr "Prodeje od {0} do {1}"
-
-#~ msgid "Installs, last {0} days"
-#~ msgstr "Instalace, posledních {0} dní"
-
-#~ msgid "Installs from {0} to {1}"
-#~ msgstr "Instalace od {0} do {1}"
-
-#~ msgid "<b>{0}</b> in last {1} days"
-#~ msgstr "<b>{0}</b> v posledních {1} dnech"
-
-#~ msgid "<b>{0}</b> from {1} to {2}"
-#~ msgstr "<b>{0}</b> od {1} do {2}"
-
-#~ msgid "<b>{0}</b> average in last {1} days"
-#~ msgstr "průměrně <b>{0}</b> v posledních {1} dnech"
-
-#~ msgid "No data available."
-#~ msgstr "Data nejsou dostupná."
-
-#~ msgid "Date"
-#~ msgstr "Datum"
-
-#~ msgid "Other"
-#~ msgstr "Jiné"
-
-#~ msgid "Select an application first"
-#~ msgstr "Prvně zvolte aplikaci"
-
-#~ msgid "Set {0} add-on to a max version of {1} and email the author."
-#~ msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-#~ msgstr[0] "Nastavit u {0} doplňku podporu pro maximální verzi aplikace {1} a poslat e-mail autorovi."
-#~ msgstr[1] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
-#~ msgstr[2] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
-
-#~ msgid "Email author of {2} add-on which failed validation."
-#~ msgid_plural "Email authors of {2} add-ons which failed validation."
-#~ msgstr[0] "Poslat e-mail autorovi {2} doplňku, u kterého selhala kontrola."
-#~ msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
-#~ msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
-
-#~ msgid "App installation not allowed."
-#~ msgstr "Instalace aplikace není povolena."
-
-#~ msgid "App manifest is malformed."
-#~ msgstr "Manifest aplikace je poškozený."
-
-#~ msgid "App host could not be reached."
-#~ msgstr "K umístění aplikace se nebylo možné připojit."
-
-#~ msgid "App manifest is unparsable."
-#~ msgstr "Manifest aplikace je nezpracovatelný."
-
-#~ msgid "App manifest is invalid."
-#~ msgstr "Manifest aplikace je nevalidní."
-
-#~ msgid "Install failed. Please try again later."
-#~ msgstr "Instalace selhala. Zkuste to prosím později."
-
-#~ msgid "App installation failed."
-#~ msgstr "Instalace aplikace selhala."
-
-#~ msgid "This system does not support installing apps."
-#~ msgstr "Systém nepodporuje instalaci aplikací."
-
-#~ msgid "Admins and editors must provide a password to log in."
-#~ msgstr "Správci a redaktoři musí pro přihlášení zadat heslo."
-
-#~ msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-#~ msgstr "Přihlášení skrze BrowserID selhalo. Možná nemáte účet pod touto e-mailovou adresou?"
-
-#~ msgid "Accept and Install"
-#~ msgstr "Souhlasím a instalovat"
-
-#~ msgid "Add to {0}"
-#~ msgstr "Přidat do aplikace {0}"
-
-#~ msgid "Download Now"
-#~ msgstr "Stáhnout"
-
-#~ msgid "Add-on has not been updated to support default-to-compatible."
-#~ msgstr "Doplněk nebyl aktualizován tak, aby byl ve výchozím nastavení kompatibilní."
-
-#~ msgid "You need to be using Firefox 10.0 or higher."
-#~ msgstr "Je potřeba, abyste používal(a) Firefox 10 či vyšší."
-
-#~ msgid "Mozilla has marked this version as incompatible with your Firefox version."
-#~ msgstr "Mozilla označila tuto verzi jako nekompatibilní s vaší verzí Firefoxu."
-
-#~ msgid "Install for {0} anyway"
-#~ msgstr "Přesto nainstalovat do aplikace {0}"
-
-#~ msgid "Download for {0} anyway"
-#~ msgstr "Přesto stáhnout pro aplikaci {0}"
-
-#~ msgid "Not available for your platform"
-#~ msgstr "Není dostupné pro vaši platformu."
-
-#~ msgid "Not available for {0} {1}"
-#~ msgstr "Není dostupné pro {0} {1}"
-
-#~ msgid "Works with {app} {min} - {max}"
-#~ msgstr "Funguje s aplikací {app} {min} - {max}"
-
-#~ msgid "View other versions"
-#~ msgstr "Zobrazit ostatní verze"
-
-#~ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-#~ msgstr "Omlouváme se, ale pro instalaci vyhledávacího modulu potřebujete prohlížeč postavený na Mozille (jako například Firefox)."
-
-#~ msgid "clear recently viewed"
-#~ msgstr "vymazat seznam zobrazených"
-
-#~ msgid "Adding to Favorites&hellip;"
-#~ msgstr "Přidání k oblíbeným&hellip;"
-
-#~ msgid "Removing Favorite&hellip;"
-#~ msgstr "Odebrání z oblíbených&hellip;"
-
-#~ msgid "Add to Favorites"
-#~ msgstr "Přidat k oblíbeným"
-
-#~ msgid "Remove from Favorites"
-#~ msgstr "Odebrat z oblíbených"
-
-#~ msgid "Pending"
-#~ msgstr "Čekající"
-
-#~ msgid "Add a comment"
-#~ msgstr "Přidat komentář"
-
-#~ msgid "Comment"
-#~ msgstr "Komentář"
-
-#~ msgid "Remove this add-on from the collection"
-#~ msgstr "Odebrat tento doplněk z kolekce"
-
-#~ msgid "Remove"
-#~ msgstr "Odebrat"
-
-#~ msgid "Remove this user as a contributor"
-#~ msgstr "Odebrat tohoto uživatele z přispěvatelů"
-
-#~ msgid "An email address is required."
-#~ msgstr "E-mailová adresa je vyžadována."
-
-#~ msgid "You cannot add yourself as a contributor."
-#~ msgstr "Nemůžete jako přispěvatele přidat sami sebe."
-
-#~ msgid "You have already added that user."
-#~ msgstr "Již jste tohoto uživatele přidal(a)."
-
-#~ msgid "Add to favorites"
-#~ msgstr "Přidat k oblíbeným"
-
-#~ msgid "Remove from favorites"
-#~ msgstr "Odebrat z oblíbených"
-
-#~ msgid "Stop following"
-#~ msgstr "Ukončit sledování"
-
-#~ msgid "Install App"
-#~ msgstr "Instalace aplikace"
-
-#~ msgid "Your browser does not support the video tag"
-#~ msgstr "Váš prohlížeč nepodporuje značku video."
-
-#~ msgid "Changes Saved"
-#~ msgstr "Změny uloženy"
-
-#~ msgid "Enter a new author's email address"
-#~ msgstr "Vložte novou e-mailovou adresu autora"
-
-#~ msgid "There was an error uploading your file."
-#~ msgstr "Při nahrávání vašeho souboru se vyskytl problém."
-
-#~ msgid "{files} file"
-#~ msgid_plural "{files} files"
-#~ msgstr[0] "{files} soubor"
-#~ msgstr[1] "{files} soubory"
-#~ msgstr[2] "{files} souborů"
-
-#~ msgid "{reviews} user review"
-#~ msgid_plural "{reviews} user reviews"
-#~ msgstr[0] "{reviews} recenze uživatele"
-#~ msgstr[1] "{reviews} recenze uživatele"
-#~ msgstr[2] "{reviews} recenzí uživatele"
-
-#~ msgid "Learn more"
-#~ msgstr "Dozvědět se více"
-
-#~ msgid "Example"
-#~ msgstr "Příklad"
-
-#~ msgid "Image changes being processed"
-#~ msgstr "Jsou prováděny změny obrázku."
-
-#~ msgid "Starting tests..."
-#~ msgstr "Probíhá zahájení testů..."
-
-#~ msgid "Waiting for test results..."
-#~ msgstr "Probíhá čekání na výsledky testů..."
-
-#~ msgid "Internal Server Error"
-#~ msgstr "Interní chyba serveru"
-
-#~ msgid "Must be a valid e-mail address."
-#~ msgstr "Musí se jednat o platnou e-mailovou adresu."
-
-#~ msgid "No results found."
-#~ msgstr "Nebyly nalezeny žádné výsledky."
-
-#~ msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-#~ msgstr "Omlouváme se, ale nemůžeme pro vás nalézt žádná doporučení. <br>Navštivte prosím <a href=\"{0}\">stránku s doplňky</a> a vyberte si takové, které vám nejlépe sednou."
-
-#~ msgid "Finding recommendations&hellip;"
-#~ msgstr "Nalézt doporučení&hellip;"
-
-#~ msgid "Updating recommendations&hellip;"
-#~ msgstr "Aktualizovat doporučení&hellip;"
-
-#~ msgid "{name} was viewing this page first."
-#~ msgstr "Uživatel {name} shlédl tuto stránku jako první."
-
-#~ msgid "Receipt checked by app."
-#~ msgstr "Potvrzení bylo aplikací zkontrolováno."
-
-#~ msgid "Receipt was not checked by app."
-#~ msgstr "Potvrzení nebylo aplikací zkontrolováno."
-
-#~ msgid "{name} was viewing this add-on first."
-#~ msgstr "{name} prohlédl tento doplněk jako první"
-
-#~ msgid "Loading&hellip;"
-#~ msgstr "Načítání&hellip;"
-
-#~ msgid "Version Notes"
-#~ msgstr "Poznámky k verzi"
-
-#~ msgid "Notes for Reviewers"
-#~ msgstr "Poznámky pro redaktory"
-
-#~ msgid "No version notes found"
-#~ msgstr "Nebyla nalezena žádná verze poznámek."
-
-#~ msgid "Average Reviews"
-#~ msgstr "Průměrný počet kontrol"
-
-#~ msgid "Number of Reviews"
-#~ msgstr "Počet kontrol"
-
-#~ msgid "Error loading translation"
-#~ msgstr "Chyba při načítání překladu"
-
-#~ msgid "Loading..."
-#~ msgstr "Probíhá načítání..."
-
-#~ msgid "<b>{0}</b> character left."
-#~ msgid_plural "<b>{0}</b> characters left."
-#~ msgstr[0] "Zbývá <b>{0}</b> znak."
-#~ msgstr[1] "Zbývají <b>{0}</b> znaky."
-#~ msgstr[2] "Zbývá <b>{0}</b> znaků."
-
-#~ msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-#~ msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
-
-#~ msgid "Remove this localization"
-#~ msgstr "Odebrat lokalizaci"
-
-#~ msgid "Download {0}"
-#~ msgstr "Stáhnout {0}"
-
-#~ msgid "Password strength:"
-#~ msgstr "Síla hesla:"
-
-#~ msgid "At least {0} character left."
-#~ msgid_plural "At least {0} characters left."
-#~ msgstr[0] "Zbývá {0} znak"
-#~ msgstr[1] "Zbývají {0} znaky"
-#~ msgstr[2] "Zbývá {0} znaků"
-
-#~ msgid "All"
-#~ msgstr "Vše"
-
-#~ msgid "Requested Info"
-#~ msgstr "Požadovány informace"
-
-#~ msgid "Flagged"
-#~ msgstr "Označené"
-
-#~ msgid "Duplicate"
-#~ msgstr "Duplicitní"
-
-#~ msgid "Rejected"
-#~ msgstr "Zamítnuto"
-
-#~ msgid "Approved"
-#~ msgstr "Schváleno"
-
-#~ msgid "All tests passed successfully."
-#~ msgstr "Všechny testy prošly úspěšně."
-
-#~ msgid "These tests were not run."
-#~ msgstr "Testy nebyly spuštěny."
-
-#~ msgid "Tests"
-#~ msgstr "Testy"
-
-#~ msgid "Error"
-#~ msgstr "Chyba"
-
-#~ msgid "Warning"
-#~ msgstr "Varování"
-
-#~ msgid "Compatibility Tests"
-#~ msgstr "Testy kompatibility"
-
-#~ msgid "App failed validation."
-#~ msgstr "Aplikace neprošla kontrolou."
-
-#~ msgid "App passed validation."
-#~ msgstr "Aplikace prošla kontrolou."
-
-#~ msgid "Add-on failed validation."
-#~ msgstr "Doplněk prošel kontrolou s chybami."
-
-#~ msgid "Add-on passed validation."
-#~ msgstr "Doplněk úspěšně prošel kontrolou."
-
-#~ msgid "{0} error"
-#~ msgid_plural "{0} errors"
-#~ msgstr[0] "{0} chyba"
-#~ msgstr[1] "{0} chyby"
-#~ msgstr[2] "{0} chyb"
-
-#~ msgid "{0} warning"
-#~ msgid_plural "{0} warnings"
-#~ msgstr[0] "{0} varování"
-#~ msgstr[1] "{0} varování"
-#~ msgstr[2] "{0} varování"
-
-#~ msgid "{0} notice"
-#~ msgid_plural "{0} notices"
-#~ msgstr[0] "{0} upozornění"
-#~ msgstr[1] "{0} upozornění"
-#~ msgstr[2] "{0} upozornění"
-
-#~ msgid "Validation task could not complete or completed with errors"
-#~ msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
-
-#~ msgid "Internal server error"
-#~ msgstr "Interní chyba serveru."
-
-#~ msgid "Not Updated for {0} {1}"
-#~ msgstr "Není aktualizován pro {0} {1}"
-
-#~ msgid "Requires Newer Version of {0}"
-#~ msgstr "Je vyžadována novější verze {0}"
-
-#~ msgid "Unreviewed"
-#~ msgstr "Nezkontrolovaný"
-
-#~ msgid "Experimental <span>(Learn More)</span>"
-#~ msgstr "Experimentální <span>(Dozvědět se více)</span>"
-
-#~ msgid "Not Available for {0}"
-#~ msgstr "Není dostupný pro {0}"
-
-#~ msgid "Experimental"
-#~ msgstr "Experimentální"
-
-#~ msgid "Themes Require Newer Version of {0}"
-#~ msgstr "Motivy vyžadují novější verzi {0}"
-
-#~ msgid "Themes Require {0}"
-#~ msgstr "Motivy vyžadují {0}"
-
-#~ msgid "Installing..."
-#~ msgstr "Probíhá instalace..."
-
-#~ msgid "Purchasing..."
-#~ msgstr "Probíhá koupě..."
-
-#~ msgid "This add-on has been preliminarily reviewed by Mozilla."
-#~ msgstr "Doplněk byl Mozillou předběžně zkontrolován."
-
-#~ msgid "Keep it"
-#~ msgstr "Ponechat"
-
-#~ msgid "You're trying it on!"
-#~ msgstr "Nyní ji máte na vyzkoušení!"
-
-#~ msgid "Added to Firefox"
-#~ msgstr "Přidáno do Firefoxu"
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} hvězdička"
+msgstr[1] "{0} hvězdičky"
+msgstr[2] "{0} hvězdiček"
+
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "Vyskytl se problém při kontaktování serveru."
+
+#: static/js/common/upload-addon.js:52
+msgid "Select a file..."
+msgstr "Volba souboru..."
+
+#: static/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "Váš doplněk by měl končit příponou .xpi, .jar nebo .xml"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:87
+msgid "{0}% complete"
+msgstr "{0}% dokončeno"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:90
+msgid "{0} of {1}"
+msgstr "{0} z {1}"
+
+#: static/js/common/upload-addon.js:120
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: static/js/common/upload-addon.js:142
+msgid "Uploading {0}"
+msgstr "Probíhá nahrávání {0}"
+
+#: static/js/common/upload-addon.js:169
+msgid "Error with {0}"
+msgstr "Chyba s {0}"
+
+#: static/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "Váš doplněk neprošel kontrolou s {0} chybou."
+msgstr[1] "Váš doplněk neprošel kontrolou s {0} chybami."
+msgstr[2] "Váš doplněk neprošel kontrolou s {0} chybami."
+
+#: static/js/common/upload-addon.js:188
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;a {0} další"
+msgstr[1] "&hellip;a {0} další"
+msgstr[2] "&hellip;a {0} další"
+
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+msgid "See full validation report"
+msgstr "Zobrazit podrobný report"
+
+#: static/js/common/upload-addon.js:214
+msgid "Validating {0}"
+msgstr "Probíhá kontrola {0}"
+
+#. L10n: first argument is an HTTP status code
+#: static/js/common/upload-addon.js:253
+msgid "Received an empty response from the server; status: {0}"
+msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
+
+#: static/js/common/upload-addon.js:269
+msgid "Unexpected server error while validating."
+msgstr "Při kontrole nastala neočekávaná chyba serveru."
+
+#: static/js/common/upload-addon.js:307
+msgid "Finished validating {0}"
+msgstr "Dokončena kontrola {0}"
+
+#: static/js/common/upload-addon.js:313
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávou."
+msgstr[1] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
+msgstr[2] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
+
+#: static/js/common/upload-addon.js:318
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
+
+#: static/js/common/upload-addon.js:334
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:335
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:348
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:350
+msgid "Add-on submission checklist"
+msgstr ""
+
+#: static/js/common/upload-addon.js:351
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:353
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+
+#: static/js/common/upload-addon.js:371
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:388
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr ""
+
+#: static/js/common/upload-addon.js:425
+msgid "Some platforms are not available for this type of add-on."
+msgstr "Některé platformy nejsou pro tento typ doplňků dostupné."
+
+#: static/js/common/upload-addon.js:427
+msgid "Sorry, no supported platform has been found."
+msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
+
+#: static/js/common/upload-base.js:57
+msgid "The filetype you uploaded isn't recognized."
+msgstr "Typ souboru, který jste nahrával(a), nebyl rozpoznán."
+
+#: static/js/common/upload-base.js:79
+msgid "You cancelled the upload."
+msgstr "Zrušil(a) jste nahrávání."
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "Obrázky musí být v PNG či JPG."
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "Videa musí být ve formátu WebM"
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "Sledovat kolekci"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Ukončit sledování"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "Začít sledovat"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní."
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "Všechna práva vyhrazena"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "Jméno vašeho motivu"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "Označeno na kontrolu"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "Je vyžadována vaše akce"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "Označeno pro smazání"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "Probíhá aktualizace výsledků..."
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "Kategorie"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Vyhledávání motivů dle <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Vyhledávání aplikací pro <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Vyhledávání doplňků pro <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "použít originál"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "Týden {0}"
+
+#: static/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr "stažení"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} uživatelů"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} doplňků"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} sbírek"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} recenzí"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} prodejů"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0} vrácení plateb"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} instalací"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+msgid "Downloads"
+msgstr "Stažení"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+msgid "Daily Users"
+msgstr "Denní uživatelé"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "Množství, v USD"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+msgid "Number of Contributions"
+msgstr "Počet příspěvků"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "Více informací..."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "Detaily pro {0}"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "Vytvořené sbírky"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "Používané doplňky"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "Vytvořené doplňky"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "Stažené doplňky"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "Aktualizované doplňky"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "Napsané recenze"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "Přihlášení uživatelé"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "Odběry"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "Hodnocení"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+msgid "Sales"
+msgstr "Prodeje"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+msgid "Installs"
+msgstr "Instalace"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "Neznámé"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "Správce doplňků"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Search Results"
+msgstr "Výsledky vyhledávání"
+
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+msgid "Homepage Promo"
+msgstr "Domovská stránka (propagace)"
+
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+msgid "Homepage Featured"
+msgstr "Domovská stránka (doporučené)"
+
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Up and Coming"
+msgstr "Domovská stránka (zajímavé)"
+
+#: static/js/impala/stats/csv_keys.js:52
+msgid "Homepage Most Popular"
+msgstr "Domovská stránka (populární)"
+
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+msgid "Detail Page"
+msgstr "Stránka detailu"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+msgid "Detail Page (bottom)"
+msgstr "Stránka detailu (dole)"
+
+#: static/js/impala/stats/csv_keys.js:57
+msgid "Detail Page (Development Channel)"
+msgstr "Stránka detailu (vývojářský kanál)"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+msgid "Often Used With"
+msgstr "Často používán spolu"
+
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+msgid "Others By Author"
+msgstr "Ostatní aplikace autora"
+
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Dependencies"
+msgstr "Závislosti"
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Upsell"
+msgstr "Přechod na placenou variantu"
+
+#: static/js/impala/stats/csv_keys.js:68
+msgid "Sharing"
+msgstr "Sdílení"
+
+#: static/js/impala/stats/csv_keys.js:69
+msgid "Category Pages"
+msgstr "Stránky kategorií"
+
+#: static/js/impala/stats/csv_keys.js:70
+msgid "Collections"
+msgstr "Sbírky"
+
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+msgid "Category Landing Featured Carousel"
+msgstr "Kategorie s doporučenými doplňky"
+
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+msgid "Category Landing Top Rated"
+msgstr "Kategorie nejlépe hodnocených"
+
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+msgid "Category Landing Most Popular"
+msgstr "Kategorie nejvíce populárních"
+
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+msgid "Category Landing Recently Added"
+msgstr "Kategorie naposledy přidaných"
+
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+msgid "Browse Listing Featured Sort"
+msgstr "Seznam doplňků dle oblíbenosti"
+
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+msgid "Browse Listing Users Sort"
+msgstr "Seznam doplňků dle počtu uživatelů"
+
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+msgid "Browse Listing Rating Sort"
+msgstr "Seznam doplňků dle hodnocení"
+
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+msgid "Browse Listing Created Sort"
+msgstr "Seznam doplňků dle data vytvoření"
+
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+msgid "Browse Listing Name Sort"
+msgstr "Seznam doplňků dle jména"
+
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+msgid "Browse Listing Popular Sort"
+msgstr "Seznam doplňků dle popularity"
+
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+msgid "Browse Listing Updated Sort"
+msgstr "Seznam doplňků dle data aktualizace"
+
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+msgid "Browse Listing Up and Coming Sort"
+msgstr "Seznam doplňků dle žádanosti"
+
+#: static/js/impala/stats/csv_keys.js:98
+msgid "Total Amount Contributed"
+msgstr "Celkově přispěno"
+
+#: static/js/impala/stats/csv_keys.js:99
+msgid "Average Contribution"
+msgstr "Průměrný příspěvek"
+
+#: static/js/impala/stats/csv_keys.js:108
+msgid "Usage"
+msgstr "Používání"
+
+#: static/js/impala/stats/csv_keys.js:111
+msgid "Firefox"
+msgstr "Firefox"
+
+#: static/js/impala/stats/csv_keys.js:112
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: static/js/impala/stats/csv_keys.js:113
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: static/js/impala/stats/csv_keys.js:114
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: static/js/impala/stats/csv_keys.js:116
+msgid "Fennec"
+msgstr "Fennec"
+
+#: static/js/impala/stats/csv_keys.js:117
+msgid "Android"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:122
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "Stažení a denní uživatelé, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "Počty stažení a denní uživatelé od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:128
+msgid "Installs and Daily Users, last {0} days"
+msgstr "Instalace a denní uživatelé, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:130
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "Instalace a denní uživatelé od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:134
+msgid "Downloads, last {0} days"
+msgstr "Stažení, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:136
+msgid "Downloads from {0} to {1}"
+msgstr "Počty stažení od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:140
+msgid "Daily Users, last {0} days"
+msgstr "Denní uživatelé, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:142
+msgid "Daily Users from {0} to {1}"
+msgstr "Denní uživatelé od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:146
+msgid "Applications, last {0} days"
+msgstr "Aplikace, poslední {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:148
+msgid "Applications from {0} to {1}"
+msgstr "Aplikace od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:152
+msgid "Platforms, last {0} days"
+msgstr "Platformy, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:154
+msgid "Platforms from {0} to {1}"
+msgstr "Platformy od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:158
+msgid "Languages, last {0} days"
+msgstr "Jazyky, poslední {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:160
+msgid "Languages from {0} to {1}"
+msgstr "Jazyky od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:164
+msgid "Add-on Versions, last {0} days"
+msgstr "Verze doplňku, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:166
+msgid "Add-on Versions from {0} to {1}"
+msgstr "Verze doplňku od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:170
+msgid "Add-on Status, last {0} days"
+msgstr "Stav doplňku, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:172
+msgid "Add-on Status from {0} to {1}"
+msgstr "Stav doplňku od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:176
+msgid "Download Sources, last {0} days"
+msgstr "Zdroje stažení, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:178
+msgid "Download Sources from {0} to {1}"
+msgstr "Zdroje stažení od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:182
+msgid "Contributions, last {0} days"
+msgstr "Příspěvky, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:184
+msgid "Contributions from {0} to {1}"
+msgstr "Přispěvatelé od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:188
+msgid "Site Metrics, last {0} days"
+msgstr "Statistika webu, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:190
+msgid "Site Metrics from {0} to {1}"
+msgstr "Statistika webu od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:194
+msgid "Add-ons in Use, last {0} days"
+msgstr "Používané doplňky, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:196
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "Používané doplňky od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:200
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "Stažené doplňky, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:202
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "Stažené doplňky od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:206
+msgid "Add-ons Created, last {0} days"
+msgstr "Vytvořené doplňky, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:208
+msgid "Add-ons Created from {0} to {1}"
+msgstr "Doplňky vytvořené od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:212
+msgid "Add-ons Updated, last {0} days"
+msgstr "Aktualizované doplňky, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:214
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "Aktualizované doplňk od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:218
+msgid "Reviews Written, last {0} days"
+msgstr "Napsané recenze, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:220
+msgid "Reviews Written from {0} to {1}"
+msgstr "Napsané recenze od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:224
+msgid "User Signups, last {0} days"
+msgstr "Přihlášení uživatele, poseldních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:226
+msgid "User Signups from {0} to {1}"
+msgstr "Přihlášení uživatele od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:230
+msgid "Collections Created, last {0} days"
+msgstr "Vytvořené sbírky, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:232
+msgid "Collections Created from {0} to {1}"
+msgstr "Vytvořené sbírky od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:236
+msgid "Subscribers, last {0} days"
+msgstr "Odběry, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:238
+msgid "Subscribers from {0} to {1}"
+msgstr "Odběry od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:242
+msgid "Ratings, last {0} days"
+msgstr "Hodnocení, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:244
+msgid "Ratings from {0} to {1}"
+msgstr "Hodnocení od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:248
+msgid "Sales, last {0} days"
+msgstr "Prodeje, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:250
+msgid "Sales from {0} to {1}"
+msgstr "Prodeje od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:254
+msgid "Installs, last {0} days"
+msgstr "Instalace, posledních {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:256
+msgid "Installs from {0} to {1}"
+msgstr "Instalace od {0} do {1}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:262
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b> v posledních {1} dnech"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b> od {1} do {2}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:268
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "průměrně <b>{0}</b> v posledních {1} dnech"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "Data nejsou dostupná."
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "Datum"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "Jiné"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+msgid "Select an application first"
+msgstr "Prvně zvolte aplikaci"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] "Nastavit u {0} doplňku podporu pro maximální verzi aplikace {1} a poslat e-mail autorovi."
+msgstr[1] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
+msgstr[2] "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat e-mail autorům."
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] "Poslat e-mail autorovi {2} doplňku, u kterého selhala kontrola."
+msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
+msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
+
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "Instalace aplikace není povolena."
+
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "Manifest aplikace je poškozený."
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "K umístění aplikace se nebylo možné připojit."
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Manifest aplikace je nezpracovatelný."
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Manifest aplikace je nevalidní."
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Instalace selhala. Zkuste to prosím později."
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "Instalace aplikace selhala."
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "Systém nepodporuje instalaci aplikací."
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "Správci a redaktoři musí pro přihlášení zadat heslo."
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Přihlášení skrze BrowserID selhalo. Možná nemáte účet pod touto e-mailovou adresou?"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "Souhlasím a instalovat"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "Přidat do aplikace {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "Stáhnout"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "Doplněk nebyl aktualizován tak, aby byl ve výchozím nastavení kompatibilní."
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "Je potřeba, abyste používal(a) Firefox 10 či vyšší."
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla označila tuto verzi jako nekompatibilní s vaší verzí Firefoxu."
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "Přesto nainstalovat do aplikace {0}"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "Přesto stáhnout pro aplikaci {0}"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "Není dostupné pro vaši platformu."
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "Není dostupné pro {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "Funguje s aplikací {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "Zobrazit ostatní verze"
+
+#: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Omlouváme se, ale pro instalaci vyhledávacího modulu potřebujete prohlížeč postavený na Mozille (jako například Firefox)."
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "vymazat seznam zobrazených"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "Přidání k oblíbeným&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "Odebrání z oblíbených&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "Přidat k oblíbeným"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "Odebrat z oblíbených"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "Čekající"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "Přidat komentář"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "Komentář"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "Odebrat tento doplněk z kolekce"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "Odebrat"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "Odebrat tohoto uživatele z přispěvatelů"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "E-mailová adresa je vyžadována."
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "Nemůžete jako přispěvatele přidat sami sebe."
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "Již jste tohoto uživatele přidal(a)."
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "Přidat k oblíbeným"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "Odebrat z oblíbených"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "Ukončit sledování"
+
+#: static/js/zamboni/devhub.js:127
+msgid "Your browser does not support the video tag"
+msgstr "Váš prohlížeč nepodporuje značku video."
+
+#: static/js/zamboni/devhub.js:382
+msgid "Changes Saved"
+msgstr "Změny uloženy"
+
+#: static/js/zamboni/devhub.js:398
+msgid "Enter a new author's email address"
+msgstr "Vložte novou e-mailovou adresu autora"
+
+#: static/js/zamboni/devhub.js:545
+msgid "There was an error uploading your file."
+msgstr "Při nahrávání vašeho souboru se vyskytl problém."
+
+#: static/js/zamboni/devhub.js:690
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} soubor"
+msgstr[1] "{files} soubory"
+msgstr[2] "{files} souborů"
+
+#: static/js/zamboni/devhub.js:693
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] "{reviews} recenze uživatele"
+msgstr[1] "{reviews} recenze uživatele"
+msgstr[2] "{reviews} recenzí uživatele"
+
+#: static/js/zamboni/devhub.js:805
+msgid "Learn more"
+msgstr "Dozvědět se více"
+
+#: static/js/zamboni/devhub.js:809
+msgid "Example"
+msgstr "Příklad"
+
+#: static/js/zamboni/devhub.js:1165
+msgid "Image changes being processed"
+msgstr "Jsou prováděny změny obrázku."
+
+#: static/js/zamboni/devhub.js:1292
+msgid "Starting tests..."
+msgstr "Probíhá zahájení testů..."
+
+#: static/js/zamboni/devhub.js:1299
+msgid "Waiting for test results..."
+msgstr "Probíhá čekání na výsledky testů..."
+
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+msgid "Internal Server Error"
+msgstr "Interní chyba serveru"
+
+#: static/js/zamboni/devhub.js:1341
+msgid "Must be a valid e-mail address."
+msgstr "Musí se jednat o platnou e-mailovou adresu."
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "Nebyly nalezeny žádné výsledky."
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Omlouváme se, ale nemůžeme pro vás nalézt žádná doporučení. <br>Navštivte prosím <a href=\"{0}\">stránku s doplňky</a> a vyberte si takové, které vám nejlépe sednou."
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "Nalézt doporučení&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "Aktualizovat doporučení&hellip;"
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "Uživatel {name} shlédl tuto stránku jako první."
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "Potvrzení bylo aplikací zkontrolováno."
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "Potvrzení nebylo aplikací zkontrolováno."
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr "{name} prohlédl tento doplněk jako první"
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "Načítání&hellip;"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "Poznámky k verzi"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "Poznámky pro redaktory"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "Nebyla nalezena žádná verze poznámek."
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "Průměrný počet kontrol"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "Počet kontrol"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr "Chyba při načítání překladu"
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "Probíhá načítání..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Zbývá <b>{0}</b> znak."
+msgstr[1] "Zbývají <b>{0}</b> znaky."
+msgstr[2] "Zbývá <b>{0}</b> znaků."
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Odebrat lokalizaci"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "Stáhnout {0}"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "Síla hesla:"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "Zbývá {0} znak"
+msgstr[1] "Zbývají {0} znaky"
+msgstr[2] "Zbývá {0} znaků"
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "Vše"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Požadovány informace"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Označené"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Duplicitní"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Zamítnuto"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Schváleno"
+
+#: static/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "Všechny testy prošly úspěšně."
+
+#: static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "Testy nebyly spuštěny."
+
+#: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "Testy"
+
+#: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "Chyba"
+
+#: static/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "Varování"
+
+#: static/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "Testy kompatibility"
+
+#: static/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "Aplikace neprošla kontrolou."
+
+#: static/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "Aplikace prošla kontrolou."
+
+#: static/js/zamboni/validator.js:337
+msgid "Add-on failed validation."
+msgstr "Doplněk prošel kontrolou s chybami."
+
+#: static/js/zamboni/validator.js:339
+msgid "Add-on passed validation."
+msgstr "Doplněk úspěšně prošel kontrolou."
+
+#: static/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} chyba"
+msgstr[1] "{0} chyby"
+msgstr[2] "{0} chyb"
+
+#: static/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} varování"
+msgstr[1] "{0} varování"
+msgstr[2] "{0} varování"
+
+#: static/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0} upozornění"
+msgstr[1] "{0} upozornění"
+msgstr[2] "{0} upozornění"
+
+#: static/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
+
+#: static/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "Interní chyba serveru."
+
+#: static/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr "Není aktualizován pro {0} {1}"
+
+#: static/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr "Je vyžadována novější verze {0}"
+
+#: static/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr "Nezkontrolovaný"
+
+#: static/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "Experimentální <span>(Dozvědět se více)</span>"
+
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr "Není dostupný pro {0}"
+
+#: static/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr "Experimentální"
+
+#: static/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr "Motivy vyžadují novější verzi {0}"
+
+#: static/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr "Motivy vyžadují {0}"
+
+#: static/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "Probíhá instalace..."
+
+#: static/js/zamboni/mobile/buttons.js:148
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "Doplněk byl Mozillou předběžně zkontrolován."
+
+#: static/js/zamboni/mobile/buttons.js:275
+msgid "Keep it"
+msgstr "Ponechat"
+
+#: static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr "Nyní ji máte na vyzkoušení!"
+
+#: static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr "Přidáno do Firefoxu"

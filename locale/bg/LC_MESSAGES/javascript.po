@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:39-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2013-08-22 17:33+0200\n"
 "Last-Translator: Mihail Chilyashev <chilyashev@gmail.com>\n"
 "Language-Team: none\n"
@@ -13,843 +13,1217 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Translate Toolkit 1.9.0\n"
 
-#~ msgid "{0} star"
-#~ msgid_plural "{0} stars"
-#~ msgstr[0] "{0} звезда"
-#~ msgstr[1] "{0} звезди"
-
-#~ msgid "There was a problem contacting the server."
-#~ msgstr "Имаше проблем при свързването със сървъра."
-
-#~ msgid "Select a file..."
-#~ msgstr "Изберете файл..."
-
-#~ msgid "Your add-on should end with .xpi, .jar or .xml"
-#~ msgstr "Добавката ви трябва да завършва с .xpi, .jar или .xml"
-
-#~ msgid "{0}% complete"
-#~ msgstr "{0}% завършени"
-
-#~ msgid "{0} of {1}"
-#~ msgstr "{0} от {1}"
-
-#~ msgid "Cancel"
-#~ msgstr "Откажи"
-
-#~ msgid "Uploading {0}"
-#~ msgstr "Качване {0}"
-
-#~ msgid "Error with {0}"
-#~ msgstr "Грешка с {0}"
-
-#~ msgid "Your add-on failed validation with {0} error."
-#~ msgid_plural "Your add-on failed validation with {0} errors."
-#~ msgstr[0] "Добавката ви не премина валидирането с {0} грешка."
-#~ msgstr[1] "Добавката ви не премина валидирането с {0} грешки."
-
-#~ msgid "&hellip;and {0} more"
-#~ msgid_plural "&hellip;and {0} more"
-#~ msgstr[0] "&hellip;и {0} още"
-#~ msgstr[1] "&hellip;и {0} още"
-
-#~ msgid "See full validation report"
-#~ msgstr "Виж целия доклад за валидацията"
-
-#~ msgid "Validating {0}"
-#~ msgstr "Валидиране {0}"
-
-#~ msgid "Received an empty response from the server; status: {0}"
-#~ msgstr "Получих празен отговор от сървъра; състояние {0}"
-
-#~ msgid "Unexpected server error while validating."
-#~ msgstr "Неочаквана грешка на сървъра, докато се валидира."
-
-#~ msgid "Finished validating {0}"
-#~ msgstr "Валидирането приключи {0}"
-
-#~ msgid "Your add-on passed validation with no errors or warnings."
-#~ msgstr "Добавката ви премина валидацията без грешки или предупреждения."
-
-#~ msgid "Some platforms are not available for this type of add-on."
-#~ msgstr "Някои платформи не са достъпни за този вид добавки."
-
-#~ msgid "The filetype you uploaded isn't recognized."
-#~ msgstr "Видът на файла, който качихте не е разпознат."
-
-#~ msgid "You cancelled the upload."
-#~ msgstr "Вие отказахте качването."
-
-#~ msgid "Images must be either PNG or JPG."
-#~ msgstr "Изображенията трябва да са PNG или JPG."
-
-#~ msgid "Videos must be in WebM."
-#~ msgstr "Видеотата трябва да са във формат WebM."
-
-#~ msgid "Your packaged app should end with <code>.zip</code>."
-#~ msgstr "Пакетираното ви приложение трябва да завършва с <code>.zip</code>."
-
-#~ msgid "Your app failed validation with {0} error."
-#~ msgid_plural "Your app failed validation with {0} errors."
-#~ msgstr[0] "Приложението ви не премина валидацията с {0} грешка."
-#~ msgstr[1] "Приложението ви не премина валидацията с {0} грешки."
-
-#~ msgid "Your app passed validation with no errors and {0} warning."
-#~ msgid_plural "Your app passed validation with no errors and {0} warnings."
-#~ msgstr[0] "Проложението ви премина валидацията без грешки и {0} предупреждение."
-#~ msgstr[1] "Проложението ви премина валидацията без грешки и {0} предупреждения."
-
-#~ msgid "Your app passed validation with no errors or warnings."
-#~ msgstr "Приложението ви премина валидацията без грешки или предупреждения."
-
-#~ msgid "Follow this Collection"
-#~ msgstr "Следвай тази колекция"
-
-#~ msgid "Stop Following"
-#~ msgstr "Спри да следваш"
-
-#~ msgid "Following"
-#~ msgstr "Следва"
-
-#~ msgid "This theme is incompatible with your version of {0}"
-#~ msgstr "Тази тема е несъвместима с вашата версия на {0}"
-
-#~ msgid "All Rights Reserved"
-#~ msgstr "Всички права запазени"
-
-#~ msgid "Creative Commons Attribution 3.0"
-#~ msgstr "Creative Commons Attribution 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-#~ msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#~ msgid "Creative Commons Attribution-NoDerivs 3.0"
-#~ msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#~ msgid "Creative Commons Attribution-ShareAlike 3.0"
-#~ msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#~ msgid "Your Theme's Name"
-#~ msgstr "Името на темата Ви"
-
-#~ msgid "Flagged for review"
-#~ msgstr "Отбелязана за преглед"
-
-#~ msgid "Your input is required"
-#~ msgstr "Моля, въведете нещо тук"
-
-#~ msgid "Marked for deletion"
-#~ msgstr "Отбелязан за изтриване"
-
-#~ msgid "Updating results&hellip;"
-#~ msgstr "Актуализиране на резултатите&hellip;"
-
-#~ msgid "Category"
-#~ msgstr "Категория"
-
-#~ msgid "Search themes for <b>{0}</b>"
-#~ msgstr "Търсене на <b>{0}</b> в темите"
-
-#~ msgid "Search apps for <b>{0}</b>"
-#~ msgstr "Търси приложения за <b>{0}</b>"
-
-#~ msgid "Search add-ons for <b>{0}</b>"
-#~ msgstr "Търси добавки за <b>{0}</b>"
-
-#~ msgid "use original"
-#~ msgstr "използвай оригинала"
-
-#~ msgid "Week of {0}"
-#~ msgstr "Седмица от {0}"
-
-#~ msgid "downloads"
-#~ msgstr "сваляния"
-
-#~ msgid "{0} users"
-#~ msgstr "{0} потребители"
-
-#~ msgid "{0} add-ons"
-#~ msgstr "{0} добавки"
-
-#~ msgid "{0} collections"
-#~ msgstr "{0} колекции"
-
-#~ msgid "{0} reviews"
-#~ msgstr "{0} рецензии"
-
-#~ msgid "{0} sales"
-#~ msgstr "{0} продажби"
-
-#~ msgid "{0} refunds"
-#~ msgstr "{0} възстановявания"
-
-#~ msgid "{0} installs"
-#~ msgstr "{0} инсталации"
-
-#~ msgid "Downloads"
-#~ msgstr "Сваляния"
-
-#~ msgid "Daily Users"
-#~ msgstr "Потребители дневно"
-
-#~ msgid "Amount, in USD"
-#~ msgstr "Размер, в USD"
-
-#~ msgid "Number of Contributions"
-#~ msgstr "Брой допринесли"
-
-#~ msgid "More Info..."
-#~ msgstr "Още информация..."
-
-#~ msgid "Details for {0}"
-#~ msgstr "Детайли за {0}"
-
-#~ msgid "Collections Created"
-#~ msgstr "Създадени колекции"
-
-#~ msgid "Add-ons in Use"
-#~ msgstr "Добавки в употреба"
-
-#~ msgid "Add-ons Created"
-#~ msgstr "Създадени добавки"
-
-#~ msgid "Add-ons Downloaded"
-#~ msgstr "Свалени добавки"
-
-#~ msgid "Add-ons Updated"
-#~ msgstr "Обновени добавки"
-
-#~ msgid "Reviews Written"
-#~ msgstr "Написани рецензии"
-
-#~ msgid "User Signups"
-#~ msgstr "Регистрирани потребители"
-
-#~ msgid "Subscribers"
-#~ msgstr "Абонати"
-
-#~ msgid "Ratings"
-#~ msgstr "Оценки"
-
-#~ msgid "Sales"
-#~ msgstr "Продажби"
-
-#~ msgid "Installs"
-#~ msgstr "Инсталации"
-
-#~ msgid "Unknown"
-#~ msgstr "Непознат"
-
-#~ msgid "Add-ons Manager"
-#~ msgstr "Мениджър на добавките"
-
-#~ msgid "Search Results"
-#~ msgstr "Резултати от търсенето"
-
-#~ msgid "Homepage Promo"
-#~ msgstr "Начална страница Промо"
-
-#~ msgid "Homepage Featured"
-#~ msgstr "Начална страница Препоръчани"
-
-#~ msgid "Homepage Up and Coming"
-#~ msgstr "Начална страница Up and Coming"
-
-#~ msgid "Homepage Most Popular"
-#~ msgstr "Начална страница Най-известнии"
-
-#~ msgid "Detail Page"
-#~ msgstr "Страница с детайли"
-
-#~ msgid "Detail Page (bottom)"
-#~ msgstr "Страница с детайли (дъно)"
-
-#~ msgid "Detail Page (Development Channel)"
-#~ msgstr "Страница с детайли (канал за разработка)"
-
-#~ msgid "Often Used With"
-#~ msgstr "Често използван с"
-
-#~ msgid "Others By Author"
-#~ msgstr "Други от автора"
-
-#~ msgid "Dependencies"
-#~ msgstr "Зависимости"
-
-#~ msgid "Upsell"
-#~ msgstr "Upsell"
-
-#~ msgid "Sharing"
-#~ msgstr "Споделяне"
-
-#~ msgid "Category Pages"
-#~ msgstr "Страници с категории"
-
-#~ msgid "Collections"
-#~ msgstr "Колекции"
-
-#~ msgid "Category Landing Featured Carousel"
-#~ msgstr "Category Landing Featured Carousel"
-
-#~ msgid "Category Landing Top Rated"
-#~ msgstr "Категория Най-високо оценени"
-
-#~ msgid "Category Landing Most Popular"
-#~ msgstr "Категория най-известни"
-
-#~ msgid "Category Landing Recently Added"
-#~ msgstr "Категория Наскоро добавени"
-
-#~ msgid "Browse Listing Featured Sort"
-#~ msgstr "Browse Listing Featured Sort"
-
-#~ msgid "Browse Listing Users Sort"
-#~ msgstr "Browse Listing Users Sort"
-
-#~ msgid "Browse Listing Rating Sort"
-#~ msgstr "Browse Listing Rating Sort"
-
-#~ msgid "Browse Listing Created Sort"
-#~ msgstr "Browse Listing Created Sort"
-
-#~ msgid "Browse Listing Name Sort"
-#~ msgstr "Browse Listing Name Sort"
-
-#~ msgid "Browse Listing Popular Sort"
-#~ msgstr "Browse Listing Popular Sort"
-
-#~ msgid "Browse Listing Updated Sort"
-#~ msgstr "Browse Listing Updated Sort"
-
-#~ msgid "Browse Listing Up and Coming Sort"
-#~ msgstr "Browse Listing Up and Coming Sort"
-
-#~ msgid "Total Amount Contributed"
-#~ msgstr "Общо дарено"
-
-#~ msgid "Average Contribution"
-#~ msgstr "Средни дарения"
-
-#~ msgid "Usage"
-#~ msgstr "Употреба"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Mozilla"
-#~ msgstr "Mozilla"
-
-#~ msgid "Thunderbird"
-#~ msgstr "Thunderbird"
-
-#~ msgid "Sunbird"
-#~ msgstr "Sunbird"
-
-#~ msgid "SeaMonkey"
-#~ msgstr "SeaMonkey"
-
-#~ msgid "Fennec"
-#~ msgstr "Fennec"
-
-#~ msgid "Downloads and Daily Users, last {0} days"
-#~ msgstr "Сваляния и дневни потребители последните {0} дни"
-
-#~ msgid "Downloads and Daily Users from {0} to {1}"
-#~ msgstr "Сваляния и потребители дневно от {0} до {1}"
-
-#~ msgid "Installs and Daily Users, last {0} days"
-#~ msgstr "Инсталации и потребители дневно последните {0} дни"
-
-#~ msgid "Installs and Daily Users from {0} to {1}"
-#~ msgstr "Инсталации и потребители дневно от {0} до {1}"
-
-#~ msgid "Downloads, last {0} days"
-#~ msgstr "Сваляния последните {0} дни"
-
-#~ msgid "Downloads from {0} to {1}"
-#~ msgstr "Сваляния от {0} от {1}"
-
-#~ msgid "Daily Users, last {0} days"
-#~ msgstr "Потребители дневно последните {0} дни"
-
-#~ msgid "Daily Users from {0} to {1}"
-#~ msgstr "Потребители дневно от {0} до {1}"
-
-#~ msgid "Applications, last {0} days"
-#~ msgstr "Приложения последните {0} дни"
-
-#~ msgid "Applications from {0} to {1}"
-#~ msgstr "Приложения от {0} до {1}"
-
-#~ msgid "Platforms, last {0} days"
-#~ msgstr "Платформи последните {0} дни"
-
-#~ msgid "Platforms from {0} to {1}"
-#~ msgstr "Платформи от {0} до {1}"
-
-#~ msgid "Languages, last {0} days"
-#~ msgstr "Езици последните {0} дни"
-
-#~ msgid "Languages from {0} to {1}"
-#~ msgstr "Езици от {0} до {1}"
-
-#~ msgid "Add-on Versions, last {0} days"
-#~ msgstr "Версии на добавката последните {0} дни"
-
-#~ msgid "Add-on Versions from {0} to {1}"
-#~ msgstr "Версии от {0} {1}"
-
-#~ msgid "Add-on Status, last {0} days"
-#~ msgstr "Състояние на добавката последните {0} дни"
-
-#~ msgid "Add-on Status from {0} to {1}"
-#~ msgstr "Състояние на добавката от {0} до {1}"
-
-#~ msgid "Download Sources, last {0} days"
-#~ msgstr "Източници на сваляне последните {0} дни"
-
-#~ msgid "Download Sources from {0} to {1}"
-#~ msgstr "Източници на сваляне от {0} до {1}"
-
-#~ msgid "Contributions, last {0} days"
-#~ msgstr "Дарения последните {0} дни"
-
-#~ msgid "Contributions from {0} to {1}"
-#~ msgstr "Дарения от {0} от {1}"
-
-#~ msgid "Site Metrics, last {0} days"
-#~ msgstr "Статистики на сайта за последните {0} дни"
-
-#~ msgid "Site Metrics from {0} to {1}"
-#~ msgstr "Статистики на сайта от {0} до {1}"
-
-#~ msgid "Add-ons in Use, last {0} days"
-#~ msgstr "Използвани добавки последните {0} дни"
-
-#~ msgid "Add-ons in Use from {0} to {1}"
-#~ msgstr "Използвани добавки от {0} до {0}"
-
-#~ msgid "Add-ons Downloaded, last {0} days"
-#~ msgstr "Добавки, свалени последните {0} дни"
-
-#~ msgid "Add-ons Downloaded from {0} to {1}"
-#~ msgstr "Добавки, свалени от {0} до {1}"
-
-#~ msgid "Add-ons Created, last {0} days"
-#~ msgstr "Добавки, създадени последните {0} дни"
-
-#~ msgid "Add-ons Created from {0} to {1}"
-#~ msgstr "Добавки, създадени от {0} до {1}"
-
-#~ msgid "Add-ons Updated, last {0} days"
-#~ msgstr "Обновени добавки през последните {0} дни"
-
-#~ msgid "Add-ons Updated from {0} to {1}"
-#~ msgstr "Обновени добавки от {0} до {1}"
-
-#~ msgid "Reviews Written, last {0} days"
-#~ msgstr "Написани рецензии последните {0} дни"
-
-#~ msgid "Reviews Written from {0} to {1}"
-#~ msgstr "Написани рецензии от {0} до {1}"
-
-#~ msgid "User Signups, last {0} days"
-#~ msgstr "Регистрирани потребители последните {0} дни"
-
-#~ msgid "User Signups from {0} to {1}"
-#~ msgstr "Регистрирани потребители от {0} до {1}"
-
-#~ msgid "Collections Created, last {0} days"
-#~ msgstr "Създадени колекции последните {0} дни"
-
-#~ msgid "Collections Created from {0} to {1}"
-#~ msgstr "Колекции, създадени от {0} до {1}"
-
-#~ msgid "Subscribers, last {0} days"
-#~ msgstr "Абонати последните {0} дни"
-
-#~ msgid "Subscribers from {0} to {1}"
-#~ msgstr "Абонати от {0} до {1}"
-
-#~ msgid "Ratings, last {0} days"
-#~ msgstr "Оценки последните {0} дни"
-
-#~ msgid "Ratings from {0} to {1}"
-#~ msgstr "Оценки от {0} до {1}"
-
-#~ msgid "Sales, last {0} days"
-#~ msgstr "Продажби в последните {0} дни"
-
-#~ msgid "Sales from {0} to {1}"
-#~ msgstr "Продажби от {0} до {1}"
-
-#~ msgid "Installs, last {0} days"
-#~ msgstr "Инсталации последните {0} дни"
-
-#~ msgid "Installs from {0} to {1}"
-#~ msgstr "Инсталации от {0} до {1}"
-
-#~ msgid "<b>{0}</b> in last {1} days"
-#~ msgstr "<b>{0}</b> в последните {1} дни"
-
-#~ msgid "<b>{0}</b> from {1} to {2}"
-#~ msgstr "<b>{0}</b> от {1} до {2}"
-
-#~ msgid "<b>{0}</b> average in last {1} days"
-#~ msgstr "<b>{0}</b> средно в последните {1} дни"
-
-#~ msgid "No data available."
-#~ msgstr "Няма достъпни данни."
-
-#~ msgid "Date"
-#~ msgstr "Дата"
-
-#~ msgid "Other"
-#~ msgstr "Друго"
-
-#~ msgid "Select an application first"
-#~ msgstr "Първо изберете приложение"
-
-#~ msgid "Set {0} add-on to a max version of {1} and email the author."
-#~ msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-#~ msgstr[0] "Настрой добавка {0} на максимална версия от {1} и пишете на автора."
-#~ msgstr[1] "Настрой добавка {0} на максимална версия от {1} и пишете на авторите."
-
-#~ msgid "App installation not allowed."
-#~ msgstr "Инсталацията на приложения не е разрешена"
-
-#~ msgid "App manifest is malformed."
-#~ msgstr "Грешен формат на manifest-а на приложението."
-
-#~ msgid "App host could not be reached."
-#~ msgstr "Хостът на приложението не бе достигнат."
-
-#~ msgid "App manifest is unparsable."
-#~ msgstr "Manifest-ът на приложението не може да се прочете"
-
-#~ msgid "App manifest is invalid."
-#~ msgstr "Manifest-ът на приложението е невалиден."
-
-#~ msgid "Install failed. Please try again later."
-#~ msgstr "Инсталацията се провали. Моля, опитайте отново по-късно."
-
-#~ msgid "App installation failed."
-#~ msgstr "Инсталацията на приложението се провали."
-
-#~ msgid "This system does not support installing apps."
-#~ msgstr "Системата не поддържа инсталиране на приложения."
-
-#~ msgid "Admins and editors must provide a password to log in."
-#~ msgstr "Админите и редакторите трябва дапредоставят парола, за да влязат."
-
-#~ msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-#~ msgstr "BrowserID влизането се провали. Може би нямата акаунт с този имейл адрес?"
-
-#~ msgid "Accept and Install"
-#~ msgstr "Приеми и инсталирай"
-
-#~ msgid "Add to {0}"
-#~ msgstr "Добави към {0}"
-
-#~ msgid "Download Now"
-#~ msgstr "Свали сега"
-
-#~ msgid "Add-on has not been updated to support default-to-compatible."
-#~ msgstr "Добавката не е обновена да поддържа default-to-compatible."
-
-#~ msgid "You need to be using Firefox 10.0 or higher."
-#~ msgstr "Трябва да използвате Firefox 10.0 или по-нова."
-
-#~ msgid "Mozilla has marked this version as incompatible with your Firefox version."
-#~ msgstr "Mozilla маркира тази версия като несъвместима с Вашата версия на Firefox."
-
-#~ msgid "Install for {0} anyway"
-#~ msgstr "Инсталирай за {0} така или иначе"
-
-#~ msgid "Download for {0} anyway"
-#~ msgstr "Свали за {0} така или иначе"
-
-#~ msgid "Not available for your platform"
-#~ msgstr "Не е налично за платформата ви"
-
-#~ msgid "Not available for {0} {1}"
-#~ msgstr "Не е налично за {0} {1}"
-
-#~ msgid "Works with {app} {min} - {max}"
-#~ msgstr "Работи с {app} {min} - {max}"
-
-#~ msgid "View other versions"
-#~ msgstr "Виж други версии"
-
-#~ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-#~ msgstr "Съжаляваме, трябва да имате Mozilla-базиран браузър (като Firefox), за да инсталирате търсеща добавка."
-
-#~ msgid "clear recently viewed"
-#~ msgstr "изтрий последно гледаните"
-
-#~ msgid "Adding to Favorites&hellip;"
-#~ msgstr "Добавяне към Любими&hellip;"
-
-#~ msgid "Removing Favorite&hellip;"
-#~ msgstr "Премахване от Любими&hellip;"
-
-#~ msgid "Add to Favorites"
-#~ msgstr "Добави към Любими"
-
-#~ msgid "Remove from Favorites"
-#~ msgstr "Премахни от Любими"
-
-#~ msgid "Pending"
-#~ msgstr "Чакащ"
-
-#~ msgid "Add a comment"
-#~ msgstr "Добавяне на коментар"
-
-#~ msgid "Comment"
-#~ msgstr "Коментар"
-
-#~ msgid "Remove this add-on from the collection"
-#~ msgstr "Премахни тази добавка от колекцията"
-
-#~ msgid "Remove"
-#~ msgstr "Премахни"
-
-#~ msgid "Remove this user as a contributor"
-#~ msgstr "Премахни този потребител като допринесъл"
-
-#~ msgid "An email address is required."
-#~ msgstr "Нужен е имейл адрес."
-
-#~ msgid "You cannot add yourself as a contributor."
-#~ msgstr "Не може да добавяте себе си като сътрудник."
-
-#~ msgid "You have already added that user."
-#~ msgstr "Вече сте добавили този потребител."
-
-#~ msgid "Add to favorites"
-#~ msgstr "Добави в любими"
-
-#~ msgid "Remove from favorites"
-#~ msgstr "Премахни от любими"
-
-#~ msgid "Stop following"
-#~ msgstr "Спри да следваш"
-
-#~ msgid "Install App"
-#~ msgstr "Инсталирай приложението"
-
-#~ msgid "Your browser does not support the video tag"
-#~ msgstr "Браузърът ви не поддържа video тага"
-
-#~ msgid "Changes Saved"
-#~ msgstr "Промените са запазени"
-
-#~ msgid "Enter a new author's email address"
-#~ msgstr "Въведете е-пощата на новия автор"
-
-#~ msgid "There was an error uploading your file."
-#~ msgstr "Стана грешка при качването на файла ви."
-
-#~ msgid "{files} file"
-#~ msgid_plural "{files} files"
-#~ msgstr[0] "{files} файл"
-#~ msgstr[1] "{files} файла"
-
-#~ msgid "Learn more"
-#~ msgstr "Научи още"
-
-#~ msgid "Example"
-#~ msgstr "Пример"
-
-#~ msgid "Image changes being processed"
-#~ msgstr "Обработват се промените по изображението"
-
-#~ msgid "Starting tests..."
-#~ msgstr "Започване на тестовете..."
-
-#~ msgid "Waiting for test results..."
-#~ msgstr "Изчакване на резултати от тестовете..."
-
-#~ msgid "Internal Server Error"
-#~ msgstr "Internal Server Error"
-
-#~ msgid "Must be a valid e-mail address."
-#~ msgstr "Трябва да е валиден имейл адрес."
-
-#~ msgid "No results found."
-#~ msgstr "Няма резултати."
-
-#~ msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-#~ msgstr "Съжаляваме, не можахме да намерим препоръки за вас.<br>Моля, посетете <a href=\"{0}\">сайта за добавки</a>, за да намерите подходящата за вас добавка."
-
-#~ msgid "Finding recommendations&hellip;"
-#~ msgstr "Намиране на препоръки&hellip;"
-
-#~ msgid "Updating recommendations&hellip;"
-#~ msgstr "Актуализиране на препоръките&hellip;"
-
-#~ msgid "{name} was viewing this page first."
-#~ msgstr "{name} разглеждаше тази страница първо."
-
-#~ msgid "Receipt checked by app."
-#~ msgstr "Разписката проверена от приложението."
-
-#~ msgid "Receipt was not checked by app."
-#~ msgstr "Разписката не е проверена от приложението."
-
-#~ msgid "{name} was viewing this add-on first."
-#~ msgstr "{name} първи гледаше тази добавка."
-
-#~ msgid "Loading&hellip;"
-#~ msgstr "Зареждане&hellip;"
-
-#~ msgid "Version Notes"
-#~ msgstr "Бележки по версията"
-
-#~ msgid "Notes for Reviewers"
-#~ msgstr "Бележки за рецензенти"
-
-#~ msgid "No version notes found"
-#~ msgstr "Няма намерени бележки по версията"
-
-#~ msgid "Average Reviews"
-#~ msgstr "Средно рецензии"
-
-#~ msgid "Number of Reviews"
-#~ msgstr "Брой рецензии"
-
-#~ msgid "Loading..."
-#~ msgstr "Зареждане..."
-
-#~ msgid "<b>{0}</b> character left."
-#~ msgid_plural "<b>{0}</b> characters left."
-#~ msgstr[0] "остава <b>{0}</b> знак."
-#~ msgstr[1] "остават <b>{0}</b> знака."
-
-#~ msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-#~ msgstr "Това свойство е временно спряно, докато правим промени по сайта. Моля, проверете отново малко по-късно."
-
-#~ msgid "Remove this localization"
-#~ msgstr "Премахни тази локализация"
-
-#~ msgid "Download {0}"
-#~ msgstr "Свали {0}"
-
-#~ msgid "Password strength:"
-#~ msgstr "Надежност на паролата:"
-
-#~ msgid "At least {0} character left."
-#~ msgid_plural "At least {0} characters left."
-#~ msgstr[0] "Остава поне {0} знак."
-#~ msgstr[1] "Остават поне {0} знака."
-
-#~ msgid "All"
-#~ msgstr "Всички"
-
-#~ msgid "Requested Info"
-#~ msgstr "Изискана информация"
-
-#~ msgid "Flagged"
-#~ msgstr "Маркиран"
-
-#~ msgid "Duplicate"
-#~ msgstr "Дубликат"
-
-#~ msgid "Rejected"
-#~ msgstr "Отказан"
-
-#~ msgid "Approved"
-#~ msgstr "Одобрен"
-
-#~ msgid "All tests passed successfully."
-#~ msgstr "Всички тестове преминати успешно."
-
-#~ msgid "These tests were not run."
-#~ msgstr "Тези тестове не са пускани."
-
-#~ msgid "Tests"
-#~ msgstr "Тестове"
-
-#~ msgid "Error"
-#~ msgstr "Грешка"
-
-#~ msgid "Warning"
-#~ msgstr "Внимание"
-
-#~ msgid "Compatibility Tests"
-#~ msgstr "Тестове за съвместимост"
-
-#~ msgid "App failed validation."
-#~ msgstr "Приложението не премина валидацията"
-
-#~ msgid "App passed validation."
-#~ msgstr "Приложението премина валидацията."
-
-#~ msgid "Add-on failed validation."
-#~ msgstr "Добавката не премина валидацията."
-
-#~ msgid "Add-on passed validation."
-#~ msgstr "Добавката премина валидацията."
-
-#~ msgid "{0} error"
-#~ msgid_plural "{0} errors"
-#~ msgstr[0] "{0} грешка"
-#~ msgstr[1] "{0} грешки"
-
-#~ msgid "{0} warning"
-#~ msgid_plural "{0} warnings"
-#~ msgstr[0] "{0} предупреждение"
-#~ msgstr[1] "{0} предупреждения"
-
-#~ msgid "Validation task could not complete or completed with errors"
-#~ msgstr "Задачата за валидация не можа да премине или завърши с грешки"
-
-#~ msgid "Internal server error"
-#~ msgstr "Вътрешна сървърна грешка"
-
-#~ msgid "Not Updated for {0} {1}"
-#~ msgstr "Не е актуализирано за {0} {1}"
-
-#~ msgid "Requires Newer Version of {0}"
-#~ msgstr "Изисква по-нова версия на {0}"
-
-#~ msgid "Unreviewed"
-#~ msgstr "Непрегледано"
-
-#~ msgid "Experimental <span>(Learn More)</span>"
-#~ msgstr "Експериментална <span>(Научи още)</span>"
-
-#~ msgid "Not Available for {0}"
-#~ msgstr "Не е достъпно за {0}"
-
-#~ msgid "Experimental"
-#~ msgstr "Експериментална"
-
-#~ msgid "Themes Require Newer Version of {0}"
-#~ msgstr "Темите изискват нова версия на {0}"
-
-#~ msgid "Themes Require {0}"
-#~ msgstr "Темите изискват {0}"
-
-#~ msgid "Installing..."
-#~ msgstr "Инсталиране..."
-
-#~ msgid "Purchasing..."
-#~ msgstr "Закупуване..."
-
-#~ msgid "This add-on has been preliminarily reviewed by Mozilla."
-#~ msgstr "Тази добавка е предварително прегледана от Mozilla."
-
-#~ msgid "Keep it"
-#~ msgstr "Запази го"
-
-#~ msgid "You're trying it on!"
-#~ msgstr "В момента я пробвате!"
-
-#~ msgid "Added to Firefox"
-#~ msgstr "Добавено към Firefox"
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} звезда"
+msgstr[1] "{0} звезди"
+
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "Имаше проблем при свързването със сървъра."
+
+#: static/js/common/upload-addon.js:52
+msgid "Select a file..."
+msgstr "Изберете файл..."
+
+#: static/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "Добавката ви трябва да завършва с .xpi, .jar или .xml"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:87
+msgid "{0}% complete"
+msgstr "{0}% завършени"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:90
+msgid "{0} of {1}"
+msgstr "{0} от {1}"
+
+#: static/js/common/upload-addon.js:120
+msgid "Cancel"
+msgstr "Откажи"
+
+#: static/js/common/upload-addon.js:142
+msgid "Uploading {0}"
+msgstr "Качване {0}"
+
+#: static/js/common/upload-addon.js:169
+msgid "Error with {0}"
+msgstr "Грешка с {0}"
+
+#: static/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "Добавката ви не премина валидирането с {0} грешка."
+msgstr[1] "Добавката ви не премина валидирането с {0} грешки."
+
+#: static/js/common/upload-addon.js:188
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;и {0} още"
+msgstr[1] "&hellip;и {0} още"
+
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+msgid "See full validation report"
+msgstr "Виж целия доклад за валидацията"
+
+#: static/js/common/upload-addon.js:214
+msgid "Validating {0}"
+msgstr "Валидиране {0}"
+
+#. L10n: first argument is an HTTP status code
+#: static/js/common/upload-addon.js:253
+msgid "Received an empty response from the server; status: {0}"
+msgstr "Получих празен отговор от сървъра; състояние {0}"
+
+#: static/js/common/upload-addon.js:269
+msgid "Unexpected server error while validating."
+msgstr "Неочаквана грешка на сървъра, докато се валидира."
+
+#: static/js/common/upload-addon.js:307
+msgid "Finished validating {0}"
+msgstr "Валидирането приключи {0}"
+
+#: static/js/common/upload-addon.js:313
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/common/upload-addon.js:318
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr "Добавката ви премина валидацията без грешки или предупреждения."
+
+#: static/js/common/upload-addon.js:334
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:335
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:348
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:350
+msgid "Add-on submission checklist"
+msgstr ""
+
+#: static/js/common/upload-addon.js:351
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:353
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+
+#: static/js/common/upload-addon.js:371
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:388
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr ""
+
+#: static/js/common/upload-addon.js:425
+msgid "Some platforms are not available for this type of add-on."
+msgstr "Някои платформи не са достъпни за този вид добавки."
+
+#: static/js/common/upload-addon.js:427
+msgid "Sorry, no supported platform has been found."
+msgstr ""
+
+#: static/js/common/upload-base.js:57
+msgid "The filetype you uploaded isn't recognized."
+msgstr "Видът на файла, който качихте не е разпознат."
+
+#: static/js/common/upload-base.js:79
+msgid "You cancelled the upload."
+msgstr "Вие отказахте качването."
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "Изображенията трябва да са PNG или JPG."
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "Видеотата трябва да са във формат WebM."
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "Следвай тази колекция"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Спри да следваш"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "Следва"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Тази тема е несъвместима с вашата версия на {0}"
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "Всички права запазени"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "Името на темата Ви"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "Отбелязана за преглед"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "Моля, въведете нещо тук"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "Отбелязан за изтриване"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "Актуализиране на резултатите&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "Категория"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Търсене на <b>{0}</b> в темите"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Търси приложения за <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Търси добавки за <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "използвай оригинала"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "Седмица от {0}"
+
+#: static/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr "сваляния"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} потребители"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} добавки"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} колекции"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} рецензии"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} продажби"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0} възстановявания"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} инсталации"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+msgid "Downloads"
+msgstr "Сваляния"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+msgid "Daily Users"
+msgstr "Потребители дневно"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "Размер, в USD"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+msgid "Number of Contributions"
+msgstr "Брой допринесли"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "Още информация..."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "Детайли за {0}"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "Създадени колекции"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "Добавки в употреба"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "Създадени добавки"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "Свалени добавки"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "Обновени добавки"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "Написани рецензии"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "Регистрирани потребители"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "Абонати"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "Оценки"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+msgid "Sales"
+msgstr "Продажби"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+msgid "Installs"
+msgstr "Инсталации"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "Непознат"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "Мениджър на добавките"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Search Results"
+msgstr "Резултати от търсенето"
+
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+msgid "Homepage Promo"
+msgstr "Начална страница Промо"
+
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+msgid "Homepage Featured"
+msgstr "Начална страница Препоръчани"
+
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Up and Coming"
+msgstr "Начална страница Up and Coming"
+
+#: static/js/impala/stats/csv_keys.js:52
+msgid "Homepage Most Popular"
+msgstr "Начална страница Най-известнии"
+
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+msgid "Detail Page"
+msgstr "Страница с детайли"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+msgid "Detail Page (bottom)"
+msgstr "Страница с детайли (дъно)"
+
+#: static/js/impala/stats/csv_keys.js:57
+msgid "Detail Page (Development Channel)"
+msgstr "Страница с детайли (канал за разработка)"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+msgid "Often Used With"
+msgstr "Често използван с"
+
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+msgid "Others By Author"
+msgstr "Други от автора"
+
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Dependencies"
+msgstr "Зависимости"
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Upsell"
+msgstr "Upsell"
+
+#: static/js/impala/stats/csv_keys.js:68
+msgid "Sharing"
+msgstr "Споделяне"
+
+#: static/js/impala/stats/csv_keys.js:69
+msgid "Category Pages"
+msgstr "Страници с категории"
+
+#: static/js/impala/stats/csv_keys.js:70
+msgid "Collections"
+msgstr "Колекции"
+
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+msgid "Category Landing Featured Carousel"
+msgstr "Category Landing Featured Carousel"
+
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+msgid "Category Landing Top Rated"
+msgstr "Категория Най-високо оценени"
+
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+msgid "Category Landing Most Popular"
+msgstr "Категория най-известни"
+
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+msgid "Category Landing Recently Added"
+msgstr "Категория Наскоро добавени"
+
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+msgid "Browse Listing Featured Sort"
+msgstr "Browse Listing Featured Sort"
+
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+msgid "Browse Listing Users Sort"
+msgstr "Browse Listing Users Sort"
+
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+msgid "Browse Listing Rating Sort"
+msgstr "Browse Listing Rating Sort"
+
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+msgid "Browse Listing Created Sort"
+msgstr "Browse Listing Created Sort"
+
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+msgid "Browse Listing Name Sort"
+msgstr "Browse Listing Name Sort"
+
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+msgid "Browse Listing Popular Sort"
+msgstr "Browse Listing Popular Sort"
+
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+msgid "Browse Listing Updated Sort"
+msgstr "Browse Listing Updated Sort"
+
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+msgid "Browse Listing Up and Coming Sort"
+msgstr "Browse Listing Up and Coming Sort"
+
+#: static/js/impala/stats/csv_keys.js:98
+msgid "Total Amount Contributed"
+msgstr "Общо дарено"
+
+#: static/js/impala/stats/csv_keys.js:99
+msgid "Average Contribution"
+msgstr "Средни дарения"
+
+#: static/js/impala/stats/csv_keys.js:108
+msgid "Usage"
+msgstr "Употреба"
+
+#: static/js/impala/stats/csv_keys.js:111
+msgid "Firefox"
+msgstr "Firefox"
+
+#: static/js/impala/stats/csv_keys.js:112
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: static/js/impala/stats/csv_keys.js:113
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: static/js/impala/stats/csv_keys.js:114
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: static/js/impala/stats/csv_keys.js:116
+msgid "Fennec"
+msgstr "Fennec"
+
+#: static/js/impala/stats/csv_keys.js:117
+msgid "Android"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:122
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "Сваляния и дневни потребители последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "Сваляния и потребители дневно от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:128
+msgid "Installs and Daily Users, last {0} days"
+msgstr "Инсталации и потребители дневно последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:130
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "Инсталации и потребители дневно от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:134
+msgid "Downloads, last {0} days"
+msgstr "Сваляния последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:136
+msgid "Downloads from {0} to {1}"
+msgstr "Сваляния от {0} от {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:140
+msgid "Daily Users, last {0} days"
+msgstr "Потребители дневно последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:142
+msgid "Daily Users from {0} to {1}"
+msgstr "Потребители дневно от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:146
+msgid "Applications, last {0} days"
+msgstr "Приложения последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:148
+msgid "Applications from {0} to {1}"
+msgstr "Приложения от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:152
+msgid "Platforms, last {0} days"
+msgstr "Платформи последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:154
+msgid "Platforms from {0} to {1}"
+msgstr "Платформи от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:158
+msgid "Languages, last {0} days"
+msgstr "Езици последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:160
+msgid "Languages from {0} to {1}"
+msgstr "Езици от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:164
+msgid "Add-on Versions, last {0} days"
+msgstr "Версии на добавката последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:166
+msgid "Add-on Versions from {0} to {1}"
+msgstr "Версии от {0} {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:170
+msgid "Add-on Status, last {0} days"
+msgstr "Състояние на добавката последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:172
+msgid "Add-on Status from {0} to {1}"
+msgstr "Състояние на добавката от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:176
+msgid "Download Sources, last {0} days"
+msgstr "Източници на сваляне последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:178
+msgid "Download Sources from {0} to {1}"
+msgstr "Източници на сваляне от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:182
+msgid "Contributions, last {0} days"
+msgstr "Дарения последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:184
+msgid "Contributions from {0} to {1}"
+msgstr "Дарения от {0} от {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:188
+msgid "Site Metrics, last {0} days"
+msgstr "Статистики на сайта за последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:190
+msgid "Site Metrics from {0} to {1}"
+msgstr "Статистики на сайта от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:194
+msgid "Add-ons in Use, last {0} days"
+msgstr "Използвани добавки последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:196
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "Използвани добавки от {0} до {0}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:200
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "Добавки, свалени последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:202
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "Добавки, свалени от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:206
+msgid "Add-ons Created, last {0} days"
+msgstr "Добавки, създадени последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:208
+msgid "Add-ons Created from {0} to {1}"
+msgstr "Добавки, създадени от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:212
+msgid "Add-ons Updated, last {0} days"
+msgstr "Обновени добавки през последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:214
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "Обновени добавки от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:218
+msgid "Reviews Written, last {0} days"
+msgstr "Написани рецензии последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:220
+msgid "Reviews Written from {0} to {1}"
+msgstr "Написани рецензии от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:224
+msgid "User Signups, last {0} days"
+msgstr "Регистрирани потребители последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:226
+msgid "User Signups from {0} to {1}"
+msgstr "Регистрирани потребители от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:230
+msgid "Collections Created, last {0} days"
+msgstr "Създадени колекции последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:232
+msgid "Collections Created from {0} to {1}"
+msgstr "Колекции, създадени от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:236
+msgid "Subscribers, last {0} days"
+msgstr "Абонати последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:238
+msgid "Subscribers from {0} to {1}"
+msgstr "Абонати от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:242
+msgid "Ratings, last {0} days"
+msgstr "Оценки последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:244
+msgid "Ratings from {0} to {1}"
+msgstr "Оценки от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:248
+msgid "Sales, last {0} days"
+msgstr "Продажби в последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:250
+msgid "Sales from {0} to {1}"
+msgstr "Продажби от {0} до {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:254
+msgid "Installs, last {0} days"
+msgstr "Инсталации последните {0} дни"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:256
+msgid "Installs from {0} to {1}"
+msgstr "Инсталации от {0} до {1}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:262
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b> в последните {1} дни"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b> от {1} до {2}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:268
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "<b>{0}</b> средно в последните {1} дни"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "Няма достъпни данни."
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "Дата"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "Друго"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+msgid "Select an application first"
+msgstr "Първо изберете приложение"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] "Настрой добавка {0} на максимална версия от {1} и пишете на автора."
+msgstr[1] "Настрой добавка {0} на максимална версия от {1} и пишете на авторите."
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "Инсталацията на приложения не е разрешена"
+
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "Грешен формат на manifest-а на приложението."
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Хостът на приложението не бе достигнат."
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Manifest-ът на приложението не може да се прочете"
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Manifest-ът на приложението е невалиден."
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Инсталацията се провали. Моля, опитайте отново по-късно."
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "Инсталацията на приложението се провали."
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "Системата не поддържа инсталиране на приложения."
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "Админите и редакторите трябва дапредоставят парола, за да влязат."
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "BrowserID влизането се провали. Може би нямата акаунт с този имейл адрес?"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "Приеми и инсталирай"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "Добави към {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "Свали сега"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "Добавката не е обновена да поддържа default-to-compatible."
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "Трябва да използвате Firefox 10.0 или по-нова."
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla маркира тази версия като несъвместима с Вашата версия на Firefox."
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "Инсталирай за {0} така или иначе"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "Свали за {0} така или иначе"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "Не е налично за платформата ви"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "Не е налично за {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "Работи с {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "Виж други версии"
+
+#: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Съжаляваме, трябва да имате Mozilla-базиран браузър (като Firefox), за да инсталирате търсеща добавка."
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "изтрий последно гледаните"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "Добавяне към Любими&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "Премахване от Любими&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "Добави към Любими"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "Премахни от Любими"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "Чакащ"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "Добавяне на коментар"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "Коментар"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "Премахни тази добавка от колекцията"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "Премахни"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "Премахни този потребител като допринесъл"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "Нужен е имейл адрес."
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "Не може да добавяте себе си като сътрудник."
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "Вече сте добавили този потребител."
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "Добави в любими"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "Премахни от любими"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "Спри да следваш"
+
+#: static/js/zamboni/devhub.js:127
+msgid "Your browser does not support the video tag"
+msgstr "Браузърът ви не поддържа video тага"
+
+#: static/js/zamboni/devhub.js:382
+msgid "Changes Saved"
+msgstr "Промените са запазени"
+
+#: static/js/zamboni/devhub.js:398
+msgid "Enter a new author's email address"
+msgstr "Въведете е-пощата на новия автор"
+
+#: static/js/zamboni/devhub.js:545
+msgid "There was an error uploading your file."
+msgstr "Стана грешка при качването на файла ви."
+
+#: static/js/zamboni/devhub.js:690
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} файл"
+msgstr[1] "{files} файла"
+
+#: static/js/zamboni/devhub.js:693
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/devhub.js:805
+msgid "Learn more"
+msgstr "Научи още"
+
+#: static/js/zamboni/devhub.js:809
+msgid "Example"
+msgstr "Пример"
+
+#: static/js/zamboni/devhub.js:1165
+msgid "Image changes being processed"
+msgstr "Обработват се промените по изображението"
+
+#: static/js/zamboni/devhub.js:1292
+msgid "Starting tests..."
+msgstr "Започване на тестовете..."
+
+#: static/js/zamboni/devhub.js:1299
+msgid "Waiting for test results..."
+msgstr "Изчакване на резултати от тестовете..."
+
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+msgid "Internal Server Error"
+msgstr "Internal Server Error"
+
+#: static/js/zamboni/devhub.js:1341
+msgid "Must be a valid e-mail address."
+msgstr "Трябва да е валиден имейл адрес."
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "Няма резултати."
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Съжаляваме, не можахме да намерим препоръки за вас.<br>Моля, посетете <a href=\"{0}\">сайта за добавки</a>, за да намерите подходящата за вас добавка."
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "Намиране на препоръки&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "Актуализиране на препоръките&hellip;"
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "{name} разглеждаше тази страница първо."
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "Разписката проверена от приложението."
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "Разписката не е проверена от приложението."
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr "{name} първи гледаше тази добавка."
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "Зареждане&hellip;"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "Бележки по версията"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "Бележки за рецензенти"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "Няма намерени бележки по версията"
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "Средно рецензии"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "Брой рецензии"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr ""
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "Зареждане..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "остава <b>{0}</b> знак."
+msgstr[1] "остават <b>{0}</b> знака."
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Това свойство е временно спряно, докато правим промени по сайта. Моля, проверете отново малко по-късно."
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Премахни тази локализация"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "Свали {0}"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "Надежност на паролата:"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "Остава поне {0} знак."
+msgstr[1] "Остават поне {0} знака."
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "Всички"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Изискана информация"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Маркиран"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Дубликат"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Отказан"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Одобрен"
+
+#: static/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "Всички тестове преминати успешно."
+
+#: static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "Тези тестове не са пускани."
+
+#: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "Тестове"
+
+#: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "Грешка"
+
+#: static/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "Внимание"
+
+#: static/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "Тестове за съвместимост"
+
+#: static/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "Приложението не премина валидацията"
+
+#: static/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "Приложението премина валидацията."
+
+#: static/js/zamboni/validator.js:337
+msgid "Add-on failed validation."
+msgstr "Добавката не премина валидацията."
+
+#: static/js/zamboni/validator.js:339
+msgid "Add-on passed validation."
+msgstr "Добавката премина валидацията."
+
+#: static/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} грешка"
+msgstr[1] "{0} грешки"
+
+#: static/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} предупреждение"
+msgstr[1] "{0} предупреждения"
+
+#: static/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "Задачата за валидация не можа да премине или завърши с грешки"
+
+#: static/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "Вътрешна сървърна грешка"
+
+#: static/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr "Не е актуализирано за {0} {1}"
+
+#: static/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr "Изисква по-нова версия на {0}"
+
+#: static/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr "Непрегледано"
+
+#: static/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "Експериментална <span>(Научи още)</span>"
+
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr "Не е достъпно за {0}"
+
+#: static/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr "Експериментална"
+
+#: static/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr "Темите изискват нова версия на {0}"
+
+#: static/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr "Темите изискват {0}"
+
+#: static/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "Инсталиране..."
+
+#: static/js/zamboni/mobile/buttons.js:148
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "Тази добавка е предварително прегледана от Mozilla."
+
+#: static/js/zamboni/mobile/buttons.js:275
+msgid "Keep it"
+msgstr "Запази го"
+
+#: static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr "В момента я пробвате!"
+
+#: static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr "Добавено към Firefox"

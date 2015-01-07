@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:39-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2013-11-08 06:01+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,756 +14,1204 @@ msgstr ""
 "X-Generator: Translate Toolkit 1.9.0\n"
 "X-POOTLE-MTIME: 1383890507.0\n"
 
-#~ msgid "{0} star"
-#~ msgid_plural "{0} stars"
-#~ msgstr[0] "{0} ดาว"
-
-#~ msgid "There was a problem contacting the server."
-#~ msgstr "มีปัญหาในการติดต่อกับเซอร์เวอร์"
-
-#~ msgid "Select a file..."
-#~ msgstr "เลือกไฟล์…"
-
-#~ msgid "Your add-on should end with .xpi, .jar or .xml"
-#~ msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .xpi .jar หรือ .xml"
-
-#~ msgid "{0}% complete"
-#~ msgstr "เสร็จสิ้น {0}%"
-
-#~ msgid "{0} of {1}"
-#~ msgstr "{0} จาก {1}"
-
-#~ msgid "Cancel"
-#~ msgstr "ยกเลิก"
-
-#~ msgid "Uploading {0}"
-#~ msgstr "กำลังอัปโหลด {0}"
-
-#~ msgid "Error with {0}"
-#~ msgstr "เกิดข้อผิดพลาดกับ {0}"
-
-#~ msgid "Your add-on failed validation with {0} error."
-#~ msgid_plural "Your add-on failed validation with {0} errors."
-#~ msgstr[0] "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
-
-#~ msgid "&hellip;and {0} more"
-#~ msgid_plural "&hellip;and {0} more"
-#~ msgstr[0] "&hellip;และอื่นๆ {0}"
-
-#~ msgid "See full validation report"
-#~ msgstr "ดูรายงานการตรวจสอบ"
-
-#~ msgid "Validating {0}"
-#~ msgstr "กำลังตรวจสอบ {0}"
-
-#~ msgid "Received an empty response from the server; status: {0}"
-#~ msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
-
-#~ msgid "Unexpected server error while validating."
-#~ msgstr "ข้อผิดพลาดของแม่ข่ายที่ไม่คาดคิดขณะกำลังทำการตรวจสอบ"
-
-#~ msgid "Finished validating {0}"
-#~ msgstr "เสร็จสิ้นการตรวจสอบ {0}"
-
-#~ msgid "Some platforms are not available for this type of add-on."
-#~ msgstr "ส่วนเสริมชนิดนี้ไม่สามารถใช้งานได้บนบางแพลตฟอร์ม"
-
-#~ msgid "The filetype you uploaded isn't recognized."
-#~ msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุณอัปโหลด"
-
-#~ msgid "You cancelled the upload."
-#~ msgstr "คุณได้ยกเลิกการอัปโหลด"
-
-#~ msgid "Images must be either PNG or JPG."
-#~ msgstr "รูปภาพต้องเป็น PNG หรือไม่ก็ JPG"
-
-#~ msgid "Videos must be in WebM."
-#~ msgstr "วิดีโอต้องเป็นแบบ WebM"
-
-#~ msgid "Your app failed validation with {0} error."
-#~ msgid_plural "Your app failed validation with {0} errors."
-#~ msgstr[0] "แอพของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
-
-#~ msgid "Your app passed validation with no errors and {0} warning."
-#~ msgid_plural "Your app passed validation with no errors and {0} warnings."
-#~ msgstr[0] "แอพของคุณได้ผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} คำเตือน"
-
-#~ msgid "Follow this Collection"
-#~ msgstr "ติดตามชุดนี้"
-
-#~ msgid "Stop Following"
-#~ msgstr "เลิกติดตาม"
-
-#~ msgid "Following"
-#~ msgstr "กำลังติดตาม"
-
-#~ msgid "This theme is incompatible with your version of {0}"
-#~ msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
-
-#~ msgid "All Rights Reserved"
-#~ msgstr "สงวนลิขสิทธิ์"
-
-#~ msgid "Creative Commons Attribution 3.0"
-#~ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์ 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial 3.0"
-#~ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-#~ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-ไม่ดัดแปลง 3.0"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-#~ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน 3.0"
-
-#~ msgid "Creative Commons Attribution-NoDerivs 3.0"
-#~ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ดัดแปลง 3.0"
-
-#~ msgid "Creative Commons Attribution-ShareAlike 3.0"
-#~ msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-อนุญาตแบบเดียวกัน 3.0"
-
-#~ msgid "Your Theme's Name"
-#~ msgstr "ชื่อชุดตกแต่งของคุณ"
-
-#~ msgid "Flagged for review"
-#~ msgstr "ปักธงสำหรับการวิจารณ์"
-
-#~ msgid "Your input is required"
-#~ msgstr "คุณต้องป้อนข้อมูล"
-
-#~ msgid "Marked for deletion"
-#~ msgstr "ทำเครื่องหมายสำหรับการลบ"
-
-#~ msgid "Updating results&hellip;"
-#~ msgstr "กำลังปรับปรุงผลลัพธ์&hellip;"
-
-#~ msgid "Category"
-#~ msgstr "หมวดหมู่"
-
-#~ msgid "Search apps for <b>{0}</b>"
-#~ msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
-
-#~ msgid "Search add-ons for <b>{0}</b>"
-#~ msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
-
-#~ msgid "use original"
-#~ msgstr "ใช้ต้นฉบับ"
-
-#~ msgid "Week of {0}"
-#~ msgstr "สัปดาห์ที่ {0}"
-
-#~ msgid "downloads"
-#~ msgstr "ดาวน์โหลด"
-
-#~ msgid "{0} users"
-#~ msgstr "{0} ผู้ใช้"
-
-#~ msgid "{0} add-ons"
-#~ msgstr "{0} ส่วนเสริม"
-
-#~ msgid "{0} collections"
-#~ msgstr "{0} ชุด"
-
-#~ msgid "{0} reviews"
-#~ msgstr "{0} บทวิจารณ์"
-
-#~ msgid "{0} sales"
-#~ msgstr "{0} การขาย"
-
-#~ msgid "{0} refunds"
-#~ msgstr "{0} การคืนเงิน"
-
-#~ msgid "{0} installs"
-#~ msgstr "{0} การติดตั้ง"
-
-#~ msgid "Downloads"
-#~ msgstr "ดาวน์โหลด"
-
-#~ msgid "Daily Users"
-#~ msgstr "ผู้ใช้ต่อวัน"
-
-#~ msgid "Amount, in USD"
-#~ msgstr "จำนวนในดอลลาร์สหรัฐ"
-
-#~ msgid "Number of Contributions"
-#~ msgstr "จำนวนการบริจาค"
-
-#~ msgid "More Info..."
-#~ msgstr "ข้อมูลเพิ่มเติม..."
-
-#~ msgid "Details for {0}"
-#~ msgstr "รายละเอียดสำหรับ {0}"
-
-#~ msgid "Collections Created"
-#~ msgstr "ชุดที่สร้างแล้ว"
-
-#~ msgid "Add-ons in Use"
-#~ msgstr "ส่วนเสริมที่ใช้อยู่"
-
-#~ msgid "Add-ons Created"
-#~ msgstr "ส่วนเสริมที่สร้าง"
-
-#~ msgid "Add-ons Downloaded"
-#~ msgstr "ส่วนเสริมที่ดาวน์โหลด"
-
-#~ msgid "Add-ons Updated"
-#~ msgstr "ส่วนเสริมที่ปรับปรุง"
-
-#~ msgid "Reviews Written"
-#~ msgstr "เขียนบทวิจารณ์แล้ว"
-
-#~ msgid "User Signups"
-#~ msgstr "ผู้ใช้ที่ลงทะเบียน"
-
-#~ msgid "Subscribers"
-#~ msgstr "ผู้ติดตาม"
-
-#~ msgid "Ratings"
-#~ msgstr "การจัดอันดับ"
-
-#~ msgid "Sales"
-#~ msgstr "ขาย"
-
-#~ msgid "Installs"
-#~ msgstr "ติดตั้ง"
-
-#~ msgid "Unknown"
-#~ msgstr "ไม่ทราบ"
-
-#~ msgid "Add-ons Manager"
-#~ msgstr "ตัวจัดการส่วนเสริม"
-
-#~ msgid "Search Results"
-#~ msgstr "ผลลัพธ์การค้นหา"
-
-#~ msgid "Detail Page"
-#~ msgstr "หน้ารายละเอียด"
-
-#~ msgid "Detail Page (bottom)"
-#~ msgstr "หน้ารายละเอียด (ด้านล่าง)"
-
-#~ msgid "Detail Page (Development Channel)"
-#~ msgstr "หน้ารายละเอียด (ช่องการพัฒนา)"
-
-#~ msgid "Often Used With"
-#~ msgstr "ใช้บ่อยๆ โดย"
-
-#~ msgid "Others By Author"
-#~ msgstr "อื่น ๆ โดยผู้สร้าง"
-
-#~ msgid "Upsell"
-#~ msgstr "เพิ่มยอดขาย"
-
-#~ msgid "Sharing"
-#~ msgstr "การแบ่งปัน"
-
-#~ msgid "Category Pages"
-#~ msgstr "หน้าหมวดหมู่"
-
-#~ msgid "Collections"
-#~ msgstr "ชุด"
-
-#~ msgid "Browse Listing Featured Sort"
-#~ msgstr "ดูรายการตามการแนะนำ"
-
-#~ msgid "Browse Listing Users Sort"
-#~ msgstr "เรียกดูรายการตามผู้ใช้"
-
-#~ msgid "Browse Listing Rating Sort"
-#~ msgstr "เรียกดูรายการตามการจัดอันดับ"
-
-#~ msgid "Browse Listing Created Sort"
-#~ msgstr "เรียกดูรายการตามการสร้าง"
-
-#~ msgid "Browse Listing Name Sort"
-#~ msgstr "เรียกดูรายการตามชื่อ"
-
-#~ msgid "Browse Listing Popular Sort"
-#~ msgstr "เรียกดูรายการตามความนิยม"
-
-#~ msgid "Browse Listing Updated Sort"
-#~ msgstr "เรียกดูรายการตามการปรับปรุง"
-
-#~ msgid "Browse Listing Up and Coming Sort"
-#~ msgstr "เรียกดูรายการตามที่กำลังจะมาถึง"
-
-#~ msgid "Total Amount Contributed"
-#~ msgstr "จำนวนการบริจาครวม"
-
-#~ msgid "Average Contribution"
-#~ msgstr "การบริจาคโดยเฉลี่ย"
-
-#~ msgid "Usage"
-#~ msgstr "การใช้งาน"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Mozilla"
-#~ msgstr "Mozilla"
-
-#~ msgid "Thunderbird"
-#~ msgstr "Thunderbird"
-
-#~ msgid "Sunbird"
-#~ msgstr "Sunbird"
-
-#~ msgid "SeaMonkey"
-#~ msgstr "SeaMonkey"
-
-#~ msgid "Fennec"
-#~ msgstr "Fennec"
-
-#~ msgid "Downloads and Daily Users, last {0} days"
-#~ msgstr "การดาวน์โหลดและผู้ใช้ต่อวันใน {0} วันล่าสุด"
-
-#~ msgid "Downloads and Daily Users from {0} to {1}"
-#~ msgstr "การดาวน์โหลดและผู้ใช้ต่อวันจาก {0} ถึง {1}"
-
-#~ msgid "Installs and Daily Users, last {0} days"
-#~ msgstr "การติดตั้งและผู้ใช้ต่อวันใน {0} วันล่าสุด"
-
-#~ msgid "Installs and Daily Users from {0} to {1}"
-#~ msgstr "การติดตั้งและผู้ใช้ต่อวันจาก {0} ถึง {1}"
-
-#~ msgid "Downloads, last {0} days"
-#~ msgstr "การดาวน์โหลดใน {0} วันล่าสุด"
-
-#~ msgid "Downloads from {0} to {1}"
-#~ msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
-
-#~ msgid "Daily Users, last {0} days"
-#~ msgstr "ผู้ใช้ต่อวันใน {0} วันล่าสุด"
-
-#~ msgid "Daily Users from {0} to {1}"
-#~ msgstr "ผู้ใช้ต่อวันจาก {0} ถึง {1}"
-
-#~ msgid "Applications, last {0} days"
-#~ msgstr "แอพพลิเคชั่นใน {0} วันล่าสุด"
-
-#~ msgid "Applications from {0} to {1}"
-#~ msgstr "แอพพลิเคชั่นจาก {0} ถึง {1}"
-
-#~ msgid "Platforms, last {0} days"
-#~ msgstr "แพลตฟอร์มใน {0} วันล่าสุด"
-
-#~ msgid "Platforms from {0} to {1}"
-#~ msgstr "แพลตฟอร์มจาก {0} ถึง {1}"
-
-#~ msgid "Languages, last {0} days"
-#~ msgstr "ภาษาใน {0} วันล่าสุด"
-
-#~ msgid "Languages from {0} to {1}"
-#~ msgstr "ภาษาจาก {0} ถึง {1}"
-
-#~ msgid "Add-on Versions, last {0} days"
-#~ msgstr "รุ่นของส่วนเสริมใน {0} วันล่าสุด"
-
-#~ msgid "Add-on Versions from {0} to {1}"
-#~ msgstr "รุ่นของส่วนเสริมจาก {0} ถึง {1}"
-
-#~ msgid "Add-on Status, last {0} days"
-#~ msgstr "สถานะของส่วนเสริมใน {0} วันล่าสุด"
-
-#~ msgid "Add-on Status from {0} to {1}"
-#~ msgstr "สถานะของส่วนเสริมจาก {0} ถึง {1}"
-
-#~ msgid "Download Sources, last {0} days"
-#~ msgstr "การดาวน์โหลดซอร์สใน {0} วันล่าสุด"
-
-#~ msgid "Download Sources from {0} to {1}"
-#~ msgstr "การดาวน์โหลดซอร์สจาก {0} ถึง {1}"
-
-#~ msgid "Contributions, last {0} days"
-#~ msgstr "การบริจาคใน {0} วันล่าสุด"
-
-#~ msgid "Contributions from {0} to {1}"
-#~ msgstr "การบริจาคจาก {0} ถึง {1}"
-
-#~ msgid "Add-ons in Use, last {0} days"
-#~ msgstr "ส่วนเสริมที่ใช้งานใน {0} วันล่าสุด"
-
-#~ msgid "Add-ons in Use from {0} to {1}"
-#~ msgstr "ส่วนเสริมที่ใช้จาก {0} ถึง {1}"
-
-#~ msgid "Add-ons Downloaded, last {0} days"
-#~ msgstr "ส่วนเสริมที่ดาวน์โหลดใน {0} วันล่าสุด"
-
-#~ msgid "Add-ons Downloaded from {0} to {1}"
-#~ msgstr "ส่วนเสริมที่ดาวน์โหลดจาก {0} ถึง {1}"
-
-#~ msgid "Add-ons Created, last {0} days"
-#~ msgstr "ส่วนเสริมที่สร้างใน {0} วันล่าสุด"
-
-#~ msgid "Add-ons Created from {0} to {1}"
-#~ msgstr "ส่วนเสริมที่สร้างจาก {0} ถึง {1}"
-
-#~ msgid "Add-ons Updated, last {0} days"
-#~ msgstr "ส่วนเสริมที่ปรับปรุงใน {0} วันล่าสุด"
-
-#~ msgid "Add-ons Updated from {0} to {1}"
-#~ msgstr "ส่วนเสริมที่ปรับปรุงจาก {0} ถึง {1}"
-
-#~ msgid "Reviews Written, last {0} days"
-#~ msgstr "บทวิจารณ์ที่เขียนใน {0} วันล่าสุด"
-
-#~ msgid "Reviews Written from {0} to {1}"
-#~ msgstr "บทวิจารณ์ที่เขียนจาก {0} ถึง {1}"
-
-#~ msgid "User Signups, last {0} days"
-#~ msgstr "ผู้ใช้ที่ลงทะเบียนใน {0} วันล่าสุด"
-
-#~ msgid "User Signups from {0} to {1}"
-#~ msgstr "ผู้ใช้ที่ลงทะเบียนจาก {0} ถึง {1}"
-
-#~ msgid "Collections Created, last {0} days"
-#~ msgstr "ชุดที่สร้างใน {0} วันล่าสุด"
-
-#~ msgid "Collections Created from {0} to {1}"
-#~ msgstr "ชุดที่สร้างจาก {0} ถึง {1}"
-
-#~ msgid "Subscribers, last {0} days"
-#~ msgstr "ผู้ติดตามใน {0} วันล่าสุด"
-
-#~ msgid "Subscribers from {0} to {1}"
-#~ msgstr "ผู้ติดตามจาก {0} ถึง {1}"
-
-#~ msgid "Ratings, last {0} days"
-#~ msgstr "การจัดอันดับใน {0} วันล่าสุด"
-
-#~ msgid "Ratings from {0} to {1}"
-#~ msgstr "การจัดอันดับจาก {0} ถึง {1}"
-
-#~ msgid "Sales, last {0} days"
-#~ msgstr "การขายใน {0} วันล่าสุด"
-
-#~ msgid "Sales from {0} to {1}"
-#~ msgstr "การขายจาก {0} ถึง {1}"
-
-#~ msgid "Installs, last {0} days"
-#~ msgstr "การติดตั้งใน {0} วันล่าสุด"
-
-#~ msgid "Installs from {0} to {1}"
-#~ msgstr "การติดตั้งจาก {0} ถึง {1}"
-
-#~ msgid "<b>{0}</b> in last {1} days"
-#~ msgstr "<b>{0}</b> ใน {1} วันล่าสุด"
-
-#~ msgid "<b>{0}</b> from {1} to {2}"
-#~ msgstr "<b>{0}</b> จาก {1} ถึง {2}"
-
-#~ msgid "<b>{0}</b> average in last {1} days"
-#~ msgstr "<b>{0}</b> เฉลี่ยใน {1} วันล่าสุด"
-
-#~ msgid "No data available."
-#~ msgstr "ไม่มีข้อมูล"
-
-#~ msgid "Date"
-#~ msgstr "วันที่"
-
-#~ msgid "Other"
-#~ msgstr "อื่น ๆ"
-
-#~ msgid "Select an application first"
-#~ msgstr "เลือกแอพพลิเคชั่นก่อน"
-
-#~ msgid "App installation not allowed."
-#~ msgstr "การติดตั้งแอพไม่ได้รับอนุญาต"
-
-#~ msgid "Install failed. Please try again later."
-#~ msgstr "การติดตั้งล้มเหลว โปรดลองอีกครั้ง"
-
-#~ msgid "App installation failed."
-#~ msgstr "การติดตั้งแอพล้มเหลว"
-
-#~ msgid "This system does not support installing apps."
-#~ msgstr "ระบบนี้ไม่รองรับการติดตั้งแอพ"
-
-#~ msgid "Admins and editors must provide a password to log in."
-#~ msgstr "ผู้ดูแลระบบและผู้แก้ไขต้องใช้รหัสผ่านสำหรับการเข้าระบบ"
-
-#~ msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-#~ msgstr "การเข้าสู่ระบบ BrowserID ล้มเหลว บางทีคุณอาจจะไม่ได้มีบัญชีที่ใช้ที่อยู่อีเมลนั้น?"
-
-#~ msgid "Accept and Install"
-#~ msgstr "ยอมรับและติดตั้ง"
-
-#~ msgid "Add to {0}"
-#~ msgstr "เพิ่มไปยัง {0}"
-
-#~ msgid "Download Now"
-#~ msgstr "ดาวน์โหลดเดี๋ยวนี้"
-
-#~ msgid "You need to be using Firefox 10.0 or higher."
-#~ msgstr "คุณจำเป็นต้องใช้ Firefox 10.0 หรือสูงกว่า"
-
-#~ msgid "Mozilla has marked this version as incompatible with your Firefox version."
-#~ msgstr "Mozilla ทำเครื่องหมายว่ารุ่นนี้ไม่เข้ากันกับรุ่น Firefox ของคุณ"
-
-#~ msgid "Install for {0} anyway"
-#~ msgstr "ติดตั้ง {0} ต่อไป"
-
-#~ msgid "Download for {0} anyway"
-#~ msgstr "ดาวน์โหลด {0} ต่อไป"
-
-#~ msgid "Not available for your platform"
-#~ msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
-
-#~ msgid "Not available for {0} {1}"
-#~ msgstr "ไม่พร้อมใช้งานสำหรับ {0} {1}"
-
-#~ msgid "Works with {app} {min} - {max}"
-#~ msgstr "ทำงานได้กับ {app} {min} - {max}"
-
-#~ msgid "View other versions"
-#~ msgstr "ดูรุ่นอื่น"
-
-#~ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-#~ msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
-
-#~ msgid "clear recently viewed"
-#~ msgstr "ล้างที่เพิ่งดูล่าสุด"
-
-#~ msgid "Adding to Favorites&hellip;"
-#~ msgstr "เพิ่มเข้ารายการโปรด&hellip;"
-
-#~ msgid "Removing Favorite&hellip;"
-#~ msgstr "เอาออกจากรายการโปรด&hellip;"
-
-#~ msgid "Add to Favorites"
-#~ msgstr "เพิ่มเข้ารายการโปรด"
-
-#~ msgid "Remove from Favorites"
-#~ msgstr "เอาออกจากรายการโปรด"
-
-#~ msgid "Pending"
-#~ msgstr "กำลังรอ"
-
-#~ msgid "Add a comment"
-#~ msgstr "แสดงความคิดเห็น"
-
-#~ msgid "Comment"
-#~ msgstr "ความคิดเห็น"
-
-#~ msgid "Remove this add-on from the collection"
-#~ msgstr "เอาส่วนเสริมนี้ออกจากชุด"
-
-#~ msgid "Remove"
-#~ msgstr "เอาออก"
-
-#~ msgid "An email address is required."
-#~ msgstr "ต้องการที่อยู่อีเมล"
-
-#~ msgid "You have already added that user."
-#~ msgstr "คุณได้เพิ่มผู้ใช้คนนี้แล้ว"
-
-#~ msgid "Add to favorites"
-#~ msgstr "เพิ่มไปยังรายการโปรด"
-
-#~ msgid "Remove from favorites"
-#~ msgstr "เอาออกจากรายการโปรด"
-
-#~ msgid "Stop following"
-#~ msgstr "หยุดการติดตาม"
-
-#~ msgid "Install App"
-#~ msgstr "ติดตั้งแอพ"
-
-#~ msgid "Your browser does not support the video tag"
-#~ msgstr "เบราว์เซอร์ของคุณไม่รองรับวิดีโอแท็ก"
-
-#~ msgid "Changes Saved"
-#~ msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
-
-#~ msgid "There was an error uploading your file."
-#~ msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
-
-#~ msgid "{files} file"
-#~ msgid_plural "{files} files"
-#~ msgstr[0] "{files} ไฟล์"
-
-#~ msgid "Learn more"
-#~ msgstr "เรียนรู้เพิ่มเติม"
-
-#~ msgid "Example"
-#~ msgstr "ตัวอย่าง"
-
-#~ msgid "Image changes being processed"
-#~ msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
-
-#~ msgid "Starting tests..."
-#~ msgstr "เริ่มการทดสอบ…"
-
-#~ msgid "Waiting for test results..."
-#~ msgstr "กำลังรอผลการทดสอบ…"
-
-#~ msgid "Internal Server Error"
-#~ msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
-
-#~ msgid "Must be a valid e-mail address."
-#~ msgstr "ต้องเป็นที่อยู่อีเมลที่ถูกต้อง"
-
-#~ msgid "No results found."
-#~ msgstr "ไม่พบผลลัพธ์"
-
-#~ msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-#~ msgstr "ขออภัย เราไม่สามารถค้นหาคำแนะนำใด ๆ สำหรับคุณ <br>โปรดเยี่ยมชม<a href=\"{0}\">เว็บไซต์ส่วนเสริม</a>เพื่อค้นหาส่วนเสริมที่เหมาะสมกับคุณ"
-
-#~ msgid "Finding recommendations&hellip;"
-#~ msgstr "กำลังค้นหารายการแนะนำ&hellip;"
-
-#~ msgid "Updating recommendations&hellip;"
-#~ msgstr "กำลังอัพเดตรายการแนะนำ&hellip;"
-
-#~ msgid "{name} was viewing this page first."
-#~ msgstr "{name} ดูหน้านี้เป็นคนแรก"
-
-#~ msgid "Receipt checked by app."
-#~ msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
-
-#~ msgid "Receipt was not checked by app."
-#~ msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
-
-#~ msgid "Loading&hellip;"
-#~ msgstr "กำลังโหลด&hellip;"
-
-#~ msgid "Version Notes"
-#~ msgstr "บันทึกประจำรุ่น"
-
-#~ msgid "Notes for Reviewers"
-#~ msgstr "หมายเหตุสำหรับนักวิจารณ์"
-
-#~ msgid "No version notes found"
-#~ msgstr "ไม่พบบันทึกประจำรุ่น"
-
-#~ msgid "Average Reviews"
-#~ msgstr "คำวิจารณ์โดยเฉลี่ย"
-
-#~ msgid "Number of Reviews"
-#~ msgstr "จำนวนคำวิจารณ์"
-
-#~ msgid "Loading..."
-#~ msgstr "กำลังโหลด…"
-
-#~ msgid "<b>{0}</b> character left."
-#~ msgid_plural "<b>{0}</b> characters left."
-#~ msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
-
-#~ msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-#~ msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
-
-#~ msgid "Remove this localization"
-#~ msgstr "ลบการแปลนี้"
-
-#~ msgid "Download {0}"
-#~ msgstr "ดาวน์โหลด {0}"
-
-#~ msgid "Password strength:"
-#~ msgstr "ความแข็งแกร่งของรหัสผ่าน:"
-
-#~ msgid "At least {0} character left."
-#~ msgid_plural "At least {0} characters left."
-#~ msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ตัวอักษร"
-
-#~ msgid "All"
-#~ msgstr "ทั้งหมด"
-
-#~ msgid "Requested Info"
-#~ msgstr "ข้อมูลที่ร้องขอ"
-
-#~ msgid "Flagged"
-#~ msgstr "ถูกปักธง"
-
-#~ msgid "Duplicate"
-#~ msgstr "ซ้ำ"
-
-#~ msgid "Rejected"
-#~ msgstr "ถูกปฏิเสธ"
-
-#~ msgid "Approved"
-#~ msgstr "อนุมัติแล้ว"
-
-#~ msgid "All tests passed successfully."
-#~ msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
-
-#~ msgid "These tests were not run."
-#~ msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
-
-#~ msgid "Tests"
-#~ msgstr "ทดสอบ"
-
-#~ msgid "Error"
-#~ msgstr "ข้อผิดพลาด"
-
-#~ msgid "Warning"
-#~ msgstr "คำเตือน"
-
-#~ msgid "Compatibility Tests"
-#~ msgstr "การทดสอบความเข้ากันได้"
-
-#~ msgid "App failed validation."
-#~ msgstr "แอพไม่ผ่านการตรวจสอบ"
-
-#~ msgid "App passed validation."
-#~ msgstr "แอพได้ผ่านการตรวจสอบ"
-
-#~ msgid "Add-on failed validation."
-#~ msgstr "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบ"
-
-#~ msgid "Add-on passed validation."
-#~ msgstr "ส่วนเสริมของคุณได้ผ่านการตรวจสอบ"
-
-#~ msgid "{0} error"
-#~ msgid_plural "{0} errors"
-#~ msgstr[0] "{0} ข้อผิดพลาด"
-
-#~ msgid "{0} warning"
-#~ msgid_plural "{0} warnings"
-#~ msgstr[0] "{0} คำเตือน"
-
-#~ msgid "Validation task could not complete or completed with errors"
-#~ msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
-
-#~ msgid "Internal server error"
-#~ msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
-
-#~ msgid "Not Updated for {0} {1}"
-#~ msgstr "ไม่ได้รับการปรับปรุงสำหรับ {0} {1}"
-
-#~ msgid "Requires Newer Version of {0}"
-#~ msgstr "ต้องการรุ่นใหม่กว่าของ {0}"
-
-#~ msgid "Unreviewed"
-#~ msgstr "ยังไม่ถูกตรวจสอบ"
-
-#~ msgid "Experimental <span>(Learn More)</span>"
-#~ msgstr "ทดลอง <span>(เรียนรู้เพิ่มเติม)</span>"
-
-#~ msgid "Not Available for {0}"
-#~ msgstr "ไม่พร้อมใช้งานสำหรับ {0}"
-
-#~ msgid "Experimental"
-#~ msgstr "ทดลอง"
-
-#~ msgid "Themes Require Newer Version of {0}"
-#~ msgstr "ชุดตกแต่งต้องการรุ่นที่ใหม่กว่าของ {0}"
-
-#~ msgid "Themes Require {0}"
-#~ msgstr "ชุดตกแต่งต้องการ {0}"
-
-#~ msgid "Installing..."
-#~ msgstr "กำลังติดตั้ง…"
-
-#~ msgid "Purchasing..."
-#~ msgstr "กำลังซื้อ…"
-
-#~ msgid "This add-on has been preliminarily reviewed by Mozilla."
-#~ msgstr "ส่วนเสริมนี้ได้รับการตรวจสอบเบื้องต้นโดย Mozilla"
-
-#~ msgid "Keep it"
-#~ msgstr "เก็บไว้"
-
-#~ msgid "You're trying it on!"
-#~ msgstr "คุณกำลังพยายามทำมันอยู่!"
-
-#~ msgid "Added to Firefox"
-#~ msgstr "เพิ่มเข้า Firefox แล้ว"
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} ดาว"
+
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "มีปัญหาในการติดต่อกับเซอร์เวอร์"
+
+#: static/js/common/upload-addon.js:52
+msgid "Select a file..."
+msgstr "เลือกไฟล์…"
+
+#: static/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .xpi .jar หรือ .xml"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:87
+msgid "{0}% complete"
+msgstr "เสร็จสิ้น {0}%"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:90
+msgid "{0} of {1}"
+msgstr "{0} จาก {1}"
+
+#: static/js/common/upload-addon.js:120
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: static/js/common/upload-addon.js:142
+msgid "Uploading {0}"
+msgstr "กำลังอัปโหลด {0}"
+
+#: static/js/common/upload-addon.js:169
+msgid "Error with {0}"
+msgstr "เกิดข้อผิดพลาดกับ {0}"
+
+#: static/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
+
+#: static/js/common/upload-addon.js:188
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;และอื่นๆ {0}"
+
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+msgid "See full validation report"
+msgstr "ดูรายงานการตรวจสอบ"
+
+#: static/js/common/upload-addon.js:214
+msgid "Validating {0}"
+msgstr "กำลังตรวจสอบ {0}"
+
+#. L10n: first argument is an HTTP status code
+#: static/js/common/upload-addon.js:253
+msgid "Received an empty response from the server; status: {0}"
+msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
+
+#: static/js/common/upload-addon.js:269
+msgid "Unexpected server error while validating."
+msgstr "ข้อผิดพลาดของแม่ข่ายที่ไม่คาดคิดขณะกำลังทำการตรวจสอบ"
+
+#: static/js/common/upload-addon.js:307
+msgid "Finished validating {0}"
+msgstr "เสร็จสิ้นการตรวจสอบ {0}"
+
+#: static/js/common/upload-addon.js:313
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] ""
+
+#: static/js/common/upload-addon.js:318
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr ""
+
+#: static/js/common/upload-addon.js:334
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:335
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:348
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:350
+msgid "Add-on submission checklist"
+msgstr ""
+
+#: static/js/common/upload-addon.js:351
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:353
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+
+#: static/js/common/upload-addon.js:371
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:388
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr ""
+
+#: static/js/common/upload-addon.js:425
+msgid "Some platforms are not available for this type of add-on."
+msgstr "ส่วนเสริมชนิดนี้ไม่สามารถใช้งานได้บนบางแพลตฟอร์ม"
+
+#: static/js/common/upload-addon.js:427
+msgid "Sorry, no supported platform has been found."
+msgstr ""
+
+#: static/js/common/upload-base.js:57
+msgid "The filetype you uploaded isn't recognized."
+msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุณอัปโหลด"
+
+#: static/js/common/upload-base.js:79
+msgid "You cancelled the upload."
+msgstr "คุณได้ยกเลิกการอัปโหลด"
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "รูปภาพต้องเป็น PNG หรือไม่ก็ JPG"
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "วิดีโอต้องเป็นแบบ WebM"
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "ติดตามชุดนี้"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "เลิกติดตาม"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "กำลังติดตาม"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "สงวนลิขสิทธิ์"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์ 3.0"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า 3.0"
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-ไม่ดัดแปลง 3.0"
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน 3.0"
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ดัดแปลง 3.0"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-อนุญาตแบบเดียวกัน 3.0"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "ชื่อชุดตกแต่งของคุณ"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "ปักธงสำหรับการวิจารณ์"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "คุณต้องป้อนข้อมูล"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "ทำเครื่องหมายสำหรับการลบ"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "กำลังปรับปรุงผลลัพธ์&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "หมวดหมู่"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr ""
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "ใช้ต้นฉบับ"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "สัปดาห์ที่ {0}"
+
+#: static/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr "ดาวน์โหลด"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} ผู้ใช้"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} ส่วนเสริม"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} ชุด"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} บทวิจารณ์"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} การขาย"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0} การคืนเงิน"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} การติดตั้ง"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+msgid "Downloads"
+msgstr "ดาวน์โหลด"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+msgid "Daily Users"
+msgstr "ผู้ใช้ต่อวัน"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "จำนวนในดอลลาร์สหรัฐ"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+msgid "Number of Contributions"
+msgstr "จำนวนการบริจาค"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "ข้อมูลเพิ่มเติม..."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "รายละเอียดสำหรับ {0}"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "ชุดที่สร้างแล้ว"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "ส่วนเสริมที่ใช้อยู่"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "ส่วนเสริมที่สร้าง"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "ส่วนเสริมที่ดาวน์โหลด"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "ส่วนเสริมที่ปรับปรุง"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "เขียนบทวิจารณ์แล้ว"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "ผู้ใช้ที่ลงทะเบียน"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "ผู้ติดตาม"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "การจัดอันดับ"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+msgid "Sales"
+msgstr "ขาย"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+msgid "Installs"
+msgstr "ติดตั้ง"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "ตัวจัดการส่วนเสริม"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Search Results"
+msgstr "ผลลัพธ์การค้นหา"
+
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+msgid "Homepage Promo"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+msgid "Homepage Featured"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Up and Coming"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:52
+msgid "Homepage Most Popular"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+msgid "Detail Page"
+msgstr "หน้ารายละเอียด"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+msgid "Detail Page (bottom)"
+msgstr "หน้ารายละเอียด (ด้านล่าง)"
+
+#: static/js/impala/stats/csv_keys.js:57
+msgid "Detail Page (Development Channel)"
+msgstr "หน้ารายละเอียด (ช่องการพัฒนา)"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+msgid "Often Used With"
+msgstr "ใช้บ่อยๆ โดย"
+
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+msgid "Others By Author"
+msgstr "อื่น ๆ โดยผู้สร้าง"
+
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Dependencies"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Upsell"
+msgstr "เพิ่มยอดขาย"
+
+#: static/js/impala/stats/csv_keys.js:68
+msgid "Sharing"
+msgstr "การแบ่งปัน"
+
+#: static/js/impala/stats/csv_keys.js:69
+msgid "Category Pages"
+msgstr "หน้าหมวดหมู่"
+
+#: static/js/impala/stats/csv_keys.js:70
+msgid "Collections"
+msgstr "ชุด"
+
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+msgid "Category Landing Featured Carousel"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+msgid "Category Landing Top Rated"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+msgid "Category Landing Most Popular"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+msgid "Category Landing Recently Added"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+msgid "Browse Listing Featured Sort"
+msgstr "ดูรายการตามการแนะนำ"
+
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+msgid "Browse Listing Users Sort"
+msgstr "เรียกดูรายการตามผู้ใช้"
+
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+msgid "Browse Listing Rating Sort"
+msgstr "เรียกดูรายการตามการจัดอันดับ"
+
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+msgid "Browse Listing Created Sort"
+msgstr "เรียกดูรายการตามการสร้าง"
+
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+msgid "Browse Listing Name Sort"
+msgstr "เรียกดูรายการตามชื่อ"
+
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+msgid "Browse Listing Popular Sort"
+msgstr "เรียกดูรายการตามความนิยม"
+
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+msgid "Browse Listing Updated Sort"
+msgstr "เรียกดูรายการตามการปรับปรุง"
+
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+msgid "Browse Listing Up and Coming Sort"
+msgstr "เรียกดูรายการตามที่กำลังจะมาถึง"
+
+#: static/js/impala/stats/csv_keys.js:98
+msgid "Total Amount Contributed"
+msgstr "จำนวนการบริจาครวม"
+
+#: static/js/impala/stats/csv_keys.js:99
+msgid "Average Contribution"
+msgstr "การบริจาคโดยเฉลี่ย"
+
+#: static/js/impala/stats/csv_keys.js:108
+msgid "Usage"
+msgstr "การใช้งาน"
+
+#: static/js/impala/stats/csv_keys.js:111
+msgid "Firefox"
+msgstr "Firefox"
+
+#: static/js/impala/stats/csv_keys.js:112
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: static/js/impala/stats/csv_keys.js:113
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: static/js/impala/stats/csv_keys.js:114
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: static/js/impala/stats/csv_keys.js:116
+msgid "Fennec"
+msgstr "Fennec"
+
+#: static/js/impala/stats/csv_keys.js:117
+msgid "Android"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:122
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "การดาวน์โหลดและผู้ใช้ต่อวันใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "การดาวน์โหลดและผู้ใช้ต่อวันจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:128
+msgid "Installs and Daily Users, last {0} days"
+msgstr "การติดตั้งและผู้ใช้ต่อวันใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:130
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "การติดตั้งและผู้ใช้ต่อวันจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:134
+msgid "Downloads, last {0} days"
+msgstr "การดาวน์โหลดใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:136
+msgid "Downloads from {0} to {1}"
+msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:140
+msgid "Daily Users, last {0} days"
+msgstr "ผู้ใช้ต่อวันใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:142
+msgid "Daily Users from {0} to {1}"
+msgstr "ผู้ใช้ต่อวันจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:146
+msgid "Applications, last {0} days"
+msgstr "แอพพลิเคชั่นใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:148
+msgid "Applications from {0} to {1}"
+msgstr "แอพพลิเคชั่นจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:152
+msgid "Platforms, last {0} days"
+msgstr "แพลตฟอร์มใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:154
+msgid "Platforms from {0} to {1}"
+msgstr "แพลตฟอร์มจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:158
+msgid "Languages, last {0} days"
+msgstr "ภาษาใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:160
+msgid "Languages from {0} to {1}"
+msgstr "ภาษาจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:164
+msgid "Add-on Versions, last {0} days"
+msgstr "รุ่นของส่วนเสริมใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:166
+msgid "Add-on Versions from {0} to {1}"
+msgstr "รุ่นของส่วนเสริมจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:170
+msgid "Add-on Status, last {0} days"
+msgstr "สถานะของส่วนเสริมใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:172
+msgid "Add-on Status from {0} to {1}"
+msgstr "สถานะของส่วนเสริมจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:176
+msgid "Download Sources, last {0} days"
+msgstr "การดาวน์โหลดซอร์สใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:178
+msgid "Download Sources from {0} to {1}"
+msgstr "การดาวน์โหลดซอร์สจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:182
+msgid "Contributions, last {0} days"
+msgstr "การบริจาคใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:184
+msgid "Contributions from {0} to {1}"
+msgstr "การบริจาคจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:188
+msgid "Site Metrics, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:190
+msgid "Site Metrics from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:194
+msgid "Add-ons in Use, last {0} days"
+msgstr "ส่วนเสริมที่ใช้งานใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:196
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "ส่วนเสริมที่ใช้จาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:200
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "ส่วนเสริมที่ดาวน์โหลดใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:202
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "ส่วนเสริมที่ดาวน์โหลดจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:206
+msgid "Add-ons Created, last {0} days"
+msgstr "ส่วนเสริมที่สร้างใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:208
+msgid "Add-ons Created from {0} to {1}"
+msgstr "ส่วนเสริมที่สร้างจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:212
+msgid "Add-ons Updated, last {0} days"
+msgstr "ส่วนเสริมที่ปรับปรุงใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:214
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "ส่วนเสริมที่ปรับปรุงจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:218
+msgid "Reviews Written, last {0} days"
+msgstr "บทวิจารณ์ที่เขียนใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:220
+msgid "Reviews Written from {0} to {1}"
+msgstr "บทวิจารณ์ที่เขียนจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:224
+msgid "User Signups, last {0} days"
+msgstr "ผู้ใช้ที่ลงทะเบียนใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:226
+msgid "User Signups from {0} to {1}"
+msgstr "ผู้ใช้ที่ลงทะเบียนจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:230
+msgid "Collections Created, last {0} days"
+msgstr "ชุดที่สร้างใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:232
+msgid "Collections Created from {0} to {1}"
+msgstr "ชุดที่สร้างจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:236
+msgid "Subscribers, last {0} days"
+msgstr "ผู้ติดตามใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:238
+msgid "Subscribers from {0} to {1}"
+msgstr "ผู้ติดตามจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:242
+msgid "Ratings, last {0} days"
+msgstr "การจัดอันดับใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:244
+msgid "Ratings from {0} to {1}"
+msgstr "การจัดอันดับจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:248
+msgid "Sales, last {0} days"
+msgstr "การขายใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:250
+msgid "Sales from {0} to {1}"
+msgstr "การขายจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:254
+msgid "Installs, last {0} days"
+msgstr "การติดตั้งใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:256
+msgid "Installs from {0} to {1}"
+msgstr "การติดตั้งจาก {0} ถึง {1}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:262
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b> ใน {1} วันล่าสุด"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b> จาก {1} ถึง {2}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:268
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "<b>{0}</b> เฉลี่ยใน {1} วันล่าสุด"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "ไม่มีข้อมูล"
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "วันที่"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "อื่น ๆ"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+msgid "Select an application first"
+msgstr "เลือกแอพพลิเคชั่นก่อน"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] ""
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] ""
+
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "การติดตั้งแอพไม่ได้รับอนุญาต"
+
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr ""
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr ""
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr ""
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr ""
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "การติดตั้งล้มเหลว โปรดลองอีกครั้ง"
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "การติดตั้งแอพล้มเหลว"
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "ระบบนี้ไม่รองรับการติดตั้งแอพ"
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "ผู้ดูแลระบบและผู้แก้ไขต้องใช้รหัสผ่านสำหรับการเข้าระบบ"
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "การเข้าสู่ระบบ BrowserID ล้มเหลว บางทีคุณอาจจะไม่ได้มีบัญชีที่ใช้ที่อยู่อีเมลนั้น?"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "ยอมรับและติดตั้ง"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "เพิ่มไปยัง {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "ดาวน์โหลดเดี๋ยวนี้"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr ""
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "คุณจำเป็นต้องใช้ Firefox 10.0 หรือสูงกว่า"
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla ทำเครื่องหมายว่ารุ่นนี้ไม่เข้ากันกับรุ่น Firefox ของคุณ"
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "ติดตั้ง {0} ต่อไป"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "ดาวน์โหลด {0} ต่อไป"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "ไม่พร้อมใช้งานสำหรับ {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "ทำงานได้กับ {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "ดูรุ่นอื่น"
+
+#: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "ล้างที่เพิ่งดูล่าสุด"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "เพิ่มเข้ารายการโปรด&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "เอาออกจากรายการโปรด&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "เพิ่มเข้ารายการโปรด"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "เอาออกจากรายการโปรด"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "กำลังรอ"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "แสดงความคิดเห็น"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "ความคิดเห็น"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "เอาส่วนเสริมนี้ออกจากชุด"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "เอาออก"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr ""
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "ต้องการที่อยู่อีเมล"
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr ""
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "คุณได้เพิ่มผู้ใช้คนนี้แล้ว"
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "เพิ่มไปยังรายการโปรด"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "เอาออกจากรายการโปรด"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "หยุดการติดตาม"
+
+#: static/js/zamboni/devhub.js:127
+msgid "Your browser does not support the video tag"
+msgstr "เบราว์เซอร์ของคุณไม่รองรับวิดีโอแท็ก"
+
+#: static/js/zamboni/devhub.js:382
+msgid "Changes Saved"
+msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
+
+#: static/js/zamboni/devhub.js:398
+msgid "Enter a new author's email address"
+msgstr ""
+
+#: static/js/zamboni/devhub.js:545
+msgid "There was an error uploading your file."
+msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
+
+#: static/js/zamboni/devhub.js:690
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} ไฟล์"
+
+#: static/js/zamboni/devhub.js:693
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
+
+#: static/js/zamboni/devhub.js:805
+msgid "Learn more"
+msgstr "เรียนรู้เพิ่มเติม"
+
+#: static/js/zamboni/devhub.js:809
+msgid "Example"
+msgstr "ตัวอย่าง"
+
+#: static/js/zamboni/devhub.js:1165
+msgid "Image changes being processed"
+msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
+
+#: static/js/zamboni/devhub.js:1292
+msgid "Starting tests..."
+msgstr "เริ่มการทดสอบ…"
+
+#: static/js/zamboni/devhub.js:1299
+msgid "Waiting for test results..."
+msgstr "กำลังรอผลการทดสอบ…"
+
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+msgid "Internal Server Error"
+msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
+
+#: static/js/zamboni/devhub.js:1341
+msgid "Must be a valid e-mail address."
+msgstr "ต้องเป็นที่อยู่อีเมลที่ถูกต้อง"
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "ไม่พบผลลัพธ์"
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "ขออภัย เราไม่สามารถค้นหาคำแนะนำใด ๆ สำหรับคุณ <br>โปรดเยี่ยมชม<a href=\"{0}\">เว็บไซต์ส่วนเสริม</a>เพื่อค้นหาส่วนเสริมที่เหมาะสมกับคุณ"
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "กำลังค้นหารายการแนะนำ&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "กำลังอัพเดตรายการแนะนำ&hellip;"
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "{name} ดูหน้านี้เป็นคนแรก"
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr ""
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "กำลังโหลด&hellip;"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "บันทึกประจำรุ่น"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "หมายเหตุสำหรับนักวิจารณ์"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "ไม่พบบันทึกประจำรุ่น"
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "คำวิจารณ์โดยเฉลี่ย"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "จำนวนคำวิจารณ์"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr ""
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "กำลังโหลด…"
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "ลบการแปลนี้"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "ดาวน์โหลด {0}"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "ความแข็งแกร่งของรหัสผ่าน:"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ตัวอักษร"
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "ทั้งหมด"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "ข้อมูลที่ร้องขอ"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "ถูกปักธง"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "ซ้ำ"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "ถูกปฏิเสธ"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "อนุมัติแล้ว"
+
+#: static/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
+
+#: static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
+
+#: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "ทดสอบ"
+
+#: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+#: static/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "คำเตือน"
+
+#: static/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "การทดสอบความเข้ากันได้"
+
+#: static/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "แอพไม่ผ่านการตรวจสอบ"
+
+#: static/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "แอพได้ผ่านการตรวจสอบ"
+
+#: static/js/zamboni/validator.js:337
+msgid "Add-on failed validation."
+msgstr "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบ"
+
+#: static/js/zamboni/validator.js:339
+msgid "Add-on passed validation."
+msgstr "ส่วนเสริมของคุณได้ผ่านการตรวจสอบ"
+
+#: static/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ข้อผิดพลาด"
+
+#: static/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} คำเตือน"
+
+#: static/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] ""
+
+#: static/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
+
+#: static/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
+
+#: static/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr "ไม่ได้รับการปรับปรุงสำหรับ {0} {1}"
+
+#: static/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr "ต้องการรุ่นใหม่กว่าของ {0}"
+
+#: static/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr "ยังไม่ถูกตรวจสอบ"
+
+#: static/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "ทดลอง <span>(เรียนรู้เพิ่มเติม)</span>"
+
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr "ไม่พร้อมใช้งานสำหรับ {0}"
+
+#: static/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr "ทดลอง"
+
+#: static/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr "ชุดตกแต่งต้องการรุ่นที่ใหม่กว่าของ {0}"
+
+#: static/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr "ชุดตกแต่งต้องการ {0}"
+
+#: static/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "กำลังติดตั้ง…"
+
+#: static/js/zamboni/mobile/buttons.js:148
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "ส่วนเสริมนี้ได้รับการตรวจสอบเบื้องต้นโดย Mozilla"
+
+#: static/js/zamboni/mobile/buttons.js:275
+msgid "Keep it"
+msgstr "เก็บไว้"
+
+#: static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr "คุณกำลังพยายามทำมันอยู่!"
+
+#: static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr "เพิ่มเข้า Firefox แล้ว"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:39-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2014-07-10 15:49+0000\n"
 "Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,768 +14,1217 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1405007343.0\n"
 
-#~ msgid "{0} star"
-#~ msgid_plural "{0} stars"
-#~ msgstr[0] "{0} ਤਾਰਾ"
-#~ msgstr[1] "{0} ਤਾਰੇ"
-
-#~ msgid "There was a problem contacting the server."
-#~ msgstr "ਸਰਵਰ ਨੂੰ ਜੋੜਨ ਵਿੱਚ ਸਮੱਸਿਆ ਆਈ ਹੈ।"
-
-#~ msgid "Select a file..."
-#~ msgstr "ਇੱਕ ਫਾਈਲ ਚੁਣੋ..."
-
-#~ msgid "Your add-on should end with .xpi, .jar or .xml"
-#~ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ .xpi, .jar ਜਾਂ .xml ਨਾਲ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
-
-#~ msgid "{0}% complete"
-#~ msgstr "{0}% ਮੁਕੰਮਲ"
-
-#~ msgid "{0} of {1}"
-#~ msgstr "{1} ਵਿੱਚੋਂ {0}"
-
-#~ msgid "Cancel"
-#~ msgstr "ਰੱਦ"
-
-#~ msgid "Uploading {0}"
-#~ msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ "
-
-#~ msgid "Error with {0}"
-#~ msgstr "{0} ਨਾਲ ਗਲਤੀ"
-
-#~ msgid "Your add-on failed validation with {0} error."
-#~ msgid_plural "Your add-on failed validation with {0} errors."
-#~ msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ {0} ਗਲਤੀ ਨਾਲ ਫ੍ਹੇਲ ਹੋ ਗਿਆ ਹੈ।"
-#~ msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ {0} ਗਲਤੀਆਂ ਨਾਲ ਫ੍ਹੇਲ ਹੋ ਗਿਆ ਹੈ।"
-
-#~ msgid "&hellip;and {0} more"
-#~ msgid_plural "&hellip;and {0} more"
-#~ msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
-#~ msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
-
-#~ msgid "See full validation report"
-#~ msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
-
-#~ msgid "Validating {0}"
-#~ msgstr "{0} ਵੈਧਤਾ"
-
-#~ msgid "Received an empty response from the server; status: {0}"
-#~ msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
-
-#~ msgid "Unexpected server error while validating."
-#~ msgstr "ਵੈਧਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤੀ।"
-
-#~ msgid "Finished validating {0}"
-#~ msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
-
-#~ msgid "Your add-on passed validation with no errors and {0} message."
-#~ msgid_plural "Your add-on passed validation with no errors and {0} messages."
-#~ msgstr[0] "ਦਿੱਤੇ ਟਿਕਾਣੇ ਉੱਤੇ ਮੈਨੀਫਿਸਟ ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-#~ msgstr[1] "ਦਿੱਤੇ ਟਿਕਾਣੇ ਉੱਤੇ ਮੈਨੀਫਿਸਟ ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-
-#~ msgid "Your add-on passed validation with no errors or warnings."
-#~ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀਆਂ ਤੇ ਚੇਤਾਵਨੀਆਂ ਨਾਲ ਸਫਲ ਹੋ ਗਿਆ।"
-
-#~ msgid "Some platforms are not available for this type of add-on."
-#~ msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
-
-#~ msgid "Sorry, no supported platform has been found."
-#~ msgstr "ਅਫਸੋਸ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
-
-#~ msgid "The filetype you uploaded isn't recognized."
-#~ msgstr "ਤੁਹਾਨੂੰ ਅੱਪਲੋਡ ਕੀਤੇ ਸੰਗਠਿਤ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੈ।"
-
-#~ msgid "You cancelled the upload."
-#~ msgstr "ਤੁਸੀਂ ਅੱਪਲੋਡ ਨੂੰ ਰੱਦ ਕੀਤਾ।"
-
-#~ msgid "Images must be either PNG or JPG."
-#~ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-#~ msgid "Videos must be in WebM."
-#~ msgstr "WebM ਵਿੱਚ ਵੀਡੀਓ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-#~ msgid "Your packaged app should end with <code>.zip</code>."
-#~ msgstr "<code>.zip</code> ਨਾਲ ਤੁਹਾਡਾ ਪੈਕਿਜ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
-#~ msgid "Your app failed validation with {0} error."
-#~ msgid_plural "Your app failed validation with {0} errors."
-#~ msgstr[0] "ਤੁਹਾਡਾ ਐਪ {0} ਗਲਤੀ ਨਾਲ ਅਸਫਲ।"
-#~ msgstr[1] "ਤੁਹਾਡਾ ਐਪ {0} ਗਲਤੀਆਂ ਨਾਲ ਅਸਫਲ।"
-
-#~ msgid "Your app passed validation with no errors and {0} warning."
-#~ msgid_plural "Your app passed validation with no errors and {0} warnings."
-#~ msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀਆਂ ਨਹੀਂ ਅਤੇ {0} ਚੇਤਾਵਨੀ ਨਾਲ ਪਾਸ ਹੋ ਗਿਆ।"
-#~ msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀਆਂ ਨਹੀਂ ਅਤੇ {0} ਚੇਤਾਵਨੀਆਂ ਨਾਲ ਪਾਸ ਹੋ ਗਿਆ।"
-
-#~ msgid "Your app passed validation with no errors or warnings."
-#~ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀਆਂ ਤੇ ਚੇਤਾਵਨੀਆਂ ਨਾਲ ਪਾਸ ਹੋ ਗਿਆ।"
-
-#~ msgid "Follow this Collection"
-#~ msgstr "ਇਸ ਭੰਡਾਰ ਦੀ ਪਾਲਣਾ ਕਰੋ"
-
-#~ msgid "Stop Following"
-#~ msgstr "ਪਾਲਣਾ ਰੋਕੋ"
-
-#~ msgid "Following"
-#~ msgstr "ਪਾਲਣਾ ਕਰਨਾਂ"
-
-#~ msgid "This theme is incompatible with your version of {0}"
-#~ msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-#~ msgid "All Rights Reserved"
-#~ msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
-
-#~ msgid "Creative Commons Attribution 3.0"
-#~ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
-
-#~ msgid "Creative Commons Attribution-NoDerivs 3.0"
-#~ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੌਨ ਡਰਾਈਵ 3.0"
-
-#~ msgid "Creative Commons Attribution-ShareAlike 3.0"
-#~ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸੇਅਰ ਅਲਾਈਕ 3.0"
-
-#~ msgid "Your Theme's Name"
-#~ msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
-
-#~ msgid "Flagged for review"
-#~ msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
-
-#~ msgid "Your input is required"
-#~ msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
-
-#~ msgid "Marked for deletion"
-#~ msgstr "ਹਟਾਉਣ ਲਈ ਮਾਰਕ ਕੀਤਾ"
-
-#~ msgid "Updating results&hellip;"
-#~ msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
-
-#~ msgid "Category"
-#~ msgstr "ਕੈਟਾਗਿਰੀ"
-
-#~ msgid "Search themes for <b>{0}</b>"
-#~ msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
-
-#~ msgid "Search apps for <b>{0}</b>"
-#~ msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
-
-#~ msgid "Search add-ons for <b>{0}</b>"
-#~ msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
-
-#~ msgid "use original"
-#~ msgstr "ਅਸਲੀ ਵਰਤੋ"
-
-#~ msgid "Week of {0}"
-#~ msgstr "{0} ਦਾ ਹਫਤਾ"
-
-#~ msgid "downloads"
-#~ msgstr "ਡਾਊਨਲੋਡ"
-
-#~ msgid "{0} users"
-#~ msgstr "{0} ਯੂਜਰ"
-
-#~ msgid "{0} add-ons"
-#~ msgstr "{0} ਐਡ-ਆਨ"
-
-#~ msgid "{0} collections"
-#~ msgstr "{0} ਭੰਡਾਰ"
-
-#~ msgid "{0} reviews"
-#~ msgstr "{0} ਸਮੀਖਿਅਕ"
-
-#~ msgid "{0} sales"
-#~ msgstr "{0} ਸੇਲ"
-
-#~ msgid "{0} refunds"
-#~ msgstr "{0} ਰਿਫੰਡ"
-
-#~ msgid "{0} installs"
-#~ msgstr "{0} ਇੰਸਟਾਲ"
-
-#~ msgid "Downloads"
-#~ msgstr "ਡਾਊਨਲੋਡ"
-
-#~ msgid "Daily Users"
-#~ msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ"
-
-#~ msgid "Amount, in USD"
-#~ msgstr "USA ਵਿੱਚ, ਰਾਸ਼ੀ"
-
-#~ msgid "Number of Contributions"
-#~ msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
-
-#~ msgid "More Info..."
-#~ msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
-
-#~ msgid "Details for {0}"
-#~ msgstr "{0} ਲਈ ਵੇਰਵਾ"
-
-#~ msgid "Collections Created"
-#~ msgstr "ਬਣਾਇਆ ਭੰਡਾਰ"
-
-#~ msgid "Add-ons in Use"
-#~ msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ"
-
-#~ msgid "Add-ons Created"
-#~ msgstr "ਐਡ-ਆਨ ਬਣਾਓ"
-
-#~ msgid "Add-ons Downloaded"
-#~ msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ"
-
-#~ msgid "Add-ons Updated"
-#~ msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#~ msgid "Reviews Written"
-#~ msgstr "ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-#~ msgid "User Signups"
-#~ msgstr "ਯੂਜਰ ਸਾਈਨਅੱਪ"
-
-#~ msgid "Subscribers"
-#~ msgstr "ਗਾਹਕ"
-
-#~ msgid "Ratings"
-#~ msgstr "ਰੇਟਿੰਗ"
-
-#~ msgid "Sales"
-#~ msgstr "ਸੇਲ"
-
-#~ msgid "Installs"
-#~ msgstr "ਇੰਸਟਾਲ"
-
-#~ msgid "Unknown"
-#~ msgstr "ਅਣਜਾਣ"
-
-#~ msgid "Add-ons Manager"
-#~ msgstr "ਐਡ-ਆਨ ਮਨੇਜਰ"
-
-#~ msgid "Search Results"
-#~ msgstr "ਨਤੀਜੇ ਖੋਜੋ"
-
-#~ msgid "Homepage Promo"
-#~ msgstr "ਮੁੱਖ ਸਫਾ ਪਰੋਮੋ"
-
-#~ msgid "Homepage Featured"
-#~ msgstr "ਮੁੱਖ ਸਫਾ ਗੁਣ"
-
-#~ msgid "Homepage Up and Coming"
-#~ msgstr "ਮੁੱਖ ਸਫਾ ਉੱਪਰ ਅਤੇ ਆਉਣਾ"
-
-#~ msgid "Homepage Most Popular"
-#~ msgstr "ਮੱਖ ਸਫਾ ਜਿਆਦਾ ਪ੍ਰਸਿੱਧ"
-
-#~ msgid "Detail Page"
-#~ msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ"
-
-#~ msgid "Detail Page (bottom)"
-#~ msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਹੇਠਾਂ)"
-
-#~ msgid "Detail Page (Development Channel)"
-#~ msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਵਾਧਾ ਪ੍ਰਣਾਲੀ)"
-
-#~ msgid "Often Used With"
-#~ msgstr "ਆਮ ਕਰਕੇ ਨਾਲ ਵਰਤਿਆ"
-
-#~ msgid "Others By Author"
-#~ msgstr "ਲੇਖਕ ਵਲੋ ਹੋਰ"
-
-#~ msgid "Dependencies"
-#~ msgstr "ਨਿਰਭਰਤਾਵਾਂ"
-
-#~ msgid "Sharing"
-#~ msgstr "ਵੰਡਣਾ"
-
-#~ msgid "Category Pages"
-#~ msgstr "ਵਰਗ ਪੰਨੇ"
-
-#~ msgid "Collections"
-#~ msgstr "ਸੰਗ੍ਰਹਿ"
-
-#~ msgid "Category Landing Featured Carousel"
-#~ msgstr "ਵਰਗ ਭੂਮੀ ਵਿਸੇਸਤਾ ਝੂਲਣਾ"
-
-#~ msgid "Category Landing Top Rated"
-#~ msgstr "ਕੈਟਾਗਿਰੀ ਲੈਂਡਿੰਗ ਚੋਟੀ ਦੀ ਰੇਟਿੰਗ"
-
-#~ msgid "Category Landing Most Popular"
-#~ msgstr "ਜਿਆਦਾ ਪ੍ਰਸਿੱਧ ਲੈਂਡਿੰਗ ਸ਼੍ਰੈਣੀ"
-
-#~ msgid "Category Landing Recently Added"
-#~ msgstr "ਤਾਜਾ ਸ਼ਾਮਿਲ ਲੈਂਡਿੰਗ ਸ਼੍ਰੈਣੀ"
-
-#~ msgid "Browse Listing Featured Sort"
-#~ msgstr "ਗੁਣ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Browse Listing Users Sort"
-#~ msgstr "ਯੂਜਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Browse Listing Rating Sort"
-#~ msgstr "ਰੇਟਿੰਗ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Browse Listing Created Sort"
-#~ msgstr "ਰਚਨਾਤਮਿਕ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Browse Listing Name Sort"
-#~ msgstr "ਨਾਮ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Browse Listing Popular Sort"
-#~ msgstr "ਪ੍ਰਸਿੱਧ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Browse Listing Updated Sort"
-#~ msgstr "ਅੱਪਡੇਟ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#~ msgid "Total Amount Contributed"
-#~ msgstr "ਪੂਰੀ ਰਕਮ ਯੋਗਦਾਨਿਤ"
-
-#~ msgid "Average Contribution"
-#~ msgstr "ਔਸਤ ਯੋਗਦਾਨ"
-
-#~ msgid "Usage"
-#~ msgstr "ਵਰਤੋਂ"
-
-#~ msgid "Firefox"
-#~ msgstr "ਫਾਇਰਫਾਕਸ"
-
-#~ msgid "Mozilla"
-#~ msgstr "ਮੌਜੀਲਾ"
-
-#~ msgid "Thunderbird"
-#~ msgstr "ਥੰਡਰਬਰਡ"
-
-#~ msgid "Sunbird"
-#~ msgstr "ਸਨਬਰਡ"
-
-#~ msgid "SeaMonkey"
-#~ msgstr "ਸੀਮੌਂਕੀ"
-
-#~ msgid "Fennec"
-#~ msgstr "ਫਿੱਨਸ"
-
-#~ msgid "Downloads and Daily Users, last {0} days"
-#~ msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Downloads and Daily Users from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
-
-#~ msgid "Installs and Daily Users, last {0} days"
-#~ msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Installs and Daily Users from {0} to {1}"
-#~ msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
-
-#~ msgid "Downloads, last {0} days"
-#~ msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Downloads from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
-
-#~ msgid "Daily Users, last {0} days"
-#~ msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Daily Users from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜਾਨਾਂ ਯੂਜਰ"
-
-#~ msgid "Applications, last {0} days"
-#~ msgstr "ਐਪਲੀਕੇਸ਼ਨ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Applications from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
-
-#~ msgid "Platforms, last {0} days"
-#~ msgstr "ਪਲੇਟਫਾਰਮ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Platforms from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਪਲੇਟਫਾਰਮ"
-
-#~ msgid "Languages, last {0} days"
-#~ msgstr "ਭਾਸ਼ਾਵਾਂ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Languages from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਭਾਸ਼ਾਵਾਂ"
-
-#~ msgid "Add-on Versions, last {0} days"
-#~ msgstr "ਐਡ-ਆਨ ਵਰਜਨ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Add-on Versions from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
-
-#~ msgid "Add-on Status, last {0} days"
-#~ msgstr "ਐਡ-ਆਨ ਸਥਿਤੀ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Add-on Status from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
-
-#~ msgid "Download Sources, last {0} days"
-#~ msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Download Sources from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਰੋਤ"
-
-#~ msgid "Contributions, last {0} days"
-#~ msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
-
-#~ msgid "Contributions from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
-
-#~ msgid "Site Metrics, last {0} days"
-#~ msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
-
-#~ msgid "Site Metrics from {0} to {1}"
-#~ msgstr "ਵਲੋ ਸਾਈਟ ਬਿਓਰਾ {0} ਤੋ {1}"
-
-#~ msgid "Add-ons in Use, last {0} days"
-#~ msgstr "ਅੈਡ-ਓਨ ਵਰਤੋ ਵਿੱਚ, ਆਖਰੀ {0} ਦਿਨ"
-
-#~ msgid "Add-ons in Use from {0} to {1}"
-#~ msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿਚ {0} ਤੋਂ {1}"
-
-#~ msgid "Add-ons Downloaded, last {0} days"
-#~ msgstr "ਆਖਰੀ {0} ਦਿਨ,ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ,"
-
-#~ msgid "Add-ons Created, last {0} days"
-#~ msgstr "ਆਖਰੀ {0} ਦਿਨ, ਅੈਡ-ਓਨ ਰਚੇ ਗਏ"
-
-#~ msgid "Add-ons Created from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਵਲੋ ਐਡ-ਆਨ ਬਣਾਓ"
-
-#~ msgid "Add-ons Updated, last {0} days"
-#~ msgstr " ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#~ msgid "Add-ons Updated from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#~ msgid "Reviews Written, last {0} days"
-#~ msgstr " ਆਖਰੀ {0} ਦਿਨ, ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-#~ msgid "Reviews Written from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-#~ msgid "User Signups, last {0} days"
-#~ msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
-
-#~ msgid "User Signups from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
-
-#~ msgid "Collections Created, last {0} days"
-#~ msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਭੰਡਾਰ ਬਣਾਏ"
-
-#~ msgid "Collections Created from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬਣਾਏ ਭੰਡਾਰ"
-
-#~ msgid "Subscribers, last {0} days"
-#~ msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਗਾਹਕ"
-
-#~ msgid "Subscribers from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਗਾਹਕ"
-
-#~ msgid "Ratings, last {0} days"
-#~ msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਰੇਟਿੰਗ"
-
-#~ msgid "Ratings from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੇਟਿੰਗ"
-
-#~ msgid "Sales, last {0} days"
-#~ msgstr "ਆਖਰੀ {0} ਦਿਨ, ਵਿਕਰੀ"
-
-#~ msgid "Sales from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਵਿਕਰੀ"
-
-#~ msgid "Installs, last {0} days"
-#~ msgstr "ਆਖਰੀ {0} ਦਿਨ, ਇੰਸਟਾਲ"
-
-#~ msgid "Installs from {0} to {1}"
-#~ msgstr "{0} ਤੋਂ {1} ਵੱਲੋਂ ਇੰਸਟਾਲ"
-
-#~ msgid "<b>{0}</b> in last {1} days"
-#~ msgstr "<b>{0}</b> ਆਖਰ ਵਿੱਚ {1} ਦਿਨ"
-
-#~ msgid "<b>{0}</b> from {1} to {2}"
-#~ msgstr "<b>{0}</b> ਵੱਲੋਂ {1} ਤੋਂ {2}"
-
-#~ msgid "<b>{0}</b> average in last {1} days"
-#~ msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
-
-#~ msgid "No data available."
-#~ msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜ਼ੂਦ ਨਹੀ"
-
-#~ msgid "Date"
-#~ msgstr "ਤਾਰੀਖ"
-
-#~ msgid "Other"
-#~ msgstr "ਦੂਜਾ"
-
-#~ msgid "Select an application first"
-#~ msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
-
-#~ msgid "App installation not allowed."
-#~ msgstr "ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਆਗਿਆ ਨਹੀਂ"
-
-#~ msgid "App manifest is malformed."
-#~ msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਕਾਰਾ ਹੈ।"
-
-#~ msgid "App host could not be reached."
-#~ msgstr "ਐਪ ਹੋਸਟ ਪਹੁੰਚ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
-
-#~ msgid "App manifest is unparsable."
-#~ msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਾਪਾਰਸਕਰਨਯੋਗ ਹੈ।"
-
-#~ msgid "App manifest is invalid."
-#~ msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਗਲਤ ਹੈ।"
-
-#~ msgid "Install failed. Please try again later."
-#~ msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
-
-#~ msgid "App installation failed."
-#~ msgstr "ਐਪ ਇੰਸਟਾਲੇਸ਼ਨ ਫ੍ਹੇਲ ਹੋਈ।"
-
-#~ msgid "This system does not support installing apps."
-#~ msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਵਿੱਚ ਸਹਾਇਕ ਨਹੀਂ।"
-
-#~ msgid "Accept and Install"
-#~ msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
-
-#~ msgid "Add to {0}"
-#~ msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
-
-#~ msgid "Download Now"
-#~ msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
-
-#~ msgid "Install for {0} anyway"
-#~ msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
-
-#~ msgid "Download for {0} anyway"
-#~ msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
-
-#~ msgid "Not available for your platform"
-#~ msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-#~ msgid "Not available for {0} {1}"
-#~ msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-#~ msgid "Works with {app} {min} - {max}"
-#~ msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-#~ msgid "View other versions"
-#~ msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
-
-#~ msgid "clear recently viewed"
-#~ msgstr "ਹੁਣੇ-ਹੁਣੇ ਨਿਰੀਖਣ ਸਾਫ਼"
-
-#~ msgid "Adding to Favorites&hellip;"
-#~ msgstr "ਪਸੰਦ ਜੋੜ ਰਿਹਾ &hellip;                "
-
-#~ msgid "Add to Favorites"
-#~ msgstr "ਪਸੰਦ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ"
-
-#~ msgid "Remove from Favorites"
-#~ msgstr "ਪਸੰਦ ਵਿਚੋਂ ਹਟਾਓ"
-
-#~ msgid "Pending"
-#~ msgstr "ਬਕਾਇਆ"
-
-#~ msgid "Add a comment"
-#~ msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
-
-#~ msgid "Comment"
-#~ msgstr "ਕਾਮੈਂਟ"
-
-#~ msgid "Remove this add-on from the collection"
-#~ msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
-
-#~ msgid "Remove"
-#~ msgstr "ਹਟਾਓ"
-
-#~ msgid "Remove this user as a contributor"
-#~ msgstr "ਇਸ ਯੂਜਰ ਨੂੰ ਯੋਗਦਾਨ ਦੇ ਤੌਰ ਤੇ ਹਟਾਓ"
-
-#~ msgid "An email address is required."
-#~ msgstr "ਇੱਕ ਈਮੇਲ ਐੱਡਰੈਸ ਦੀ ਜਰੂਰਤ ਹੈ।"
-
-#~ msgid "You cannot add yourself as a contributor."
-#~ msgstr "ਹਟਾਓ"
-
-#~ msgid "You have already added that user."
-#~ msgstr "ਤੁਸੀ ਇਸ ਯੂਜਰ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਸ਼ਾਮਲ ਕਰ ਚੁੱਕੇ ਹੋ"
-
-#~ msgid "Add to favorites"
-#~ msgstr "ਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ"
-
-#~ msgid "Remove from favorites"
-#~ msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
-
-#~ msgid "Stop following"
-#~ msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
-
-#~ msgid "Install App"
-#~ msgstr "ਐਪ ਇੰਸਟਾਲ"
-
-#~ msgid "Your browser does not support the video tag"
-#~ msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
-
-#~ msgid "Changes Saved"
-#~ msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
-
-#~ msgid "Enter a new author's email address"
-#~ msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
-
-#~ msgid "There was an error uploading your file."
-#~ msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
-
-#~ msgid "{files} file"
-#~ msgid_plural "{files} files"
-#~ msgstr[0] "{files} ਫਾਈਲ"
-#~ msgstr[1] "{files} ਫਾਈਲਾਂ"
-
-#~ msgid "Learn more"
-#~ msgstr "ਹੋਰ ਜਾਣੋ"
-
-#~ msgid "Example"
-#~ msgstr "ਉਦਾਹਰਨ"
-
-#~ msgid "Image changes being processed"
-#~ msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
-
-#~ msgid "Starting tests..."
-#~ msgstr "ਟੈਸਟ ਸੁਰੂ ਹੋ ਰਹੇ ਹਨ...."
-
-#~ msgid "Waiting for test results..."
-#~ msgstr "ਟੈਸਟ ਨਤੀਜਿਆਂ ਲਈ ਉਡੀਕ ਕਰ ਰਿਹਾ"
-
-#~ msgid "Internal Server Error"
-#~ msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
-
-#~ msgid "Must be a valid e-mail address."
-#~ msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
-#~ msgid "No results found."
-#~ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
-
-#~ msgid "{name} was viewing this page first."
-#~ msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
-
-#~ msgid "Receipt checked by app."
-#~ msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ।"
-
-#~ msgid "Receipt was not checked by app."
-#~ msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ ਨਹੀਂ ਕੀਤੀ ਸੀ।"
-
-#~ msgid "{name} was viewing this add-on first."
-#~ msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
-
-#~ msgid "Loading&hellip;"
-#~ msgstr "&hellip; ਲ੍ਹੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
-
-#~ msgid "Version Notes"
-#~ msgstr "ਸੂਚਨਾਂ ਵਰਜਨ"
-
-#~ msgid "Notes for Reviewers"
-#~ msgstr "ਸਮੀਖਿਅਕ ਲਈ ਸੂਚਨਾਂ"
-
-#~ msgid "No version notes found"
-#~ msgstr "ਵਰਜਨ ਨੂੰ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲਿਆ"
-
-#~ msgid "Average Reviews"
-#~ msgstr "ਔਸਤ ਸਮੀਖਿਆ"
-
-#~ msgid "Number of Reviews"
-#~ msgstr "ਨੰਬਰ ਵਿੱਚੋਂ ਸਮੀਖਿਆ"
-
-#~ msgid "Error loading translation"
-#~ msgstr "ਲ੍ਹੋਡ ਕਰਨ ਦੌਰਾਨ ਅਨੁਵਾਦ ਗਲਤੀ"
-
-#~ msgid "Loading..."
-#~ msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
-
-#~ msgid "<b>{0}</b> character left."
-#~ msgid_plural "<b>{0}</b> characters left."
-#~ msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
-#~ msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
-
-#~ msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-#~ msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
-
-#~ msgid "Remove this localization"
-#~ msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
-
-#~ msgid "Download {0}"
-#~ msgstr "ਡਾਊਨਲੋਡ ਕਰੋ {0}"
-
-#~ msgid "Password strength:"
-#~ msgstr "ਪਾਸਵਰਡ ਤਾਕਤ"
-
-#~ msgid "All"
-#~ msgstr "ਸਾਰੇ"
-
-#~ msgid "Requested Info"
-#~ msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
-
-#~ msgid "Flagged"
-#~ msgstr "ਫਲੈਗ ਕੀਤੇ ਹੋਏ"
-
-#~ msgid "Duplicate"
-#~ msgstr "ਨਕਲੀ"
-
-#~ msgid "Rejected"
-#~ msgstr "ਰੱਦ ਕਰੋ"
-
-#~ msgid "Approved"
-#~ msgstr "ਮੰਨਜੂਰੀ ਦੇਣਾ"
-
-#~ msgid "All tests passed successfully."
-#~ msgstr "ਸਾਰੇ ਟੈਸਟ ਸਫਲਤਾਪੂਰਵਕ ਪਾਸ ਹੋਏ।"
-
-#~ msgid "These tests were not run."
-#~ msgstr "ਇਹ ਟੈਸਟ ਨਹੀਂ ਚਲਾਉਣੇ ਸਨ।"
-
-#~ msgid "Tests"
-#~ msgstr "ਟੈਸਟ"
-
-#~ msgid "Error"
-#~ msgstr "ਗਲਤੀ"
-
-#~ msgid "Warning"
-#~ msgstr "ਚੇਤਾਵਨੀ"
-
-#~ msgid "Compatibility Tests"
-#~ msgstr "ਅਨਕੂਲਤਾ ਟੈਸਟ"
-
-#~ msgid "App failed validation."
-#~ msgstr "ਐਪ ਵੈਧਤਾ ਫ੍ਹੈਲ ਹੋਈ।"
-
-#~ msgid "App passed validation."
-#~ msgstr "ਐਪ ਵੈਧਤਾ ਪਾਸ ਹੋਈ।"
-
-#~ msgid "{0} error"
-#~ msgid_plural "{0} errors"
-#~ msgstr[0] "{0} ਗਲਤੀ"
-#~ msgstr[1] "{0}ਗਲਤੀਆਂ"
-
-#~ msgid "{0} warning"
-#~ msgid_plural "{0} warnings"
-#~ msgstr[0] "{0} ਚੇਤਾਵਨੀ"
-#~ msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
-
-#~ msgid "{0} notice"
-#~ msgid_plural "{0} notices"
-#~ msgstr[0] "{0} ਨੋਟਿਸ"
-#~ msgstr[1] "{0} ਨੋਟਿਸ"
-
-#~ msgid "Internal server error"
-#~ msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
-
-#~ msgid "Not Updated for {0} {1}"
-#~ msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
-
-#~ msgid "Requires Newer Version of {0}"
-#~ msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
-
-#~ msgid "Experimental"
-#~ msgstr "ਤਜਰਬੇ"
-
-#~ msgid "Installing..."
-#~ msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
-
-#~ msgid "Purchasing..."
-#~ msgstr "ਖਰੀਦੀ"
-
-#~ msgid "Keep it"
-#~ msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} ਤਾਰਾ"
+msgstr[1] "{0} ਤਾਰੇ"
+
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "ਸਰਵਰ ਨੂੰ ਜੋੜਨ ਵਿੱਚ ਸਮੱਸਿਆ ਆਈ ਹੈ।"
+
+#: static/js/common/upload-addon.js:52
+msgid "Select a file..."
+msgstr "ਇੱਕ ਫਾਈਲ ਚੁਣੋ..."
+
+#: static/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ .xpi, .jar ਜਾਂ .xml ਨਾਲ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:87
+msgid "{0}% complete"
+msgstr "{0}% ਮੁਕੰਮਲ"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:90
+msgid "{0} of {1}"
+msgstr "{1} ਵਿੱਚੋਂ {0}"
+
+#: static/js/common/upload-addon.js:120
+msgid "Cancel"
+msgstr "ਰੱਦ"
+
+#: static/js/common/upload-addon.js:142
+msgid "Uploading {0}"
+msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ "
+
+#: static/js/common/upload-addon.js:169
+msgid "Error with {0}"
+msgstr "{0} ਨਾਲ ਗਲਤੀ"
+
+#: static/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ {0} ਗਲਤੀ ਨਾਲ ਫ੍ਹੇਲ ਹੋ ਗਿਆ ਹੈ।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ {0} ਗਲਤੀਆਂ ਨਾਲ ਫ੍ਹੇਲ ਹੋ ਗਿਆ ਹੈ।"
+
+#: static/js/common/upload-addon.js:188
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
+msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
+
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+msgid "See full validation report"
+msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
+
+#: static/js/common/upload-addon.js:214
+msgid "Validating {0}"
+msgstr "{0} ਵੈਧਤਾ"
+
+#. L10n: first argument is an HTTP status code
+#: static/js/common/upload-addon.js:253
+msgid "Received an empty response from the server; status: {0}"
+msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
+
+#: static/js/common/upload-addon.js:269
+msgid "Unexpected server error while validating."
+msgstr "ਵੈਧਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤੀ।"
+
+#: static/js/common/upload-addon.js:307
+msgid "Finished validating {0}"
+msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
+
+#: static/js/common/upload-addon.js:313
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] "ਦਿੱਤੇ ਟਿਕਾਣੇ ਉੱਤੇ ਮੈਨੀਫਿਸਟ ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
+msgstr[1] "ਦਿੱਤੇ ਟਿਕਾਣੇ ਉੱਤੇ ਮੈਨੀਫਿਸਟ ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
+
+#: static/js/common/upload-addon.js:318
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀਆਂ ਤੇ ਚੇਤਾਵਨੀਆਂ ਨਾਲ ਸਫਲ ਹੋ ਗਿਆ।"
+
+#: static/js/common/upload-addon.js:334
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:335
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:348
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:350
+msgid "Add-on submission checklist"
+msgstr ""
+
+#: static/js/common/upload-addon.js:351
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:353
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+
+#: static/js/common/upload-addon.js:371
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:388
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr ""
+
+#: static/js/common/upload-addon.js:425
+msgid "Some platforms are not available for this type of add-on."
+msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
+
+#: static/js/common/upload-addon.js:427
+msgid "Sorry, no supported platform has been found."
+msgstr "ਅਫਸੋਸ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
+
+#: static/js/common/upload-base.js:57
+msgid "The filetype you uploaded isn't recognized."
+msgstr "ਤੁਹਾਨੂੰ ਅੱਪਲੋਡ ਕੀਤੇ ਸੰਗਠਿਤ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੈ।"
+
+#: static/js/common/upload-base.js:79
+msgid "You cancelled the upload."
+msgstr "ਤੁਸੀਂ ਅੱਪਲੋਡ ਨੂੰ ਰੱਦ ਕੀਤਾ।"
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "WebM ਵਿੱਚ ਵੀਡੀਓ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "ਇਸ ਭੰਡਾਰ ਦੀ ਪਾਲਣਾ ਕਰੋ"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "ਪਾਲਣਾ ਰੋਕੋ"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "ਪਾਲਣਾ ਕਰਨਾਂ"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੌਨ ਡਰਾਈਵ 3.0"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸੇਅਰ ਅਲਾਈਕ 3.0"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "ਹਟਾਉਣ ਲਈ ਮਾਰਕ ਕੀਤਾ"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "ਕੈਟਾਗਿਰੀ"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "ਅਸਲੀ ਵਰਤੋ"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "{0} ਦਾ ਹਫਤਾ"
+
+#: static/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr "ਡਾਊਨਲੋਡ"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} ਯੂਜਰ"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} ਐਡ-ਆਨ"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} ਭੰਡਾਰ"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} ਸਮੀਖਿਅਕ"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} ਸੇਲ"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0} ਰਿਫੰਡ"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} ਇੰਸਟਾਲ"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+msgid "Downloads"
+msgstr "ਡਾਊਨਲੋਡ"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+msgid "Daily Users"
+msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "USA ਵਿੱਚ, ਰਾਸ਼ੀ"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+msgid "Number of Contributions"
+msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "{0} ਲਈ ਵੇਰਵਾ"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "ਬਣਾਇਆ ਭੰਡਾਰ"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "ਐਡ-ਆਨ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "ਯੂਜਰ ਸਾਈਨਅੱਪ"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "ਗਾਹਕ"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "ਰੇਟਿੰਗ"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+msgid "Sales"
+msgstr "ਸੇਲ"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+msgid "Installs"
+msgstr "ਇੰਸਟਾਲ"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "ਅਣਜਾਣ"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "ਐਡ-ਆਨ ਮਨੇਜਰ"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Search Results"
+msgstr "ਨਤੀਜੇ ਖੋਜੋ"
+
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+msgid "Homepage Promo"
+msgstr "ਮੁੱਖ ਸਫਾ ਪਰੋਮੋ"
+
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+msgid "Homepage Featured"
+msgstr "ਮੁੱਖ ਸਫਾ ਗੁਣ"
+
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Up and Coming"
+msgstr "ਮੁੱਖ ਸਫਾ ਉੱਪਰ ਅਤੇ ਆਉਣਾ"
+
+#: static/js/impala/stats/csv_keys.js:52
+msgid "Homepage Most Popular"
+msgstr "ਮੱਖ ਸਫਾ ਜਿਆਦਾ ਪ੍ਰਸਿੱਧ"
+
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+msgid "Detail Page"
+msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+msgid "Detail Page (bottom)"
+msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਹੇਠਾਂ)"
+
+#: static/js/impala/stats/csv_keys.js:57
+msgid "Detail Page (Development Channel)"
+msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਵਾਧਾ ਪ੍ਰਣਾਲੀ)"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+msgid "Often Used With"
+msgstr "ਆਮ ਕਰਕੇ ਨਾਲ ਵਰਤਿਆ"
+
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+msgid "Others By Author"
+msgstr "ਲੇਖਕ ਵਲੋ ਹੋਰ"
+
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Dependencies"
+msgstr "ਨਿਰਭਰਤਾਵਾਂ"
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Upsell"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:68
+msgid "Sharing"
+msgstr "ਵੰਡਣਾ"
+
+#: static/js/impala/stats/csv_keys.js:69
+msgid "Category Pages"
+msgstr "ਵਰਗ ਪੰਨੇ"
+
+#: static/js/impala/stats/csv_keys.js:70
+msgid "Collections"
+msgstr "ਸੰਗ੍ਰਹਿ"
+
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+msgid "Category Landing Featured Carousel"
+msgstr "ਵਰਗ ਭੂਮੀ ਵਿਸੇਸਤਾ ਝੂਲਣਾ"
+
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+msgid "Category Landing Top Rated"
+msgstr "ਕੈਟਾਗਿਰੀ ਲੈਂਡਿੰਗ ਚੋਟੀ ਦੀ ਰੇਟਿੰਗ"
+
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+msgid "Category Landing Most Popular"
+msgstr "ਜਿਆਦਾ ਪ੍ਰਸਿੱਧ ਲੈਂਡਿੰਗ ਸ਼੍ਰੈਣੀ"
+
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+msgid "Category Landing Recently Added"
+msgstr "ਤਾਜਾ ਸ਼ਾਮਿਲ ਲੈਂਡਿੰਗ ਸ਼੍ਰੈਣੀ"
+
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+msgid "Browse Listing Featured Sort"
+msgstr "ਗੁਣ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+msgid "Browse Listing Users Sort"
+msgstr "ਯੂਜਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+msgid "Browse Listing Rating Sort"
+msgstr "ਰੇਟਿੰਗ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+msgid "Browse Listing Created Sort"
+msgstr "ਰਚਨਾਤਮਿਕ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+msgid "Browse Listing Name Sort"
+msgstr "ਨਾਮ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+msgid "Browse Listing Popular Sort"
+msgstr "ਪ੍ਰਸਿੱਧ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+msgid "Browse Listing Updated Sort"
+msgstr "ਅੱਪਡੇਟ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+msgid "Browse Listing Up and Coming Sort"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:98
+msgid "Total Amount Contributed"
+msgstr "ਪੂਰੀ ਰਕਮ ਯੋਗਦਾਨਿਤ"
+
+#: static/js/impala/stats/csv_keys.js:99
+msgid "Average Contribution"
+msgstr "ਔਸਤ ਯੋਗਦਾਨ"
+
+#: static/js/impala/stats/csv_keys.js:108
+msgid "Usage"
+msgstr "ਵਰਤੋਂ"
+
+#: static/js/impala/stats/csv_keys.js:111
+msgid "Firefox"
+msgstr "ਫਾਇਰਫਾਕਸ"
+
+#: static/js/impala/stats/csv_keys.js:112
+msgid "Mozilla"
+msgstr "ਮੌਜੀਲਾ"
+
+#: static/js/impala/stats/csv_keys.js:113
+msgid "Thunderbird"
+msgstr "ਥੰਡਰਬਰਡ"
+
+#: static/js/impala/stats/csv_keys.js:114
+msgid "Sunbird"
+msgstr "ਸਨਬਰਡ"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "SeaMonkey"
+msgstr "ਸੀਮੌਂਕੀ"
+
+#: static/js/impala/stats/csv_keys.js:116
+msgid "Fennec"
+msgstr "ਫਿੱਨਸ"
+
+#: static/js/impala/stats/csv_keys.js:117
+msgid "Android"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:122
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:128
+msgid "Installs and Daily Users, last {0} days"
+msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:130
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:134
+msgid "Downloads, last {0} days"
+msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:136
+msgid "Downloads from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:140
+msgid "Daily Users, last {0} days"
+msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:142
+msgid "Daily Users from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:146
+msgid "Applications, last {0} days"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:148
+msgid "Applications from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:152
+msgid "Platforms, last {0} days"
+msgstr "ਪਲੇਟਫਾਰਮ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:154
+msgid "Platforms from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਪਲੇਟਫਾਰਮ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:158
+msgid "Languages, last {0} days"
+msgstr "ਭਾਸ਼ਾਵਾਂ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:160
+msgid "Languages from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਭਾਸ਼ਾਵਾਂ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:164
+msgid "Add-on Versions, last {0} days"
+msgstr "ਐਡ-ਆਨ ਵਰਜਨ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:166
+msgid "Add-on Versions from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:170
+msgid "Add-on Status, last {0} days"
+msgstr "ਐਡ-ਆਨ ਸਥਿਤੀ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:172
+msgid "Add-on Status from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:176
+msgid "Download Sources, last {0} days"
+msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:178
+msgid "Download Sources from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਰੋਤ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:182
+msgid "Contributions, last {0} days"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:184
+msgid "Contributions from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:188
+msgid "Site Metrics, last {0} days"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:190
+msgid "Site Metrics from {0} to {1}"
+msgstr "ਵਲੋ ਸਾਈਟ ਬਿਓਰਾ {0} ਤੋ {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:194
+msgid "Add-ons in Use, last {0} days"
+msgstr "ਅੈਡ-ਓਨ ਵਰਤੋ ਵਿੱਚ, ਆਖਰੀ {0} ਦਿਨ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:196
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿਚ {0} ਤੋਂ {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:200
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "ਆਖਰੀ {0} ਦਿਨ,ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ,"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:202
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:206
+msgid "Add-ons Created, last {0} days"
+msgstr "ਆਖਰੀ {0} ਦਿਨ, ਅੈਡ-ਓਨ ਰਚੇ ਗਏ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:208
+msgid "Add-ons Created from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਵਲੋ ਐਡ-ਆਨ ਬਣਾਓ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:212
+msgid "Add-ons Updated, last {0} days"
+msgstr " ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਅੱਪਡੇਟ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:214
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਐਡ-ਆਨ ਅੱਪਡੇਟ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:218
+msgid "Reviews Written, last {0} days"
+msgstr " ਆਖਰੀ {0} ਦਿਨ, ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:220
+msgid "Reviews Written from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:224
+msgid "User Signups, last {0} days"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:226
+msgid "User Signups from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:230
+msgid "Collections Created, last {0} days"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਭੰਡਾਰ ਬਣਾਏ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:232
+msgid "Collections Created from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬਣਾਏ ਭੰਡਾਰ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:236
+msgid "Subscribers, last {0} days"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਗਾਹਕ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:238
+msgid "Subscribers from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਗਾਹਕ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:242
+msgid "Ratings, last {0} days"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਰੇਟਿੰਗ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:244
+msgid "Ratings from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੇਟਿੰਗ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:248
+msgid "Sales, last {0} days"
+msgstr "ਆਖਰੀ {0} ਦਿਨ, ਵਿਕਰੀ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:250
+msgid "Sales from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਵਿਕਰੀ"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:254
+msgid "Installs, last {0} days"
+msgstr "ਆਖਰੀ {0} ਦਿਨ, ਇੰਸਟਾਲ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:256
+msgid "Installs from {0} to {1}"
+msgstr "{0} ਤੋਂ {1} ਵੱਲੋਂ ਇੰਸਟਾਲ"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:262
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b> ਆਖਰ ਵਿੱਚ {1} ਦਿਨ"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b> ਵੱਲੋਂ {1} ਤੋਂ {2}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:268
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜ਼ੂਦ ਨਹੀ"
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "ਤਾਰੀਖ"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "ਦੂਜਾ"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+msgid "Select an application first"
+msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਆਗਿਆ ਨਹੀਂ"
+
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਕਾਰਾ ਹੈ।"
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "ਐਪ ਹੋਸਟ ਪਹੁੰਚ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਾਪਾਰਸਕਰਨਯੋਗ ਹੈ।"
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਗਲਤ ਹੈ।"
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "ਐਪ ਇੰਸਟਾਲੇਸ਼ਨ ਫ੍ਹੇਲ ਹੋਈ।"
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਵਿੱਚ ਸਹਾਇਕ ਨਹੀਂ।"
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr ""
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr ""
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr ""
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr ""
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
+
+#: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr ""
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "ਹੁਣੇ-ਹੁਣੇ ਨਿਰੀਖਣ ਸਾਫ਼"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "ਪਸੰਦ ਜੋੜ ਰਿਹਾ &hellip;                "
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr ""
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "ਪਸੰਦ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "ਪਸੰਦ ਵਿਚੋਂ ਹਟਾਓ"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "ਬਕਾਇਆ"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "ਕਾਮੈਂਟ"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "ਹਟਾਓ"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "ਇਸ ਯੂਜਰ ਨੂੰ ਯੋਗਦਾਨ ਦੇ ਤੌਰ ਤੇ ਹਟਾਓ"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "ਇੱਕ ਈਮੇਲ ਐੱਡਰੈਸ ਦੀ ਜਰੂਰਤ ਹੈ।"
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "ਹਟਾਓ"
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "ਤੁਸੀ ਇਸ ਯੂਜਰ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਸ਼ਾਮਲ ਕਰ ਚੁੱਕੇ ਹੋ"
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "ਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
+
+#: static/js/zamboni/devhub.js:127
+msgid "Your browser does not support the video tag"
+msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
+
+#: static/js/zamboni/devhub.js:382
+msgid "Changes Saved"
+msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
+
+#: static/js/zamboni/devhub.js:398
+msgid "Enter a new author's email address"
+msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
+
+#: static/js/zamboni/devhub.js:545
+msgid "There was an error uploading your file."
+msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
+
+#: static/js/zamboni/devhub.js:690
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} ਫਾਈਲ"
+msgstr[1] "{files} ਫਾਈਲਾਂ"
+
+#: static/js/zamboni/devhub.js:693
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/devhub.js:805
+msgid "Learn more"
+msgstr "ਹੋਰ ਜਾਣੋ"
+
+#: static/js/zamboni/devhub.js:809
+msgid "Example"
+msgstr "ਉਦਾਹਰਨ"
+
+#: static/js/zamboni/devhub.js:1165
+msgid "Image changes being processed"
+msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: static/js/zamboni/devhub.js:1292
+msgid "Starting tests..."
+msgstr "ਟੈਸਟ ਸੁਰੂ ਹੋ ਰਹੇ ਹਨ...."
+
+#: static/js/zamboni/devhub.js:1299
+msgid "Waiting for test results..."
+msgstr "ਟੈਸਟ ਨਤੀਜਿਆਂ ਲਈ ਉਡੀਕ ਕਰ ਰਿਹਾ"
+
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+msgid "Internal Server Error"
+msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
+
+#: static/js/zamboni/devhub.js:1341
+msgid "Must be a valid e-mail address."
+msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr ""
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr ""
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ।"
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ ਨਹੀਂ ਕੀਤੀ ਸੀ।"
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "&hellip; ਲ੍ਹੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "ਸੂਚਨਾਂ ਵਰਜਨ"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "ਸਮੀਖਿਅਕ ਲਈ ਸੂਚਨਾਂ"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "ਵਰਜਨ ਨੂੰ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲਿਆ"
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "ਔਸਤ ਸਮੀਖਿਆ"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "ਨੰਬਰ ਵਿੱਚੋਂ ਸਮੀਖਿਆ"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr "ਲ੍ਹੋਡ ਕਰਨ ਦੌਰਾਨ ਅਨੁਵਾਦ ਗਲਤੀ"
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "ਡਾਊਨਲੋਡ ਕਰੋ {0}"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "ਪਾਸਵਰਡ ਤਾਕਤ"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "ਸਾਰੇ"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "ਫਲੈਗ ਕੀਤੇ ਹੋਏ"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "ਨਕਲੀ"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "ਮੰਨਜੂਰੀ ਦੇਣਾ"
+
+#: static/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "ਸਾਰੇ ਟੈਸਟ ਸਫਲਤਾਪੂਰਵਕ ਪਾਸ ਹੋਏ।"
+
+#: static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "ਇਹ ਟੈਸਟ ਨਹੀਂ ਚਲਾਉਣੇ ਸਨ।"
+
+#: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "ਟੈਸਟ"
+
+#: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "ਗਲਤੀ"
+
+#: static/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "ਚੇਤਾਵਨੀ"
+
+#: static/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "ਅਨਕੂਲਤਾ ਟੈਸਟ"
+
+#: static/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "ਐਪ ਵੈਧਤਾ ਫ੍ਹੈਲ ਹੋਈ।"
+
+#: static/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "ਐਪ ਵੈਧਤਾ ਪਾਸ ਹੋਈ।"
+
+#: static/js/zamboni/validator.js:337
+msgid "Add-on failed validation."
+msgstr ""
+
+#: static/js/zamboni/validator.js:339
+msgid "Add-on passed validation."
+msgstr ""
+
+#: static/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ਗਲਤੀ"
+msgstr[1] "{0}ਗਲਤੀਆਂ"
+
+#: static/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} ਚੇਤਾਵਨੀ"
+msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
+
+#: static/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0} ਨੋਟਿਸ"
+msgstr[1] "{0} ਨੋਟਿਸ"
+
+#: static/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr ""
+
+#: static/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
+
+#: static/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
+
+#: static/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
+
+#: static/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr ""
+
+#: static/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr ""
+
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr ""
+
+#: static/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr "ਤਜਰਬੇ"
+
+#: static/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr ""
+
+#: static/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr ""
+
+#: static/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
+
+#: static/js/zamboni/mobile/buttons.js:148
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr ""
+
+#: static/js/zamboni/mobile/buttons.js:275
+msgid "Keep it"
+msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
+
+#: static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr ""
+
+#: static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 09:39-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2014-07-04 23:19+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -14,854 +14,1204 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1404515947.0\n"
 
-#~ msgid "{0} star"
-#~ msgid_plural "{0} stars"
-#~ msgstr[0] "{0} 星"
-
-#~ msgid "There was a problem contacting the server."
-#~ msgstr "连接服务器时发生错误。"
-
-#~ msgid "Select a file..."
-#~ msgstr "选择文件..."
-
-#~ msgid "Your add-on should end with .xpi, .jar or .xml"
-#~ msgstr "您的附加组件应该以 .xpi、.jar 或 .xml 结尾"
-
-#~ msgid "{0}% complete"
-#~ msgstr "已完成 {0}%"
-
-#~ msgid "{0} of {1}"
-#~ msgstr "{0} / {1}"
-
-#~ msgid "Cancel"
-#~ msgstr "取消"
-
-#~ msgid "Uploading {0}"
-#~ msgstr "正在上传 {0}"
-
-#~ msgid "Error with {0}"
-#~ msgstr "{0} 发生错误"
-
-#~ msgid "Your add-on failed validation with {0} error."
-#~ msgid_plural "Your add-on failed validation with {0} errors."
-#~ msgstr[0] "您的附加组件验证失败，有 {0} 个错误。"
-
-#~ msgid "&hellip;and {0} more"
-#~ msgid_plural "&hellip;and {0} more"
-#~ msgstr[0] "&hellip;还有 {0} 个"
-
-#~ msgid "See full validation report"
-#~ msgstr "查看完整的验证报告"
-
-#~ msgid "Validating {0}"
-#~ msgstr "正在验证 {0}"
-
-#~ msgid "Received an empty response from the server; status: {0}"
-#~ msgstr "从服务器上接收到一个空的响应；状态：{0}"
-
-#~ msgid "Unexpected server error while validating."
-#~ msgstr "验证时发生了意外的服务器错误。"
-
-#~ msgid "Finished validating {0}"
-#~ msgstr "已完成验证 {0}"
-
-#~ msgid "Your add-on passed validation with no errors and {0} message."
-#~ msgid_plural "Your add-on passed validation with no errors and {0} messages."
-#~ msgstr[0] "附加组件通过了验证，没有错误，{0} 个提示信息。附加组件通过了验证，没有错误，{0} 个提示信息。"
-
-#~ msgid "Your add-on passed validation with no errors or warnings."
-#~ msgstr "您的附加组件通过了验证，没有错误或警告。"
-
-#~ msgid "Some platforms are not available for this type of add-on."
-#~ msgstr "此类型的附加组件在某些平台上无法使用。"
-
-#~ msgid "Sorry, no supported platform has been found."
-#~ msgstr "抱歉，找不到支持的平台。"
-
-#~ msgid "The filetype you uploaded isn't recognized."
-#~ msgstr "无法识别您上传的文件格式。"
-
-#~ msgid "You cancelled the upload."
-#~ msgstr "您已取消上传。"
-
-#~ msgid "Images must be either PNG or JPG."
-#~ msgstr "图像必须为 PNG 或 JPG 格式。"
-
-#~ msgid "Videos must be in WebM."
-#~ msgstr "视频必须是 WebM 格式。"
-
-#~ msgid "Your packaged app should end with <code>.zip</code>."
-#~ msgstr "你的封装应用文件应该以 <code>.zip</code>结尾。"
-
-#~ msgid "Your app failed validation with {0} error."
-#~ msgid_plural "Your app failed validation with {0} errors."
-#~ msgstr[0] "您的应用验证失败，有 {0} 个错误。"
-
-#~ msgid "Your app passed validation with no errors and {0} warning."
-#~ msgid_plural "Your app passed validation with no errors and {0} warnings."
-#~ msgstr[0] "你的应用通过了验证，没有错误，{0} 个警告。"
-
-#~ msgid "Your app passed validation with no errors or warnings."
-#~ msgstr "你的应用通过了验证，没有错误和警告。"
-
-#~ msgid "Follow this Collection"
-#~ msgstr "关注这个收藏集"
-
-#~ msgid "Stop Following"
-#~ msgstr "停止关注"
-
-#~ msgid "Following"
-#~ msgstr "正在关注"
-
-#~ msgid "This theme is incompatible with your version of {0}"
-#~ msgstr "这个主题与您所使用的 {0} 版本不兼容"
-
-#~ msgid "All Rights Reserved"
-#~ msgstr "保留所有权利"
-
-#~ msgid "Creative Commons Attribution 3.0"
-#~ msgstr "知识共享“署名 3.0”"
-
-#~ msgid "Creative Commons Attribution-NonCommercial 3.0"
-#~ msgstr "知识共享“署名-非商业性使用 3.0”"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-#~ msgstr "知识共享“署名-非商业性使用-禁止演绎 3.0”"
-
-#~ msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-#~ msgstr "知识共享“署名-非商业性使用-相同方式共享 3.0”"
-
-#~ msgid "Creative Commons Attribution-NoDerivs 3.0"
-#~ msgstr "知识共享“署名-禁止演绎 3.0”"
-
-#~ msgid "Creative Commons Attribution-ShareAlike 3.0"
-#~ msgstr "知识共享“署名-相同方式共享 3.0”"
-
-#~ msgid "Your Theme's Name"
-#~ msgstr "您的主题名称"
-
-#~ msgid "Flagged for review"
-#~ msgstr "已标记评论"
-
-#~ msgid "Your input is required"
-#~ msgstr "必须输入"
-
-#~ msgid "Marked for deletion"
-#~ msgstr "标记为删除"
-
-#~ msgid "Updating results&hellip;"
-#~ msgstr "正在更新结果&hellip;"
-
-#~ msgid "Category"
-#~ msgstr "分类"
-
-#~ msgid "Search themes for <b>{0}</b>"
-#~ msgstr "搜索匹配 <b>{0}</b> 的主题"
-
-#~ msgid "Search apps for <b>{0}</b>"
-#~ msgstr "搜索包含关键字 <b>{0}</b> 的应用"
-
-#~ msgid "Search add-ons for <b>{0}</b>"
-#~ msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
-
-#~ msgid "use original"
-#~ msgstr "使用原来的"
-
-#~ msgid "Week of {0}"
-#~ msgstr "每周有{0}次"
-
-#~ msgid "downloads"
-#~ msgstr "下载"
-
-#~ msgid "{0} users"
-#~ msgstr "{0} 位用户"
-
-#~ msgid "{0} add-ons"
-#~ msgstr "{0} 个附加组件"
-
-#~ msgid "{0} collections"
-#~ msgstr "{0} 个收藏集"
-
-#~ msgid "{0} reviews"
-#~ msgstr "{0} 条评论"
-
-#~ msgid "{0} sales"
-#~ msgstr "{0} 份售出"
-
-#~ msgid "{0} refunds"
-#~ msgstr "{0}次退款"
-
-#~ msgid "{0} installs"
-#~ msgstr "{0} 次安装"
-
-#~ msgid "Downloads"
-#~ msgstr "下载量"
-
-#~ msgid "Daily Users"
-#~ msgstr "每日用户量"
-
-#~ msgid "Amount, in USD"
-#~ msgstr "合计（美元）"
-
-#~ msgid "Number of Contributions"
-#~ msgstr "捐款量"
-
-#~ msgid "More Info..."
-#~ msgstr "更多信息..."
-
-#~ msgid "Details for {0}"
-#~ msgstr "{0} 的详细信息"
-
-#~ msgid "Collections Created"
-#~ msgstr "收藏集创建量"
-
-#~ msgid "Add-ons in Use"
-#~ msgstr "附加组件使用量"
-
-#~ msgid "Add-ons Created"
-#~ msgstr "附加组件创建量"
-
-#~ msgid "Add-ons Downloaded"
-#~ msgstr "附加组件下载量"
-
-#~ msgid "Add-ons Updated"
-#~ msgstr "附加组件更新量"
-
-#~ msgid "Reviews Written"
-#~ msgstr "评论撰写量"
-
-#~ msgid "User Signups"
-#~ msgstr "用户注册量"
-
-#~ msgid "Subscribers"
-#~ msgstr "订阅者量"
-
-#~ msgid "Ratings"
-#~ msgstr "评分量"
-
-#~ msgid "Sales"
-#~ msgstr "销量"
-
-#~ msgid "Installs"
-#~ msgstr "安装量"
-
-#~ msgid "Unknown"
-#~ msgstr "未知"
-
-#~ msgid "Add-ons Manager"
-#~ msgstr "附加组件管理器"
-
-#~ msgid "Search Results"
-#~ msgstr "搜索结果"
-
-#~ msgid "Homepage Promo"
-#~ msgstr "主页推广"
-
-#~ msgid "Homepage Featured"
-#~ msgstr "主页精选展示"
-
-#~ msgid "Homepage Up and Coming"
-#~ msgstr "主页新秀"
-
-#~ msgid "Homepage Most Popular"
-#~ msgstr "主页流行榜"
-
-#~ msgid "Detail Page"
-#~ msgstr "详情页面"
-
-#~ msgid "Detail Page (bottom)"
-#~ msgstr "详情页面（底部）"
-
-#~ msgid "Detail Page (Development Channel)"
-#~ msgstr "详细信息页面（开发通道）"
-
-#~ msgid "Often Used With"
-#~ msgstr "常用搭档"
-
-#~ msgid "Others By Author"
-#~ msgstr "作者的其他作品"
-
-#~ msgid "Dependencies"
-#~ msgstr "依赖"
-
-#~ msgid "Upsell"
-#~ msgstr "追加销售"
-
-#~ msgid "Sharing"
-#~ msgstr "分享"
-
-#~ msgid "Category Pages"
-#~ msgstr "分类页面"
-
-#~ msgid "Collections"
-#~ msgstr "收藏集"
-
-#~ msgid "Category Landing Featured Carousel"
-#~ msgstr "分类首页精选轮播"
-
-#~ msgid "Category Landing Top Rated"
-#~ msgstr "分类首页评分最高展示"
-
-#~ msgid "Category Landing Most Popular"
-#~ msgstr "分类首页最热门展示"
-
-#~ msgid "Category Landing Recently Added"
-#~ msgstr "分类首页最新添加展示"
-
-#~ msgid "Browse Listing Featured Sort"
-#~ msgstr "按精选顺序浏览"
-
-#~ msgid "Browse Listing Users Sort"
-#~ msgstr "按用户量的顺序浏览"
-
-#~ msgid "Browse Listing Rating Sort"
-#~ msgstr "按评分顺序浏览"
-
-#~ msgid "Browse Listing Created Sort"
-#~ msgstr "按最新添加排序的浏览列表"
-
-#~ msgid "Browse Listing Name Sort"
-#~ msgstr "按名称排序的浏览列表"
-
-#~ msgid "Browse Listing Popular Sort"
-#~ msgstr "按热门程度浏览"
-
-#~ msgid "Browse Listing Updated Sort"
-#~ msgstr "按更新顺序浏览"
-
-#~ msgid "Browse Listing Up and Coming Sort"
-#~ msgstr "按新秀榜排序的浏览列表"
-
-#~ msgid "Total Amount Contributed"
-#~ msgstr "捐款总额"
-
-#~ msgid "Average Contribution"
-#~ msgstr "平均捐款金额"
-
-#~ msgid "Usage"
-#~ msgstr "使用"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Mozilla"
-#~ msgstr "Mozilla"
-
-#~ msgid "Thunderbird"
-#~ msgstr "Thunderbird"
-
-#~ msgid "Sunbird"
-#~ msgstr "Sunbird"
-
-#~ msgid "SeaMonkey"
-#~ msgstr "SeaMonkey"
-
-#~ msgid "Fennec"
-#~ msgstr "Fennec"
-
-#~ msgid "Downloads and Daily Users, last {0} days"
-#~ msgstr "最近 {0} 天的下载量和每日用户量"
-
-#~ msgid "Downloads and Daily Users from {0} to {1}"
-#~ msgstr "从 {0} 至 {1} 的下载量和每日用户量"
-
-#~ msgid "Installs and Daily Users, last {0} days"
-#~ msgstr "最近 {0} 天的下载量和每日用户量"
-
-#~ msgid "Installs and Daily Users from {0} to {1}"
-#~ msgstr "从 {0} 至 {1} 的下载量和每日用户量"
-
-#~ msgid "Downloads, last {0} days"
-#~ msgstr "最近 {0} 天的下载量"
-
-#~ msgid "Downloads from {0} to {1}"
-#~ msgstr "从 {0} 至 {1} 的下载量"
-
-#~ msgid "Daily Users, last {0} days"
-#~ msgstr "最近 {0} 天的每日用户量"
-
-#~ msgid "Daily Users from {0} to {1}"
-#~ msgstr "从 {0} 至 {1} 的每日用户量"
-
-#~ msgid "Applications, last {0} days"
-#~ msgstr "最近 {0} 天的应用程序"
-
-#~ msgid "Applications from {0} to {1}"
-#~ msgstr "从 {0} 至 {1} 的应用程序"
-
-#~ msgid "Platforms, last {0} days"
-#~ msgstr "过去 {0} 天的平台"
-
-#~ msgid "Platforms from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的平台"
-
-#~ msgid "Languages, last {0} days"
-#~ msgstr "过去 {0} 天的语言"
-
-#~ msgid "Languages from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的语言"
-
-#~ msgid "Add-on Versions, last {0} days"
-#~ msgstr "过去 {0} 天的附加组件版本"
-
-#~ msgid "Add-on Versions from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的附加组件版本"
-
-#~ msgid "Add-on Status, last {0} days"
-#~ msgstr "最近 {0} 天的附加组件状态"
-
-#~ msgid "Add-on Status from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的附加组件状态"
-
-#~ msgid "Download Sources, last {0} days"
-#~ msgstr "过去 {0} 天的下载来源"
-
-#~ msgid "Download Sources from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的下载来源"
-
-#~ msgid "Contributions, last {0} days"
-#~ msgstr "最近 {0} 天的捐助"
-
-#~ msgid "Contributions from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的捐款"
-
-#~ msgid "Site Metrics, last {0} days"
-#~ msgstr "最近 {0} 天的网站指标"
-
-#~ msgid "Site Metrics from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的站点度量"
-
-#~ msgid "Add-ons in Use, last {0} days"
-#~ msgstr "过去 {0} 天的附加组件使用量"
-
-#~ msgid "Add-ons in Use from {0} to {1}"
-#~ msgstr "正在使用的附加组件（从 {0} 到 {1}）"
-
-#~ msgid "Add-ons Downloaded, last {0} days"
-#~ msgstr "过去 {0} 天的附加组件下载量"
-
-#~ msgid "Add-ons Downloaded from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的附加组件下载量"
-
-#~ msgid "Add-ons Created, last {0} days"
-#~ msgstr "过去 {0} 天的附加组件创建量"
-
-#~ msgid "Add-ons Created from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的附加组件创建量"
-
-#~ msgid "Add-ons Updated, last {0} days"
-#~ msgstr "过去 {0} 天的附加组件更新量"
-
-#~ msgid "Add-ons Updated from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的附加组件更新量"
-
-#~ msgid "Reviews Written, last {0} days"
-#~ msgstr "过去 {0} 天的评论撰写量"
-
-#~ msgid "Reviews Written from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的评论撰写量"
-
-#~ msgid "User Signups, last {0} days"
-#~ msgstr "过去 {0} 天的用户注册量"
-
-#~ msgid "User Signups from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的用户注册量"
-
-#~ msgid "Collections Created, last {0} days"
-#~ msgstr "最近 {0} 天的收藏集创建"
-
-#~ msgid "Collections Created from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的收藏集创建量"
-
-#~ msgid "Subscribers, last {0} days"
-#~ msgstr "最近 {0} 天的订阅者量"
-
-#~ msgid "Subscribers from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的订阅者量"
-
-#~ msgid "Ratings, last {0} days"
-#~ msgstr "最近 {0} 天的评分"
-
-#~ msgid "Ratings from {0} to {1}"
-#~ msgstr "从 {0} 至 {1} 的评分"
-
-#~ msgid "Sales, last {0} days"
-#~ msgstr "过去 {0} 天的销量"
-
-#~ msgid "Sales from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的销量"
-
-#~ msgid "Installs, last {0} days"
-#~ msgstr "过去 {0} 天的安装量"
-
-#~ msgid "Installs from {0} to {1}"
-#~ msgstr "{0} 至 {1} 的安装量"
-
-#~ msgid "<b>{0}</b> in last {1} days"
-#~ msgstr "过去 {1} 天中有 <b>{0}</b>"
-
-#~ msgid "<b>{0}</b> from {1} to {2}"
-#~ msgstr "{1} 至 {2} 有 <b>{0}</b>"
-
-#~ msgid "<b>{0}</b> average in last {1} days"
-#~ msgstr "过去 {1} 天中平均 <b>{0}</b>"
-
-#~ msgid "No data available."
-#~ msgstr "没有可用数据。"
-
-#~ msgid "Date"
-#~ msgstr "日期"
-
-#~ msgid "Other"
-#~ msgstr "其他"
-
-#~ msgid "Select an application first"
-#~ msgstr "首先选择一个应用程序"
-
-#~ msgid "Set {0} add-on to a max version of {1} and email the author."
-#~ msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-#~ msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子邮件通知作者。"
-
-#~ msgid "Email author of {2} add-on which failed validation."
-#~ msgid_plural "Email authors of {2} add-ons which failed validation."
-#~ msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
-
-#~ msgid "App installation not allowed."
-#~ msgstr "不被允许安装应用。"
-
-#~ msgid "App manifest is malformed."
-#~ msgstr "应用清单不合规范。"
-
-#~ msgid "App host could not be reached."
-#~ msgstr "应用的主机无法连接。"
-
-#~ msgid "App manifest is unparsable."
-#~ msgstr "应用清单无法解析。"
-
-#~ msgid "App manifest is invalid."
-#~ msgstr "应用清单无效。"
-
-#~ msgid "Install failed. Please try again later."
-#~ msgstr "安装失败。请稍后重试。"
-
-#~ msgid "App installation failed."
-#~ msgstr "应用安装失败。"
-
-#~ msgid "This system does not support installing apps."
-#~ msgstr "该系统不支持正在安装的应用。"
-
-#~ msgid "Admins and editors must provide a password to log in."
-#~ msgstr "管理员和审核员必须提供密码进行登录。"
-
-#~ msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-#~ msgstr "BrowserID 登录失败。可能您在这个邮件地址下没有账户？"
-
-#~ msgid "Accept and Install"
-#~ msgstr "同意并安装"
-
-#~ msgid "Add to {0}"
-#~ msgstr "添加到 {0}"
-
-#~ msgid "Download Now"
-#~ msgstr "立即下载"
-
-#~ msgid "Add-on has not been updated to support default-to-compatible."
-#~ msgstr "附加组件尚未更新以支持默认兼容。"
-
-#~ msgid "You need to be using Firefox 10.0 or higher."
-#~ msgstr "您需要使用 Firefox 10.0 或更高的版本。"
-
-#~ msgid "Mozilla has marked this version as incompatible with your Firefox version."
-#~ msgstr "Mozilla 已标记此版本为不兼容您的 Firefox 版本。"
-
-#~ msgid "Install for {0} anyway"
-#~ msgstr "继续安装 {0} 版本"
-
-#~ msgid "Download for {0} anyway"
-#~ msgstr "坚持下载 {0}"
-
-#~ msgid "Not available for your platform"
-#~ msgstr "不适用于您的操作系统"
-
-#~ msgid "Not available for {0} {1}"
-#~ msgstr "不适用于 {0} {1}"
-
-#~ msgid "Works with {app} {min} - {max}"
-#~ msgstr "兼容于 {app} {min} - {max}"
-
-#~ msgid "View other versions"
-#~ msgstr "查看其他版本"
-
-#~ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-#~ msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
-
-#~ msgid "clear recently viewed"
-#~ msgstr "清除最近浏览记录"
-
-#~ msgid "Adding to Favorites&hellip;"
-#~ msgstr "正在添加到收藏夹&hellip;"
-
-#~ msgid "Removing Favorite&hellip;"
-#~ msgstr "正在从收藏夹中移除&hellip;"
-
-#~ msgid "Add to Favorites"
-#~ msgstr "添加到收藏夹"
-
-#~ msgid "Remove from Favorites"
-#~ msgstr "从收藏夹中移除"
-
-#~ msgid "Pending"
-#~ msgstr "等待中"
-
-#~ msgid "Add a comment"
-#~ msgstr "添加评论"
-
-#~ msgid "Comment"
-#~ msgstr "评论"
-
-#~ msgid "Remove this add-on from the collection"
-#~ msgstr "从收藏集中移除此附加组件"
-
-#~ msgid "Remove"
-#~ msgstr "移除"
-
-#~ msgid "Remove this user as a contributor"
-#~ msgstr "从贡献者中移除此用户"
-
-#~ msgid "An email address is required."
-#~ msgstr "必须输入电子邮件地址。"
-
-#~ msgid "You cannot add yourself as a contributor."
-#~ msgstr "您不能添加自己为贡献者。"
-
-#~ msgid "You have already added that user."
-#~ msgstr "您已经添加了该用户。"
-
-#~ msgid "Add to favorites"
-#~ msgstr "添加到收藏夹"
-
-#~ msgid "Remove from favorites"
-#~ msgstr "从收藏夹中移除"
-
-#~ msgid "Stop following"
-#~ msgstr "停止关注"
-
-#~ msgid "Install App"
-#~ msgstr "安装应用"
-
-#~ msgid "Your browser does not support the video tag"
-#~ msgstr "您的浏览器不支持此视频标签"
-
-#~ msgid "Changes Saved"
-#~ msgstr "更改已保存"
-
-#~ msgid "Enter a new author's email address"
-#~ msgstr "输入新作者的电子邮件地址"
-
-#~ msgid "There was an error uploading your file."
-#~ msgstr "上传您的文件时发生错误。"
-
-#~ msgid "{files} file"
-#~ msgid_plural "{files} files"
-#~ msgstr[0] "{files} 个文件"
-
-#~ msgid "{reviews} user review"
-#~ msgid_plural "{reviews} user reviews"
-#~ msgstr[0] "{reviews} 条用户评论"
-
-#~ msgid "Learn more"
-#~ msgstr "详细了解"
-
-#~ msgid "Example"
-#~ msgstr "示例"
-
-#~ msgid "Image changes being processed"
-#~ msgstr "正在处理图像更改"
-
-#~ msgid "Starting tests..."
-#~ msgstr "开始测试..."
-
-#~ msgid "Waiting for test results..."
-#~ msgstr "正在等待测试结果..."
-
-#~ msgid "Internal Server Error"
-#~ msgstr "内部服务器错误"
-
-#~ msgid "Must be a valid e-mail address."
-#~ msgstr "必须是一个有效的电子邮件地址。"
-
-#~ msgid "No results found."
-#~ msgstr "找不到结果。"
-
-#~ msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-#~ msgstr "抱歉，我们无法为您推荐内容。<br>请访问<a href=\"{0}\">附加组件网站</a>寻找适合您的附加组件。"
-
-#~ msgid "Finding recommendations&hellip;"
-#~ msgstr "正在查找推荐内容&hellip;"
-
-#~ msgid "Updating recommendations&hellip;"
-#~ msgstr "正在更新推荐内容&hellip;"
-
-#~ msgid "{name} was viewing this page first."
-#~ msgstr "{name} 第一个查看了这个页面。"
-
-#~ msgid "Receipt checked by app."
-#~ msgstr "交易收据已经应用核实。"
-
-#~ msgid "Receipt was not checked by app."
-#~ msgstr "交易收据未经应用核实。"
-
-#~ msgid "{name} was viewing this add-on first."
-#~ msgstr "{name} 第一个查看了这个附加组件。"
-
-#~ msgid "Loading&hellip;"
-#~ msgstr "正在加载&hellip;"
-
-#~ msgid "Version Notes"
-#~ msgstr "版本说明"
-
-#~ msgid "Notes for Reviewers"
-#~ msgstr "给审核员的备注"
-
-#~ msgid "No version notes found"
-#~ msgstr "没有找到版本说明"
-
-#~ msgid "Average Reviews"
-#~ msgstr "平均评价"
-
-#~ msgid "Number of Reviews"
-#~ msgstr "评论数"
-
-#~ msgid "Error loading translation"
-#~ msgstr "载入翻译出错"
-
-#~ msgid "Loading..."
-#~ msgstr "正在加载..."
-
-#~ msgid "<b>{0}</b> character left."
-#~ msgid_plural "<b>{0}</b> characters left."
-#~ msgstr[0] "剩余 <b>{0}</b> 个字符。"
-
-#~ msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-#~ msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
-
-#~ msgid "Remove this localization"
-#~ msgstr "移除此本地化"
-
-#~ msgid "Download {0}"
-#~ msgstr "下载 {0}"
-
-#~ msgid "Password strength:"
-#~ msgstr "密码强度："
-
-#~ msgid "At least {0} character left."
-#~ msgid_plural "At least {0} characters left."
-#~ msgstr[0] "至少还需要输入 {0} 个字符。"
-
-#~ msgid "All"
-#~ msgstr "全部"
-
-#~ msgid "Requested Info"
-#~ msgstr "请求的信息"
-
-#~ msgid "Flagged"
-#~ msgstr "已标记"
-
-#~ msgid "Duplicate"
-#~ msgstr "重复"
-
-#~ msgid "Rejected"
-#~ msgstr "已被退回"
-
-#~ msgid "Approved"
-#~ msgstr "已同意"
-
-#~ msgid "All tests passed successfully."
-#~ msgstr "成功通过全部测试。"
-
-#~ msgid "These tests were not run."
-#~ msgstr "这些测试没有运行。"
-
-#~ msgid "Tests"
-#~ msgstr "测试"
-
-#~ msgid "Error"
-#~ msgstr "错误"
-
-#~ msgid "Warning"
-#~ msgstr "警告"
-
-#~ msgid "Compatibility Tests"
-#~ msgstr "兼容性测试"
-
-#~ msgid "App failed validation."
-#~ msgstr "应用验证失败。"
-
-#~ msgid "App passed validation."
-#~ msgstr "应用通过验证。"
-
-#~ msgid "Add-on failed validation."
-#~ msgstr "附加组件验证失败。"
-
-#~ msgid "Add-on passed validation."
-#~ msgstr "附加组件通过验证。"
-
-#~ msgid "{0} error"
-#~ msgid_plural "{0} errors"
-#~ msgstr[0] "{0} 个错误"
-
-#~ msgid "{0} warning"
-#~ msgid_plural "{0} warnings"
-#~ msgstr[0] "{0} 个警告"
-
-#~ msgid "{0} notice"
-#~ msgid_plural "{0} notices"
-#~ msgstr[0] "{0} 个提醒{0} 个提醒"
-
-#~ msgid "Validation task could not complete or completed with errors"
-#~ msgstr "验证任务无法完成或完成时发生错误"
-
-#~ msgid "Internal server error"
-#~ msgstr "内部服务器错误"
-
-#~ msgid "Not Updated for {0} {1}"
-#~ msgstr "未为 {0} {1} 更新"
-
-#~ msgid "Requires Newer Version of {0}"
-#~ msgstr "需要较新版本的 {0}"
-
-#~ msgid "Unreviewed"
-#~ msgstr "尚未审核"
-
-#~ msgid "Experimental <span>(Learn More)</span>"
-#~ msgstr "实验性<span>（详细了解）</span>"
-
-#~ msgid "Not Available for {0}"
-#~ msgstr "无法用于 {0}"
-
-#~ msgid "Experimental"
-#~ msgstr "实验性"
-
-#~ msgid "Themes Require Newer Version of {0}"
-#~ msgstr "主题需要 {0} 以上版本"
-
-#~ msgid "Themes Require {0}"
-#~ msgstr "主题需要 {0}"
-
-#~ msgid "Installing..."
-#~ msgstr "正在安装..."
-
-#~ msgid "Purchasing..."
-#~ msgstr "正在购买..."
-
-#~ msgid "This add-on has been preliminarily reviewed by Mozilla."
-#~ msgstr "此附加组件已通过 Mozilla 的初步审核。"
-
-#~ msgid "Keep it"
-#~ msgstr "保留它"
-
-#~ msgid "You're trying it on!"
-#~ msgstr "正在尝试！"
-
-#~ msgid "Added to Firefox"
-#~ msgstr "添加到 Firefox"
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} 星"
+
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "连接服务器时发生错误。"
+
+#: static/js/common/upload-addon.js:52
+msgid "Select a file..."
+msgstr "选择文件..."
+
+#: static/js/common/upload-addon.js:53
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "您的附加组件应该以 .xpi、.jar 或 .xml 结尾"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:87
+msgid "{0}% complete"
+msgstr "已完成 {0}%"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:90
+msgid "{0} of {1}"
+msgstr "{0} / {1}"
+
+#: static/js/common/upload-addon.js:120
+msgid "Cancel"
+msgstr "取消"
+
+#: static/js/common/upload-addon.js:142
+msgid "Uploading {0}"
+msgstr "正在上传 {0}"
+
+#: static/js/common/upload-addon.js:169
+msgid "Error with {0}"
+msgstr "{0} 发生错误"
+
+#: static/js/common/upload-addon.js:174
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "您的附加组件验证失败，有 {0} 个错误。"
+
+#: static/js/common/upload-addon.js:188
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;还有 {0} 个"
+
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+msgid "See full validation report"
+msgstr "查看完整的验证报告"
+
+#: static/js/common/upload-addon.js:214
+msgid "Validating {0}"
+msgstr "正在验证 {0}"
+
+#. L10n: first argument is an HTTP status code
+#: static/js/common/upload-addon.js:253
+msgid "Received an empty response from the server; status: {0}"
+msgstr "从服务器上接收到一个空的响应；状态：{0}"
+
+#: static/js/common/upload-addon.js:269
+msgid "Unexpected server error while validating."
+msgstr "验证时发生了意外的服务器错误。"
+
+#: static/js/common/upload-addon.js:307
+msgid "Finished validating {0}"
+msgstr "已完成验证 {0}"
+
+#: static/js/common/upload-addon.js:313
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] "附加组件通过了验证，没有错误，{0} 个提示信息。附加组件通过了验证，没有错误，{0} 个提示信息。"
+
+#: static/js/common/upload-addon.js:318
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr "您的附加组件通过了验证，没有错误或警告。"
+
+#: static/js/common/upload-addon.js:334
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:335
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+
+#: static/js/common/upload-addon.js:348
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:350
+msgid "Add-on submission checklist"
+msgstr ""
+
+#: static/js/common/upload-addon.js:351
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:353
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+
+#: static/js/common/upload-addon.js:371
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr ""
+
+#: static/js/common/upload-addon.js:388
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr ""
+
+#: static/js/common/upload-addon.js:425
+msgid "Some platforms are not available for this type of add-on."
+msgstr "此类型的附加组件在某些平台上无法使用。"
+
+#: static/js/common/upload-addon.js:427
+msgid "Sorry, no supported platform has been found."
+msgstr "抱歉，找不到支持的平台。"
+
+#: static/js/common/upload-base.js:57
+msgid "The filetype you uploaded isn't recognized."
+msgstr "无法识别您上传的文件格式。"
+
+#: static/js/common/upload-base.js:79
+msgid "You cancelled the upload."
+msgstr "您已取消上传。"
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "图像必须为 PNG 或 JPG 格式。"
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "视频必须是 WebM 格式。"
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "关注这个收藏集"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "停止关注"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "正在关注"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "这个主题与您所使用的 {0} 版本不兼容"
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "保留所有权利"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "知识共享“署名 3.0”"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "知识共享“署名-非商业性使用 3.0”"
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "知识共享“署名-非商业性使用-禁止演绎 3.0”"
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "知识共享“署名-非商业性使用-相同方式共享 3.0”"
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "知识共享“署名-禁止演绎 3.0”"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "知识共享“署名-相同方式共享 3.0”"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "您的主题名称"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "已标记评论"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "必须输入"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "标记为删除"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "正在更新结果&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "分类"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "搜索匹配 <b>{0}</b> 的主题"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "搜索包含关键字 <b>{0}</b> 的应用"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "使用原来的"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "每周有{0}次"
+
+#: static/js/impala/stats/chart.js:269
+msgid "downloads"
+msgstr "下载"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} 位用户"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} 个附加组件"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} 个收藏集"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} 条评论"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} 份售出"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0}次退款"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} 次安装"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+msgid "Downloads"
+msgstr "下载量"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+msgid "Daily Users"
+msgstr "每日用户量"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "合计（美元）"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+msgid "Number of Contributions"
+msgstr "捐款量"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "更多信息..."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "{0} 的详细信息"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "收藏集创建量"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "附加组件使用量"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "附加组件创建量"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "附加组件下载量"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "附加组件更新量"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "评论撰写量"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "用户注册量"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "订阅者量"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "评分量"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+msgid "Sales"
+msgstr "销量"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+msgid "Installs"
+msgstr "安装量"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "未知"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "附加组件管理器"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Search Results"
+msgstr "搜索结果"
+
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+msgid "Homepage Promo"
+msgstr "主页推广"
+
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+msgid "Homepage Featured"
+msgstr "主页精选展示"
+
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Up and Coming"
+msgstr "主页新秀"
+
+#: static/js/impala/stats/csv_keys.js:52
+msgid "Homepage Most Popular"
+msgstr "主页流行榜"
+
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+msgid "Detail Page"
+msgstr "详情页面"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+msgid "Detail Page (bottom)"
+msgstr "详情页面（底部）"
+
+#: static/js/impala/stats/csv_keys.js:57
+msgid "Detail Page (Development Channel)"
+msgstr "详细信息页面（开发通道）"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+msgid "Often Used With"
+msgstr "常用搭档"
+
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+msgid "Others By Author"
+msgstr "作者的其他作品"
+
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Dependencies"
+msgstr "依赖"
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Upsell"
+msgstr "追加销售"
+
+#: static/js/impala/stats/csv_keys.js:68
+msgid "Sharing"
+msgstr "分享"
+
+#: static/js/impala/stats/csv_keys.js:69
+msgid "Category Pages"
+msgstr "分类页面"
+
+#: static/js/impala/stats/csv_keys.js:70
+msgid "Collections"
+msgstr "收藏集"
+
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+msgid "Category Landing Featured Carousel"
+msgstr "分类首页精选轮播"
+
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+msgid "Category Landing Top Rated"
+msgstr "分类首页评分最高展示"
+
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+msgid "Category Landing Most Popular"
+msgstr "分类首页最热门展示"
+
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+msgid "Category Landing Recently Added"
+msgstr "分类首页最新添加展示"
+
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+msgid "Browse Listing Featured Sort"
+msgstr "按精选顺序浏览"
+
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+msgid "Browse Listing Users Sort"
+msgstr "按用户量的顺序浏览"
+
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+msgid "Browse Listing Rating Sort"
+msgstr "按评分顺序浏览"
+
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+msgid "Browse Listing Created Sort"
+msgstr "按最新添加排序的浏览列表"
+
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+msgid "Browse Listing Name Sort"
+msgstr "按名称排序的浏览列表"
+
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+msgid "Browse Listing Popular Sort"
+msgstr "按热门程度浏览"
+
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+msgid "Browse Listing Updated Sort"
+msgstr "按更新顺序浏览"
+
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+msgid "Browse Listing Up and Coming Sort"
+msgstr "按新秀榜排序的浏览列表"
+
+#: static/js/impala/stats/csv_keys.js:98
+msgid "Total Amount Contributed"
+msgstr "捐款总额"
+
+#: static/js/impala/stats/csv_keys.js:99
+msgid "Average Contribution"
+msgstr "平均捐款金额"
+
+#: static/js/impala/stats/csv_keys.js:108
+msgid "Usage"
+msgstr "使用"
+
+#: static/js/impala/stats/csv_keys.js:111
+msgid "Firefox"
+msgstr "Firefox"
+
+#: static/js/impala/stats/csv_keys.js:112
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: static/js/impala/stats/csv_keys.js:113
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: static/js/impala/stats/csv_keys.js:114
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: static/js/impala/stats/csv_keys.js:116
+msgid "Fennec"
+msgstr "Fennec"
+
+#: static/js/impala/stats/csv_keys.js:117
+msgid "Android"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:122
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "最近 {0} 天的下载量和每日用户量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "从 {0} 至 {1} 的下载量和每日用户量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:128
+msgid "Installs and Daily Users, last {0} days"
+msgstr "最近 {0} 天的下载量和每日用户量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:130
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "从 {0} 至 {1} 的下载量和每日用户量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:134
+msgid "Downloads, last {0} days"
+msgstr "最近 {0} 天的下载量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:136
+msgid "Downloads from {0} to {1}"
+msgstr "从 {0} 至 {1} 的下载量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:140
+msgid "Daily Users, last {0} days"
+msgstr "最近 {0} 天的每日用户量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:142
+msgid "Daily Users from {0} to {1}"
+msgstr "从 {0} 至 {1} 的每日用户量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:146
+msgid "Applications, last {0} days"
+msgstr "最近 {0} 天的应用程序"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:148
+msgid "Applications from {0} to {1}"
+msgstr "从 {0} 至 {1} 的应用程序"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:152
+msgid "Platforms, last {0} days"
+msgstr "过去 {0} 天的平台"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:154
+msgid "Platforms from {0} to {1}"
+msgstr "{0} 至 {1} 的平台"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:158
+msgid "Languages, last {0} days"
+msgstr "过去 {0} 天的语言"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:160
+msgid "Languages from {0} to {1}"
+msgstr "{0} 至 {1} 的语言"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:164
+msgid "Add-on Versions, last {0} days"
+msgstr "过去 {0} 天的附加组件版本"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:166
+msgid "Add-on Versions from {0} to {1}"
+msgstr "{0} 至 {1} 的附加组件版本"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:170
+msgid "Add-on Status, last {0} days"
+msgstr "最近 {0} 天的附加组件状态"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:172
+msgid "Add-on Status from {0} to {1}"
+msgstr "{0} 至 {1} 的附加组件状态"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:176
+msgid "Download Sources, last {0} days"
+msgstr "过去 {0} 天的下载来源"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:178
+msgid "Download Sources from {0} to {1}"
+msgstr "{0} 至 {1} 的下载来源"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:182
+msgid "Contributions, last {0} days"
+msgstr "最近 {0} 天的捐助"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:184
+msgid "Contributions from {0} to {1}"
+msgstr "{0} 至 {1} 的捐款"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:188
+msgid "Site Metrics, last {0} days"
+msgstr "最近 {0} 天的网站指标"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:190
+msgid "Site Metrics from {0} to {1}"
+msgstr "{0} 至 {1} 的站点度量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:194
+msgid "Add-ons in Use, last {0} days"
+msgstr "过去 {0} 天的附加组件使用量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:196
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "正在使用的附加组件（从 {0} 到 {1}）"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:200
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "过去 {0} 天的附加组件下载量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:202
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "{0} 至 {1} 的附加组件下载量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:206
+msgid "Add-ons Created, last {0} days"
+msgstr "过去 {0} 天的附加组件创建量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:208
+msgid "Add-ons Created from {0} to {1}"
+msgstr "{0} 至 {1} 的附加组件创建量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:212
+msgid "Add-ons Updated, last {0} days"
+msgstr "过去 {0} 天的附加组件更新量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:214
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "{0} 至 {1} 的附加组件更新量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:218
+msgid "Reviews Written, last {0} days"
+msgstr "过去 {0} 天的评论撰写量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:220
+msgid "Reviews Written from {0} to {1}"
+msgstr "{0} 至 {1} 的评论撰写量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:224
+msgid "User Signups, last {0} days"
+msgstr "过去 {0} 天的用户注册量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:226
+msgid "User Signups from {0} to {1}"
+msgstr "{0} 至 {1} 的用户注册量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:230
+msgid "Collections Created, last {0} days"
+msgstr "最近 {0} 天的收藏集创建"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:232
+msgid "Collections Created from {0} to {1}"
+msgstr "{0} 至 {1} 的收藏集创建量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:236
+msgid "Subscribers, last {0} days"
+msgstr "最近 {0} 天的订阅者量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:238
+msgid "Subscribers from {0} to {1}"
+msgstr "{0} 至 {1} 的订阅者量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:242
+msgid "Ratings, last {0} days"
+msgstr "最近 {0} 天的评分"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:244
+msgid "Ratings from {0} to {1}"
+msgstr "从 {0} 至 {1} 的评分"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:248
+msgid "Sales, last {0} days"
+msgstr "过去 {0} 天的销量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:250
+msgid "Sales from {0} to {1}"
+msgstr "{0} 至 {1} 的销量"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:254
+msgid "Installs, last {0} days"
+msgstr "过去 {0} 天的安装量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:256
+msgid "Installs from {0} to {1}"
+msgstr "{0} 至 {1} 的安装量"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:262
+msgid "<b>{0}</b> in last {1} days"
+msgstr "过去 {1} 天中有 <b>{0}</b>"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "{1} 至 {2} 有 <b>{0}</b>"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:268
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "过去 {1} 天中平均 <b>{0}</b>"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "没有可用数据。"
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "日期"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "其他"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+msgid "Select an application first"
+msgstr "首先选择一个应用程序"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子邮件通知作者。"
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
+
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "不被允许安装应用。"
+
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "应用清单不合规范。"
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "应用的主机无法连接。"
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "应用清单无法解析。"
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "应用清单无效。"
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "安装失败。请稍后重试。"
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "应用安装失败。"
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "该系统不支持正在安装的应用。"
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "管理员和审核员必须提供密码进行登录。"
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "BrowserID 登录失败。可能您在这个邮件地址下没有账户？"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "同意并安装"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "添加到 {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "立即下载"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "附加组件尚未更新以支持默认兼容。"
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "您需要使用 Firefox 10.0 或更高的版本。"
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla 已标记此版本为不兼容您的 Firefox 版本。"
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "继续安装 {0} 版本"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "坚持下载 {0}"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "不适用于您的操作系统"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "不适用于 {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "兼容于 {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "查看其他版本"
+
+#: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "清除最近浏览记录"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "正在添加到收藏夹&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "正在从收藏夹中移除&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "添加到收藏夹"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "从收藏夹中移除"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "等待中"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "添加评论"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "评论"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "从收藏集中移除此附加组件"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "移除"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "从贡献者中移除此用户"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "必须输入电子邮件地址。"
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "您不能添加自己为贡献者。"
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "您已经添加了该用户。"
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "添加到收藏夹"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "从收藏夹中移除"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "停止关注"
+
+#: static/js/zamboni/devhub.js:127
+msgid "Your browser does not support the video tag"
+msgstr "您的浏览器不支持此视频标签"
+
+#: static/js/zamboni/devhub.js:382
+msgid "Changes Saved"
+msgstr "更改已保存"
+
+#: static/js/zamboni/devhub.js:398
+msgid "Enter a new author's email address"
+msgstr "输入新作者的电子邮件地址"
+
+#: static/js/zamboni/devhub.js:545
+msgid "There was an error uploading your file."
+msgstr "上传您的文件时发生错误。"
+
+#: static/js/zamboni/devhub.js:690
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} 个文件"
+
+#: static/js/zamboni/devhub.js:693
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] "{reviews} 条用户评论"
+
+#: static/js/zamboni/devhub.js:805
+msgid "Learn more"
+msgstr "详细了解"
+
+#: static/js/zamboni/devhub.js:809
+msgid "Example"
+msgstr "示例"
+
+#: static/js/zamboni/devhub.js:1165
+msgid "Image changes being processed"
+msgstr "正在处理图像更改"
+
+#: static/js/zamboni/devhub.js:1292
+msgid "Starting tests..."
+msgstr "开始测试..."
+
+#: static/js/zamboni/devhub.js:1299
+msgid "Waiting for test results..."
+msgstr "正在等待测试结果..."
+
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+msgid "Internal Server Error"
+msgstr "内部服务器错误"
+
+#: static/js/zamboni/devhub.js:1341
+msgid "Must be a valid e-mail address."
+msgstr "必须是一个有效的电子邮件地址。"
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "找不到结果。"
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "抱歉，我们无法为您推荐内容。<br>请访问<a href=\"{0}\">附加组件网站</a>寻找适合您的附加组件。"
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "正在查找推荐内容&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "正在更新推荐内容&hellip;"
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "{name} 第一个查看了这个页面。"
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "交易收据已经应用核实。"
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "交易收据未经应用核实。"
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr "{name} 第一个查看了这个附加组件。"
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "正在加载&hellip;"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "版本说明"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "给审核员的备注"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "没有找到版本说明"
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "平均评价"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "评论数"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr "载入翻译出错"
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "正在加载..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "剩余 <b>{0}</b> 个字符。"
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "移除此本地化"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/packager.js:31
+msgid "Download {0}"
+msgstr "下载 {0}"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "密码强度："
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "至少还需要输入 {0} 个字符。"
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "全部"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "请求的信息"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "已标记"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "重复"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "已被退回"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "已同意"
+
+#: static/js/zamboni/validator.js:71
+msgid "All tests passed successfully."
+msgstr "成功通过全部测试。"
+
+#: static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:367
+msgid "These tests were not run."
+msgstr "这些测试没有运行。"
+
+#: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+msgid "Tests"
+msgstr "测试"
+
+#: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
+msgid "Error"
+msgstr "错误"
+
+#: static/js/zamboni/validator.js:195
+msgid "Warning"
+msgstr "警告"
+
+#: static/js/zamboni/validator.js:282
+msgid "Compatibility Tests"
+msgstr "兼容性测试"
+
+#: static/js/zamboni/validator.js:331
+msgid "App failed validation."
+msgstr "应用验证失败。"
+
+#: static/js/zamboni/validator.js:333
+msgid "App passed validation."
+msgstr "应用通过验证。"
+
+#: static/js/zamboni/validator.js:337
+msgid "Add-on failed validation."
+msgstr "附加组件验证失败。"
+
+#: static/js/zamboni/validator.js:339
+msgid "Add-on passed validation."
+msgstr "附加组件通过验证。"
+
+#: static/js/zamboni/validator.js:370
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} 个错误"
+
+#: static/js/zamboni/validator.js:372
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} 个警告"
+
+#: static/js/zamboni/validator.js:374
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0} 个提醒{0} 个提醒"
+
+#: static/js/zamboni/validator.js:451
+msgid "Validation task could not complete or completed with errors"
+msgstr "验证任务无法完成或完成时发生错误"
+
+#: static/js/zamboni/validator.js:469
+msgid "Internal server error"
+msgstr "内部服务器错误"
+
+#: static/js/zamboni/mobile/buttons.js:75
+msgid "Not Updated for {0} {1}"
+msgstr "未为 {0} {1} 更新"
+
+#: static/js/zamboni/mobile/buttons.js:76
+msgid "Requires Newer Version of {0}"
+msgstr "需要较新版本的 {0}"
+
+#: static/js/zamboni/mobile/buttons.js:77
+msgid "Unreviewed"
+msgstr "尚未审核"
+
+#: static/js/zamboni/mobile/buttons.js:78
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "实验性<span>（详细了解）</span>"
+
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+msgid "Not Available for {0}"
+msgstr "无法用于 {0}"
+
+#: static/js/zamboni/mobile/buttons.js:81
+msgid "Experimental"
+msgstr "实验性"
+
+#: static/js/zamboni/mobile/buttons.js:82
+msgid "Themes Require Newer Version of {0}"
+msgstr "主题需要 {0} 以上版本"
+
+#: static/js/zamboni/mobile/buttons.js:83
+msgid "Themes Require {0}"
+msgstr "主题需要 {0}"
+
+#: static/js/zamboni/mobile/buttons.js:128
+msgid "Installing..."
+msgstr "正在安装..."
+
+#: static/js/zamboni/mobile/buttons.js:148
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "此附加组件已通过 Mozilla 的初步审核。"
+
+#: static/js/zamboni/mobile/buttons.js:275
+msgid "Keep it"
+msgstr "保留它"
+
+#: static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr "正在尝试！"
+
+#: static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr "添加到 Firefox"

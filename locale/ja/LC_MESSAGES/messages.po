@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:48-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2014-09-06 02:40-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -106,19 +106,19 @@ msgstr "「その他」カテゴリを他のカテゴリと組み合わせるこ
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "既定のロケールを変更する前に、そのロケールでアドオンの名前、要約、説明を入力する必要があります。%s が不足しています。"
 
-#: apps/addons/forms.py:467 apps/addons/forms.py:557
+#: apps/addons/forms.py:467 apps/addons/forms.py:558
 msgid "A license must be selected."
 msgstr "ライセンスを選択してください。"
 
-#: apps/addons/forms.py:538
+#: apps/addons/forms.py:539
 msgid "Give Your Theme a Name."
 msgstr "テーマに名前を付けてください。"
 
-#: apps/addons/forms.py:544 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:545 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "テーマの説明を記入してください。"
 
-#: apps/addons/forms.py:685
+#: apps/addons/forms.py:686
 msgid "Enter a new author's email address"
 msgstr "新しい作者のメールアドレスを入力してください"
 
@@ -160,6 +160,7 @@ msgid "Recently Updated"
 msgstr "最近更新"
 
 # {0} is an add-on name.
+#. l10n: {0} is the addon name
 #: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "{0} への寄付"
@@ -341,7 +342,7 @@ msgid "Add-on Information for {0}"
 msgstr "{0} のアドオン情報"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:70
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:71
 msgid "Updated"
 msgstr "更新日"
 
@@ -604,7 +605,7 @@ msgid "See all Themes by this Artist"
 msgstr "この作者が公開しているすべてのテーマ"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:287
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:299
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "カテゴリ"
@@ -653,7 +654,7 @@ msgstr "追加"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:267
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:279
 msgid "Edit"
 msgstr "編集"
 
@@ -845,7 +846,7 @@ msgstr "レビューガイドライン"
 msgid "Detailed Review"
 msgstr "詳細なレビュー"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:768 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:769 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "レビュー"
@@ -985,7 +986,7 @@ msgstr "情報"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> の下で公開されています"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "独自ライセンス"
@@ -1182,7 +1183,7 @@ msgstr "ユーザ"
 msgid "Weekly Downloads"
 msgstr "週間ダウンロード数"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:969 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:968 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "バージョン"
 
@@ -1519,7 +1520,7 @@ msgstr "上級審査が申請されました"
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} についてのコメントが追加されました。"
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:410
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "コメント"
@@ -1593,12 +1594,12 @@ msgid "{user} approved {review} for {addon}."
 msgstr "{user} が {addon} の {review} を承認しました。"
 
 #: apps/amo/log.py:342
-msgid "Review {0} for {addon} deleted."
-msgstr "{addon} のレビュー {0} が削除されました。"
+msgid "Review {review} for {addon} deleted."
+msgstr ""
 
 #: apps/amo/log.py:343
-msgid "{user} deleted {0} for {addon}."
-msgstr "{user} が {addon} の {0} を削除しました。"
+msgid "{user} deleted {review} for {addon}."
+msgstr ""
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -2109,11 +2110,11 @@ msgstr "リンクの使用は許可されていません。"
 msgid "This url is already in use by another collection"
 msgstr "この URL は他のコレクションですでに使われています。"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1028
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1058
 msgid "Icons must be either PNG or JPG."
 msgstr "アイコンは PNG か JPEG 形式でなければなりません。"
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1046 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1076 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "画像のサイズは %d MB 以下にしてください。"
 
@@ -2153,7 +2154,7 @@ msgstr "お気に入り"
 msgid "Remove from favorites"
 msgstr "お気に入りから削除"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:69 apps/devhub/views.py:77
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:70 apps/devhub/views.py:78
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2431,7 +2432,7 @@ msgid "Edit {0}"
 msgstr "{0} を編集"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
-#: apps/editors/templates/editors/themes/themes.html:60
+#: apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
 msgstr "説明"
 
@@ -2443,7 +2444,7 @@ msgstr "協力者など"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:59 apps/devhub/templates/devhub/addons/profile.html:42
 #: apps/devhub/templates/devhub/addons/edit/admin.html:101 apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84
 #: apps/devhub/templates/devhub/addons/edit/support.html:66 apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148
-#: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300
+#: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:304
 #: apps/devhub/templates/devhub/versions/edit.html:139 apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "変更を保存"
@@ -2514,8 +2515,8 @@ msgstr "<b>警告:</b> このコレクションのオーナーを変更すると
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
-#: apps/editors/templates/editors/themes/themes.html:109 apps/editors/templates/editors/themes/themes.html:126 apps/editors/templates/editors/themes/themes.html:132
-#: apps/editors/templates/editors/themes/themes.html:139
+#: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
+#: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
 msgstr "続ける"
 
@@ -2613,7 +2614,7 @@ msgstr "追加するアドオンの名前を入力してください"
 msgid "Add to Collection"
 msgstr "コレクションへ追加"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:784 apps/editors/helpers.py:804
 msgid "Pending"
 msgstr "保留中"
 
@@ -2727,15 +2728,15 @@ msgstr "人気"
 msgid "Up & Coming"
 msgstr "注目"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:71 apps/devhub/views.py:78 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:454 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "新着"
 
-#: apps/browse/views.py:455 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:455 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: apps/browse/views.py:456 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:456 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "評価"
@@ -3018,7 +3019,7 @@ msgstr "バイナリ"
 msgid "Non-binary"
 msgstr "非バイナリ"
 
-#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:144
 msgid "Other"
 msgstr "その他"
 
@@ -3112,7 +3113,7 @@ msgstr "アプリケーションで絞り込み"
 msgid "Report Type"
 msgstr "レポートの種類"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:966 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:965 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "アプリケーション"
 
@@ -3216,7 +3217,7 @@ msgstr "事前審査済み"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "事前審査済み、本審査待ち"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:771 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:772 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "削除済み"
 
@@ -3352,115 +3353,119 @@ msgstr "変更"
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:416
 msgid "Manual Reviewer Points"
 msgstr "審査担当者の手作業確認による指摘"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:417
 msgid "Full Add-on Review"
 msgstr "アドオンの本審査"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:418
 msgid "Preliminary Add-on Review"
 msgstr "アドオンの事前審査"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:419
 msgid "Updated Add-on Review"
 msgstr "アドオンの更新審査"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:420
 msgid "Full Dictionary Review"
 msgstr "スペルチェック辞書の本審査"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:421
 msgid "Preliminary Dictionary Review"
 msgstr "スペルチェック事前の事前審査"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:422
 msgid "Updated Dictionary Review"
 msgstr "スペルチェック事前の更新審査"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:423
 msgid "Full Language Pack Review"
 msgstr "言語パックの本審査"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:424
 msgid "Preliminary Language Pack Review"
 msgstr "言語パックの事前審査"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:425
 msgid "Updated Language Pack Review"
 msgstr "言語パックの更新審査"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:426
 msgid "Theme Review"
 msgstr "テーマの審査"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:427
 msgid "Full Search Provider Review"
 msgstr "検索プロバイダの本審査"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:428
 msgid "Preliminary Search Provider Review"
 msgstr "検索プロバイダの事前審査"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:429
 msgid "Updated Search Provider Review"
 msgstr "検索プロバイダの更新審査"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:430
 msgid "Complete Theme Review"
 msgstr "完全テーマの審査"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:431
 msgid "Preliminary Complete Theme Review"
 msgstr "完全テーマの事前審査"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:432
 msgid "Updated Complete Theme Review"
 msgstr "完全テーマの更新審査"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:433
 msgid "Moderated Addon Review"
 msgstr "アドオンの管理者審査"
 
-#: apps/constants/base.py:476
+#: apps/constants/base.py:434
+msgid "Addon Review Moderation Reverted"
+msgstr ""
+
+#: apps/constants/base.py:479
 msgid "Level 1"
 msgstr "レベル 1"
 
-#: apps/constants/base.py:477
+#: apps/constants/base.py:480
 msgid "Level 2"
 msgstr "レベル 2"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 3"
 msgstr "レベル 3"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 4"
 msgstr "レベル 4"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 5"
 msgstr "レベル 5"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 6"
 msgstr "レベル 6"
 
-#: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:85
+#: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
 msgstr "詳しい情報を求める"
 
-#: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:89
+#: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
 msgstr "フラグ"
 
-#: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:91
+#: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
 msgstr "重複"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:401 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
+#: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "却下"
 
@@ -3604,267 +3609,267 @@ msgstr "ライセンスの名前は何ですか？"
 msgid "Provide the text of your license."
 msgstr "ライセンスの本文を記述してください。"
 
-#: apps/devhub/forms.py:162
+#: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
 msgstr "「その他」を選択した場合は、ライセンス本文の入力が必須です。"
 
-#: apps/devhub/forms.py:210
+#: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
 msgstr "このアドオンにはエンドユーザ使用許諾契約書があります"
 
-#: apps/devhub/forms.py:213
+#: apps/devhub/forms.py:212
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "アドオンのエンドユーザ使用許諾契約書を指定してください:"
 
-#: apps/devhub/forms.py:216
+#: apps/devhub/forms.py:215
 msgid "This add-on has a Privacy Policy"
 msgstr "このアドオンにはプライバシーポリシーがあります"
 
-#: apps/devhub/forms.py:219
+#: apps/devhub/forms.py:218
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "このアドオンのプライバシーポリシーを指定してください:"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:256
 msgid "Why did you make this add-on?"
 msgstr "なぜ、このアドオンを制作したのですか？"
 
-#: apps/devhub/forms.py:258
+#: apps/devhub/forms.py:257
 msgid "What's next for this add-on?"
 msgstr "このアドオンの今後は？"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:294
 msgid "The developers of this add-on"
 msgstr "このアドオンの開発者"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:295
 msgid "The Mozilla Foundation"
 msgstr "Mozilla Foundation"
 
-#: apps/devhub/forms.py:297
+#: apps/devhub/forms.py:296
 msgid "An organization of my choice"
 msgstr "任意の団体"
 
-#: apps/devhub/forms.py:340
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount greater than 0."
 msgstr "0 より大きい推奨額を入力してください。"
 
-#: apps/devhub/forms.py:343
+#: apps/devhub/forms.py:342
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "${0} より小さい推奨額を入力してください。"
 
-#: apps/devhub/forms.py:352
+#: apps/devhub/forms.py:351
 msgid "PayPal ID required to accept contributions."
 msgstr "寄付を受け取るには PayPal ID が必要です。"
 
-#: apps/devhub/forms.py:358
+#: apps/devhub/forms.py:357
 msgid "Could not validate PayPal id."
 msgstr "PayPal ID が検証できません。"
 
-#: apps/devhub/forms.py:373
+#: apps/devhub/forms.py:372
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "非対応のファイル形式です。アーカイブファイル {extensions} をアップロードしてください。"
 
-#: apps/devhub/forms.py:392
+#: apps/devhub/forms.py:391
 msgid "View current"
 msgstr "最新版を表示"
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:893
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:892
 msgid "Invalid version range."
 msgstr "不正なバージョン範囲です。"
 
-#: apps/devhub/forms.py:470
+#: apps/devhub/forms.py:469
 msgid "Need at least one compatible application."
 msgstr "対応アプリケーションが少なくともひとつは必要です。"
 
-#: apps/devhub/forms.py:483 apps/devhub/forms.py:500
+#: apps/devhub/forms.py:482 apps/devhub/forms.py:499
 msgid "There was an error with your upload. Please try again."
 msgstr "アップロードした内容にエラーがあります。もう一度やり直してください。"
 
-#: apps/devhub/forms.py:488
+#: apps/devhub/forms.py:487
 msgid "Override failed validation"
 msgstr "失敗した検証を上書き"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:529
 msgid "Need at least one platform."
 msgstr "対応 OS が少なくともひとつは必要です。"
 
-#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "本審査"
 
-#: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "事前審査"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:541
 msgid "Please choose a review nomination type"
 msgstr "審査方法を選択してください"
 
-#: apps/devhub/forms.py:546 apps/devhub/forms.py:582
+#: apps/devhub/forms.py:545 apps/devhub/forms.py:581
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:563
+#: apps/devhub/forms.py:562
 msgid "Version %s already exists"
 msgstr "バージョン %s はすでに存在しています"
 
-#: apps/devhub/forms.py:576
+#: apps/devhub/forms.py:575
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:610
 msgid "You cannot upload any more files for this version."
 msgstr "このバージョンにはこれ以上ファイルをアップロードできません。"
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:616
 msgid "Version doesn't match"
 msgstr "バージョンが一致しません"
 
-#: apps/devhub/forms.py:650
+#: apps/devhub/forms.py:649
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "審査が開始されたファイルは削除できません。バージョンそのものを削除する必要があります。"
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:669
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "「すべて」の OS は、特定の OS と組み合わせることができません。"
 
-#: apps/devhub/forms.py:675
+#: apps/devhub/forms.py:674
 msgid "A platform can only be chosen once."
 msgstr "OS は一度だけ選択することができます。"
 
-#: apps/devhub/forms.py:688
+#: apps/devhub/forms.py:687
 msgid "A review type must be selected."
 msgstr "審査形式を選択してください。"
 
-#: apps/devhub/forms.py:767
+#: apps/devhub/forms.py:766
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "アドオンに名前を付けてください。最も成功しているアドオンは、そのアドオンの機能を表す名前を付けています。"
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:771
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "アドオンについての簡単な説明を一文で記述してください。これはアドオンマネージャに表示されます。"
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:775
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "初期バージョン番号を入力してください。リリース回数や好みによりますが、たいていは 0.1 か 1.0 です。"
 
-#: apps/devhub/forms.py:780
+#: apps/devhub/forms.py:779
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "各アドオンには、UUID または addon-name@developer.com のようなメールアドレス形式の固有 ID が必要です。このメールアドレスは正規のアドレスである必要はありません。"
 
-#: apps/devhub/forms.py:786
+#: apps/devhub/forms.py:785
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "ブラウザで使用されるアドオンのパッケージ名です。これは、元の名前を短くした形式になるでしょう (例: Test Extension は test_extension になります)。"
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:790
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "このアドオンの作者として表示する個人または団体の名前を入力してください。"
 
-#: apps/devhub/forms.py:795
+#: apps/devhub/forms.py:794
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "このアドオンの他の貢献者の名前を 1 行に 1 人ずつ入力してください。"
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:803
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "アドオンの名前に Mozilla の商標を含めることはできません。"
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:810
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "正しいパッケージ名を入力してください。使える文字は英数字とアンダーバーのみです。"
 
-#: apps/devhub/forms.py:815
+#: apps/devhub/forms.py:814
 msgid "This package name is already in use."
 msgstr "このパッケージ名はすでに使われています。"
 
-#: apps/devhub/forms.py:818
+#: apps/devhub/forms.py:817
 msgid "The package name cannot be: %s."
 msgstr "このパッケージ名は使用できません: %s"
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:828
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "アドオンの ID は UUID かメールアドレス形式でなければなりません。"
 
-#: apps/devhub/forms.py:835
+#: apps/devhub/forms.py:834
 msgid "The version string is invalid."
 msgstr "バージョン文字列が正しくありません。"
 
-#: apps/devhub/forms.py:843
+#: apps/devhub/forms.py:842
 msgid "Minimum"
 msgstr "最小"
 
-#: apps/devhub/forms.py:846
+#: apps/devhub/forms.py:845
 msgid "Maximum"
 msgstr "最大"
 
-#: apps/devhub/forms.py:897
+#: apps/devhub/forms.py:896
 msgid "Min version must be less than Max version."
 msgstr "最小バージョンは最大バージョンより小さくしてください。"
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:921
 msgid "{0} is a required target application."
 msgstr "{0} は必須の対応アプリケーションです。"
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:933
 msgid "About dialog"
 msgstr "情報ダイアログ"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:934
 msgid "Creates a standard About dialog for your extension"
 msgstr "拡張機能に追加できる標準的な情報ダイアログ (About) を作成します"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:938
 msgid "Preferences dialog"
 msgstr "設定ダイアログ"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:939
 msgid "Creates an example Preferences window"
 msgstr "設定ウィンドウのサンプルを作成します"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:942
 msgid "Toolbar"
 msgstr "ツールバー"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:943
 msgid "Creates an example toolbar for your extension"
 msgstr "拡張機能に追加できるツールバーのサンプルを作成します"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:946
 msgid "Toolbar button"
 msgstr "ツールバーボタン"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:947
 msgid "Creates an example button on the browser toolbar"
 msgstr "ブラウザツールバー上のボタンのサンプルを作成します"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:951
 msgid "Main menu command"
 msgstr "メインメニューコマンド"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:952
 msgid "Creates an item on the Tools menu"
 msgstr "ツールメニュー上の項目を作成します"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:955
 msgid "Context menu command"
 msgstr "コンテキストメニューコマンド"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:956
 msgid "Creates a context menu item for images"
 msgstr "画像のコンテキストメニュー項目を作成します"
 
-#: apps/devhub/forms.py:960
+#: apps/devhub/forms.py:959
 msgid "Sidebar support"
 msgstr "サイドバー対応"
 
-#: apps/devhub/forms.py:961
+#: apps/devhub/forms.py:960
 msgid "Creates an example sidebar panel"
 msgstr "サイドバーパネルのサンプルを作成します"
 
-#: apps/devhub/forms.py:970 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:969 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
 
-#: apps/devhub/forms.py:1022
+#: apps/devhub/forms.py:1021
 msgid "There cannot be more than 3 required add-ons."
 msgstr "依存アドオンを 3 つ以上指定することはできません。"
 
@@ -3914,116 +3919,128 @@ msgstr "ホスト「%s」へ接続できませんでした。"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "検証の結果、多数のエラーや警告が見つかったため、%s 個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
 
-#: apps/devhub/views.py:175
+#: apps/devhub/views.py:176
 msgid "All My Add-ons"
 msgstr "自分のすべてのアドオン"
 
-#: apps/devhub/views.py:202
+#: apps/devhub/views.py:203
 msgid "All Activity"
 msgstr "すべてのアクティビティ"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "Add-on Updates"
 msgstr "アドオンの更新"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Status"
 msgstr "アドオンのステータス"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "User Collections"
 msgstr "ユーザコレクション"
 
-#: apps/devhub/views.py:206 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "ユーザレビュー"
 
-#: apps/devhub/views.py:319 apps/devhub/views.py:323 apps/devhub/views.py:436 apps/devhub/views.py:465 apps/devhub/views.py:516 apps/devhub/views.py:1122
+#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:466 apps/devhub/views.py:495 apps/devhub/views.py:546 apps/devhub/views.py:1155
 msgid "Changes successfully saved."
 msgstr "変更は正しく保存されました。"
 
-#: apps/devhub/views.py:326 apps/devhub/views.py:1538
+#: apps/devhub/views.py:327 apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr "フォームの入力ミスを確認してください。"
 
-#: apps/devhub/views.py:338
+#: apps/devhub/views.py:339
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "アドオンを削除できません。代わりに無効化してください。"
 
-#: apps/devhub/views.py:348
+#: apps/devhub/views.py:349
 msgid "Theme deleted."
 msgstr "テーマは削除されました。"
 
-#: apps/devhub/views.py:348
+#: apps/devhub/views.py:349
 msgid "Add-on deleted."
 msgstr "アドオンは削除されました。"
 
-#: apps/devhub/views.py:354
+#: apps/devhub/views.py:355
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "パスワードが間違っています。テーマは削除されませんでした。"
 
-#: apps/devhub/views.py:359
+#: apps/devhub/views.py:360
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "パスワードが間違っています。アドオンは削除されませんでした。"
 
-#: apps/devhub/views.py:471
+#: apps/devhub/views.py:432
+msgid "An author has been added to your add-on"
+msgstr ""
+
+#: apps/devhub/views.py:439
+msgid "An author has a role changed on your add-on"
+msgstr ""
+
+#: apps/devhub/views.py:458
+msgid "An author has been removed from your add-on"
+msgstr ""
+
+#: apps/devhub/views.py:501
 msgid "There were errors in your submission."
 msgstr "送信内容にエラーがありました。"
 
-#: apps/devhub/views.py:535
+#: apps/devhub/views.py:565
 msgid "Validate Add-on"
 msgstr "アドオンの検証"
 
-#: apps/devhub/views.py:544
+#: apps/devhub/views.py:574
 msgid "Check Add-on Compatibility"
 msgstr "アドオンの互換性を確認"
 
-#: apps/devhub/views.py:667
+#: apps/devhub/views.py:697
 msgid "There was an error with the submission."
 msgstr "送信内容にエラーがありました。"
 
-#: apps/devhub/views.py:1030 apps/users/forms.py:419
+#: apps/devhub/views.py:1060 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPEG 形式でなければなりません。"
 
-#: apps/devhub/views.py:1034
+#: apps/devhub/views.py:1064
 msgid "Icons cannot be animated."
 msgstr "アニメーションするアイコンは使用できません。"
 
-#: apps/devhub/views.py:1036
+#: apps/devhub/views.py:1066
 msgid "Images cannot be animated."
 msgstr "アニメーションする画像は使用できません。"
 
-#: apps/devhub/views.py:1049
+#: apps/devhub/views.py:1079
 msgid "Images cannot be larger than %dKB."
 msgstr "画像は %d KB 未満でなければなりません。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1059
+#: apps/devhub/views.py:1089
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "画像は幅 {0} ピクセル、高さ {1} ピクセルでなければなりません。"
 
-#: apps/devhub/views.py:1063
+#: apps/devhub/views.py:1096
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
-#: apps/devhub/views.py:1161
+#: apps/devhub/views.py:1194
 msgid "Version %s disabled."
 msgstr "バージョン %s は削除されました。"
 
-#: apps/devhub/views.py:1164
+#: apps/devhub/views.py:1197
 msgid "Version %s deleted."
 msgstr "バージョン %s は削除されました。"
 
-#: apps/devhub/views.py:1174
+#: apps/devhub/views.py:1207
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
 
-#: apps/devhub/views.py:1584
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "事前審査が申請されました。"
 
-#: apps/devhub/views.py:1585
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "本審査が申請されました。"
 
@@ -4544,7 +4561,7 @@ msgstr "なし"
 msgid "Manage Authors & License"
 msgstr "作者とライセンスを管理"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:280
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:292
 msgid "Authors"
 msgstr "作者"
 
@@ -4603,7 +4620,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "アドオンのページに付ける短くて固有な URL スラグを入力してください。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:265 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "詳細ページを表示"
 
@@ -4939,7 +4956,7 @@ msgstr "このテーマを削除する理由を教えてください:"
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "このアドオンを削除する理由を教えてください:"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:263
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:275
 msgid "Actions"
 msgstr "アクション"
 
@@ -7815,51 +7832,51 @@ msgstr ""
 msgid "Pending Header"
 msgstr "保留中のヘッダ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:249
+#: apps/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
 msgstr "保留中のフッタ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:257
+#: apps/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
-#: apps/devhub/templates/devhub/personas/edit.html:262
+#: apps/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
 msgstr "ヘッダ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:266
+#: apps/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
 msgstr "フッタ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
+#: apps/devhub/templates/devhub/personas/edit.html:274 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
 msgstr "テーマの配色を選択してください。"
 
-#: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
+#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
 msgstr "前景テキスト"
 
-#: apps/devhub/templates/devhub/personas/edit.html:273 apps/devhub/templates/devhub/personas/submit.html:170
+#: apps/devhub/templates/devhub/personas/edit.html:277 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
 msgstr "これはタブ上の文字色です。"
 
-#: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:172
+#: apps/devhub/templates/devhub/personas/edit.html:279 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
 msgstr "背景"
 
-#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:173
+#: apps/devhub/templates/devhub/personas/edit.html:280 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
 msgstr "これはタブの背景色です。"
 
-#: apps/devhub/templates/devhub/personas/edit.html:281 apps/devhub/templates/devhub/personas/submit.html:178
+#: apps/devhub/templates/devhub/personas/edit.html:285 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
 msgstr "プレビュー"
 
-#: apps/devhub/templates/devhub/personas/edit.html:287 apps/devhub/templates/devhub/personas/submit.html:183
+#: apps/devhub/templates/devhub/personas/edit.html:291 apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
 msgstr "テーマの名前"
 
-#: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
+#: apps/devhub/templates/devhub/personas/edit.html:294 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 msgstr "作者: <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
@@ -7979,7 +7996,7 @@ msgstr "ファイル"
 msgid "Upload Another File"
 msgstr "他のファイルをアップロード"
 
-#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:109
+#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
 msgid "Version Notes"
 msgstr "リリースノート"
 
@@ -7993,7 +8010,7 @@ msgstr ""
 msgid "Approval Status"
 msgstr "承認状況"
 
-#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:119
+#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:131
 msgid "Notes for Reviewers"
 msgstr "審査担当者へのメモ"
 
@@ -8096,7 +8113,7 @@ msgstr "ステータス"
 
 # Header for a column in a table
 #: apps/devhub/templates/devhub/versions/list.html:108 apps/devhub/templates/devhub/versions/list.html:129 apps/devhub/templates/devhub/versions/list.html:149
-#: apps/editors/templates/editors/review.html:71
+#: apps/editors/templates/editors/review.html:83
 msgid "Validation"
 msgstr "検証"
 
@@ -8670,7 +8687,7 @@ msgstr "種類"
 msgid "Waiting Time"
 msgstr "待ち時間"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:295
+#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "フラグ"
 
@@ -8716,85 +8733,85 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 日"
 
-#: apps/editors/helpers.py:395
+#: apps/editors/helpers.py:397
 msgid "Push to public"
 msgstr "公開"
 
-#: apps/editors/helpers.py:404
+#: apps/editors/helpers.py:405
 msgid "Request more information"
 msgstr "詳しい情報を求める"
 
-#: apps/editors/helpers.py:407
+#: apps/editors/helpers.py:408
 msgid "Request super-review"
 msgstr "スーパーレビューを求める"
 
-#: apps/editors/helpers.py:418
+#: apps/editors/helpers.py:419
 msgid "Grant preliminary review"
 msgstr "事前審査を承認"
 
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:420
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: apps/editors/helpers.py:421
+#: apps/editors/helpers.py:422
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 
-#: apps/editors/helpers.py:425
+#: apps/editors/helpers.py:426
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
 
-#: apps/editors/helpers.py:431
+#: apps/editors/helpers.py:432
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr ""
 
-#: apps/editors/helpers.py:433
+#: apps/editors/helpers.py:434
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: apps/editors/helpers.py:437
+#: apps/editors/helpers.py:438
 msgid "This will reject the files and remove them from the review queue."
 msgstr ""
 
-#: apps/editors/helpers.py:441
+#: apps/editors/helpers.py:442
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: apps/editors/helpers.py:446
+#: apps/editors/helpers.py:447
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: apps/editors/helpers.py:451
+#: apps/editors/helpers.py:452
 msgid "Retain preliminary review"
 msgstr "事前審査に留める"
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:453
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: apps/editors/helpers.py:457
+#: apps/editors/helpers.py:458
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr ""
 
-#: apps/editors/helpers.py:460
+#: apps/editors/helpers.py:461
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:464
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
 
-#: apps/editors/helpers.py:531
+#: apps/editors/helpers.py:532
 msgid "add-on"
 msgstr "アドオン"
 
-#: apps/editors/helpers.py:787 apps/editors/helpers.py:807
+#: apps/editors/helpers.py:788 apps/editors/helpers.py:808
 msgid "Flagged"
 msgstr "フラグ付き"
 
-#: apps/editors/helpers.py:791 apps/editors/helpers.py:810
+#: apps/editors/helpers.py:792 apps/editors/helpers.py:811
 msgid "Updates"
 msgstr "更新"
 
@@ -8822,81 +8839,81 @@ msgstr "エディタのコメントがあります"
 msgid "Sources provided"
 msgstr ""
 
-#: apps/editors/tasks.py:68
+#: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
 msgstr "重複登録"
 
-#: apps/editors/tasks.py:80
+#: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
 msgstr "テーマを登録いただきありがとうございます"
 
-#: apps/editors/tasks.py:84
+#: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
 msgstr "あなたが登録したテーマに関する問題"
 
-#: apps/editors/tasks.py:88
+#: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
 msgstr "登録されたテーマは追加審査のためフラグが付けられました"
 
-#: apps/editors/tasks.py:95
+#: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
 msgstr "あなたが登録したテーマに関する質問"
 
-#: apps/editors/views.py:81
+#: apps/editors/views.py:104
 msgid "New Add-ons (Under 5 days)"
 msgstr "新着アドオン (5 日以内)"
 
-#: apps/editors/views.py:82
+#: apps/editors/views.py:105
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:83
+#: apps/editors/views.py:106
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:398
+#: apps/editors/views.py:421
 msgid "An unknown error occurred"
 msgstr "不明なエラーが発生しました"
 
-#: apps/editors/views.py:424
+#: apps/editors/views.py:447
 msgid "Self-reviews are not allowed."
 msgstr "自己審査は認められません"
 
-#: apps/editors/views.py:443
+#: apps/editors/views.py:466
 msgid "Review successfully processed."
 msgstr "審査処理が完了しました。"
 
-#: apps/editors/views.py:622
+#: apps/editors/views.py:653
 msgid "was approved"
 msgstr "は承認されました"
 
-#: apps/editors/views.py:623
+#: apps/editors/views.py:654
 msgid "given preliminary review"
 msgstr "は事前審査を承認されました"
 
-#: apps/editors/views.py:624
+#: apps/editors/views.py:655
 msgid "rejected"
 msgstr "は却下されました"
 
-#: apps/editors/views.py:625
+#: apps/editors/views.py:656
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "は上級審査に回されました"
 
-#: apps/editors/views.py:627
+#: apps/editors/views.py:658
 msgid "needs more information"
 msgstr "は詳しい情報を求められました"
 
-#: apps/editors/views.py:628
+#: apps/editors/views.py:659
 msgid "needs super review"
 msgstr "は上級審査が必要です"
 
-#: apps/editors/views_themes.py:324
+#: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} 個のテーマの審査が完了しました (+{1} ポイント、{2} 合計)。"
 
-#: apps/editors/views_themes.py:339
+#: apps/editors/views_themes.py:341
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "あなたのテーマロックが解放され、他の審査担当者がこれらの解放されたテーマを審査できるようになりました。以下の表に反映された変更を見るにはページを再読み込みする必要があります。"
 
@@ -8969,6 +8986,26 @@ msgstr "履歴の詳細"
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
 msgstr "履歴の詳細"
+
+#: apps/editors/templates/editors/eventlog_detail.html:15
+msgid "Add-on Title"
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:17
+msgid "Review Title"
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:19
+msgid "Review Text"
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:23
+msgid "Review was flagged prior to deletion."
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:31
+msgid "Undelete"
+msgstr ""
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9044,7 +9081,7 @@ msgstr "今日のメッセージ"
 msgid "Update message of the day"
 msgstr "今日のメッセージを更新"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:234
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:246
 msgid "Save"
 msgstr "保存"
 
@@ -9158,91 +9195,95 @@ msgstr "編集者ガイド"
 msgid "Review {0}"
 msgstr "{0} を審査"
 
-#: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:276
+#: apps/editors/templates/editors/review.html:41
+msgid "Add-on user change history"
+msgstr ""
+
+#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
 msgstr "アドオンの履歴"
 
-#: apps/editors/templates/editors/review.html:52
+#: apps/editors/templates/editors/review.html:64
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:61
+#: apps/editors/templates/editors/review.html:73
 msgid "Files in this version:"
 msgstr "このバージョンのファイル:"
 
-#: apps/editors/templates/editors/review.html:73
+#: apps/editors/templates/editors/review.html:85
 msgid "Contents"
 msgstr "内容"
 
-#: apps/editors/templates/editors/review.html:76
+#: apps/editors/templates/editors/review.html:88
 msgid "Compare"
 msgstr "比較"
 
-#: apps/editors/templates/editors/review.html:84
+#: apps/editors/templates/editors/review.html:96
 msgid "Compatibility:"
 msgstr "互換性:"
 
-#: apps/editors/templates/editors/review.html:95
+#: apps/editors/templates/editors/review.html:107
 msgid "Additional sources:"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:98
+#: apps/editors/templates/editors/review.html:110
 msgid "Download files"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:100
+#: apps/editors/templates/editors/review.html:112
 msgid "The developer has provided source code."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:135
+#: apps/editors/templates/editors/review.html:147
 msgid "This version has not been reviewed."
 msgstr "このバージョンはまだ審査を受けていません。"
 
-#: apps/editors/templates/editors/review.html:165
+#: apps/editors/templates/editors/review.html:177
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "このフォームを送信することはできますが、競合しないと分かっている場合のみ送信してください。"
 
-#: apps/editors/templates/editors/review.html:172
+#: apps/editors/templates/editors/review.html:184
 msgid "Insert canned response..."
 msgstr "定型文の返信を挿入..."
 
-#: apps/editors/templates/editors/review.html:192
+#: apps/editors/templates/editors/review.html:204
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:200
+#: apps/editors/templates/editors/review.html:212
 msgid "Tested on:"
 msgstr "テスト環境:"
 
-#: apps/editors/templates/editors/review.html:230
+#: apps/editors/templates/editors/review.html:242
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:247
+#: apps/editors/templates/editors/review.html:259
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:251
+#: apps/editors/templates/editors/review.html:263
 msgid "Update the whiteboard"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
+#: apps/editors/templates/editors/review.html:279 apps/editors/templates/editors/review.html:280
 msgid "(admin)"
 msgstr "(管理者)"
 
-#: apps/editors/templates/editors/review.html:268
+#: apps/editors/templates/editors/review.html:280
 msgid "Admin Page"
 msgstr "管理者ページ"
 
-#: apps/editors/templates/editors/review.html:273
+#: apps/editors/templates/editors/review.html:285
 msgid "Review This Add-on"
 msgstr "このアドオンを審査"
 
-#: apps/editors/templates/editors/review.html:275
+#: apps/editors/templates/editors/review.html:287
 msgid "More Information"
 msgstr "詳しい情報"
 
-#: apps/editors/templates/editors/review.html:277
+#: apps/editors/templates/editors/review.html:289
 msgid "Resolution"
 msgstr "審査結果"
 
@@ -9455,43 +9496,44 @@ msgstr "{0} のテーマ審査"
 msgid "(Probable Duplicate Submission)"
 msgstr "(重複登録の可能性)"
 
-#: apps/editors/templates/editors/themes/themes.html:66
+#: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
 msgstr "過去の審査メモ"
 
-#: apps/editors/templates/editors/themes/themes.html:72
+#. {previous review action taken on theme}: {comment about review action}
+#: apps/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
 msgstr "詳細情報リクエスト済み: {0}"
 
-#: apps/editors/templates/editors/themes/themes.html:74
+#: apps/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
 msgstr "フラグ付き: {0}"
 
-#: apps/editors/templates/editors/themes/themes.html:95
+#: apps/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
 msgstr "テーマを承認"
 
-#: apps/editors/templates/editors/themes/themes.html:102
+#: apps/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
 msgstr "必須項目"
 
-#: apps/editors/templates/editors/themes/themes.html:106
+#: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
 msgstr "重複する ID または URL を入力"
 
-#: apps/editors/templates/editors/themes/themes.html:112
+#: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
 msgstr "却下する理由を選択"
 
-#: apps/editors/templates/editors/themes/themes.html:123
+#: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
 msgstr "却下する理由を説明"
 
-#: apps/editors/templates/editors/themes/themes.html:129
+#: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
 msgstr "作者に質問する"
 
-#: apps/editors/templates/editors/themes/themes.html:136
+#: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
 msgstr "フラグを立てる理由を説明"
 
@@ -10143,7 +10185,7 @@ msgstr ""
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
+"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
@@ -10479,17 +10521,17 @@ msgid "A developer may reply to any review posted to their add-on as long as the
 msgstr ""
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:128
+#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
 msgid "Spam or otherwise non-review content"
 msgstr "スパムあるいはその他レビューと無関係の内容"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:129
+#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
 msgid "Inappropriate language/dialog"
 msgstr "不適切な言葉・会話"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:130
+#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:156
 msgid "Misplaced bug report or support request"
 msgstr "場違いなバグ報告またはサポートリクエスト"
 
@@ -11183,19 +11225,19 @@ msgstr "このアドオンのレビュー履歴"
 msgid "Rated %d out of 5 stars"
 msgstr "5 つ星のうち %d つの評価を受けています"
 
-#: apps/reviews/forms.py:120
+#: apps/reviews/forms.py:118
 msgid "Keep review; remove flags"
 msgstr "レビューを残し、フラグを削除"
 
-#: apps/reviews/forms.py:121
+#: apps/reviews/forms.py:119
 msgid "Skip for now"
 msgstr "今はスキップ"
 
-#: apps/reviews/forms.py:123 apps/reviews/templates/reviews/review.html:94
+#: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:94
 msgid "Delete review"
 msgstr "レビューを削除"
 
-#: apps/reviews/models.py:131
+#: apps/reviews/models.py:157
 msgid "Other (please specify)"
 msgstr "その他 (具体的に書いてください)"
 
@@ -11965,6 +12007,7 @@ msgstr "人気 {0} タグ"
 msgid "{0} Top Tags"
 msgstr "{0} の人気タグ"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 msgstr "翻訳言語: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -11981,6 +12024,7 @@ msgstr "既存ロケール"
 msgid "New Locales"
 msgstr "新規ロケール"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr "<b>{0}</b> ロケールに未保存の変更があります。ロケールを変更する前に変更を保存しますか？"
@@ -11989,6 +12033,7 @@ msgstr "<b>{0}</b> ロケールに未保存の変更があります。ロケー�
 msgid "Discard Changes"
 msgstr "変更を破棄"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr "<b>{0}</b> の翻訳をすべて削除してもよろしいですか？ この操作は取り消せません。"
@@ -12770,15 +12815,15 @@ msgstr "%s のバージョン履歴"
 msgid "Version History with Changelogs"
 msgstr "バージョン履歴・変更点"
 
-#: apps/versions/models.py:281
+#: apps/versions/models.py:282
 msgid "Add-on uses binary components."
 msgstr "このアドオンはバイナリコンポーネントを含んでいます。"
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:285
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "このアドオンは厳密な互換性チェックを行うよう設定されています。"
 
-#: apps/versions/models.py:651
+#: apps/versions/models.py:663
 msgid "{app} {min} and later"
 msgstr "{app} {min} 以降"
 

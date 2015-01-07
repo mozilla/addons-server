@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:48-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: 2015-01-02 15:40+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,19 +107,19 @@ msgstr "Die Kategorie „Verschiedenes“ kann nicht mit anderen Kategorien komb
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Bevor Sie Ihre Standardsprache ändern, müssen Sie in dieser Sprache einen Namen, eine Zusammenfassung und eine Beschreibung haben. Es fehlt noch %s."
 
-#: apps/addons/forms.py:467 apps/addons/forms.py:557
+#: apps/addons/forms.py:467 apps/addons/forms.py:558
 msgid "A license must be selected."
 msgstr "Es muss eine Lizenz ausgewählt werden."
 
-#: apps/addons/forms.py:538
+#: apps/addons/forms.py:539
 msgid "Give Your Theme a Name."
 msgstr "Geben Sie Ihrem Theme einen Namen."
 
-#: apps/addons/forms.py:544 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:545 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Beschreiben Sie Ihr Theme."
 
-#: apps/addons/forms.py:685
+#: apps/addons/forms.py:686
 msgid "Enter a new author's email address"
 msgstr "Geben Sie eine neue E-Mail-Adresse des Autors ein"
 
@@ -160,6 +160,7 @@ msgid "Recently Updated"
 msgstr "Zuletzt aktualisiert"
 
 # %1 is an add-on name.
+#. l10n: {0} is the addon name
 #: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "Spende für {0}"
@@ -340,7 +341,7 @@ msgid "Add-on Information for {0}"
 msgstr "Add-on-Informationen für {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:70
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:71
 msgid "Updated"
 msgstr "Aktualisiert"
 
@@ -609,7 +610,7 @@ msgid "See all Themes by this Artist"
 msgstr "Alle Themes von diesem Künstler ansehen"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:287
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:299
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "Kategorien"
@@ -659,7 +660,7 @@ msgstr "Hinzufügen"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:267
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:279
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -698,12 +699,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Installation in Thunderbird</strong> <ol> <li>Laden Sie die Datei "
-"herunter und speichern Sie sie auf Ihrer Festplatte.</li> <li>Öffnen Sie in "
-"Mozilla Thunderbird den Add-ons-Manager über das Menü „Extras“</li> "
-"<li>Wählen Sie aus dem Optionsmenü neben dem Add-on-Suchfeld den Punkt „Add-"
-"on aus Datei installieren…“ und wählen Sie das heruntergeladene Add-on "
-"aus.</li> </ol>"
+"<strong>Installation in Thunderbird</strong> <ol> <li>Laden Sie die Datei herunter und speichern Sie sie auf Ihrer Festplatte.</li> <li>Öffnen Sie in Mozilla Thunderbird den Add-ons-Manager über "
+"das Menü „Extras“</li> <li>Wählen Sie aus dem Optionsmenü neben dem Add-on-Suchfeld den Punkt „Add-on aus Datei installieren…“ und wählen Sie das heruntergeladene Add-on aus.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -858,7 +855,7 @@ msgstr "Bewertungsleitfaden"
 msgid "Detailed Review"
 msgstr "Detaillierte Bewertung"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:768 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:769 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Bewertungen"
@@ -1000,7 +997,7 @@ msgstr "Info"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Veröffentlicht unter <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:154
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Benutzerdefinierte Lizenz"
@@ -1199,7 +1196,7 @@ msgstr "Benutzer"
 msgid "Weekly Downloads"
 msgstr "Wöchentliche Downloads"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:969 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:968 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Version"
 
@@ -1536,7 +1533,7 @@ msgstr "Super-Freigabe angefordert"
 msgid "Comment on {addon} {version}."
 msgstr "Kommentar zu {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:410
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Kommentar"
@@ -1610,12 +1607,12 @@ msgid "{user} approved {review} for {addon}."
 msgstr "{user} hat {review} für {addon} freigeschaltet."
 
 #: apps/amo/log.py:342
-msgid "Review {0} for {addon} deleted."
-msgstr "Bewertung {0} für {addon} gelöscht."
+msgid "Review {review} for {addon} deleted."
+msgstr ""
 
 #: apps/amo/log.py:343
-msgid "{user} deleted {0} for {addon}."
-msgstr "{user} hat {0} für {addon} gelöscht."
+msgid "{user} deleted {review} for {addon}."
+msgstr ""
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -2131,11 +2128,11 @@ msgstr "Links sind nicht erlaubt."
 msgid "This url is already in use by another collection"
 msgstr "Diese Adresse (URL) wird bereits von einer anderen Sammlung verwendet."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1028
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1058
 msgid "Icons must be either PNG or JPG."
 msgstr "Symbole (Icons) müssen im Format PNG oder JPG vorliegen."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1046 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1076 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Bitte verwenden Sie Bilder, die kleiner sind als %dMB."
 
@@ -2175,7 +2172,7 @@ msgstr "Favorit"
 msgid "Remove from favorites"
 msgstr "Aus den Favoriten entfernen"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:69 apps/devhub/views.py:77
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:70 apps/devhub/views.py:78
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2461,7 +2458,7 @@ msgid "Edit {0}"
 msgstr "{0} bearbeiten"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
-#: apps/editors/templates/editors/themes/themes.html:60
+#: apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -2473,7 +2470,7 @@ msgstr "Mitwirkende & Mehr"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:59 apps/devhub/templates/devhub/addons/profile.html:42
 #: apps/devhub/templates/devhub/addons/edit/admin.html:101 apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84
 #: apps/devhub/templates/devhub/addons/edit/support.html:66 apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148
-#: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:300
+#: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:304
 #: apps/devhub/templates/devhub/versions/edit.html:139 apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Änderungen speichern"
@@ -2544,8 +2541,8 @@ msgstr "<b>Achtung:</b> Wenn Sie den Besitzer dieser Sammlung ändern, können S
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
-#: apps/editors/templates/editors/themes/themes.html:109 apps/editors/templates/editors/themes/themes.html:126 apps/editors/templates/editors/themes/themes.html:132
-#: apps/editors/templates/editors/themes/themes.html:139
+#: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
+#: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
 msgstr "Weiter"
 
@@ -2644,7 +2641,7 @@ msgstr "Geben Sie den Namen des einzufügenden Add-ons ein"
 msgid "Add to Collection"
 msgstr "Zur Sammlung hinzufügen"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:783 apps/editors/helpers.py:803
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:784 apps/editors/helpers.py:804
 msgid "Pending"
 msgstr "Ausstehend"
 
@@ -2758,15 +2755,15 @@ msgstr "Meiste Anwender"
 msgid "Up & Coming"
 msgstr "Neu & aufstrebend"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:71 apps/devhub/views.py:78 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:454 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Angelegt"
 
-#: apps/browse/views.py:455 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:455 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Downloads"
 
-#: apps/browse/views.py:456 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:456 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Bewertung"
@@ -3051,7 +3048,7 @@ msgstr "Binär"
 msgid "Non-binary"
 msgstr "Nicht-binär"
 
-#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:145
+#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:144
 msgid "Other"
 msgstr "andere"
 
@@ -3147,7 +3144,7 @@ msgstr "Nach Anwendung filtern"
 msgid "Report Type"
 msgstr "Typ melden"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:966 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:965 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Anwendung"
 
@@ -3251,7 +3248,7 @@ msgstr "Vorläufig freigegeben"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Vorläufig freigegeben und wartet auf vollständige Überprüfung"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:771 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:772 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Gelöscht"
 
@@ -3387,115 +3384,119 @@ msgstr "Änderung"
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:416
 msgid "Manual Reviewer Points"
 msgstr "Handbuch für Überprüfungspunkte"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:417
 msgid "Full Add-on Review"
 msgstr "Vollständige Add-on-Überprüfung"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:418
 msgid "Preliminary Add-on Review"
 msgstr "Vorläufige Add-on-Überprüfung"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:419
 msgid "Updated Add-on Review"
 msgstr "Überprüfung von aktualisiertem Add-on"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:420
 msgid "Full Dictionary Review"
 msgstr "Vollständige Wörterbuch-Überprüfung"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:421
 msgid "Preliminary Dictionary Review"
 msgstr "Vorläufige Wörterbuch-Überprüfung"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:422
 msgid "Updated Dictionary Review"
 msgstr "Überprüfung von aktualisiertem Wörterbuch"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:423
 msgid "Full Language Pack Review"
 msgstr "Vollständige Sprachpaket-Überprüfung"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:424
 msgid "Preliminary Language Pack Review"
 msgstr "Vorläufige Sprachpaket-Überprüfung"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:425
 msgid "Updated Language Pack Review"
 msgstr "Überprüfung von aktualisiertem Sprachpaket"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:426
 msgid "Theme Review"
 msgstr "Theme-Bewertung"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:427
 msgid "Full Search Provider Review"
 msgstr "Vollständige Suchplugin-Überprüfung"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:428
 msgid "Preliminary Search Provider Review"
 msgstr "Vorläufige Suchplugin-Überprüfung"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:429
 msgid "Updated Search Provider Review"
 msgstr "Überprüfung von aktualisiertem Suchplugin"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:430
 msgid "Complete Theme Review"
 msgstr "Bewertung zu vollständigem Theme"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:431
 msgid "Preliminary Complete Theme Review"
 msgstr "Vorläufige Bewertung zu vollständigem Theme"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:432
 msgid "Updated Complete Theme Review"
 msgstr "Bewertung zu aktualisiertem vollständigem Theme"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:433
 msgid "Moderated Addon Review"
 msgstr "Moderierte Add-on-Bewertung"
 
-#: apps/constants/base.py:476
+#: apps/constants/base.py:434
+msgid "Addon Review Moderation Reverted"
+msgstr ""
+
+#: apps/constants/base.py:479
 msgid "Level 1"
 msgstr "Stufe 1"
 
-#: apps/constants/base.py:477
+#: apps/constants/base.py:480
 msgid "Level 2"
 msgstr "Stufe 2"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 3"
 msgstr "Stufe 3"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 4"
 msgstr "Stufe 4"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 5"
 msgstr "Stufe 5"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 6"
 msgstr "Stufe 6"
 
-#: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:85
+#: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
 msgstr "Weitere Informationen anfordern"
 
-#: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:89
+#: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
 msgstr "Markieren"
 
-#: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:91
+#: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
 msgstr "Doppelt"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:401 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:92
+#: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Ablehnen"
 
@@ -3639,267 +3640,267 @@ msgstr "Wie heißt Ihre Lizenz?"
 msgid "Provide the text of your license."
 msgstr "Geben Sie den Text Ihrer Lizenz an."
 
-#: apps/devhub/forms.py:162
+#: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
 msgstr "Lizenztext wird benötigt, wenn Sie Andere wählen."
 
-#: apps/devhub/forms.py:210
+#: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
 msgstr "Dieses Add-on hat eine Endbenutzerlizenzvereinbarung"
 
-#: apps/devhub/forms.py:213
+#: apps/devhub/forms.py:212
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Bitte geben Sie die Endbenutzerlizenzvereinbarung Ihres Add-ons an:"
 
-#: apps/devhub/forms.py:216
+#: apps/devhub/forms.py:215
 msgid "This add-on has a Privacy Policy"
 msgstr "Dieses Add-on hat eine Datenschutzrichtlinie."
 
-#: apps/devhub/forms.py:219
+#: apps/devhub/forms.py:218
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Bitte geben Sie die Datenschutzrichtlinie Ihres Add-ons an:"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:256
 msgid "Why did you make this add-on?"
 msgstr "Warum haben Sie dieses Add-on entwickelt?"
 
-#: apps/devhub/forms.py:258
+#: apps/devhub/forms.py:257
 msgid "What's next for this add-on?"
 msgstr "Was kommt bei diesem Add-on als nächstes?"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:294
 msgid "The developers of this add-on"
 msgstr "Die Entwickler dieses Add-ons"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:295
 msgid "The Mozilla Foundation"
 msgstr "Die Mozilla Foundation"
 
-#: apps/devhub/forms.py:297
+#: apps/devhub/forms.py:296
 msgid "An organization of my choice"
 msgstr "Eine Organisation meiner Wahl"
 
-#: apps/devhub/forms.py:340
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Bitte geben Sie eine empfohlene Summe größer 0 ein."
 
-#: apps/devhub/forms.py:343
+#: apps/devhub/forms.py:342
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Bitte geben Sie eine empfohlene Summe größer ${0} ein."
 
-#: apps/devhub/forms.py:352
+#: apps/devhub/forms.py:351
 msgid "PayPal ID required to accept contributions."
 msgstr "PayPal-ID erforderlich, um Spenden anzunehmen."
 
-#: apps/devhub/forms.py:358
+#: apps/devhub/forms.py:357
 msgid "Could not validate PayPal id."
 msgstr "PayPal-ID konnte nicht geprüft werden."
 
-#: apps/devhub/forms.py:373
+#: apps/devhub/forms.py:372
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nicht unterstützter Dateityp, bitte laden Sie eine Archivdatei hoch {extensions}."
 
-#: apps/devhub/forms.py:392
+#: apps/devhub/forms.py:391
 msgid "View current"
 msgstr "Aktuelles ansehen"
 
-#: apps/devhub/forms.py:441 apps/devhub/forms.py:893
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:892
 msgid "Invalid version range."
 msgstr "Ungültige Versionsspanne."
 
-#: apps/devhub/forms.py:470
+#: apps/devhub/forms.py:469
 msgid "Need at least one compatible application."
 msgstr "Mindestens eine kompatible Anwendung erforderlich."
 
-#: apps/devhub/forms.py:483 apps/devhub/forms.py:500
+#: apps/devhub/forms.py:482 apps/devhub/forms.py:499
 msgid "There was an error with your upload. Please try again."
 msgstr "Beim Hochladen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 
-#: apps/devhub/forms.py:488
+#: apps/devhub/forms.py:487
 msgid "Override failed validation"
 msgstr "Validierung des Überschreibens fehlgeschlagen"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:529
 msgid "Need at least one platform."
 msgstr "Mindestens eine Plattform wird benötigt."
 
-#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Vollständige Überprüfung"
 
-#: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Vorläufige Freigabe"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:541
 msgid "Please choose a review nomination type"
 msgstr "Bitte wählen Sie einen Nominierungstyp für die Überprüfung"
 
-#: apps/devhub/forms.py:546 apps/devhub/forms.py:582
+#: apps/devhub/forms.py:545 apps/devhub/forms.py:581
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Eine Datei mit einer Version, die auf a|alpha|b|beta und einer optionalen Zahl endet, wird als Beta erkannt."
 
-#: apps/devhub/forms.py:563
+#: apps/devhub/forms.py:562
 msgid "Version %s already exists"
 msgstr "Version %s existiert bereits."
 
-#: apps/devhub/forms.py:576
+#: apps/devhub/forms.py:575
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Treffen Sie eine gültige Wahl. Diese Wahl gehört nicht zu den verfügbaren Möglichkeiten."
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:610
 msgid "You cannot upload any more files for this version."
 msgstr "Sie können für diese Version keine weiteren Dateien hochladen."
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:616
 msgid "Version doesn't match"
 msgstr "Version passt nicht"
 
-#: apps/devhub/forms.py:650
+#: apps/devhub/forms.py:649
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Sie können eine Datei nicht mehr löschen, sobald die Überprüfung begonnen hat. Sie müssen die gesamte Version löschen."
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:669
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Die Plattform Alle kann nicht mit bestimmten Plattformen kombiniert werden."
 
-#: apps/devhub/forms.py:675
+#: apps/devhub/forms.py:674
 msgid "A platform can only be chosen once."
 msgstr "Eine Plattform kann nur ein einziges Mal gewählt werden."
 
-#: apps/devhub/forms.py:688
+#: apps/devhub/forms.py:687
 msgid "A review type must be selected."
 msgstr "Es muss ein Überprüfungstyp ausgewählt werden."
 
-#: apps/devhub/forms.py:767
+#: apps/devhub/forms.py:766
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Geben Sie Ihrem Add-on einen Namen. Die erfolgreichsten Add-ons geben mit ihrem Namen einen Hinweis auf ihre Funktion."
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:771
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Beschreiben Sie kurz Ihr Add-on in einem Satz. Dies erscheint im Add-ons-Manager."
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:775
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Geben Sie Ihre erste Versionsnummer ein. Abhängig von der Zahl der Veröffentlichungen und Ihren Vorlieben ist das üblicherweise 0.1 oder 1.0."
 
-#: apps/devhub/forms.py:780
+#: apps/devhub/forms.py:779
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Jedes Add-on benötigt eine einzigartige Identifikation in Form einer UUID oder einer E-Mail-Adresse, wie addon-name@entwickler.de. Die E-Mail-Adresse muss nicht gültig sein."
 
-#: apps/devhub/forms.py:786
+#: apps/devhub/forms.py:785
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "Der Paketname für Ihr Add-on, der im Browser verwendet wird. Dies sollte eine Kurzform des Namens sein (zum Beispiel könnte Test-Erweiterung test_erweiterung werden)."
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:790
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Geben Sie den Namen der Person oder Einrichtung ein, die als Autor dieses Add-on angegeben werden soll."
 
-#: apps/devhub/forms.py:795
+#: apps/devhub/forms.py:794
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Geben Sie die Namen aller anderen Mitwirkenden an dieser Erweiterung ein, einen pro Zeile."
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:803
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Namen von Add-ons sollten keine Mozilla-Markenzeichen enthalten."
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:810
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Geben Sie einen gültigen Paketnamen ein, der aus Buchstaben, Zahlen oder Unterstrichen besteht."
 
-#: apps/devhub/forms.py:815
+#: apps/devhub/forms.py:814
 msgid "This package name is already in use."
 msgstr "Dieser Paketname wird bereits verwendet."
 
-#: apps/devhub/forms.py:818
+#: apps/devhub/forms.py:817
 msgid "The package name cannot be: %s."
 msgstr "Dieser Paketname kann nicht verwendet werden: %s."
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:828
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "Die Add-on-ID muss ein UUID-String oder eine E-Mail-Adresse sein."
 
-#: apps/devhub/forms.py:835
+#: apps/devhub/forms.py:834
 msgid "The version string is invalid."
 msgstr "Die Versionsangabe ist ungültig."
 
-#: apps/devhub/forms.py:843
+#: apps/devhub/forms.py:842
 msgid "Minimum"
 msgstr "Minimum"
 
-#: apps/devhub/forms.py:846
+#: apps/devhub/forms.py:845
 msgid "Maximum"
 msgstr "Maximum"
 
-#: apps/devhub/forms.py:897
+#: apps/devhub/forms.py:896
 msgid "Min version must be less than Max version."
 msgstr "Min-Version muss kleiner als Max-Version sein."
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:921
 msgid "{0} is a required target application."
 msgstr "{0} ist eine erforderliche Zielanwendung."
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:933
 msgid "About dialog"
 msgstr "Über-Dialog"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:934
 msgid "Creates a standard About dialog for your extension"
 msgstr "Erstellt einen Standard-Dialog „Über“ für Ihre Erweiterung"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:938
 msgid "Preferences dialog"
 msgstr "Einstellungen-Dialog"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:939
 msgid "Creates an example Preferences window"
 msgstr "Erstellt ein Beispielfenster „Einstellungen“"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:942
 msgid "Toolbar"
 msgstr "Symbolleiste"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:943
 msgid "Creates an example toolbar for your extension"
 msgstr "Erstellt eine Beispiel-Symbolleiste für Ihre Erweiterung"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:946
 msgid "Toolbar button"
 msgstr "Symbolleistenschaltfläche"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:947
 msgid "Creates an example button on the browser toolbar"
 msgstr "Erstellt eine Beispielschaltfläche auf der Symbolleiste des Browsers"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:951
 msgid "Main menu command"
 msgstr "Befehl im Hauptmenü"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:952
 msgid "Creates an item on the Tools menu"
 msgstr "Erstellt eine Eintrag im Menü „Extras“"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:955
 msgid "Context menu command"
 msgstr "Befehl im Kontextmenü"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:956
 msgid "Creates a context menu item for images"
 msgstr "Erstellt einen Eintrag im Kontextmenü für Grafiken"
 
-#: apps/devhub/forms.py:960
+#: apps/devhub/forms.py:959
 msgid "Sidebar support"
 msgstr "Unterstützung für Sidebar"
 
-#: apps/devhub/forms.py:961
+#: apps/devhub/forms.py:960
 msgid "Creates an example sidebar panel"
 msgstr "Erstellt ein Beispielpanel für die Sidebar"
 
-#: apps/devhub/forms.py:970 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:969 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Wählen Sie zuerst eine Anwendung"
 
-#: apps/devhub/forms.py:1022
+#: apps/devhub/forms.py:1021
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Es dürfen nicht mehr als 3 Add-ons erforderlich sein."
 
@@ -3949,116 +3950,128 @@ msgstr "Host unter \"%s\" konnte nicht erreicht werden."
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Die Überprüfung hat zu viele Fehler/Warnungen ergeben, daher wurden %s Nachrichten abgetrennt. Wenn Sie die sichtbaren Nachrichten abgearbeitet haben, können Sie die anderen sehen."
 
-#: apps/devhub/views.py:175
+#: apps/devhub/views.py:176
 msgid "All My Add-ons"
 msgstr "Alle meine Add-ons"
 
-#: apps/devhub/views.py:202
+#: apps/devhub/views.py:203
 msgid "All Activity"
 msgstr "Alle Aktivitäten"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "Add-on Updates"
 msgstr "Add-on-Updates"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Status"
 msgstr "Add-on-Status"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "User Collections"
 msgstr "Benutzer-Sammlungen"
 
-#: apps/devhub/views.py:206 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Benutzer-Bewertungen"
 
-#: apps/devhub/views.py:319 apps/devhub/views.py:323 apps/devhub/views.py:436 apps/devhub/views.py:465 apps/devhub/views.py:516 apps/devhub/views.py:1122
+#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:466 apps/devhub/views.py:495 apps/devhub/views.py:546 apps/devhub/views.py:1155
 msgid "Changes successfully saved."
 msgstr "Änderungen erfolgreich gespeichert."
 
-#: apps/devhub/views.py:326 apps/devhub/views.py:1538
+#: apps/devhub/views.py:327 apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr "Bitte prüfen Sie das Formular auf Fehler."
 
-#: apps/devhub/views.py:338
+#: apps/devhub/views.py:339
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Add-on kann nicht gelöscht werden. Deaktivieren Sie dieses Add-on stattdessen."
 
-#: apps/devhub/views.py:348
+#: apps/devhub/views.py:349
 msgid "Theme deleted."
 msgstr "Theme gelöscht."
 
-#: apps/devhub/views.py:348
+#: apps/devhub/views.py:349
 msgid "Add-on deleted."
 msgstr "Add-on gelöscht"
 
-#: apps/devhub/views.py:354
+#: apps/devhub/views.py:355
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Passwort war falsch. Theme wurde nicht gelöscht."
 
-#: apps/devhub/views.py:359
+#: apps/devhub/views.py:360
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Passwort war falsch. Add-on wurde nicht gelöscht."
 
-#: apps/devhub/views.py:471
+#: apps/devhub/views.py:432
+msgid "An author has been added to your add-on"
+msgstr ""
+
+#: apps/devhub/views.py:439
+msgid "An author has a role changed on your add-on"
+msgstr ""
+
+#: apps/devhub/views.py:458
+msgid "An author has been removed from your add-on"
+msgstr ""
+
+#: apps/devhub/views.py:501
 msgid "There were errors in your submission."
 msgstr "In Ihrer Übertragung waren Fehler enthalten."
 
-#: apps/devhub/views.py:535
+#: apps/devhub/views.py:565
 msgid "Validate Add-on"
 msgstr "Add-on überprüfen"
 
-#: apps/devhub/views.py:544
+#: apps/devhub/views.py:574
 msgid "Check Add-on Compatibility"
 msgstr "Add-on-Kompatibilität prüfen"
 
-#: apps/devhub/views.py:667
+#: apps/devhub/views.py:697
 msgid "There was an error with the submission."
 msgstr "Bei der Übertragung ist ein Fehler aufgetreten."
 
-#: apps/devhub/views.py:1030 apps/users/forms.py:419
+#: apps/devhub/views.py:1060 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder müssen entweder im PNG- oder JPG-Format vorliegen."
 
-#: apps/devhub/views.py:1034
+#: apps/devhub/views.py:1064
 msgid "Icons cannot be animated."
 msgstr "Animierte Symbole dürfen nicht verwendet werden."
 
-#: apps/devhub/views.py:1036
+#: apps/devhub/views.py:1066
 msgid "Images cannot be animated."
 msgstr "Grafiken können nicht animiert sein."
 
-#: apps/devhub/views.py:1049
+#: apps/devhub/views.py:1079
 msgid "Images cannot be larger than %dKB."
 msgstr "Grafiken können nicht größer als %d KB sein."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1059
+#: apps/devhub/views.py:1089
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Grafik muss genau {0} Pixel breit und {1} Pixel hoch sein."
 
-#: apps/devhub/views.py:1063
+#: apps/devhub/views.py:1096
 msgid "There was an error uploading your preview."
 msgstr "Beim Hochladen Ihrer Vorschau ist ein Fehler aufgetreten."
 
-#: apps/devhub/views.py:1161
+#: apps/devhub/views.py:1194
 msgid "Version %s disabled."
 msgstr "Version %s deaktiviert."
 
-#: apps/devhub/views.py:1164
+#: apps/devhub/views.py:1197
 msgid "Version %s deleted."
 msgstr "Version %s gelöscht."
 
-#: apps/devhub/views.py:1174
+#: apps/devhub/views.py:1207
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Dieser Upload hat die Validierung nicht bestanden und hat möglicherweise keine vollständigen Validierungsergebnisse. Bitte achten Sie darauf, wenn Sie ihn überprüfen."
 
-#: apps/devhub/views.py:1584
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "Vorläufige Freigabe angefordert."
 
-#: apps/devhub/views.py:1585
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "Vollständige Überprüfung angefordert."
 
@@ -4585,7 +4598,7 @@ msgstr "Keine"
 msgid "Manage Authors & License"
 msgstr "Autoren und Lizenz verwalten"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:280
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:292
 msgid "Authors"
 msgstr "Autoren"
 
@@ -4645,7 +4658,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Wählen Sie einen kurzen, nicht vergebenen URL-Namen für Ihr Add-on."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:265 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "Add-on-Webseite anzeigen"
 
@@ -4994,7 +5007,7 @@ msgstr "Bitte teilen Sie uns mit, warum Sie Ihr Theme löschen:"
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Bitte teilen Sie uns mit, warum Sie Ihr Add-on löschen:"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:263
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:275
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -8166,51 +8179,51 @@ msgstr "Ihr vorher erneut eingereichtes Design, das noch überprüft wird."
 msgid "Pending Header"
 msgstr "Zu überprüfender Kopfbereich"
 
-#: apps/devhub/templates/devhub/personas/edit.html:249
+#: apps/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
 msgstr "Zu überprüfender Fußbereich"
 
-#: apps/devhub/templates/devhub/personas/edit.html:257
+#: apps/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
 msgstr "Sie können das Design Ihres Themes hier aktualisieren, sobald es freigeschaltet wurde."
 
-#: apps/devhub/templates/devhub/personas/edit.html:262
+#: apps/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
 msgstr "Kopfbereich"
 
-#: apps/devhub/templates/devhub/personas/edit.html:266
+#: apps/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
 msgstr "Fußbereich"
 
-#: apps/devhub/templates/devhub/personas/edit.html:270 apps/devhub/templates/devhub/personas/submit.html:167
+#: apps/devhub/templates/devhub/personas/edit.html:274 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
 msgstr "Wählen Sie Farben für Ihr Theme aus."
 
-#: apps/devhub/templates/devhub/personas/edit.html:272 apps/devhub/templates/devhub/personas/submit.html:169
+#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
 msgstr "Vordergrund-Text"
 
-#: apps/devhub/templates/devhub/personas/edit.html:273 apps/devhub/templates/devhub/personas/submit.html:170
+#: apps/devhub/templates/devhub/personas/edit.html:277 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
 msgstr "Das ist die Farbe des Tab-Texts."
 
-#: apps/devhub/templates/devhub/personas/edit.html:275 apps/devhub/templates/devhub/personas/submit.html:172
+#: apps/devhub/templates/devhub/personas/edit.html:279 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
 msgstr "Hintergrund"
 
-#: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:173
+#: apps/devhub/templates/devhub/personas/edit.html:280 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
 msgstr "Das ist die Farbe der Tabs."
 
-#: apps/devhub/templates/devhub/personas/edit.html:281 apps/devhub/templates/devhub/personas/submit.html:178
+#: apps/devhub/templates/devhub/personas/edit.html:285 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
 msgstr "Vorschau"
 
-#: apps/devhub/templates/devhub/personas/edit.html:287 apps/devhub/templates/devhub/personas/submit.html:183
+#: apps/devhub/templates/devhub/personas/edit.html:291 apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
 msgstr "Name Ihres Themes"
 
-#: apps/devhub/templates/devhub/personas/edit.html:290 apps/devhub/templates/devhub/personas/submit.html:186
+#: apps/devhub/templates/devhub/personas/edit.html:294 apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 msgstr "Von <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 
@@ -8334,7 +8347,7 @@ msgstr "Dateien"
 msgid "Upload Another File"
 msgstr "Eine weitere Datei hochladen"
 
-#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:109
+#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
 msgid "Version Notes"
 msgstr "Anmerkungen zur Version"
 
@@ -8350,7 +8363,7 @@ msgstr ""
 msgid "Approval Status"
 msgstr "Genehmigungsstatus"
 
-#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:119
+#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:131
 msgid "Notes for Reviewers"
 msgstr "Anmerkungen für Kontrolleure"
 
@@ -8455,7 +8468,7 @@ msgstr "Status"
 
 # Header for a column in a table
 #: apps/devhub/templates/devhub/versions/list.html:108 apps/devhub/templates/devhub/versions/list.html:129 apps/devhub/templates/devhub/versions/list.html:149
-#: apps/editors/templates/editors/review.html:71
+#: apps/editors/templates/editors/review.html:83
 msgid "Validation"
 msgstr "Überprüfung"
 
@@ -9042,7 +9055,7 @@ msgstr "Typ"
 msgid "Waiting Time"
 msgstr "Wartezeit"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:295
+#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Markierungen"
 
@@ -9091,32 +9104,32 @@ msgid_plural "{0} days"
 msgstr[0] "{0} Tag"
 msgstr[1] "{0} Tage"
 
-#: apps/editors/helpers.py:395
+#: apps/editors/helpers.py:397
 msgid "Push to public"
 msgstr "Öffentlich machen"
 
-#: apps/editors/helpers.py:404
+#: apps/editors/helpers.py:405
 msgid "Request more information"
 msgstr "Weitere Informationen anfordern"
 
-#: apps/editors/helpers.py:407
+#: apps/editors/helpers.py:408
 msgid "Request super-review"
 msgstr "Super-Überprüfung anfordnern"
 
-#: apps/editors/helpers.py:418
+#: apps/editors/helpers.py:419
 msgid "Grant preliminary review"
 msgstr "Vorläufige Freigabe gewähren"
 
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:420
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Dadurch werden die Dateien als vorläufig freigegeben markiert."
 
-#: apps/editors/helpers.py:421
+#: apps/editors/helpers.py:422
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 "Verwenden Sie dieses Formular, um weitere Informationen vom Autor anzufordnern. Sie erhalten eine Nachricht und können hier antworten. Sie verwenden per E-Mail informiert, wenn sie antoworten."
 
-#: apps/editors/helpers.py:425
+#: apps/editors/helpers.py:426
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -9124,55 +9137,55 @@ msgstr ""
 "Wenn Sie Bedenken zur Sicherheit des Add-ons, Urheberrechtsprobleme oder andere Bedenken haben, die sich ein Administrator ansehen sollte, geben Sie im folgenden Bereich Ihre Kommentare ein. Diese "
 "werden an Administratoren geschickt, nicht an den Autor."
 
-#: apps/editors/helpers.py:431
+#: apps/editors/helpers.py:432
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Dies lehnt das Add-on ab und entfernt es aus der Warteschlange für Überprüfungen."
 
-#: apps/editors/helpers.py:433
+#: apps/editors/helpers.py:434
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Kommentieren Sie diese Version. Der Autor kann das nicht sehen."
 
-#: apps/editors/helpers.py:437
+#: apps/editors/helpers.py:438
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Dies lehnt die Dateien ab und entfernt sie aus der Warteschlange für Überprüfungen."
 
-#: apps/editors/helpers.py:441
+#: apps/editors/helpers.py:442
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Dies markiert das Add-on als vorläufig überprüft. Zukünftige Versionen werden vorläufig überprüft."
 
-#: apps/editors/helpers.py:446
+#: apps/editors/helpers.py:447
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Dies markiert die Dateien als vorläufig überprüft. Zukünftige Versionen werden vorläufig überprüft."
 
-#: apps/editors/helpers.py:451
+#: apps/editors/helpers.py:452
 msgid "Retain preliminary review"
 msgstr "Vorläufige Überprüfung beibehalten"
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:453
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Dies behält die vorläufige Überprüfung des Add-ons bei. Zukünftige Versionen werden vorläufig überprüft."
 
-#: apps/editors/helpers.py:457
+#: apps/editors/helpers.py:458
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Dies schaltet eine im Sandkasten befindliche Version eines öffentlichen Add-ons frei, so dass sie im öffentlichen Bereich erscheint."
 
-#: apps/editors/helpers.py:460
+#: apps/editors/helpers.py:461
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Dies lehnt eine Version eines öffentlichen Add-ons ab und entfernt sie aus der Warteschlange."
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:464
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Dies markiert das Add-on und seine neueste Version und seine Dateien als öffentlich. Zukünftige Versionen landen im Sandkasten, bis sie von einem Redakteur überprüft werden."
 
-#: apps/editors/helpers.py:531
+#: apps/editors/helpers.py:532
 msgid "add-on"
 msgstr "Add-on"
 
-#: apps/editors/helpers.py:787 apps/editors/helpers.py:807
+#: apps/editors/helpers.py:788 apps/editors/helpers.py:808
 msgid "Flagged"
 msgstr "Markiert"
 
-#: apps/editors/helpers.py:791 apps/editors/helpers.py:810
+#: apps/editors/helpers.py:792 apps/editors/helpers.py:811
 msgid "Updates"
 msgstr "Aktualisierungen"
 
@@ -9200,82 +9213,82 @@ msgstr "Enthält Kommentar vom Redakteur"
 msgid "Sources provided"
 msgstr "Angegebene Quellen"
 
-#: apps/editors/tasks.py:68
+#: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
 msgstr "Doppelte Einreichung"
 
-#: apps/editors/tasks.py:80
+#: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
 msgstr "Danke, dass Sie Ihr Theme übermittelt haben"
 
-#: apps/editors/tasks.py:84
+#: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
 msgstr "Ein Problem bei der Übermittlung Ihres Themes"
 
-#: apps/editors/tasks.py:88
+#: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
 msgstr "Theme-Übermittlung zur Überprüfung markiert"
 
-#: apps/editors/tasks.py:95
+#: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
 msgstr "Eine Frage zu Ihrer Theme-Übermittlung"
 
-#: apps/editors/views.py:81
+#: apps/editors/views.py:104
 msgid "New Add-ons (Under 5 days)"
 msgstr "Neue Add-ons (unter 5 Tagen)"
 
-#: apps/editors/views.py:82
+#: apps/editors/views.py:105
 msgid "Passable (5 to 10 days)"
 msgstr "Annehmbar (5 bis 10 Tage)"
 
-#: apps/editors/views.py:83
+#: apps/editors/views.py:106
 msgid "Overdue (Over 10 days)"
 msgstr "Überfällig (Über 10 Tage)"
 
-#: apps/editors/views.py:398
+#: apps/editors/views.py:421
 msgid "An unknown error occurred"
 msgstr "Ein unbekannter Fehler ist aufgetreten"
 
-#: apps/editors/views.py:424
+#: apps/editors/views.py:447
 msgid "Self-reviews are not allowed."
 msgstr "Selbstüberprüfungen sind nicht erlaubt."
 
-#: apps/editors/views.py:443
+#: apps/editors/views.py:466
 msgid "Review successfully processed."
 msgstr "Überprüfung erfolgreich verarbeitet."
 
-#: apps/editors/views.py:622
+#: apps/editors/views.py:653
 msgid "was approved"
 msgstr "wurde freigegeben"
 
-#: apps/editors/views.py:623
+#: apps/editors/views.py:654
 msgid "given preliminary review"
 msgstr "wurde vorläufig überprüft"
 
-#: apps/editors/views.py:624
+#: apps/editors/views.py:655
 msgid "rejected"
 msgstr "abgelehnt"
 
-#: apps/editors/views.py:625
+#: apps/editors/views.py:656
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "weitergereicht"
 
-#: apps/editors/views.py:627
+#: apps/editors/views.py:658
 msgid "needs more information"
 msgstr "benötigt weitere Informationen"
 
-#: apps/editors/views.py:628
+#: apps/editors/views.py:659
 msgid "needs super review"
 msgstr "benötigt Super-Überprüfung"
 
-#: apps/editors/views_themes.py:324
+#: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} Theme-Überprüfung erfolgreich verarbeitet  (+{1} Punkte, {2} insgesamt)."
 msgstr[1] "{0} Theme-Überprüfungen erfolgreich verarbeitet  (+{1} Punkte, {2} insgesamt)."
 
-#: apps/editors/views_themes.py:339
+#: apps/editors/views_themes.py:341
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 "Ihre Theme-Sperren wurden erfolgreich entfernt. Andere Prüfer können diese freigegebenen Themes jetzt überprüfen. Sie müssen möglicherweise die Seite aktualisieren, um die Änderungen in der "
@@ -9350,6 +9363,26 @@ msgstr "Logbuch-Details"
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
 msgstr "Logbuch-Details"
+
+#: apps/editors/templates/editors/eventlog_detail.html:15
+msgid "Add-on Title"
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:17
+msgid "Review Title"
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:19
+msgid "Review Text"
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:23
+msgid "Review was flagged prior to deletion."
+msgstr ""
+
+#: apps/editors/templates/editors/eventlog_detail.html:31
+msgid "Undelete"
+msgstr ""
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9430,7 +9463,7 @@ msgstr "Nachricht des Tages"
 msgid "Update message of the day"
 msgstr "Nachricht des Tages aktualisieren"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:234
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:246
 msgid "Save"
 msgstr "Speichern"
 
@@ -9544,91 +9577,95 @@ msgstr "Moderatorenhandbuch"
 msgid "Review {0}"
 msgstr "Überprüfung {0}"
 
-#: apps/editors/templates/editors/review.html:40 apps/editors/templates/editors/review.html:276
+#: apps/editors/templates/editors/review.html:41
+msgid "Add-on user change history"
+msgstr ""
+
+#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
 msgstr "Add-on-Chronik"
 
-#: apps/editors/templates/editors/review.html:52
+#: apps/editors/templates/editors/review.html:64
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Version %(version)s · %(created)s <span class=\"light\">· %(version_status)s</span>"
 
-#: apps/editors/templates/editors/review.html:61
+#: apps/editors/templates/editors/review.html:73
 msgid "Files in this version:"
 msgstr "Dateien in dieser Version"
 
-#: apps/editors/templates/editors/review.html:73
+#: apps/editors/templates/editors/review.html:85
 msgid "Contents"
 msgstr "Inhalte"
 
-#: apps/editors/templates/editors/review.html:76
+#: apps/editors/templates/editors/review.html:88
 msgid "Compare"
 msgstr "Vergleichen"
 
-#: apps/editors/templates/editors/review.html:84
+#: apps/editors/templates/editors/review.html:96
 msgid "Compatibility:"
 msgstr "Kompatibilität"
 
-#: apps/editors/templates/editors/review.html:95
+#: apps/editors/templates/editors/review.html:107
 msgid "Additional sources:"
 msgstr "Weitere Quelltexte:"
 
-#: apps/editors/templates/editors/review.html:98
+#: apps/editors/templates/editors/review.html:110
 msgid "Download files"
 msgstr "Dateien herunterladen"
 
-#: apps/editors/templates/editors/review.html:100
+#: apps/editors/templates/editors/review.html:112
 msgid "The developer has provided source code."
 msgstr "Der Entwickler hat Quelltext angegeben."
 
-#: apps/editors/templates/editors/review.html:135
+#: apps/editors/templates/editors/review.html:147
 msgid "This version has not been reviewed."
 msgstr "Diese Version wurde nicht überprüft."
 
-#: apps/editors/templates/editors/review.html:165
+#: apps/editors/templates/editors/review.html:177
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Sie können dieses Formular trotzdem absenden, tun Sie es aber bitte nur, wenn Sie einen Konflikt ausschließen können."
 
-#: apps/editors/templates/editors/review.html:172
+#: apps/editors/templates/editors/review.html:184
 msgid "Insert canned response..."
 msgstr "Eine fertige Antwort einfügen …"
 
-#: apps/editors/templates/editors/review.html:192
+#: apps/editors/templates/editors/review.html:204
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr "Hinweis: Überprüfen Sie nur dann mehr als eine Datei, wenn Sie <strong>alle</strong> ausgewählten Dateien getestet haben."
 
-#: apps/editors/templates/editors/review.html:200
+#: apps/editors/templates/editors/review.html:212
 msgid "Tested on:"
 msgstr "Getestet am:"
 
-#: apps/editors/templates/editors/review.html:230
+#: apps/editors/templates/editors/review.html:242
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnung!</strong> Ein anderer Benutzer hat vor Ihnen diese Seite angesehen."
 
-#: apps/editors/templates/editors/review.html:247
+#: apps/editors/templates/editors/review.html:259
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr "In den Hinweisen können Sie dem Redakteur für Ihr Add-on relevante Informationen angeben, unabhängig von der Version. Diese können von beiden eingesehen und bearbeitet werden."
 
-#: apps/editors/templates/editors/review.html:251
+#: apps/editors/templates/editors/review.html:263
 msgid "Update the whiteboard"
 msgstr "Hinweise aktualisieren"
 
-#: apps/editors/templates/editors/review.html:267 apps/editors/templates/editors/review.html:268
+#: apps/editors/templates/editors/review.html:279 apps/editors/templates/editors/review.html:280
 msgid "(admin)"
 msgstr "(Admin)"
 
-#: apps/editors/templates/editors/review.html:268
+#: apps/editors/templates/editors/review.html:280
 msgid "Admin Page"
 msgstr "Administrator-Seite"
 
-#: apps/editors/templates/editors/review.html:273
+#: apps/editors/templates/editors/review.html:285
 msgid "Review This Add-on"
 msgstr "Dieses Add-on überprüfen"
 
-#: apps/editors/templates/editors/review.html:275
+#: apps/editors/templates/editors/review.html:287
 msgid "More Information"
 msgstr "Weitere Informationen"
 
-#: apps/editors/templates/editors/review.html:277
+#: apps/editors/templates/editors/review.html:289
 msgid "Resolution"
 msgstr "Entscheidung"
 
@@ -9844,43 +9881,44 @@ msgstr "Theme-Überprüfung für {0}"
 msgid "(Probable Duplicate Submission)"
 msgstr "(Vermutlich doppelte Einreichung)"
 
-#: apps/editors/templates/editors/themes/themes.html:66
+#: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
 msgstr "Frühere Versionshinweise"
 
-#: apps/editors/templates/editors/themes/themes.html:72
+#. {previous review action taken on theme}: {comment about review action}
+#: apps/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
 msgstr "Weitere Informationen angefordert: {0}"
 
-#: apps/editors/templates/editors/themes/themes.html:74
+#: apps/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
 msgstr "Markiert: {0}"
 
-#: apps/editors/templates/editors/themes/themes.html:95
+#: apps/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
 msgstr "Theme freischalten"
 
-#: apps/editors/templates/editors/themes/themes.html:102
+#: apps/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
 msgstr "Erforderliches Feld"
 
-#: apps/editors/templates/editors/themes/themes.html:106
+#: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
 msgstr "Geben SIe die ID oder URL des Duplikats ein"
 
-#: apps/editors/templates/editors/themes/themes.html:112
+#: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
 msgstr "Wählen Sie eine Begründung für die Ablehnung"
 
-#: apps/editors/templates/editors/themes/themes.html:123
+#: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
 msgstr "Beschreiben Sie Ihren Grund für die Ablehnung"
 
-#: apps/editors/templates/editors/themes/themes.html:129
+#: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
 msgstr "Stellen Sie dem Künstler eine Frage"
 
-#: apps/editors/templates/editors/themes/themes.html:136
+#: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
 msgstr "Beschreiben Sie Ihren Grund für die Kennzeichnung"
 
@@ -10447,10 +10485,7 @@ msgstr "FAQ für Add-on-Entwickler"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr ""
-"<h3>Wie entwickle ich ein Add-on?</h3> <p> Mozilla bietet Dokumentation zum "
-"Entwickeln von Add-ons über das <a href=\"%(url)s\">Mozilla Developer "
-"Network</a> an. </p>"
+msgstr "<h3>Wie entwickle ich ein Add-on?</h3> <p> Mozilla bietet Dokumentation zum Entwickeln von Add-ons über das <a href=\"%(url)s\">Mozilla Developer Network</a> an. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -10486,17 +10521,12 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
-"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a "
-"href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-"
-"plus-plus.org/\">Notepad++</a></li> <li><a "
-"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
+"<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr ""
-"Sie können über den über den MDN-Artikel <a href=\"%(url)s\">Einrichten einer "
-"Entwicklungsumgebung für Erweiterungen</a> auch mehr über die Einrichtung "
-"Ihrer Entwicklungsumgebung erfahren."
+msgstr "Sie können über den über den MDN-Artikel <a href=\"%(url)s\">Einrichten einer Entwicklungsumgebung für Erweiterungen</a> auch mehr über die Einrichtung Ihrer Entwicklungsumgebung erfahren."
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -10561,16 +10591,10 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
-"Ja. Es ist ist möglich, aber einige der von diesem Bibliotheken "
-"Funktionalitäten sind per XPCPM, XUL und JavaScript verfügbar. Weiterhin "
-"sollten Autoren aufpassen, ob Bibliotheken primitive Objektprototypen "
-"(String.prototype, Date.prototype, usw.) modifizieren und/oder globale "
-"Funktionen (z.B. die $-Funktion) definieren. Diese sind anfällig dafür, "
-"Konflikte mit anderen Add-ons zu verursachen, besonders, wenn verschiedene "
-"Add-ons verschiedene Bibliotheksversionen verwenden, und so weiter. "
-"Entwickler müssen bei ihrer Verwendung sehr, sehr vorsichtig sein. Mozilla "
-"bietet keine Dokumentation für ihre Verwendung bei der Add-on-Entwicklung "
-"an."
+"Ja. Es ist ist möglich, aber einige der von diesem Bibliotheken Funktionalitäten sind per XPCPM, XUL und JavaScript verfügbar. Weiterhin sollten Autoren aufpassen, ob Bibliotheken primitive "
+"Objektprototypen (String.prototype, Date.prototype, usw.) modifizieren und/oder globale Funktionen (z.B. die $-Funktion) definieren. Diese sind anfällig dafür, Konflikte mit anderen Add-ons zu "
+"verursachen, besonders, wenn verschiedene Add-ons verschiedene Bibliotheksversionen verwenden, und so weiter. Entwickler müssen bei ihrer Verwendung sehr, sehr vorsichtig sein. Mozilla bietet keine "
+"Dokumentation für ihre Verwendung bei der Add-on-Entwicklung an."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
@@ -10588,18 +10612,8 @@ msgstr "Wie teste ich die Kompatibilität mit der neuesten Version von Mozilla-S
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that you're add-on users are not negatively impacted upon final release of Mozilla software."
+"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Um die Kompatibilität mit der neuesten Mozilla-Software sicherzustellen, ist "
-"es wichtig, Updates herunterzuladen, sobald diese verfügbar sind und Ihr "
-"Add-on zu testen, um sicherzustellen, dass es weiterhin wie erwartet "
-"funktioniert. In vielen Fällen kann die neueste Version von Mozilla-Software "
-"eine Beta-Version sein. Da diese Versionen manchmal Änderungen an der "
-"Architektur einführen, die die Funktionalität Ihres Add-ons betreffen "
-"können, ist es wichtig, sich aktiv im Beta-Prozess zu beteiligen, um "
-"sicherzustellen, dass die Anwender Ihres Add-ons keine negativen "
-"Auswirkungen nach der Veröffentlichung einer endgültigen Version von "
-"Mozilla-Software erfahren."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -10610,11 +10624,8 @@ msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
 "\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
-"Schlecht geschriebene Erweiterungen können einen deutlichen Einfluss auf das "
-"Surf-Erlebnis haben, auch auf die Gesamtleistung von Firefox selbst. Die "
-"folgende Seite enthält viele gute <a href=\"%(url)s\">Anleitungen</a>, die "
-"Ihnen bei der Verbesserung der Leistung helfen, egal, ob Sie am Quelltext "
-"von Mozilla oder einem Add-on arbeiten."
+"Schlecht geschriebene Erweiterungen können einen deutlichen Einfluss auf das Surf-Erlebnis haben, auch auf die Gesamtleistung von Firefox selbst. Die folgende Seite enthält viele gute <a href="
+"\"%(url)s\">Anleitungen</a>, die Ihnen bei der Verbesserung der Leistung helfen, egal, ob Sie am Quelltext von Mozilla oder einem Add-on arbeiten."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -10625,11 +10636,8 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
-"Ja. Details zur Übersetzung von Add-ons finden Sie auf der <a href=\"%"
-"(l10n_url)s\">Übersetzungsseite im Mozilla Developer Network</a>. <a href=\"%"
-"(bz_url)s\">Das BabelZilla-Projekt</a> ist auch eine tolle Anlaufstelle, um "
-"mehr über die Übersetzung zu erfahren und sich freiwillig für die "
-"Übersetzung von Add-ons zu melden."
+"Ja. Details zur Übersetzung von Add-ons finden Sie auf der <a href=\"%(l10n_url)s\">Übersetzungsseite im Mozilla Developer Network</a>. <a href=\"%(bz_url)s\">Das BabelZilla-Projekt</a> ist auch "
+"eine tolle Anlaufstelle, um mehr über die Übersetzung zu erfahren und sich freiwillig für die Übersetzung von Add-ons zu melden."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -10648,9 +10656,7 @@ msgstr "#amo (für Hilfe zum Hosten Ihres Add-ons auf AMO)"
 #. #jetpack is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
-msgstr ""
-"#jetpack (für Diskussionen über das Add-ons-SDK und cfx/jpm – ehemals "
-"Jetpack genannt)"
+msgstr "#jetpack (für Diskussionen über das Add-ons-SDK und cfx/jpm – ehemals Jetpack genannt)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -10692,11 +10698,8 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
 "\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
-"Ja. Sie können externe Entwickler über das <a href=\"%(forum_url)s\">Add-ons-"
-"Forum</a>, die <a href=\"%(list_url)s\">Mailingliste mozilla.jobs</a>, die <a "
-"href=\"%(mz_url)s\">mozillaZine-Foren</a> oder das <a href=\"%(wiki_url)s"
-"\">Mozilla-Wiki</a> finden. Bitte beachten Sie, dass Mozilla keine Entwickler "
-"empfiehlt."
+"Ja. Sie können externe Entwickler über das <a href=\"%(forum_url)s\">Add-ons-Forum</a>, die <a href=\"%(list_url)s\">Mailingliste mozilla.jobs</a>, die <a href=\"%(mz_url)s\">mozillaZine-Foren</a> "
+"oder das <a href=\"%(wiki_url)s\">Mozilla-Wiki</a> finden. Bitte beachten Sie, dass Mozilla keine Entwickler empfiehlt."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -10861,12 +10864,9 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Das Mozilla-Redakteursteam folgt dem <a href=\"%(url)s\">Überprüfungsleitfaden "
-"für Redakteure</a>, wenn ein Add-ons für die Aufnahme bei AMO getestet "
-"wird. Es ist wichtig, dass Add-on-Entwickler diesen Leitfaden durchsehen, um "
-"sicherzustellen, dass häufige Problembereiche vor der Einreichung des Add-"
-"ons zur Überprüfung behandelt werden. Dies hilft sehr dabei, den "
-"Überprüfungsprozess zu beschleunigen."
+"Das Mozilla-Redakteursteam folgt dem <a href=\"%(url)s\">Überprüfungsleitfaden für Redakteure</a>, wenn ein Add-ons für die Aufnahme bei AMO getestet wird. Es ist wichtig, dass Add-on-Entwickler "
+"diesen Leitfaden durchsehen, um sicherzustellen, dass häufige Problembereiche vor der Einreichung des Add-ons zur Überprüfung behandelt werden. Dies hilft sehr dabei, den Überprüfungsprozess zu "
+"beschleunigen."
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -10997,17 +10997,17 @@ msgid "A developer may reply to any review posted to their add-on as long as the
 msgstr "Ein Entwickler kann auf eine beliebige Bewertung für sein Add-on antworten, solange er bei AMO angemeldet ist. Außerdem kann jeder Benutzer eine Bewertung melden als:"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:128
+#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
 msgid "Spam or otherwise non-review content"
 msgstr "Spam oder anderweitiger Inhalt, der keine Bewertung ist"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:129
+#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
 msgid "Inappropriate language/dialog"
 msgstr "Unpassende Wortwahl"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:130
+#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:156
 msgid "Misplaced bug report or support request"
 msgstr "Unpassender Fehlerbericht, oder Unterstützungs-Anfrage"
 
@@ -11081,9 +11081,7 @@ msgstr "Ein Vergleich bekannter Open-Source-Lizenzen bei Wikipedia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
-"Eine Website als nicht-wertender Leitfaden zur Wahl einer Lizenz für Ihr "
-"Open-Source-Projekt."
+msgstr "Eine Website als nicht-wertender Leitfaden zur Wahl einer Lizenz für Ihr Open-Source-Projekt."
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
@@ -11784,19 +11782,19 @@ msgstr "Chronik dieses Add-ons bearbeiten"
 msgid "Rated %d out of 5 stars"
 msgstr "Mit %d von 5 Sternen bewertet"
 
-#: apps/reviews/forms.py:120
+#: apps/reviews/forms.py:118
 msgid "Keep review; remove flags"
 msgstr "Überprüfung behalten; Markierungen entfernen"
 
-#: apps/reviews/forms.py:121
+#: apps/reviews/forms.py:119
 msgid "Skip for now"
 msgstr "Vorerst überspringen"
 
-#: apps/reviews/forms.py:123 apps/reviews/templates/reviews/review.html:94
+#: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:94
 msgid "Delete review"
 msgstr "Bewertung löschen"
 
-#: apps/reviews/models.py:131
+#: apps/reviews/models.py:157
 msgid "Other (please specify)"
 msgstr "Anderes (bitte eine Begründung angeben)"
 
@@ -12596,6 +12594,7 @@ msgstr "Die {0} beliebtesten Tags"
 msgid "{0} Top Tags"
 msgstr "Beliebteste Tags für {0}"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 msgstr "Übersetzen für: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -12612,6 +12611,7 @@ msgstr "Existierende Sprachen"
 msgid "New Locales"
 msgstr "Neue Sprachen"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr "Sie haben ungespeicherte Änderungen in der Sprache <b>{0}</b>. Möchten Sie Ihre Änderungen speichern, bevor Sie die Sprache wechseln?"
@@ -12620,6 +12620,7 @@ msgstr "Sie haben ungespeicherte Änderungen in der Sprache <b>{0}</b>. Möchten
 msgid "Discard Changes"
 msgstr "Änderungen verwerfen"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr "Sind Sie sicher, dass Sie alle <b>{0}</b> Übersetzungen entfernen möchten? Dies kann nicht rückgängig gemacht werden."
@@ -13410,15 +13411,15 @@ msgstr "%s Versionsgeschichte"
 msgid "Version History with Changelogs"
 msgstr "Versionsgeschichte mit Entwickler-Kommentaren"
 
-#: apps/versions/models.py:281
+#: apps/versions/models.py:282
 msgid "Add-on uses binary components."
 msgstr "Add-on verwendet binäre Komponenten."
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:285
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Add-on hat strikten Kompatibilitätstest aktiviert."
 
-#: apps/versions/models.py:651
+#: apps/versions/models.py:663
 msgid "{app} {min} and later"
 msgstr "{app} {min} und neuer"
 

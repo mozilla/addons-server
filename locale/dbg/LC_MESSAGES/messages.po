@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:48-0700\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,20 +117,20 @@ msgstr ""
 "ḓḗşƈřīƥŧīǿƞ īƞ ŧħȧŧ ŀǿƈȧŀḗ. Ẏǿŭ ȧřḗ ḿīşşīƞɠ %s."
 
 #: apps/addons/forms.py:467
-#: apps/addons/forms.py:557
+#: apps/addons/forms.py:558
 msgid "A license must be selected."
 msgstr "Ȧ ŀīƈḗƞşḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/addons/forms.py:538
+#: apps/addons/forms.py:539
 msgid "Give Your Theme a Name."
 msgstr "Ɠīṽḗ Ẏǿŭř Ŧħḗḿḗ ȧ Ƞȧḿḗ."
 
-#: apps/addons/forms.py:544
+#: apps/addons/forms.py:545
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Ḓḗşƈřīƀḗ ẏǿŭř Ŧħḗḿḗ."
 
-#: apps/addons/forms.py:685
+#: apps/addons/forms.py:686
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
@@ -189,6 +189,7 @@ msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 msgid "Recently Updated"
 msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
 
+#. l10n: {0} is the addon name
 #: apps/addons/views.py:504
 msgid "Contribution for {0}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
@@ -448,7 +449,7 @@ msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:453
-#: apps/devhub/views.py:70
+#: apps/devhub/views.py:71
 msgid "Updated"
 msgstr "Ŭƥḓȧŧḗḓ"
 
@@ -809,7 +810,7 @@ msgstr "Şḗḗ ȧŀŀ Ŧħḗḿḗş ƀẏ ŧħīş Ȧřŧīşŧ"
 #: apps/amo/templates/amo/side_nav.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28
 #: apps/devhub/templates/devhub/addons/edit/basic.html:72
-#: apps/editors/templates/editors/review.html:287
+#: apps/editors/templates/editors/review.html:299
 #: apps/editors/templates/editors/themes/themes.html:34
 #: apps/localizers/templates/localizers/sidebar.html:24
 #: templates/categories.html:7
@@ -886,7 +887,7 @@ msgstr "Ȧḓḓ"
 #: apps/devhub/templates/devhub/addons/edit/support.html:8
 #: apps/devhub/templates/devhub/addons/edit/technical.html:9
 #: apps/devhub/templates/devhub/addons/submit/describe.html:29
-#: apps/editors/templates/editors/review.html:267
+#: apps/editors/templates/editors/review.html:279
 msgid "Edit"
 msgstr "Ḗḓīŧ"
 
@@ -1176,7 +1177,7 @@ msgstr "Ḓḗŧȧīŀḗḓ Řḗṽīḗẇ"
 
 #: apps/addons/templates/addons/review_list_box.html:5
 #: apps/addons/templates/addons/impala/details-more.html:27
-#: apps/editors/helpers.py:768
+#: apps/editors/helpers.py:769
 #: apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14
 #: apps/reviews/templates/reviews/review_list.html:19
@@ -1348,7 +1349,7 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 #: apps/addons/templates/addons/impala/details.html:213
 #: apps/amo/helpers.py:377
 #: apps/devhub/forms.py:124
-#: apps/devhub/forms.py:154
+#: apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
@@ -1585,7 +1586,7 @@ msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
-#: apps/devhub/forms.py:969
+#: apps/devhub/forms.py:968
 #: apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Ṽḗřşīǿƞ"
@@ -2018,7 +2019,7 @@ msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
 #: apps/amo/log.py:232
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
-#: apps/editors/helpers.py:410
+#: apps/editors/helpers.py:411
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Ƈǿḿḿḗƞŧ"
@@ -2092,12 +2093,12 @@ msgid "{user} approved {review} for {addon}."
 msgstr "{ŭşḗř} ȧƥƥřǿṽḗḓ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ}."
 
 #: apps/amo/log.py:342
-msgid "Review {0} for {addon} deleted."
-msgstr "Řḗṽīḗẇ {0} ƒǿř {ȧḓḓǿƞ} ḓḗŀḗŧḗḓ."
+msgid "Review {review} for {addon} deleted."
+msgstr "Řḗṽīḗẇ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ḓḗŀḗŧḗḓ."
 
 #: apps/amo/log.py:343
-msgid "{user} deleted {0} for {addon}."
-msgstr "{ŭşḗř} ḓḗŀḗŧḗḓ {0} ƒǿř {ȧḓḓǿƞ}."
+msgid "{user} deleted {review} for {addon}."
+msgstr "{ŭşḗř} ḓḗŀḗŧḗḓ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -2750,12 +2751,12 @@ msgid "This url is already in use by another collection"
 msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/forms.py:179
-#: apps/devhub/views.py:1028
+#: apps/devhub/views.py:1058
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:184
-#: apps/devhub/views.py:1046
+#: apps/devhub/views.py:1076
 #: apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
@@ -2803,8 +2804,8 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 #: apps/browse/views.py:58
 #: apps/browse/views.py:69
 #: apps/browse/views.py:452
-#: apps/devhub/views.py:69
-#: apps/devhub/views.py:77
+#: apps/devhub/views.py:70
+#: apps/devhub/views.py:78
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
 #: apps/editors/templates/editors/themes/queue_list.html:48
@@ -3159,7 +3160,7 @@ msgstr "Ḗḓīŧ {0}"
 #: apps/bandwagon/templates/bandwagon/edit.html:29
 #: apps/devhub/templates/devhub/package_addon.html:34
 #: apps/devhub/templates/devhub/addons/edit/details.html:20
-#: apps/editors/templates/editors/themes/themes.html:60
+#: apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
 msgstr "Ḓḗşƈřīƥŧīǿƞ"
 
@@ -3181,7 +3182,7 @@ msgstr "Ƈǿƞŧřīƀŭŧǿřş & Ḿǿřḗ"
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:148
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 #: apps/devhub/templates/devhub/personas/edit.html:35
-#: apps/devhub/templates/devhub/personas/edit.html:300
+#: apps/devhub/templates/devhub/personas/edit.html:304
 #: apps/devhub/templates/devhub/versions/edit.html:139
 #: apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
@@ -3270,10 +3271,10 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/license.html:60
 #: apps/devhub/templates/devhub/addons/submit/upload.html:54
 #: apps/devhub/templates/devhub/payments/tier.html:17
-#: apps/editors/templates/editors/themes/themes.html:109
-#: apps/editors/templates/editors/themes/themes.html:126
-#: apps/editors/templates/editors/themes/themes.html:132
-#: apps/editors/templates/editors/themes/themes.html:139
+#: apps/editors/templates/editors/themes/themes.html:111
+#: apps/editors/templates/editors/themes/themes.html:128
+#: apps/editors/templates/editors/themes/themes.html:134
+#: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
 msgstr "Ƈǿƞŧīƞŭḗ"
 
@@ -3392,8 +3393,8 @@ msgid "Add to Collection"
 msgstr "Ȧḓḓ ŧǿ Ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: apps/editors/helpers.py:783
-#: apps/editors/helpers.py:803
+#: apps/editors/helpers.py:784
+#: apps/editors/helpers.py:804
 msgid "Pending"
 msgstr "Ƥḗƞḓīƞɠ"
 
@@ -3538,23 +3539,23 @@ msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
 #: apps/browse/views.py:454
-#: apps/devhub/views.py:71
-#: apps/devhub/views.py:78
+#: apps/devhub/views.py:72
+#: apps/devhub/views.py:79
 #: apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
 
 #: apps/browse/views.py:455
-#: apps/devhub/views.py:72
-#: apps/devhub/views.py:79
+#: apps/devhub/views.py:73
+#: apps/devhub/views.py:80
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
 #: apps/browse/views.py:456
-#: apps/devhub/views.py:73
-#: apps/devhub/views.py:80
+#: apps/devhub/views.py:74
+#: apps/devhub/views.py:81
 #: apps/discovery/templates/discovery/addons/detail.html:67
 #: apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9
@@ -3900,7 +3901,7 @@ msgstr "Ƞǿƞ-ƀīƞȧřẏ"
 
 #: apps/compat/views.py:84
 #: apps/constants/base.py:371
-#: apps/devhub/forms.py:145
+#: apps/devhub/forms.py:144
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
@@ -4007,7 +4008,7 @@ msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
 #: apps/compat/templates/compat/reporter_detail.html:47
-#: apps/devhub/forms.py:966
+#: apps/devhub/forms.py:965
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: apps/editors/forms.py:100
 #: apps/zadmin/forms.py:47
@@ -4121,7 +4122,7 @@ msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Ƥřḗŀīḿīƞȧřīŀẏ Řḗṽīḗẇḗḓ ȧƞḓ Ȧẇȧīŧīƞɠ Ƒŭŀŀ Řḗṽīḗẇ"
 
 #: apps/constants/base.py:34
-#: apps/editors/helpers.py:771
+#: apps/editors/helpers.py:772
 #: apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Ḓḗŀḗŧḗḓ"
@@ -4262,124 +4263,128 @@ msgstr "Ƈħȧƞɠḗ"
 msgid "Persona"
 msgstr "Ƥḗřşǿƞȧ"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:416
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:417
 msgid "Full Add-on Review"
 msgstr "Ƒŭŀŀ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:418
 msgid "Preliminary Add-on Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:419
 msgid "Updated Add-on Review"
 msgstr "Ŭƥḓȧŧḗḓ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:420
 msgid "Full Dictionary Review"
 msgstr "Ƒŭŀŀ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:421
 msgid "Preliminary Dictionary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:422
 msgid "Updated Dictionary Review"
 msgstr "Ŭƥḓȧŧḗḓ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:423
 msgid "Full Language Pack Review"
 msgstr "Ƒŭŀŀ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:424
 msgid "Preliminary Language Pack Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:425
 msgid "Updated Language Pack Review"
 msgstr "Ŭƥḓȧŧḗḓ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:426
 msgid "Theme Review"
 msgstr "Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:427
 msgid "Full Search Provider Review"
 msgstr "Ƒŭŀŀ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:428
 msgid "Preliminary Search Provider Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:429
 msgid "Updated Search Provider Review"
 msgstr "Ŭƥḓȧŧḗḓ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:430
 msgid "Complete Theme Review"
 msgstr "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:431
 msgid "Preliminary Complete Theme Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:432
 msgid "Updated Complete Theme Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:433
 msgid "Moderated Addon Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧḓḓǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:476
+#: apps/constants/base.py:434
+msgid "Addon Review Moderation Reverted"
+msgstr "Ȧḓḓǿƞ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
+
+#: apps/constants/base.py:479
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: apps/constants/base.py:477
+#: apps/constants/base.py:480
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
 #: apps/constants/editors.py:14
 #: apps/editors/templates/editors/themes/queue.html:76
-#: apps/editors/templates/editors/themes/themes.html:85
+#: apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
 msgstr "Řḗɋŭḗşŧ Ḿǿřḗ Īƞƒǿ"
 
 #: apps/constants/editors.py:15
 #: apps/editors/templates/editors/themes/queue.html:74
-#: apps/editors/templates/editors/themes/themes.html:89
+#: apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
 msgstr "Ƒŀȧɠ"
 
 #: apps/constants/editors.py:16
 #: apps/editors/templates/editors/themes/queue.html:72
-#: apps/editors/templates/editors/themes/themes.html:91
+#: apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
 msgstr "Ḓŭƥŀīƈȧŧḗ"
 
 #: apps/constants/editors.py:17
-#: apps/editors/helpers.py:401
+#: apps/editors/helpers.py:402
 #: apps/editors/templates/editors/themes/queue.html:71
-#: apps/editors/templates/editors/themes/themes.html:92
+#: apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Řḗĵḗƈŧ"
 
@@ -4526,110 +4531,110 @@ msgstr "Ẇħȧŧ īş ẏǿŭř ŀīƈḗƞşḗ'ş ƞȧḿḗ?"
 msgid "Provide the text of your license."
 msgstr "Ƥřǿṽīḓḗ ŧħḗ ŧḗẋŧ ǿƒ ẏǿŭř ŀīƈḗƞşḗ."
 
-#: apps/devhub/forms.py:162
+#: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
 msgstr "Ŀīƈḗƞşḗ ŧḗẋŧ īş řḗɋŭīřḗḓ ẇħḗƞ ƈħǿǿşīƞɠ Ǿŧħḗř."
 
-#: apps/devhub/forms.py:210
+#: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ȧƞ Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ"
 
-#: apps/devhub/forms.py:213
+#: apps/devhub/forms.py:212
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ:"
 
-#: apps/devhub/forms.py:216
+#: apps/devhub/forms.py:215
 msgid "This add-on has a Privacy Policy"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ȧ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
-#: apps/devhub/forms.py:219
+#: apps/devhub/forms.py:218
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ƥřīṽȧƈẏ Ƥǿŀīƈẏ:"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:256
 msgid "Why did you make this add-on?"
 msgstr "Ẇħẏ ḓīḓ ẏǿŭ ḿȧķḗ ŧħīş ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/forms.py:258
+#: apps/devhub/forms.py:257
 msgid "What's next for this add-on?"
 msgstr "Ẇħȧŧ'ş ƞḗẋŧ ƒǿř ŧħīş ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:294
 msgid "The developers of this add-on"
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗřş ǿƒ ŧħīş ȧḓḓ-ǿƞ"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:295
 msgid "The Mozilla Foundation"
 msgstr "Ŧħḗ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:297
+#: apps/devhub/forms.py:296
 msgid "An organization of my choice"
 msgstr "Ȧƞ ǿřɠȧƞīzȧŧīǿƞ ǿƒ ḿẏ ƈħǿīƈḗ"
 
-#: apps/devhub/forms.py:340
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ şŭɠɠḗşŧḗḓ ȧḿǿŭƞŧ ɠřḗȧŧḗř ŧħȧƞ 0."
 
-#: apps/devhub/forms.py:343
+#: apps/devhub/forms.py:342
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ şŭɠɠḗşŧḗḓ ȧḿǿŭƞŧ ŀḗşş ŧħȧƞ ${0}."
 
-#: apps/devhub/forms.py:352
+#: apps/devhub/forms.py:351
 msgid "PayPal ID required to accept contributions."
 msgstr "ƤȧẏƤȧŀ ĪḒ řḗɋŭīřḗḓ ŧǿ ȧƈƈḗƥŧ ƈǿƞŧřīƀŭŧīǿƞş."
 
-#: apps/devhub/forms.py:358
+#: apps/devhub/forms.py:357
 msgid "Could not validate PayPal id."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ṽȧŀīḓȧŧḗ ƤȧẏƤȧŀ īḓ."
 
-#: apps/devhub/forms.py:373
+#: apps/devhub/forms.py:372
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Ŭƞşŭƥƥǿřŧḗḓ ƒīŀḗ ŧẏƥḗ, ƥŀḗȧşḗ ŭƥŀǿȧḓ ȧƞ ȧřƈħīṽḗ ƒīŀḗ {ḗẋŧḗƞşīǿƞş}."
 
-#: apps/devhub/forms.py:392
+#: apps/devhub/forms.py:391
 msgid "View current"
 msgstr "Ṽīḗẇ ƈŭřřḗƞŧ"
 
-#: apps/devhub/forms.py:441
-#: apps/devhub/forms.py:893
+#: apps/devhub/forms.py:440
+#: apps/devhub/forms.py:892
 msgid "Invalid version range."
 msgstr "Īƞṽȧŀīḓ ṽḗřşīǿƞ řȧƞɠḗ."
 
-#: apps/devhub/forms.py:470
+#: apps/devhub/forms.py:469
 msgid "Need at least one compatible application."
 msgstr "Ƞḗḗḓ ȧŧ ŀḗȧşŧ ǿƞḗ ƈǿḿƥȧŧīƀŀḗ ȧƥƥŀīƈȧŧīǿƞ."
 
-#: apps/devhub/forms.py:483
-#: apps/devhub/forms.py:500
+#: apps/devhub/forms.py:482
+#: apps/devhub/forms.py:499
 msgid "There was an error with your upload. Please try again."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
 
-#: apps/devhub/forms.py:488
+#: apps/devhub/forms.py:487
 msgid "Override failed validation"
 msgstr "Ǿṽḗřřīḓḗ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:529
 msgid "Need at least one platform."
 msgstr "Ƞḗḗḓ ȧŧ ŀḗȧşŧ ǿƞḗ ƥŀȧŧƒǿřḿ."
 
-#: apps/devhub/forms.py:537
+#: apps/devhub/forms.py:536
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:538
+#: apps/devhub/forms.py:537
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:46
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:541
 msgid "Please choose a review nomination type"
 msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ řḗṽīḗẇ ƞǿḿīƞȧŧīǿƞ ŧẏƥḗ"
 
-#: apps/devhub/forms.py:546
-#: apps/devhub/forms.py:582
+#: apps/devhub/forms.py:545
+#: apps/devhub/forms.py:581
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
@@ -4637,23 +4642,23 @@ msgstr ""
 "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş "
 "ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
-#: apps/devhub/forms.py:563
+#: apps/devhub/forms.py:562
 msgid "Version %s already exists"
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş"
 
-#: apps/devhub/forms.py:576
+#: apps/devhub/forms.py:575
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. Ŧħȧŧ ƈħǿīƈḗ īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:610
 msgid "You cannot upload any more files for this version."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:616
 msgid "Version doesn't match"
 msgstr "Ṽḗřşīǿƞ ḓǿḗşƞ'ŧ ḿȧŧƈħ"
 
-#: apps/devhub/forms.py:650
+#: apps/devhub/forms.py:649
 msgid ""
 "You cannot delete a file once the review process has started. You must "
 "delete the whole version."
@@ -4661,19 +4666,19 @@ msgstr ""
 "Ẏǿŭ ƈȧƞƞǿŧ ḓḗŀḗŧḗ ȧ ƒīŀḗ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ħȧş şŧȧřŧḗḓ. Ẏǿŭ ḿŭşŧ "
 "ḓḗŀḗŧḗ ŧħḗ ẇħǿŀḗ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:669
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
 
-#: apps/devhub/forms.py:675
+#: apps/devhub/forms.py:674
 msgid "A platform can only be chosen once."
 msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 
-#: apps/devhub/forms.py:688
+#: apps/devhub/forms.py:687
 msgid "A review type must be selected."
 msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/devhub/forms.py:767
+#: apps/devhub/forms.py:766
 msgid ""
 "Give your add-on a name. The most successful add-ons give some indication of "
 "their function in their name."
@@ -4681,7 +4686,7 @@ msgstr ""
 "Ɠīṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧ ƞȧḿḗ. Ŧħḗ ḿǿşŧ şŭƈƈḗşşƒŭŀ ȧḓḓ-ǿƞş ɠīṽḗ şǿḿḗ īƞḓīƈȧŧīǿƞ ǿƒ "
 "ŧħḗīř ƒŭƞƈŧīǿƞ īƞ ŧħḗīř ƞȧḿḗ."
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:771
 msgid ""
 "Briefly describe your add-on in one sentence. This appears in the Add-ons "
 "Manager."
@@ -4689,7 +4694,7 @@ msgstr ""
 "Ɓřīḗƒŀẏ ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ īƞ ǿƞḗ şḗƞŧḗƞƈḗ. Ŧħīş ȧƥƥḗȧřş īƞ ŧħḗ Ȧḓḓ-ǿƞş "
 "Ḿȧƞȧɠḗř."
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:775
 msgid ""
 "Enter your initial version number. Depending on the number of releases and "
 "your preferences, this is usually 0.1 or 1.0"
@@ -4697,7 +4702,7 @@ msgstr ""
 "Ḗƞŧḗř ẏǿŭř īƞīŧīȧŀ ṽḗřşīǿƞ ƞŭḿƀḗř. Ḓḗƥḗƞḓīƞɠ ǿƞ ŧħḗ ƞŭḿƀḗř ǿƒ řḗŀḗȧşḗş ȧƞḓ "
 "ẏǿŭř ƥřḗƒḗřḗƞƈḗş, ŧħīş īş ŭşŭȧŀŀẏ 0.1 ǿř 1.0"
 
-#: apps/devhub/forms.py:780
+#: apps/devhub/forms.py:779
 msgid ""
 "Each add-on requires a unique ID in the form of a UUID or an email address, "
 "such as addon-name@developer.com. The email address does not have to be "
@@ -4707,7 +4712,7 @@ msgstr ""
 "şŭƈħ ȧş addon-name@developer.com. Ŧħḗ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ħȧṽḗ ŧǿ ƀḗ "
 "ṽȧŀīḓ."
 
-#: apps/devhub/forms.py:786
+#: apps/devhub/forms.py:785
 msgid ""
 "The package name of your add-on used within the browser. This should be a "
 "short form of its name (for example, Test Extension might be test_extension)."
@@ -4715,7 +4720,7 @@ msgstr ""
 "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ŭşḗḓ ẇīŧħīƞ ŧħḗ ƀřǿẇşḗř. Ŧħīş şħǿŭŀḓ ƀḗ ȧ "
 "şħǿřŧ ƒǿřḿ ǿƒ īŧş ƞȧḿḗ (ƒǿř ḗẋȧḿƥŀḗ, Ŧḗşŧ Ḗẋŧḗƞşīǿƞ ḿīɠħŧ ƀḗ ŧḗşŧ_ḗẋŧḗƞşīǿƞ)."
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:790
 msgid ""
 "Enter the name of the person or entity to be listed as the author of this "
 "add-on."
@@ -4723,118 +4728,118 @@ msgstr ""
 "Ḗƞŧḗř ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ƥḗřşǿƞ ǿř ḗƞŧīŧẏ ŧǿ ƀḗ ŀīşŧḗḓ ȧş ŧħḗ ȧŭŧħǿř ǿƒ ŧħīş "
 "ȧḓḓ-ǿƞ."
 
-#: apps/devhub/forms.py:795
+#: apps/devhub/forms.py:794
 msgid ""
 "Enter the names of any other contributors to this extension, one per line."
 msgstr ""
 "Ḗƞŧḗř ŧħḗ ƞȧḿḗş ǿƒ ȧƞẏ ǿŧħḗř ƈǿƞŧřīƀŭŧǿřş ŧǿ ŧħīş ḗẋŧḗƞşīǿƞ, ǿƞḗ ƥḗř ŀīƞḗ."
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:803
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Ȧḓḓ-ǿƞ ƞȧḿḗş şħǿŭŀḓ ƞǿŧ ƈǿƞŧȧīƞ Ḿǿzīŀŀȧ ŧřȧḓḗḿȧřķş."
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:810
 msgid ""
 "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ƥȧƈķȧɠḗ ƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ǿř ŭƞḓḗřşƈǿřḗş."
 
-#: apps/devhub/forms.py:815
+#: apps/devhub/forms.py:814
 msgid "This package name is already in use."
 msgstr "Ŧħīş ƥȧƈķȧɠḗ ƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/devhub/forms.py:818
+#: apps/devhub/forms.py:817
 msgid "The package name cannot be: %s."
 msgstr "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ: %s."
 
-#: apps/devhub/forms.py:829
+#: apps/devhub/forms.py:828
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "Ŧħḗ ȧḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ ȧ ŬŬĪḒ şŧřīƞɠ ǿř ȧƞ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/devhub/forms.py:835
+#: apps/devhub/forms.py:834
 msgid "The version string is invalid."
 msgstr "Ŧħḗ ṽḗřşīǿƞ şŧřīƞɠ īş īƞṽȧŀīḓ."
 
-#: apps/devhub/forms.py:843
+#: apps/devhub/forms.py:842
 msgid "Minimum"
 msgstr "Ḿīƞīḿŭḿ"
 
-#: apps/devhub/forms.py:846
+#: apps/devhub/forms.py:845
 msgid "Maximum"
 msgstr "Ḿȧẋīḿŭḿ"
 
-#: apps/devhub/forms.py:897
+#: apps/devhub/forms.py:896
 msgid "Min version must be less than Max version."
 msgstr "Ḿīƞ ṽḗřşīǿƞ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ Ḿȧẋ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:922
+#: apps/devhub/forms.py:921
 msgid "{0} is a required target application."
 msgstr "{0} īş ȧ řḗɋŭīřḗḓ ŧȧřɠḗŧ ȧƥƥŀīƈȧŧīǿƞ."
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:933
 msgid "About dialog"
 msgstr "Ȧƀǿŭŧ ḓīȧŀǿɠ"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:934
 msgid "Creates a standard About dialog for your extension"
 msgstr "Ƈřḗȧŧḗş ȧ şŧȧƞḓȧřḓ Ȧƀǿŭŧ ḓīȧŀǿɠ ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:938
 msgid "Preferences dialog"
 msgstr "Ƥřḗƒḗřḗƞƈḗş ḓīȧŀǿɠ"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:939
 msgid "Creates an example Preferences window"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ Ƥřḗƒḗřḗƞƈḗş ẇīƞḓǿẇ"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:942
 msgid "Toolbar"
 msgstr "Ŧǿǿŀƀȧř"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:943
 msgid "Creates an example toolbar for your extension"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ŧǿǿŀƀȧř ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:946
 msgid "Toolbar button"
 msgstr "Ŧǿǿŀƀȧř ƀŭŧŧǿƞ"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:947
 msgid "Creates an example button on the browser toolbar"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ƀŭŧŧǿƞ ǿƞ ŧħḗ ƀřǿẇşḗř ŧǿǿŀƀȧř"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:951
 msgid "Main menu command"
 msgstr "Ḿȧīƞ ḿḗƞŭ ƈǿḿḿȧƞḓ"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:952
 msgid "Creates an item on the Tools menu"
 msgstr "Ƈřḗȧŧḗş ȧƞ īŧḗḿ ǿƞ ŧħḗ Ŧǿǿŀş ḿḗƞŭ"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:955
 msgid "Context menu command"
 msgstr "Ƈǿƞŧḗẋŧ ḿḗƞŭ ƈǿḿḿȧƞḓ"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:956
 msgid "Creates a context menu item for images"
 msgstr "Ƈřḗȧŧḗş ȧ ƈǿƞŧḗẋŧ ḿḗƞŭ īŧḗḿ ƒǿř īḿȧɠḗş"
 
-#: apps/devhub/forms.py:960
+#: apps/devhub/forms.py:959
 msgid "Sidebar support"
 msgstr "Şīḓḗƀȧř şŭƥƥǿřŧ"
 
-#: apps/devhub/forms.py:961
+#: apps/devhub/forms.py:960
 msgid "Creates an example sidebar panel"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ şīḓḗƀȧř ƥȧƞḗŀ"
 
-#: apps/devhub/forms.py:970
+#: apps/devhub/forms.py:969
 #: apps/editors/forms.py:106
 #: apps/zadmin/forms.py:51
 #: apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
-#: apps/devhub/forms.py:1022
+#: apps/devhub/forms.py:1021
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ŧħḗřḗ ƈȧƞƞǿŧ ƀḗ ḿǿřḗ ŧħȧƞ 3 řḗɋŭīřḗḓ ȧḓḓ-ǿƞş."
 
@@ -4890,118 +4895,130 @@ msgstr ""
 "Ṽȧŀīḓȧŧīǿƞ ɠḗƞḗřȧŧḗḓ ŧǿǿ ḿȧƞẏ ḗřřǿřş/warnings şǿ %s ḿḗşşȧɠḗş ẇḗřḗ ŧřŭƞƈȧŧḗḓ. "
 "Ȧƒŧḗř ȧḓḓřḗşşīƞɠ ŧħḗ ṽīşīƀŀḗ ḿḗşşȧɠḗş, ẏǿŭ'ŀŀ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħḗ ǿŧħḗřş."
 
-#: apps/devhub/views.py:175
+#: apps/devhub/views.py:176
 msgid "All My Add-ons"
 msgstr "Ȧŀŀ Ḿẏ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/views.py:202
+#: apps/devhub/views.py:203
 msgid "All Activity"
 msgstr "Ȧŀŀ Ȧƈŧīṽīŧẏ"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "Add-on Updates"
 msgstr "Ȧḓḓ-ǿƞ Ŭƥḓȧŧḗş"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Status"
 msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "User Collections"
 msgstr "Ŭşḗř Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Ŭşḗř Řḗṽīḗẇş"
 
-#: apps/devhub/views.py:319
-#: apps/devhub/views.py:323
-#: apps/devhub/views.py:436
-#: apps/devhub/views.py:465
-#: apps/devhub/views.py:516
-#: apps/devhub/views.py:1122
+#: apps/devhub/views.py:320
+#: apps/devhub/views.py:324
+#: apps/devhub/views.py:466
+#: apps/devhub/views.py:495
+#: apps/devhub/views.py:546
+#: apps/devhub/views.py:1155
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: apps/devhub/views.py:326
-#: apps/devhub/views.py:1538
+#: apps/devhub/views.py:327
+#: apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
-#: apps/devhub/views.py:338
+#: apps/devhub/views.py:339
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Ȧḓḓ-ǿƞ ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧḓḓ-ǿƞ īƞşŧḗȧḓ."
 
-#: apps/devhub/views.py:348
+#: apps/devhub/views.py:349
 msgid "Theme deleted."
 msgstr "Ŧħḗḿḗ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:348
+#: apps/devhub/views.py:349
 msgid "Add-on deleted."
 msgstr "Ȧḓḓ-ǿƞ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:354
+#: apps/devhub/views.py:355
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ŧħḗḿḗ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:359
+#: apps/devhub/views.py:360
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧḓḓ-ǿƞ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:471
+#: apps/devhub/views.py:432
+msgid "An author has been added to your add-on"
+msgstr "Ȧƞ ȧŭŧħǿř ħȧş ƀḗḗƞ ȧḓḓḗḓ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ"
+
+#: apps/devhub/views.py:439
+msgid "An author has a role changed on your add-on"
+msgstr "Ȧƞ ȧŭŧħǿř ħȧş ȧ řǿŀḗ ƈħȧƞɠḗḓ ǿƞ ẏǿŭř ȧḓḓ-ǿƞ"
+
+#: apps/devhub/views.py:458
+msgid "An author has been removed from your add-on"
+msgstr "Ȧƞ ȧŭŧħǿř ħȧş ƀḗḗƞ řḗḿǿṽḗḓ ƒřǿḿ ẏǿŭř ȧḓḓ-ǿƞ"
+
+#: apps/devhub/views.py:501
 msgid "There were errors in your submission."
 msgstr "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ẏǿŭř şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:535
+#: apps/devhub/views.py:565
 msgid "Validate Add-on"
 msgstr "Ṽȧŀīḓȧŧḗ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:544
+#: apps/devhub/views.py:574
 msgid "Check Add-on Compatibility"
 msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 
-#: apps/devhub/views.py:667
+#: apps/devhub/views.py:697
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:1030
+#: apps/devhub/views.py:1060
 #: apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: apps/devhub/views.py:1034
+#: apps/devhub/views.py:1064
 msgid "Icons cannot be animated."
 msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1036
+#: apps/devhub/views.py:1066
 msgid "Images cannot be animated."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1049
+#: apps/devhub/views.py:1079
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1059
+#: apps/devhub/views.py:1089
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ḗẋȧƈŧŀẏ {0} ƥīẋḗŀş ẇīḓḗ ȧƞḓ {1} ƥīẋḗŀş ŧȧŀŀ."
 
-#: apps/devhub/views.py:1063
+#: apps/devhub/views.py:1096
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: apps/devhub/views.py:1161
+#: apps/devhub/views.py:1194
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1164
+#: apps/devhub/views.py:1197
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1174
+#: apps/devhub/views.py:1207
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -5009,11 +5026,11 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1584
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1585
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -5734,7 +5751,7 @@ msgid "Manage Authors & License"
 msgstr "Ḿȧƞȧɠḗ Ȧŭŧħǿřş & Ŀīƈḗƞşḗ"
 
 #: apps/devhub/templates/devhub/addons/owner.html:29
-#: apps/editors/templates/editors/review.html:280
+#: apps/editors/templates/editors/review.html:292
 msgid "Authors"
 msgstr "Ȧŭŧħǿřş"
 
@@ -5813,7 +5830,7 @@ msgstr "Ƈħǿǿşḗ ȧ şħǿřŧ, ŭƞīɋŭḗ ŬŘĿ şŀŭɠ ƒǿř ẏǿ�
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
 #: apps/devhub/templates/devhub/personas/edit.html:56
-#: apps/editors/templates/editors/review.html:265
+#: apps/editors/templates/editors/review.html:277
 #: apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "Ṽīḗẇ Ŀīşŧīƞɠ"
@@ -6253,7 +6270,7 @@ msgstr "Ƥŀḗȧşḗ ŧḗŀŀ ŭş ẇħẏ ẏǿŭ ȧřḗ ḓḗŀḗŧīƞ
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
-#: apps/editors/templates/editors/review.html:263
+#: apps/editors/templates/editors/review.html:275
 msgid "Actions"
 msgstr "Ȧƈŧīǿƞş"
 
@@ -10740,58 +10757,58 @@ msgstr "Ẏǿŭř ƥřḗṽīǿŭşŀẏ řḗşŭƀḿīŧŧḗḓ ḓḗşī�
 msgid "Pending Header"
 msgstr "Ƥḗƞḓīƞɠ Ħḗȧḓḗř"
 
-#: apps/devhub/templates/devhub/personas/edit.html:249
+#: apps/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
 msgstr "Ƥḗƞḓīƞɠ Ƒǿǿŧḗř"
 
-#: apps/devhub/templates/devhub/personas/edit.html:257
+#: apps/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
 msgstr "Ẏǿŭ ḿȧẏ ŭƥḓȧŧḗ ẏǿŭř ŧħḗḿḗ ḓḗşīɠƞ ħḗřḗ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ȧƥƥřǿṽḗḓ."
 
-#: apps/devhub/templates/devhub/personas/edit.html:262
+#: apps/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
 msgstr "Ħḗȧḓḗř"
 
-#: apps/devhub/templates/devhub/personas/edit.html:266
+#: apps/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
 msgstr "Ƒǿǿŧḗř"
 
-#: apps/devhub/templates/devhub/personas/edit.html:270
+#: apps/devhub/templates/devhub/personas/edit.html:274
 #: apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
 msgstr "Şḗŀḗƈŧ ƈǿŀǿřş ƒǿř ẏǿŭř Ŧħḗḿḗ."
 
-#: apps/devhub/templates/devhub/personas/edit.html:272
+#: apps/devhub/templates/devhub/personas/edit.html:276
 #: apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
 msgstr "Ƒǿřḗɠřǿŭƞḓ Ŧḗẋŧ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:273
+#: apps/devhub/templates/devhub/personas/edit.html:277
 #: apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
 msgstr "Ŧħīş īş ŧħḗ ƈǿŀǿř ǿƒ ŧħḗ ŧȧƀ ŧḗẋŧ."
 
-#: apps/devhub/templates/devhub/personas/edit.html:275
+#: apps/devhub/templates/devhub/personas/edit.html:279
 #: apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
 msgstr "Ɓȧƈķɠřǿŭƞḓ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:276
+#: apps/devhub/templates/devhub/personas/edit.html:280
 #: apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
 msgstr "Ŧħīş īş ŧħḗ ƈǿŀǿř ǿƒ ŧħḗ ŧȧƀş."
 
-#: apps/devhub/templates/devhub/personas/edit.html:281
+#: apps/devhub/templates/devhub/personas/edit.html:285
 #: apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
 msgstr "Ƥřḗṽīḗẇ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:287
+#: apps/devhub/templates/devhub/personas/edit.html:291
 #: apps/devhub/templates/devhub/personas/submit.html:183
 msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
 
-#: apps/devhub/templates/devhub/personas/edit.html:290
+#: apps/devhub/templates/devhub/personas/edit.html:294
 #: apps/devhub/templates/devhub/personas/submit.html:186
 msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
 msgstr "ƀẏ <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
@@ -10943,7 +10960,7 @@ msgid "Upload Another File"
 msgstr "Ŭƥŀǿȧḓ Ȧƞǿŧħḗř Ƒīŀḗ"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73
-#: apps/editors/templates/editors/review.html:109
+#: apps/editors/templates/editors/review.html:121
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
@@ -10962,7 +10979,7 @@ msgid "Approval Status"
 msgstr "Ȧƥƥřǿṽȧŀ Şŧȧŧŭş"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113
-#: apps/editors/templates/editors/review.html:119
+#: apps/editors/templates/editors/review.html:131
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
@@ -11084,7 +11101,7 @@ msgstr "Şŧȧŧŭş"
 #: apps/devhub/templates/devhub/versions/list.html:108
 #: apps/devhub/templates/devhub/versions/list.html:129
 #: apps/devhub/templates/devhub/versions/list.html:149
-#: apps/editors/templates/editors/review.html:71
+#: apps/editors/templates/editors/review.html:83
 msgid "Validation"
 msgstr "Ṽȧŀīḓȧŧīǿƞ"
 
@@ -11756,7 +11773,7 @@ msgid "Waiting Time"
 msgstr "Ẇȧīŧīƞɠ Ŧīḿḗ"
 
 #: apps/editors/helpers.py:194
-#: apps/editors/templates/editors/review.html:295
+#: apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Ƒŀȧɠş"
 
@@ -11805,27 +11822,27 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ḓȧẏ"
 msgstr[1] "{0} ḓȧẏş"
 
-#: apps/editors/helpers.py:395
+#: apps/editors/helpers.py:397
 msgid "Push to public"
 msgstr "Ƥŭşħ ŧǿ ƥŭƀŀīƈ"
 
-#: apps/editors/helpers.py:404
+#: apps/editors/helpers.py:405
 msgid "Request more information"
 msgstr "Řḗɋŭḗşŧ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/editors/helpers.py:407
+#: apps/editors/helpers.py:408
 msgid "Request super-review"
 msgstr "Řḗɋŭḗşŧ şŭƥḗř-řḗṽīḗẇ"
 
-#: apps/editors/helpers.py:418
+#: apps/editors/helpers.py:419
 msgid "Grant preliminary review"
 msgstr "Ɠřȧƞŧ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:420
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Ŧħīş ẇīŀŀ ḿȧřķ ŧħḗ ƒīŀḗş ȧş ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ."
 
-#: apps/editors/helpers.py:421
+#: apps/editors/helpers.py:422
 msgid ""
 "Use this form to request more information from the author. They will receive "
 "an email and be able to answer here. You will be notified by email when they "
@@ -11835,7 +11852,7 @@ msgstr ""
 "ȧƞ ḗḿȧīŀ ȧƞḓ ƀḗ ȧƀŀḗ ŧǿ ȧƞşẇḗř ħḗřḗ. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ƀẏ ḗḿȧīŀ ẇħḗƞ ŧħḗẏ "
 "řḗƥŀẏ."
 
-#: apps/editors/helpers.py:425
+#: apps/editors/helpers.py:426
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or "
 "other concerns that an administrator should look into, enter your comments "
@@ -11845,19 +11862,19 @@ msgstr ""
 "ǿŧħḗř ƈǿƞƈḗřƞş ŧħȧŧ ȧƞ ȧḓḿīƞīşŧřȧŧǿř şħǿŭŀḓ ŀǿǿķ īƞŧǿ, ḗƞŧḗř ẏǿŭř ƈǿḿḿḗƞŧş "
 "īƞ ŧħḗ ȧřḗȧ ƀḗŀǿẇ. Ŧħḗẏ ẇīŀŀ ƀḗ şḗƞŧ ŧǿ ȧḓḿīƞīşŧřȧŧǿřş, ƞǿŧ ŧħḗ ȧŭŧħǿř."
 
-#: apps/editors/helpers.py:431
+#: apps/editors/helpers.py:432
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ŧħḗ ȧḓḓ-ǿƞ ȧƞḓ řḗḿǿṽḗ īŧ ƒřǿḿ ŧħḗ řḗṽīḗẇ ɋŭḗŭḗ."
 
-#: apps/editors/helpers.py:433
+#: apps/editors/helpers.py:434
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Ḿȧķḗ ȧ ƈǿḿḿḗƞŧ ǿƞ ŧħīş ṽḗřşīǿƞ. Ŧħḗ ȧŭŧħǿř ẇǿƞ'ŧ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħīş."
 
-#: apps/editors/helpers.py:437
+#: apps/editors/helpers.py:438
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ŧħḗ ƒīŀḗş ȧƞḓ řḗḿǿṽḗ ŧħḗḿ ƒřǿḿ ŧħḗ řḗṽīḗẇ ɋŭḗŭḗ."
 
-#: apps/editors/helpers.py:441
+#: apps/editors/helpers.py:442
 msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
@@ -11865,7 +11882,7 @@ msgstr ""
 "Ŧħīş ẇīŀŀ ḿȧřķ ŧħḗ ȧḓḓ-ǿƞ ȧş ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ. Ƒŭŧŭřḗ ṽḗřşīǿƞş ẇīŀŀ "
 "ŭƞḓḗřɠǿ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ."
 
-#: apps/editors/helpers.py:446
+#: apps/editors/helpers.py:447
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
@@ -11873,11 +11890,11 @@ msgstr ""
 "Ŧħīş ẇīŀŀ ḿȧřķ ŧħḗ ƒīŀḗş ȧş ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ. Ƒŭŧŭřḗ ṽḗřşīǿƞş ẇīŀŀ "
 "ŭƞḓḗřɠǿ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ."
 
-#: apps/editors/helpers.py:451
+#: apps/editors/helpers.py:452
 msgid "Retain preliminary review"
 msgstr "Řḗŧȧīƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:453
 msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
@@ -11885,7 +11902,7 @@ msgstr ""
 "Ŧħīş ẇīŀŀ řḗŧȧīƞ ŧħḗ ȧḓḓ-ǿƞ ȧş ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ. Ƒŭŧŭřḗ ṽḗřşīǿƞş ẇīŀŀ "
 "ŭƞḓḗřɠǿ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ."
 
-#: apps/editors/helpers.py:457
+#: apps/editors/helpers.py:458
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
@@ -11893,13 +11910,13 @@ msgstr ""
 "Ŧħīş ẇīŀŀ ȧƥƥřǿṽḗ ȧ şȧƞḓƀǿẋḗḓ ṽḗřşīǿƞ ǿƒ ȧ ƥŭƀŀīƈ ȧḓḓ-ǿƞ ŧǿ ȧƥƥḗȧř ǿƞ ŧħḗ "
 "ƥŭƀŀīƈ şīḓḗ."
 
-#: apps/editors/helpers.py:460
+#: apps/editors/helpers.py:461
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
 "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ȧ ṽḗřşīǿƞ ǿƒ ȧ ƥŭƀŀīƈ ȧḓḓ-ǿƞ ȧƞḓ řḗḿǿṽḗ īŧ ƒřǿḿ ŧħḗ ɋŭḗŭḗ."
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:464
 msgid ""
 "This will mark the add-on and its most recent version and files as public. "
 "Future versions will go into the sandbox until they are reviewed by an "
@@ -11909,17 +11926,17 @@ msgstr ""
 "Ƒŭŧŭřḗ ṽḗřşīǿƞş ẇīŀŀ ɠǿ īƞŧǿ ŧħḗ şȧƞḓƀǿẋ ŭƞŧīŀ ŧħḗẏ ȧřḗ řḗṽīḗẇḗḓ ƀẏ ȧƞ "
 "ḗḓīŧǿř."
 
-#: apps/editors/helpers.py:531
+#: apps/editors/helpers.py:532
 msgid "add-on"
 msgstr "ȧḓḓ-ǿƞ"
 
-#: apps/editors/helpers.py:787
-#: apps/editors/helpers.py:807
+#: apps/editors/helpers.py:788
+#: apps/editors/helpers.py:808
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"
 
-#: apps/editors/helpers.py:791
-#: apps/editors/helpers.py:810
+#: apps/editors/helpers.py:792
+#: apps/editors/helpers.py:811
 msgid "Updates"
 msgstr "Ŭƥḓȧŧḗş"
 
@@ -11947,82 +11964,82 @@ msgstr "Ƈǿƞŧȧīƞş Ḗḓīŧǿř Ƈǿḿḿḗƞŧ"
 msgid "Sources provided"
 msgstr "Şǿŭřƈḗş ƥřǿṽīḓḗḓ"
 
-#: apps/editors/tasks.py:68
+#: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
 msgstr "Ḓŭƥŀīƈȧŧḗ Şŭƀḿīşşīǿƞ"
 
-#: apps/editors/tasks.py:80
+#: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
 msgstr "Ŧħȧƞķş ƒǿř şŭƀḿīŧŧīƞɠ ẏǿŭř Ŧħḗḿḗ"
 
-#: apps/editors/tasks.py:84
+#: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
 msgstr "Ȧ ƥřǿƀŀḗḿ ẇīŧħ ẏǿŭř Ŧħḗḿḗ şŭƀḿīşşīǿƞ"
 
-#: apps/editors/tasks.py:88
+#: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
 msgstr "Ŧħḗḿḗ şŭƀḿīşşīǿƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇ"
 
-#: apps/editors/tasks.py:95
+#: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
 msgstr "Ȧ ɋŭḗşŧīǿƞ ȧƀǿŭŧ ẏǿŭř Ŧħḗḿḗ şŭƀḿīşşīǿƞ"
 
-#: apps/editors/views.py:81
+#: apps/editors/views.py:104
 msgid "New Add-ons (Under 5 days)"
 msgstr "Ƞḗẇ Ȧḓḓ-ǿƞş (Ŭƞḓḗř 5 ḓȧẏş)"
 
-#: apps/editors/views.py:82
+#: apps/editors/views.py:105
 msgid "Passable (5 to 10 days)"
 msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
 
-#: apps/editors/views.py:83
+#: apps/editors/views.py:106
 msgid "Overdue (Over 10 days)"
 msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
-#: apps/editors/views.py:398
+#: apps/editors/views.py:421
 msgid "An unknown error occurred"
 msgstr "Ȧƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
 
-#: apps/editors/views.py:424
+#: apps/editors/views.py:447
 msgid "Self-reviews are not allowed."
 msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: apps/editors/views.py:443
+#: apps/editors/views.py:466
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
-#: apps/editors/views.py:622
+#: apps/editors/views.py:653
 msgid "was approved"
 msgstr "ẇȧş ȧƥƥřǿṽḗḓ"
 
-#: apps/editors/views.py:623
+#: apps/editors/views.py:654
 msgid "given preliminary review"
 msgstr "ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
-#: apps/editors/views.py:624
+#: apps/editors/views.py:655
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
-#: apps/editors/views.py:625
+#: apps/editors/views.py:656
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "ḗşƈȧŀȧŧḗḓ"
 
-#: apps/editors/views.py:627
+#: apps/editors/views.py:658
 msgid "needs more information"
 msgstr "ƞḗḗḓş ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/editors/views.py:628
+#: apps/editors/views.py:659
 msgid "needs super review"
 msgstr "ƞḗḗḓş şŭƥḗř řḗṽīḗẇ"
 
-#: apps/editors/views_themes.py:324
+#: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} ŧħḗḿḗ řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 msgstr[1] "{0} ŧħḗḿḗ řḗṽīḗẇş şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ (+{1} ƥǿīƞŧş, {2} ŧǿŧȧŀ)."
 
-#: apps/editors/views_themes.py:339
+#: apps/editors/views_themes.py:341
 msgid ""
 "Your theme locks have successfully been released. Other reviewers may now "
 "review those released themes. You may have to refresh the page to see the "
@@ -12116,6 +12133,26 @@ msgstr "Ŀǿɠ Ḓḗŧȧīŀş"
 msgid "Log details"
 msgstr "Ŀǿɠ ḓḗŧȧīŀş"
 
+#: apps/editors/templates/editors/eventlog_detail.html:15
+msgid "Add-on Title"
+msgstr "Ȧḓḓ-ǿƞ Ŧīŧŀḗ"
+
+#: apps/editors/templates/editors/eventlog_detail.html:17
+msgid "Review Title"
+msgstr "Řḗṽīḗẇ Ŧīŧŀḗ"
+
+#: apps/editors/templates/editors/eventlog_detail.html:19
+msgid "Review Text"
+msgstr "Řḗṽīḗẇ Ŧḗẋŧ"
+
+#: apps/editors/templates/editors/eventlog_detail.html:23
+msgid "Review was flagged prior to deletion."
+msgstr "Řḗṽīḗẇ ẇȧş ƒŀȧɠɠḗḓ ƥřīǿř ŧǿ ḓḗŀḗŧīǿƞ."
+
+#: apps/editors/templates/editors/eventlog_detail.html:31
+msgid "Undelete"
+msgstr "Ŭƞḓḗŀḗŧḗ"
+
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
@@ -12203,7 +12240,7 @@ msgid "Update message of the day"
 msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
 
 #: apps/editors/templates/editors/motd.html:15
-#: apps/editors/templates/editors/review.html:234
+#: apps/editors/templates/editors/review.html:246
 msgid "Save"
 msgstr "Şȧṽḗ"
 
@@ -12323,12 +12360,16 @@ msgstr "Ḗḓīŧǿřş' Ɠŭīḓḗ"
 msgid "Review {0}"
 msgstr "Řḗṽīḗẇ {0}"
 
-#: apps/editors/templates/editors/review.html:40
-#: apps/editors/templates/editors/review.html:276
+#: apps/editors/templates/editors/review.html:41
+msgid "Add-on user change history"
+msgstr "Ȧḓḓ-ǿƞ ŭşḗř ƈħȧƞɠḗ ħīşŧǿřẏ"
+
+#: apps/editors/templates/editors/review.html:52
+#: apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
 msgstr "Ȧḓḓ-ǿƞ Ħīşŧǿřẏ"
 
-#: apps/editors/templates/editors/review.html:52
+#: apps/editors/templates/editors/review.html:64
 msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
@@ -12336,39 +12377,39 @@ msgstr ""
 "Ṽḗřşīǿƞ %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 
-#: apps/editors/templates/editors/review.html:61
+#: apps/editors/templates/editors/review.html:73
 msgid "Files in this version:"
 msgstr "Ƒīŀḗş īƞ ŧħīş ṽḗřşīǿƞ:"
 
-#: apps/editors/templates/editors/review.html:73
+#: apps/editors/templates/editors/review.html:85
 msgid "Contents"
 msgstr "Ƈǿƞŧḗƞŧş"
 
-#: apps/editors/templates/editors/review.html:76
+#: apps/editors/templates/editors/review.html:88
 msgid "Compare"
 msgstr "Ƈǿḿƥȧřḗ"
 
-#: apps/editors/templates/editors/review.html:84
+#: apps/editors/templates/editors/review.html:96
 msgid "Compatibility:"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ:"
 
-#: apps/editors/templates/editors/review.html:95
+#: apps/editors/templates/editors/review.html:107
 msgid "Additional sources:"
 msgstr "Ȧḓḓīŧīǿƞȧŀ şǿŭřƈḗş:"
 
-#: apps/editors/templates/editors/review.html:98
+#: apps/editors/templates/editors/review.html:110
 msgid "Download files"
 msgstr "Ḓǿẇƞŀǿȧḓ ƒīŀḗş"
 
-#: apps/editors/templates/editors/review.html:100
+#: apps/editors/templates/editors/review.html:112
 msgid "The developer has provided source code."
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗř ħȧş ƥřǿṽīḓḗḓ şǿŭřƈḗ ƈǿḓḗ."
 
-#: apps/editors/templates/editors/review.html:135
+#: apps/editors/templates/editors/review.html:147
 msgid "This version has not been reviewed."
 msgstr "Ŧħīş ṽḗřşīǿƞ ħȧş ƞǿŧ ƀḗḗƞ řḗṽīḗẇḗḓ."
 
-#: apps/editors/templates/editors/review.html:165
+#: apps/editors/templates/editors/review.html:177
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
@@ -12376,11 +12417,11 @@ msgstr ""
 "Ẏǿŭ ƈȧƞ şŧīŀŀ şŭƀḿīŧ ŧħīş ƒǿřḿ, ħǿẇḗṽḗř ǿƞŀẏ ḓǿ şǿ īƒ ẏǿŭ ķƞǿẇ īŧ ẇǿƞ'ŧ "
 "ƈǿƞƒŀīƈŧ."
 
-#: apps/editors/templates/editors/review.html:172
+#: apps/editors/templates/editors/review.html:184
 msgid "Insert canned response..."
 msgstr "Īƞşḗřŧ ƈȧƞƞḗḓ řḗşƥǿƞşḗ..."
 
-#: apps/editors/templates/editors/review.html:192
+#: apps/editors/templates/editors/review.html:204
 msgid ""
 "Notice: Only review more than one file if you have tested "
 "<strong>every</strong> file you select."
@@ -12388,17 +12429,17 @@ msgstr ""
 "Ƞǿŧīƈḗ: Ǿƞŀẏ řḗṽīḗẇ ḿǿřḗ ŧħȧƞ ǿƞḗ ƒīŀḗ īƒ ẏǿŭ ħȧṽḗ ŧḗşŧḗḓ "
 "<strong>ḗṽḗřẏ</strong> ƒīŀḗ ẏǿŭ şḗŀḗƈŧ."
 
-#: apps/editors/templates/editors/review.html:200
+#: apps/editors/templates/editors/review.html:212
 msgid "Tested on:"
 msgstr "Ŧḗşŧḗḓ ǿƞ:"
 
-#: apps/editors/templates/editors/review.html:230
+#: apps/editors/templates/editors/review.html:242
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 "<strong>Ẇȧřƞīƞɠ!</strong> Ȧƞǿŧħḗř ŭşḗř ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƀḗƒǿřḗ ẏǿŭ."
 
-#: apps/editors/templates/editors/review.html:247
+#: apps/editors/templates/editors/review.html:259
 msgid ""
 "The whiteboard is the place to exchange information relevant to this addon ("
 "whatever the version), between the developer and the editor. This is visible "
@@ -12408,28 +12449,28 @@ msgstr ""
 "ẇħȧŧḗṽḗř ŧħḗ ṽḗřşīǿƞ), ƀḗŧẇḗḗƞ ŧħḗ ḓḗṽḗŀǿƥḗř ȧƞḓ ŧħḗ ḗḓīŧǿř. Ŧħīş īş ṽīşīƀŀḗ "
 "ȧƞḓ ḗḓīŧȧƀŀḗ ƀẏ ƀǿŧħ."
 
-#: apps/editors/templates/editors/review.html:251
+#: apps/editors/templates/editors/review.html:263
 msgid "Update the whiteboard"
 msgstr "Ŭƥḓȧŧḗ ŧħḗ ẇħīŧḗƀǿȧřḓ"
 
-#: apps/editors/templates/editors/review.html:267
-#: apps/editors/templates/editors/review.html:268
+#: apps/editors/templates/editors/review.html:279
+#: apps/editors/templates/editors/review.html:280
 msgid "(admin)"
 msgstr "(ȧḓḿīƞ)"
 
-#: apps/editors/templates/editors/review.html:268
+#: apps/editors/templates/editors/review.html:280
 msgid "Admin Page"
 msgstr "Ȧḓḿīƞ Ƥȧɠḗ"
 
-#: apps/editors/templates/editors/review.html:273
+#: apps/editors/templates/editors/review.html:285
 msgid "Review This Add-on"
 msgstr "Řḗṽīḗẇ Ŧħīş Ȧḓḓ-ǿƞ"
 
-#: apps/editors/templates/editors/review.html:275
+#: apps/editors/templates/editors/review.html:287
 msgid "More Information"
 msgstr "Ḿǿřḗ Īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/editors/templates/editors/review.html:277
+#: apps/editors/templates/editors/review.html:289
 msgid "Resolution"
 msgstr "Řḗşǿŀŭŧīǿƞ"
 
@@ -12653,43 +12694,44 @@ msgstr "Ŧħḗḿḗ Řḗṽīḗẇ ƒǿř {0}"
 msgid "(Probable Duplicate Submission)"
 msgstr "(Ƥřǿƀȧƀŀḗ Ḓŭƥŀīƈȧŧḗ Şŭƀḿīşşīǿƞ)"
 
-#: apps/editors/templates/editors/themes/themes.html:66
+#: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
 msgstr "Ƥȧşŧ Řḗṽīḗẇ Ƞǿŧḗş"
 
-#: apps/editors/templates/editors/themes/themes.html:72
+#. {previous review action taken on theme}: {comment about review action}
+#: apps/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
 msgstr "Ḿǿřḗ Īƞƒǿ Řḗɋŭḗşŧḗḓ: {0}"
 
-#: apps/editors/templates/editors/themes/themes.html:74
+#: apps/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
 msgstr "Ƒŀȧɠɠḗḓ: {0}"
 
-#: apps/editors/templates/editors/themes/themes.html:95
+#: apps/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
 msgstr "Ȧƥƥřǿṽḗ Ŧħḗḿḗ"
 
-#: apps/editors/templates/editors/themes/themes.html:102
+#: apps/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
 msgstr "Ƒīḗŀḓ řḗɋŭīřḗḓ"
 
-#: apps/editors/templates/editors/themes/themes.html:106
+#: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
 msgstr "Ḗƞŧḗř ŧħḗ ĪḒ ǿř ŬŘĿ ǿƒ ŧħḗ ḓŭƥŀīƈȧŧḗ"
 
-#: apps/editors/templates/editors/themes/themes.html:112
+#: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
 msgstr "Şḗŀḗƈŧ ȧ řḗȧşǿƞ ƒǿř řḗĵḗƈŧīǿƞ"
 
-#: apps/editors/templates/editors/themes/themes.html:123
+#: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
 msgstr "Ḓḗşƈřīƀḗ ẏǿŭř řḗȧşǿƞ ƒǿř řḗĵḗƈŧīǿƞ"
 
-#: apps/editors/templates/editors/themes/themes.html:129
+#: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
 msgstr "Ȧşķ ȧ ɋŭḗşŧīǿƞ ŧǿ ŧħḗ ȧřŧīşŧ"
 
-#: apps/editors/templates/editors/themes/themes.html:136
+#: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
 msgstr "Ḓḗşƈřīƀḗ ẏǿŭř řḗȧşǿƞ ƒǿř ƒŀȧɠɠīƞɠ"
 
@@ -13585,7 +13627,7 @@ msgid ""
 "of Mozilla software may be a beta release. Since these releases at times "
 "introduce architectural changes that may impact the functionality of your "
 "add-on, it's important to be actively involved in the beta process to ensure "
-"that you're add-on users are not negatively impacted upon final release of "
+"that your add-on users are not negatively impacted upon final release of "
 "Mozilla software."
 msgstr ""
 "Ŧǿ ḗƞşŭřḗ ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ ŧħḗ ŀȧŧḗşŧ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ, īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ "
@@ -13594,7 +13636,7 @@ msgstr ""
 "ǿƒ Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ ḿȧẏ ƀḗ ȧ ƀḗŧȧ řḗŀḗȧşḗ. Şīƞƈḗ ŧħḗşḗ řḗŀḗȧşḗş ȧŧ ŧīḿḗş "
 "īƞŧřǿḓŭƈḗ ȧřƈħīŧḗƈŧŭřȧŀ ƈħȧƞɠḗş ŧħȧŧ ḿȧẏ īḿƥȧƈŧ ŧħḗ ƒŭƞƈŧīǿƞȧŀīŧẏ ǿƒ ẏǿŭř "
 "ȧḓḓ-ǿƞ, īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ ƀḗ ȧƈŧīṽḗŀẏ īƞṽǿŀṽḗḓ īƞ ŧħḗ ƀḗŧȧ ƥřǿƈḗşş ŧǿ ḗƞşŭřḗ "
-"ŧħȧŧ ẏǿŭ'řḗ ȧḓḓ-ǿƞ ŭşḗřş ȧřḗ ƞǿŧ ƞḗɠȧŧīṽḗŀẏ īḿƥȧƈŧḗḓ ŭƥǿƞ ƒīƞȧŀ řḗŀḗȧşḗ ǿƒ "
+"ŧħȧŧ ẏǿŭř ȧḓḓ-ǿƞ ŭşḗřş ȧřḗ ƞǿŧ ƞḗɠȧŧīṽḗŀẏ īḿƥȧƈŧḗḓ ŭƥǿƞ ƒīƞȧŀ řḗŀḗȧşḗ ǿƒ "
 "Ḿǿzīŀŀȧ şǿƒŧẇȧřḗ."
 
 #: apps/pages/templates/pages/dev_faq.html:186
@@ -14136,19 +14178,19 @@ msgstr ""
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548
-#: apps/reviews/models.py:128
+#: apps/reviews/models.py:154
 msgid "Spam or otherwise non-review content"
 msgstr "Şƥȧḿ ǿř ǿŧħḗřẇīşḗ ƞǿƞ-řḗṽīḗẇ ƈǿƞŧḗƞŧ"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:550
-#: apps/reviews/models.py:129
+#: apps/reviews/models.py:155
 msgid "Inappropriate language/dialog"
 msgstr "Īƞȧƥƥřǿƥřīȧŧḗ ŀȧƞɠŭȧɠḗ/dialog"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:552
-#: apps/reviews/models.py:130
+#: apps/reviews/models.py:156
 msgid "Misplaced bug report or support request"
 msgstr "Ḿīşƥŀȧƈḗḓ ƀŭɠ řḗƥǿřŧ ǿř şŭƥƥǿřŧ řḗɋŭḗşŧ"
 
@@ -15264,20 +15306,20 @@ msgstr "Řḗṽīḗẇ Ħīşŧǿřẏ ƒǿř ŧħīş Ȧḓḓǿƞ"
 msgid "Rated %d out of 5 stars"
 msgstr "Řȧŧḗḓ %d ǿŭŧ ǿƒ 5 şŧȧřş"
 
-#: apps/reviews/forms.py:120
+#: apps/reviews/forms.py:118
 msgid "Keep review; remove flags"
 msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
 
-#: apps/reviews/forms.py:121
+#: apps/reviews/forms.py:119
 msgid "Skip for now"
 msgstr "Şķīƥ ƒǿř ƞǿẇ"
 
-#: apps/reviews/forms.py:123
+#: apps/reviews/forms.py:121
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Delete review"
 msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 
-#: apps/reviews/models.py:131
+#: apps/reviews/models.py:157
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
 
@@ -16132,6 +16174,7 @@ msgstr "Ŧǿƥ {0} Ŧȧɠş"
 msgid "{0} Top Tags"
 msgstr "{0} Ŧǿƥ Ŧȧɠş"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 msgstr "Ŀǿƈȧŀīzḗ ƒǿř: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -16149,6 +16192,7 @@ msgstr "Ḗẋīşŧīƞɠ Ŀǿƈȧŀḗş"
 msgid "New Locales"
 msgstr "Ƞḗẇ Ŀǿƈȧŀḗş"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:42
 msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
@@ -16161,6 +16205,7 @@ msgstr ""
 msgid "Discard Changes"
 msgstr "Ḓīşƈȧřḓ Ƈħȧƞɠḗş"
 
+#. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:56
 msgid ""
 "Are you sure you want to remove all <b>{0}</b> translations? This cannot be "
@@ -17117,15 +17162,15 @@ msgstr "%s Ṽḗřşīǿƞ Ħīşŧǿřẏ"
 msgid "Version History with Changelogs"
 msgstr "Ṽḗřşīǿƞ Ħīşŧǿřẏ ẇīŧħ Ƈħȧƞɠḗŀǿɠş"
 
-#: apps/versions/models.py:281
+#: apps/versions/models.py:282
 msgid "Add-on uses binary components."
 msgstr "Ȧḓḓ-ǿƞ ŭşḗş ƀīƞȧřẏ ƈǿḿƥǿƞḗƞŧş."
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:285
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Ȧḓḓ-ǿƞ ħȧş ǿƥŧḗḓ īƞŧǿ şŧřīƈŧ ƈǿḿƥȧŧīƀīŀīŧẏ ƈħḗƈķīƞɠ."
 
-#: apps/versions/models.py:651
+#: apps/versions/models.py:663
 msgid "{app} {min} and later"
 msgstr "{ȧƥƥ} {ḿīƞ} ȧƞḓ ŀȧŧḗř"
 
