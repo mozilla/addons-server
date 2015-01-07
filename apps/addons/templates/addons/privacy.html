@@ -3,7 +3,7 @@
 
 {% block title %}
   {# L10n: {0} is the name of the add-on. #}
-  {{ page_title(_('Privacy Policy for {0}')|f(addon.name)) }}
+  {{ page_title(_('Privacy Policy for {0}')|fe(addon.name)) }}
 {% endblock %}
 
 {% set addon_type = addon.type %}

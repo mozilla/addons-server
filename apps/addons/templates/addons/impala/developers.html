@@ -6,7 +6,7 @@
 
 {% if page == 'installed' %}
   {# L10n: {0} is an add-on name. #}
-  {% set title = _('Thank you for installing {0}')|f(addon.name) %}
+  {% set title = _('Thank you for installing {0}')|fe(addon.name) %}
 {% else %}
   {# L10n: {0} is an add-on name. #}
   {% set title = _('Meet the {0} Developer')|fe(addon.name) %}

@@ -1,6 +1,6 @@
 {% extends "impala/base_shared.html" %}
 
-{% set title = _('Report abuse for {0}')|f(addon.name) %}
+{% set title = 'Report abuse for {0}'|fe(addon.name) %}
 {% block bodyclass %}gutter abuse{% endblock %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}

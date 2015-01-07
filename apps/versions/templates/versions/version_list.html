@@ -6,7 +6,7 @@
 {% endblock %}
 
 {# L10n: {0} is an add-on name. #}
-{% block title %}{{ page_title('{0} :: Versions')|f(addon.name) }}{% endblock %}
+{% block title %}{{ page_title('{0} :: Versions')|fe(addon.name) }}{% endblock %}
 
 {% block bodyclass %}versions gutter{% endblock %}
 

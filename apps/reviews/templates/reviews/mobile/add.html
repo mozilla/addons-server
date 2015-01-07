@@ -1,7 +1,7 @@
 {% extends "mobile/base.html" %}
 
 {# L10n: {0} is an addon name. #}
-{% block title %}{{ page_title(_('Reviews for {0}')|f(addon.name)) }}{% endblock %}
+{% block title %}{{ page_title(_('Reviews for {0}')|fe(addon.name)) }}{% endblock %}
 
 {% block back_link %}
   <a class="back-link" href="{{ addon.get_url_path() }}">&laquo; {{ addon.name }}</a>

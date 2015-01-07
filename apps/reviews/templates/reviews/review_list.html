@@ -2,7 +2,7 @@
 {% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
-{% block title %}{{ page_title(_('{0} :: Reviews')|f(addon.name)) }}{% endblock %}
+{% block title %}{{ page_title(_('{0} :: Reviews')|fe(addon.name)) }}{% endblock %}
 
 {% block bodyclass %}reviews gutter{% endblock %}
 
