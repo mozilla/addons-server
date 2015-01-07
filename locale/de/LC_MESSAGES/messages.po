@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-02 15:40+0000\n"
+"PO-Revision-Date: 2015-01-07 18:50+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420213205.0\n"
+"X-POOTLE-MTIME: 1420656632.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1608,11 +1608,11 @@ msgstr "{user} hat {review} für {addon} freigeschaltet."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Bewertung {review} für {addon} gelöscht."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} hat {review} für {addon} gelöscht."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3458,7 +3458,7 @@ msgstr "Moderierte Add-on-Bewertung"
 
 #: apps/constants/base.py:434
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderation für Add-on-Bewertung rückgängig gemacht"
 
 #: apps/constants/base.py:479
 msgid "Level 1"
@@ -4004,15 +4004,15 @@ msgstr "Passwort war falsch. Add-on wurde nicht gelöscht."
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Ihrem Add-on wurde ein Autor hinzugefügt"
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Die Rolle eines Autors Ihres Add-ons hat sich geändert"
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Von Ihrem Add-on wurde ein Autor entfernt"
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9366,23 +9366,23 @@ msgstr "Logbuch-Details"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Add-on-Titel"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Titel der Bewertung"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Text der Bewertung"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Bewertung wurde vor Löschung gemeldet."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Löschung rückgängig machen"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9579,7 +9579,7 @@ msgstr "Überprüfung {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Änderungschronik der Add-on-Nutzer"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -10614,6 +10614,15 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Um die Kompatibilität mit der neuesten Mozilla-Software sicherzustellen, "
+"müssen Updates heruntergeladen werden und Ihr Add-on muss darauf getestet "
+"werden, ob es noch wie erwartet funktioniert. In vielen Fällen kann die "
+"neueste Version von Mozilla-Software eine Beta-Version sein. Da mit diesen "
+"Versionen Änderungen an der Architektur vorgenommen werden können, die "
+"möglicherweise die Funktionalität Ihres Add-ons betreffen, ist es wichtig, "
+"sich aktiv am Beta-Prozess zu beteiligen, damit die Nutzer Ihres Add-ons bei "
+"Veröffentlichung der endgültigen Version von Mozilla-Software keine "
+"negativen Folgen erleben."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
