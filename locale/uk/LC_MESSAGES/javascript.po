@@ -618,7 +618,7 @@ msgstr "Внески з {0} по {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:188
 msgid "Site Metrics, last {0} days"
-msgstr "Статистика сайту за останні {1} днів"
+msgstr "Статистика сайту за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:190
