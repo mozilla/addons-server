@@ -3,6 +3,7 @@ import datetime
 import os
 
 import django.dispatch
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
@@ -472,8 +473,19 @@ def watch_source(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     """Set the "admin_review" flag on the addon if a source file was added."""
     # Only admins may review addons with source files attached.
     if old_attr.get('source') != new_attr.get('source'):
+        # Imported here to avoid an import loop.
+        from devhub.models import ActivityLog, VersionLog
         instance.addon.admin_review = True
         instance.addon.save()
+        # Use the addons team go-to user "Mozilla".
+        user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+        log = ActivityLog.objects.create(
+            action=amo.LOG.REQUEST_SUPER_REVIEW.id,
+            user=user,
+            details={'comments': u'This version has been automatically flagged'
+                                 u' as admin review, as it had some source '
+                                 u'files attached when submitted.'})
+        VersionLog.objects.create(version_id=instance.pk, activity_log=log)
 
 
 @use_master

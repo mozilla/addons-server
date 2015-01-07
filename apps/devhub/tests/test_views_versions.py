@@ -467,10 +467,16 @@ class TestVersionEditDetails(TestVersionEditBase):
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
-            eq_(response.status_code, 302)
-            version = Version.objects.get(pk=self.version.pk)
-            assert version.source
-            assert version.addon.admin_review
+        eq_(response.status_code, 302)
+        version = Version.objects.get(pk=self.version.pk)
+        assert version.source
+        assert version.addon.admin_review
+
+        # Check that the corresponding automatic activity log has been created.
+        log = ActivityLog.objects.get(action=amo.LOG.REQUEST_SUPER_REVIEW.id)
+        assert log.details['comments'] == (
+            u'This version has been automatically flagged as admin review, as '
+            u'it had some source files attached when submitted.')
 
     def test_should_not_accept_exe_source_file(self):
         tdir = temp.gettempdir()

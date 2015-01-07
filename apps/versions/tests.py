@@ -791,7 +791,7 @@ class TestDownloadsLatest(TestDownloadsBase):
 
 @override_settings(XSENDFILE=True)
 class TestDownloadSource(amo.tests.TestCase):
-    fixtures = ['base/addon_3615', 'base/admin', ]
+    fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
         super(TestDownloadSource, self).setUp()
