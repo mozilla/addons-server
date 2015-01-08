@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-08 19:04+0000\n"
-"Last-Translator: Andreas <az@kth.se>\n"
-"Language-Team: SWEDISH <SV@li.org>\n"
+"PO-Revision-Date: 2015-01-08 23:10+0100\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-POOTLE-MTIME: 1420743880.0\n"
 
 #: apps/addons/buttons.py:185
@@ -40,7 +40,7 @@ msgstr "Ej granskad"
 #: apps/addons/buttons.py:219
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Experimentell"
 
 #: apps/addons/buttons.py:226
 msgid "Add to {0}"
@@ -48,80 +48,80 @@ msgstr "Lägg till i {0}"
 
 #: apps/addons/forms.py:48
 msgid "This name is already in use. Please choose another."
-msgstr ""
+msgstr "Detta namn används redan. Välj ett annat."
 
 #: apps/addons/forms.py:59
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Sluggen används redan. Välj en annan."
 
 #: apps/addons/forms.py:62
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Sluggen kan inte vara \"%s\". Välj en annan."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:81
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ogiltig tagg: {0}"
+msgstr[1] "Ogiltiga taggar: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:91
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" är ett reserverad tagg och kan inte användas."
+msgstr[1] "\"{0}\" är reserverade taggar och kan inte användas."
 
 #: apps/addons/forms.py:99
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du har {0} för många taggar."
+msgstr[1] "Du har {0} för många taggar."
 
 #: apps/addons/forms.py:105
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Alla taggar måste vara %s tecken eller mindre efter att ogiltiga tecken har tagits bort."
 
 #: apps/addons/forms.py:109
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alla taggar måste minst vara {0} tecken."
+msgstr[1] "Alla taggar måste minst vara {0} tecken."
 
 #: apps/addons/forms.py:219
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Kategorier kan inte ändras medan ditt tillägg är utvald för denna applikation."
 
 #. L10n: {0} is the number of categories.
 #: apps/addons/forms.py:223
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du kan endast ha {0} kategori."
+msgstr[1] "Du kan endast ha {0} kategorier."
 
 #: apps/addons/forms.py:231
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Den övriga kategorin kan inte kombineras med ytterligare kategorier."
 
 #: apps/addons/forms.py:354
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Innan du ändrar ditt standardspråk måste du ha ett namn, sammanfattning och beskrivning på det språket. Du saknar %s."
 
 #: apps/addons/forms.py:467 apps/addons/forms.py:558
 msgid "A license must be selected."
-msgstr ""
+msgstr "En licens måste väljas."
 
 #: apps/addons/forms.py:539
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Ge ditt tema ett namn."
 
 #: apps/addons/forms.py:545 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Beskriv ditt tema."
 
 #: apps/addons/forms.py:686
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Ange en ny e-postadress till utvecklaren"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -132,15 +132,15 @@ msgstr "Ej granskad"
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr "Uppmärksammat"
+msgstr "Utvalda"
 
 #: apps/addons/models.py:306
 msgid "Users have the option of contributing more or less than this amount."
-msgstr "Användare har möjlighet att ge mer eller mindre än denna samma."
+msgstr "Användare har möjlighet att ge mer eller mindre än detta belopp."
 
 #: apps/addons/models.py:315
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
-msgstr ""
+msgstr "Användarna kommer alltid att bli tillfrågade i tilläggshanteraren (Firefox 4 och uppåt)"
 
 #: apps/addons/models.py:1865
 msgid "Listed"
@@ -152,11 +152,11 @@ msgstr "Populära"
 
 #: apps/addons/views.py:320 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
 msgid "Recently Added"
-msgstr "Nyligen tillagt"
+msgstr "Nyligen tillagd"
 
 #: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
-msgstr "Nyligen uppdaterat"
+msgstr "Nyligen uppdaterad"
 
 #. l10n: {0} is the addon name
 #: apps/addons/views.py:504
@@ -165,11 +165,11 @@ msgstr "Bidrag för {0}"
 
 #: apps/addons/views.py:592
 msgid "Abuse reported."
-msgstr ""
+msgstr "Missbruk rapporterad."
 
 #: apps/addons/widgets.py:50
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Mitt tillägg passar inte in i någon av kategorierna"
 
 #: apps/addons/templates/addons/button.html:27 apps/addons/templates/addons/impala/button.html:11 apps/addons/templates/addons/mobile/button.html:11
 msgid "No compatible versions"
@@ -190,20 +190,20 @@ msgstr "för {0}"
 
 #: apps/addons/templates/addons/button.html:82 apps/addons/templates/addons/mobile/button.html:28
 msgid "View privacy policy"
-msgstr "Visa integritetsriktlinjer"
+msgstr "Visa sekretesspolicy"
 
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Visa slutanvändarlicensavtal"
 
 #: apps/addons/templates/addons/button.html:92 apps/addons/templates/addons/impala/button.html:54
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Detta tillägg har inte granskats av Mozilla. <a href=\"%(url)s\">Läs mer</a>"
 
 #: apps/addons/templates/addons/button.html:97 apps/addons/templates/addons/impala/button.html:60
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Detta tillägg har preliminärt granskats av Mozilla. <a href=\"%(url)s\">Läs mer</a>"
 
 #: apps/addons/templates/addons/contribution.html:11 apps/addons/templates/addons/impala/developers.html:44
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
@@ -211,11 +211,11 @@ msgstr "Utvecklaren av detta tillägg vill gärna att du stöder dess framtida u
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "Utvecklaren av detta tillägg vill gärna att du visar ditt stöd genom att göra en donation till <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:19
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "Utvecklaren av detta tillägg vill gärna att du visar ditt stöd genom att ge ett litet bidrag till <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:30 apps/addons/templates/addons/impala/contribution.html:18 templates/menu_links.html:25
 msgid "Contribute"
@@ -234,7 +234,7 @@ msgstr "eller"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Föreslagna bidrag: {0}"
 
 #: apps/addons/templates/addons/contribution.html:48 apps/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
@@ -242,11 +242,11 @@ msgstr "Vad är detta?"
 
 #: apps/addons/templates/addons/contribution.html:63
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Utvecklaren av detta tillägg skulle vilja att ni överväger att göra en donation till <a href=\"%(charity_url)s\">%(charity_name)s</a> om du tycker om att använda den."
 
 #: apps/addons/templates/addons/contribution.html:69
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Utvecklaren av detta tillägg skulle vilja att ni överväger att göra ett litet bidrag till <a href=\"%(charity_url)s\">%(charity_name)s</a> om du tycker om att använda den."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -258,22 +258,23 @@ msgstr "Ge ett bidrag"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Hjälp till och stöd fortsatt utveckling av <strong>%(addon_name)s</strong> genom att göra ett litet bidrag med <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "För att visa ditt stöd för <b>%(addon_name)s</b>, ber utvecklaren att du gör en donation till <a href=\"%(charity_url)s\">%(charity_name)s</a > genom <a href=\"%(paypal_url)s\"> PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
+"För att visa ditt stöd för <b>%(addon_name)s</b>, ber utvecklaren att du gör ett litet bidrag till <a href=\"%(charity_url)s\">%(charity_name)s</a > genom <a href=\"%(paypal_url)s\"> PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "Hur mycket vill du bidra med?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
@@ -281,31 +282,31 @@ msgstr "Maximal bidragssumma är {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Minimal bidragssumma är {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Bidragssumma måste vara ett belopp."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr "Ett engångs (föreslaget) bidrag på {0}"
+msgstr "Ett förslaget engångsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#.                    {1} is an amount input field
+#. {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Ett engångsbidrag på {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Lämna en kommentar eller begäran med ditt bidrag."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74 apps/bandwagon/templates/bandwagon/ajax_new.html:20 apps/bandwagon/templates/bandwagon/includes/addedit.html:34
 #: apps/reviews/templates/reviews/mobile/add_form.html:13 templates/includes/forms.html:10
 msgid "(optional)"
-msgstr "(valfri)"
+msgstr "(valfritt)"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
@@ -313,19 +314,19 @@ msgstr "Bidra"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "Kontaktar PayPal"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
-msgstr ""
+msgstr "Nej tack"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Tack för ditt bidrag."
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
-msgstr ""
+msgstr "Ingen omstart krävs"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:30 apps/addons/templates/addons/includes/persona.html:9
@@ -335,7 +336,7 @@ msgstr "Tilläggsinformation för {0}"
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:71
 msgid "Updated"
-msgstr "Uppdaterat"
+msgstr "Uppdaterad"
 
 #: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:42
 #: apps/discovery/templates/discovery/addons/detail.html:87
@@ -349,7 +350,7 @@ msgstr "Fungerar med"
 
 #: apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Obligatoriska tillägg"
 
 #: apps/addons/templates/addons/details_box.html:73 apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
@@ -359,7 +360,7 @@ msgstr "Betyg"
 #: apps/addons/templates/addons/details_box.html:77
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
-msgstr "Hämtningar"
+msgstr "Nedladdningar"
 
 #: apps/addons/templates/addons/details_box.html:83 apps/addons/templates/addons/details_box.html:95 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
 #: apps/devhub/templates/devhub/personas/edit.html:60
@@ -372,21 +373,21 @@ msgstr "Dagliga användare i genomsnitt"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Missbruksrapporter"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
-msgstr "Integritetsriktlinjer"
+msgstr "Sekretesspolicy"
 
 #: apps/addons/templates/addons/details_box.html:115 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Visa sekretesspolicy"
 
 #: apps/addons/templates/addons/details_box.html:121
 msgid "EULA"
-msgstr "Användningsvillkor (EULA)"
+msgstr "EULA"
 
 #: apps/addons/templates/addons/details_box.html:162 apps/addons/templates/addons/details_box.html:222
 msgid "More about this add-on"
@@ -403,23 +404,27 @@ msgstr "Utvecklarkommentarer"
 
 #: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
-msgstr ""
+msgstr "Utvecklingskanal"
 
 #: apps/addons/templates/addons/details_box.html:193 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
+"Utvecklingskanalen låter dig testa en experimentell ny version av detta tillägg innan det släpps till allmänheten. När du installerar utvecklingsversionen, kommer du att fortsätta att få "
+"uppdateringar från den här kanalen."
 
 #: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
-msgstr ""
+msgstr "Installera utvecklingsversion"
 
 #: apps/addons/templates/addons/details_box.html:202
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"<strong>Varning:</strong> Utvecklingsversioner av detta tillägg har inte granskats av Mozilla. När du installerar en utvecklingsversion kommer du att fortsätta att få utvecklingsuppdateringar från "
+"utvecklaren. Att sluta ta emot utvecklingsuppdateringar, installera om standardversionen från länken ovan."
 
 #: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
@@ -427,43 +432,43 @@ msgstr "Version {0}:"
 
 #: apps/addons/templates/addons/details_box.html:225
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "Inget att se här! Utvecklaren inkluderade inte några detaljer."
 
 #: apps/addons/templates/addons/details_box.html:242
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "Versionsanteckningar"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: apps/addons/templates/addons/eula.html:6 apps/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr "Användarlicens för {0}"
+msgstr "Slutanvändarlicensavtal för {0}"
 
 #: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
-msgstr "Användarlicens"
+msgstr "Slutanvändarlicensavtal"
 
 #: apps/addons/templates/addons/eula.html:23 apps/discovery/templates/discovery/addons/eula.html:13
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s kräver att du godkänner följande licensavtal innan installationen fortsätter:"
+msgstr "%(addon_name)s kräver att du accepterar följande slutanvändaravtal innan installationen kan fortsätta:"
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Tillbaks till {0}…"
 
 #: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:228
 msgid "Add-ons for {0}"
-msgstr "{0} Add-ons"
+msgstr "Tillägg för {0}"
 
 #: apps/addons/templates/addons/home.html:10 apps/addons/templates/addons/home.html:51 apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Utvalda utökningar"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Populära utökningar"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
 #: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:278 apps/browse/views.py:475
@@ -472,29 +477,29 @@ msgstr "Mest populära"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "Alla »"
 
 #: apps/addons/templates/addons/home.html:52 apps/addons/templates/addons/home.html:61 apps/addons/templates/addons/home.html:70 apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "Visa alla »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Utökningar på frammarsch"
 
 #: apps/addons/templates/addons/home.html:69 apps/browse/templates/browse/personas/category_landing.html:61 apps/discovery/templates/discovery/pane.html:97
 msgid "Featured Themes"
-msgstr ""
+msgstr "Utvalda teman"
 
 #: apps/addons/templates/addons/home.html:77 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr "Uppmärksammade samlingar"
+msgstr "Utvalda samlingar"
 
 #: apps/addons/templates/addons/listing_header.html:3 apps/addons/templates/addons/impala/listing/sorter.html:2 apps/amo/templates/amo/mobile/sort_by.html:2
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:126
 msgid "Sort by:"
-msgstr "Sortera på:"
+msgstr "Sortera efter:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -509,67 +514,67 @@ msgstr "Uppdaterad {0}"
 #: apps/addons/templates/addons/listing/items_mobile.html:44 apps/addons/templates/addons/listing/macros.html:39 apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
-msgstr "Lade till {0}"
+msgstr "Lades till {0}"
 
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s neddladdning per vecka"
+msgstr[1] "%(num)s neddladdningar per vecka"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s användare"
+msgstr[1] "%(num)s användare"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} hämtning per vecka"
-msgstr[1] "{0} hämtningar per vecka"
+msgstr[0] "{0} nedladdning per vecka"
+msgstr[1] "{0} nedladdningar per vecka"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} användare"
+msgstr[1] "{0} användare"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Betalning avbruten"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Betalning slutförd"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
-msgstr ""
+msgstr "Gå tillbaka till tillägget."
 
 #: apps/addons/templates/addons/performance_note.html:4 apps/addons/templates/addons/performance_note.html:22 apps/addons/templates/addons/impala/performance_note.html:4
 #: apps/addons/templates/addons/impala/performance_note.html:20
 msgid "This add-on can slow down Firefox."
-msgstr ""
+msgstr "Detta tillägg kan slöa ner Firefox."
 
 #: apps/addons/templates/addons/performance_note.html:5 apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr ""
+msgstr "Mer&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
-msgstr ""
+msgstr "<b>Prestandavarning:</b> Installera detta tillägg kan slöa ner Firefoxs uppstart med <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
 msgid "Learn more&hellip;"
-msgstr ""
+msgstr "Läs mer&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23 apps/addons/templates/addons/impala/performance_note.html:22
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
-msgstr ""
+msgstr "Installera detta tillägg kan slöa ner Firefoxs uppstart med <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109 apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27 apps/editors/templates/editors/review.html:31
@@ -580,12 +585,12 @@ msgstr "av"
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Fler {0} teman"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Visa alla {0} teman"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -593,7 +598,7 @@ msgstr "Mer av denna konstnär"
 
 #: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Se alla teman av denna konstnär"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:299
@@ -618,26 +623,26 @@ msgstr "Licens"
 
 #: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:50
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Väntar på granskning"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:50
 msgid "Rejected"
-msgstr ""
+msgstr "Ej godkänd"
 
 #: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:155
 msgid "Approved"
-msgstr ""
+msgstr "Godkänd"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:36 apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> användare"
+msgstr[1] "<strong>{0}</strong> användare"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Håll muspekaren över för att förhandsgranska"
 
 #: apps/addons/templates/addons/persona_preview.html:46 apps/addons/templates/addons/persona_preview.html:48 apps/reviews/templates/reviews/add.html:15
 msgid "Add"
@@ -670,7 +675,7 @@ msgstr "<b>{0}</b> användare"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "För att installera tillägget och tusentals andra, <b>hämta Firefox</b>, en gratis och öppen webbläsare från Mozilla."
 
 #: apps/addons/templates/addons/popups.html:21 apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
@@ -678,17 +683,19 @@ msgstr "Lär dig mer om Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "eller <b><a class=\"installer\" href=\"{url}\">hämta ändå</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Hur man installerar i Thunderbird</strong> <ol> <li>Hämta och spara filen på din hårddisk.</li> <li>I Mozilla Thunderbird, öppna tillägg från verktygsmenyn.</li> <li>Från alternativknappen "
+"bredvid tilläggssökfältet, välj \"Installera tillägg från fil...\" och leta reda på det nedladdade tillägget.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
+msgstr "För att installera detta tema, <b>hämta Thunderbird</b> en gratis e-postklient med öppen källkod från Mozilla Messaging och installera tillägget Personas Plus."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -696,7 +703,7 @@ msgstr "Lär dig mer om Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "För att installera tillägget och tusentals andra, <b>hämta Firefox</b>, en gratis och öppen webbläsare från Mozilla."
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
@@ -708,15 +715,15 @@ msgstr "Installera ändå"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Detta tillägg kräver en version av Firefox som inte har släppts ännu."
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Hjälpa till att testa nya versioner av Firefox"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Detta tillägg kräver %(app)s {new_version}. Du använder för närvarande %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
@@ -725,15 +732,15 @@ msgstr "Upgradera {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "eller visa <a href=\"%(href)s\"> äldre versioner av detta tillägg</a>."
 
 #: apps/addons/templates/addons/popups.html:97
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Denna Persona kräver %(app)s %(new_version)s. Du använder för närvarande %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr ""
+msgstr "<strong>Varning:</strong> Detta tillägg har inte granskats av Mozilla. Var försiktig när du installerar programvara från tredje part som kan skada din dator."
 
 #: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -741,15 +748,15 @@ msgstr "<strong>Observera:</strong>Detta tillägg är ej kompatibelt med ditt op
 
 #: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Detta tillägg är inte kompatibel med din version av %(app)s på grund av följande:"
 
 #: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Visa andra versioner"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Detta tillägg är inte kompatibel med din version av %(app)s."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -758,26 +765,28 @@ msgstr "Integritetsriktlinjer för {0}"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "QR-kod för tillägg"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "Vill du ha {0} på din mobila Firefox? Skanna den här QR-koden för att installera direkt på telefonen. (Du behöver en QR-läsare. Sök i telefonens marknadsplats, om du inte redan har en.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:330
 msgid "Report Abuse"
-msgstr ""
+msgstr "Rapportera missbruk"
 
 #: apps/addons/templates/addons/report_abuse.html:10
 msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"Om du misstänker att detta tillägg bryter <a href=\"%(url)s\">vår policy</a> eller har säkerhets- eller integritetsfrågor, vänligen använd formuläret nedan för att beskriva dina frågor. Använd inte "
+"detta formulär av någon annan anledning."
 
 #: apps/addons/templates/addons/report_abuse.html:23 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
-msgstr ""
+msgstr "Skicka rapport"
 
 #: apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
@@ -792,7 +801,7 @@ msgstr "Avbryt"
 
 #: apps/addons/templates/addons/report_abuse_full.html:3
 msgid "Report abuse for {0}"
-msgstr ""
+msgstr "Rapportera missbruk för {0}"
 
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
@@ -863,39 +872,39 @@ msgstr "av %(users)s"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> förslagen"
 
 #: apps/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Tycker du om detta tillägg?"
 
 #: apps/addons/templates/addons/impala/contribution.html:43
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Utvecklaren av detta tillägg</a> vill gärna att du stöder dess framtida utveckling genom att ge ett litet bidrag."
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Utvecklaren av detta tillägg </a> ber att du visa ditt stöd genom att göra en donation till <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:53
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Utvecklaren av detta tillägg </a> ber att du visar ditt stöd genom att ge ett litet bidrag till <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Detta tillägg kräver följande tillägg för att fungera korrekt:"
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "Genomsnitt"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "Skriv en recension"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Relaterade kategorier"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Often used with&hellip;"
@@ -903,7 +912,7 @@ msgstr "Används ofta med&hellip;"
 
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Delar av dessa samlingar"
 
 #: apps/addons/templates/addons/impala/details-more.html:72
 msgid "Other add-ons by %(author)s"
@@ -914,31 +923,31 @@ msgstr[1] "Andra tillägg av dessa författare"
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> användarrecension"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> användarrecensioner"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
-msgstr ""
+msgstr "Visa statistik"
 
 #: apps/addons/templates/addons/impala/details.html:87
 msgid "Manage"
-msgstr ""
+msgstr "Hantera"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Ikon för {0}"
 
 #: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "Ingen omstart"
 
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Möt utvecklaren: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Möt utvecklarna</a>"
 
 #: apps/addons/templates/addons/impala/details.html:144
 msgid "Learn why {0} was created and find out what's next for this add-on."
@@ -947,31 +956,31 @@ msgstr "Läs om varför {0} skapades och få reda på vad som händer i framtide
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Skärmdump för tillägg #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
-msgstr ""
+msgstr "Hemsida för tillägg"
 
 #: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
-msgstr ""
+msgstr "Support webbplats"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
-msgstr ""
+msgstr "Support e-post"
 
 #: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
 msgid "Version {0}"
-msgstr ""
+msgstr "Version {0}"
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
-msgstr ""
+msgstr "Information"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Släppt under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
@@ -980,39 +989,41 @@ msgstr "Anpassad licens"
 
 #: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Släppt under <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
-msgstr ""
+msgstr "Om detta tillägg"
 
 #: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Utvecklarens kommentarer"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
-msgstr ""
+msgstr "Versionsinformation"
 
 #: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
-msgstr ""
+msgstr "Visa fullständig versionshistorik"
 
 #: apps/addons/templates/addons/impala/details.html:269
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Utvecklingskanalen låter dig testa en experimentell ny version av detta tillägg innan det släpps till allmänheten. När du installerar utvecklingsversionen, kommer du att fortsätta att få "
+"uppdateringar från den här kanalen. För att sluta ta emot utvecklingsuppdateringar, installera om standardversionen från länken ovan."
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Varning:</strong> Utvecklingsversioner av detta tillägg har inte granskats av Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
-msgstr ""
+msgstr "stäng"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:9
@@ -1039,8 +1050,8 @@ msgstr "Framtida planer för {0}"
 #: apps/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Om utvecklaren"
+msgstr[1] "Om utvecklarna"
 
 #: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:116 apps/users/templates/users/profile.html:29
 msgid "No Photo"
@@ -1048,19 +1059,19 @@ msgstr "Inget foto"
 
 #: apps/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Vem är {0}?"
 
 #: apps/addons/templates/addons/impala/disabled.html:17
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Detta tillägg har tagits bort av utvecklaren."
 
 #: apps/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Detta tillägg har inaktiverats av en administratör."
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Källkodslicens för {addon}"
 
 #: apps/addons/templates/addons/impala/license.html:21 apps/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
@@ -1068,37 +1079,37 @@ msgstr "Källkodslicens"
 
 #: apps/addons/templates/addons/impala/performance_note.html:5
 msgid "Explain&hellip;"
-msgstr ""
+msgstr "Förklara&hellip;"
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16 apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} användare"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "permalänk"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "översätt"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Se alla användarrecensioner"
+msgstr[1] "Se alla %(cnt)s användarrecensioner"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Detta tillägg har ännu inte recenserats."
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "Bli den första!"
 
 #: apps/addons/templates/addons/impala/listing/sorter.html:14 apps/devhub/templates/devhub/addons/listing/item_actions.html:49
 msgid "More"
-msgstr ""
+msgstr "Mer"
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7 apps/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
@@ -1110,62 +1121,62 @@ msgstr "Mina tillägg"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:68
 msgid "My Themes"
-msgstr ""
+msgstr "Mina teman"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "Lägg till i Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Redigera tema"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Godkänn / Avvisa"
 
 #: apps/addons/templates/addons/includes/persona.html:25 apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Recensionshistorik"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Tyvärr, är detta tema är väntande. Kom tillbaka senare."
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Detta tema är väntande. Det är osynligt för alla utom du."
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
-msgstr "Notering från samlaren"
+msgstr "Samlarens anteckning"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Inte betygsatt än"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:24 apps/devhub/templates/devhub/addons/listing/macros.html:15
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> hämtning per vecka"
-msgstr[1] "<strong>{0}</strong> hämtningar per vecka"
+msgstr[0] "<strong>{0}</strong> nedladdning per vecka"
+msgstr[1] "<strong>{0}</strong> nedladdningar per vecka"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
-msgstr ""
+msgstr "Kan slöa ner din webbläsare"
 
 #: apps/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "Läs mer"
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Användare"
 
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Nedladdningar per vecka"
 
 #: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:968 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
@@ -1174,47 +1185,47 @@ msgstr "Version"
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Versionsanteckningar)"
 
 #: apps/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
-msgstr ""
+msgstr "Visa alla versioner"
 
 #: apps/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "Visa utvecklingsversion"
 
 #: apps/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr ""
+msgstr "Varning"
 
 #: apps/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "Besök supportwebbplatsen"
 
 #: apps/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Ställ en fråga till utvecklaren"
 
 #: apps/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
-msgstr ""
+msgstr "Licensavtal"
 
 #: apps/addons/templates/addons/mobile/eula.html:5
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(name)s kräver att du accepterar följande slutanvändaravtal innan installationen kan fortsätta:"
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Acceptera"
 
 #: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:48
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Du behöver Firefox för att installera tillägg. <a href=\"http://mozilla.com/mobile\">Läs mer&nbsp;&raquo;</a>"
 
 #: apps/addons/templates/addons/mobile/home.html:15 templates/header_title.html:4 templates/impala/header_title.html:3
 msgid "Return to the {0} Add-ons homepage"
-msgstr "tillbaka till {0} tilläggshemsida"
+msgstr "Återgå till hemsidan för tillägget {0}"
 
 #: apps/addons/templates/addons/mobile/home.html:17 apps/amo/helpers.py:230 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
@@ -1224,7 +1235,7 @@ msgstr "Tillägg"
 
 #: apps/addons/templates/addons/mobile/home.html:19
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Enkla sätt att anpassa."
 
 #: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
@@ -1236,6 +1247,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
+"Tillägg är applikationer som låter dig anpassa Firefox med extra funktionalitet och stil. Oavsett om du skriver fel namn på en webbplats eller inte kan läsa en upptagen sida, det finns alltid ett "
+"tillägg för att förbättra din surfning."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1251,11 +1264,11 @@ msgstr "Teman"
 
 #: apps/addons/templates/addons/mobile/home.html:47
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Visa alla utvalda tillägg"
 
 #: apps/addons/templates/addons/mobile/home.html:53
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Visa alla populära tillägg"
 
 #: apps/addons/templates/addons/mobile/home.html:65
 msgid "More Add-ons"
@@ -1272,11 +1285,11 @@ msgstr "Nyast"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "Prova den!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Information om tema &raquo;"
 
 #: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:49
 msgid "Tools"
@@ -1284,7 +1297,7 @@ msgstr "Verktyg"
 
 #: apps/amo/context_processors.py:65 apps/discovery/templates/discovery/pane_account.html:8 apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Min profil"
 
 #: apps/amo/context_processors.py:71 apps/users/templates/users/edit.html:5 apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
@@ -1304,29 +1317,29 @@ msgstr "Logga ut"
 
 #: apps/amo/context_processors.py:89 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Hantera mina bidrag"
 
 #: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
-msgstr "Skicka in nytt tillägg"
+msgstr "Skicka in ett nytt tillägg"
 
 #: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Skicka in ett nytt tema"
 
 #: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr "Utvecklarnav"
+msgstr "Utvecklarcenter"
 
 #: apps/amo/context_processors.py:101 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
-msgstr "Redaktörsverktyg"
+msgstr "Redigeringsverktyg"
 
 #: apps/amo/context_processors.py:104
 msgid "Localizer Tools"
-msgstr "Lokaliseringsverktyg"
+msgstr "Översättningsverktyg"
 
 #: apps/amo/context_processors.py:108
 msgid "Admin Tools"
@@ -1334,11 +1347,11 @@ msgstr "Adminverktyg"
 
 #: apps/amo/fields.py:72
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Detta måste vara en giltig hexadecimal färgkod, till exempel #000000."
 
 #: apps/amo/fields.py:98
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Ange minst ett värde."
 
 #: apps/amo/helpers.py:155 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
@@ -1364,142 +1377,142 @@ msgstr "{addon} skapades."
 
 #: apps/amo/log.py:25
 msgid "{addon} properties edited."
-msgstr "Egenskaper för {addon} ändrades."
+msgstr "Egenskaper för {addon} redigerad."
 
 #: apps/amo/log.py:31
 msgid "{addon} description edited."
-msgstr "Beskrivning för {addon} ändrades."
+msgstr "Beskrivning för {addon} redigerad."
 
 #: apps/amo/log.py:37
 msgid "Categories edited for {addon}."
-msgstr "Kategorier ändrades för {addon}."
+msgstr "Kategorier redigerad för {addon}."
 
 #: apps/amo/log.py:43
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) lades till {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: apps/amo/log.py:51
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) togs bort från {addon}."
 
 #: apps/amo/log.py:58
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Bidrag till {addon}."
 
 #: apps/amo/log.py:63 apps/amo/log.py:413
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} inaktiverad."
 
 #: apps/amo/log.py:69
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} aktiverad."
 
 #: apps/amo/log.py:76
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Statistik satt till publik för {addon}."
 
 #: apps/amo/log.py:83
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Statistik för {addon} satt till privat."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:90
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} status ändrad till {0}."
 
 #: apps/amo/log.py:97
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Förhandsvisning lades till {addon}."
 
 #: apps/amo/log.py:103
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Förhandsvisning redigerad för {addon}."
 
 #: apps/amo/log.py:109
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Förhandsvisning borttagen för {addon}."
 
 #: apps/amo/log.py:115
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} lades till {addon}."
 
 #: apps/amo/log.py:122
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} redigerad för {addon}."
 
 #. L10n: {0} is the version number
 #: apps/amo/log.py:130
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Version {0} borttagen från {addon}."
 
 #: apps/amo/log.py:137
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Fil {0.name} lades till {version} av {addon}."
 
 #: apps/amo/log.py:148
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Fil {0} togs bort från {version} av {addon}."
 
 #: apps/amo/log.py:154
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} godkänd."
 
 #: apps/amo/log.py:164
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} fick preliminär granskning."
 
 #: apps/amo/log.py:165
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Preliminärt godkänd."
 
 #: apps/amo/log.py:175
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} ej godkänd."
 
 #: apps/amo/log.py:185
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} behölls."
 
 #: apps/amo/log.py:186
 msgid "Retained"
-msgstr ""
+msgstr "Behålls"
 
 #: apps/amo/log.py:195
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} upptrappad."
 
 #: apps/amo/log.py:196
 msgid "Escalated"
-msgstr ""
+msgstr "Upptrappad"
 
 #: apps/amo/log.py:205
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} granskning begärd."
 
 #: apps/amo/log.py:206
 msgid "Review requested"
-msgstr ""
+msgstr "Granskning begärd"
 
 #: apps/amo/log.py:214
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} mer information begärd."
 
 #: apps/amo/log.py:215
 msgid "More information requested"
-msgstr ""
+msgstr "Mer information begärd"
 
 #: apps/amo/log.py:223
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} supergranskning begärd."
 
 #: apps/amo/log.py:224
 msgid "Super review requested"
-msgstr ""
+msgstr "Supergranskning begärd"
 
 #: apps/amo/log.py:231
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Kommentar till {addon} {version}."
 
 #: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
 #: apps/editors/templates/editors/themes/history_table.html:11
@@ -1508,51 +1521,51 @@ msgstr "Kommentar"
 
 #: apps/amo/log.py:241
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} lades till {addon}."
 
 #: apps/amo/log.py:247
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} togs bort från {addon}."
 
 #: apps/amo/log.py:253
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} lades till {collection}."
 
 #: apps/amo/log.py:259
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} togs bort från {collection}."
 
 #: apps/amo/log.py:265
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} för {addon} skriven."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:273
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} utvald i {0}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:280
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} inte längre utvald i {0}."
 
 #: apps/amo/log.py:285
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} är nu utvald."
 
 #: apps/amo/log.py:291
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} inte längre utvald."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: apps/amo/log.py:299
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} lades till."
 
 #. L10n: {0} is a user, {1} is their role
 #: apps/amo/log.py:306
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} roll ändrad till {1} för {addon}."
 
 #: apps/amo/log.py:314
 msgid "{addon} is now licensed under {0.name}."
@@ -1770,7 +1783,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
-msgstr "Ej funnen."
+msgstr "Hittades inte"
 
 #: apps/amo/templates/amo/404.html:6
 msgid ""
@@ -1805,7 +1818,7 @@ msgstr "Vissa rättigheter reserverade"
 
 #: apps/amo/templates/amo/no_results.html:1 apps/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
-msgstr ""
+msgstr "Inga träffar hittades"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
@@ -1908,8 +1921,8 @@ msgid "Previous"
 msgstr "Föregående"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.                third argument is the number of total results (e.g., 1,000).
-#.              third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
@@ -2336,8 +2349,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2345,7 +2358,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2353,8 +2366,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -7526,7 +7539,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#.                {1} is the application name.
+#. {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
