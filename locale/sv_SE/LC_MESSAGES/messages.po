@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-30 15:47+0000\n"
+"PO-Revision-Date: 2015-01-08 19:04+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: SWEDISH <SV@li.org>\n"
 "Language: sv_SE\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419954471.0\n"
+"X-POOTLE-MTIME: 1420743880.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
-msgstr "Hämta hem nu"
+msgstr "Hämta nu"
 
 #: apps/addons/buttons.py:187
 msgid "Download"
-msgstr "Hämta hem"
+msgstr "Hämta"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: apps/addons/buttons.py:191
@@ -30,7 +30,7 @@ msgstr "Fortsätt till nedladdning&nbsp;&rarr;"
 #: apps/addons/buttons.py:207
 msgctxt "install_button"
 msgid "Featured"
-msgstr "Uppmärksammat"
+msgstr "Utvalda"
 
 #: apps/addons/buttons.py:212
 msgctxt "install_button"
