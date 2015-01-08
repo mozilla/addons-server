@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2013-12-07 19:48-5000\n"
+"PO-Revision-Date: 2015-01-07 23:29-5000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -95,37 +95,39 @@ msgstr "アドオンは検証に合格しました。エラーや警告はあり
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "詳しいリリースノートを含める (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザ名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
+msgstr "このアドオンが特定のユーザ層のみを対象としたものである場合、本審査ではなく事前審査を選択してください。"
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "アドオン登録チェックリスト"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "登録を完了する前に以下の点について確認してください。これは審査手続き中の遅延や誤解を最小限にするために役立ちます。"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロードフォームを使い、"
+"審査が即座に却下されないようにしてください。"
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
+msgstr "アドオンの審査手続きについてよくご存じない場合は、こちらをご覧ください。"
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -133,7 +135,7 @@ msgstr "この種類のアドオンは OS によって対応していないこ�
 
 #: static/js/common/upload-addon.js:427
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "申し訳ありませんが、対応プラットフォームがひとつも見つかりませんでした。"
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
@@ -495,7 +497,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -761,12 +763,12 @@ msgstr "まずアプリケーションを選択してください"
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} 個のアドオンの最高対応バージョンを {1} へ更新し、作者へメールします。"
+msgstr[0] "{0} 個のアドオンの最高対応バージョンを {1} へ更新し、作者へメールを送ります。"
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
+msgstr[0] "検証をパスしなかった {2} 個のアドオンの作者へメールを送ります。"
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -955,7 +957,7 @@ msgstr[0] "{files} 個のファイル"
 #: static/js/zamboni/devhub.js:693
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} 件のユーザレビュー"
 
 #: static/js/zamboni/devhub.js:805
 msgid "Learn more"
