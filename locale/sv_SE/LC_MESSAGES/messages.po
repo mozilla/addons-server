@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-08 23:10+0100\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"PO-Revision-Date: 2015-01-08 22:23+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.1\n"
-"X-POOTLE-MTIME: 1420743880.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1420755802.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1878,11 +1878,11 @@ msgstr "Utökningar"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Vill du ha mer anpassning? Prova <b>kompletta teman</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
-msgstr ""
+msgstr "Flest följare"
 
 #: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
@@ -1900,7 +1900,7 @@ msgstr "Mina favorittillägg"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Tillägg för mobil"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:175 templates/menu_links.html:10
 msgid "Search Tools"
@@ -9699,7 +9699,7 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/base.html:3 apps/localizers/templates/localizers/summary.html:3
 msgid "Localizer Dashboard"
-msgstr ""
+msgstr "Översättningsöversikt"
 
 #. %s is a locale name or code ('German' or 'de')
 #: apps/localizers/templates/localizers/categories.html:5 apps/localizers/templates/localizers/dashboard.html:5 apps/localizers/templates/localizers/dashboard.html:13
@@ -11429,7 +11429,7 @@ msgstr "Visar {0} - {1} av {2} resultat"
 #. {0} is an application, like Firefox.
 #: apps/search/views.py:267 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
-msgstr "{0}-tillägg"
+msgstr "{0} tillägg"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
@@ -12858,7 +12858,7 @@ msgstr ""
 
 #: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
-msgstr "Mozilla-tillägg"
+msgstr "Mozilla tillägg"
 
 #: templates/base.html:65 templates/impala/base.html:108
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -12987,7 +12987,7 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:130
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Välkommen till {0} tillägg."
 
 #: templates/impala/base.html:133
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
