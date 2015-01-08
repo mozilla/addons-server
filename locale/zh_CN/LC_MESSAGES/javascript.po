@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-07-04 23:19+0000\n"
+"PO-Revision-Date: 2015-01-08 03:42+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404515947.0\n"
+"X-POOTLE-MTIME: 1420688520.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -95,37 +95,37 @@ msgstr "您的附加组件通过了验证，没有错误或警告。"
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "包括详细的版本说明（这可以在下一步骤中完成）。"
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "如果您的附加组件需要有一个某网站的帐号才能进行全面的测试，请在给审核员的说明中写一个测试用的用户名和密码（这可以在下一步骤中完成）。"
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
+msgstr "如果您的附加组件是面向有限的受众，您应该选择初步审核而不是全面审核。"
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "附加组件提交注意事项"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "请在完成您的提交前确认以下几点。这将最大限度的减少在审核过程中的延误或误解："
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
+msgstr "编译后的二进制文件，以及压缩或混淆后的脚本（不含知名库）需要单独提供它们的源代码以供审核。请确保您使用了源代码上传字段，以避免您的提交被拒绝。"
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "在验证过程中发现下列问题可导致被拒绝："
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
+msgstr "如果您不熟悉附加组件的审核流程，您可以到这里查看。"
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -495,7 +495,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122

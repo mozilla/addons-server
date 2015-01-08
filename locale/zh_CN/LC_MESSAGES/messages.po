@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-16 04:21+0000\n"
+"PO-Revision-Date: 2015-01-08 03:50+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418703666.0\n"
+"X-POOTLE-MTIME: 1420689011.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1573,11 +1573,11 @@ msgstr "{user} 核准了 {addon}  的 {review}。"
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "对 {addon} 进行 {review} 已删除。"
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} 删除了对 {addon} 进行 {review}。"
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3389,7 +3389,7 @@ msgstr "提请仲裁的附加组件评论"
 
 #: apps/constants/base.py:434
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "附加组件评论仲裁已恢复"
 
 #: apps/constants/base.py:479
 msgid "Level 1"
@@ -3935,15 +3935,15 @@ msgstr "密码错误，附加组件没有删除。"
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "一个作者已被添加到您的附加组件"
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "您的附加组件的一个作者角色已更改"
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "一个作者已被从您的附加组件中移除"
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9027,23 +9027,23 @@ msgstr "日志详细信息"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "附加组件标题"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "评论标题"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "评论文本"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "评论已被标记为提请删除。"
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "取消删除"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9235,7 +9235,7 @@ msgstr "审核 {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "附加组件用户变化历史记录"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -10242,6 +10242,9 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"为确保与最新版 Mozilla 软件的兼容性，在更新可用时下载并确保您的附加组件功能仍然运行正常是很重要的。在大多数情况下，Mozilla "
+"软件的最新版本会经历一个测试版。由于这些版本可能会推出影响到您的附加组件功能的变化，积极参与测试过程，确保您的用户在 Mozilla "
+"软件最终版本不会受到变化影响是很重要的。"
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
