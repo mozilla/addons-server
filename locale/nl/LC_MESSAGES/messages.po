@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-15 07:33+0000\n"
+"PO-Revision-Date: 2015-01-08 08:07+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418628804.0\n"
+"X-POOTLE-MTIME: 1420704462.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1605,11 +1605,11 @@ msgstr "{user} heeft {review} voor {addon} goedgekeurd."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Beoordeling {review} voor {addon} verwijderd."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} heeft {review} voor {addon} verwijderd."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3455,7 +3455,7 @@ msgstr "Beoordeling gemodereerde add-on"
 
 #: apps/constants/base.py:434
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Beoordelingsmoderatie add-on ongedaan gemaakt"
 
 #: apps/constants/base.py:479
 msgid "Level 1"
@@ -4002,15 +4002,15 @@ msgstr "Wachtwoord onjuist. Add-on is niet verwijderd."
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Er is een schrijver aan uw add-on toegevoegd"
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Een schrijver heeft een gewijzigde rol voor uw add-on"
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Er is een schrijver verwijderd van uw add-on"
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9328,23 +9328,23 @@ msgstr "Details loggen"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Add-ontitel"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Beoordelingstitel"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Beoordelingstekst"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Beoordeling is vóór verwijdering gelabeld."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Verwijdering ongedaan maken"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9541,7 +9541,7 @@ msgstr "Beoordeling {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Geschiedenis wijzigingen add-ongebruiker"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -10573,6 +10573,15 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Om compatibiliteit met de laatste Mozilla-software te garanderen is het "
+"belangrijk om updates zodra deze beschikbaar komen te downloaden, en uw add-"
+"on te testen om er voor te zorgen dat deze nog steeds naar verwachting "
+"functioneert. In veel gevallen kan de laatste versie van Mozilla-software "
+"een bèta-uitgave zijn. Aangezien deze uitgaven soms architectuurwijzigingen "
+"met een mogelijk gevolg voor de functionaliteit van uw add-on introduceren, "
+"is het belangrijk om actief mee te werken in het bètaproces om ervoor te "
+"zorgen dat uw gebruikers geen negatieve gevolgen ondervinden bij de "
+"definitieve uitgave van Mozilla-software."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"

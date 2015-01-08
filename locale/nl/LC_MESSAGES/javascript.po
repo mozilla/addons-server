@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-06-30 18:21+0000\n"
+"PO-Revision-Date: 2015-01-08 07:50+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404152489.0\n"
+"X-POOTLE-MTIME: 1420703437.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -100,36 +100,53 @@ msgstr "Uw add-on heeft de validatie doorstaan zonder fouten of waarschuwingen."
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Neem gedetailleerde versieopmerkingen op (dit kunt u in de volgende stap "
+"doen)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Als uw add-on een account bij een website vereist om volledig getest te "
+"kunnen worden, vermeld dan een testgebruikersnaam en wachtwoord in de "
+"Opmerkingen voor de beoordelaar (dit kunt u in de volgende stap doen)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Als uw add-on bedoeld is voor een beperkt publiek, dient u Voorlopige "
+"beoordeling te kiezen in plaats van Volledige beoordeling."
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Checklist add-onindiening"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Controleer de volgende punten voordat u uw inzending afrondt. Dit "
+"minimaliseert vertragingen of misvattingen tijdens het beoordelingsproces:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Bronnen van gecompileerde binaire codes dienen, net als verkleinde of "
+"verborgen scripts (exclusief bekende bibliotheken), apart ter beoordeling te "
+"worden ingediend. Zorg er voor dat u het uploadveld voor broncode gebruikt "
+"om te voorkomen dat uw inzending wordt afgewezen."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Het validatieproces heeft de volgende problemen die tot afwijzing zouden "
+"kunnen leiden gevonden:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Als u niet bekend bent met het add-onbeoordelingsproces, kunt u er hier meer "
+"over lezen."
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -499,7 +516,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
