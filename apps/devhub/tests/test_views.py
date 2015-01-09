@@ -2144,21 +2144,8 @@ class TestVersionAddFile(UploadTest):
         self.version.files.all().delete()
         r = self.client.get(self.edit_url)
         form = r.context['new_file_form']
-        # TODO(Kumar) Allow All Mobile Platforms when supported for downloads.
-        # See bug 646268.
-        exp_plats = (set(amo.MOBILE_PLATFORMS.values()) -
-                     set([amo.PLATFORM_ALL_MOBILE]))
         eq_(sorted([unicode(c[1]) for c in form.fields['platform'].choices]),
-            sorted([unicode(p.name) for p in exp_plats]))
-
-    def test_exclude_mobile_all_when_we_have_platform_files(self):
-        self.make_mobile()
-        # set one to Android
-        self.version.files.all().update(platform=amo.PLATFORM_ANDROID.id)
-        r = self.post(platform=amo.PLATFORM_ALL_MOBILE)
-        assert_json_error(r, 'platform',
-                          'Select a valid choice. That choice is not '
-                          'one of the available choices.')
+            sorted([unicode(p.name) for p in amo.MOBILE_PLATFORMS.values()]))
 
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)

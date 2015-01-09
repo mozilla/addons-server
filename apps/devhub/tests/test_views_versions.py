@@ -340,7 +340,7 @@ class TestVersion(amo.tests.TestCase):
         doc = pq(r.content)
         # Make sure checkboxes are visible:
         eq_(doc('.desktop-platforms input.platform').length, 4)
-        eq_(doc('.mobile-platforms input.platform').length, 3)
+        eq_(doc('.mobile-platforms input.platform').length, 1)
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['checkbox']))
 
@@ -390,10 +390,8 @@ class TestVersionEditMobile(TestVersionEditBase):
     def test_mobile_platform_options(self):
         ctx = self.client.get(self.url).context
         fld = ctx['file_form'].forms[0]['platform'].field
-        # TODO(Kumar) allow PLATFORM_ALL_MOBILE here when it is supported.
-        # See bug 646268.
         eq_(sorted(amo.PLATFORMS[p[0]].shortname for p in fld.choices),
-            ['android', 'maemo'])
+            ['android'])
 
 
 class TestVersionEditDetails(TestVersionEditBase):
@@ -689,7 +687,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         for a in self.version.apps.all():
             a.application = amo.MOBILE.id
             a.save()
-        self.version.files.all().update(platform=amo.PLATFORM_ALL_MOBILE.id)
+        self.version.files.all().update(platform=amo.PLATFORM_ANDROID.id)
         forms = self.client.get(self.url).context['file_form'].forms
         choices = self.get_platforms(forms[0])
         eq_(sorted(choices),
