@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-07-01 05:02+0000\n"
+"PO-Revision-Date: 2015-01-09 03:08+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404190977.0\n"
+"X-POOTLE-MTIME: 1420772890.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -97,37 +97,39 @@ msgstr "您的附加元件已經通過驗證，沒有發現錯誤或產生警告
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的紀錄中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
+msgstr "若您的附加元件只是要給部分有條件的使用者使用，您應該選擇初步審核即可。"
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "附加元件送出前檢查清單"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "送出前，請確認下列幾項是否已完成。這樣將可以降低審查時間:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"若有編譯過的二元碼，以及最小化過或擾亂過的指令碼（已知的程式庫除外），請同時另外送出原始碼提供審查。請確定您在原始碼上傳欄位中也上傳了這些檔案，以避免被"
+"退回。"
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "驗證過程找到下列可能會造成您的送出被退回的問題:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
+msgstr "若您不熟悉附加元件的審查過程，可以在此處閱讀。"
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -497,7 +499,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122

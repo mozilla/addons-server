@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-11 04:34+0000\n"
+"PO-Revision-Date: 2015-01-09 03:58+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418272485.0\n"
+"X-POOTLE-MTIME: 1420775908.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1576,11 +1576,11 @@ msgstr "{user} 已通過 {addon} 的 {review}。"
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "已刪除 {addon} 的審查 {review}。"
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} 刪除了 {addon} 的 {review}。"
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3395,7 +3395,7 @@ msgstr "有問題的附加元件評論"
 
 #: apps/constants/base.py:434
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "已還原附加元件審查管理"
 
 #: apps/constants/base.py:479
 msgid "Level 1"
@@ -3948,15 +3948,15 @@ msgstr "密碼錯誤。附加元件無法刪除。"
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "已為您的附加元件新增作者"
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "您的附加元件的某位作者的角色發生變更"
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "您的附加元件中的某位作者已被移除"
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9063,23 +9063,23 @@ msgstr "細節記錄"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "附加元件標題"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "審核標題"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "審核文字"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "刪除前已被標示審核。"
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "反刪除"
 
 # 84%
 #: apps/editors/templates/editors/home.html:11
@@ -9274,7 +9274,7 @@ msgstr "審核 {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "附加元件使用者變更紀錄"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -10285,6 +10285,9 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"為了確保與最新版 Mozilla 軟體的相容信，在有更新推出時就下載安裝，並測試是否能如常工作就相當重要。大部分情況下，最新版的 Mozilla "
+"軟體會是 Beta 測試版，這些版本常常會帶來一些可能影響您的附加元件功能的技術更動，您應該主動參與 beta "
+"測試流程，以確保您的附加元件使用者不會在最終版 Mozilla 軟體發行時得到負面影響。"
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
