@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-09 22:28+0000\n"
+"PO-Revision-Date: 2015-01-09 22:31+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420842535.0\n"
+"X-POOTLE-MTIME: 1420842671.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -11885,8 +11885,12 @@ msgstr "Questa recensione riguarda una versione precedente ({0}) del componente 
 #: apps/reviews/templates/reviews/review.html:56
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "L’utente ha un <a href=\"%(user_review_url)s\">commento precedente</a> su questo componente aggiuntivo."
-msgstr[1] "Questo utente ha <a href=\"%(user_review_url)s\">%(cnt)s precedenti commenti</a> su questo componente aggiuntivo."
+msgstr[0] ""
+"Questo utente ha un <a href=\"%(user_review_url)s\">commento precedente</a> su "
+"questo componente aggiuntivo."
+msgstr[1] ""
+"Questo utente ha <a href=\"%(user_review_url)s\">%(cnt)s precedenti "
+"commenti</a> su questo componente aggiuntivo."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
