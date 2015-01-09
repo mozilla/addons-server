@@ -66,7 +66,7 @@ UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 
-SITE_URL = 'http://localhost:8000/'
+SITE_URL = 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 

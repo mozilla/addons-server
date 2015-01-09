@@ -412,7 +412,8 @@ def ownership(request, addon_id, addon):
         t = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))
         send_mail(title,
-                  t.render(Context({'author': author, 'addon': addon})),
+                  t.render(Context({'author': author, 'addon': addon,
+                                    'site_url': settings.SITE_URL})),
                   None, recipients, use_blacklist=False, real_email=True)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):

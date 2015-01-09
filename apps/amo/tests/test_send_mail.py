@@ -171,7 +171,7 @@ class TestSendMail(BaseTestCase):
                          recipient_list=['nobody@mozilla.org', 'b@example.fr'],
                          fail_silently=False)
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].to, set(['nobody@mozilla.org']))
+        eq_(mail.outbox[0].to, ['nobody@mozilla.org'])
         eq_(FakeEmail.objects.count(), 1)
 
     @mock.patch('amo.utils.Context')
