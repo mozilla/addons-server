@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-13 23:24+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-01-09 22:28+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1418513052.0\n"
+"X-POOTLE-MTIME: 1420842535.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1614,11 +1614,11 @@ msgstr "{user} ha approvato la {review} per {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Revisione {review} di {addon} eliminata."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} ha eliminato {review} di {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3465,7 +3465,7 @@ msgstr "Revisione moderata del componente aggiuntivo"
 
 #: apps/constants/base.py:434
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderazione revisione componente aggiuntivo ripristinata"
 
 #: apps/constants/base.py:479
 msgid "Level 1"
@@ -4015,15 +4015,15 @@ msgstr "La password inserita è errata. Il componente aggiuntivo non è stato el
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "È stato aggiunto un autore per il componente aggiuntivo."
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "È stato modificato il ruolo di un autore per il componente aggiuntivo"
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "È stato rimosso un autore per il componente aggiuntivo"
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9370,23 +9370,23 @@ msgstr "Dettagli registro"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Nome componente aggiuntivo"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Titolo revisione"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Testo revisione"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "La revisione ha ricevuto una segnalazione prima dell’eliminazione."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Ripristina"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9583,7 +9583,7 @@ msgstr "Revisione {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Cronologia modifiche utenti"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -10626,6 +10626,14 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Per garantire la compatibilità con le ultime versioni dei programmi Mozilla, "
+"è importante scaricare puntualmente gli aggiornamenti e verificare che il "
+"componente aggiuntivo funzioni correttamente. Solitamente la versione più "
+"recente del software è sviluppata nel canale beta e può introdurre modifiche "
+"nell’architettura in grado di influenzare il funzionamento del componente "
+"aggiuntivo. Per questo è consigliabile essere attivamente coinvolti nel "
+"processo di sviluppo beta in modo da non causare disagi agli utenti del "
+"proprio componente aggiuntivo al rilascio della versione definitiva."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -10669,7 +10677,9 @@ msgstr "#amo (per supporto riguardo all’hosting del tuo componente aggiuntivo 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
-msgstr "#jetpack (per discutere su Add-ons SDK e il comando cfx/jpm - un tempo conosciuto col nome Jetpack)"
+msgstr ""
+"#jetpack (per discutere su Add-ons SDK e il comando cfx/jpm — "
+"precedentemente chiamato Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -11095,7 +11105,9 @@ msgstr "Un articolo della Wikipedia inglese in cui vengono messe a confronto le 
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr "                  Un sito in lingua inglese che fornisce agli utenti una guida imparziale nella scelta della licenza per un progetto open source.                "
+msgstr ""
+"Un sito in lingua inglese che fornisce agli utenti una guida imparziale "
+"nella scelta della licenza per un progetto open source."
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
