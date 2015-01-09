@@ -108,7 +108,7 @@ def _get_endpoint(reviewer=False):
             raise ValueError(
                 'Invalid config. The %sserver setting is empty.' % (
                     'reviewer ' if reviewer else ''))
-        return server + '/1.0/sign_app'
+        return server + '/1.0/sign_addon'
 
 
 def _no_sign(src, dest):
