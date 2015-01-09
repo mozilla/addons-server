@@ -68,13 +68,7 @@ update_code:
 	$(FIG_PREFIX) git checkout master && git pull
 
 update_deps:
-ifeq ($(UNAME_S),Linux)
-	$(FIG_PREFIX) DEB_HOST_MULTIARCH=x86_64-linux-gnu pip install -I --exists-action=w "git+git://anonscm.debian.org/collab-maint/m2crypto.git@debian/0.21.1-3#egg=M2Crypto"
-else
-	$(FIG_PREFIX) pip install --find-links https://pyrepo.addons.mozilla.org/ --exists-action=w --download-cache=/tmp/pip-cache "m2crypto==0.21.1"
-endif
-
-	$(FIG_PREFIX) pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
+	$(FIG_PREFIX) pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/
 	$(FIG_PREFIX) npm install
 
 update_db:

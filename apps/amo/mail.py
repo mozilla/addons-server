@@ -39,7 +39,7 @@ class DevEmailBackend(BaseEmailBackend):
                     # We don't want to send real emails to people if
                     # they happen to also be in the recipients together
                     # with white-listed emails
-                    msg.to = qa_emails
+                    msg.to = list(qa_emails)
                 qa_messages.append(msg)
         if qa_messages:
             log.debug('Sending real mail messages to QA.')

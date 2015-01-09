@@ -536,15 +536,23 @@ h2 a:last-child {
     label[for="id_q"] {
         margin-right: .5em;
     }
-    #id_q {
-        border-radius: 3px 0 0 3px;
-        min-width: 50%;
-    }
     form {
+        display: flex;
+        justify-content: center;
         margin-bottom: 0;
+        #id_q {
+            border-radius: 3px 0 0 3px;
+            min-width: 50%;
+        }
+        button.search {
+            border-left-style: none;
+            border-radius: 0 3px 3px 0;
+            span {
+                border-left-style: none;
+            }
+        }
     }
 }
-button.search,
 .log-filter-outside button {
     border-radius: 0 3px 3px 0;
     height: 26px;

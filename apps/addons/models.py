@@ -1391,7 +1391,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
                 and self.current_version):
             files = (self.current_version.files
-                         .filter(platform__in=amo.MOBILE_PLATFORMS.keys()))
+                         .filter(platform=amo.PLATFORM_ANDROID.id))
             try:
                 return unicode(files[0].get_localepicker(), 'utf-8')
             except IndexError:

@@ -15,8 +15,7 @@ function BrowserUtils() {
             'windows': 'Windows',
             'mac': 'Mac',
             'linux': 'Linux',
-            'android': 'Android',
-            'maemo': 'Maemo'
+            'android': 'Android'
         };
 
     // browser detection

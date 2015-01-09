@@ -293,17 +293,8 @@ class TestESSearch(SearchBase):
         ]
         self.check_platform_filters('any', expected)
 
-        expected = [
-            ('All Systems', False),
-            ('Linux', False),
-            ('Mac OS X', False),
-            ('Windows', False),
-            ('Maemo', True),
-        ]
-        self.check_platform_filters('maemo', expected)
-
     def test_platform_legacy_params(self):
-        ALL = (amo.PLATFORM_ALL, amo.PLATFORM_ANY, amo.PLATFORM_ALL_MOBILE)
+        ALL = (amo.PLATFORM_ALL, amo.PLATFORM_ANY)
         listed = ALL + (amo.PLATFORM_LINUX, amo.PLATFORM_MAC, amo.PLATFORM_WIN)
         for idx, platform in amo.PLATFORMS.iteritems():
             expected = [
