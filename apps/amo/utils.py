@@ -559,8 +559,7 @@ class ImageCheck(object):
         if not self.is_image():
             return False
 
-        img = self.img
-        if img.format == 'PNG':
+        if self.img.format == 'PNG':
             self._img.seek(0)
             data = ''
             while True:
@@ -572,7 +571,12 @@ class ImageCheck(object):
                 if acTL > -1 and acTL < IDAT:
                     return True
             return False
-        elif img.format == 'GIF':
+        elif self.img.format == 'GIF':
+            # The image has been verified, and thus the file closed, we need to
+            # reopen. Check the "verify" method of the Image object:
+            # http://pillow.readthedocs.org/en/latest/reference/Image.html
+            self._img.seek(0)
+            img = Image.open(self._img)
             # See the PIL docs for how this works:
             # http://www.pythonware.com/library/pil/handbook/introduction.htm
             try:
