@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-06 08:03+0000\n"
+"PO-Revision-Date: 2015-01-10 23:17+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420531406.0\n"
+"X-POOTLE-MTIME: 1420931844.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4025,15 +4025,15 @@ msgstr "Heslo bylo neplatné. Doplněk nebyl smazán."
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "K vašem doplňku byl přidán autor."
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "U vašeho doplňku autor změnil roli."
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "U vašeho doplňku byl odebrán autor."
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9309,7 +9309,7 @@ msgstr "Detaily záznamů"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Název doplňku"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
@@ -10560,6 +10560,14 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Pro zajištění kompatibility s nejnovějším softwarem Mozilla je důležité "
+"stahovat jeho aktualizace co nejdříve jsou dostupné, a otestovat váš "
+"doplněk, zda stále správně funguje. V mnoha případech může být poslední "
+"verzi softwaru Mozilla jeho beta verze. Protože tyto verze mohou přinášet "
+"změny architektury, které mohou mít vliv na fungování vašeho doplňku, je "
+"třeba se aktivně zapojit do procesu testování beta verze, aby uživatelé "
+"vašeho doplňku nebyly při vydání finálního verze softwaru Mozilla změnami "
+"negativně ovlivnění."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-07-14 13:11+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2015-01-10 23:11+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405343468.0\n"
+"X-POOTLE-MTIME: 1420931482.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -103,15 +103,20 @@ msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Zahrnout podrobné poznámky k verzi (lze nastavit v příštím kroku)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Pokud váš doplněk vyžaduje účet na webovém server pro možnost plné kontroly, "
+"vložte prosím uživatelské jméno a heslo do poznámky pro redaktora (lze "
+"provést v příštím kroku)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Pokud je váš doplněk určen pro vymezenou skupinu uživatelů, měli byste "
+"zvolit Předběžnou kontrolu místo Plné kontroly."
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
@@ -120,20 +125,30 @@ msgstr ""
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Zkontrolujte prosím následující body před odesláním doplňku ke kontrole. "
+"Pomůže tím zrychlit a předejít případnému nedorozumění při procesu kontroly:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Zkompilované binární součásti stejně jako obfuscované skripty (vyjma známých "
+"knihoven) musí mít předložené zdrojové soubory ke kontrole odděleně. "
+"Ujistěte se, že jste použili pole pro nahrání zdrojových kódů, aby nedošlo k "
+"zamítnutí kontroly."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Proces kontroly zjistil tyto možné nedostatky, které mohou vést k zamítnutí "
+"kontroly:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Pokud ještě nevíte, jak probíhá proces kontroly, můžete si o něm zde "
+"přečíst."
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -503,7 +518,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
