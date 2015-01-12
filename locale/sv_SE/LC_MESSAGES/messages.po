@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-11 17:48+0000\n"
+"PO-Revision-Date: 2015-01-12 22:40+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420998499.0\n"
+"X-POOTLE-MTIME: 1421102432.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1641,15 +1641,15 @@ msgstr "Konto uppdaterad."
 
 #: apps/amo/log.py:405
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Upptrappning rensad för {addon}."
 
 #: apps/amo/log.py:406
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Upptrappning rensad"
 
 #: apps/amo/log.py:414
 msgid "App disabled"
-msgstr ""
+msgstr "App inaktiverad"
 
 #: apps/amo/log.py:421
 msgid "{addon} escalated because of high number of abuse reports."
