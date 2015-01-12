@@ -3,15 +3,16 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-08 23:12+0100\n"
+"PO-Revision-Date: 2015-01-11 13:01+0100\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.7.1\n"
+"X-POOTLE-MTIME: 1420970293.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -111,7 +112,7 @@ msgstr "Om ditt tillägg är avsett för en begränsad publik, bör du välja pr
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Checklista för att skicka in tillägg"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
@@ -122,14 +123,16 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive kända bibliotek) måste skicka in sina källor separat för granskning. Se till att du använder uppladdningsfältet för "
+"källkoden för att undvika att ditt bidrag avvisas."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
+msgstr "Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det här."
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -307,19 +310,19 @@ msgstr "Samling skapad"
 
 #: static/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Tillägg i användning"
 
 #: static/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Tillägg skapad"
 
 #: static/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Tillägg nedladdat"
 
 #: static/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Tillägg uppdaterad"
 
 #: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
@@ -351,7 +354,7 @@ msgstr "Okänd"
 
 #: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Tilläggshanterare"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Search Results"
@@ -359,55 +362,55 @@ msgstr "Sökresultat"
 
 #: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Hemsida promo"
 
 #: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Hemsida utvalda"
 
 #: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Hemsida bubblare"
 
 #: static/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Hemsida mest populära"
 
 #: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
-msgstr ""
+msgstr "Detaljsida"
 
 #: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Detaljsida (nederst)"
 
 #: static/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Detaljsida (utvecklingskanal)"
 
 #: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
-msgstr ""
+msgstr "Används ofta med"
 
 #: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
-msgstr ""
+msgstr "Andra av utvecklaren"
 
 #: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
-msgstr ""
+msgstr "Beroenden"
 
 #: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
-msgstr ""
+msgstr "Uppgradering"
 
 #: static/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
-msgstr ""
+msgstr "Delning"
 
 #: static/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
-msgstr ""
+msgstr "Kategorisidor"
 
 #: static/js/impala/stats/csv_keys.js:70
 msgid "Collections"
@@ -471,7 +474,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:108
 msgid "Usage"
-msgstr ""
+msgstr "Användning"
 
 #: static/js/impala/stats/csv_keys.js:111
 msgid "Firefox"
@@ -504,92 +507,92 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Nedladdningar och dagliga användare, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Nedladdningar och dagliga användare från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:128
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Installationer och dagliga användare, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:130
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Installationer och dagliga användare från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:134
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Nedladdningar, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:136
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Nedladdningar från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:140
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Dagliga användare, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:142
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Dagliga användare från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:146
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Applikationer, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:148
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Applikationer från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:152
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Plattformar, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:154
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Plattformar från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:158
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Språk, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:160
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Språk från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:164
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Tilläggsversioner, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:166
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Tilläggsversioner från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:170
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Tilläggsstatus, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:172
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Tilläggsstatus från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:176
@@ -694,57 +697,57 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:236
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Prenumeranter, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:238
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Prenumeranter från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:242
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Betyg, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:244
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Betyg från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:248
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Försäljning, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:250
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Försäljning från {0} till {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:254
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Installationer, senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:256
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Installationer från {0} till {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:262
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> de senaste {1} dagarn"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> från {1} till {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:268
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b>genomsnitt de senaste {1} dagarna"
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
@@ -771,48 +774,48 @@ msgstr[1] ""
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mejla utvecklaren av tillägget {2} som misslyckades validering."
+msgstr[1] "Mejla utvecklarna av tillägget {2} som misslyckades validering."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "App-installationen inte tillåten."
 
 #: static/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "App-manifestet är felformaterad."
 
 #: static/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "App-värden kunde inte nås."
 
 #: static/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "App-manifestet går inte att parsa."
 
 #: static/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "App-manifestet är ogiltigt."
 
 #: static/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Installation misslyckades. Försök igen senare."
 
 #: static/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "App-installation misslyckades."
 
 #: static/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Detta system har inte stöd för att installera appar."
 
 #: static/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Admins och redigerare måste ange ett lösenord för att logga in."
 
 #: static/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "BrowserID inloggning misslyckades. Du kanske inte har ett konto under denna e-postadress?"
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:82
@@ -833,11 +836,11 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Du måste använda Firefox 10.0 eller senare."
 
 #: static/js/zamboni/buttons.js:145
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla har markerat denna version som inkompatibel med din Firefox-version."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227

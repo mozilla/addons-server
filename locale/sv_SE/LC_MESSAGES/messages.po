@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-08 22:23+0000\n"
+"PO-Revision-Date: 2015-01-11 17:48+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420755802.0\n"
+"X-POOTLE-MTIME: 1420998499.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1609,7 +1609,7 @@ msgstr ""
 
 #: apps/amo/log.py:365
 msgid "Password changed."
-msgstr ""
+msgstr "Lösenord ändrat."
 
 #: apps/amo/log.py:370
 msgid "{addon} failed checks with PayPal."
@@ -1629,15 +1629,15 @@ msgstr ""
 
 #: apps/amo/log.py:390
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} köpt."
 
 #: apps/amo/log.py:395
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} installerad."
 
 #: apps/amo/log.py:400
 msgid "Account updated."
-msgstr ""
+msgstr "Konto uppdaterad."
 
 #: apps/amo/log.py:405
 msgid "Escalation cleared for {addon}."
@@ -1673,7 +1673,7 @@ msgstr ""
 
 #: apps/amo/log.py:440
 msgid "Video removed"
-msgstr ""
+msgstr "Video borttagen"
 
 #: apps/amo/log.py:445
 msgid "{addon} re-review because of new device(s) added."
@@ -1693,7 +1693,7 @@ msgstr ""
 
 #: apps/amo/log.py:471
 msgid "Created: {0}."
-msgstr ""
+msgstr "Skapad: {0}."
 
 #: apps/amo/log.py:477
 msgid "Edited field: {2} set to: {0}."
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: apps/amo/log.py:483
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Borttagen: {1}"
 
 #: apps/amo/log.py:489
 msgid "User {user} edited, reason: {1}"
@@ -2451,7 +2451,7 @@ msgstr "Ägare"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr ""
+msgstr "Gör till ägare"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
@@ -2683,7 +2683,7 @@ msgstr "%s Tillägg"
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:113
 msgid "%s Themes"
-msgstr ""
+msgstr "%s-teman"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
@@ -3145,11 +3145,11 @@ msgstr "Sunbird"
 
 #: apps/constants/applications.py:89
 msgid "Mobile"
-msgstr "Mobilt"
+msgstr "Mobil"
 
 #: apps/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox för Android"
 
 #: apps/constants/applications.py:139
 msgid "Mozilla"
@@ -3157,7 +3157,7 @@ msgstr "Mozilla"
 
 #: apps/constants/applications.py:149
 msgid "Unknown"
-msgstr ""
+msgstr "Okänd"
 
 #: apps/constants/applications.py:154 templates/mobile/header.html:5
 msgid "Desktop"
@@ -3165,47 +3165,47 @@ msgstr "Skrivbord"
 
 #: apps/constants/applications.py:161
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox mobil"
 
 #: apps/constants/applications.py:168
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox surfplatta"
 
 #: apps/constants/applications.py:175
 msgid "Firefox OS"
-msgstr ""
+msgstr "Firefox OS"
 
 #: apps/constants/base.py:26
 msgid "Incomplete"
-msgstr "Ej komplett"
+msgstr "Ofullständig"
 
 #: apps/constants/base.py:27
 msgid "Awaiting Preliminary Review"
-msgstr "Väntar på förberedande granskning"
+msgstr "Väntar på preliminär granskning"
 
 #: apps/constants/base.py:28
 msgid "Awaiting Full Review"
-msgstr "Väntar på full granskning"
+msgstr "Väntar på fullständig granskning"
 
 #: apps/constants/base.py:29 apps/constants/base.py:51
 msgid "Fully Reviewed"
-msgstr "Granskat"
+msgstr "Fullständigt granskad"
 
 #: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Disabled by Mozilla"
-msgstr "Avstängt av Mozilla"
+msgstr "Inaktiverad av Mozilla"
 
 #: apps/constants/base.py:31 apps/constants/base.py:54
 msgid "Preliminarily Reviewed"
-msgstr "Förberedande granskning genomförd"
+msgstr "Preliminärt granskad"
 
 #: apps/constants/base.py:32
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Förberedande granskning genomförd, väntar på full granskning"
+msgstr "Preliminärt granskad och väntar på fullständig granskning"
 
 #: apps/constants/base.py:34 apps/editors/helpers.py:772 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
-msgstr ""
+msgstr "Borttagen"
 
 #: apps/constants/base.py:39
 msgid "Pending approval"
@@ -3213,7 +3213,7 @@ msgstr "Väntar på godkännande"
 
 #: apps/constants/base.py:46
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Flaggad för ytterligare granskning"
 
 #: apps/constants/base.py:53
 msgid "Beta"
@@ -3221,11 +3221,11 @@ msgstr "Beta"
 
 #: apps/constants/base.py:122
 msgid "Full"
-msgstr "Full"
+msgstr "Fullständig"
 
 #: apps/constants/base.py:123
 msgid "Preliminary"
-msgstr "Förberedande"
+msgstr "Preliminär"
 
 #: apps/constants/base.py:134 apps/users/notifications.py:157
 msgid "Developer"
@@ -3233,7 +3233,7 @@ msgstr "Utvecklare"
 
 #: apps/constants/base.py:135
 msgid "Viewer"
-msgstr "Observatör"
+msgstr "Granskare"
 
 #: apps/constants/base.py:136 templates/mobile/header.html:7
 msgid "Support"
@@ -3249,7 +3249,7 @@ msgstr "Utökning"
 
 #: apps/constants/base.py:160
 msgid "Complete Theme"
-msgstr ""
+msgstr "Komplett tema"
 
 #: apps/constants/base.py:162
 msgid "Search Engine"
@@ -3257,15 +3257,15 @@ msgstr "Sökmotor"
 
 #: apps/constants/base.py:163
 msgid "Language Pack (Application)"
-msgstr "Språkpaket (Applikation)"
+msgstr "Språkpaket (applikation)"
 
 #: apps/constants/base.py:164
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Språkpaket (tillägg) "
 
 #: apps/constants/base.py:165
 msgid "Plugin"
-msgstr "Insticksprogram"
+msgstr "Insticksmodul"
 
 #: apps/constants/base.py:166 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
@@ -3278,59 +3278,59 @@ msgstr "Ordlistor"
 
 #: apps/constants/base.py:176
 msgid "Language Packs (Application)"
-msgstr "Språkpaket (Applikation)"
+msgstr "Språkpaket (applikation)"
 
 #: apps/constants/base.py:177
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Språkpaket (tillägg)"
 
 #: apps/constants/base.py:178
 msgid "Plugins"
-msgstr "Insticksprogram"
+msgstr "Insticksmoduler"
 
 #: apps/constants/base.py:243
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: apps/constants/base.py:244
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: apps/constants/base.py:245
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium med in-app betalningar"
 
 #: apps/constants/base.py:246
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Gratis med in-app betalningar"
 
 #: apps/constants/base.py:247
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Jag kommer att använda mitt eget system för in-app betalningar"
 
 #: apps/constants/base.py:303
 msgid "Only ask on this add-on's page and developer profile"
-msgstr "Fråga bara på detta tilläggs sida och utvecklarprofil"
+msgstr "Fråga endast på detta tilläggs sida och utvecklarprofil"
 
 #: apps/constants/base.py:304
 msgid "Ask after users start downloading this add-on"
-msgstr "Fråga när användare började hämta detta tillägg"
+msgstr "Fråga efter användare börjat ladda ner detta tillägg"
 
 #: apps/constants/base.py:305
 msgid "Ask before users can download this add-on"
-msgstr "Fråga innan användare får hämta detta tillägg"
+msgstr "Fråga innan användarna kan ladda ner detta tillägg"
 
 #: apps/constants/base.py:372
 msgid "Exception"
-msgstr ""
+msgstr "Undantag"
 
 #: apps/constants/base.py:373
 msgid "Release"
-msgstr ""
+msgstr "Utgåva"
 
 #: apps/constants/base.py:374
 msgid "Change"
-msgstr ""
+msgstr "Ändra"
 
 #: apps/constants/base.py:385
 msgid "Persona"
@@ -3414,79 +3414,79 @@ msgstr ""
 
 #: apps/constants/base.py:479
 msgid "Level 1"
-msgstr ""
+msgstr "Nivå 1"
 
 #: apps/constants/base.py:480
 msgid "Level 2"
-msgstr ""
+msgstr "Nivå 2"
 
 #: apps/constants/base.py:481
 msgid "Level 3"
-msgstr ""
+msgstr "Nivå 3"
 
 #: apps/constants/base.py:482
 msgid "Level 4"
-msgstr ""
+msgstr "Nivå 4"
 
 #: apps/constants/base.py:483
 msgid "Level 5"
-msgstr ""
+msgstr "Nivå 5"
 
 #: apps/constants/base.py:484
 msgid "Level 6"
-msgstr ""
+msgstr "Nivå 6"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
-msgstr ""
+msgstr "Begär mer information"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
-msgstr ""
+msgstr "Flagga"
 
 #: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicera"
 
 #: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
-msgstr ""
+msgstr "Avvisa"
 
 #: apps/constants/editors.py:18 apps/editors/templates/editors/themes/queue.html:70
 msgid "Approve"
-msgstr ""
+msgstr "Godkänn"
 
 #: apps/constants/editors.py:23
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Sexuellt eller pornografiskt innehåll"
 
 #: apps/constants/editors.py:24
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Olämpligt eller stötande innehåll"
 
 #: apps/constants/editors.py:25
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Våld, krig eller vapenbilder"
 
 #: apps/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazist eller annat hatinnehåll"
 
 #: apps/constants/editors.py:27
 msgid "Defamatory content"
-msgstr ""
+msgstr "Kränkande innehåll"
 
 #: apps/constants/editors.py:28
 msgid "Online gambling"
-msgstr ""
+msgstr "Onlinespel"
 
 #: apps/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "Skräppostinnehåll"
 
 #: apps/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Låg kvalitet, sträckt eller tom bild"
 
 #: apps/constants/editors.py:31
 msgid "Header image alignment problem"
@@ -3494,31 +3494,31 @@ msgstr ""
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
-msgstr "Alla rättigheter reserverade."
+msgstr "Med ensamrätt"
 
 #: apps/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: apps/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: apps/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: apps/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: apps/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: apps/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: apps/constants/platforms.py:19
 msgid "All Platforms"
@@ -3526,7 +3526,7 @@ msgstr "Alla plattformar"
 
 #: apps/constants/platforms.py:26
 msgid "All Mobile Platforms"
-msgstr ""
+msgstr "Alla mobila plattformar"
 
 #: apps/constants/platforms.py:33
 msgid "Linux"
@@ -3558,27 +3558,27 @@ msgstr "Maemo"
 
 #: apps/devhub/feeds.py:35
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Senaste ändringar för %s"
 
 #: apps/devhub/feeds.py:37
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Senaste ändringar för mitt tillägg"
 
 #: apps/devhub/forms.py:69
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Måste minst ha en ägare."
 
 #: apps/devhub/forms.py:72
 msgid "At least one author must be listed."
-msgstr "Minst en författare måste anges."
+msgstr "Minst en utvecklare måste listas."
 
 #: apps/devhub/forms.py:76
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "En utvecklare kan endast listas en gång."
 
 #: apps/devhub/forms.py:94
 msgid "Password incorrect."
-msgstr ""
+msgstr "Felaktigt lösenord."
 
 #: apps/devhub/forms.py:113 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
@@ -3586,15 +3586,15 @@ msgstr "Detaljer"
 
 #: apps/devhub/forms.py:123
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Vilken är ditt licensnamn?"
 
 #: apps/devhub/forms.py:126
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Tillhandahåll texten till din licens."
 
 #: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Licenstext krävs när du väljer annat."
 
 #: apps/devhub/forms.py:209
 msgid "This add-on has an End-User License Agreement"
@@ -11201,7 +11201,7 @@ msgstr "Ta bort recension"
 
 #: apps/reviews/models.py:157
 msgid "Other (please specify)"
-msgstr "Annan (var god ange)"
+msgstr "Annat (var god ange)"
 
 #: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
@@ -12663,7 +12663,7 @@ msgstr ""
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
-msgstr "Registrera"
+msgstr "Registrera dig"
 
 #: apps/users/templates/users/register.html:53
 msgid "Display name"
@@ -12672,46 +12672,55 @@ msgstr "Visningsnamn"
 #: apps/users/templates/users/report_abuse.html:7
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
+"Beskriv varför du anmäler denna användare, till exempel för skräppost eller "
+"en olämplig bild."
 
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
-msgstr ""
+msgstr "Rapportera användare {0}"
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
 msgstr ""
+"För ditt lösenord för kontot måste innehålla minst 8 tecken inklusive "
+"bokstäver och siffror."
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Avsluta prenumeration"
 
 #: apps/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Du har avslutat prenumerationen!"
 
 #: apps/users/templates/users/unsubscribe.html:10
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
 msgstr ""
+"E-postadressen <strong>%(email)s</strong> kommer inte längre att få "
+"meddelanden när:"
 
 #: apps/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
-msgstr ""
+msgstr "Fler åtgärder:"
 
 #: apps/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
-msgstr ""
+msgstr "redigera dina aviseringsinställningar"
 
 #: apps/users/templates/users/unsubscribe.html:24
 msgid "edit your profile"
-msgstr ""
+msgstr "redigera din profil"
 
 #: apps/users/templates/users/unsubscribe.html:27
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Vi kunde inte avsluta prenumerationen för dig"
 
 #: apps/users/templates/users/unsubscribe.html:30
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Tyvärr kunde vi inte att avsluta prenumerationen för dig. Länken du klickade "
+"på är ogiltig. Men du kan fortfarande avsluta prenumerationen på din <a "
+"href=\"%(edit_url)s\">redigera profilsida</a>."
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
@@ -12723,43 +12732,43 @@ msgstr "Användare sedan"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Tid för senaste inloggning"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP-adressen för senaste inloggning"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Antal tillägg utvecklade"
 
 #: apps/users/templates/users/vcard.html:58
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} tillägg"
 
 #: apps/users/templates/users/vcard.html:62
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema"
+msgstr[1] "%(num)s teman"
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tillägg"
+msgstr[1] "%(num)s tillägg"
 
 #: apps/users/templates/users/vcard.html:81
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Genomsnittliga betyg för utvecklarens tillägg"
 
 #: apps/users/templates/users/mobile/login.html:31
 msgid "Log in with BrowserID"
-msgstr ""
+msgstr "Logga in med BrowserID"
 
 #: apps/versions/feeds.py:61
 msgid "%s Version History"
-msgstr "%s-versionshistorik"
+msgstr "%s versionshistorik"
 
 #: apps/versions/feeds.py:69
 msgid "Version History with Changelogs"
@@ -12806,18 +12815,18 @@ msgstr "Visa källkoden"
 #. {0} is an add-on name.
 #: apps/versions/templates/versions/version_list.html:21
 msgid "{0} Version History"
-msgstr "{0}-versionshistorik"
+msgstr "{0} versionshistorik"
 
 #. {0} is a number.
 #: apps/versions/templates/versions/version_list.html:24
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> version"
+msgstr[1] "<b>{0}</b> versioner"
 
 #: apps/versions/templates/versions/version_list.html:30 apps/versions/templates/versions/mobile/version_list.html:14
 msgid "Be careful with old versions!"
-msgstr "Var försiktig med gamla versioner"
+msgstr "Var försiktig med gamla versioner!"
 
 #: apps/versions/templates/versions/version_list.html:31 apps/versions/templates/versions/mobile/version_list.html:15
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
@@ -12834,7 +12843,7 @@ msgstr "Fungerar med:"
 #. {0} is an add-on name.
 #: apps/versions/templates/versions/mobile/version_list.html:12
 msgid "Version History"
-msgstr ""
+msgstr "Versionshistorik"
 
 #: apps/zadmin/forms.py:50
 msgid "Current Max. Version"
@@ -12854,7 +12863,7 @@ msgstr ""
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "Andra språk"
 
 #: templates/base.html:9 templates/impala/base.html:9 templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
@@ -12863,6 +12872,8 @@ msgstr "Mozilla tillägg"
 #: templates/base.html:65 templates/impala/base.html:108
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
+"Vissa funktioner inaktiveras tillfälligt medan vi utför webbplatsunderhåll. "
+"Vi ska vara tillbaka till full kapacitet inom kort."
 
 #: templates/base.html:83 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
@@ -12874,7 +12885,8 @@ msgstr "Andra applikationer"
 
 #: templates/base.html:133 templates/impala/base.html:176
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "För att skapa egna samlingar måste du ha ett Mozilla Add-ons-konto."
+msgstr ""
+"För att skapa egna samlingar, måste du ha ett konto för Mozilla tillägg."
 
 #: templates/categories.html:2
 msgid "Choose a category"
@@ -12882,15 +12894,15 @@ msgstr "Välj en kategori"
 
 #: templates/categories.html:5
 msgid "Mobile Categories"
-msgstr "Mobile-kategorier"
+msgstr "Mobila kategorier"
 
 #: templates/copyright.html:5
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Visa mobil webbplats"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr "lär känna <b>add-ons</b>"
+msgstr "lär känna <b>tillägg</b>"
 
 #: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
@@ -12902,7 +12914,7 @@ msgstr "Blogg"
 
 #: templates/footer.html:7
 msgid "FAQ"
-msgstr "FAQ"
+msgstr "Vanliga frågor"
 
 #: templates/footer.html:8
 msgid "Forum"
@@ -12910,27 +12922,27 @@ msgstr "Forum"
 
 #: templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Tillägg"
 
 #: templates/header_title.html:10
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Tillägg"
 
 #: templates/header_title.html:12
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Mobila tillägg"
 
 #: templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Tillägg"
 
 #: templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Add-ons"
+msgstr "<img alt=\"\" src=\"{0}\"> Tillägg"
 
 #: templates/menu_links.html:6
 msgid "Firefox Add-ons"
-msgstr "Firefox Add-ons"
+msgstr "Firefox tillägg"
 
 #: templates/menu_links.html:11
 msgid "Language Support"
@@ -12942,15 +12954,15 @@ msgstr "Om Firefox"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Anslut till Mozilla"
 
 #: templates/menu_links.html:24
 msgid "Participate"
-msgstr "Bidra"
+msgstr "Delta"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Presscenter"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
@@ -12966,7 +12978,7 @@ msgstr "Partnerskap"
 
 #: templates/menu_links.html:30
 msgid "Legal"
-msgstr "Rättighetsinformation"
+msgstr "Juridisk"
 
 #: templates/menu_links.html:31
 msgid "Contact Us"
@@ -13007,11 +13019,11 @@ msgstr ""
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Android tillägg"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr ""
+msgstr "Logga in/Registrera dig"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -13019,7 +13031,7 @@ msgstr "obligatorisk"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Obligatoriska fält"
 
 #: templates/mobile/base_addons.html:56
 msgid "Mobile Home"
@@ -13027,11 +13039,11 @@ msgstr ""
 
 #: templates/mobile/base_addons.html:75
 msgid "View full site"
-msgstr "Visa hela webbplatsen"
+msgstr "Visa fullständig webbplats"
 
 #: templates/mobile/base_addons.html:78
 msgid "Legal Notices"
-msgstr "Rättighetsinformation"
+msgstr "Juridisk information"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
@@ -13039,11 +13051,11 @@ msgstr "Mozilla Firefox"
 
 #: templates/mobile/header.html:4
 msgid "Features"
-msgstr "Finesser"
+msgstr "Funktioner"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr "Add-ons"
+msgstr "Tillägg"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
