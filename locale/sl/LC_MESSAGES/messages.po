@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-27 12:41+0000\n"
+"PO-Revision-Date: 2015-01-10 17:21+0000\n"
 "Last-Translator: upwinxp <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419684109.0\n"
+"X-POOTLE-MTIME: 1420910462.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -53,11 +54,11 @@ msgstr "To ime se že uporablja. Izberite drugega."
 
 #: apps/addons/forms.py:59
 msgid "This slug is already in use. Please choose another."
-msgstr "Ta rakleta se že uporablja. Izberite kako drugo."
+msgstr "Ta rekleta se že uporablja. Izberite kako drugo."
 
 #: apps/addons/forms.py:62
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "Rakleta ne more biti \"%s\". Izberite kako drugo."
+msgstr "Rekleta ne more biti \"%s\". Izberite kako drugo."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:81
@@ -1638,11 +1639,11 @@ msgstr "{user} odobril {review} za {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Recenzija {review} za {addon} izbrisana."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} je izbrisal {review} za {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3827,7 +3828,9 @@ msgstr "Dajte svojemu dodatku primerno ime. Najuspešnejši dodatki že s svojim
 
 #: apps/devhub/forms.py:771
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
-msgstr "Na kratko, z enim stavkom, opišite svoj dodatek. Opis bo objavljen v Skrbniku dodatkov."
+msgstr ""
+"Na kratko, z enim stavkom, opišite svoj dodatek. Opis bo objavljen v "
+"Upravitelju dodatkov."
 
 #: apps/devhub/forms.py:775
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
@@ -4403,7 +4406,9 @@ msgstr "Opišite svoj dodatek"
 
 #: apps/devhub/templates/devhub/package_addon.html:26
 msgid "First, you need to enter some basic information about your add-on. This will be displayed in the Add-ons Manager when your extension is installed."
-msgstr "Za začetek je potrebno nekaj osnovnih informacij o vašem dodatku. To bo prikazano v skrbniku za dodatke, ko bo vaš dodatek nameščen."
+msgstr ""
+"Za začetek je potrebno nekaj osnovnih informacij o vašem dodatku. To bo "
+"prikazano v Upravitelju dodatkov, ko bo vaš dodatek nameščen."
 
 #: apps/devhub/templates/devhub/package_addon.html:33
 msgid "Add-on Name"
@@ -8350,7 +8355,10 @@ msgstr "Opombe o različici"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
-msgstr "Informacije o spremembah v tej izdaji, nove funkcije, znani hrošči in druge koristne informacije za to izdajo/različico. Te podatke se kaže v Skrbniku za dodatke med posodabljanjem."
+msgstr ""
+"Informacije o spremembah v tej izdaji, nove funkcije, znani hrošči in druge "
+"koristne informacije za to izdajo/različico. Te podatke se tudi kaže v "
+"Upravitelju dodatkov med posodabljanjem."
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -10394,8 +10402,11 @@ msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"Ko enkrat veste, da dodatek ali deluje pravilno ali ima napake , odprite Skrbnika za napake in kliknite na Združljivost poleg dodatka, da Mozilli sporočite, kaj ste med testiranjem odkrili. Poslano "
-"poročilo nam bo pomagalo obvestiti razvijalce, bodisi da njihovi dodatki v tej različici pravilno delujejo, bodisi da so morda potrebni popravki."
+"Ko enkrat veste, da dodatek ali deluje pravilno ali ima napake, odprite "
+"Upravitelja dodatkov in kliknite na Združljivost poleg dodatka, da Mozilli "
+"sporočite, kaj ste med testiranjem odkrili. Poslano poročilo nam bo pomagalo "
+"obvestiti razvijalce, bodisi da njihovi dodatki v tej različici pravilno "
+"delujejo, bodisi da so morda potrebni popravki."
 
 #: apps/pages/templates/pages/acr_firstrun.html:61
 msgid ""
@@ -10652,6 +10663,14 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Da zagotovite združljivost z najnovejšo Mozillino programsko opremo, je "
+"pomembno, da prenesete posodobitve takoj, ko do na voljo in se prepričate, "
+"da vaš dodatek še vedno pravilno deluje. V veliko primerih je najnovejša "
+"različica Mozilline programske opreme beta različica. Ker te različice "
+"občasno uvedejo spremembe zgradbe, ki lahko vplivajo na delovanje vašega "
+"dodatka, je pomembno, da aktivno sodelujete v postopku beta, da uporabniki "
+"ne bodo neprijetno presenečeni ob izidu končne izdaje Mozilline programske "
+"opreme."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -11187,9 +11206,13 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"V večini primerov lahko dodatek namestite tako, da preprosto kliknete na gumb, ki je na razpolago za nameščanje. %(app_name)s dodatke urejuje, deaktivira ali odstranjuje v Skrbniku za dodatke. Za "
-"podrobnejša navodila preberite <a href=\"%(extension_url)s\">ta članek za razširitve</a> ali pa <a href=\"%(theme_url)s\">tegale o temah in kompletnih temah</a>. Če imate težave pri nameščanju "
-"dodatkov, glejte <a href=\"%(troubleshooting_url)s\">Odpravljanje težav pri razširitvah in temah</a>."
+"V večini primerov lahko dodatek namestite tako, da preprosto kliknete na "
+"gumb, ki je na razpolago za nameščanje. Dodatke se urejuje, onemogoča ali "
+"odstranjuje v %(app_name)sovem Upravitelju dodatkov. Za podrobnejša navodila "
+"preberite <a href=\"%(extension_url)s\">ta članek za razširitve</a> ali pa <a "
+"href=\"%(theme_url)s\">tegale o temah in celotnih temah</a>. Če imate težave "
+"pri nameščanju dodatkov, glejte <a href=\"%"
+"(troubleshooting_url)s\">Odpravljanje težav pri razširitvah in temah</a>."
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -11450,8 +11473,9 @@ msgid ""
 "Firefox recommends add-ons for you based on the add-ons you already have installed. If you have at least 3 add-ons installed, just visit the Get Add-ons area of the Add-ons Manager to see the "
 "\"Recommended for You\" box."
 msgstr ""
-"Firefox vam priporoča dodatke na osnovi dodatkov, ki ste si jih že namestili. Če imate nameščene vsaj 3 dodatke, obiščite stran za prenos Dodatkov v Skrbniku za dodatke in si oglejte polje "
-"\"Priporočamo vam\"."
+"Firefox vam priporoča dodatke na osnovi dodatkov, ki ste si jih že "
+"namestili. Če imate nameščene vsaj 3 dodatke, obiščite stran Prenos dodatkov "
+"v Upravitelju dodatkov in si oglejte polje \"Priporočamo vam\"."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -11462,8 +11486,11 @@ msgid ""
 "Firefox sends information about the add-ons you have installed to Mozilla once a day in order to update the information displayed to you in the Add-ons Manager, as explained in our <a href="
 "\"%(privacy_url)s\">Privacy Policy</a>. Add-ons that are often used together are determined from the aggregate data and displayed to you as personalized recommendations."
 msgstr ""
-"Firefox enkrat na dan pošilja Mozilli informacije o dodatkih, ki jih imate nameščene, z njimi se podobi podatke v Skrbniku za dodatke, kot je bilo pojasnjeno v naših <a href=\"%(privacy_url)s"
-"\">pravilih o zasebnosti</a>. Iz tako zbranih podatkov se ugotavlja, kateri dodatki se pogosto uporabljajo skupaj, in rezultat prikažemo kot osebno priporočilo."
+"Firefox enkrat na dan pošilja Mozilli informacije o dodatkih, ki jih imate "
+"nameščene, z njimi se posodobi podatke v Upravitelju dodatkov, kot je bilo "
+"pojasnjeno v naših <a href=\"%(privacy_url)s\">pravilih o zasebnosti</a>. Iz "
+"tako zbranih podatkov se ugotavlja, kateri dodatki se pogosto uporabljajo "
+"skupaj, in rezultat prikažemo kot osebno priporočilo."
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"
