@@ -16,7 +16,7 @@ cssutils==0.9.7b3
 curling==0.2.6
 defusedxml==0.4.1
 dennis==0.4.2
-Django==1.6.9
+Django==1.6.10
 dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-browserid==0.8
