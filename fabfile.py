@@ -20,9 +20,9 @@ VIRTUALENV = pjoin(ROOT, 'venv')
 PYTHON = pjoin(VIRTUALENV, 'bin', 'python')
 
 
-def managecmd(cmd):
-    with lcd(OLYMPIA):
-        local('%s manage.py %s' % (PYTHON, cmd))
+def managecmd(cmd, run_dir=OLYMPIA):
+    with lcd(run_dir):
+        local('../venv/bin/python manage.py %s' % cmd)
 
 
 @task
@@ -66,10 +66,9 @@ def collectstatic():
 
 
 @task
-def schematic():
-    with lcd(OLYMPIA):
-        local("%s %s/bin/schematic migrations" %
-              (PYTHON, VIRTUALENV))
+def schematic(run_dir=OLYMPIA):
+    with lcd(run_dir):
+        local('../venv/bin/python ../venv/bin/schematic migrations')
 
 
 @task
@@ -162,6 +161,39 @@ def update():
     execute(schematic)
     managecmd('dump_apps')
     managecmd('statsd_ping --key=update')
+
+
+@task
+def build():
+    execute(create_virtualenv, getattr(settings, 'DEV', False))
+    execute(update_locales)
+    execute(update_products)
+    execute(compress_assets)
+    execute(collectstatic)
+    managecmd('statsd_ping --key=update')
+
+
+@task
+def deploy_jenkins():
+    rpmbuild = helpers.build_rpm(name='olympia',
+                                 env=settings.ENV,
+                                 cluster=settings.CLUSTER,
+                                 domain=settings.DOMAIN,
+                                 root=ROOT,
+                                 package_dirs=['olympia', 'venv'])
+
+    rpmbuild.local_install()
+
+    install_dir = os.path.join(rpmbuild.install_to, 'olympia')
+    execute(schematic, install_dir)
+    managecmd('dump_apps', install_dir)
+
+    rpmbuild.remote_install(['web', 'celery'])
+    helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
+
+    execute(update_celery)
+    execute(install_cron, rpmbuild.install_to)
+    managecmd('cron cleanup_validation_results')
 
 
 @task
