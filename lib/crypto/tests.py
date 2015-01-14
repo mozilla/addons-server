@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import shutil
 import zipfile
 
 from django.conf import settings  # For mocking.
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 import jwt
 import mock
@@ -15,25 +15,6 @@ from requests import Timeout
 import amo.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
-from versions.models import Version
-
-
-def mock_sign(version_id, reviewer=False):
-    """
-    This is a mock for using in tests, where we really don't want to be
-    actually signing the addons. This just copies the file over and returns
-    the path. It doesn't have much error checking.
-    """
-    version = Version.objects.get(pk=version_id)
-    file_obj = version.all_files[0]
-    path = (file_obj.signed_reviewer_file_path if reviewer else
-            file_obj.signed_file_path)
-    try:
-        os.makedirs(os.path.dirname(path))
-    except OSError:
-        pass
-    shutil.copyfile(file_obj.file_path, path)
-    return path
 
 
 @mock.patch('lib.crypto.receipt.requests.post')
@@ -82,8 +63,11 @@ class TestCrack(amo.tests.TestCase):
             [u'foo', u'bar'])
 
 
-@mock.patch('lib.crypto.packaged.os.unlink', new=mock.Mock)
+@override_settings(
+    SIGNING_SERVER='http://foo', SIGNING_SERVER_ACTIVE=True,
+    SIGNING_REVIEWER_SERVER='http://foo', SIGNING_REVIEWER_SERVER_ACTIVE=True)
 class TestPackaged(amo.tests.TestCase):
+
     def setUp(self):
         super(TestPackaged, self).setUp()
 
@@ -108,11 +92,9 @@ class TestPackaged(amo.tests.TestCase):
 
     def tearDown(self):
         for f in (self.file1, self.file2):
-            for path in (
-                    f.file_path, f.signed_file_path,
-                    f.signed_reviewer_file_path):
-                if os.path.exists(path):
-                    os.unlink(path)
+            if os.path.exists(f.file_path):
+                os.unlink(f.file_path)
+        super(TestPackaged, self).tearDown()
 
     @raises(packaged.SigningError)
     def test_no_file(self):
@@ -167,25 +149,25 @@ class TestPackaged(amo.tests.TestCase):
 
     @raises(ValueError)
     def test_server_active(self):
-        with self.settings(SIGNING_SERVER_ACTIVE=True):
+        with self.settings(SIGNING_SERVER="", SIGNING_SERVER_ACTIVE=True):
             packaged.sign(self.version.pk)
 
     @raises(ValueError)
     def test_reviewer_server_active(self):
-        with self.settings(SIGNING_REVIEWER_SERVER_ACTIVE=True):
+        with self.settings(SIGNING_REVIEWER_SERVER="",
+                           SIGNING_REVIEWER_SERVER_ACTIVE=True):
             packaged.sign(self.version.pk, reviewer=True)
 
-    @mock.patch('lib.crypto.packaged._no_sign')
-    def test_server_inactive(self, _no_sign):
+    def test_server_inactive(self):
         with self.settings(SIGNING_SERVER_ACTIVE=False):
-            packaged.sign(self.version.pk)
-        assert _no_sign.called
+            assert packaged.sign(self.version.pk) is None
+        # Make sure we didn't create the signed files.
+        for f in self.version.files.all():
+            assert not os.path.exists(f.signed_file_path)
 
-    @mock.patch('lib.crypto.packaged._no_sign')
-    def test_reviewer_server_inactive(self, _no_sign):
+    def test_reviewer_server_inactive(self):
         with self.settings(SIGNING_REVIEWER_SERVER_ACTIVE=False):
-            packaged.sign(self.version.pk, reviewer=True)
-        assert _no_sign.called
+            assert packaged.sign(self.version.pk, reviewer=True) is None
 
     def test_server_endpoint(self):
         with self.settings(SIGNING_SERVER_ACTIVE=True,
