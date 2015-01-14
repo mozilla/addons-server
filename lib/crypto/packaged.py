@@ -43,10 +43,6 @@ def _sign_addon(src, dest, ids, reviewer, tempname):
     active_endpoint = _get_endpoint(reviewer)
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
-    if not active_endpoint:
-        _no_sign(src, dest)
-        return
-
     # Extract necessary info from the archive
     try:
         jar = JarExtractor(
@@ -111,16 +107,6 @@ def _get_endpoint(reviewer=False):
         return server + '/1.0/sign_addon'
 
 
-def _no_sign(src, dest):
-    # If this is a local development instance, just copy the file around
-    # so that everything seems to work locally.
-    log.info('Not signing the addon, no signing server is active.')
-    dest_dir = os.path.dirname(dest)
-    if not os.path.exists(dest_dir):
-        os.makedirs(dest_dir)
-    shutil.copy(src, dest)
-
-
 def _sign_file(version_id, addon, file_obj, reviewer, resign):
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
@@ -160,6 +146,10 @@ def _sign_file(version_id, addon, file_obj, reviewer, resign):
 
 @task
 def sign(version_id, reviewer=False, resign=False, **kw):
+    active_endpoint = _get_endpoint(reviewer)
+    if not active_endpoint:
+        return
+
     try:
         version = Version.objects.get(pk=version_id)
     except Version.DoesNotExist:
