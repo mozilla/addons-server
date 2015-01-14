@@ -692,6 +692,9 @@ class ReviewFiles(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
+        # Sign addon.
+        self.addon.sign_version_files(self.version.pk)
+
         self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
                        copy_to_mirror=True)
 
@@ -734,6 +737,9 @@ class ReviewFiles(ReviewBase):
 
         self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
+
+        # Sign addon.
+        self.addon.sign_version_files(self.version.pk)
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,
