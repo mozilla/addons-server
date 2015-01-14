@@ -23,10 +23,10 @@ class SigningError(Exception):
     pass
 
 
-def sign_addon(src, dest, ids, reviewer=False):
+def sign_addon(addon_id, src, dest, ids, reviewer=False):
     tempname = tempfile.mktemp()
     try:
-        return _sign_addon(src, dest, ids, reviewer, tempname)
+        return _sign_addon(addon_id, src, dest, ids, reviewer, tempname)
     finally:
         try:
             os.unlink(tempname)
@@ -35,7 +35,7 @@ def sign_addon(src, dest, ids, reviewer=False):
             pass
 
 
-def _sign_addon(src, dest, ids, reviewer, tempname):
+def _sign_addon(addon_id, src, dest, ids, reviewer, tempname):
     """
     Generate a manifest and signature and send signature to signing server to
     be signed.
@@ -59,6 +59,7 @@ def _sign_addon(src, dest, ids, reviewer, tempname):
     try:
         with statsd.timer('services.sign.app'):
             response = requests.post(active_endpoint, timeout=timeout,
+                                     data={'addon_id': addon_id},
                                      files={'file': ('zigbert.sf',
                                                      str(jar.signatures))})
     except requests.exceptions.HTTPError as error:
@@ -107,7 +108,7 @@ def _get_endpoint(reviewer=False):
         return server + '/1.0/sign_addon'
 
 
-def _sign_file(version_id, addon, file_obj, reviewer, resign):
+def _sign_file(version_id, addon, addon_id, file_obj, reviewer, resign):
     path = (file_obj.signed_reviewer_file_path if reviewer else
             file_obj.signed_file_path)
 
@@ -134,7 +135,7 @@ def _sign_file(version_id, addon, file_obj, reviewer, resign):
         })
     with statsd.timer('services.sign.app'):
         try:
-            sign_addon(file_obj.file_path, path, ids, reviewer)
+            sign_addon(addon_id, file_obj.file_path, path, ids, reviewer)
         except SigningError:
             log.info('[Addon:%s] Signing failed' % addon.id)
             if storage.exists(path):
@@ -165,11 +166,18 @@ def sign(version_id, reviewer=False, resign=False, **kw):
             addon.id)
         raise SigningError('No file')
 
+    # From https://wiki.mozilla.org/AMO/SigningService/API:
+    # "A unique identifier for the combination of addon name and version that
+    # will be used in the generated key and certificate. A strong preference
+    # for human readable.
+    addon_id = u"{slug}-{version}".format(slug=addon.slug,
+                                          version=version.version)
+
     path_list = []
     for file_obj in [x for x in version.all_files if x.can_be_signed()]:
         path_list.append((
             file_obj.pk,
-            _sign_file(version_id, addon, file_obj, reviewer, resign)
+            _sign_file(version_id, addon, addon_id, file_obj, reviewer, resign)
         ))
 
     return path_list
