@@ -36,16 +36,20 @@ def update_denorm(*pairs, **kw):
 
 
 @task
-def addon_review_aggregates(*addons, **kw):
+def addon_review_aggregates(addons, **kw):
+    if isinstance(addons, (int, long)):  # Got passed a single addon id.
+        addons = [addons]
     log.info('[%s@%s] Updating total reviews and average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
     using = kw.get('using')
     addon_objs = list(Addon.objects.filter(pk__in=addons))
-    stats = dict((x[0], x[1:]) for x in
-                 Review.objects.valid().no_cache().using(using)
-                 .filter(addon__in=addons, is_latest=True)
-                 .annotate(Avg('rating'), Count('addon'))
-                 .values_list('addon', 'rating__avg', 'addon__count'))
+    # The following returns something like
+    # [{'rating': 2.0, 'addon': 7L, 'count': 5},
+    #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
+    qs = (Review.objects.valid().no_cache().using(using)
+          .values('addon')  # Group by addon id.
+          .annotate(rating=Avg('rating'), count=Count('addon')))  # Aggregates.
+    stats = dict((x['addon'], (x['rating'], x['count'])) for x in qs)
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
         addon.update(total_reviews=reviews, average_rating=rating)

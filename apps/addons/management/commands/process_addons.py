@@ -9,6 +9,7 @@ import amo
 from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
+from reviews.tasks import addon_review_aggregates
 
 
 tasks = {
@@ -24,6 +25,7 @@ tasks = {
     'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
+    'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
 }
 
 
