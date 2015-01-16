@@ -2,6 +2,7 @@ import os
 import posixpath
 
 from django import http
+from django.core.files.storage import default_storage as storage
 from django.shortcuts import get_object_or_404, redirect, render
 
 import caching.base as caching
@@ -94,6 +95,12 @@ def download_file(request, file_id, type=None):
     attachment = (type == 'attachment' or not request.APP.browser)
 
     loc = file.get_mirror(addon, attachment=attachment)
+    signed_loc = file.get_mirror(addon, attachment=attachment,
+                                 media_root='signed_addons')
+
+    if storage.exists(file.signed_file_path):
+        loc = signed_loc
+
     response = http.HttpResponseRedirect(loc)
     response['X-Target-Digest'] = file.hash
     return response
