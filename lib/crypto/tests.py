@@ -105,7 +105,7 @@ class TestPackaged(amo.tests.TestCase):
     def test_non_xpi(self):
         self.file1.update(filename='foo.txt')
         packaged._sign_file(
-            self.version.pk, self.addon,
+            self.version.pk, self.addon, 'addon_id',
             self.file1, False, False)
 
     @mock.patch('lib.crypto.packaged.sign_addon')
@@ -126,7 +126,7 @@ class TestPackaged(amo.tests.TestCase):
     def test_sign_consumer(self, sign_addon):
         file_list = packaged.sign(self.version.pk)
         assert sign_addon.called
-        ids = json.loads(sign_addon.call_args[0][2])
+        ids = json.loads(sign_addon.call_args[0][3])
         eq_(ids['id'], self.addon.guid)
         eq_(ids['version'], self.version.pk)
 
@@ -138,7 +138,7 @@ class TestPackaged(amo.tests.TestCase):
     def test_sign_reviewer(self, sign_addon):
         file_list = packaged.sign(self.version.pk, reviewer=True)
         assert sign_addon.called
-        ids = json.loads(sign_addon.call_args[0][2])
+        ids = json.loads(sign_addon.call_args[0][3])
         eq_(ids['id'], 'reviewer-{guid}-{version_id}'.format(
             guid=self.addon.guid, version_id=self.version.pk))
         eq_(ids['version'], self.version.pk)
