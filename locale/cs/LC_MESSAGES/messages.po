@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-10 23:17+0000\n"
+"PO-Revision-Date: 2015-01-17 09:52+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420931844.0\n"
+"X-POOTLE-MTIME: 1421488357.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1626,11 +1626,11 @@ msgstr "Uživatel {user} schválil recenzi {review} pro doplněk {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Recenze {review} byla pro {addon} smazána."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} smazal/a {review} pro {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -9313,19 +9313,19 @@ msgstr "Název doplňku"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Nadpis recenze"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Text recenze"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Recenze byla označena k odstranění."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Vrátit zpět odstranění"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
