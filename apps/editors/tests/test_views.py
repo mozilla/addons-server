@@ -1652,8 +1652,7 @@ class TestReview(ReviewBase):
             eq_(td.find('th').text(), 'Preliminarily approved')
             eq_(td.find('td a').text(), self.editor.display_name)
 
-    @patch('lib.crypto.packaged.sign')
-    def generate_deleted_versions(self, mock_sign):
+    def generate_deleted_versions(self):
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                           name=u'something')
         self.url = reverse('editors.review', args=[self.addon.slug])
@@ -1681,7 +1680,8 @@ class TestReview(ReviewBase):
                 self.client.post(self.url, d)
                 v.delete()
 
-    def test_item_history_deleted(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_item_history_deleted(self, mock_sign):
         self.generate_deleted_versions()
 
         r = self.client.get(self.url)
@@ -1700,6 +1700,8 @@ class TestReview(ReviewBase):
         eq_('millenium hand and shrimp' in bodies.eq(0).text(), True)
         eq_('buggrit' in bodies.eq(0).text(), True)
         eq_('I told em' in bodies.eq(1).text(), True)
+
+        assert mock_sign.called
 
     def test_item_history_compat_ordered(self):
         """ Make sure that apps in compatibility are ordered. """
@@ -1758,7 +1760,8 @@ class TestReview(ReviewBase):
         eq_(doc('th').eq(1).text(), 'Comment')
         eq_(doc('.history-comment').text(), 'hello sailor')
 
-    def test_files_in_item_history(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_files_in_item_history(self, mock_sign):
         data = {'action': 'public', 'operating_systems': 'win',
                 'applications': 'something', 'comments': 'something',
                 'addon_files': [self.version.files.all()[0].pk]}
@@ -1768,6 +1771,8 @@ class TestReview(ReviewBase):
         items = pq(r.content)('#review-files .files .file-info')
         eq_(items.length, 1)
         eq_(items.find('a.editors-install').text(), 'All Platforms')
+
+        assert mock_sign.called
 
     def test_no_items(self):
         r = self.client.get(self.url)
@@ -1939,6 +1944,8 @@ class TestReview(ReviewBase):
                  applications='something', comments='something',
                  addon_files=[version.files.all()[0].pk])
         self.client.post(url, d)
+
+        assert mock_sign.called
 
     def test_dependencies_listed(self):
         AddonDependency.objects.create(addon=self.addon,
@@ -2132,12 +2139,15 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
 
-    def test_prelim_from_lite(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_prelim_from_lite(self, mock_sign):
         self.addon.update(status=amo.STATUS_LITE)
         self.version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.prelim_dict())
         eq_(response.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_LITE)
+
+        assert mock_sign.called
 
     def test_prelim_from_lite_required(self):
         self.addon.update(status=amo.STATUS_LITE)
@@ -2184,6 +2194,8 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.status_code, 302)
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
+        assert mock_sign.called
+
     def test_prelim_multiple_files(self):
         file_ = self.version.files.all()[0]
         file_.pk = None
@@ -2209,7 +2221,8 @@ class TestReviewPending(ReviewBase):
         files = list(self.version.files.values_list('id', flat=True))
         return self.get_dict(action='public', addon_files=files)
 
-    def test_pending_to_public(self):
+    @patch('lib.crypto.packaged.sign')
+    def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
         eq_(list(statuses), [amo.STATUS_UNREVIEWED, amo.STATUS_LITE])
@@ -2221,6 +2234,8 @@ class TestReviewPending(ReviewBase):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
         eq_(list(statuses), [amo.STATUS_PUBLIC] * 2)
+
+        assert mock_sign.called
 
     def test_disabled_file(self):
         obj = File.objects.create(version=self.version,
