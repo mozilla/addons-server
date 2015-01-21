@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-08 03:50+0000\n"
+"PO-Revision-Date: 2015-01-21 08:21+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420689011.0\n"
+"X-POOTLE-MTIME: 1421828490.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -9590,7 +9590,7 @@ msgstr "文件大小超过了{0}限制。"
 
 #: apps/files/helpers.py:178
 msgid "Problems decoding {0}."
-msgstr "问题编译中{0}。"
+msgstr "解码 {0} 时遇到问题。"
 
 #: apps/files/helpers.py:188
 msgid "This file is not viewable online. Please download the file to view the contents."
