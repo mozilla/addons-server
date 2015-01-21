@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-12 22:40+0000\n"
+"PO-Revision-Date: 2015-01-21 23:01+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421102432.0\n"
+"X-POOTLE-MTIME: 1421881270.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -956,7 +956,7 @@ msgstr "Läs om varför {0} skapades och få reda på vad som händer i framtide
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr "Skärmdump för tillägg #{0}"
+msgstr "Skärmdump #{0} för tillägg"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
@@ -1569,43 +1569,43 @@ msgstr "{0.name} roll ändrad till {1} för {addon}."
 
 #: apps/amo/log.py:314
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} licensieras nu under {0.name}."
 
 #: apps/amo/log.py:320
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} policy ändrad."
 
 #: apps/amo/log.py:326
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} ikon ändrad."
 
 #: apps/amo/log.py:332
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} för {addon} godkänd."
 
 #: apps/amo/log.py:333
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} godkände {review} för {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Recension {review} för {addon} borttagen."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} tog bort {review} för {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Applikationens maximala version för {version} uppdaterad."
 
 #: apps/amo/log.py:355
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Utvecklare har mejlats om kompatibilitet för {version}."
 
 #: apps/amo/log.py:360
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-post skickat till utvecklare om tilläggskompatibilitet."
 
 #: apps/amo/log.py:365
 msgid "Password changed."
@@ -1613,19 +1613,19 @@ msgstr "Lösenord ändrat."
 
 #: apps/amo/log.py:370
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "{addon} misslyckade kontroller med PayPal."
 
 #: apps/amo/log.py:375
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "{addon} manifest uppdaterad."
 
 #: apps/amo/log.py:381
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} godkänd men väntar på att publiceras."
 
 #: apps/amo/log.py:382
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Godkänd men väntande"
 
 #: apps/amo/log.py:390
 msgid "{addon} purchased."
@@ -1653,23 +1653,23 @@ msgstr "App inaktiverad"
 
 #: apps/amo/log.py:421
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} upptrappad på grund av stort antal missbruksrapporter."
 
 #: apps/amo/log.py:422
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Många missbruksrapporter"
 
 #: apps/amo/log.py:429
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} upptrappad av granskare."
 
 #: apps/amo/log.py:430
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Upptrappning granskare"
 
 #: apps/amo/log.py:438
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr ""
+msgstr "Video tas bort från {addon} på grund av ett problem med videon."
 
 #: apps/amo/log.py:440
 msgid "Video removed"
@@ -1677,19 +1677,19 @@ msgstr "Video borttagen"
 
 #: apps/amo/log.py:445
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} granskas på nytt på grund av att en ny enhet har lagts till."
 
 #: apps/amo/log.py:446
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Enhet(er) har lagts till"
 
 #: apps/amo/log.py:453
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} enhetssupport har manuellt ändrats av granskare."
 
 #: apps/amo/log.py:454
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Enhet ändrad av granskare"
 
 #: apps/amo/log.py:471
 msgid "Created: {0}."
@@ -1697,7 +1697,7 @@ msgstr "Skapad: {0}."
 
 #: apps/amo/log.py:477
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Redigerat fält: {2} satt till: {0}."
 
 #: apps/amo/log.py:483
 msgid "Deleted: {1}."
@@ -1705,81 +1705,85 @@ msgstr "Borttagen: {1}"
 
 #: apps/amo/log.py:489
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Användare {user} redigerad, orsak: {1}"
 
 #: apps/amo/log.py:495
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Användare {user} anonymiserad."
 
 #: apps/amo/log.py:501
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Användare {user} begränsad."
 
 #: apps/amo/log.py:507
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Admin {0} visade aktivitetslogg för {user}."
 
 #: apps/amo/log.py:514
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} för {addon} uppdaterad."
 
 #: apps/amo/log.py:520
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} granskad."
 
 #: apps/amo/log.py:526
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Användare {0.name} lades till {group}."
 
 #: apps/amo/log.py:534
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Användare {0.name} togs bort från {group}."
 
 #: apps/amo/log.py:541
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "{addon} minimikrav ändrade manuellt av granskare."
 
 #: apps/amo/log.py:542
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Krav ändrad av granskare"
 
 #: apps/amo/log.py:549
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "{addon} minimikrav ändrade manuellt."
 
 #: apps/amo/log.py:550
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Krav ändrad"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:558
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "{version} status ändrad till {0}."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:565
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Användare {0.name} {0.id} borttaget via sökverktyget."
 
 #: apps/amo/log.py:571
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "{addon} innehållsklassificering ändrad till vuxen."
 
 #: apps/amo/log.py:577
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} innehållsklassificering ändrad."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Inte tillåtet"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
 msgstr ""
+"<h1>Hoppsan! Inte tillåtet.</h1> <p>Du försökte göra något som du inte "
+"fick.</p>"
 
 #: apps/amo/templates/amo/403.html:12
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr ""
+"<p>Försök att gå tillbaka till föregående sida, uppdatera och försök "
+"igen.</p> "
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -1794,11 +1798,20 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller filen du ville nå hittades inte på vår webbplats. Det är möjligt att du klickade på en gammal länk eller skrev in adressen "
-"fel.</p> <ul> <li>Om du skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk hit, berätta för oss på <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Berätta "
-"var du kom ifrån och vad du letade efter så ska vi göra vårt bästa för att fixa det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några av de mest populära sidorna på webbplats."
-"</p>< ul> <li>Är du intresserad av <a href=\"%(rec)s\">en lista över uppmärksammade tillägg</a>?</li> <li> Vill du <a href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå till <a href="
-"\"%(search)s\">söksidan</a> eller helt enkelt använda sökfältet ovan.</li> <li> Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">add-ons förstasida</a>. </li> </ul>"
+"<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller "
+"filen du ville nå hittades inte på vår webbplats. Det är möjligt att du "
+"klickade på en gammal länk eller skrev in adressen fel.</p> <ul> <li>Om du "
+"skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk "
+"hit, berätta för oss på <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Berätta var "
+"du kom ifrån och vad du letade efter så ska vi göra vårt bästa för att fixa "
+"det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några "
+"av de mest populära sidorna på webbplats.</p>< ul> <li>Är du intresserad av "
+"<a href=\"%(rec)s\">en lista över utvalda tillägg</a>?</li> <li> Vill du <a "
+"href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå till <a href=\"%"
+"(search)s\">söksidan</a> eller helt enkelt använda sökfältet ovan.</li> <li> "
+"Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">startsidan "
+"för tillägg</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1806,11 +1819,14 @@ msgstr "Hoppsan"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Hoppsan! Något har blivit fel.</h1> <p>Vi kommer att fixa det snart.</p> <p>Du kan försöka ladda om sidan, eller gå tillbaka till <a href=\"%(home)s\">tilläggshemsidan</a>. </p>"
+msgstr ""
+"<h1>Hoppsan! Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p> "
+"Du kan försöka uppdatera sidan eller gå tillbaka till <a href=\"%"
+"(home)s\">startsidan för tillägg</a>. </p>"
 
 #: apps/amo/templates/amo/developer_agreement.html:31
 msgid "marketplace-staff@mozilla.org"
-msgstr ""
+msgstr "marketplace-staff@mozilla.org"
 
 #: apps/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -1850,7 +1866,7 @@ msgstr "Denna funktion är tillfälligt avstängd medan vi utför underhåll på
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Vissa funktioner på denna sida är för tillfället inaktiva eftersom vi utför underhåll av webbplatsen. Försök igen lite senare."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -1861,11 +1877,15 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Ange <strong>alla ord</strong> nedan <strong>med ett mellanslag vid "
+"behov</strong>. </p> <p> Om det är svårt att läsa kan du <a href=\"#\" "
+"id=\"recaptcha_different\">försöka med andra ord </a> eller <a href=\"#\" "
+"id=\"recaptcha_audio\">prova en annan typ av utmaning</a> istället. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:279 apps/search/forms.py:86
 msgid "Top Rated"
-msgstr "Högst betyg"
+msgstr "Högst rankade"
 
 #: apps/amo/templates/amo/side_nav.html:16
 msgid "Explore"
@@ -1910,10 +1930,12 @@ msgstr "Sökverktyg"
 #: apps/amo/templates/amo/impala/paginator.html:5 apps/amo/templates/amo/mobile/impala_paginator.html:26
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"Sida <a href=\"%(current_pg_url)s\">%(current_pg)s</a> av <a href=\"%"
+"(last_pg_url)s\">%(last_pg)s</a>"
 
 #: apps/amo/templates/amo/impala/paginator.html:16 apps/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr ""
+msgstr "Gå till första sidan"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71 apps/discovery/templates/discovery/addons/detail.html:48 apps/stats/templates/stats/stats.html:156
@@ -1925,7 +1947,7 @@ msgstr "Föregående"
 #. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
@@ -1936,36 +1958,38 @@ msgstr[1] "Sida {n}"
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
 msgstr ""
+"Om du inte uppmanas att installera %(addon_name)s om ett ögonblick, <a "
+"href=\"%(addon_xpi)s\">klicka här</a>."
 
 #: apps/amo/tests/test_messages.py:57 apps/amo/tests/test_messages.py:58 apps/reviews/templates/reviews/add.html:56 apps/reviews/templates/reviews/edit_review.html:8
 #: apps/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: apps/amo/tests/test_messages.py:57 apps/amo/tests/test_messages.py:58
 msgid "Body"
-msgstr ""
+msgstr "Innehåll"
 
 #: apps/amo/tests/test_messages.py:59
 msgid "Another Title"
-msgstr ""
+msgstr "En annan titel"
 
 #: apps/amo/tests/test_messages.py:59
 msgid "Another Body"
-msgstr ""
+msgstr "Ett annat innehåll"
 
 #. L10n: {0} is comma separated data errors.
 #: apps/api/handlers.py:56
 msgid "Invalid data provided: {0}"
-msgstr "Ogiltigt data angett: {0}"
+msgstr "Ogiltiga uppgifter: {0}"
 
 #: apps/api/handlers.py:64
 msgid "Add-on did not validate: %s"
-msgstr "Tillägget validerade inte: %s"
+msgstr "Tillägg validerades inte: %s"
 
 #: apps/api/views.py:248
 msgid "Not implemented yet."
-msgstr "Inte implementerat än."
+msgstr "Inte implementerat ännu."
 
 #: apps/api/templates/piston/request_token_ready.html:3 apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
@@ -1973,19 +1997,23 @@ msgstr "Anonym part"
 
 #: apps/api/templates/piston/request_token_ready.html:8 apps/api/templates/piston/request_token_ready.html:18
 msgid "Access Granted"
-msgstr "Åtkomst given"
+msgstr "Åtkomst beviljad"
 
 #: apps/api/templates/piston/request_token_ready.html:10 apps/api/templates/piston/request_token_ready.html:29
 msgid "Access Not Granted"
-msgstr "Åtkomst ej given"
+msgstr "Åtkomst nekad"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid "You have chosen to give access to %(consumer)s. They will be able to act on your behalf or retrieve information about you."
 msgstr ""
+"Du har valt att bevilja tillgång för %(consumer)s. De kommer att kunna agera "
+"för din räkning eller hämta information om dig."
 
 #: apps/api/templates/piston/request_token_ready.html:32
 msgid "You have chosen to not give access to %(consumer)s. They will not be able to act on your behalf or retrieve information about you."
-msgstr "Du har valt att inte ge åtkomst åt %(consumer)s. De kommer inte att kunna utföra handlingar som du eller hämta information om dig."
+msgstr ""
+"Du har valt att neka tillgång för %(consumer)s. De kommer inte att kunna "
+"agera för din räkning eller hämta information om dig "
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
@@ -2001,6 +2029,11 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s vill få tillstånd att agera för din räkning. Detta kan "
+"omfatta:</p> <ul> <li>Uppladdning, ändra eller ta bort tillägg för din "
+"räkning.</li> <li>Uppladdning, ändra eller ta bort versioner av tillägg för "
+"din räkning.</li> <li> Veta personlig information om dig, t.ex. ditt "
+"användarnamn och e-postadress (men inte ditt lösenord). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -2008,7 +2041,7 @@ msgstr "Bekräfta"
 
 #: apps/api/templates/piston/oauth/challenge.html:3 apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
-msgstr ""
+msgstr "OAuth krävs"
 
 #: apps/applications/views.py:36 apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
@@ -2024,7 +2057,10 @@ msgstr "Giltiga applikationsversioner"
 
 #: apps/applications/templates/applications/appversions.html:12
 msgid "Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Tillägg som skickas in till Mozilla Add-ons måste ha en install.rdf-fil där minst en av följande applikationer stöds. Bara versionerna nedan är tillåtna för dessa applikationer."
+msgstr ""
+"Tillägg som skickats in till Mozilla Add-ons måste ha en install.rdf fil med "
+"åtminstone en av de nedanstående applikationerna som stöds. Endast de "
+"versioner som anges nedan är tillåtna för dessa applikationer."
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -2041,16 +2077,19 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "Även om applikationen du stöder inte kräver en install.rdf-fil måste du ändå inkludera en med de egenskaper som specificeras <a href=\"%(url)s\">här</a>."
+msgstr ""
+"Om din applikation som stöds inte kräver en install.rdf fil, måste du "
+"fortfarande inkludera en med de egenskaper som krävs enligt specifikationen "
+"<a href=\"%(url)s\">här</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Samlingar :: %s"
 
 #: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:145
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela med sig av."
+msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:70
@@ -2075,11 +2114,11 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Beskriv din samling (inga länkar tillåts)."
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
-msgstr "Integritet:"
+msgstr "Sekretess:"
 
 #: apps/bandwagon/forms.py:136
 msgid "Icon"
@@ -2087,11 +2126,11 @@ msgstr "Ikon"
 
 #: apps/bandwagon/forms.py:149
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Detta namn kan inte användas."
 
 #: apps/bandwagon/forms.py:157 apps/users/forms.py:433
 msgid "No links are allowed."
-msgstr ""
+msgstr "Inga länkar är tillåtna."
 
 #: apps/bandwagon/forms.py:169
 msgid "This url is already in use by another collection"
@@ -2107,11 +2146,11 @@ msgstr "Använd bilder mindre än %dMB."
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
-msgstr "Ta bort från Favoriter"
+msgstr "Ta bort från favoriter"
 
 #: apps/bandwagon/helpers.py:53
 msgid "Add to Favorites"
-msgstr "Lägg till Favoriter"
+msgstr "Lägg till i favoriter"
 
 #: apps/bandwagon/helpers.py:74
 msgid "Add a positive vote for this collection"
@@ -2149,11 +2188,11 @@ msgstr "Namn"
 
 #: apps/bandwagon/views.py:92
 msgid "Recently Popular"
-msgstr ""
+msgstr "Nyligen populära"
 
 #: apps/bandwagon/views.py:178 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
-msgstr "Lade till"
+msgstr "Tillagd"
 
 #: apps/bandwagon/views.py:179
 msgid "Popularity"
@@ -2166,6 +2205,8 @@ msgstr "Samling skapad!"
 #: apps/bandwagon/views.py:303
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
 msgstr ""
+"Din nya samlingen visas nedan. Du kan <a href=\"%(url)s\">redigera ytterligare "
+"inställningar</a>om du vill."
 
 #: apps/bandwagon/views.py:307
 msgid "Collection updated!"
@@ -2173,7 +2214,7 @@ msgstr "Samling uppdaterad!"
 
 #: apps/bandwagon/views.py:308
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Visa din samling</a>för att se ändringarna."
 
 #: apps/bandwagon/views.py:565
 msgid "Icon Deleted"
@@ -2185,11 +2226,13 @@ msgstr "Skapa en ny samling"
 
 #: apps/bandwagon/templates/bandwagon/add.html:9 apps/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "Skapa"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24 apps/bandwagon/templates/bandwagon/ajax_new.html:28
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Som nämns i vår <a href=\"%(legal)s\">rättighetsinformation</a> täcks individuella samlingar av Creative Commons Erkännande-Dela Lika licens"
+msgstr ""
+"Som påpekas i vår <a href=\"%(legal)s\">Juridisk information</a> regleras "
+"individuella samlingar av Creative Commons Attribution Share-Alike License"
 
 #: apps/bandwagon/templates/bandwagon/add.html:33 apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
@@ -2213,20 +2256,20 @@ msgstr "Namn:"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"collections-new-cancel\" href=\"#\">Avbryt</a>"
 
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "För att betygsätta samlingar måste du ha ett konto."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:137 templates/impala/base.html:180
 msgid "Create an Add-ons Account"
-msgstr "Skapa ett Add-ons-konto"
+msgstr "Skapa ett konto"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:140 templates/impala/base.html:183
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "eller <a href=\"%(login)s\">logga in på ett befintligt konto</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
@@ -2239,8 +2282,8 @@ msgstr "privat"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45 apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> som följer"
-msgstr[1] "<span>%(num)s</span> som följer"
+msgstr[0] "<span>%(num)s</span> följare"
+msgstr[1] "<span>%(num)s</span> följare"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
@@ -2248,7 +2291,7 @@ msgstr "Om denna samling"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:68
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Tillägg synkroniserade till min mobila Firefox"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:77
 msgid "Make this Collection Private"
@@ -2277,8 +2320,8 @@ msgstr "Ta bort samling"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:108
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema i denna samling"
+msgstr[1] "%(num)s teman i denna samling"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
@@ -2289,7 +2332,7 @@ msgstr[1] "%(num)s tillägg i denna samling"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:25 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
-msgstr "Skicka in"
+msgstr "Gå till"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 msgid "What are Collections?"
@@ -2301,7 +2344,7 @@ msgstr "Utforska samlingar"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:154
 msgid "Common Tags"
-msgstr "Vanliga etiketter"
+msgstr "Vanliga taggar"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "More by this User"
@@ -2314,23 +2357,28 @@ msgstr "Se alla samlingar denne användare gjort"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
 msgid "Recently Viewed"
-msgstr "Nyligen visat"
+msgstr "Nyligen visade"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Tillägg du märker som favoriter med <b>Lägg till i Favoriter</b>-finessen dyker upp nedanför. Den samlingen är för närvarande <b>publik</b>, vilket betyder att bara du kan se den. Om du vill att "
-"alla ska kunna se dina favoriter, klicka på knappen nedanför för att göra den privat."
+"Tillägg som du markerar som favoriter med hjälp av <b>Lägg till i "
+"favoriter</b> funktionen visas nedan. Denna samling är för närvarande "
+"<b>publik</b>, vilket innebär att alla kan se den. Om du vill dölja den från "
+"offentligheten, klicka på knappen nedan för att göra den privat."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:203
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Tillägg du märker som favoriter med <b>Lägg till i Favoriter</b>-finessen dyker upp nedanför. Den samlingen är för närvarande <b>privat</b>, vilket betyder att bara du kan se den. Om du vill att "
-"alla ska kunna se dina favoriter, klicka på knappen nedanför för att göra den publik."
+"Tillägg som du markerar som favoriter med hjälp av <b>Lägg till i "
+"favoriter</b> funktionen visas nedan. Denna samling är för närvarande "
+"<b>privat</b>, vilket betyder bara att du kan se den. Om du vill att alla "
+"ska kunna se dina favoriter, klicka på knappen nedan för att göra den "
+"publik."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
@@ -2339,14 +2387,14 @@ msgstr "Mina favorittillägg"
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:25
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> tillägg"
+msgstr[1] "<span>%(addons)s</span> tillägg"
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:32
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(followers)s</span> följare"
+msgstr[1] "<span>%(followers)s</span> följare"
 
 #. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
@@ -2354,16 +2402,16 @@ msgstr[1] ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s följare per vecka"
+msgstr[1] "%(num)s följare per vecka"
 
 #. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s följare per månad"
+msgstr[1] "%(num)s följare per månad"
 
 #. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
@@ -2371,8 +2419,8 @@ msgstr[1] ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s följare"
+msgstr[1] "%(num)s följare"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9 apps/devhub/templates/devhub/personas/edit.html:27
 msgid "by {0}"
@@ -2413,13 +2461,13 @@ msgstr "Är du säker?"
 #: apps/devhub/templates/devhub/personas/edit.html:173 apps/devhub/templates/devhub/personas/submit.html:77 apps/devhub/templates/devhub/personas/submit.html:98
 #: apps/devhub/templates/devhub/personas/submit.html:119
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:22 apps/devhub/templates/devhub/personas/edit.html:140 apps/devhub/templates/devhub/personas/edit.html:161
 #: apps/devhub/templates/devhub/personas/edit.html:191 apps/devhub/templates/devhub/personas/submit.html:86 apps/devhub/templates/devhub/personas/submit.html:107
 #: apps/devhub/templates/devhub/personas/submit.html:137
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5 apps/bandwagon/templates/bandwagon/edit.html:21
@@ -2455,7 +2503,7 @@ msgstr "Gör till ägare"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
-msgstr "Ta bort denna användare från bidragslistan"
+msgstr "Ta bort den här användaren som en bidragsgivare"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18 apps/bandwagon/templates/bandwagon/edit_contributors.html:43 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:20
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48 apps/devhub/templates/devhub/addons/ajax_compat_update.html:19
@@ -2464,13 +2512,18 @@ msgstr "Ta bort"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
-msgstr "Bidragit till samling"
+msgstr "Bidragare till samling"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Du kan lägga till flera bidragsgivare till denna samling. En bidragare kan "
+"lägga till och ta bort tillägg från denna samling, men kan inte ändra dess "
+"namn eller beskrivning. För att lägga till en bidragsgivare, ange deras "
+"e-postadress i rutan nedan. Medverkande måste ha ett Mozilla konto för "
+"tillägg."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2478,7 +2531,7 @@ msgstr "Användare"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41 apps/devhub/templates/devhub/addons/edit/support.html:20
 msgid "Email"
-msgstr "E-post"
+msgstr "E-postadress"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
 msgid "Role"
@@ -2490,7 +2543,7 @@ msgstr "Ange e-postadressen till bidagsgivaren som ska läggas till"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
-msgstr "Lägg till person som bidragit"
+msgstr "Lägg till bidragsgivare"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:60
 msgid "Contributor"
@@ -2522,7 +2575,7 @@ msgstr "Samlingar av {0}"
 
 #: apps/bandwagon/templates/bandwagon/user_listing.html:31
 msgid "No collections found."
-msgstr "Inga samlingar hittade."
+msgstr "Inga samlingar hittades."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:6
 msgid "Most-Followed Collections"
@@ -2550,11 +2603,11 @@ msgstr "Samlingar är grupper av närliggande tillägg som vem som helst kan ska
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
-msgstr ""
+msgstr "Prenumerera"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
-msgstr ""
+msgstr "Följer"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
@@ -2606,7 +2659,7 @@ msgstr "Lägg till i samling"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:784 apps/editors/helpers.py:804
 msgid "Pending"
-msgstr "Väntar"
+msgstr "Väntande"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
 msgid "Add a comment"
@@ -2714,7 +2767,7 @@ msgstr ""
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:276 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:92
 msgid "Up & Coming"
-msgstr ""
+msgstr "Bubblare"
 
 #: apps/browse/views.py:454 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
@@ -2739,7 +2792,7 @@ msgstr "{0}: Uppmärksammade tillägg"
 #: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
-msgstr "Uppmärksammade tillägg"
+msgstr "Utvalda tillägg"
 
 #. {0} is a category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:21
@@ -2845,7 +2898,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Mest populära utökningar"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
@@ -3031,7 +3084,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:23 apps/constants/base.py:384
 msgid "App"
-msgstr ""
+msgstr "App"
 
 #: apps/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
@@ -3039,7 +3092,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
-msgstr ""
+msgstr "Visa alla versioner"
 
 #: apps/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
@@ -3948,11 +4001,11 @@ msgstr ""
 
 #: apps/devhub/views.py:355
 msgid "Password was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Felaktigt lösenord. Tema togs inte bort."
 
 #: apps/devhub/views.py:360
 msgid "Password was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Felaktigt lösenord. Tillägg togs inte bort."
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
@@ -4154,7 +4207,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:88
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Bli en AMO-granskare"
 
 #: apps/devhub/templates/devhub/index.html:96
 msgid "Firefox Add-ons Made Easy"
@@ -4499,11 +4552,11 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:43 apps/zadmin/templates/zadmin/index.html:22
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s av %(user)s"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:52
 msgid "Older activity for My Add-ons"
@@ -4513,8 +4566,8 @@ msgstr "Äldre aktivitet för Mina tillägg"
 #: apps/devhub/templates/devhub/addons/dashboard.html:76
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> teman"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:25 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:7
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:2 apps/devhub/templates/devhub/personas/edit.html:6 apps/editors/templates/editors/themes/single.html:37
@@ -4563,11 +4616,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
 msgid "Remove Profile"
-msgstr ""
+msgstr "Ta bort profil"
 
 #: apps/devhub/templates/devhub/addons/profile.html:42
 msgid "Create Profile"
-msgstr ""
+msgstr "Skapa profil"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:7
 msgid "Basic Information"
@@ -4845,7 +4898,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
 msgid "Screenshots"
-msgstr ""
+msgstr "Skärmdumpar"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:88
 msgid "Please provide at least one screen shot of your add-on:"
@@ -4853,11 +4906,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:113
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Ange en bildtext till denna skärmdump:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:129
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Lägg till en skärmdump..."
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
@@ -4913,7 +4966,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
-msgstr ""
+msgstr "Ange ditt lösenord för att bekräfta ditt beslut:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -5118,7 +5171,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "Bli en AMO-granskare idag och få dina tillägg granskade snabbare."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5149,6 +5202,9 @@ msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
 msgstr ""
+"Anpassade ikoner och skärmdumpar drar uppmärksamhet och hjälper användare "
+"att förstå vad tillägget gör. Vi rekommenderar starkt att ladda upp en egen "
+"ikon, eftersom endast ikonen och namnet visas på vissa delar av webbplatsen."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
@@ -8157,7 +8213,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:137
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Shopping utan problem"
 
 #: apps/discovery/modules.py:138
 msgid "Save on your favorite items from the comfort of your browser."
@@ -8173,31 +8229,35 @@ msgstr ""
 
 #: apps/discovery/modules.py:161
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Första gången med tillägg?"
 
 #: apps/discovery/modules.py:162
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Oroa dig inte, här är tre för att komma igång."
 
 #: apps/discovery/modules.py:166
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Översätt innehåll på webben från och till över 40 språk."
 
 #: apps/discovery/modules.py:168
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr ""
+"Anslut enkelt till dina sociala nätverk, och dela eller kommentera den sida "
+"du besöker."
 
 #: apps/discovery/modules.py:170
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
+"En snabbtitt för att jämföra priser när du handlar på nätet eller söker "
+"efter flyg."
 
 #: apps/discovery/modules.py:180
 msgid "Firefox 4 Collection"
-msgstr ""
+msgstr "Firefox 4 samling"
 
 #: apps/discovery/modules.py:181
 msgid "Here are some great add-ons for Firefox 4."
-msgstr ""
+msgstr "Här är några bra tillägg för Firefox 4."
 
 #: apps/discovery/modules.py:190
 msgid "St. Patrick&rsquo;s Day Themes"
@@ -8217,11 +8277,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:209
 msgid "Thunderbird Collection"
-msgstr ""
+msgstr "Thunderbird samling"
 
 #: apps/discovery/modules.py:210
 msgid "Here are some great add-ons for Thunderbird."
-msgstr ""
+msgstr "Här är några bra tillägg för Thunderbird."
 
 #: apps/discovery/modules.py:218
 msgid "Sit Back and Relax"
@@ -12010,11 +12070,14 @@ msgstr ""
 
 #: apps/users/forms.py:61
 msgid "That password is not allowed."
-msgstr ""
+msgstr "Detta lösenord är inte tillåtet."
 
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Som en del av vår nya lösenordspolicy, måste ditt lösenord vara %s tecken "
+"eller mer. Vänligen uppdatera ditt lösenord genom att <a href=\"%s\">utfärda "
+"en lösenordsåterställning</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -12022,7 +12085,7 @@ msgstr "Nytt lösenord"
 
 #: apps/users/forms.py:223 apps/users/forms.py:404
 msgid "Wrong password entered!"
-msgstr "Fel lösenord angett!"
+msgstr "Fel lösenord har angetts!"
 
 #: apps/users/forms.py:243
 msgid "Usernames cannot contain only digits."
@@ -12066,7 +12129,7 @@ msgstr ""
 
 #: apps/users/forms.py:326
 msgid "The passwords did not match."
-msgstr "Lösenorden skiljde sig."
+msgstr "Lösenorden stämmer inte överens."
 
 #: apps/users/forms.py:344 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
@@ -12265,7 +12328,7 @@ msgstr ""
 
 #: apps/users/views.py:455
 msgid "Wrong email address or password!"
-msgstr "Fel e-postadress eller lösenord!"
+msgstr "Felaktig e-postadress eller lösenord!"
 
 #: apps/users/views.py:467
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
@@ -12380,15 +12443,17 @@ msgstr "E-postadress"
 
 #: apps/users/templates/users/edit.html:44 apps/users/templates/users/register.html:70
 msgid "Hide email address from other users"
-msgstr "Göm e-postadress från andra användare"
+msgstr "Dölj e-postadress från andra användare"
 
 #: apps/users/templates/users/edit.html:50
 msgid "Change Password"
-msgstr ""
+msgstr "Ändra lösenord"
 
 #: apps/users/templates/users/edit.html:58
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Ändra ditt lösenord. Om du har glömt ditt lösenord kan du <a href=\"%"
+"(reset_url)s\">använda återställningsformuläret</a>."
 
 #: apps/users/templates/users/edit.html:64
 msgid "Old Password"
@@ -12400,7 +12465,7 @@ msgstr "Nytt lösenord"
 
 #: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
-msgstr ""
+msgstr "Bekräfta lösenord"
 
 #: apps/users/templates/users/edit.html:84
 msgid "Profile"
@@ -12500,7 +12565,7 @@ msgstr "E-postadress"
 
 #: apps/users/templates/users/login_form.html:44 apps/users/templates/users/mobile/login.html:52
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Kom ihåg mig på denna enhet"
 
 #: apps/users/templates/users/login_form.html:54 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:63 templates/mobile/header_auth.html:12
 msgid "Log in"
@@ -12566,7 +12631,7 @@ msgstr "Tillägg jag har skapat"
 
 #: apps/users/templates/users/profile.html:75
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Mina mest populära teman"
 
 #: apps/users/templates/users/profile.html:77
 msgid "Themes I've created"
@@ -12615,6 +12680,8 @@ msgstr "Lösenordsåterställningslänken var ogiltig, möjligen bara för att d
 #: apps/users/templates/users/pwreset_request.html:15
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
 msgstr ""
+"Glömt ditt lösenord? Fyll i din e-postadress nedan och så kommer vi att "
+"skicka instruktioner om hur du skapar en ny."
 
 #: apps/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
@@ -12636,34 +12703,44 @@ msgstr "Varför registrera sig?"
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
 msgstr ""
+"Registrering på AMO <strong>krävs inte</strong> om du bara vill hämta och "
+"installera publika tillägg."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Du behöver bara registrera dig om:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Du vill skicka in recensioner för tillägg"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "Du vill hålla koll på dina favorit-tilläggssamlingar eller skapa egna"
 
 #: apps/users/templates/users/register.html:21
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "Du är en tilläggsutvecklare och publicera ditt tillägg på AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
 msgstr ""
+"Vid godkänd registrering, kommer det att skickas en e-postbekräftelse till "
+"den adress du angav. Följ instruktionerna där för att bekräfta ditt konto."
 
 #: apps/users/templates/users/register.html:31
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr ""
+"Om du vill kan du läsa vår <a href=\"%(legal)s\" title=\"Legal "
+"Notices\">juridiska villkor</a> och <a href=\"%(privacy)s\" title=\"Privacy "
+"Policy\">sekretesspolicy</a>."
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
-msgstr "Registrera dig"
+msgstr ""
+"Om du vill kan du läsa vår <a href=\"%(legal)s\" title=\"Legal "
+"Notices\">juridiska villkor</a> och <a href=\"%(privacy)s\" title=\"Privacy "
+"Policy\">sekretesspolicy</a>."
 
 #: apps/users/templates/users/register.html:53
 msgid "Display name"
@@ -12671,9 +12748,7 @@ msgstr "Visningsnamn"
 
 #: apps/users/templates/users/report_abuse.html:7
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
-"Beskriv varför du anmäler denna användare, till exempel för skräppost eller "
-"en olämplig bild."
+msgstr "Beskriv varför du anmäler denna användare, till exempel för skräppost eller en olämplig bild."
 
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
@@ -12681,9 +12756,7 @@ msgstr "Rapportera användare {0}"
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr ""
-"För ditt lösenord för kontot måste innehålla minst 8 tecken inklusive "
-"bokstäver och siffror."
+msgstr "För ditt lösenord för kontot måste innehålla minst 8 tecken inklusive bokstäver och siffror."
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
@@ -12695,9 +12768,7 @@ msgstr "Du har avslutat prenumerationen!"
 
 #: apps/users/templates/users/unsubscribe.html:10
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
-"E-postadressen <strong>%(email)s</strong> kommer inte längre att få "
-"meddelanden när:"
+msgstr "E-postadressen <strong>%(email)s</strong> kommer inte längre att få meddelanden när:"
 
 #: apps/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
@@ -12718,9 +12789,7 @@ msgstr "Vi kunde inte avsluta prenumerationen för dig"
 #: apps/users/templates/users/unsubscribe.html:30
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-"Tyvärr kunde vi inte att avsluta prenumerationen för dig. Länken du klickade "
-"på är ogiltig. Men du kan fortfarande avsluta prenumerationen på din <a "
-"href=\"%(edit_url)s\">redigera profilsida</a>."
+"Tyvärr kunde vi inte att avsluta prenumerationen för dig. Länken du klickade på är ogiltig. Men du kan fortfarande avsluta prenumerationen på din <a href=\"%(edit_url)s\">redigera profilsida</a>."
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
@@ -12871,9 +12940,7 @@ msgstr "Mozilla tillägg"
 
 #: templates/base.html:65 templates/impala/base.html:108
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
-"Vissa funktioner inaktiveras tillfälligt medan vi utför webbplatsunderhåll. "
-"Vi ska vara tillbaka till full kapacitet inom kort."
+msgstr "Vissa funktioner inaktiveras tillfälligt medan vi utför webbplatsunderhåll. Vi ska vara tillbaka till full kapacitet inom kort."
 
 #: templates/base.html:83 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
@@ -12885,8 +12952,7 @@ msgstr "Andra applikationer"
 
 #: templates/base.html:133 templates/impala/base.html:176
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
-"För att skapa egna samlingar, måste du ha ett konto för Mozilla tillägg."
+msgstr "För att skapa egna samlingar, måste du ha ett konto för Mozilla tillägg."
 
 #: templates/categories.html:2
 msgid "Choose a category"
