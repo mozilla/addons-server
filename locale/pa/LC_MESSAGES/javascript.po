@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-07-10 15:49+0000\n"
-"Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
+"PO-Revision-Date: 2015-01-22 06:09+0000\n"
+"Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1405007343.0\n"
+"X-POOTLE-MTIME: 1421906974.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -99,37 +99,50 @@ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤ�
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, ਸਮੀਖਿਅਕ "
+"ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਯੂਜ਼ਰ-ਨਾਂ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ "
+"ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਕੇਵਲ ਸੀਮਿਤ ਲੋਕਾਂ ਲਈ ਹੈ, ਤੁਹਾਨੂੰ ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਥਾਂ "
+"ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਚੁਣਨੀ ਚਾਹੀਦੀ ਹੈ।"
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਾਰਜ ਚੈੱਕਲਿਸਟ"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਹ "
+"ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ।"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ "
+"ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ। "
+"ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ "
+"ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ,ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ "
+"ਹੋ।"
 
 #: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
@@ -182,15 +195,15 @@ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
 
 #: static/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "ਕਰੀਏਟਿਵ-ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ-ਕਮਰਸ਼ੀਅਲ 3.0"
 
 #: static/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਨੋਨ ਡਰਾਈਵ 3.0"
 
 #: static/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਸ਼ੇਅਰ-ਅਲਾਈਕ 3.0"
 
 #: static/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
@@ -399,7 +412,7 @@ msgstr "ਨਿਰਭਰਤਾਵਾਂ"
 
 #: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
-msgstr ""
+msgstr "ਵਾਧੂ ਖਰੀਦਦਾਰੀ ਲਈ ਉਕਸਾਉਣਾ"
 
 #: static/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
@@ -459,7 +472,7 @@ msgstr "ਅੱਪਡੇਟ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
 #: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "ਸੂਚੀਬੱਧਤਾ ਅਤੇ ਲੜੀਬੱਧਤਾ ਦੀ ਝਲਕ"
 
 #: static/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
@@ -499,7 +512,7 @@ msgstr "ਫਿੱਨਸ"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "ਐਨਡਰੋਇਡ"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -639,7 +652,7 @@ msgstr "ਆਖਰੀ {0} ਦਿਨ,ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:202
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "ਐਡ-ਆਨ {0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਹੋਇਆ"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:206
@@ -765,14 +778,14 @@ msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ਐਡ-ਆਨ ਨੂੰ {1} ਦੇ ਮੈਕਸ ਵਰਜਨ ਤੇ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
+msgstr[1] "{0} ਐਡ-ਆਨਾਂ ਨੂੰ {1} ਦੇ ਮੈਕਸ ਵਰਜਨ ਤੇ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨ ਦੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
+msgstr[1] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨਾਂ ਦੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -808,11 +821,13 @@ msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਵਿੱਚ 
 
 #: static/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "ਪ੍ਰਬੰਧਕਾਂ ਅਤੇ ਸੰਪਾਦਕਾਂ ਨੂੰ ਲਾਗਇਨ ਲਈ ਇੱਕ ਪਾਸਵਰਡ ਮੁਹੱਈਆ ਕਰਵਾਉਣਾ ਚਾਹੀਦਾ।"
 
 #: static/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"BrowseID ਲਾਗਇਨ ਫ਼ੇਲ੍ਹ ਹੋਇਆ। ਹੋ ਸਕਦਾ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਈਮੇਲ ਪਤੇ ਦੇ ਅਧੀਨ ਖਾਤਾ ਨਾ "
+"ਹੋਵੇ?"
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:82
@@ -829,15 +844,17 @@ msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #: static/js/zamboni/buttons.js:128
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "ਮੂਲ ਤੌਰ ਤੇ ਅਨੁਕੂਲਤਾ ਦਾ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ।"
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "ਤੁਹਾਨੂੰ ਫ਼ਾਇਰਫ਼ਾਕਸ 10.0 ਜਾਂ ਅੱਗੇ ਵਰਤੋਂ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ।"
 
 #: static/js/zamboni/buttons.js:145
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"ਮੌਜੀਲਾ ਨੇ ਇਸ ਵਰਜਨ ਤੇ ਤੁਹਾਡੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਨਾ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲੱਗਾ "
+"ਦਿੱਤਾ।"
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227
@@ -868,6 +885,8 @@ msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
 #: static/js/zamboni/buttons.js:574 static/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ "
+"ਹੈ।"
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -879,7 +898,7 @@ msgstr "ਪਸੰਦ ਜੋੜ ਰਿਹਾ &hellip;                "
 
 #: static/js/zamboni/collections.js:368
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "ਪਸੰਦੀਦਾ ਹਟਾ ਰਿਹਾ&hellip;"
 
 #: static/js/zamboni/collections.js:371
 msgid "Add to Favorites"
@@ -962,8 +981,8 @@ msgstr[1] "{files} ਫਾਈਲਾਂ"
 #: static/js/zamboni/devhub.js:693
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
+msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
 #: static/js/zamboni/devhub.js:805
 msgid "Learn more"
@@ -1000,14 +1019,16 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
 #: static/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
+"ਖਿਮਾ ਕਰੋ, ਅਸੀਂ ਤੁਹਾਡੇ ਲਈ ਕੋਈ ਸਿਫ਼ਾਰਿਸ਼ ਨਹੀਂ ਲੱਭ ਸਕੇ।</br> ਆਪਣੇ ਲਈ ਇੱਕ ਉਚਿਤ "
+"ਐਡ-ਆਨ ਖੋਜਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ <a href=\"{0}\">ਐਡ-ਆਨ ਸਾਈਟ</a> ਤੇ ਜਾਓ।"
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
-msgstr ""
+msgstr "ਸਿਫ਼ਾਰਿਸ਼ਾਂ ਲੱਭ ਰਿਹਾ&hellip;"
 
 #: static/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr ""
+msgstr "ਸਿਫ਼ਾਰਿਸ਼ਾਂ ਅੱਪਡੇਟ ਕਰ ਰਿਹਾ&hellip;"
 
 #: static/js/zamboni/editors.js:145
 msgid "{name} was viewing this page first."
@@ -1084,8 +1105,8 @@ msgstr "ਪਾਸਵਰਡ ਤਾਕਤ"
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
+msgstr[1] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
 
 #: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
 msgid "All"
@@ -1145,11 +1166,11 @@ msgstr "ਐਪ ਵੈਧਤਾ ਪਾਸ ਹੋਈ।"
 
 #: static/js/zamboni/validator.js:337
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
 
 #: static/js/zamboni/validator.js:339
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਨੇ ਪ੍ਰਮਾਣਿਕਤਾ ਪਾਸ ਕੀਤੀ।"
 
 #: static/js/zamboni/validator.js:370
 msgid "{0} error"
@@ -1171,7 +1192,7 @@ msgstr[1] "{0} ਨੋਟਿਸ"
 
 #: static/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਮੁਕੰਮਲ ਨਹੀਂ ਹੋਇਆ ਜਾਂ ਖਾਮੀਆਂ ਨਾਲ ਮੁਕੰਮਲ ਹੋਇਆ"
 
 #: static/js/zamboni/validator.js:469
 msgid "Internal server error"
@@ -1187,15 +1208,15 @@ msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
 
 #: static/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
-msgstr ""
+msgstr "ਨਾ-ਸਮੀਖਿਆ"
 
 #: static/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "ਪ੍ਰਯੋਗਆਤਮਕ <span>(ਹੋਰ ਜਾਣੋ)</span>"
 
 #: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "{0} ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ"
 
 #: static/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
@@ -1203,11 +1224,11 @@ msgstr "ਤਜਰਬੇ"
 
 #: static/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੇ ਨਵੇਂ ਵਰਜਨ ਦੀ ਲੋੜ"
 
 #: static/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੀ ਲੋੜ"
 
 #: static/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
@@ -1215,7 +1236,7 @@ msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
 
 #: static/js/zamboni/mobile/buttons.js:148
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਐਡ-ਆਨ ਦੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕੀਤੀ।"
 
 #: static/js/zamboni/mobile/buttons.js:275
 msgid "Keep it"
@@ -1223,8 +1244,8 @@ msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
 
 #: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
-msgstr ""
+msgstr "ਤੁਸੀਂ ਇਸਦੀ ਪਰਖ ਕਰ ਰਹੇ ਹੋ!"
 
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
-msgstr ""
+msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਿੱਚ ਸ਼ਾਮਲ"
