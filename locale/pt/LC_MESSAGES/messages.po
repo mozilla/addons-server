@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2014-12-20 04:24+0000\n"
+"PO-Revision-Date: 2015-01-23 01:53+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419049447.0\n"
+"X-POOTLE-MTIME: 1421978010.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1596,11 +1596,11 @@ msgstr "{user} aprovou a {review} para {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Revisão {review} para {addon} eliminada."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} eliminou {review} para {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3431,7 +3431,7 @@ msgstr "Análise de extra moderada"
 
 #: apps/constants/base.py:434
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderação de revisão de extra revertida"
 
 #: apps/constants/base.py:479
 msgid "Level 1"
@@ -3977,15 +3977,15 @@ msgstr "A senha está incorreta. O extra não foi eliminado."
 
 #: apps/devhub/views.py:432
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Foi adicionado um autor ao seu extra"
 
 #: apps/devhub/views.py:439
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Um autor teve o seu papel alterado no seu extra"
 
 #: apps/devhub/views.py:458
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Foi removido um autor do seu extra"
 
 #: apps/devhub/views.py:501
 msgid "There were errors in your submission."
@@ -9295,23 +9295,23 @@ msgstr "Detalhes do registo"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Título do extra"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Título da revisão"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Texto da revisão"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "A revisão foi marcada antes para eliminação."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Não eliminar"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9508,7 +9508,7 @@ msgstr "Revisão {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Histórico de alterações do utilizador para o extra"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -10540,6 +10540,15 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Para garantir a compatibilidade com as últimas versões do software da "
+"Mozilla, é importante transferir atualizações assim que estes são "
+"disponibilizados e testar o seu extra para garantir que ainda funciona como "
+"esperado. Em muitos casos a última versão do software da Mozilla pode ser um "
+"lançamento beta. Dado que estes lançamentos podem por vezes apresentar "
+"alterações arquiteturais que podem ter impacto na funcionalidade do seu "
+"extra, é importante estar envolvido ativamente no processo beta para "
+"garantir que os utilizadores do seu extra não são negativamente afetados "
+"após o lançamento do software da Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
