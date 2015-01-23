@@ -142,6 +142,7 @@ class Update(object):
 
         data.update(STATUSES_PUBLIC)
         data['STATUS_BETA'] = base.STATUS_BETA
+        data['STATUS_DISABLED'] = base.STATUS_DISABLED
 
         sql = ["""
             SELECT
@@ -203,7 +204,9 @@ class Update(object):
 
                 WHEN addons.status IN (%(STATUS_LITE)s,
                                        %(STATUS_LITE_AND_NOMINATED)s)
-                   AND (curfile.id IS NULL OR curfile.status = %(STATUS_LITE)s)
+                   AND (curfile.id IS NULL OR
+                        curfile.status IN (%(STATUS_LITE)s,
+                                           %(STATUS_DISABLED)s))
                 THEN
                    -- Add-on is prelim, and user's current version is either a
                    -- known prelim, or an unknown version.
