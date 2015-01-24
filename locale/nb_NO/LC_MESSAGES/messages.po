@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-24 23:18+0000\n"
-"Last-Translator: Alexander <alexander.jansen@hesbynett.no>\n"
+"PO-Revision-Date: 2015-01-24 23:49+0000\n"
+"Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422141484.0\n"
+"X-POOTLE-MTIME: 1422143389.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1762,11 +1762,11 @@ msgstr "Bruker {0.name} {0.id} slettet via lookup-verktøy."
 
 #: apps/amo/log.py:571
 msgid "{addon} content rating changed to Adult."
-msgstr "Innholdsvurderingen for {addon} ble endret til voksen."
+msgstr "Innholdsvurdering for {addon} ble endret til voksen."
 
 #: apps/amo/log.py:577
 msgid "{addon} content rating changed."
-msgstr "Innholdsvurderingen for {addon} ble endret."
+msgstr "Innholdsvurdering for {addon} ble endret."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
