@@ -361,6 +361,27 @@ class TestLookup(VersionCheckMixin, amo.tests.TestCase):
                                      self.app, amo.PLATFORM_LINUX)
             eq_(version, self.version_1_2_1)
 
+    def test_file_preliminary_odd_statuses(self):
+        """
+        Test that we serve prelim updates even when current version is
+        disabled or deleted.
+        """
+
+        self.addon.update(status=amo.STATUS_LITE)
+        self.change_status(self.version_1_2_1, amo.STATUS_LITE)
+
+        # Current version disabled.
+        self.change_status(self.version_1_2_0, amo.STATUS_DISABLED)
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_LINUX)
+        eq_(version, self.version_1_2_1)
+
+        # Current version deleted.
+        Version.objects.get(pk=self.version_1_2_0).delete()
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, amo.PLATFORM_LINUX)
+        eq_(version, self.version_1_2_1)
+
     def test_file_preliminary_ex_full_addon(self):
         """
         If the addon is in prelim. review, user has a full reviewed version.
