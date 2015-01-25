@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-01-21 23:01+0000\n"
+"PO-Revision-Date: 2015-01-25 10:19+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421881270.0\n"
+"X-POOTLE-MTIME: 1422181153.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -857,13 +857,13 @@ msgstr "Visa utvecklarens svar på denna recension"
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Se alla recensioner av detta tillägg"
-msgstr[1] "Se alla %(cnt)s recensioner av detta tillägg"
+msgstr[0] "Visa alla recensioner av detta tillägg"
+msgstr[1] "Visa alla %(cnt)s recensioner av detta tillägg"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
 msgid "Tags"
-msgstr "Etiketter"
+msgstr "Taggar"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1096,8 +1096,8 @@ msgstr "översätt"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Se alla användarrecensioner"
-msgstr[1] "Se alla %(cnt)s användarrecensioner"
+msgstr[0] "Visa alla användarrecensioner"
+msgstr[1] "Visa alla %(cnt)s användarrecensioner"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
@@ -2579,27 +2579,30 @@ msgstr "Inga samlingar hittades."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:6
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Mest följda samlingar"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:7
 msgid "Newest Collections"
-msgstr ""
+msgstr "Nyaste samlingar"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
-msgstr ""
+msgstr "Samlingar efter namn"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:9
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Nyligen uppdaterade samlingar"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:10
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Nyligen populära samlingar"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Samlingar är grupper av närliggande tillägg som vem som helst kan skapa och dela med sig av. Utforska samlingar skapade av andra eller <a href=\"%(url)s\">skapa din egen</a>."
+msgstr ""
+"Samlingar är grupper av tillägg som vem som helst kan skapa och dela. "
+"Utforska samlingar skapade av andra användare eller <a href=\"%(url)s\">skapa "
+"din egen</a>."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
@@ -2616,7 +2619,9 @@ msgstr "Skapa en samling"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Samlingar gör det lätt att hålla koll på favorittillägg och dela med dig av din perfekt anpassade webbläsare till andra."
+msgstr ""
+"Samlingar gör det lätt att hålla koll på dina favorittillägg och dela med "
+"dig av din perfekt anpassade webbläsare till andra."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:39
 msgid "Collection Icon"
@@ -2663,7 +2668,7 @@ msgstr "Väntande"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
 msgid "Add a comment"
-msgstr "Lägg till kommentar"
+msgstr "Lägg till en kommentar"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 msgid "Remove this add-on from the collection"
@@ -2679,54 +2684,66 @@ msgstr "Grupper av relaterade tillägg som alla kan skapa."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Blockerat tillägg"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr ""
+msgstr "Blockeringslista"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> har blockerats för din säkerhet."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Varför var den blockerad?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr ""
+msgstr "Vem påverkas?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
-msgstr ""
+msgstr "Vad innebär det?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:22
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
 msgstr ""
+"Användare rekommenderas att inaktivera det tillägg eller plugin med problem, "
+"men kan välja att fortsätta använda dem om de accepterar de risker som "
+"beskrivs."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
 msgstr ""
+"Det tillägg eller plugin med problem kommer automatiskt inaktiveras och kan "
+"inte längre användas."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"När Mozilla får kännedom om tillägg, insticksmoduler eller program från "
+"tredje part som allvarligt äventyrar %(app)s säkerhet, stabilitet eller "
+"prestanda och uppfyller <a href=\"%(criteria)s\">vissa kriterier</a>, kan "
+"programvaran blockeras från allmän användning. För mer information, läs <a "
+"href=\"%(support)s\">denna hjälpartikel</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
+msgstr "Blockerad den %(date)s. <a href=\"%(link)s\">Se blockeringsbegäran</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Blockerad den %(date)s."
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
 msgstr ""
+"Följande programvara är känd för att orsaka allvarliga säkerhet, stabilitet "
+"eller prestandaproblem med {app}."
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:76 apps/browse/feeds.py:98
@@ -2736,33 +2753,35 @@ msgstr "%s Tillägg"
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:113
 msgid "%s Themes"
-msgstr "%s-teman"
+msgstr "%s Teman"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
-msgstr "Uppmärksammade tillägg :: %s"
+msgstr "Utvalda tillägg :: %s"
 
 #. L10n: %s is an app name.
 #: apps/browse/feeds.py:138
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
 msgstr ""
+"Här är några av våra favorittillägg för att hjälpa dig att komma igång med "
+"anpassning %s."
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:157
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Sökverktyg som rör %s"
 
 #: apps/browse/feeds.py:159
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Sökverktyg och sökrelaterade utökningar"
 
 #: apps/browse/feeds.py:161
 msgid "Search tools"
-msgstr ""
+msgstr "Sökverktyg"
 
 #: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:85
 msgid "Most Users"
-msgstr ""
+msgstr "Flest användare"
 
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:276 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:92
@@ -2775,7 +2794,7 @@ msgstr "Skapad"
 
 #: apps/browse/views.py:455 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
-msgstr "Hämtningar"
+msgstr "Nerladdningar"
 
 #: apps/browse/views.py:456 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
@@ -2785,7 +2804,7 @@ msgstr "Betyg"
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5 apps/browse/templates/browse/creatured.html:13
 msgid "{0}: Featured Add-ons"
-msgstr "{0}: Uppmärksammade tillägg"
+msgstr "{0}: Utvalda tillägg"
 
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
@@ -2797,11 +2816,13 @@ msgstr "Utvalda tillägg"
 #. {0} is a category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:21
 msgid "No featured add-ons in {0}."
-msgstr "Inga framhållna tillägg i {0}."
+msgstr "Inga utvalda tillägg i {0}."
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Här är några av våra favorittillägg för att hjälpa dig komma igång och anpassa %(app)s."
+msgstr ""
+"Här är några av våra favorittillägg för att hjälpa dig att komma igång med "
+"anpassnjing %(app)s."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -2821,11 +2842,11 @@ msgstr "Hämta hem språkpaket"
 
 #: apps/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
-msgstr ""
+msgstr "Tillgänglig på ditt språk"
 
 #: apps/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Lista över språkpaket och ordlistor tillgängliga på ditt språk."
 
 #: apps/browse/templates/browse/language_tools.html:41 apps/browse/templates/browse/language_tools.html:63
 msgid "Language"
@@ -2841,11 +2862,11 @@ msgstr "Språkpaket"
 
 #: apps/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "Alla språk"
 
 #: apps/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
-msgstr "Lista på språkpaket och ordböcker."
+msgstr "Lista på språkpaket och ordlistor."
 
 #. {0} is a category name, like "Music".
 #: apps/browse/templates/browse/search_tools.html:8
@@ -2856,138 +2877,145 @@ msgstr "{0} :: Sökverktyg"
 #: apps/browse/templates/browse/search_tools.html:39 apps/devhub/templates/devhub/addons/dashboard.html:17
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b>-tillägg"
-msgstr[1] "<b>{0}</b>-tillägg"
+msgstr[0] "<b>{0}</b> tillägg"
+msgstr[1] "<b>{0}</b> tillägg"
 
 #: apps/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
-msgstr ""
+msgstr "Sök utökningar"
 
 #: apps/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Lägg till sökrelaterad funktionalitet i Firefox"
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr ""
+msgstr "Sök leverantörer"
 
 #: apps/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Hitta nya leverantörer för ditt sökfält"
 
 #: apps/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
-msgstr "Ytterligare resurser"
+msgstr "Fler resurser"
 
 #. {0} is an app name, like Firefox.
 #: apps/browse/templates/browse/search_tools.html:93
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
 msgstr ""
+"Läs mer om <a href=\"http://support.mozilla.com/kb/Search+bar\">sökfält</a> i "
+"{0}"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 msgstr ""
+"Bläddra igenom ännu fler sökleverantörer på <a "
+"href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr ""
+"<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Fi"
+"refox\">Gör din egen</a> på <a href=\"https://developer.mozilla.org/\">Mozillas "
+"utvecklingscenter</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:173
 msgid "Complete Themes"
-msgstr ""
+msgstr "Kompletta teman"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr "Mest populära utökningar"
+msgstr "Populäraste utökningarna"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Högst rankade utökningar"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Nyaste utökningar"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Utökningar efter namn"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Utökningar efter nedladdningar per vecka"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Nyligen uppdaterade utökningar"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Utökningar på frammarsch"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Utvalda kompletta teman"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Populäraste kompletta teman"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Högst rankade kompletta teman"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Nyaste kompletta teman"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Kompletta teman efter namn"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Kompletta teman efter nedladdningar per vecka"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Nyligen uppdaterade kompletta teman"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Kompletta teman på frammarsch"
 
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Visa %(cnt)s utökning i %(name)s &raquo;"
+msgstr[1] "Visa alla %(cnt)s utökningar i %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
-msgstr "Inga resultat funna."
+msgstr "Inga resultat hittades."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} Teman"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0}'s Teman"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "Visa profil"
 
 #: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Skapa ditt egna tema"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Din webbläsare, din stil! Styla den med en egen design!"
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
@@ -2999,7 +3027,7 @@ msgstr "Visa alla nyligen tillagda"
 
 #: apps/browse/templates/browse/personas/category_landing.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr "Visa alla mest populära"
+msgstr "Visa alla populära"
 
 #: apps/browse/templates/browse/personas/category_landing.html:8 apps/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
@@ -3008,19 +3036,25 @@ msgstr "Visa alla högst rankade"
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Över 300.000 designer för att anpassa din webbläsare! Flytta musen över ett "
+"bakgrundstema för att prova den. <a href=\"%(url)s\" class=\"more-info\">Börja "
+"utforska</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Vill du ha fler anpassningar?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Kompletta teman förändrar utseendet på din webbläsare med stilar för "
+"fönsterramen, adressfältet, knappar, flikar och menyer. <a href=\"%(url)s\" "
+"class=\"more-info\">Börja utforska</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Teman på frammarsch"
 
 #: apps/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
@@ -3028,19 +3062,19 @@ msgstr "Visa alla på frammarsch"
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Inga teman hittades."
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Enkla-att-använda teman för Firefox"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Fler teman"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Alla teman"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
 msgid "All"
@@ -3048,15 +3082,15 @@ msgstr "Alla"
 
 #: apps/compat/forms.py:23 apps/search/views.py:529
 msgid "All Add-ons"
-msgstr ""
+msgstr "Alla tillägg"
 
 #: apps/compat/forms.py:24
 msgid "Binary"
-msgstr ""
+msgstr "Binär"
 
 #: apps/compat/forms.py:25
 msgid "Non-binary"
-msgstr ""
+msgstr "Icke-binär"
 
 #: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:144
 msgid "Other"
@@ -3064,23 +3098,23 @@ msgstr "Annat"
 
 #: apps/compat/templates/compat/index.html:4
 msgid "Add-on Compatibility Report for {app} {version}"
-msgstr ""
+msgstr "Tillägg kompatibilitetsrapport för {app} {version}"
 
 #: apps/compat/templates/compat/index.html:11
 msgid "{app} {version} Compatibility"
-msgstr ""
+msgstr "{app} {version} Kompatibilitet"
 
 #: apps/compat/templates/compat/index.html:17
 msgid "Top 95% compatible with previous version"
-msgstr ""
+msgstr "Högst 95% kompatibel med tidigare version"
 
 #: apps/compat/templates/compat/index.html:18
 msgid "Top 95% of all add-ons"
-msgstr ""
+msgstr "Högst 95% av alla tillägg"
 
 #: apps/compat/templates/compat/index.html:19
 msgid "All active add-ons"
-msgstr ""
+msgstr "Alla aktiva tillägg"
 
 #: apps/compat/templates/compat/index.html:23 apps/constants/base.py:384
 msgid "App"
@@ -3088,7 +3122,7 @@ msgstr "App"
 
 #: apps/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
-msgstr ""
+msgstr "Detaljer för tillägg kompatibla med tidigare versioner:"
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
@@ -3096,61 +3130,66 @@ msgstr "Visa alla versioner"
 
 #: apps/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
-msgstr ""
+msgstr "Detaljer för tillägg kompatibla med all versioner:"
 
 #: apps/compat/templates/compat/index.html:61
 msgid "Show previous version only"
-msgstr ""
+msgstr "Visa endast tidigare version"
 
 #: apps/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Tillägg kompatibilitetsrapporter"
 
 #: apps/compat/templates/compat/reporter.html:11 apps/compat/templates/compat/reporter_detail.html:35
 msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
 "help supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Rapporter som skickas in till oss genom <a href=\"%(url_)s\">Tillägg "
+"kompatibilitetsrapporter</a> samlas här för att utvecklare ska se. Dessa "
+"rapporter hjälper oss att avgöra vilka tillägg som kommer att behöva hjälp "
+"med stöd för en kommande Firefox-version. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Rapporter för dina tillägg"
 
 #: apps/compat/templates/compat/reporter.html:30 apps/compat/templates/compat/reporter_detail.html:9
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Tillägg kompatibilitetscenter"
 
 #: apps/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
+"Öppna GUID för ett tillägg nedan för att se alla rapporter som vi har fått."
 
 #: apps/compat/templates/compat/reporter_detail.html:3 apps/compat/templates/compat/reporter_detail.html:10 apps/compat/templates/compat/reporter_detail.html:25
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} kompatibilitetsrapporter"
 
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} godkänd rapport"
+msgstr[1] "{0} godkända rapporter"
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} problemrapport"
+msgstr[1] "{0} problemrapporter"
 
 #: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73
 msgid "View all"
-msgstr ""
+msgstr "Visa alla"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Filtrera efter applikation"
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
-msgstr ""
+msgstr "Rapporttyp"
 
 #: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:965 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
@@ -3158,7 +3197,7 @@ msgstr "Applikation"
 
 #: apps/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
-msgstr ""
+msgstr "Applikations byggd"
 
 #: apps/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
@@ -3170,15 +3209,15 @@ msgstr "Inskickad"
 
 #: apps/compat/templates/compat/reporter_detail.html:56
 msgid "Success"
-msgstr ""
+msgstr "Godkänd"
 
 #: apps/compat/templates/compat/reporter_detail.html:56
 msgid "Problem"
-msgstr ""
+msgstr "Problem"
 
 #: apps/compat/templates/compat/reporter_detail.html:82
 msgid "No reports found."
-msgstr ""
+msgstr "Inga rapporter hittades."
 
 #: apps/constants/applications.py:18
 msgid "Firefox"
@@ -3314,7 +3353,7 @@ msgstr "Språkpaket (applikation)"
 
 #: apps/constants/base.py:164
 msgid "Language Pack (Add-on)"
-msgstr "Språkpaket (tillägg) "
+msgstr "Språkpaket (tillägg)"
 
 #: apps/constants/base.py:165
 msgid "Plugin"
@@ -4663,7 +4702,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
-msgstr "Etiketter"
+msgstr "Taggar"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
@@ -4682,8 +4721,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/basic.html:135
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Reserverad tagg:"
+msgstr[1] "Reserverade taggar:"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
@@ -8415,7 +8454,7 @@ msgstr "Bläddra bland alla tillägg"
 
 #: apps/discovery/templates/discovery/pane.html:108
 msgid "See all complete themes"
-msgstr ""
+msgstr "Visa alla kompletta teman"
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
@@ -11427,8 +11466,8 @@ msgstr ""
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Visa alla recensioner"
+msgstr[1] "Visa alla %(cnt)s recensioner"
 
 #: apps/search/forms.py:11
 msgid "Most popular this week"
@@ -12018,12 +12057,12 @@ msgstr "Applikationsversioner efter datum"
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr "{0}-toppetiketter"
+msgstr "Topp {0} taggar"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
 msgid "{0} Top Tags"
-msgstr "{0} toppetiketter"
+msgstr "{0} topptaggar"
 
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
