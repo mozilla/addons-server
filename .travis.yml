@@ -26,7 +26,3 @@ notifications:
       - "irc.mozilla.org#amo-bots"
     on_success: change
     on_failure: always
-cache:
-  directories:
-    - /tmp/elasticsearch
-    - /tmp/pip-cache
