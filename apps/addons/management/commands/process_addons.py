@@ -9,6 +9,7 @@ import amo
 from addons.models import Addon
 from amo.utils import chunked
 from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
+from lib.crypto.tasks import sign_addons
 from reviews.tasks import addon_review_aggregates
 
 
@@ -26,6 +27,7 @@ tasks = {
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
+    'sign_addons': {'method': sign_addons, 'qs': []},
 }
 
 
