@@ -32,10 +32,7 @@ SYSLOG_TAG2 = "http_app_addons_timer"
 SYSLOG_CSP = "http_app_addons_addons_csp"
 
 # Signing
-SIGNING_SERVER_ACTIVE = False
-SIGNING_REVIEWER_SERVER_ACTIVE = False
 SIGNING_SERVER = private_addons.SIGNING_SERVER
-SIGNING_REVIEWER_SERVER = private_addons.SIGNING_REVIEWER_SERVER
 
 FETCH_BY_ID = True
 

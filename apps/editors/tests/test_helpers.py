@@ -417,7 +417,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
-            sign_mock.assert_called_with(self.version.pk, False)
+            sign_mock.assert_called_with(self.version)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
@@ -440,7 +440,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
-            sign_mock.assert_called_with(self.version.pk, False)
+            sign_mock.assert_called_with(self.version)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)

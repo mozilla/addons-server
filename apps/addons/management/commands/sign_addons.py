@@ -30,4 +30,4 @@ class Command(BaseCommand):
                 continue
 
             for version in addon.versions.all():
-                addon.sign_version_files(version.pk)
+                version.sign_files()

@@ -11,6 +11,7 @@ from django.db import models
 import caching.base
 import commonware.log
 import jinja2
+from tower import ugettext as _
 
 import addons.query
 import amo
@@ -22,7 +23,7 @@ from amo.helpers import user_media_path, id_to_path
 from applications.models import AppVersion
 from files import utils
 from files.models import File, cleanup_file
-from tower import ugettext as _
+from lib.crypto import packaged
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 from users.models import UserProfile
@@ -457,6 +458,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
             self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
+
+    def sign_files(self):
+        """Sign the files for this version."""
+        return packaged.sign(self)
 
 
 @Version.on_change
