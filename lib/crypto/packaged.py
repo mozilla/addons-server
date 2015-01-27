@@ -10,7 +10,7 @@ import commonware.log
 import requests
 from celeryutils import task
 from django_statsd.clients import statsd
-from signing_clients.apps import JarExtractor
+from signing_clients.apps import get_signature_serial_number, JarExtractor
 
 
 log = commonware.log.getLogger('z.crypto')
@@ -77,13 +77,14 @@ def call_signing(file_obj):
 
     pkcs7 = b64decode(json.loads(response.content)['zigbert.rsa'])
     try:
+        cert_serial_num = get_signature_serial_number(pkcs7)
         jar.make_signed(pkcs7)
     except:
         msg = 'Addon signing failed'
         log.error(msg, exc_info=True)
         raise SigningError(msg)
     os.rename(temp_filename, file_obj.file_path)
-    return True
+    return cert_serial_num
 
 
 def sign_file(file_obj):
@@ -93,7 +94,9 @@ def sign_file(file_obj):
         raise SigningError(msg)
 
     try:
-        call_signing(file_obj)
+        cert_serial_num = call_signing(file_obj)  # Sign file.
+        if cert_serial_num:
+            file_obj.update(cert_serial_num=cert_serial_num)
     except SigningError:
         log.info('Signing failed for file %s.' % file_obj.pk)
         raise
