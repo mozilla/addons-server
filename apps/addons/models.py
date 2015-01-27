@@ -36,7 +36,6 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
                        to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
-from lib.crypto import packaged
 from reviews.models import Review
 import sharing.utils as sharing
 from stats.models import AddonShareCountTotal
@@ -1425,12 +1424,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     def in_escalation_queue(self):
         return self.escalationqueue_set.exists()
-
-    def sign_if_packaged(self, version_pk, reviewer=False):
-        raise NotImplementedError('Not available for add-ons.')
-
-    def sign_version_files(self, version_pk, reviewer=False):
-        return packaged.sign(version_pk, reviewer)
 
     def update_names(self, new_names):
         """

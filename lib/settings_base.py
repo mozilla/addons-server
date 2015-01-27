@@ -1322,19 +1322,10 @@ TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}
 VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
 
-# Turn on/off the use of the signing server and all the related things. This
-# is a temporary flag that we will remove.
-SIGNING_SERVER_ACTIVE = False
-# The reviewers equivalent to the above.
-SIGNING_REVIEWER_SERVER_ACTIVE = False
 # This is the signing REST server for signing receipts.
 SIGNING_SERVER = ''
-# This is the signing REST server for signing apps with the reviewers cert.
-SIGNING_REVIEWER_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
-# Send the more terse manifest signatures to the app signing server.
-SIGNING_OMIT_PER_FILE_SIGS = True
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False

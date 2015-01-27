@@ -600,7 +600,7 @@ class ReviewAddon(ReviewBase):
                        status=amo.STATUS_PUBLIC)
 
         # Sign addon.
-        self.addon.sign_version_files(self.version.pk)
+        self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
@@ -658,7 +658,7 @@ class ReviewAddon(ReviewBase):
                        copy_to_mirror=True)
 
         # Sign addon.
-        self.addon.sign_version_files(self.version.pk)
+        self.version.sign_files()
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template,
@@ -693,7 +693,7 @@ class ReviewFiles(ReviewBase):
         status = self.addon.status
 
         # Sign addon.
-        self.addon.sign_version_files(self.version.pk)
+        self.version.sign_files()
 
         self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
                        copy_to_mirror=True)
@@ -739,7 +739,7 @@ class ReviewFiles(ReviewBase):
                        copy_to_mirror=True)
 
         # Sign addon.
-        self.addon.sign_version_files(self.version.pk)
+        self.version.sign_files()
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email('%s_to_preliminary' % self.review_type,

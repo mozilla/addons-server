@@ -2075,14 +2075,16 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
-    @patch.object(Addon, 'sign_version_files', lambda self, pk: True)
-    def test_admin_flagged_addon_actions_as_admin(self):
+    @patch.object(Version, 'sign_files')
+    def test_admin_flagged_addon_actions_as_admin(self, mock_sign_files):
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_admin()
         response = self.client.post(self.url, self.get_dict(action='public'),
                                     follow=True)
         eq_(response.status_code, 200)
         eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+
+        assert mock_sign_files.called
 
     def test_admin_flagged_addon_actions_as_editor(self):
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
