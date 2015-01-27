@@ -61,6 +61,12 @@ class TestPackaged(amo.tests.TestCase):
         monkeypatch.setattr(
             'requests.post', lambda url, timeout, data, files: FakeResponse)
 
+    @pytest.fixture(autouse=True)
+    def mock_get_signature_serial_number(self, monkeypatch):
+        """Fake a standard signing-client response."""
+        monkeypatch.setattr('lib.crypto.packaged.get_signature_serial_number',
+                            lambda pkcs7: 'serial number')
+
     def test_no_file(self):
         [f.delete() for f in self.addon.current_version.all_files]
         with pytest.raises(packaged.SigningError):
@@ -71,14 +77,16 @@ class TestPackaged(amo.tests.TestCase):
         with pytest.raises(packaged.SigningError):
             packaged.sign_file(self.file1)
 
-    def test_server_active(self):
-        with self.settings(SIGNING_SERVER=""):
+    def test_no_server(self):
+        with self.settings(SIGNING_SERVER=''):
             packaged.sign(self.version)
         # Make sure the file wasn't signed.
         assert not is_signed(self.file1.file_path)
+        assert not self.file1.cert_serial_num
 
     def test_sign_file(self):
         with self.settings(SIGNING_REVIEWER_SERVER_ACTIVE=True,
                            SIGNING_SERVER='http://sign.me'):
             packaged.sign(self.version)
         assert is_signed(self.file1.file_path)
+        assert self.file1.cert_serial_num == 'serial number'

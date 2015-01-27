@@ -78,6 +78,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # amo-validator when it finds "binary-components" in the chrome manifest
     # file, used for default to compatible.
     binary_components = models.BooleanField(default=False, db_index=True)
+    # Serial number of the certificate use for the signature.
+    cert_serial_num = models.CharField(max_length=255, blank=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
