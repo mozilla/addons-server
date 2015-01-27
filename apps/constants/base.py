@@ -497,3 +497,14 @@ LOGIN_SOURCE_AMO_BROWSERID = 3
 # These are logins that use BrowserID.
 LOGIN_SOURCE_BROWSERIDS = [LOGIN_SOURCE_BROWSERID, LOGIN_SOURCE_AMO_BROWSERID,
                            LOGIN_SOURCE_MMO_BROWSERID]
+
+# Signed state.
+UNSIGNED = 0
+SIGNED_FULL = 1
+SIGNED_PRELIM = 2
+
+SIGNED_CHOICES = {
+    UNSIGNED: _(u'Not signed'),
+    SIGNED_FULL: _(u'Signed for a full review'),
+    SIGNED_PRELIM: _(u'Signed of a preliminary review'),
+}

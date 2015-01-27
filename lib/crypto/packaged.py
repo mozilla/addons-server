@@ -23,10 +23,10 @@ class SigningError(Exception):
     pass
 
 
-def sign_addon(addon_id, src, dest, ids, reviewer=False):
+def sign_addon(addon_id, file_obj, ids, reviewer=False):
     tempname = tempfile.mktemp()
     try:
-        return _sign_addon(addon_id, src, dest, ids, reviewer, tempname)
+        return _sign_addon(addon_id, file_obj, ids, reviewer, tempname)
     finally:
         try:
             os.unlink(tempname)
@@ -35,7 +35,7 @@ def sign_addon(addon_id, src, dest, ids, reviewer=False):
             pass
 
 
-def _sign_addon(addon_id, src, dest, ids, reviewer, tempname):
+def _sign_addon(addon_id, file_obj, ids, reviewer, tempname):
     """
     Generate a manifest and signature and send signature to signing server to
     be signed.
@@ -46,7 +46,7 @@ def _sign_addon(addon_id, src, dest, ids, reviewer, tempname):
     # Extract necessary info from the archive
     try:
         jar = JarExtractor(
-            storage.open(src, 'r'), tempname, ids,
+            storage.open(file_obj.file_path, 'r'), tempname, ids,
             omit_signature_sections=settings.SIGNING_OMIT_PER_FILE_SIGS)
     except:
         msg = 'Archive extraction failed. Bad archive?'
@@ -84,7 +84,7 @@ def _sign_addon(addon_id, src, dest, ids, reviewer, tempname):
     except:
         log.error('Addon signing failed', exc_info=True)
         raise SigningError('Addon signing failed')
-    with storage.open(dest, 'w') as destf:
+    with storage.open(file_obj.file_path, 'w') as destf:
         tempf = open(tempname)
         shutil.copyfileobj(tempf, destf)
 
@@ -109,16 +109,9 @@ def _get_endpoint(reviewer=False):
 
 
 def _sign_file(version_id, addon, addon_id, file_obj, reviewer, resign):
-    path = (file_obj.signed_reviewer_file_path if reviewer else
-            file_obj.signed_file_path)
-
     if not file_obj.can_be_signed():
         log.error('[Addon:%s] Attempt to sign a non-xpi file.' % addon.id)
         raise SigningError('Non XPI')
-
-    if storage.exists(path) and not resign:
-        log.info('[Addon:%s] Already signed addon exists.' % addon.id)
-        return path
 
     if reviewer:
         # Reviewers get a unique 'id' so the reviewer installed addon won't
@@ -135,14 +128,12 @@ def _sign_file(version_id, addon, addon_id, file_obj, reviewer, resign):
         })
     with statsd.timer('services.sign.app'):
         try:
-            sign_addon(addon_id, file_obj.file_path, path, ids, reviewer)
+            sign_addon(addon_id, file_obj, ids, reviewer)
         except SigningError:
             log.info('[Addon:%s] Signing failed' % addon.id)
-            if storage.exists(path):
-                storage.delete(path)
             raise
     log.info('[Addon:%s] Signing complete.' % addon.id)
-    return path
+    return file_obj.file_path
 
 
 @task

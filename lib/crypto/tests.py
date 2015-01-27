@@ -4,14 +4,15 @@ import os
 import zipfile
 
 from django.conf import settings  # For mocking.
-from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
 import jwt
 import mock
+import pytest
 from nose.tools import eq_, ok_, raises
 from requests import Timeout
 
+import amo
 import amo.tests
 from lib.crypto import packaged
 from lib.crypto.receipt import crack, sign, SigningError
@@ -96,6 +97,16 @@ class TestPackaged(amo.tests.TestCase):
                 os.unlink(f.file_path)
         super(TestPackaged, self).tearDown()
 
+    @pytest.fixture(autouse=True)
+    def mock_post(self, monkeypatch):
+        """Fake a standard trunion response."""
+        class FakeResponse:
+            status_code = 200
+            content = '{"zigbert.rsa": ""}'
+
+        monkeypatch.setattr(
+            'requests.post', lambda url, timeout, data, files: FakeResponse)
+
     @raises(packaged.SigningError)
     def test_no_file(self):
         [f.delete() for f in self.addon.current_version.all_files]
@@ -109,43 +120,29 @@ class TestPackaged(amo.tests.TestCase):
             self.file1, False, False)
 
     @mock.patch('lib.crypto.packaged.sign_addon')
-    def test_already_exists(self, sign_addon):
-        with (storage.open(self.file1.signed_file_path, 'w') and
-                storage.open(self.file2.signed_file_path, 'w')):
-            assert packaged.sign(self.version.pk)
-            assert not sign_addon.called
-
-    @mock.patch('lib.crypto.packaged.sign_addon')
-    def test_resign_already_exists(self, sign_addon):
-        storage.open(self.file1.signed_file_path, 'w')
-        storage.open(self.file2.signed_file_path, 'w')
-        packaged.sign(self.version.pk, resign=True)
-        assert sign_addon.called
-
-    @mock.patch('lib.crypto.packaged.sign_addon')
     def test_sign_consumer(self, sign_addon):
         file_list = packaged.sign(self.version.pk)
         assert sign_addon.called
-        ids = json.loads(sign_addon.call_args[0][3])
+        ids = json.loads(sign_addon.call_args[0][2])
         eq_(ids['id'], self.addon.guid)
         eq_(ids['version'], self.version.pk)
 
         file_list = dict(file_list)
-        eq_(file_list[self.file1.pk], self.file1.signed_file_path)
-        eq_(file_list[self.file2.pk], self.file2.signed_file_path)
+        eq_(file_list[self.file1.pk], self.file1.file_path)
+        eq_(file_list[self.file2.pk], self.file2.file_path)
 
     @mock.patch('lib.crypto.packaged.sign_addon')
     def test_sign_reviewer(self, sign_addon):
         file_list = packaged.sign(self.version.pk, reviewer=True)
         assert sign_addon.called
-        ids = json.loads(sign_addon.call_args[0][3])
+        ids = json.loads(sign_addon.call_args[0][2])
         eq_(ids['id'], 'reviewer-{guid}-{version_id}'.format(
             guid=self.addon.guid, version_id=self.version.pk))
         eq_(ids['version'], self.version.pk)
 
         file_list = dict(file_list)
-        eq_(file_list[self.file1.pk], self.file1.signed_reviewer_file_path)
-        eq_(file_list[self.file2.pk], self.file2.signed_reviewer_file_path)
+        eq_(file_list[self.file1.pk], self.file1.file_path)
+        eq_(file_list[self.file2.pk], self.file2.file_path)
 
     @raises(ValueError)
     def test_server_active(self):
@@ -161,9 +158,6 @@ class TestPackaged(amo.tests.TestCase):
     def test_server_inactive(self):
         with self.settings(SIGNING_SERVER_ACTIVE=False):
             assert packaged.sign(self.version.pk) is None
-        # Make sure we didn't create the signed files.
-        for f in self.version.files.all():
-            assert not os.path.exists(f.signed_file_path)
 
     def test_reviewer_server_inactive(self):
         with self.settings(SIGNING_REVIEWER_SERVER_ACTIVE=False):
@@ -186,15 +180,22 @@ class TestPackaged(amo.tests.TestCase):
             'Unexpected endpoint returned.')
 
     @mock.patch.object(packaged, '_get_endpoint', lambda _: '/fake/url/')
-    @mock.patch('requests.post')
-    def test_inject_ids(self, post):
+    def test_inject_ids(self):
         """
         Checks correct signing of a package using fake data
         as returned by Trunion
         """
-        post().status_code = 200
-        post().content = '{"zigbert.rsa": ""}'
         packaged.sign(self.version.pk)
-        zf = zipfile.ZipFile(self.file1.signed_file_path, mode='r')
+        zf = zipfile.ZipFile(self.file1.file_path, mode='r')
         ids_data = zf.read('META-INF/ids.json')
         eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])
+
+    def test_sign_file(self):
+        with self.settings(SIGNING_REVIEWER_SERVER_ACTIVE=True,
+                           SIGNING_SERVER='http://sign.me'):
+            signed_files = packaged.sign(self.version.pk)
+        zf = zipfile.ZipFile(self.file1.file_path, mode='r')
+        ids_data = zf.read('META-INF/ids.json')
+        eq_(sorted(json.loads(ids_data).keys()), ['id', 'version'])
+        assert signed_files == [(self.file1.pk, self.file1.file_path),
+                                (self.file2.pk, self.file2.file_path)]
