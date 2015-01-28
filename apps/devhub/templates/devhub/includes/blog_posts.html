@@ -5,7 +5,7 @@
        href="http://blog.mozilla.com/addons/feed/">
       {{ _('Subscribe to this feed') }}</a>
   </h3>
-  <ul>
+  <ul class="blog-container">
     {% for post in blog_posts %}
     <li class="item">
       <a href="{{ post.permalink }}" target="_new">
@@ -17,6 +17,7 @@
     </li>
     {% endfor %}
   </ul>
+  <div class="flex-spring"></div>
   <p class="older-activity"><a href="http://blog.mozilla.com/addons/">
     {{ _('View the blog &#9658;') }}</a></p>
 </div>

@@ -28,8 +28,7 @@ urlpatterns = patterns(
 )
 
 # These are the front end pages, so that when you click the links on the
-# navigation page, you end up on the correct stats page for AMO. There are
-# different keys for marketplace, looking in mkt for that.
+# navigation page, you end up on the correct stats page for AMO.
 keys = ['addons_in_use', 'addons_updated', 'addons_downloaded',
         'addons_created', 'collections_created',
         'reviews_created', 'users_created']

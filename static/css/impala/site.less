@@ -315,14 +315,19 @@ header + .island {
     color: inherit;
 }
 
+.flex-spring {
+    flex: 10;
+    -webkit-flex: 10;
+}
+
 .cols {
     /* Compensate for issues with clean-css minifier. */
     .width-calc(~'100% - -1em', 100%);
-    overflow: auto;
+    overflow: hidden;
     div.col-2, div.col-3 {
         .border-box();
-        float: left;
         padding-right: 1em;
+        display: inline-block;
     }
     div.col {
         width: 1em;
@@ -333,6 +338,12 @@ header + .island {
     div.col-3 {
         width: 33.33%;
     }
+
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-align-items: stretch;
+    align-items: stretch;
 }
 
 .equal {

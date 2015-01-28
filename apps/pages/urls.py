@@ -39,7 +39,7 @@ urlpatterns = patterns(
         lambda r: perma_redirect(reverse('pages.review_guide'))),
     url('^pages/developer_agreement$',
         lambda r: perma_redirect(reverse('devhub.docs',
-                                         args=['policies', 'agreement']))),
+                                         args=['policies/agreement']))),
     url('^pages/validation$',
         lambda r: perma_redirect(settings.VALIDATION_FAQ_URL)),
 

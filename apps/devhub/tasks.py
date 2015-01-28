@@ -12,7 +12,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
-from cache_nuggets.lib import guard
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
@@ -283,32 +282,6 @@ def convert_purified(ids, **kw):
         if flag:
             log.info('Saving addon: %s to purify fields' % addon.pk)
             addon.save()
-
-
-@task
-def packager(data, feature_set, **kw):
-    """Build an add-on based on input data."""
-    log.info('[1@None] Packaging add-on')
-
-    from devhub.views import packager_path
-    dest = packager_path(data['slug'])
-
-    with guard(u'devhub.packager.%s' % dest) as locked:
-        if locked:
-            log.error(u'Packaging in progress: %s' % dest)
-            return
-
-        with statsd.timer('devhub.packager'):
-            from packager.main import packager
-            log.info('Starting packaging: %s' % dest)
-            features = set([k for k, v in feature_set.items() if v])
-            try:
-                packager(data, dest, features)
-            except Exception, err:
-                log.error(u'Failed to package add-on: %s' % err)
-                raise
-            if storage.exists(dest):
-                log.info(u'Package saved: %s' % dest)
 
 
 def failed_validation(*messages):

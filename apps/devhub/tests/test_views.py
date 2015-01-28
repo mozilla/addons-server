@@ -2774,14 +2774,14 @@ class TestDocs(amo.tests.TestCase):
         eq_('/en-US/developers/docs/', reverse('devhub.docs', args=[]))
         eq_('/en-US/developers/docs/te', reverse('devhub.docs', args=['te']))
         eq_('/en-US/developers/docs/te/st', reverse('devhub.docs',
-                                                    args=['te', 'st']))
+                                                    args=['te/st']))
 
-        urls = [(reverse('devhub.docs', args=["getting-started"]), 200),
-                (reverse('devhub.docs', args=["how-to"]), 200),
-                (reverse('devhub.docs', args=["how-to", "other-addons"]), 200),
-                (reverse('devhub.docs', args=["fake-page"]), 302),
-                (reverse('devhub.docs', args=["how-to", "fake-page"]), 200),
-                (reverse('devhub.docs'), 302)]
+        urls = [(reverse('devhub.docs', args=["getting-started"]), 301),
+                (reverse('devhub.docs', args=["how-to"]), 301),
+                (reverse('devhub.docs', args=["how-to/other-addons"]), 301),
+                (reverse('devhub.docs', args=["fake-page"]), 404),
+                (reverse('devhub.docs', args=["how-to/fake-page"]), 404),
+                (reverse('devhub.docs'), 301)]
 
         index = reverse('devhub.index')
 

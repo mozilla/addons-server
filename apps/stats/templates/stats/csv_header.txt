@@ -1,11 +1,7 @@
 {% if title %}
 #    {{ title }}
 {% else %}
-{% if settings.MARKETPLACE %}
-#    marketplace.firefox.com Statistics for app {{ addon.name }}
-{% else %}
 #    addons.mozilla.org Statistics for add-on {{ addon.name }}
-{% endif %}
 {% endif %}
 #
 #    Generated {{ timestamp }}

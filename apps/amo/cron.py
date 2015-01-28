@@ -84,17 +84,6 @@ def gc(test_result=True):
     else:
         log.warning('MEDIA_ROOT not defined.')
 
-    if settings.PACKAGER_PATH:
-        log.debug('Cleaning up old packaged add-ons.')
-
-        cmd = ('find', settings.PACKAGER_PATH,
-               '-name', '*.zip', '-mtime', '+1', '-type', 'f',
-               '-exec', 'rm', '{}', ';')
-        output = Popen(cmd, stdout=PIPE).communicate()[0]
-
-        for line in output.split("\n"):
-            log.debug(line)
-
     if user_media_path('collection_icons'):
         log.debug('Cleaning up uncompressed icons.')
 

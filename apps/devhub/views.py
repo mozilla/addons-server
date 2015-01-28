@@ -24,7 +24,6 @@ from django.views.decorators.csrf import csrf_exempt
 import commonware.log
 import waffle
 from PIL import Image
-from session_csrf import anonymous_csrf
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 
@@ -39,7 +38,7 @@ from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
-from amo.utils import escape_all, HttpResponseSendFile, MenuItem
+from amo.utils import escape_all, MenuItem
 from applications.models import AppVersion
 from devhub import perf
 from devhub.decorators import dev_required
@@ -64,6 +63,8 @@ paypal_log = commonware.log.getLogger('z.paypal')
 
 # We use a session cookie to make sure people see the dev agreement.
 DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
+
+MDN_BASE = 'https://developer.mozilla.org/Add-ons'
 
 
 class AddonFilter(BaseFilter):
@@ -594,66 +595,6 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
         for plat in plats:
             tasks.start_perf_test_for_file.delay(file_.id, plat, app)
     return {'success': True}
-
-
-def packager_path(name):
-    return os.path.join(settings.PACKAGER_PATH, '%s.zip' % name)
-
-
-@anonymous_csrf
-def package_addon(request):
-    basic_form = forms.PackagerBasicForm(request.POST or None)
-    features_form = forms.PackagerFeaturesForm(request.POST or None)
-    compat_forms = forms.PackagerCompatFormSet(request.POST or None)
-
-    # Process requests, but also avoid short circuiting by using all().
-    if (request.method == 'POST' and
-        all([basic_form.is_valid(),
-             features_form.is_valid(),
-             compat_forms.is_valid()])):
-
-        basic_data = basic_form.cleaned_data
-        compat_data = compat_forms.cleaned_data
-
-        data = {'id': basic_data['id'],
-                'version': basic_data['version'],
-                'name': basic_data['name'],
-                'slug': basic_data['package_name'],
-                'description': basic_data['description'],
-                'author_name': basic_data['author_name'],
-                'contributors': basic_data['contributors'],
-                'targetapplications': [c for c in compat_data if c['enabled']]}
-        tasks.packager.delay(data, features_form.cleaned_data)
-        return redirect('devhub.package_addon_success',
-                        basic_data['package_name'])
-
-    return render(request, 'devhub/package_addon.html',
-                  {'basic_form': basic_form, 'compat_forms': compat_forms,
-                   'features_form': features_form})
-
-
-def package_addon_success(request, package_name):
-    """Return the success page for the add-on packager."""
-    return render(request, 'devhub/package_addon_success.html',
-                  {'package_name': package_name})
-
-
-@json_view
-def package_addon_json(request, package_name):
-    """Return the URL of the packaged add-on."""
-    path_ = packager_path(package_name)
-    if storage.exists(path_):
-        url = reverse('devhub.package_addon_download', args=[package_name])
-        return {'download_url': url, 'filename': os.path.basename(path_),
-                'size': round(storage.open(path_).size / 1024, 1)}
-
-
-def package_addon_download(request, package_name):
-    """Serve a packaged add-on."""
-    path_ = packager_path(package_name)
-    if not storage.exists(path_):
-        raise http.Http404()
-    return HttpResponseSendFile(request, path_, content_type='application/zip')
 
 
 @login_required
@@ -1640,32 +1581,53 @@ def admin(request, addon):
                   {'addon': addon, 'admin_form': form})
 
 
-def docs(request, doc_name=None, doc_page=None):
-    filename = ''
+def docs(request, doc_name=None):
+    mdn_docs = {
+        None: '',
+        'getting-started': '',
+        'reference': '',
+        'how-to': '',
+        'how-to/getting-started': '',
+        'how-to/extension-development': '#Extensions',
+        'how-to/other-addons': '#Other_types_of_add-ons',
+        'how-to/thunderbird-mobile': '#Application-specific',
+        'how-to/theme-development': '#Themes',
+        'themes': 'Themes/Background',
+        'themes/faq': 'Themes/Background/FAQ',
+    }
+    if waffle.switch_is_active('mdn-policy-docs'):
+        mdn_docs.update({
+            'policies': 'AMO/Policy',
+            'policies/submission': 'AMO/Policy/Submission',
+            'policies/reviews': 'AMO/Policy/Reviews',
+            'policies/maintenance': 'AMO/Policy/Maintenance',
+            'policies/recommended': 'AMO/Policy/Featured',
+            'policies/contact': 'AMO/Policy/Contact',
+        })
+    if waffle.switch_is_active('mdn-agreement-docs'):
+        # This will most likely depend on MDN being able to protect
+        # pages.
+        mdn_docs.update({
+            'policies/agreement': 'AMO/Policy/Agreement',
+        })
 
-    all_docs = {'getting-started': [], 'reference': [],
-                'policies': ['submission', 'reviews', 'maintenance',
-                             'recommended', 'agreement', 'contact'],
-                'case-studies': ['cooliris', 'stumbleupon',
-                                 'download-statusbar'],
-                'how-to': ['getting-started', 'extension-development',
-                           'thunderbird-mobile', 'theme-development',
-                           'other-addons'],
-                'themes': ['faq']}
+    all_docs = ('policies',
+                'policies/submission',
+                'policies/reviews',
+                'policies/maintenance',
+                'policies/recommended',
+                'policies/agreement',
+                'policies/contact')
 
-    if doc_name and doc_name in all_docs:
-        filename = '%s.html' % doc_name
-        if doc_page and doc_page in all_docs[doc_name]:
-            filename = '%s-%s.html' % (doc_name, doc_page)
+    if doc_name in mdn_docs:
+        return redirect(MDN_BASE + mdn_docs[doc_name],
+                        permanent=True)
 
-    if not filename:
-        return redirect('devhub.index')
+    if doc_name in all_docs:
+        filename = '%s.html' % doc_name.replace('/', '-')
+        return render(request, 'devhub/docs/%s' % filename)
 
-    return render(request, 'devhub/docs/%s' % filename)
-
-
-def builder(request):
-    return render(request, 'devhub/builder.html')
+    raise http.Http404()
 
 
 def search(request):

@@ -121,17 +121,6 @@ ajax_patterns = patterns(
         views.file_perf_tests_start, name='devhub.file_perf_tests_start'),
 )
 
-packager_patterns = patterns(
-    '',
-    url('^$', views.package_addon, name='devhub.package_addon'),
-    url('^download/%s.zip$' % PACKAGE_NAME, views.package_addon_download,
-        name='devhub.package_addon_download'),
-    url('^json/%s$' % PACKAGE_NAME, views.package_addon_json,
-        name='devhub.package_addon_json'),
-    url('^success/%s$' % PACKAGE_NAME, views.package_addon_success,
-        name='devhub.package_addon_success'),
-)
-
 redirect_patterns = patterns(
     '',
     ('^addon/edit/(\d+)',
@@ -170,9 +159,6 @@ urlpatterns = decorate(write, patterns(
         views.compat_application_versions,
         name='devhub.compat_application_versions'),
 
-    # Add-on packager
-    url('^tools/package/', include(packager_patterns)),
-
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     url('^addons$', views.dashboard, name='devhub.addons'),
@@ -208,12 +194,10 @@ urlpatterns = decorate(write, patterns(
     url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
-    url('builder$', views.builder, name='devhub.builder'),
+    url('builder$', lambda r: redirect(views.MDN_BASE)),
 
     # Developer docs
-    url('docs/(?P<doc_name>[-_\w]+)?$',
-        views.docs, name='devhub.docs'),
-    url('docs/(?P<doc_name>[-_\w]+)/(?P<doc_page>[-_\w]+)',
+    url('docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$',
         views.docs, name='devhub.docs'),
 
     # Search

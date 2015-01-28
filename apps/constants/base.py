@@ -42,7 +42,6 @@ STATUS_CHOICES_PERSONA = {
     STATUS_DELETED: STATUS_CHOICES_ADDON[STATUS_DELETED],
     STATUS_REJECTED: _(u'Rejected'),
     # Approved, but the developer would like to put it public when they want.
-    # The need to go to the marketplace and actualy make it public.
     STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
 }
 
