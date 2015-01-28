@@ -374,7 +374,7 @@
     }
 }
 
-#monthly {
+#featured-addon, #monthly {
     background: url(../../img/zamboni/discovery_pane/promos/monthly-bg.png) 50% 0 no-repeat;
 
     .wrap > div {
@@ -415,8 +415,12 @@
     }
 }
 
-.html-rtl #monthly .thumb {
+.html-rtl #monthly .thumb, .html-rtl #featured-addon .thumb {
     text-align: left;
+}
+
+#featured-addon {
+    background: url(../../img/zamboni/discovery_pane/promos/bokeh-blue-bg.jpg) 50% 0 no-repeat;
 }
 
 #go-mobile {
@@ -568,6 +572,7 @@
 }
 
 .addons li > a,
+#featured-addon > div,
 #monthly > div,
 #go-mobile > div {
     .gradient-two-color(#fff, #ecf1f7);

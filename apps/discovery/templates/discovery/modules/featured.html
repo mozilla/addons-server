@@ -1,0 +1,32 @@
+{%- if addon -%}
+{% set is_disco = module_context == 'discovery' %}
+{% set src = 'discovery-promo' if is_disco else 'hp-btn-promo' %}
+<li class="panel" data-addonguid="{{ addon.guid }}">
+  <div id="featured-addon" class="feature promo">
+    <hgroup>
+      <h2>{{ title }}</h2>
+    </hgroup>
+    <div class="wrap">
+      <div>
+        {% if is_disco %}
+          {% set addon_url = services_url('discovery.addons.detail', addon.slug or addon.id, src=src) %}
+        {% else %}
+          {% set addon_url = addon.get_url_path()|urlparams(src=src) %}
+        {% endif %}
+        <div class="blurb">
+          <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
+          <p>{{ addon.summary }}</p>
+          {{ install_button(addon, impala=not is_disco) }}
+          <a href="{{ addon_url }}" target="_self" class="button details-link">
+            {{ _('Learn More') }}</a>
+        </div>
+        {% if addon.all_previews[0] %}
+          <a href="{{ addon_url }}" target="_self" class="thumb">
+            <img src="{{ addon.all_previews[0].image_url }}" alt="">
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</li>
+{%- endif -%}

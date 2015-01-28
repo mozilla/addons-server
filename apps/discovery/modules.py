@@ -346,3 +346,22 @@ class AustralisContestResults(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'australis'
     title = _('Add-ons for Australis Contest Winners')
     template = 'discovery/modules/australis-contest-results.html'
+
+
+# Want to feature more than one add-on?  Use FeaturedCollection
+class FeaturedAddon(TemplatePromo):
+    slug = 'Featured Add-on'
+    template = 'discovery/modules/featured.html'
+    title = _('What are your interests?')
+
+    # First add-on out is from bug 1100454
+    pk = 547630
+
+    def context(self, **kwargs):
+        try:
+            addon = Addon.objects.get(pk=self.pk)
+        except IndexError:
+            addon = None
+        return {'addon': addon,
+                'module_context': 'discovery',
+                'title': self.title}
