@@ -244,8 +244,8 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         The result is based on which app(s) the version targets.
         """
         app_ids = [a.application for a in self.apps.all()]
-        targets_mobile = amo.MOBILE.id in app_ids
-        targets_other = any((id_ != amo.MOBILE.id) for id_ in app_ids)
+        targets_mobile = amo.ANDROID.id in app_ids
+        targets_other = any((id_ != amo.ANDROID.id) for id_ in app_ids)
         all_plats = {}
         if targets_other:
             all_plats.update(amo.DESKTOP_PLATFORMS)

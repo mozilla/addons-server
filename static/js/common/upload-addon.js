@@ -414,13 +414,12 @@
                                     $input.attr('disabled', true);
                                 }
                             });
-                            $.each(['.desktop-platforms', '.mobile-platforms'], function(i, sel) {
-                                var disabled = $(sel + ' input:disabled').length,
-                                    all = $(sel + ' input').length;
-                                if (disabled > 0 && disabled == all) {
-                                    $(sel + ' label').addClass('platform-disabled');
-                                }
-                            });
+                            var platforms_selector = '.supported-platforms',
+                                disabled = $(platforms_selector + ' input:disabled').length,
+                                all = $(platforms_selector + ' input').length;
+                            if (disabled > 0 && disabled == all) {
+                                $(platforms_selector + ' label').addClass('platform-disabled');
+                            }
                             if (excluded) {
                                 var msg = gettext('Some platforms are not available for this type of add-on.');
                                 if ($('.platform input[type=checkbox]').length === $('.platform input[type=checkbox]:disabled').length) {

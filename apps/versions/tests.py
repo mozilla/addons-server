@@ -99,7 +99,7 @@ class TestVersion(amo.tests.TestCase):
         return [amo.PLATFORMS[i].shortname for i in ids]
 
     def target_mobile(self):
-        app = amo.MOBILE.id
+        app = amo.ANDROID.id
         app_vr = AppVersion.objects.create(application=app, version='1.0')
         ApplicationsVersions.objects.create(version=self.version,
                                             application=app,
