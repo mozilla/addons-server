@@ -1493,7 +1493,7 @@ msgstr "Mësoni Më Tepër"
 
 #: apps/addons/templates/addons/mobile/home.html:22
 msgid "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your on-the-go browsing."
-msgstr "Shtesat janë zbatime që ju lejojnë ta personalizoni Firefox-in me funksione dhe stil ekstra. Si për rastin kur shkruani gabim emrin e një sajti, ose kur nuk lexoni dot në një faqe me shumë trafik, ka një shtesë që të përmirësojë shfletimin tuaj."
+msgstr "Shtesat janë aplikacione që ju lejojnë ta personalizoni Firefox-in me funksione dhe stil ekstra. Si për rastin kur shkruani gabim emrin e një sajti, ose kur nuk lexoni dot në një faqe me shumë trafik, ka një shtesë që të përmirësojë shfletimin tuaj."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1914,7 +1914,7 @@ msgstr "{user} fshiu {review} për {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
-msgstr "U përditësua version maksimal zbatimi për {version}."
+msgstr "U përditësua version maksimal aplikacioni për {version}."
 
 #: apps/amo/log.py:355
 msgid "Authors emailed about compatibility of {version}."
@@ -1966,7 +1966,7 @@ msgstr "Kërkesa për shqyrtim të mëtejshëm u hoq"
 
 #: apps/amo/log.py:414
 msgid "App disabled"
-msgstr "Zbatimi u çaktivizua"
+msgstr "Aplikacioni u çaktivizua"
 
 #: apps/amo/log.py:421
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2373,19 +2373,19 @@ msgstr "Lypset OAuth"
 #: apps/applications/views.py:36
 #: apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
-msgstr "Versione Zbatimesh"
+msgstr "Versione Aplikacionesh"
 
 #: apps/applications/views.py:42
 msgid "Acceptable versions for all applications on AMO."
-msgstr "Versione të pranueshme për krejt zbatimet në AMO."
+msgstr "Versione të pranueshme për krejt aplikacionet në AMO."
 
 #: apps/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
-msgstr "Versione të Vlefshëm Zbatimi"
+msgstr "Versione të Vlefshëm Aplikacioni"
 
 #: apps/applications/templates/applications/appversions.html:12
 msgid "Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Shtesat e parashtruara te Shtesat Mozilla duhet të kenë një kartelë install.rdf me mbulim për të paktën një nga zbatimet më poshtë. Janë të lejuar vetëm versionet e radhitur më poshtë për këta zbatime."
+msgstr "Shtesat e parashtruara te Shtesat Mozilla duhet të kenë një kartelë install.rdf me mbulim për të paktën një nga aplikacionet më poshtë. Janë të lejuar vetëm versionet e radhitur më poshtë për këta aplikacione."
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -2403,7 +2403,7 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "Edhe po qe se zbatimi juaj nuk kërkon domosdo një kartelë install.rdf, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet <a href=\"%(url)s\">këtu</a>."
+msgstr "Edhe po qe se aplikacioni juaj nuk kërkon domosdo një kartelë install.rdf, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet <a href=\"%(url)s\">këtu</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
@@ -3599,7 +3599,7 @@ msgstr "Shihini krejt"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr "Filtroji sipas Zbatimesh"
+msgstr "Filtroji sipas Aplikacionesh"
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
@@ -3611,11 +3611,11 @@ msgstr "Lloj Raporti"
 #: apps/editors/forms.py:100
 #: apps/zadmin/forms.py:47
 msgid "Application"
-msgstr "Zbatim"
+msgstr "Aplikacion"
 
 #: apps/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
-msgstr "Montim Zbatimi"
+msgstr "Montim Aplikacioni"
 
 #: apps/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
@@ -3780,7 +3780,7 @@ msgstr "Motor Kërkimi"
 
 #: apps/constants/base.py:163
 msgid "Language Pack (Application)"
-msgstr "Paketë Gjuhësore (Zbatim)"
+msgstr "Paketë Gjuhësore (Aplikacion)"
 
 #: apps/constants/base.py:164
 msgid "Language Pack (Add-on)"
@@ -3806,7 +3806,7 @@ msgstr "Fjalorë"
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:176
 msgid "Language Packs (Application)"
-msgstr "Paketa Gjuhësore (Zbatim)"
+msgstr "Paketa Gjuhësore (Aplikacion)"
 
 #: apps/constants/base.py:177
 msgid "Language Packs (Add-on)"
@@ -4203,7 +4203,7 @@ msgstr "Interval i pavlefshëm versioni."
 
 #: apps/devhub/forms.py:469
 msgid "Need at least one compatible application."
-msgstr "Lyp të paktën një zbatim të përputhshëm."
+msgstr "Lyp të paktën një aplikacion të përputhshëm."
 
 #: apps/devhub/forms.py:482
 #: apps/devhub/forms.py:499
@@ -4337,7 +4337,7 @@ msgstr "Versioni minimum duhet të jetë më i vogël se versioni maksimum."
 
 #: apps/devhub/forms.py:921
 msgid "{0} is a required target application."
-msgstr "{0} është zbatim objekt i domosdoshëm."
+msgstr "{0} është aplikacion objekt i domosdoshëm."
 
 #: apps/devhub/forms.py:933
 msgid "About dialog"
@@ -4400,7 +4400,7 @@ msgstr "Krijon një shembull paneli anështylle"
 #: apps/zadmin/forms.py:51
 #: apps/zadmin/forms.py:54
 msgid "Select an application first"
-msgstr "Përzgjidhni së pari një zbatim"
+msgstr "Përzgjidhni së pari një aplikacion"
 
 #: apps/devhub/forms.py:1021
 msgid "There cannot be more than 3 required add-ons."
@@ -4955,11 +4955,11 @@ msgstr "Kur do të funksionojë shtesa juaj?"
 
 #: apps/devhub/templates/devhub/package_addon.html:56
 msgid "Select the applications and versions that your add-on will support. The versions that you select will be the only versions that your add-on will be installable on. Make sure you only select applications and versions that you intend to test your add-on with."
-msgstr "Përzgjidhni zbatimet dhe versionet që do të mbulojë shtesa juaj. Versionet që përzgjidhni do të jenë të vetmit versione për të cilët do të jetë e instalueshme shtesa juaj. Sigurohuni që përzgjidhni vetëm zbatime dhe versione për të cilët keni ndërmend ta kaloni në provë shtesën tuaj."
+msgstr "Përzgjidhni aplikacionet dhe versionet që do të mbulojë shtesa juaj. Versionet që përzgjidhni do të jenë të vetmit versione për të cilët do të jetë e instalueshme shtesa juaj. Sigurohuni që përzgjidhni vetëm aplikacione dhe versione për të cilët keni ndërmend ta kaloni në provë shtesën tuaj."
 
 #: apps/devhub/templates/devhub/package_addon.html:64
 msgid "Supported Applications and Versions"
-msgstr "Zbatime dhe Versione që Mbulohen"
+msgstr "Aplikacione dhe Versione që Mbulohen"
 
 #: apps/devhub/templates/devhub/package_addon.html:80
 msgid "Choose pre-built features"
@@ -4979,7 +4979,7 @@ msgstr "Montime të Përparuara"
 
 #: apps/devhub/templates/devhub/package_addon.html:104
 msgid "Want to create XULRunner applications, XPCOM components, and other advanced skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr "Doni të krijoni zbatime XULRunner, përbërëse XPCOM, dhe të tjera struktura më të përparuara? Vizitoni <a href=\"%(url)s\">MozDev Project Wizard</a>."
+msgstr "Doni të krijoni aplikacione XULRunner, përbërëse XPCOM, dhe të tjera struktura më të përparuara? Vizitoni <a href=\"%(url)s\">MozDev Project Wizard</a>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:10
 msgid "Add-on packaged successfully!"
@@ -4987,7 +4987,7 @@ msgstr "Shtesa u paketua me sukses!"
 
 #: apps/devhub/templates/devhub/package_addon_success.html:14
 msgid "Use the download link below to save a copy of your extension's compressed source. To install as an extension in Firefox or another compatible application, simply rename the <kbd>.zip</kbd> extension to <kbd>.xpi</kbd>."
-msgstr "Përdorni lidhjen më poshtë që të ruani një kopje të burimit të ngjeshur të zgjerimit tuaj. Që ta instaloni si një zgjerim në Firefox ose në një tjetër zbatim të përputhshëm, thjesht riemërtojeni zgjerimin <kbd>.zip</kbd> si <kbd>.xpi</kbd>."
+msgstr "Përdorni lidhjen më poshtë që të ruani një kopje të burimit të ngjeshur të zgjerimit tuaj. Që ta instaloni si një zgjerim në Firefox ose në një tjetër aplikacion të përputhshëm, thjesht riemërtojeni zgjerimin <kbd>.zip</kbd> si <kbd>.xpi</kbd>."
 
 #: apps/devhub/templates/devhub/package_addon_success.html:22
 msgid "Please wait&hellip;"
@@ -5019,7 +5019,7 @@ msgstr "Përdorni fushën më poshtë për të ngarkuar paketën e shtesës suaj
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Pas ngarkimit, do të kryhen një varg provash të automatizuara vleftësimi, për t’i kontrolluar përputhshmërinë me versionin vijues të zbatimit:"
+msgstr "Pas ngarkimit, do të kryhen një varg provash të automatizuara vleftësimi, për t’i kontrolluar përputhshmërinë me versionin vijues të aplikacionit:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
 msgid "After upload, a series of automated validation tests will be run on your file."
@@ -5088,7 +5088,7 @@ msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_u
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
-msgstr "Shihni dhe përditësoni intervalet e përputhshmërisë së zbatimit."
+msgstr "Shihni dhe përditësoni intervalet e përputhshmërisë së aplikacionit."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:6
 #: apps/devhub/templates/devhub/versions/edit.html:44
@@ -5102,7 +5102,7 @@ msgstr "Përditësoni Përputhshmërinë"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4
 #: apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Rregullimi i të dhënave të zbatimit këtu do t’u lejojë përdoruesve të instalojnë shtesën tuaj edhe manifesti i instalimit te paketa tregon që ajo shtesë është e papërputhshme."
+msgstr "Rregullimi i të dhënave të aplikacionit këtu do t’u lejojë përdoruesve të instalojnë shtesën tuaj edhe manifesti i instalimit te paketa tregon që ajo shtesë është e papërputhshme."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -5111,7 +5111,7 @@ msgstr "Versione Që Mbulohen"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:31
 #: apps/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr "Shtoni Një Tjetër Zbatim&hellip;"
+msgstr "Shtoni Një Tjetër Aplikacion&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:86
@@ -5241,7 +5241,7 @@ msgstr "Kategoritë janë rruga parësore me të cilën përdoruesit shfletojnë
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "Kategoritë nuk mund të ndryshohen, ndërkohë që shtesa juaj është e zgjedhur për këtë zbatim. Ju lutemi, dërgoni email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka ndonjë arsye që ju bën të modifikoni kategoritë tuaja."
+msgstr "Kategoritë nuk mund të ndryshohen, ndërkohë që shtesa juaj është e zgjedhur për këtë aplikacion. Ju lutemi, dërgoni email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka ndonjë arsye që ju bën të modifikoni kategoritë tuaja."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
@@ -6049,7 +6049,7 @@ msgstr "Sapo të ndiheni familjar me mjedisin e zhvillimit të zgjerimeve, ësht
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:54
 msgid "Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
-msgstr "Thjesht ndiqni hapat për të dhënë emrin, numrin e versionit, zbatimet që mbulon, dhe hollësi të tjera për të, dhe do ta përgatitë shtesën tuaj për shkarkim. Jo vetëm që prodhon për ju manifest instalimi, por mund të përzgjidhni elementë të rëndomtë ndërfaqeje, të tillë si panele, anështylla, dhe menu kontekstesh, për të gatitur një skelet funksional zgjerimi. Praktikisht e shkruajmë ne zgjerimin tuaj!"
+msgstr "Thjesht ndiqni hapat për të dhënë emrin, numrin e versionit, aplikacionet që mbulon, dhe hollësi të tjera për të, dhe do ta përgatitë shtesën tuaj për shkarkim. Jo vetëm që prodhon për ju manifest instalimi, por mund të përzgjidhni elementë të rëndomtë ndërfaqeje, të tillë si panele, anështylla, dhe menu kontekstesh, për të gatitur një skelet funksional zgjerimi. Praktikisht e shkruajmë ne zgjerimin tuaj!"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:60
 msgid "Take me to the Add-on Packager!"
@@ -6085,7 +6085,7 @@ msgstr "Provojeni shtesën tuaj"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:91
 msgid "Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works on all the platforms and applications it claims to support."
-msgstr "As edhe insektologët nuk i pëlqejnë kandrrat në software-in e tyre, ndaj është e rëndësishme ta vini plotësisht në provë shtesën tuaj, përpara se të jetë gati për konsum të përgjithshëm. Më e pakta, do të duhej të siguroheshit që shtesa juaj funksionon në krejt platformat dhe zbatimet që pretendon se mbulohen."
+msgstr "As edhe insektologët nuk i pëlqejnë kandrrat në software-in e tyre, ndaj është e rëndësishme ta vini plotësisht në provë shtesën tuaj, përpara se të jetë gati për konsum të përgjithshëm. Më e pakta, do të duhej të siguroheshit që shtesa juaj funksionon në krejt platformat dhe aplikacionet që pretendon se mbulohen."
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:97
 msgid "To help detect common problems with packaging and security, you should run our <a href=\"%(link_validator)s\">Add-on Validator</a> tool on your file. It's like Spell Check for add-ons. Your add-on will automatically be validated upon submission, but you may want to test it out beforehand. Plus, passing makes you feel good."
@@ -6317,7 +6317,7 @@ msgstr "Gatitja e një Mjedisi Zhvillimi Zgjerimesh"
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
 msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
-msgstr "Ky artikull ju jep këshilla se si të gatitet zbatimi juaj Mozilla për zhvillim zgjerimesh, përfshi rregullim profili, ndryshim parapëlqimesh, dhe mjete të dobishme zhvillimi."
+msgstr "Ky artikull ju jep këshilla se si të gatitet aplikacioni juaj Mozilla për zhvillim zgjerimesh, përfshi rregullim profili, ndryshim parapëlqimesh, dhe mjete të dobishme zhvillimi."
 
 #: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
 msgid "Building an Extension"
@@ -6478,7 +6478,7 @@ msgstr "Tregues Dokumentimi Shtojcash"
 
 #: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
 msgid "Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in documentation index to learn more."
-msgstr "Shtojcat për zbatime me bazë Mozilla janë përbërës dyorë që mund të shfaqin lëndë të cilën vetë zbatimi nuk mund ta shfaqë pa to. Për të mësuar më tepër, hidhini një sy treguesit të dokumentimit mbi shtojcat te Mozilla Developer Center."
+msgstr "Shtojcat për aplikacione me bazë Mozilla janë përbërës dyorë që mund të shfaqin lëndë të cilën vetë aplikacioni nuk mund ta shfaqë pa to. Për të mësuar më tepër, hidhini një sy treguesit të dokumentimit mbi shtojcat te Mozilla Developer Center."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
@@ -6492,7 +6492,7 @@ msgstr "Zhvillim Temash"
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11
 #: apps/devhub/templates/devhub/docs/how-to.html:115
 msgid "Style Mozilla applications the way you want with pixel-perfect themes."
-msgstr "Vishini zbatimet Mozilla ashtu si doni, me tema të përsosura deri në pikselin e fundit."
+msgstr "Vishini aplikacionet Mozilla ashtu si doni, me tema të përsosura deri në pikselin e fundit."
 
 #: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
 msgid "Creating a Skin for Firefox"
@@ -6551,7 +6551,7 @@ msgstr "Shtesa Thunderbird-i & Celulari"
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
 msgid "Add-ons aren't just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Shtesat nuk janë thjesht për Firefox-in. Mësoni se si të zgjeroni zbatime të tjera Mozilla, si, fjala vjen, klienti Thunderbird për postën dhe Firefox-i për pajisje celulare."
+msgstr "Shtesat nuk janë thjesht për Firefox-in. Mësoni se si të zgjeroni aplikacione të tjera Mozilla, si, fjala vjen, klienti Thunderbird për postën dhe Firefox-i për pajisje celulare."
 
 #: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:18
 msgid "Developing Add-ons for Thunderbird"
@@ -6638,7 +6638,7 @@ msgstr "Shtesa Thunderbird-i &amp; Celulari"
 
 #: apps/devhub/templates/devhub/docs/how-to.html:103
 msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Shtesat nuk janë vetëm për Firefox-in. Mësoni se si ta zgjeroni zbatime të tjera Mozilla, të tillë si klienti i postës Thunderbird dhe Firefox-i për pajisje celulare."
+msgstr "Shtesat nuk janë vetëm për Firefox-in. Mësoni se si ta zgjeroni aplikacione të tjera Mozilla, të tillë si klienti i postës Thunderbird dhe Firefox-i për pajisje celulare."
 
 #: apps/devhub/templates/devhub/docs/marketplace.html:3
 msgid "Marketplace"
@@ -7054,7 +7054,7 @@ msgstr "përplasje të mundshme me shtesa të tjera"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr "përkeqësim i nisjes së zbatimit ose kohës së ngarkimit të faqes"
+msgstr "përkeqësim i nisjes së aplikacionit ose kohës së ngarkimit të faqes"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 msgid "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain conditions outlined below."
@@ -7207,7 +7207,7 @@ msgstr "Shtesat e strehuara te Shtesat Mozilla duhet të jenë të një cilësie
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid "<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
-msgstr "<strong>A jeni reagues?</strong> Ne presim që një autor i cili po promovon shtesën e tij te përdoruesit e shumtë të zbatimit tonë të jetë reagues ndaj njoftimeve për probleme, të mirëmbajë të dhënat e tyre për kontakte, dhe të përditësojë shtesën e tij pa vonesa, për ta mbajtur në një vijë me hedhjet në qarkullim të Firefox-it dhe me ndryshimet në rregullat tona. Kjo nuk do të thotë që duhet t’i përgjigjeni çdo pyetje që dikush boton në diskutime, ose se lypset të ndreqni çdo të metë, ama presim që t’u përgjigjeni problemeve në një mënyrë që përshtatet me rëndësinë e çështjes në fjalë."
+msgstr "<strong>A jeni reagues?</strong> Ne presim që një autor i cili po promovon shtesën e tij te përdoruesit e shumtë të aplikacionit tonë të jetë reagues ndaj njoftimeve për probleme, të mirëmbajë të dhënat e tyre për kontakte, dhe të përditësojë shtesën e tij pa vonesa, për ta mbajtur në një vijë me hedhjet në qarkullim të Firefox-it dhe me ndryshimet në rregullat tona. Kjo nuk do të thotë që duhet t’i përgjigjeni çdo pyetje që dikush boton në diskutime, ose se lypset të ndreqni çdo të metë, ama presim që t’u përgjigjeni problemeve në një mënyrë që përshtatet me rëndësinë e çështjes në fjalë."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:25
 msgid "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
@@ -7235,7 +7235,7 @@ msgstr "Përpiqemi në mënyrë konstante të përmirësojmë organizimin e sajt
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:61
 msgid "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
-msgstr "Nëse shtesa juaj ofron faqerojtës ose tjetër hyrje të thjeshtë te sajti juaj, nuk duket se është e përshtatshme për në galerinë. Si edhe për pjesën tjetër të projekteve Mozilla, i duam zbatimet web dhe shërbimet e reja web, por shtesat e Firefox-it do të duhej të sillnin punim të përmirësuar të shfletuesit dhe jo thjesht të jenë një rrugë për të promovuar një sajt apo shërbim të ri përmes listave të Shtesave Mozilla."
+msgstr "Nëse shtesa juaj ofron faqerojtës ose tjetër hyrje të thjeshtë te sajti juaj, nuk duket se është e përshtatshme për në galerinë. Si edhe për pjesën tjetër të projekteve Mozilla, i duam aplikacionet web dhe shërbimet e reja web, por shtesat e Firefox-it do të duhej të sillnin punim të përmirësuar të shfletuesit dhe jo thjesht të jenë një rrugë për të promovuar një sajt apo shërbim të ri përmes listave të Shtesave Mozilla."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
 msgid "<strong>Is the add-on free of unlicensed trademarks and copyrights?</strong> Though you may mean no harm to the holder of a trademark, or the owner of a copyrighted work, we can't host add-ons that infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
@@ -7334,7 +7334,7 @@ msgstr "përmes <a class=\"refsource\" href=\"http://developer.mozilla.org\">Qen
 
 #: apps/devhub/templates/devhub/docs/reference.html:31
 msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
-msgstr "XUL (Gjuha XML për Ndërfaqe Përdoruesi) është gjuha me bazë XML e Mozilla-s që ju lejon të ndërtoni zbatime ndërplatformëshe, të pasura në karakteristika, që mund të xhirojnë si kur jeni i lidhur në Internet, si kur nuk jeni."
+msgstr "XUL (Gjuha XML për Ndërfaqe Përdoruesi) është gjuha me bazë XML e Mozilla-s që ju lejon të ndërtoni aplikacione ndërplatformëshe, të pasura në karakteristika, që mund të xhirojnë si kur jeni i lidhur në Internet, si kur nuk jeni."
 
 #: apps/devhub/templates/devhub/docs/reference.html:38
 msgid "XUL Reference"
@@ -7395,7 +7395,7 @@ msgstr "Përmbledhje e CSS-së"
 
 #: apps/devhub/templates/devhub/docs/reference.html:133
 msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
-msgstr "Cascading Style Sheets (CSS) është një gjuhë fletëstilesh e përdorur për të përshkruar paraqitjen e një dokumenti të shkruar në HTML ose XML dhe përdoret për të stilizuar ndërfaqen e përdoruesit te zbatime me bazë XUL."
+msgstr "Cascading Style Sheets (CSS) është një gjuhë fletëstilesh e përdorur për të përshkruar paraqitjen e një dokumenti të shkruar në HTML ose XML dhe përdoret për të stilizuar ndërfaqen e përdoruesit te aplikacione me bazë XUL."
 
 #: apps/devhub/templates/devhub/docs/reference.html:140
 msgid "Gecko CSS Reference"
@@ -8050,7 +8050,7 @@ msgstr "Lejohet ca HTML."
 
 #: apps/devhub/templates/devhub/includes/macros.html:59
 msgid "Remove this application"
-msgstr "Hiqe këtë zbatim"
+msgstr "Hiqe këtë aplikacion"
 
 #. {0} is the maximum number of add-on categories allowed.
 #. {1} is the application name.
@@ -8885,7 +8885,7 @@ msgstr "Ç’janë Shtesat?"
 
 #: apps/discovery/templates/discovery/pane.html:29
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr "Shtesat janë zbatime që ju lejojnë të personalizoni %(app)s me funksione ose stil ekstra. Provoni një anështyllë që bën diçka e ju kursen kohë, një njoftues moti, ose një pamje sipas një tematike të caktuar, që ta bëni %(app)s si e doni."
+msgstr "Shtesat janë aplikacione që ju lejojnë të personalizoni %(app)s me funksione ose stil ekstra. Provoni një anështyllë që bën diçka e ju kursen kohë, një njoftues moti, ose një pamje sipas një tematike të caktuar, që ta bëni %(app)s si e doni."
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
@@ -9091,7 +9091,7 @@ msgstr "Sisteme operativë:"
 
 #: apps/editors/forms.py:254
 msgid "Applications:"
-msgstr "Zbatime:"
+msgstr "Aplikacione:"
 
 #: apps/editors/forms.py:256
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -9125,7 +9125,7 @@ msgstr "Dikush tjetër po e shqyrton këtë temë."
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:462
 msgid "app, reviewer, or comment"
-msgstr "zbatim, shqyrtues, ose koment"
+msgstr "aplikacion, shqyrtues, ose koment"
 
 #: apps/editors/helpers.py:43
 msgid "Pending Preliminary Review"
@@ -9233,7 +9233,7 @@ msgstr "Flamurka"
 
 #: apps/editors/helpers.py:195
 msgid "Applications"
-msgstr "Zbatime"
+msgstr "Aplikacione"
 
 #: apps/editors/helpers.py:200
 msgid "Additional"
@@ -10439,7 +10439,7 @@ msgstr "Për çfarë është ky sajt?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr "addons.mozilla.org, e njohur rëndom si \"AMO\", është sajti zyrtar i Mozilla-s për shtesa ndaj software-i Mozilla, të tillë si Firefox-i, Thunderbird-i, dhe SeaMonkey. Shtesat ju lejojnë të shtoni veçori të reja dhe të ndryshoni mënyrën me të cilën funksionon shfletuesi ose zbatimi juaj. Hidhni një sy përreth dhe eksploroni mijëra mënyra për të personalizuar rrugën sipas të cilës bëni gjëra në linjë."
+msgstr "addons.mozilla.org, e njohur rëndom si \"AMO\", është sajti zyrtar i Mozilla-s për shtesa ndaj software-i Mozilla, të tillë si Firefox-i, Thunderbird-i, dhe SeaMonkey. Shtesat ju lejojnë të shtoni veçori të reja dhe të ndryshoni mënyrën me të cilën funksionon shfletuesi ose aplikacioni juaj. Hidhni një sy përreth dhe eksploroni mijëra mënyra për të personalizuar rrugën sipas të cilës bëni gjëra në linjë."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10714,7 +10714,7 @@ msgstr "Ç’është XUL-i?"
 
 #: apps/pages/templates/pages/dev_faq.html:111
 msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr "XUL (XML User Interface Language - Gjuhë XML Ndërfaqesh Përdoruesi) është gjuha me bazë XML e Mozilla-s, e cila ju lejon të ndërtoni zbatime plot funksione dhe ndërplatformësh. Ajo ju furnizon elemente ndërfaqeje përdoruesi, të tillë si butona, menu, panele, struktura pemë, etj, që mund të përdoren për të zgjeruar shtesat, duke ndryshuar pjesë të Ndërfaqes së Përdoruesit të shfletuesit."
+msgstr "XUL (XML User Interface Language - Gjuhë XML Ndërfaqesh Përdoruesi) është gjuha me bazë XML e Mozilla-s, e cila ju lejon të ndërtoni aplikacione plot funksione dhe ndërplatformësh. Ajo ju furnizon elemente ndërfaqeje përdoruesi, të tillë si butona, menu, panele, struktura pemë, etj, që mund të përdoren për të zgjeruar shtesat, duke ndryshuar pjesë të Ndërfaqes së Përdoruesit të shfletuesit."
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
@@ -10722,7 +10722,7 @@ msgstr "Përse përdoret kartela \"install.rdf\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:122
 msgid "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be updated, and so on. The format of the Install Manifest is RDF/XML."
-msgstr "Kjo kartelë, e quajtur një <a href=\"%(url)s\">Manifest Instalimi</a>, përdoret nga zbatime XUL, të përdorshme nga Përgjegjësi i Shtesave, për të përcaktuar të dhëna rreth një shtese, teksa fillon instalimi i saj. Në të përmbahen tejtëdhëna që identifikojnë shtesën, duke furnizuar informacion se kush e krijoi, ku mund të gjenden më tepër të dhëna rreth saj, cili version i cilit zbatim është i përputhshëm me të, si do të duhej përmirësuar ajo, e me radhë. Formati për Manifeste Instalimi është RDF/XML."
+msgstr "Kjo kartelë, e quajtur një <a href=\"%(url)s\">Manifest Instalimi</a>, përdoret nga aplikacione XUL, të përdorshme nga Përgjegjësi i Shtesave, për të përcaktuar të dhëna rreth një shtese, teksa fillon instalimi i saj. Në të përmbahen tejtëdhëna që identifikojnë shtesën, duke furnizuar informacion se kush e krijoi, ku mund të gjenden më tepër të dhëna rreth saj, cili version i cilit aplikacion është i përputhshëm me të, si do të duhej përmirësuar ajo, e me radhë. Formati për Manifeste Instalimi është RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:133
 msgid "What does \"maxVersion\" mean?"
@@ -10845,7 +10845,7 @@ msgstr "A mund ta strehoj shtesën time?"
 
 #: apps/pages/templates/pages/dev_faq.html:266
 msgid "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage source code, version control, bug tracking and documentation."
-msgstr "Po. Mjaft zhvillues i strehojnë vetë shtesat e tyre. Por, po të zgjidhni të strehoni shtesën tuaj te <a href=\"%(amo_url)s\">sajti i shtesave Mozilla</a>, ju krijohet mundësia për ekspozim më të madh të shtesës suaj para një vëllimi të madh vizitorësh të sajtit. <a href=\"%(md_url)s\">mozdev.org</a> ofron strehim falas për projekte zbatimesh dhe zgjerimesh Mozilla, duke u furnizuar zhvilluesve mjete në ndihmë të administrimit të kodit burim, për kontroll versionesh, ndjekje të metash dhe dokumentim."
+msgstr "Po. Mjaft zhvillues i strehojnë vetë shtesat e tyre. Por, po të zgjidhni të strehoni shtesën tuaj te <a href=\"%(amo_url)s\">sajti i shtesave Mozilla</a>, ju krijohet mundësia për ekspozim më të madh të shtesës suaj para një vëllimi të madh vizitorësh të sajtit. <a href=\"%(md_url)s\">mozdev.org</a> ofron strehim falas për projekte aplikacionesh dhe zgjerimesh Mozilla, duke u furnizuar zhvilluesve mjete në ndihmë të administrimit të kodit burim, për kontroll versionesh, ndjekje të metash dhe dokumentim."
 
 #: apps/pages/templates/pages/dev_faq.html:278
 msgid "Can Mozilla host my add-on?"
@@ -11144,11 +11144,11 @@ msgstr "Shtesat janë programe të vegjël që shtojnë te instalimi juaj i %(ap
 
 #: apps/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
-msgstr "A do të punojnë shtesat me shfletuesin ose zbatimin tim web?"
+msgstr "A do të punojnë shtesat me shfletuesin ose aplikacionin tim web?"
 
 #: apps/pages/templates/pages/faq.html:27
 msgid "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
-msgstr "Shtesat e treguara në këtë galeri punojnë vetëm për zbatime me bazë Mozilla, të tilla si <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dhe <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Megjithatë, jo të tëra shtesat punojnë me krejt këto zbatime, ose me çdo version të këtyre zbatimeve. Çdo shtesë e tregon se me cilat zbatime dhe versione punon, fjala vjen Firefox 2.0 - 3.6.*. Për shtesat për Firefox, pjesa e instalimit do të tregojë nëse shtesa është e përputhshme ose jo."
+msgstr "Shtesat e treguara në këtë galeri punojnë vetëm për aplikacione me bazë Mozilla, të tilla si <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dhe <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Megjithatë, jo të tëra shtesat punojnë me krejt këto aplikacione, ose me çdo version të këtyre aplikacioneve. Çdo shtesë e tregon se me cilat aplikacione dhe versione punon, fjala vjen Firefox 2.0 - 3.6.*. Për shtesat për Firefox, pjesa e instalimit do të tregojë nëse shtesa është e përputhshme ose jo."
 
 #: apps/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
@@ -11160,7 +11160,7 @@ msgstr "Ka një numër shtesash për personalizimin e %(app_name)s-it në rrugë
 
 #: apps/pages/templates/pages/faq.html:47
 msgid "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr "<strong><a href=\"%(browse_url)s\">Zgjerime</a></strong> shtoni te %(app_name)s veçori të reja ose ndryshoni funksione ekzistuese. Ka zgjerime që ju lejojnë të bllokoni reklamat, të shkarkoni video prej sajtesh, të integroheni më tepër me sajte shoqërorë, dhe të shtoni veçori që shihni në zbatime të tjera."
+msgstr "<strong><a href=\"%(browse_url)s\">Zgjerime</a></strong> shtoni te %(app_name)s veçori të reja ose ndryshoni funksione ekzistuese. Ka zgjerime që ju lejojnë të bllokoni reklamat, të shkarkoni video prej sajtesh, të integroheni më tepër me sajte shoqërorë, dhe të shtoni veçori që shihni në aplikacione të tjera."
 
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -11204,7 +11204,7 @@ msgstr "Si t’i mbaj të përditësuara shtesat?"
 
 #: apps/pages/templates/pages/faq.html:111
 msgid "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
-msgstr "Për shtesat, ndryshe nga shtojcat, kontrollohet vetvetiu për përditësime një herë në ditë. Në Firefox, përditësimet, si parazgjedhje, do të instalohen vetvetiu. Versionet e Firefox-it para 4-s (dhe zbatimet e tjera) do t’ju njoftojnë kur të ketë përditësime për shtesat tuaja. <a href=\"%(plugin_url)s\">Shtojcat</a> tani nuk kontrollohen vetvetiu për përditësime, ndaj mos harroni të vizitoni rregullisht faqen <a href=\"%(plugincheck_url)s\">Kontroll Shtojcash</a> që t’i mbani të përditësuara."
+msgstr "Për shtesat, ndryshe nga shtojcat, kontrollohet vetvetiu për përditësime një herë në ditë. Në Firefox, përditësimet, si parazgjedhje, do të instalohen vetvetiu. Versionet e Firefox-it para 4-s (dhe aplikacionet e tjera) do t’ju njoftojnë kur të ketë përditësime për shtesat tuaja. <a href=\"%(plugin_url)s\">Shtojcat</a> tani nuk kontrollohen vetvetiu për përditësime, ndaj mos harroni të vizitoni rregullisht faqen <a href=\"%(plugincheck_url)s\">Kontroll Shtojcash</a> që t’i mbani të përditësuara."
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -11509,7 +11509,7 @@ msgstr "Mos bëni pohime të rreme, mos përçmoni autorë shtesash ose mos i fy
 
 #: apps/pages/templates/pages/review_guide.html:131
 msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
-msgstr "Mos e përdorni shqyrtimin si një mjet për të kërkuar asistencë për një version të caktuar Firefox-i (ose tjetër zbatimi)."
+msgstr "Mos e përdorni shqyrtimin si një mjet për të kërkuar asistencë për një version të caktuar Firefox-i (ose tjetër aplikacioni)."
 
 #: apps/pages/templates/pages/review_guide.html:137
 msgid "Include your own email, phone number, or other personal details."
@@ -11883,7 +11883,7 @@ msgstr "kërkoni për tema"
 
 #: apps/search/forms.py:26
 msgid "search for apps"
-msgstr "kërkoni për zbatime"
+msgstr "kërkoni për aplikacione"
 
 #: apps/search/forms.py:49
 msgid "Sort By"
@@ -12150,7 +12150,7 @@ msgstr "sipas Versionit të Shtesës"
 
 #: apps/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
-msgstr "sipas Zbatimesh"
+msgstr "sipas Aplikacionesh"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
@@ -12336,7 +12336,7 @@ msgstr "Shtesa sipas Datash Përditësimi"
 
 #: apps/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr "Përdorim zbatimi sipas Datash"
+msgstr "Përdorim aplikacioni sipas Datash"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
@@ -12381,11 +12381,11 @@ msgstr "<b>{0}</b> Përdorues të Përditshëm Mesatarisht"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr "Zbatimet Kryesuese"
+msgstr "Aplikacionet Kryesuese"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr "Shihni më tepër zbatime&hellip;"
+msgstr "Shihni më tepër aplikacione&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
@@ -12445,7 +12445,7 @@ msgstr "<h2>Ç’janë përdoruesit ditorë?</h2> <p> Temat e instaluara nga ky 
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr "<h2>Çfarë janë përdoruesit e ditës?</h2> <p> Shtesat e shkarkuara prej këtij sajti kontrollojnë për përditësime një herë në ditë. Numri gjithsej i sinjaleve prej këtyre përditësimeve njihet si Përdorues Ditorë Aktivë. Përdoruesit e ditës mund të ndahen sipas versionit të shtesës, sistemit operativ, gjendjes së shtesës, zbatimeve, dhe vendores. </p>"
+msgstr "<h2>Çfarë janë përdoruesit e ditës?</h2> <p> Shtesat e shkarkuara prej këtij sajti kontrollojnë për përditësime një herë në ditë. Numri gjithsej i sinjaleve prej këtyre përditësimeve njihet si Përdorues Ditorë Aktivë. Përdoruesit e ditës mund të ndahen sipas versionit të shtesës, sistemit operativ, gjendjes së shtesës, aplikacioneve, dhe vendores. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
@@ -12453,7 +12453,7 @@ msgstr "Regjistrime Përdoruesish sipas Datash"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr "Versione zbatimi sipas Datash"
+msgstr "Versione aplikacioni sipas Datash"
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
@@ -12636,7 +12636,7 @@ msgstr "një zhvillues shtese i përgjigjet shqyrtimit tim"
 
 #: apps/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr "një zhvillues zbatimi i përgjigjet një shqyrtimit tim"
+msgstr "një zhvillues aplikacioni i përgjigjet një shqyrtimit tim"
 
 #: apps/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -12656,7 +12656,7 @@ msgstr "dikush shkruan një shqyrtim të shtesës sime"
 
 #: apps/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr "dikush shkruan një shqyrtim të zbatimit tim"
+msgstr "dikush shkruan një shqyrtim të aplikacionit tim"
 
 #: apps/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -12680,11 +12680,11 @@ msgstr "Mozilla ka nevojë të më kontaktojë rreth shtesës sime individuale"
 
 #: apps/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr "zbatimi im është shqyrtuar nga një redaktor"
+msgstr "aplikacioni im është shqyrtuar nga një redaktor"
 
 #: apps/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr "Mozilla ka nevojë të më kontaktojë rreth zbatimit tim individual"
+msgstr "Mozilla ka nevojë të më kontaktojë rreth aplikacionit tim individual"
 
 #: apps/users/notifications.py:139
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
@@ -13414,12 +13414,12 @@ msgstr "Disa veçori janë çaktivizuar përkohësisht, teksa bëjmë mirëmbajt
 #: templates/base.html:83
 #: templates/impala/base.html:74
 msgid "Find add-ons for other applications"
-msgstr "Gjeni shtesa për zbatime të tjera"
+msgstr "Gjeni shtesa për aplikacione të tjera"
 
 #: templates/base.html:84
 #: templates/impala/base.html:74
 msgid "Other Applications"
-msgstr "Zbatime të Tjera"
+msgstr "Aplikacione të Tjera"
 
 #: templates/base.html:133
 #: templates/impala/base.html:176
