@@ -355,7 +355,7 @@ class FeaturedAddon(TemplatePromo):
     title = _('What are your interests?')
 
     # First add-on out is from bug 1100454
-    pk = 547630
+    pk = 1865
 
     def context(self, **kwargs):
         try:
