@@ -1,4 +1,3 @@
-amo-validator==1.4.7
 amqp==1.0.13
 anyjson==0.3.3
 argparse==1.2.1
@@ -99,6 +98,7 @@ tower==0.4.1
 urllib3==1.9
 
 ## Not on pypi.
+-e git+https://github.com/mozilla/amo-validator.git@1.4.5#egg=amo-validator
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms

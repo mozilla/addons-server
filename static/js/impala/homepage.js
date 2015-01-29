@@ -24,6 +24,7 @@
             $disabled.closest('.wrap').addClass('hide-install');
         }
         $('#monthly .blurb > p').lineclamp(4);
+        $('#featuredaddon .blurb > p').lineclamp(4);
         $('.ryff .desc').lineclamp(6);
         $('h2:not(.multiline)', $promos).linefit();
     });

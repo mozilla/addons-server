@@ -47,10 +47,7 @@
     <h1>{{ _('Review Guidelines') }}</h1>
     <p>
       {% trans %}
-        Add-on reviews are a way for add-on site users to share their
-        opinions about the add-ons that they have installed and used. Editors
-        reserve the right to refuse or remove any review that does not comply
-        with these guidelines.
+        Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply with these guidelines.
       {% endtrans %}
     </p>
 
@@ -77,15 +74,7 @@
 
     <li>
       {% trans %}
-        Take a moment to read your review before submitting it to avoid
-        embarrassing typos or grammatical errors.
-      {% endtrans %}
-    </li>
-
-    <li>
-      {% trans %}
-        Avoid referring to topical or temporal references since reviews can
-        remain on the site for a long time.
+        Take a moment to read your review before submitting it to minimize typos.
       {% endtrans %}
     </li>
     </ul>
@@ -94,14 +83,12 @@
     <ul>
       <li>
         {% trans %}
-          Submit simple reviews such as "Great!", "wonderful", or "bad" with
-          no further explanation.
+          Submit one-word reviews such as "Great!", "wonderful," or "bad."
         {% endtrans %}
       </li>
       <li>
         {% trans %}
-          Post bug or problem reports in reviews. Use the available support
-          options for each add-on.
+          Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on section.
         {% endtrans %}
       </li>
       <li>
@@ -117,8 +104,7 @@
       </li>
       <li>
         {% trans %}
-          Include HTML, links to malware, source code or code snippets.
-          Reviews are meant to be text only.
+          Include HTML, links, source code or code snippets. Reviews are meant to be text only.
         {% endtrans %}
       </li>
       <li>
@@ -129,13 +115,7 @@
       </li>
       <li>
         {% trans %}
-          Use reviews as a way to request support for a specific Firefox (or
-          other application) version.
-        {% endtrans %}
-      </li>
-      <li>
-        {% trans %}
-          Include your own email, phone number, or other personal details.
+          Include your own or anyone else’s email, phone number, or other personal details.
         {% endtrans %}
       </li>
       <li>
@@ -144,98 +124,35 @@
           represent.
         {% endtrans %}
       </li>
-    </ul>
-
-    <h2 id="guidelines">{{ _('Guidelines for rating add-ons') }}</h2>
-
-    <p>
-      {% trans %}
-        Add-ons ratings should be fair and give a good indication of overall
-        quality and usefulness.  Don't just give it 5 stars if you like it or
-        1 star if you hate it.  Consistent grading is an important part of
-        any review.
-      {% endtrans %}
-    </p>
-
-    <ul>
       <li>
         {% trans %}
-          <b>5 stars:  Excellent.</b> Not only does everything it claims, but
-          it is significantly more useful than many other add-ons. This
-          add-on is likely to be one you use often and you highly recommend
-          it.
-        {% endtrans %}
-      </li>
-      <li>
-        {% trans %}
-          <b>4 stars:  Good.</b> Useful and easy to use, though not
-          necessarily special.  This add-on is recommended but may be more
-          suited for some people over others.
-        {% endtrans %}
-      </li>
-      <li>
-        {% trans %}
-          <b>3 stars:  Passable.</b> May have some design issues and/or some
-          missing features. Any problems it has are not drastic enough to
-          recommend against, and some people may still find it useful. 
-          Recommended for those who need it and are willing to give it a try.
-        {% endtrans %}
-      </li>
-      <li>
-        {% trans %}
-          <b>2 stars:  Poor.</b> Add-on is of low quality, usability, or just
-          doesn't do what it says it should. You are recommending against
-          this add-on, while noting that it might have some redeeming value
-          for a few people.
-        {% endtrans %}
-      </li>
-      <li>
-        {% trans %}
-          <b>1 star: Bad.</b> Add-on either doesn't work correctly or is
-          utterly useless. You can't think of any significant reason why
-          someone should give it a try and are recommending that it be
-          avoided completely.
+          Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the add-on, or the add-on requires gathering data to function.
         {% endtrans %}
       </li>
     </ul>
-
-    <p>
-      {% trans %}
-        There's nothing wrong with giving an add-on a perfect or horrible
-        review, just please indicate why you are doing so.  The stars mean
-        nothing if you don't tell us why.
-      {% endtrans %}
-    </p>
 
     <h2 id="review-faq">{{ _('Frequently Asked Questions about Reviews') }}</h2>
 
     <h3>{{ _('How can I report a problematic review?') }}</h3>
     <p>
       {% trans %}
-        Please report or flag any questionable reviews by clicking the
-        "Report this review" and it will be submitted to the site for
-        moderation. Editors will use the Review Guidelines to evaluate
-        whether or not to delete the review or restore it back to the site.
+        Please report or flag any questionable reviews by clicking the "Report this review" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to evaluate whether or not to delete the review or restore it back to the site.
       {% endtrans %}
     </p>
 
     <h3>{{ _('I’m an add-on author, can I respond to reviews?') }}</h3>
     <p>
       {% trans %}
-        Yes, add-on authors can provide a single response to a review.
-        Additional discussions or followup should be moved to a support forum
-        or discussion group.
+        Yes, add-on authors can provide a single response to a review. You can 
+        set up a discussion topic in our <a href="http://forums.mozilla.org/viewforum.php?f=23">forum</a> 
+        to engage in additional discussion or follow-up.
       {% endtrans %}
     </p>
 
     <h3>{{ _('I’m an add-on author, can I delete unfavorable reviews or ratings?') }}</h3>
     <p>
       {% trans %}
-        In general, no. But if the review did not meet the review guidelines
-        outlined above, you can click "Report this review" and have it
-        moderated by an editor. If a review included a complaint that is no
-        longer valid due to a new release of your add-on, we may consider
-        deleting the review. Submit your detailed request to
+        In general, no. But if the review did not meet the review guidelines outlined above, you can click "Report this review" and have it moderated. If a review included a complaint that is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to
         amo-editors@mozilla.org.
       {% endtrans %}
     </p>
