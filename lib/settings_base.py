@@ -1322,8 +1322,10 @@ TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}
 VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
 
-# This is the signing REST server for signing receipts.
+# This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''
+# This is the signing server for signing preliminary reviewed files.
+PRELIMINARY_SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
 

@@ -33,6 +33,7 @@ SYSLOG_CSP = "http_app_addons_addons_csp"
 
 # Signing
 SIGNING_SERVER = private_addons.SIGNING_SERVER
+PRELIMINARY_SIGNING_SERVER = private_addons.PRELIMINARY_SIGNING_SERVER
 
 FETCH_BY_ID = True
 

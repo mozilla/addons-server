@@ -32,6 +32,7 @@ SYSLOG_CSP = "http_app_addons_dev_csp"
 
 # Signing
 SIGNING_SERVER = private_addons.SIGNING_SERVER
+PRELIMINARY_SIGNING_SERVER = private_addons.PRELIMINARY_SIGNING_SERVER
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
