@@ -51,8 +51,8 @@ def extract_update_count(update, all_apps=None):
         for key, count in update.oses.items():
             platform = None
 
-            if str(key).lower() in amo.PLATFORM_DICT:
-                platform = amo.PLATFORM_DICT[str(key).lower()]
+            if unicode(key).lower() in amo.PLATFORM_DICT:
+                platform = amo.PLATFORM_DICT[unicode(key).lower()]
             elif key in amo.PLATFORMS:
                 platform = amo.PLATFORMS[key]
 
