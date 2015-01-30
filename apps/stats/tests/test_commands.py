@@ -1,3 +1,4 @@
+import json
 import os
 import shutil
 from datetime import date, timedelta
@@ -11,6 +12,7 @@ import amo.search
 import amo.tests
 from addons.models import Addon, Persona
 from stats.management.commands.download_counts_from_file import is_valid_source
+from stats.management.commands.update_counts_from_file import Command
 from stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
 from zadmin.models import DownloadSource
 
@@ -42,9 +44,14 @@ class FixturesFolderMixin(object):
 
 
 class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
-    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona')
+    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona',
+                'base/appversion.json')
     date = '2014-07-10'
     source_folder = 'src'
+
+    def setUp(self):
+        super(TestADICommand, self).setUp()
+        self.command = Command()
 
     def test_update_counts_from_file(self):
         management.call_command('update_counts_from_file', hive_folder,
@@ -55,9 +62,97 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         eq_(update_count.date, date(2014, 7, 10))
         eq_(update_count.versions, {u'3.8': 2, u'3.7': 3})
         eq_(update_count.statuses, {u'userEnabled': 5})
-        eq_(update_count.applications[u'{app-id}'], {u'30.0': 18})
+        application = u'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
+        eq_(update_count.applications[application], {u'3.6': 18})
         eq_(update_count.oses, {u'WINNT': 5})
-        eq_(update_count.locales, {u'en-US': 4, u'en_us': 1})
+        eq_(update_count.locales, {u'en-us': 1, u'en-US': 4})
+
+    def test_update_version(self):
+        # Initialize the known addons and their versions.
+        self.command.addons_versions = {3615: ['3.5', '3.6']}
+        uc = UpdateCount(addon_id=3615)
+        self.command.update_version(uc, '3.6', 123)
+        assert uc.versions == {'3.6': 123}
+        # Test very long version:
+        self.command.update_version(uc, '1' * 33, 1)
+        assert uc.versions == {'3.6': 123, '1' * 32: 1}  # Trimmed.
+
+    def test_update_status(self):
+        uc = UpdateCount(addon_id=3615)
+        self.command.update_status(uc, 'foobar', 123)  # Non-existent status.
+        assert not uc.statuses
+        self.command.update_status(uc, 'userEnabled', 123)
+        assert uc.statuses == {'userEnabled': 123}
+
+    def test_update_app(self):
+        # Initialize the known applications and their versions.
+        self.command.valid_appversions = {'{app-guid}': ['1.0', '2.0']}
+        uc = UpdateCount(addon_id=3615)
+        self.command.update_app(uc, 'foobar', '1.0', 123)  # Non-existent app.
+        assert not uc.applications
+        # Non-existent version.
+        self.command.update_app(uc, '{app-guid}', '3.0', 123)
+        assert not uc.applications
+        self.command.update_app(uc, '{app-guid}', '1.0', 123)
+        assert uc.applications == {'{app-guid}': {'1.0': 123}}
+
+    def test_update_os(self):
+        uc = UpdateCount(addon_id=3615)
+        self.command.update_os(uc, 'foobar', 123)  # Non-existent OS.
+        assert not uc.oses
+        self.command.update_os(uc, 'WINNT', 123)
+        assert uc.oses == {'WINNT': 123}
+
+    def test_update_locale(self):
+        current_locales = [  # Taken from the language pack index.
+            'ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'ast-ES', 'az',
+            'bb-BK', 'be', 'bg', 'bn-BD', 'bn-IN', 'br', 'bs', 'ca',
+            'ca-valencia', 'cs', 'csb', 'cy', 'cy-GB', 'da', 'de', 'dsb', 'el',
+            'en-GB', 'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
+            'eu', 'fa', 'ff', 'fi', 'fj-FJ', 'fr', 'fur-IT', 'fy-NL', 'ga-IE',
+            'gd', 'gl', 'gu-IN', 'he', 'hi', 'hi-IN', 'hr', 'hsb', 'hu',
+            'hy-AM', 'id', 'is', 'it', 'ja', 'kk', 'km', 'kn', 'ko', 'ku',
+            'lg', 'lij', 'lt', 'lv', 'mai', 'mg', 'mk', 'ml', 'mr', 'ms',
+            'nb-NO', 'nl', 'nn-NO', 'nr', 'nso', 'or', 'pa-IN', 'pl', 'pt-BR',
+            'pt-PT', 'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
+            'ss', 'st', 'sv-SE', 'sw', 'sw-TZ', 'ta', 'ta-IN', 'ta-LK', 'te',
+            'th', 'tn', 'tr', 'ts', 'uk', 've', 'vi', 'wa', 'wo-SN', 'xh',
+            'zap-MX-diiste', 'zh-CN', 'zh-TW', 'zu']
+        uc = UpdateCount(addon_id=3615)
+        self.command.update_locale(uc, 'foobar', 123)  # Non-existent locale.
+        assert not uc.locales
+        for locale in current_locales:
+            self.command.update_locale(uc, locale, 1)
+        assert len(uc.locales) == len(current_locales)
+
+    def test_trim_field(self):
+        uc = UpdateCount(addon_id=3615, count=1, date='2015-01-11')
+        self.command.trim_field(uc.versions)  # Empty field.
+        assert not uc.versions
+
+        uc.versions = {'3.6': 123, '3.7': 321}
+        self.command.trim_field(uc.versions)  # Small enough to fit in the db.
+        assert uc.versions == {'3.6': 123, '3.7': 321}  # Unchanged.
+
+        very_long_key = 'x' * (2 ** 16)
+        uc.versions[very_long_key] = 1
+        self.command.trim_field(uc.versions)  # Too big, must be trimmed.
+        assert uc.versions == {'3.6': 123, '3.7': 321}  # Keep the most used.
+
+        uc.versions[very_long_key] = 1000  # Most used.
+        self.command.trim_field(uc.versions)  # Too big, must be trimmed.
+        # Nothing left: least used removed, but still too big, so all the keys
+        # were removed.
+        assert uc.versions == {}
+
+        # Make sure we can store a very large field in the database.
+        long_key = 'x' * 65528  # This makes the dict barely fit in the db.
+        uc.versions[long_key] = 1
+        assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
+        uc.save()
+        uc = UpdateCount.objects.get(pk=uc.pk)  # Reload
+        # Fits in the database, so no truncation.
+        assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
 
     def test_download_counts_from_file(self):
         # Create the necessary "valid download sources" entries.
@@ -131,6 +226,7 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
 
 class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
     date = '2014-11-06'
+    fixtures = ['base/appversion.json']
     source_folder = '1093699'
 
     def test_update_counts_from_file_bug_1093699(self):
@@ -150,4 +246,4 @@ class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
         eq_(uc.oses, {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84})
         eq_(uc.locales[u'es-ES'], 20)
         eq_(uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'],
-            {u'2.30': 3})
+            {u'2.0': 3})
