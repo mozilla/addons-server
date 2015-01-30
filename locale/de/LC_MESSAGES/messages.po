@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 09:20-0700\n"
-"PO-Revision-Date: 2015-01-07 18:50+0000\n"
+"PO-Revision-Date: 2015-01-30 18:32+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420656632.0\n"
+"X-POOTLE-MTIME: 1422642754.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3482,15 +3482,15 @@ msgstr "Stufe 6"
 
 #: apps/constants/base.py:507
 msgid "Not signed"
-msgstr ""
+msgstr "Nicht signiert"
 
 #: apps/constants/base.py:508
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Für vollständige Überprüfung signiert"
 
 #: apps/constants/base.py:509
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Durch vorläufige Überprüfung signiert"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -8716,7 +8716,7 @@ msgstr "Sieger des Wettbewerbs „Add-ons für Australis“"
 
 #: apps/discovery/modules.py:355
 msgid "What are your interests?"
-msgstr ""
+msgstr "Was sind Ihre Interessen?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -11514,6 +11514,10 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
+"Über Add-on-Bewertungen können Sie Ihre Meinung zu den von Ihnen "
+"installierten und verwendeten Add-ons sagen. Unser Team für die "
+"Bewertungsmoderation behält sich das recht vor, jede Bewertung abzulehnen "
+"oder zu entfernen, die nicht diesen Richtlinien entspricht."
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -11554,6 +11558,8 @@ msgstr "Werden Sie dieses Add-on weiter verwenden?"
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Nehmen Sie sich vor dem Absenden einen Moment Zeit, um Ihre Bewertung "
+"durchzulesen und Tippfehler zu minimieren."
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
@@ -11562,12 +11568,18 @@ msgstr "Falsch:"
 #: apps/pages/templates/pages/review_guide.html:85
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Übermitteln Sie keine Ein-Wort-Bewertungen wie „Toll!“, „Super“ oder "
+"„Schlecht“."
 
 #: apps/pages/templates/pages/review_guide.html:90
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Erwähnen Sie keine technische Probleme, Hilfsgesuche oder Vorschläge für "
+"neue Funktionen. Verwenden Sie die Möglichkeiten für Hilfsgesuche, falls "
+"vorhanden. Sie finden sie in der Randspalte neben neben dem Abschnitt „Über "
+"dieses Add-on“."
 
 #: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
@@ -11580,6 +11592,8 @@ msgstr "Verwendung von vulgären Ausdrücken, sexuellen Ausdrücken oder Ausdrü
 #: apps/pages/templates/pages/review_guide.html:106
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr ""
+"Verwenden Sie kein HTML und fügen Sie weder Links noch Quelltext oder "
+"Ausschnitte davon an. Bewertungen sollen nur aus Text bestehen."
 
 #: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -11588,6 +11602,8 @@ msgstr "Falsche Angaben machen, Add-on-Autoren herabsetzen oder sie persönlich 
 #: apps/pages/templates/pages/review_guide.html:117
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
+"Nennen Sie weder E-Mail-Adresse, Telefonnummer noch andere persönliche "
+"Details, weder von Ihnen noch von anderen Personen."
 
 #: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
@@ -11598,6 +11614,10 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Kritisieren Sie kein Add-on für seine beabsichtigte Funktion. Dazu gehören "
+"beispielsweise negative Bewertungen für Add-ons, die Werbung anzeigen oder "
+"Daten erheben, wenn dies der beabsichtigte Zweck des Add-ons ist, oder das "
+"Add-on Daten erheben muss, um zu funktionieren."
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
@@ -11608,6 +11628,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Bitte melden oder kennzeichnen Sie fragwürdige Markierungen, indem Sie auf "
+"„Diese Bewertung melden“ klicken, um es der Moderation zu melden. Unser "
+"Moderationsteam prüft anhand der Bewertungsrichtlinien, ob eine Bewertung "
+"gelöscht oder wiederhergestellt wird."
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11618,6 +11642,10 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
+"Ja, Add-on-Autoren können genau eine Antwort auf eine Bewertung abgeben. Sie "
+"können ein Diskussionsthema in unserem <a "
+"href=\"http://forums.mozilla.org/viewforum.php?f=23\">Forum</a> beginnen, um "
+"weiterführende Diskussionen zu führen oder Rückfragen zu ermöglichen."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -11628,6 +11656,12 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"Im Allgemeinen nicht. Aber wenn die Bewertung nicht den oben genannten "
+"Bewertungsrichtlinien entspricht, können Sie auf „Diese Bewertung melden“ "
+"klicken, damit sie moderiert wird. Wenn eine Bewertung eine Beschwerde "
+"enthält, die nach einer neuen Version Ihres Add-ons nicht mehr zutrifft, "
+"löschen wir möglicherweise diese Bewertung. Senden Sie Ihre ausführliche "
+"Anfrage an amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
