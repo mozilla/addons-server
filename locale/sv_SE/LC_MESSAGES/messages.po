@@ -12646,7 +12646,7 @@ msgstr "Om du vill kan du läsa vår <a href=\"%(legal)s\" title=\"Legal Notices
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
-msgstr "Om du vill kan du läsa vår <a href=\"%(legal)s\" title=\"Legal Notices\">juridiska villkor</a> och <a href=\"%(privacy)s\" title=\"Privacy Policy\">sekretesspolicy</a>."
+msgstr ""
 
 #: apps/users/templates/users/register.html:53
 msgid "Display name"
