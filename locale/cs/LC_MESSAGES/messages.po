@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07 08:57-0700\n"
+"POT-Creation-Date: 2015-01-30 09:20-0700\n"
 "PO-Revision-Date: 2015-01-17 09:52+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -145,16 +145,16 @@ msgstr "Nezkontrolovaný"
 msgid "Featured"
 msgstr "Doporučené"
 
-#: apps/addons/models.py:306
+#: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Uživatelé mají možnost přispět více nebo méně než je tato částka."
 
-#: apps/addons/models.py:315
+#: apps/addons/models.py:314
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Uživatelé budou vždy žádáni ve Správci doplňků (Firefox 4 a vyšší)."
 
 # Column name in a table.
-#: apps/addons/models.py:1865
+#: apps/addons/models.py:1858
 msgid "Listed"
 msgstr "Zobrazení"
 
@@ -823,10 +823,6 @@ msgstr "Odeslat hlášení"
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: apps/addons/templates/addons/report_abuse_full.html:3
-msgid "Report abuse for {0}"
-msgstr "Nahlásit zneužití {0}"
-
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
 msgstr "Jak se vám líbí?"
@@ -866,7 +862,7 @@ msgstr "Příručka recenzenta"
 msgid "Detailed Review"
 msgstr "Podrobná recenze"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:769 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:775 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Recenze"
@@ -1214,7 +1210,7 @@ msgstr "Uživatelé"
 msgid "Weekly Downloads"
 msgstr "Týdenní stažení"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:968 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:965 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Verze"
 
@@ -1275,7 +1271,7 @@ msgid "Easy ways to personalize."
 msgstr "Snadný způsob přizpůsobení."
 
 #: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
-#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
+#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Dozvědět se více"
 
@@ -2140,11 +2136,11 @@ msgstr "Odkazy nejsou povoleny."
 msgid "This url is already in use by another collection"
 msgstr "Toto URL je používány jinou sbírkou."
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1058
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1059
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musí být ve formátu PNG či JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1076 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1077 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Používejte prosím obrázky menší než %dMB."
 
@@ -2658,7 +2654,7 @@ msgstr "Zadejte jméno doplňku, který chcete vložit"
 msgid "Add to Collection"
 msgstr "Přidat do sbírky"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:784 apps/editors/helpers.py:804
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:790 apps/editors/helpers.py:810
 msgid "Pending"
 msgstr "Čeká"
 
@@ -3161,7 +3157,7 @@ msgstr "Filtrace dle aplikace"
 msgid "Report Type"
 msgstr "Typ hlášení"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:965 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:962 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikace"
 
@@ -3265,7 +3261,7 @@ msgstr "Předběžná kontrola"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Předběžně zkontrolován a čeká na plnou kontrolu"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:772 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:778 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Smazáno"
 
@@ -3501,6 +3497,18 @@ msgstr "Úroveň 5"
 msgid "Level 6"
 msgstr "Úroveň 6"
 
+#: apps/constants/base.py:507
+msgid "Not signed"
+msgstr ""
+
+#: apps/constants/base.py:508
+msgid "Signed for a full review"
+msgstr ""
+
+#: apps/constants/base.py:509
+msgid "Signed of a preliminary review"
+msgstr ""
+
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
 msgstr "Požádat o více informací"
@@ -3590,36 +3598,28 @@ msgid "All Platforms"
 msgstr "Všechny platformy"
 
 #: apps/constants/platforms.py:26
-msgid "All Mobile Platforms"
-msgstr "Všechny mobilní platformy"
-
-#: apps/constants/platforms.py:33
 msgid "Linux"
 msgstr "Linux"
 
-#: apps/constants/platforms.py:40
+#: apps/constants/platforms.py:33
 msgid "Mac OS X"
 msgstr "Mac OS X"
 
-#: apps/constants/platforms.py:47
+#: apps/constants/platforms.py:40
 msgid "BSD"
 msgstr "BSD"
 
-#: apps/constants/platforms.py:54
+#: apps/constants/platforms.py:47
 msgid "Windows"
 msgstr "Windows"
 
-#: apps/constants/platforms.py:61
+#: apps/constants/platforms.py:54
 msgid "Solaris"
 msgstr "Solaris"
 
-#: apps/constants/platforms.py:68
+#: apps/constants/platforms.py:61 apps/devhub/forms.py:516
 msgid "Android"
 msgstr "Android"
-
-#: apps/constants/platforms.py:75
-msgid "Maemo"
-msgstr "Maemo"
 
 #: apps/devhub/feeds.py:35
 msgid "Recent Changes for %s"
@@ -3721,7 +3721,7 @@ msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro {exte
 msgid "View current"
 msgstr "Zobrazit aktuální"
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:892
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:889
 msgid "Invalid version range."
 msgstr "Neplatný rozsah verzí."
 
@@ -3737,187 +3737,187 @@ msgstr "Při nahrávání se vyskytla chyba. Zkuste to prosím znovu."
 msgid "Override failed validation"
 msgstr "Přepsat nezdařenou validaci"
 
-#: apps/devhub/forms.py:529
-msgid "Need at least one platform."
-msgstr "Je vyžadována alespoň jedna platforma."
-
-#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
-msgid "Full Review"
-msgstr "Plná kontrola"
-
-#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
-msgid "Preliminary Review"
-msgstr "Předběžná kontrola"
-
-#: apps/devhub/forms.py:541
-msgid "Please choose a review nomination type"
-msgstr "Zvolte prosím typ nominace na kontrolu"
-
-#: apps/devhub/forms.py:545 apps/devhub/forms.py:581
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr "Soubor s verzí, která končí na a|alpha|b|beta a volitelným číslem je detekován jako betaverze."
-
-#: apps/devhub/forms.py:562
-msgid "Version %s already exists"
-msgstr "Verze %s již existuje."
-
-#: apps/devhub/forms.py:575
+#: apps/devhub/forms.py:520 apps/devhub/forms.py:582
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Zvolte platnou hodnotu. Tato volba není jednou z dostupných možností."
 
-#: apps/devhub/forms.py:610
+#: apps/devhub/forms.py:536
+msgid "Need at least one platform."
+msgstr "Je vyžadována alespoň jedna platforma."
+
+#: apps/devhub/forms.py:543 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+msgid "Full Review"
+msgstr "Plná kontrola"
+
+#: apps/devhub/forms.py:544 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+msgid "Preliminary Review"
+msgstr "Předběžná kontrola"
+
+#: apps/devhub/forms.py:548
+msgid "Please choose a review nomination type"
+msgstr "Zvolte prosím typ nominace na kontrolu"
+
+#: apps/devhub/forms.py:552 apps/devhub/forms.py:588
+msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
+msgstr "Soubor s verzí, která končí na a|alpha|b|beta a volitelným číslem je detekován jako betaverze."
+
+#: apps/devhub/forms.py:569
+msgid "Version %s already exists"
+msgstr "Verze %s již existuje."
+
+#: apps/devhub/forms.py:611
 msgid "You cannot upload any more files for this version."
 msgstr "K této verzi nemůžete nahrát více souborů."
 
-#: apps/devhub/forms.py:616
+#: apps/devhub/forms.py:617
 msgid "Version doesn't match"
 msgstr "Verze neodpovídá"
 
-#: apps/devhub/forms.py:649
+#: apps/devhub/forms.py:646
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Nemůžete smazat soubor v době, kdy byl proces kontroly zahájen. Musíte smazat celou verzi."
 
-#: apps/devhub/forms.py:669
+#: apps/devhub/forms.py:666
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Volba pro všechny platformy nemůže být kombinována s konkrétními platformami."
 
-#: apps/devhub/forms.py:674
+#: apps/devhub/forms.py:671
 msgid "A platform can only be chosen once."
 msgstr "Platforma může být zvolena pouze jednou."
 
-#: apps/devhub/forms.py:687
+#: apps/devhub/forms.py:684
 msgid "A review type must be selected."
 msgstr "Typ kontroly musí být zvolen."
 
-#: apps/devhub/forms.py:766
+#: apps/devhub/forms.py:763
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Pojmenujte svůj doplněk. Nejúspěšnější doplňky již svým názvem říkají, k čemu slouží."
 
-#: apps/devhub/forms.py:771
+#: apps/devhub/forms.py:768
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Stručně popište jednou větou váš doplněk. Tento popis se bude zobrazovat ve Správci doplňků."
 
-#: apps/devhub/forms.py:775
+#: apps/devhub/forms.py:772
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Vložte úvodní číslo verze. V závislosti na číslu vydání a vašich preferencích je to obvykle 0.1 či 1.0"
 
-#: apps/devhub/forms.py:779
+#: apps/devhub/forms.py:776
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Každý doplněk vyžaduje unikátní ID ve formátu GUID nebo e-mailové adresy jako je například jmeno-doplnku@vyvojar.cz. E-mailová adresa nemusí být platná."
 
-#: apps/devhub/forms.py:785
+#: apps/devhub/forms.py:782
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "Jméno balíčku vašeho doplňku, jak bude používáno webovým prohlížečem. Mělo by se jednat o zkrácený název doplňku (například: Testovací doplněk může mít jako jméno uvedeno testovaci_doplnek)."
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:787
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Vložte jméno osoby nebo instituce, která má být uvedena jako autor tohoto doplňku."
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:791
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Vložte jména ostatních přispěvatelů tohoto rozšíření. Každého na samostatný řádek."
 
-#: apps/devhub/forms.py:803
+#: apps/devhub/forms.py:800
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Jméno doplňku nesmí obsahovat ochranné známky Mozilly"
 
-#: apps/devhub/forms.py:810
+#: apps/devhub/forms.py:807
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Vložte platné jméno balíčku, které se bude skládat ze znaků, čísel či podtržítek."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:811
 msgid "This package name is already in use."
 msgstr "Název balíčku je již používán."
 
-#: apps/devhub/forms.py:817
+#: apps/devhub/forms.py:814
 msgid "The package name cannot be: %s."
 msgstr "Jméno balíčku nemůže být: %s."
 
-#: apps/devhub/forms.py:828
+#: apps/devhub/forms.py:825
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "ID doplňku musí být UUID řetězec nebo e-mailová adresa."
 
-#: apps/devhub/forms.py:834
+#: apps/devhub/forms.py:831
 msgid "The version string is invalid."
 msgstr "Verze je neplatná."
 
-#: apps/devhub/forms.py:842
+#: apps/devhub/forms.py:839
 msgid "Minimum"
 msgstr "Minimum"
 
-#: apps/devhub/forms.py:845
+#: apps/devhub/forms.py:842
 msgid "Maximum"
 msgstr "Maximum"
 
-#: apps/devhub/forms.py:896
+#: apps/devhub/forms.py:893
 msgid "Min version must be less than Max version."
 msgstr "Minimální verze musí být menší než maximální verze."
 
-#: apps/devhub/forms.py:921
+#: apps/devhub/forms.py:918
 msgid "{0} is a required target application."
 msgstr "{0} je vyžadovaná cílová aplikace."
 
-#: apps/devhub/forms.py:933
+#: apps/devhub/forms.py:930
 msgid "About dialog"
 msgstr "Dialog o aplikaci"
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:931
 msgid "Creates a standard About dialog for your extension"
 msgstr "Vytvoří standardní dialog O aplikaci pro vaše rozšíření"
 
-#: apps/devhub/forms.py:938
+#: apps/devhub/forms.py:935
 msgid "Preferences dialog"
 msgstr "Dialog předvoleb"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:936
 msgid "Creates an example Preferences window"
 msgstr "Vytvoří ukázkovou lištu pro vaše rozšíření"
 
-#: apps/devhub/forms.py:942
+#: apps/devhub/forms.py:939
 msgid "Toolbar"
 msgstr "Lišta"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:940
 msgid "Creates an example toolbar for your extension"
 msgstr "Vytvoří ukázkovou lištu pro vaše rozšíření"
 
-#: apps/devhub/forms.py:946
+#: apps/devhub/forms.py:943
 msgid "Toolbar button"
 msgstr "Tlačítko na liště "
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:944
 msgid "Creates an example button on the browser toolbar"
 msgstr "Vytvoří ukázkové tlačítko pro lištu prohlížeče"
 
-#: apps/devhub/forms.py:951
+#: apps/devhub/forms.py:948
 msgid "Main menu command"
 msgstr "Příkaz do hlavní nabídky"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:949
 msgid "Creates an item on the Tools menu"
 msgstr "Vytvoří položku do nabídky Nástroje"
 
-#: apps/devhub/forms.py:955
+#: apps/devhub/forms.py:952
 msgid "Context menu command"
 msgstr "Příkaz do místní nabídky "
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:953
 msgid "Creates a context menu item for images"
 msgstr "Vytvoří položku v místní nabídce nad obrázky"
 
-#: apps/devhub/forms.py:959
+#: apps/devhub/forms.py:956
 msgid "Sidebar support"
 msgstr "Podpora postranní lišty "
 
-#: apps/devhub/forms.py:960
+#: apps/devhub/forms.py:957
 msgid "Creates an example sidebar panel"
 msgstr "Vytvoří ukázkovou postranní lištu"
 
-#: apps/devhub/forms.py:969 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:966 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Prvně zvolte aplikaci"
 
-#: apps/devhub/forms.py:1021
+#: apps/devhub/forms.py:1018
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nemůžete mít více než 3 vyžadované doplňky."
 
@@ -3995,11 +3995,11 @@ msgstr "Sbírky uživatele"
 msgid "User Reviews"
 msgstr "Recenze uživatelů"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:466 apps/devhub/views.py:495 apps/devhub/views.py:546 apps/devhub/views.py:1155
+#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1156
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1571
+#: apps/devhub/views.py:327 apps/devhub/views.py:1572
 msgid "Please check the form for errors."
 msgstr "Zkontrolujte prosím chyby ve formuláři"
 
@@ -4023,76 +4023,76 @@ msgstr "Heslo je neplatné. Motiv nebyl smazán."
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Heslo bylo neplatné. Doplněk nebyl smazán."
 
-#: apps/devhub/views.py:432
+#: apps/devhub/views.py:433
 msgid "An author has been added to your add-on"
 msgstr "K vašem doplňku byl přidán autor."
 
-#: apps/devhub/views.py:439
+#: apps/devhub/views.py:440
 msgid "An author has a role changed on your add-on"
 msgstr "U vašeho doplňku autor změnil roli."
 
-#: apps/devhub/views.py:458
+#: apps/devhub/views.py:459
 msgid "An author has been removed from your add-on"
 msgstr "U vašeho doplňku byl odebrán autor."
 
-#: apps/devhub/views.py:501
+#: apps/devhub/views.py:502
 msgid "There were errors in your submission."
 msgstr "V rámci vašeho odeslání se vyskytly chyby."
 
-#: apps/devhub/views.py:565
+#: apps/devhub/views.py:566
 msgid "Validate Add-on"
 msgstr "Kontrola doplňku"
 
-#: apps/devhub/views.py:574
+#: apps/devhub/views.py:575
 msgid "Check Add-on Compatibility"
 msgstr "Kontrola kompatibility doplňku"
 
-#: apps/devhub/views.py:697
+#: apps/devhub/views.py:698
 msgid "There was an error with the submission."
 msgstr "Při odesílání nastala chyba."
 
-#: apps/devhub/views.py:1060 apps/users/forms.py:419
+#: apps/devhub/views.py:1061 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
 
-#: apps/devhub/views.py:1064
+#: apps/devhub/views.py:1065
 msgid "Icons cannot be animated."
 msgstr "Ikony nemohou být animované."
 
-#: apps/devhub/views.py:1066
+#: apps/devhub/views.py:1067
 msgid "Images cannot be animated."
 msgstr "Obrázky nemohou být animované."
 
-#: apps/devhub/views.py:1079
+#: apps/devhub/views.py:1080
 msgid "Images cannot be larger than %dKB."
 msgstr "Obrázky nemohou být větší než %d kb."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1089
+#: apps/devhub/views.py:1090
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Obrázek musí být přesně {0} pixelů široký a {1} pixelů vysoký."
 
-#: apps/devhub/views.py:1096
+#: apps/devhub/views.py:1097
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
-#: apps/devhub/views.py:1194
+#: apps/devhub/views.py:1195
 msgid "Version %s disabled."
 msgstr "Verze %s je zakázána."
 
-#: apps/devhub/views.py:1197
+#: apps/devhub/views.py:1198
 msgid "Version %s deleted."
 msgstr "Verze %s byla smazána."
 
-#: apps/devhub/views.py:1207
+#: apps/devhub/views.py:1208
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
 
-#: apps/devhub/views.py:1617
+#: apps/devhub/views.py:1618
 msgid "Preliminary Review Requested."
 msgstr "Vyžádána předběžná kontrola."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1619
 msgid "Full Review Requested."
 msgstr "Vyžádána plná kontrola"
 
@@ -8652,6 +8652,10 @@ msgstr "Skvělé doplňky o práci, zábavě, soukromí, produktivitě&hellip; z
 msgid "Add-ons for Australis Contest Winners"
 msgstr "Vítězné doplňky v Australis Contest"
 
+#: apps/discovery/modules.py:355
+msgid "What are your interests?"
+msgstr ""
+
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
 msgstr "Objevte doplňky"
@@ -9125,11 +9129,11 @@ msgstr "Označí doplněk a jeho poslední verzi a soubory jako veřejné. Budou
 msgid "add-on"
 msgstr "doplněk"
 
-#: apps/editors/helpers.py:788 apps/editors/helpers.py:808
+#: apps/editors/helpers.py:794 apps/editors/helpers.py:814
 msgid "Flagged"
 msgstr "Označeno"
 
-#: apps/editors/helpers.py:792 apps/editors/helpers.py:811
+#: apps/editors/helpers.py:798 apps/editors/helpers.py:817
 msgid "Updates"
 msgstr "Aktualizace"
 
@@ -9639,19 +9643,19 @@ msgstr "Datum"
 msgid "Editor"
 msgstr "Redaktor"
 
-#: apps/editors/templates/editors/reviewlog.html:56
+#: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
 msgstr "Doplněk byl smazán."
 
-#: apps/editors/templates/editors/reviewlog.html:61 apps/editors/templates/editors/themes/logs.html:36
+#: apps/editors/templates/editors/reviewlog.html:59 apps/editors/templates/editors/themes/logs.html:36
 msgid "Show Comments"
 msgstr "Zobrazit komentáře"
 
-#: apps/editors/templates/editors/reviewlog.html:62 apps/editors/templates/editors/themes/logs.html:37
+#: apps/editors/templates/editors/reviewlog.html:60 apps/editors/templates/editors/themes/logs.html:37
 msgid "Hide Comments"
 msgstr "Skrýt komentáře"
 
-#: apps/editors/templates/editors/reviewlog.html:74 apps/editors/templates/editors/themes/logs.html:54
+#: apps/editors/templates/editors/reviewlog.html:72 apps/editors/templates/editors/themes/logs.html:54
 msgid "No reviews found for this period."
 msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
 
@@ -10560,14 +10564,9 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Pro zajištění kompatibility s nejnovějším softwarem Mozilla je důležité "
-"stahovat jeho aktualizace co nejdříve jsou dostupné, a otestovat váš "
-"doplněk, zda stále správně funguje. V mnoha případech může být poslední "
-"verzi softwaru Mozilla jeho beta verze. Protože tyto verze mohou přinášet "
-"změny architektury, které mohou mít vliv na fungování vašeho doplňku, je "
-"třeba se aktivně zapojit do procesu testování beta verze, aby uživatelé "
-"vašeho doplňku nebyly při vydání finálního verze softwaru Mozilla změnami "
-"negativně ovlivnění."
+"Pro zajištění kompatibility s nejnovějším softwarem Mozilla je důležité stahovat jeho aktualizace co nejdříve jsou dostupné, a otestovat váš doplněk, zda stále správně funguje. V mnoha případech "
+"může být poslední verzi softwaru Mozilla jeho beta verze. Protože tyto verze mohou přinášet změny architektury, které mohou mít vliv na fungování vašeho doplňku, je třeba se aktivně zapojit do "
+"procesu testování beta verze, aby uživatelé vašeho doplňku nebyly při vydání finálního verze softwaru Mozilla změnami negativně ovlivnění."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -11415,183 +11414,137 @@ msgstr "Stále máte otázky?"
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr "Pro obecnou podporu Firefoxu navšivte naše <a href=\"%(sumo_url)s\">stránky podpory</a>. Pro obecné otázky týkající se doplňků a tohoto webu navšivte <a href=\"%(forum_url)s\">naše fórum</a>."
 
-#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:57
+#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:54
 msgid "Some tips for writing a great review"
 msgstr "Několik tipů pro psaní skvělých recenzí"
 
-#: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:149
+#: apps/pages/templates/pages/review_guide.html:39
 msgid "Guidelines for rating add-ons"
 msgstr "Vodítka pro hodnocení doplňků"
 
-#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:210
+#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:134
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Často kladené otázky k recenzím"
 
 #: apps/pages/templates/pages/review_guide.html:49
 msgid ""
-"Add-on reviews are a way for add-on site users to share their opinions about the add-ons that they have installed and used. Editors reserve the right to refuse or remove any review that does not "
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
-msgstr "Recenze doplňků jsou způsob, jakým mohou jejich uživatelé vyjádřit svůj názor na ně. Redaktor může zamítnout či smazat jakoukoliv recenzi, která není slučitelná s následujícími pravidly."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:59
+#: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
 msgstr "Pište:"
 
-#: apps/pages/templates/pages/review_guide.html:62
+#: apps/pages/templates/pages/review_guide.html:59
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "Popište své zkušenosti s doplňkem tak, jako byste jej popisoval(a) svému příteli."
 
-#: apps/pages/templates/pages/review_guide.html:67
+#: apps/pages/templates/pages/review_guide.html:64
 msgid "Keep reviews concise and easy to understand."
 msgstr "Mějte recenze stručné a snadno srozumitelné."
 
-#: apps/pages/templates/pages/review_guide.html:68
+#: apps/pages/templates/pages/review_guide.html:65
 msgid "Give specific and helpful details. For example:"
 msgstr "Popište konkrétní a užitečné detaily. Například:"
 
-#: apps/pages/templates/pages/review_guide.html:70
+#: apps/pages/templates/pages/review_guide.html:67
 msgid "Did the add-on work as you expected it to?"
 msgstr "Funguje doplněk podle očekávání?"
 
-#: apps/pages/templates/pages/review_guide.html:71
+#: apps/pages/templates/pages/review_guide.html:68
 msgid "What features did you like or dislike?"
 msgstr "Které funkce se vám líbí a které naopak ne?"
 
-#: apps/pages/templates/pages/review_guide.html:72
+#: apps/pages/templates/pages/review_guide.html:69
 msgid "Was it useful?"
 msgstr "Je užitečný?"
 
-#: apps/pages/templates/pages/review_guide.html:73
+#: apps/pages/templates/pages/review_guide.html:70
 msgid "Was it easy to use?"
 msgstr "Používá se snadno?"
 
-#: apps/pages/templates/pages/review_guide.html:74
+#: apps/pages/templates/pages/review_guide.html:71
 msgid "Will you continue to use this add-on?"
 msgstr "Budete doplněk i nadále používat?"
 
-#: apps/pages/templates/pages/review_guide.html:79
-msgid "Take a moment to read your review before submitting it to avoid embarrassing typos or grammatical errors."
-msgstr "Před odesláním si svou recenzi znovu přečtěte a ujistěte se, že neobsahuje překlepy či gramatické chyby."
+#: apps/pages/templates/pages/review_guide.html:76
+msgid "Take a moment to read your review before submitting it to minimize typos."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:86
-msgid "Avoid referring to topical or temporal references since reviews can remain on the site for a long time."
-msgstr "Neodkazujte dočasné adresy. Recenze mohou být na webu dlouhý čas."
-
-#: apps/pages/templates/pages/review_guide.html:93
+#: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
 msgstr "Nepište:"
 
-#: apps/pages/templates/pages/review_guide.html:96
-msgid "Submit simple reviews such as \"Great!\", \"wonderful\", or \"bad\" with no further explanation."
-msgstr "Přidávat jednoduché recenze jako  \"Skvělé!\", \"úžasné\" nebo \"špatné\" bez bližšího vysvětlení."
+#: apps/pages/templates/pages/review_guide.html:85
+msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:102
-msgid "Post bug or problem reports in reviews. Use the available support options for each add-on."
-msgstr "Přidávat hlášení o chybách. Na místo toho použijte možnost podpory, která je uvedena u každého doplňku."
+#: apps/pages/templates/pages/review_guide.html:90
+msgid ""
+"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
+"section."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:108
+#: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Psát recenze k doplňkům, které osobně nepoužíváte."
 
-#: apps/pages/templates/pages/review_guide.html:113
+#: apps/pages/templates/pages/review_guide.html:100
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "Používat hrubý, sexuálně orientovaný či jinak nevhodný jazyk."
 
-#: apps/pages/templates/pages/review_guide.html:119
-msgid "Include HTML, links to malware, source code or code snippets. Reviews are meant to be text only."
-msgstr "Vkládat HTML, odkazy na malware, zdrojový kód či kusy kódu. Recenze jsou zamýšleny jako čistě textové."
+#: apps/pages/templates/pages/review_guide.html:106
+msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:125
+#: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Psát nepravdivé informace, zlehčovat autory doplňků či je osobně urážet."
 
-#: apps/pages/templates/pages/review_guide.html:131
-msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
-msgstr "Používat recenze jako způsob žádosti o podporu pro konkrétní verzi Firefoxu (či jinou aplikaci)."
+#: apps/pages/templates/pages/review_guide.html:117
+msgid "Include your own or anyone else’s email, phone number, or other personal details."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:137
-msgid "Include your own email, phone number, or other personal details."
-msgstr "Vkládat svou e-mailovou adresu, telefonní číslo či jiné osobní informace."
-
-#: apps/pages/templates/pages/review_guide.html:142
+#: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Přidávat recenze ke svému doplňku či organizaci, kterou reprezentujete."
 
-#: apps/pages/templates/pages/review_guide.html:152
+#: apps/pages/templates/pages/review_guide.html:128
 msgid ""
-"Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important "
-"part of any review."
+"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
+"add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Hodnocení doplňků by měly být férové a poskytnout informaci o kvalitě a užitečnosti. Nedávejte pouze 5 hvězdiček, pokud se vám doplněk líbí či 1, pokud ne. Konzistentní škálované hodnocení je "
-"důležitou součástí jakékoliv recenze."
 
-#: apps/pages/templates/pages/review_guide.html:162
-msgid ""
-"<b>5 stars: Excellent.</b> Not only does everything it claims, but it is significantly more useful than many other add-ons. This add-on is likely to be one you use often and you highly recommend it."
-msgstr ""
-"<b>5 hvězdiček: Výtečné.</b> Nedělá pouze to, co o sobě prohlašuje, ale je též výrazně užitečnější než celá řada jiných doplňků. Doplněk je jeden z těch, které nejvíce používáte a který nejvíce "
-"doporučujete."
-
-#: apps/pages/templates/pages/review_guide.html:170
-msgid "<b>4 stars: Good.</b> Useful and easy to use, though not necessarily special. This add-on is recommended but may be more suited for some people over others."
-msgstr "<b>4 hvězdičky: Dobrý.</b> Užitečný a  snadno použitelný, ale není ničím speciální. Tento doplněk je doporučován, ale nevyčnívá ničím nad ostatními."
-
-#: apps/pages/templates/pages/review_guide.html:177
-msgid ""
-"<b>3 stars: Passable.</b> May have some design issues and/or some missing features. Any problems it has are not drastic enough to recommend against, and some people may still find it useful. "
-"Recommended for those who need it and are willing to give it a try."
-msgstr ""
-"<b>3 hvězdičky: Akceptovatelný.</b> Má některé problémy v návrhu či mu chybí některé funkce. Žádné z nich nejsou tak závažné a někteří uživatelé mohou doplněk hodnotit jako užitečný. Doplněk patrně "
-"nebudete doporučovat, maximálně poskytnete tip na jeho vyzkoušení."
-
-#: apps/pages/templates/pages/review_guide.html:185
-msgid ""
-"<b>2 stars: Poor.</b> Add-on is of low quality, usability, or just doesn't do what it says it should. You are recommending against this add-on, while noting that it might have some redeeming value "
-"for a few people."
-msgstr "<b>2 hvězdičky: Nic moc.</b> Doplněk má nízkou kvalitu, užitečnost a nedělá vždy to, co by měl. Doplněk nedoporučujete, protože pro většinu uživatelů není ničím užitečný."
-
-#: apps/pages/templates/pages/review_guide.html:193
-msgid ""
-"<b>1 star: Bad.</b> Add-on either doesn't work correctly or is utterly useless. You can't think of any significant reason why someone should give it a try and are recommending that it be avoided "
-"completely."
-msgstr "<b>1 hvězdička: Špatný.</b> Doplněk nefunguje korektně nebo je úplně bezcenný. Nenapadá vás jediný důvod, proč by jej měl někdo používat a vůbec jej nikomu nedoporučujete."
-
-#: apps/pages/templates/pages/review_guide.html:203
-msgid "There's nothing wrong with giving an add-on a perfect or horrible review, just please indicate why you are doing so. The stars mean nothing if you don't tell us why."
-msgstr ""
-"Není nic špatného na tom, když doplňku poskytnete perfektní či špatné ohodnocení, jen prosím vysvětlete, proč tak činíte. Hvězdičky neznamenají nic, pokud nám neřekněte, proč zrovna tak hodnotíte."
-
-#: apps/pages/templates/pages/review_guide.html:212
+#: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
 msgstr "Jak mohu nahlásit problematickou recenzi?"
 
-#: apps/pages/templates/pages/review_guide.html:214
+#: apps/pages/templates/pages/review_guide.html:138
 msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
-"or not to delete the review or restore it back to the site."
+"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
+"evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Problematické recenze nahlaste klepnutím na odkaz \"Nahlásit recenzi\". Následně bude odeslána redaktorům serveru k posouzení. Redaktoři použijí body uvedené na této stránce k posouzení, zda "
-"recenzi smažou či navrátí zpět na web."
 
-#: apps/pages/templates/pages/review_guide.html:222
+#: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Jsem autor doplňku, mohu odpovídat na recenze?"
 
-#: apps/pages/templates/pages/review_guide.html:224
-msgid "Yes, add-on authors can provide a single response to a review. Additional discussions or followup should be moved to a support forum or discussion group."
-msgstr "Ano, autoři doplňků mohou k recenzi napsat jednu reakci. Další debata by měla být přesunuta do fóra podpory či diskusní skupiny."
+#: apps/pages/templates/pages/review_guide.html:145
+msgid ""
+"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
+"discussion or follow-up."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:231
+#: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Jsem autor doplňku, mohu smazat nepravdivé recenze či hodnocení?"
 
-#: apps/pages/templates/pages/review_guide.html:233
+#: apps/pages/templates/pages/review_guide.html:154
 msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that "
-"is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
+"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
+"valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"Obecně řečeno, ne. Nicméně pokud recenze nesplňuje kritéria pro recenze uvedené výše, můžete klepnout na odkaz  \"Nahlásit recenzi\"  a redaktor ji posoudí. Pokud recenze naráží na situaci, která "
-"již u nové verze vašeho doplňku není platná, můžeme zvážit smazání recenze. V takovém případě pošlete e-mail s žádostí na adresu amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -13338,15 +13291,15 @@ msgstr "Historie verzí pro %s"
 msgid "Version History with Changelogs"
 msgstr "Historie verzí s popisem změn"
 
-#: apps/versions/models.py:282
+#: apps/versions/models.py:277
 msgid "Add-on uses binary components."
 msgstr "Doplněk obsahuje binární komponenty."
 
-#: apps/versions/models.py:285
+#: apps/versions/models.py:280
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Doplněk má nastavení striktní kontrolu kompatibility."
 
-#: apps/versions/models.py:663
+#: apps/versions/models.py:659
 msgid "{app} {min} and later"
 msgstr "{app} {min} a novější"
 
