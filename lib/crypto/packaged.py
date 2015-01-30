@@ -12,6 +12,7 @@ from celeryutils import task
 from django_statsd.clients import statsd
 from signing_clients.apps import get_signature_serial_number, JarExtractor
 
+import amo
 
 log = commonware.log.getLogger('z.crypto')
 
@@ -20,12 +21,23 @@ class SigningError(Exception):
     pass
 
 
+def get_endpoint(file_obj):
+    """Get the endpoint to sign the file, depending on its review status."""
+    server = settings.SIGNING_SERVER
+    if file_obj.status != amo.STATUS_PUBLIC:
+        server = settings.PRELIMINARY_SIGNING_SERVER
+    if not server:
+        return
+
+    return '{server}/1.0/sign_addon'.format(server=server)
+
+
 def call_signing(file_obj):
     """Get the jar signature and send it to the signing server to be signed."""
-    if not settings.SIGNING_SERVER:
+    endpoint = get_endpoint(file_obj)
+    if not endpoint:
         log.warning('Not signing: no active endpoint')
         return
-    endpoint = '{server}/1.0/sign_addon'.format(server=settings.SIGNING_SERVER)
 
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
