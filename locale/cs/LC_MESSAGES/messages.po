@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 09:20-0700\n"
-"PO-Revision-Date: 2015-01-17 09:52+0000\n"
+"PO-Revision-Date: 2015-01-31 15:27+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421488357.0\n"
+"X-POOTLE-MTIME: 1422718025.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3499,15 +3499,15 @@ msgstr "Úroveň 6"
 
 #: apps/constants/base.py:507
 msgid "Not signed"
-msgstr ""
+msgstr "Neodesláno"
 
 #: apps/constants/base.py:508
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Odesláno k plné kontrole"
 
 #: apps/constants/base.py:509
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Odesláno k předběžné kontrole"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -8654,7 +8654,7 @@ msgstr "Vítězné doplňky v Australis Contest"
 
 #: apps/discovery/modules.py:355
 msgid "What are your interests?"
-msgstr ""
+msgstr "Jaké jsou vaše zájmy?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -11431,6 +11431,9 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
+"Recenze doplňků jsou způsob, jak sdílet váš názor na doplněk, který jste si "
+"nainstalovali a vyzkoušeli. Náš tým kontrolující recenze si vyhrazuje právo "
+"recenze odmítnout nebo smazat, pokud neodpovídají těmto pokynům."
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -11471,6 +11474,8 @@ msgstr "Budete doplněk i nadále používat?"
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Před odesláním své recenze si prosím znovu přečtěte a opravte případné "
+"překlepy."
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
@@ -11479,12 +11484,17 @@ msgstr "Nepište:"
 #: apps/pages/templates/pages/review_guide.html:85
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Nepište pouze jednoslovné recenze jako \"Úžasné!, \"Vynikající\" nebo "
+"\"Nefunguje\"."
 
 #: apps/pages/templates/pages/review_guide.html:90
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Nepište technické problémy, požadavky na podporu nebo návrhy na nové funkce. "
+"Pro ně můžete použít kontakty, které jsou pro daný doplněk dostupné. "
+"Najdete je v postranním sloupci v sekci O doplňku."
 
 #: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
@@ -11497,14 +11507,20 @@ msgstr "Používat hrubý, sexuálně orientovaný či jinak nevhodný jazyk."
 #: apps/pages/templates/pages/review_guide.html:106
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr ""
+"Nevkládejte HTML kód, odkazy, zdrojový kód nebo jeho části. Recenze jsou "
+"určeny pouze pro psaní textu."
 
 #: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Psát nepravdivé informace, zlehčovat autory doplňků či je osobně urážet."
+msgstr ""
+"Nepiště nepravdivé informace, nezlehčujte práci autorů doplňků ani je osobně "
+"neurážejte."
 
 #: apps/pages/templates/pages/review_guide.html:117
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
+"Nevkládejte svou ani cizí e-mailovou adresu, telefonní číslo ani jiné osobní "
+"informace."
 
 #: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
@@ -11515,6 +11531,9 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní "
+"recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel "
+"fungování daného doplňku, nebo doplněk sběr dat pro své fungování potřebuje."
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
@@ -11535,6 +11554,9 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
+"Ano, autor doplňku může odeslat k recenzi odpověď. Pro delší diskuzi můžete "
+"založit téma na <a "
+"href=\"http://forums.mozilla.org/viewforum.php?f=23\">fóru</a>."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -11545,6 +11567,11 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"V obecném případě ne. Ale pokud recenze nesplňuje podmínky pro kontrolu "
+"uvedené výše, můžete klepnout na \"Nahlásit recenze\" pro její moderování. "
+"Pokud recenze obsahuje stížnost, která již není relevantní s ohledem na "
+"vydání nové verze doplňku, můžeme zvážit její smazání. Podrobnější požadavek "
+"nám zašlete na amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
