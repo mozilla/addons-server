@@ -1222,8 +1222,7 @@ def version_add(request, addon_id, addon):
         request=request
     )
     if form.is_valid():
-        pl = (list(form.cleaned_data['desktop_platforms']) +
-              list(form.cleaned_data['mobile_platforms']))
+        pl = form.cleaned_data.get('supported_platforms', [])
         v = Version.from_upload(
             upload=form.cleaned_data['upload'],
             addon=addon,
@@ -1380,8 +1379,7 @@ def submit_addon(request, step):
         if form.is_valid():
             data = form.cleaned_data
 
-            p = (list(data.get('desktop_platforms', [])) +
-                 list(data.get('mobile_platforms', [])))
+            p = data.get('supported_platforms', [])
 
             addon = Addon.from_upload(data['upload'], p, source=data['source'])
             AddonUser(addon=addon, user=request.amo_user).save()

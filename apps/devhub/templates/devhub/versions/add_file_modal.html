@@ -23,13 +23,9 @@
         <label>{{ _('Select the target platform for this file.') }}</label>
         {{ new_file_form.platform }}
       {% elif modal_type == 'version' %}
-        <div class="desktop-platforms">
-          <label>{{ _('Which desktop platforms is this file compatible with?') }}</label>
-          {{ new_file_form.desktop_platforms }}
-        </div>
-        <div class="mobile-platforms">
-          <label>{{ _('Which mobile platforms is this file compatible with?') }}</label>
-          {{ new_file_form.mobile_platforms }}
+        <div class="supported-platforms">
+          <label>{{ _('Which platforms is this file compatible with?') }}</label>
+          {{ new_file_form.supported_platforms }}
         </div>
       {% endif %}
       </div>

@@ -501,25 +501,12 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
 
 
 class NewAddonForm(AddonUploadForm):
-    desktop_platforms = forms.TypedMultipleChoiceField(
-        choices=amo.DESKTOP_PLATFORMS_CHOICES,
+    supported_platforms = forms.TypedMultipleChoiceField(
+        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
         initial=[amo.PLATFORM_ALL.id],
-        required=False,
-        coerce=int
-    )
-    mobile_platforms = forms.TypedMultipleChoiceField(
-        choices=((amo.PLATFORM_ANDROID.id, amo.PLATFORM_ANDROID.name),),
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-        required=False,
         coerce=int,
-        label=_lazy('Android'),
-        # We don't want the id value of the field to be output to the user
-        # when choice is invalid. Make a generic error message instead.
-        error_messages={
-            'invalid_choice': _lazy(u'Select a valid choice. That choice is '
-                                    u'not one of the available choices.')
-        }
+        error_messages={'required': 'Need at least one platform.'}
     )
 
     def clean(self):
@@ -527,13 +514,7 @@ class NewAddonForm(AddonUploadForm):
             self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'])
             addons.forms.clean_name(xpi['name'])
-            self._clean_all_platforms()
         return self.cleaned_data
-
-    def _clean_all_platforms(self):
-        if (not self.cleaned_data['desktop_platforms']
-                and not self.cleaned_data['mobile_platforms']):
-            raise forms.ValidationError(_('Need at least one platform.'))
 
 
 class NewVersionForm(NewAddonForm):
@@ -567,7 +548,6 @@ class NewVersionForm(NewAddonForm):
                     files__status=amo.STATUS_DISABLED):
                 raise forms.ValidationError(
                     _(u'Version %s already exists') % xpi['version'])
-            self._clean_all_platforms()
         return self.cleaned_data
 
 

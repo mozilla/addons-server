@@ -2024,7 +2024,7 @@ class TestVersionAddFile(UploadTest):
 
     def make_mobile(self):
         for a in self.version.apps.all():
-            a.application = amo.MOBILE.id
+            a.application = amo.ANDROID.id
             a.save()
 
     def post(self, platform=amo.PLATFORM_MAC, source=None):
@@ -2333,12 +2333,11 @@ class TestUploadErrors(UploadTest):
 
 class AddVersionTest(UploadTest):
 
-    def post(self, desktop_platforms=[amo.PLATFORM_MAC], mobile_platforms=[],
+    def post(self, supported_platforms=[amo.PLATFORM_MAC],
              override_validation=False, expected_status=200, source=None,
              beta=False):
         d = dict(upload=self.upload.pk, source=source,
-                 desktop_platforms=[p.id for p in desktop_platforms],
-                 mobile_platforms=[p.id for p in mobile_platforms],
+                 supported_platforms=[p.id for p in supported_platforms],
                  admin_override_validation=override_validation, beta=beta)
         r = self.client.post(self.url, d)
         eq_(r.status_code, expected_status)
@@ -2394,8 +2393,8 @@ class TestAddVersion(AddVersionTest):
         assert_not_equal(fle.status, amo.STATUS_PUBLIC)
 
     def test_multiple_platforms(self):
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC,
-                                         amo.PLATFORM_LINUX])
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC,
+                                           amo.PLATFORM_LINUX])
         eq_(r.status_code, 200)
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
@@ -2442,7 +2441,7 @@ class TestAddBetaVersion(AddVersionTest):
                                           platform=platform.id, beta=True))
 
     def test_add_multi_file_beta(self):
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC], beta=True)
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC], beta=True)
 
         version = self.addon.versions.all().order_by('-id')[0]
 
@@ -2533,11 +2532,10 @@ class TestVersionXSS(UploadTest):
 
 class UploadAddon(object):
 
-    def post(self, desktop_platforms=[amo.PLATFORM_ALL], mobile_platforms=[],
-             expect_errors=False, source=None):
+    def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
+             source=None):
         d = dict(upload=self.upload.pk, source=source,
-                 desktop_platforms=[p.id for p in desktop_platforms],
-                 mobile_platforms=[p.id for p in mobile_platforms])
+                 supported_platforms=[p.id for p in supported_platforms])
         r = self.client.post(self.url, d, follow=True)
         eq_(r.status_code, 200)
         if not expect_errors:
@@ -2580,15 +2578,15 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         r = self.client.post(self.url, dict(upload=self.upload.pk))
         eq_(r.status_code, 200)
         eq_(r.context['new_addon_form'].errors.as_text(),
-            '* __all__\n  * Need at least one platform.')
+            '* supported_platforms\n  * Need at least one platform.')
         doc = pq(r.content)
         eq_(doc('ul.errorlist').text(),
             'Need at least one platform.')
 
     def test_one_xpi_for_multiple_platforms(self):
         eq_(Addon.objects.count(), 0)
-        r = self.post(desktop_platforms=[amo.PLATFORM_MAC,
-                                         amo.PLATFORM_LINUX])
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC,
+                                           amo.PLATFORM_LINUX])
         addon = Addon.objects.get()
         self.assertRedirects(r, reverse('devhub.submit.3',
                                         args=[addon.slug]))

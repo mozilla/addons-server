@@ -339,8 +339,7 @@ class TestVersion(amo.tests.TestCase):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         # Make sure checkboxes are visible:
-        eq_(doc('.desktop-platforms input.platform').length, 4)
-        eq_(doc('.mobile-platforms input.platform').length, 1)
+        eq_(doc('.supported-platforms input.platform').length, 5)
         eq_(set([i.attrib['type'] for i in doc('input.platform')]),
             set(['checkbox']))
 
@@ -380,10 +379,10 @@ class TestVersionEditMobile(TestVersionEditBase):
     def setUp(self):
         super(TestVersionEditMobile, self).setUp()
         self.version.apps.all().delete()
-        app_vr = AppVersion.objects.create(application=amo.MOBILE.id,
+        app_vr = AppVersion.objects.create(application=amo.ANDROID.id,
                                            version='1.0')
         ApplicationsVersions.objects.create(version=self.version,
-                                            application=amo.MOBILE.id,
+                                            application=amo.ANDROID.id,
                                             min=app_vr, max=app_vr)
         self.version.files.update(platform=amo.PLATFORM_ANDROID.id)
 
@@ -685,7 +684,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_mobile_addon_supports_only_mobile_platforms(self):
         for a in self.version.apps.all():
-            a.application = amo.MOBILE.id
+            a.application = amo.ANDROID.id
             a.save()
         self.version.files.all().update(platform=amo.PLATFORM_ANDROID.id)
         forms = self.client.get(self.url).context['file_form'].forms
