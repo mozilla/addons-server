@@ -31,13 +31,17 @@ class TestNewAddonForm(amo.tests.TestCase):
 
     def test_only_valid_uploads(self):
         f = FileUpload.objects.create(valid=False)
-        form = forms.NewAddonForm({'upload': f.pk}, request=mock.Mock())
+        form = forms.NewAddonForm(
+            {'upload': f.pk, 'supported_platforms': [1]},
+            request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
 
         f.validation = '{"errors": 0}'
         f.save()
-        form = forms.NewAddonForm({'upload': f.pk}, request=mock.Mock())
+        form = forms.NewAddonForm(
+            {'upload': f.pk, 'supported_platforms': [1]},
+            request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
 

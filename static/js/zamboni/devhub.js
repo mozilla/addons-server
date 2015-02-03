@@ -239,12 +239,6 @@ function initPlatformChooser() {
             parent = form,
             val = $(this).val(),
             container = $(this).parents('div:eq(0)');
-        $.each(['desktop-platforms'], function (i, cls) {
-            if (container.hasClass(cls)) {
-                parent = container;
-                return false;
-            }
-        });
         if (val == '1') {
             // Platform=ALL
             if ($(this).attr('checked')) {

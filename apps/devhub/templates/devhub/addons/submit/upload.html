@@ -26,15 +26,10 @@
   {{ source_form_field(new_addon_form.source) }}
 
       <div class="platform">
-        <div class="desktop-platforms">
-          <label>{{ _('Which desktop platforms is this file compatible with?') }}</label>
-          {{ new_addon_form.errors.desktop_platforms }}
-          {{ new_addon_form.desktop_platforms }}
-        </div>
-        <div class="mobile-platforms">
-          <label>{{ _('Which mobile platforms is this file compatible with?') }}</label>
-          {{ new_addon_form.errors.mobile_platforms }}
-          {{ new_addon_form.mobile_platforms }}
+        <div class="supported-platforms">
+          <label>{{ _('Which platforms is this file compatible with?') }}</label>
+          {{ new_addon_form.errors.supported_platforms }}
+          {{ new_addon_form.supported_platforms }}
         </div>
         {{ new_addon_form.upload }}
       </div>
