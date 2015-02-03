@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-07 08:57-0700\n"
-"PO-Revision-Date: 2015-02-03 05:41+0000\n"
+"PO-Revision-Date: 2015-02-03 05:47+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422942076.0\n"
+"X-POOTLE-MTIME: 1422942421.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2605,11 +2605,11 @@ msgstr "任何人都可以建立的一组相关的附加组件名单。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:3 apps/blocklist/templates/blocklist/blocked_list.html:3 apps/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr "阻止的附加组件"
+msgstr "已被封锁的附加组件"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr "阻止列表"
+msgstr "封锁名单"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
@@ -2646,11 +2646,11 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "阻止于 %(date)s。<a href=\"%(link)s\">查看阻止请求</a>。"
+msgstr "已于 %(date)s 封锁。<a href=\"%(link)s\">查看封锁请求</a>。"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr "%(date)s 阻止。"
+msgstr "于 %(date)s 被封锁。"
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
