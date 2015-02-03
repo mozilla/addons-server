@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 09:20-0700\n"
-"PO-Revision-Date: 2014-12-27 15:29+0000\n"
+"PO-Revision-Date: 2015-02-03 22:58+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1419694173.0\n"
+"X-POOTLE-MTIME: 1423004334.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -1648,7 +1648,7 @@ msgstr "{user} aprovou {review} para {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Revisão {review} para {addon} excluída."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
@@ -4070,7 +4070,7 @@ msgstr "Senha incorreta. O complemento não foi excluído."
 
 #: apps/devhub/views.py:433
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Foi adicionado um autor ao seu complemento"
 
 #: apps/devhub/views.py:440
 msgid "An author has a role changed on your add-on"
@@ -10706,6 +10706,15 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Para garantir a compatibilidade com as últimas versões do software da "
+"Mozilla, é importante transferir atualizações assim que são disponibilizadas "
+"e testar o seu complemento para garantir que ainda funciona como esperado. "
+"Em muitos casos a última versão do software da Mozilla pode ser um "
+"lançamento beta. Dado que estes lançamentos podem por vezes apresentar "
+"alterações arquiteturais que podem ter impacto na funcionalidade do seu "
+"complemento, é importante estar envolvido ativamente no processo beta para "
+"garantir que os usuários do seu complemento não sejam negativamente afetados "
+"após o lançamento do software da Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"

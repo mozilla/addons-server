@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-30 09:20-0700\n"
-"PO-Revision-Date: 2014-08-06 17:32+0000\n"
+"PO-Revision-Date: 2015-02-03 22:54+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407346370.0\n"
+"X-POOTLE-MTIME: 1423004065.0\n"
 
 #: static/js/common-all.js:10461 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:10428 static/js/zamboni/init.js:32 static/js/zamboni/mobile-all.js:10989
 #: static/js/zamboni/mobile-min.js:4
@@ -398,36 +398,52 @@ msgstr "Seu complemento passou pela validação sem erros ou alertas."
 #: static/js/common/upload-addon.js:334 static/js/zamboni/devhub-all.js:571 static/js/zamboni/devhub-min.js:1
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Incluir notas detalhadas da versão (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:335 static/js/zamboni/devhub-all.js:572 static/js/zamboni/devhub-min.js:1
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Se o seu complemento necessita de uma conta num site web para ser "
+"completamente testado, inclua um nome de usuário e senha de teste nas Notas "
+"para o Revisor (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:348 static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Se o seu complemento se destina a uma audiência limitada, deve escolher "
+"Revisão Preliminar em vez de uma Revisão Completa."
 
 #: static/js/common/upload-addon.js:350 static/js/zamboni/devhub-all.js:587 static/js/zamboni/devhub-min.js:1
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Lista de verificação do envio do complemento"
 
 #: static/js/common/upload-addon.js:351 static/js/zamboni/devhub-all.js:588 static/js/zamboni/devhub-min.js:1
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Por favor confirme os pontos seguintes antes de finalizar o seu envio. Isto "
+"irá minimizar atrasos ou confusões durante o processo de revisão:"
 
 #: static/js/common/upload-addon.js:353 static/js/zamboni/devhub-all.js:590 static/js/zamboni/devhub-min.js:1
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Binários compilados, bem como scripts minificados ou ofuscados (excluindo "
+"bibliotecas conhecidas) devem ter as suas fontes enviadass separadamente "
+"para revisão. Tenha a certeza que utiliza o campo de envio de código fonte "
+"para evitar que seja rejeitado."
 
 #: static/js/common/upload-addon.js:371 static/js/zamboni/devhub-all.js:608 static/js/zamboni/devhub-min.js:1
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"O processo de validação encontrou estes problemas que podem levar a "
+"rejeições:"
 
 #: static/js/common/upload-addon.js:388 static/js/zamboni/devhub-all.js:625 static/js/zamboni/devhub-min.js:1
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Se não está familiarizado com o processo de revisão de complementos, pode "
+"ler mais sobre o mesmo aqui."
 
 #: static/js/common/upload-addon.js:425 static/js/zamboni/devhub-all.js:662 static/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
@@ -708,7 +724,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117 static/js/zamboni/stats-all.js:15493 static/js/zamboni/stats-min.js:6
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15498 static/js/zamboni/stats-min.js:6
