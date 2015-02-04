@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07 08:57-0700\n"
+"POT-Creation-Date: 2015-02-04 08:35-0700\n"
 "PO-Revision-Date: 2015-02-03 05:47+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -129,16 +129,16 @@ msgstr "尚未审核"
 msgid "Featured"
 msgstr "精选"
 
-#: apps/addons/models.py:306
+#: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "用户可以选择捐助多于或少于这个金额。"
 
-#: apps/addons/models.py:315
+#: apps/addons/models.py:314
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问"
 
 # Column name in a table.
-#: apps/addons/models.py:1865
+#: apps/addons/models.py:1863
 msgid "Listed"
 msgstr "已列出"
 
@@ -225,7 +225,7 @@ msgstr "捐助"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -292,7 +292,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "建议一次捐助 {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#. {1} is an amount input field
+#.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "一次捐助 {0} {1}"
@@ -686,9 +686,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
-"要安装这个主题，<b>请下载 Thunderbird</b>，一个由 Mozilla Messaging "
-"开发的免费并开放源代码的电子邮件客户端程序，然后安装 Personas Plus 附加组件。"
+msgstr "要安装这个主题，<b>请下载 Thunderbird</b>，一个由 Mozilla Messaging 开发的免费并开放源代码的电子邮件客户端程序，然后安装 Personas Plus 附加组件。"
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -783,16 +781,12 @@ msgstr "发送报告"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:62 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "取消"
-
-#: apps/addons/templates/addons/report_abuse_full.html:3
-msgid "Report abuse for {0}"
-msgstr "报告 {0} 的滥用行为"
 
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
@@ -832,7 +826,7 @@ msgstr "评论撰写指南"
 msgid "Detailed Review"
 msgstr "详细评论"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:769 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:775 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "评论"
@@ -1165,7 +1159,7 @@ msgstr "用户量"
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:968 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:945 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "版本"
 
@@ -1226,7 +1220,7 @@ msgid "Easy ways to personalize."
 msgstr "简单的个性化方式。"
 
 #: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
-#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/monthly.html:22
+#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "了解更多"
 
@@ -1909,8 +1903,8 @@ msgid "Previous"
 msgstr "上一页"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#. third argument is the number of total results (e.g., 1,000).
+#.                third argument is the number of total results (e.g., 1,000).
+#.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "目前显示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 项，共 <b>%(count)s</b> 项"
@@ -2086,11 +2080,11 @@ msgstr "不允许使用链接。"
 msgid "This url is already in use by another collection"
 msgstr "此网址已被其他收藏集使用"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1058
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1059
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1076 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1077 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "请使用小于 %dMB 的图像。"
 
@@ -2329,23 +2323,23 @@ msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> 个关注者"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "%(num)s 名周订阅者"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "每月 %(num)s 个关注者"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -2486,7 +2480,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>警告：</b>改变此收藏集的所有者后您就不能再编辑它了，只能添加和删除附加组件。"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2583,7 +2577,7 @@ msgstr "输入要加入的附加组件名称"
 msgid "Add to Collection"
 msgstr "添加到收藏集"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:784 apps/editors/helpers.py:804
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:790 apps/editors/helpers.py:810
 msgid "Pending"
 msgstr "等待中"
 
@@ -3076,7 +3070,7 @@ msgstr "按应用程序排序"
 msgid "Report Type"
 msgstr "报告类型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:965 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:942 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "应用程序"
 
@@ -3180,7 +3174,7 @@ msgstr "已初步审核"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "已初步审核并等待全面审核"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:772 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:778 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "已删除"
 
@@ -3416,6 +3410,18 @@ msgstr "第5级"
 msgid "Level 6"
 msgstr "第6级"
 
+#: apps/constants/base.py:507
+msgid "Not signed"
+msgstr ""
+
+#: apps/constants/base.py:508
+msgid "Signed for a full review"
+msgstr ""
+
+#: apps/constants/base.py:509
+msgid "Signed of a preliminary review"
+msgstr ""
+
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
 msgstr "更多信息"
@@ -3505,36 +3511,28 @@ msgid "All Platforms"
 msgstr "所有平台"
 
 #: apps/constants/platforms.py:26
-msgid "All Mobile Platforms"
-msgstr "所有移动平台"
-
-#: apps/constants/platforms.py:33
 msgid "Linux"
 msgstr "Linux"
 
-#: apps/constants/platforms.py:40
+#: apps/constants/platforms.py:33
 msgid "Mac OS X"
 msgstr "Mac OS X"
 
-#: apps/constants/platforms.py:47
+#: apps/constants/platforms.py:40
 msgid "BSD"
 msgstr "BSD"
 
-#: apps/constants/platforms.py:54
+#: apps/constants/platforms.py:47
 msgid "Windows"
 msgstr "Windows"
 
-#: apps/constants/platforms.py:61
+#: apps/constants/platforms.py:54
 msgid "Solaris"
 msgstr "Solaris"
 
-#: apps/constants/platforms.py:68
+#: apps/constants/platforms.py:61
 msgid "Android"
 msgstr "Android"
-
-#: apps/constants/platforms.py:75
-msgid "Maemo"
-msgstr "Maemo"
 
 #: apps/devhub/feeds.py:35
 msgid "Recent Changes for %s"
@@ -3636,7 +3634,7 @@ msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩�
 msgid "View current"
 msgstr "查看当前"
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:892
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:869
 msgid "Invalid version range."
 msgstr "版本范围无效。"
 
@@ -3652,187 +3650,183 @@ msgstr "您的上传过程中发生错误，请重试。"
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-#: apps/devhub/forms.py:529
-msgid "Need at least one platform."
-msgstr "至少需要选择一个平台。"
-
-#: apps/devhub/forms.py:536 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:524 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "全面审核"
 
-#: apps/devhub/forms.py:537 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步审核"
 
-#: apps/devhub/forms.py:541
+#: apps/devhub/forms.py:529
 msgid "Please choose a review nomination type"
 msgstr "请选择提交审核的类型"
 
-#: apps/devhub/forms.py:545 apps/devhub/forms.py:581
+#: apps/devhub/forms.py:533 apps/devhub/forms.py:568
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "一个文件具有 a|alpha|b|beta 的版本和一个可选的数字将检测为 beta 版本。"
 
-#: apps/devhub/forms.py:562
+#: apps/devhub/forms.py:550
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:575
+#: apps/devhub/forms.py:562
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "请选择一个有效的选项。目前的选项不是可用的选项之一。"
 
-#: apps/devhub/forms.py:610
+#: apps/devhub/forms.py:591
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
-#: apps/devhub/forms.py:616
+#: apps/devhub/forms.py:597
 msgid "Version doesn't match"
 msgstr "版本不匹配"
 
-#: apps/devhub/forms.py:649
+#: apps/devhub/forms.py:626
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "审核过程开始后您不能删除文件。您必须删除整个版本。"
 
-#: apps/devhub/forms.py:669
+#: apps/devhub/forms.py:646
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "不能既选择所有平台又指定特定平台。"
 
-#: apps/devhub/forms.py:674
+#: apps/devhub/forms.py:651
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#: apps/devhub/forms.py:687
+#: apps/devhub/forms.py:664
 msgid "A review type must be selected."
 msgstr "必须选择一个审核类型。"
 
-#: apps/devhub/forms.py:766
+#: apps/devhub/forms.py:743
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "给您的附加组件命名。最成功的附加组件通常都在名称中多多少少指出了它们所提供的功能。"
 
-#: apps/devhub/forms.py:771
+#: apps/devhub/forms.py:748
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "用一句话简要地描述一下您的附加组件。这句话会出现附加组件管理器中。"
 
-#: apps/devhub/forms.py:775
+#: apps/devhub/forms.py:752
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "输入您的初版版本号。依照不同的发布次数和个人喜好，通常是 0.1 或 1.0"
 
-#: apps/devhub/forms.py:779
+#: apps/devhub/forms.py:756
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "每个附加组件都需要一个独一无二的 ID，以 UUID 或电子邮件地址的形式来表示，例如 addon-name@developer.com。此电子邮件地址可以是不真实的。"
 
-#: apps/devhub/forms.py:785
+#: apps/devhub/forms.py:762
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "您的附加组件包名只用于浏览器内。请尽量用简称（比如 Test Extension 称作 test_extension）。"
 
-#: apps/devhub/forms.py:790
+#: apps/devhub/forms.py:767
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "请输入这个附加组件的作者或组织的名称。"
 
-#: apps/devhub/forms.py:794
+#: apps/devhub/forms.py:771
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "请输入这个扩展的其他贡献者名字，每行一个。"
 
-#: apps/devhub/forms.py:803
+#: apps/devhub/forms.py:780
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "附加组件名称中不能含有 Mozilla 的商标。"
 
-#: apps/devhub/forms.py:810
+#: apps/devhub/forms.py:787
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "请输入一个由字母、数字或下划线组成的有效包名。"
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:791
 msgid "This package name is already in use."
 msgstr "此包名已被使用。"
 
-#: apps/devhub/forms.py:817
+#: apps/devhub/forms.py:794
 msgid "The package name cannot be: %s."
 msgstr "包名不能是：%s。"
 
-#: apps/devhub/forms.py:828
+#: apps/devhub/forms.py:805
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "附加组件 ID 必须是一个 UUID 字符串或电子邮件地址。"
 
-#: apps/devhub/forms.py:834
+#: apps/devhub/forms.py:811
 msgid "The version string is invalid."
 msgstr "版本号字符串无效。"
 
-#: apps/devhub/forms.py:842
+#: apps/devhub/forms.py:819
 msgid "Minimum"
 msgstr "最小"
 
-#: apps/devhub/forms.py:845
+#: apps/devhub/forms.py:822
 msgid "Maximum"
 msgstr "最大"
 
-#: apps/devhub/forms.py:896
+#: apps/devhub/forms.py:873
 msgid "Min version must be less than Max version."
 msgstr "最小版本必须小于最大版本。"
 
-#: apps/devhub/forms.py:921
+#: apps/devhub/forms.py:898
 msgid "{0} is a required target application."
 msgstr "{0} 是一个必需的目标应用程序。"
 
-#: apps/devhub/forms.py:933
+#: apps/devhub/forms.py:910
 msgid "About dialog"
 msgstr "“关于”对话框"
 
-#: apps/devhub/forms.py:934
+#: apps/devhub/forms.py:911
 msgid "Creates a standard About dialog for your extension"
 msgstr "为您的扩展创建一个标准的“关于”对话框"
 
-#: apps/devhub/forms.py:938
+#: apps/devhub/forms.py:915
 msgid "Preferences dialog"
 msgstr "“首选项”对话框"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:916
 msgid "Creates an example Preferences window"
 msgstr "创建一个示例“首选项”窗口"
 
-#: apps/devhub/forms.py:942
+#: apps/devhub/forms.py:919
 msgid "Toolbar"
 msgstr "工具栏"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:920
 msgid "Creates an example toolbar for your extension"
 msgstr "为您的扩展创建一个示例工具栏"
 
-#: apps/devhub/forms.py:946
+#: apps/devhub/forms.py:923
 msgid "Toolbar button"
 msgstr "工具栏按钮"
 
-#: apps/devhub/forms.py:947
+#: apps/devhub/forms.py:924
 msgid "Creates an example button on the browser toolbar"
 msgstr "创建一个浏览器工具栏的示例按钮"
 
-#: apps/devhub/forms.py:951
+#: apps/devhub/forms.py:928
 msgid "Main menu command"
 msgstr "主菜单命令"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:929
 msgid "Creates an item on the Tools menu"
 msgstr "在工具菜单上创建一个项目"
 
-#: apps/devhub/forms.py:955
+#: apps/devhub/forms.py:932
 msgid "Context menu command"
 msgstr "上下文菜单命令"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:933
 msgid "Creates a context menu item for images"
 msgstr "创建一个图像的上下文菜单项"
 
-#: apps/devhub/forms.py:959
+#: apps/devhub/forms.py:936
 msgid "Sidebar support"
 msgstr "侧边栏支持"
 
-#: apps/devhub/forms.py:960
+#: apps/devhub/forms.py:937
 msgid "Creates an example sidebar panel"
 msgstr "创建一个示例侧边栏面板"
 
-#: apps/devhub/forms.py:969 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:946 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "请先选择一个应用程序"
 
-#: apps/devhub/forms.py:1021
+#: apps/devhub/forms.py:998
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
 
@@ -3906,7 +3900,7 @@ msgstr "用户收藏集"
 msgid "User Reviews"
 msgstr "用户评论"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:466 apps/devhub/views.py:495 apps/devhub/views.py:546 apps/devhub/views.py:1155
+#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1156
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
@@ -3934,68 +3928,68 @@ msgstr "密码不正确。主题没有删除。"
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "密码错误，附加组件没有删除。"
 
-#: apps/devhub/views.py:432
+#: apps/devhub/views.py:433
 msgid "An author has been added to your add-on"
 msgstr "一个作者已被添加到您的附加组件"
 
-#: apps/devhub/views.py:439
+#: apps/devhub/views.py:440
 msgid "An author has a role changed on your add-on"
 msgstr "您的附加组件的一个作者角色已更改"
 
-#: apps/devhub/views.py:458
+#: apps/devhub/views.py:459
 msgid "An author has been removed from your add-on"
 msgstr "一个作者已被从您的附加组件中移除"
 
-#: apps/devhub/views.py:501
+#: apps/devhub/views.py:502
 msgid "There were errors in your submission."
 msgstr "您的提交发生错误。"
 
-#: apps/devhub/views.py:565
+#: apps/devhub/views.py:566
 msgid "Validate Add-on"
 msgstr "验证附加组件"
 
-#: apps/devhub/views.py:574
+#: apps/devhub/views.py:575
 msgid "Check Add-on Compatibility"
 msgstr "检查附加组件兼容性"
 
-#: apps/devhub/views.py:697
+#: apps/devhub/views.py:698
 msgid "There was an error with the submission."
 msgstr "提交时发生错误。"
 
-#: apps/devhub/views.py:1060 apps/users/forms.py:419
+#: apps/devhub/views.py:1061 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "图像必须为 PNG 或 JPG 格式。"
 
-#: apps/devhub/views.py:1064
+#: apps/devhub/views.py:1065
 msgid "Icons cannot be animated."
 msgstr "不能使用动画图标。"
 
-#: apps/devhub/views.py:1066
+#: apps/devhub/views.py:1067
 msgid "Images cannot be animated."
 msgstr "不能使用动态图像。"
 
-#: apps/devhub/views.py:1079
+#: apps/devhub/views.py:1080
 msgid "Images cannot be larger than %dKB."
 msgstr "图像大小不能超过 %dKB。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1089
+#: apps/devhub/views.py:1090
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "图像宽度必须刚好为 {0} 像素且高度为 {1} 像素。"
 
-#: apps/devhub/views.py:1096
+#: apps/devhub/views.py:1097
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#: apps/devhub/views.py:1194
+#: apps/devhub/views.py:1195
 msgid "Version %s disabled."
 msgstr "已停用版本 %s。"
 
-#: apps/devhub/views.py:1197
+#: apps/devhub/views.py:1199
 msgid "Version %s deleted."
 msgstr "版本 %s 已删除。"
 
-#: apps/devhub/views.py:1207
+#: apps/devhub/views.py:1209
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
 
@@ -5267,14 +5261,10 @@ msgid "Use the fields below to upload your add-on package and select any platfor
 msgstr "使用下面的按钮上传您的附加组件包，并选择可兼容的平台。在上传完成后，将会对您的文件执行一系列的自动化验证测试。"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
-msgid "Which desktop platforms is this file compatible with?"
-msgstr "这个文件兼容哪些桌面平台？"
+msgid "Which platforms is this file compatible with?"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
-msgid "Which mobile platforms is this file compatible with?"
-msgstr "这个文件兼容哪些移动平台？"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:48
+#: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "管理覆盖"
 
@@ -5350,10 +5340,8 @@ msgid ""
 "wall of pictures and video. But some of the most popular add-ons just make minor changes to Firefox through easily learned languages like JavaScript, XUL, and CSS. If you have an idea for your "
 "first add-on, start out with something simple to learn the basics of how extensions are packaged and interact with Firefox."
 msgstr ""
-"如果您此前用过 Firefox 附加组件，会知道他们能实现一些很炫的功能 "
-"&mdash;，借助一些网站的底层框架显示图片或者视频的3D滚动墙。但是一些最热门的附加组件开始做一些细微的修正，通过更易学的语言例如 "
-"JavaScript、XUL 和 CSS。如果您有意开发自己的第一个附加组件，可以着手学习一些简单的基础内容，看看如何打包和与 Firefox "
-"进行交互。"
+"如果您此前用过 Firefox 附加组件，会知道他们能实现一些很炫的功能 &mdash;，借助一些网站的底层框架显示图片或者视频的3D滚动墙。但是一些最热门的附加组件开始做一些细微的修正，通过更易学的语言例如 "
+"JavaScript、XUL 和 CSS。如果您有意开发自己的第一个附加组件，可以着手学习一些简单的基础内容，看看如何打包和与 Firefox 进行交互。"
 
 #: apps/devhub/templates/devhub/docs/getting-started.html:24
 msgid "Learn the basics"
@@ -5570,9 +5558,7 @@ msgstr "以受限特权执行求值代码"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
 msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr ""
-"这篇文章描述 Components.utils.evalInSandbox 的使用，这是一种不使用 chrome 权限来 eval "
-"执行代码（例如远程代码）的方式。"
+msgstr "这篇文章描述 Components.utils.evalInSandbox 的使用，这是一种不使用 chrome 权限来 eval 执行代码（例如远程代码）的方式。"
 
 #: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
 msgid "Creating Sandboxed HTTP Connections"
@@ -7487,8 +7473,7 @@ msgstr "您的附加组件已经展示在我们的展示库中，并且用户会
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:53
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
-msgstr ""
-"网站管理员禁用了您的附加组件，因此它不再显示于展台中。如果您有任何疑问，请发邮件给 marketplace-staff@mozilla.org。"
+msgstr "网站管理员禁用了您的附加组件，因此它不再显示于展台中。如果您有任何疑问，请发邮件给 marketplace-staff@mozilla.org。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:60
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -7626,7 +7611,7 @@ msgid "Remove this application"
 msgstr "移除此应用程序"
 
 #. {0} is the maximum number of add-on categories allowed.
-#. {1} is the application name.
+#.                {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -8012,11 +7997,11 @@ msgstr "将文件添加到已通过审核的版本中后，必须再次通过审
 msgid "Select the target platform for this file."
 msgstr "为此文件选择目标平台。"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
 msgstr "您希望提交哪个类型的审核？"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
 msgstr "仅发布此版本到我的测试通道。"
 
@@ -8401,6 +8386,10 @@ msgstr "助力工作、娱乐、隐私和工作效率等各个方面的优秀附
 msgid "Add-ons for Australis Contest Winners"
 msgstr "Australis 挑战赛获奖者作品"
 
+#: apps/discovery/modules.py:355
+msgid "What are your interests?"
+msgstr ""
+
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
 msgstr "发掘附加组件"
@@ -8411,9 +8400,7 @@ msgstr "什么是附加组件？"
 
 #: apps/discovery/templates/discovery/pane.html:29
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"附加组件是一种通过增添额外的功能或样式让您实现个性化 %(app)s 的应用程序。试试用可以节省时间的侧边栏、天气通知程序或主题外观来打造您的专属 %"
-"(app)s 吧。"
+msgstr "附加组件是一种通过增添额外的功能或样式让您实现个性化 %(app)s 的应用程序。试试用可以节省时间的侧边栏、天气通知程序或主题外观来打造您的专属 %(app)s 吧。"
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
@@ -8855,11 +8842,11 @@ msgstr "这将会标记附加组件及其最新版本和文件为公开。未来
 msgid "add-on"
 msgstr "附加组件"
 
-#: apps/editors/helpers.py:788 apps/editors/helpers.py:808
+#: apps/editors/helpers.py:794 apps/editors/helpers.py:814
 msgid "Flagged"
 msgstr "已标记"
 
-#: apps/editors/helpers.py:792 apps/editors/helpers.py:811
+#: apps/editors/helpers.py:798 apps/editors/helpers.py:817
 msgid "Updates"
 msgstr "更新"
 
@@ -9355,19 +9342,19 @@ msgstr "日期"
 msgid "Editor"
 msgstr "审核员"
 
-#: apps/editors/templates/editors/reviewlog.html:56
+#: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
 msgstr "附加组件已被删除。"
 
-#: apps/editors/templates/editors/reviewlog.html:61 apps/editors/templates/editors/themes/logs.html:36
+#: apps/editors/templates/editors/reviewlog.html:59 apps/editors/templates/editors/themes/logs.html:36
 msgid "Show Comments"
 msgstr "显示意见"
 
-#: apps/editors/templates/editors/reviewlog.html:62 apps/editors/templates/editors/themes/logs.html:37
+#: apps/editors/templates/editors/reviewlog.html:60 apps/editors/templates/editors/themes/logs.html:37
 msgid "Hide Comments"
 msgstr "隐藏意见"
 
-#: apps/editors/templates/editors/reviewlog.html:74 apps/editors/templates/editors/themes/logs.html:54
+#: apps/editors/templates/editors/reviewlog.html:72 apps/editors/templates/editors/themes/logs.html:54
 msgid "No reviews found for this period."
 msgstr "在此时间段内没有审核。"
 
@@ -10758,9 +10745,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">字典和语言包</a></strong> 为 %
 
 #: apps/pages/templates/pages/faq.html:77
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">插件</a></strong> 帮助 %(app_name)s "
-"显示或识别不同类型的媒体，例如 Adobe Flash 或 Apple Quicktime。"
+msgstr "<strong><a href=\"%(browse_url)s\">插件</a></strong> 帮助 %(app_name)s 显示或识别不同类型的媒体，例如 Adobe Flash 或 Apple Quicktime。"
 
 #: apps/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
@@ -10810,9 +10795,8 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
 "\">Learn more about our approval process</a>"
 msgstr ""
-"除非另有明确标示，否则本展台中的附加组件都已经经过了 Mozilla 团队的审核确定安装是安全的。我们建议您只安装已审核的附加组件。如果您想从第三方网站"
-"安装未经审核的附加组件，请谨慎使用那些附加组件，因为它们可能会侵害您的计算机和隐私。<a href=\"%"
-"(learnmore_url)s\">了解我们的审批流程</a>"
+"除非另有明确标示，否则本展台中的附加组件都已经经过了 Mozilla 团队的审核确定安装是安全的。我们建议您只安装已审核的附加组件。如果您想从第三方网站安装未经审核的附加组件，请谨慎使用那些附加组件，因为它"
+"们可能会侵害您的计算机和隐私。<a href=\"%(learnmore_url)s\">了解我们的审批流程</a>"
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
@@ -10900,8 +10884,8 @@ msgid ""
 "While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
 "as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"虽然我们展台中可供公众使用的所有附加组件都已经过了审核员的审核，您仍可能会收到一个链向未经审核的附加组件的链接。安装这些附加组件时应特别小心，因为他们可"
-"能会侵害您的计算机或侵犯您的隐私权。我们建议您只安装已经过审核的附加组件。<a href=\"%(url)s\">了解我们的审核过程</a></dd>"
+"虽然我们展台中可供公众使用的所有附加组件都已经过了审核员的审核，您仍可能会收到一个链向未经审核的附加组件的链接。安装这些附加组件时应特别小心，因为他们可能会侵害您的计算机或侵犯您的隐私权。我们建议您"
+"只安装已经过审核的附加组件。<a href=\"%(url)s\">了解我们的审核过程</a></dd>"
 
 #: apps/pages/templates/pages/faq.html:207
 msgid "How much do add-ons cost to purchase?"
@@ -11051,9 +11035,8 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"移动版附加组件可在 <a href=\"%(mobile_url)s\">Firefox  移动版</a> "
-"上使用，如同桌面版的附加组件一样，它可以增加或修改功能。您可以在我们的<a href=\"%(gallery_url)s\">展台</a>中找到可工作于 "
-"Firefox 移动版的附加组件。"
+"移动版附加组件可在 <a href=\"%(mobile_url)s\">Firefox  移动版</a> 上使用，如同桌面版的附加组件一样，它可以增加或修改功能。您可以在我们的<a href=\"%(gallery_url)s\">展台</a>中找到可工作于 Firefox 移"
+"动版的附加组件。"
 
 #: apps/pages/templates/pages/faq.html:316
 msgid "Developer Topics"
@@ -11071,174 +11054,137 @@ msgstr "还有问题？"
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr "常规的 Firefox 支持，请访问我们的<a href=\"%(sumo_url)s\">支持网站</a>。而常规的附加组件和网站问题，请访问我们的<a href=\"%(forum_url)s\">论坛</a>。"
 
-#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:57
+#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:54
 msgid "Some tips for writing a great review"
 msgstr "撰写优良评论的一些提示"
 
-#: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:149
+#: apps/pages/templates/pages/review_guide.html:39
 msgid "Guidelines for rating add-ons"
 msgstr "为附加组件评分的指引"
 
-#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:210
+#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:134
 msgid "Frequently Asked Questions about Reviews"
 msgstr "关于评论的常见问答"
 
 #: apps/pages/templates/pages/review_guide.html:49
 msgid ""
-"Add-on reviews are a way for add-on site users to share their opinions about the add-ons that they have installed and used. Editors reserve the right to refuse or remove any review that does not "
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
-msgstr "附加组件评论是附加组件网站对已经安装和使用该附加组件的用户来分享他们意见的一种方式。审核员保留拒绝或移除不符合这些准则的评论的权利。"
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:59
+#: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
 msgstr "做到："
 
-#: apps/pages/templates/pages/review_guide.html:62
+#: apps/pages/templates/pages/review_guide.html:59
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "就像您想告诉您朋友那样写下您对该附加组件的体验。"
 
-#: apps/pages/templates/pages/review_guide.html:67
+#: apps/pages/templates/pages/review_guide.html:64
 msgid "Keep reviews concise and easy to understand."
 msgstr "保持评论的简洁和易于理解。"
 
-#: apps/pages/templates/pages/review_guide.html:68
+#: apps/pages/templates/pages/review_guide.html:65
 msgid "Give specific and helpful details. For example:"
 msgstr "提供具体且有用的细节，像是："
 
-#: apps/pages/templates/pages/review_guide.html:70
+#: apps/pages/templates/pages/review_guide.html:67
 msgid "Did the add-on work as you expected it to?"
 msgstr "您预期中的附加组件该怎样运作？"
 
-#: apps/pages/templates/pages/review_guide.html:71
+#: apps/pages/templates/pages/review_guide.html:68
 msgid "What features did you like or dislike?"
 msgstr "特点是什么，您喜不喜欢？"
 
-#: apps/pages/templates/pages/review_guide.html:72
+#: apps/pages/templates/pages/review_guide.html:69
 msgid "Was it useful?"
 msgstr "它有用吗？"
 
-#: apps/pages/templates/pages/review_guide.html:73
+#: apps/pages/templates/pages/review_guide.html:70
 msgid "Was it easy to use?"
 msgstr "它是否易于使用？"
 
-#: apps/pages/templates/pages/review_guide.html:74
+#: apps/pages/templates/pages/review_guide.html:71
 msgid "Will you continue to use this add-on?"
 msgstr "您会继续使用这个附加组件吗？"
 
-#: apps/pages/templates/pages/review_guide.html:79
-msgid "Take a moment to read your review before submitting it to avoid embarrassing typos or grammatical errors."
-msgstr "提交前花点时间阅读一下您的评论，以避免令人尴尬的错别字或语法错误。"
+#: apps/pages/templates/pages/review_guide.html:76
+msgid "Take a moment to read your review before submitting it to minimize typos."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:86
-msgid "Avoid referring to topical or temporal references since reviews can remain on the site for a long time."
-msgstr "避免提及现时的或暂时的参考，因为评论会在网站上停留很长一段时间。"
-
-#: apps/pages/templates/pages/review_guide.html:93
+#: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
 msgstr "不要做："
 
-#: apps/pages/templates/pages/review_guide.html:96
-msgid "Submit simple reviews such as \"Great!\", \"wonderful\", or \"bad\" with no further explanation."
-msgstr "提交简单的评论，像是“太棒了！”、“非常好”、“很差”这样的没有进一步解释的评论。"
+#: apps/pages/templates/pages/review_guide.html:85
+msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:102
-msgid "Post bug or problem reports in reviews. Use the available support options for each add-on."
-msgstr "在评论中发出缺陷或问题的报告。您应该使用每个附加组件的支持选项。"
+#: apps/pages/templates/pages/review_guide.html:90
+msgid ""
+"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
+"section."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:108
+#: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "您还没有亲自试用该附加组件就进行评论。"
 
-#: apps/pages/templates/pages/review_guide.html:113
+#: apps/pages/templates/pages/review_guide.html:100
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "使用亵渎、性意味或其他可能构成伤害的言语。"
 
-#: apps/pages/templates/pages/review_guide.html:119
-msgid "Include HTML, links to malware, source code or code snippets. Reviews are meant to be text only."
-msgstr "包含 HTML 语法，到恶意软件的链接，源代码或代码片段。“评论”意味着应该只是文字叙述。"
+#: apps/pages/templates/pages/review_guide.html:106
+msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:125
+#: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "作出虚假的陈述、贬低或者侮辱附加组件的作者或任何个体。"
 
-#: apps/pages/templates/pages/review_guide.html:131
-msgid "Use reviews as a way to request support for a specific Firefox (or other application) version."
-msgstr "使用评论对特定的某个 Firefox（或其他应用程序）版本进行支持请求。"
+#: apps/pages/templates/pages/review_guide.html:117
+msgid "Include your own or anyone else’s email, phone number, or other personal details."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:137
-msgid "Include your own email, phone number, or other personal details."
-msgstr "包含您的电子邮件地址、手机号或者其他个人信息。"
-
-#: apps/pages/templates/pages/review_guide.html:142
+#: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "为附加组件投递您或您的组织撰写或表述的评论。"
 
-#: apps/pages/templates/pages/review_guide.html:152
+#: apps/pages/templates/pages/review_guide.html:128
 msgid ""
-"Add-ons ratings should be fair and give a good indication of overall quality and usefulness. Don't just give it 5 stars if you like it or 1 star if you hate it. Consistent grading is an important "
-"part of any review."
-msgstr "附加组件评分应该是公平的表现和提供出一个良好的整体质量和实用性的评分。不要只是因为您喜欢它就给它5颗星，也不要因为您恨它就给它1颗星。始终如一的评分是任何评论的重要部分。"
+"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
+"add-on, or the add-on requires gathering data to function."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:162
-msgid ""
-"<b>5 stars: Excellent.</b> Not only does everything it claims, but it is significantly more useful than many other add-ons. This add-on is likely to be one you use often and you highly recommend it."
-msgstr "<b>5星：超棒！</b>它不仅能做到所声称的事情，还比大多数的附加组件有用得多。您很可能会经常使用此附加组件，并且您极力推荐它。"
-
-#: apps/pages/templates/pages/review_guide.html:170
-msgid "<b>4 stars: Good.</b> Useful and easy to use, though not necessarily special. This add-on is recommended but may be more suited for some people over others."
-msgstr "<b>4星：很棒。</b>非常有用且易于使用，虽然不一定很特别。我推荐这个附加组件，虽然它可能只适合部分人群。"
-
-#: apps/pages/templates/pages/review_guide.html:177
-msgid ""
-"<b>3 stars: Passable.</b> May have some design issues and/or some missing features. Any problems it has are not drastic enough to recommend against, and some people may still find it useful. "
-"Recommended for those who need it and are willing to give it a try."
-msgstr "<b>3星：还行。</b>可能缺少一些功能或者有一些设计上的问题。有一些不太严重的问题，有些人可能仍然觉得它有点用。那些需要它的人可以试试。"
-
-#: apps/pages/templates/pages/review_guide.html:185
-msgid ""
-"<b>2 stars: Poor.</b> Add-on is of low quality, usability, or just doesn't do what it says it should. You are recommending against this add-on, while noting that it might have some redeeming value "
-"for a few people."
-msgstr "<b>2星：很差。</b>附加组件的质量、可用性很差，或者只是没能做到它所描述的事情。您不推荐使用这个附加组件，但也表示它可能对少数人还有点作用。"
-
-#: apps/pages/templates/pages/review_guide.html:193
-msgid ""
-"<b>1 star: Bad.</b> Add-on either doesn't work correctly or is utterly useless. You can't think of any significant reason why someone should give it a try and are recommending that it be avoided "
-"completely."
-msgstr "<b>1星：非常糟糕。</b>附加组件不能正常地工作，或者完全无用。您无法理解为什么有人会使用或推荐它，完全没有必要去尝试。"
-
-#: apps/pages/templates/pages/review_guide.html:203
-msgid "There's nothing wrong with giving an add-on a perfect or horrible review, just please indicate why you are doing so. The stars mean nothing if you don't tell us why."
-msgstr "给一个附加组件评价为完美或糟糕没什么不对的，但是您应该注明您为什么要这样评价。如果您不告诉我们为什么，那星级是没有意义的。"
-
-#: apps/pages/templates/pages/review_guide.html:212
+#: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
 msgstr "我该怎么报告有问题的评论？"
 
-#: apps/pages/templates/pages/review_guide.html:214
+#: apps/pages/templates/pages/review_guide.html:138
 msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Editors will use the Review Guidelines to evaluate whether "
-"or not to delete the review or restore it back to the site."
-msgstr "请通过点击“报告此评论”来报告或标记任何有问题的评论，它将被提交给网站仲裁。审核员会依照本篇“评论指南”来评估是否应该删除或者恢复该评论。"
+"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
+"evaluate whether or not to delete the review or restore it back to the site."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:222
+#: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "我是一个附加组件的作者，我可以回应评论吗？"
 
-#: apps/pages/templates/pages/review_guide.html:224
-msgid "Yes, add-on authors can provide a single response to a review. Additional discussions or followup should be moved to a support forum or discussion group."
-msgstr "是的，附加组件作者可以给评论提供回应。但额外的讨论或后续工作应转移到相应的支持论坛或讨论组。"
+#: apps/pages/templates/pages/review_guide.html:145
+msgid ""
+"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
+"discussion or follow-up."
+msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:231
+#: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "我是一个附加组件的作者，我可以删除负面的评论或评分吗？"
 
-#: apps/pages/templates/pages/review_guide.html:233
+#: apps/pages/templates/pages/review_guide.html:154
 msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated by an editor. If a review included a complaint that "
-"is no longer valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
+"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
+"valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"一般情况下不可以。但如果评论不符合上述评论准则，您可以点击“报告此评论”，之后会有一名审核员进行审核。如果抱怨的评论因为您的附加组件已经发布了新版本而不再有效，我们可以考虑删除该评论。请提交您的详细请"
-"求至 amo-editors@mozilla.org。"
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -11575,9 +11521,7 @@ msgstr "第 <strong>{0}</strong>-<strong>{1}</strong> 条结果，共 <strong>{2
 # {4} is a word (the add-on is tagged with it)
 #: apps/search/helpers.py:44
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr ""
-"关键词为 <strong>{3}</strong> 且带有 <strong>{4}</strong> 标签的结果共有 {2} 项，显示第 {0} - "
-"{1} 项"
+msgstr "关键词为 <strong>{3}</strong> 且带有 <strong>{4}</strong> 标签的结果共有 {2} 项，显示第 {0} - {1} 项"
 
 # {0} is a number
 # {1} is a number
@@ -12941,15 +12885,15 @@ msgstr "%s 版本历史"
 msgid "Version History with Changelogs"
 msgstr "版本历史记录"
 
-#: apps/versions/models.py:282
+#: apps/versions/models.py:277
 msgid "Add-on uses binary components."
 msgstr "添加使用二进制的附加组件。"
 
-#: apps/versions/models.py:285
+#: apps/versions/models.py:280
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加组件选择采用严格的兼容性检查。"
 
-#: apps/versions/models.py:663
+#: apps/versions/models.py:657
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
 

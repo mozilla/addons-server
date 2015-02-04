@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 09:20-0700\n"
+"POT-Creation-Date: 2015-02-04 08:35-0700\n"
 "PO-Revision-Date: 2015-01-07 23:11+0000\n"
 "Last-Translator: Peter <kollenix@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -152,7 +152,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Používatelia budú vždy upozornení v okne Správcu doplnkov (Firefox 4 a vyššie)"
 
 # Column name in a table.
-#: apps/addons/models.py:1858
+#: apps/addons/models.py:1863
 msgid "Listed"
 msgstr "V zozname"
 
@@ -239,7 +239,7 @@ msgstr "Prispieť"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -819,7 +819,7 @@ msgstr "Odoslať správu"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:62 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
@@ -1212,7 +1212,7 @@ msgstr "Používatelia"
 msgid "Weekly Downloads"
 msgstr "Prevzatí za týždeň"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:965 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:945 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Verzia"
 
@@ -2556,7 +2556,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Upozornenie:</b> po zmene vlastníka tejto kolekcie ju už nebudete môcť upravovať. Budete môcť len pridávať alebo odstraňovať jej doplnky."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3162,7 +3162,7 @@ msgstr "Filter podľa aplikácie"
 msgid "Report Type"
 msgstr "Typ správy"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:962 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:942 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikácia"
 
@@ -3622,7 +3622,7 @@ msgstr "Windows"
 msgid "Solaris"
 msgstr "Solaris"
 
-#: apps/constants/platforms.py:61 apps/devhub/forms.py:516
+#: apps/constants/platforms.py:61
 msgid "Android"
 msgstr "Android"
 
@@ -3726,7 +3726,7 @@ msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom pre {ext
 msgid "View current"
 msgstr "Zobraziť aktuálne"
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:889
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:869
 msgid "Invalid version range."
 msgstr "Neplatný rozsah verzií."
 
@@ -3742,187 +3742,183 @@ msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 msgid "Override failed validation"
 msgstr "Prepísať neúspešnú kontrolu"
 
-#: apps/devhub/forms.py:520 apps/devhub/forms.py:582
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "Zvoľte platnú hodnotu. Táto voľba nie je žiadnou z dostupných možností."
-
-#: apps/devhub/forms.py:536
-msgid "Need at least one platform."
-msgstr "Vyžaduje aspoň jednu platformu."
-
-#: apps/devhub/forms.py:543 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:524 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Plná kontrola"
 
-#: apps/devhub/forms.py:544 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Predbežná kontrola"
 
-#: apps/devhub/forms.py:548
+#: apps/devhub/forms.py:529
 msgid "Please choose a review nomination type"
 msgstr "Zvoľte typ nominácie na kontrolu"
 
-#: apps/devhub/forms.py:552 apps/devhub/forms.py:588
+#: apps/devhub/forms.py:533 apps/devhub/forms.py:568
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Súbor s verziou, ktorá končí na a|alpha|b|beta a ľubovolným číslom je rozpoznaný ako betaverzia."
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:550
 msgid "Version %s already exists"
 msgstr "Verzia %s už existuje"
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:562
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Zvoľte platnú hodnotu. Táto voľba nie je žiadnou z dostupných možností."
+
+#: apps/devhub/forms.py:591
 msgid "You cannot upload any more files for this version."
 msgstr "Pre túto verziu nemôžete odoslať žiadne ďalšie súbory."
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:597
 msgid "Version doesn't match"
 msgstr "Verzia sa nezhoduje"
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:626
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Nemôžete odstrániť súbor v dobe, keď bol zahájený proces kontroly. Musíte odstrániť celú verziu."
 
-#: apps/devhub/forms.py:666
+#: apps/devhub/forms.py:646
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platformu Všetky nie je možné kombinovať s inou platformou."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:651
 msgid "A platform can only be chosen once."
 msgstr "Platformu je možné zvoliť len raz."
 
-#: apps/devhub/forms.py:684
+#: apps/devhub/forms.py:664
 msgid "A review type must be selected."
 msgstr "Musí byť zvolený typ kontroly."
 
-#: apps/devhub/forms.py:763
+#: apps/devhub/forms.py:743
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Pomenujte svoj doplnok. Najúspešnejšie doplnky obsahujú vo svojom názve indikáciu toho, na čo slúžia."
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:748
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Jednou vetou popíšte svoj doplnok. Táto sa objaví v okne Správcu doplnkov."
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:752
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Zadajte číslo prvej verzie doplnku. V závislosti na počte vydaní a na vašich preferenciách je zvyčajne prvou verziou 0.1 alebo 1.0"
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:756
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr "Každý doplnok musí mať unikátne identifikačné číslo vo forme UUID alebo e-mailovej adresy, ako napríklad nazov-doplnku@developer.com. Táto adresa nemusí byť platnou e-mailovou adresou."
 
-#: apps/devhub/forms.py:782
+#: apps/devhub/forms.py:762
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "Názov balíčka vášho doplnku, tak ako bude používaný webovým prehliadačom. Mal by to byť skrátený názov doplnku (napríklad, pre testovací doplnok môže byť uvedený názov testovací_doplnok)."
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:767
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Zadajte meno osoby alebo názov entity, ktorá je autorom tohto doplnku."
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:771
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Zadajte mená prispievateľov k tomuto doplnku, každé meno na samostatný riadok."
 
-#: apps/devhub/forms.py:800
+#: apps/devhub/forms.py:780
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Názov doplnku nesmie obsahovať ochranné známky Mozilly."
 
-#: apps/devhub/forms.py:807
+#: apps/devhub/forms.py:787
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Zadajte platný názov balíčku, ktorý sa bude skladať z písmen, číslic prípadne podčiarkovníkov."
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:791
 msgid "This package name is already in use."
 msgstr "Tento názov balíčku sa už používa."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:794
 msgid "The package name cannot be: %s."
 msgstr "Názov balíčku nemôže byť: %s."
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:805
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "Identifikátorom doplnku musí byť reťazec UUID alebo e-mailová adresa."
 
-#: apps/devhub/forms.py:831
+#: apps/devhub/forms.py:811
 msgid "The version string is invalid."
 msgstr "Reťazec verzie nie je platný."
 
-#: apps/devhub/forms.py:839
+#: apps/devhub/forms.py:819
 msgid "Minimum"
 msgstr "Minimum"
 
-#: apps/devhub/forms.py:842
+#: apps/devhub/forms.py:822
 msgid "Maximum"
 msgstr "Maximum"
 
-#: apps/devhub/forms.py:893
+#: apps/devhub/forms.py:873
 msgid "Min version must be less than Max version."
 msgstr "Číslo minimálnej verzie musí byť menšie ako číslo maximálnej verzie."
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:898
 msgid "{0} is a required target application."
 msgstr "{0} je vyžadovaná cieľová aplikácia."
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:910
 msgid "About dialog"
 msgstr "Dialógové okno O aplikácii"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:911
 msgid "Creates a standard About dialog for your extension"
 msgstr "Vytvorí štandardné dialógové okno O rozšírení"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:915
 msgid "Preferences dialog"
 msgstr "Dialóg nastavení"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:916
 msgid "Creates an example Preferences window"
 msgstr "Vytvorí ukážkové okno nastavení"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:919
 msgid "Toolbar"
 msgstr "Panel nástrojov"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:920
 msgid "Creates an example toolbar for your extension"
 msgstr "Vytvorí ukážkový panel nástrojov pre váš doplnok"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:923
 msgid "Toolbar button"
 msgstr "Tlačidlo na paneli nástrojov"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:924
 msgid "Creates an example button on the browser toolbar"
 msgstr "Vytvorí ukážkové tlačidlo na paneli nástrojov prehliadača"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:928
 msgid "Main menu command"
 msgstr "Príkaz do hlavnej ponuky"
 
-#: apps/devhub/forms.py:949
+#: apps/devhub/forms.py:929
 msgid "Creates an item on the Tools menu"
 msgstr "Vytvorí položku v ponuke Nástroje"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:932
 msgid "Context menu command"
 msgstr "Príkaz v kontextovej ponuke"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:933
 msgid "Creates a context menu item for images"
 msgstr "Vytvorí kontextovú ponuku pre obrázky"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:936
 msgid "Sidebar support"
 msgstr "Podpora bočného panela"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:937
 msgid "Creates an example sidebar panel"
 msgstr "Vytvorí ukážkový bočný panel"
 
-#: apps/devhub/forms.py:966 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:946 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
 
-#: apps/devhub/forms.py:1018
+#: apps/devhub/forms.py:998
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nemôžete mať viac ako 3 vyžadované doplnky."
 
@@ -4004,7 +4000,7 @@ msgstr "Recenzie používateľa"
 msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1572
+#: apps/devhub/views.py:327 apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr "Skontrolujte prosím chyby vo formulári."
 
@@ -4085,19 +4081,19 @@ msgstr "Pri odosielaní ukážky sa vyskytla chyba."
 msgid "Version %s disabled."
 msgstr "Verzia %s je zakázaná."
 
-#: apps/devhub/views.py:1198
+#: apps/devhub/views.py:1199
 msgid "Version %s deleted."
 msgstr "Verzia %s bola odstránená."
 
-#: apps/devhub/views.py:1208
+#: apps/devhub/views.py:1209
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Pri nahrávaní kontrola zlyhala a preto jej výsledky nemusia byť kompletné. Venujte tomu preto pri kontrole zvláštnu pozornosť."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "Vyžiadaná predbežná kontrola."
 
-#: apps/devhub/views.py:1619
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "Vyžiadaná plná kontrola."
 
@@ -5404,14 +5400,10 @@ msgid "Use the fields below to upload your add-on package and select any platfor
 msgstr "Pre načítanie balíčka so svojim doplnkom a výber cieľových platforiem použite pole nižšie. Po načítaní bude spustená sada automatizovaných testov, ktoré váš balíček skontrolujú."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
-msgid "Which desktop platforms is this file compatible with?"
-msgstr "S akými platformami pre stolové počítače je tento súbor kompatibilný?"
+msgid "Which platforms is this file compatible with?"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
-msgid "Which mobile platforms is this file compatible with?"
-msgstr "S akými platformami pre mobilné zariadenia je tento súbor kompatibilný?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:48
+#: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Zmeny pri administrácií"
 
@@ -8222,11 +8214,11 @@ msgstr "Súbory pridané k overených verziám musia byť pred ich sprístupnen�
 msgid "Select the target platform for this file."
 msgstr "Zvoľte cieľovú platformu pre tento súbor."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -13338,7 +13330,7 @@ msgstr "Doplnok obsahuje binárne komponenty."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Doplnok má nastavenú striktnú kontrolu kompatibility."
 
-#: apps/versions/models.py:659
+#: apps/versions/models.py:657
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"
 

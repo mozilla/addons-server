@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 09:20-0700\n"
+"POT-Creation-Date: 2015-02-04 08:35-0700\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -155,7 +155,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "El Gestor de complements (Firefox 4 i superior) ho demanarà als usuaris sempre"
 
 # Column name in a table.
-#: apps/addons/models.py:1858
+#: apps/addons/models.py:1863
 msgid "Listed"
 msgstr "Llistat"
 
@@ -244,7 +244,7 @@ msgstr "Contribuïu-hi"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -820,7 +820,7 @@ msgstr "Envieu un informe"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:62 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
@@ -1215,7 +1215,7 @@ msgstr "Usuaris"
 msgid "Weekly Downloads"
 msgstr "Baixades setmanals"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:965 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:945 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Versió"
 
@@ -2556,7 +2556,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3158,7 +3158,7 @@ msgstr "Filtra per aplicació"
 msgid "Report Type"
 msgstr "Tipus d'informe"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:962 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:942 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplicació"
 
@@ -3619,7 +3619,7 @@ msgstr "Windows"
 msgid "Solaris"
 msgstr "Solaris"
 
-#: apps/constants/platforms.py:61 apps/devhub/forms.py:516
+#: apps/constants/platforms.py:61
 msgid "Android"
 msgstr "Android"
 
@@ -3723,7 +3723,7 @@ msgstr ""
 msgid "View current"
 msgstr ""
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:889
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:869
 msgid "Invalid version range."
 msgstr "Número de versió invàlid. "
 
@@ -3739,188 +3739,184 @@ msgstr "S'ha produït un error quan es pujava el fitxer. Torneu-ho a provar."
 msgid "Override failed validation"
 msgstr ""
 
-#: apps/devhub/forms.py:520 apps/devhub/forms.py:582
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-
-#: apps/devhub/forms.py:536
-msgid "Need at least one platform."
-msgstr "Us cal introduir com a mínim una plataforma."
-
-#: apps/devhub/forms.py:543 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:524 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Revisió sencera"
 
-#: apps/devhub/forms.py:544 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Revisió preliminar"
 
-#: apps/devhub/forms.py:548
+#: apps/devhub/forms.py:529
 msgid "Please choose a review nomination type"
 msgstr ""
 
-#: apps/devhub/forms.py:552 apps/devhub/forms.py:588
+#: apps/devhub/forms.py:533 apps/devhub/forms.py:568
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:550
 msgid "Version %s already exists"
 msgstr "La versió %s ja existeix"
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:562
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: apps/devhub/forms.py:591
 msgid "You cannot upload any more files for this version."
 msgstr "No podeu pujar més fitxers per a aquesta versió."
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:597
 msgid "Version doesn't match"
 msgstr "La versió no és correcta"
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:626
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "No es pot suprimir un fitxer una vegada iniciat el procés de revisió. Heu de suprimir la versió completa."
 
-#: apps/devhub/forms.py:666
+#: apps/devhub/forms.py:646
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "La plataforma Totes no es pot combinar amb plataformes específiques."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:651
 msgid "A platform can only be chosen once."
 msgstr "Només es pot seleccionar la plataforma una vegada."
 
-#: apps/devhub/forms.py:684
+#: apps/devhub/forms.py:664
 msgid "A review type must be selected."
 msgstr "Cal seleccionar un tipus de valoració."
 
-#: apps/devhub/forms.py:763
+#: apps/devhub/forms.py:743
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Inseriu un nom pel vostre complement. Els complements amb més èxit fan servir el seu propi nom per indicar-ne la utilitat."
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:748
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Descriviu el complement en una frase. Es veurà al Gestor de complements."
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:752
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Introduïu el número inicial de la versió. Depèn del nombre de versions o les vostres preferències, normalment és 0.1 o 1.0."
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:756
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr ""
 "Tots els complements necessiten un ID únic en forma d'UUID o d'adreça de correu electrònic, com per exemple nom-complement@desenvolupador.com. L'adreça de correu electrònic no cal que sigui vàlida."
 
-#: apps/devhub/forms.py:782
+#: apps/devhub/forms.py:762
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "El nom del paquet del vostre complement l'està utilitzant el navegador. Hauríeu d'escriure'l de forma diferent. Per exemple «Extensió de prova» hauria de  ser «extensio_prova»."
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:767
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Introduïu el nom de la persona o entitat que figurarà com a autor d'aquest complement."
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:771
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Introduïu els noms de tots aquells que han contribuït en aquesta extensió, un per línia."
 
-#: apps/devhub/forms.py:800
+#: apps/devhub/forms.py:780
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Els noms dels complements no poden contenir marques comercials de Mozilla."
 
-#: apps/devhub/forms.py:807
+#: apps/devhub/forms.py:787
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Introduïu un nom de paquet vàlid compost amb lletres, nombres i guions baixos."
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:791
 msgid "This package name is already in use."
 msgstr "Aquest nom ja està en ús."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:794
 msgid "The package name cannot be: %s."
 msgstr "El nom del paquet no pot ser: %s."
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:805
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "L'id. del complement ha de ser una cadena amb un UUID (Identificador Únic Universal) o una adreça de correu electrònic."
 
-#: apps/devhub/forms.py:831
+#: apps/devhub/forms.py:811
 msgid "The version string is invalid."
 msgstr "La cadena de la versió no és vàlida"
 
-#: apps/devhub/forms.py:839
+#: apps/devhub/forms.py:819
 msgid "Minimum"
 msgstr "Mínim"
 
-#: apps/devhub/forms.py:842
+#: apps/devhub/forms.py:822
 msgid "Maximum"
 msgstr "Màxim"
 
-#: apps/devhub/forms.py:893
+#: apps/devhub/forms.py:873
 msgid "Min version must be less than Max version."
 msgstr "La versió mínima ha de ser menor a la versió màxima."
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:898
 msgid "{0} is a required target application."
 msgstr "{0} és una aplicació de destinació obligatòria."
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:910
 msgid "About dialog"
 msgstr "Diàleg «Quant a»"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:911
 msgid "Creates a standard About dialog for your extension"
 msgstr "Crea un diàleg estàndard «Quant a» per a l'extensió"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:915
 msgid "Preferences dialog"
 msgstr "Diàleg de preferències"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:916
 msgid "Creates an example Preferences window"
 msgstr "Crea una finestra de preferències d'exemple"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:919
 msgid "Toolbar"
 msgstr "Barra d'eines"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:920
 msgid "Creates an example toolbar for your extension"
 msgstr "Crea una barra d'eines d'exemple per a l'extensió"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:923
 msgid "Toolbar button"
 msgstr "Botó de la barra d'eines"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:924
 msgid "Creates an example button on the browser toolbar"
 msgstr "Crea un botó d'exemple a la barra d'eines del navegador"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:928
 msgid "Main menu command"
 msgstr "Ordre del menú principal"
 
-#: apps/devhub/forms.py:949
+#: apps/devhub/forms.py:929
 msgid "Creates an item on the Tools menu"
 msgstr "Crea un element al menú d'eines"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:932
 msgid "Context menu command"
 msgstr "Ordre del menú contextual"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:933
 msgid "Creates a context menu item for images"
 msgstr "Crea un element de menú contextual per a les imatges"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:936
 msgid "Sidebar support"
 msgstr "Compatibilitat amb la barra lateral"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:937
 msgid "Creates an example sidebar panel"
 msgstr "Crea un tauler d'exemple a la barra lateral"
 
-#: apps/devhub/forms.py:966 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:946 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Primer cal que seleccioneu una aplicació"
 
-#: apps/devhub/forms.py:1018
+#: apps/devhub/forms.py:998
 msgid "There cannot be more than 3 required add-ons."
 msgstr "No es pot requerir més de 3 complements."
 
@@ -4001,7 +3997,7 @@ msgstr "Comentaris dels usuaris"
 msgid "Changes successfully saved."
 msgstr "S'han desat els canvis correctament."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1572
+#: apps/devhub/views.py:327 apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4082,19 +4078,19 @@ msgstr "S'ha produït un error quan es pujava la previsualització."
 msgid "Version %s disabled."
 msgstr ""
 
-#: apps/devhub/views.py:1198
+#: apps/devhub/views.py:1199
 msgid "Version %s deleted."
 msgstr "S'ha suprimit la versió %s."
 
-#: apps/devhub/views.py:1208
+#: apps/devhub/views.py:1209
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "S'ha demant una revisió preliminar."
 
-#: apps/devhub/views.py:1619
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "S'ha demant una revisió final."
 
@@ -5378,14 +5374,10 @@ msgstr ""
 "automàtiques."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
-msgid "Which desktop platforms is this file compatible with?"
-msgstr "Amb quines plataformes d'escriptori és compatible aquest fitxer?"
+msgid "Which platforms is this file compatible with?"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
-msgid "Which mobile platforms is this file compatible with?"
-msgstr "Amb quines plataformes mòbils és compatible aquest fitxer?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:48
+#: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr ""
 
@@ -8031,11 +8023,11 @@ msgstr "Els fitxes que s'afegeixen a les versions revisades s'han de revisar aba
 msgid "Select the target platform for this file."
 msgstr "Seleccioneu una plataforma per a aquest fitxer."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -12964,7 +12956,7 @@ msgstr ""
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:659
+#: apps/versions/models.py:657
 msgid "{app} {min} and later"
 msgstr ""
 

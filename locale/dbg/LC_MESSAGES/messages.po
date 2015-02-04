@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 09:20-0700\n"
+"POT-Creation-Date: 2015-02-04 08:35-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,7 +164,7 @@ msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ)"
 
-#: apps/addons/models.py:1858
+#: apps/addons/models.py:1863
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
@@ -298,7 +298,7 @@ msgstr "Ƈǿƞŧřīƀŭŧḗ"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:148
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57
 #: apps/devhub/templates/devhub/versions/edit.html:139
 #: apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244
@@ -1097,7 +1097,7 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:151
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:62
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:58
 #: apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244
@@ -1582,7 +1582,7 @@ msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
-#: apps/devhub/forms.py:965
+#: apps/devhub/forms.py:945
 #: apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Ṽḗřşīǿƞ"
@@ -3266,7 +3266,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:156
 #: apps/devhub/templates/devhub/addons/submit/describe.html:65
 #: apps/devhub/templates/devhub/addons/submit/license.html:60
-#: apps/devhub/templates/devhub/addons/submit/upload.html:54
+#: apps/devhub/templates/devhub/addons/submit/upload.html:49
 #: apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111
 #: apps/editors/templates/editors/themes/themes.html:128
@@ -4005,7 +4005,7 @@ msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
 #: apps/compat/templates/compat/reporter_detail.html:47
-#: apps/devhub/forms.py:962
+#: apps/devhub/forms.py:942
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: apps/editors/forms.py:100
 #: apps/zadmin/forms.py:47
@@ -4491,7 +4491,6 @@ msgid "Solaris"
 msgstr "Şǿŀȧřīş"
 
 #: apps/constants/platforms.py:61
-#: apps/devhub/forms.py:516
 msgid "Android"
 msgstr "Ȧƞḓřǿīḓ"
 
@@ -4598,7 +4597,7 @@ msgid "View current"
 msgstr "Ṽīḗẇ ƈŭřřḗƞŧ"
 
 #: apps/devhub/forms.py:440
-#: apps/devhub/forms.py:889
+#: apps/devhub/forms.py:869
 msgid "Invalid version range."
 msgstr "Īƞṽȧŀīḓ ṽḗřşīǿƞ řȧƞɠḗ."
 
@@ -4615,33 +4614,24 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ.
 msgid "Override failed validation"
 msgstr "Ǿṽḗřřīḓḗ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:520
-#: apps/devhub/forms.py:582
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. Ŧħȧŧ ƈħǿīƈḗ īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
-
-#: apps/devhub/forms.py:536
-msgid "Need at least one platform."
-msgstr "Ƞḗḗḓ ȧŧ ŀḗȧşŧ ǿƞḗ ƥŀȧŧƒǿřḿ."
-
-#: apps/devhub/forms.py:543
+#: apps/devhub/forms.py:524
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:544
+#: apps/devhub/forms.py:525
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:46
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:548
+#: apps/devhub/forms.py:529
 msgid "Please choose a review nomination type"
 msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ řḗṽīḗẇ ƞǿḿīƞȧŧīǿƞ ŧẏƥḗ"
 
-#: apps/devhub/forms.py:552
-#: apps/devhub/forms.py:588
+#: apps/devhub/forms.py:533
+#: apps/devhub/forms.py:568
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
@@ -4649,19 +4639,23 @@ msgstr ""
 "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş "
 "ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:550
 msgid "Version %s already exists"
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş"
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:562
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. Ŧħȧŧ ƈħǿīƈḗ īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
+
+#: apps/devhub/forms.py:591
 msgid "You cannot upload any more files for this version."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:597
 msgid "Version doesn't match"
 msgstr "Ṽḗřşīǿƞ ḓǿḗşƞ'ŧ ḿȧŧƈħ"
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:626
 msgid ""
 "You cannot delete a file once the review process has started. You must "
 "delete the whole version."
@@ -4669,19 +4663,19 @@ msgstr ""
 "Ẏǿŭ ƈȧƞƞǿŧ ḓḗŀḗŧḗ ȧ ƒīŀḗ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ħȧş şŧȧřŧḗḓ. Ẏǿŭ ḿŭşŧ "
 "ḓḗŀḗŧḗ ŧħḗ ẇħǿŀḗ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:666
+#: apps/devhub/forms.py:646
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:651
 msgid "A platform can only be chosen once."
 msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 
-#: apps/devhub/forms.py:684
+#: apps/devhub/forms.py:664
 msgid "A review type must be selected."
 msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/devhub/forms.py:763
+#: apps/devhub/forms.py:743
 msgid ""
 "Give your add-on a name. The most successful add-ons give some indication of "
 "their function in their name."
@@ -4689,7 +4683,7 @@ msgstr ""
 "Ɠīṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧ ƞȧḿḗ. Ŧħḗ ḿǿşŧ şŭƈƈḗşşƒŭŀ ȧḓḓ-ǿƞş ɠīṽḗ şǿḿḗ īƞḓīƈȧŧīǿƞ ǿƒ "
 "ŧħḗīř ƒŭƞƈŧīǿƞ īƞ ŧħḗīř ƞȧḿḗ."
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:748
 msgid ""
 "Briefly describe your add-on in one sentence. This appears in the Add-ons "
 "Manager."
@@ -4697,7 +4691,7 @@ msgstr ""
 "Ɓřīḗƒŀẏ ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ īƞ ǿƞḗ şḗƞŧḗƞƈḗ. Ŧħīş ȧƥƥḗȧřş īƞ ŧħḗ Ȧḓḓ-ǿƞş "
 "Ḿȧƞȧɠḗř."
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:752
 msgid ""
 "Enter your initial version number. Depending on the number of releases and "
 "your preferences, this is usually 0.1 or 1.0"
@@ -4705,7 +4699,7 @@ msgstr ""
 "Ḗƞŧḗř ẏǿŭř īƞīŧīȧŀ ṽḗřşīǿƞ ƞŭḿƀḗř. Ḓḗƥḗƞḓīƞɠ ǿƞ ŧħḗ ƞŭḿƀḗř ǿƒ řḗŀḗȧşḗş ȧƞḓ "
 "ẏǿŭř ƥřḗƒḗřḗƞƈḗş, ŧħīş īş ŭşŭȧŀŀẏ 0.1 ǿř 1.0"
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:756
 msgid ""
 "Each add-on requires a unique ID in the form of a UUID or an email address, "
 "such as addon-name@developer.com. The email address does not have to be "
@@ -4715,7 +4709,7 @@ msgstr ""
 "şŭƈħ ȧş addon-name@developer.com. Ŧħḗ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ħȧṽḗ ŧǿ ƀḗ "
 "ṽȧŀīḓ."
 
-#: apps/devhub/forms.py:782
+#: apps/devhub/forms.py:762
 msgid ""
 "The package name of your add-on used within the browser. This should be a "
 "short form of its name (for example, Test Extension might be test_extension)."
@@ -4723,7 +4717,7 @@ msgstr ""
 "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ŭşḗḓ ẇīŧħīƞ ŧħḗ ƀřǿẇşḗř. Ŧħīş şħǿŭŀḓ ƀḗ ȧ "
 "şħǿřŧ ƒǿřḿ ǿƒ īŧş ƞȧḿḗ (ƒǿř ḗẋȧḿƥŀḗ, Ŧḗşŧ Ḗẋŧḗƞşīǿƞ ḿīɠħŧ ƀḗ ŧḗşŧ_ḗẋŧḗƞşīǿƞ)."
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:767
 msgid ""
 "Enter the name of the person or entity to be listed as the author of this "
 "add-on."
@@ -4731,118 +4725,118 @@ msgstr ""
 "Ḗƞŧḗř ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ƥḗřşǿƞ ǿř ḗƞŧīŧẏ ŧǿ ƀḗ ŀīşŧḗḓ ȧş ŧħḗ ȧŭŧħǿř ǿƒ ŧħīş "
 "ȧḓḓ-ǿƞ."
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:771
 msgid ""
 "Enter the names of any other contributors to this extension, one per line."
 msgstr ""
 "Ḗƞŧḗř ŧħḗ ƞȧḿḗş ǿƒ ȧƞẏ ǿŧħḗř ƈǿƞŧřīƀŭŧǿřş ŧǿ ŧħīş ḗẋŧḗƞşīǿƞ, ǿƞḗ ƥḗř ŀīƞḗ."
 
-#: apps/devhub/forms.py:800
+#: apps/devhub/forms.py:780
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Ȧḓḓ-ǿƞ ƞȧḿḗş şħǿŭŀḓ ƞǿŧ ƈǿƞŧȧīƞ Ḿǿzīŀŀȧ ŧřȧḓḗḿȧřķş."
 
-#: apps/devhub/forms.py:807
+#: apps/devhub/forms.py:787
 msgid ""
 "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ƥȧƈķȧɠḗ ƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ǿř ŭƞḓḗřşƈǿřḗş."
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:791
 msgid "This package name is already in use."
 msgstr "Ŧħīş ƥȧƈķȧɠḗ ƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:794
 msgid "The package name cannot be: %s."
 msgstr "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ: %s."
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:805
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "Ŧħḗ ȧḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ ȧ ŬŬĪḒ şŧřīƞɠ ǿř ȧƞ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/devhub/forms.py:831
+#: apps/devhub/forms.py:811
 msgid "The version string is invalid."
 msgstr "Ŧħḗ ṽḗřşīǿƞ şŧřīƞɠ īş īƞṽȧŀīḓ."
 
-#: apps/devhub/forms.py:839
+#: apps/devhub/forms.py:819
 msgid "Minimum"
 msgstr "Ḿīƞīḿŭḿ"
 
-#: apps/devhub/forms.py:842
+#: apps/devhub/forms.py:822
 msgid "Maximum"
 msgstr "Ḿȧẋīḿŭḿ"
 
-#: apps/devhub/forms.py:893
+#: apps/devhub/forms.py:873
 msgid "Min version must be less than Max version."
 msgstr "Ḿīƞ ṽḗřşīǿƞ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ Ḿȧẋ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:898
 msgid "{0} is a required target application."
 msgstr "{0} īş ȧ řḗɋŭīřḗḓ ŧȧřɠḗŧ ȧƥƥŀīƈȧŧīǿƞ."
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:910
 msgid "About dialog"
 msgstr "Ȧƀǿŭŧ ḓīȧŀǿɠ"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:911
 msgid "Creates a standard About dialog for your extension"
 msgstr "Ƈřḗȧŧḗş ȧ şŧȧƞḓȧřḓ Ȧƀǿŭŧ ḓīȧŀǿɠ ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:915
 msgid "Preferences dialog"
 msgstr "Ƥřḗƒḗřḗƞƈḗş ḓīȧŀǿɠ"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:916
 msgid "Creates an example Preferences window"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ Ƥřḗƒḗřḗƞƈḗş ẇīƞḓǿẇ"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:919
 msgid "Toolbar"
 msgstr "Ŧǿǿŀƀȧř"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:920
 msgid "Creates an example toolbar for your extension"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ŧǿǿŀƀȧř ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:923
 msgid "Toolbar button"
 msgstr "Ŧǿǿŀƀȧř ƀŭŧŧǿƞ"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:924
 msgid "Creates an example button on the browser toolbar"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ƀŭŧŧǿƞ ǿƞ ŧħḗ ƀřǿẇşḗř ŧǿǿŀƀȧř"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:928
 msgid "Main menu command"
 msgstr "Ḿȧīƞ ḿḗƞŭ ƈǿḿḿȧƞḓ"
 
-#: apps/devhub/forms.py:949
+#: apps/devhub/forms.py:929
 msgid "Creates an item on the Tools menu"
 msgstr "Ƈřḗȧŧḗş ȧƞ īŧḗḿ ǿƞ ŧħḗ Ŧǿǿŀş ḿḗƞŭ"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:932
 msgid "Context menu command"
 msgstr "Ƈǿƞŧḗẋŧ ḿḗƞŭ ƈǿḿḿȧƞḓ"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:933
 msgid "Creates a context menu item for images"
 msgstr "Ƈřḗȧŧḗş ȧ ƈǿƞŧḗẋŧ ḿḗƞŭ īŧḗḿ ƒǿř īḿȧɠḗş"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:936
 msgid "Sidebar support"
 msgstr "Şīḓḗƀȧř şŭƥƥǿřŧ"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:937
 msgid "Creates an example sidebar panel"
 msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ şīḓḗƀȧř ƥȧƞḗŀ"
 
-#: apps/devhub/forms.py:966
+#: apps/devhub/forms.py:946
 #: apps/editors/forms.py:106
 #: apps/zadmin/forms.py:51
 #: apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
-#: apps/devhub/forms.py:1018
+#: apps/devhub/forms.py:998
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ŧħḗřḗ ƈȧƞƞǿŧ ƀḗ ḿǿřḗ ŧħȧƞ 3 řḗɋŭīřḗḓ ȧḓḓ-ǿƞş."
 
@@ -4935,7 +4929,7 @@ msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
 #: apps/devhub/views.py:327
-#: apps/devhub/views.py:1572
+#: apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
@@ -5017,11 +5011,11 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥř
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1198
+#: apps/devhub/views.py:1199
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1208
+#: apps/devhub/views.py:1209
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -5029,11 +5023,11 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1619
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -6713,16 +6707,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:27
-msgid "Which desktop platforms is this file compatible with?"
-msgstr "Ẇħīƈħ ḓḗşķŧǿƥ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
+msgid "Which platforms is this file compatible with?"
+msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:35
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:31
-msgid "Which mobile platforms is this file compatible with?"
-msgstr "Ẇħīƈħ ḿǿƀīŀḗ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:48
+#: apps/devhub/templates/devhub/addons/submit/upload.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Ȧḓḿīƞīşŧřȧŧīṽḗ ǿṽḗřřīḓḗş"
 
@@ -10932,11 +10921,11 @@ msgstr ""
 msgid "Select the target platform for this file."
 msgstr "Şḗŀḗƈŧ ŧħḗ ŧȧřɠḗŧ ƥŀȧŧƒǿřḿ ƒǿř ŧħīş ƒīŀḗ."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
 msgstr "Ẇħīƈħ řḗṽīḗẇ ŧẏƥḗ ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ ƞǿḿīƞȧŧḗ ƒǿř?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
 msgstr "Ǿƞŀẏ ƥŭƀŀīşħ ŧħīş ṽḗřşīǿƞ ŧǿ ḿẏ ƀḗŧȧ ƈħȧƞƞḗŀ."
 
@@ -17102,7 +17091,7 @@ msgstr "Ȧḓḓ-ǿƞ ŭşḗş ƀīƞȧřẏ ƈǿḿƥǿƞḗƞŧş."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Ȧḓḓ-ǿƞ ħȧş ǿƥŧḗḓ īƞŧǿ şŧřīƈŧ ƈǿḿƥȧŧīƀīŀīŧẏ ƈħḗƈķīƞɠ."
 
-#: apps/versions/models.py:659
+#: apps/versions/models.py:657
 msgid "{app} {min} and later"
 msgstr "{ȧƥƥ} {ḿīƞ} ȧƞḓ ŀȧŧḗř"
 

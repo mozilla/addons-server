@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 09:20-0700\n"
+"POT-Creation-Date: 2015-02-04 08:35-0700\n"
 "PO-Revision-Date: 2015-02-02 19:38+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -148,7 +148,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Gli utenti riceveranno una richiesta nella schermata di gestione delle estensioni (Firefox 4 e successivi)"
 
 # Column name in a table.
-#: apps/addons/models.py:1858
+#: apps/addons/models.py:1863
 msgid "Listed"
 msgstr "Visualizzato"
 
@@ -235,7 +235,7 @@ msgstr "Fai una donazione"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -810,7 +810,7 @@ msgstr "Invia segnalazione"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:62 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
@@ -1198,7 +1198,7 @@ msgstr "Utenti"
 msgid "Weekly Downloads"
 msgstr "Download per settimana"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:965 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:945 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Versione"
 
@@ -2541,7 +2541,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Attenzione:</b> modificando il proprietario di questa raccolta, non sarai più in grado di modificarla. Avrai solo la possibilità di aggiungere o rimuovere componenti aggiuntivi."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3147,7 +3147,7 @@ msgstr "Filtra per applicazione"
 msgid "Report Type"
 msgstr "Tipo report"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:962 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:942 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Applicazione"
 
@@ -3607,7 +3607,7 @@ msgstr "Windows"
 msgid "Solaris"
 msgstr "Solaris"
 
-#: apps/constants/platforms.py:61 apps/devhub/forms.py:516
+#: apps/constants/platforms.py:61
 msgid "Android"
 msgstr "Android"
 
@@ -3711,7 +3711,7 @@ msgstr "Tipo di file non supportato. Carica un file archivio valido {extensions}
 msgid "View current"
 msgstr "Mostra versione corrente"
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:889
+#: apps/devhub/forms.py:440 apps/devhub/forms.py:869
 msgid "Invalid version range."
 msgstr "Intervallo di versioni non valido."
 
@@ -3727,189 +3727,185 @@ msgstr "Si è verificato un errore durante il caricamento. Riprovare."
 msgid "Override failed validation"
 msgstr "Il tentativo di sostituzione forzata è fallito"
 
-#: apps/devhub/forms.py:520 apps/devhub/forms.py:582
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "Scegli un’opzione valida. L’opzione selezionata non è disponibile."
-
-#: apps/devhub/forms.py:536
-msgid "Need at least one platform."
-msgstr "È necessario indicare almeno un sistema operativo."
-
-#: apps/devhub/forms.py:543 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:524 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Revisione completa"
 
-#: apps/devhub/forms.py:544 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Revisione preliminare"
 
-#: apps/devhub/forms.py:548
+#: apps/devhub/forms.py:529
 msgid "Please choose a review nomination type"
 msgstr "Scegli a che tipo di revisione vuoi essere candidato"
 
-#: apps/devhub/forms.py:552 apps/devhub/forms.py:588
+#: apps/devhub/forms.py:533 apps/devhub/forms.py:568
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Ogni nome di file che riporti come identificativo della versione il termine a|alpha|b|beta più un eventuale numero viene rilevato come beta."
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:550
 msgid "Version %s already exists"
 msgstr "La versione %s è già presente"
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:562
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Scegli un’opzione valida. L’opzione selezionata non è disponibile."
+
+#: apps/devhub/forms.py:591
 msgid "You cannot upload any more files for this version."
 msgstr "Non è possibile caricare ulteriori file per questa versione."
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:597
 msgid "Version doesn't match"
 msgstr "La versione non corrisponde"
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:626
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Non puoi eliminare un file una volta che è iniziato il processo di revisione. Devi eliminare l’intera versione."
 
-#: apps/devhub/forms.py:666
+#: apps/devhub/forms.py:646
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Non è possibile selezionare Tutti e contemporaneamente uno specifico sistema operativo."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:651
 msgid "A platform can only be chosen once."
 msgstr "Una piattaforma può essere selezionata una sola volta."
 
-#: apps/devhub/forms.py:684
+#: apps/devhub/forms.py:664
 msgid "A review type must be selected."
 msgstr "Deve essere selezionata una revisione."
 
-#: apps/devhub/forms.py:763
+#: apps/devhub/forms.py:743
 msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
 msgstr "Dai un nome al tuo componente aggiuntivo. I componenti aggiuntivi più popolari utilizzano il proprio nome per dare indicazioni sulle funzioni offerte."
 
-#: apps/devhub/forms.py:768
+#: apps/devhub/forms.py:748
 msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
 msgstr "Descrivi in una frase il tuo componente aggiuntivo. Questa descrizione apparirà nel gestore componenti aggiuntivi."
 
-#: apps/devhub/forms.py:772
+#: apps/devhub/forms.py:752
 msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
 msgstr "Inserisci il numero di versione iniziale. Normalmente si utilizza 0.1 o 1.0, puoi decidere in base al numero di rilasci o alle tue preferenze."
 
-#: apps/devhub/forms.py:776
+#: apps/devhub/forms.py:756
 msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
 msgstr ""
 "Ogni componente aggiuntivo ha bisogno di un ID univoco sotto forma di UUID o indirizzo email, ad esempio nome-componenteaggiuntivo@sviluppatore.com. L’indirizzo email non deve essere "
 "necessariamente valido."
 
-#: apps/devhub/forms.py:782
+#: apps/devhub/forms.py:762
 msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
 msgstr "Il nome del pacchetto del tuo componente aggiuntivo utilizzato all’interno del browser. Dovrebbe essere un nome breve (ad esempio, Test Extension potrebbe diventare test_extension)."
 
-#: apps/devhub/forms.py:787
+#: apps/devhub/forms.py:767
 msgid "Enter the name of the person or entity to be listed as the author of this add-on."
 msgstr "Inserisci il nome della persona o del soggetto che verrà visualizzato come autore di questo componente aggiuntivo."
 
-#: apps/devhub/forms.py:791
+#: apps/devhub/forms.py:771
 msgid "Enter the names of any other contributors to this extension, one per line."
 msgstr "Inserisci il nome di altri collaboratori che hanno lavorato a questa estensione, uno per linea."
 
-#: apps/devhub/forms.py:800
+#: apps/devhub/forms.py:780
 msgid "Add-on names should not contain Mozilla trademarks."
 msgstr "Il nome di un componente aggiuntivi non può contenere marchi registrati di Mozilla."
 
-#: apps/devhub/forms.py:807
+#: apps/devhub/forms.py:787
 msgid "Enter a valid package name consisting of letters, numbers, or underscores."
 msgstr "Inserire un nome di pacchetto valido costituito da lettere, numeri o underscore."
 
-#: apps/devhub/forms.py:811
+#: apps/devhub/forms.py:791
 msgid "This package name is already in use."
 msgstr "Questo nome di pacchetto è già in uso."
 
-#: apps/devhub/forms.py:814
+#: apps/devhub/forms.py:794
 msgid "The package name cannot be: %s."
 msgstr "Il nome di pacchetto non può essere: %s."
 
-#: apps/devhub/forms.py:825
+#: apps/devhub/forms.py:805
 msgid "The add-on ID must be a UUID string or an email address."
 msgstr "L’ID del componente aggiuntivo deve essere una stringa UUID o un indirizzo email."
 
-#: apps/devhub/forms.py:831
+#: apps/devhub/forms.py:811
 msgid "The version string is invalid."
 msgstr "La versione non è corretta."
 
-#: apps/devhub/forms.py:839
+#: apps/devhub/forms.py:819
 msgid "Minimum"
 msgstr "Minima"
 
-#: apps/devhub/forms.py:842
+#: apps/devhub/forms.py:822
 msgid "Maximum"
 msgstr "Massima"
 
-#: apps/devhub/forms.py:893
+#: apps/devhub/forms.py:873
 msgid "Min version must be less than Max version."
 msgstr "Min version deve essere inferiore a Max version."
 
-#: apps/devhub/forms.py:918
+#: apps/devhub/forms.py:898
 msgid "{0} is a required target application."
 msgstr "{0} è un’applicazione target obbligatoria."
 
-#: apps/devhub/forms.py:930
+#: apps/devhub/forms.py:910
 msgid "About dialog"
 msgstr "Finestra Informazioni su"
 
-#: apps/devhub/forms.py:931
+#: apps/devhub/forms.py:911
 msgid "Creates a standard About dialog for your extension"
 msgstr "Crea una finestra standard “Informazioni” per un’estensione"
 
-#: apps/devhub/forms.py:935
+#: apps/devhub/forms.py:915
 msgid "Preferences dialog"
 msgstr "Finestra delle preferenze"
 
-#: apps/devhub/forms.py:936
+#: apps/devhub/forms.py:916
 msgid "Creates an example Preferences window"
 msgstr "Crea una finestra delle Preferenze"
 
-#: apps/devhub/forms.py:939
+#: apps/devhub/forms.py:919
 msgid "Toolbar"
 msgstr "Barra degli strumenti"
 
-#: apps/devhub/forms.py:940
+#: apps/devhub/forms.py:920
 msgid "Creates an example toolbar for your extension"
 msgstr "Crea una barra degli strumenti per l’estensione"
 
-#: apps/devhub/forms.py:943
+#: apps/devhub/forms.py:923
 msgid "Toolbar button"
 msgstr "Pulsante Barra degli strumenti"
 
-#: apps/devhub/forms.py:944
+#: apps/devhub/forms.py:924
 msgid "Creates an example button on the browser toolbar"
 msgstr "Crea un pulsante sulla barra degli strumenti del browser"
 
-#: apps/devhub/forms.py:948
+#: apps/devhub/forms.py:928
 msgid "Main menu command"
 msgstr "Comando menu principale"
 
-#: apps/devhub/forms.py:949
+#: apps/devhub/forms.py:929
 msgid "Creates an item on the Tools menu"
 msgstr "Crea una voce nel menu Strumenti"
 
-#: apps/devhub/forms.py:952
+#: apps/devhub/forms.py:932
 msgid "Context menu command"
 msgstr "Comando menu contestuale"
 
-#: apps/devhub/forms.py:953
+#: apps/devhub/forms.py:933
 msgid "Creates a context menu item for images"
 msgstr "Crea un menu contestuale per le immagini"
 
-#: apps/devhub/forms.py:956
+#: apps/devhub/forms.py:936
 msgid "Sidebar support"
 msgstr "Supporto barra laterale"
 
-#: apps/devhub/forms.py:957
+#: apps/devhub/forms.py:937
 msgid "Creates an example sidebar panel"
 msgstr "Crea una barra laterale"
 
-#: apps/devhub/forms.py:966 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:946 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Scegli prima un’applicazione"
 
-#: apps/devhub/forms.py:1018
+#: apps/devhub/forms.py:998
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Non possono esserci più di 3 componenti aggiuntivi richiesti."
 
@@ -3989,7 +3985,7 @@ msgstr "Commenti degli utenti"
 msgid "Changes successfully saved."
 msgstr "Modifiche salvate correttamente."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1572
+#: apps/devhub/views.py:327 apps/devhub/views.py:1571
 msgid "Please check the form for errors."
 msgstr "Controlla che il modulo non contenga errori."
 
@@ -4070,19 +4066,19 @@ msgstr "Si è verificato un errore durante il caricamento dell’anteprima."
 msgid "Version %s disabled."
 msgstr "La versione %s è stata disattivata."
 
-#: apps/devhub/views.py:1198
+#: apps/devhub/views.py:1199
 msgid "Version %s deleted."
 msgstr "Eliminata la versione %s."
 
-#: apps/devhub/views.py:1208
+#: apps/devhub/views.py:1209
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "La validazione del file caricato è fallita, pertanto potrebbero mancare i risultati completi della validazione. Tienilo a mente durante il processo di revisione."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1617
 msgid "Preliminary Review Requested."
 msgstr "Richiesta revisione preliminare."
 
-#: apps/devhub/views.py:1619
+#: apps/devhub/views.py:1618
 msgid "Full Review Requested."
 msgstr "Richiesta revisione completa."
 
@@ -5396,14 +5392,10 @@ msgstr ""
 "dei test automatici sul tuo file."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
-msgid "Which desktop platforms is this file compatible with?"
-msgstr "Con quali sistemi operativi desktop è compatibile questo file?"
+msgid "Which platforms is this file compatible with?"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
-msgid "Which mobile platforms is this file compatible with?"
-msgstr "Con quali sistemi portatili è compatibile questo file?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:48
+#: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Sostituzioni amministrative"
 
@@ -8322,11 +8314,11 @@ msgstr "I file aggiunti a versioni già verificate devono essere controllati pri
 msgid "Select the target platform for this file."
 msgstr "Seleziona una piattaforma di riferimento per questo file"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
 msgstr "Per quale tipo di revisione vuoi candidarti?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
 msgstr "Pubblica questa versione unicamente sul mio canale beta."
 
@@ -11525,10 +11517,8 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
-"I commenti rappresentano un canale dove condividere le tue opinioni sui "
-"componenti aggiuntivi che hai installato e utilizzato. I nostri moderatori "
-"si riservano il diritto di respingere o eliminare i commenti che non "
-"rispettano le linee guida."
+"I commenti rappresentano un canale dove condividere le tue opinioni sui componenti aggiuntivi che hai installato e utilizzato. I nostri moderatori si riservano il diritto di respingere o eliminare "
+"i commenti che non rispettano le linee guida."
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -11568,9 +11558,7 @@ msgstr "Continuerai a utilizzare questo componente aggiuntivo?"
 
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
-"Prima di caricare il commento, rileggilo con calma per correggere eventuali "
-"errori di battitura."
+msgstr "Prima di caricare il commento, rileggilo con calma per correggere eventuali errori di battitura."
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
@@ -11578,20 +11566,15 @@ msgstr "Non devi:"
 
 #: apps/pages/templates/pages/review_guide.html:85
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
-"Lasciare commenti di una parola del tipo “Bello!”, “Fantastico”, "
-"“terribile”."
+msgstr "Lasciare commenti di una parola del tipo “Bello!”, “Fantastico”, “terribile”."
 
 #: apps/pages/templates/pages/review_guide.html:90
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Descrivere problemi di natura tecnica, richiedere supporto o "
-"l’implementazione di nuove funzioni. È sempre preferibile, quando presenti, "
-"utilizzare le opzioni per il supporto rese disponibili dallo sviluppatore "
-"del singolo componente, che si trovano nella colonna laterale accanto alla "
-"sezione “Informazioni su questo componente aggiuntivo”."
+"Descrivere problemi di natura tecnica, richiedere supporto o l’implementazione di nuove funzioni. È sempre preferibile, quando presenti, utilizzare le opzioni per il supporto rese disponibili dallo "
+"sviluppatore del singolo componente, che si trovano nella colonna laterale accanto alla sezione “Informazioni su questo componente aggiuntivo”."
 
 #: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
@@ -11603,9 +11586,7 @@ msgstr "usare un linguaggio volgare, osceno o che possa essere considerato fasti
 
 #: apps/pages/templates/pages/review_guide.html:106
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
-"Includere codice HTML, link, codice sorgente o frammenti di codice: i "
-"commenti devono contenere unicamente testo."
+msgstr "Includere codice HTML, link, codice sorgente o frammenti di codice: i commenti devono contenere unicamente testo."
 
 #: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -11613,9 +11594,7 @@ msgstr "fare affermazioni false, screditare o insultare gli autori dei component
 
 #: apps/pages/templates/pages/review_guide.html:117
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
-"Includere indirizzi email, numeri di telefono o altre informazioni personali "
-"proprie o altrui."
+msgstr "Includere indirizzi email, numeri di telefono o altre informazioni personali proprie o altrui."
 
 #: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
@@ -11626,11 +11605,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Criticare un componente aggiuntivo per la funzione a cui è destinato. Per "
-"esempio lasciare un commento negativo su un componente che mostra annunci "
-"pubblicitari o raccoglie dati quando queste sono le sue esplicite funzioni, "
-"oppure quando esso necessita dei dati raccolti per un corretto "
-"funzionamento."
+"Criticare un componente aggiuntivo per la funzione a cui è destinato. Per esempio lasciare un commento negativo su un componente che mostra annunci pubblicitari o raccoglie dati quando queste sono "
+"le sue esplicite funzioni, oppure quando esso necessita dei dati raccolti per un corretto funzionamento."
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
@@ -11641,9 +11617,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Ti invitiamo a segnalare i commenti inappropriati tramite il pulsante "
-"“Segnala abuso”, che invierà il commento ai moderatori, i quali a loro volta "
-"valuteranno secondo le linee guida se eliminarlo o ripristinarlo sul sito."
+"Ti invitiamo a segnalare i commenti inappropriati tramite il pulsante “Segnala abuso”, che invierà il commento ai moderatori, i quali a loro volta valuteranno secondo le linee guida se eliminarlo o "
+"ripristinarlo sul sito."
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11654,10 +11629,8 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
-"Sì, l’autore del componente aggiuntivo ha diritto a una sola risposta per "
-"ogni commento. Se ritieni opportuno approfondire l’argomento o mantenere il "
-"dialogo aperto con il commentatore, puoi aprire una discussione dedicata sul "
-"<a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a>."
+"Sì, l’autore del componente aggiuntivo ha diritto a una sola risposta per ogni commento. Se ritieni opportuno approfondire l’argomento o mantenere il dialogo aperto con il commentatore, puoi aprire "
+"una discussione dedicata sul <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a>."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -11668,13 +11641,9 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"In linea generale non è permesso, tuttavia se il commento non rispetta le "
-"linee guida puoi sottoporlo a moderazione attraverso il pulsante “Segnala "
-"abuso”. Nel caso il commento esponesse dei difetti o problemi che sono stati "
-"risolti con l’aggiornamento del componente e pertanto non sono più validi, "
-"i moderatori prenderanno in considerazione l’eliminazione di tale commento. "
-"Puoi inviare una richiesta opportunamente documentata a amo-"
-"editors@mozilla.org. "
+"In linea generale non è permesso, tuttavia se il commento non rispetta le linee guida puoi sottoporlo a moderazione attraverso il pulsante “Segnala abuso”. Nel caso il commento esponesse dei "
+"difetti o problemi che sono stati risolti con l’aggiornamento del componente e pertanto non sono più validi, i moderatori prenderanno in considerazione l’eliminazione di tale commento. Puoi inviare "
+"una richiesta opportunamente documentata a amo-editors@mozilla.org. "
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -13418,7 +13387,7 @@ msgstr "Questo componente aggiuntivo utilizza componenti compilati."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Questo componente aggiuntivo ha optato per un rigoroso controllo di compatibilità."
 
-#: apps/versions/models.py:659
+#: apps/versions/models.py:657
 msgid "{app} {min} and later"
 msgstr "{app} {min} e seguenti"
 

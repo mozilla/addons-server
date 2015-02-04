@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07 08:57-0700\n"
+"POT-Creation-Date: 2015-02-04 08:35-0700\n"
 "PO-Revision-Date: 2015-02-03 05:39+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -127,11 +127,11 @@ msgstr "在验证过程中发现下列问题可导致被拒绝："
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "如果您不熟悉附加组件的审核流程，您可以到这里查看。"
 
-#: static/js/common/upload-addon.js:425
+#: static/js/common/upload-addon.js:424
 msgid "Some platforms are not available for this type of add-on."
 msgstr "此类型的附加组件在某些平台上无法使用。"
 
-#: static/js/common/upload-addon.js:427
+#: static/js/common/upload-addon.js:426
 msgid "Sorry, no supported platform has been found."
 msgstr "抱歉，找不到支持的平台。"
 
@@ -754,7 +754,7 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1258 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "首先选择一个应用程序"
 
@@ -935,53 +935,53 @@ msgstr "停止关注"
 msgid "Your browser does not support the video tag"
 msgstr "您的浏览器不支持此视频标签"
 
-#: static/js/zamboni/devhub.js:382
+#: static/js/zamboni/devhub.js:376
 msgid "Changes Saved"
 msgstr "更改已保存"
 
-#: static/js/zamboni/devhub.js:398
+#: static/js/zamboni/devhub.js:392
 msgid "Enter a new author's email address"
 msgstr "输入新作者的电子邮件地址"
 
-#: static/js/zamboni/devhub.js:545
+#: static/js/zamboni/devhub.js:539
 msgid "There was an error uploading your file."
 msgstr "上传您的文件时发生错误。"
 
-#: static/js/zamboni/devhub.js:690
+#: static/js/zamboni/devhub.js:684
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 个文件"
 
-#: static/js/zamboni/devhub.js:693
+#: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 条用户评论"
 
-#: static/js/zamboni/devhub.js:805
+#: static/js/zamboni/devhub.js:799
 msgid "Learn more"
 msgstr "详细了解"
 
-#: static/js/zamboni/devhub.js:809
+#: static/js/zamboni/devhub.js:803
 msgid "Example"
 msgstr "示例"
 
-#: static/js/zamboni/devhub.js:1165
+#: static/js/zamboni/devhub.js:1159
 msgid "Image changes being processed"
 msgstr "正在处理图像更改"
 
-#: static/js/zamboni/devhub.js:1292
+#: static/js/zamboni/devhub.js:1286
 msgid "Starting tests..."
 msgstr "开始测试..."
 
-#: static/js/zamboni/devhub.js:1299
+#: static/js/zamboni/devhub.js:1293
 msgid "Waiting for test results..."
 msgstr "正在等待测试结果..."
 
-#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+#: static/js/zamboni/devhub.js:1295 static/js/zamboni/devhub.js:1300
 msgid "Internal Server Error"
 msgstr "内部服务器错误"
 
-#: static/js/zamboni/devhub.js:1341
+#: static/js/zamboni/devhub.js:1335
 msgid "Must be a valid e-mail address."
 msgstr "必须是一个有效的电子邮件地址。"
 
