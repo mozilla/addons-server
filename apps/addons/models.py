@@ -950,9 +950,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return helpers.user_media_url('addon_icons') + path
 
     @write
-    def update_status(self):
+    def update_status(self, ignore_version=None):
+        self.reload()
+
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
                 or self.is_disabled or self.is_persona()):
+            self.update_version(ignore=ignore_version)
             return
 
         def logit(reason, old=self.status):
@@ -989,6 +992,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         if status is not None:
             self.update(status=status)
+
+        self.update_version(ignore=ignore_version)
 
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):

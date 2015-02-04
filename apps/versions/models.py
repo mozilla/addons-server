@@ -488,9 +488,7 @@ def watch_source(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
-            instance.addon.reload()
             instance.addon.update_status()
-            instance.addon.update_version()
         except models.ObjectDoesNotExist:
             log.info('Got ObjectDoesNotExist processing Version change signal',
                      exc_info=True)

@@ -1194,6 +1194,7 @@ def version_delete(request, addon_id, addon):
     if 'disable_version' in request.POST:
         messages.success(request, _('Version %s disabled.') % version.version)
         version.files.update(status=amo.STATUS_DISABLED)
+        version.addon.update_status()
     else:
         messages.success(request, _('Version %s deleted.') % version.version)
         version.delete()
