@@ -528,7 +528,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/docs.less',
             'css/impala/developers.less',
             'css/impala/personas.less',
-            'css/devhub/packager.less',
             'css/devhub/listing.less',
             'css/devhub/popups.less',
             'css/devhub/compat.less',
@@ -791,7 +790,6 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            'js/zamboni/packager.js',
         ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',
@@ -897,7 +895,6 @@ JAVA_BIN = '/usr/bin/java'
 PRIVATE_MIRROR_URL = '/_privatefiles'
 
 # File paths
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
 CA_CERT_BUNDLE_PATH = os.path.join(ROOT, 'apps/amo/certificates/roots.pem')
 
@@ -1008,7 +1005,6 @@ CELERY_ROUTES = {
     'devhub.tasks.validator': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
     'devhub.tasks.file_validator': {'queue': 'devhub'},
-    'devhub.tasks.packager': {'queue': 'devhub'},
 
     # Videos.
     'lib.video.tasks.resize_video': {'queue': 'devhub'},

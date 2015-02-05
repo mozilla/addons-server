@@ -18,67 +18,10 @@
 
 {% block content %}
 <section id="devhub-sidebar" class="secondary devhub-sidebar">
-  {% if not recent_addons %}
-    <div class="item">
-      <h3>{{ _('Calling All Add-ons!') }}</h3>
-      <p>
-        {% trans %}
-        There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons.
-        {% endtrans %}
-      </p>
-      <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
-      <p><a href="{{ url('devhub.themes.submit') }}" class="button">
+  <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
+  <p><a href="{{ url('devhub.themes.submit') }}" class="button">
         {{ _('Submit a New Theme') }}</a></p>
-    </div>
-  {% else %}
-    <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
-    <p><a href="{{ url('devhub.themes.submit') }}" class="button">
-      {{ _('Submit a New Theme') }}</a></p>
-    <div id="my-addons" class="item">
-      <h3>{{ _('My Add-ons') }}</h3>
-      {% for item in recent_addons %}
-        <div class="addon-item">
-          <div class="addon-details">
-            <p>
-              <a class="addon-name" href="{{ item.addon.get_dev_url('edit') }}">
-                <img class="addon-icon" src="{{ item.addon.icon_url }}" alt="">
-                <strong>{{ item.addon.name }}</strong>
-              </a>
-            </p>
-            <p>
-              <strong>{{ _('Status:') }}</strong>
-              <span class="{{ status_class(item.addon) }}"><b>{{ item.addon.STATUS_CHOICES[item.addon.status] }}</b></span>
-            </p>
-            {% if item.addon.current_version %}
-              <p>
-                <strong>{{ _('Latest Version:') }}</strong>
-                <a href="{{ item.addon.current_version.get_url_path() }}">
-                  {{ item.addon.current_version.version }}
-                </a>
-              </p>
-            {% endif %}
-            {% with position = item.position %}
-              {% if position and position.pos and position.total %}
-                <p>
-                  <strong>{{ _('Queue Position:') }}</strong>
-                  {% trans position=position.pos|numberfmt,
-                           total=position.total|numberfmt %}
-                    {{ position }} of {{ total }}
-                  {% endtrans %}
-                </p>
-              {% endif %}
-            {% endwith %}
-            {% if not item.addon.is_persona() and not item.addon.is_incomplete() and not item.addon.is_disabled %}
-              <p class="upload-new-version">
-                <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
-                  {{ _('Upload New Version') }}</a>
-              </p>
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
-      <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
-    </div>
+  {% if recent_addons %}
     <div id="editor-promo" class="item">
       <h3>{{ _('AMO Reviewers') }}</h3>
       <p>
@@ -88,116 +31,105 @@
         {{ _('Become an AMO Reviewer') }}</a></p>
     </div>
   {% endif %}
-  {% include "devhub/includes/blog_posts.html" %}
 </section>
 <section id="homepage" class="primary">
   <div id="devhub-promo" class="fox island">
     <div class="promo-container">
-      <h2><strong>{{ _('Firefox Add-ons Made Easy') }}</strong></h2>
+      <h2><strong>{{ _('Learn All About Add-ons') }}</strong></h2>
       <p>
       {% trans %}
-        Add-ons let millions of Firefox users enhance and customize their browsing
-        experience. If you're a Web developer and know HTML, JavaScript and CSS, you
-        already have what it takes to make great add-ons with the Add-on SDK. What's
-        more, add-ons built with the SDK are restartless by default.
+        Add-ons let millions of Firefox users enhance and customize
+        their browsing experience. If you're a Web developer and
+        know <a href="https://developer.mozilla.org/docs/Web/HTML">HTML</a>,
+        <a href="https://developer.mozilla.org/docs/Web/JavaScript">JavaScript</a>,
+        and <a href="https://developer.mozilla.org/docs/Web/CSS">CSS</a>, you
+        already have all the necessary skills to make a great add-on.
       {% endtrans %}
       </p>
       <p>
-        <a href="{{ url('devhub.builder') }}" class="button prominent add">{{ _('Start Making Add-ons') }}</a>
+      {% trans %}
+        Head over to the
+        <a href="https://developer.mozilla.org/Add-ons">Mozilla Developer Network</a>
+        to learn everything you need to know to get started.
+      {% endtrans %}
+      </p>
+      <p>
+        <a href="https://developer.mozilla.org/Add-ons" class="button prominent add">{{ _('Start Making Add-ons') }}</a>
       </p>
     </div>
   </div>
   <div class="cols">
     <div class="col-2">
-      <div class="island">
-        <h2>{{ _('Learn &amp; Explore') }}</h2>
-        <ul class="listing-list">
-          <li class="devhub-icon-docs">
-            <a href="{{ url('devhub.docs', doc_name='how-to') }}">
-              <div class="icon"></div>
-              <div class="summary">
-                <h3>{{ _('How-to Library') }}</h3>
-                <p class="desc">
-                  {% trans %}
-                  Get add-on development guidance in a top-notch collection of tutorials, articles, and more.
-                  {% endtrans %}
-                </p>
-              </div>
-            </a>
-          </li>
-          <li class="devhub-icon-docs">
-            <a href="{{ url('devhub.docs', doc_name='reference') }}">
-              <div class="icon"></div>
-              <div class="summary">
-                <h3>{{ _('API & Language Reference') }}</h3>
-                <p class="desc">
-                  {% trans %}
-                  The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece.
-                  {% endtrans %}
-                </p>
-              </div>
-            </a>
-          </li>
-          <li class="devhub-icon-docs">
-            <a href="{{ url('devhub.docs', doc_name='case-studies') }}">
-              <div class="icon"></div>
-              <div class="summary">
-                <h3>{{ _('Case Studies') }}</h3>
-                <p class="desc">
-                  {% trans %}
-                  Start-to-finish success stories. See how add-on developers made magic with Mozilla.
-                  {% endtrans %}
-                </p>
-              </div>
-            </a>
-          </li>
-        </ul>
+      <div class="island sidebar-breakout">
+        <div class="sidebar-breakout">
+          {% include "devhub/includes/blog_posts.html" %}
+        </div>
       </div>
     </div>
     <div class="col-2">
-      <div class="island">
-        <h2>{{ _('Create &amp; Connect') }}</h2>
-        <ul class="listing-list">
-          <li class="devhub-icon-discuss">
-            <a href="https://forums.addons.mozilla.org">
-              <div class="icon"></div>
-              <div class="summary">
-                <h3>{{ _('Developer Forums') }}</h3>
-                <p class="desc">
-                  {% trans %}
-                  Discuss development, brainstorm ideas, and make connections in the world of add-ons.
-                  {% endtrans %}
-                </p>
-              </div>
-            </a>
-          </li>
-          <li class="devhub-icon-tools">
-            <a href="{{ url('devhub.package_addon') }}">
-              <div class="icon"></div>
-              <div class="summary">
-                <h3>{{ _('Add-on Packager') }}</h3>
-                <p class="desc">
-                  {% trans %}
-                  Auto-generate add-on packaging by entering basic info and picking UI parts.  Get working without setup.
-                  {% endtrans %}
-                </p>
-              </div>
-            </a>
-          </li>
-          <li class="devhub-icon-tools">
-            <a href="{{ remora_url('developers/addon/validate') }}">
-              <div class="icon"></div>
-              <div class="summary">
-                <h3>{{ _('Add-on Validator') }}</h3>
-                <p class="desc">
-                  {% trans %}
-                  Check your add-on for common problems and errors.  Open to anyone, not just add-ons hosted here.
-                  {% endtrans %}
-                </p>
-              </div>
-            </a>
-          </li>
-        </ul>
+      <div class="island sidebar-breakout">
+        {% if recent_addons %}
+            <h2>{{ _('My Add-ons') }}</h2>
+
+            <div id="my-addons">
+              {% for item in recent_addons %}
+                <div class="addon-item">
+                  <div class="addon-details">
+                    <p>
+                      <a class="addon-name" href="{{ item.addon.get_dev_url('edit') }}">
+                        <img class="addon-icon" src="{{ item.addon.icon_url }}" alt="">
+                        <strong>{{ item.addon.name }}</strong>
+                      </a>
+                    </p>
+                    <p>
+                      <strong>{{ _('Status:') }}</strong>
+                      <span class="{{ status_class(item.addon) }}"><b>{{ item.addon.STATUS_CHOICES[item.addon.status] }}</b></span>
+                    </p>
+                    {% if item.addon.current_version %}
+                      <p>
+                        <strong>{{ _('Latest Version:') }}</strong>
+                        <a href="{{ item.addon.current_version.get_url_path() }}">
+                          {{ item.addon.current_version.version }}
+                        </a>
+                      </p>
+                    {% endif %}
+                    {% with position = item.position %}
+                      {% if position and position.pos and position.total %}
+                        <p>
+                          <strong>{{ _('Queue Position:') }}</strong>
+                          {% trans position=position.pos|numberfmt,
+                                   total=position.total|numberfmt %}
+                            {{ position }} of {{ total }}
+                          {% endtrans %}
+                        </p>
+                      {% endif %}
+                    {% endwith %}
+                    {% if not item.addon.is_persona() and not item.addon.is_incomplete() and not item.addon.is_disabled %}
+                      <p class="upload-new-version">
+                        <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
+                          {{ _('Upload New Version') }}</a>
+                      </p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="flex-spring"></div>
+            <p><a id="link-view-all" href="{{ url('devhub.addons') }}">{{ _('View all add-ons ►') }}</a></p>
+        {% else %}
+          <div class="empty-box-placeholder">
+            <h2>{{ _('Publish your add-ons!') }}</h2>
+            <p>
+              There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons.
+            </p>
+            <p>
+            {% trans addon_url=url('devhub.submit.1'), theme_url=url('devhub.themes.submit') %}
+              Upload an <a href="{{ theme_url }}">add-on</a> or <a href="{{ addon_url }}">theme</a>
+              to get started!
+            {% endtrans %}
+            </p>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="binary-source{% if not field.errors %} edit_initially_hidden{% endif %}">
 <label>{{ _('If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review.') }}<br />
-<a href="{{ url('devhub.docs') }}policies/reviews#section-binary" target="_blank">{{ _('Read more about the source code review policy.') }}</a></label>
+<a href="{{ url('devhub.docs', 'policies/reviews') }}#section-binary" target="_blank">{{ _('Read more about the source code review policy.') }}</a></label>
 {{ field.errors }}
 <div>{{ field }}</div>
 </div>

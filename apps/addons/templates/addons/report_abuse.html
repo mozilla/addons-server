@@ -2,7 +2,7 @@
   {{ csrf() }}
   <fieldset class="abuse">
     {% if hide %}
-    <legend><a href="{{ url('devhub.docs', 'policies', 'contact') }}"
+    <legend><a href="{{ url('devhub.docs', 'policies/contact') }}"
                class="abuse-image">{{ _('Report Abuse') }}</a></legend>
     {% endif %}
     <ol {% if hide %}style="display: none"{% endif %}>

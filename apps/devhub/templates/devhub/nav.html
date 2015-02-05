@@ -31,25 +31,17 @@
     <li>
       <a href="#" class="controller">{{ _('Documentation') }}</a>
       <ul>
-        <li><a href="{{ url('devhub.docs', 'getting-started') }}">
-          {{ _('Getting Started') }}</a></li>
+        <li><a href="https://developer.mozilla.org/Add-ons">
+          {{ _('Extension Development') }}</a></li>
+        <li><a href="https://developer.mozilla.org/Add-ons/Themes/Background">
+          {{ _('Lightweight Themes') }}</a></li>
         <li><a href="{{ url('devhub.docs', 'policies') }}">
           {{ _('Add-on Policies') }}</a></li>
-        <li><a href="{{ url('devhub.docs', 'case-studies') }}">
-          {{ _('Case Studies') }}</a></li>
-        <li><a href="{{ url('devhub.docs', 'how-to') }}">
-          {{ _('How-to Library') }}</a></li>
-        <li><a href="{{ url('devhub.docs', 'reference') }}">
-          {{ _('API &amp; Language Reference') }}</a></li>
-        <li><a href="{{ url('devhub.docs', 'themes') }}">
-          {{ _('Themes') }}</a></li>
       </ul>
     </li>
     <li>
       <a href="#" class="controller">{{ _('Tools') }}</a>
       <ul>
-        <li><a href="{{ url('devhub.package_addon') }}">
-          {{ _('Add-on Packager') }}</a></li>
         <li><a href="{{ url('devhub.validate_addon') }}">
           {{ _('Add-on Validator') }}</a></li>
         <li><a href="{{ url('devhub.check_addon_compatibility') }}">
@@ -59,12 +51,14 @@
       </ul>
     </li>
     <li>
-      <a href="#" class="controller">{{ _('Community') }}</a>
+      <a href="#" class="controller">{{ _('Community & Support')|forceescape }}</a>
       <ul>
         <li><a href="http://blog.mozilla.com/addons/">
           {{ _('Add-ons Blog') }}</a></li>
         <li><a href="https://forums.addons.mozilla.org">
           {{ _('Add-ons Forum') }}</a></li>
+        <li><a href="https://developer.mozilla.org/Add-ons">
+          {{ _('More Resources') }}</a></li>
       </ul>
     </li>
   </ul>

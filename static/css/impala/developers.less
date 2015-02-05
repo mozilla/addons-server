@@ -60,6 +60,7 @@
     #page #homepage {
         margin: 0 0 0 240px;
     }
+    .sidebar-breakout,
     .secondary.devhub-sidebar {
         .addon-item {
             .addon-details {
@@ -296,6 +297,7 @@
 }
 
 /* Blog Posts on sidebar */
+.blog-posts > ul,
 .secondary.devhub-sidebar ul {
     margin-bottom: 0;
 
@@ -323,6 +325,7 @@
     }
 }
 
+.sidebar-breakout,
 .secondary.devhub-sidebar {
     .addon-item {
         position: relative;
@@ -344,6 +347,7 @@
             font-size: 12px;
         }
         p {
+            margin-top: 0;
             margin-bottom: 0;
         }
         .more {
@@ -360,6 +364,32 @@
     #link-view-all {
         display: block;
         margin-top: 12px;
+    }
+}
+
+.sidebar-breakout {
+    height: 100%;
+
+    .empty-box-placeholder,
+    &.island,
+    > .blog-posts {
+        height: 100%;
+
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .empty-box-placeholder {
+        -webkit-justify-content: center;
+        justify-content: center;
+        padding: 0 2em;
+    }
+    .empty-box-placeholder,
+    .empty-box-placeholder p {
+        text-align: center;
     }
 }
 

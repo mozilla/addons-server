@@ -97,8 +97,6 @@ class AddonLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
-        # This table is addons only and not in use by the marketplace (except
-        # for Themes).
         db_table = table_name('log_activity_addon')
         ordering = ('-created',)
 

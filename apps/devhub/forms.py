@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-import re
 import socket
 
 from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory
-from django.forms.formsets import formset_factory, BaseFormSet
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 
@@ -21,14 +19,13 @@ import amo
 import addons.forms
 import paypal
 from addons.models import (Addon, AddonDependency, AddonUser,
-                           BlacklistedSlug, Charity, Preview)
+                           Charity, Preview)
 from amo.forms import AMOModelForm
 from amo.urlresolvers import reverse
-from amo.utils import raise_required, slugify
 
 from applications.models import AppVersion
 from files.models import File, FileUpload
-from files.utils import parse_addon, VERSION_RE
+from files.utils import parse_addon
 from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation, Translation
@@ -735,206 +732,6 @@ class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
 
     def render(self):
         return mark_safe(''.join(force_unicode(w) for w in self))
-
-
-class PackagerBasicForm(forms.Form):
-    name = forms.CharField(
-        min_length=5, max_length=50,
-        help_text=_lazy(u'Give your add-on a name. The most successful '
-                        'add-ons give some indication of their function in '
-                        'their name.'))
-    description = forms.CharField(
-        required=False, widget=forms.Textarea,
-        help_text=_lazy(u'Briefly describe your add-on in one sentence. '
-                        'This appears in the Add-ons Manager.'))
-    version = forms.CharField(
-        max_length=32,
-        help_text=_lazy(u'Enter your initial version number. Depending on the '
-                        'number of releases and your preferences, this is '
-                        'usually 0.1 or 1.0'))
-    id = forms.CharField(
-        help_text=_lazy(u'Each add-on requires a unique ID in the form of a '
-                        'UUID or an email address, such as '
-                        'addon-name@developer.com. The email address does not '
-                        'have to be valid.'))
-    package_name = forms.CharField(
-        min_length=5, max_length=50,
-        help_text=_lazy(u'The package name of your add-on used within the '
-                        'browser. This should be a short form of its name '
-                        '(for example, Test Extension might be '
-                        'test_extension).'))
-    author_name = forms.CharField(
-        help_text=_lazy(u'Enter the name of the person or entity to be '
-                        'listed as the author of this add-on.'))
-    contributors = forms.CharField(
-        required=False, widget=forms.Textarea,
-        help_text=_lazy(u'Enter the names of any other contributors to this '
-                        'extension, one per line.'))
-
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        addons.forms.clean_name(name)
-        name_regex = re.compile('(mozilla|firefox|thunderbird)', re.I)
-        if name_regex.match(name):
-            raise forms.ValidationError(
-                _('Add-on names should not contain Mozilla trademarks.'))
-        return name
-
-    def clean_package_name(self):
-        slug = self.cleaned_data['package_name']
-        if slugify(slug, ok='_', lower=False, delimiter='_') != slug:
-            raise forms.ValidationError(
-                _('Enter a valid package name consisting of letters, numbers, '
-                  'or underscores.'))
-        if Addon.objects.filter(slug=slug).exists():
-            raise forms.ValidationError(
-                _('This package name is already in use.'))
-        if BlacklistedSlug.blocked(slug):
-            raise forms.ValidationError(
-                _(u'The package name cannot be: %s.' % slug))
-        return slug
-
-    def clean_id(self):
-        id_regex = re.compile(
-            """(\{[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}\} |  # GUID
-               [a-z0-9-\.\+_]*\@[a-z0-9-\._]+)  # Email format""",
-            re.I | re.X)
-
-        if not id_regex.match(self.cleaned_data['id']):
-            raise forms.ValidationError(
-                _('The add-on ID must be a UUID string or an email '
-                  'address.'))
-        return self.cleaned_data['id']
-
-    def clean_version(self):
-        if not VERSION_RE.match(self.cleaned_data['version']):
-            raise forms.ValidationError(_('The version string is invalid.'))
-        return self.cleaned_data['version']
-
-
-class PackagerCompatForm(forms.Form):
-    enabled = forms.BooleanField(required=False)
-    min_ver = forms.ModelChoiceField(AppVersion.objects.none(),
-                                     empty_label=None, required=False,
-                                     label=_lazy(u'Minimum'))
-    max_ver = forms.ModelChoiceField(AppVersion.objects.none(),
-                                     empty_label=None, required=False,
-                                     label=_lazy(u'Maximum'))
-
-    def __init__(self, *args, **kwargs):
-        super(PackagerCompatForm, self).__init__(*args, **kwargs)
-        if not self.initial:
-            return
-
-        self.app = self.initial['application']
-        qs = (AppVersion.objects.filter(application=self.app.id)
-                                .order_by('-version_int'))
-
-        self.fields['enabled'].label = self.app.pretty
-        if self.app == amo.FIREFOX:
-            self.fields['enabled'].widget.attrs['checked'] = True
-
-        # Don't allow version ranges as the minimum version.
-        self.fields['min_ver'].queryset = qs.filter(~Q(version__contains='*'))
-        self.fields['max_ver'].queryset = qs.all()
-
-        # Unreasonably hardcode a reasonable default minVersion.
-        if self.app in (amo.FIREFOX, amo.MOBILE, amo.THUNDERBIRD):
-            try:
-                self.fields['min_ver'].initial = qs.filter(
-                    version=amo.DEFAULT_MINVER)[0]
-            except (IndexError, AttributeError):
-                pass
-
-    def clean_min_ver(self):
-        if self.cleaned_data['enabled'] and not self.cleaned_data['min_ver']:
-            raise_required()
-        return self.cleaned_data['min_ver']
-
-    def clean_max_ver(self):
-        if self.cleaned_data['enabled'] and not self.cleaned_data['max_ver']:
-            raise_required()
-        return self.cleaned_data['max_ver']
-
-    def clean(self):
-        if self.errors:
-            return
-
-        data = self.cleaned_data
-
-        if data['enabled']:
-            min_ver = data['min_ver']
-            max_ver = data['max_ver']
-            if not (min_ver and max_ver):
-                raise forms.ValidationError(_('Invalid version range.'))
-
-            if min_ver.version_int > max_ver.version_int:
-                raise forms.ValidationError(
-                    _('Min version must be less than Max version.'))
-
-            # Pass back the app name and GUID.
-            data['min_ver'] = str(min_ver)
-            data['max_ver'] = str(max_ver)
-            data['name'] = self.app.pretty
-            data['guid'] = self.app.guid
-
-        return data
-
-
-class PackagerCompatBaseFormSet(BaseFormSet):
-
-    def __init__(self, *args, **kw):
-        super(PackagerCompatBaseFormSet, self).__init__(*args, **kw)
-        self.initial = [{'application': a} for a in amo.APP_USAGE]
-
-    def clean(self):
-        if any(self.errors):
-            return
-        if (not self.forms or not
-            any(f.cleaned_data.get('enabled') for f in self.forms
-                if f.app == amo.FIREFOX)):
-            # L10n: {0} is Firefox.
-            raise forms.ValidationError(
-                _(u'{0} is a required target application.')
-                .format(amo.FIREFOX.pretty))
-        return self.cleaned_data
-
-
-PackagerCompatFormSet = formset_factory(
-    PackagerCompatForm, formset=PackagerCompatBaseFormSet, extra=0)
-
-
-class PackagerFeaturesForm(forms.Form):
-    about_dialog = forms.BooleanField(
-        required=False,
-        label=_lazy(u'About dialog'),
-        help_text=_lazy(u'Creates a standard About dialog for your '
-                        'extension'))
-    preferences_dialog = forms.BooleanField(
-        required=False,
-        label=_lazy(u'Preferences dialog'),
-        help_text=_lazy(u'Creates an example Preferences window'))
-    toolbar = forms.BooleanField(
-        required=False,
-        label=_lazy(u'Toolbar'),
-        help_text=_lazy(u'Creates an example toolbar for your extension'))
-    toolbar_button = forms.BooleanField(
-        required=False,
-        label=_lazy(u'Toolbar button'),
-        help_text=_lazy(u'Creates an example button on the browser '
-                        'toolbar'))
-    main_menu_command = forms.BooleanField(
-        required=False,
-        label=_lazy(u'Main menu command'),
-        help_text=_lazy(u'Creates an item on the Tools menu'))
-    context_menu_command = forms.BooleanField(
-        required=False,
-        label=_lazy(u'Context menu command'),
-        help_text=_lazy(u'Creates a context menu item for images'))
-    sidebar_support = forms.BooleanField(
-        required=False,
-        label=_lazy(u'Sidebar support'),
-        help_text=_lazy(u'Creates an example sidebar panel'))
 
 
 class CheckCompatibilityForm(happyforms.Form):

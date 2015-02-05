@@ -112,7 +112,6 @@ def path():
           user_media_path('guarded_addons'),
           user_media_path('addon_icons'),
           user_media_path('collection_icons'),
-          settings.PACKAGER_PATH,
           user_media_path('previews'),
           user_media_path('userpics'),
           user_media_path('reviewer_attachments'),
