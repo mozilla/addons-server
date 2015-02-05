@@ -1,5 +1,4 @@
 import json
-import os
 import tempfile
 import shutil
 from base64 import b64decode
