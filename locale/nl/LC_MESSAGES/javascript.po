@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:35-0700\n"
-"PO-Revision-Date: 2015-01-08 07:50+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2015-02-05 09:05+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420703437.0\n"
+"X-POOTLE-MTIME: 1423127107.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -85,7 +85,7 @@ msgstr "Onverwachte serverfout tijdens validatie."
 
 #: static/js/common/upload-addon.js:307
 msgid "Finished validating {0}"
-msgstr "Validatie van {0} afgerond"
+msgstr "Validatie van {0} voltooid"
 
 #: static/js/common/upload-addon.js:313
 msgid "Your add-on passed validation with no errors and {0} message."
@@ -782,7 +782,7 @@ msgstr[1] "E-mailbericht versturen naar schrijver van {2} add-ons die de validat
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr "Installatie app niet toegestaan."
+msgstr "Installatie van app niet toegestaan."
 
 #: static/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
@@ -806,11 +806,11 @@ msgstr "Installatie mislukt. Probeer het later nog eens."
 
 #: static/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr "Installatie app mislukt."
+msgstr "Installatie van app mislukt."
 
 #: static/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr "Dit systeem ondersteunt de installatie van apps niet."
+msgstr "Dit systeem ondersteunt geen installatie van apps."
 
 #: static/js/zamboni/browserid_support.js:37
 msgid "Admins and editors must provide a password to log in."
@@ -925,7 +925,7 @@ msgstr "Een e-mailadres is verplicht."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr "U kunt niet uzelf als medewerker toevoegen."
+msgstr "U kunt uzelf niet als medewerker toevoegen."
 
 #: static/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -1177,7 +1177,7 @@ msgstr[1] "{0} berichten"
 
 #: static/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr "De validatietaak is niet afgerond of afgerond met fouten"
+msgstr "Validatietaak kon niet worden voltooid of is voltooid met fouten"
 
 #: static/js/zamboni/validator.js:469
 msgid "Internal server error"

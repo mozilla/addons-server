@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:35-0700\n"
-"PO-Revision-Date: 2015-01-30 20:39+0000\n"
+"PO-Revision-Date: 2015-02-05 09:09+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422650351.0\n"
+"X-POOTLE-MTIME: 1423127373.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -557,7 +557,7 @@ msgstr "Betaling geannuleerd"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr "Betaling afgerond"
+msgstr "Betaling voltooid"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
@@ -879,7 +879,7 @@ msgstr "door %(users)s"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> gesuggereerd"
+msgstr "<b>%(amt)s</b> voorgesteld"
 
 #: apps/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
@@ -1897,7 +1897,7 @@ msgstr "Extensies"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Wilt u meer aanpassen? Probeer <b>complete thema’s</b>"
+msgstr "Wilt u meer aanpassen? Probeer <b>volledige thema’s</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
@@ -2873,7 +2873,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:173
 msgid "Complete Themes"
-msgstr "Complete thema’s"
+msgstr "Volledige thema’s"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
@@ -2906,35 +2906,35 @@ msgstr "Aankomende extensies"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr "Aanbevolen complete thema’s"
+msgstr "Aanbevolen volledige thema’s"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr "Populairste complete thema’s"
+msgstr "Populairste volledige thema’s"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr "Best gewaardeerde complete thema’s"
+msgstr "Best gewaardeerde volledige thema’s"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr "Nieuwste complete thema’s"
+msgstr "Nieuwste volledige thema’s"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr "Complete thema’s op naam"
+msgstr "Volledige thema’s op naam"
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Complete thema’s op wekelijkse downloads"
+msgstr "Volledige thema’s op wekelijkse downloads"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr "Onlangs bijgewerkte complete thema’s"
+msgstr "Onlangs bijgewerkte volledige thema’s"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr "Aankomende complete thema’s"
+msgstr "Aankomende volledige thema’s"
 
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -2996,8 +2996,9 @@ msgstr "Wilt u meer personalisatie?"
 #: apps/browse/templates/browse/personas/category_landing.html:50
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
-"Complete thema’s transformeren de uitstraling van uw browser met stijlen voor het vensterframe, de adresbalk, knoppen, tabbladen en menu’s. <a href=\"%(url)s\" class=\"more-info\">Begin met "
-"verkennen</a>"
+"Volledige thema’s transformeren de uitstraling van uw browser met stijlen "
+"voor het vensterframe, de adresbalk, knoppen, tabbladen en menu’s. <a href=\""
+"%(url)s\" class=\"more-info\">Begin met verkennen</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
@@ -3287,7 +3288,7 @@ msgstr "Extensie"
 
 #: apps/constants/base.py:160
 msgid "Complete Theme"
-msgstr "Compleet thema"
+msgstr "Volledig thema"
 
 #: apps/constants/base.py:162
 msgid "Search Engine"
@@ -3435,15 +3436,15 @@ msgstr "Bijgewerkte zoekprovider-beoordeling"
 # Het gaat om de beoordeling van een compleet thema, dus niet om een complete beoordeling
 #: apps/constants/base.py:430
 msgid "Complete Theme Review"
-msgstr "Compleet thema-beoordeling"
+msgstr "Volledig-themabeoordeling"
 
 #: apps/constants/base.py:431
 msgid "Preliminary Complete Theme Review"
-msgstr "Voorlopige compleet thema-beoordeling"
+msgstr "Voorlopige volledig-themabeoordeling"
 
 #: apps/constants/base.py:432
 msgid "Updated Complete Theme Review"
-msgstr "Bijgewerkte compleet thema-beoordeling"
+msgstr "Bijgewerkte volledig-themabeoordeling"
 
 #: apps/constants/base.py:433
 msgid "Moderated Addon Review"
@@ -5070,7 +5071,9 @@ msgstr "Dit thema verwijderen."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr "Deze add-on wordt automatisch na een paar dagen verwijderd als het indieningsproces niet wordt afgerond."
+msgstr ""
+"Als het indieningsproces niet wordt voltooid, wordt deze add-on na een paar "
+"dagen automatisch verwijderd."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
@@ -5364,7 +5367,7 @@ msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden en selecteer 
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Met welke platforms is dit bestand compatibel?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
@@ -6243,7 +6246,10 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
-msgstr "Nieuwe versies worden in de beoordelingswachtrij geplaatst, en aanvullende versies die worden ingediend voordat de beoordeling is afgerond schuiven die versie naar het einde van de wachtrij."
+msgstr ""
+"Nieuwe versies worden in de beoordelingswachtrij geplaatst, en aanvullende "
+"versies die worden ingediend voordat de beoordeling is voltooid schuiven die "
+"versie naar het einde van de wachtrij."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
@@ -6383,7 +6389,10 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
-msgstr "<a href=\"%(link_featured)s\">Aanbevolen extensies</a> worden maandelijks gekozen, en <a href=\"%(link_themes)s\">aanbeolen complete thema’s</a> worden elk kwartaal gekozen."
+msgstr ""
+"<a href=\"%(link_featured)s\">Aanbevolen extensies</a> worden maandelijks "
+"gekozen, en <a href=\"%(link_themes)s\">aanbevolen volledige thema’s</a> "
+"worden elk kwartaal gekozen."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -6438,8 +6447,10 @@ msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
-"<strong>Bovenal</strong> dient de add-on Firefox-gebruikers breed aan te spreken en op vrijwel alle vlakken uit te blinken: gebruikerservaring, prestaties, beveiliging, en nuttigheid of "
-"amusementswaarde. Aanbevolen complete thema’s dienen tevens visueel aansprekend te zijn."
+"<strong>Bovenal</strong> dient de add-on Firefox-gebruikers breed aan te "
+"spreken en op vrijwel alle vlakken uit te blinken: gebruikerservaring, "
+"prestaties, beveiliging, en bruikbaarheid of amusementswaarde. Aanbevolen "
+"volledige thema’s dienen tevens visueel aansprekend te zijn."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6470,9 +6481,12 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Add-on-nominaties worden maandelijks door de Adviesraad beoordeeld (elk kwartaal voor nominaties van volledige thema’s). Veel voorkomende redenen van afwijzing zijn de afwezigheid van een breed "
-"publiek, een suboptimale gebruikerservaring, kwaliteits- of beveiligingsproblemen, incompatibiliteit en gelijkaardigheid met een andere aanbevolen add-on. Afgewezen add-ons kunnen niet binnen drie "
-"maanden opnieuw worden genomineerd."
+"Add-on-nominaties worden maandelijks door de Adviesraad beoordeeld (elk "
+"kwartaal voor nominaties van volledige thema’s). Veel voorkomende redenen "
+"van afwijzing zijn de afwezigheid van een breed publiek, een suboptimale "
+"gebruikerservaring, kwaliteits- of beveiligingsproblemen, incompatibiliteit "
+"en gelijksoortigheid met een andere aanbevolen add-on. Afgewezen add-ons "
+"kunnen niet binnen drie maanden opnieuw worden genomineerd."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -6733,8 +6747,11 @@ msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
-"Nieuwe versies van publieke add-ons worden automatisch aan de wachtrij voor volledige beoordeling toegevoegd. Totdat de beoordeling is afgerond, is de nieuwe versie uitsluitend zichtbaar op de "
-"pagina met versiegeschiedenis van de add-on. Na beoordeling wordt de versie op de gehele website bijgewerkt en middels de updateservice verspreid."
+"Nieuwe versies van de add-on worden automatisch aan de wachtrij voor "
+"volledige beoordeling toegevoegd. Totdat de beoordeling is voltooid, is de "
+"nieuwe versie uitsluitend zichtbaar op de pagina met versiegeschiedenis van "
+"de add-on. Na beoordeling wordt de versie op de gehele website bijgewerkt en "
+"middels de updateservice verspreid."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid ""
@@ -7325,11 +7342,11 @@ msgstr "Met wat voor computers en besturingssystemen werken achtergrondthema’s
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
 msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr "Wat is het verschil tussen achtergrondthema’s en complete thema’s?"
+msgstr "Wat is het verschil tussen achtergrondthema’s en volledige thema’s?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
 msgid "Installing Background Themes"
-msgstr "Installatie van achtergrondthema’s"
+msgstr "Achtergrondthema’s installeren"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
 msgid "How do I add Background Themes to my Firefox?"
@@ -7349,7 +7366,9 @@ msgstr "Hoe wijzig ik mij huidige achtergrondthema?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
 msgid "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr "Werken achtergrondthema’s nog steeds als ik een compleet thema heb geïnstalleerd?"
+msgstr ""
+"Werken achtergrondthema’s nog steeds als ik een volledig thema heb "
+"geïnstalleerd?"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
 msgid "How do I undo a Background Theme?"
@@ -7401,11 +7420,16 @@ msgstr "Achtergrondthema’s werken op elke soort computer waarop Firefox is ge�
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:70
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
-msgstr "Complete thema’s transformeren het uiterlijk van uw browser met stijlen voor het vensterframe, de adresbalk, knoppen, tabbladen en menu’s."
+msgstr ""
+"Volledige thema’s transformeren het uiterlijk van uw browser met stijlen "
+"voor het vensterframe, de adresbalk, knoppen, tabbladen en menu’s."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:76
 msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
-msgstr "Achtergrondthema’s wijzigen alleen boven- en onderzijde van uw browser. U kunt een ontwerp direct bekijken en met één klik installeren zonder dat u hoeft te herstarten."
+msgstr ""
+"Achtergrondthema’s wijzigen alleen de boven- en onderzijde van uw browser. U "
+"kunt een ontwerp direct bekijken en met één klik installeren zonder dat u "
+"hoeft te herstarten."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:90
 msgid ""
@@ -7441,8 +7465,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/themes-faq.html:142
 msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
 msgstr ""
-"Ja. Als u een niet-standaard compleet thema hebt geïnstalleerd, wisselt Firefox automatisch naar een standaardthema om u in staat te stellen uw keuze te maken uit de ontwerpen van de "
-"achtergrondthema’s."
+"Ja. Als u een niet-standaard volledig thema hebt geïnstalleerd, wisselt "
+"Firefox automatisch naar een standaardthema om u in staat te stellen uw "
+"keuze te maken uit de ontwerpen van de achtergrondthema’s."
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:152
 msgid ""
@@ -7477,8 +7502,10 @@ msgid ""
 "Yes. We are big fans of creativity, but want to ensure that the art displayed in the Themes gallery meets a basic set of guidelines. Please review the <a href=\"%(tos_url)s\">Terms of Service</a> "
 "for authoritative and complete language, but the following gives you an overview of the requirements:"
 msgstr ""
-"Ja. We zijn enorm fan van creativiteit, maar we willen er voor zorgen dat de werken in de thema’s-galerij voldoen aan enkele basale richtlijnen. Lees de <a href=\"%(tos_url)s\">Servicevoorwaarden</"
-"a> voor de volledige voorwaarden, maar het volgende geeft u een overzicht van de vereisten:"
+"Ja. We zijn enorme fans van creativiteit, maar willen ervoor zorgen dat de "
+"werken in de Thema’s-galerij aan enkele basisrichtlijnen voldoen. Lees de <a "
+"href=\"%(tos_url)s\">Servicevoorwaarden</a> voor de volledige voorwaarden, "
+"maar het volgende geeft u een overzicht van de vereisten:"
 
 #: apps/devhub/templates/devhub/docs/themes-faq.html:196
 msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
@@ -7725,7 +7752,7 @@ msgstr "Voltooi uw add-on."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:28
 msgid "You will receive an email when the review is complete."
-msgstr "U ontvangt een e-mailbericht als de beoordeling is afgerond."
+msgstr "U ontvangt een e-mailbericht als de beoordeling is voltooid."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -8712,7 +8739,7 @@ msgstr "Door alle add-ons bladeren"
 
 #: apps/discovery/templates/discovery/pane.html:108
 msgid "See all complete themes"
-msgstr "Alle complete thema’s"
+msgstr "Alle volledige thema’s"
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
@@ -11083,7 +11110,10 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">Complete thema’s</a></strong> wijzigen het aanzien van %(app_name)s, gewoonlijk inclusief pictogrammen, kleuren, dialoogvensters en andere visuele stijlen."
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">Volledige thema’s</a></strong> wijzigen het "
+"aanzien van %(app_name)s, doorgaans inclusief pictogrammen, kleuren, "
+"dialoogvensters en andere visuele stijlen."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -11111,9 +11141,14 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"In de meeste gevallen kunnen add-ons worden geïnstalleerd door eenvoudigweg op de installatieknop te klikken. Add-ons kunnen worden beheerd, uitgeschakeld of gedeïnstalleerd via de add-onbeheerder "
-"in %(app_name)s. Lees voor meer gedetailleerde instructies <a href=\"%(extension_url)s\">dit artikel over extensies</a> of <a href=\"%(theme_url)s\">dit artikel over thema’s en complete thema’s</"
-"a>. Als u problemen ondervindt bij het installeren van add-ons, lees dan <a href=\"%(troubleshooting_url)s\">Problemen met extensies en thema’s oplossen</a>."
+"In de meeste gevallen kunnen add-ons worden geïnstalleerd door eenvoudig op "
+"de installatieknop te klikken. Add-ons kunnen worden beheerd, uitgeschakeld "
+"of gede-installeerd via de add-onbeheerder in %(app_name)s. Lees voor meer "
+"gedetailleerde instructies <a href=\"%(extension_url)s\">dit artikel over "
+"extensies</a> of <a href=\"%(theme_url)s\">dit artikel over thema’s en "
+"volledige thema’s</a>. Als u problemen ondervindt bij het installeren van "
+"add-ons, lees dan <a href=\"%(troubleshooting_url)s\">Problemen met extensies "
+"en thema’s oplossen</a>."
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
