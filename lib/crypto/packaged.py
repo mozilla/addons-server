@@ -1,6 +1,7 @@
 import json
 import os
 import tempfile
+import shutil
 from base64 import b64decode
 
 from django.conf import settings
@@ -95,7 +96,7 @@ def call_signing(file_obj):
         msg = 'Addon signing failed'
         log.error(msg, exc_info=True)
         raise SigningError(msg)
-    os.rename(temp_filename, file_obj.file_path)
+    shutil.move(temp_filename, file_obj.file_path)
     return cert_serial_num
 
 
