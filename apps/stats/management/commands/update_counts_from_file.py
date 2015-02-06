@@ -1,4 +1,6 @@
 import codecs
+import json
+import re
 from datetime import datetime, timedelta
 from optparse import make_option
 from os import path, unlink
@@ -10,12 +12,21 @@ import commonware.log
 
 import amo
 from addons.models import Addon
+from applications.models import AppVersion
 from stats.models import update_inc, UpdateCount
 
 from . import get_date_from_file
 
 
 log = commonware.log.getLogger('adi.updatecountsfromfile')
+
+# Validate a locale: must be like 'fr', 'en-us', 'zap-MX-diiste', ...
+LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
+                              (-[A-Z]{2,3})?   # Region: -US, -GB, ...
+                              (-[a-z]{2,12})?$ # Locality: -valencia, -diiste
+                          """, re.VERBOSE)
+VALID_STATUSES = ["userDisabled,incompatible", "userEnabled", "Unknown",
+                  "userDisabled", "userEnabled,incompatible"]
 
 
 class Command(BaseCommand):
@@ -85,6 +96,18 @@ class Command(BaseCommand):
                                             .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
 
+        # This gives a list of (application IDs, version).
+        appversions = AppVersion.objects.values_list('application', 'version')
+        # We want the application GUID, not the application ID.
+        appversions = [(amo.APPS_ALL[app_id].guid, version)
+                       for app_id, version in appversions]
+        # This builds a dict where each key (the application guid) has a list
+        # of all its versions as a value.
+        self.valid_appversions = {}
+        for app_guid, app_version in appversions:
+            self.valid_appversions.setdefault(app_guid, [])
+            self.valid_appversions[app_guid].append(app_version)
+
         index = -1
         for group, filepath in group_filepaths:
             with codecs.open(filepath, encoding='utf8') as results_file:
@@ -151,31 +174,32 @@ class Command(BaseCommand):
 
                     # We can now fill the UpdateCount object.
                     if group == 'version':
-                        # Take this count as the global number of daily users.
+                        self.update_version(uc, data, count)
+                        # Use this count to compute the global number of daily
+                        # users for this addon.
                         uc.count += count
-                        uc.versions = update_inc(uc.versions, data, count)
                     elif group == 'status':
-                        uc.statuses = update_inc(uc.statuses, data, count)
+                        self.update_status(uc, data, count)
                     elif group == 'app':
-                        # Applications is a dict of dicts, eg:
-                        # {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}":
-                        #       {"10.0": 2, "21.0": 1, ....},
-                        #  "some other application guid": ...
-                        # }
-                        if uc.applications is None:
-                            uc.applications = {}
-                        app = uc.applications.get(app_id, {})
-                        # Now overwrite this application's dict with
-                        # incremented counts for its versions.
-                        uc.applications.update(
-                            {app_id: update_inc(app, app_ver, count)})
+                        self.update_app(uc, app_id, app_ver, count)
                     elif group == 'os':
-                        uc.oses = update_inc(uc.oses, data, count)
+                        self.update_os(uc, data, count)
                     elif group == 'locale':
-                        # Drop incorrect locales sizes.
-                        if len(data) > 10:
-                            continue
-                        uc.locales = update_inc(uc.locales, data, count)
+                        self.update_locale(uc, data, count)
+
+        # Make sure the locales and versions fields aren't too big to fit in
+        # the database. Those two fields are the only ones that are not fully
+        # validated, so we could end up with just anything in there (spam,
+        # buffer overflow attempts and the like).
+        # We don't care that they will increase the numbers, but we do not want
+        # those to break the process because of a "Data too long for column
+        # 'version'" error.
+        # The database field (TEXT), can hold up to 2^16 = 64k characters.
+        # If the field is longer than that, we we drop the least used items
+        # (with the lower count) until the field fits.
+        for addon_guid, update_count in update_counts.iteritems():
+            self.trim_field(update_count.locales)
+            self.trim_field(update_count.versions)
 
         # Create in bulk: this is much faster.
         UpdateCount.objects.bulk_create(update_counts.values(), 100)
@@ -186,3 +210,69 @@ class Command(BaseCommand):
         for _, filepath in group_filepaths:
             log.debug('Deleting {path}'.format(path=filepath))
             unlink(filepath)
+
+    def update_version(self, update_count, version, count):
+        """Update the versions on the update_count with the given version."""
+        version = version[:32]  # Limit the version to a (random) length.
+        update_count.versions = update_inc(update_count.versions, version,
+                                           count)
+
+    def update_status(self, update_count, status, count):
+        """Update the statuses on the update_count with the given status."""
+        # Only update if the given status is valid.
+        if status in VALID_STATUSES:
+            update_count.statuses = update_inc(update_count.statuses, status,
+                                               count)
+
+    def update_app(self, update_count, app_id, app_ver, count):
+        """Update the applications on the update_count with the given data."""
+        # Only update if app_id is a valid application guid, and if app_ver is
+        # a valid version for this app.
+        if app_ver in self.valid_appversions.get(app_id, []):
+            # Applications is a dict of dicts, eg:
+            # {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}":
+            #       {"10.0": 2, "21.0": 1, ....},
+            #  "some other application guid": ...
+            # }
+            if update_count.applications is None:
+                update_count.applications = {}
+            app = update_count.applications.get(app_id, {})
+            # Now overwrite this application's dict with
+            # incremented counts for its versions.
+            update_count.applications.update(
+                {app_id: update_inc(app, app_ver, count)})
+
+    def update_os(self, update_count, os, count):
+        """Update the OSes on the update_count with the given OS."""
+        if os.lower() in amo.PLATFORM_DICT:
+            update_count.oses = update_inc(update_count.oses, os, count)
+
+    def update_locale(self, update_count, locale, count):
+        """Update the locales on the update_count with the given locale."""
+        locale = locale.replace('_', '-')
+        # Only update if the locale "could be" valid. We can't simply restrict
+        # on locales that AMO know, because Firefox has many more, and custom
+        # packaged versions could have even more. Thus, we only restrict on the
+        # allowed characters, some kind of format, and the total length, and
+        # hope to not miss out on too many locales.
+        if re.match(LOCALE_REGEX, locale):
+            update_count.locales = update_inc(update_count.locales, locale,
+                                              count)
+
+    def trim_field(self, field):
+        """Trim (in-place) the dict provided, keeping the most used items.
+
+        The "locales" and "versions" fields are dicts which have the locale
+        or version as the key, and the count as the value.
+
+        """
+        # Does the json version of the field fits in the database (TEXT field)?
+        fits = lambda field: len(json.dumps(field)) < (2 ** 16)  # Len of TEXT.
+
+        if fits(field):
+            return
+        # Order by count (desc), for a dict like {'<locale>': <count>}.
+        values = list(reversed(sorted(field.items(), key=lambda v: v[1])))
+        while not fits(field):
+            key, count = values.pop()  # Remove the least used (the last).
+            del field[key]  # Remove this entry from the dict.

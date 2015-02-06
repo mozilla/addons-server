@@ -6,7 +6,7 @@ import json
 
 class StatsDictField(models.TextField):
 
-    description = 'A dictionary of counts stored as serialized php.'
+    description = 'A dictionary of counts stored as serialized php or json.'
     __metaclass__ = models.SubfieldBase
 
     def db_type(self, connection):

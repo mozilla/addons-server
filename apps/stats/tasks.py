@@ -209,8 +209,11 @@ def _get_daily_jobs(date=None):
         # Review counts
         'review_count_total': Review.objects.filter(created__lte=date,
                                                     editorreview=0).count,
+        # We can't use "**extra" here, because this query joins on reviews
+        # itself, and thus raises the following error:
+        # "Column 'created' in where clause is ambiguous".
         'review_count_new': Review.objects.filter(editorreview=0).extra(
-            **extra).count,
+            where=['DATE(reviews.created)=%s'], params=[date_str]).count,
 
         # Collection counts
         'collection_count_total': Collection.objects.filter(
