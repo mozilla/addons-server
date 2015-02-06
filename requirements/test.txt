@@ -1,12 +1,25 @@
-# This file is used by Jenkins for testing,
-# it is not needed for local testing.
 -r prod.txt
 
+# sha256: Fik6abF8hGNx8cy5zvEK2Ig4ydUjm6JtiLOe-3tDL28
 execnet==1.2
+
+# sha256: eLAxFrrdDbsu1N7clqSj1CE4uUu4n8Lrmffzvf0Zn1Y
 nose==1.3.4
+
+# sha256: oQPj-dB7f6vPANHxwcKGB7o35Bp-jmOmG_Yqz6AvUGw
 psutil==0.2.0
+
+# sha256: wY6NuWeyHZ0sxrBw4bfTrLzgOa9_xfc4WrpNsZxUoeg
 py==1.4.26
+
+# sha256: iB0Hm-H3HVM146UYMZjCs_4f-NOI7zonWFMPJ2zknFs
 pytest==2.6.4
+
+# sha256: SV7BtekRL1v7fGvXWsXltWtB4CX9ta_iGxkb4x0_uWE
 pytest-cache==1.0
+
+# sha256: 5vBgp2ziAlqrrrblVCVpuSBnlPrDKKBm6vAsU17wXQI
 pytest-django==2.7.0
+
+# sha256: 3tuwENV0u4onJAInb5IyNteAApjsU5Dd5SztHdhSLFM
 pytest-xdist==1.11

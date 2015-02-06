@@ -1,4 +1,11 @@
+# sha256: yZzJcW1mVdnIvLHndjK4YVvwq9KC16vZ9cIUjK1_xmk
 flake8==2.3.0
+
+# sha256: ic9r9P9kT_i5EuL6fiq7aNV6jn6Rjjk8coQNMNLrzws
 mccabe==0.3
+
+# sha256: 5pUaM-Yy0CRzEQlyqvHO449Wf33-fnIlliUnbmHrYXM
 pep8==1.6.1
+
+# sha256: rEVxaVwQzhU2vNuhopS58tPmzJ0OoXG2fVCghkzj4EI
 pyflakes==0.8.1
