@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:35-0700\n"
-"PO-Revision-Date: 2015-02-02 19:38+0000\n"
+"PO-Revision-Date: 2015-02-09 19:24+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422905897.0\n"
+"X-POOTLE-MTIME: 1423509848.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -871,8 +871,8 @@ msgstr "Visualizza la risposta dello sviluppatore a questa recensione"
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Visualizza tutti i commenti di questo componente aggiuntivo"
-msgstr[1] "Visualizza tutti i %(cnt)s commenti di questo componente aggiuntivo"
+msgstr[0] "Visualizza tutte le recensioni per questo componente aggiuntivo"
+msgstr[1] "See all %(cnt)s reviews of this add-on"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -939,8 +939,8 @@ msgstr[1] "Altri componenti aggiuntivi di questi autori"
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> commento da parte di un utente"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> commenti da parte degli utenti"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recensione"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recensioni"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -1116,8 +1116,8 @@ msgstr "Traduci"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Visualizza tutti i commenti degli utenti"
-msgstr[1] "Visualizza tutti i %(cnt)s commenti degli utenti"
+msgstr[0] "Visualizza tutte le recensioni dell’utente"
+msgstr[1] "See all %(cnt)s user reviews"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
@@ -3505,7 +3505,7 @@ msgstr "Richiedi ulteriori informazioni"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
-msgstr "Flag"
+msgstr "Segnala"
 
 #: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
@@ -3979,7 +3979,7 @@ msgstr "Raccolte dell’utente"
 
 #: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
-msgstr "Commenti degli utenti"
+msgstr "Recensioni"
 
 #: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1156
 msgid "Changes successfully saved."
@@ -5393,7 +5393,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Con quali piattaforme è compatibile il file?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
@@ -6352,8 +6352,11 @@ msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
-"Molti sviluppatori offrono un canale di supporto tecnico come un forum, un gruppo di discussione o un indirizzo email. È consigliato inoltrare eventuali richieste di assistenza attraverso questi "
-"canali invece che scriverle nella sezione dei commenti sulla pagina dedicata al componente aggiuntivo."
+"Molti sviluppatori offrono un canale di supporto tecnico come un forum, un "
+"gruppo di discussione o un indirizzo email. È consigliato inoltrare "
+"eventuali richieste di assistenza attraverso questi canali invece che "
+"scriverle nella sezione delle recensioni sulla pagina dedicata al componente "
+"aggiuntivo."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6441,7 +6444,10 @@ msgstr "deve aver ricevuto una revisione completa (non verranno accettate candid
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
-msgstr "Il componente aggiuntivo deve avere commenti positivi da parte degli utenti e ogni richiesta di supporto deve essere risolta tempestivamente dallo sviluppatore."
+msgstr ""
+"Il componente aggiuntivo deve avere recensioni positive da parte degli "
+"utenti e ogni richiesta di supporto deve essere risolta tempestivamente "
+"dallo sviluppatore."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -6985,11 +6991,18 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>Il componente aggiuntivo è stato propriamente verificato e si è rivelato privo di anomalie gravi o evidenti?</strong> Un aspetto importante della nostra valutazione riguarda il controllo "
-"dei commenti degli utenti per capire se un componente aggiuntivo sia stato sottoposto a test adeguati, non presenti problemi gravi o abbia un impatto negativo sul browser. Se gli utenti segnalano "
-"problemi come riduzione delle prestazioni del browser, crash, funzionalità instabili o continue segnalazioni nella Console errori, dovresti tenere in considerazione queste informazioni. Non ci "
-"aspettiamo un’ottimizzazione completa o zero bug &mdash; Firefox stesso è in continua evoluzione da questo punto di vista &mdash; ma confidiamo nel tuo impegno per ridurre al minimo questi problemi "
-"o segnalare agli utenti eventuali anomalie irrisolte."
+"<strong>Il componente aggiuntivo è stato propriamente verificato e si è "
+"rivelato privo di anomalie gravi o evidenti?</strong> Un aspetto importante "
+"della nostra valutazione riguarda l’analisi delle recensioni degli utenti "
+"per capire se un componente aggiuntivo sia stato sottoposto a test adeguati, "
+"non presenti problemi gravi o abbia un impatto negativo sul browser. Se gli "
+"utenti segnalano problemi come riduzione delle prestazioni del browser, "
+"crash, funzionalità instabili o continue segnalazioni nella Console errori, "
+"dovresti tenere in considerazione queste informazioni. Non ci aspettiamo "
+"un’ottimizzazione completa o zero bug &mdash; Firefox stesso è in continua "
+"evoluzione da questo punto di vista &mdash; ma confidiamo nel tuo impegno "
+"per ridurre al minimo questi problemi o segnalare agli utenti eventuali "
+"anomalie irrisolte."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -6997,9 +7010,13 @@ msgid ""
 "activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
 "authors will avoid retaliating with rudeness of their own."
 msgstr ""
-"<strong>Il componente aggiuntivo e il suo autore trattano gli utenti con il dovuto rispetto?</strong> Il tuo software non deve infastidire l’utente, cercare di ingannarlo o nascondere alcuna parte "
-"della propria attività. Gli utenti, e talvolta anche i \"non utenti\", possono essere scortesi nei propri commenti, e sebbene facciamo del nostro meglio per rimuovere recensioni inaccurate quando "
-"ci vengono segnalate, ci aspettiamo che gli autori non rispondano con altrettanta scortesia."
+"<strong>Il componente aggiuntivo e il suo autore trattano gli utenti con il "
+"dovuto rispetto?</strong> Il tuo software non deve infastidire l’utente, "
+"cercare di ingannarlo o nascondere alcune parti della propria attività. Gli "
+"utenti, e talvolta anche i “non utenti”, possono essere scortesi nei propri "
+"commenti, e sebbene facciamo del nostro meglio per rimuovere recensioni "
+"inaccurate quando ci vengono segnalate, ci aspettiamo che gli autori non "
+"rispondano con altrettanta scortesia."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:49
 msgid ""
@@ -7100,7 +7117,10 @@ msgstr "Che cosa succede dopo che il componente aggiuntivo è stato caricato? Sc
 
 #: apps/devhub/templates/devhub/docs/policies.html:81
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
-msgstr "Aggiornamento dei componenti aggiuntivi, trasferimento della proprietà, commenti degli utenti e cosa aspettarsi una volta che il componente aggiuntivo è stato approvato."
+msgstr ""
+"Aggiornamento dei componenti aggiuntivi, trasferimento della proprietà, "
+"recensioni e cosa aspettarsi una volta che il componente aggiuntivo è stato "
+"approvato."
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
@@ -8964,7 +8984,7 @@ msgstr "Qualcuno sta già revisionando questo tema."
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:462
 msgid "app, reviewer, or comment"
-msgstr "app, recensore, o commento"
+msgstr "app, revisore, o commento"
 
 #: apps/editors/helpers.py:43
 msgid "Pending Preliminary Review"
@@ -9207,7 +9227,7 @@ msgstr "Ulteriori informazioni richieste"
 
 #: apps/editors/models.py:183
 msgid "Contains Editor Comment"
-msgstr "Contiene commenti revisore"
+msgstr "Contiene commenti del revisore"
 
 #: apps/editors/models.py:185
 msgid "Sources provided"
@@ -11003,11 +11023,16 @@ msgstr "Perché il mio componente aggiuntivo non risulta più nella lista Consig
 
 #: apps/pages/templates/pages/dev_faq.html:539
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "Come rispondo ad un utente che ha inserito un commento negativo sul mio componente aggiuntivo?"
+msgstr ""
+"Come rispondo ad un utente che ha inserito una recensione negativa sul mio "
+"componente aggiuntivo?"
 
 #: apps/pages/templates/pages/dev_faq.html:541
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Lo sviluppatore può rispondere a ogni commento scritto sul proprio componente aggiuntivo, semplicemente effettuando l’accesso ad AMO. Inoltre ogni utente può segnalare un commento come:"
+msgstr ""
+"Lo sviluppatore può rispondere a ogni recensione scritta sul proprio "
+"componente aggiuntivo semplicemente effettuando l’accesso ad AMO. Inoltre "
+"ogni utente può segnalare una recensione come:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
@@ -11277,9 +11302,12 @@ msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
-"Spesso diversi componenti aggiuntivi presentano funzionalità simili. Per decidere quale componente aggiuntivo utilizzare, leggi la descrizione completa e controlla le anteprime. Se a questo punto "
-"sei ancora indeciso, dai un’occhiata ai voti, ai commenti degli utenti e alle statistiche per capire qual è il più apprezzato dagli altri utenti . E non dimenticare che puoi sempre installarli "
-"entrambi e decidere quale preferisci."
+"Spesso diversi componenti aggiuntivi presentano funzionalità simili. Per "
+"decidere quale componente aggiuntivo utilizzare, leggi la descrizione "
+"completa e controlla le anteprime. Se a questo punto sei ancora indeciso, "
+"dai un’occhiata ai voti, alle recensioni degli utenti e alle statistiche per "
+"capire qual è il più apprezzato dagli altri utenti. E non dimenticare che "
+"puoi sempre installarli entrambi e decidere quale preferisci."
 
 #: apps/pages/templates/pages/faq.html:181
 msgid "What if I can't find an add-on I'm looking for?"
@@ -11372,15 +11400,18 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:239
 msgid "How do I report an inappropriate or spam user review?"
-msgstr "Come posso segnalare un commento inappropriato o contenente spam?"
+msgstr "Come posso segnalare una recensione inappropriata o contenente spam?"
 
 #: apps/pages/templates/pages/faq.html:240
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Per segnalare il commento di un utente accedi con il tuo account e apri la pagina con i commenti degli utenti. Trova il commento che vuoi segnalare, fai clic su \"Segnala questo commento\" e "
-"seleziona un motivo. Il nostro gruppo di revisori verificherà la recensione e prenderà i necessari provvedimenti."
+"Per segnalare la recensione di un utente accedi con il tuo account, poi apri "
+"la pagina con le recensioni degli utenti, trova la recensione che vuoi "
+"segnalare, fai clic su \"Segnala questa recensione\" e seleziona una "
+"motivazione per la tua segnalazione. I moderatori del sito valuteranno la "
+"recensione e prenderanno i necessari provvedimenti."
 
 #: apps/pages/templates/pages/faq.html:245
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -11517,8 +11548,10 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
-"I commenti rappresentano un canale dove condividere le tue opinioni sui componenti aggiuntivi che hai installato e utilizzato. I nostri moderatori si riservano il diritto di respingere o eliminare "
-"i commenti che non rispettano le linee guida."
+"Le recensioni rappresentano un canale dove condividere opinioni sui "
+"componenti aggiuntivi che hai installato e utilizzato. I nostri moderatori "
+"si riservano il diritto di respingere o eliminare le recensioni che non "
+"rispettano le linee guida."
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -11558,7 +11591,9 @@ msgstr "Continuerai a utilizzare questo componente aggiuntivo?"
 
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Prima di caricare il commento, rileggilo con calma per correggere eventuali errori di battitura."
+msgstr ""
+"Prima di pubblicare la recensione, rileggila con calma per correggere "
+"eventuali errori di battitura."
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
@@ -11566,7 +11601,9 @@ msgstr "Non devi:"
 
 #: apps/pages/templates/pages/review_guide.html:85
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Lasciare commenti di una parola del tipo “Bello!”, “Fantastico”, “terribile”."
+msgstr ""
+"Inserire recensioni di una parola del tipo “Bello!”, “Fantastico”, "
+"“terribile”."
 
 #: apps/pages/templates/pages/review_guide.html:90
 msgid ""
@@ -11586,7 +11623,9 @@ msgstr "usare un linguaggio volgare, osceno o che possa essere considerato fasti
 
 #: apps/pages/templates/pages/review_guide.html:106
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Includere codice HTML, link, codice sorgente o frammenti di codice: i commenti devono contenere unicamente testo."
+msgstr ""
+"Includere codice HTML, link, codice sorgente o frammenti di codice: le "
+"recensioni devono contenere unicamente testo."
 
 #: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -11605,8 +11644,11 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Criticare un componente aggiuntivo per la funzione a cui è destinato. Per esempio lasciare un commento negativo su un componente che mostra annunci pubblicitari o raccoglie dati quando queste sono "
-"le sue esplicite funzioni, oppure quando esso necessita dei dati raccolti per un corretto funzionamento."
+"Criticare un componente aggiuntivo per la funzione a cui è destinato. Per "
+"esempio inserire una recensione negativa su un componente che mostra annunci "
+"pubblicitari o raccoglie dati quando queste sono le sue esplicite funzioni, "
+"oppure quando esso necessita dei dati raccolti per un corretto "
+"funzionamento."
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
@@ -11617,8 +11659,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Ti invitiamo a segnalare i commenti inappropriati tramite il pulsante “Segnala abuso”, che invierà il commento ai moderatori, i quali a loro volta valuteranno secondo le linee guida se eliminarlo o "
-"ripristinarlo sul sito."
+"Ti invitiamo a segnalare le recensioni inappropriate tramite il pulsante "
+"“Segnala abuso” per sottoporle all’attenzione dei moderatori, i quali a loro "
+"volta valuteranno secondo le linee guida se eliminarle o mantenerle sul "
+"sito."
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11629,8 +11673,10 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
-"Sì, l’autore del componente aggiuntivo ha diritto a una sola risposta per ogni commento. Se ritieni opportuno approfondire l’argomento o mantenere il dialogo aperto con il commentatore, puoi aprire "
-"una discussione dedicata sul <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a>."
+"Sì, l’autore del componente aggiuntivo può fornire una sola risposta per "
+"ciascuna recensione. Puoi tuttavia aprire un topic apposito sul <a "
+"href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> per proseguire "
+"la discussione."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -11641,9 +11687,13 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"In linea generale non è permesso, tuttavia se il commento non rispetta le linee guida puoi sottoporlo a moderazione attraverso il pulsante “Segnala abuso”. Nel caso il commento esponesse dei "
-"difetti o problemi che sono stati risolti con l’aggiornamento del componente e pertanto non sono più validi, i moderatori prenderanno in considerazione l’eliminazione di tale commento. Puoi inviare "
-"una richiesta opportunamente documentata a amo-editors@mozilla.org. "
+"In linea generale non è permesso, tuttavia se la recensione non rispetta le "
+"linee guida, riassunte qui sopra, puoi sottoporla a moderazione attraverso "
+"il pulsante “Segnala abuso”. Nel caso la recensione evidenziasse dei difetti "
+"o problemi che sono stati risolti con l’aggiornamento del componente e "
+"pertanto non sono più validi, i moderatori prenderanno in considerazione "
+"l’eliminazione di tale recensione. Puoi inviare una richiesta opportunamente "
+"documentata a amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -11773,7 +11823,9 @@ msgstr "Altro (specificare)"
 
 #: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Grazie; questo commento è stato segnalato e verrà controllato da un moderatore."
+msgstr ""
+"La recensione è stata segnalata e verrà controllata da un moderatore. Grazie "
+"per la tua collaborazione."
 
 #: apps/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
@@ -11827,12 +11879,18 @@ msgstr "Questa recensione riguarda una versione precedente ({0}) del componente 
 #: apps/reviews/templates/reviews/review.html:56
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Questo utente ha un <a href=\"%(user_review_url)s\">commento precedente</a> su questo componente aggiuntivo."
-msgstr[1] "Questo utente ha <a href=\"%(user_review_url)s\">%(cnt)s precedenti commenti</a> su questo componente aggiuntivo."
+msgstr[0] ""
+"Questo utente ha inserito una <a href=\"%(user_review_url)s\">recensione "
+"precedente</a> su questo componente aggiuntivo."
+msgstr[1] ""
+"Questo utente ha inserito <a href=\"%(user_review_url)s\">%(cnt) recensioni "
+"precedenti</a> su questo componente aggiuntivo."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "L’utente ha <a href=\"%(user_review_url)s\">altri commenti</a> su questo componente aggiuntivo."
+msgstr ""
+"L’utente ha inserito <a href=\"%(user_review_url)s\">altre recensioni</a> su "
+"questo componente aggiuntivo."
 
 #: apps/reviews/templates/reviews/review.html:72
 msgid "Flagged for review"
@@ -11840,7 +11898,7 @@ msgstr "Segnalato per la revisione"
 
 #: apps/reviews/templates/reviews/review.html:76
 msgid "Report this review"
-msgstr "Segnala questo commento"
+msgstr "Segnala questa recensione"
 
 #: apps/reviews/templates/reviews/review.html:82
 msgid "Reply to review"
@@ -11941,8 +11999,8 @@ msgstr "Ulteriori informazioni&nbsp;&raquo;"
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Visualizza tutti i commenti"
-msgstr[1] "Visualizza tutti i %(cnt)s commenti"
+msgstr[0] "Visualizza tutte le recensioni"
+msgstr[1] "Visualizza tutte le %(cnt)s recensioni"
 
 #: apps/search/forms.py:11
 msgid "Most popular this week"
@@ -12730,7 +12788,7 @@ msgstr "uno sviluppatore risponde alla mia recensione"
 
 #: apps/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr "uno sviluppatore di app risponde a un mio commento"
+msgstr "uno sviluppatore di app risponde alla mia recensione"
 
 #: apps/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -12943,7 +13001,9 @@ msgstr "Non ti sarà più possibile accedere a %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "I tuoi commenti e le tue valutazioni non verranno cancellati, ma non saranno più associati a te."
+msgstr ""
+"Le tue recensioni e le tue valutazioni non verranno cancellate, ma non "
+"saranno più riconducibili al tuo profilo utente."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13255,7 +13315,7 @@ msgstr "È necessario registrarsi solo se si vuole:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr "pubblicare commenti sui componenti aggiuntivi"
+msgstr "pubblicare recensioni sui componenti aggiuntivi"
 
 #: apps/users/templates/users/register.html:20
 msgid "You want to keep track of your favorite add-on collections or create one yourself"

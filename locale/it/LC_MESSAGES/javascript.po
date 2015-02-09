@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:35-0700\n"
-"PO-Revision-Date: 2015-01-09 22:28+0000\n"
+"PO-Revision-Date: 2015-02-09 17:28+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420842511.0\n"
+"X-POOTLE-MTIME: 1423502909.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -104,7 +104,11 @@ msgstr "Includi note di versione dettagliate (è possibile inserirle nel prossim
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr ""
+"Se per effettuare il test completo del componente aggiuntivo è necessario "
+"accedere a un sito web con nome utente e password, inserisci i dati per "
+"l’accesso nella nota per i revisori (è possibile farlo nel prossimo "
+"passaggio)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
@@ -117,8 +121,9 @@ msgstr "Promemoria per il caricamento del componente aggiuntivo"
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
-"Prima di confermare il caricamento verifica che il componente aggiuntivo sia in linea con i seguenti punti, in modo da ridurre al minimo eventuali ritardi o equivoci nel corso del processo di "
-"revisione:"
+"Prima di confermare il caricamento verifica che il componente aggiuntivo "
+"soddisfi i seguenti requisiti, in modo da ridurre al minimo eventuali "
+"ritardi o equivoci nel corso del processo di revisione:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
@@ -907,7 +912,7 @@ msgstr "Aggiungi un commento"
 
 #: static/js/zamboni/collections.js:438
 msgid "Comment"
-msgstr "Commenta"
+msgstr "Commento"
 
 #: static/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
@@ -970,8 +975,8 @@ msgstr[1] "{files} file"
 #: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} commento di un utente"
-msgstr[1] "{reviews} commenti degli utenti"
+msgstr[0] "{reviews} recensione"
+msgstr[1] "{reviews} recensioni"
 
 #: static/js/zamboni/devhub.js:799
 msgid "Learn more"
