@@ -2,17 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
-"PO-Revision-Date: 2014-08-07 12:48+0000\n"
+"POT-Creation-Date: 2015-01-07 08:57-0700\n"
+"PO-Revision-Date: 2015-02-09 13:07+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1407415718.0\n"
+"X-POOTLE-MTIME: 1423487238.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -104,42 +105,59 @@ msgstr "Ваш додаток пройшов перевірку без поми�
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Включити детальні примітки до випуску (це може бути зроблено в наступному "
+"кроці)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові "
+"ім'я користувача та пароль у примітках до випуску (це може бути зроблено в "
+"наступному кроці)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Якщо ваш додаток призначений для обмеженого кола, вам слід вибрати попередню "
+"перевірку замість повної перевірки."
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Контрольний перелік при представленні додатку"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Перевірте наступні пункти перед завершенням вашого представлення. Це "
+"зменшить затримку чи нерозуміння під час процесу розгляду:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи "
+"обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для "
+"перевірки окремо. Переконайтеся, що ви використовуєте поле завантаження "
+"програмного коду, щоб запобігти відхиленню вашого запиту."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Під час процесу перевірки було знайдено наступні проблеми, які можуть "
+"призвести до відхилення:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це "
+"тут."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:425
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Деякі платформи недоступні для цього типу додатків."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:427
 msgid "Sorry, no supported platform has been found."
 msgstr "Нажаль, не знайдено підтримуваних платформ."
 
@@ -403,11 +421,11 @@ msgstr "Залежності"
 
 #: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
-msgstr ""
+msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
-msgstr ""
+msgstr "Поширення"
 
 #: static/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
@@ -419,51 +437,51 @@ msgstr "Колекції"
 
 #: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Розміщення в категорії Карусель обраного"
 
 #: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Розміщення в категорії Найвище оцінені"
 
 #: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Розміщення в категорії Найпопулярніші"
 
 #: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Розміщення в категорії Нещодавно додані"
 
 #: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Огляд з сортуванням по обраних"
 
 #: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Огляд з сортуванням по користувачах"
 
 #: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за рейтингом"
 
 #: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за датою створення"
 
 #: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за назвою"
 
 #: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за популярністю"
 
 #: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за датою оновлення"
 
 #: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Огляд з сортуванням за очікуванням виходу"
 
 #: static/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
@@ -503,7 +521,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -762,7 +780,7 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Інше"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1258 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Спочатку виберіть програму"
 
@@ -786,19 +804,19 @@ msgstr "Встановлення програми недозволено."
 
 #: static/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Спотворений маніфест програми."
 
 #: static/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Не вдалося зв'язатися з хостом програми."
 
 #: static/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Маніфест програми не піддається розбору."
 
 #: static/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Некоректний маніфест програми."
 
 #: static/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
@@ -947,57 +965,57 @@ msgstr "Більше не стежити"
 msgid "Your browser does not support the video tag"
 msgstr "Ваш браузер не підтримує тег відео"
 
-#: static/js/zamboni/devhub.js:376
+#: static/js/zamboni/devhub.js:382
 msgid "Changes Saved"
 msgstr "Зміни збережено"
 
-#: static/js/zamboni/devhub.js:392
+#: static/js/zamboni/devhub.js:398
 msgid "Enter a new author's email address"
 msgstr "Введіть нову адресу ел. пошти автора"
 
-#: static/js/zamboni/devhub.js:539
+#: static/js/zamboni/devhub.js:545
 msgid "There was an error uploading your file."
 msgstr "Сталась помилка при вивантаженні вашого файлу."
 
-#: static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub.js:690
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файли"
 msgstr[2] "{files} файлів"
 
-#: static/js/zamboni/devhub.js:687
+#: static/js/zamboni/devhub.js:693
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} відгук користувача"
 msgstr[1] "{reviews} відгуки користувача"
 msgstr[2] "{reviews} відгуків користувача"
 
-#: static/js/zamboni/devhub.js:799
+#: static/js/zamboni/devhub.js:805
 msgid "Learn more"
 msgstr "Дізнатись більше"
 
-#: static/js/zamboni/devhub.js:803
+#: static/js/zamboni/devhub.js:809
 msgid "Example"
 msgstr "Приклад"
 
-#: static/js/zamboni/devhub.js:1159
+#: static/js/zamboni/devhub.js:1165
 msgid "Image changes being processed"
 msgstr "Обробка змін зображень"
 
-#: static/js/zamboni/devhub.js:1286
+#: static/js/zamboni/devhub.js:1292
 msgid "Starting tests..."
 msgstr "Починаю тести..."
 
-#: static/js/zamboni/devhub.js:1293
+#: static/js/zamboni/devhub.js:1299
 msgid "Waiting for test results..."
 msgstr "Чекаю результати тесту..."
 
-#: static/js/zamboni/devhub.js:1295 static/js/zamboni/devhub.js:1300
+#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
 msgid "Internal Server Error"
 msgstr "Внутрішня помилка сервера"
 
-#: static/js/zamboni/devhub.js:1335
+#: static/js/zamboni/devhub.js:1341
 msgid "Must be a valid e-mail address."
 msgstr "Повинна бути дійсна адреса ел. пошти."
 
@@ -1131,7 +1149,7 @@ msgstr "Ці тести не запускались."
 
 #: static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
 msgid "Tests"
-msgstr ""
+msgstr "Тести"
 
 #: static/js/zamboni/validator.js:194 static/js/zamboni/validator.js:449 static/js/zamboni/validator.js:468
 msgid "Error"
@@ -1184,7 +1202,7 @@ msgstr[2] "{0} повідомлень"
 
 #: static/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Завдання з перевірки не змогло завершитись або завершилось з помилками"
 
 #: static/js/zamboni/validator.js:469
 msgid "Internal server error"
@@ -1192,7 +1210,7 @@ msgstr "Внутрішня помилка сервера"
 
 #: static/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Не оновлено для {0} {1}"
 
 #: static/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
