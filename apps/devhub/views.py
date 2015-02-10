@@ -1311,8 +1311,7 @@ def submit(request, step):
 def submit_addon(request, step):
     if DEV_AGREEMENT_COOKIE not in request.COOKIES:
         return redirect(_step_url(1))
-    NewItem = forms.NewAddonForm
-    form = NewItem(
+    form = forms.NewAddonForm(
         request.POST or None,
         request.FILES or None,
         request=request
@@ -1323,12 +1322,19 @@ def submit_addon(request, step):
 
             p = data.get('supported_platforms', [])
 
-            addon = Addon.from_upload(data['upload'], p, source=data['source'])
+            addon = Addon.from_upload(data['upload'], p, source=data['source'],
+                                      is_listed=data['is_listed'])
             AddonUser(addon=addon, user=request.amo_user).save()
-            SubmitStep.objects.create(addon=addon, step=3)
             check_validation_override(request, form, addon,
                                       addon.current_version)
-            return redirect(_step_url(3), addon.slug)
+            next_step = 3
+            if not addon.is_listed:  # Not listed? Skip straight to step 6.
+                next_step = 6
+                messages.info(
+                    request,
+                    _("Skipping to step 6 because the add-on won't be listed"))
+            SubmitStep.objects.create(addon=addon, step=next_step)
+            return redirect(_step_url(next_step), addon.slug)
     template = 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 

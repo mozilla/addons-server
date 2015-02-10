@@ -2019,6 +2019,19 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform])
         eq_(addon.default_locale, 'es')
 
+    def test_is_listed(self):
+        # By default, the addon is listed.
+        addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                  [self.platform])
+        assert addon.is_listed
+
+    def test_is_not_listed(self):
+        # An addon can be explicitely unlisted.
+        addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                  [self.platform], is_listed=False)
+        assert not addon.is_listed
+
+
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 
 
