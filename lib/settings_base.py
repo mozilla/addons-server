@@ -1324,6 +1324,9 @@ SIGNING_SERVER = ''
 PRELIMINARY_SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
+# Where to redirect people who can't submit their add-on to AMO: they need to
+# request a cert to sign their own files.
+REQUEST_CERT_URL = 'https://bugzilla.mozilla.org/show_bug.cgi?id=1121159'
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
