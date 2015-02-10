@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-04 08:35-0700\n"
-"PO-Revision-Date: 2013-06-05 13:28+0100\n"
+"PO-Revision-Date: 2015-02-08 01:11+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -177,27 +177,27 @@ msgstr "Alle rettigheder forbeholdes"
 
 #: static/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: static/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: static/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: static/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
@@ -498,7 +498,7 @@ msgstr "Mobilen"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -1165,8 +1165,8 @@ msgstr[1] "{0} advarsler"
 #: static/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} bemærkning"
+msgstr[1] "{0} bemærkninger"
 
 #: static/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
