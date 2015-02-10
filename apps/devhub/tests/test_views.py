@@ -1104,6 +1104,14 @@ class TestSubmitStep2(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
+    def test_step_2_listed(self):
+        # There is a checkbox for the "is_listed" addon field.
+        self.client.post(reverse('devhub.submit.1'))
+        response = self.client.get(reverse('devhub.submit.2'))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        assert doc('.list-addon input[type=checkbox]')
+
 
 class TestSubmitStep3(TestSubmitBase):
 
@@ -2533,9 +2541,10 @@ class TestVersionXSS(UploadTest):
 class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
-             source=None):
+             source=None, is_listed=True):
         d = dict(upload=self.upload.pk, source=source,
-                 supported_platforms=[p.id for p in supported_platforms])
+                 supported_platforms=[p.id for p in supported_platforms],
+                 is_listed=is_listed)
         r = self.client.post(self.url, d, follow=True)
         eq_(r.status_code, 200)
         if not expect_errors:
@@ -2565,11 +2574,23 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         eq_(r.context['new_addon_form'].non_field_errors(),
             ['This name is already in use. Please choose another.'])
 
-    def test_success(self):
+    def test_success_listed(self):
         eq_(Addon.objects.count(), 0)
         r = self.post()
         addon = Addon.objects.get()
+        assert addon.is_listed
         self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
+            'New add-on creation never logged.')
+
+    def test_success_unlisted(self):
+        eq_(Addon.objects.count(), 0)
+        r = self.post(is_listed=False)
+        addon = Addon.objects.get()
+        assert not addon.is_listed
+        # Skip from step 2 to step 6.
+        self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')

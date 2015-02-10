@@ -355,6 +355,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     whiteboard = models.TextField(blank=True)
 
+    # Whether the add-on is listed on AMO or not.
+    is_listed = models.BooleanField(default=True, db_index=True)
+
     objects = AddonManager()
     with_deleted = AddonManager(include_deleted=True)
 
@@ -474,13 +477,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def from_upload(cls, upload, platforms, is_packaged=False, source=None):
+    def from_upload(cls, upload, platforms, is_packaged=False, source=None,
+                    is_listed=True):
         from files.utils import parse_addon
 
         data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
+        addon.is_listed = is_listed
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
                              settings.AMO_LANGUAGES +

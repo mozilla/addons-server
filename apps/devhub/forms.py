@@ -505,6 +505,15 @@ class NewAddonForm(AddonUploadForm):
         coerce=int,
         error_messages={'required': 'Need at least one platform.'}
     )
+    is_listed = forms.BooleanField(
+        initial=True,
+        required=False,
+        label=_lazy(u'Yes, include my add-on on AMO.'),
+        help_text=_(
+            u'Unchecking this box will allow your add-on to be uploaded and '
+            u'reviewed but it won\'t be visible on AMO or downloadable by any '
+            u'end users. If in doubt, leave this box checked - there are very '
+            u'few reasons to uncheck it.'))
 
     def clean(self):
         if not self.errors:
