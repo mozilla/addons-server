@@ -367,7 +367,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         self.add_file('file.php', '<script>alert("foo")</script>')
         res = self.client.get(self.file_url('file.php'))
         eq_(res.status_code, 200)
-        assert self.file_viewer.get_files()['file.php']['md5'] in res.content
+        assert self.file_viewer.files['file.php']['md5'] in res.content
 
     def test_tree_no_file(self):
         self.file_viewer.extract()
@@ -422,7 +422,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         res = self.client.get(self.files_redirect(binary), follow=True)
         eq_(res.status_code, 200)
         eq_(res[settings.XSENDFILE_HEADER],
-            self.file_viewer.get_files().get(binary)['full'])
+            self.file_viewer.files[binary]['full'])
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
