@@ -11,10 +11,12 @@ from access.middleware import ACLMiddleware
 from users.models import UserProfile
 from zadmin import jinja_for_django
 
+
 # This allows the views in piston.authentication.oauth to cope with
 # Jinja2 templates as opposed to Django templates.
 # Piston view passes: template, context, request_context
-jfd = lambda a, b, c: jinja_for_django(a, b, context_instance=c)
+def jfd(a, b, c):
+    return jinja_for_django(a, b, context_instance=c)
 views.render_to_response = jfd
 
 

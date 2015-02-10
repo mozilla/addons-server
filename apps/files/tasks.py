@@ -95,7 +95,10 @@ def repackage_jetpack(builder_data, **kw):
     jp_log.info('; '.join('%s: "%s"' % i for i in builder_data.items()))
     all_keys = builder_data.copy()
     all_keys.update(repack_data)
-    msg = lambda s: ('[{file_id}]: ' + s).format(**all_keys)
+
+    def msg(s):
+        return ('[{file_id}]: ' + s).format(**all_keys)
+
     upgrader = JetpackUpgrader()
     file_data = upgrader.file(repack_data['file_id'])
 

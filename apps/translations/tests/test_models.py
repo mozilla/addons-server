@@ -127,7 +127,10 @@ class TranslationTestCase(BaseTestCase):
 
     def test_create_translation(self):
         o = TranslatedModel.objects.create(name='english name')
-        get_model = lambda: TranslatedModel.objects.get(id=o.id)
+
+        def get_model():
+            return TranslatedModel.objects.get(id=o.id)
+
         self.trans_eq(o.name, 'english name', 'en-US')
         eq_(o.description, None)
 
@@ -205,9 +208,11 @@ class TranslationTestCase(BaseTestCase):
         self.trans_eq(o.name, 'right language', 'en-US')
 
     def test_update_with_dict(self):
+        def get_model():
+            return TranslatedModel.objects.get(id=1)
+
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
-        get_model = lambda: TranslatedModel.objects.get(id=1)
 
         # Don't try checking that the model's name value is en-US.  It will be
         # one of the other locales, but we don't know which one.  You just set
@@ -638,7 +643,8 @@ class NoLinksNoMarkupTranslationTest(BaseTestCase):
 
 
 def test_translation_bool():
-    t = lambda s: Translation(localized_string=s)
+    def t(s):
+        return Translation(localized_string=s)
 
     assert bool(t('text')) is True
     assert bool(t(' ')) is False
@@ -647,7 +653,8 @@ def test_translation_bool():
 
 
 def test_translation_unicode():
-    t = lambda s: Translation(localized_string=s)
+    def t(s):
+        return Translation(localized_string=s)
 
     eq_(unicode(t('hello')), 'hello')
     eq_(unicode(t(None)), '')

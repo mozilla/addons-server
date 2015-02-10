@@ -35,7 +35,11 @@ CSS_MEDIA_DEFAULT = 'all'
 
 # Make filepaths relative to the root of olympia.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-path = lambda *a: os.path.join(ROOT, *a)
+
+
+def path(*folders):
+    return os.path.join(ROOT, *folders)
+
 
 # We need to track this because hudson can't just call its checkout "olympia".
 # It puts it in a dir called "workspace".  Way to be, hudson.
@@ -151,7 +155,7 @@ def lazy_langs(languages):
                  for i in languages])
 
 # Where product details are stored see django-mozilla-product-details
-PROD_DETAILS_DIR = path('lib/product_json')
+PROD_DETAILS_DIR = path('lib', 'product_json')
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
@@ -285,7 +289,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_DIRS = (
-    path('media/docs'),
+    path('media', 'docs'),
     path('templates'),
 )
 

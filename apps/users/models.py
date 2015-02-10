@@ -600,7 +600,10 @@ class BlacklistedName(amo.models.ModelBase):
         """
         name = name.lower()
         qs = cls.objects.all()
-        f = lambda: [n.lower() for n in qs.values_list('name', flat=True)]
+
+        def f():
+            return [n.lower() for n in qs.values_list('name', flat=True)]
+
         blacklist = caching.cached_with(qs, f, 'blocked')
         return any(n in name for n in blacklist)
 
@@ -616,7 +619,10 @@ class BlacklistedEmailDomain(amo.models.ModelBase):
     @classmethod
     def blocked(cls, domain):
         qs = cls.objects.all()
-        f = lambda: list(qs.values_list('domain', flat=True))
+
+        def f():
+            return list(qs.values_list('domain', flat=True))
+
         blacklist = caching.cached_with(qs, f, 'blocked')
         # because there isn't a good way to know if the domain is
         # "example.com" or "example.co.jp", we'll re-construct it...

@@ -58,7 +58,8 @@ from . import logger_log as log
 heka = settings.HEKA
 
 
-days_ago = lambda n: datetime.datetime.now() - datetime.timedelta(days=n)
+def days_ago(n):
+    return datetime.datetime.now() - datetime.timedelta(days=n)
 
 
 def urlparams(url_, hash=None, **query):

@@ -38,7 +38,10 @@ def api_url(x, app='firefox', lang='en-US', version=1.2):
 
 
 client = Client()
-make_call = lambda *args, **kwargs: client.get(api_url(*args, **kwargs))
+
+
+def make_call(*args, **kwargs):
+    return client.get(api_url(*args, **kwargs))
 
 
 def test_json_not_implemented():

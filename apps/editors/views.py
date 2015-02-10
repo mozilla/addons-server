@@ -153,7 +153,8 @@ def _editor_progress():
                 'old': queue_counts(types, days_min=11)}
 
     # Return the percent of (p)rogress out of (t)otal.
-    pct = lambda p, t: (p / float(t)) * 100 if p > 0 else 0
+    def pct(p, t):
+        return (p / float(t)) * 100 if p > 0 else 0
 
     percentage = {}
     for t in types:

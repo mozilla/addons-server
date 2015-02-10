@@ -152,8 +152,10 @@ def _nvp_dump(data):
     """
     Dumps a dict out into NVP pairs suitable for PayPal to consume.
     """
+    def escape(k, v):
+        return '%s=%s' % (k, urlquote(v))
+
     out = []
-    escape = lambda k, v: '%s=%s' % (k, urlquote(v))
     # This must be sorted for chained payments to work correctly.
     for k, v in sorted(data.items()):
         if isinstance(v, (list, tuple)):

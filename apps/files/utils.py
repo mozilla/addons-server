@@ -237,7 +237,10 @@ class RDFExtractor(object):
 def extract_search(content):
     rv = {}
     dom = minidom.parse(content)
-    text = lambda x: dom.getElementsByTagName(x)[0].childNodes[0].wholeText
+
+    def text(x):
+        return dom.getElementsByTagName(x)[0].childNodes[0].wholeText
+
     rv['name'] = text('ShortName')
     rv['description'] = text('Description')
     return rv

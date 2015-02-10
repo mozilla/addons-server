@@ -3,12 +3,11 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from commander.deploy import hostgroups, task
+from commander.deploy import hostgroups, task  # noqa
 
-import commander_settings as settings
+import commander_settings as settings  # noqa
 
 
-_src_dir = lambda *p: os.path.join(settings.SRC_DIR, *p)
 VIRTUALENV = os.path.join(os.path.dirname(settings.SRC_DIR), 'venv')
 
 
@@ -43,7 +42,7 @@ def create_virtualenv(ctx):
 
 @task
 def update_locales(ctx):
-    with ctx.lcd(_src_dir("locale")):
+    with ctx.lcd(os.path.join(settings.SRC_DIR, "locale")):
         ctx.local("svn revert -R .")
         ctx.local("svn up")
         ctx.local("./compile-mo.sh .")

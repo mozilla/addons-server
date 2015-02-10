@@ -148,7 +148,8 @@ def extension_detail(request, addon):
 
 
 def _category_personas(qs, limit):
-    f = lambda: randslice(qs, limit=limit)
+    def f():
+        return randslice(qs, limit=limit)
     key = 'cat-personas:' + qs.query_key()
     return caching.cached(f, key)
 
@@ -348,7 +349,9 @@ def home(request):
 @mobilized(home)
 def home(request):
     # Shuffle the list and get 3 items.
-    rand = lambda xs: random.shuffle(xs) or xs[:3]
+    def rand(xs):
+        return random.shuffle(xs) or xs[:3]
+
     # Get some featured add-ons with randomness.
     featured = Addon.featured_random(request.APP, request.LANG)[:3]
     # Get 10 popular add-ons, then pick 3 at random.

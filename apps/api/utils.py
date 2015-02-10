@@ -19,8 +19,10 @@ def addon_to_dict(addon, disco=False, src='api'):
     """
     Renders an addon in JSON for the API.
     """
+    def url(u, **kwargs):
+        return settings.SITE_URL + urlparams(u, **kwargs)
+
     v = addon.current_version
-    url = lambda u, **kwargs: settings.SITE_URL + urlparams(u, **kwargs)
 
     if disco:
         learnmore = settings.SERVICES_URL + reverse('discovery.addons.detail',

@@ -10,7 +10,9 @@ PLATFORMS = ['x86', 'x86_64']
 PRODUCTS = ['firefox']
 TESTS = ['ts']
 
-choices = lambda x: [(c, c) for c in x]
+
+def choices(x):
+    return [(c, c) for c in x]
 
 
 class PerformanceForm(happyforms.Form):

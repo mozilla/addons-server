@@ -86,4 +86,4 @@ reindex:
 	$(FIG_PREFIX) python manage.py reindex $(ARGS)
 
 flake8:
-	$(FIG_PREFIX) flake8 --ignore=E265 --exclude=services,wsgi,docs,node_modules,build*.py .
+	$(FIG_PREFIX) flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,build*.py .

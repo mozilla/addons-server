@@ -266,8 +266,9 @@ class Command(BaseCommand):
         or version as the key, and the count as the value.
 
         """
-        # Does the json version of the field fits in the database (TEXT field)?
-        fits = lambda field: len(json.dumps(field)) < (2 ** 16)  # Len of TEXT.
+        def fits(field):
+            """Does the json version of the field fits in the db TEXT field?"""
+            return len(json.dumps(field)) < (2 ** 16)  # Max len of TEXT field.
 
         if fits(field):
             return

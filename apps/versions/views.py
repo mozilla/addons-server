@@ -41,8 +41,11 @@ def version_list(request, addon, template):
 def version_detail(request, addon, version_num):
     qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
           .distinct().order_by('-created'))
+
     # Use cached_with since values_list won't be cached.
-    f = lambda: _find_version_page(qs, addon, version_num)
+    def f():
+        return _find_version_page(qs, addon, version_num)
+
     return caching.cached_with(qs, f, 'vd:%s:%s' % (addon.id, version_num))
 
 
@@ -99,7 +102,8 @@ def download_file(request, file_id, type=None):
     return response
 
 
-guard = lambda: Addon.objects.filter(_current_version__isnull=False)
+def guard():
+    return Addon.objects.filter(_current_version__isnull=False)
 
 
 @addon_view_factory(guard)
