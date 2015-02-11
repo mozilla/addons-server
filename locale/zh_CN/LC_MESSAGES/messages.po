@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-03 05:47+0000\n"
+"PO-Revision-Date: 2015-02-11 22:11+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422942421.0\n"
+"X-POOTLE-MTIME: 1423692676.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3409,19 +3409,19 @@ msgstr "第6级"
 
 #: apps/constants/base.py:506
 msgid "Not signed"
-msgstr ""
+msgstr "未签名"
 
 #: apps/constants/base.py:507
 msgid "Signed for a full review"
-msgstr ""
+msgstr "已签名要求完整审核"
 
 #: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "已签名要求初步审核"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
-msgstr "更多信息"
+msgstr "要求更多信息"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
@@ -3649,13 +3649,14 @@ msgstr "无视验证失败"
 
 #: apps/devhub/forms.py:511
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "是，将我的附加组件放上 AMO。"
 
 #: apps/devhub/forms.py:512
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"取消此框仍会将您的附加组件上传并进行审核，但它不会在 AMO 上被任何终端用户可见和可下载。如不确定，请保持此框选中 - 很少有理由取消勾选它。"
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3878,7 +3879,7 @@ msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "因为该附加组件不会上架，跳过第 6 步。"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -3939,7 +3940,7 @@ msgstr "成为 AMO 审核者"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "了解有关附加组件的事情"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -3947,10 +3948,17 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您是一名网页开发者并且熟悉 <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 和 <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作"
+"一个超棒的附加组件了。"
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"请前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
+"开发者网络</a>了解您还需要熟悉哪些事物才能开始动手。"
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -3983,11 +3991,11 @@ msgstr "查看所有附加组件►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "发布您的附加组件！"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+msgstr "上传一个<a href=\"%(addon_url)s\">附加组件</a>或者<a href=\"%(theme_url)s\">主题</a>吧！"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4012,7 +4020,7 @@ msgstr "扩展开发"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "轻量级主题"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4035,7 +4043,7 @@ msgstr "开发附加组件"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "社区和支持"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -4944,11 +4952,11 @@ msgstr "使用下面的按钮上传您的附加组件包，并选择可兼容的
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "此文件与哪个平台兼容？"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "您想让您的附加组件在 AMO 上架吗？"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
@@ -6745,7 +6753,7 @@ msgstr "Australis 挑战赛获奖者作品"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "您的兴趣是什么？"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9431,7 +9439,7 @@ msgstr "关于评论的常见问答"
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
-msgstr ""
+msgstr "附加组件评论是一个分享您对已经安装并且使用过的附加组件感受的方式。我们的评论审核团队有权拒绝和删除任何不遵守下列准则的评论。"
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -9471,7 +9479,7 @@ msgstr "您会继续使用这个附加组件吗？"
 
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "在提交您的评论之前，花一点时间检查一下，有没有错别字。"
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
@@ -9479,13 +9487,13 @@ msgstr "不要做："
 
 #: apps/pages/templates/pages/review_guide.html:85
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "提交太短的评论，例如“赞”、“酷”、“糟糕”。"
 
 #: apps/pages/templates/pages/review_guide.html:90
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
-msgstr ""
+msgstr "发出技术问题、支持请求或者功能请求。请尽量使用每个附加组件的支持选项。您通常可以在“关于这个附加组件”的旁边找到它。"
 
 #: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
@@ -9497,7 +9505,7 @@ msgstr "使用亵渎、性意味或其他可能构成伤害的言语。"
 
 #: apps/pages/templates/pages/review_guide.html:106
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "包含 HTML、链接、代码。请只在评论中留下文字内容。"
 
 #: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -9505,7 +9513,7 @@ msgstr "作出虚假的陈述、贬低或者侮辱附加组件的作者或任何
 
 #: apps/pages/templates/pages/review_guide.html:117
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "包含您自己或者别人的电子邮件地址、电话号码或者其他个人信息。"
 
 #: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
@@ -9515,7 +9523,7 @@ msgstr "为附加组件投递您或您的组织撰写或表述的评论。"
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
-msgstr ""
+msgstr "批评一个附加组件的某些做法。举例来说，如果一个附加组件的某个功能预期就需要收集数据或者显示广告才能使用，请不要对此留下负面评论。"
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
@@ -9526,6 +9534,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"请点击“报告此评论”来报告或标记任何有问题的评论，这将被提交给网站的管理团队。我们的管理团队将依照评论指南评估并决定是否要删除该评论，或者将评论还原到网"
+"站上。"
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -9536,6 +9546,8 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
+"可以，附加组件作者可以对每个评论提供一次回应。您可以在我们的<a href=\"http://forums.mozilla.org/viewforum.p"
+"hp?f=23\">论坛</a>建立一个讨论主题，让用户进行更多讨论或跟进。"
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -9546,6 +9558,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"一般来说，不能。但如果评论不符合上述评论准则，您可以点击“报告此评论”，之后会有管理人员进行审核。如果一条抱怨评论因为您的附加组件已经发布了新版本而不再"
+"有效，我们可以考虑删除该评论。请提交您的详细请求至 amo-editors@mozilla.org。"
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
