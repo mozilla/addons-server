@@ -578,6 +578,33 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(rqt.header, 'pending_header.png')
         eq_(rqt.footer, 'Legacy-footer3H-Copy.jpg')
 
+    @mock.patch('addons.tasks.make_checksum')
+    @mock.patch('addons.tasks.create_persona_preview_images')
+    @mock.patch('addons.tasks.save_persona_image')
+    def test_reupload_no_footer(self, save_persona_image_mock,
+                                create_persona_preview_images_mock,
+                                make_checksum_mock):
+        make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
+        data = self.get_dict(header_hash='y0l0', footer_hash='')
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+        eq_(self.form.is_valid(), True)
+        self.form.save()
+
+        dst = os.path.join(user_media_path('addons'), str(self.instance.id))
+        header_src = os.path.join(settings.TMP_PATH, 'persona_header',
+                                  u'y0l0')
+
+        eq_(save_persona_image_mock.mock_calls,
+            [mock.call(src=header_src,
+                       full_dst=os.path.join(dst, 'pending_header.png'))])
+
+        rqt = RereviewQueueTheme.objects.filter(theme=self.instance.persona)
+        eq_(rqt.count(), 1)
+        eq_(rqt[0].header, 'pending_header.png')
+        eq_(rqt[0].footer, '')
+        assert not rqt[0].dupe_persona
+
 
 class TestEditThemeOwnerForm(amo.tests.TestCase):
     fixtures = ['base/users']

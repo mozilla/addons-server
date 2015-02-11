@@ -600,3 +600,15 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
 
         eq_(RereviewQueueTheme.objects.count(), 1)
         eq_(RereviewQueueTheme.with_deleted.count(), 2)
+
+    def test_footer_path_without_footer(self):
+        rqt = RereviewQueueTheme.objects.create(
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
+            footer='')
+        assert rqt.footer_path == ''
+
+    def test_footer_url_without_footer(self):
+        rqt = RereviewQueueTheme.objects.create(
+            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
+            footer='')
+        assert rqt.footer_url == ''
