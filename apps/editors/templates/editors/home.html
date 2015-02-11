@@ -52,6 +52,57 @@
     </div>
   </div>
 
+  {% if action_allowed('Addons', 'ReviewUnlisted') %}
+  <div class="featured" id="editors-stats-charts-unlisted">
+    <div class="featured-inner">
+      <div class="listing-header">
+        <div class="editor-stats-title">
+          <a href="{{ url('editors.unlisted_queue_nominated') }}">
+            {{ ngettext('Unlisted Full Review ({num})',
+                        'Unlisted Full Reviews ({num})',
+                        unlisted_queue_counts['nominated'])|f(num=unlisted_queue_counts['nominated']) }}
+          </a>
+        </div>
+        <div class="editor-stats-title">
+          <a href="{{ url('editors.unlisted_queue_pending') }}">
+            {{ ngettext('Unlisted Pending Update ({num})',
+                        'Unlisted Pending Updates ({num})',
+                        unlisted_queue_counts['pending'])|f(num=unlisted_queue_counts['pending']) }}
+          </a>
+        </div>
+        <div class="editor-stats-title">
+          <a href="{{ url('editors.unlisted_queue_prelim') }}">
+            {{ ngettext('Unlisted Preliminary Review ({num})',
+                        'Unlisted Preliminary Reviews ({num})',
+                        unlisted_queue_counts['prelim'])|f(num=unlisted_queue_counts['prelim']) }}
+          </a>
+        </div>
+      </div>
+
+      <div class="editor-stats">
+        {% for type in ('nominated', 'pending', 'prelim'): %}
+          <div class="editor-stats-table">
+            <div class="editor-stats-dark">
+              <strong>{{ _('Current waiting times:') }}</strong>
+              <div class="editor-waiting">
+                {% for (d, duration) in durations: %}
+                {% set total = unlisted_progress[d][type] %}
+                <div class="waiting_{{ d }} tooltip"
+                     data-delay="100"
+                     style="width:{{ unlisted_percentage[type][d] }}%"
+                     title="{{ duration }} ::
+                            {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
+                            &bull; {{ _('{0}%')|f(unlisted_percentage[type][d]|round|int) }}"></div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
   <div class="featured" id="editors-stats">
     <div class="featured-inner">
       <div class="listing-header">

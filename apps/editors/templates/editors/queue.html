@@ -27,7 +27,7 @@
         <button type="submit">{{ _('Search') }}</button>
         <a class="toggle-queue-search" href="#">{{ _('Advanced Search') }}</a>
         {% if search_form.data and search_form.data['searching'] %}
-          (<a class="clear-queue-search" href="{{ url('editors.queue_%s' % tab) }}">{{ _('clear search') }}</a>)
+        (<a class="clear-queue-search" href="{{ url('editors.{0}queue_{1}'.format('unlisted_' if unlisted else '', tab)) }}">{{ _('clear search') }}</a>)
         {% endif %}
         <div class="advanced-search">
           <div class="column1">

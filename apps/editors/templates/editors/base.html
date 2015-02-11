@@ -38,24 +38,36 @@
 {% block navbar %}
 <div id="navbar">
   <ul class="top">
-      <li class="top">
-        <a href="{{ url('editors.queue') }}" class="controller">
-          {{ _('Queues') }}</a>
+    <li class="top" id="listed-queues">
+      <a href="{{ url('editors.queue') }}" class="controller">
+        {{ _('Queues') }}</a>
+      <ul>
+        <li><a href="{{ url('editors.queue_fast_track') }}">
+              {{ _('Fast Track') }} ({{ queue_counts['fast_track'] }})</a></li>
+        <li><a href="{{ url('editors.queue_nominated') }}">
+              {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
+        <li><a href="{{ url('editors.queue_pending') }}">
+              {{ _('Pending Updates') }} ({{ queue_counts['pending'] }})</a></li>
+        <li><a href="{{ url('editors.queue_prelim') }}">
+              {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
+        <li><a href="{{ url('editors.queue_moderated') }}">
+              {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
+      </ul>
+    </li>
+    {% if action_allowed('Addons', 'ReviewUnlisted') %}
+      <li class="top" id="unlisted-queues">
+        <a href="{{ url('editors.unlisted_queue') }}" class="controller">
+          {{ _('Unlisted Queues') }}</a>
         <ul>
-          {% if queue_counts %}
-            <li><a href="{{ url('editors.queue_fast_track') }}">
-                  {{ _('Fast Track') }} ({{ queue_counts['fast_track'] }})</a></li>
-            <li><a href="{{ url('editors.queue_nominated') }}">
-                  {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
-            <li><a href="{{ url('editors.queue_pending') }}">
-                  {{ _('Pending Updates') }} ({{ queue_counts['pending'] }})</a></li>
-            <li><a href="{{ url('editors.queue_prelim') }}">
-                  {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
-            <li><a href="{{ url('editors.queue_moderated') }}">
-                  {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
-          {% endif %}
+          <li><a href="{{ url('editors.unlisted_queue_nominated') }}">
+                {{ _('Full Reviews') }} ({{ unlisted_queue_counts['nominated'] }})</a></li>
+          <li><a href="{{ url('editors.unlisted_queue_pending') }}">
+                {{ _('Pending Updates') }} ({{ unlisted_queue_counts['pending'] }})</a></li>
+          <li><a href="{{ url('editors.unlisted_queue_prelim') }}">
+                {{ _('Preliminary Reviews') }} ({{ unlisted_queue_counts['prelim'] }})</a></li>
         </ul>
       </li>
+    {% endif %}
     <li class="top">
       <a href="{{ url('editors.performance') }}" class="controller">{{ _('Performance') }}</a>
     </li>

@@ -11,8 +11,8 @@ from addons.models import Addon, AddonUser
 from users.models import UserProfile
 
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
-                  check_addons_reviewer, check_personas_reviewer, is_editor,
-                  match_rules)
+                  check_addons_reviewer, check_personas_reviewer,
+                  check_unlisted_addons_reviewer, is_editor, match_rules)
 
 
 pytestmark = pytest.mark.django_db
@@ -214,19 +214,29 @@ class TestCheckReviewer(TestCase):
     def test_no_perm(self):
         req = req_factory_factory('noop', user=self.user)
         assert not check_addons_reviewer(req)
+        assert not check_unlisted_addons_reviewer(req)
         assert not check_personas_reviewer(req)
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
         req = req_factory_factory('noop', user=self.user)
         assert check_addons_reviewer(req)
+        assert not check_unlisted_addons_reviewer(req)
         assert not check_personas_reviewer(req)
 
     def test_perm_themes(self):
         self.grant_permission(self.user, 'Personas:Review')
         req = req_factory_factory('noop', user=self.user)
         assert not check_addons_reviewer(req)
+        assert not check_unlisted_addons_reviewer(req)
         assert check_personas_reviewer(req)
+
+    def test_perm_unlisted_addons(self):
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        req = req_factory_factory('noop', user=self.user)
+        assert not check_addons_reviewer(req)
+        assert check_unlisted_addons_reviewer(req)
+        assert not check_personas_reviewer(req)
 
     def test_is_editor_for_addon_reviewer(self):
         """An addon editor is also a persona editor."""

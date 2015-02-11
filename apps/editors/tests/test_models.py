@@ -16,14 +16,18 @@ from applications.models import AppVersion
 from editors.models import (EditorSubscription, RereviewQueueTheme,
                             ReviewerScore, send_notifications,
                             ViewFastTrackQueue, ViewFullReviewQueue,
-                            ViewPendingQueue, ViewPreliminaryQueue)
+                            ViewPendingQueue, ViewPreliminaryQueue,
+                            ViewUnlistedFullReviewQueue,
+                            ViewUnlistedPendingQueue,
+                            ViewUnlistedPreliminaryQueue)
 from users.models import UserProfile
 
 
 def create_addon_file(name, version_str, addon_status, file_status,
                       platform=amo.PLATFORM_ALL, application=amo.FIREFOX,
                       admin_review=False, addon_type=amo.ADDON_EXTENSION,
-                      created=None, file_kw=None, version_kw=None):
+                      created=None, file_kw=None, version_kw=None,
+                      listed=True):
     if file_kw is None:
         file_kw = {}
     if version_kw is None:
@@ -33,7 +37,8 @@ def create_addon_file(name, version_str, addon_status, file_status,
     try:
         ad = Addon.objects.get(name__localized_string=name)
     except Addon.DoesNotExist:
-        ad = Addon.objects.create(type=addon_type, name=name)
+        ad = Addon.objects.create(
+            type=addon_type, name=name, is_listed=listed)
     if admin_review:
         ad.update(admin_review=True)
     vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str,
@@ -53,11 +58,13 @@ def create_addon_file(name, version_str, addon_status, file_status,
     return {'addon': ad, 'version': vr, 'file': file_}
 
 
-def create_search_ext(name, version_str, addon_status, file_status):
+def create_search_ext(name, version_str, addon_status, file_status,
+                      listed=True):
     try:
         ad = Addon.objects.get(name__localized_string=name)
     except Addon.DoesNotExist:
-        ad = Addon.objects.create(type=amo.ADDON_SEARCH, name=name)
+        ad = Addon.objects.create(
+            type=amo.ADDON_SEARCH, name=name, is_listed=listed)
     vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
     File.objects.create(version=vr, filename=u"%s.xpi" % name,
                         platform=amo.PLATFORM_ALL.id, status=file_status)
@@ -69,6 +76,7 @@ def create_search_ext(name, version_str, addon_status, file_status):
 class TestQueue(amo.tests.TestCase):
     """Tests common attributes and coercions that each view must support."""
     __test__ = False  # this is an abstract test case
+    listed = True  # Are we testing listed or unlisted queues?
 
     def test_latest_version(self):
         self.new_file(version=u'0.1', created=self.days_ago(2))
@@ -139,12 +147,12 @@ class TestPendingQueue(TestQueue):
         # because that might alter the addon status.
         return create_addon_file(name, version,
                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
-                                 **kw)
+                                 listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
-                                 **kw)
+                                 listed=self.listed, **kw)
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
@@ -208,25 +216,27 @@ class TestFullReviewQueue(TestQueue):
     def new_file(self, name=u'Nominated', version=u'1.0', **kw):
         return create_addon_file(name, version,
                                  amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
-                                 **kw)
+                                 listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
                                  amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
-                                 **kw)
+                                 listed=self.listed, **kw)
 
     def test_lite_review_addons_also_shows_up(self):
         create_addon_file('Full', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          listed=self.listed)
         create_addon_file('Lite', '0.1',
                           amo.STATUS_LITE_AND_NOMINATED,
-                          amo.STATUS_UNREVIEWED)
+                          amo.STATUS_UNREVIEWED, listed=self.listed)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Full', 'Lite'])
 
     def test_any_nominated_file_shows_up(self):
         create_addon_file('Null', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_NULL)
+                          amo.STATUS_NOMINATED, amo.STATUS_NULL,
+                          listed=self.listed)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()), ['Null'])
 
     def test_waiting_time(self):
@@ -245,18 +255,20 @@ class TestPreliminaryQueue(TestQueue):
     def new_file(self, name=u'Preliminary', version=u'1.0', **kw):
         return create_addon_file(name, version,
                                  amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-                                 **kw)
+                                 listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
                                  amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-                                 **kw)
+                                 listed=self.listed, **kw)
 
     def test_unreviewed_addons_are_in_q(self):
         create_addon_file('Lite', '0.1',
-                          amo.STATUS_LITE, amo.STATUS_UNREVIEWED)
+                          amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+                          listed=self.listed)
         create_addon_file('Unreviewed', '0.1',
-                          amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
+                          amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED,
+                          listed=self.listed)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Lite', 'Unreviewed'])
 
@@ -324,6 +336,21 @@ class TestFastTrackQueue(TestQueue):
         ad.status = amo.STATUS_NOMINATED
         ad.save()
         eq_(self.query(), ['full'])
+
+
+class TestUnlistedPendingQueue(TestPendingQueue):
+    Queue = ViewUnlistedPendingQueue
+    listed = False
+
+
+class TestUnlistedFullReviewQueue(TestFullReviewQueue):
+    Queue = ViewUnlistedFullReviewQueue
+    listed = False
+
+
+class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
+    Queue = ViewUnlistedPreliminaryQueue
+    listed = False
 
 
 class TestEditorSubscription(amo.tests.TestCase):

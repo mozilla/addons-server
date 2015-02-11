@@ -7,7 +7,7 @@ from amo.decorators import login_required
 
 
 def _view_on_get(request):
-    """Returns whether the user can access this page.
+    """Return True if the user can access this page.
 
     If the user is in a group with rule 'ReviewerTools:View' and the request is
     a GET request, they are allowed to view.
@@ -17,12 +17,13 @@ def _view_on_get(request):
 
 
 def addons_reviewer_required(f):
-    """Requires the user to be logged in as an addons reviewer or admin, or
-    allows someone with rule 'ReviewerTools:View' for GET requests.
+    """Require an addons reviewer user.
+
+    The user logged in must be an addons reviewer or admin, or have the
+    'ReviewerTools:View' permission for GET requests.
 
     An addons reviewer is someone who is in the group with the following
-    permission: Addons:Review.
-
+    permission: 'Addons:Review'.
     """
     @login_required
     @functools.wraps(f)
@@ -33,12 +34,31 @@ def addons_reviewer_required(f):
     return wrapper
 
 
+def unlisted_addons_reviewer_required(f):
+    """Require an "unlisted addons" reviewer user.
+
+    The user logged in must be an unlisted addons reviewer or admin.
+
+    An unlisted addons reviewer is someone who is in a group with the following
+    permission: 'Addons:ReviewUnlisted'.
+    """
+    @login_required
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        if acl.check_unlisted_addons_reviewer(request):
+            return f(request, *args, **kw)
+        raise PermissionDenied
+    return wrapper
+
+
 def personas_reviewer_required(f):
-    """Requires the user to be logged in as a personas reviewer or admin, or
-    allows someone with rule 'ReviewerTools:View' for GET requests.
+    """Require an persona reviewer user.
+
+    The user logged in must be a personas reviewer or admin, or have the
+    'ReviewerTools:View' permission for GET requests.
 
     A personas reviewer is someone who is in the group with the following
-    permission: Personas:Review.
+    permission: 'Personas:Review'.
 
     """
     @login_required
@@ -51,13 +71,7 @@ def personas_reviewer_required(f):
 
 
 def any_reviewer_required(f):
-    """Return a decorator that is an OR between addons_reviewer_required and
-    personas_reviewer_required.
-
-    This means that this decorators requires that the reviewer is either an
-    addons reviewer or a personas reviewer.
-
-    """
+    """Require an addons or personas reviewer."""
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         try:

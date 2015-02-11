@@ -28,20 +28,28 @@ from editors.models import (AddonCannedResponse, EditorSubscription, EventLog,
                             PerformanceGraph, ReviewerScore,
                             ViewFastTrackQueue, ViewFullReviewQueue,
                             ViewPendingQueue, ViewPreliminaryQueue,
-                            ViewQueue)
+                            ViewQueue,
+                            ViewUnlistedFullReviewQueue,
+                            ViewUnlistedPendingQueue,
+                            ViewUnlistedPreliminaryQueue)
 from editors.helpers import (ViewFastTrackQueueTable, ViewFullReviewQueueTable,
-                             ViewPendingQueueTable, ViewPreliminaryQueueTable)
+                             ViewPendingQueueTable, ViewPreliminaryQueueTable,
+                             ViewUnlistedFullReviewQueueTable,
+                             ViewUnlistedPendingQueueTable,
+                             ViewUnlistedPreliminaryQueueTable)
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from zadmin.models import get_config, set_config
 
-from .decorators import addons_reviewer_required, any_reviewer_required
+from .decorators import (addons_reviewer_required, any_reviewer_required,
+                         unlisted_addons_reviewer_required)
 
 
 def context(**kw):
     ctx = dict(motd=get_config('editors_review_motd'),
-               queue_counts=queue_counts())
+               queue_counts=queue_counts(),
+               unlisted_queue_counts=queue_counts(unlisted=True))
     ctx.update(kw)
     return ctx
 
@@ -106,6 +114,7 @@ def home(request):
                  ('old', _('Overdue (Over 10 days)')))
 
     progress, percentage = _editor_progress()
+    unlisted_progress, unlisted_percentage = _editor_progress(unlisted=True)
     reviews_max_display = getattr(settings, 'EDITOR_REVIEWS_MAX_DISPLAY', 5)
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
@@ -136,21 +145,24 @@ def home(request):
         new_editors=EventLog.new_editors(),
         eventlog=ActivityLog.objects.editor_events()[:6],
         progress=progress,
+        unlisted_progress=unlisted_progress,
         percentage=percentage,
+        unlisted_percentage=unlisted_percentage,
         durations=durations,
         reviews_max_display=reviews_max_display)
 
     return render(request, 'editors/home.html', data)
 
 
-def _editor_progress():
+def _editor_progress(unlisted=False):
     """Return the progress (number of add-ons still unreviewed for a given
        period of time) and the percentage (out of all add-ons of that type)."""
 
     types = ['nominated', 'prelim', 'pending']
-    progress = {'new': queue_counts(types, days_max=4),
-                'med': queue_counts(types, days_min=5, days_max=10),
-                'old': queue_counts(types, days_min=11)}
+    progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted),
+                'med': queue_counts(types, days_min=5, days_max=10,
+                                    unlisted=unlisted),
+                'old': queue_counts(types, days_min=11, unlisted=unlisted)}
 
     # Return the percent of (p)rogress out of (t)otal.
     def pct(p, t):
@@ -315,7 +327,7 @@ def save_motd(request):
     return render(request, 'editors/motd.html', data)
 
 
-def _queue(request, TableObj, tab, qs=None):
+def _queue(request, TableObj, tab, qs=None, unlisted=False):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
     if request.GET:
@@ -340,10 +352,11 @@ def _queue(request, TableObj, tab, qs=None):
     return render(request, 'editors/queue.html',
                   context(table=table, page=page, tab=tab,
                           search_form=search_form,
-                          point_types=amo.REVIEWED_AMO))
+                          point_types=amo.REVIEWED_AMO,
+                          unlisted=unlisted))
 
 
-def queue_counts(type=None, **kw):
+def queue_counts(type=None, unlisted=False, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         def apply_query(query, *args):
             query = query.having(*args)
@@ -365,6 +378,11 @@ def queue_counts(type=None, **kw):
               'moderated': (
                   Review.objects.filter(reviewflag__isnull=False,
                                         editorreview=1).count)}
+    if unlisted:
+        counts = {
+            'pending': construct_query(ViewUnlistedPendingQueue, **kw),
+            'nominated': construct_query(ViewUnlistedFullReviewQueue, **kw),
+            'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw)}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -430,6 +448,29 @@ def queue_moderated(request):
                           point_types=amo.REVIEWED_AMO))
 
 
+@unlisted_addons_reviewer_required
+def unlisted_queue(request):
+    return redirect(reverse('editors.unlisted_queue_pending'))
+
+
+@unlisted_addons_reviewer_required
+def unlisted_queue_nominated(request):
+    return _queue(request, ViewUnlistedFullReviewQueueTable, 'nominated',
+                  unlisted=True)
+
+
+@unlisted_addons_reviewer_required
+def unlisted_queue_pending(request):
+    return _queue(request, ViewUnlistedPendingQueueTable, 'pending',
+                  unlisted=True)
+
+
+@unlisted_addons_reviewer_required
+def unlisted_queue_prelim(request):
+    return _queue(request, ViewUnlistedPreliminaryQueueTable, 'prelim',
+                  unlisted=True)
+
+
 @addons_reviewer_required
 @post_required
 @json_view
@@ -443,6 +484,9 @@ def application_versions_json(request):
 @addon_view
 def review(request, addon):
     version = addon.latest_version
+
+    if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
@@ -634,6 +678,9 @@ def reviewlog(request):
     form = forms.ReviewLogForm(data)
 
     approvals = ActivityLog.objects.review_queue()
+    if not acl.check_unlisted_addons_reviewer(request):
+        # Display logs related to unlisted add-ons only to senior reviewers.
+        approvals = approvals.filter(addonlog__addon__is_listed=True)
 
     if form.is_valid():
         data = form.cleaned_data
@@ -669,8 +716,8 @@ def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
     reports = amo.utils.paginate(request, reports)
-    return render(request, 'editors/abuse_reports.html',
-                  dict(addon=addon, reports=reports, total=total))
+    data = context(addon=addon, reports=reports, total=total)
+    return render(request, 'editors/abuse_reports.html', data)
 
 
 @addons_reviewer_required
