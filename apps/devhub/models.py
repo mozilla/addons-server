@@ -26,7 +26,8 @@ from versions.models import Version
 log = commonware.log.getLogger('devhub')
 
 
-table_name = lambda n: n + settings.LOG_TABLE_SUFFIX
+def table_name(n):
+    return n + settings.LOG_TABLE_SUFFIX
 
 
 class RssKey(models.Model):

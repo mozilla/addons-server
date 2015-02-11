@@ -662,7 +662,8 @@ class TestQueueBasics(QueueTest):
         self.generate_files()
         version = self.addons['Nominated Two'].versions.all()[0]
 
-        style = lambda w: 'width:%s%%' % (float(w) if w > 0 else 0)
+        def style(w):
+            return 'width:%s%%' % (float(w) if w > 0 else 0)
 
         for days, widths in self.get_review_data():
             new_nomination = datetime.now() - timedelta(days=days)
@@ -693,7 +694,8 @@ class TestQueueBasics(QueueTest):
 
     def check_bar(self, addon, eq, data, reset_status=False):
         # `eq` is the table number (0, 1 or 2).
-        style = lambda w: 'width:%s%%' % (float(w) if w > 0 else 0)
+        def style(w):
+            return 'width:%s%%' % (float(w) if w > 0 else 0)
 
         days, widths = data
 

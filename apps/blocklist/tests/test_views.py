@@ -538,7 +538,10 @@ class BlocklistGfxTest(BlocklistViewTest):
         r = self.client.get(self.fx4_url)
         dom = minidom.parseString(r.content)
         gfx = dom.getElementsByTagName('gfxBlacklistEntry')[0]
-        find = lambda e: gfx.getElementsByTagName(e)[0].childNodes[0].wholeText
+
+        def find(e):
+            return gfx.getElementsByTagName(e)[0].childNodes[0].wholeText
+
         eq_(find('os'), self.gfx.os)
         eq_(find('feature'), self.gfx.feature)
         eq_(find('vendor'), self.gfx.vendor)

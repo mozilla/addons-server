@@ -87,8 +87,10 @@ def addon_total_contributions():
 
 @cronjobs.register
 def index_latest_stats(index=None):
+    def fmt(d):
+        return d.strftime('%Y-%m-%d')
+
     raise_if_reindex_in_progress('amo')
-    fmt = lambda d: d.strftime('%Y-%m-%d')
     latest = UpdateCount.search(index).order_by('-date').values_dict()
     if latest:
         latest = latest[0]['date']

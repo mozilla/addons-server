@@ -115,7 +115,10 @@ class CollectionPromo(PromoModule):
         kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
                   platform=self.platform, version=self.version,
                   compat_mode=self.compat_mode)
-        f = lambda: addon_filter(addons, **kw)
+
+        def f():
+            return addon_filter(addons, **kw)
+
         return caching.cached_with(addons, f, repr(kw))
 
     def render(self, module_context='discovery'):

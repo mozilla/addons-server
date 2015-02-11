@@ -615,7 +615,9 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_has_full_profile(self):
         """Test if an add-on's developer profile is complete (public)."""
-        addon = lambda: Addon.objects.get(pk=3615)
+        def addon():
+            return Addon.objects.get(pk=3615)
+
         assert not addon().has_full_profile()
 
         a = addon()
@@ -636,7 +638,9 @@ class TestAddonModels(amo.tests.TestCase):
         """Test if an add-on's developer profile is (partially or entirely)
         completed.
         """
-        addon = lambda: Addon.objects.get(pk=3615)
+        def addon():
+            return Addon.objects.get(pk=3615)
+
         assert not addon().has_profile()
 
         a = addon()
@@ -654,7 +658,9 @@ class TestAddonModels(amo.tests.TestCase):
         assert not addon().has_profile()
 
     def test_has_eula(self):
-        addon = lambda: Addon.objects.get(pk=3615)
+        def addon():
+            return Addon.objects.get(pk=3615)
+
         assert addon().has_eula
 
         a = addon()
@@ -957,7 +963,8 @@ class TestAddonModels(amo.tests.TestCase):
             cat.full_clean()
 
     def test_app_categories(self):
-        addon = lambda: Addon.objects.get(pk=3615)
+        def addon():
+            return Addon.objects.get(pk=3615)
 
         c22 = Category.objects.get(id=22)
         c22.name = 'CCC'
@@ -987,7 +994,9 @@ class TestAddonModels(amo.tests.TestCase):
         eq_(addon().app_categories, app_cats)
 
     def test_app_categories_sunbird(self):
-        get_addon = lambda: Addon.objects.get(pk=3615)
+        def get_addon():
+            return Addon.objects.get(pk=3615)
+
         addon = get_addon()
 
         # This add-on is already associated with three Firefox categories.

@@ -13,8 +13,7 @@ API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 # Wrap class views in a lambda call so we get an fresh instance of the class
 # for thread-safety.
 def class_view(cls):
-    inner = lambda *args, **kw: cls()(*args, **kw)
-    return inner
+    return lambda *args, **kw: cls()(*args, **kw)
 
 
 # Regular expressions that we use in our urls.

@@ -285,7 +285,9 @@ def test_outgoing_url_query_params():
     fixed = urlresolvers.get_outgoing_url(url)
     assert fixed.endswith('%3A//xx.com%3Fq=1&v=2%22%20style=%22123%22'), fixed
 
-check = lambda x, y: eq_(urlresolvers.lang_from_accept_header(x), y)
+
+def check(x, y):
+    return eq_(urlresolvers.lang_from_accept_header(x), y)
 
 
 def test_parse_accept_language():

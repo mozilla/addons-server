@@ -86,8 +86,9 @@ class HelpersTest(amo.tests.TestCase):
         eq_(pq(s)('a').attr('href'), u)
 
     def test_mobile_reviews_link(self):
-        s = lambda a: pq(self.render('{{ mobile_reviews_link(myaddon) }}',
-                                     {'myaddon': a}))
+        def s(a):
+            return pq(self.render('{{ mobile_reviews_link(myaddon) }}',
+                                  {'myaddon': a}))
 
         a = Addon(total_reviews=0, id=1, type=1, slug='xx')
         doc = s(a)

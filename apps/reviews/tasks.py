@@ -61,11 +61,13 @@ def addon_review_aggregates(addons, **kw):
 
 @task
 def addon_bayesian_rating(*addons, **kw):
+    def addon_aggregates():
+        return Addon.objects.aggregate(rating=Avg('average_rating'),
+                                       reviews=Avg('total_reviews'))
+
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
-    f = lambda: Addon.objects.aggregate(rating=Avg('average_rating'),
-                                        reviews=Avg('total_reviews'))
-    avg = caching.cached(f, 'task.bayes.avg', 60 * 60 * 60)
+    avg = caching.cached(addon_aggregates, 'task.bayes.avg', 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return

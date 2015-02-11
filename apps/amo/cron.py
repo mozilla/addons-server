@@ -27,8 +27,8 @@ log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def gc(test_result=True):
     """Site-wide garbage collections."""
-
-    days_ago = lambda days: datetime.today() - timedelta(days=days)
+    def days_ago(days):
+        return datetime.today() - timedelta(days=days)
 
     log.debug('Collecting data to delete')
 

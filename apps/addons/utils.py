@@ -1,15 +1,10 @@
-import hashlib
 import logging
 import random
 
 from django.db.models import Q
-from django.utils.encoding import smart_str
 
 import commonware.log
 from cache_nuggets.lib import memoize
-
-
-safe_key = lambda x: hashlib.md5(smart_str(x).lower().strip()).hexdigest()
 
 
 log = commonware.log.getLogger('z.redis')

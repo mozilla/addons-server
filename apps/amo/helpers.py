@@ -516,7 +516,8 @@ def _site_nav(context):
     from addons.models import Category
     request = context['request']
 
-    sorted_cats = lambda qs: sorted(qs, key=attrgetter('weight', 'name'))
+    def sorted_cats(qs):
+        return sorted(qs, key=attrgetter('weight', 'name'))
 
     extensions = Category.objects.filter(
         application=request.APP.id, weight__gte=0, type=amo.ADDON_EXTENSION)

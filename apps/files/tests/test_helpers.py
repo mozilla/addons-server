@@ -19,7 +19,10 @@ from files.models import File
 from files.utils import SafeUnzip
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
-get_file = lambda x: '%s/%s' % (root, x)
+
+
+def get_file(filename):
+    return os.path.join(root, filename)
 
 
 def make_file(pk, file_path, **kwargs):

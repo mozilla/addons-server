@@ -580,8 +580,8 @@ class TestDetailPage(amo.tests.TestCase):
 
     def test_beta(self):
         """Test add-on with a beta channel."""
-        get_pq_content = lambda: pq(
-            self.client.get(self.url, follow=True).content)
+        def get_pq_content():
+            return pq(self.client.get(self.url, follow=True).content)
 
         # Add a beta version and show it.
         mybetafile = self.addon.versions.all()[0].files.all()[0]

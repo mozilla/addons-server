@@ -81,8 +81,13 @@ class TransMulti(forms.widgets.MultiWidget):
         # pull out everything that starts with name.
         rv = {}
         prefix = '%s_' % name
-        locale = lambda s: s[len(prefix):]
-        delete_locale = lambda s: s[len(prefix):-len('_delete')]
+
+        def locale(s):
+            return s[len(prefix):]
+
+        def delete_locale(s):
+            return s[len(prefix):-len('_delete')]
+
         # Look for the name without a locale suffix.
         if name in data:
             rv[translation.get_language()] = data[name]

@@ -8,11 +8,9 @@ import warnings
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-path = lambda *a: os.path.join(ROOT, *a)
-
 prev_sys_path = list(sys.path)
 
-site.addsitedir(path('apps'))
+site.addsitedir(os.path.join(ROOT, 'apps'))
 
 # Move the new items to the front of sys.path. (via virtualenv)
 new_sys_path = []
@@ -23,22 +21,22 @@ for item in list(sys.path):
 sys.path[:0] = new_sys_path
 
 # No third-party imports until we've added all our sitedirs!
-from django.core.management import call_command, execute_from_command_line
+from django.core.management import call_command, execute_from_command_line  # noqa
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 # Finally load the settings file that was specified.
-from django.conf import settings
+from django.conf import settings  # noqa
 
 if not settings.DEBUG:
     warnings.simplefilter('ignore')
 
-import session_csrf
+import session_csrf  # noqa
 session_csrf.monkeypatch()
 
 # Fix jinja's Markup class to not crash when localizers give us bad format
 # strings.
-from jinja2 import Markup
+from jinja2 import Markup  # noqa
 mod = Markup.__mod__
 trans_log = logging.getLogger('z.trans')
 
@@ -48,7 +46,7 @@ trans_log = logging.getLogger('z.trans')
 import amo  # noqa
 
 # Hardcore monkeypatching action.
-import jingo.monkey
+import jingo.monkey  # noqa
 jingo.monkey.patch()
 
 
@@ -61,12 +59,12 @@ def new(self, arg):
 
 Markup.__mod__ = new
 
-import djcelery
+import djcelery  # noqa
 djcelery.setup_loader()
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
-from lib.log_settings_base import log_configure
+from lib.log_settings_base import log_configure  # noqa
 log_configure()
 
 newrelic_ini = getattr(settings, 'NEWRELIC_INI', None)

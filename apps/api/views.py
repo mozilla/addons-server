@@ -147,16 +147,22 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     platform = platform.lower()
     if platform != 'all' and platform in amo.PLATFORM_DICT:
+        def f(ps):
+            return pid in ps or amo.PLATFORM_ALL in ps
+
         pid = amo.PLATFORM_DICT[platform]
-        f = lambda ps: pid in ps or amo.PLATFORM_ALL in ps
         addons = [a for a in addons
                   if f(a.current_version.supported_platforms)]
 
     if version is not None:
         vint = version_int(version)
-        f_strict = lambda app: (app.min.version_int <= vint
-                                                    <= app.max.version_int)
-        f_ignore = lambda app: app.min.version_int <= vint
+
+        def f_strict(app):
+            return app.min.version_int <= vint <= app.max.version_int
+
+        def f_ignore(app):
+            return app.min.version_int <= vint
+
         xs = [(a, a.compatible_apps) for a in addons]
 
         # Iterate over addons, checking compatibility depending on compat_mode.
@@ -182,8 +188,10 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
 
     # We prefer add-ons that support the current locale.
     lang = translation.get_language()
-    partitioner = lambda x: (x.description is not None and
-                             (x.description.locale == lang))
+
+    def partitioner(x):
+        return x.description is not None and (x.description.locale == lang)
+
     groups = dict(partition(addons, partitioner))
     good, others = groups.get(True, []), groups.get(False, [])
 
@@ -446,7 +454,10 @@ class ListView(APIView):
 
         args = (addon_type, limit, APP, platform, version, compat_mode,
                 shuffle)
-        f = lambda: self._process(addons, *args)
+
+        def f():
+            return self._process(addons, *args)
+
         return cached_with(addons, f, map(encoding.smart_str, args))
 
     def _process(self, addons, *args):

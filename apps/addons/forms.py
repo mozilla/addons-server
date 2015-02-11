@@ -153,9 +153,12 @@ class AddonFormBasic(AddonFormBase):
         super(AddonFormBasic, self).__init__(*args, **kw)
 
         self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
+
         # Do not simply append validators, as validators will persist between
         # instances.
-        validate_name = lambda x: clean_name(x, self.instance)
+        def validate_name(name):
+            return clean_name(name, self.instance)
+
         name_validators = list(self.fields['name'].validators)
         name_validators.append(validate_name)
         self.fields['name'].validators = name_validators

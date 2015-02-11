@@ -107,7 +107,9 @@ def usage_stats(request, compat, app, binary=None):
 @post_required
 def incoming(request):
     # Turn camelCase into snake_case.
-    snake_case = lambda s: re.sub('[A-Z]+', '_\g<0>', s).lower()
+    def snake_case(s):
+        return re.sub('[A-Z]+', '_\g<0>', s).lower()
+
     try:
         data = [(snake_case(k), v)
                 for k, v in json.loads(request.body).items()]

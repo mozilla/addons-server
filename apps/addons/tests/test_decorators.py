@@ -52,25 +52,33 @@ class TestAddonView(amo.tests.TestCase):
             self.view(self.request, self.addon.slug + 'xx')
 
     def test_alternate_qs_301_by_id(self):
-        qs = lambda: Addon.objects.filter(type=1)
+        def qs():
+            return Addon.objects.filter(type=1)
+
         view = dec.addon_view_factory(qs=qs)(self.func)
         res = view(self.request, str(self.addon.id))
         self.assert3xx(res, self.slug_path, 301)
 
     def test_alternate_qs_200_by_slug(self):
-        qs = lambda: Addon.objects.filter(type=1)
+        def qs():
+            return Addon.objects.filter(type=1)
+
         view = dec.addon_view_factory(qs=qs)(self.func)
         res = view(self.request, self.addon.slug)
         eq_(res, mock.sentinel.OK)
 
     def test_alternate_qs_404_by_id(self):
-        qs = lambda: Addon.objects.filter(type=2)
+        def qs():
+            return Addon.objects.filter(type=2)
+
         view = dec.addon_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
             view(self.request, str(self.addon.id))
 
     def test_alternate_qs_404_by_slug(self):
-        qs = lambda: Addon.objects.filter(type=2)
+        def qs():
+            return Addon.objects.filter(type=2)
+
         view = dec.addon_view_factory(qs=qs)(self.func)
         with self.assertRaises(http.Http404):
             view(self.request, self.addon.slug)

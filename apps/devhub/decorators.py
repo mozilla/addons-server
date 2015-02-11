@@ -25,8 +25,10 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False):
             elif addon.is_persona():
                 # Don't allow theme views if theme not passed in.
                 raise http.Http404
-            fun = lambda: f(request, addon_id=addon.id, addon=addon,
-                            *args, **kw)
+
+            def fun():
+                return f(request, addon_id=addon.id, addon=addon, *args, **kw)
+
             if allow_editors:
                 if acl.is_editor(request, addon):
                     return fun()

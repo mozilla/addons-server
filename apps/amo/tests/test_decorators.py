@@ -19,8 +19,10 @@ pytestmark = pytest.mark.django_db
 
 
 def test_post_required():
-    f = lambda r: mock.sentinel.response
-    g = decorators.post_required(f)
+    def func(request):
+        return mock.sentinel.response
+
+    g = decorators.post_required(func)
 
     request = mock.Mock()
     request.method = 'GET'
@@ -32,8 +34,10 @@ def test_post_required():
 
 def test_json_view():
     """Turns a Python object into a response."""
-    f = lambda r: {'x': 1}
-    response = decorators.json_view(f)(mock.Mock())
+    def func(request):
+        return {'x': 1}
+
+    response = decorators.json_view(func)(mock.Mock())
     assert isinstance(response, http.HttpResponse)
     eq_(response.content, '{"x": 1}')
     eq_(response['Content-Type'], 'application/json')
@@ -43,8 +47,11 @@ def test_json_view():
 def test_json_view_normal_response():
     """Normal responses get passed through."""
     expected = http.HttpResponseForbidden()
-    f = lambda r: expected
-    response = decorators.json_view(f)(mock.Mock())
+
+    def func(request):
+        return expected
+
+    response = decorators.json_view(func)(mock.Mock())
     assert expected is response
     eq_(response['Content-Type'], 'text/html; charset=utf-8')
 
@@ -58,8 +65,10 @@ def test_json_view_error():
 
 
 def test_json_view_status():
-    f = lambda r: {'x': 1}
-    response = decorators.json_view(f, status_code=202)(mock.Mock())
+    def func(request):
+        return {'x': 1}
+
+    response = decorators.json_view(func, status_code=202)(mock.Mock())
     eq_(response.status_code, 202)
 
 

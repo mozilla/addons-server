@@ -1768,7 +1768,9 @@ class Persona(caching.CachingMixin, models.Model):
     @amo.cached_property
     def theme_data(self):
         """Theme JSON Data for Browser/extension preview."""
-        hexcolor = lambda color: '#%s' % color
+        def hexcolor(color):
+            return '#%s' % color
+
         addon = self.addon
         return {
             'id': unicode(self.addon.id),  # Personas dislikes ints
@@ -2209,7 +2211,10 @@ class CompatOverride(amo.models.ModelBase):
         Range = collections.namedtuple('Range', 'type min max apps')
         AppRange = collections.namedtuple('AppRange', 'app min max')
         rv = []
-        sort_key = lambda x: (x.min_version, x.max_version, x.type)
+
+        def sort_key(x):
+            return (x.min_version, x.max_version, x.type)
+
         for key, compats in sorted_groupby(self.compat_ranges, key=sort_key):
             compats = list(compats)
             first = compats[0]
