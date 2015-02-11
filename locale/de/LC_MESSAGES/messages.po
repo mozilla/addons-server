@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-04 18:32+0000\n"
+"PO-Revision-Date: 2015-02-11 18:08+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423074724.0\n"
+"X-POOTLE-MTIME: 1423678105.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3719,13 +3719,17 @@ msgstr "Validierung des Überschreibens fehlgeschlagen"
 
 #: apps/devhub/forms.py:511
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "Ja, meine Add-ons auf AMO einschließen."
 
 #: apps/devhub/forms.py:512
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"Wenn Sie dieses Häkchen entfernen, können Ihre Add-ons hochgeladen und "
+"überprüft werden, aber nicht auf AMO sichtbar sein oder von Endanwendern "
+"heruntergeladen werden. Wenn Sie unsicher sind, belassen Sie dieses Häkchen "
+"– es gibt nur wenige Gründe, es zu entfernen."
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3948,7 +3952,7 @@ msgstr "Dieser Upload hat die Validierung nicht bestanden und hat möglicherweis
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "Es wird zu Schritt 6 gesprungen, weil das Add-on nicht aufgelistet wird"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -4009,7 +4013,7 @@ msgstr "Werden Sie AMO-Überprüfer"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Erfahren Sie alles über Add-ons"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -4017,10 +4021,20 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"Mit Add-ons können Millionen von Firefox-Nutzern Ihr Surf-Erlebnis "
+"verbessern und anpassen. Wenn Sie Web-Entwickler sind und <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> und "
+"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> können, haben "
+"Sie schon alle Fähigkeiten, die zur Entwicklung eines tollen Add-ons nötig "
+"sind."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Gehen Sie rüber zum <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
+"Developer Center</a>, um alles zu erfahren, was Sie für den Anfang wissen "
+"müssen."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4053,11 +4067,13 @@ msgstr "Alle Add-ons anzeigen ►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Veröffentlichen Sie Ihre Add-ons!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Laden Sie zuallererst ein <a href=\"%(addon_url)s\">Add-on</a> oder <a href=\"%"
+"(theme_url)s\">Theme</a> hoch!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4082,7 +4098,7 @@ msgstr "Erweiterungsentwicklung"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Leichtgewichtige Themes"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4105,7 +4121,7 @@ msgstr "Entwickler-Add-ons"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Gemeinschaft & Unterstützung"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -5048,7 +5064,7 @@ msgstr "Mit welchen Plattformen ist diese Datei kompatibel?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "Soll Ihr Add-on auf AMO aufgelistet werden?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
