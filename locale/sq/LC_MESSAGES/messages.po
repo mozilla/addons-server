@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2015-01-28 23:02+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -92,38 +92,38 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Krejt etiketat duhet të jenë të paktën {0} shenjë."
 msgstr[1] "Krejt etiketat duhet të jenë të paktën {0} shenja."
 
-#: apps/addons/forms.py:219
+#: apps/addons/forms.py:222
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategoritë nuk mund të ndryshohen, sa kohë që shtesa juaj është zgjedhur për këtë kategori."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:226
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Mund të keni vetëm {0} kategori."
 msgstr[1] "Mund të keni vetëm {0} kategori."
 
-#: apps/addons/forms.py:231
+#: apps/addons/forms.py:234
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategoria Të ndryshme nuk mund të ndërthuret me të tjera kategori."
 
-#: apps/addons/forms.py:354
+#: apps/addons/forms.py:357
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Para se të ndryshoni vendoren parazgjedhje duhet të keni një emër, një përmbledhje dhe një përshkrim në gjuhën e vendores. Ju mungon %s."
 
-#: apps/addons/forms.py:467 apps/addons/forms.py:558
+#: apps/addons/forms.py:470 apps/addons/forms.py:561
 msgid "A license must be selected."
 msgstr "Duhet përzgjedhur një licencë."
 
-#: apps/addons/forms.py:539
+#: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
 msgstr "Vërini një Emër Temës Suaj."
 
-#: apps/addons/forms.py:545 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:548 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Përshkruani Temën tuaj."
 
-#: apps/addons/forms.py:686
+#: apps/addons/forms.py:689
 msgid "Enter a new author's email address"
 msgstr "Jepni një adresë të re email të autorit"
 
@@ -131,7 +131,7 @@ msgstr "Jepni një adresë të re email të autorit"
 msgid "Not Reviewed"
 msgstr "E pashqyrtuar"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:319 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -147,29 +147,29 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Përdoruesit do të pyeten nga Përgjegjësi i Shtesave (Firefox 4 e më tej)"
 
 # Column name in a table.
-#: apps/addons/models.py:1863
+#: apps/addons/models.py:1870
 msgid "Listed"
 msgstr "E pranishme"
 
-#: apps/addons/views.py:319 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:320 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Popullore"
 
-#: apps/addons/views.py:320 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
+#: apps/addons/views.py:321 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
 msgid "Recently Added"
 msgstr "Shtuar Së Fundmi"
 
-#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
+#: apps/addons/views.py:322 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
 msgstr "Përditësuar së Fundmi"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
-#: apps/addons/views.py:504
+#: apps/addons/views.py:507
 msgid "Contribution for {0}"
 msgstr "Kontribut për {0}"
 
-#: apps/addons/views.py:592
+#: apps/addons/views.py:595
 msgid "Abuse reported."
 msgstr "Shpërdorimi u njoftua."
 
@@ -345,7 +345,7 @@ msgid "Add-on Information for {0}"
 msgstr "Të dhëna Shtese për {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:71
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:72
 msgid "Updated"
 msgstr "Përditësuar më"
 
@@ -634,7 +634,7 @@ msgstr "Përdorues të Përditshëm"
 msgid "License"
 msgstr "Licencë"
 
-#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:50
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:49
 msgid "Awaiting Review"
 msgstr "Në Pritje të Shqyrtimit"
 
@@ -984,7 +984,7 @@ msgstr "Sajt asistence"
 msgid "Support E-mail"
 msgstr "E-mail Asistence"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
 msgid "Version {0}"
 msgstr "Version {0}"
 
@@ -996,7 +996,7 @@ msgstr "Të dhëna"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Hedhur në qarkullim sipas një lejeje <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:153
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licencë e Përshtatur"
@@ -1131,7 +1131,7 @@ msgstr "Më"
 msgid "Add to collection"
 msgstr "Shtojeni në koleksion"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:72 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "Shtesat e Mia"
 
@@ -1194,7 +1194,7 @@ msgstr "Përdorues"
 msgid "Weekly Downloads"
 msgstr "Shkarkime Javore"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:945 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Version"
 
@@ -1273,8 +1273,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:179 apps/devhub/templates/devhub/nav.html:45 apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7
-#: apps/devhub/templates/devhub/docs/themes.html:28 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Tema"
@@ -1308,7 +1307,7 @@ msgstr "Provojeni!"
 msgid "Theme Info &raquo;"
 msgstr "Të dhëna Teme &raquo;"
 
-#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:49
+#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "Mjete"
 
@@ -1340,8 +1339,7 @@ msgstr "Administro Parashtrimet e Mia"
 msgid "Submit a New Add-on"
 msgstr "Parashtroni një Shtesë të Re"
 
-#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
-#: apps/devhub/templates/devhub/addons/dashboard.html:29
+#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:23 apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "Parashtroni Temë të Re"
 
@@ -1894,7 +1892,7 @@ msgstr "Eksploroni"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:172 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:171 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "Zgjerime"
 
@@ -1924,7 +1922,7 @@ msgstr "Shtesat e Mia të Parapëlqyera"
 msgid "Add-ons for Mobile"
 msgstr "Shtesa për Celular"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:175 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:174 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "Mjete Kërkimi"
 
@@ -1985,7 +1983,7 @@ msgstr "U dhanë të dhëna të pavlefshme: {0}"
 msgid "Add-on did not validate: %s"
 msgstr "Shtesa nuk u vleftësua: %s"
 
-#: apps/api/views.py:248
+#: apps/api/views.py:256
 msgid "Not implemented yet."
 msgstr "Ende i pasendërtuar."
 
@@ -2123,11 +2121,11 @@ msgstr "Nuk lejohen lidhje."
 msgid "This url is already in use by another collection"
 msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1059
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1000
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1077 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1018 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Ju lutemi, përdorni figura më të vogla se %dMB."
 
@@ -2168,7 +2166,7 @@ msgstr "E parapëlqyer"
 msgid "Remove from favorites"
 msgstr "Hiqe prej të parapëlqyerave"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:70 apps/devhub/views.py:78
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:71 apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2453,8 +2451,7 @@ msgstr "Jo"
 msgid "Edit {0}"
 msgstr "Përpunoni {0}"
 
-#: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
-#: apps/editors/templates/editors/themes/themes.html:62
+#: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/addons/edit/details.html:20 apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
 msgstr "Përshkrim"
 
@@ -2473,7 +2470,7 @@ msgstr "Ruaji Ndryshimet"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:133
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:132
 msgid "Owner"
 msgstr "Pronar"
 
@@ -2536,7 +2533,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Kujdes:</b> Duke ndryshuar të zotin e këtij koleksioni, nuk do të jeni më në gjendje ta përpunoni. Do të jeni në gjendje vetëm të shtoni ose të hiqni prej tij shtesa."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2624,7 +2621,7 @@ msgstr ""
 "Për përfshirjen e një shtese në këtë koleksion, jepni emrin e saj te kutiza më poshtë dhe shtypni Enter. Mundeni gjithashtu të përdorni lidhjen <strong>Shtojeni në Koleksion</strong>, diku në sajt, "
 "për ta përfshirë shtesën më vonë."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:383 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Shtesë"
 
@@ -2750,15 +2747,15 @@ msgstr "Shumica e Përdoruesve"
 msgid "Up & Coming"
 msgstr "Premtuese"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:454 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "U krijua"
 
-#: apps/browse/views.py:455 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:455 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Shkarkime"
 
-#: apps/browse/views.py:456 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:456 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Vlerësim"
@@ -2770,7 +2767,7 @@ msgstr "{0}: Shtesa të Zgjedhura"
 
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
-#: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
+#: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:341 apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "Shtesa të Zgjedhura"
@@ -2812,7 +2809,7 @@ msgstr "Listë paketash gjuhësore dhe fjalorësh që mund të kihen për vendor
 msgid "Language"
 msgstr "Gjuhë"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:161
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:160
 msgid "Dictionary"
 msgstr "Fjalor"
 
@@ -2874,7 +2871,7 @@ msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_fo
 msgstr ""
 "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Ndërtoni një të tuajën</a> te <a href=\"https://developer.mozilla.org/\">Qendra e Mozilla-s për Zhvillime</a>"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:173
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
 msgstr "Tema të Plota"
 
@@ -2963,7 +2960,7 @@ msgstr "Tema nga {0}"
 msgid "View Profile"
 msgstr "Shihni Profilin"
 
-#: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
+#: apps/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
 msgstr "Krijoni Temën Tuaj"
 
@@ -3041,7 +3038,7 @@ msgstr "Dyore"
 msgid "Non-binary"
 msgstr "Jo-dyore"
 
-#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:144
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
 msgid "Other"
 msgstr "Tjetër"
 
@@ -3065,7 +3062,7 @@ msgstr "95% e krejt shtesave"
 msgid "All active add-ons"
 msgstr "Krejt shtesat aktive"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:384
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
 msgid "App"
 msgstr "Zbt"
 
@@ -3137,7 +3134,7 @@ msgstr "Filtroji sipas Aplikacionesh"
 msgid "Report Type"
 msgstr "Lloj Raporti"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:942 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikacion"
 
@@ -3225,15 +3222,15 @@ msgstr "Në Pritje të Shqyrtimit Paraprak"
 msgid "Awaiting Full Review"
 msgstr "Në Pritje të Shqyrtimit të Plotë"
 
-#: apps/constants/base.py:29 apps/constants/base.py:51
+#: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Fully Reviewed"
 msgstr "Plotësisht e Shqyrtuar"
 
-#: apps/constants/base.py:30 apps/constants/base.py:52
+#: apps/constants/base.py:30 apps/constants/base.py:51
 msgid "Disabled by Mozilla"
 msgstr "Çaktivizuar nga Mozilla"
 
-#: apps/constants/base.py:31 apps/constants/base.py:54
+#: apps/constants/base.py:31 apps/constants/base.py:53
 msgid "Preliminarily Reviewed"
 msgstr "E shqyrtuar Paraprakisht"
 
@@ -3249,243 +3246,243 @@ msgstr "Fshirë"
 msgid "Pending approval"
 msgstr "Në pritje të miratimit"
 
-#: apps/constants/base.py:46
+#: apps/constants/base.py:45
 msgid "Flagged for further review"
 msgstr "Iu vu shenjë për shqyrtim të mëtejshëm"
 
-#: apps/constants/base.py:53
+#: apps/constants/base.py:52
 msgid "Beta"
 msgstr "Beta"
 
-#: apps/constants/base.py:122
+#: apps/constants/base.py:121
 msgid "Full"
 msgstr "Plot"
 
-#: apps/constants/base.py:123
+#: apps/constants/base.py:122
 msgid "Preliminary"
 msgstr "Paraprak"
 
-#: apps/constants/base.py:134 apps/users/notifications.py:157
+#: apps/constants/base.py:133 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "Zhvillues"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:135
+#: apps/constants/base.py:134
 msgid "Viewer"
 msgstr "Parës"
 
-#: apps/constants/base.py:136 templates/mobile/header.html:7
+#: apps/constants/base.py:135 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Asistencë"
 
-#: apps/constants/base.py:158 apps/constants/base.py:171 apps/constants/platforms.py:11
+#: apps/constants/base.py:157 apps/constants/base.py:170 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "Çfarëdo"
 
-#: apps/constants/base.py:159
+#: apps/constants/base.py:158
 msgid "Extension"
 msgstr "Zgjerim"
 
-#: apps/constants/base.py:160
+#: apps/constants/base.py:159
 msgid "Complete Theme"
 msgstr "Temë e Plotë"
 
-#: apps/constants/base.py:162
+#: apps/constants/base.py:161
 msgid "Search Engine"
 msgstr "Motor Kërkimi"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:162
 msgid "Language Pack (Application)"
 msgstr "Paketë Gjuhësore (Aplikacion)"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:163
 msgid "Language Pack (Add-on)"
 msgstr "Paketë Gjuhësore (Shtesë)"
 
-#: apps/constants/base.py:165
+#: apps/constants/base.py:164
 msgid "Plugin"
 msgstr "Shtojcë"
 
-#: apps/constants/base.py:166 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:165 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "Temë"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:174
+#: apps/constants/base.py:173
 msgid "Dictionaries"
 msgstr "Fjalorë"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:176
+#: apps/constants/base.py:175
 msgid "Language Packs (Application)"
 msgstr "Paketa Gjuhësore (Aplikacion)"
 
-#: apps/constants/base.py:177
+#: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
 msgstr "Paketa Gjuhësore (Shtesë)"
 
-#: apps/constants/base.py:178
+#: apps/constants/base.py:177
 msgid "Plugins"
 msgstr "Shtojca"
 
-#: apps/constants/base.py:243
+#: apps/constants/base.py:242
 msgid "Free"
 msgstr "E lirë"
 
-#: apps/constants/base.py:244
+#: apps/constants/base.py:243
 msgid "Premium"
 msgstr "Me Pagesë"
 
-#: apps/constants/base.py:245
+#: apps/constants/base.py:244
 msgid "Premium with in-app payments"
 msgstr "Me pagesë, përmes pagesash in-app"
 
-#: apps/constants/base.py:246
+#: apps/constants/base.py:245
 msgid "Free with in-app payments"
 msgstr "Falas, me pagesa in-app"
 
-#: apps/constants/base.py:247
+#: apps/constants/base.py:246
 msgid "I'll use my own system for in-app payments"
 msgstr "Do të përdor sistemin tim për pagesa in-app"
 
-#: apps/constants/base.py:303
+#: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Kërko vetëm në faqen e kësaj shtese dhe në profilin e zhvilluesit"
 
-#: apps/constants/base.py:304
+#: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
 msgstr "Pyet pasi përdoruesit të fillojnë ta shkarkojnë këtë shtesë"
 
-#: apps/constants/base.py:305
+#: apps/constants/base.py:304
 msgid "Ask before users can download this add-on"
 msgstr "Pyet përpara se përdoruesit të mund ta shkarkojnë këtë shtesë"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:371
 msgid "Exception"
 msgstr "Përjashtim"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:372
 msgid "Release"
 msgstr "Version"
 
-#: apps/constants/base.py:374
+#: apps/constants/base.py:373
 msgid "Change"
 msgstr "Ndryshoje"
 
-#: apps/constants/base.py:385
+#: apps/constants/base.py:384
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:415
 msgid "Manual Reviewer Points"
 msgstr "Pikë Shqyrtuesi Dorazi"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:416
 msgid "Full Add-on Review"
 msgstr "Shqyrtim i Plotë Shtese"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Preliminary Add-on Review"
 msgstr "Shqyrtim Paraprak Shtese"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Updated Add-on Review"
 msgstr "Shqyrtimi i Shtesës u Përditësua"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Full Dictionary Review"
 msgstr "Shqyrtim i Plotë Fjalori"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Preliminary Dictionary Review"
 msgstr "Shqyrtim Paraprak Fjalori"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Updated Dictionary Review"
 msgstr "U përditësua Shqyrtimi i Fjalorit"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Full Language Pack Review"
 msgstr "Shqyrtim i Plotë Pakete Gjuhësore"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Preliminary Language Pack Review"
 msgstr "Shqyrtim Paraprak Pakete Gjuhësore"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Updated Language Pack Review"
 msgstr "Shqyrtimi i Paketës Gjuhësore u Përditësua"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Theme Review"
 msgstr "Shqyrtim Teme"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Full Search Provider Review"
 msgstr "Shqyrtim i Plotë Mundësuesi Kërkimesh"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Preliminary Search Provider Review"
 msgstr "Shqyrtim Paraprak Mundësuesi Kërkimesh"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Updated Search Provider Review"
 msgstr "Shqyrtim i Përditësuar Mundësuesi Kërkimesh"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Complete Theme Review"
 msgstr "Shqyrtim Teme të Plotë"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Preliminary Complete Theme Review"
 msgstr "Shqyrtim Paraprak Teme të Plotë"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Updated Complete Theme Review"
 msgstr "Shqyrtim i Përditësuar Teme të Plotë"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Moderated Addon Review"
 msgstr "Shqyrtim Shtese i Moderuar"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
 msgstr "Moderimi i Shqyrtimit të Shtesës iu Rikthye"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr "Shkalla 1"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr "Shkalla 2"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr "Shkalla 3"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr "Shkalla 4"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr "Shkalla 5"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr "Shkalla 6"
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:506
 msgid "Not signed"
 msgstr ""
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:507
 msgid "Signed for a full review"
 msgstr ""
 
-#: apps/constants/base.py:509
+#: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
 msgstr ""
 
@@ -3609,291 +3606,177 @@ msgstr "Ndryshime Së Fundmi për %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Ndryshime Së fundmi për Shtesat e Mia"
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:66
 msgid "Must have at least one owner."
 msgstr "Duhet të ketë të paktën një pronar."
 
-#: apps/devhub/forms.py:72
+#: apps/devhub/forms.py:69
 msgid "At least one author must be listed."
 msgstr "Duhet treguar të paktën një autor."
 
-#: apps/devhub/forms.py:76
+#: apps/devhub/forms.py:73
 msgid "An author can only be listed once."
 msgstr "Autori mund të tregohet vetëm një herë."
 
-#: apps/devhub/forms.py:94
+#: apps/devhub/forms.py:91
 msgid "Password incorrect."
 msgstr "Fjalëkalim i pasaktë."
 
-#: apps/devhub/forms.py:113 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Hollësi"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:120
 msgid "What is your license's name?"
 msgstr "Cili është emri i licencës suaj?"
 
-#: apps/devhub/forms.py:126
+#: apps/devhub/forms.py:123
 msgid "Provide the text of your license."
 msgstr "Jepni tekstin e licencës suaj."
 
-#: apps/devhub/forms.py:161
+#: apps/devhub/forms.py:158
 msgid "License text is required when choosing Other."
 msgstr "Teksti i licencës është i domosdoshëm kur zgjidhet Tjetër."
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:206
 msgid "This add-on has an End-User License Agreement"
 msgstr "Kjo shtesë ka një Marrëveshje Licence Përdoruesi të Thjeshtë"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ju lutemi, përcaktoni Marrëveshje Licence Përdoruesi të Thjeshtë të shtesës suaj:"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
 msgstr "Kjo shtesë ka Rregulla Privatësi"
 
-#: apps/devhub/forms.py:218
+#: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ju lutemi, përcaktoni Rregullat e Privatësi për shtesën tuaj:"
 
-#: apps/devhub/forms.py:256
+#: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
 msgstr "Pse e krijuat këtë shtesë?"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:254
 msgid "What's next for this add-on?"
 msgstr "Ç’vijon për këtë shtesë?"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:291
 msgid "The developers of this add-on"
 msgstr "Zhvilluesit e kësaj shtese"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:292
 msgid "The Mozilla Foundation"
 msgstr "The Mozilla Foundation"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:293
 msgid "An organization of my choice"
 msgstr "Një organizëm sipas dëshirës sime"
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:336
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Ju lutemi, jepni një sasi të këshillueshme më të madhe se 0."
 
-#: apps/devhub/forms.py:342
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Ju lutemi, jepni një sasi të këshillueshme më të vogël se ${0}."
 
-#: apps/devhub/forms.py:351
+#: apps/devhub/forms.py:348
 msgid "PayPal ID required to accept contributions."
 msgstr "Lypset ID Paypal-i për pranim kontributesh."
 
-#: apps/devhub/forms.py:357
+#: apps/devhub/forms.py:354
 msgid "Could not validate PayPal id."
 msgstr "S’vleftësoi dot id PayPal-i."
 
-#: apps/devhub/forms.py:372
+#: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
 
-#: apps/devhub/forms.py:391
+#: apps/devhub/forms.py:388
 msgid "View current"
 msgstr "Shihni të tanishmen"
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:869
+#: apps/devhub/forms.py:437
 msgid "Invalid version range."
 msgstr "Interval i pavlefshëm versioni."
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:466
 msgid "Need at least one compatible application."
 msgstr "Lyp të paktën një aplikacion të përputhshëm."
 
-#: apps/devhub/forms.py:482 apps/devhub/forms.py:499
+#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
 msgid "There was an error with your upload. Please try again."
 msgstr "Pati një gabim me ngarkimin tuaj. Ju lutemi, riprovoni."
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:484
 msgid "Override failed validation"
 msgstr "Anashkaloje vleftësimin e dështuar"
 
-#: apps/devhub/forms.py:524 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:511
+msgid "Yes, include my add-on on AMO."
+msgstr ""
+
+#: apps/devhub/forms.py:512
+msgid ""
+"Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
+"reasons to uncheck it."
+msgstr ""
+
+#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Shqyrtim i Plotë"
 
-#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Shqyrtim Paraprak"
 
-#: apps/devhub/forms.py:529
+#: apps/devhub/forms.py:535
 msgid "Please choose a review nomination type"
 msgstr "Ju lutemi, zgjidhni lloj kandidimi shqyrtimi"
 
-#: apps/devhub/forms.py:533 apps/devhub/forms.py:568
+#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Te beta u kap një kartelë me një version që mbaron me a|alpha|b|beta dhe një numër opsional."
 
-#: apps/devhub/forms.py:550
+#: apps/devhub/forms.py:556
 msgid "Version %s already exists"
 msgstr "Ka tashmë një version %s"
 
-#: apps/devhub/forms.py:562
+#: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Përzgjidhni një zgjedhje të vlefshme. Ajo zgjedhje nuk është një nga zgjedhjet e mundshme."
 
-#: apps/devhub/forms.py:591
+#: apps/devhub/forms.py:597
 msgid "You cannot upload any more files for this version."
 msgstr "Nuk mund të ngarkoni më kartela për këtë version."
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:603
 msgid "Version doesn't match"
 msgstr "Versioni nuk përputhet"
 
-#: apps/devhub/forms.py:626
+#: apps/devhub/forms.py:632
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Nuk mund ta fshini një kartelë pasi të ketë nisur procesi i shqyrtimit. Duhet të fshini krejt versionin."
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:652
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Krejt nuk mund të ndërthuret me platforma të caktuara."
 
-#: apps/devhub/forms.py:651
+#: apps/devhub/forms.py:657
 msgid "A platform can only be chosen once."
 msgstr "Platforma mund të zgjidhet vetëm një herë."
 
-#: apps/devhub/forms.py:664
+#: apps/devhub/forms.py:670
 msgid "A review type must be selected."
 msgstr "Duhet përzgjedhur lloj rishikimi."
 
-#: apps/devhub/forms.py:743
-msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
-msgstr "Jepini shtesës suaj një emër. Shtesat më të suksesshme lënë të kuptohet diçka mbi funksionin e tyre që në emër."
-
-#: apps/devhub/forms.py:748
-msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
-msgstr "Përshkruajeni shtesën tuaj shkurtimisht me një fjali. Kjo duket te Përgjegjësi i Shtesave."
-
-#: apps/devhub/forms.py:752
-msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
-msgstr "Jepni numrin tuaj fillestar për versionin. Në varësi të numrit të hedhjeve në qarkullim dhe të parapëlqimeve tuaja, ky zakonisht është 0.1 ose 1.0"
-
-#: apps/devhub/forms.py:756
-msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
-msgstr "Secila shtesë ka nevojë për një ID të vetme në formën e një UUID-je ose të një adrese email, fjala vjen emër-shtese@developer.com. Adresa email mund edhe të mos jetë e vlefshme."
-
-#: apps/devhub/forms.py:762
-msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
-msgstr "Emri i paketës së shtesës suaj i përdorur brenda shfletuesit. Kjo do të duhej të ishte forma e shkurtër e emrit të saj (për shembull, Zgjerimi Provë mund të ishte zgjerimi_provë)."
-
-#: apps/devhub/forms.py:767
-msgid "Enter the name of the person or entity to be listed as the author of this add-on."
-msgstr "Jepni emrin e personit ose njësisë që duhet paraqitur si autori i kësaj shtese."
-
-#: apps/devhub/forms.py:771
-msgid "Enter the names of any other contributors to this extension, one per line."
-msgstr "Jepni emrat e kujtdo pjesëmarrësi tjetër te kjo shtesë, një për rresht."
-
-#: apps/devhub/forms.py:780
-msgid "Add-on names should not contain Mozilla trademarks."
-msgstr "Emrat e shtesave nuk duhet të përmbajnë shenja tregtare të Mozilla-s."
-
-#: apps/devhub/forms.py:787
-msgid "Enter a valid package name consisting of letters, numbers, or underscores."
-msgstr "Jepni një emër të vlefshëm pakete, të përbërë nga shkronja, numra, ose nënvija."
-
-#: apps/devhub/forms.py:791
-msgid "This package name is already in use."
-msgstr "Emri i kësaj pakete është i përdorur tashmë."
-
-#: apps/devhub/forms.py:794
-msgid "The package name cannot be: %s."
-msgstr "Emri i paketës s’mund të jetë: %s."
-
-#: apps/devhub/forms.py:805
-msgid "The add-on ID must be a UUID string or an email address."
-msgstr "ID-ja e shtesës duhet të jetë një varg UUID ose një adresë email."
-
-#: apps/devhub/forms.py:811
-msgid "The version string is invalid."
-msgstr "Vargu i versionit është i pavlefshëm."
-
-#: apps/devhub/forms.py:819
-msgid "Minimum"
-msgstr "Minimumi"
-
-#: apps/devhub/forms.py:822
-msgid "Maximum"
-msgstr "Më i madhi"
-
-#: apps/devhub/forms.py:873
-msgid "Min version must be less than Max version."
-msgstr "Versioni minimum duhet të jetë më i vogël se versioni maksimum."
-
-#: apps/devhub/forms.py:898
-msgid "{0} is a required target application."
-msgstr "{0} është aplikacion objekt i domosdoshëm."
-
-#: apps/devhub/forms.py:910
-msgid "About dialog"
-msgstr "Rreth dialogut"
-
-#: apps/devhub/forms.py:911
-msgid "Creates a standard About dialog for your extension"
-msgstr "Krijon një dialog standard Rreth për zgjerimin tuaj"
-
-#: apps/devhub/forms.py:915
-msgid "Preferences dialog"
-msgstr "Dialog parapëlqimesh"
-
-#: apps/devhub/forms.py:916
-msgid "Creates an example Preferences window"
-msgstr "Krijon një shembull dritareje Parapëlqimesh"
-
-#: apps/devhub/forms.py:919
-msgid "Toolbar"
-msgstr "Panel"
-
-#: apps/devhub/forms.py:920
-msgid "Creates an example toolbar for your extension"
-msgstr "Krijon një shembull paneli për zgjerimin tuaj"
-
-#: apps/devhub/forms.py:923
-msgid "Toolbar button"
-msgstr "Buton paneli"
-
-#: apps/devhub/forms.py:924
-msgid "Creates an example button on the browser toolbar"
-msgstr "Krijon një shembull butoni te paneli i shfletuesit"
-
-#: apps/devhub/forms.py:928
-msgid "Main menu command"
-msgstr "Urdhër menuje kryesore"
-
-#: apps/devhub/forms.py:929
-msgid "Creates an item on the Tools menu"
-msgstr "Krijon një objekt te menuja Mjete"
-
-#: apps/devhub/forms.py:932
-msgid "Context menu command"
-msgstr "Urdhër menuje konteksti"
-
-#: apps/devhub/forms.py:933
-msgid "Creates a context menu item for images"
-msgstr "Krijon një objekt menuje konteksti për figurat"
-
-#: apps/devhub/forms.py:936
-msgid "Sidebar support"
-msgstr "Mbulim anështyllash"
-
-#: apps/devhub/forms.py:937
-msgid "Creates an example sidebar panel"
-msgstr "Krijon një shembull paneli anështylle"
-
-#: apps/devhub/forms.py:946 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
-#: apps/devhub/forms.py:998
+#: apps/devhub/forms.py:804
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nuk lejohen më tepër se 3 shtesa të domosdoshme."
 
@@ -3925,19 +3808,19 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#: apps/devhub/models.py:370 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Shqyrtim"
 
-#: apps/devhub/tasks.py:327
+#: apps/devhub/tasks.py:300
 msgid "%s responded with %s (%s)."
 msgstr "%s u përgjigj me %s (%s)."
 
-#: apps/devhub/tasks.py:331
+#: apps/devhub/tasks.py:304
 msgid "Connection to \"%s\" timed out."
 msgstr "Lidhjes me \"%s\" i mbaroi koha."
 
-#: apps/devhub/tasks.py:333
+#: apps/devhub/tasks.py:306
 msgid "Could not contact host at \"%s\"."
 msgstr "Nuk u lidh dot me strehën te \"%s\"."
 
@@ -3945,184 +3828,139 @@ msgstr "Nuk u lidh dot me strehën te \"%s\"."
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Vleftësimi prodhoi shumë gabime/sinjalizime, ndaj %s e mesazheve u prenë. Pasi të trajtoni mesazhet që duken, do të jeni në gjendje të shihni të tjerët."
 
-#: apps/devhub/views.py:176
+#: apps/devhub/views.py:177
 msgid "All My Add-ons"
 msgstr "Krejt Shtesat e Mia"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "All Activity"
 msgstr "Krejt Veprimtaria"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Updates"
 msgstr "Përditësime Shtese"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Status"
 msgstr "Gjendje Shtese"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "User Collections"
 msgstr "Koleksione Përdoruesi"
 
-#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Shqyrtime Përdoruesi"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1156
+#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1097
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1571
+#: apps/devhub/views.py:328 apps/devhub/views.py:1518
 msgid "Please check the form for errors."
 msgstr "Ju lutemi, kontrolloni formularin për gabime."
 
-#: apps/devhub/views.py:339
+#: apps/devhub/views.py:340
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Shtesa nuk mund të fshihet. Në vend të kësaj, çaktivizojeni."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Theme deleted."
 msgstr "Tema u fshi."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Add-on deleted."
 msgstr "Shtesa u fshi."
 
-#: apps/devhub/views.py:355
+#: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Fjalëkalimi qe i pasaktë. Tema nuk u fshi."
 
-#: apps/devhub/views.py:360
+#: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Fjalëkalimi qe i pasaktë. Shtesa nuk u fshi."
 
-#: apps/devhub/views.py:433
+#: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
 msgstr "Te shtesa juaj është shtuar një autor"
 
-#: apps/devhub/views.py:440
+#: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
 msgstr "Te shtesa juaj një autor pati ndryshim roli"
 
-#: apps/devhub/views.py:459
+#: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
 msgstr "Prej shtesës suaj u hoq një autor"
 
-#: apps/devhub/views.py:502
+#: apps/devhub/views.py:503
 msgid "There were errors in your submission."
 msgstr "Pati gabime me parashtrimin tuaj."
 
-#: apps/devhub/views.py:566
+#: apps/devhub/views.py:567
 msgid "Validate Add-on"
 msgstr "Vleftëso Shtesën"
 
-#: apps/devhub/views.py:575
+#: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
 msgstr "Kontrolloni Përputhshmëri Shtese"
 
-#: apps/devhub/views.py:698
+#: apps/devhub/views.py:639
 msgid "There was an error with the submission."
 msgstr "Pati një gabim me parashtrimin."
 
-#: apps/devhub/views.py:1061 apps/users/forms.py:419
+#: apps/devhub/views.py:1002 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 
-#: apps/devhub/views.py:1065
+#: apps/devhub/views.py:1006
 msgid "Icons cannot be animated."
 msgstr "Ikonat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1067
+#: apps/devhub/views.py:1008
 msgid "Images cannot be animated."
 msgstr "Figurat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1080
+#: apps/devhub/views.py:1021
 msgid "Images cannot be larger than %dKB."
 msgstr "Figurat nuk mund të jenë më të mëdha se %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1090
+#: apps/devhub/views.py:1031
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
 
-#: apps/devhub/views.py:1097
+#: apps/devhub/views.py:1038
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
 
-#: apps/devhub/views.py:1195
+#: apps/devhub/views.py:1136
 msgid "Version %s disabled."
 msgstr "Versioni %s u çaktivizua."
 
 # %s is the version number, e.g. 3.2.
-#: apps/devhub/views.py:1199
+#: apps/devhub/views.py:1140
 msgid "Version %s deleted."
 msgstr "Versioni %s u fshi."
 
-#: apps/devhub/views.py:1209
+#: apps/devhub/views.py:1150
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ky ngarkim nuk arriti të vleftësohej, dhe mund t’i mungojnë përfundimet e plota të vleftësimit. Ju lutemi, tregoni kujdesin e duhur, teksa e shqyrtoni."
 
-#: apps/devhub/views.py:1617
+#: apps/devhub/views.py:1335
+msgid "Skipping to step 6 because the add-on won't be listed"
+msgstr ""
+
+#: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
 msgstr "U kërkua Shqyrtim Paraprak."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1565
 msgid "Full Review Requested."
 msgstr "U kërkua Shqyrtim i Plotë."
 
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Mbrapsht te Shtesat"
-
-#: apps/devhub/templates/devhub/builder.html:3 apps/devhub/templates/devhub/builder.html:30
-msgid "Add-on SDK"
-msgstr "SDK Shtesash"
-
-#. Section in strong tag is bigger and on it's own line
-#: apps/devhub/templates/devhub/builder.html:11
-msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr "<strong>Add-on SDK:</strong> Krijoni Shtesa Shpejt dhe Lehtë"
-
-#: apps/devhub/templates/devhub/builder.html:16
-msgid ""
-"The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
-"million Firefox users world wide."
-msgstr ""
-"SDK-ja për Shtesa ofron API të fuqishme që u lejojnë zhvilluesve të krijojnë shtesa Firefox-i duke përdorur HTML, CSS dhe JavaScript. Kur shtesa juaj është e plotë, e lehtësojnë ndarjen e saj me "
-"mbi 400 milionë përdorues të Firefox-it anembanë botës."
-
-#: apps/devhub/templates/devhub/builder.html:32
-msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
-msgstr "SDK-ja për Shtesa është një grup API-sh të paketuara tok me një mjet rreshti urdhrash që ju lejon të zhvilloni shtesa me zinxhirin tuaj të mjeteve të zhvillimit."
-
-#: apps/devhub/templates/devhub/builder.html:38
-msgid "Choose your own code editor"
-msgstr "Zgjidhni përpunuesin tuaj për kodin"
-
-#: apps/devhub/templates/devhub/builder.html:39
-msgid "Access your development files locally"
-msgstr "Hyni dhe përdorni lokalisht kartelat tuaja të zhvillimit"
-
-#: apps/devhub/templates/devhub/builder.html:40
-msgid "Get greater control over SDK build steps"
-msgstr "Kini kontroll më të mirë mbi hapat SDK të ndërtimit"
-
-#: apps/devhub/templates/devhub/builder.html:43
-msgid "Download the Add-on SDK"
-msgstr "Shkarkoni SDK Shtesash"
-
-#: apps/devhub/templates/devhub/builder.html:49
-msgid "Help is at Hand!"
-msgstr "Ka Ndihmë Gati!"
-
-#: apps/devhub/templates/devhub/builder.html:51
-msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
-msgstr "Keni nevojë për pak asistencë në ndërtimin e shtesës suaj? Kemi <a href=\"%(url_docs)s\">dokumentim të zgjeruar</a> dhe një bashkësi masive zhvilluesish, që të mos jeni kurrë vetëm."
-
-#: apps/devhub/templates/devhub/builder.html:60
-msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr "Ju intereson ta bëni SDK-në e Shtesave edhe më të mirë? Merrni kodin burim, dhe shihni <a href='%(url_wiki)s'>këtu</a> se si mund të ndihmonit."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4153,130 +3991,73 @@ msgstr "Ju lutemi, jepni ndonjë term kërkimi."
 msgid "Loading results&hellip;"
 msgstr "Po ngarkohen përfundimet&hellip;"
 
-#: apps/devhub/templates/devhub/index.html:23
-msgid "Calling All Add-ons!"
-msgstr ""
-
-#: apps/devhub/templates/devhub/index.html:25
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Nuk ka rrugë më të mirë për shpërndarjen e shtesës suaj, se sa strehimi i saj te Shtesat Mozilla."
-
-#: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
+#: apps/devhub/templates/devhub/index.html:21
 msgid "Submit an Add-on"
 msgstr "Parashtroni një Shtesë"
 
-#: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
+#: apps/devhub/templates/devhub/index.html:26
+msgid "AMO Reviewers"
+msgstr "Shqyrtues AMO"
+
+#: apps/devhub/templates/devhub/index.html:28
+msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
+msgstr "Ecni përpara! Bëhuni që sot një Shqyrtues AMO dhe bëni që shtesat tuaja të shqyrtohen më shpejt."
+
+#: apps/devhub/templates/devhub/index.html:31
+msgid "Become an AMO Reviewer"
+msgstr "Bëhuni një Shqyrtues AMO"
+
+#: apps/devhub/templates/devhub/index.html:38
+msgid "Learn All About Add-ons"
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:40
+msgid ""
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:50
+msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:57
+msgid "Start Making Add-ons"
+msgstr "Filloni të Krijoni Shtesa"
+
+#: apps/devhub/templates/devhub/index.html:85 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
 msgstr "Gjendje:"
 
-#: apps/devhub/templates/devhub/index.html:54
+#: apps/devhub/templates/devhub/index.html:90
 msgid "Latest Version:"
 msgstr "Version Më i Ri:"
 
-#: apps/devhub/templates/devhub/index.html:63 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
+#: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
 msgstr "Vend në Radhë:"
 
-#: apps/devhub/templates/devhub/index.html:64 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
+#: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s nga %(total)s"
 
-#: apps/devhub/templates/devhub/index.html:74 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
 msgstr "Ngarkoni Version të Ri"
 
-#: apps/devhub/templates/devhub/index.html:80
+#: apps/devhub/templates/devhub/index.html:118
 msgid "View all add-ons ►"
 msgstr "Shihini krejt shtesat ►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "Shqyrtues AMO"
-
-#: apps/devhub/templates/devhub/index.html:85
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Ecni përpara! Bëhuni që sot një Shqyrtues AMO dhe bëni që shtesat tuaja të shqyrtohen më shpejt."
-
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "Bëhuni një Shqyrtues AMO"
-
-#: apps/devhub/templates/devhub/index.html:96
-msgid "Firefox Add-ons Made Easy"
-msgstr "Shtesa Firefox-i Bërë të Lehta"
-
-#: apps/devhub/templates/devhub/index.html:98
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
-"ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
+#: apps/devhub/templates/devhub/index.html:121
+msgid "Publish your add-ons!"
 msgstr ""
-"Shtesat u lejojnë miliona përdoruesve të Firefox-it të zgjerojnë dhe personalizojnë punimin e tyre me shfletuesin. Nëse jeni një programues për Web dhe dini HTML, JavaScript dhe CSS, i keni tashmë "
-"ato që duhen për të krijuar shtesa të fuqishme përmes SDK-së së Shtesave. Për më tepër, shtesat e krijuara me SDK-në nuk kanë vetvetiu nevojë për rinisje."
 
-#: apps/devhub/templates/devhub/index.html:106
-msgid "Start Making Add-ons"
-msgstr "Filloni të Krijoni Shtesa"
-
-#: apps/devhub/templates/devhub/index.html:113
-msgid "Learn &amp; Explore"
-msgstr "Mësoni &amp; Eksploroni"
-
-#: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:41 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:6 apps/devhub/templates/devhub/docs/how-to.html:3 apps/devhub/templates/devhub/docs/how-to.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:61 apps/devhub/templates/devhub/docs/how-to.html:62
-msgid "How-to Library"
-msgstr "Bibliotekë “Si të”-sh"
-
-#: apps/devhub/templates/devhub/index.html:121 apps/devhub/templates/devhub/docs/how-to.html:64
-msgid "Get add-on development guidance in a top-notch collection of tutorials, articles, and more."
-msgstr "Në koleksionin shumë të mirë të artikujve, përkujdesoreve dhe të tjera të ngjashme, mund të gjeni ndihmë për zhvillimin e shtesave."
-
-#: apps/devhub/templates/devhub/index.html:132
-msgid "API & Language Reference"
-msgstr "Referencë API & Gjuhe"
-
-#: apps/devhub/templates/devhub/index.html:134 apps/devhub/templates/devhub/docs/reference.html:14
-msgid "The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece."
-msgstr "Dokumentimi zyrtar për API-t dhe gjuhët. Çfarë ju duhet, kur ju duhet, për të krijuar kryeveprën tuaj."
-
-#: apps/devhub/templates/devhub/index.html:145 apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
-#: apps/devhub/templates/devhub/docs/case-studies.html:31 apps/devhub/templates/devhub/docs/case-studies.html:32
-msgid "Case Studies"
-msgstr "Shembuj"
-
-#: apps/devhub/templates/devhub/index.html:147 apps/devhub/templates/devhub/docs/case-studies.html:35
-msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
-msgstr "Shembuj të plotë suksesi. Shihni se si zhvillues shtesash bënë mrekullira me Mozilla-n."
-
-#: apps/devhub/templates/devhub/index.html:159
-msgid "Create &amp; Connect"
-msgstr "Krijoni &amp; Lidhuni"
-
-#: apps/devhub/templates/devhub/index.html:165
-msgid "Developer Forums"
-msgstr "Forume Zhvilluesish"
-
-#: apps/devhub/templates/devhub/index.html:167
-msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
-msgstr "Diskutoni programim, ide, dhe vendosni lidhje të rëndësishme në botën e shtesave."
-
-#: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:52 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
-msgid "Add-on Packager"
-msgstr "Paketues Shtese"
-
-#: apps/devhub/templates/devhub/index.html:180
-msgid "Auto-generate add-on packaging by entering basic info and picking UI parts. Get working without setup."
-msgstr "Vetëprodhoni paketim shtese duke dhënë të dhënat bazë dhe duke zgjedhur pjesët për UI-n. Filloni punën pa gatitje."
-
-#: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:54
-msgid "Add-on Validator"
-msgstr "Vleftësues Shtese"
-
-#: apps/devhub/templates/devhub/index.html:193
-msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
-msgstr "Kontrollojeni shtesën tuaj për probleme dhe gabime të rëndomta. E hapur për këdo, jo thjesht për shtesat e strehuara këtu."
+#: apps/devhub/templates/devhub/index.html:126
+msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
+msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4295,165 +4076,48 @@ msgstr "më tepër shtesa..."
 msgid "Documentation"
 msgstr "Dokumentim"
 
-#: apps/devhub/templates/devhub/nav.html:35 apps/devhub/templates/devhub/addons/submit/sidebar.html:4 apps/devhub/templates/devhub/docs/getting-started.html:3
-#: apps/devhub/templates/devhub/docs/getting-started.html:6 apps/devhub/templates/devhub/docs/getting-started.html:8 apps/devhub/templates/devhub/docs/how-to-getting-started.html:3
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:7 apps/devhub/templates/devhub/docs/how-to-getting-started.html:9 apps/devhub/templates/devhub/docs/how-to-theme-development.html:16
-#: apps/devhub/templates/devhub/docs/how-to.html:13 apps/devhub/templates/devhub/docs/how-to.html:74
-msgid "Getting Started"
-msgstr "Si T’ia Fillohet"
+#: apps/devhub/templates/devhub/nav.html:35
+msgid "Extension Development"
+msgstr "Zhvillim Zgjerimesh"
 
-#: apps/devhub/templates/devhub/nav.html:37 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
+#: apps/devhub/templates/devhub/nav.html:37
+msgid "Lightweight Themes"
+msgstr ""
+
+#: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
 #: apps/devhub/templates/devhub/docs/policies-submission.html:6 apps/devhub/templates/devhub/docs/policies.html:3 apps/devhub/templates/devhub/docs/policies.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:38 apps/devhub/templates/devhub/docs/policies.html:39
 msgid "Add-on Policies"
 msgstr "Rregulla Shtese"
 
-#: apps/devhub/templates/devhub/nav.html:43
-msgid "API &amp; Language Reference"
-msgstr "Referencë API &amp; Gjuhe"
+#: apps/devhub/templates/devhub/nav.html:46
+msgid "Add-on Validator"
+msgstr "Vleftësues Shtese"
 
-#: apps/devhub/templates/devhub/nav.html:56
+#: apps/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
 msgstr "Kontrollor Përputhshmërie i Shtesave"
 
-#: apps/devhub/templates/devhub/nav.html:58
+#: apps/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
 msgstr "Shtesa Zhvillimi"
 
-#: apps/devhub/templates/devhub/nav.html:62
-msgid "Community"
-msgstr "Bashkësia"
+#: apps/devhub/templates/devhub/nav.html:54
+msgid "Community & Support"
+msgstr ""
 
-#: apps/devhub/templates/devhub/nav.html:65
+#: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
 msgstr "Blog Shtesash"
 
-#: apps/devhub/templates/devhub/nav.html:67
+#: apps/devhub/templates/devhub/nav.html:59
 msgid "Add-ons Forum"
 msgstr "Forum Shtesash"
 
-#: apps/devhub/templates/devhub/package_addon.html:17
-msgid "Enter some basic information about your add-on below and select which interface components to start with, and your custom-built add-on will be ready for download."
-msgstr "Jepni më poshtë ca të dhëna bazë mbi shtesën tuaj dhe përzgjidhni cila përbërëse ndërfaqeje të niset me të, dhe shtesa juaj, si e ndërtuat vetë, do të jetë gati për shkarkim."
-
-#: apps/devhub/templates/devhub/package_addon.html:24 apps/devhub/templates/devhub/addons/submit/sidebar.html:6
-msgid "Describe your add-on"
-msgstr "Përshkruani shtesën tuaj"
-
-#: apps/devhub/templates/devhub/package_addon.html:26
-msgid "First, you need to enter some basic information about your add-on. This will be displayed in the Add-ons Manager when your extension is installed."
-msgstr "Së pari, lypset të jepni disa të dhëna bazë rreth shtesës suaj. Këto do të shfaqen te Përgjegjësi i Shtesave, kur të instalohet zgjerimi juaj."
-
-#: apps/devhub/templates/devhub/package_addon.html:33
-msgid "Add-on Name"
-msgstr "Emër Shtese"
-
-#: apps/devhub/templates/devhub/package_addon.html:35
-msgid "Add-on Version"
-msgstr "Version Shtese"
-
-#: apps/devhub/templates/devhub/package_addon.html:36
-msgid "Unique ID"
-msgstr "ID Unike"
-
-#: apps/devhub/templates/devhub/package_addon.html:37
-msgid "Package Name"
-msgstr "Emër Pakete"
-
-#: apps/devhub/templates/devhub/package_addon.html:41
-msgid "Who's working on your add-on?"
-msgstr "Kush po punon për shtesën tuaj?"
-
-#: apps/devhub/templates/devhub/package_addon.html:43
-msgid "Tell us about the people or companies behind this add-on. This information appears in the add-on's About dialog."
-msgstr "Na tregoni për personat apo shoqëritë pas kësaj shtese. Këto të dhëna shfaqen te dialogu Rreth i shtesës."
-
-#: apps/devhub/templates/devhub/package_addon.html:49
-msgid "Primary Author"
-msgstr "Autori Parësor"
-
-#: apps/devhub/templates/devhub/package_addon.html:50
-msgid "Contributors"
-msgstr "Pjesëmarrës"
-
-#: apps/devhub/templates/devhub/package_addon.html:54
-msgid "Where will your add-on run?"
-msgstr "Kur do të funksionojë shtesa juaj?"
-
-#: apps/devhub/templates/devhub/package_addon.html:56
-msgid ""
-"Select the applications and versions that your add-on will support. The versions that you select will be the only versions that your add-on will be installable on. Make sure you only select "
-"applications and versions that you intend to test your add-on with."
-msgstr ""
-"Përzgjidhni aplikacionet dhe versionet që do të mbulojë shtesa juaj. Versionet që përzgjidhni do të jenë të vetmit versione për të cilët do të jetë e instalueshme shtesa juaj. Sigurohuni që "
-"përzgjidhni vetëm aplikacione dhe versione për të cilët keni ndërmend ta kaloni në provë shtesën tuaj."
-
-#: apps/devhub/templates/devhub/package_addon.html:64
-msgid "Supported Applications and Versions"
-msgstr "Aplikacione dhe Versione që Mbulohen"
-
-#: apps/devhub/templates/devhub/package_addon.html:80
-msgid "Choose pre-built features"
-msgstr "Zgjidhni veçori të gatitura më parë"
-
-#: apps/devhub/templates/devhub/package_addon.html:82
-msgid "Get started quickly by selecting user interface components to include in your add-on package. We'll include documented code for each item you select so your extension will work out of the box."
-msgstr ""
-"Fillojani pa humbur kohë duke përzgjedhur përbërësit për ndërfaqen e përdoruesit që do të përfshihen te paketa juaj e shtesës. Do të përfshijmë kod të dokumentuar për secilin element që "
-"përzgjidhni, që zgjerimi juaj të punojë sapo të instalohet."
-
-#: apps/devhub/templates/devhub/package_addon.html:95
-msgid "Submit and Build"
-msgstr "Parashtrojeni dhe Formojeni"
-
-#: apps/devhub/templates/devhub/package_addon.html:102
-msgid "Advanced Building"
-msgstr "Montime të Përparuara"
-
-#: apps/devhub/templates/devhub/package_addon.html:104
-msgid "Want to create XULRunner applications, XPCOM components, and other advanced skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr "Doni të krijoni aplikacione XULRunner, përbërëse XPCOM, dhe të tjera struktura më të përparuara? Vizitoni <a href=\"%(url)s\">MozDev Project Wizard</a>."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:10
-msgid "Add-on packaged successfully!"
-msgstr "Shtesa u paketua me sukses!"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:14
-msgid ""
-"Use the download link below to save a copy of your extension's compressed source. To install as an extension in Firefox or another compatible application, simply rename the <kbd>.zip</kbd> "
-"extension to <kbd>.xpi</kbd>."
-msgstr ""
-"Përdorni lidhjen më poshtë që të ruani një kopje të burimit të ngjeshur të zgjerimit tuaj. Që ta instaloni si një zgjerim në Firefox ose në një tjetër aplikacion të përputhshëm, thjesht "
-"riemërtojeni zgjerimin <kbd>.zip</kbd> si <kbd>.xpi</kbd>."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:22
-msgid "Please wait&hellip;"
-msgstr "Ju lutemi, prisni&hellip;"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:24
-msgid "JavaScript needs to be enabled to fetch the packaged add-on."
-msgstr "Që të sillet shtesa e paketuar lypset që JavaScript-i të jetë e aktivizuar."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:29
-msgid "What do I do next?"
-msgstr "Ç’të bëj në vazhdim?"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:30
-msgid ""
-"<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
-"<li>Read the documentation and ask for help when you need it!</li> </ol>"
-msgstr ""
-"<ol> <li> Për krijimin e parapëlqimeve dhe për kryerjen e personalizimeve tuaj, ndiqni udhëzimet në kodin burim të paketuar. </li> <li>Hiqni çfarëdo kodi burim që nuk përdoret.</li> <li>Lexoni "
-"dokumentimin dhe kërkoni ndihmë, kur ju duhet!</li> </ol>"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:41
-msgid ""
-"Now that you've got an extension skeleton, the fun part begins: hacking on the extension to make it do what you want. If you need some help, check out our <a href=\"%(gs_url)s\">Getting Started</a> "
-"page for the basics, or visit the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and documentation."
-msgstr ""
-"Tani që keni një skelet zgjerimi, fillon pjesa zbavitëse: marrja me zgjerimin për ta bërë të kryejë ato që doni. Nëse ju duhet pak ndihmë, shihni faqen tonë <a href=\"%(gs_url)s\">Si T’ia Fillohet</"
-"a>, për gjëra themelore, ose vizitoni <a href=\"%(ht_url)s\">Bibliotekën How-To</a>, për përkujdesore dhe dokumentim."
+#: apps/devhub/templates/devhub/nav.html:61
+msgid "More Resources"
+msgstr "Më Tepër Burime"
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
@@ -5294,9 +4958,17 @@ msgstr "Nuk kërkoni dot Shqyrtim të Plotë për 10 ditë"
 msgid "Choose Preliminary Review"
 msgstr "Zgjidhni Shqyrtim të Pjesshëm"
 
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
+msgid "Getting Started"
+msgstr "Si T’ia Fillohet"
+
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
 msgid "Upload your add-on"
 msgstr "Përditësoni shtesën tuaj"
+
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
+msgid "Describe your add-on"
+msgstr "Përshkruani shtesën tuaj"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Add images"
@@ -5371,787 +5043,13 @@ msgstr ""
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:37
+msgid "Do you want your add-on listed on AMO?"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:12
-msgid "StumbleUpon"
-msgstr "StumbleUpon"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:16
-msgid "Download Statusbar"
-msgstr "Shtyllë Gjendjeje Shkarkimesh"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:20
-msgid "Cooliris"
-msgstr "Cooliris"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:44
-msgid "by <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-msgstr "nga <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:48
-msgid "Personalized Browsing with StumbleUpon"
-msgstr "Shfletim i Personalizuar me StumbleUpon"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:50
-msgid "StumbleUpon is a recommendation engine that helps users discover and share great websites. With over 8 million users, it has become one of the most popular sharing services on the Web today."
-msgstr ""
-"StumbleUpon është një motor rekomandimesh që i ndihmon përdoruesit të gjejnë dhe shkëmbejnë sajte me interes. Me rreth 8 milion përdorues, është shndërruar në një nga shërbimet më popullorë për "
-"shkëmbime në Web sot."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:55
-msgid "Learn how StumbleUpon got its start with Firefox"
-msgstr "Mësoni se si StumbleUpon zuri fill me Firefox-in"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:63
-msgid "by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-msgstr "nga <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:67
-msgid "Easy Download Management with Download Statusbar"
-msgstr "Administrim i Lehtë Shkarkimesh me Shtyllë Gjendjeje për Shkarkimet"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:70
-msgid ""
-"Download Statusbar shows the progress of current downloads right in the browser&#039;s statusbar. There&#039;s no need to open the Download Manager when downloads can be managed from anywhere in "
-"the browser."
-msgstr ""
-"Paneli i Gjendjes së Shkarkimeve shfaq drejt e te shtylla e gjendjeve të shfletuesit ecurinë e shkarkimeve të tanishme. Nuk ka nevojë të hapni Përgjegjësin e Shkarkimeve, po qe se shkarkimet mund "
-"të administrohen prej kudo në shfletues."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:75
-msgid "Read about how someone new to software development made one of the most popular Firefox add-ons"
-msgstr "Lexoni se si dikush, i ri në zhvillim software-i, krijoi një nga shtesat më popullore të Firefox-it"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:83
-msgid "by <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-msgstr "nga <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:87
-msgid "Immersive 3-D Experience with Cooliris"
-msgstr "Përvojë Gllabëruese 3-D me Cooliris"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:90
-msgid ""
-"Cooliris lets users browse photos and videos from the Web or local computer on an infinitely scrollable 3-D wall. Its award-winning design brings speed and elegance to searching, finding and "
-"enjoying rich content."
-msgstr ""
-"Cooliris u lejon përdoruesve të shfletojnë foto dhe video në Web, ose në kompjuterin e tyre, në formën e një muri 3-D që rrëshqet pafundësisht. Konceptimi i tij, i vlerësuar me çmime, sjell "
-"shpejtësi dhe elegancë te kërkimi, gjetja dhe shijimi i lëndës në Web."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:95
-msgid "Find out how Cooliris re-invented photo browsing"
-msgstr "Shihni se si rishpiku Cooliris-i shfletimin përmes fotosh"
-
-#. Localization note: this page is intended to be fun and jokes around to make add-on development sound easy for those getting started. Please feel free
-#. to translate humorous parts/metaphors into something that works in your locale, or take them out if you want. Thanks!
-#: apps/devhub/templates/devhub/docs/getting-started.html:16
-msgid ""
-"If you've used Firefox add-ons before, you know that they're capable of some pretty impressive features &mdash; from inspecting the underlying framework of a website to displaying a scrolling 3-D "
-"wall of pictures and video. But some of the most popular add-ons just make minor changes to Firefox through easily learned languages like JavaScript, XUL, and CSS. If you have an idea for your "
-"first add-on, start out with something simple to learn the basics of how extensions are packaged and interact with Firefox."
-msgstr ""
-"Nëse keni përdorur shtesa Firefox-i më parë, e dini që ato janë të zonjat për disa funksione mbresëlënëse &mdash; që nga vëzhgimi i pjesës së brendshme të një sajti, e deri te shfaqja e një muri "
-"rrotullues 3D figurash dhe videosh. Por dira nga shtesat më popullore thjesht i bëjnë Firefox-it ndryshime të vogla, përmes gjuhësh që mësohen kollaj, të tilla si JavaScript, XUL, dhe CSS. Nëse "
-"keni një ide për shtesën tuaj të parë, nisjani me diçka të thjeshtë që të mësoni bazat rreth paketimit të zgjerimeve dhe ndërveprimit të tyre me Firefox-in."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:24
-msgid "Learn the basics"
-msgstr "Mësoni bazat"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:26
-msgid ""
-"The easiest way to do that is to follow along with the <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a> as it explains in detail the "
-"technologies used in extensions and walks through the creation of several basic extensions."
-msgstr ""
-"Rruga më e lehtë për ta bërë këtë është të ecni sipas <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Udhërrëfyesit të Zhvilluesve të Shtesave Firefox</a>, pasi shpjegon "
-"në hollësi teknologjitë e përdorura në zgjerime dhe ju shoqëron hap pas hapi nëpër krijimin e disa zgjerimeve të thjeshta."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:32
-msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visit the Firefox Add-ons Developer Guide</a>"
-msgstr "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Vizitoni Udhërrëfyesin për Zhvillues Shtesash Firefox</a>"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:38
-msgid ""
-"If you'd rather dive right in, there are several other tutorials in our <a href=\"%(base_docs)show-to/getting-started\">Getting Started section</a> of the <a href=\"%(base_docs)show-to\">How-to "
-"Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
-"#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
-msgstr ""
-"Nëse do të donit më mirë të hidheshit menjëherë me kokë, te <a href=\"%(base_docs)show-to/getting-started\">ndarja jonë Si T’ia Fillohet</a> e <a href=\"%(base_docs)show-to\">Bibliotekës Si-Të</a> "
-"ka disa përkujdesore të tjera që kalojnë drejt e në kodim. Dhe nëse ju tepron kohë, mund t’ju pëlqejë një video mbi bazat e zgjerimeve: <a href=\"http://design-challenge.mozilla.com/resources/"
-"#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:47
-msgid "Build your add-on"
-msgstr "Krijoni shtesën tuaj"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:49
-msgid ""
-"Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
-"copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
-msgstr ""
-"Sapo të ndiheni familjar me mjedisin e zhvillimit të zgjerimeve, është koha të nisni shtesën tuaj të parë. Dikur, kjo i ngjante ngjitjes së malit me borë për të gjetur një gjedhe të përshtatshme "
-"për ta kopjuar për install manifest-in e shtesës suaj. Për fat, Qendra e Zhvilluesve të Shtesave (kjo këtu!) sjell për ju teleferikun e paketimit të shtesave: <a href=\"%(url)s\">Paketuesin e "
-"Shtesave</a>!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:54
-msgid ""
-"Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
-"install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
-msgstr ""
-"Thjesht ndiqni hapat për të dhënë emrin, numrin e versionit, aplikacionet që mbulon, dhe hollësi të tjera për të, dhe do ta përgatitë shtesën tuaj për shkarkim. Jo vetëm që prodhon për ju manifest "
-"instalimi, por mund të përzgjidhni elementë të rëndomtë ndërfaqeje, të tillë si panele, anështylla, dhe menu kontekstesh, për të gatitur një skelet funksional zgjerimi. Praktikisht e shkruajmë ne "
-"zgjerimin tuaj!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:60
-msgid "Take me to the Add-on Packager!"
-msgstr "Shpjemë tek Paketuesi i Shtesave!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:65
-msgid "Add some flair"
-msgstr "Shtoni pak stil"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:67
-msgid ""
-"If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
-"learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
-msgstr ""
-"Nëse shtesa juaj lyp më tepër funksione se sa paneli i zbrazët që Paketuesi krijoi për ju, ka disa mënyra për të gjetur se si të shtohen funksionet që doni. Një nga rrugët më të rëndomta për të "
-"mësuar se si të arrihet diçka në një zgjerim është të hidhni një sy te zgjerime të tjera që e bëjnë tashmë atë çka doni. Thjesht mos harroni që, nëse licenca e zgjerimit tjetër nuk ju lejon t’ia "
-"kopjoni burimin, këtë nuk e bëni dot."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:72
-msgid ""
-"We also have two areas here in the Hub that may help you out: the <a href=\"%(base_docs)sreference\">API &amp; Language References</a> page has links to official documentation for extension "
-"languages and APIs like JavaScript, XUL, XPCOM, and FUEL. Secondly, the <a href=\"%(base_docs)show-to\">How-to Library</a> is full of tutorials, walkthroughs, videos, and articles written by smart "
-"people on extension development and best practices."
-msgstr ""
-"Kemi gjithashtu dy fusha këtu në Qendër që mund t’ju ndihmonin: faqja <a href=\"%(base_docs)sreference\">Refernca API-sh &amp; Gjuhësh</a> përmban lidhje te dokumentim zyrtar nga gjuhë dhe API "
-"zgjerimesh, të tilla si JavaScript, XUL, XPCOM, dhe FUEL. Së dyti, <a href=\"%(base_docs)show-to\">Biblioteka Si-Të</a> është plot me përkujdesore, shembuj ilustrues, video, dhe artikuj të shkruar "
-"nga njerëz të mençur, mbi zhvillimin e zgjerimeve dhe praktikat më të mira."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:78
-msgid "View the References"
-msgstr "Shihni Referencat"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:79
-msgid "Enter the How-to Library"
-msgstr "Hyni te Biblioteka Si-të"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:81
-msgid ""
-"If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
-"problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
-msgstr ""
-"Nëse e keni të qartë se çfarë ju duhet, thjesht <a href=\"/en-US/developers/search\">kërkoni për të!</a> Kërkimi ynë do të rrëmojë në burimet më të mira mbi shtesat për të gjetur ndërfaqen që ju "
-"mungon ose për problemin që keni. Nëse nga kërkimi nuk del gjë, mos ngurroni të <a href=\"https://forums.addons.mozilla.org\">kërkoni ndihmë</a> në forumet tona."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:89
-msgid "Test your add-on"
-msgstr "Provojeni shtesën tuaj"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:91
-msgid ""
-"Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
-"on all the platforms and applications it claims to support."
-msgstr ""
-"As edhe insektologët nuk i pëlqejnë kandrrat në software-in e tyre, ndaj është e rëndësishme ta vini plotësisht në provë shtesën tuaj, përpara se të jetë gati për konsum të përgjithshëm. Më e "
-"pakta, do të duhej të siguroheshit që shtesa juaj funksionon në krejt platformat dhe aplikacionet që pretendon se mbulohen."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:97
-msgid ""
-"To help detect common problems with packaging and security, you should run our <a href=\"%(link_validator)s\">Add-on Validator</a> tool on your file. It's like Spell Check for add-ons. Your add-on "
-"will automatically be validated upon submission, but you may want to test it out beforehand. Plus, passing makes you feel good."
-msgstr ""
-"Në ndihmë të zbulimit të problemeve të rëndomta me paketimin dhe sigurinë, do të duhej të xhironit mbi kartelën tuaj mjetin tonë të <a href=\"%(link_validator)s\">Vleftësimit të Shtesave</a>. Është "
-"si punë Kontrolli Drejtshkrimesh për shtesat. Shtesa juaj do të vleftësohet vetvetiu, sapo të parashtrohet, por mund të doni ta vini në provë paraprakisht. Plus që kalimi i provës ju bën të ndiheni "
-"mirë."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:103
-msgid "Validate my Add-on"
-msgstr "Vleftësoje Shtesën time"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:107
-msgid "Share your add-on with the world"
-msgstr "Ndajeni shtesën tuaj me botën"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:109
-msgid ""
-"Woah, you finished your add-on already? Just so you know, <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> is hiring. Alright, if you've tested your add-on out and it's free of problems, it's "
-"time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
-"Before you submit it, there are a few things to go over."
-msgstr ""
-"Yhaaa, e përfunduat tashmë shtesën tuaj? Thjesht që ta dini, <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> po punëson njerëz. Në rregull, nëse e vutë në provë shtesën tuaj dhe nuk dolën "
-"probleme, ka ardhur koha ta parashtroni te <a href=\"https://addons.mozilla.org\">Shtesat Mozilla</a>. Me mbi <em>1.5 miliardë</em> dhënie shtesash, është vendi më i mirë ku të lihet të jetojë "
-"shtesa juaj. Para se ta parashtroni, ka ende pak gjëra që duhen bërë."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:115
-msgid ""
-"Mozilla cares a lot about user experience and security. That's why we have a team of volunteer Editors that review add-ons submitted to the site before they are allowed to roam free. We have a "
-"number of policies that we require add-on developers and their contributions to adhere to. Please review these policies before submitting your add-on to ensure your add-on is approved the first "
-"time."
-msgstr ""
-"Mozilla kujdeset shumë për sigurinë e përdoruesve dhe ndjesitë që marrin ata nga përdorimi. Kjo është arsyeja që kemi një ekip Redaktorësh vullnetarë që shqyrtojnë shtesat e parashtruara te sajti, "
-"përpara se këto të lihen të lira për përdorim. Kemi një numër rregullash për të cilat kërkojmë që zvhilluesit e shtesave të pajtohen doemos. Ju lutemi, shqyrtojini këto rregulla përpara "
-"parashtrimit të shtesës suaj, që të bëni të mundur se shtesa juaj miratohet që herën e parë."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:121
-msgid "Review Add-on Policies"
-msgstr "Shqyrtoni Rregullat për Shtesat"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:124
-msgid "Everything in compliance? Great. There's only one thing left to do&hellip;"
-msgstr "Gjithçka në përputhje? Bukur. Ka mbetur vetëm një gjë për t’u bërë&hellip;"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:130
-msgid "Submit my Add-on!"
-msgstr "Parashtroje Shtesën time!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:133
-msgid "Congratulations!"
-msgstr "Përgëzime!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:141
-msgid ""
-"If you're feeling talkative, we'd love to <a href=\"https://forums.addons.mozilla.org\">hear your feedback</a> on how your experience creating an add-on was. Hearing what new developers struggle "
-"with helps us make the experience better for future generations of add-on innovators. Whether you want to comment on the platform, the documentation, or the website, we'll listen. Better yet, since "
-"Mozilla is open, you might even be able to fix that bug or lack of documentation yourself! It's like the circle of life."
-msgstr ""
-"Nëse ndiheni të gatshëm, do të donim <a href=\"https://forums.addons.mozilla.org\">të dëgjonim përshtypjet tuaja</a> rreth përvojës suaj në krijimin e shtesës. Njohja e gjërave me të cilat "
-"zhvilluesit e rinj ndeshen do të na ndihmojë ta përmirësojmë procesin për brezat e ardhshëm të novatorëve të shtesave. Doni të komentoni rreth platformës, dokumentimit apo sajtit? Do t’ju dëgjojmë. "
-"Madje më mirë akoma, ngaqë Mozilla është e hapur, mundet edhe të jeni në gjendje ta ndreqni ju vetë një të metë ose një mungesë në dokumentim! "
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
-msgid "Extension Development"
-msgstr "Zhvillim Zgjerimesh"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:12 apps/devhub/templates/devhub/docs/how-to.html:88
-msgid "Once you know the basics, these guides will help you with intermediate to advanced extension development topics."
-msgstr "Pasi të njihni bazat, këto udhërrëfyes do t’ju ndihmojnë në temat mesatare dhe të përparuara në zhvillimin e zgjerimeve."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:17
-msgid "Best Practices"
-msgstr "Praktikat Më të Mira"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
-msgid "Respecting the JavaScript Global Namespace"
-msgstr "Respektimi i Emërhapësira Globale JavaScript"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
-msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
-msgstr "Në këtë postim blogu, Mark Ziesemer shpjegon si të parandalohet ndotja e emërhapësirave globale përmes mbështjelljes së ndryshoreve të zgjerimit tuaj."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36 apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
-msgid "Editor's Pick:"
-msgstr "Zgjedhja e Redaktorit:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:38
-msgid "Security Best Practices in Extensions"
-msgstr "Praktikat Më të Mira për Sigurinë e Zgjerimeve"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:42
-msgid "Every extension developer should know and follow the security best practices outlined in this document to keep users safe."
-msgstr "Çdo zhvillues shtesash do të duhej të njihte dhe ndiqte praktikat më të mira për sigurinë të përvijuara në këtë dokument, për t’i mbajtur përdoruesit të pacenuar."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:53
-msgid "Localizing an Extension"
-msgstr "Përkthimi i një Zgjerimi"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:56
-msgid "This article explains how to localize an extension, including XUL and JavaScript strings."
-msgstr "Ky artikull shpjegon si të përkthehet një zgjerim, përfshi vargjet XUL dhe JavaScript."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
-msgid "Responsible First-run Usage"
-msgstr "Përdorimi i Përgjegjshëm Herën e Parë"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
-msgid "This blog post describes what a bad first-run experience means for users, and gives tips for improving that experience."
-msgstr "Ky postim blogu përshkruan ç’do të thotë për përdoruesit përshtypje të këqija gjatë herës së parë, dhe jep ndihmëza rreth përmirësimit të këtij rasti."
-
-# This is the name/category for a group of tests
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
-msgid "Security"
-msgstr "Siguri"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
-msgid "Evaluating Code with Restricted Privileges"
-msgstr "Vlerësim Kodi me Privilegje të Kufizuara"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
-msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr "Ky artikull përshkruan përdorimin e Components.utils.evalInSandbox-it, që është një rrugë për vlerësim kodi “fjala vjen kod të largët” pa privilegje <em>chrome</em>."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
-msgid "Creating Sandboxed HTTP Connections"
-msgstr "Krijim Lidhjesh HTTP Bankëprove"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
-msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr "Ky artikull shpjegon si të krijohen lidhje HTTP bankëprove që nuk prekin cookie-et e përdoruesve."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
-msgid "Displaying Web Content in an Extension"
-msgstr "Shfaqje Lënde Web në një Zgjerim"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:115
-msgid "Learn how to display web content in an extension without security issues."
-msgstr "Mësoni si të shfaqni lëndë web në një zgjerim pa krijuar probleme sigurie."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
-msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr "Pesë Arsye të Gabuara për Përdorim të funksionit eval në një Zgjerim"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
-msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
-msgstr "Në këtë postim blogu, Wladimir Palant radhit pesë rrugë të gabuara për vlerësim kodi në një zgjerim."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:136
-msgid "Localization"
-msgstr "Përkthim"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:142
-msgid "Localizing Extension Descriptions"
-msgstr "Përkthimi i Përshkrimeve të Zgjerimit"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
-msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr "Mësoni si të përktheni emrat dhe përshkrimet te <em>install manifests</em> zgjerimesh."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
-msgid "Localization and Plurals"
-msgstr "Përkthimi dhe Shumësi"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:158
-msgid "This article explains how to properly localize strings with plurals."
-msgstr "Ky artikull shpjegon si të përkthehen si duhet vargjet me shumësa."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
-msgid "BabelZilla overview"
-msgstr "Përmbledhje e BabelZilla-s"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
-msgid "Learn how the BabelZilla localization community works."
-msgstr "Mësoni se si funksionon bashkësia BabelZilla e përkthimeve."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
-msgid "Advanced Topics"
-msgstr "Tema të Mëtejshme"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:186
-msgid "Video:"
-msgstr "Video:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:187
-msgid "Stupid/Awesome Extension Development Hacks"
-msgstr ""
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:190
-msgid ""
-"In this video, Jono Xia explains how to go further in extension development using XPCOM, overlays, XHRs, DOM manipulation, etc. in order to make Firefox do things you might have never thought "
-"possible."
-msgstr ""
-"Në këtë video, Jono Xia shpjegon si të ecet më tej në zgjerimin e temave duke përdorur XPCOM-in, mbishtresat, XHR-të, manipulim DOM-i, etj. me qëllim për ta bërë Firefox-in të bëjë gjëra që nuk "
-"keni menduar kurrë se ishin të mundshme."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
-msgid "JavaScript Code Modules"
-msgstr "Module Kodi JavaScript"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:203
-msgid ""
-"JavaScript code modules let multiple privileged JavaScript scopes share code. For example, a module could be used by Firefox itself as well as by extensions, in order to avoid code duplication."
-msgstr ""
-"Modulet me kod JavaScript lejojnë ndarjen e kodit mes fokusesh të shumtë të privilegjuar JavaScript. Për shembull, një modul mund të përdorej nga vetë Firefox-i, si edhe nga zgjerimet, me qëllim "
-"shmangien e përsëritjes së kodit."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:213
-msgid "Creating Custom Firefox Extensions with the Mozilla Build System"
-msgstr "Krijim Zgjerimesh Firefox të Përshtatura përmes Sistemit Mozilla të Ndërtimeve"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:216
-msgid ""
-"This article describes how to set up the development environment for a large, complex Firefox extension with a need for high-performance, use of third-party libraries in C/C++, or interfaces not "
-"exposed via XPCOM."
-msgstr ""
-"Ky artikull përshkruan se si të gatitet mjedisi i zhvillimit për një zgjerim të madh, të ndërlikuar, për Firefox-in, kur kihet nevojë për punim të shkëlqyer, përdorim librarish palësh të treta në C/"
-"C++, ose ndërfaqe jo të ekspozuara përmes XPCOM-it."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
-msgid "Multiple Item Packaging"
-msgstr "Paketim i Shumë Objekteve"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
-msgid "This article explains how to create an extension package with multiple items \"extensions\"."
-msgstr "Ky artikull shpjegon si të krijohet një paketë zgjerimi me shumë elemente \"zgjerime\"."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
-msgid "Extension Documentation Index"
-msgstr "Tregues Dokumentimesh për Zgjerimet"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:244
-msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Extensions landing page."
-msgstr "Po qe se në artikujt e mësipërm nuk gjeni dot çfarë kërkoni, provoni faqen e depozitimit të Zgjerimeve te Qendra Mozilla e Zhvilluesve."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
-msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
-msgstr "Në këtë ndarje plot me përkujdesore për fillestarët mund të mësoni bazat e zhvillimit të një zgjerimi në platformën Mozilla."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
-msgid "The Basics"
-msgstr "Bazat"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:23
-msgid "XUL School Tutorial"
-msgstr "Përkujdesore Kursi XUL"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:26
-msgid ""
-"This tutorial will guide you through all the basics of add-on development, teaching you how to package them, create a suitable development environment, and program the most common features found in "
-"add-ons. It includes working code samples and the references and tools to explore all topics more in depth."
-msgstr ""
-"Kjo përkujdesore do t’ju udhëheqë përmes bazave të zhvillimit të një shtese, duke ju mësuar si t’i paketoni ato, si të krijoni një mjedis të përshtatshëm zhvillimi, dhe si të programoni veçoritë më "
-"të rëndomta që gjenden te një shtesë. Këtu përfshihet puna me shembuj kodi dhe referenca dhe mjete për të eksploruar më në thellësi krejt çështjet."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:36
-msgid "Setting Up an Extension Development Environment"
-msgstr "Gatitja e një Mjedisi Zhvillimi Zgjerimesh"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
-msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
-msgstr "Ky artikull ju jep këshilla se si të gatitet aplikacioni juaj Mozilla për zhvillim zgjerimesh, përfshi rregullim profili, ndryshim parapëlqimesh, dhe mjete të dobishme zhvillimi."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
-msgid "Building an Extension"
-msgstr "Ndërtimi i një Zgjerimi"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
-msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Firefox browser containing the text \"Hello, World!\""
-msgstr ""
-"Kjo përkujdesore do t’ju shoqërojë në hapat e domosdoshëm për krijimin e një zgjerimi shumë të thjeshtë - atij që shton një panel shtylle gjendjesh te shfletuesi Firefox e që përmban tekstin "
-"\"Hello, World!\""
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:65
-msgid "Extension Packaging"
-msgstr "Paketim Zgjerimesh"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
-msgid "Learn more details on how extensions are packaged and installed."
-msgstr "Mësoni më tepër hollësi se si paketohen dhe instalohen zgjerimet."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
-msgid "Install Manifests"
-msgstr "Manifeste Instalimi"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:81
-msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
-msgstr "Ky dokument shpjegon manifestet e instalimit \"install.rdf\" dhe tërë vetitë e mundshme për përdorim te shtesa juaj."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
-msgid "Other Tutorials"
-msgstr "Përkujdesore të Tjera"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:95
-msgid "Firefox Add-ons Developer Guide"
-msgstr "Udhërrëfyes Zhvilluesi Shtesash Firefox-i"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:98
-msgid ""
-"In this detailed guide to extension development, you'll learn the basics of packaging extensions, building an interface with XUL, implementing advanced processes with XPCOM, and how to put it all "
-"together."
-msgstr ""
-"Në këtë udhërrëfyes të hollësishëm për zhvillim zgjerimesh, do të mësoni bazat e paketimit të zgjerimeve, ndërtimin e një ndërfaqeje me XUL, sendërtim procesesh më të thelluara me ndihmën e XPCOM-"
-"it, dhe se si të mblidhen të tëra tok."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
-msgid "How to Develop a Firefox Extension"
-msgstr "Si të Zhvillohet një Zgjerim Firefox-i"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:111
-msgid "In this walk-through, Robert Nyman explains how to develop a Firefox extension from scratch."
-msgstr "Në këtë shpjegim hap pas hapi, Robert Nyman shpjegon si të zhvillohet një zgjerim Firefox nga fillimi."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:121
-msgid "How to Build a Firefox Extension"
-msgstr "Si të Krijohet një Zgjerim Firefox-i"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:124
-msgid "Lifehacker gives tips and helpful hints on developing your first Firefox extension."
-msgstr "Lifehacker jep ndihmëza dhe këshilla të dobishme mbi zhvillimin e zgjerimit tuaj të parë për Firefox-in."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:134
-msgid "Firefox Extension Development Tutorial"
-msgstr "Përkujdesore Zhvillimi Zgjerimesh Firefox-i"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:137
-msgid "A multi-page tutorial covering a variety of extension development topics."
-msgstr "Një përkujdesore shumëfaqëshe që mbulon një larmi temash mbi zhvillim zgjerimesh."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:149
-msgid "Creating a Status Bar Extension"
-msgstr "Krijimi i një Zgjerimi për Shtylla Gjendjesh"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:152
-msgid "Learn how to create a simple status bar extension and add more advanced functionality in subsequent tutorials, linked below."
-msgstr ""
-"Në përkujdesoret pasuese, të treguara me lidhjet e mëposhtme, mund të mësoni si të krijoni një zgjerim që shton një panel të thjeshtë shtylle gjendjesh dhe si t’i shtoni më tepër funksione të "
-"mëtejshme."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:162
-msgid "Creating a Dynamic Status Bar Extension"
-msgstr "Krijim Zgjerimi Shtylle Dinamike Paneli"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:165
-msgid "This article modifies the status bar extension created in the above tutorial by fetching content from a website at a regular interval."
-msgstr "Ky artikull ju tregon si të ndryshohet zgjerimi për panel gjendjesh i krijuar sipas përkujdesores më sipër përmes prurjes në intervale të rregullta të lëndës nga një sajt."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:175
-msgid "Adding Preferences to an Extension"
-msgstr "Shtim Parapëlqimesh te një Zgjerim"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:178
-msgid "This article shows how to add preferences to the dynamic status bar created in the above tutorial."
-msgstr "Ky artikull ju tregon se si të shtohen parapëlqime te paneli dinamik i gjendjeve krijuar sipas përkujdesores më sipër."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:187
-msgid "Books"
-msgstr "Libra"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:193
-msgid "Build Your Own Firefox Extension E-book"
-msgstr "E-libri Krijoni Zgjerimin Tuaj Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:196
-msgid "With a little JavaScript know-how, author James Edwards will show you just how straightforward it is to build your own Firefox extensions."
-msgstr "Me pakëz njohuri nga JavaScript, autori James Edwards do t’ju tregojë se sa thjeshtë është të krijoni zgjerimet tuaja për Firefox-in."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:3 apps/devhub/templates/devhub/docs/how-to-other-addons.html:7 apps/devhub/templates/devhub/docs/how-to-other-addons.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:29 apps/devhub/templates/devhub/docs/how-to.html:125
-msgid "Other Types of Add-ons"
-msgstr "Lloje të Tjerë Shtesash"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12 apps/devhub/templates/devhub/docs/how-to.html:128
-msgid "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-ons here."
-msgstr "Gjeni këtu të dhëna rreth Shtojcash Kërkimi, Jetpack-u, Temash, dhe lloje të tjera shtesash."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
-msgid "Jetpack"
-msgstr "Jetpack"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:23
-msgid "Jetpack Tutorial"
-msgstr "Përkujdesore për Jetpack"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
-msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
-msgstr "Me këtë përkujdesore mund të mësoni se sa e lehtë është të zgjerohet Firefox-i me Jetpack."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
-msgid "Jetpack API Documentation"
-msgstr "Dokumentim API Jetpack"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
-msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
-msgstr "Ky dokumentim i API-t për Jetpack është shumë i nevojshëm në punën për Jetpack-un tuaj."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
-msgid "How to Create Themes"
-msgstr "Si të Krijohen Tema"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
-msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr "Në këtë prezantim zyrtar mund të mësoni si të krijoni Temën tuaj vetjake."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
-msgid "Search Plug-ins"
-msgstr "Shtojca Kërkimesh"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
-msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr "Krijim Shtojcash OpenSearch për Firefox-in"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
-msgid "This article explains the structure and requirements of search plug-ins in Firefox."
-msgstr "Ky artikull shpjegon strukturën dhe gjërat e domosdoshme të shtojcave për kërkime në Firefox."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
-msgid "Plug-ins"
-msgstr "Shtojca"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
-msgid "Plug-in Documentation Index"
-msgstr "Tregues Dokumentimi Shtojcash"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
-msgid ""
-"Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in "
-"documentation index to learn more."
-msgstr ""
-"Shtojcat për aplikacione me bazë Mozilla janë përbërës dyorë që mund të shfaqin lëndë të cilën vetë aplikacioni nuk mund ta shfaqë pa to. Për të mësuar më tepër, hidhini një sy treguesit të "
-"dokumentimit mbi shtojcat te Mozilla Developer Center."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3 apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
-#: apps/devhub/templates/devhub/docs/how-to.html:111
-msgid "Theme Development"
-msgstr "Zhvillim Temash"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11 apps/devhub/templates/devhub/docs/how-to.html:115
-msgid "Style Mozilla applications the way you want with pixel-perfect themes."
-msgstr "Vishini aplikacionet Mozilla ashtu si doni, me tema të përsosura deri në pikselin e fundit."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
-msgid "Creating a Skin for Firefox"
-msgstr "Krijim Lëkurçeje për Firefox-in"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:26
-msgid "Learn how to find the right files to edit, make your changes, and package up your new theme in this tutorial."
-msgstr "Në këtë përkujdesore mund të mësoni si të gjeni kartelat e duhura për përpunim, të bëni ndryshimet tuaja, dhe të paketoni temën tuaj të re."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:37
-msgid "How to Create a Firefox Theme"
-msgstr "Si të Krijohet një Temë Firefox-i"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:40
-msgid "Thomas McMahon explains how to create a Firefox theme from start-to-finish in this tutorial."
-msgstr "Në këtë përkujdesore, Thomas McMahon ju shpjegon se si të krijohet një temë Firefox-i, nga fillimi deri në fund."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:54
-msgid "Theme Packaging"
-msgstr "Paketim Teme"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:57
-msgid "This article explains the packaging of themes."
-msgstr "Ky artikull shpjegon paketimin e temave."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:67
-msgid "First Steps in Theme Design"
-msgstr "Hapat e Parë në Hartim Temash"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
-msgid "This blog post by Lim Chee Aun explains the use of -moz-image-region in themes."
-msgstr "Ky postim blogu nga Lim Chee Aun shpjegon përdorimin e -moz-image-region në tema."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:81
-msgid "Making Sure Your Theme Works with RTL Locales"
-msgstr "Si të Siguroheni që Tema Juaj Punon me Gjuhët MND"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:85
-msgid "It's important to make sure your theme works in all locales. This article explains how to tweak your theme to look great for users who browse in right-to-left."
-msgstr ""
-"Është e rëndësishme që të siguroheni që tema juaj punon për krejt vendoret. Ky artikull shpjegon si ta ujdisni më tej temën që të duket e shkëlqyer për përdoruesit që përdorin gjuhë nga-e-djathta-"
-"në-të-majtë."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:95
-msgid "Theme Documentation Index"
-msgstr "Tregues Dokumentimi Temash"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:98
-msgid "If you haven't found what you're looking for yet, try the Mozilla Developer Center's Themes section."
-msgstr "Po qe se në artikujt e mësipërm nuk gjeni dot çfarë kërkoni, provoni ndarjen për Temat te Qendra Mozilla e Zhvilluesve."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:3 apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:7
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:9 apps/devhub/templates/devhub/docs/how-to.html:21
-msgid "Thunderbird & Mobile Add-ons"
-msgstr "Shtesa Thunderbird-i & Celulari"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
-msgid "Add-ons aren't just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Shtesat nuk janë thjesht për Firefox-in. Mësoni se si të zgjeroni aplikacione të tjera Mozilla, si, fjala vjen, klienti Thunderbird për postën dhe Firefox-i për pajisje celulare."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:18
-msgid "Developing Add-ons for Thunderbird"
-msgstr "Zhvillim Shtesash për Thunderbird-in"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:24
-msgid "Building a Thunderbird Extension"
-msgstr "Krijimi i një Zgjerimi për Thunderbird-in"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:27
-msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Thunderbird Mail Client containing the text \"Hello, World!\""
-msgstr ""
-"Kjo përkujdesore do t’ju shoqërojë nëpër hapat e domosdoshëm për krijimin e një zgjerimi shumë të thjeshtë - atij që shton një panel shtylle gjendjesh te Klienti i Postës Thunderbird e që përmban "
-"tekstin \"Hello, World!\""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
-msgid "An Overview of Thunderbird Components"
-msgstr "Përmbledhje e Përbërësve Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:40
-msgid "This article describes the Thunderbird user interface, discusses example modifications, and introduces some of the APIs most commonly used by extension developers."
-msgstr "Ky artikull përshkruan ndërfaqen e përdoruesit të Thunderbird-it, diskuton shembuj ndryshimesh, dhe bën një hyrje te disa nga API-t më të përdorura nga zhvilluesit e zgjerimeve."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:52
-msgid "Thunderbird How-tos"
-msgstr "<em>Si-të</em> për Thunderbird-in"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:55
-msgid "This section contains many code samples and how-to articles on common Thunderbird extension tasks."
-msgstr "Kjo ndarje përmban shumë shembuj kodi dhe artikuj me udhëzime për hapa të zakonshëm në krijim zgjerimesh për Thunderbird-in."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:65
-msgid "Thunderbird Extensions Documentation Index"
-msgstr "Tregues Dokumentimi Zgjerimesh Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:68
-msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Thunderbird extensions landing page."
-msgstr "Po qe se në artikujt e mësipërm nuk gjeni dot çfarë kërkoni, provoni faqen e depozitimit të Zgjerimeve për Thunderbird-in te Qendra Mozilla e Zhvilluesve."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
-msgid "Developing Add-ons for Mobile"
-msgstr "Zhvillim Shtesash për Celularin"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
-msgid "Mobile Extensions"
-msgstr "Zgjerime për Celularin"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
-msgid "This document explains the specifics on creating an extension for mobile."
-msgstr "Ky dokument shpjegon veçantitë e krijimit të një zgjerimi për celular."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
-msgid "Mobile Code Snippets"
-msgstr "Copëza Kodi për Celularin"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
-msgid "Code snippets specific to mobile."
-msgstr "Copëza kodi specifike për celular."
-
-#: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
-msgid "More Resources"
-msgstr "Më Tepër Burime"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
-msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
-msgstr "E dini tashmë se çfarë ju duhet? <a href=\"%(link_search)s\">Kërkojeni!</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:43
-msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
-msgstr "Shfletoni për <a href=\"%(link_reference)s\">Referenca API-sh & Gjuhësh</a>, për të gjetur ndërfaqen që shpresoni se ekziston"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
-msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
-msgstr "Ju duhet ndihmë? <a href=\"https://forums.addons.mozilla.org\">Vizitoni forumet tanë</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:77
-msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
-msgstr "Mësoni përmes kësaj ndarjeje plot me udhërrëfyesa fillestarësh bazat e programimit të një shtese për platformën Mozilla."
-
-#: apps/devhub/templates/devhub/docs/how-to.html:99
-msgid "Thunderbird &amp; Mobile Add-ons"
-msgstr "Shtesa Thunderbird-i &amp; Celulari"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:103
-msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Shtesat nuk janë vetëm për Firefox-in. Mësoni se si ta zgjeroni aplikacione të tjera Mozilla, të tillë si klienti i postës Thunderbird dhe Firefox-i për pajisje celulare."
-
-#: apps/devhub/templates/devhub/docs/marketplace.html:3
-msgid "Marketplace"
-msgstr "Marketplace"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -7097,626 +5995,6 @@ msgstr "Kushte Shërbimi për parashtrimin e punës suaj në sajtin tonë. Lypse
 msgid "How to get in touch with us regarding these policies or your add-on."
 msgstr "Si të lidheni me ne për këto rregulla ose për shtesën tuaj."
 
-#: apps/devhub/templates/devhub/docs/reference.html:3 apps/devhub/templates/devhub/docs/reference.html:8
-msgid "API & Language References"
-msgstr "Referenca API &amp; Gjuhe"
-
-#: apps/devhub/templates/devhub/docs/reference.html:11
-msgid "API &amp; Language References"
-msgstr "Referenca API &amp; Gjuhe"
-
-#: apps/devhub/templates/devhub/docs/reference.html:19
-msgid "XUL: Defining User Interfaces"
-msgstr "XUL: Përkufizimi i Ndërfaqeve të Përdoruesve"
-
-#: apps/devhub/templates/devhub/docs/reference.html:23
-msgid "XUL Overview"
-msgstr "Përmbledhje mbi XUL-in"
-
-#: apps/devhub/templates/devhub/docs/reference.html:26 apps/devhub/templates/devhub/docs/reference.html:75 apps/devhub/templates/devhub/docs/reference.html:91
-#: apps/devhub/templates/devhub/docs/reference.html:107 apps/devhub/templates/devhub/docs/reference.html:127 apps/devhub/templates/devhub/docs/reference.html:143
-#: apps/devhub/templates/devhub/docs/reference.html:175 apps/devhub/templates/devhub/docs/reference.html:191 apps/devhub/templates/devhub/docs/reference.html:206
-#: apps/devhub/templates/devhub/docs/reference.html:226 apps/devhub/templates/devhub/docs/reference.html:241 apps/devhub/templates/devhub/docs/reference.html:260
-#: apps/devhub/templates/devhub/docs/reference.html:276
-msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a>"
-msgstr "përmes <a class=\"refsource\" href=\"http://developer.mozilla.org\">Qendrës Mozilla për Zhvilluesit</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:31
-msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
-msgstr ""
-"XUL (Gjuha XML për Ndërfaqe Përdoruesi) është gjuha me bazë XML e Mozilla-s që ju lejon të ndërtoni aplikacione ndërplatformëshe, të pasura në karakteristika, që mund të xhirojnë si kur jeni i "
-"lidhur në Internet, si kur nuk jeni."
-
-#: apps/devhub/templates/devhub/docs/reference.html:38
-msgid "XUL Reference"
-msgstr "Referencë XUL-i"
-
-#: apps/devhub/templates/devhub/docs/reference.html:41 apps/devhub/templates/devhub/docs/reference.html:56
-msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
-msgstr "përmes <a class=\"refsource\" href=\"http://developer.mozilla.org\">Qendrës së Zhvilluesve Mozilla</a></span>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:45
-msgid "A list of all available XUL elements."
-msgstr "Listë e krejt elementëve XUL që mund të kihen."
-
-#: apps/devhub/templates/devhub/docs/reference.html:53
-msgid "XUL Controls List"
-msgstr "Listë Kontrollesh XUL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:60
-msgid "A description of many available XUL controls, including screenshots."
-msgstr "Një përshkrim për mjaft kontrolle XUL që mund të përdoren, përfshi foto ekrani."
-
-#: apps/devhub/templates/devhub/docs/reference.html:67
-msgid "JavaScript: Specifying Behavior"
-msgstr "JavaScript: Përcaktim Sjelljeje"
-
-#: apps/devhub/templates/devhub/docs/reference.html:72
-msgid "JavaScript Overview"
-msgstr "Përmbledhje e JavaScript-it"
-
-#: apps/devhub/templates/devhub/docs/reference.html:80
-msgid "JavaScript is a small, lightweight, object-oriented, cross-platform scripting language."
-msgstr "JavaScript është një gjuhë ndërplatformëshe skriptimesh, e vogël, e peshës së lehtë, <em>object-oriented</em>."
-
-#: apps/devhub/templates/devhub/docs/reference.html:88
-msgid "Gecko JavaScript Language Reference"
-msgstr "Referencë për Gjuhën Gecko JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:96
-msgid "Mozilla Developer Center's JavaScript documentation, including functions, statements, properties, and more."
-msgstr "Dokumentim i JavaScript-it nga Qendra Mozilla e Zhvilluesve, ku përfshihen funksione, deklarime, veti, dhe gjëra të tjera."
-
-#: apps/devhub/templates/devhub/docs/reference.html:104
-msgid "JavaScript Style Guide"
-msgstr "Udhëzues Stili JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:112
-msgid "Mozilla's JavaScript coding standards."
-msgstr "Standarde Mozilla për programim me JavaScript."
-
-#: apps/devhub/templates/devhub/docs/reference.html:120
-msgid "CSS: Adding Visual Effects"
-msgstr "CSS: Shtim Efektesh Pamore"
-
-#: apps/devhub/templates/devhub/docs/reference.html:124
-msgid "CSS Overview"
-msgstr "Përmbledhje e CSS-së"
-
-#: apps/devhub/templates/devhub/docs/reference.html:133
-msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
-msgstr ""
-"Cascading Style Sheets (CSS) është një gjuhë fletëstilesh e përdorur për të përshkruar paraqitjen e një dokumenti të shkruar në HTML ose XML dhe përdoret për të stilizuar ndërfaqen e përdoruesit te "
-"aplikacione me bazë XUL."
-
-#: apps/devhub/templates/devhub/docs/reference.html:140
-msgid "Gecko CSS Reference"
-msgstr "Referencë për Gecko CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:148
-msgid "Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors."
-msgstr "Dokumentim i CSS-së nga Qendra Mozilla e Zhvilluesve, që paraqet krejt vetitë e mundshme, vlerat dhe përzgjedhësit."
-
-#: apps/devhub/templates/devhub/docs/reference.html:156
-msgid "W3C CSS Homepage"
-msgstr "Faqja Hyrëse e W3C CSS-së"
-
-#: apps/devhub/templates/devhub/docs/reference.html:159
-msgid "via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-msgstr "përmes <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:163
-msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
-msgstr "Shihni lajme për CSS-në, specifikime dhe mjete për të, te sajti për CSS-në te W3C."
-
-#: apps/devhub/templates/devhub/docs/reference.html:167
-msgid "FUEL: Easier Extension Development"
-msgstr "FUEL: Zhvillim Më i Lehtë Zgjerimesh"
-
-#: apps/devhub/templates/devhub/docs/reference.html:180
-msgid "FUEL is a JavaScript library designed to help developers build extensions using terminology and interfaces that are familiar to them."
-msgstr "FUEL është një librari JavaScript e hartuar për të ndihmuar zhvilluesit të krijojnë zgjerime që përdorin terminologji dhe ndërfaqe të cilat janë familjare për ta."
-
-#: apps/devhub/templates/devhub/docs/reference.html:187
-msgid "STEEL API"
-msgstr "API për STEEL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:196
-msgid "STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-like set of interfaces to facilitate Thunderbird extension development."
-msgstr "STEEL është Scriptable Thunderbird Easy Extension Library. Është një grup ndërfaqesh të ngjashme me FUEL, ndërtuar për lehtësimin e zhvillimit të shtesave të Thunderbird-it."
-
-#: apps/devhub/templates/devhub/docs/reference.html:203
-msgid "SMILE API"
-msgstr "API për SMILE"
-
-#: apps/devhub/templates/devhub/docs/reference.html:211
-msgid "SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development."
-msgstr "SMILE është një grup ndërfaqesh të ngjashme me FUEL, ndërtuar për lehtësimin e zhvillimit të shtesave të SeaMonkey-it."
-
-#: apps/devhub/templates/devhub/docs/reference.html:219
-msgid "XPCOM: Cross-Platform Components"
-msgstr "XPCOM: Përbërës Ndërplatformësh"
-
-#: apps/devhub/templates/devhub/docs/reference.html:223
-msgid "XPCOM Overview"
-msgstr "Përmbledhje mbi XPCOM-in"
-
-#: apps/devhub/templates/devhub/docs/reference.html:231
-msgid "XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr "XPCOM është një model përbërësish objekt ndërplatformësh, me lidhma për shumë gjuhë, që u lejon përbërësve XPCOM të përdoren dhe të sendërtohen në JavaScript, Java dhe Python, përtej C++."
-
-#: apps/devhub/templates/devhub/docs/reference.html:238
-msgid "XPCOM Reference"
-msgstr "Referencë XPCOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:246
-msgid "Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions."
-msgstr "Dokumentim i API-it XPCOM nga Qendra Mozilla e Zhvilluesve, ku paraqiten ndërfaqe dhe funksione të ngrira."
-
-#: apps/devhub/templates/devhub/docs/reference.html:253
-msgid "DOM: Interacting with Content"
-msgstr "DOM: Ndërveprim me Lëndën"
-
-#: apps/devhub/templates/devhub/docs/reference.html:257
-msgid "DOM Overview"
-msgstr "Përmbledhje për DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:265
-msgid "The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation."
-msgstr ""
-"Document Object Model (DOM) është një API për dokumente HTML dhe XML. Ofron një paraqitje të strukturuar të dokumentit, duke ju bërë të mundur ndryshimin e lëndës dhe paraqitjes pamore të tij."
-
-#: apps/devhub/templates/devhub/docs/reference.html:273
-msgid "Gecko DOM Reference"
-msgstr "Referencë për Gecko DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:281
-msgid "Mozilla Developer Center's DOM API documentation"
-msgstr "Dokumentim i API-t DOM nga Qendra e Zhvilluesve Mozilla"
-
-#: apps/devhub/templates/devhub/docs/reference.html:292
-msgid "Jump to Reference"
-msgstr "Kalo te Referenca"
-
-#: apps/devhub/templates/devhub/docs/reference.html:294
-msgid "XUL"
-msgstr "XUL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:295
-msgid "JavaScript"
-msgstr "Javascript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:296
-msgid "CSS"
-msgstr "CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:298
-msgid "FUEL"
-msgstr "FUEL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:299
-msgid "XPCOM"
-msgstr "XPCOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:300
-msgid "DOM"
-msgstr "DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:313
-msgid "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-to Library</a>"
-msgstr "Mësoni se si t’i përdorni këto API dhe të tjera, te <a href=\"%(link_howto)s\">Biblioteka jonë Si-Të</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:3 apps/devhub/templates/devhub/docs/themes.html:18 apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
-#: apps/pages/templates/pages/faq.html:10
-msgid "Frequently Asked Questions"
-msgstr "Pyetje të Bëra Shpesh"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:4
-msgid "Frequently Asked Questions | Themes"
-msgstr "Pyetje të Bëra Shpesh | Tema"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:14 apps/devhub/templates/devhub/docs/themes-faq.html:44
-msgid "Introducing Background Themes"
-msgstr "Hyrje te Tema Sfondi"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:16
-msgid "What Are Background Themes?"
-msgstr "Çfarë janë Temat Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:17 apps/devhub/templates/devhub/docs/themes-faq.html:59
-msgid "What kind of computers and operating systems do Background Themes work with?"
-msgstr "Me çfarë lloj kompjuterësh dhe sistemesh operative funksionojnë Temat e Sfondit?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
-msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr "Cili është dallimi mes Temave të Sfondeve dhe Temave të Plota?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
-msgid "Installing Background Themes"
-msgstr "Instalimi i Temave Sfond"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
-msgid "How do I add Background Themes to my Firefox?"
-msgstr "Si t’i aktivizoj te Firefox-i im Temat Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:24 apps/devhub/templates/devhub/docs/themes-faq.html:103
-msgid "Are Background Themes free?"
-msgstr "A janë falas Temat Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:27 apps/devhub/templates/devhub/docs/themes-faq.html:112
-msgid "Using Background Themes"
-msgstr "Përdorimi i Temave Sfond"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
-msgid "How do I change my current Background Theme?"
-msgstr "Si ta ndryshoj Temën time Sfond të tanishme?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
-msgid "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr "Po qe se kam të instaluar një Temë të Plotë, a do të funksionojë Tema Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
-msgid "How do I undo a Background Theme?"
-msgstr "Si ta zhbëj përdorimin e një Teme Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:32 apps/devhub/templates/devhub/docs/themes-faq.html:161
-msgid "How do I provide feedback?"
-msgstr "Si të jap përshtypje?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:35
-msgid "Creating Your Own Background Themes"
-msgstr "Krijoni Temat tuaja Sfond"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:37
-msgid "Can I create my own Background Theme?"
-msgstr "A mund të krijoj Temën time Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:38 apps/devhub/templates/devhub/docs/themes-faq.html:184
-msgid "Are there any content guidelines?"
-msgstr "Ka udhëzime për lëndën?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:39 apps/devhub/templates/devhub/docs/themes-faq.html:250
-msgid "Do I still retain ownership over artwork that I upload?"
-msgstr "A më mbetet pronësia mbi lëndën artistike që ngarkoj?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:40 apps/devhub/templates/devhub/docs/themes-faq.html:258
-msgid "After creating a Background Theme, can I edit the design?"
-msgstr "Pas krijimit të një Teme Sfond, a mund ta përpunoj dizajnin?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:41 apps/devhub/templates/devhub/docs/themes-faq.html:266
-msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr "Cila është madhësia maksimum e lejuar për kartela Teme Sfondi?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:47
-msgid "What are Background Themes?"
-msgstr "Çfarë janë Temat Sfond?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:49
-msgid ""
-"Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added "
-"every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
-msgstr ""
-"Temat e sfondit janë lëkurçe të lehta për instalim, të lehta dhe për përdorim, që ndryshojnë pamjen e shfletuesit web Firefox. Ka me qindra mijëra tema të skicuara nga bashkësia prej nga mund të "
-"zgjidhni, me plot të tjera që shtohen përditë. <a href=\"%(browse_url)s\">Fillojani duke kërkuar këtu për modele që i shkojnë për shtat stilit tuaj.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:61
-msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
-msgstr "Temat Sfond funksionojnë me çfarëdo lloj kompjuteri që ka Firefox të instaluar. Këtu përfshihen paltformat Mac, Linux, Windows, dhe Android."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:70
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
-msgstr "Temat e Plota shndërrojnë pamjen e shfletuesit tuaj përmes stilesh për korniza dritaresh, shtyllë adresash, butona dhe menu."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:76
-msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
-msgstr "Temat Sfond ndryshojnë thjesht pjesën e titullit dhe atë të poshtme të shfletuesit tuaj. Mund ta parashihni në çast një model dhe ta instaloni me një klikim, pa patur nevojë për rinisje."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:90
-msgid ""
-"In just a few seconds, you can install a theme and transform the look of your Firefox web browser. Preview any theme by simply mousing over it; the design appears in your browser header so you can "
-"\"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you "
-"wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
-msgstr ""
-"Në pak sekonda, mund të instaloni një temë dhe ta shndërroni pamjen e shfletuesit tuaj web Firefox. Parashiheni cilëndo temë thjesht duke kaluar kursorin mbi të; modeli shfaqet te kryet e "
-"shfletuesit tuaj, dhe kështu mundeni \"ta provoni.\" Kur të jeni gati, thjesht klikoni butonin e gjelbër <code>Shtoje te Firefox-i</code>. Pasi një temë të jetë instaluar, ruhet te Përgjegjësi i "
-"Shtesave, ku mund ta aktivizoni ose çaktivizoni sipas dëshirës. Thjesht shkoni te menuja <code>Mjete</code> &gt; <code>Shtesa</code> dhe klikoni mbi skedën <code>Dukje</code>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:105
-msgid "Yes. Themes are free to download and free to use."
-msgstr "Po. Temat mund të shkarkohen lirisht dhe përdoren lirisht."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:117
-msgid "There are two easy ways to change your theme. You can either:"
-msgstr "Ka dy rrugë të lehta për të ndryshuar temat tuaja. Mundeni:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:123
-msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
-msgstr "Vizitoni <a href=\"%(gallery_url)s\">galerinë</a>, zgjidhni temën që ju pëlqen, dhe klikoni mbi zgjedhjen tuaj që t’i ndryshoni shfletuesit tuaj pamjen menjëherë."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:130
-msgid ""
-"Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the "
-"<code>Appearance</code> tab."
-msgstr ""
-"Pasi një temë të jetë instaluar, ruhet te Përgjegjësi i Shtesave, prej nga ku mund t’i aktivizoni apo çaktivizoni sipas qejfit. Thjesht shkoni te menuja <code>Mjete</code> &gt; <code>Shtesa</code> "
-"dhe klikoni mbi skedën <code>Dukje</code>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:142
-msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
-msgstr "Po. Nëse keni të instaluar një Temë të Plotë joparazgjedhje, Firefox-i do të kalojë vetvetiu te një temë parazgjedhje, që t’ju lejojë të përdorni Temat Sfond që keni zgjedhur."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:152
-msgid ""
-"To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, "
-"click the <code>Disable</code> button."
-msgstr ""
-"Për ta zhbërë modelin që përzgjodhët së fundi, shkoni te <code>Mjete</code> &gt; <code>Shtesa</code> te shtylla e menuve dhe përzgjidhni skedën <code>Dukje</code>. Në krah të temës që dëshironi të "
-"zhbëni, klikoni mbi butonin <code>Çaktivizoje</code>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:163
-msgid "We're always looking for ways to improve themes, and would love to hear what you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us your feedback."
-msgstr ""
-"Kërkojmë përherë rrugë për të përmirësuar temat, dhe do të donim shumë të dinim se ç’mendoni rreth kësaj. Vizitoni <a href=\"%(forum_url)s\">forumin e temave</a> që të na dërgoni përshtypjet tuaja."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:170
-msgid "Creating Your Own Themes"
-msgstr "Krijimi i Temave Tuaja"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:173
-msgid "Can I create my own Theme?"
-msgstr "A mund të krijoj një Temë timen?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:175
-msgid ""
-"Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., Photoshop). To get started <a href=\"%(tutorial_url)s\">read more about how to create a "
-"theme</a>."
-msgstr ""
-"Pa mëdyshje! Gjithçka që ju duhet është krijoni dy kartela grafike me ndihmën e programit tuaj të parapëlqyer të përpunimeve grafike (p.sh., Photoshop). Që t’ia filloni, <a href=\"%(tutorial_url)s"
-"\">lexoni më tepër rreth krijimit të temave</a>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:186
-msgid ""
-"Yes. We are big fans of creativity, but want to ensure that the art displayed in the Themes gallery meets a basic set of guidelines. Please review the <a href=\"%(tos_url)s\">Terms of Service</a> "
-"for authoritative and complete language, but the following gives you an overview of the requirements:"
-msgstr ""
-"Po. Jemi dashamirës të mëdhenj të krijimtarisë, por duam të sigurohemi se arti që shfaqet te galeria e Temave, është në pajtim me një dorë udhëzimesh bazë. Ju lutemi, shqyrtoni <a href=\"%(tos_url)s"
-"\">Kushtet e Shërbimit</a>, për shprehje të plotë dhe autoritative të gjithë kësaj, por, sa vijon, ju jep një përmbledhje të domosdoshmërive:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:196
-msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
-msgstr ""
-"Ose zotëroni krejt elementët e skemës suaj, OSE jeni i autorizuar, nga i zoti ose ligji, për në mbarë botën, t’i riprodhoni dhe shpërndani ato (dhe të lejoni të tjerët të bëjnë të njëjtën gjë)."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:203
-msgid "Your design does not contain sexually explicit or offensive content."
-msgstr "Skema juaj nuk përmban lëndë seksuale eksplicite ose fyese."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:208
-msgid "Your design does not include identifiable elements of any non-celebrity person(s) other than yourself or individuals who have given you permission to do so."
-msgstr "Skema juaj nuk përfshin elemente të identifikueshëm të ndonjë personi që nuk është figurë e mirënjohur, hiq veten tuaj ose individë që ju kanë dhënë leje ta bëni këtë."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:215
-msgid "Your design does not depict violence or Nazi imagery, nor is it discriminatory or hateful."
-msgstr "Skema juaj nuk tregon skena dhune ose Nazizmi, dhe as është diskriminuese apo urrejtje-ndjellëse."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:221
-msgid "Your design does not relate to gambling."
-msgstr "Hartimi juaj nuk lidhet me bixhozin."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:226
-msgid "Your design does not violate any applicable law or regulation or the rights of any person or entity."
-msgstr "Skema juaj nuk shkel ndonjë ligj apo rregull të zbatueshëm, apo të drejtat e cilitdo personi apo njësie."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:231
-msgid ""
-"Also, note that your design needs to be suitable for the Background Themes format (see guidelines), of usable quality, and not duplicative of a prior submission. Finally, while Mozilla does provide "
-"guidelines for submissions, Mozilla retains the discretion to reject or remove designs for any reason. In some cases, this is necessary for legal reasons, but it also allows us to maintain the "
-"integrity of the site."
-msgstr ""
-"Gjithashtu, kini parasush që modeli juaj lypset të jetë i përshtatshëm për formatin Tema Sfondi (shihni udhëzimet), të ketë cilësi të mirë, dhe të mos jetë përsëritje e një parashtrimi të "
-"mëparshëm. Më në fund, teksa Mozilla ofron udhëzimet për parashtrime, Mozilla ruan të drejtën të hedhë poshtë ose të heqë punë, për çfarëdo arsye. Në disa raste, kjo është e nevojshme për asrye "
-"ligjore, por na lejon gjithashtu të ruajmë integritetin e sajtit."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:242
-msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
-msgstr "<a href=\"%(tutorial_url)s\">Mësoni më tepër se si të krijoni modele temash tërheqëse.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:252
-msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr "Po. Punimi juaj do të jetë përherë punimi <em>juaj</em>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:260
-msgid ""
-"Yes. If at any point you need to edit or delete your theme design after it has been submitted to the gallery, you can access it from the <a href=\"%(dashboard_url)s\">Submissions dashboard</a>. "
-"From there, you can view your current designs. By clicking on each, you can make changes to each design's settings."
-msgstr ""
-"Po. Nëse, në çfarëdo pike, pasi është parashtruar te galeria, keni nevojë të përpunoni apo fshini modelin e temës suaj, mund ta gjeni te <a href=\"%(dashboard_url)s\">pulti i Parashtrimeve</a>. "
-"Prej andej, mund të shihni modelet tuaja të deritanishme. Duke klikuar mbi secilën, mund të bëni ndryshime te rregullimet e secilit model."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:268
-msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
-msgstr "Tema që ngarkoni nuk duhet të tejkalojë 300KB për figurë kryeje ose fundfaqeje."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:276
-msgid "Couldn't find the answer you're looking for? Consider visiting the <a href=\"%(support_url)s\">Firefox support</a> website for more help."
-msgstr "S’e gjetët përgjigjen që po kërkonit? Shihni mundësinë e një vizite të sajtit të <a href=\"%(support_url)s\">asistencës për Firefox-in</a>, për më tepër ndihmë."
-
-#: apps/devhub/templates/devhub/docs/themes.html:3
-msgid "How to Create Your Own Background Theme"
-msgstr "Si të Krijoni Temën Tuaj Sfond"
-
-#: apps/devhub/templates/devhub/docs/themes.html:4
-msgid "Getting Started | Themes"
-msgstr "Si T’ia Fillohet | Tema"
-
-#: apps/devhub/templates/devhub/docs/themes.html:12
-msgid "How to create a theme"
-msgstr "Si të krijohet një temë"
-
-#: apps/devhub/templates/devhub/docs/themes.html:15
-msgid "Submit your theme"
-msgstr "Parashtroni temën tuaj"
-
-#: apps/devhub/templates/devhub/docs/themes.html:35
-msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
-msgstr "Temat përbëhen nga dy kartela figurash grafike &mdash; një figurë \"krye\" dhe një figurë \"fundfaqe\" &mdash; të cila veshin sfondin UI parazgjedhje të Firefox-it."
-
-#: apps/devhub/templates/devhub/docs/themes.html:41
-msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
-msgstr "<a href=\"%(submit_url)s\">E përfunduat Dizajnin Tuaj? Mund ta parashtroni që tani!</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:46
-msgid "Creating a Theme Header Image"
-msgstr "Krijimi i një Figure Kryesh për Temën"
-
-#: apps/devhub/templates/devhub/docs/themes.html:48
-msgid ""
-"The header image is displayed as the background of the top of the browser window, nestling in behind the toolbars, address bar, search bar and the tab strip. It will be <b>anchored to the top-right "
-"corner</b> of the browser window."
-msgstr ""
-"Figura e kryes shfaqet si sfond i pjesës së sipërme të dritares së shfletuesit, ngecur pas paneleve, shtyllës së adresave, shtyllës së kërkimeve dhe rripit të skedave. Do të <b>ankorohet në cepin e "
-"sipërm djathtas</b> të dritares së shfletuesit."
-
-#: apps/devhub/templates/devhub/docs/themes.html:57
-msgid "View a sample Theme Header here."
-msgstr "Shihni këtu një shembull Kryeje Teme."
-
-#: apps/devhub/templates/devhub/docs/themes.html:59 apps/devhub/templates/devhub/docs/themes.html:130
-msgid "Image Requirements"
-msgstr "Kërkesa Për Figurën"
-
-#: apps/devhub/templates/devhub/docs/themes.html:62
-msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
-msgstr "Përmasat do të duhej të ishin <b>3000px së gjeri &times; 200px së larti</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:67 apps/devhub/templates/devhub/docs/themes.html:138
-msgid "PNG or JPG file format"
-msgstr "Format kartele PNG ose JPG"
-
-#: apps/devhub/templates/devhub/docs/themes.html:72 apps/devhub/templates/devhub/docs/themes.html:143
-msgid "Image must be no larger than 300 KB in file size"
-msgstr "Figura nuk duhet të jetë më e madhe se 300 KB"
-
-#: apps/devhub/templates/devhub/docs/themes.html:77 apps/devhub/templates/devhub/docs/themes.html:148
-msgid "Tips"
-msgstr "Ndihmëza"
-
-#: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
-msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
-msgstr "Figura dhe gradiente të imtë, të butë funksionojnë më mirë; figurat me shumë hollësi do të konkurronin me UI-n e shfletuesit."
-
-#: apps/devhub/templates/devhub/docs/themes.html:86
-msgid "Firefox may reveal more of the lower portion of the image if another toolbar or other UI element is added to the top of the window."
-msgstr "Firefox-i mund të shfaqë më tepër nga pjesa e poshtme e figurës, nëse një tjetër panel apo një tjetër element UI shtohe në krye të dritares."
-
-#: apps/devhub/templates/devhub/docs/themes.html:93
-msgid ""
-"The upper right-hand side of the image should have the most important information&mdash;as a user increases the width of the browser window, the browser reveals more of the left-hand side of the "
-"image."
-msgstr ""
-"Ana e sipërme djathtas e figurës duhet të ketë informacionin më të rëndësishëm&mdash;teksa një përdorues e rrit gjerësinë e dritares së shfletimit, shfletuesi shfaq më tepër gjëra nga ana e majta e "
-"figurës."
-
-#: apps/devhub/templates/devhub/docs/themes.html:100
-msgid "Online Image Editor Resources"
-msgstr "Burime Përpunimi Figure Në Linjë"
-
-#: apps/devhub/templates/devhub/docs/themes.html:103
-msgid "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and easy-to-use tools for creating and editing images within a browser."
-msgstr "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr ofron mjete profesionale dhe të lehta në përdorim për krijim dhe përpunim figurash që nga brenda shfletuesit."
-
-#: apps/devhub/templates/devhub/docs/themes.html:110
-msgid "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch up photos with Photoshop&reg; Express, a free online photo editor."
-msgstr "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Ndryshojini pakëz, rrotullojini, grimojini fotot me Photoshop&reg; Express, një përpunues fotosh në linjë falas."
-
-#: apps/devhub/templates/devhub/docs/themes.html:118
-msgid "Creating a Theme Footer Image"
-msgstr "Krijimi i një Figure Fundfaqeje për Temën"
-
-#: apps/devhub/templates/devhub/docs/themes.html:120
-msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
-msgstr "Figura e pjesës së poshtme shfaqet si sfond në fund të dritares së shfletuesit, pas shtyllave të shtesës dhe të gjetjes. Do të ngulitet te cepi i poshtëm majtas në dritaren e shfletuesit."
-
-#: apps/devhub/templates/devhub/docs/themes.html:128
-msgid "View a sample Theme Footer here."
-msgstr "Shihni këtu një shembull Fundfaqeje Teme."
-
-#: apps/devhub/templates/devhub/docs/themes.html:133
-msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
-msgstr "Përmasat do të duhej të ishin <b>3000px së gjeri &times; 100px së larti</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:157
-msgid "Firefox may reveal more of the upper portion of the image if the find bar is open or if an extension adds more height to the bottom of the window."
-msgstr "Firefox-i mund të shfaqë më tepër nga pjesa e sipërme e figurës, nëse paneli i gjetjeve është i hapur ose nëse një zgjerim shton më tepër peshë te pjesa e poshtme e dritares."
-
-#: apps/devhub/templates/devhub/docs/themes.html:164
-msgid ""
-"The left-hand side of the image should have the most importan information&mdash;as a user increases the width of the browser window, the browser reveals more of the right-hand side of the image."
-msgstr "Pjesa majtas e figurës duhet të ketë të dhënat më të rëndësishme&mdash;teksa përdoruesi e rrit gjerësinë e dritares së shfletuesit, shfletuesi shfaq më tepër nga pjesa e djathtë e figurës."
-
-#: apps/devhub/templates/devhub/docs/themes.html:171
-msgid "Submitting your Theme Images"
-msgstr "Si të parashtrohen Figurat e Temës suaj"
-
-#: apps/devhub/templates/devhub/docs/themes.html:173
-msgid "To get started submitting your images, go to the Theme Submission page:"
-msgstr "Që t’ia filloni me parashtrimin e figurave tuaja, shkoni te faqja e Parashtrimit të Temave:"
-
-#: apps/devhub/templates/devhub/docs/themes.html:179
-msgid "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate names are not allowed, so you may need to try a few times to find a unique name."
-msgstr "<b>I vini emër temës suaj</b> &mdash; zgjidhni për temën tuaj një emër unik. Nuk lejohen përsëritje emrash, ndaj mund t’ju duhet të provoni një dorë herësh derisa të gjeni një emër unik."
-
-#: apps/devhub/templates/devhub/docs/themes.html:186
-msgid ""
-"<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
-"and/or tags are unrelated to your theme."
-msgstr ""
-"<b>Zgjidhni një kategori dhe etiketa</b> &mdash; përzgjidhni një kategori dhe jepni disa etiketa që përputhen më mirë me temën tuaj. Mbani parasysh që një shqyrtues mund ta hedhë poshtë temën tuaj, "
-"nëse duket sheshit që kategoria dhe/ose etiketat e përdorura nuk kanë lidhjen me temën tuaj."
-
-#: apps/devhub/templates/devhub/docs/themes.html:194
-msgid ""
-"<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
-msgstr ""
-"<b>Përshkruani temën tuaj</b> &mdash; shkruani një përshkrim të shkurtër të temës suaj. Mbani parasysh që një shqyrtues mund ta hedhë poshtë temën tuaj, nëse përshkrimi nuk është një parfaqësim i "
-"përpiktë i temës suaj."
-
-#: apps/devhub/templates/devhub/docs/themes.html:201
-msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
-msgstr ""
-"<b>Përzgjidhni për temën tuaj një licencë</b> &mdash; ndani mendjen mbi një licencë të drejtash kopjimi për veprën tuaj. <a href=\"%(cc_url)s\">Lexoni më tepër rreth llojeve të licencave Creative "
-"Common.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:208
-msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
-msgstr "<b>E rëndësishme:</b> Ju lutemi, sigurohuni që keni të drejta të përdorni figurën e temës suaj!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:216
-msgid "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size and JPG or PNG format!"
-msgstr "<b>Ngarkoni figurat tuaja</b> &mdash; sigurohuni që janë nën 300 KB dhe në formatin JPG ose PNG!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:222
-msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr "<b>Përzgjidhni ngjyra teksti dhe skede</b> &mdash; mund të zgjidhni atë ngjyrë skede (\"sfondi\") dhe ngjyrë të përparme teksti që përputhet më mirë me figurën tuaj të kryes."
-
-#: apps/devhub/templates/devhub/docs/themes.html:229
-msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
-msgstr "<b>Parashiheni temën</b> &mdash; jeni gati ta parashihni temën tuaj! Thjesht kalojeni kursorin përsipër figurës sipër butonit Parashtroni Temën, dhe shihni në çast se si duket."
-
-#: apps/devhub/templates/devhub/docs/themes.html:236
-msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
-msgstr ""
-"<b>Parashtrojeni temën tuaj</b> &mdash; nëse gjithçka duket në rregull, klikoni mbi butonin Parashtroni Temën dhe mbaruat! Te faqja juaj e profilit mund të shihni krejt temat që keni nxjerrë nga "
-"duart."
-
-#: apps/devhub/templates/devhub/docs/themes.html:243
-msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
-msgstr "<b>Ndihmëz:</b> që të siguroheni se tema juaj miratohet për te galeria, sigurohuni që ajo përputhet me udhëzimet mbi lëndën dhe kushtet e shërbimit!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:254
-msgid "Submit Your Theme Now"
-msgstr "Parashtrojeni Temën Tuaj Tani"
-
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
 msgstr "E keni çaktivizuar këtë shtesë"
@@ -7864,7 +6142,7 @@ msgstr "{0} njoftime suksesi"
 msgid "Developer News"
 msgstr "Lajme Zhvilluesish"
 
-#: apps/devhub/templates/devhub/includes/blog_posts.html:21
+#: apps/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
 msgstr "Shihni blogun &#9658;"
 
@@ -8518,167 +6796,167 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Jeni i sigurt se dëshironi të anulohet kërkesa juaj për shqyrtim?"
 
-#: apps/discovery/modules.py:137
+#: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
 msgstr "Blerje e Bërë Lehtë"
 
-#: apps/discovery/modules.py:138
+#: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr "Ruajini gjërat e parapëlqyera drejt e nga komforti i shfletuesi tuaj."
 
-#: apps/discovery/modules.py:146
+#: apps/discovery/modules.py:149
 msgid "Build the perfect website"
 msgstr "Ndërtoni sajtin e përsosur"
 
-#: apps/discovery/modules.py:153
+#: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
 msgstr "Ndihmoni testimin e Firefox-it me këto mjete"
 
-#: apps/discovery/modules.py:161
+#: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
 msgstr "Hera e parë me Shtesa?"
 
-#: apps/discovery/modules.py:162
+#: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
 msgstr "Mos u bëni merak, ja tre, sa për t’ia filluar."
 
-#: apps/discovery/modules.py:166
+#: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
 msgstr "Përktheni lëndë web-i në mbi 40 gjuhë."
 
-#: apps/discovery/modules.py:168
+#: apps/discovery/modules.py:171
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "Lidhuni kollaj me rrjetet tuaja shoqërore, dhe komentoni, ose ndajeni me të tjerët, faqen që po vizitoni."
 
-#: apps/discovery/modules.py:170
+#: apps/discovery/modules.py:173
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr "Vështrim i shpejtë për të krahasuar çmimet kur blini në linjë ose kur kërkoni për fluturime."
 
-#: apps/discovery/modules.py:180
+#: apps/discovery/modules.py:183
 msgid "Firefox 4 Collection"
 msgstr "Koleksion për Firefox 4"
 
-#: apps/discovery/modules.py:181
+#: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
 msgstr "Ja disa shtesa të fuqishme për Firefox 4."
 
-#: apps/discovery/modules.py:190
+#: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "Tema për Ditën e Shën Patrikut"
 
-#: apps/discovery/modules.py:191
+#: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Zbukurojeni shfletuesin tuaj për festën e Ditës së Shën Patrikut."
 
-#: apps/discovery/modules.py:200
+#: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
 msgstr "Koleksioni i Verës Firefox"
 
-#: apps/discovery/modules.py:201
+#: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
 msgstr "Ja disa shtesa të fuqishme për Firefox."
 
-#: apps/discovery/modules.py:209
+#: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
 msgstr "Koleksioni Thunderbird"
 
-#: apps/discovery/modules.py:210
+#: apps/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
 msgstr "Ja disa shtesa të fuqishme për Thunderbird."
 
-#: apps/discovery/modules.py:218
+#: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
 msgstr "Zini Vend dhe Rehatohuni"
 
-#: apps/discovery/modules.py:219
+#: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
 msgstr "Shtesa që ju ndihmojnë gjatë udhëtimeve tuaja!"
 
-#: apps/discovery/modules.py:223
+#: apps/discovery/modules.py:226
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr "Shfaq një flamur shteti që simbolizon vendoren e shërbyesit të tanishëm të sajtit dhe të tjera."
 
-#: apps/discovery/modules.py:225
+#: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "FoxClocks ju lejon t’i hidhni një sy orës anembanë botës."
 
-#: apps/discovery/modules.py:227
+#: apps/discovery/modules.py:230
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr "Njihuni automatikisht me çmimet më të ulëta kur blini në linjë ose kur kërkoni për fluturime."
 
-#: apps/discovery/modules.py:237
+#: apps/discovery/modules.py:240
 msgid "A+ add-ons for School"
 msgstr "Shtesa A+ për në Shkollë"
 
-#: apps/discovery/modules.py:238
+#: apps/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "Shtesa për mësues, prindër, dhe studentë që i kthehen shkollës."
 
-#: apps/discovery/modules.py:243
+#: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
 msgstr "Dëshironi të dini se cilit sajt mund t’i zini besë?"
 
-#: apps/discovery/modules.py:244
+#: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Xmarks është shtesa #1 për faqeruajtje."
 
-#: apps/discovery/modules.py:245
+#: apps/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Përkthyes faqesh dhe tekstesh në Web, fjalor, dhe më tepër!"
 
-#: apps/discovery/modules.py:262
+#: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
 msgstr "Shtesa për t’ju ndihmuar përgjatë 2012-s"
 
-#: apps/discovery/modules.py:269
+#: apps/discovery/modules.py:272
 msgid "Love is in the Air"
 msgstr ""
 
-#: apps/discovery/modules.py:270
+#: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
 msgstr "Shtojini Firefox-it pak romancë."
 
-#: apps/discovery/modules.py:277
+#: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
 msgstr ""
 
-#: apps/discovery/modules.py:278
+#: apps/discovery/modules.py:281
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
 msgstr "Vizitoni addons.mozilla.org prej Firefox-it për Android dhe zbukurojeni shfletuesin e celularit tuaj që të përputhet me humorin tuaj, ose me stinën."
 
-#: apps/discovery/modules.py:287
+#: apps/discovery/modules.py:290
 msgid "Get up and move!"
 msgstr "Ngrihu dhe lëviz!"
 
-#: apps/discovery/modules.py:288
+#: apps/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "Instaloni këto shtesa që lidhen me mbajtjen e trupit në formë, që të jeni aktivë dhe të shëndetshëm."
 
-#: apps/discovery/modules.py:296
+#: apps/discovery/modules.py:299
 msgid "New &amp; Now"
 msgstr "E re &amp; Tani"
 
-#: apps/discovery/modules.py:297
+#: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "Merrni shtesat më të reja, ato që nuk duhet t’ju mungojnë, të çastit."
 
-#: apps/discovery/modules.py:329
+#: apps/discovery/modules.py:332
 msgid "Worry-free browsing"
 msgstr "Shfletim pa shqetësim"
 
-#: apps/discovery/modules.py:330
+#: apps/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Mbroni, me shtesat e këtij koleksioni, privatësinë tuaj në linjë."
 
-#: apps/discovery/modules.py:339
+#: apps/discovery/modules.py:342
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Shtesa të fuqishme për punë, dëfrim, privatësi, prodhueshmëri&hellip; për gjithçhka!"
 
-#: apps/discovery/modules.py:347
+#: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
 msgstr "Fitues të Konkursit Shtesa për Australis"
 
-#: apps/discovery/modules.py:355
+#: apps/discovery/modules.py:358
 msgid "What are your interests?"
 msgstr ""
 
@@ -9214,40 +7492,40 @@ msgstr "Ende në lojë (5 deri në 10 ditë)"
 msgid "Overdue (Over 10 days)"
 msgstr "Të kaluara (10 ditë e më tepër)"
 
-#: apps/editors/views.py:421
+#: apps/editors/views.py:422
 msgid "An unknown error occurred"
 msgstr "Ndodhi një gabim i panjohur"
 
-#: apps/editors/views.py:447
+#: apps/editors/views.py:448
 msgid "Self-reviews are not allowed."
 msgstr "Nuk lejohen shqyrtime nga vetja."
 
-#: apps/editors/views.py:466
+#: apps/editors/views.py:467
 msgid "Review successfully processed."
 msgstr "Shqyrtimi u krye me sukses."
 
-#: apps/editors/views.py:653
+#: apps/editors/views.py:654
 msgid "was approved"
 msgstr "qe miratuar"
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:655
 msgid "given preliminary review"
 msgstr "pati shqyrtim paraprak"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:656
 msgid "rejected"
 msgstr "hedhur poshtë"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:657
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "shtyrë përpara"
 
-#: apps/editors/views.py:658
+#: apps/editors/views.py:659
 msgid "needs more information"
 msgstr "lyp më tepër të dhëna"
 
-#: apps/editors/views.py:659
+#: apps/editors/views.py:660
 msgid "needs super review"
 msgstr "lyp super-shqyrtim"
 
@@ -9924,47 +8202,47 @@ msgstr "Pati një gabim në përdorimin e kartelës %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Pati një gabim në përdorimin e kartelës %s."
 
-#: apps/files/utils.py:254
+#: apps/files/utils.py:257
 msgid "Could not parse uploaded file."
 msgstr "Nuk përtypi dot kartelën e ngarkuar."
 
-#: apps/files/utils.py:291
+#: apps/files/utils.py:294
 msgid "Invalid file name in archive: {0}"
 msgstr "Emër i pavlefshëm kartele te arkivi: {0}"
 
-#: apps/files/utils.py:299
+#: apps/files/utils.py:302
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Kartelë që tejkalon kufirin e madhësisë te arkivi: {0}"
 
-#: apps/files/utils.py:349
+#: apps/files/utils.py:352
 msgid "Invalid archive."
 msgstr "Arkiv i pavlefshëm."
 
-#: apps/files/utils.py:439 apps/files/utils.py:442
+#: apps/files/utils.py:442 apps/files/utils.py:445
 msgid "Could not parse install.rdf."
 msgstr "S’përtypi dot install.rdf."
 
-#: apps/files/utils.py:452
+#: apps/files/utils.py:455
 msgid "Could not find a UUID."
 msgstr "Nuk gjeti dot UUID."
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:457
 msgid "UUID doesn't match add-on."
 msgstr "UUID-ja nuk përputhet me shtesën."
 
-#: apps/files/utils.py:458
+#: apps/files/utils.py:461
 msgid "Duplicate UUID found."
 msgstr "U gjet UUID e dyfishtë."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:464
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Numrat e versioneve duhet të jenë më pak se 32 shenja të gjatë."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:467
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Numrat e versioneve do të duhej të përmbanin vetëm shkronja, numra, dhe nga këto shenja pikësimi: +*.-_."
 
-#: apps/files/utils.py:481
+#: apps/files/utils.py:484
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> nuk përputhet me shtesën"
 
@@ -11054,6 +9332,10 @@ msgstr "Krahasim licencash të njohura burimi të hapur, te Wikipedia."
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr "Sajt për të dhënë udhëzime, jo verdikte, mbi zgjedhjen e një licence për projektin tuaj me burim të hapur."
+
+#: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9 apps/pages/templates/pages/faq.html:10
+msgid "Frequently Asked Questions"
+msgstr "Pyetje të Bëra Shpesh"
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"

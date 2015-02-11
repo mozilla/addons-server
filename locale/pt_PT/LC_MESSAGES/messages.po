@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2014-06-22 02:13+0100\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -88,38 +88,38 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
 msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
 
-#: apps/addons/forms.py:219
+#: apps/addons/forms.py:222
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver indicado para esta aplicação."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:226
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Apenas pode ter {0} categoria."
 msgstr[1] "Apenas pode ter {0} categorias."
 
-#: apps/addons/forms.py:231
+#: apps/addons/forms.py:234
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "A categoria Diversos não pode ser combinada com outras categorias."
 
-#: apps/addons/forms.py:354
+#: apps/addons/forms.py:357
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Antes de alterar o seu idioma pré-definido tem de ter um nome, sumário e uma descrição nesse idioma. Falta %s."
 
-#: apps/addons/forms.py:467 apps/addons/forms.py:558
+#: apps/addons/forms.py:470 apps/addons/forms.py:561
 msgid "A license must be selected."
 msgstr "Tem de ser seleccionada uma licença."
 
-#: apps/addons/forms.py:539
+#: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
 msgstr "Dê um nome ao seu tema."
 
-#: apps/addons/forms.py:545 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:548 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Descreva seu tema."
 
-#: apps/addons/forms.py:686
+#: apps/addons/forms.py:689
 msgid "Enter a new author's email address"
 msgstr "Introduza o novo endereço de email do autor"
 
@@ -127,7 +127,7 @@ msgstr "Introduza o novo endereço de email do autor"
 msgid "Not Reviewed"
 msgstr "Não revisto"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:319 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -143,29 +143,29 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Os utilizadores serão sempre informados no Gestor de Extras (Firefox 4 e superiores)"
 
 # Column name in a table.
-#: apps/addons/models.py:1863
+#: apps/addons/models.py:1870
 msgid "Listed"
 msgstr "Listado"
 
-#: apps/addons/views.py:319 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:320 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Popular"
 
-#: apps/addons/views.py:320 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
+#: apps/addons/views.py:321 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
 msgid "Recently Added"
 msgstr "Adicionado recentemente"
 
-#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
+#: apps/addons/views.py:322 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
 msgstr "Actualizado recentemente"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
-#: apps/addons/views.py:504
+#: apps/addons/views.py:507
 msgid "Contribution for {0}"
 msgstr "Contribuição para {0}"
 
-#: apps/addons/views.py:592
+#: apps/addons/views.py:595
 msgid "Abuse reported."
 msgstr "Abuso reportado."
 
@@ -341,7 +341,7 @@ msgid "Add-on Information for {0}"
 msgstr "Informação do extra para {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:71
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:72
 msgid "Updated"
 msgstr "Actualizado"
 
@@ -630,7 +630,7 @@ msgstr "Utilizadores diários"
 msgid "License"
 msgstr "Licença"
 
-#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:50
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:49
 msgid "Awaiting Review"
 msgstr "A aguardar análise"
 
@@ -977,7 +977,7 @@ msgstr "Sítio de ajuda"
 msgid "Support E-mail"
 msgstr "Endereço de correio de ajuda"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
 msgid "Version {0}"
 msgstr "Versão {0}"
 
@@ -989,7 +989,7 @@ msgstr "Info"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Lançado sobre a <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:153
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licença personalizada"
@@ -1125,7 +1125,7 @@ msgstr "Mais"
 msgid "Add to collection"
 msgstr "Adicionar à colecção"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:72 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "Os meus Extras"
 
@@ -1188,7 +1188,7 @@ msgstr "Utilizadores"
 msgid "Weekly Downloads"
 msgstr "Transferências semanais"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:945 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Versão"
 
@@ -1267,8 +1267,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:179 apps/devhub/templates/devhub/nav.html:45 apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7
-#: apps/devhub/templates/devhub/docs/themes.html:28 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Temas"
@@ -1302,7 +1301,7 @@ msgstr "Experimentar!"
 msgid "Theme Info &raquo;"
 msgstr "Informações do tema &raquo;"
 
-#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:49
+#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "Ferramentas"
 
@@ -1334,8 +1333,7 @@ msgstr "Gerenciar Meus Envios"
 msgid "Submit a New Add-on"
 msgstr "Submeter um novo extra"
 
-#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
-#: apps/devhub/templates/devhub/addons/dashboard.html:29
+#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:23 apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "Enviar um Tema Novo"
 
@@ -1886,7 +1884,7 @@ msgstr "Explorar"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:172 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:171 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "Extensões"
 
@@ -1916,7 +1914,7 @@ msgstr "Os meus extras favoritos"
 msgid "Add-ons for Mobile"
 msgstr "Extras para o Mobile"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:175 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:174 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "Ferramentas de pesquisa"
 
@@ -1977,7 +1975,7 @@ msgstr "Dados fornecidos inválidos: {0}"
 msgid "Add-on did not validate: %s"
 msgstr "O extra não foi validado: %s"
 
-#: apps/api/views.py:248
+#: apps/api/views.py:256
 msgid "Not implemented yet."
 msgstr "Ainda não implementado."
 
@@ -2113,11 +2111,11 @@ msgstr "Não são permitidas ligações."
 msgid "This url is already in use by another collection"
 msgstr "Este url já está em uso por outra colecção"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1059
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1000
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser PNG ou JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1077 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1018 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Por favor use imagens menores que %dMB."
 
@@ -2157,7 +2155,7 @@ msgstr "Favorito"
 msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:70 apps/devhub/views.py:78
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:71 apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2442,8 +2440,7 @@ msgstr "Não"
 msgid "Edit {0}"
 msgstr "Editar {0}"
 
-#: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
-#: apps/editors/templates/editors/themes/themes.html:62
+#: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/addons/edit/details.html:20 apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
 msgstr "Descrição"
 
@@ -2462,7 +2459,7 @@ msgstr "Guardar alterações"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:133
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:132
 msgid "Owner"
 msgstr "Dono"
 
@@ -2525,7 +2522,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Aviso:</b> Ao alterar o dono desta colecção, já não a poderá editar. Apenas poderá adicionar ou remover extras."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2612,7 +2609,7 @@ msgstr ""
 "Para incluir um extra nesta colecção, escreva o nome na caixa em baixo e clique em enter. Pode também usar as ligações <strong>Adicionar à colecção</strong> presentes em todo o sítio para incluir "
 "os extras mais tarde."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:383 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Extra"
 
@@ -2738,15 +2735,15 @@ msgstr "maior número de utilizadores"
 msgid "Up & Coming"
 msgstr "Futuramente"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:454 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Criado"
 
-#: apps/browse/views.py:455 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:455 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Transferências"
 
-#: apps/browse/views.py:456 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:456 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Avaliação"
@@ -2758,7 +2755,7 @@ msgstr "{0}: Extras em destaque"
 
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
-#: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
+#: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:341 apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "Extras em destaque"
@@ -2800,7 +2797,7 @@ msgstr "Lista de pacotes de idioma e dicionários disponíveis no seu idioma."
 msgid "Language"
 msgstr "Idioma"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:161
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:160
 msgid "Dictionary"
 msgstr "Dicionário"
 
@@ -2861,7 +2858,7 @@ msgstr "Navegue através de mais fornecedores de pesquisa em <a href=\"http://my
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Faça o seu</a> no <a href=\"https://developer.mozilla.org/\">Centro de Desenvolvimento Mozilla</a>"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:173
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
 msgstr "Temas completos"
 
@@ -2950,7 +2947,7 @@ msgstr "Temas {0}"
 msgid "View Profile"
 msgstr "Ver perfil"
 
-#: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
+#: apps/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
 msgstr "Criar teu próprio tema"
 
@@ -3029,7 +3026,7 @@ msgstr "Binário"
 msgid "Non-binary"
 msgstr "Não-binário"
 
-#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:144
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
 msgid "Other"
 msgstr "Outro"
 
@@ -3053,7 +3050,7 @@ msgstr "Top 95% de todos os extras"
 msgid "All active add-ons"
 msgstr "Todos os extras activos"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:384
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
 msgid "App"
 msgstr "App"
 
@@ -3125,7 +3122,7 @@ msgstr "Filtrar por aplicação"
 msgid "Report Type"
 msgstr "Tipo de relatório"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:942 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplicação"
 
@@ -3213,15 +3210,15 @@ msgstr "Aguarda análise preliminar"
 msgid "Awaiting Full Review"
 msgstr "Aguarda análise completa"
 
-#: apps/constants/base.py:29 apps/constants/base.py:51
+#: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Fully Reviewed"
 msgstr "Totalmente analisado"
 
-#: apps/constants/base.py:30 apps/constants/base.py:52
+#: apps/constants/base.py:30 apps/constants/base.py:51
 msgid "Disabled by Mozilla"
 msgstr "Desactivado pela Mozilla"
 
-#: apps/constants/base.py:31 apps/constants/base.py:54
+#: apps/constants/base.py:31 apps/constants/base.py:53
 msgid "Preliminarily Reviewed"
 msgstr "Analisado preliminarmente"
 
@@ -3238,243 +3235,243 @@ msgstr "Excluído"
 msgid "Pending approval"
 msgstr "Aguarda aprovação"
 
-#: apps/constants/base.py:46
+#: apps/constants/base.py:45
 msgid "Flagged for further review"
 msgstr "Sinalizado para uma análise mais aprofundada"
 
-#: apps/constants/base.py:53
+#: apps/constants/base.py:52
 msgid "Beta"
 msgstr "Beta"
 
-#: apps/constants/base.py:122
+#: apps/constants/base.py:121
 msgid "Full"
 msgstr "Completo"
 
-#: apps/constants/base.py:123
+#: apps/constants/base.py:122
 msgid "Preliminary"
 msgstr "Preliminares"
 
-#: apps/constants/base.py:134 apps/users/notifications.py:157
+#: apps/constants/base.py:133 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "Desenvolvedor"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:135
+#: apps/constants/base.py:134
 msgid "Viewer"
 msgstr "Visualizador"
 
-#: apps/constants/base.py:136 templates/mobile/header.html:7
+#: apps/constants/base.py:135 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Suporte"
 
-#: apps/constants/base.py:158 apps/constants/base.py:171 apps/constants/platforms.py:11
+#: apps/constants/base.py:157 apps/constants/base.py:170 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "Qualquer"
 
-#: apps/constants/base.py:159
+#: apps/constants/base.py:158
 msgid "Extension"
 msgstr "Extensão"
 
-#: apps/constants/base.py:160
+#: apps/constants/base.py:159
 msgid "Complete Theme"
 msgstr "Tema completo"
 
-#: apps/constants/base.py:162
+#: apps/constants/base.py:161
 msgid "Search Engine"
 msgstr "Motor de Pesquisa"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:162
 msgid "Language Pack (Application)"
 msgstr "Pacote de Idioma (Aplicação)"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:163
 msgid "Language Pack (Add-on)"
 msgstr ""
 
-#: apps/constants/base.py:165
+#: apps/constants/base.py:164
 msgid "Plugin"
 msgstr "Plugin"
 
-#: apps/constants/base.py:166 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:165 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "Tema"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:174
+#: apps/constants/base.py:173
 msgid "Dictionaries"
 msgstr "Dicionários"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:176
+#: apps/constants/base.py:175
 msgid "Language Packs (Application)"
 msgstr "Pacotes de Idioma (Aplicações)"
 
-#: apps/constants/base.py:177
+#: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
 msgstr ""
 
-#: apps/constants/base.py:178
+#: apps/constants/base.py:177
 msgid "Plugins"
 msgstr "Plugins"
 
-#: apps/constants/base.py:243
+#: apps/constants/base.py:242
 msgid "Free"
 msgstr "Gratuito"
 
-#: apps/constants/base.py:244
+#: apps/constants/base.py:243
 msgid "Premium"
 msgstr "Premium"
 
-#: apps/constants/base.py:245
+#: apps/constants/base.py:244
 msgid "Premium with in-app payments"
 msgstr "Premium com pagamento no extra"
 
-#: apps/constants/base.py:246
+#: apps/constants/base.py:245
 msgid "Free with in-app payments"
 msgstr "Gratuito com pagamento no extra"
 
-#: apps/constants/base.py:247
+#: apps/constants/base.py:246
 msgid "I'll use my own system for in-app payments"
 msgstr "Eu usarei meu próprio sistema de pagamentos pelo aplicativo"
 
-#: apps/constants/base.py:303
+#: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Pedir apenas na página deste extra e no perfil do desenvolvedor"
 
-#: apps/constants/base.py:304
+#: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
 msgstr "Perguntar depois de os utilizadores começarem a transferir este extra"
 
-#: apps/constants/base.py:305
+#: apps/constants/base.py:304
 msgid "Ask before users can download this add-on"
 msgstr "Perguntar antes que os utilizadores transfiram este extra"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:371
 msgid "Exception"
 msgstr "Exceção"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:372
 msgid "Release"
 msgstr "Lançamento"
 
-#: apps/constants/base.py:374
+#: apps/constants/base.py:373
 msgid "Change"
 msgstr "Alterar"
 
-#: apps/constants/base.py:385
+#: apps/constants/base.py:384
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:415
 msgid "Manual Reviewer Points"
 msgstr "Pontos do manual de análises"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:416
 msgid "Full Add-on Review"
 msgstr "Análise completa do extra"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Preliminary Add-on Review"
 msgstr "Análise preliminar do extra"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Updated Add-on Review"
 msgstr "Análise atualizada do extra"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Full Dictionary Review"
 msgstr "Análise completa do dicionário"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Preliminary Dictionary Review"
 msgstr "Análise preliminar do dicionário"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Updated Dictionary Review"
 msgstr "Análise atualizada do dicionário"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Full Language Pack Review"
 msgstr "Análise completa do pacote de idioma"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Preliminary Language Pack Review"
 msgstr "Análise preliminar do pacote de idioma"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Updated Language Pack Review"
 msgstr "Análise atualizada do pacote de idioma"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Theme Review"
 msgstr "Análise do tema"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Full Search Provider Review"
 msgstr "Análise completa do mecanismo de pesquisa"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Preliminary Search Provider Review"
 msgstr "Análise preliminar do mecanismo de pesquisa"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Updated Search Provider Review"
 msgstr "Análise atualizada do mecanismo de pesquisa"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Complete Theme Review"
 msgstr "Análise do tema completo"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Preliminary Complete Theme Review"
 msgstr "Análise preliminar do tema completo"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Updated Complete Theme Review"
 msgstr "Análise de tema completo atualizada"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Moderated Addon Review"
 msgstr "Análise de extra moderada"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
 msgstr ""
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr "Nível 1"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr "Nível 2"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr "Nível 3"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr "Nível 4"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr "Nível 5"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr "Nível 6"
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:506
 msgid "Not signed"
 msgstr ""
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:507
 msgid "Signed for a full review"
 msgstr ""
 
-#: apps/constants/base.py:509
+#: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
 msgstr ""
 
@@ -3598,291 +3595,177 @@ msgstr "Alterações recentes para %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Alterações recentes aos meus extras"
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:66
 msgid "Must have at least one owner."
 msgstr "Tem de ter pelo menos um proprietário."
 
-#: apps/devhub/forms.py:72
+#: apps/devhub/forms.py:69
 msgid "At least one author must be listed."
 msgstr "Tem de ser mostrado pelo menos um autor."
 
-#: apps/devhub/forms.py:76
+#: apps/devhub/forms.py:73
 msgid "An author can only be listed once."
 msgstr "Um autor apenas pode ser indicado uma vez."
 
-#: apps/devhub/forms.py:94
+#: apps/devhub/forms.py:91
 msgid "Password incorrect."
 msgstr "Senha incorrecta."
 
-#: apps/devhub/forms.py:113 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Detalhes"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:120
 msgid "What is your license's name?"
 msgstr "Qual é o nome da sua licença?"
 
-#: apps/devhub/forms.py:126
+#: apps/devhub/forms.py:123
 msgid "Provide the text of your license."
 msgstr "Indique o texto da sua licença."
 
-#: apps/devhub/forms.py:161
+#: apps/devhub/forms.py:158
 msgid "License text is required when choosing Other."
 msgstr "É necessário o texto da licença ao escolher Outro."
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:206
 msgid "This add-on has an End-User License Agreement"
 msgstr "Este extra tem um acordo de licença para o utilizador final"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Por favor, especifique o acordo de licença para o utilizador final para o extra:"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
 msgstr "O extra tem uma política de privacidade"
 
-#: apps/devhub/forms.py:218
+#: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Por favor específique a política de privacidade do seu extra:"
 
-#: apps/devhub/forms.py:256
+#: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
 msgstr "Porque é que fez este extra?"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:254
 msgid "What's next for this add-on?"
 msgstr "O que há a seguir para este extra?"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:291
 msgid "The developers of this add-on"
 msgstr "Os desenvolvedores deste extra"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:292
 msgid "The Mozilla Foundation"
 msgstr "A fundação Mozilla"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:293
 msgid "An organization of my choice"
 msgstr "Uma organização à minha vontade"
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:336
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Por favor insira um valor sugerido superior a 0."
 
-#: apps/devhub/forms.py:342
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Por favor indique uma quantia sugerida menor que ${0}."
 
-#: apps/devhub/forms.py:351
+#: apps/devhub/forms.py:348
 msgid "PayPal ID required to accept contributions."
 msgstr "Para aceitar contribuições é necessário o ID do Paypal."
 
-#: apps/devhub/forms.py:357
+#: apps/devhub/forms.py:354
 msgid "Could not validate PayPal id."
 msgstr "Não foi possível validar o id do PayPal."
 
-#: apps/devhub/forms.py:372
+#: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: apps/devhub/forms.py:391
+#: apps/devhub/forms.py:388
 msgid "View current"
 msgstr ""
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:869
+#: apps/devhub/forms.py:437
 msgid "Invalid version range."
 msgstr "Intervalo da versão inválido."
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:466
 msgid "Need at least one compatible application."
 msgstr "Necessita de pelo menos uma aplicação compatível."
 
-#: apps/devhub/forms.py:482 apps/devhub/forms.py:499
+#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
 msgid "There was an error with your upload. Please try again."
 msgstr "Houve um erro com o seu carregamento. Por favor, tente novamente."
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:484
 msgid "Override failed validation"
 msgstr "Sobrepor avaliação falhada"
 
-#: apps/devhub/forms.py:524 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:511
+msgid "Yes, include my add-on on AMO."
+msgstr ""
+
+#: apps/devhub/forms.py:512
+msgid ""
+"Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
+"reasons to uncheck it."
+msgstr ""
+
+#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Revisão completa"
 
-#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Revisão preliminar"
 
-#: apps/devhub/forms.py:529
+#: apps/devhub/forms.py:535
 msgid "Please choose a review nomination type"
 msgstr "Por favor, escolha um tipo de nomeação para a revisão"
 
-#: apps/devhub/forms.py:533 apps/devhub/forms.py:568
+#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:550
+#: apps/devhub/forms.py:556
 msgid "Version %s already exists"
 msgstr "A versão %s já existe"
 
-#: apps/devhub/forms.py:562
+#: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:591
+#: apps/devhub/forms.py:597
 msgid "You cannot upload any more files for this version."
 msgstr "Não pode carregar mais ficheiros para esta versão."
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:603
 msgid "Version doesn't match"
 msgstr "A versão não corresponde."
 
-#: apps/devhub/forms.py:626
+#: apps/devhub/forms.py:632
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Não pode eliminar um ficheiro depois do processo de análise começar. Tem de eliminar a versão completa."
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:652
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "A plataforma todos não pode ser combinada com plataformas específicas."
 
-#: apps/devhub/forms.py:651
+#: apps/devhub/forms.py:657
 msgid "A platform can only be chosen once."
 msgstr "Apenas pode escolher a plataforma uma vez."
 
-#: apps/devhub/forms.py:664
+#: apps/devhub/forms.py:670
 msgid "A review type must be selected."
 msgstr "Tem de ser seleccionado um tipo de comentário."
 
-#: apps/devhub/forms.py:743
-msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
-msgstr "Dê ao seu extra um nome. Os extras com maior sucesso dão alguma indicação das suas funções através do nome."
-
-#: apps/devhub/forms.py:748
-msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
-msgstr "Descrever brevemente o extra numa frase. Isto aparece no Gestor de extras."
-
-#: apps/devhub/forms.py:752
-msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
-msgstr "Escreva o número da versão inicial. Dependendo do número de lançamentos e as suas preferências, isto é, normalmente 0.1 ou 1.0"
-
-#: apps/devhub/forms.py:756
-msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
-msgstr "Cada extra requer um ID único na forma de um UUID ou um endereço de correio eletrónico, como addon-name@developer.com. O endereço de correio eletrónico não tem de ser válido."
-
-#: apps/devhub/forms.py:762
-msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
-msgstr "O nome do pacote do seu extra usado no navegador. Deve ser um nome pequeno (por exemplo, Extensão de teste poderá ser extensao_teste)."
-
-#: apps/devhub/forms.py:767
-msgid "Enter the name of the person or entity to be listed as the author of this add-on."
-msgstr "Escreva o nome"
-
-#: apps/devhub/forms.py:771
-msgid "Enter the names of any other contributors to this extension, one per line."
-msgstr "Escreva o nome de qualquer dos contribuintes desta extensão, um por linha."
-
-#: apps/devhub/forms.py:780
-msgid "Add-on names should not contain Mozilla trademarks."
-msgstr "Os nomes dos extras não devem conter marcas registadas da Mozilla."
-
-#: apps/devhub/forms.py:787
-msgid "Enter a valid package name consisting of letters, numbers, or underscores."
-msgstr "Escreva um nome de pacote válido com letras, números ou underscores."
-
-#: apps/devhub/forms.py:791
-msgid "This package name is already in use."
-msgstr "Este nome de pacote já está em uso."
-
-#: apps/devhub/forms.py:794
-msgid "The package name cannot be: %s."
-msgstr "O nome do pacote não pode ser: %s."
-
-#: apps/devhub/forms.py:805
-msgid "The add-on ID must be a UUID string or an email address."
-msgstr "O ID do extra tem de ser uma string UUID ou um endereço de correio electrónico."
-
-#: apps/devhub/forms.py:811
-msgid "The version string is invalid."
-msgstr "O string da versão é inválido."
-
-#: apps/devhub/forms.py:819
-msgid "Minimum"
-msgstr "Mínimo"
-
-#: apps/devhub/forms.py:822
-msgid "Maximum"
-msgstr "Máximo"
-
-#: apps/devhub/forms.py:873
-msgid "Min version must be less than Max version."
-msgstr "A versão Min tem de ser inferior à versão Máx."
-
-#: apps/devhub/forms.py:898
-msgid "{0} is a required target application."
-msgstr "{0} é uma aplicação de destino necessária."
-
-#: apps/devhub/forms.py:910
-msgid "About dialog"
-msgstr "Diálogo sobre"
-
-#: apps/devhub/forms.py:911
-msgid "Creates a standard About dialog for your extension"
-msgstr "Cria um padrão de diálogo sobre para a sua extensão"
-
-#: apps/devhub/forms.py:915
-msgid "Preferences dialog"
-msgstr "Diálogo de preferências"
-
-#: apps/devhub/forms.py:916
-msgid "Creates an example Preferences window"
-msgstr "Cria um exemplo da janela Preferências"
-
-#: apps/devhub/forms.py:919
-msgid "Toolbar"
-msgstr "Barra de ferramentas"
-
-#: apps/devhub/forms.py:920
-msgid "Creates an example toolbar for your extension"
-msgstr "Cria uma barra de ferramentas de exemplo para a sua extensão"
-
-#: apps/devhub/forms.py:923
-msgid "Toolbar button"
-msgstr "Botão da barra de ferramentas"
-
-#: apps/devhub/forms.py:924
-msgid "Creates an example button on the browser toolbar"
-msgstr "Cria um botão de exemplo na barra de ferramentas do navegador"
-
-#: apps/devhub/forms.py:928
-msgid "Main menu command"
-msgstr "Comando do menu principal"
-
-#: apps/devhub/forms.py:929
-msgid "Creates an item on the Tools menu"
-msgstr "Cria um item no menu Ferramentas"
-
-#: apps/devhub/forms.py:932
-msgid "Context menu command"
-msgstr "Comando do menu de contexto"
-
-#: apps/devhub/forms.py:933
-msgid "Creates a context menu item for images"
-msgstr "Cria um item de menu de contexto para imagens"
-
-#: apps/devhub/forms.py:936
-msgid "Sidebar support"
-msgstr "Suporte da barra lateral"
-
-#: apps/devhub/forms.py:937
-msgid "Creates an example sidebar panel"
-msgstr "Cria um painel lateral de exemplo"
-
-#: apps/devhub/forms.py:946 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Primeiro seleccione uma aplicação"
 
-#: apps/devhub/forms.py:998
+#: apps/devhub/forms.py:804
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Não pode haver mais do que 3 extras pedidos."
 
@@ -3912,19 +3795,19 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-#: apps/devhub/models.py:370 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Comentário"
 
-#: apps/devhub/tasks.py:327
+#: apps/devhub/tasks.py:300
 msgid "%s responded with %s (%s)."
 msgstr "%s respondeu com %s (%s)."
 
-#: apps/devhub/tasks.py:331
+#: apps/devhub/tasks.py:304
 msgid "Connection to \"%s\" timed out."
 msgstr "A ligação a \"%s\" expirou."
 
-#: apps/devhub/tasks.py:333
+#: apps/devhub/tasks.py:306
 msgid "Could not contact host at \"%s\"."
 msgstr "Não foi possível contactar o servidor em  \"%s\" ."
 
@@ -3932,183 +3815,138 @@ msgstr "Não foi possível contactar o servidor em  \"%s\" ."
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "A validação gerou muitos erros/alertas então %s mensagens foram cortadas. Após corrigir as mensagens visíveis, você poderá ver as outras mensagens."
 
-#: apps/devhub/views.py:176
+#: apps/devhub/views.py:177
 msgid "All My Add-ons"
 msgstr "Todos os meus extras"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "All Activity"
 msgstr "Toda a actividade"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Updates"
 msgstr "Actualizações do extra"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Status"
 msgstr "Estado do extra"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "User Collections"
 msgstr "Coleções do utilizador"
 
-#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Comentários do utilizador"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1156
+#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1097
 msgid "Changes successfully saved."
 msgstr "Alterações guardadas com sucesso."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1571
+#: apps/devhub/views.py:328 apps/devhub/views.py:1518
 msgid "Please check the form for errors."
 msgstr "Por favor, verifique se o formulário tem erros."
 
-#: apps/devhub/views.py:339
+#: apps/devhub/views.py:340
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "O extra não pode ser eliminado. Em alternativa desativar este extra."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Theme deleted."
 msgstr "Tema eliminado."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Add-on deleted."
 msgstr "Extra eliminado."
 
-#: apps/devhub/views.py:355
+#: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "A senha estava incorreta. O tema não foi eliminado."
 
-#: apps/devhub/views.py:360
+#: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "A senha está incorrecta. O extra não foi eliminado."
 
-#: apps/devhub/views.py:433
+#: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:440
+#: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:459
+#: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:502
+#: apps/devhub/views.py:503
 msgid "There were errors in your submission."
 msgstr "Houve erros na sua submissão."
 
-#: apps/devhub/views.py:566
+#: apps/devhub/views.py:567
 msgid "Validate Add-on"
 msgstr "Validar extra"
 
-#: apps/devhub/views.py:575
+#: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
 msgstr "Verifique a compatibilidade do extra"
 
-#: apps/devhub/views.py:698
+#: apps/devhub/views.py:639
 msgid "There was an error with the submission."
 msgstr "Houve um erro com a submissão."
 
-#: apps/devhub/views.py:1061 apps/users/forms.py:419
+#: apps/devhub/views.py:1002 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser ou PNG ou JPG."
 
-#: apps/devhub/views.py:1065
+#: apps/devhub/views.py:1006
 msgid "Icons cannot be animated."
 msgstr "Os ícones não podem ser animados."
 
-#: apps/devhub/views.py:1067
+#: apps/devhub/views.py:1008
 msgid "Images cannot be animated."
 msgstr "As imagens não podem ser animadas."
 
-#: apps/devhub/views.py:1080
+#: apps/devhub/views.py:1021
 msgid "Images cannot be larger than %dKB."
 msgstr "As imagens não podem ser maiores que %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1090
+#: apps/devhub/views.py:1031
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A imagem tem de ter exactamente {0} pixéis de largura e {1} pixéis de altura."
 
-#: apps/devhub/views.py:1097
+#: apps/devhub/views.py:1038
 msgid "There was an error uploading your preview."
 msgstr "Houve um erro ao carregar a sua pré-visualização."
 
-#: apps/devhub/views.py:1195
+#: apps/devhub/views.py:1136
 msgid "Version %s disabled."
 msgstr "Versão %s desativada."
 
-#: apps/devhub/views.py:1199
+#: apps/devhub/views.py:1140
 msgid "Version %s deleted."
 msgstr "Versão %s eliminado."
 
-#: apps/devhub/views.py:1209
+#: apps/devhub/views.py:1150
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Este envio falhou a validação e pode não ter os resultados completos da validação. Por favor tenha atenção na sua revisão."
 
-#: apps/devhub/views.py:1617
+#: apps/devhub/views.py:1335
+msgid "Skipping to step 6 because the add-on won't be listed"
+msgstr ""
+
+#: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
 msgstr "Revisão preliminar pedida."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1565
 msgid "Full Review Requested."
 msgstr "Revisão completa pedida."
 
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Voltar aos extras"
-
-#: apps/devhub/templates/devhub/builder.html:3 apps/devhub/templates/devhub/builder.html:30
-msgid "Add-on SDK"
-msgstr "SDK dos extras"
-
-#. Section in strong tag is bigger and on it's own line
-#: apps/devhub/templates/devhub/builder.html:11
-msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr "<strong>SDK de extras:</strong> Crie extras rápida e facilmente"
-
-#: apps/devhub/templates/devhub/builder.html:16
-msgid ""
-"The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
-"million Firefox users world wide."
-msgstr ""
-"O SDK de extras fornece poderosas APIs que permitem aos programadores a criação de extras para o Firefox utilizando HTML, CSS e JavaScript. Quando o seu extra estiver concluído, nós faremos com que "
-"seja fácil partilhá-lo com mais de 400 milhões de utilizadores mundiais do Firefox."
-
-#: apps/devhub/templates/devhub/builder.html:32
-msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
-msgstr "O extra SDK é um conjunto de APIs com uma linha de comandos que lhe permite desenvolver extras com a sua própria cadeia de ferramentas."
-
-#: apps/devhub/templates/devhub/builder.html:38
-msgid "Choose your own code editor"
-msgstr "Escolha o seu próprio editor de código"
-
-#: apps/devhub/templates/devhub/builder.html:39
-msgid "Access your development files locally"
-msgstr "Aceda localmente aos seus ficheiros de desenvolvimento"
-
-#: apps/devhub/templates/devhub/builder.html:40
-msgid "Get greater control over SDK build steps"
-msgstr "Obter um maior controlo sobre os passos da construção do SDK"
-
-#: apps/devhub/templates/devhub/builder.html:43
-msgid "Download the Add-on SDK"
-msgstr "Transfira os SDK dos extras"
-
-#: apps/devhub/templates/devhub/builder.html:49
-msgid "Help is at Hand!"
-msgstr "A ajuda está à mão!"
-
-#: apps/devhub/templates/devhub/builder.html:51
-msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
-msgstr "Precisa de ajuda para fazer o seu extra? Nós temos uma <a href=\"%(url_docs)s\">extensiva documentação</a> e uma grande comunidade de desenvolvimento para que nunca esteja só."
-
-#: apps/devhub/templates/devhub/builder.html:60
-msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr "Interessado em tornar o SDK dos extras ainda melhor? Obtenha o código-fonte e saiba como ajudar <a href='%(url_wiki)s'>aqui</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4139,131 +3977,74 @@ msgstr "Por favor, escreva alguns termos de pesquisa."
 msgid "Loading results&hellip;"
 msgstr "A carregar resultados&hellip;"
 
-#: apps/devhub/templates/devhub/index.html:23
-msgid "Calling All Add-ons!"
-msgstr "Chamando todos os extras!"
-
-#: apps/devhub/templates/devhub/index.html:25
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Não há melhor maneira de distribuir o seu extra do que alojá-lo nos extras da Mozilla."
-
-#: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
+#: apps/devhub/templates/devhub/index.html:21
 msgid "Submit an Add-on"
 msgstr "Submeter um extra"
 
-#: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
+#: apps/devhub/templates/devhub/index.html:26
+msgid "AMO Reviewers"
+msgstr "Revisores AMO"
+
+#: apps/devhub/templates/devhub/index.html:28
+msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
+msgstr "Força! Torne-se um revisor AMO hoje e tenha os seus extras revistos mais depressa."
+
+#: apps/devhub/templates/devhub/index.html:31
+msgid "Become an AMO Reviewer"
+msgstr "Torne-se num revisor AMO"
+
+#: apps/devhub/templates/devhub/index.html:38
+msgid "Learn All About Add-ons"
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:40
+msgid ""
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:50
+msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:57
+msgid "Start Making Add-ons"
+msgstr "Começar a fazer extras"
+
+#: apps/devhub/templates/devhub/index.html:85 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
 msgstr "Estado:"
 
-#: apps/devhub/templates/devhub/index.html:54
+#: apps/devhub/templates/devhub/index.html:90
 msgid "Latest Version:"
 msgstr "Versão mais recente:"
 
-#: apps/devhub/templates/devhub/index.html:63 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
+#: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
 msgstr "Posição na fila:"
 
-#: apps/devhub/templates/devhub/index.html:64 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
+#: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s de %(total)s"
 
 # 90%
-#: apps/devhub/templates/devhub/index.html:74 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
 msgstr "Carregar Versão Nova"
 
-#: apps/devhub/templates/devhub/index.html:80
+#: apps/devhub/templates/devhub/index.html:118
 msgid "View all add-ons ►"
 msgstr "Ver todos os extras ►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "Revisores AMO"
-
-#: apps/devhub/templates/devhub/index.html:85
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Força! Torne-se um revisor AMO hoje e tenha os seus extras revistos mais depressa."
-
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "Torne-se num revisor AMO"
-
-#: apps/devhub/templates/devhub/index.html:96
-msgid "Firefox Add-ons Made Easy"
-msgstr "Extras do Firefox fáceis de fazer"
-
-#: apps/devhub/templates/devhub/index.html:98
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
-"ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
+#: apps/devhub/templates/devhub/index.html:121
+msgid "Publish your add-ons!"
 msgstr ""
-"Os extras permite a milhões de utilizadores do Firefox melhorar e personalizar a sua experiência de navegação. Se é um programador web e sabe HTML, JavaScript e CSS, pode já ter o que é necessário "
-"para fazer grandes extras com o SDK de extras. Para além disso, extras construídos com o SDK, por omissão, não necessitam que o navegador seja reiniciado."
 
-#: apps/devhub/templates/devhub/index.html:106
-msgid "Start Making Add-ons"
-msgstr "Começar a fazer extras"
-
-#: apps/devhub/templates/devhub/index.html:113
-msgid "Learn &amp; Explore"
-msgstr "Aprender &amp; Explorar"
-
-#: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:41 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:6 apps/devhub/templates/devhub/docs/how-to.html:3 apps/devhub/templates/devhub/docs/how-to.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:61 apps/devhub/templates/devhub/docs/how-to.html:62
-msgid "How-to Library"
-msgstr "Biblioteca como fazer"
-
-#: apps/devhub/templates/devhub/index.html:121 apps/devhub/templates/devhub/docs/how-to.html:64
-msgid "Get add-on development guidance in a top-notch collection of tutorials, articles, and more."
-msgstr "Obtenha ajuda no desenvolvimento de extras com a colecção de tutoriais, artigos e muito mais."
-
-#: apps/devhub/templates/devhub/index.html:132
-msgid "API & Language Reference"
-msgstr "API & Referência de idioma"
-
-#: apps/devhub/templates/devhub/index.html:134 apps/devhub/templates/devhub/docs/reference.html:14
-msgid "The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece."
-msgstr "A documentação oficial sobre APIs e idiomas. O que precisa, quando precisa, para criar a sua obra prima."
-
-#: apps/devhub/templates/devhub/index.html:145 apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
-#: apps/devhub/templates/devhub/docs/case-studies.html:31 apps/devhub/templates/devhub/docs/case-studies.html:32
-msgid "Case Studies"
-msgstr "Casos de estudo"
-
-#: apps/devhub/templates/devhub/index.html:147 apps/devhub/templates/devhub/docs/case-studies.html:35
-msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
-msgstr "Histórias de sucesso do início ao fim. Veja como os desenvolvedores de extras fazem magia com a Mozilla."
-
-#: apps/devhub/templates/devhub/index.html:159
-msgid "Create &amp; Connect"
-msgstr "Criar &amp; Ligar"
-
-#: apps/devhub/templates/devhub/index.html:165
-msgid "Developer Forums"
-msgstr "Fóruns do desenvolvedor"
-
-#: apps/devhub/templates/devhub/index.html:167
-msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
-msgstr "Discuta o desenvolvimento, ideias brainstorm e faça ligações no mundo dos extras."
-
-#: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:52 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
-msgid "Add-on Packager"
-msgstr "Pacote do extra"
-
-#: apps/devhub/templates/devhub/index.html:180
-msgid "Auto-generate add-on packaging by entering basic info and picking UI parts. Get working without setup."
-msgstr "Auto-gerar o pacote do extra escrevendo informação básica e agarrando partes do UI. Trabalhe sem configurar."
-
-#: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:54
-msgid "Add-on Validator"
-msgstr "Validar extra"
-
-#: apps/devhub/templates/devhub/index.html:193
-msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
-msgstr "Verifique no seu extra problemas e erros comuns. Aberto a todos e não apenas aos extras aqui alojados."
+#: apps/devhub/templates/devhub/index.html:126
+msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
+msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4282,165 +4063,48 @@ msgstr "mais extras..."
 msgid "Documentation"
 msgstr "Documentação"
 
-#: apps/devhub/templates/devhub/nav.html:35 apps/devhub/templates/devhub/addons/submit/sidebar.html:4 apps/devhub/templates/devhub/docs/getting-started.html:3
-#: apps/devhub/templates/devhub/docs/getting-started.html:6 apps/devhub/templates/devhub/docs/getting-started.html:8 apps/devhub/templates/devhub/docs/how-to-getting-started.html:3
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:7 apps/devhub/templates/devhub/docs/how-to-getting-started.html:9 apps/devhub/templates/devhub/docs/how-to-theme-development.html:16
-#: apps/devhub/templates/devhub/docs/how-to.html:13 apps/devhub/templates/devhub/docs/how-to.html:74
-msgid "Getting Started"
-msgstr "Começar"
+#: apps/devhub/templates/devhub/nav.html:35
+msgid "Extension Development"
+msgstr "Desenvolvimento de extensões"
 
-#: apps/devhub/templates/devhub/nav.html:37 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
+#: apps/devhub/templates/devhub/nav.html:37
+msgid "Lightweight Themes"
+msgstr ""
+
+#: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
 #: apps/devhub/templates/devhub/docs/policies-submission.html:6 apps/devhub/templates/devhub/docs/policies.html:3 apps/devhub/templates/devhub/docs/policies.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:38 apps/devhub/templates/devhub/docs/policies.html:39
 msgid "Add-on Policies"
 msgstr "Políticas do extra"
 
-#: apps/devhub/templates/devhub/nav.html:43
-msgid "API &amp; Language Reference"
-msgstr "API e referência da linguagem"
+#: apps/devhub/templates/devhub/nav.html:46
+msgid "Add-on Validator"
+msgstr "Validar extra"
 
-#: apps/devhub/templates/devhub/nav.html:56
+#: apps/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
 msgstr "Verificador de compatibilidade de extra"
 
-#: apps/devhub/templates/devhub/nav.html:58
+#: apps/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
 msgstr "Extras de desenvolvimento"
 
-#: apps/devhub/templates/devhub/nav.html:62
-msgid "Community"
-msgstr "Comunidade"
+#: apps/devhub/templates/devhub/nav.html:54
+msgid "Community & Support"
+msgstr ""
 
-#: apps/devhub/templates/devhub/nav.html:65
+#: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
 msgstr "Blog dos extras"
 
-#: apps/devhub/templates/devhub/nav.html:67
+#: apps/devhub/templates/devhub/nav.html:59
 msgid "Add-ons Forum"
 msgstr "Fórum dos extras"
 
-#: apps/devhub/templates/devhub/package_addon.html:17
-msgid "Enter some basic information about your add-on below and select which interface components to start with, and your custom-built add-on will be ready for download."
-msgstr "Escreva alguma informação básica sobre o seu extra em baixo e seleccione com que componentes da interface deseja começar, e o seu extra personalizado estará pronto para transferir."
-
-#: apps/devhub/templates/devhub/package_addon.html:24 apps/devhub/templates/devhub/addons/submit/sidebar.html:6
-msgid "Describe your add-on"
-msgstr "Descreva o seu extra"
-
-#: apps/devhub/templates/devhub/package_addon.html:26
-msgid "First, you need to enter some basic information about your add-on. This will be displayed in the Add-ons Manager when your extension is installed."
-msgstr "Primeiro, tem que escrever alguma informação básica sobre o seu extra. Isto será o que vai ser apresentado no Gestor de extras quando a sua extensão for instalada."
-
-#: apps/devhub/templates/devhub/package_addon.html:33
-msgid "Add-on Name"
-msgstr "Nome do extra"
-
-#: apps/devhub/templates/devhub/package_addon.html:35
-msgid "Add-on Version"
-msgstr "Versão do extra"
-
-#: apps/devhub/templates/devhub/package_addon.html:36
-msgid "Unique ID"
-msgstr "Unique ID"
-
-#: apps/devhub/templates/devhub/package_addon.html:37
-msgid "Package Name"
-msgstr "Nome do pacote"
-
-#: apps/devhub/templates/devhub/package_addon.html:41
-msgid "Who's working on your add-on?"
-msgstr "Quem está a trabalhar no seu extra?"
-
-#: apps/devhub/templates/devhub/package_addon.html:43
-msgid "Tell us about the people or companies behind this add-on. This information appears in the add-on's About dialog."
-msgstr "Diga-nos sobre as pessoas ou companhias por detrás deste extra. Esta informação aparece do diálogo sobre do extra."
-
-#: apps/devhub/templates/devhub/package_addon.html:49
-msgid "Primary Author"
-msgstr "Autor principal"
-
-#: apps/devhub/templates/devhub/package_addon.html:50
-msgid "Contributors"
-msgstr "Contribuintes"
-
-#: apps/devhub/templates/devhub/package_addon.html:54
-msgid "Where will your add-on run?"
-msgstr "Onde é que o seu extra é executado?"
-
-#: apps/devhub/templates/devhub/package_addon.html:56
-msgid ""
-"Select the applications and versions that your add-on will support. The versions that you select will be the only versions that your add-on will be installable on. Make sure you only select "
-"applications and versions that you intend to test your add-on with."
-msgstr ""
-"Seleccione as aplicações e versões que o seu extra suportará. As versões que seleccionar serão as únicas versões em que poderá instalar o seu extra. Tenha a certeza que apenas selecciona aplicações "
-"e versões em que vai testar o seu extra."
-
-#: apps/devhub/templates/devhub/package_addon.html:64
-msgid "Supported Applications and Versions"
-msgstr "Aplicações e versões suportadas"
-
-#: apps/devhub/templates/devhub/package_addon.html:80
-msgid "Choose pre-built features"
-msgstr "Escolha as funcionalidades pré-incluídas"
-
-#: apps/devhub/templates/devhub/package_addon.html:82
-msgid "Get started quickly by selecting user interface components to include in your add-on package. We'll include documented code for each item you select so your extension will work out of the box."
-msgstr ""
-"Comece rapidamente selecionando componentes da interface do utilizador para incluir no pacote do extra. Vamos incluir documentação do códigopara cada item selecionado, para que a sua extensão "
-"funcione fora da caixa."
-
-#: apps/devhub/templates/devhub/package_addon.html:95
-msgid "Submit and Build"
-msgstr "Submeter e construir"
-
-#: apps/devhub/templates/devhub/package_addon.html:102
-msgid "Advanced Building"
-msgstr "Construção avançada"
-
-#: apps/devhub/templates/devhub/package_addon.html:104
-msgid "Want to create XULRunner applications, XPCOM components, and other advanced skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr "Deseja criar aplicações XULRunner, componentes XPCOM e outros esqueletos avançados? Visite o <a href=\"%(url)s\">MozDev Project Wizard</a>."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:10
-msgid "Add-on packaged successfully!"
-msgstr "Extra construído com sucesso!"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:14
-msgid ""
-"Use the download link below to save a copy of your extension's compressed source. To install as an extension in Firefox or another compatible application, simply rename the <kbd>.zip</kbd> "
-"extension to <kbd>.xpi</kbd>."
-msgstr ""
-"Use a ligação abaixo para guardar uma cópia do código comprimido da sua extensão. Para instalar como uma extensão no Firefox ou outra aplicação compatível, mude o nome  da extensão de <kbd>.zip</"
-"kbd> para <kbd>.xpi</kbd>."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:22
-msgid "Please wait&hellip;"
-msgstr "Por favor aguarde ..."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:24
-msgid "JavaScript needs to be enabled to fetch the packaged add-on."
-msgstr "O JavaScript precisa estar activado para procurar o pacote do extra."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:29
-msgid "What do I do next?"
-msgstr "O que faço a seguir?"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:30
-msgid ""
-"<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
-"<li>Read the documentation and ask for help when you need it!</li> </ol>"
-msgstr ""
-"<ol> <li> Siga as instruções no código fonte empacotado para criar as suas próprias preferências e fazer as suas personalizações. </li> <li>Remova qualquer código fonte que não utilize.</li> "
-"<li>Leia a documentação e peça ajuda quando precisar!</li> </ol>"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:41
-msgid ""
-"Now that you've got an extension skeleton, the fun part begins: hacking on the extension to make it do what you want. If you need some help, check out our <a href=\"%(gs_url)s\">Getting Started</a> "
-"page for the basics, or visit the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and documentation."
-msgstr ""
-"Agora que tem o esqueleto de uma extensão, começa a parte engraçada. alterar a extensão para fazer o que você quer que ela faça. Se precisar de alguma ajuda, veja a nossa página <a href=\"%(gs_url)s"
-"\">Como começar</a> para os assuntos básicos ou visite a <a href=\"%(ht_url)s\">biblioteca como fazer</a> para tutoriais e documentação."
+#: apps/devhub/templates/devhub/nav.html:61
+msgid "More Resources"
+msgstr "Mais recursos"
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
@@ -5281,9 +4945,17 @@ msgstr "Não pode pedir a revisão completa durante 10 dias"
 msgid "Choose Preliminary Review"
 msgstr "Escolher revisão preliminar"
 
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
+msgid "Getting Started"
+msgstr "Começar"
+
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
 msgid "Upload your add-on"
 msgstr "Carregar o seu extra"
+
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
+msgid "Describe your add-on"
+msgstr "Descreva o seu extra"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Add images"
@@ -5356,784 +5028,13 @@ msgstr "Use os campos em baixo para carregar o pacote do seu extra e seleccionar
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:38 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:37
+msgid "Do you want your add-on listed on AMO?"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:12
-msgid "StumbleUpon"
-msgstr "StumbleUpon"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:16
-msgid "Download Statusbar"
-msgstr "Transferir a barra de estado"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:20
-msgid "Cooliris"
-msgstr "Cooliris"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:44
-msgid "by <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-msgstr "por <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:48
-msgid "Personalized Browsing with StumbleUpon"
-msgstr "Navegação personalizada com o StumbleUpon"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:50
-msgid "StumbleUpon is a recommendation engine that helps users discover and share great websites. With over 8 million users, it has become one of the most popular sharing services on the Web today."
-msgstr ""
-"o StumbleUpon é um motor de recomendação que ajuda os desenvolvedores a descobrir e partilhar grandes sítios web. Com mais de 8 milhões de utilizadores, tornou-se um dos mais populares serviços de "
-"partilha na web."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:55
-msgid "Learn how StumbleUpon got its start with Firefox"
-msgstr "Saiba como o StumbleUpon começou com o Firefox"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:63
-msgid "by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-msgstr "por <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:67
-msgid "Easy Download Management with Download Statusbar"
-msgstr "Gestão de transferências fácil com a barra de estado de transferências"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:70
-msgid ""
-"Download Statusbar shows the progress of current downloads right in the browser&#039;s statusbar. There&#039;s no need to open the Download Manager when downloads can be managed from anywhere in "
-"the browser."
-msgstr ""
-"A barra de estado de transferências mostra a evolução das transferências em curso na barra de estado do navegador. Não há necessidade de abrir o gestor de transferências quando podem ser geridos em "
-"qualquer sítio do navegador."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:75
-msgid "Read about how someone new to software development made one of the most popular Firefox add-ons"
-msgstr "Leia como alguém novo no desenvolvimento de software fez um dos extras mais populares do Firefox"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:83
-msgid "by <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-msgstr "por <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:87
-msgid "Immersive 3-D Experience with Cooliris"
-msgstr "Experiência 3-D com Cooliris"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:90
-msgid ""
-"Cooliris lets users browse photos and videos from the Web or local computer on an infinitely scrollable 3-D wall. Its award-winning design brings speed and elegance to searching, finding and "
-"enjoying rich content."
-msgstr ""
-"O Cooliris permite que os utilizadores naveguem em fotos e vídeos a partir da web ou do computador local numa parede 3-D infinita. É um design premiado que traz velocidade e elegância na pesquisa, "
-"procura de conteúdo interessante."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:95
-msgid "Find out how Cooliris re-invented photo browsing"
-msgstr "Descubra como o Cooliris reinventou a navegação de fotografias"
-
-#. Localization note: this page is intended to be fun and jokes around to make add-on development sound easy for those getting started. Please feel free
-#. to translate humorous parts/metaphors into something that works in your locale, or take them out if you want. Thanks!
-#: apps/devhub/templates/devhub/docs/getting-started.html:16
-msgid ""
-"If you've used Firefox add-ons before, you know that they're capable of some pretty impressive features &mdash; from inspecting the underlying framework of a website to displaying a scrolling 3-D "
-"wall of pictures and video. But some of the most popular add-ons just make minor changes to Firefox through easily learned languages like JavaScript, XUL, and CSS. If you have an idea for your "
-"first add-on, start out with something simple to learn the basics of how extensions are packaged and interact with Firefox."
-msgstr ""
-"Se já utilizou antes os extras do Firefox, sabe que eles são capazes de fazer coisas interessantes, desde inspeccionar o framework de um sítio web a apresentar uma parede de images e vídeos em 3-D. "
-"Mas alguns dos extras mais populares apenas fazem pequenas alterações ao Firefox através de linguagens como JavaScript, XUL, e CSS. Se tem uma ideia para o seu primeiro extra, comece com algo "
-"simples para aprender o básico de como são feitos e interagem com o Firefox."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:24
-msgid "Learn the basics"
-msgstr "Aprenda o básico"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:26
-msgid ""
-"The easiest way to do that is to follow along with the <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a> as it explains in detail the "
-"technologies used in extensions and walks through the creation of several basic extensions."
-msgstr ""
-"A maneira mais fácil de fazer é seguir o <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Guia para o desenvolvedor de extras do Firefox</a> pois explica em detalhe as "
-"tecnologias utilizadas nas extensões e cobre a criação de diversas extensões básicas."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:32
-msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visit the Firefox Add-ons Developer Guide</a>"
-msgstr "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visite o guia do desenvolvedor de extras do Firefox</a>"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:38
-msgid ""
-"If you'd rather dive right in, there are several other tutorials in our <a href=\"%(base_docs)show-to/getting-started\">Getting Started section</a> of the <a href=\"%(base_docs)show-to\">How-to "
-"Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
-"#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
-msgstr ""
-"Se prefere mergulhar directamente, existem vários outros tutoriais na nossa <a href=\"%(base_docs)show-to/getting-started\">secção Como começar</a> da <a href=\"%(base_docs)show-to\">Biblioteca "
-"como fazer</a> para ir directamente para o código. E se tiver algum tempo de sobra, pode preferir assistir a um vídeo de conceitos básicos de extensão:<a href=\"http://design-challenge.mozilla.com/"
-"resources/#extension_bootcamp\">Extension Bootcamp: Zero para Olá Mundo em 45 minutos</a>."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:47
-msgid "Build your add-on"
-msgstr "Faça o seu extra"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:49
-msgid ""
-"Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
-"copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
-msgstr ""
-"Assim que você estiver familiarizado com o ambiente de desenvolvimento de extensões, é hora de começar o seu primeiro extra. Anteriormente isso significava ter que escalar uma montanha para "
-"encontrar um modelo para copiar para o manifesto de instalação do seu extra. Felizmente a Central de Desenvolvedores (essa aqui!) apresentou o bondinho do empacotamento de extensões: o <a href="
-"\"%(url)s\">Empacotador de extras</a>!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:54
-msgid ""
-"Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
-"install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
-msgstr ""
-"Siga os passos para escrever o nome do seu extra, o número da versão, as aplicações suportadas e outros detalhes e ele irá fazer o pacote do seu extra para transferir. Ele não cria apenas o seu "
-"manifesto de instalação, mas, pode também seleccionar os elementos comuns da interface, tais como, barras de ferramentas, barras laterais e menus de contexto para fazer um esqueleto da extensão que "
-"funcione. Em resumo, nós quase que fazemos a sua extensão para si!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:60
-msgid "Take me to the Add-on Packager!"
-msgstr "Levem-me para o Add-on Packager!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:65
-msgid "Add some flair"
-msgstr "Adicione um pouco de talento"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:67
-msgid ""
-"If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
-"learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
-msgstr ""
-"Se o seu extra necessita de mais funcionalidade que a barra lateral vazia que o Packager fez para si, existem muitas forma de saber como adicionar a funcionalidade que pretende. Uma das formas mais "
-"comuns de aprender como fazer algo numa extensão é olhar para o que as outras extensões já fazem. Lembre-se apenas que, se a licença da outra extensão não permitir copiar o seu código fonte, não "
-"poderá fazê-lo."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:72
-msgid ""
-"We also have two areas here in the Hub that may help you out: the <a href=\"%(base_docs)sreference\">API &amp; Language References</a> page has links to official documentation for extension "
-"languages and APIs like JavaScript, XUL, XPCOM, and FUEL. Secondly, the <a href=\"%(base_docs)show-to\">How-to Library</a> is full of tutorials, walkthroughs, videos, and articles written by smart "
-"people on extension development and best practices."
-msgstr ""
-"Temos também duas áreas aqui no Hub que o poderão ajudar. a página <a href=\"%(base_docs)sreference\">API &amp; referências de idioma</a> tem ligações para documentação oficial sobre os idiomas e "
-"APIs da extensão como JavaScript, XUL, XPCOM e FUEL. Temos também a <a href=\"%(base_docs)show-to\">Biblioteca como fazer</a> cheia de tutoriais, vídeos e artigos escritos por gente entendida no "
-"desenvolvimento de extensões e as melhores práticas."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:78
-msgid "View the References"
-msgstr "Veja as referências"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:79
-msgid "Enter the How-to Library"
-msgstr "Entre na biblioteca como-fazer"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:81
-msgid ""
-"If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
-"problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
-msgstr ""
-"Se já souber o que procure, basta <a href=\"/en-US/developers/search\">procurar!</a>. A nossa pesquisa irá indicar os melhores recursos sobre extras para encontrar a interface que falta ou o "
-"problema que tenha. Se a pesquisa não resultar procure <a href=\"https://forums.addons.mozilla.org\">ajuda</a> nos nossos fóruns."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:89
-msgid "Test your add-on"
-msgstr "Teste o seu extra"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:91
-msgid ""
-"Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
-"on all the platforms and applications it claims to support."
-msgstr ""
-"Nem mesmo entomologistas gostam de bugs em seus programas, então é importante testar seus extras antes de liberá-los para consumo geral. No mínimo, você deve ter certeza de que seu extra funciona "
-"em todas as plataformas e aplicativos que ele afirma suportar."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:97
-msgid ""
-"To help detect common problems with packaging and security, you should run our <a href=\"%(link_validator)s\">Add-on Validator</a> tool on your file. It's like Spell Check for add-ons. Your add-on "
-"will automatically be validated upon submission, but you may want to test it out beforehand. Plus, passing makes you feel good."
-msgstr ""
-"Para ajudar a detectar problemas comuns com o pacote e a segurança, deve executar a nossa ferramenta <a href=\"%(link_validator)s\">Validar o extra</a> no seu ficheiro. É como um corrector "
-"ortográfico para extras. O seu extra será automaticamente validado depois de submetido mas pode querer testá-lo antes. E depois se passar irá sentir-se muito melhor."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:103
-msgid "Validate my Add-on"
-msgstr "Validar o meu extra"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:107
-msgid "Share your add-on with the world"
-msgstr "Partilhe o seu extra com o mundo"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:109
-msgid ""
-"Woah, you finished your add-on already? Just so you know, <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> is hiring. Alright, if you've tested your add-on out and it's free of problems, it's "
-"time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
-"Before you submit it, there are a few things to go over."
-msgstr ""
-"Woah, já terminou o seu extra? Sabe que a <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> está a contratar. Muito bem, se testou o seu extra e está livre de problemas, e hora de submeter o "
-"seu extra para <a href=\"https://addons.mozilla.org\">Extras da Mozilla</a>. Com mais de <em>1.5 biliões</em> de extras transferidos, é o melhor local para colocar a sua criação. Antes de o "
-"submeter, existem algumas coisas a fazer."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:115
-msgid ""
-"Mozilla cares a lot about user experience and security. That's why we have a team of volunteer Editors that review add-ons submitted to the site before they are allowed to roam free. We have a "
-"number of policies that we require add-on developers and their contributions to adhere to. Please review these policies before submitting your add-on to ensure your add-on is approved the first "
-"time."
-msgstr ""
-"A Mozilla preocupa-se imenso com a segurança e a experiência do utilizador. É por isso que temos uma equipa voluntária de editores que revêm os extras submetidos no sítio antes de serem autorizados "
-"a todos. Temos um número de políticas em que é necessário que, os desenvolvedores e as suas contribuições, adiram. Por favor, veja estas políticas antes de submeter o seu extra para assegurar que o "
-"seu extra é aprovado à primeira."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:121
-msgid "Review Add-on Policies"
-msgstr "Políticas de análise do extra"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:124
-msgid "Everything in compliance? Great. There's only one thing left to do&hellip;"
-msgstr "Tudo em conformidade? Fantástico. Há apenas mais uma coisa a fazer ..."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:130
-msgid "Submit my Add-on!"
-msgstr "Submeter o meu extra!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:133
-msgid "Congratulations!"
-msgstr "Parabéns!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:141
-msgid ""
-"If you're feeling talkative, we'd love to <a href=\"https://forums.addons.mozilla.org\">hear your feedback</a> on how your experience creating an add-on was. Hearing what new developers struggle "
-"with helps us make the experience better for future generations of add-on innovators. Whether you want to comment on the platform, the documentation, or the website, we'll listen. Better yet, since "
-"Mozilla is open, you might even be able to fix that bug or lack of documentation yourself! It's like the circle of life."
-msgstr ""
-"Se estiver com vontade de falar, nos adorávamos <a href=\"https://forums.addons.mozilla.org\">ouvir o seu feedback</a> sobre como foi a sua experiência na criação de um extra. Ouvir os novos "
-"desenvolvedores ajuda-nos a tornar a experiência melhor para as futuras gerações de inovadores de extras. Se quer comentar sobre a plataforma, a documentação, ou o sítio, nós ouvimos. Melhor ainda, "
-"uma vez que a Mozilla é aberta, você pode até ser capaz de corrigir esse erro ou a falta de documentação! É como o círculo da vida."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
-msgid "Extension Development"
-msgstr "Desenvolvimento de extensões"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:12 apps/devhub/templates/devhub/docs/how-to.html:88
-msgid "Once you know the basics, these guides will help you with intermediate to advanced extension development topics."
-msgstr "Assim que souber o básico, estes guias vão ajudá-lo com tópicos de ajuda de desenvolvimento de extensões intermédias a avançadas."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:17
-msgid "Best Practices"
-msgstr "Boas práticas"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
-msgid "Respecting the JavaScript Global Namespace"
-msgstr "Respeitando o Espaço nominal JavaScript Global"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
-msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
-msgstr "Neste tópico de blog, Mark Ziesemer explica como prevenir poluição do global namespace encapsulando as variáveis da sua extensão."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36 apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
-msgid "Editor's Pick:"
-msgstr "Escolha do editor:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:38
-msgid "Security Best Practices in Extensions"
-msgstr "Boas práticas de segurança nas extensões"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:42
-msgid "Every extension developer should know and follow the security best practices outlined in this document to keep users safe."
-msgstr "Cada desenvolvedor de extensões deve saber e seguir as boas práticas de segurança destacadas neste documento para manter os utilizadores em segurança."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:53
-msgid "Localizing an Extension"
-msgstr "Traduzir uma extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:56
-msgid "This article explains how to localize an extension, including XUL and JavaScript strings."
-msgstr "Este artigo explica como traduzir uma extensão, incluindo strings XUL e JavaScript."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
-msgid "Responsible First-run Usage"
-msgstr "Utilização responsável na primeira execução"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
-msgid "This blog post describes what a bad first-run experience means for users, and gives tips for improving that experience."
-msgstr "Este tópico do blog descreve o que significa uma má primeira execução para os utilizadores, e dá dicas para melhorar essa experiência."
-
-# This is the name/category for a group of tests
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
-msgid "Security"
-msgstr "Segurança"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
-msgid "Evaluating Code with Restricted Privileges"
-msgstr "Avaliar código com privilégios restritos"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
-msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr "Este artigo descreve o uso de Components.utils.evalInSandbox, que é uma maneira para avaliar o código \"tal como código remoto\" sem privilégios do chrome."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
-msgid "Creating Sandboxed HTTP Connections"
-msgstr "Criar ligações HTTP Sandboxed"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
-msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr "Este artigo explica como criar uma camada de isolamento para ligações HTTP que não afeta as cookies do utilizador."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
-msgid "Displaying Web Content in an Extension"
-msgstr "Mostrar o conteúdo da web numa extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:115
-msgid "Learn how to display web content in an extension without security issues."
-msgstr "Saiba como apresentar conteúdo web numa extensão sem problemas de segurança."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
-msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr "Cinco razões erradas de uso do eval numa extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
-msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
-msgstr "Neste tópico de blog, Wladimir Palant  dá cinco razões erradas para avaliar o código numa extensão."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:136
-msgid "Localization"
-msgstr "Tradução"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:142
-msgid "Localizing Extension Descriptions"
-msgstr "Traduzir descrições da extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
-msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr "Saiba como traduzir os nomes e as descrições no install manifests da extensão."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
-msgid "Localization and Plurals"
-msgstr "Tradução e plurais"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:158
-msgid "This article explains how to properly localize strings with plurals."
-msgstr "Este artigo explica como traduzir strings com plurais."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
-msgid "BabelZilla overview"
-msgstr "Visão geral do BabelZilla"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
-msgid "Learn how the BabelZilla localization community works."
-msgstr "Saiba como a comunidade de tradução BabelZilla funciona."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
-msgid "Advanced Topics"
-msgstr "Tópicos avançados"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:186
-msgid "Video:"
-msgstr "Vídeo:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:187
-msgid "Stupid/Awesome Extension Development Hacks"
-msgstr "Hacks impressionantes do desenvolvimento da extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:190
-msgid ""
-"In this video, Jono Xia explains how to go further in extension development using XPCOM, overlays, XHRs, DOM manipulation, etc. in order to make Firefox do things you might have never thought "
-"possible."
-msgstr ""
-"Neste vídeo, Jono Xia explica como ir mais além no desenvolvimento de extensões usando XPcom, overlays, XHRs, manipulação DOM, etc. de maneira a fazer com que o Firefox faça coisas que pensava não "
-"serem possíveis."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
-msgid "JavaScript Code Modules"
-msgstr "Módulos de código JavaScript"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:203
-msgid ""
-"JavaScript code modules let multiple privileged JavaScript scopes share code. For example, a module could be used by Firefox itself as well as by extensions, in order to avoid code duplication."
-msgstr ""
-"Os códulos de código JavaScript permitem a partilha de código múltiplo de javaScript. Por exemplo, um módulo pode ser usado pelo Firefox assim como por extensões, na medida de evitar a duplicação "
-"de código."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:213
-msgid "Creating Custom Firefox Extensions with the Mozilla Build System"
-msgstr "Criar extensões personalizadas do Firefox com o sistema de compilação Mozilla"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:216
-msgid ""
-"This article describes how to set up the development environment for a large, complex Firefox extension with a need for high-performance, use of third-party libraries in C/C++, or interfaces not "
-"exposed via XPCOM."
-msgstr ""
-"Este artigo descreve como configurar o ambiente de desenvolvimento para uma grande e complexa  extensão do Firefox, com a necessidade de alto desempenho, uso de bibliotecas de terceiros em C/ C++, "
-"ou interfaces não expostos através XPCOM."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
-msgid "Multiple Item Packaging"
-msgstr "Pacote múltiplo de itens"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
-msgid "This article explains how to create an extension package with multiple items \"extensions\"."
-msgstr "Este artigo explica como criar um pacote da extensão com múltiplos itens da \"extensão\""
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
-msgid "Extension Documentation Index"
-msgstr "Índice de documentação da extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:244
-msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Extensions landing page."
-msgstr "Se não conseguir encontrar o que procura nos artigos acima, tente a página do Centro de desenvolvimento de extensões da Mozilla."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
-msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
-msgstr "Aprenda o básico do desenvolvimento de extensões na plataforma Mozilla com esta secção cheia de guias para principiantes."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
-msgid "The Basics"
-msgstr "O básico"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:23
-msgid "XUL School Tutorial"
-msgstr "XUL School Tutorial"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:26
-msgid ""
-"This tutorial will guide you through all the basics of add-on development, teaching you how to package them, create a suitable development environment, and program the most common features found in "
-"add-ons. It includes working code samples and the references and tools to explore all topics more in depth."
-msgstr ""
-"Este tutorial irá guiá-lo através de todos os conceitos básicos do desenvolvimento de extras, ensinando-o como empacotá-los, criar um ambiente de desenvolvimento adequado, e programar os recursos "
-"mais comuns encontrados nos extras. Inclui amostras de código de trabalho e as referências e as ferramentas para explorar todos os tópicos com maior profundidade."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:36
-msgid "Setting Up an Extension Development Environment"
-msgstr "Configurar um ambiente de desenvolvimento da extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
-msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
-msgstr ""
-"Este artigo dá sugestões sobre como configurar a sua aplicação Mozilla para o desenvolvimento de uma extensão, incluindo a criação de um perfil,alteração de  preferências, e ferramentas de "
-"desenvolvimento úteis."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
-msgid "Building an Extension"
-msgstr "Fazer uma extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
-msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Firefox browser containing the text \"Hello, World!\""
-msgstr ""
-"Este tutorial irá levá-lo através dos passos necessários para construir uma extensão muito básica - uma que acrescenta um painel da barra de estado no navegador Firefox contendo o texto  \"Olá, "
-"Mundo!\""
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:65
-msgid "Extension Packaging"
-msgstr "Embalagem da extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
-msgid "Learn more details on how extensions are packaged and installed."
-msgstr "Saiba mais sobre como as extensões são empacotadas e instaladas."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
-msgid "Install Manifests"
-msgstr "Manifestos de instalação"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:81
-msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
-msgstr "Este documento explica como instalar manifestos \"install.rdf\" e todas as propriedades disponíveis para usar no seu extra."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
-msgid "Other Tutorials"
-msgstr "Outros tutoriais"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:95
-msgid "Firefox Add-ons Developer Guide"
-msgstr "Guia do desenvolvedor dos extras do Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:98
-msgid ""
-"In this detailed guide to extension development, you'll learn the basics of packaging extensions, building an interface with XUL, implementing advanced processes with XPCOM, and how to put it all "
-"together."
-msgstr ""
-"Neste guia detalhado sobre o desenvolvimento de uma extensão, vai aprender os básicos sobre o empacotamento de extensões, construir de uma interface com XUL, implementar processos avançados com "
-"XPCOM, e como colocá-los todos juntos."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
-msgid "How to Develop a Firefox Extension"
-msgstr "Como desenvolver uma extensão do Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:111
-msgid "In this walk-through, Robert Nyman explains how to develop a Firefox extension from scratch."
-msgstr "Neste passo-a-passo, Robert Nyman explica como desenvolver uma extensão para o Firefox desde o início."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:121
-msgid "How to Build a Firefox Extension"
-msgstr "Como construir uma extensão do Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:124
-msgid "Lifehacker gives tips and helpful hints on developing your first Firefox extension."
-msgstr "Lifehacker dá dicas e sugestões úteis no desenvolvimento da sua primeira extensão para o Firefox."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:134
-msgid "Firefox Extension Development Tutorial"
-msgstr "Tutorial de desenvolvimento de uma extensão do Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:137
-msgid "A multi-page tutorial covering a variety of extension development topics."
-msgstr "Um tutorial multi-página que cobre uma variedade de tópicos de desenvolvimento de uma extensão."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:149
-msgid "Creating a Status Bar Extension"
-msgstr "Criar uma extensão da barra de estado"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:152
-msgid "Learn how to create a simple status bar extension and add more advanced functionality in subsequent tutorials, linked below."
-msgstr "Aprenda como criar uma extensão de uma barra de estado simples e adicionar mais funcionalidade nos tutoriais seguinte, indicado em baixo."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:162
-msgid "Creating a Dynamic Status Bar Extension"
-msgstr "Criar uma extensão da barra de estado dinâmica"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:165
-msgid "This article modifies the status bar extension created in the above tutorial by fetching content from a website at a regular interval."
-msgstr "Este artigo modifica a extensão da barra de estado criada no tutorial indicado em cima procurando o conteúdo de um sítio web num intervalo regular."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:175
-msgid "Adding Preferences to an Extension"
-msgstr "Adicionar preferências a uma extensão"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:178
-msgid "This article shows how to add preferences to the dynamic status bar created in the above tutorial."
-msgstr "Este artigo mostra como adicionar preferências à barra de estado dinâmica criada no tutorial acima."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:187
-msgid "Books"
-msgstr "Livros"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:193
-msgid "Build Your Own Firefox Extension E-book"
-msgstr "Crie a sua própria extensão de E-book para o Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:196
-msgid "With a little JavaScript know-how, author James Edwards will show you just how straightforward it is to build your own Firefox extensions."
-msgstr "Com um pouco de conhecimento de JavaScript, o autor James Edwards irá mostrar-lhe o quão fácil é construir as suas próprias extensões do Firefox."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:3 apps/devhub/templates/devhub/docs/how-to-other-addons.html:7 apps/devhub/templates/devhub/docs/how-to-other-addons.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:29 apps/devhub/templates/devhub/docs/how-to.html:125
-msgid "Other Types of Add-ons"
-msgstr "Outros tipos de extras"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12 apps/devhub/templates/devhub/docs/how-to.html:128
-msgid "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-ons here."
-msgstr "Encontre aqui informação sobre plugins de pesquisa, Jetpack, temas e outros tipos de extras."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
-msgid "Jetpack"
-msgstr "Jetpack"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:23
-msgid "Jetpack Tutorial"
-msgstr "Tutorial Jetpack"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
-msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
-msgstr "Neste tutorial saiba como é fácil expandir o Firefox com o Jetpack."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
-msgid "Jetpack API Documentation"
-msgstr "Documentação da API Jetpack "
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
-msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
-msgstr "Este documentação da API Jetpack é importante para trabalhar no seu Jetpack."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
-msgid "How to Create Themes"
-msgstr "Como criar temas"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
-msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr "Saiba como criar o seu próprio tema com este guia passo a passo oficial."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
-msgid "Search Plug-ins"
-msgstr "Procurar Plug-ins"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
-msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr "Criar OpenSearch Plug-ins para o Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
-msgid "This article explains the structure and requirements of search plug-ins in Firefox."
-msgstr "Este artigo explica a estrutura e os requisitos de plug-ins de pesquisa do Firefox."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
-msgid "Plug-ins"
-msgstr "Plug-ins"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
-msgid "Plug-in Documentation Index"
-msgstr "Índice de documentação de Plug-in"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
-msgid ""
-"Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in "
-"documentation index to learn more."
-msgstr ""
-"Plug-ins para aplicativos baseados na Mozilla são componentes binários que podem mostrar o conteúdo que a aplicação em si não pode mostrar nativamente. Explore a documentação do Centro de "
-"desenvolvimento de plug-in para saber mais."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3 apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
-#: apps/devhub/templates/devhub/docs/how-to.html:111
-msgid "Theme Development"
-msgstr "Desenvolvimento de temas"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11 apps/devhub/templates/devhub/docs/how-to.html:115
-msgid "Style Mozilla applications the way you want with pixel-perfect themes."
-msgstr "Estilo de aplicações Mozilla do jeito que você quiser com temas pixel-perfeito."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
-msgid "Creating a Skin for Firefox"
-msgstr "Criar skin para o Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:26
-msgid "Learn how to find the right files to edit, make your changes, and package up your new theme in this tutorial."
-msgstr "Saiba como encontrar os ficheiros certos para editar, fazer as alterações, e empacotar o seu novo tema neste tutorial."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:37
-msgid "How to Create a Firefox Theme"
-msgstr "Como criar um tema para o Firefox"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:40
-msgid "Thomas McMahon explains how to create a Firefox theme from start-to-finish in this tutorial."
-msgstr "Thomas McMahon explica, neste tutorial, como criar um tema do Firefox, do início ao fim."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:54
-msgid "Theme Packaging"
-msgstr "Pacote do tema"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:57
-msgid "This article explains the packaging of themes."
-msgstr "Este artigo explica o empacotamento de temas."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:67
-msgid "First Steps in Theme Design"
-msgstr "Primeiros passos no desenho de temas"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
-msgid "This blog post by Lim Chee Aun explains the use of -moz-image-region in themes."
-msgstr "Este tópico no blog de Lim Chee Aun explica o uso do-moz-image-região nos temas."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:81
-msgid "Making Sure Your Theme Works with RTL Locales"
-msgstr "Tenha a certeza que o seu tema funciona com idiomas RTL"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:85
-msgid "It's important to make sure your theme works in all locales. This article explains how to tweak your theme to look great for users who browse in right-to-left."
-msgstr "É importante certificar-se que o seu tema funciona em todos os idiomas. Este artigo explica como ajustar o seu tema para ser bom para os utilizadores que navegam na direita para a esquerda."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:95
-msgid "Theme Documentation Index"
-msgstr "Indíce de documentação de temas"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:98
-msgid "If you haven't found what you're looking for yet, try the Mozilla Developer Center's Themes section."
-msgstr "Se ainda não encontrou o que está à procura, tente a secção do Centro de desenvolvimento de Temas da Mozilla."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:3 apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:7
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:9 apps/devhub/templates/devhub/docs/how-to.html:21
-msgid "Thunderbird & Mobile Add-ons"
-msgstr "Extras do Thunderbird & Mobile"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
-msgid "Add-ons aren't just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Os extras não são apenas para Firefox. Aprenda como estende-los a outras aplicações Mozilla, como o cliente de correio electrónico Thunderbird e o Firefox para dispositivos móveis."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:18
-msgid "Developing Add-ons for Thunderbird"
-msgstr "Desenvolver extras para o Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:24
-msgid "Building a Thunderbird Extension"
-msgstr "Criar uma extensão do Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:27
-msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Thunderbird Mail Client containing the text \"Hello, World!\""
-msgstr ""
-"Este tutorial irá levá-lo através dos passos necessários para construir uma extensão muito básica, que adiciona um painel de barra de estado para o cliente de correio Thunderbird contendo o texto "
-"\"Olá Mundo\""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
-msgid "An Overview of Thunderbird Components"
-msgstr "Uma visão dos componentes do Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:40
-msgid "This article describes the Thunderbird user interface, discusses example modifications, and introduces some of the APIs most commonly used by extension developers."
-msgstr "Este artigo descreve a interface de utilizador do Thunderbird, discute modificações de exemplo, e introduz algumas das APIs mais utilizadas por desenvolvedores de extensão."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:52
-msgid "Thunderbird How-tos"
-msgstr "Como fazer do Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:55
-msgid "This section contains many code samples and how-to articles on common Thunderbird extension tasks."
-msgstr "Esta secção contém amostras de código e muitos artigos de como fazer, em tarefas de extensão comuns do Thunderbird."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:65
-msgid "Thunderbird Extensions Documentation Index"
-msgstr "Índice da documentação das extensões do Thunderbird"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:68
-msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Thunderbird extensions landing page."
-msgstr "Se não encontrar o que procura nos artigos acima, tente a página de extensões do Centro de Desenvolvimento do Thunderbird da Mozilla."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
-msgid "Developing Add-ons for Mobile"
-msgstr "Desenvolver extras para o Mobile"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
-msgid "Mobile Extensions"
-msgstr "Extensões do mobile"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
-msgid "This document explains the specifics on creating an extension for mobile."
-msgstr "Este documento explica as especificações na criação de uma extensão para o mobile."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
-msgid "Mobile Code Snippets"
-msgstr "Mobile Code Snippets"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
-msgid "Code snippets specific to mobile."
-msgstr "Code snippets específicos para o mobile."
-
-#: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
-msgid "More Resources"
-msgstr "Mais recursos"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
-msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
-msgstr "Já sabe o que procura? <a href=\"%(link_search)s\">Então procure-o!</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:43
-msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
-msgstr "Navegar através da <a href=\"%(link_reference)s\">API & Referência de Idiomas</a> para descobrir aquela interface que espera que exista"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
-msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
-msgstr "Necessita de ajuda? <a href=\"https://forums.addons.mozilla.org\">Visite os nossos fóruns</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:77
-msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
-msgstr "Aprenda o básico do desenvolvimento de uma extensão da plataforma Mozilla com esta seção completa de guias de principiante."
-
-#: apps/devhub/templates/devhub/docs/how-to.html:99
-msgid "Thunderbird &amp; Mobile Add-ons"
-msgstr "Thunderbird &amp; Extras do Mobile"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:103
-msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "Os extras não são apenas para Firefox. Aprenda como estendê-los a outras aplicações Mozilla, como o cliente de correio electrónico Thunderbird e o Firefox para dispositivos móveis."
-
-#: apps/devhub/templates/devhub/docs/marketplace.html:3
-msgid "Marketplace"
-msgstr "Mercado"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -7070,626 +5971,6 @@ msgstr "Termos do Serviço para a submissão do seu trabalho no nosso sítio. Os
 msgid "How to get in touch with us regarding these policies or your add-on."
 msgstr "Como entrar em contacto connosco a respeito destas políticas ou do seu extra."
 
-#: apps/devhub/templates/devhub/docs/reference.html:3 apps/devhub/templates/devhub/docs/reference.html:8
-msgid "API & Language References"
-msgstr "API & Referências de idiomas"
-
-#: apps/devhub/templates/devhub/docs/reference.html:11
-msgid "API &amp; Language References"
-msgstr "API &amp; referências de Idiomas"
-
-#: apps/devhub/templates/devhub/docs/reference.html:19
-msgid "XUL: Defining User Interfaces"
-msgstr "XUL: Definir interfaces do utilizador"
-
-#: apps/devhub/templates/devhub/docs/reference.html:23
-msgid "XUL Overview"
-msgstr "XUL visão global "
-
-#: apps/devhub/templates/devhub/docs/reference.html:26 apps/devhub/templates/devhub/docs/reference.html:75 apps/devhub/templates/devhub/docs/reference.html:91
-#: apps/devhub/templates/devhub/docs/reference.html:107 apps/devhub/templates/devhub/docs/reference.html:127 apps/devhub/templates/devhub/docs/reference.html:143
-#: apps/devhub/templates/devhub/docs/reference.html:175 apps/devhub/templates/devhub/docs/reference.html:191 apps/devhub/templates/devhub/docs/reference.html:206
-#: apps/devhub/templates/devhub/docs/reference.html:226 apps/devhub/templates/devhub/docs/reference.html:241 apps/devhub/templates/devhub/docs/reference.html:260
-#: apps/devhub/templates/devhub/docs/reference.html:276
-msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a>"
-msgstr "através do <a class=\"refsource\" href=\"http://developer.mozilla.org\">Centro do desenvolvedor da Mozilla</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:31
-msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
-msgstr ""
-"XUL (XML User Interface Language) é a linguagem da Mozilla baseada em XML que permite que você construa aplicações ricas em recursos multi-plataforma que pode ser executado esteja ou não ligado à "
-"Internet."
-
-#: apps/devhub/templates/devhub/docs/reference.html:38
-msgid "XUL Reference"
-msgstr "Referência XUL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:41 apps/devhub/templates/devhub/docs/reference.html:56
-msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
-msgstr "através do <a class=\"refsource\" href=\"http://developer.mozilla.org\">Centro do Desenvolvedor da Mozilla</a></span>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:45
-msgid "A list of all available XUL elements."
-msgstr "Uma lista dos elementos XUL disponíveis."
-
-#: apps/devhub/templates/devhub/docs/reference.html:53
-msgid "XUL Controls List"
-msgstr "Lista de controlos XUL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:60
-msgid "A description of many available XUL controls, including screenshots."
-msgstr "Uma descrição dos muitos controlos XUl disponíveis, incluindo miniaturas."
-
-#: apps/devhub/templates/devhub/docs/reference.html:67
-msgid "JavaScript: Specifying Behavior"
-msgstr "JavaScript: Especificar o comportamento"
-
-#: apps/devhub/templates/devhub/docs/reference.html:72
-msgid "JavaScript Overview"
-msgstr "Pré-visualização de JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:80
-msgid "JavaScript is a small, lightweight, object-oriented, cross-platform scripting language."
-msgstr "JavaScript é uma linguagem de script multi-plataforma, pequena, leve e orientada a objetos,."
-
-#: apps/devhub/templates/devhub/docs/reference.html:88
-msgid "Gecko JavaScript Language Reference"
-msgstr "Referência de idiomas Gecko JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:96
-msgid "Mozilla Developer Center's JavaScript documentation, including functions, statements, properties, and more."
-msgstr "Documentação JavaScript do centro do desenvolvedor da Mozilla, incluindo funções, declarações, propriedades, e muito mais."
-
-#: apps/devhub/templates/devhub/docs/reference.html:104
-msgid "JavaScript Style Guide"
-msgstr "Guia de estilos JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:112
-msgid "Mozilla's JavaScript coding standards."
-msgstr "Mozilla's JavaScript coding standards."
-
-#: apps/devhub/templates/devhub/docs/reference.html:120
-msgid "CSS: Adding Visual Effects"
-msgstr "CSS: Adicionar efeitos visuais"
-
-#: apps/devhub/templates/devhub/docs/reference.html:124
-msgid "CSS Overview"
-msgstr "Pré-visualização de CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:133
-msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
-msgstr ""
-"CSS (Cascading Style Sheets, folhas de estilo em cascata) é uma linguagem de estilos usada para descrever a paresentação de um documento escrito em HTML ou XML e é usada para estilizar aplicações "
-"com interfaces baseadas no XUL."
-
-#: apps/devhub/templates/devhub/docs/reference.html:140
-msgid "Gecko CSS Reference"
-msgstr "Referência Gecko CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:148
-msgid "Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors."
-msgstr "Documentação CSS do centro do desenvolvedor da Mozilla, listando todas as propriedades disponíveis, valores e selectores."
-
-#: apps/devhub/templates/devhub/docs/reference.html:156
-msgid "W3C CSS Homepage"
-msgstr "Página inicial W3C CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:159
-msgid "via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-msgstr "através do <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:163
-msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
-msgstr "Encontre notícias de CSS, específicações e ferramentas na página inicial da CSS W3C's."
-
-#: apps/devhub/templates/devhub/docs/reference.html:167
-msgid "FUEL: Easier Extension Development"
-msgstr "FUEL: Desenvolvimento de extensões ainda mais fácil"
-
-#: apps/devhub/templates/devhub/docs/reference.html:180
-msgid "FUEL is a JavaScript library designed to help developers build extensions using terminology and interfaces that are familiar to them."
-msgstr "FUEL é uma biblioteca JavaScript desenvolvida para ajudar os desenvolvedores a criar extensões usando a terminologia e interfaces que são familiares a eles."
-
-#: apps/devhub/templates/devhub/docs/reference.html:187
-msgid "STEEL API"
-msgstr "STEEL API"
-
-#: apps/devhub/templates/devhub/docs/reference.html:196
-msgid "STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-like set of interfaces to facilitate Thunderbird extension development."
-msgstr "STEEL é uma Biblioteca de scripts de Extensão fácil do Thunderbird. É um conjunto tipo-Combustível de interfaces para facilitar o desenvolvimento de extensões do Thunderbird."
-
-#: apps/devhub/templates/devhub/docs/reference.html:203
-msgid "SMILE API"
-msgstr "SMILE API"
-
-#: apps/devhub/templates/devhub/docs/reference.html:211
-msgid "SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development."
-msgstr "SMILE é um conjunto tipo-FUEL de interfaces para facilitar o desenvolvimento de extensões para o SeaMonkey."
-
-#: apps/devhub/templates/devhub/docs/reference.html:219
-msgid "XPCOM: Cross-Platform Components"
-msgstr "XPCOM: Componentes da plataforma cruzada"
-
-#: apps/devhub/templates/devhub/docs/reference.html:223
-msgid "XPCOM Overview"
-msgstr "Pré-visualização XPCOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:231
-msgid "XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr ""
-"XPCOM é um modelo de componentes de objecto multi-plataforma com ligações para vários idiomas, permitindo que os componentes XPCOM sejam utilizados e implementado em JavaScript, Java, Python para "
-"além de C++."
-
-#: apps/devhub/templates/devhub/docs/reference.html:238
-msgid "XPCOM Reference"
-msgstr "Referência XPCOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:246
-msgid "Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions."
-msgstr "Documentação da API XPCOM do centro do desenvolvedor da Mozilla, listando interfaces congeladas e funções."
-
-#: apps/devhub/templates/devhub/docs/reference.html:253
-msgid "DOM: Interacting with Content"
-msgstr "DOM: Interagir com o conteúdo"
-
-#: apps/devhub/templates/devhub/docs/reference.html:257
-msgid "DOM Overview"
-msgstr "Pré-visualização DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:265
-msgid "The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation."
-msgstr ""
-"O Document Object Model (DOM) é uma API para documentos HTML e XML. Ela fornece uma representação estrutural do documento, permitindo que você modifique o seu conteúdo e a apresentação visual."
-
-#: apps/devhub/templates/devhub/docs/reference.html:273
-msgid "Gecko DOM Reference"
-msgstr "Referência Gecko DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:281
-msgid "Mozilla Developer Center's DOM API documentation"
-msgstr "Documentação DOM API do centro do desenvolvedor da Mozilla"
-
-#: apps/devhub/templates/devhub/docs/reference.html:292
-msgid "Jump to Reference"
-msgstr "Saltar para a referência"
-
-#: apps/devhub/templates/devhub/docs/reference.html:294
-msgid "XUL"
-msgstr "XUL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:295
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:296
-msgid "CSS"
-msgstr "CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:298
-msgid "FUEL"
-msgstr "FUEL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:299
-msgid "XPCOM"
-msgstr "XPCOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:300
-msgid "DOM"
-msgstr "DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:313
-msgid "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-to Library</a>"
-msgstr "Saiba como usar essas APIs e muito mais na nossa<a href=\"%(link_howto)s\">Biblioteca como fazer</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:3 apps/devhub/templates/devhub/docs/themes.html:18 apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
-#: apps/pages/templates/pages/faq.html:10
-msgid "Frequently Asked Questions"
-msgstr "Perguntas frequentes"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:4
-msgid "Frequently Asked Questions | Themes"
-msgstr "Questões frequentes | Temas"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:14 apps/devhub/templates/devhub/docs/themes-faq.html:44
-msgid "Introducing Background Themes"
-msgstr "Introdução aos temas de fundo"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:16
-msgid "What Are Background Themes?"
-msgstr "O que são temas de fundo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:17 apps/devhub/templates/devhub/docs/themes-faq.html:59
-msgid "What kind of computers and operating systems do Background Themes work with?"
-msgstr "Com que tipo de computadores e sistemas operativos funcionam os Temas de fundo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
-msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr "Qual é a diferença entre temas de fundo e temas completos?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
-msgid "Installing Background Themes"
-msgstr "Instalar temas de fundo"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
-msgid "How do I add Background Themes to my Firefox?"
-msgstr "Como adiciono temas de fundo ao meu Firefox?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:24 apps/devhub/templates/devhub/docs/themes-faq.html:103
-msgid "Are Background Themes free?"
-msgstr "Os temas de fundo são gratuitos?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:27 apps/devhub/templates/devhub/docs/themes-faq.html:112
-msgid "Using Background Themes"
-msgstr "Utilizar temas de fundo"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
-msgid "How do I change my current Background Theme?"
-msgstr "Como altero o meu tema de fundo atual?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
-msgid "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr "Se eu tiver tema completo instalado, os temas de fundo vão funcionar?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
-msgid "How do I undo a Background Theme?"
-msgstr "Como cancelo um tema de fundo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:32 apps/devhub/templates/devhub/docs/themes-faq.html:161
-msgid "How do I provide feedback?"
-msgstr "Como posso dar feedback?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:35
-msgid "Creating Your Own Background Themes"
-msgstr "Criar os seus próprios temas de fundo"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:37
-msgid "Can I create my own Background Theme?"
-msgstr "Como crio o meu próprio tema de fundo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:38 apps/devhub/templates/devhub/docs/themes-faq.html:184
-msgid "Are there any content guidelines?"
-msgstr "Existem diretrizes de conteúdo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:39 apps/devhub/templates/devhub/docs/themes-faq.html:250
-msgid "Do I still retain ownership over artwork that I upload?"
-msgstr "Mantenho a propriedade sobre os trabalhos artísticos que enviar?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:40 apps/devhub/templates/devhub/docs/themes-faq.html:258
-msgid "After creating a Background Theme, can I edit the design?"
-msgstr "Depois de criar um tema de fundo, posso editar o design?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:41 apps/devhub/templates/devhub/docs/themes-faq.html:266
-msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr "Qual o tamanho máximo permitido para o ficheiro do meu tema de fundo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:47
-msgid "What are Background Themes?"
-msgstr "O que são temas de fundo?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:49
-msgid ""
-"Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added "
-"every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
-msgstr ""
-"Os temas de fundo são capas fáceis de instalar e de utilizar que modificação a aparência do seu navegador web, o Firefox. Existem centenas de milhar de temas desenhados pela comunidade que pode "
-"escolher, com mais sendo adicionados todos os dias. <a href=\"%(browse_url)s\">Comece a procurar por designs que se adequam ao seu estilo.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:61
-msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
-msgstr "Os temas de fundo funcionam com qualquer tipo de computador que tenha o Firefox instalado. Isto inclui Linux, Mac, Windows e plataformas Android."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:70
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
-msgstr "Os temas completos transformam a aparência do seu navegador com estilos para a moldura da janela, barra de endereço, botões, separadores e menus."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:76
-msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
-msgstr ""
-"Os temas de fundo apenas alteram as áreas de cabeçalho e de rodapé do seu navegador. Pode pré-visualizar imediatamente um design e fazer a sua instalação com um clique sem necessidade de reiniciar "
-"o navegador."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:90
-msgid ""
-"In just a few seconds, you can install a theme and transform the look of your Firefox web browser. Preview any theme by simply mousing over it; the design appears in your browser header so you can "
-"\"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you "
-"wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
-msgstr ""
-"Em apenas alguns segundos, podem instalar um tema e transformar a aparência do seu Firefox. Pré-visualize qualquer tema colocando o rato sobre o mesmo; o design aparece no cabeçalho do seu "
-"navegador para que \"o possa experimentar\". Quando estiver pronto, clique apenas no botão verde <code>Adicionar ao Firefox</code>. Após um tema estar instalado, é guardado no Gestor de extras, "
-"onde pode ativar ou desativar temas que quiser. Simplesmente vá ao menu <code>Ferramentas</code> &gt; <code>Extras</code> e clique no separador <code>Aparência</code>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:105
-msgid "Yes. Themes are free to download and free to use."
-msgstr "Sim. Os temas podem ser transferidos e utilizados gratuitamente."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:117
-msgid "There are two easy ways to change your theme. You can either:"
-msgstr "Existem duas formas fáceis de alterar o seu tema. Pode:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:123
-msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
-msgstr "Visitar a <a href=\"%(gallery_url)s\">galeria</a>, escolher o seu tema favorito e clicar na sua escolha para alterar imediatamente a aparência do seu navegador."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:130
-msgid ""
-"Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the "
-"<code>Appearance</code> tab."
-msgstr ""
-"Após um tema estar instalado, é guardado no Gestor de extras, onde pode ativar ou desativar temas que quiser. Simplesmente vá ao menu <code>Ferramentas</code> &gt; <code>Extras</code> e clique no "
-"separador <code>Aparência</code>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:142
-msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
-msgstr ""
-"Sim. Se tiver tema completo instalado diferente dos temas por omissão, o Firefox irá automaticamente selecionar um dos temas por omissão no sentido de permitir a utilização da sua escolha de tema "
-"de fundo."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:152
-msgid ""
-"To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, "
-"click the <code>Disable</code> button."
-msgstr ""
-"Para cancelar o design que selecionou mais recentemente, aceda a <code>Ferramentas</code> &gt; <code>Extras</code> na barra de menu e selecione <code>Aparência</code>. Junto ao tema que pretende "
-"cancelar, clique no botão <code>Desativar</code>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:163
-msgid "We're always looking for ways to improve themes, and would love to hear what you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us your feedback."
-msgstr "Estamos sempre à procura de formas de melhorar os temas e adoraríamos saber o que pensa. Visite o <a href=\"%(forum_url)s\">fórum de temas</a> e envie-nos a sua opinião."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:170
-msgid "Creating Your Own Themes"
-msgstr "Criar os seus próprios temas"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:173
-msgid "Can I create my own Theme?"
-msgstr "Posso criar o meu próprio tema?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:175
-msgid ""
-"Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., Photoshop). To get started <a href=\"%(tutorial_url)s\">read more about how to create a "
-"theme</a>."
-msgstr ""
-"Absolutamente! Tudo o que precisa é de criar dois ficheiros gráficos no seu programa favorito de edição de imagem (por exemplo, Photoshop). Para começar, <a href=\"%(tutorial_url)s\">leia mais "
-"sobre como criar um tema</a>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:186
-msgid ""
-"Yes. We are big fans of creativity, but want to ensure that the art displayed in the Themes gallery meets a basic set of guidelines. Please review the <a href=\"%(tos_url)s\">Terms of Service</a> "
-"for authoritative and complete language, but the following gives you an overview of the requirements:"
-msgstr ""
-"Sim. Nós somos grande fãs da criatividade, mas queremos garantir que a arte que é apresentada na galeria de temas cumpre um conjunto básico de diretrizes. Por favor consulte os <a href=\"%(tos_url)s"
-"\">Termos do Serviço</a> para uma linguagem completa e oficial, mas próximos pontos dão uma vista geral dos requisitos:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:196
-msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
-msgstr ""
-"Deve ser proprietário de todos os elementos do seu design OU estar mundialmente autorizado a reproduzir e distribuir esses elementos (e permitir a outros que o façam) pelo proprietário ou por lei."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:203
-msgid "Your design does not contain sexually explicit or offensive content."
-msgstr "O seu design não contém conteúdo sexual ou ofensivo."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:208
-msgid "Your design does not include identifiable elements of any non-celebrity person(s) other than yourself or individuals who have given you permission to do so."
-msgstr "O seu design não contem elementos identificáveis de qualquer outra pessoa que não seja celebridade, para além de si ou de indivíduos que lhe deram permissão para tal."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:215
-msgid "Your design does not depict violence or Nazi imagery, nor is it discriminatory or hateful."
-msgstr "O seu design não retrata violência ou imagens Nazi, nem é discriminatório ou odioso."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:221
-msgid "Your design does not relate to gambling."
-msgstr "O seu design não está relacionado com jogo."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:226
-msgid "Your design does not violate any applicable law or regulation or the rights of any person or entity."
-msgstr "O seu design não viola qualquer lei aplicável ou regulamento ou os direitos de qualquer pessoa ou entidade."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:231
-msgid ""
-"Also, note that your design needs to be suitable for the Background Themes format (see guidelines), of usable quality, and not duplicative of a prior submission. Finally, while Mozilla does provide "
-"guidelines for submissions, Mozilla retains the discretion to reject or remove designs for any reason. In some cases, this is necessary for legal reasons, but it also allows us to maintain the "
-"integrity of the site."
-msgstr ""
-"Também, note que o seu design tem de ser apropriado para o formato de temas de fundo (ver diretrizes), ter uma qualidade utilizável e não ser um duplicado de uma submissão anterior. Finalmente, "
-"apesar da Mozilla fornecer diretrizes para submissões, a Mozilla reserva-se ao direito de rejeitar ou remover os designs por qualquer motivo. Em alguns casos, isto é necessário por questões legais, "
-"mas também permite manter a integridade do site."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:242
-msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
-msgstr "<a href=\"%(tutorial_url)s\">Aprenda a criar designs engraçados para temas.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:252
-msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr "Sim. O seu trabalho artístico será sempre o <em>seu</em> trabalho artístico."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:260
-msgid ""
-"Yes. If at any point you need to edit or delete your theme design after it has been submitted to the gallery, you can access it from the <a href=\"%(dashboard_url)s\">Submissions dashboard</a>. "
-"From there, you can view your current designs. By clicking on each, you can make changes to each design's settings."
-msgstr ""
-"Sim. Se em algum momento precisar de editar ou eliminar o design do seu tema após a sua submissão para a galeria, pode aceder ao mesmo a partir do <a href=\"%(dashboard_url)s\">Painel de "
-"Submissões</a>. Daqui pode ver os seus designs atuais. Ao clicar em cada um pode fazer alterações a cada uma das definições do design."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:268
-msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
-msgstr "O tema que enviar não pode exceder os 300 KB para a imagem de cabeçalho ou de rodapé."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:276
-msgid "Couldn't find the answer you're looking for? Consider visiting the <a href=\"%(support_url)s\">Firefox support</a> website for more help."
-msgstr "Não conseguiu encontrar o que procurava? Considere visitar o site web do <a href=\"%(support_url)s\">suporte do Firefox</a> para mais ajuda."
-
-#: apps/devhub/templates/devhub/docs/themes.html:3
-msgid "How to Create Your Own Background Theme"
-msgstr "Como criar o seu próprio tema de fundo"
-
-#: apps/devhub/templates/devhub/docs/themes.html:4
-msgid "Getting Started | Themes"
-msgstr "Começar | Temas"
-
-#: apps/devhub/templates/devhub/docs/themes.html:12
-msgid "How to create a theme"
-msgstr "Como criar um tema"
-
-#: apps/devhub/templates/devhub/docs/themes.html:15
-msgid "Submit your theme"
-msgstr "Submeter o seu tema"
-
-#: apps/devhub/templates/devhub/docs/themes.html:35
-msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
-msgstr "Os temas são feitos a partir de duas imagens gráficas&mdash;uma imagem de \"cabeçalho\" e uma imagem de \"rodapé\"&mdash;que se sobrepõem ao fundo por omissão do interface do Firefox."
-
-#: apps/devhub/templates/devhub/docs/themes.html:41
-msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
-msgstr "<a href=\"%(submit_url)s\">Terminou o seu design? Pode submetê-lo agora!</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:46
-msgid "Creating a Theme Header Image"
-msgstr "Criar uma imagem de cabeçalho para um tema"
-
-#: apps/devhub/templates/devhub/docs/themes.html:48
-msgid ""
-"The header image is displayed as the background of the top of the browser window, nestling in behind the toolbars, address bar, search bar and the tab strip. It will be <b>anchored to the top-right "
-"corner</b> of the browser window."
-msgstr ""
-"A imagem de cabeçalho é apresentada como fundo no topo da janela do navegador, atrás das barras de ferramentas, barra de endereço, barra de pesquisa e faixa de separadores. Será <b>ancorada ao "
-"canto superior direito</b> da janela do navegador."
-
-#: apps/devhub/templates/devhub/docs/themes.html:57
-msgid "View a sample Theme Header here."
-msgstr "Ver um exemplo de um cabeçalho de tema aqui."
-
-#: apps/devhub/templates/devhub/docs/themes.html:59 apps/devhub/templates/devhub/docs/themes.html:130
-msgid "Image Requirements"
-msgstr "Requisitos da imagem"
-
-#: apps/devhub/templates/devhub/docs/themes.html:62
-msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
-msgstr "As dimensões devem ser <b>3000px de largura &times; 200px de altura</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:67 apps/devhub/templates/devhub/docs/themes.html:138
-msgid "PNG or JPG file format"
-msgstr "Formato de ficheiro PNG ou JPG"
-
-#: apps/devhub/templates/devhub/docs/themes.html:72 apps/devhub/templates/devhub/docs/themes.html:143
-msgid "Image must be no larger than 300 KB in file size"
-msgstr "A imagem não pode ser um ficheiro com um tamanho superior a 300 KB"
-
-#: apps/devhub/templates/devhub/docs/themes.html:77 apps/devhub/templates/devhub/docs/themes.html:148
-msgid "Tips"
-msgstr "Dicas"
-
-#: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
-msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
-msgstr "Imagens e gradientes subtis e suaves funcionam melhor; imagens altamente detalhadas irão competir com o interface do navegador."
-
-#: apps/devhub/templates/devhub/docs/themes.html:86
-msgid "Firefox may reveal more of the lower portion of the image if another toolbar or other UI element is added to the top of the window."
-msgstr "O Firefox pode revelar mais da parte inferior da imagem se outra barra de ferramentas ou outro elemento de interface for adicionado no topo da janela."
-
-#: apps/devhub/templates/devhub/docs/themes.html:93
-msgid ""
-"The upper right-hand side of the image should have the most important information&mdash;as a user increases the width of the browser window, the browser reveals more of the left-hand side of the "
-"image."
-msgstr ""
-"O canto superior direito da imagem deve ter a informação mais importante&mdash;à medida que o utilizador aumenta a largura da janela do navegador, este mostra mais da parte esquerda da imagem."
-
-#: apps/devhub/templates/devhub/docs/themes.html:100
-msgid "Online Image Editor Resources"
-msgstr "Recursos do editor de imagem online"
-
-#: apps/devhub/templates/devhub/docs/themes.html:103
-msgid "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and easy-to-use tools for creating and editing images within a browser."
-msgstr "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; O Pixlr oferece ferramentas profissionais e fáceis de utilizar para criar e editar imagens no navegador."
-
-#: apps/devhub/templates/devhub/docs/themes.html:110
-msgid "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch up photos with Photoshop&reg; Express, a free online photo editor."
-msgstr "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Melhore, rode e retoque fotografias com o Photoshop&reg; Express, um editor de fotografias online gratuito."
-
-#: apps/devhub/templates/devhub/docs/themes.html:118
-msgid "Creating a Theme Footer Image"
-msgstr "Criar uma imagem de rodapé para um tema"
-
-#: apps/devhub/templates/devhub/docs/themes.html:120
-msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
-msgstr ""
-"A imagem de rodapé é apresentada como fundo na parte inferior da janela do navegador, atrás das barras de extras e de pesquisa. Será ancorada ao canto inferior esquerdo da janela do navegador."
-
-#: apps/devhub/templates/devhub/docs/themes.html:128
-msgid "View a sample Theme Footer here."
-msgstr "Ver um exemplo de rodapé do tema aqui."
-
-#: apps/devhub/templates/devhub/docs/themes.html:133
-msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
-msgstr "As dimensões devem ser <b>3000px de largura &times; 100px de altura</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:157
-msgid "Firefox may reveal more of the upper portion of the image if the find bar is open or if an extension adds more height to the bottom of the window."
-msgstr "O Firefox pode revelar mais da parte superior da imagem se a barra de pesquisa estiver aberta ou se uma extensão aumentar a altura do rodapé da janela."
-
-#: apps/devhub/templates/devhub/docs/themes.html:164
-msgid ""
-"The left-hand side of the image should have the most importan information&mdash;as a user increases the width of the browser window, the browser reveals more of the right-hand side of the image."
-msgstr "A zona esquerda da imagem deve ter a informação mais importante&mdash;à medida que o utilizador aumenta a largura da janela do navegador, este mostra mais da parte direita da imagem."
-
-#: apps/devhub/templates/devhub/docs/themes.html:171
-msgid "Submitting your Theme Images"
-msgstr "Submeter as imagens do seu tema"
-
-#: apps/devhub/templates/devhub/docs/themes.html:173
-msgid "To get started submitting your images, go to the Theme Submission page:"
-msgstr "Para começar a submeter as suas imagens, visite a página de submissão do tema:"
-
-#: apps/devhub/templates/devhub/docs/themes.html:179
-msgid "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate names are not allowed, so you may need to try a few times to find a unique name."
-msgstr "<b>Dê um nome ao seu tema</b> &mdash; escolha um nome único para o seu tema. Nomes duplicados não são permitidos, pelo que pode precisar de tentar algumas vezes até encontrar um nome único."
-
-#: apps/devhub/templates/devhub/docs/themes.html:186
-msgid ""
-"<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
-"and/or tags are unrelated to your theme."
-msgstr ""
-"<b>Escolha uma categoria e as etiquetas</b> &mdash; selecione uma categoria e introduza algumas etiquetas que melhor descrevem o seu tema. Tenha em atenção que um revisor pode rejeitar o seu tema "
-"se for óbvio que a sua categoria e/ou etiquetas não tem relação com o seu tema."
-
-#: apps/devhub/templates/devhub/docs/themes.html:194
-msgid ""
-"<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
-msgstr "<b>Descreva o seu tema</b> &mdash; escreva uma descrição curta do seu tema. Tenha em atenção que um revisor pode rejeitar o seu tema se a sua descrição não for representativa do seu tema."
-
-#: apps/devhub/templates/devhub/docs/themes.html:201
-msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
-msgstr ""
-"<b>Selecione uma licença para o seu tema</b> &mdash; escolha a licença de direitos de autor para o seu trabalho. <a href=\"%(cc_url)s\">Leia mais sobre os tipos de licença Creative Common.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:208
-msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
-msgstr "<b>Importante:</b> Confirme se tem os direitos para utilizar a imagem no seu tema!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:216
-msgid "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size and JPG or PNG format!"
-msgstr "<b>Envie as suas imagens</b> &mdash; confirme que se estas têm um tamanho inferior a 300 KB e estão no formato JPG ou PNG!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:222
-msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr "<b>Escolha as cores para o texto e separador</b> &mdash; pode escolher a cor de (\"fundo\") do separador e a cor do texto de primeiro plano que funciona melhor com a sua imagem de cabeçalho."
-
-#: apps/devhub/templates/devhub/docs/themes.html:229
-msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
-msgstr "<b>Pré-visualize o seu tema</b> &mdash; está pronto para pré-visualizar o seu tema! Coloque o rato sob a imagem sob o botão Submeter tema e vejo imediatamente como fica."
-
-#: apps/devhub/templates/devhub/docs/themes.html:236
-msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
-msgstr "<b>Submeta o seu tema</b> &mdash; se tudo lhe parece bem, clique no botão Submeter tema e está feito! Pode ver todos os temas que construiu na sua página de perfil."
-
-#: apps/devhub/templates/devhub/docs/themes.html:243
-msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
-msgstr "<b>Dica:</b> para garantir que o seu tema é aprovado para a galeria, tenha a certeza que este cumpre as diretrizes de conteúdo e os termos do serviço!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:254
-msgid "Submit Your Theme Now"
-msgstr "Submeter o seu tema agora"
-
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
 msgstr "Desativou este extra"
@@ -7839,7 +6120,7 @@ msgstr "{0} relatórios de sucesso"
 msgid "Developer News"
 msgstr "Notícias do desenvolvedor"
 
-#: apps/devhub/templates/devhub/includes/blog_posts.html:21
+#: apps/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
 msgstr "Ver o blog &#9658;"
 
@@ -8495,167 +6776,167 @@ msgstr "Cancelar o seu pedido de revisão vai marcar o seu extra como incompleto
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tem a certeza que deseja cancelar o seu pedido de revisão?"
 
-#: apps/discovery/modules.py:137
+#: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
 msgstr "Compras mais fáceis"
 
-#: apps/discovery/modules.py:138
+#: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr "Guarde os seus itens favoritos no conforto do seu navegador."
 
-#: apps/discovery/modules.py:146
+#: apps/discovery/modules.py:149
 msgid "Build the perfect website"
 msgstr "Construa o sítio web perfeito"
 
-#: apps/discovery/modules.py:153
+#: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
 msgstr "Ajude a testar o Firefox com estas ferramentas"
 
-#: apps/discovery/modules.py:161
+#: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
 msgstr "Primeira vez com os extras?"
 
-#: apps/discovery/modules.py:162
+#: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
 msgstr "Não é preocupante, eis três para começar."
 
-#: apps/discovery/modules.py:166
+#: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
 msgstr "Traduza conteúdo na web em mais de 40 idiomas."
 
-#: apps/discovery/modules.py:168
+#: apps/discovery/modules.py:171
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "Ligue-se facilmente às redes sociais e partilhe ou comente a página que está a visitar."
 
-#: apps/discovery/modules.py:170
+#: apps/discovery/modules.py:173
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr "Uma visão rápida para comparar preços ao fazer compras ou pesquisar voos."
 
-#: apps/discovery/modules.py:180
+#: apps/discovery/modules.py:183
 msgid "Firefox 4 Collection"
 msgstr "Colecção do Firefox 4"
 
-#: apps/discovery/modules.py:181
+#: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
 msgstr "Aqui estão alguns grandes extras para o Firefox 4."
 
-#: apps/discovery/modules.py:190
+#: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "Temas do dia de São Patrício"
 
-#: apps/discovery/modules.py:191
+#: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Decore o seu navegador pata celebrar o Dia de São Patrício."
 
-#: apps/discovery/modules.py:200
+#: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
 msgstr "Colecção de Verão do Firefox"
 
-#: apps/discovery/modules.py:201
+#: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
 msgstr "Aqui estão alguns grandes extras para o Firefox."
 
-#: apps/discovery/modules.py:209
+#: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
 msgstr "Colecção do Thunderbird"
 
-#: apps/discovery/modules.py:210
+#: apps/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
 msgstr "Aqui estão alguns grandes extras para o Thunderbird."
 
-#: apps/discovery/modules.py:218
+#: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
 msgstr "Sente-se e relaxe"
 
-#: apps/discovery/modules.py:219
+#: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
 msgstr "Extras que o ajudam nas suas viagens!"
 
-#: apps/discovery/modules.py:223
+#: apps/discovery/modules.py:226
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr "Exibe uma bandeira referente à localização do servidor do sitio visitado e mais."
 
-#: apps/discovery/modules.py:225
+#: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "FoxClocks deixa-o ver as horas em todo o mundo."
 
-#: apps/discovery/modules.py:227
+#: apps/discovery/modules.py:230
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr "Obtenha automaticamente o menor preço quando faz compras online ou procura vôos."
 
-#: apps/discovery/modules.py:237
+#: apps/discovery/modules.py:240
 msgid "A+ add-ons for School"
 msgstr "Extras A+ para a Escola"
 
-#: apps/discovery/modules.py:238
+#: apps/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "Extras para professores, pais e estudantes que regressam à escola."
 
-#: apps/discovery/modules.py:243
+#: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
 msgstr "Deseja saber em que sítios web pode confiar?"
 
-#: apps/discovery/modules.py:244
+#: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Xmarks é o extra de marcadores #1."
 
-#: apps/discovery/modules.py:245
+#: apps/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Página web e tradutor de texto, dicionário e muito mais!"
 
-#: apps/discovery/modules.py:262
+#: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
 msgstr "Extras para ajudá-lo durante 2012"
 
-#: apps/discovery/modules.py:269
+#: apps/discovery/modules.py:272
 msgid "Love is in the Air"
 msgstr "O amor está no ar"
 
-#: apps/discovery/modules.py:270
+#: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
 msgstr "Adicione romance ao seu Firefox."
 
-#: apps/discovery/modules.py:277
+#: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
 msgstr "Ponha um tema nisso!"
 
-#: apps/discovery/modules.py:278
+#: apps/discovery/modules.py:281
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
 msgstr "Visite addons.mozilla.org no Firefox para Android e altere a aparência do seu navegador móvel para combinar com o seu estilo, estado de espírito ou estação."
 
-#: apps/discovery/modules.py:287
+#: apps/discovery/modules.py:290
 msgid "Get up and move!"
 msgstr "Levante-se e mexa-se!"
 
-#: apps/discovery/modules.py:288
+#: apps/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "Instale estes extras de fitness para o manter saudável e ativo."
 
-#: apps/discovery/modules.py:296
+#: apps/discovery/modules.py:299
 msgid "New &amp; Now"
 msgstr "Novo e recente"
 
-#: apps/discovery/modules.py:297
+#: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "Obtenha os últimos extras do momento, que não vai querer perder."
 
-#: apps/discovery/modules.py:329
+#: apps/discovery/modules.py:332
 msgid "Worry-free browsing"
 msgstr "Navegação sem preocupações"
 
-#: apps/discovery/modules.py:330
+#: apps/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Proteja a sua privacidade online com os extras desta coleção."
 
-#: apps/discovery/modules.py:339
+#: apps/discovery/modules.py:342
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Ótimos extras para trabalho, diversão, privacidade, produtividade&hellip; enfim, extras para quase tudo!"
 
-#: apps/discovery/modules.py:347
+#: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
 msgstr "Extras para vencedores do concurso Australis"
 
-#: apps/discovery/modules.py:355
+#: apps/discovery/modules.py:358
 msgid "What are your interests?"
 msgstr ""
 
@@ -9192,40 +7473,40 @@ msgstr "Razoável (5 a 10 dias)"
 msgid "Overdue (Over 10 days)"
 msgstr "Antigos (mais de 10 dias)"
 
-#: apps/editors/views.py:421
+#: apps/editors/views.py:422
 msgid "An unknown error occurred"
 msgstr "Ocorreu um erro desconhecido"
 
-#: apps/editors/views.py:447
+#: apps/editors/views.py:448
 msgid "Self-reviews are not allowed."
 msgstr "Não são permitidas auto-revisões."
 
-#: apps/editors/views.py:466
+#: apps/editors/views.py:467
 msgid "Review successfully processed."
 msgstr "Revisão processada com sucesso."
 
-#: apps/editors/views.py:653
+#: apps/editors/views.py:654
 msgid "was approved"
 msgstr "foi aprovado"
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:655
 msgid "given preliminary review"
 msgstr "dado comentário preliminar"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:656
 msgid "rejected"
 msgstr "rejeitado"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:657
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "escalado"
 
-#: apps/editors/views.py:658
+#: apps/editors/views.py:659
 msgid "needs more information"
 msgstr "necessita de mais informação"
 
-#: apps/editors/views.py:659
+#: apps/editors/views.py:660
 msgid "needs super review"
 msgstr "necessita de super revisão"
 
@@ -9904,47 +8185,47 @@ msgstr "Houve um erro ao aceder ao ficheiro %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Houve um erro ao aceder ao ficheiro %s."
 
-#: apps/files/utils.py:254
+#: apps/files/utils.py:257
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível analisar o ficheiro carregado."
 
-#: apps/files/utils.py:291
+#: apps/files/utils.py:294
 msgid "Invalid file name in archive: {0}"
 msgstr "Nome de ficheiro inválido no arquivo: {0}"
 
-#: apps/files/utils.py:299
+#: apps/files/utils.py:302
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
-#: apps/files/utils.py:349
+#: apps/files/utils.py:352
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
 
-#: apps/files/utils.py:439 apps/files/utils.py:442
+#: apps/files/utils.py:442 apps/files/utils.py:445
 msgid "Could not parse install.rdf."
 msgstr "Não foi possível fazer parse a install.rdf."
 
-#: apps/files/utils.py:452
+#: apps/files/utils.py:455
 msgid "Could not find a UUID."
 msgstr "Não foi possível encontrar um UUID."
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:457
 msgid "UUID doesn't match add-on."
 msgstr "O UUID não corresponde ao extra."
 
-#: apps/files/utils.py:458
+#: apps/files/utils.py:461
 msgid "Duplicate UUID found."
 msgstr "Encontrado UUID duplicado."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:464
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Os números de versão deve ter menos de 32 caracteres."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:467
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Os números de versão deve conter apenas letras, números e estes caracteres de pontuação: +*.-_."
 
-#: apps/files/utils.py:481
+#: apps/files/utils.py:484
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> não corresponde ao extra"
 
@@ -11013,6 +9294,10 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr ""
+
+#: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9 apps/pages/templates/pages/faq.html:10
+msgid "Frequently Asked Questions"
+msgstr "Perguntas frequentes"
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"

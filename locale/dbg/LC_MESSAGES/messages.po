@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
 msgstr[1] "Ȧŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş."
 
-#: apps/addons/forms.py:219
+#: apps/addons/forms.py:222
 msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
@@ -96,19 +96,19 @@ msgstr ""
 "ȧƥƥŀīƈȧŧīǿƞ."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:226
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřẏ."
 msgstr[1] "Ẏǿŭ ƈȧƞ ħȧṽḗ ǿƞŀẏ {0} ƈȧŧḗɠǿřīḗş."
 
-#: apps/addons/forms.py:231
+#: apps/addons/forms.py:234
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
 "Ŧħḗ ḿīşƈḗŀŀȧƞḗǿŭş ƈȧŧḗɠǿřẏ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ ȧḓḓīŧīǿƞȧŀ ƈȧŧḗɠǿřīḗş."
 
-#: apps/addons/forms.py:354
+#: apps/addons/forms.py:357
 msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
@@ -116,21 +116,21 @@ msgstr ""
 "Ɓḗƒǿřḗ ƈħȧƞɠīƞɠ ẏǿŭř ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ ƞȧḿḗ, şŭḿḿȧřẏ, ȧƞḓ "
 "ḓḗşƈřīƥŧīǿƞ īƞ ŧħȧŧ ŀǿƈȧŀḗ. Ẏǿŭ ȧřḗ ḿīşşīƞɠ %s."
 
-#: apps/addons/forms.py:467
-#: apps/addons/forms.py:558
+#: apps/addons/forms.py:470
+#: apps/addons/forms.py:561
 msgid "A license must be selected."
 msgstr "Ȧ ŀīƈḗƞşḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/addons/forms.py:539
+#: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
 msgstr "Ɠīṽḗ Ẏǿŭř Ŧħḗḿḗ ȧ Ƞȧḿḗ."
 
-#: apps/addons/forms.py:545
+#: apps/addons/forms.py:548
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "Ḓḗşƈřīƀḗ ẏǿŭř Ŧħḗḿḗ."
 
-#: apps/addons/forms.py:686
+#: apps/addons/forms.py:689
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
@@ -139,7 +139,7 @@ msgid "Not Reviewed"
 msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 
 #: apps/addons/helpers.py:34
-#: apps/addons/views.py:318
+#: apps/addons/views.py:319
 #: apps/addons/templates/addons/impala/details.html:117
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36
@@ -164,23 +164,23 @@ msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ)"
 
-#: apps/addons/models.py:1863
+#: apps/addons/models.py:1870
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: apps/addons/views.py:319
+#: apps/addons/views.py:320
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Ƥǿƥŭŀȧř"
 
-#: apps/addons/views.py:320
+#: apps/addons/views.py:321
 #: apps/browse/views.py:234
 #: apps/browse/views.py:277
 #: apps/browse/views.py:476
 msgid "Recently Added"
 msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 
-#: apps/addons/views.py:321
+#: apps/addons/views.py:322
 #: apps/bandwagon/views.py:91
 #: apps/browse/views.py:60
 #: apps/browse/views.py:71
@@ -190,11 +190,11 @@ msgid "Recently Updated"
 msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
 
 #. l10n: {0} is the addon name
-#: apps/addons/views.py:504
+#: apps/addons/views.py:507
 msgid "Contribution for {0}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
 
-#: apps/addons/views.py:592
+#: apps/addons/views.py:595
 msgid "Abuse reported."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ."
 
@@ -449,7 +449,7 @@ msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:453
-#: apps/devhub/views.py:71
+#: apps/devhub/views.py:72
 msgid "Updated"
 msgstr "Ŭƥḓȧŧḗḓ"
 
@@ -841,7 +841,7 @@ msgid "License"
 msgstr "Ŀīƈḗƞşḗ"
 
 #: apps/addons/templates/addons/persona_preview.html:12
-#: apps/constants/base.py:50
+#: apps/constants/base.py:49
 msgid "Awaiting Review"
 msgstr "Ȧẇȧīŧīƞɠ Řḗṽīḗẇ"
 
@@ -1329,7 +1329,7 @@ msgid "Support E-mail"
 msgstr "Şŭƥƥǿřŧ Ḗ-ḿȧīŀ"
 
 #: apps/addons/templates/addons/impala/details.html:201
-#: apps/devhub/models.py:373
+#: apps/devhub/models.py:372
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
 
@@ -1344,8 +1344,8 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 #: apps/addons/templates/addons/impala/details.html:208
 #: apps/addons/templates/addons/impala/details.html:213
 #: apps/amo/helpers.py:377
-#: apps/devhub/forms.py:124
-#: apps/devhub/forms.py:153
+#: apps/devhub/forms.py:121
+#: apps/devhub/forms.py:150
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
@@ -1509,7 +1509,7 @@ msgid "Add to collection"
 msgstr "Ȧḓḓ ŧǿ ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4
-#: apps/devhub/templates/devhub/index.html:38
+#: apps/devhub/templates/devhub/index.html:72
 #: apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "Ḿẏ Ȧḓḓ-ǿƞş"
@@ -1582,7 +1582,7 @@ msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
-#: apps/devhub/forms.py:945
+#: apps/devhub/forms.py:751
 #: apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Ṽḗřşīǿƞ"
@@ -1696,11 +1696,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/grid.html:11
 #: apps/browse/templates/browse/personas/mobile/base.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:179
-#: apps/devhub/templates/devhub/nav.html:45
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:46
-#: apps/devhub/templates/devhub/docs/themes-faq.html:7
-#: apps/devhub/templates/devhub/docs/themes.html:28
+#: apps/constants/base.py:178
 #: apps/devhub/templates/devhub/personas/submit.html:13
 #: apps/editors/helpers.py:93
 #: apps/editors/templates/editors/base.html:26
@@ -1750,7 +1746,7 @@ msgid "Theme Info &raquo;"
 msgstr "Ŧħḗḿḗ Īƞƒǿ &raquo;"
 
 #: apps/amo/context_processors.py:56
-#: apps/devhub/templates/devhub/nav.html:49
+#: apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "Ŧǿǿŀş"
 
@@ -1800,8 +1796,7 @@ msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ȧḓḓ-ǿƞ"
 
 #: apps/amo/context_processors.py:94
 #: apps/browse/templates/browse/personas/base.html:50
-#: apps/devhub/templates/devhub/index.html:31
-#: apps/devhub/templates/devhub/index.html:36
+#: apps/devhub/templates/devhub/index.html:23
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ŧħḗḿḗ"
@@ -2453,7 +2448,7 @@ msgstr "Ḗẋƥŀǿřḗ"
 #: apps/browse/templates/browse/base_listing.html:7
 #: apps/browse/templates/browse/creatured.html:10
 #: apps/browse/templates/browse/impala/base_listing.html:37
-#: apps/constants/base.py:172
+#: apps/constants/base.py:171
 #: templates/menu_links.html:8
 msgid "Extensions"
 msgstr "Ḗẋŧḗƞşīǿƞş"
@@ -2494,7 +2489,7 @@ msgstr "Ȧḓḓ-ǿƞş ƒǿř Ḿǿƀīŀḗ"
 #: apps/amo/templates/amo/site_nav.html:84
 #: apps/browse/feeds.py:207
 #: apps/browse/templates/browse/search_tools.html:3
-#: apps/constants/base.py:175
+#: apps/constants/base.py:174
 #: templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "Şḗȧřƈħ Ŧǿǿŀş"
@@ -2575,7 +2570,7 @@ msgstr "Īƞṽȧŀīḓ ḓȧŧȧ ƥřǿṽīḓḗḓ: {0}"
 msgid "Add-on did not validate: %s"
 msgstr "Ȧḓḓ-ǿƞ ḓīḓ ƞǿŧ ṽȧŀīḓȧŧḗ: %s"
 
-#: apps/api/views.py:248
+#: apps/api/views.py:256
 msgid "Not implemented yet."
 msgstr "Ƞǿŧ īḿƥŀḗḿḗƞŧḗḓ ẏḗŧ."
 
@@ -2748,12 +2743,12 @@ msgid "This url is already in use by another collection"
 msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/forms.py:179
-#: apps/devhub/views.py:1059
+#: apps/devhub/views.py:1000
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:184
-#: apps/devhub/views.py:1077
+#: apps/devhub/views.py:1018
 #: apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
@@ -2801,8 +2796,8 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 #: apps/browse/views.py:58
 #: apps/browse/views.py:69
 #: apps/browse/views.py:452
-#: apps/devhub/views.py:70
-#: apps/devhub/views.py:78
+#: apps/devhub/views.py:71
+#: apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
 #: apps/editors/templates/editors/themes/queue_list.html:48
@@ -3155,7 +3150,6 @@ msgid "Edit {0}"
 msgstr "Ḗḓīŧ {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29
-#: apps/devhub/templates/devhub/package_addon.html:34
 #: apps/devhub/templates/devhub/addons/edit/details.html:20
 #: apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
@@ -3189,7 +3183,7 @@ msgstr "Şȧṽḗ Ƈħȧƞɠḗş"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:12
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58
-#: apps/constants/base.py:133
+#: apps/constants/base.py:132
 msgid "Owner"
 msgstr "Ǿẇƞḗř"
 
@@ -3266,7 +3260,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:156
 #: apps/devhub/templates/devhub/addons/submit/describe.html:65
 #: apps/devhub/templates/devhub/addons/submit/license.html:60
-#: apps/devhub/templates/devhub/addons/submit/upload.html:49
+#: apps/devhub/templates/devhub/addons/submit/upload.html:60
 #: apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111
 #: apps/editors/templates/editors/themes/themes.html:128
@@ -3375,7 +3369,7 @@ msgstr ""
 "ŧħřǿŭɠħǿŭŧ ŧħḗ şīŧḗ ŧǿ īƞƈŀŭḓḗ ȧḓḓ-ǿƞş ŀȧŧḗř."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17
-#: apps/constants/base.py:383
+#: apps/constants/base.py:382
 #: apps/devhub/templates/devhub/addons/activity.html:62
 #: apps/perf/templates/perf/index.html:55
 msgid "Add-on"
@@ -3536,23 +3530,23 @@ msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
 #: apps/browse/views.py:454
-#: apps/devhub/views.py:72
-#: apps/devhub/views.py:79
+#: apps/devhub/views.py:73
+#: apps/devhub/views.py:80
 #: apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
 
 #: apps/browse/views.py:455
-#: apps/devhub/views.py:73
-#: apps/devhub/views.py:80
+#: apps/devhub/views.py:74
+#: apps/devhub/views.py:81
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
 #: apps/browse/views.py:456
-#: apps/devhub/views.py:74
-#: apps/devhub/views.py:81
+#: apps/devhub/views.py:75
+#: apps/devhub/views.py:82
 #: apps/discovery/templates/discovery/addons/detail.html:67
 #: apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9
@@ -3575,7 +3569,7 @@ msgstr "{0}: Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş"
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:21
 #: apps/devhub/templates/devhub/docs/policies.html:90
-#: apps/discovery/modules.py:338
+#: apps/discovery/modules.py:341
 #: apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
@@ -3625,7 +3619,7 @@ msgstr "Ŀȧƞɠŭȧɠḗ"
 
 #: apps/browse/templates/browse/language_tools.html:42
 #: apps/browse/templates/browse/language_tools.html:64
-#: apps/constants/base.py:161
+#: apps/constants/base.py:160
 msgid "Dictionary"
 msgstr "Ḓīƈŧīǿƞȧřẏ"
 
@@ -3704,7 +3698,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9
-#: apps/constants/base.py:173
+#: apps/constants/base.py:172
 msgid "Complete Themes"
 msgstr "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş"
 
@@ -3802,7 +3796,6 @@ msgid "View Profile"
 msgstr "Ṽīḗẇ Ƥřǿƒīŀḗ"
 
 #: apps/browse/templates/browse/personas/base.html:44
-#: apps/devhub/templates/devhub/docs/themes.html:9
 msgid "Create Your Own Theme"
 msgstr "Ƈřḗȧŧḗ Ẏǿŭř Ǿẇƞ Ŧħḗḿḗ"
 
@@ -3897,8 +3890,8 @@ msgid "Non-binary"
 msgstr "Ƞǿƞ-ƀīƞȧřẏ"
 
 #: apps/compat/views.py:84
-#: apps/constants/base.py:371
-#: apps/devhub/forms.py:144
+#: apps/constants/base.py:370
+#: apps/devhub/forms.py:141
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
@@ -3923,7 +3916,7 @@ msgid "All active add-ons"
 msgstr "Ȧŀŀ ȧƈŧīṽḗ ȧḓḓ-ǿƞş"
 
 #: apps/compat/templates/compat/index.html:23
-#: apps/constants/base.py:384
+#: apps/constants/base.py:383
 msgid "App"
 msgstr "Ȧƥƥ"
 
@@ -4005,7 +3998,7 @@ msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
 #: apps/compat/templates/compat/reporter_detail.html:47
-#: apps/devhub/forms.py:942
+#: apps/devhub/forms.py:748
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: apps/editors/forms.py:100
 #: apps/zadmin/forms.py:47
@@ -4100,17 +4093,17 @@ msgid "Awaiting Full Review"
 msgstr "Ȧẇȧīŧīƞɠ Ƒŭŀŀ Řḗṽīḗẇ"
 
 #: apps/constants/base.py:29
-#: apps/constants/base.py:51
+#: apps/constants/base.py:50
 msgid "Fully Reviewed"
 msgstr "Ƒŭŀŀẏ Řḗṽīḗẇḗḓ"
 
 #: apps/constants/base.py:30
-#: apps/constants/base.py:52
+#: apps/constants/base.py:51
 msgid "Disabled by Mozilla"
 msgstr "Ḓīşȧƀŀḗḓ ƀẏ Ḿǿzīŀŀȧ"
 
 #: apps/constants/base.py:31
-#: apps/constants/base.py:54
+#: apps/constants/base.py:53
 msgid "Preliminarily Reviewed"
 msgstr "Ƥřḗŀīḿīƞȧřīŀẏ Řḗṽīḗẇḗḓ"
 
@@ -4128,67 +4121,67 @@ msgstr "Ḓḗŀḗŧḗḓ"
 msgid "Pending approval"
 msgstr "Ƥḗƞḓīƞɠ ȧƥƥřǿṽȧŀ"
 
-#: apps/constants/base.py:46
+#: apps/constants/base.py:45
 msgid "Flagged for further review"
 msgstr "Ƒŀȧɠɠḗḓ ƒǿř ƒŭřŧħḗř řḗṽīḗẇ"
 
-#: apps/constants/base.py:53
+#: apps/constants/base.py:52
 msgid "Beta"
 msgstr "Ɓḗŧȧ"
 
-#: apps/constants/base.py:122
+#: apps/constants/base.py:121
 msgid "Full"
 msgstr "Ƒŭŀŀ"
 
-#: apps/constants/base.py:123
+#: apps/constants/base.py:122
 msgid "Preliminary"
 msgstr "Ƥřḗŀīḿīƞȧřẏ"
 
-#: apps/constants/base.py:134
+#: apps/constants/base.py:133
 #: apps/users/notifications.py:157
 msgid "Developer"
 msgstr "Ḓḗṽḗŀǿƥḗř"
 
-#: apps/constants/base.py:135
+#: apps/constants/base.py:134
 msgid "Viewer"
 msgstr "Ṽīḗẇḗř"
 
-#: apps/constants/base.py:136
+#: apps/constants/base.py:135
 #: templates/mobile/header.html:7
 msgid "Support"
 msgstr "Şŭƥƥǿřŧ"
 
-#: apps/constants/base.py:158
-#: apps/constants/base.py:171
+#: apps/constants/base.py:157
+#: apps/constants/base.py:170
 #: apps/constants/platforms.py:11
 msgid "Any"
 msgstr "Ȧƞẏ"
 
-#: apps/constants/base.py:159
+#: apps/constants/base.py:158
 msgid "Extension"
 msgstr "Ḗẋŧḗƞşīǿƞ"
 
-#: apps/constants/base.py:160
+#: apps/constants/base.py:159
 msgid "Complete Theme"
 msgstr "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ"
 
-#: apps/constants/base.py:162
+#: apps/constants/base.py:161
 msgid "Search Engine"
 msgstr "Şḗȧřƈħ Ḗƞɠīƞḗ"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:162
 msgid "Language Pack (Application)"
 msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķ (Ȧƥƥŀīƈȧŧīǿƞ)"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:163
 msgid "Language Pack (Add-on)"
 msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķ (Ȧḓḓ-ǿƞ)"
 
-#: apps/constants/base.py:165
+#: apps/constants/base.py:164
 msgid "Plugin"
 msgstr "Ƥŀŭɠīƞ"
 
-#: apps/constants/base.py:166
+#: apps/constants/base.py:165
 #: apps/editors/templates/editors/includes/search_results_themes.html:5
 #: apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8
@@ -4196,179 +4189,179 @@ msgstr "Ƥŀŭɠīƞ"
 msgid "Theme"
 msgstr "Ŧħḗḿḗ"
 
-#: apps/constants/base.py:174
+#: apps/constants/base.py:173
 msgid "Dictionaries"
 msgstr "Ḓīƈŧīǿƞȧřīḗş"
 
-#: apps/constants/base.py:176
+#: apps/constants/base.py:175
 msgid "Language Packs (Application)"
 msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķş (Ȧƥƥŀīƈȧŧīǿƞ)"
 
-#: apps/constants/base.py:177
+#: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
 msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķş (Ȧḓḓ-ǿƞ)"
 
-#: apps/constants/base.py:178
+#: apps/constants/base.py:177
 msgid "Plugins"
 msgstr "Ƥŀŭɠīƞş"
 
-#: apps/constants/base.py:243
+#: apps/constants/base.py:242
 msgid "Free"
 msgstr "Ƒřḗḗ"
 
-#: apps/constants/base.py:244
+#: apps/constants/base.py:243
 msgid "Premium"
 msgstr "Ƥřḗḿīŭḿ"
 
-#: apps/constants/base.py:245
+#: apps/constants/base.py:244
 msgid "Premium with in-app payments"
 msgstr "Ƥřḗḿīŭḿ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: apps/constants/base.py:246
+#: apps/constants/base.py:245
 msgid "Free with in-app payments"
 msgstr "Ƒřḗḗ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: apps/constants/base.py:247
+#: apps/constants/base.py:246
 msgid "I'll use my own system for in-app payments"
 msgstr "Ī'ŀŀ ŭşḗ ḿẏ ǿẇƞ şẏşŧḗḿ ƒǿř īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: apps/constants/base.py:303
+#: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Ǿƞŀẏ ȧşķ ǿƞ ŧħīş ȧḓḓ-ǿƞ'ş ƥȧɠḗ ȧƞḓ ḓḗṽḗŀǿƥḗř ƥřǿƒīŀḗ"
 
-#: apps/constants/base.py:304
+#: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
 msgstr "Ȧşķ ȧƒŧḗř ŭşḗřş şŧȧřŧ ḓǿẇƞŀǿȧḓīƞɠ ŧħīş ȧḓḓ-ǿƞ"
 
-#: apps/constants/base.py:305
+#: apps/constants/base.py:304
 msgid "Ask before users can download this add-on"
 msgstr "Ȧşķ ƀḗƒǿřḗ ŭşḗřş ƈȧƞ ḓǿẇƞŀǿȧḓ ŧħīş ȧḓḓ-ǿƞ"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:371
 msgid "Exception"
 msgstr "Ḗẋƈḗƥŧīǿƞ"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:372
 msgid "Release"
 msgstr "Řḗŀḗȧşḗ"
 
-#: apps/constants/base.py:374
+#: apps/constants/base.py:373
 msgid "Change"
 msgstr "Ƈħȧƞɠḗ"
 
-#: apps/constants/base.py:385
+#: apps/constants/base.py:384
 msgid "Persona"
 msgstr "Ƥḗřşǿƞȧ"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:415
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:416
 msgid "Full Add-on Review"
 msgstr "Ƒŭŀŀ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Preliminary Add-on Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Updated Add-on Review"
 msgstr "Ŭƥḓȧŧḗḓ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Full Dictionary Review"
 msgstr "Ƒŭŀŀ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Preliminary Dictionary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Updated Dictionary Review"
 msgstr "Ŭƥḓȧŧḗḓ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Full Language Pack Review"
 msgstr "Ƒŭŀŀ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Preliminary Language Pack Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Updated Language Pack Review"
 msgstr "Ŭƥḓȧŧḗḓ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Theme Review"
 msgstr "Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Full Search Provider Review"
 msgstr "Ƒŭŀŀ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Preliminary Search Provider Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Updated Search Provider Review"
 msgstr "Ŭƥḓȧŧḗḓ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Complete Theme Review"
 msgstr "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Preliminary Complete Theme Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Updated Complete Theme Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Moderated Addon Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧḓḓǿƞ Řḗṽīḗẇ"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
 msgstr "Ȧḓḓǿƞ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:506
 msgid "Not signed"
 msgstr "Ƞǿŧ şīɠƞḗḓ"
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:507
 msgid "Signed for a full review"
 msgstr "Şīɠƞḗḓ ƒǿř ȧ ƒŭŀŀ řḗṽīḗẇ"
 
-#: apps/constants/base.py:509
+#: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
 msgstr "Şīɠƞḗḓ ǿƒ ȧ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
@@ -4502,136 +4495,149 @@ msgstr "Řḗƈḗƞŧ Ƈħȧƞɠḗş ƒǿř %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Řḗƈḗƞŧ Ƈħȧƞɠḗş ƒǿř Ḿẏ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:66
 msgid "Must have at least one owner."
 msgstr "Ḿŭşŧ ħȧṽḗ ȧŧ ŀḗȧşŧ ǿƞḗ ǿẇƞḗř."
 
-#: apps/devhub/forms.py:72
+#: apps/devhub/forms.py:69
 msgid "At least one author must be listed."
 msgstr "Ȧŧ ŀḗȧşŧ ǿƞḗ ȧŭŧħǿř ḿŭşŧ ƀḗ ŀīşŧḗḓ."
 
-#: apps/devhub/forms.py:76
+#: apps/devhub/forms.py:73
 msgid "An author can only be listed once."
 msgstr "Ȧƞ ȧŭŧħǿř ƈȧƞ ǿƞŀẏ ƀḗ ŀīşŧḗḓ ǿƞƈḗ."
 
-#: apps/devhub/forms.py:94
+#: apps/devhub/forms.py:91
 msgid "Password incorrect."
 msgstr "Ƥȧşşẇǿřḓ īƞƈǿřřḗƈŧ."
 
-#: apps/devhub/forms.py:113
+#: apps/devhub/forms.py:110
 #: apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:120
 msgid "What is your license's name?"
 msgstr "Ẇħȧŧ īş ẏǿŭř ŀīƈḗƞşḗ'ş ƞȧḿḗ?"
 
-#: apps/devhub/forms.py:126
+#: apps/devhub/forms.py:123
 msgid "Provide the text of your license."
 msgstr "Ƥřǿṽīḓḗ ŧħḗ ŧḗẋŧ ǿƒ ẏǿŭř ŀīƈḗƞşḗ."
 
-#: apps/devhub/forms.py:161
+#: apps/devhub/forms.py:158
 msgid "License text is required when choosing Other."
 msgstr "Ŀīƈḗƞşḗ ŧḗẋŧ īş řḗɋŭīřḗḓ ẇħḗƞ ƈħǿǿşīƞɠ Ǿŧħḗř."
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:206
 msgid "This add-on has an End-User License Agreement"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ȧƞ Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ:"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ȧ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
-#: apps/devhub/forms.py:218
+#: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ƥřīṽȧƈẏ Ƥǿŀīƈẏ:"
 
-#: apps/devhub/forms.py:256
+#: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
 msgstr "Ẇħẏ ḓīḓ ẏǿŭ ḿȧķḗ ŧħīş ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:254
 msgid "What's next for this add-on?"
 msgstr "Ẇħȧŧ'ş ƞḗẋŧ ƒǿř ŧħīş ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:291
 msgid "The developers of this add-on"
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗřş ǿƒ ŧħīş ȧḓḓ-ǿƞ"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:292
 msgid "The Mozilla Foundation"
 msgstr "Ŧħḗ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:293
 msgid "An organization of my choice"
 msgstr "Ȧƞ ǿřɠȧƞīzȧŧīǿƞ ǿƒ ḿẏ ƈħǿīƈḗ"
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:336
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ şŭɠɠḗşŧḗḓ ȧḿǿŭƞŧ ɠřḗȧŧḗř ŧħȧƞ 0."
 
-#: apps/devhub/forms.py:342
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ şŭɠɠḗşŧḗḓ ȧḿǿŭƞŧ ŀḗşş ŧħȧƞ ${0}."
 
-#: apps/devhub/forms.py:351
+#: apps/devhub/forms.py:348
 msgid "PayPal ID required to accept contributions."
 msgstr "ƤȧẏƤȧŀ ĪḒ řḗɋŭīřḗḓ ŧǿ ȧƈƈḗƥŧ ƈǿƞŧřīƀŭŧīǿƞş."
 
-#: apps/devhub/forms.py:357
+#: apps/devhub/forms.py:354
 msgid "Could not validate PayPal id."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ṽȧŀīḓȧŧḗ ƤȧẏƤȧŀ īḓ."
 
-#: apps/devhub/forms.py:372
+#: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Ŭƞşŭƥƥǿřŧḗḓ ƒīŀḗ ŧẏƥḗ, ƥŀḗȧşḗ ŭƥŀǿȧḓ ȧƞ ȧřƈħīṽḗ ƒīŀḗ {ḗẋŧḗƞşīǿƞş}."
 
-#: apps/devhub/forms.py:391
+#: apps/devhub/forms.py:388
 msgid "View current"
 msgstr "Ṽīḗẇ ƈŭřřḗƞŧ"
 
-#: apps/devhub/forms.py:440
-#: apps/devhub/forms.py:869
+#: apps/devhub/forms.py:437
 msgid "Invalid version range."
 msgstr "Īƞṽȧŀīḓ ṽḗřşīǿƞ řȧƞɠḗ."
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:466
 msgid "Need at least one compatible application."
 msgstr "Ƞḗḗḓ ȧŧ ŀḗȧşŧ ǿƞḗ ƈǿḿƥȧŧīƀŀḗ ȧƥƥŀīƈȧŧīǿƞ."
 
-#: apps/devhub/forms.py:482
-#: apps/devhub/forms.py:499
+#: apps/devhub/forms.py:479
+#: apps/devhub/forms.py:496
 msgid "There was an error with your upload. Please try again."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:484
 msgid "Override failed validation"
 msgstr "Ǿṽḗřřīḓḗ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:524
+#: apps/devhub/forms.py:511
+msgid "Yes, include my add-on on AMO."
+msgstr "Ẏḗş, īƞƈŀŭḓḗ ḿẏ ȧḓḓ-ǿƞ ǿƞ ȦḾǾ."
+
+#: apps/devhub/forms.py:512
+msgid ""
+"Unchecking this box will allow your add-on to be uploaded and reviewed but "
+"it won't be visible on AMO or downloadable by any end users. If in doubt, "
+"leave this box checked - there are very few reasons to uncheck it."
+msgstr ""
+"Ŭƞƈħḗƈķīƞɠ ŧħīş ƀǿẋ ẇīŀŀ ȧŀŀǿẇ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ƀḗ ŭƥŀǿȧḓḗḓ ȧƞḓ řḗṽīḗẇḗḓ ƀŭŧ "
+"īŧ ẇǿƞ'ŧ ƀḗ ṽīşīƀŀḗ ǿƞ ȦḾǾ ǿř ḓǿẇƞŀǿȧḓȧƀŀḗ ƀẏ ȧƞẏ ḗƞḓ ŭşḗřş. Īƒ īƞ ḓǿŭƀŧ, "
+"ŀḗȧṽḗ ŧħīş ƀǿẋ ƈħḗƈķḗḓ - ŧħḗřḗ ȧřḗ ṽḗřẏ ƒḗẇ řḗȧşǿƞş ŧǿ ŭƞƈħḗƈķ īŧ."
+
+#: apps/devhub/forms.py:530
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:525
+#: apps/devhub/forms.py:531
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:46
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:529
+#: apps/devhub/forms.py:535
 msgid "Please choose a review nomination type"
 msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ řḗṽīḗẇ ƞǿḿīƞȧŧīǿƞ ŧẏƥḗ"
 
-#: apps/devhub/forms.py:533
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:539
+#: apps/devhub/forms.py:574
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
@@ -4639,23 +4645,23 @@ msgstr ""
 "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş "
 "ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
-#: apps/devhub/forms.py:550
+#: apps/devhub/forms.py:556
 msgid "Version %s already exists"
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş"
 
-#: apps/devhub/forms.py:562
+#: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. Ŧħȧŧ ƈħǿīƈḗ īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
 
-#: apps/devhub/forms.py:591
+#: apps/devhub/forms.py:597
 msgid "You cannot upload any more files for this version."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:603
 msgid "Version doesn't match"
 msgstr "Ṽḗřşīǿƞ ḓǿḗşƞ'ŧ ḿȧŧƈħ"
 
-#: apps/devhub/forms.py:626
+#: apps/devhub/forms.py:632
 msgid ""
 "You cannot delete a file once the review process has started. You must "
 "delete the whole version."
@@ -4663,180 +4669,26 @@ msgstr ""
 "Ẏǿŭ ƈȧƞƞǿŧ ḓḗŀḗŧḗ ȧ ƒīŀḗ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ħȧş şŧȧřŧḗḓ. Ẏǿŭ ḿŭşŧ "
 "ḓḗŀḗŧḗ ŧħḗ ẇħǿŀḗ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:652
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
 
-#: apps/devhub/forms.py:651
+#: apps/devhub/forms.py:657
 msgid "A platform can only be chosen once."
 msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 
-#: apps/devhub/forms.py:664
+#: apps/devhub/forms.py:670
 msgid "A review type must be selected."
 msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/devhub/forms.py:743
-msgid ""
-"Give your add-on a name. The most successful add-ons give some indication of "
-"their function in their name."
-msgstr ""
-"Ɠīṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧ ƞȧḿḗ. Ŧħḗ ḿǿşŧ şŭƈƈḗşşƒŭŀ ȧḓḓ-ǿƞş ɠīṽḗ şǿḿḗ īƞḓīƈȧŧīǿƞ ǿƒ "
-"ŧħḗīř ƒŭƞƈŧīǿƞ īƞ ŧħḗīř ƞȧḿḗ."
-
-#: apps/devhub/forms.py:748
-msgid ""
-"Briefly describe your add-on in one sentence. This appears in the Add-ons "
-"Manager."
-msgstr ""
-"Ɓřīḗƒŀẏ ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ īƞ ǿƞḗ şḗƞŧḗƞƈḗ. Ŧħīş ȧƥƥḗȧřş īƞ ŧħḗ Ȧḓḓ-ǿƞş "
-"Ḿȧƞȧɠḗř."
-
 #: apps/devhub/forms.py:752
-msgid ""
-"Enter your initial version number. Depending on the number of releases and "
-"your preferences, this is usually 0.1 or 1.0"
-msgstr ""
-"Ḗƞŧḗř ẏǿŭř īƞīŧīȧŀ ṽḗřşīǿƞ ƞŭḿƀḗř. Ḓḗƥḗƞḓīƞɠ ǿƞ ŧħḗ ƞŭḿƀḗř ǿƒ řḗŀḗȧşḗş ȧƞḓ "
-"ẏǿŭř ƥřḗƒḗřḗƞƈḗş, ŧħīş īş ŭşŭȧŀŀẏ 0.1 ǿř 1.0"
-
-#: apps/devhub/forms.py:756
-msgid ""
-"Each add-on requires a unique ID in the form of a UUID or an email address, "
-"such as addon-name@developer.com. The email address does not have to be "
-"valid."
-msgstr ""
-"Ḗȧƈħ ȧḓḓ-ǿƞ řḗɋŭīřḗş ȧ ŭƞīɋŭḗ ĪḒ īƞ ŧħḗ ƒǿřḿ ǿƒ ȧ ŬŬĪḒ ǿř ȧƞ ḗḿȧīŀ ȧḓḓřḗşş, "
-"şŭƈħ ȧş addon-name@developer.com. Ŧħḗ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ħȧṽḗ ŧǿ ƀḗ "
-"ṽȧŀīḓ."
-
-#: apps/devhub/forms.py:762
-msgid ""
-"The package name of your add-on used within the browser. This should be a "
-"short form of its name (for example, Test Extension might be test_extension)."
-msgstr ""
-"Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ŭşḗḓ ẇīŧħīƞ ŧħḗ ƀřǿẇşḗř. Ŧħīş şħǿŭŀḓ ƀḗ ȧ "
-"şħǿřŧ ƒǿřḿ ǿƒ īŧş ƞȧḿḗ (ƒǿř ḗẋȧḿƥŀḗ, Ŧḗşŧ Ḗẋŧḗƞşīǿƞ ḿīɠħŧ ƀḗ ŧḗşŧ_ḗẋŧḗƞşīǿƞ)."
-
-#: apps/devhub/forms.py:767
-msgid ""
-"Enter the name of the person or entity to be listed as the author of this "
-"add-on."
-msgstr ""
-"Ḗƞŧḗř ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ƥḗřşǿƞ ǿř ḗƞŧīŧẏ ŧǿ ƀḗ ŀīşŧḗḓ ȧş ŧħḗ ȧŭŧħǿř ǿƒ ŧħīş "
-"ȧḓḓ-ǿƞ."
-
-#: apps/devhub/forms.py:771
-msgid ""
-"Enter the names of any other contributors to this extension, one per line."
-msgstr ""
-"Ḗƞŧḗř ŧħḗ ƞȧḿḗş ǿƒ ȧƞẏ ǿŧħḗř ƈǿƞŧřīƀŭŧǿřş ŧǿ ŧħīş ḗẋŧḗƞşīǿƞ, ǿƞḗ ƥḗř ŀīƞḗ."
-
-#: apps/devhub/forms.py:780
-msgid "Add-on names should not contain Mozilla trademarks."
-msgstr "Ȧḓḓ-ǿƞ ƞȧḿḗş şħǿŭŀḓ ƞǿŧ ƈǿƞŧȧīƞ Ḿǿzīŀŀȧ ŧřȧḓḗḿȧřķş."
-
-#: apps/devhub/forms.py:787
-msgid ""
-"Enter a valid package name consisting of letters, numbers, or underscores."
-msgstr ""
-"Ḗƞŧḗř ȧ ṽȧŀīḓ ƥȧƈķȧɠḗ ƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ǿř ŭƞḓḗřşƈǿřḗş."
-
-#: apps/devhub/forms.py:791
-msgid "This package name is already in use."
-msgstr "Ŧħīş ƥȧƈķȧɠḗ ƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
-
-#: apps/devhub/forms.py:794
-msgid "The package name cannot be: %s."
-msgstr "Ŧħḗ ƥȧƈķȧɠḗ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ: %s."
-
-#: apps/devhub/forms.py:805
-msgid "The add-on ID must be a UUID string or an email address."
-msgstr "Ŧħḗ ȧḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ ȧ ŬŬĪḒ şŧřīƞɠ ǿř ȧƞ ḗḿȧīŀ ȧḓḓřḗşş."
-
-#: apps/devhub/forms.py:811
-msgid "The version string is invalid."
-msgstr "Ŧħḗ ṽḗřşīǿƞ şŧřīƞɠ īş īƞṽȧŀīḓ."
-
-#: apps/devhub/forms.py:819
-msgid "Minimum"
-msgstr "Ḿīƞīḿŭḿ"
-
-#: apps/devhub/forms.py:822
-msgid "Maximum"
-msgstr "Ḿȧẋīḿŭḿ"
-
-#: apps/devhub/forms.py:873
-msgid "Min version must be less than Max version."
-msgstr "Ḿīƞ ṽḗřşīǿƞ ḿŭşŧ ƀḗ ŀḗşş ŧħȧƞ Ḿȧẋ ṽḗřşīǿƞ."
-
-#: apps/devhub/forms.py:898
-msgid "{0} is a required target application."
-msgstr "{0} īş ȧ řḗɋŭīřḗḓ ŧȧřɠḗŧ ȧƥƥŀīƈȧŧīǿƞ."
-
-#: apps/devhub/forms.py:910
-msgid "About dialog"
-msgstr "Ȧƀǿŭŧ ḓīȧŀǿɠ"
-
-#: apps/devhub/forms.py:911
-msgid "Creates a standard About dialog for your extension"
-msgstr "Ƈřḗȧŧḗş ȧ şŧȧƞḓȧřḓ Ȧƀǿŭŧ ḓīȧŀǿɠ ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/forms.py:915
-msgid "Preferences dialog"
-msgstr "Ƥřḗƒḗřḗƞƈḗş ḓīȧŀǿɠ"
-
-#: apps/devhub/forms.py:916
-msgid "Creates an example Preferences window"
-msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ Ƥřḗƒḗřḗƞƈḗş ẇīƞḓǿẇ"
-
-#: apps/devhub/forms.py:919
-msgid "Toolbar"
-msgstr "Ŧǿǿŀƀȧř"
-
-#: apps/devhub/forms.py:920
-msgid "Creates an example toolbar for your extension"
-msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ŧǿǿŀƀȧř ƒǿř ẏǿŭř ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/forms.py:923
-msgid "Toolbar button"
-msgstr "Ŧǿǿŀƀȧř ƀŭŧŧǿƞ"
-
-#: apps/devhub/forms.py:924
-msgid "Creates an example button on the browser toolbar"
-msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ ƀŭŧŧǿƞ ǿƞ ŧħḗ ƀřǿẇşḗř ŧǿǿŀƀȧř"
-
-#: apps/devhub/forms.py:928
-msgid "Main menu command"
-msgstr "Ḿȧīƞ ḿḗƞŭ ƈǿḿḿȧƞḓ"
-
-#: apps/devhub/forms.py:929
-msgid "Creates an item on the Tools menu"
-msgstr "Ƈřḗȧŧḗş ȧƞ īŧḗḿ ǿƞ ŧħḗ Ŧǿǿŀş ḿḗƞŭ"
-
-#: apps/devhub/forms.py:932
-msgid "Context menu command"
-msgstr "Ƈǿƞŧḗẋŧ ḿḗƞŭ ƈǿḿḿȧƞḓ"
-
-#: apps/devhub/forms.py:933
-msgid "Creates a context menu item for images"
-msgstr "Ƈřḗȧŧḗş ȧ ƈǿƞŧḗẋŧ ḿḗƞŭ īŧḗḿ ƒǿř īḿȧɠḗş"
-
-#: apps/devhub/forms.py:936
-msgid "Sidebar support"
-msgstr "Şīḓḗƀȧř şŭƥƥǿřŧ"
-
-#: apps/devhub/forms.py:937
-msgid "Creates an example sidebar panel"
-msgstr "Ƈřḗȧŧḗş ȧƞ ḗẋȧḿƥŀḗ şīḓḗƀȧř ƥȧƞḗŀ"
-
-#: apps/devhub/forms.py:946
 #: apps/editors/forms.py:106
 #: apps/zadmin/forms.py:51
 #: apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
-#: apps/devhub/forms.py:998
+#: apps/devhub/forms.py:804
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ŧħḗřḗ ƈȧƞƞǿŧ ƀḗ ḿǿřḗ ŧħȧƞ 3 řḗɋŭīřḗḓ ȧḓḓ-ǿƞş."
 
@@ -4866,21 +4718,21 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-#: apps/devhub/models.py:370
+#: apps/devhub/models.py:369
 #: apps/reviews/templates/reviews/add.html:58
 #: apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: apps/devhub/tasks.py:327
+#: apps/devhub/tasks.py:300
 msgid "%s responded with %s (%s)."
 msgstr "%s řḗşƥǿƞḓḗḓ ẇīŧħ %s (%s)."
 
-#: apps/devhub/tasks.py:331
+#: apps/devhub/tasks.py:304
 msgid "Connection to \"%s\" timed out."
 msgstr "Ƈǿƞƞḗƈŧīǿƞ ŧǿ \"%s\" ŧīḿḗḓ ǿŭŧ."
 
-#: apps/devhub/tasks.py:333
+#: apps/devhub/tasks.py:306
 msgid "Could not contact host at \"%s\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞŧȧƈŧ ħǿşŧ ȧŧ \"%s\"."
 
@@ -4892,130 +4744,130 @@ msgstr ""
 "Ṽȧŀīḓȧŧīǿƞ ɠḗƞḗřȧŧḗḓ ŧǿǿ ḿȧƞẏ ḗřřǿřş/warnings şǿ %s ḿḗşşȧɠḗş ẇḗřḗ ŧřŭƞƈȧŧḗḓ. "
 "Ȧƒŧḗř ȧḓḓřḗşşīƞɠ ŧħḗ ṽīşīƀŀḗ ḿḗşşȧɠḗş, ẏǿŭ'ŀŀ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħḗ ǿŧħḗřş."
 
-#: apps/devhub/views.py:176
+#: apps/devhub/views.py:177
 msgid "All My Add-ons"
 msgstr "Ȧŀŀ Ḿẏ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "All Activity"
 msgstr "Ȧŀŀ Ȧƈŧīṽīŧẏ"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Updates"
 msgstr "Ȧḓḓ-ǿƞ Ŭƥḓȧŧḗş"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Status"
 msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "User Collections"
 msgstr "Ŭşḗř Ƈǿŀŀḗƈŧīǿƞş"
 
-#: apps/devhub/views.py:207
+#: apps/devhub/views.py:208
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Ŭşḗř Řḗṽīḗẇş"
 
-#: apps/devhub/views.py:320
-#: apps/devhub/views.py:324
-#: apps/devhub/views.py:467
-#: apps/devhub/views.py:496
-#: apps/devhub/views.py:547
-#: apps/devhub/views.py:1156
+#: apps/devhub/views.py:321
+#: apps/devhub/views.py:325
+#: apps/devhub/views.py:468
+#: apps/devhub/views.py:497
+#: apps/devhub/views.py:548
+#: apps/devhub/views.py:1097
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: apps/devhub/views.py:327
-#: apps/devhub/views.py:1571
+#: apps/devhub/views.py:328
+#: apps/devhub/views.py:1518
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
-#: apps/devhub/views.py:339
+#: apps/devhub/views.py:340
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Ȧḓḓ-ǿƞ ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧḓḓ-ǿƞ īƞşŧḗȧḓ."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Theme deleted."
 msgstr "Ŧħḗḿḗ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Add-on deleted."
 msgstr "Ȧḓḓ-ǿƞ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:355
+#: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ŧħḗḿḗ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:360
+#: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧḓḓ-ǿƞ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:433
+#: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
 msgstr "Ȧƞ ȧŭŧħǿř ħȧş ƀḗḗƞ ȧḓḓḗḓ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:440
+#: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
 msgstr "Ȧƞ ȧŭŧħǿř ħȧş ȧ řǿŀḗ ƈħȧƞɠḗḓ ǿƞ ẏǿŭř ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:459
+#: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
 msgstr "Ȧƞ ȧŭŧħǿř ħȧş ƀḗḗƞ řḗḿǿṽḗḓ ƒřǿḿ ẏǿŭř ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:502
+#: apps/devhub/views.py:503
 msgid "There were errors in your submission."
 msgstr "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ẏǿŭř şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:566
+#: apps/devhub/views.py:567
 msgid "Validate Add-on"
 msgstr "Ṽȧŀīḓȧŧḗ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:575
+#: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
 msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 
-#: apps/devhub/views.py:698
+#: apps/devhub/views.py:639
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:1061
+#: apps/devhub/views.py:1002
 #: apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: apps/devhub/views.py:1065
+#: apps/devhub/views.py:1006
 msgid "Icons cannot be animated."
 msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1067
+#: apps/devhub/views.py:1008
 msgid "Images cannot be animated."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1080
+#: apps/devhub/views.py:1021
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1090
+#: apps/devhub/views.py:1031
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ḗẋȧƈŧŀẏ {0} ƥīẋḗŀş ẇīḓḗ ȧƞḓ {1} ƥīẋḗŀş ŧȧŀŀ."
 
-#: apps/devhub/views.py:1097
+#: apps/devhub/views.py:1038
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: apps/devhub/views.py:1195
+#: apps/devhub/views.py:1136
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1199
+#: apps/devhub/views.py:1140
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1209
+#: apps/devhub/views.py:1150
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -5023,11 +4875,15 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1617
+#: apps/devhub/views.py:1335
+msgid "Skipping to step 6 because the add-on won't be listed"
+msgstr "Şķīƥƥīƞɠ ŧǿ şŧḗƥ 6 ƀḗƈȧŭşḗ ŧħḗ ȧḓḓ-ǿƞ ẇǿƞ'ŧ ƀḗ ŀīşŧḗḓ"
+
+#: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1565
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -5036,74 +4892,6 @@ msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Ɓȧƈķ ŧǿ Ȧḓḓ-ǿƞş"
-
-#: apps/devhub/templates/devhub/builder.html:3
-#: apps/devhub/templates/devhub/builder.html:30
-msgid "Add-on SDK"
-msgstr "Ȧḓḓ-ǿƞ ŞḒĶ"
-
-#. Section in strong tag is bigger and on it's own line
-#: apps/devhub/templates/devhub/builder.html:11
-msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr "<strong>Ȧḓḓ-ǿƞ ŞḒĶ:</strong> Ƈřḗȧŧḗ Ȧḓḓ-ǿƞş Ɋŭīƈķŀẏ ȧƞḓ Ḗȧşīŀẏ"
-
-#: apps/devhub/templates/devhub/builder.html:16
-msgid ""
-"The Add-on SDK provides powerful APIs that allow developers to create add-"
-"ons for Firefox using HTML, CSS and JavaScript. When your add-on is "
-"complete, we make it easy to share it with over 400 million Firefox users "
-"world wide."
-msgstr ""
-"Ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ ƥřǿṽīḓḗş ƥǿẇḗřƒŭŀ ȦƤĪş ŧħȧŧ ȧŀŀǿẇ ḓḗṽḗŀǿƥḗřş ŧǿ ƈřḗȧŧḗ ȧḓḓ-"
-"ǿƞş ƒǿř Ƒīřḗƒǿẋ ŭşīƞɠ ĦŦḾĿ, ƇŞŞ ȧƞḓ ĴȧṽȧŞƈřīƥŧ. Ẇħḗƞ ẏǿŭř ȧḓḓ-ǿƞ īş "
-"ƈǿḿƥŀḗŧḗ, ẇḗ ḿȧķḗ īŧ ḗȧşẏ ŧǿ şħȧřḗ īŧ ẇīŧħ ǿṽḗř 400 ḿīŀŀīǿƞ Ƒīřḗƒǿẋ ŭşḗřş "
-"ẇǿřŀḓ ẇīḓḗ."
-
-#: apps/devhub/templates/devhub/builder.html:32
-msgid ""
-"The Add-on SDK is set of APIs bundled with a command line utility that "
-"allows you to develop add-ons with your own tool chain."
-msgstr ""
-"Ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ īş şḗŧ ǿƒ ȦƤĪş ƀŭƞḓŀḗḓ ẇīŧħ ȧ ƈǿḿḿȧƞḓ ŀīƞḗ ŭŧīŀīŧẏ ŧħȧŧ "
-"ȧŀŀǿẇş ẏǿŭ ŧǿ ḓḗṽḗŀǿƥ ȧḓḓ-ǿƞş ẇīŧħ ẏǿŭř ǿẇƞ ŧǿǿŀ ƈħȧīƞ."
-
-#: apps/devhub/templates/devhub/builder.html:38
-msgid "Choose your own code editor"
-msgstr "Ƈħǿǿşḗ ẏǿŭř ǿẇƞ ƈǿḓḗ ḗḓīŧǿř"
-
-#: apps/devhub/templates/devhub/builder.html:39
-msgid "Access your development files locally"
-msgstr "Ȧƈƈḗşş ẏǿŭř ḓḗṽḗŀǿƥḿḗƞŧ ƒīŀḗş ŀǿƈȧŀŀẏ"
-
-#: apps/devhub/templates/devhub/builder.html:40
-msgid "Get greater control over SDK build steps"
-msgstr "Ɠḗŧ ɠřḗȧŧḗř ƈǿƞŧřǿŀ ǿṽḗř ŞḒĶ ƀŭīŀḓ şŧḗƥş"
-
-#: apps/devhub/templates/devhub/builder.html:43
-msgid "Download the Add-on SDK"
-msgstr "Ḓǿẇƞŀǿȧḓ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ"
-
-#: apps/devhub/templates/devhub/builder.html:49
-msgid "Help is at Hand!"
-msgstr "Ħḗŀƥ īş ȧŧ Ħȧƞḓ!"
-
-#: apps/devhub/templates/devhub/builder.html:51
-msgid ""
-"Need some support building your add-on? We have <a href=\"%(url_docs)s\">"
-"extensive documentation</a> and a massive developer community to make sure "
-"you're never on your own."
-msgstr ""
-"Ƞḗḗḓ şǿḿḗ şŭƥƥǿřŧ ƀŭīŀḓīƞɠ ẏǿŭř ȧḓḓ-ǿƞ? Ẇḗ ħȧṽḗ <a href=\"%(url_docs)s\">"
-"ḗẋŧḗƞşīṽḗ ḓǿƈŭḿḗƞŧȧŧīǿƞ</a> ȧƞḓ ȧ ḿȧşşīṽḗ ḓḗṽḗŀǿƥḗř ƈǿḿḿŭƞīŧẏ ŧǿ ḿȧķḗ şŭřḗ "
-"ẏǿŭ'řḗ ƞḗṽḗř ǿƞ ẏǿŭř ǿẇƞ."
-
-#: apps/devhub/templates/devhub/builder.html:60
-msgid ""
-"Interested in making the Add-on SDK even better? Grab the source code, and "
-"find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr ""
-"Īƞŧḗřḗşŧḗḓ īƞ ḿȧķīƞɠ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ ḗṽḗƞ ƀḗŧŧḗř? Ɠřȧƀ ŧħḗ şǿŭřƈḗ ƈǿḓḗ, ȧƞḓ "
-"ƒīƞḓ ǿŭŧ ħǿẇ ŧǿ ħḗŀƥ <a href='%(url_wiki)s'>ħḗřḗ</a>."
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -5149,190 +4937,99 @@ msgstr "Ƥŀḗȧşḗ ḗƞŧḗř şǿḿḗ şḗȧřƈħ ŧḗřḿş."
 msgid "Loading results&hellip;"
 msgstr "Ŀǿȧḓīƞɠ řḗşŭŀŧş&hellip;"
 
-#: apps/devhub/templates/devhub/index.html:23
-msgid "Calling All Add-ons!"
-msgstr "Ƈȧŀŀīƞɠ Ȧŀŀ Ȧḓḓ-ǿƞş!"
-
-#: apps/devhub/templates/devhub/index.html:25
-msgid ""
-"There's no better way to distribute your add-on than by hosting it on "
-"Mozilla Add-ons."
-msgstr ""
-"Ŧħḗřḗ'ş ƞǿ ƀḗŧŧḗř ẇȧẏ ŧǿ ḓīşŧřīƀŭŧḗ ẏǿŭř ȧḓḓ-ǿƞ ŧħȧƞ ƀẏ ħǿşŧīƞɠ īŧ ǿƞ "
-"Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş."
-
-#: apps/devhub/templates/devhub/index.html:29
-#: apps/devhub/templates/devhub/index.html:34
+#: apps/devhub/templates/devhub/index.html:21
 msgid "Submit an Add-on"
 msgstr "Şŭƀḿīŧ ȧƞ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/templates/devhub/index.html:49
+#: apps/devhub/templates/devhub/index.html:26
+msgid "AMO Reviewers"
+msgstr "ȦḾǾ Řḗṽīḗẇḗřş"
+
+#: apps/devhub/templates/devhub/index.html:28
+msgid ""
+"Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
+msgstr ""
+"Ɠḗŧ ȧħḗȧḓ! Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ ƒȧşŧḗř."
+
+#: apps/devhub/templates/devhub/index.html:31
+msgid "Become an AMO Reviewer"
+msgstr "Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř"
+
+#: apps/devhub/templates/devhub/index.html:38
+msgid "Learn All About Add-ons"
+msgstr "Ŀḗȧřƞ Ȧŀŀ Ȧƀǿŭŧ Ȧḓḓ-ǿƞş"
+
+#: apps/devhub/templates/devhub/index.html:40
+msgid ""
+"Add-ons let millions of Firefox users enhance and customize their browsing "
+"experience. If you're a Web developer and know <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, "
+"and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you "
+"already have all the necessary skills to make a great add-on."
+msgstr ""
+"Ȧḓḓ-ǿƞş ŀḗŧ ḿīŀŀīǿƞş ǿƒ Ƒīřḗƒǿẋ ŭşḗřş ḗƞħȧƞƈḗ ȧƞḓ ƈŭşŧǿḿīzḗ ŧħḗīř ƀřǿẇşīƞɠ "
+"ḗẋƥḗřīḗƞƈḗ. Īƒ ẏǿŭ'řḗ ȧ Ẇḗƀ ḓḗṽḗŀǿƥḗř ȧƞḓ ķƞǿẇ <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">ĦŦḾĿ</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">ĴȧṽȧŞƈřīƥŧ</a>, "
+"ȧƞḓ <a href=\"https://developer.mozilla.org/docs/Web/CSS\">ƇŞŞ</a>, ẏǿŭ "
+"ȧŀřḗȧḓẏ ħȧṽḗ ȧŀŀ ŧħḗ ƞḗƈḗşşȧřẏ şķīŀŀş ŧǿ ḿȧķḗ ȧ ɠřḗȧŧ ȧḓḓ-ǿƞ."
+
+#: apps/devhub/templates/devhub/index.html:50
+msgid ""
+"Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
+"Developer Network</a> to learn everything you need to know to get started."
+msgstr ""
+"Ħḗȧḓ ǿṽḗř ŧǿ ŧħḗ <a href=\"https://developer.mozilla.org/Add-ons\">Ḿǿzīŀŀȧ "
+"Ḓḗṽḗŀǿƥḗř Ƞḗŧẇǿřķ</a> ŧǿ ŀḗȧřƞ ḗṽḗřẏŧħīƞɠ ẏǿŭ ƞḗḗḓ ŧǿ ķƞǿẇ ŧǿ ɠḗŧ şŧȧřŧḗḓ."
+
+#: apps/devhub/templates/devhub/index.html:57
+msgid "Start Making Add-ons"
+msgstr "Şŧȧřŧ Ḿȧķīƞɠ Ȧḓḓ-ǿƞş"
+
+#: apps/devhub/templates/devhub/index.html:85
 #: apps/devhub/templates/devhub/addons/listing/items.html:25
 #: apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
 msgstr "Şŧȧŧŭş:"
 
-#: apps/devhub/templates/devhub/index.html:54
+#: apps/devhub/templates/devhub/index.html:90
 msgid "Latest Version:"
 msgstr "Ŀȧŧḗşŧ Ṽḗřşīǿƞ:"
 
-#: apps/devhub/templates/devhub/index.html:63
+#: apps/devhub/templates/devhub/index.html:99
 #: apps/devhub/templates/devhub/includes/addon_details.html:119
 #: apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
 msgstr "Ɋŭḗŭḗ Ƥǿşīŧīǿƞ:"
 
-#: apps/devhub/templates/devhub/index.html:64
+#: apps/devhub/templates/devhub/index.html:100
 #: apps/devhub/templates/devhub/includes/addon_details.html:120
 #: apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s ǿƒ %(total)s"
 
-#: apps/devhub/templates/devhub/index.html:74
+#: apps/devhub/templates/devhub/index.html:110
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
 msgstr "Ŭƥŀǿȧḓ Ƞḗẇ Ṽḗřşīǿƞ"
 
-#: apps/devhub/templates/devhub/index.html:80
+#: apps/devhub/templates/devhub/index.html:118
 msgid "View all add-ons ►"
 msgstr "Ṽīḗẇ ȧŀŀ ȧḓḓ-ǿƞş ►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "ȦḾǾ Řḗṽīḗẇḗřş"
-
-#: apps/devhub/templates/devhub/index.html:85
-msgid ""
-"Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"Ɠḗŧ ȧħḗȧḓ! Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ ƒȧşŧḗř."
-
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř"
-
-#: apps/devhub/templates/devhub/index.html:96
-msgid "Firefox Add-ons Made Easy"
-msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḿȧḓḗ Ḗȧşẏ"
-
-#: apps/devhub/templates/devhub/index.html:98
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing "
-"experience. If you're a Web developer and know HTML, JavaScript and CSS, you "
-"already have what it takes to make great add-ons with the Add-on SDK. What's "
-"more, add-ons built with the SDK are restartless by default."
-msgstr ""
-"Ȧḓḓ-ǿƞş ŀḗŧ ḿīŀŀīǿƞş ǿƒ Ƒīřḗƒǿẋ ŭşḗřş ḗƞħȧƞƈḗ ȧƞḓ ƈŭşŧǿḿīzḗ ŧħḗīř ƀřǿẇşīƞɠ "
-"ḗẋƥḗřīḗƞƈḗ. Īƒ ẏǿŭ'řḗ ȧ Ẇḗƀ ḓḗṽḗŀǿƥḗř ȧƞḓ ķƞǿẇ ĦŦḾĿ, ĴȧṽȧŞƈřīƥŧ ȧƞḓ ƇŞŞ, ẏǿŭ "
-"ȧŀřḗȧḓẏ ħȧṽḗ ẇħȧŧ īŧ ŧȧķḗş ŧǿ ḿȧķḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ẇīŧħ ŧħḗ Ȧḓḓ-ǿƞ ŞḒĶ. Ẇħȧŧ'ş "
-"ḿǿřḗ, ȧḓḓ-ǿƞş ƀŭīŀŧ ẇīŧħ ŧħḗ ŞḒĶ ȧřḗ řḗşŧȧřŧŀḗşş ƀẏ ḓḗƒȧŭŀŧ."
-
-#: apps/devhub/templates/devhub/index.html:106
-msgid "Start Making Add-ons"
-msgstr "Şŧȧřŧ Ḿȧķīƞɠ Ȧḓḓ-ǿƞş"
-
-#: apps/devhub/templates/devhub/index.html:113
-msgid "Learn &amp; Explore"
-msgstr "Ŀḗȧřƞ &amp; Ḗẋƥŀǿřḗ"
-
-#: apps/devhub/templates/devhub/index.html:119
-#: apps/devhub/templates/devhub/nav.html:41
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:6
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:6
-#: apps/devhub/templates/devhub/docs/how-to.html:3
-#: apps/devhub/templates/devhub/docs/how-to.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:61
-#: apps/devhub/templates/devhub/docs/how-to.html:62
-msgid "How-to Library"
-msgstr "Ħǿẇ-ŧǿ Ŀīƀřȧřẏ"
-
 #: apps/devhub/templates/devhub/index.html:121
-#: apps/devhub/templates/devhub/docs/how-to.html:64
+msgid "Publish your add-ons!"
+msgstr "Ƥŭƀŀīşħ ẏǿŭř ȧḓḓ-ǿƞş!"
+
+#: apps/devhub/templates/devhub/index.html:126
 msgid ""
-"Get add-on development guidance in a top-notch collection of tutorials, "
-"articles, and more."
+"Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
+"href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
-"Ɠḗŧ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ɠŭīḓȧƞƈḗ īƞ ȧ ŧǿƥ-ƞǿŧƈħ ƈǿŀŀḗƈŧīǿƞ ǿƒ ŧŭŧǿřīȧŀş, "
-"ȧřŧīƈŀḗş, ȧƞḓ ḿǿřḗ."
-
-#: apps/devhub/templates/devhub/index.html:132
-msgid "API & Language Reference"
-msgstr "ȦƤĪ & Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/index.html:134
-#: apps/devhub/templates/devhub/docs/reference.html:14
-msgid ""
-"The official documentation on APIs and languages. What you need, when you "
-"need it, to create your masterpiece."
-msgstr ""
-"Ŧħḗ ǿƒƒīƈīȧŀ ḓǿƈŭḿḗƞŧȧŧīǿƞ ǿƞ ȦƤĪş ȧƞḓ ŀȧƞɠŭȧɠḗş. Ẇħȧŧ ẏǿŭ ƞḗḗḓ, ẇħḗƞ ẏǿŭ "
-"ƞḗḗḓ īŧ, ŧǿ ƈřḗȧŧḗ ẏǿŭř ḿȧşŧḗřƥīḗƈḗ."
-
-#: apps/devhub/templates/devhub/index.html:145
-#: apps/devhub/templates/devhub/nav.html:39
-#: apps/devhub/templates/devhub/docs/case-studies.html:3
-#: apps/devhub/templates/devhub/docs/case-studies.html:8
-#: apps/devhub/templates/devhub/docs/case-studies.html:31
-#: apps/devhub/templates/devhub/docs/case-studies.html:32
-msgid "Case Studies"
-msgstr "Ƈȧşḗ Şŧŭḓīḗş"
-
-#: apps/devhub/templates/devhub/index.html:147
-#: apps/devhub/templates/devhub/docs/case-studies.html:35
-msgid ""
-"Start-to-finish success stories. See how add-on developers made magic with "
-"Mozilla."
-msgstr ""
-"Şŧȧřŧ-ŧǿ-ƒīƞīşħ şŭƈƈḗşş şŧǿřīḗş. Şḗḗ ħǿẇ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş ḿȧḓḗ ḿȧɠīƈ ẇīŧħ "
-"Ḿǿzīŀŀȧ."
-
-#: apps/devhub/templates/devhub/index.html:159
-msgid "Create &amp; Connect"
-msgstr "Ƈřḗȧŧḗ &amp; Ƈǿƞƞḗƈŧ"
-
-#: apps/devhub/templates/devhub/index.html:165
-msgid "Developer Forums"
-msgstr "Ḓḗṽḗŀǿƥḗř Ƒǿřŭḿş"
-
-#: apps/devhub/templates/devhub/index.html:167
-msgid ""
-"Discuss development, brainstorm ideas, and make connections in the world of "
-"add-ons."
-msgstr ""
-"Ḓīşƈŭşş ḓḗṽḗŀǿƥḿḗƞŧ, ƀřȧīƞşŧǿřḿ īḓḗȧş, ȧƞḓ ḿȧķḗ ƈǿƞƞḗƈŧīǿƞş īƞ ŧħḗ ẇǿřŀḓ ǿƒ "
-"ȧḓḓ-ǿƞş."
-
-#: apps/devhub/templates/devhub/index.html:178
-#: apps/devhub/templates/devhub/nav.html:52
-#: apps/devhub/templates/devhub/package_addon.html:4
-#: apps/devhub/templates/devhub/package_addon_success.html:3
-msgid "Add-on Packager"
-msgstr "Ȧḓḓ-ǿƞ Ƥȧƈķȧɠḗř"
-
-#: apps/devhub/templates/devhub/index.html:180
-msgid ""
-"Auto-generate add-on packaging by entering basic info and picking UI parts. "
-"Get working without setup."
-msgstr ""
-"Ȧŭŧǿ-ɠḗƞḗřȧŧḗ ȧḓḓ-ǿƞ ƥȧƈķȧɠīƞɠ ƀẏ ḗƞŧḗřīƞɠ ƀȧşīƈ īƞƒǿ ȧƞḓ ƥīƈķīƞɠ ŬĪ ƥȧřŧş. "
-"Ɠḗŧ ẇǿřķīƞɠ ẇīŧħǿŭŧ şḗŧŭƥ."
-
-#: apps/devhub/templates/devhub/index.html:191
-#: apps/devhub/templates/devhub/nav.html:54
-msgid "Add-on Validator"
-msgstr "Ȧḓḓ-ǿƞ Ṽȧŀīḓȧŧǿř"
-
-#: apps/devhub/templates/devhub/index.html:193
-msgid ""
-"Check your add-on for common problems and errors. Open to anyone, not just "
-"add-ons hosted here."
-msgstr ""
-"Ƈħḗƈķ ẏǿŭř ȧḓḓ-ǿƞ ƒǿř ƈǿḿḿǿƞ ƥřǿƀŀḗḿş ȧƞḓ ḗřřǿřş. Ǿƥḗƞ ŧǿ ȧƞẏǿƞḗ, ƞǿŧ ĵŭşŧ "
-"ȧḓḓ-ǿƞş ħǿşŧḗḓ ħḗřḗ."
+"Ŭƥŀǿȧḓ ȧƞ <a href=\"%(addon_url)s\">ȧḓḓ-ǿƞ</a> ǿř <a "
+"href=\"%(theme_url)s\">ŧħḗḿḗ</a> ŧǿ ɠḗŧ şŧȧřŧḗḓ!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -5352,20 +5049,14 @@ msgid "Documentation"
 msgstr "Ḓǿƈŭḿḗƞŧȧŧīǿƞ"
 
 #: apps/devhub/templates/devhub/nav.html:35
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
-#: apps/devhub/templates/devhub/docs/getting-started.html:3
-#: apps/devhub/templates/devhub/docs/getting-started.html:6
-#: apps/devhub/templates/devhub/docs/getting-started.html:8
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:3
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:7
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:9
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:16
-#: apps/devhub/templates/devhub/docs/how-to.html:13
-#: apps/devhub/templates/devhub/docs/how-to.html:74
-msgid "Getting Started"
-msgstr "Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
+msgid "Extension Development"
+msgstr "Ḗẋŧḗƞşīǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ"
 
 #: apps/devhub/templates/devhub/nav.html:37
+msgid "Lightweight Themes"
+msgstr "Ŀīɠħŧẇḗīɠħŧ Ŧħḗḿḗş"
+
+#: apps/devhub/templates/devhub/nav.html:39
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:6
 #: apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6
@@ -5379,190 +5070,33 @@ msgstr "Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
 msgid "Add-on Policies"
 msgstr "Ȧḓḓ-ǿƞ Ƥǿŀīƈīḗş"
 
-#: apps/devhub/templates/devhub/nav.html:43
-msgid "API &amp; Language Reference"
-msgstr "ȦƤĪ &amp; Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗ"
+#: apps/devhub/templates/devhub/nav.html:46
+msgid "Add-on Validator"
+msgstr "Ȧḓḓ-ǿƞ Ṽȧŀīḓȧŧǿř"
 
-#: apps/devhub/templates/devhub/nav.html:56
+#: apps/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
 msgstr "Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ Ƈħḗƈķḗř"
 
-#: apps/devhub/templates/devhub/nav.html:58
+#: apps/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
 msgstr "Ḓḗṽḗŀǿƥḿḗƞŧ Ȧḓḓ-ǿƞş"
 
-#: apps/devhub/templates/devhub/nav.html:62
-msgid "Community"
-msgstr "Ƈǿḿḿŭƞīŧẏ"
+#: apps/devhub/templates/devhub/nav.html:54
+msgid "Community & Support"
+msgstr "Ƈǿḿḿŭƞīŧẏ & Şŭƥƥǿřŧ"
 
-#: apps/devhub/templates/devhub/nav.html:65
+#: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
 msgstr "Ȧḓḓ-ǿƞş Ɓŀǿɠ"
 
-#: apps/devhub/templates/devhub/nav.html:67
+#: apps/devhub/templates/devhub/nav.html:59
 msgid "Add-ons Forum"
 msgstr "Ȧḓḓ-ǿƞş Ƒǿřŭḿ"
 
-#: apps/devhub/templates/devhub/package_addon.html:17
-msgid ""
-"Enter some basic information about your add-on below and select which "
-"interface components to start with, and your custom-built add-on will be "
-"ready for download."
-msgstr ""
-"Ḗƞŧḗř şǿḿḗ ƀȧşīƈ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẏǿŭř ȧḓḓ-ǿƞ ƀḗŀǿẇ ȧƞḓ şḗŀḗƈŧ ẇħīƈħ "
-"īƞŧḗřƒȧƈḗ ƈǿḿƥǿƞḗƞŧş ŧǿ şŧȧřŧ ẇīŧħ, ȧƞḓ ẏǿŭř ƈŭşŧǿḿ-ƀŭīŀŧ ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ "
-"řḗȧḓẏ ƒǿř ḓǿẇƞŀǿȧḓ."
-
-#: apps/devhub/templates/devhub/package_addon.html:24
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
-msgid "Describe your add-on"
-msgstr "Ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ"
-
-#: apps/devhub/templates/devhub/package_addon.html:26
-msgid ""
-"First, you need to enter some basic information about your add-on. This will "
-"be displayed in the Add-ons Manager when your extension is installed."
-msgstr ""
-"Ƒīřşŧ, ẏǿŭ ƞḗḗḓ ŧǿ ḗƞŧḗř şǿḿḗ ƀȧşīƈ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẏǿŭř ȧḓḓ-ǿƞ. Ŧħīş ẇīŀŀ "
-"ƀḗ ḓīşƥŀȧẏḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř ẇħḗƞ ẏǿŭř ḗẋŧḗƞşīǿƞ īş īƞşŧȧŀŀḗḓ."
-
-#: apps/devhub/templates/devhub/package_addon.html:33
-msgid "Add-on Name"
-msgstr "Ȧḓḓ-ǿƞ Ƞȧḿḗ"
-
-#: apps/devhub/templates/devhub/package_addon.html:35
-msgid "Add-on Version"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞ"
-
-#: apps/devhub/templates/devhub/package_addon.html:36
-msgid "Unique ID"
-msgstr "Ŭƞīɋŭḗ ĪḒ"
-
-#: apps/devhub/templates/devhub/package_addon.html:37
-msgid "Package Name"
-msgstr "Ƥȧƈķȧɠḗ Ƞȧḿḗ"
-
-#: apps/devhub/templates/devhub/package_addon.html:41
-msgid "Who's working on your add-on?"
-msgstr "Ẇħǿ'ş ẇǿřķīƞɠ ǿƞ ẏǿŭř ȧḓḓ-ǿƞ?"
-
-#: apps/devhub/templates/devhub/package_addon.html:43
-msgid ""
-"Tell us about the people or companies behind this add-on. This information "
-"appears in the add-on's About dialog."
-msgstr ""
-"Ŧḗŀŀ ŭş ȧƀǿŭŧ ŧħḗ ƥḗǿƥŀḗ ǿř ƈǿḿƥȧƞīḗş ƀḗħīƞḓ ŧħīş ȧḓḓ-ǿƞ. Ŧħīş īƞƒǿřḿȧŧīǿƞ "
-"ȧƥƥḗȧřş īƞ ŧħḗ ȧḓḓ-ǿƞ'ş Ȧƀǿŭŧ ḓīȧŀǿɠ."
-
-#: apps/devhub/templates/devhub/package_addon.html:49
-msgid "Primary Author"
-msgstr "Ƥřīḿȧřẏ Ȧŭŧħǿř"
-
-#: apps/devhub/templates/devhub/package_addon.html:50
-msgid "Contributors"
-msgstr "Ƈǿƞŧřīƀŭŧǿřş"
-
-#: apps/devhub/templates/devhub/package_addon.html:54
-msgid "Where will your add-on run?"
-msgstr "Ẇħḗřḗ ẇīŀŀ ẏǿŭř ȧḓḓ-ǿƞ řŭƞ?"
-
-#: apps/devhub/templates/devhub/package_addon.html:56
-msgid ""
-"Select the applications and versions that your add-on will support. The "
-"versions that you select will be the only versions that your add-on will be "
-"installable on. Make sure you only select applications and versions that you "
-"intend to test your add-on with."
-msgstr ""
-"Şḗŀḗƈŧ ŧħḗ ȧƥƥŀīƈȧŧīǿƞş ȧƞḓ ṽḗřşīǿƞş ŧħȧŧ ẏǿŭř ȧḓḓ-ǿƞ ẇīŀŀ şŭƥƥǿřŧ. Ŧħḗ "
-"ṽḗřşīǿƞş ŧħȧŧ ẏǿŭ şḗŀḗƈŧ ẇīŀŀ ƀḗ ŧħḗ ǿƞŀẏ ṽḗřşīǿƞş ŧħȧŧ ẏǿŭř ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ "
-"īƞşŧȧŀŀȧƀŀḗ ǿƞ. Ḿȧķḗ şŭřḗ ẏǿŭ ǿƞŀẏ şḗŀḗƈŧ ȧƥƥŀīƈȧŧīǿƞş ȧƞḓ ṽḗřşīǿƞş ŧħȧŧ ẏǿŭ "
-"īƞŧḗƞḓ ŧǿ ŧḗşŧ ẏǿŭř ȧḓḓ-ǿƞ ẇīŧħ."
-
-#: apps/devhub/templates/devhub/package_addon.html:64
-msgid "Supported Applications and Versions"
-msgstr "Şŭƥƥǿřŧḗḓ Ȧƥƥŀīƈȧŧīǿƞş ȧƞḓ Ṽḗřşīǿƞş"
-
-#: apps/devhub/templates/devhub/package_addon.html:80
-msgid "Choose pre-built features"
-msgstr "Ƈħǿǿşḗ ƥřḗ-ƀŭīŀŧ ƒḗȧŧŭřḗş"
-
-#: apps/devhub/templates/devhub/package_addon.html:82
-msgid ""
-"Get started quickly by selecting user interface components to include in "
-"your add-on package. We'll include documented code for each item you select "
-"so your extension will work out of the box."
-msgstr ""
-"Ɠḗŧ şŧȧřŧḗḓ ɋŭīƈķŀẏ ƀẏ şḗŀḗƈŧīƞɠ ŭşḗř īƞŧḗřƒȧƈḗ ƈǿḿƥǿƞḗƞŧş ŧǿ īƞƈŀŭḓḗ īƞ "
-"ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ. Ẇḗ'ŀŀ īƞƈŀŭḓḗ ḓǿƈŭḿḗƞŧḗḓ ƈǿḓḗ ƒǿř ḗȧƈħ īŧḗḿ ẏǿŭ şḗŀḗƈŧ "
-"şǿ ẏǿŭř ḗẋŧḗƞşīǿƞ ẇīŀŀ ẇǿřķ ǿŭŧ ǿƒ ŧħḗ ƀǿẋ."
-
-#: apps/devhub/templates/devhub/package_addon.html:95
-msgid "Submit and Build"
-msgstr "Şŭƀḿīŧ ȧƞḓ Ɓŭīŀḓ"
-
-#: apps/devhub/templates/devhub/package_addon.html:102
-msgid "Advanced Building"
-msgstr "Ȧḓṽȧƞƈḗḓ Ɓŭīŀḓīƞɠ"
-
-#: apps/devhub/templates/devhub/package_addon.html:104
-msgid ""
-"Want to create XULRunner applications, XPCOM components, and other advanced "
-"skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr ""
-"Ẇȧƞŧ ŧǿ ƈřḗȧŧḗ ẊŬĿŘŭƞƞḗř ȧƥƥŀīƈȧŧīǿƞş, ẊƤƇǾḾ ƈǿḿƥǿƞḗƞŧş, ȧƞḓ ǿŧħḗř ȧḓṽȧƞƈḗḓ "
-"şķḗŀḗŧǿƞş? Ṽīşīŧ ŧħḗ <a href=\"%(url)s\">ḾǿzḒḗṽ Ƥřǿĵḗƈŧ Ẇīzȧřḓ</a>."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:10
-msgid "Add-on packaged successfully!"
-msgstr "Ȧḓḓ-ǿƞ ƥȧƈķȧɠḗḓ şŭƈƈḗşşƒŭŀŀẏ!"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:14
-msgid ""
-"Use the download link below to save a copy of your extension's compressed "
-"source. To install as an extension in Firefox or another compatible "
-"application, simply rename the <kbd>.zip</kbd> extension to <kbd>.xpi</kbd>."
-msgstr ""
-"Ŭşḗ ŧħḗ ḓǿẇƞŀǿȧḓ ŀīƞķ ƀḗŀǿẇ ŧǿ şȧṽḗ ȧ ƈǿƥẏ ǿƒ ẏǿŭř ḗẋŧḗƞşīǿƞ'ş ƈǿḿƥřḗşşḗḓ "
-"şǿŭřƈḗ. Ŧǿ īƞşŧȧŀŀ ȧş ȧƞ ḗẋŧḗƞşīǿƞ īƞ Ƒīřḗƒǿẋ ǿř ȧƞǿŧħḗř ƈǿḿƥȧŧīƀŀḗ "
-"ȧƥƥŀīƈȧŧīǿƞ, şīḿƥŀẏ řḗƞȧḿḗ ŧħḗ <kbd>.zīƥ</kbd> ḗẋŧḗƞşīǿƞ ŧǿ <kbd>.ẋƥī</kbd>."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:22
-msgid "Please wait&hellip;"
-msgstr "Ƥŀḗȧşḗ ẇȧīŧ&hellip;"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:24
-msgid "JavaScript needs to be enabled to fetch the packaged add-on."
-msgstr "ĴȧṽȧŞƈřīƥŧ ƞḗḗḓş ŧǿ ƀḗ ḗƞȧƀŀḗḓ ŧǿ ƒḗŧƈħ ŧħḗ ƥȧƈķȧɠḗḓ ȧḓḓ-ǿƞ."
-
-#: apps/devhub/templates/devhub/package_addon_success.html:29
-msgid "What do I do next?"
-msgstr "Ẇħȧŧ ḓǿ Ī ḓǿ ƞḗẋŧ?"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:30
-msgid ""
-"<ol> <li> Follow the instructions in the packaged source code to create your "
-"own preferences and make your own customizations. </li> <li>Remove any "
-"source code that you don't eventually use.</li> <li>Read the documentation "
-"and ask for help when you need it!</li> </ol>"
-msgstr ""
-"<ol> <li> Ƒǿŀŀǿẇ ŧħḗ īƞşŧřŭƈŧīǿƞş īƞ ŧħḗ ƥȧƈķȧɠḗḓ şǿŭřƈḗ ƈǿḓḗ ŧǿ ƈřḗȧŧḗ ẏǿŭř "
-"ǿẇƞ ƥřḗƒḗřḗƞƈḗş ȧƞḓ ḿȧķḗ ẏǿŭř ǿẇƞ ƈŭşŧǿḿīzȧŧīǿƞş. </li> <li>Řḗḿǿṽḗ ȧƞẏ "
-"şǿŭřƈḗ ƈǿḓḗ ŧħȧŧ ẏǿŭ ḓǿƞ'ŧ ḗṽḗƞŧŭȧŀŀẏ ŭşḗ.</li> <li>Řḗȧḓ ŧħḗ ḓǿƈŭḿḗƞŧȧŧīǿƞ "
-"ȧƞḓ ȧşķ ƒǿř ħḗŀƥ ẇħḗƞ ẏǿŭ ƞḗḗḓ īŧ!</li> </ol>"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:41
-msgid ""
-"Now that you've got an extension skeleton, the fun part begins: hacking on "
-"the extension to make it do what you want. If you need some help, check out "
-"our <a href=\"%(gs_url)s\">Getting Started</a> page for the basics, or visit "
-"the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and "
-"documentation."
-msgstr ""
-"Ƞǿẇ ŧħȧŧ ẏǿŭ'ṽḗ ɠǿŧ ȧƞ ḗẋŧḗƞşīǿƞ şķḗŀḗŧǿƞ, ŧħḗ ƒŭƞ ƥȧřŧ ƀḗɠīƞş: ħȧƈķīƞɠ ǿƞ "
-"ŧħḗ ḗẋŧḗƞşīǿƞ ŧǿ ḿȧķḗ īŧ ḓǿ ẇħȧŧ ẏǿŭ ẇȧƞŧ. Īƒ ẏǿŭ ƞḗḗḓ şǿḿḗ ħḗŀƥ, ƈħḗƈķ ǿŭŧ "
-"ǿŭř <a href=\"%(gs_url)s\">Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ</a> ƥȧɠḗ ƒǿř ŧħḗ ƀȧşīƈş, ǿř ṽīşīŧ "
-"ŧħḗ <a href=\"%(ht_url)s\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> ƒǿř ŧŭŧǿřīȧŀş ȧƞḓ "
-"ḓǿƈŭḿḗƞŧȧŧīǿƞ."
+#: apps/devhub/templates/devhub/nav.html:61
+msgid "More Resources"
+msgstr "Ḿǿřḗ Řḗşǿŭřƈḗş"
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
@@ -6614,9 +6148,17 @@ msgstr "Ƈȧƞƞǿŧ řḗɋŭḗşŧ Ƒŭŀŀ Řḗṽīḗẇ ƒǿř 10 ḓȧ�
 msgid "Choose Preliminary Review"
 msgstr "Ƈħǿǿşḗ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
+msgid "Getting Started"
+msgstr "Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
+
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
 msgid "Upload your add-on"
 msgstr "Ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ"
+
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
+msgid "Describe your add-on"
+msgstr "Ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Add images"
@@ -6710,1098 +6252,14 @@ msgstr ""
 msgid "Which platforms is this file compatible with?"
 msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:38
+#: apps/devhub/templates/devhub/addons/submit/upload.html:37
+msgid "Do you want your add-on listed on AMO?"
+msgstr "Ḓǿ ẏǿŭ ẇȧƞŧ ẏǿŭř ȧḓḓ-ǿƞ ŀīşŧḗḓ ǿƞ ȦḾǾ?"
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:49
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Ȧḓḿīƞīşŧřȧŧīṽḗ ǿṽḗřřīḓḗş"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:12
-msgid "StumbleUpon"
-msgstr "ŞŧŭḿƀŀḗŬƥǿƞ"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:16
-msgid "Download Statusbar"
-msgstr "Ḓǿẇƞŀǿȧḓ Şŧȧŧŭşƀȧř"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:20
-msgid "Cooliris"
-msgstr "Ƈǿǿŀīřīş"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:44
-msgid "by <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-msgstr "ƀẏ <a href=\"http://www.stumbleupon.com\">ŞŧŭḿƀŀḗŬƥǿƞ, Īƞƈ.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:48
-msgid "Personalized Browsing with StumbleUpon"
-msgstr "Ƥḗřşǿƞȧŀīzḗḓ Ɓřǿẇşīƞɠ ẇīŧħ ŞŧŭḿƀŀḗŬƥǿƞ"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:50
-msgid ""
-"StumbleUpon is a recommendation engine that helps users discover and share "
-"great websites. With over 8 million users, it has become one of the most "
-"popular sharing services on the Web today."
-msgstr ""
-"ŞŧŭḿƀŀḗŬƥǿƞ īş ȧ řḗƈǿḿḿḗƞḓȧŧīǿƞ ḗƞɠīƞḗ ŧħȧŧ ħḗŀƥş ŭşḗřş ḓīşƈǿṽḗř ȧƞḓ şħȧřḗ "
-"ɠřḗȧŧ ẇḗƀşīŧḗş. Ẇīŧħ ǿṽḗř 8 ḿīŀŀīǿƞ ŭşḗřş, īŧ ħȧş ƀḗƈǿḿḗ ǿƞḗ ǿƒ ŧħḗ ḿǿşŧ "
-"ƥǿƥŭŀȧř şħȧřīƞɠ şḗřṽīƈḗş ǿƞ ŧħḗ Ẇḗƀ ŧǿḓȧẏ."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:55
-msgid "Learn how StumbleUpon got its start with Firefox"
-msgstr "Ŀḗȧřƞ ħǿẇ ŞŧŭḿƀŀḗŬƥǿƞ ɠǿŧ īŧş şŧȧřŧ ẇīŧħ Ƒīřḗƒǿẋ"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:63
-msgid ""
-"by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon "
-"Jensen</a>"
-msgstr ""
-"ƀẏ <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Ḓḗṽǿƞ "
-"Ĵḗƞşḗƞ</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:67
-msgid "Easy Download Management with Download Statusbar"
-msgstr "Ḗȧşẏ Ḓǿẇƞŀǿȧḓ Ḿȧƞȧɠḗḿḗƞŧ ẇīŧħ Ḓǿẇƞŀǿȧḓ Şŧȧŧŭşƀȧř"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:70
-msgid ""
-"Download Statusbar shows the progress of current downloads right in the "
-"browser&#039;s statusbar. There&#039;s no need to open the Download Manager "
-"when downloads can be managed from anywhere in the browser."
-msgstr ""
-"Ḓǿẇƞŀǿȧḓ Şŧȧŧŭşƀȧř şħǿẇş ŧħḗ ƥřǿɠřḗşş ǿƒ ƈŭřřḗƞŧ ḓǿẇƞŀǿȧḓş řīɠħŧ īƞ ŧħḗ "
-"ƀřǿẇşḗř&#039;ş şŧȧŧŭşƀȧř. Ŧħḗřḗ&#039;ş ƞǿ ƞḗḗḓ ŧǿ ǿƥḗƞ ŧħḗ Ḓǿẇƞŀǿȧḓ Ḿȧƞȧɠḗř "
-"ẇħḗƞ ḓǿẇƞŀǿȧḓş ƈȧƞ ƀḗ ḿȧƞȧɠḗḓ ƒřǿḿ ȧƞẏẇħḗřḗ īƞ ŧħḗ ƀřǿẇşḗř."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:75
-msgid ""
-"Read about how someone new to software development made one of the most "
-"popular Firefox add-ons"
-msgstr ""
-"Řḗȧḓ ȧƀǿŭŧ ħǿẇ şǿḿḗǿƞḗ ƞḗẇ ŧǿ şǿƒŧẇȧřḗ ḓḗṽḗŀǿƥḿḗƞŧ ḿȧḓḗ ǿƞḗ ǿƒ ŧħḗ ḿǿşŧ "
-"ƥǿƥŭŀȧř Ƒīřḗƒǿẋ ȧḓḓ-ǿƞş"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:83
-msgid "by <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-msgstr "ƀẏ <a href=\"http://www.cooliris.com\">Ƈǿǿŀīřīş, Īƞƈ.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:87
-msgid "Immersive 3-D Experience with Cooliris"
-msgstr "Īḿḿḗřşīṽḗ 3-Ḓ Ḗẋƥḗřīḗƞƈḗ ẇīŧħ Ƈǿǿŀīřīş"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:90
-msgid ""
-"Cooliris lets users browse photos and videos from the Web or local computer "
-"on an infinitely scrollable 3-D wall. Its award-winning design brings speed "
-"and elegance to searching, finding and enjoying rich content."
-msgstr ""
-"Ƈǿǿŀīřīş ŀḗŧş ŭşḗřş ƀřǿẇşḗ ƥħǿŧǿş ȧƞḓ ṽīḓḗǿş ƒřǿḿ ŧħḗ Ẇḗƀ ǿř ŀǿƈȧŀ ƈǿḿƥŭŧḗř "
-"ǿƞ ȧƞ īƞƒīƞīŧḗŀẏ şƈřǿŀŀȧƀŀḗ 3-Ḓ ẇȧŀŀ. Īŧş ȧẇȧřḓ-ẇīƞƞīƞɠ ḓḗşīɠƞ ƀřīƞɠş şƥḗḗḓ "
-"ȧƞḓ ḗŀḗɠȧƞƈḗ ŧǿ şḗȧřƈħīƞɠ, ƒīƞḓīƞɠ ȧƞḓ ḗƞĵǿẏīƞɠ řīƈħ ƈǿƞŧḗƞŧ."
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:95
-msgid "Find out how Cooliris re-invented photo browsing"
-msgstr "Ƒīƞḓ ǿŭŧ ħǿẇ Ƈǿǿŀīřīş řḗ-īƞṽḗƞŧḗḓ ƥħǿŧǿ ƀřǿẇşīƞɠ"
-
-#. Localization note: this page is intended to be fun and jokes around to make add-on development sound easy for those getting started. Please feel free
-#. to translate humorous parts/metaphors into something that works in your locale, or take them out if you want. Thanks!
-#: apps/devhub/templates/devhub/docs/getting-started.html:16
-msgid ""
-"If you've used Firefox add-ons before, you know that they're capable of some "
-"pretty impressive features &mdash; from inspecting the underlying framework "
-"of a website to displaying a scrolling 3-D wall of pictures and video. But "
-"some of the most popular add-ons just make minor changes to Firefox through "
-"easily learned languages like JavaScript, XUL, and CSS. If you have an idea "
-"for your first add-on, start out with something simple to learn the basics "
-"of how extensions are packaged and interact with Firefox."
-msgstr ""
-"Īƒ ẏǿŭ'ṽḗ ŭşḗḓ Ƒīřḗƒǿẋ ȧḓḓ-ǿƞş ƀḗƒǿřḗ, ẏǿŭ ķƞǿẇ ŧħȧŧ ŧħḗẏ'řḗ ƈȧƥȧƀŀḗ ǿƒ şǿḿḗ "
-"ƥřḗŧŧẏ īḿƥřḗşşīṽḗ ƒḗȧŧŭřḗş &mdash; ƒřǿḿ īƞşƥḗƈŧīƞɠ ŧħḗ ŭƞḓḗřŀẏīƞɠ ƒřȧḿḗẇǿřķ "
-"ǿƒ ȧ ẇḗƀşīŧḗ ŧǿ ḓīşƥŀȧẏīƞɠ ȧ şƈřǿŀŀīƞɠ 3-Ḓ ẇȧŀŀ ǿƒ ƥīƈŧŭřḗş ȧƞḓ ṽīḓḗǿ. Ɓŭŧ "
-"şǿḿḗ ǿƒ ŧħḗ ḿǿşŧ ƥǿƥŭŀȧř ȧḓḓ-ǿƞş ĵŭşŧ ḿȧķḗ ḿīƞǿř ƈħȧƞɠḗş ŧǿ Ƒīřḗƒǿẋ ŧħřǿŭɠħ "
-"ḗȧşīŀẏ ŀḗȧřƞḗḓ ŀȧƞɠŭȧɠḗş ŀīķḗ ĴȧṽȧŞƈřīƥŧ, ẊŬĿ, ȧƞḓ ƇŞŞ. Īƒ ẏǿŭ ħȧṽḗ ȧƞ īḓḗȧ "
-"ƒǿř ẏǿŭř ƒīřşŧ ȧḓḓ-ǿƞ, şŧȧřŧ ǿŭŧ ẇīŧħ şǿḿḗŧħīƞɠ şīḿƥŀḗ ŧǿ ŀḗȧřƞ ŧħḗ ƀȧşīƈş "
-"ǿƒ ħǿẇ ḗẋŧḗƞşīǿƞş ȧřḗ ƥȧƈķȧɠḗḓ ȧƞḓ īƞŧḗřȧƈŧ ẇīŧħ Ƒīřḗƒǿẋ."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:24
-msgid "Learn the basics"
-msgstr "Ŀḗȧřƞ ŧħḗ ƀȧşīƈş"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:26
-msgid ""
-"The easiest way to do that is to follow along with the <a "
-"href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
-"Firefox Add-ons Developer Guide</a> as it explains in detail the "
-"technologies used in extensions and walks through the creation of several "
-"basic extensions."
-msgstr ""
-"Ŧħḗ ḗȧşīḗşŧ ẇȧẏ ŧǿ ḓǿ ŧħȧŧ īş ŧǿ ƒǿŀŀǿẇ ȧŀǿƞɠ ẇīŧħ ŧħḗ <a "
-"href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
-"Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ</a> ȧş īŧ ḗẋƥŀȧīƞş īƞ ḓḗŧȧīŀ ŧħḗ "
-"ŧḗƈħƞǿŀǿɠīḗş ŭşḗḓ īƞ ḗẋŧḗƞşīǿƞş ȧƞḓ ẇȧŀķş ŧħřǿŭɠħ ŧħḗ ƈřḗȧŧīǿƞ ǿƒ şḗṽḗřȧŀ "
-"ƀȧşīƈ ḗẋŧḗƞşīǿƞş."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:32
-msgid ""
-"<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
-"Visit the Firefox Add-ons Developer Guide</a>"
-msgstr ""
-"<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">"
-"Ṽīşīŧ ŧħḗ Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ</a>"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:38
-msgid ""
-"If you'd rather dive right in, there are several other tutorials in our <a "
-"href=\"%(base_docs)show-to/getting-started\">Getting Started section</a> of "
-"the <a href=\"%(base_docs)show-to\">How-to Library</a> that jump straight "
-"into code. And if you have some time to spare, you may prefer a video "
-"walkthrough of extension basics: <a href=\"http://design-"
-"challenge.mozilla.com/resources/#extension_bootcamp\">Extension Bootcamp: "
-"Zero to Hello World! in 45 Minutes</a>."
-msgstr ""
-"Īƒ ẏǿŭ'ḓ řȧŧħḗř ḓīṽḗ řīɠħŧ īƞ, ŧħḗřḗ ȧřḗ şḗṽḗřȧŀ ǿŧħḗř ŧŭŧǿřīȧŀş īƞ ǿŭř <a "
-"href=\"%(base_docs)show-to/getting-started\">Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ şḗƈŧīǿƞ</a> ǿƒ "
-"ŧħḗ <a href=\"%(base_docs)show-to\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> ŧħȧŧ ĵŭḿƥ şŧřȧīɠħŧ "
-"īƞŧǿ ƈǿḓḗ. Ȧƞḓ īƒ ẏǿŭ ħȧṽḗ şǿḿḗ ŧīḿḗ ŧǿ şƥȧřḗ, ẏǿŭ ḿȧẏ ƥřḗƒḗř ȧ ṽīḓḗǿ "
-"ẇȧŀķŧħřǿŭɠħ ǿƒ ḗẋŧḗƞşīǿƞ ƀȧşīƈş: <a href=\"http://design-"
-"challenge.mozilla.com/resources/#extension_bootcamp\">Ḗẋŧḗƞşīǿƞ Ɓǿǿŧƈȧḿƥ: "
-"Ẑḗřǿ ŧǿ Ħḗŀŀǿ Ẇǿřŀḓ! īƞ 45 Ḿīƞŭŧḗş</a>."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:47
-msgid "Build your add-on"
-msgstr "Ɓŭīŀḓ ẏǿŭř ȧḓḓ-ǿƞ"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:49
-msgid ""
-"Once you're familiar with the extension development environment, it's time "
-"to start on your first add-on. Back in the day, this meant climbing up a "
-"hill in the snow to find a suitable template to copy for your add-on's "
-"install manifest. Fortunately, the Add-on Developer Hub (that's this!) "
-"introduces the snowmobile of extension packaging: the <a href=\"%(url)s"
-"\">Add-on Packager</a>!"
-msgstr ""
-"Ǿƞƈḗ ẏǿŭ'řḗ ƒȧḿīŀīȧř ẇīŧħ ŧħḗ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ḗƞṽīřǿƞḿḗƞŧ, īŧ'ş ŧīḿḗ "
-"ŧǿ şŧȧřŧ ǿƞ ẏǿŭř ƒīřşŧ ȧḓḓ-ǿƞ. Ɓȧƈķ īƞ ŧħḗ ḓȧẏ, ŧħīş ḿḗȧƞŧ ƈŀīḿƀīƞɠ ŭƥ ȧ "
-"ħīŀŀ īƞ ŧħḗ şƞǿẇ ŧǿ ƒīƞḓ ȧ şŭīŧȧƀŀḗ ŧḗḿƥŀȧŧḗ ŧǿ ƈǿƥẏ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ'ş "
-"īƞşŧȧŀŀ ḿȧƞīƒḗşŧ. Ƒǿřŧŭƞȧŧḗŀẏ, ŧħḗ Ȧḓḓ-ǿƞ Ḓḗṽḗŀǿƥḗř Ħŭƀ (ŧħȧŧ'ş ŧħīş!) "
-"īƞŧřǿḓŭƈḗş ŧħḗ şƞǿẇḿǿƀīŀḗ ǿƒ ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠīƞɠ: ŧħḗ <a "
-"href=\"%(url)s\">Ȧḓḓ-ǿƞ Ƥȧƈķȧɠḗř</a>!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:54
-msgid ""
-"Just follow the steps to enter your add-on's name, version number, supported "
-"applications, and other details, and it will make your extension package for "
-"download. Not only does it generate your install manifest, but you can "
-"select common interface elements like toolbars, sidebars, and context menus "
-"to make a working extension skeleton. We're practically writing your "
-"extension for you!"
-msgstr ""
-"Ĵŭşŧ ƒǿŀŀǿẇ ŧħḗ şŧḗƥş ŧǿ ḗƞŧḗř ẏǿŭř ȧḓḓ-ǿƞ'ş ƞȧḿḗ, ṽḗřşīǿƞ ƞŭḿƀḗř, şŭƥƥǿřŧḗḓ "
-"ȧƥƥŀīƈȧŧīǿƞş, ȧƞḓ ǿŧħḗř ḓḗŧȧīŀş, ȧƞḓ īŧ ẇīŀŀ ḿȧķḗ ẏǿŭř ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠḗ ƒǿř "
-"ḓǿẇƞŀǿȧḓ. Ƞǿŧ ǿƞŀẏ ḓǿḗş īŧ ɠḗƞḗřȧŧḗ ẏǿŭř īƞşŧȧŀŀ ḿȧƞīƒḗşŧ, ƀŭŧ ẏǿŭ ƈȧƞ "
-"şḗŀḗƈŧ ƈǿḿḿǿƞ īƞŧḗřƒȧƈḗ ḗŀḗḿḗƞŧş ŀīķḗ ŧǿǿŀƀȧřş, şīḓḗƀȧřş, ȧƞḓ ƈǿƞŧḗẋŧ ḿḗƞŭş "
-"ŧǿ ḿȧķḗ ȧ ẇǿřķīƞɠ ḗẋŧḗƞşīǿƞ şķḗŀḗŧǿƞ. Ẇḗ'řḗ ƥřȧƈŧīƈȧŀŀẏ ẇřīŧīƞɠ ẏǿŭř "
-"ḗẋŧḗƞşīǿƞ ƒǿř ẏǿŭ!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:60
-msgid "Take me to the Add-on Packager!"
-msgstr "Ŧȧķḗ ḿḗ ŧǿ ŧħḗ Ȧḓḓ-ǿƞ Ƥȧƈķȧɠḗř!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:65
-msgid "Add some flair"
-msgstr "Ȧḓḓ şǿḿḗ ƒŀȧīř"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:67
-msgid ""
-"If your add-on needs more functionality than the empty sidebar the Packager "
-"made for you, there are several ways to find out how to add the "
-"functionality you want. One of the most common ways of learning how to do "
-"something in an extension is to look at what other extensions already do. "
-"Just remember that if the other extension's license doesn't allow you to "
-"copy its source, you can't."
-msgstr ""
-"Īƒ ẏǿŭř ȧḓḓ-ǿƞ ƞḗḗḓş ḿǿřḗ ƒŭƞƈŧīǿƞȧŀīŧẏ ŧħȧƞ ŧħḗ ḗḿƥŧẏ şīḓḗƀȧř ŧħḗ Ƥȧƈķȧɠḗř "
-"ḿȧḓḗ ƒǿř ẏǿŭ, ŧħḗřḗ ȧřḗ şḗṽḗřȧŀ ẇȧẏş ŧǿ ƒīƞḓ ǿŭŧ ħǿẇ ŧǿ ȧḓḓ ŧħḗ "
-"ƒŭƞƈŧīǿƞȧŀīŧẏ ẏǿŭ ẇȧƞŧ. Ǿƞḗ ǿƒ ŧħḗ ḿǿşŧ ƈǿḿḿǿƞ ẇȧẏş ǿƒ ŀḗȧřƞīƞɠ ħǿẇ ŧǿ ḓǿ "
-"şǿḿḗŧħīƞɠ īƞ ȧƞ ḗẋŧḗƞşīǿƞ īş ŧǿ ŀǿǿķ ȧŧ ẇħȧŧ ǿŧħḗř ḗẋŧḗƞşīǿƞş ȧŀřḗȧḓẏ ḓǿ. "
-"Ĵŭşŧ řḗḿḗḿƀḗř ŧħȧŧ īƒ ŧħḗ ǿŧħḗř ḗẋŧḗƞşīǿƞ'ş ŀīƈḗƞşḗ ḓǿḗşƞ'ŧ ȧŀŀǿẇ ẏǿŭ ŧǿ "
-"ƈǿƥẏ īŧş şǿŭřƈḗ, ẏǿŭ ƈȧƞ'ŧ."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:72
-msgid ""
-"We also have two areas here in the Hub that may help you out: the <a "
-"href=\"%(base_docs)sreference\">API &amp; Language References</a> page has "
-"links to official documentation for extension languages and APIs like "
-"JavaScript, XUL, XPCOM, and FUEL. Secondly, the <a href=\"%(base_docs)show-to"
-"\">How-to Library</a> is full of tutorials, walkthroughs, videos, and "
-"articles written by smart people on extension development and best practices."
-msgstr ""
-"Ẇḗ ȧŀşǿ ħȧṽḗ ŧẇǿ ȧřḗȧş ħḗřḗ īƞ ŧħḗ Ħŭƀ ŧħȧŧ ḿȧẏ ħḗŀƥ ẏǿŭ ǿŭŧ: ŧħḗ <a "
-"href=\"%(base_docs)sreference\">ȦƤĪ &amp; Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş</a> ƥȧɠḗ ħȧş "
-"ŀīƞķş ŧǿ ǿƒƒīƈīȧŀ ḓǿƈŭḿḗƞŧȧŧīǿƞ ƒǿř ḗẋŧḗƞşīǿƞ ŀȧƞɠŭȧɠḗş ȧƞḓ ȦƤĪş ŀīķḗ "
-"ĴȧṽȧŞƈřīƥŧ, ẊŬĿ, ẊƤƇǾḾ, ȧƞḓ ƑŬḖĿ. Şḗƈǿƞḓŀẏ, ŧħḗ <a href=\"%(base_docs)show-"
-"to\">Ħǿẇ-ŧǿ Ŀīƀřȧřẏ</a> īş ƒŭŀŀ ǿƒ ŧŭŧǿřīȧŀş, ẇȧŀķŧħřǿŭɠħş, ṽīḓḗǿş, ȧƞḓ "
-"ȧřŧīƈŀḗş ẇřīŧŧḗƞ ƀẏ şḿȧřŧ ƥḗǿƥŀḗ ǿƞ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ȧƞḓ ƀḗşŧ ƥřȧƈŧīƈḗş."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:78
-msgid "View the References"
-msgstr "Ṽīḗẇ ŧħḗ Řḗƒḗřḗƞƈḗş"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:79
-msgid "Enter the How-to Library"
-msgstr "Ḗƞŧḗř ŧħḗ Ħǿẇ-ŧǿ Ŀīƀřȧřẏ"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:81
-msgid ""
-"If you already know what you're looking for, just <a href=\"/en-"
-"US/developers/search\">search for it!</a> Our search will scour the best add-"
-"on resources to find that missing interface or common problem you're having. "
-"If search isn't cutting it, feel free to <a "
-"href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
-msgstr ""
-"Īƒ ẏǿŭ ȧŀřḗȧḓẏ ķƞǿẇ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř, ĵŭşŧ <a href=\"/en-"
-"US/developers/search\">şḗȧřƈħ ƒǿř īŧ!</a> Ǿŭř şḗȧřƈħ ẇīŀŀ şƈǿŭř ŧħḗ ƀḗşŧ ȧḓḓ-"
-"ǿƞ řḗşǿŭřƈḗş ŧǿ ƒīƞḓ ŧħȧŧ ḿīşşīƞɠ īƞŧḗřƒȧƈḗ ǿř ƈǿḿḿǿƞ ƥřǿƀŀḗḿ ẏǿŭ'řḗ ħȧṽīƞɠ. "
-"Īƒ şḗȧřƈħ īşƞ'ŧ ƈŭŧŧīƞɠ īŧ, ƒḗḗŀ ƒřḗḗ ŧǿ <a "
-"href=\"https://forums.addons.mozilla.org\">ȧşķ ƒǿř ħḗŀƥ</a> īƞ ǿŭř ƒǿřŭḿş."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:89
-msgid "Test your add-on"
-msgstr "Ŧḗşŧ ẏǿŭř ȧḓḓ-ǿƞ"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:91
-msgid ""
-"Even entomologists don't like bugs in their software, so it's important to "
-"test your add-on thoroughly before it's ready for general consumption. At "
-"minimum, you should make sure your add-on works on all the platforms and "
-"applications it claims to support."
-msgstr ""
-"Ḗṽḗƞ ḗƞŧǿḿǿŀǿɠīşŧş ḓǿƞ'ŧ ŀīķḗ ƀŭɠş īƞ ŧħḗīř şǿƒŧẇȧřḗ, şǿ īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ "
-"ŧḗşŧ ẏǿŭř ȧḓḓ-ǿƞ ŧħǿřǿŭɠħŀẏ ƀḗƒǿřḗ īŧ'ş řḗȧḓẏ ƒǿř ɠḗƞḗřȧŀ ƈǿƞşŭḿƥŧīǿƞ. Ȧŧ "
-"ḿīƞīḿŭḿ, ẏǿŭ şħǿŭŀḓ ḿȧķḗ şŭřḗ ẏǿŭř ȧḓḓ-ǿƞ ẇǿřķş ǿƞ ȧŀŀ ŧħḗ ƥŀȧŧƒǿřḿş ȧƞḓ "
-"ȧƥƥŀīƈȧŧīǿƞş īŧ ƈŀȧīḿş ŧǿ şŭƥƥǿřŧ."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:97
-msgid ""
-"To help detect common problems with packaging and security, you should run "
-"our <a href=\"%(link_validator)s\">Add-on Validator</a> tool on your file. "
-"It's like Spell Check for add-ons. Your add-on will automatically be "
-"validated upon submission, but you may want to test it out beforehand. Plus, "
-"passing makes you feel good."
-msgstr ""
-"Ŧǿ ħḗŀƥ ḓḗŧḗƈŧ ƈǿḿḿǿƞ ƥřǿƀŀḗḿş ẇīŧħ ƥȧƈķȧɠīƞɠ ȧƞḓ şḗƈŭřīŧẏ, ẏǿŭ şħǿŭŀḓ řŭƞ "
-"ǿŭř <a href=\"%(link_validator)s\">Ȧḓḓ-ǿƞ Ṽȧŀīḓȧŧǿř</a> ŧǿǿŀ ǿƞ ẏǿŭř ƒīŀḗ. "
-"Īŧ'ş ŀīķḗ Şƥḗŀŀ Ƈħḗƈķ ƒǿř ȧḓḓ-ǿƞş. Ẏǿŭř ȧḓḓ-ǿƞ ẇīŀŀ ȧŭŧǿḿȧŧīƈȧŀŀẏ ƀḗ "
-"ṽȧŀīḓȧŧḗḓ ŭƥǿƞ şŭƀḿīşşīǿƞ, ƀŭŧ ẏǿŭ ḿȧẏ ẇȧƞŧ ŧǿ ŧḗşŧ īŧ ǿŭŧ ƀḗƒǿřḗħȧƞḓ. Ƥŀŭş, "
-"ƥȧşşīƞɠ ḿȧķḗş ẏǿŭ ƒḗḗŀ ɠǿǿḓ."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:103
-msgid "Validate my Add-on"
-msgstr "Ṽȧŀīḓȧŧḗ ḿẏ Ȧḓḓ-ǿƞ"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:107
-msgid "Share your add-on with the world"
-msgstr "Şħȧřḗ ẏǿŭř ȧḓḓ-ǿƞ ẇīŧħ ŧħḗ ẇǿřŀḓ"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:109
-msgid ""
-"Woah, you finished your add-on already? Just so you know, <a "
-"href=\"http://labs.mozilla.com/\">Mozilla Labs</a> is hiring. Alright, if "
-"you've tested your add-on out and it's free of problems, it's time to submit "
-"your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. "
-"With over <em>1.5 billion</em> add-on downloads served, it's the best place "
-"to let your new creation live. Before you submit it, there are a few things "
-"to go over."
-msgstr ""
-"Ẇǿȧħ, ẏǿŭ ƒīƞīşħḗḓ ẏǿŭř ȧḓḓ-ǿƞ ȧŀřḗȧḓẏ? Ĵŭşŧ şǿ ẏǿŭ ķƞǿẇ, <a "
-"href=\"http://labs.mozilla.com/\">Ḿǿzīŀŀȧ Ŀȧƀş</a> īş ħīřīƞɠ. Ȧŀřīɠħŧ, īƒ "
-"ẏǿŭ'ṽḗ ŧḗşŧḗḓ ẏǿŭř ȧḓḓ-ǿƞ ǿŭŧ ȧƞḓ īŧ'ş ƒřḗḗ ǿƒ ƥřǿƀŀḗḿş, īŧ'ş ŧīḿḗ ŧǿ şŭƀḿīŧ "
-"ẏǿŭř ȧḓḓ-ǿƞ ŧǿ <a href=\"https://addons.mozilla.org\">Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş</a>. "
-"Ẇīŧħ ǿṽḗř <em>1.5 ƀīŀŀīǿƞ</em> ȧḓḓ-ǿƞ ḓǿẇƞŀǿȧḓş şḗřṽḗḓ, īŧ'ş ŧħḗ ƀḗşŧ ƥŀȧƈḗ "
-"ŧǿ ŀḗŧ ẏǿŭř ƞḗẇ ƈřḗȧŧīǿƞ ŀīṽḗ. Ɓḗƒǿřḗ ẏǿŭ şŭƀḿīŧ īŧ, ŧħḗřḗ ȧřḗ ȧ ƒḗẇ ŧħīƞɠş "
-"ŧǿ ɠǿ ǿṽḗř."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:115
-msgid ""
-"Mozilla cares a lot about user experience and security. That's why we have a "
-"team of volunteer Editors that review add-ons submitted to the site before "
-"they are allowed to roam free. We have a number of policies that we require "
-"add-on developers and their contributions to adhere to. Please review these "
-"policies before submitting your add-on to ensure your add-on is approved the "
-"first time."
-msgstr ""
-"Ḿǿzīŀŀȧ ƈȧřḗş ȧ ŀǿŧ ȧƀǿŭŧ ŭşḗř ḗẋƥḗřīḗƞƈḗ ȧƞḓ şḗƈŭřīŧẏ. Ŧħȧŧ'ş ẇħẏ ẇḗ ħȧṽḗ ȧ "
-"ŧḗȧḿ ǿƒ ṽǿŀŭƞŧḗḗř Ḗḓīŧǿřş ŧħȧŧ řḗṽīḗẇ ȧḓḓ-ǿƞş şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ şīŧḗ ƀḗƒǿřḗ "
-"ŧħḗẏ ȧřḗ ȧŀŀǿẇḗḓ ŧǿ řǿȧḿ ƒřḗḗ. Ẇḗ ħȧṽḗ ȧ ƞŭḿƀḗř ǿƒ ƥǿŀīƈīḗş ŧħȧŧ ẇḗ řḗɋŭīřḗ "
-"ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş ȧƞḓ ŧħḗīř ƈǿƞŧřīƀŭŧīǿƞş ŧǿ ȧḓħḗřḗ ŧǿ. Ƥŀḗȧşḗ řḗṽīḗẇ ŧħḗşḗ "
-"ƥǿŀīƈīḗş ƀḗƒǿřḗ şŭƀḿīŧŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ḗƞşŭřḗ ẏǿŭř ȧḓḓ-ǿƞ īş ȧƥƥřǿṽḗḓ ŧħḗ "
-"ƒīřşŧ ŧīḿḗ."
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:121
-msgid "Review Add-on Policies"
-msgstr "Řḗṽīḗẇ Ȧḓḓ-ǿƞ Ƥǿŀīƈīḗş"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:124
-msgid ""
-"Everything in compliance? Great. There's only one thing left to do&hellip;"
-msgstr ""
-"Ḗṽḗřẏŧħīƞɠ īƞ ƈǿḿƥŀīȧƞƈḗ? Ɠřḗȧŧ. Ŧħḗřḗ'ş ǿƞŀẏ ǿƞḗ ŧħīƞɠ ŀḗƒŧ ŧǿ ḓǿ&hellip;"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:130
-msgid "Submit my Add-on!"
-msgstr "Şŭƀḿīŧ ḿẏ Ȧḓḓ-ǿƞ!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:133
-msgid "Congratulations!"
-msgstr "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:141
-msgid ""
-"If you're feeling talkative, we'd love to <a "
-"href=\"https://forums.addons.mozilla.org\">hear your feedback</a> on how "
-"your experience creating an add-on was. Hearing what new developers struggle "
-"with helps us make the experience better for future generations of add-on "
-"innovators. Whether you want to comment on the platform, the documentation, "
-"or the website, we'll listen. Better yet, since Mozilla is open, you might "
-"even be able to fix that bug or lack of documentation yourself! It's like "
-"the circle of life."
-msgstr ""
-"Īƒ ẏǿŭ'řḗ ƒḗḗŀīƞɠ ŧȧŀķȧŧīṽḗ, ẇḗ'ḓ ŀǿṽḗ ŧǿ <a "
-"href=\"https://forums.addons.mozilla.org\">ħḗȧř ẏǿŭř ƒḗḗḓƀȧƈķ</a> ǿƞ ħǿẇ "
-"ẏǿŭř ḗẋƥḗřīḗƞƈḗ ƈřḗȧŧīƞɠ ȧƞ ȧḓḓ-ǿƞ ẇȧş. Ħḗȧřīƞɠ ẇħȧŧ ƞḗẇ ḓḗṽḗŀǿƥḗřş şŧřŭɠɠŀḗ "
-"ẇīŧħ ħḗŀƥş ŭş ḿȧķḗ ŧħḗ ḗẋƥḗřīḗƞƈḗ ƀḗŧŧḗř ƒǿř ƒŭŧŭřḗ ɠḗƞḗřȧŧīǿƞş ǿƒ ȧḓḓ-ǿƞ "
-"īƞƞǿṽȧŧǿřş. Ẇħḗŧħḗř ẏǿŭ ẇȧƞŧ ŧǿ ƈǿḿḿḗƞŧ ǿƞ ŧħḗ ƥŀȧŧƒǿřḿ, ŧħḗ ḓǿƈŭḿḗƞŧȧŧīǿƞ, "
-"ǿř ŧħḗ ẇḗƀşīŧḗ, ẇḗ'ŀŀ ŀīşŧḗƞ. Ɓḗŧŧḗř ẏḗŧ, şīƞƈḗ Ḿǿzīŀŀȧ īş ǿƥḗƞ, ẏǿŭ ḿīɠħŧ "
-"ḗṽḗƞ ƀḗ ȧƀŀḗ ŧǿ ƒīẋ ŧħȧŧ ƀŭɠ ǿř ŀȧƈķ ǿƒ ḓǿƈŭḿḗƞŧȧŧīǿƞ ẏǿŭřşḗŀƒ! Īŧ'ş ŀīķḗ "
-"ŧħḗ ƈīřƈŀḗ ǿƒ ŀīƒḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:17
-#: apps/devhub/templates/devhub/docs/how-to.html:85
-msgid "Extension Development"
-msgstr "Ḗẋŧḗƞşīǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:12
-#: apps/devhub/templates/devhub/docs/how-to.html:88
-msgid ""
-"Once you know the basics, these guides will help you with intermediate to "
-"advanced extension development topics."
-msgstr ""
-"Ǿƞƈḗ ẏǿŭ ķƞǿẇ ŧħḗ ƀȧşīƈş, ŧħḗşḗ ɠŭīḓḗş ẇīŀŀ ħḗŀƥ ẏǿŭ ẇīŧħ īƞŧḗřḿḗḓīȧŧḗ ŧǿ "
-"ȧḓṽȧƞƈḗḓ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ŧǿƥīƈş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:17
-msgid "Best Practices"
-msgstr "Ɓḗşŧ Ƥřȧƈŧīƈḗş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
-msgid "Respecting the JavaScript Global Namespace"
-msgstr "Řḗşƥḗƈŧīƞɠ ŧħḗ ĴȧṽȧŞƈřīƥŧ Ɠŀǿƀȧŀ Ƞȧḿḗşƥȧƈḗ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
-msgid ""
-"In this blog post, Mark Ziesemer explains how to prevevent global namespace "
-"pollution by wrapping your extension's variables."
-msgstr ""
-"Īƞ ŧħīş ƀŀǿɠ ƥǿşŧ, Ḿȧřķ Ẑīḗşḗḿḗř ḗẋƥŀȧīƞş ħǿẇ ŧǿ ƥřḗṽḗṽḗƞŧ ɠŀǿƀȧŀ ƞȧḿḗşƥȧƈḗ "
-"ƥǿŀŀŭŧīǿƞ ƀẏ ẇřȧƥƥīƞɠ ẏǿŭř ḗẋŧḗƞşīǿƞ'ş ṽȧřīȧƀŀḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
-msgid "Editor's Pick:"
-msgstr "Ḗḓīŧǿř'ş Ƥīƈķ:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:38
-msgid "Security Best Practices in Extensions"
-msgstr "Şḗƈŭřīŧẏ Ɓḗşŧ Ƥřȧƈŧīƈḗş īƞ Ḗẋŧḗƞşīǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:42
-msgid ""
-"Every extension developer should know and follow the security best practices "
-"outlined in this document to keep users safe."
-msgstr ""
-"Ḗṽḗřẏ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḗř şħǿŭŀḓ ķƞǿẇ ȧƞḓ ƒǿŀŀǿẇ ŧħḗ şḗƈŭřīŧẏ ƀḗşŧ ƥřȧƈŧīƈḗş "
-"ǿŭŧŀīƞḗḓ īƞ ŧħīş ḓǿƈŭḿḗƞŧ ŧǿ ķḗḗƥ ŭşḗřş şȧƒḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:53
-msgid "Localizing an Extension"
-msgstr "Ŀǿƈȧŀīzīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:56
-msgid ""
-"This article explains how to localize an extension, including XUL and "
-"JavaScript strings."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ŀǿƈȧŀīzḗ ȧƞ ḗẋŧḗƞşīǿƞ, īƞƈŀŭḓīƞɠ ẊŬĿ ȧƞḓ "
-"ĴȧṽȧŞƈřīƥŧ şŧřīƞɠş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
-msgid "Responsible First-run Usage"
-msgstr "Řḗşƥǿƞşīƀŀḗ Ƒīřşŧ-řŭƞ Ŭşȧɠḗ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
-msgid ""
-"This blog post describes what a bad first-run experience means for users, "
-"and gives tips for improving that experience."
-msgstr ""
-"Ŧħīş ƀŀǿɠ ƥǿşŧ ḓḗşƈřīƀḗş ẇħȧŧ ȧ ƀȧḓ ƒīřşŧ-řŭƞ ḗẋƥḗřīḗƞƈḗ ḿḗȧƞş ƒǿř ŭşḗřş, "
-"ȧƞḓ ɠīṽḗş ŧīƥş ƒǿř īḿƥřǿṽīƞɠ ŧħȧŧ ḗẋƥḗřīḗƞƈḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
-msgid "Security"
-msgstr "Şḗƈŭřīŧẏ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
-msgid "Evaluating Code with Restricted Privileges"
-msgstr "Ḗṽȧŀŭȧŧīƞɠ Ƈǿḓḗ ẇīŧħ Řḗşŧřīƈŧḗḓ Ƥřīṽīŀḗɠḗş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
-msgid ""
-"This article describes the use of Components.utils.evalInSandbox, which is a "
-"way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḓḗşƈřīƀḗş ŧħḗ ŭşḗ ǿƒ Ƈǿḿƥǿƞḗƞŧş.ŭŧīŀş.ḗṽȧŀĪƞŞȧƞḓƀǿẋ, ẇħīƈħ īş ȧ "
-"ẇȧẏ ŧǿ ḗṽȧŀŭȧŧḗ ƈǿḓḗ \"şŭƈħ ȧş řḗḿǿŧḗ ƈǿḓḗ\" ẇīŧħǿŭŧ ƈħřǿḿḗ ƥřīṽīŀḗɠḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
-msgid "Creating Sandboxed HTTP Connections"
-msgstr "Ƈřḗȧŧīƞɠ Şȧƞḓƀǿẋḗḓ ĦŦŦƤ Ƈǿƞƞḗƈŧīǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
-msgid ""
-"This article explains how to create sandboxed HTTP connections that don't "
-"affect the user's cookies."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ƈřḗȧŧḗ şȧƞḓƀǿẋḗḓ ĦŦŦƤ ƈǿƞƞḗƈŧīǿƞş ŧħȧŧ ḓǿƞ'ŧ "
-"ȧƒƒḗƈŧ ŧħḗ ŭşḗř'ş ƈǿǿķīḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
-msgid "Displaying Web Content in an Extension"
-msgstr "Ḓīşƥŀȧẏīƞɠ Ẇḗƀ Ƈǿƞŧḗƞŧ īƞ ȧƞ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:115
-msgid ""
-"Learn how to display web content in an extension without security issues."
-msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ḓīşƥŀȧẏ ẇḗƀ ƈǿƞŧḗƞŧ īƞ ȧƞ ḗẋŧḗƞşīǿƞ ẇīŧħǿŭŧ şḗƈŭřīŧẏ īşşŭḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
-msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr "Ƒīṽḗ Ẇřǿƞɠ Řḗȧşǿƞş ŧǿ Ŭşḗ ḗṽȧŀ īƞ ȧƞ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
-msgid ""
-"In this blog post, Wladimir Palant gives five wrong ways to evaluate code in "
-"an extension."
-msgstr ""
-"Īƞ ŧħīş ƀŀǿɠ ƥǿşŧ, Ẇŀȧḓīḿīř Ƥȧŀȧƞŧ ɠīṽḗş ƒīṽḗ ẇřǿƞɠ ẇȧẏş ŧǿ ḗṽȧŀŭȧŧḗ ƈǿḓḗ īƞ "
-"ȧƞ ḗẋŧḗƞşīǿƞ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:136
-msgid "Localization"
-msgstr "Ŀǿƈȧŀīzȧŧīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:142
-msgid "Localizing Extension Descriptions"
-msgstr "Ŀǿƈȧŀīzīƞɠ Ḗẋŧḗƞşīǿƞ Ḓḗşƈřīƥŧīǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
-msgid ""
-"Learn how to localize the names and descriptions in extension install "
-"manifests."
-msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ŀǿƈȧŀīzḗ ŧħḗ ƞȧḿḗş ȧƞḓ ḓḗşƈřīƥŧīǿƞş īƞ ḗẋŧḗƞşīǿƞ īƞşŧȧŀŀ "
-"ḿȧƞīƒḗşŧş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
-msgid "Localization and Plurals"
-msgstr "Ŀǿƈȧŀīzȧŧīǿƞ ȧƞḓ Ƥŀŭřȧŀş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:158
-msgid "This article explains how to properly localize strings with plurals."
-msgstr "Ŧħīş ȧřŧīƈŀḗ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ƥřǿƥḗřŀẏ ŀǿƈȧŀīzḗ şŧřīƞɠş ẇīŧħ ƥŀŭřȧŀş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
-msgid "BabelZilla overview"
-msgstr "ƁȧƀḗŀẐīŀŀȧ ǿṽḗřṽīḗẇ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
-msgid "Learn how the BabelZilla localization community works."
-msgstr "Ŀḗȧřƞ ħǿẇ ŧħḗ ƁȧƀḗŀẐīŀŀȧ ŀǿƈȧŀīzȧŧīǿƞ ƈǿḿḿŭƞīŧẏ ẇǿřķş."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
-msgid "Advanced Topics"
-msgstr "Ȧḓṽȧƞƈḗḓ Ŧǿƥīƈş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:186
-msgid "Video:"
-msgstr "Ṽīḓḗǿ:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:187
-msgid "Stupid/Awesome Extension Development Hacks"
-msgstr "Şŧŭƥīḓ/Awesome Ḗẋŧḗƞşīǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ Ħȧƈķş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:190
-msgid ""
-"In this video, Jono Xia explains how to go further in extension development "
-"using XPCOM, overlays, XHRs, DOM manipulation, etc. in order to make Firefox "
-"do things you might have never thought possible."
-msgstr ""
-"Īƞ ŧħīş ṽīḓḗǿ, Ĵǿƞǿ Ẋīȧ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ɠǿ ƒŭřŧħḗř īƞ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ "
-"ŭşīƞɠ ẊƤƇǾḾ, ǿṽḗřŀȧẏş, ẊĦŘş, ḒǾḾ ḿȧƞīƥŭŀȧŧīǿƞ, ḗŧƈ. īƞ ǿřḓḗř ŧǿ ḿȧķḗ Ƒīřḗƒǿẋ "
-"ḓǿ ŧħīƞɠş ẏǿŭ ḿīɠħŧ ħȧṽḗ ƞḗṽḗř ŧħǿŭɠħŧ ƥǿşşīƀŀḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
-msgid "JavaScript Code Modules"
-msgstr "ĴȧṽȧŞƈřīƥŧ Ƈǿḓḗ Ḿǿḓŭŀḗş"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:203
-msgid ""
-"JavaScript code modules let multiple privileged JavaScript scopes share "
-"code. For example, a module could be used by Firefox itself as well as by "
-"extensions, in order to avoid code duplication."
-msgstr ""
-"ĴȧṽȧŞƈřīƥŧ ƈǿḓḗ ḿǿḓŭŀḗş ŀḗŧ ḿŭŀŧīƥŀḗ ƥřīṽīŀḗɠḗḓ ĴȧṽȧŞƈřīƥŧ şƈǿƥḗş şħȧřḗ "
-"ƈǿḓḗ. Ƒǿř ḗẋȧḿƥŀḗ, ȧ ḿǿḓŭŀḗ ƈǿŭŀḓ ƀḗ ŭşḗḓ ƀẏ Ƒīřḗƒǿẋ īŧşḗŀƒ ȧş ẇḗŀŀ ȧş ƀẏ "
-"ḗẋŧḗƞşīǿƞş, īƞ ǿřḓḗř ŧǿ ȧṽǿīḓ ƈǿḓḗ ḓŭƥŀīƈȧŧīǿƞ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:213
-msgid "Creating Custom Firefox Extensions with the Mozilla Build System"
-msgstr "Ƈřḗȧŧīƞɠ Ƈŭşŧǿḿ Ƒīřḗƒǿẋ Ḗẋŧḗƞşīǿƞş ẇīŧħ ŧħḗ Ḿǿzīŀŀȧ Ɓŭīŀḓ Şẏşŧḗḿ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:216
-msgid ""
-"This article describes how to set up the development environment for a "
-"large, complex Firefox extension with a need for high-performance, use of "
-"third-party libraries in C/C++, or interfaces not exposed via XPCOM."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḓḗşƈřīƀḗş ħǿẇ ŧǿ şḗŧ ŭƥ ŧħḗ ḓḗṽḗŀǿƥḿḗƞŧ ḗƞṽīřǿƞḿḗƞŧ ƒǿř ȧ "
-"ŀȧřɠḗ, ƈǿḿƥŀḗẋ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞ ẇīŧħ ȧ ƞḗḗḓ ƒǿř ħīɠħ-ƥḗřƒǿřḿȧƞƈḗ, ŭşḗ ǿƒ "
-"ŧħīřḓ-ƥȧřŧẏ ŀīƀřȧřīḗş īƞ Ƈ/C++, ǿř īƞŧḗřƒȧƈḗş ƞǿŧ ḗẋƥǿşḗḓ ṽīȧ ẊƤƇǾḾ."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
-msgid "Multiple Item Packaging"
-msgstr "Ḿŭŀŧīƥŀḗ Īŧḗḿ Ƥȧƈķȧɠīƞɠ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
-msgid ""
-"This article explains how to create an extension package with multiple items "
-"\"extensions\"."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ƈřḗȧŧḗ ȧƞ ḗẋŧḗƞşīǿƞ ƥȧƈķȧɠḗ ẇīŧħ ḿŭŀŧīƥŀḗ īŧḗḿş "
-"\"ḗẋŧḗƞşīǿƞş\"."
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
-msgid "Extension Documentation Index"
-msgstr "Ḗẋŧḗƞşīǿƞ Ḓǿƈŭḿḗƞŧȧŧīǿƞ Īƞḓḗẋ"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:244
-msgid ""
-"If you can't find what you're looking for in the above articles, try the "
-"Mozilla Developer Center's Extensions landing page."
-msgstr ""
-"Īƒ ẏǿŭ ƈȧƞ'ŧ ƒīƞḓ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř īƞ ŧħḗ ȧƀǿṽḗ ȧřŧīƈŀḗş, ŧřẏ ŧħḗ "
-"Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş Ḗẋŧḗƞşīǿƞş ŀȧƞḓīƞɠ ƥȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
-msgid ""
-"Learn the basics of developing an extension on the Mozilla platform with "
-"this section full of beginner's guides."
-msgstr ""
-"Ŀḗȧřƞ ŧħḗ ƀȧşīƈş ǿƒ ḓḗṽḗŀǿƥīƞɠ ȧƞ ḗẋŧḗƞşīǿƞ ǿƞ ŧħḗ Ḿǿzīŀŀȧ ƥŀȧŧƒǿřḿ ẇīŧħ "
-"ŧħīş şḗƈŧīǿƞ ƒŭŀŀ ǿƒ ƀḗɠīƞƞḗř'ş ɠŭīḓḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
-msgid "The Basics"
-msgstr "Ŧħḗ Ɓȧşīƈş"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:23
-msgid "XUL School Tutorial"
-msgstr "ẊŬĿ Şƈħǿǿŀ Ŧŭŧǿřīȧŀ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:26
-msgid ""
-"This tutorial will guide you through all the basics of add-on development, "
-"teaching you how to package them, create a suitable development environment, "
-"and program the most common features found in add-ons. It includes working "
-"code samples and the references and tools to explore all topics more in "
-"depth."
-msgstr ""
-"Ŧħīş ŧŭŧǿřīȧŀ ẇīŀŀ ɠŭīḓḗ ẏǿŭ ŧħřǿŭɠħ ȧŀŀ ŧħḗ ƀȧşīƈş ǿƒ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḿḗƞŧ, "
-"ŧḗȧƈħīƞɠ ẏǿŭ ħǿẇ ŧǿ ƥȧƈķȧɠḗ ŧħḗḿ, ƈřḗȧŧḗ ȧ şŭīŧȧƀŀḗ ḓḗṽḗŀǿƥḿḗƞŧ ḗƞṽīřǿƞḿḗƞŧ, "
-"ȧƞḓ ƥřǿɠřȧḿ ŧħḗ ḿǿşŧ ƈǿḿḿǿƞ ƒḗȧŧŭřḗş ƒǿŭƞḓ īƞ ȧḓḓ-ǿƞş. Īŧ īƞƈŀŭḓḗş ẇǿřķīƞɠ "
-"ƈǿḓḗ şȧḿƥŀḗş ȧƞḓ ŧħḗ řḗƒḗřḗƞƈḗş ȧƞḓ ŧǿǿŀş ŧǿ ḗẋƥŀǿřḗ ȧŀŀ ŧǿƥīƈş ḿǿřḗ īƞ "
-"ḓḗƥŧħ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:36
-msgid "Setting Up an Extension Development Environment"
-msgstr "Şḗŧŧīƞɠ Ŭƥ ȧƞ Ḗẋŧḗƞşīǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ Ḗƞṽīřǿƞḿḗƞŧ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
-msgid ""
-"This article gives suggestions on how to set up your Mozilla application for "
-"extension development, including setting up a profile, changing preferences, "
-"and helpful development tools."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ɠīṽḗş şŭɠɠḗşŧīǿƞş ǿƞ ħǿẇ ŧǿ şḗŧ ŭƥ ẏǿŭř Ḿǿzīŀŀȧ ȧƥƥŀīƈȧŧīǿƞ ƒǿř "
-"ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ, īƞƈŀŭḓīƞɠ şḗŧŧīƞɠ ŭƥ ȧ ƥřǿƒīŀḗ, ƈħȧƞɠīƞɠ ƥřḗƒḗřḗƞƈḗş, "
-"ȧƞḓ ħḗŀƥƒŭŀ ḓḗṽḗŀǿƥḿḗƞŧ ŧǿǿŀş."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
-msgid "Building an Extension"
-msgstr "Ɓŭīŀḓīƞɠ ȧƞ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
-msgid ""
-"This tutorial will take you through the steps required to build a very basic "
-"extension - one which adds a status bar panel to the Firefox browser "
-"containing the text \"Hello, World!\""
-msgstr ""
-"Ŧħīş ŧŭŧǿřīȧŀ ẇīŀŀ ŧȧķḗ ẏǿŭ ŧħřǿŭɠħ ŧħḗ şŧḗƥş řḗɋŭīřḗḓ ŧǿ ƀŭīŀḓ ȧ ṽḗřẏ ƀȧşīƈ "
-"ḗẋŧḗƞşīǿƞ - ǿƞḗ ẇħīƈħ ȧḓḓş ȧ şŧȧŧŭş ƀȧř ƥȧƞḗŀ ŧǿ ŧħḗ Ƒīřḗƒǿẋ ƀřǿẇşḗř "
-"ƈǿƞŧȧīƞīƞɠ ŧħḗ ŧḗẋŧ \"Ħḗŀŀǿ, Ẇǿřŀḓ!\""
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:65
-msgid "Extension Packaging"
-msgstr "Ḗẋŧḗƞşīǿƞ Ƥȧƈķȧɠīƞɠ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
-msgid "Learn more details on how extensions are packaged and installed."
-msgstr "Ŀḗȧřƞ ḿǿřḗ ḓḗŧȧīŀş ǿƞ ħǿẇ ḗẋŧḗƞşīǿƞş ȧřḗ ƥȧƈķȧɠḗḓ ȧƞḓ īƞşŧȧŀŀḗḓ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
-msgid "Install Manifests"
-msgstr "Īƞşŧȧŀŀ Ḿȧƞīƒḗşŧş"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:81
-msgid ""
-"This document explains install manifests \"install.rdf\" and all of "
-"properties available for use in your add-on."
-msgstr ""
-"Ŧħīş ḓǿƈŭḿḗƞŧ ḗẋƥŀȧīƞş īƞşŧȧŀŀ ḿȧƞīƒḗşŧş \"īƞşŧȧŀŀ.řḓƒ\" ȧƞḓ ȧŀŀ ǿƒ "
-"ƥřǿƥḗřŧīḗş ȧṽȧīŀȧƀŀḗ ƒǿř ŭşḗ īƞ ẏǿŭř ȧḓḓ-ǿƞ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
-msgid "Other Tutorials"
-msgstr "Ǿŧħḗř Ŧŭŧǿřīȧŀş"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:95
-msgid "Firefox Add-ons Developer Guide"
-msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş Ḓḗṽḗŀǿƥḗř Ɠŭīḓḗ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:98
-msgid ""
-"In this detailed guide to extension development, you'll learn the basics of "
-"packaging extensions, building an interface with XUL, implementing advanced "
-"processes with XPCOM, and how to put it all together."
-msgstr ""
-"Īƞ ŧħīş ḓḗŧȧīŀḗḓ ɠŭīḓḗ ŧǿ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ, ẏǿŭ'ŀŀ ŀḗȧřƞ ŧħḗ ƀȧşīƈş ǿƒ "
-"ƥȧƈķȧɠīƞɠ ḗẋŧḗƞşīǿƞş, ƀŭīŀḓīƞɠ ȧƞ īƞŧḗřƒȧƈḗ ẇīŧħ ẊŬĿ, īḿƥŀḗḿḗƞŧīƞɠ ȧḓṽȧƞƈḗḓ "
-"ƥřǿƈḗşşḗş ẇīŧħ ẊƤƇǾḾ, ȧƞḓ ħǿẇ ŧǿ ƥŭŧ īŧ ȧŀŀ ŧǿɠḗŧħḗř."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
-msgid "How to Develop a Firefox Extension"
-msgstr "Ħǿẇ ŧǿ Ḓḗṽḗŀǿƥ ȧ Ƒīřḗƒǿẋ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:111
-msgid ""
-"In this walk-through, Robert Nyman explains how to develop a Firefox "
-"extension from scratch."
-msgstr ""
-"Īƞ ŧħīş ẇȧŀķ-ŧħřǿŭɠħ, Řǿƀḗřŧ Ƞẏḿȧƞ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ḓḗṽḗŀǿƥ ȧ Ƒīřḗƒǿẋ "
-"ḗẋŧḗƞşīǿƞ ƒřǿḿ şƈřȧŧƈħ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:121
-msgid "How to Build a Firefox Extension"
-msgstr "Ħǿẇ ŧǿ Ɓŭīŀḓ ȧ Ƒīřḗƒǿẋ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:124
-msgid ""
-"Lifehacker gives tips and helpful hints on developing your first Firefox "
-"extension."
-msgstr ""
-"Ŀīƒḗħȧƈķḗř ɠīṽḗş ŧīƥş ȧƞḓ ħḗŀƥƒŭŀ ħīƞŧş ǿƞ ḓḗṽḗŀǿƥīƞɠ ẏǿŭř ƒīřşŧ Ƒīřḗƒǿẋ "
-"ḗẋŧḗƞşīǿƞ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:134
-msgid "Firefox Extension Development Tutorial"
-msgstr "Ƒīřḗƒǿẋ Ḗẋŧḗƞşīǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ Ŧŭŧǿřīȧŀ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:137
-msgid ""
-"A multi-page tutorial covering a variety of extension development topics."
-msgstr ""
-"Ȧ ḿŭŀŧī-ƥȧɠḗ ŧŭŧǿřīȧŀ ƈǿṽḗřīƞɠ ȧ ṽȧřīḗŧẏ ǿƒ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ŧǿƥīƈş."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:149
-msgid "Creating a Status Bar Extension"
-msgstr "Ƈřḗȧŧīƞɠ ȧ Şŧȧŧŭş Ɓȧř Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:152
-msgid ""
-"Learn how to create a simple status bar extension and add more advanced "
-"functionality in subsequent tutorials, linked below."
-msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ƈřḗȧŧḗ ȧ şīḿƥŀḗ şŧȧŧŭş ƀȧř ḗẋŧḗƞşīǿƞ ȧƞḓ ȧḓḓ ḿǿřḗ ȧḓṽȧƞƈḗḓ "
-"ƒŭƞƈŧīǿƞȧŀīŧẏ īƞ şŭƀşḗɋŭḗƞŧ ŧŭŧǿřīȧŀş, ŀīƞķḗḓ ƀḗŀǿẇ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:162
-msgid "Creating a Dynamic Status Bar Extension"
-msgstr "Ƈřḗȧŧīƞɠ ȧ Ḓẏƞȧḿīƈ Şŧȧŧŭş Ɓȧř Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:165
-msgid ""
-"This article modifies the status bar extension created in the above tutorial "
-"by fetching content from a website at a regular interval."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḿǿḓīƒīḗş ŧħḗ şŧȧŧŭş ƀȧř ḗẋŧḗƞşīǿƞ ƈřḗȧŧḗḓ īƞ ŧħḗ ȧƀǿṽḗ ŧŭŧǿřīȧŀ "
-"ƀẏ ƒḗŧƈħīƞɠ ƈǿƞŧḗƞŧ ƒřǿḿ ȧ ẇḗƀşīŧḗ ȧŧ ȧ řḗɠŭŀȧř īƞŧḗřṽȧŀ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:175
-msgid "Adding Preferences to an Extension"
-msgstr "Ȧḓḓīƞɠ Ƥřḗƒḗřḗƞƈḗş ŧǿ ȧƞ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:178
-msgid ""
-"This article shows how to add preferences to the dynamic status bar created "
-"in the above tutorial."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ şħǿẇş ħǿẇ ŧǿ ȧḓḓ ƥřḗƒḗřḗƞƈḗş ŧǿ ŧħḗ ḓẏƞȧḿīƈ şŧȧŧŭş ƀȧř ƈřḗȧŧḗḓ "
-"īƞ ŧħḗ ȧƀǿṽḗ ŧŭŧǿřīȧŀ."
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:187
-msgid "Books"
-msgstr "Ɓǿǿķş"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:193
-msgid "Build Your Own Firefox Extension E-book"
-msgstr "Ɓŭīŀḓ Ẏǿŭř Ǿẇƞ Ƒīřḗƒǿẋ Ḗẋŧḗƞşīǿƞ Ḗ-ƀǿǿķ"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:196
-msgid ""
-"With a little JavaScript know-how, author James Edwards will show you just "
-"how straightforward it is to build your own Firefox extensions."
-msgstr ""
-"Ẇīŧħ ȧ ŀīŧŧŀḗ ĴȧṽȧŞƈřīƥŧ ķƞǿẇ-ħǿẇ, ȧŭŧħǿř Ĵȧḿḗş Ḗḓẇȧřḓş ẇīŀŀ şħǿẇ ẏǿŭ ĵŭşŧ "
-"ħǿẇ şŧřȧīɠħŧƒǿřẇȧřḓ īŧ īş ŧǿ ƀŭīŀḓ ẏǿŭř ǿẇƞ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:3
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:7
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:29
-#: apps/devhub/templates/devhub/docs/how-to.html:125
-msgid "Other Types of Add-ons"
-msgstr "Ǿŧħḗř Ŧẏƥḗş ǿƒ Ȧḓḓ-ǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12
-#: apps/devhub/templates/devhub/docs/how-to.html:128
-msgid ""
-"Find information on Search Plug-ins, Jetpack, Themes, and other types of add-"
-"ons here."
-msgstr ""
-"Ƒīƞḓ īƞƒǿřḿȧŧīǿƞ ǿƞ Şḗȧřƈħ Ƥŀŭɠ-īƞş, Ĵḗŧƥȧƈķ, Ŧħḗḿḗş, ȧƞḓ ǿŧħḗř ŧẏƥḗş ǿƒ ȧḓḓ-"
-"ǿƞş ħḗřḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
-msgid "Jetpack"
-msgstr "Ĵḗŧƥȧƈķ"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:23
-msgid "Jetpack Tutorial"
-msgstr "Ĵḗŧƥȧƈķ Ŧŭŧǿřīȧŀ"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
-msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
-msgstr "Ŀḗȧřƞ ħǿẇ ḗȧşẏ īŧ īş ŧǿ ḗẋŧḗƞḓ Ƒīřḗƒǿẋ ẇīŧħ Ĵḗŧƥȧƈķ īƞ ŧħīş ŧŭŧǿřīȧŀ."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
-msgid "Jetpack API Documentation"
-msgstr "Ĵḗŧƥȧƈķ ȦƤĪ Ḓǿƈŭḿḗƞŧȧŧīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
-msgid ""
-"This Jetpack API documentation is a must-have for working on your Jetpack."
-msgstr ""
-"Ŧħīş Ĵḗŧƥȧƈķ ȦƤĪ ḓǿƈŭḿḗƞŧȧŧīǿƞ īş ȧ ḿŭşŧ-ħȧṽḗ ƒǿř ẇǿřķīƞɠ ǿƞ ẏǿŭř Ĵḗŧƥȧƈķ."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
-msgid "How to Create Themes"
-msgstr "Ħǿẇ ŧǿ Ƈřḗȧŧḗ Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
-msgid ""
-"Learn how to create your very own Theme with this official walk-through."
-msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ƈřḗȧŧḗ ẏǿŭř ṽḗřẏ ǿẇƞ Ŧħḗḿḗ ẇīŧħ ŧħīş ǿƒƒīƈīȧŀ ẇȧŀķ-ŧħřǿŭɠħ."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
-msgid "Search Plug-ins"
-msgstr "Şḗȧřƈħ Ƥŀŭɠ-īƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
-msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr "Ƈřḗȧŧīƞɠ ǾƥḗƞŞḗȧřƈħ Ƥŀŭɠ-īƞş ƒǿř Ƒīřḗƒǿẋ"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
-msgid ""
-"This article explains the structure and requirements of search plug-ins in "
-"Firefox."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḗẋƥŀȧīƞş ŧħḗ şŧřŭƈŧŭřḗ ȧƞḓ řḗɋŭīřḗḿḗƞŧş ǿƒ şḗȧřƈħ ƥŀŭɠ-īƞş īƞ "
-"Ƒīřḗƒǿẋ."
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
-msgid "Plug-ins"
-msgstr "Ƥŀŭɠ-īƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
-msgid "Plug-in Documentation Index"
-msgstr "Ƥŀŭɠ-īƞ Ḓǿƈŭḿḗƞŧȧŧīǿƞ Īƞḓḗẋ"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
-msgid ""
-"Plug-ins to Mozilla-based applications are binary components that can "
-"display content that the application itself can't display natively. Explore "
-"the Mozilla Developer Center's plug-in documentation index to learn more."
-msgstr ""
-"Ƥŀŭɠ-īƞş ŧǿ Ḿǿzīŀŀȧ-ƀȧşḗḓ ȧƥƥŀīƈȧŧīǿƞş ȧřḗ ƀīƞȧřẏ ƈǿḿƥǿƞḗƞŧş ŧħȧŧ ƈȧƞ "
-"ḓīşƥŀȧẏ ƈǿƞŧḗƞŧ ŧħȧŧ ŧħḗ ȧƥƥŀīƈȧŧīǿƞ īŧşḗŀƒ ƈȧƞ'ŧ ḓīşƥŀȧẏ ƞȧŧīṽḗŀẏ. Ḗẋƥŀǿřḗ "
-"ŧħḗ Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş ƥŀŭɠ-īƞ ḓǿƈŭḿḗƞŧȧŧīǿƞ īƞḓḗẋ ŧǿ ŀḗȧřƞ ḿǿřḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:47
-#: apps/devhub/templates/devhub/docs/how-to.html:25
-#: apps/devhub/templates/devhub/docs/how-to.html:111
-msgid "Theme Development"
-msgstr "Ŧħḗḿḗ Ḓḗṽḗŀǿƥḿḗƞŧ"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11
-#: apps/devhub/templates/devhub/docs/how-to.html:115
-msgid "Style Mozilla applications the way you want with pixel-perfect themes."
-msgstr "Şŧẏŀḗ Ḿǿzīŀŀȧ ȧƥƥŀīƈȧŧīǿƞş ŧħḗ ẇȧẏ ẏǿŭ ẇȧƞŧ ẇīŧħ ƥīẋḗŀ-ƥḗřƒḗƈŧ ŧħḗḿḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
-msgid "Creating a Skin for Firefox"
-msgstr "Ƈřḗȧŧīƞɠ ȧ Şķīƞ ƒǿř Ƒīřḗƒǿẋ"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:26
-msgid ""
-"Learn how to find the right files to edit, make your changes, and package up "
-"your new theme in this tutorial."
-msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ƒīƞḓ ŧħḗ řīɠħŧ ƒīŀḗş ŧǿ ḗḓīŧ, ḿȧķḗ ẏǿŭř ƈħȧƞɠḗş, ȧƞḓ ƥȧƈķȧɠḗ ŭƥ "
-"ẏǿŭř ƞḗẇ ŧħḗḿḗ īƞ ŧħīş ŧŭŧǿřīȧŀ."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:37
-msgid "How to Create a Firefox Theme"
-msgstr "Ħǿẇ ŧǿ Ƈřḗȧŧḗ ȧ Ƒīřḗƒǿẋ Ŧħḗḿḗ"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:40
-msgid ""
-"Thomas McMahon explains how to create a Firefox theme from start-to-finish "
-"in this tutorial."
-msgstr ""
-"Ŧħǿḿȧş ḾƈḾȧħǿƞ ḗẋƥŀȧīƞş ħǿẇ ŧǿ ƈřḗȧŧḗ ȧ Ƒīřḗƒǿẋ ŧħḗḿḗ ƒřǿḿ şŧȧřŧ-ŧǿ-ƒīƞīşħ "
-"īƞ ŧħīş ŧŭŧǿřīȧŀ."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:54
-msgid "Theme Packaging"
-msgstr "Ŧħḗḿḗ Ƥȧƈķȧɠīƞɠ"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:57
-msgid "This article explains the packaging of themes."
-msgstr "Ŧħīş ȧřŧīƈŀḗ ḗẋƥŀȧīƞş ŧħḗ ƥȧƈķȧɠīƞɠ ǿƒ ŧħḗḿḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:67
-msgid "First Steps in Theme Design"
-msgstr "Ƒīřşŧ Şŧḗƥş īƞ Ŧħḗḿḗ Ḓḗşīɠƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
-msgid ""
-"This blog post by Lim Chee Aun explains the use of -moz-image-region in "
-"themes."
-msgstr ""
-"Ŧħīş ƀŀǿɠ ƥǿşŧ ƀẏ Ŀīḿ Ƈħḗḗ Ȧŭƞ ḗẋƥŀȧīƞş ŧħḗ ŭşḗ ǿƒ -ḿǿz-īḿȧɠḗ-řḗɠīǿƞ īƞ "
-"ŧħḗḿḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:81
-msgid "Making Sure Your Theme Works with RTL Locales"
-msgstr "Ḿȧķīƞɠ Şŭřḗ Ẏǿŭř Ŧħḗḿḗ Ẇǿřķş ẇīŧħ ŘŦĿ Ŀǿƈȧŀḗş"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:85
-msgid ""
-"It's important to make sure your theme works in all locales. This article "
-"explains how to tweak your theme to look great for users who browse in right-"
-"to-left."
-msgstr ""
-"Īŧ'ş īḿƥǿřŧȧƞŧ ŧǿ ḿȧķḗ şŭřḗ ẏǿŭř ŧħḗḿḗ ẇǿřķş īƞ ȧŀŀ ŀǿƈȧŀḗş. Ŧħīş ȧřŧīƈŀḗ "
-"ḗẋƥŀȧīƞş ħǿẇ ŧǿ ŧẇḗȧķ ẏǿŭř ŧħḗḿḗ ŧǿ ŀǿǿķ ɠřḗȧŧ ƒǿř ŭşḗřş ẇħǿ ƀřǿẇşḗ īƞ "
-"řīɠħŧ-ŧǿ-ŀḗƒŧ."
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:95
-msgid "Theme Documentation Index"
-msgstr "Ŧħḗḿḗ Ḓǿƈŭḿḗƞŧȧŧīǿƞ Īƞḓḗẋ"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:98
-msgid ""
-"If you haven't found what you're looking for yet, try the Mozilla Developer "
-"Center's Themes section."
-msgstr ""
-"Īƒ ẏǿŭ ħȧṽḗƞ'ŧ ƒǿŭƞḓ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř ẏḗŧ, ŧřẏ ŧħḗ Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř "
-"Ƈḗƞŧḗř'ş Ŧħḗḿḗş şḗƈŧīǿƞ."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:3
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:7
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:21
-msgid "Thunderbird & Mobile Add-ons"
-msgstr "Ŧħŭƞḓḗřƀīřḓ & Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
-msgid ""
-"Add-ons aren't just for Firefox. Learn how to extend other Mozilla "
-"applications, such as the Thunderbird mail client and Firefox for mobile "
-"devices."
-msgstr ""
-"Ȧḓḓ-ǿƞş ȧřḗƞ'ŧ ĵŭşŧ ƒǿř Ƒīřḗƒǿẋ. Ŀḗȧřƞ ħǿẇ ŧǿ ḗẋŧḗƞḓ ǿŧħḗř Ḿǿzīŀŀȧ "
-"ȧƥƥŀīƈȧŧīǿƞş, şŭƈħ ȧş ŧħḗ Ŧħŭƞḓḗřƀīřḓ ḿȧīŀ ƈŀīḗƞŧ ȧƞḓ Ƒīřḗƒǿẋ ƒǿř ḿǿƀīŀḗ "
-"ḓḗṽīƈḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:18
-msgid "Developing Add-ons for Thunderbird"
-msgstr "Ḓḗṽḗŀǿƥīƞɠ Ȧḓḓ-ǿƞş ƒǿř Ŧħŭƞḓḗřƀīřḓ"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:24
-msgid "Building a Thunderbird Extension"
-msgstr "Ɓŭīŀḓīƞɠ ȧ Ŧħŭƞḓḗřƀīřḓ Ḗẋŧḗƞşīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:27
-msgid ""
-"This tutorial will take you through the steps required to build a very basic "
-"extension - one which adds a status bar panel to the Thunderbird Mail Client "
-"containing the text \"Hello, World!\""
-msgstr ""
-"Ŧħīş ŧŭŧǿřīȧŀ ẇīŀŀ ŧȧķḗ ẏǿŭ ŧħřǿŭɠħ ŧħḗ şŧḗƥş řḗɋŭīřḗḓ ŧǿ ƀŭīŀḓ ȧ ṽḗřẏ ƀȧşīƈ "
-"ḗẋŧḗƞşīǿƞ - ǿƞḗ ẇħīƈħ ȧḓḓş ȧ şŧȧŧŭş ƀȧř ƥȧƞḗŀ ŧǿ ŧħḗ Ŧħŭƞḓḗřƀīřḓ Ḿȧīŀ Ƈŀīḗƞŧ "
-"ƈǿƞŧȧīƞīƞɠ ŧħḗ ŧḗẋŧ \"Ħḗŀŀǿ, Ẇǿřŀḓ!\""
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
-msgid "An Overview of Thunderbird Components"
-msgstr "Ȧƞ Ǿṽḗřṽīḗẇ ǿƒ Ŧħŭƞḓḗřƀīřḓ Ƈǿḿƥǿƞḗƞŧş"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:40
-msgid ""
-"This article describes the Thunderbird user interface, discusses example "
-"modifications, and introduces some of the APIs most commonly used by "
-"extension developers."
-msgstr ""
-"Ŧħīş ȧřŧīƈŀḗ ḓḗşƈřīƀḗş ŧħḗ Ŧħŭƞḓḗřƀīřḓ ŭşḗř īƞŧḗřƒȧƈḗ, ḓīşƈŭşşḗş ḗẋȧḿƥŀḗ "
-"ḿǿḓīƒīƈȧŧīǿƞş, ȧƞḓ īƞŧřǿḓŭƈḗş şǿḿḗ ǿƒ ŧħḗ ȦƤĪş ḿǿşŧ ƈǿḿḿǿƞŀẏ ŭşḗḓ ƀẏ "
-"ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḗřş."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:52
-msgid "Thunderbird How-tos"
-msgstr "Ŧħŭƞḓḗřƀīřḓ Ħǿẇ-ŧǿş"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:55
-msgid ""
-"This section contains many code samples and how-to articles on common "
-"Thunderbird extension tasks."
-msgstr ""
-"Ŧħīş şḗƈŧīǿƞ ƈǿƞŧȧīƞş ḿȧƞẏ ƈǿḓḗ şȧḿƥŀḗş ȧƞḓ ħǿẇ-ŧǿ ȧřŧīƈŀḗş ǿƞ ƈǿḿḿǿƞ "
-"Ŧħŭƞḓḗřƀīřḓ ḗẋŧḗƞşīǿƞ ŧȧşķş."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:65
-msgid "Thunderbird Extensions Documentation Index"
-msgstr "Ŧħŭƞḓḗřƀīřḓ Ḗẋŧḗƞşīǿƞş Ḓǿƈŭḿḗƞŧȧŧīǿƞ Īƞḓḗẋ"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:68
-msgid ""
-"If you can't find what you're looking for in the above articles, try the "
-"Mozilla Developer Center's Thunderbird extensions landing page."
-msgstr ""
-"Īƒ ẏǿŭ ƈȧƞ'ŧ ƒīƞḓ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř īƞ ŧħḗ ȧƀǿṽḗ ȧřŧīƈŀḗş, ŧřẏ ŧħḗ "
-"Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş Ŧħŭƞḓḗřƀīřḓ ḗẋŧḗƞşīǿƞş ŀȧƞḓīƞɠ ƥȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
-msgid "Developing Add-ons for Mobile"
-msgstr "Ḓḗṽḗŀǿƥīƞɠ Ȧḓḓ-ǿƞş ƒǿř Ḿǿƀīŀḗ"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
-msgid "Mobile Extensions"
-msgstr "Ḿǿƀīŀḗ Ḗẋŧḗƞşīǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
-msgid ""
-"This document explains the specifics on creating an extension for mobile."
-msgstr ""
-"Ŧħīş ḓǿƈŭḿḗƞŧ ḗẋƥŀȧīƞş ŧħḗ şƥḗƈīƒīƈş ǿƞ ƈřḗȧŧīƞɠ ȧƞ ḗẋŧḗƞşīǿƞ ƒǿř ḿǿƀīŀḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
-msgid "Mobile Code Snippets"
-msgstr "Ḿǿƀīŀḗ Ƈǿḓḗ Şƞīƥƥḗŧş"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
-msgid "Code snippets specific to mobile."
-msgstr "Ƈǿḓḗ şƞīƥƥḗŧş şƥḗƈīƒīƈ ŧǿ ḿǿƀīŀḗ."
-
-#: apps/devhub/templates/devhub/docs/how-to.html:35
-#: apps/devhub/templates/devhub/docs/reference.html:305
-msgid "More Resources"
-msgstr "Ḿǿřḗ Řḗşǿŭřƈḗş"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:38
-#: apps/devhub/templates/devhub/docs/reference.html:308
-msgid ""
-"Already know what you're looking for? <a href=\"%(link_search)s\">Search for "
-"it!</a>"
-msgstr ""
-"Ȧŀřḗȧḓẏ ķƞǿẇ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř? <a href=\"%(link_search)s\">Şḗȧřƈħ ƒǿř "
-"īŧ!</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:43
-msgid ""
-"Browse through <a href=\"%(link_reference)s\">API & Language References</a> "
-"to find that interface you hope exists"
-msgstr ""
-"Ɓřǿẇşḗ ŧħřǿŭɠħ <a href=\"%(link_reference)s\">ȦƤĪ & Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş</a> "
-"ŧǿ ƒīƞḓ ŧħȧŧ īƞŧḗřƒȧƈḗ ẏǿŭ ħǿƥḗ ḗẋīşŧş"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:48
-#: apps/devhub/templates/devhub/docs/reference.html:318
-msgid ""
-"Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
-msgstr ""
-"Ƞḗḗḓ ħḗŀƥ? <a href=\"https://forums.addons.mozilla.org\">Ṽīşīŧ ǿŭř ƒǿřŭḿş</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:77
-msgid ""
-"Learn the basics of developing an extension on the Mozilla platform with "
-"this section full of beginner&#039;s guides."
-msgstr ""
-"Ŀḗȧřƞ ŧħḗ ƀȧşīƈş ǿƒ ḓḗṽḗŀǿƥīƞɠ ȧƞ ḗẋŧḗƞşīǿƞ ǿƞ ŧħḗ Ḿǿzīŀŀȧ ƥŀȧŧƒǿřḿ ẇīŧħ "
-"ŧħīş şḗƈŧīǿƞ ƒŭŀŀ ǿƒ ƀḗɠīƞƞḗř&#039;ş ɠŭīḓḗş."
-
-#: apps/devhub/templates/devhub/docs/how-to.html:99
-msgid "Thunderbird &amp; Mobile Add-ons"
-msgstr "Ŧħŭƞḓḗřƀīřḓ &amp; Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:103
-msgid ""
-"Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla "
-"applications, such as the Thunderbird mail client and Firefox for mobile "
-"devices."
-msgstr ""
-"Ȧḓḓ-ǿƞş ȧřḗƞ&#039;ŧ ĵŭşŧ ƒǿř Ƒīřḗƒǿẋ. Ŀḗȧřƞ ħǿẇ ŧǿ ḗẋŧḗƞḓ ǿŧħḗř Ḿǿzīŀŀȧ "
-"ȧƥƥŀīƈȧŧīǿƞş, şŭƈħ ȧş ŧħḗ Ŧħŭƞḓḗřƀīřḓ ḿȧīŀ ƈŀīḗƞŧ ȧƞḓ Ƒīřḗƒǿẋ ƒǿř ḿǿƀīŀḗ "
-"ḓḗṽīƈḗş."
-
-#: apps/devhub/templates/devhub/docs/marketplace.html:3
-msgid "Marketplace"
-msgstr "Ḿȧřķḗŧƥŀȧƈḗ"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -9264,916 +7722,6 @@ msgstr ""
 msgid "How to get in touch with us regarding these policies or your add-on."
 msgstr "Ħǿẇ ŧǿ ɠḗŧ īƞ ŧǿŭƈħ ẇīŧħ ŭş řḗɠȧřḓīƞɠ ŧħḗşḗ ƥǿŀīƈīḗş ǿř ẏǿŭř ȧḓḓ-ǿƞ."
 
-#: apps/devhub/templates/devhub/docs/reference.html:3
-#: apps/devhub/templates/devhub/docs/reference.html:8
-msgid "API & Language References"
-msgstr "ȦƤĪ & Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş"
-
-#: apps/devhub/templates/devhub/docs/reference.html:11
-msgid "API &amp; Language References"
-msgstr "ȦƤĪ &amp; Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗş"
-
-#: apps/devhub/templates/devhub/docs/reference.html:19
-msgid "XUL: Defining User Interfaces"
-msgstr "ẊŬĿ: Ḓḗƒīƞīƞɠ Ŭşḗř Īƞŧḗřƒȧƈḗş"
-
-#: apps/devhub/templates/devhub/docs/reference.html:23
-msgid "XUL Overview"
-msgstr "ẊŬĿ Ǿṽḗřṽīḗẇ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:26
-#: apps/devhub/templates/devhub/docs/reference.html:75
-#: apps/devhub/templates/devhub/docs/reference.html:91
-#: apps/devhub/templates/devhub/docs/reference.html:107
-#: apps/devhub/templates/devhub/docs/reference.html:127
-#: apps/devhub/templates/devhub/docs/reference.html:143
-#: apps/devhub/templates/devhub/docs/reference.html:175
-#: apps/devhub/templates/devhub/docs/reference.html:191
-#: apps/devhub/templates/devhub/docs/reference.html:206
-#: apps/devhub/templates/devhub/docs/reference.html:226
-#: apps/devhub/templates/devhub/docs/reference.html:241
-#: apps/devhub/templates/devhub/docs/reference.html:260
-#: apps/devhub/templates/devhub/docs/reference.html:276
-msgid ""
-"via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla "
-"Developer Center</a>"
-msgstr ""
-"ṽīȧ <a class=\"refsource\" href=\"http://developer.mozilla.org\">Ḿǿzīŀŀȧ "
-"Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:31
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets "
-"you build feature-rich cross platform applications that can run connected or "
-"disconnected from the Internet."
-msgstr ""
-"ẊŬĿ (ẊḾĿ Ŭşḗř Īƞŧḗřƒȧƈḗ Ŀȧƞɠŭȧɠḗ) īş Ḿǿzīŀŀȧ'ş ẊḾĿ-ƀȧşḗḓ ŀȧƞɠŭȧɠḗ ŧħȧŧ ŀḗŧş "
-"ẏǿŭ ƀŭīŀḓ ƒḗȧŧŭřḗ-řīƈħ ƈřǿşş ƥŀȧŧƒǿřḿ ȧƥƥŀīƈȧŧīǿƞş ŧħȧŧ ƈȧƞ řŭƞ ƈǿƞƞḗƈŧḗḓ ǿř "
-"ḓīşƈǿƞƞḗƈŧḗḓ ƒřǿḿ ŧħḗ Īƞŧḗřƞḗŧ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:38
-msgid "XUL Reference"
-msgstr "ẊŬĿ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:41
-#: apps/devhub/templates/devhub/docs/reference.html:56
-msgid ""
-"via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla "
-"Developer Center</a></span>"
-msgstr ""
-"ṽīȧ <a class=\"refsource\" href=\"http://developer.mozilla.org\">Ḿǿzīŀŀȧ "
-"Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř</a></span>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:45
-msgid "A list of all available XUL elements."
-msgstr "Ȧ ŀīşŧ ǿƒ ȧŀŀ ȧṽȧīŀȧƀŀḗ ẊŬĿ ḗŀḗḿḗƞŧş."
-
-#: apps/devhub/templates/devhub/docs/reference.html:53
-msgid "XUL Controls List"
-msgstr "ẊŬĿ Ƈǿƞŧřǿŀş Ŀīşŧ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:60
-msgid "A description of many available XUL controls, including screenshots."
-msgstr "Ȧ ḓḗşƈřīƥŧīǿƞ ǿƒ ḿȧƞẏ ȧṽȧīŀȧƀŀḗ ẊŬĿ ƈǿƞŧřǿŀş, īƞƈŀŭḓīƞɠ şƈřḗḗƞşħǿŧş."
-
-#: apps/devhub/templates/devhub/docs/reference.html:67
-msgid "JavaScript: Specifying Behavior"
-msgstr "ĴȧṽȧŞƈřīƥŧ: Şƥḗƈīƒẏīƞɠ Ɓḗħȧṽīǿř"
-
-#: apps/devhub/templates/devhub/docs/reference.html:72
-msgid "JavaScript Overview"
-msgstr "ĴȧṽȧŞƈřīƥŧ Ǿṽḗřṽīḗẇ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:80
-msgid ""
-"JavaScript is a small, lightweight, object-oriented, cross-platform "
-"scripting language."
-msgstr ""
-"ĴȧṽȧŞƈřīƥŧ īş ȧ şḿȧŀŀ, ŀīɠħŧẇḗīɠħŧ, ǿƀĵḗƈŧ-ǿřīḗƞŧḗḓ, ƈřǿşş-ƥŀȧŧƒǿřḿ "
-"şƈřīƥŧīƞɠ ŀȧƞɠŭȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:88
-msgid "Gecko JavaScript Language Reference"
-msgstr "Ɠḗƈķǿ ĴȧṽȧŞƈřīƥŧ Ŀȧƞɠŭȧɠḗ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:96
-msgid ""
-"Mozilla Developer Center's JavaScript documentation, including functions, "
-"statements, properties, and more."
-msgstr ""
-"Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş ĴȧṽȧŞƈřīƥŧ ḓǿƈŭḿḗƞŧȧŧīǿƞ, īƞƈŀŭḓīƞɠ ƒŭƞƈŧīǿƞş, "
-"şŧȧŧḗḿḗƞŧş, ƥřǿƥḗřŧīḗş, ȧƞḓ ḿǿřḗ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:104
-msgid "JavaScript Style Guide"
-msgstr "ĴȧṽȧŞƈřīƥŧ Şŧẏŀḗ Ɠŭīḓḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:112
-msgid "Mozilla's JavaScript coding standards."
-msgstr "Ḿǿzīŀŀȧ'ş ĴȧṽȧŞƈřīƥŧ ƈǿḓīƞɠ şŧȧƞḓȧřḓş."
-
-#: apps/devhub/templates/devhub/docs/reference.html:120
-msgid "CSS: Adding Visual Effects"
-msgstr "ƇŞŞ: Ȧḓḓīƞɠ Ṽīşŭȧŀ Ḗƒƒḗƈŧş"
-
-#: apps/devhub/templates/devhub/docs/reference.html:124
-msgid "CSS Overview"
-msgstr "ƇŞŞ Ǿṽḗřṽīḗẇ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:133
-msgid ""
-"Cascading Style Sheets (CSS) is a stylesheet language used to describe the "
-"presentation of a document written in HTML or XML and is used to style a XUL-"
-"based application's user interface."
-msgstr ""
-"Ƈȧşƈȧḓīƞɠ Şŧẏŀḗ Şħḗḗŧş (ƇŞŞ) īş ȧ şŧẏŀḗşħḗḗŧ ŀȧƞɠŭȧɠḗ ŭşḗḓ ŧǿ ḓḗşƈřīƀḗ ŧħḗ "
-"ƥřḗşḗƞŧȧŧīǿƞ ǿƒ ȧ ḓǿƈŭḿḗƞŧ ẇřīŧŧḗƞ īƞ ĦŦḾĿ ǿř ẊḾĿ ȧƞḓ īş ŭşḗḓ ŧǿ şŧẏŀḗ ȧ ẊŬĿ-"
-"ƀȧşḗḓ ȧƥƥŀīƈȧŧīǿƞ'ş ŭşḗř īƞŧḗřƒȧƈḗ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:140
-msgid "Gecko CSS Reference"
-msgstr "Ɠḗƈķǿ ƇŞŞ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:148
-msgid ""
-"Mozilla Developer Center's CSS documentation, listing all available "
-"properties, values, and selectors."
-msgstr ""
-"Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş ƇŞŞ ḓǿƈŭḿḗƞŧȧŧīǿƞ, ŀīşŧīƞɠ ȧŀŀ ȧṽȧīŀȧƀŀḗ "
-"ƥřǿƥḗřŧīḗş, ṽȧŀŭḗş, ȧƞḓ şḗŀḗƈŧǿřş."
-
-#: apps/devhub/templates/devhub/docs/reference.html:156
-msgid "W3C CSS Homepage"
-msgstr "Ẇ3Ƈ ƇŞŞ Ħǿḿḗƥȧɠḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:159
-msgid ""
-"via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web "
-"Consortium</a>"
-msgstr ""
-"ṽīȧ <a class=\"refsource\" href=\"http://www.w3.org\">Ẇǿřŀḓ Ẇīḓḗ Ẇḗƀ "
-"Ƈǿƞşǿřŧīŭḿ</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:163
-msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
-msgstr "Ƒīƞḓ ƇŞŞ ƞḗẇş, şƥḗƈīƒīƈȧŧīǿƞş, ȧƞḓ ŧǿǿŀş ȧŧ ŧħḗ Ẇ3Ƈ'ş ƇŞŞ ħǿḿḗƥȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:167
-msgid "FUEL: Easier Extension Development"
-msgstr "ƑŬḖĿ: Ḗȧşīḗř Ḗẋŧḗƞşīǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:180
-msgid ""
-"FUEL is a JavaScript library designed to help developers build extensions "
-"using terminology and interfaces that are familiar to them."
-msgstr ""
-"ƑŬḖĿ īş ȧ ĴȧṽȧŞƈřīƥŧ ŀīƀřȧřẏ ḓḗşīɠƞḗḓ ŧǿ ħḗŀƥ ḓḗṽḗŀǿƥḗřş ƀŭīŀḓ ḗẋŧḗƞşīǿƞş "
-"ŭşīƞɠ ŧḗřḿīƞǿŀǿɠẏ ȧƞḓ īƞŧḗřƒȧƈḗş ŧħȧŧ ȧřḗ ƒȧḿīŀīȧř ŧǿ ŧħḗḿ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:187
-msgid "STEEL API"
-msgstr "ŞŦḖḖĿ ȦƤĪ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:196
-msgid ""
-"STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-"
-"like set of interfaces to facilitate Thunderbird extension development."
-msgstr ""
-"ŞŦḖḖĿ īş ŧħḗ Şƈřīƥŧȧƀŀḗ Ŧħŭƞḓḗřƀīřḓ Ḗȧşẏ Ḗẋŧḗƞşīǿƞ Ŀīƀřȧřẏ. Īŧ īş ȧ ƑŬḖĿ-"
-"ŀīķḗ şḗŧ ǿƒ īƞŧḗřƒȧƈḗş ŧǿ ƒȧƈīŀīŧȧŧḗ Ŧħŭƞḓḗřƀīřḓ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:203
-msgid "SMILE API"
-msgstr "ŞḾĪĿḖ ȦƤĪ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:211
-msgid ""
-"SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension "
-"development."
-msgstr ""
-"ŞḾĪĿḖ īş ȧ ƑŬḖĿ-ŀīķḗ şḗŧ ǿƒ īƞŧḗřƒȧƈḗş ŧǿ ƒȧƈīŀīŧȧŧḗ ŞḗȧḾǿƞķḗẏ ḗẋŧḗƞşīǿƞ "
-"ḓḗṽḗŀǿƥḿḗƞŧ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:219
-msgid "XPCOM: Cross-Platform Components"
-msgstr "ẊƤƇǾḾ: Ƈřǿşş-Ƥŀȧŧƒǿřḿ Ƈǿḿƥǿƞḗƞŧş"
-
-#: apps/devhub/templates/devhub/docs/reference.html:223
-msgid "XPCOM Overview"
-msgstr "ẊƤƇǾḾ Ǿṽḗřṽīḗẇ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:231
-msgid ""
-"XPCOM is a cross-platform component object model with multiple language "
-"bindings, letting the XPCOM components be used and implemented in "
-"JavaScript, Java, and Python in addition to C++."
-msgstr ""
-"ẊƤƇǾḾ īş ȧ ƈřǿşş-ƥŀȧŧƒǿřḿ ƈǿḿƥǿƞḗƞŧ ǿƀĵḗƈŧ ḿǿḓḗŀ ẇīŧħ ḿŭŀŧīƥŀḗ ŀȧƞɠŭȧɠḗ "
-"ƀīƞḓīƞɠş, ŀḗŧŧīƞɠ ŧħḗ ẊƤƇǾḾ ƈǿḿƥǿƞḗƞŧş ƀḗ ŭşḗḓ ȧƞḓ īḿƥŀḗḿḗƞŧḗḓ īƞ "
-"ĴȧṽȧŞƈřīƥŧ, Ĵȧṽȧ, ȧƞḓ Ƥẏŧħǿƞ īƞ ȧḓḓīŧīǿƞ ŧǿ Ƈ++."
-
-#: apps/devhub/templates/devhub/docs/reference.html:238
-msgid "XPCOM Reference"
-msgstr "ẊƤƇǾḾ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:246
-msgid ""
-"Mozilla Developer Center's XPCOM API documentation, listing frozen "
-"interfaces and functions."
-msgstr ""
-"Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş ẊƤƇǾḾ ȦƤĪ ḓǿƈŭḿḗƞŧȧŧīǿƞ, ŀīşŧīƞɠ ƒřǿzḗƞ "
-"īƞŧḗřƒȧƈḗş ȧƞḓ ƒŭƞƈŧīǿƞş."
-
-#: apps/devhub/templates/devhub/docs/reference.html:253
-msgid "DOM: Interacting with Content"
-msgstr "ḒǾḾ: Īƞŧḗřȧƈŧīƞɠ ẇīŧħ Ƈǿƞŧḗƞŧ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:257
-msgid "DOM Overview"
-msgstr "ḒǾḾ Ǿṽḗřṽīḗẇ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:265
-msgid ""
-"The Document Object Model (DOM) is an API for HTML and XML documents. It "
-"provides a structural representation of the document, enabling you to modify "
-"its content and visual presentation."
-msgstr ""
-"Ŧħḗ Ḓǿƈŭḿḗƞŧ Ǿƀĵḗƈŧ Ḿǿḓḗŀ (ḒǾḾ) īş ȧƞ ȦƤĪ ƒǿř ĦŦḾĿ ȧƞḓ ẊḾĿ ḓǿƈŭḿḗƞŧş. Īŧ "
-"ƥřǿṽīḓḗş ȧ şŧřŭƈŧŭřȧŀ řḗƥřḗşḗƞŧȧŧīǿƞ ǿƒ ŧħḗ ḓǿƈŭḿḗƞŧ, ḗƞȧƀŀīƞɠ ẏǿŭ ŧǿ ḿǿḓīƒẏ "
-"īŧş ƈǿƞŧḗƞŧ ȧƞḓ ṽīşŭȧŀ ƥřḗşḗƞŧȧŧīǿƞ."
-
-#: apps/devhub/templates/devhub/docs/reference.html:273
-msgid "Gecko DOM Reference"
-msgstr "Ɠḗƈķǿ ḒǾḾ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:281
-msgid "Mozilla Developer Center's DOM API documentation"
-msgstr "Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř'ş ḒǾḾ ȦƤĪ ḓǿƈŭḿḗƞŧȧŧīǿƞ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:292
-msgid "Jump to Reference"
-msgstr "Ĵŭḿƥ ŧǿ Řḗƒḗřḗƞƈḗ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:294
-msgid "XUL"
-msgstr "ẊŬĿ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:295
-msgid "JavaScript"
-msgstr "ĴȧṽȧŞƈřīƥŧ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:296
-msgid "CSS"
-msgstr "ƇŞŞ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:298
-msgid "FUEL"
-msgstr "ƑŬḖĿ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:299
-msgid "XPCOM"
-msgstr "ẊƤƇǾḾ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:300
-msgid "DOM"
-msgstr "ḒǾḾ"
-
-#: apps/devhub/templates/devhub/docs/reference.html:313
-msgid ""
-"Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-"
-"to Library</a>"
-msgstr ""
-"Ŀḗȧřƞ ħǿẇ ŧǿ ŭşḗ ŧħḗşḗ ȦƤĪş ȧƞḓ ḿǿřḗ īƞ ǿŭř <a href=\"%(link_howto)s\">Ħǿẇ-"
-"ŧǿ Ŀīƀřȧřẏ</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:3
-#: apps/devhub/templates/devhub/docs/themes.html:18
-#: apps/pages/templates/pages/faq.html:3
-#: apps/pages/templates/pages/faq.html:9
-#: apps/pages/templates/pages/faq.html:10
-msgid "Frequently Asked Questions"
-msgstr "Ƒřḗɋŭḗƞŧŀẏ Ȧşķḗḓ Ɋŭḗşŧīǿƞş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:4
-msgid "Frequently Asked Questions | Themes"
-msgstr "Ƒřḗɋŭḗƞŧŀẏ Ȧşķḗḓ Ɋŭḗşŧīǿƞş | Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:14
-#: apps/devhub/templates/devhub/docs/themes-faq.html:44
-msgid "Introducing Background Themes"
-msgstr "Īƞŧřǿḓŭƈīƞɠ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:16
-msgid "What Are Background Themes?"
-msgstr "Ẇħȧŧ Ȧřḗ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:17
-#: apps/devhub/templates/devhub/docs/themes-faq.html:59
-msgid ""
-"What kind of computers and operating systems do Background Themes work with?"
-msgstr ""
-"Ẇħȧŧ ķīƞḓ ǿƒ ƈǿḿƥŭŧḗřş ȧƞḓ ǿƥḗřȧŧīƞɠ şẏşŧḗḿş ḓǿ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş ẇǿřķ ẇīŧħ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:18
-#: apps/devhub/templates/devhub/docs/themes-faq.html:68
-msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr "Ẇħȧŧ'ş ŧħḗ ḓīƒƒḗřḗƞƈḗ ƀḗŧẇḗḗƞ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş ȧƞḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:21
-#: apps/devhub/templates/devhub/docs/themes-faq.html:85
-msgid "Installing Background Themes"
-msgstr "Īƞşŧȧŀŀīƞɠ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:23
-#: apps/devhub/templates/devhub/docs/themes-faq.html:88
-msgid "How do I add Background Themes to my Firefox?"
-msgstr "Ħǿẇ ḓǿ Ī ȧḓḓ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş ŧǿ ḿẏ Ƒīřḗƒǿẋ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:24
-#: apps/devhub/templates/devhub/docs/themes-faq.html:103
-msgid "Are Background Themes free?"
-msgstr "Ȧřḗ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş ƒřḗḗ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:27
-#: apps/devhub/templates/devhub/docs/themes-faq.html:112
-msgid "Using Background Themes"
-msgstr "Ŭşīƞɠ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:29
-#: apps/devhub/templates/devhub/docs/themes-faq.html:115
-msgid "How do I change my current Background Theme?"
-msgstr "Ħǿẇ ḓǿ Ī ƈħȧƞɠḗ ḿẏ ƈŭřřḗƞŧ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:30
-#: apps/devhub/templates/devhub/docs/themes-faq.html:140
-msgid ""
-"If I have a Complete Theme installed, will Background Themes still work?"
-msgstr ""
-"Īƒ Ī ħȧṽḗ ȧ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ īƞşŧȧŀŀḗḓ, ẇīŀŀ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş şŧīŀŀ ẇǿřķ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:31
-#: apps/devhub/templates/devhub/docs/themes-faq.html:150
-msgid "How do I undo a Background Theme?"
-msgstr "Ħǿẇ ḓǿ Ī ŭƞḓǿ ȧ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:32
-#: apps/devhub/templates/devhub/docs/themes-faq.html:161
-msgid "How do I provide feedback?"
-msgstr "Ħǿẇ ḓǿ Ī ƥřǿṽīḓḗ ƒḗḗḓƀȧƈķ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:35
-msgid "Creating Your Own Background Themes"
-msgstr "Ƈřḗȧŧīƞɠ Ẏǿŭř Ǿẇƞ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:37
-msgid "Can I create my own Background Theme?"
-msgstr "Ƈȧƞ Ī ƈřḗȧŧḗ ḿẏ ǿẇƞ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:38
-#: apps/devhub/templates/devhub/docs/themes-faq.html:184
-msgid "Are there any content guidelines?"
-msgstr "Ȧřḗ ŧħḗřḗ ȧƞẏ ƈǿƞŧḗƞŧ ɠŭīḓḗŀīƞḗş?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:39
-#: apps/devhub/templates/devhub/docs/themes-faq.html:250
-msgid "Do I still retain ownership over artwork that I upload?"
-msgstr "Ḓǿ Ī şŧīŀŀ řḗŧȧīƞ ǿẇƞḗřşħīƥ ǿṽḗř ȧřŧẇǿřķ ŧħȧŧ Ī ŭƥŀǿȧḓ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:40
-#: apps/devhub/templates/devhub/docs/themes-faq.html:258
-msgid "After creating a Background Theme, can I edit the design?"
-msgstr "Ȧƒŧḗř ƈřḗȧŧīƞɠ ȧ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ, ƈȧƞ Ī ḗḓīŧ ŧħḗ ḓḗşīɠƞ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:41
-#: apps/devhub/templates/devhub/docs/themes-faq.html:266
-msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr "Ẇħȧŧ'ş ŧħḗ ḿȧẋīḿŭḿ ƒīŀḗ şīzḗ ȧŀŀǿẇȧƀŀḗ ƒǿř ḿẏ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:47
-msgid "What are Background Themes?"
-msgstr "Ẇħȧŧ ȧřḗ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:49
-msgid ""
-"Background themes are easy-to-install, easy-to-use skins that change the "
-"look of your Firefox web browser. There are hundreds of thousands community-"
-"designed themes to choose from, with more added every day. <a "
-"href=\"%(browse_url)s\">Start looking here for designs that fit your "
-"style.</a>"
-msgstr ""
-"Ɓȧƈķɠřǿŭƞḓ ŧħḗḿḗş ȧřḗ ḗȧşẏ-ŧǿ-īƞşŧȧŀŀ, ḗȧşẏ-ŧǿ-ŭşḗ şķīƞş ŧħȧŧ ƈħȧƞɠḗ ŧħḗ "
-"ŀǿǿķ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ ẇḗƀ ƀřǿẇşḗř. Ŧħḗřḗ ȧřḗ ħŭƞḓřḗḓş ǿƒ ŧħǿŭşȧƞḓş ƈǿḿḿŭƞīŧẏ-"
-"ḓḗşīɠƞḗḓ ŧħḗḿḗş ŧǿ ƈħǿǿşḗ ƒřǿḿ, ẇīŧħ ḿǿřḗ ȧḓḓḗḓ ḗṽḗřẏ ḓȧẏ. <a "
-"href=\"%(browse_url)s\">Şŧȧřŧ ŀǿǿķīƞɠ ħḗřḗ ƒǿř ḓḗşīɠƞş ŧħȧŧ ƒīŧ ẏǿŭř "
-"şŧẏŀḗ.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:61
-msgid ""
-"Background Themes work with any type of computer that has Firefox installed. "
-"This includes Mac, Linux, Windows, and Android platforms."
-msgstr ""
-"Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş ẇǿřķ ẇīŧħ ȧƞẏ ŧẏƥḗ ǿƒ ƈǿḿƥŭŧḗř ŧħȧŧ ħȧş Ƒīřḗƒǿẋ īƞşŧȧŀŀḗḓ. "
-"Ŧħīş īƞƈŀŭḓḗş Ḿȧƈ, Ŀīƞŭẋ, Ẇīƞḓǿẇş, ȧƞḓ Ȧƞḓřǿīḓ ƥŀȧŧƒǿřḿş."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:70
-msgid ""
-"Complete Themes transform the look of your browser with styles for the "
-"window frame, address bar, buttons, tabs, and menus."
-msgstr ""
-"Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş ŧřȧƞşƒǿřḿ ŧħḗ ŀǿǿķ ǿƒ ẏǿŭř ƀřǿẇşḗř ẇīŧħ şŧẏŀḗş ƒǿř ŧħḗ "
-"ẇīƞḓǿẇ ƒřȧḿḗ, ȧḓḓřḗşş ƀȧř, ƀŭŧŧǿƞş, ŧȧƀş, ȧƞḓ ḿḗƞŭş."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:76
-msgid ""
-"Background Themes change just the header and footer areas of your browser. "
-"You can instantly preview a design and install it in one click without "
-"needing to restart."
-msgstr ""
-"Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş ƈħȧƞɠḗ ĵŭşŧ ŧħḗ ħḗȧḓḗř ȧƞḓ ƒǿǿŧḗř ȧřḗȧş ǿƒ ẏǿŭř ƀřǿẇşḗř. "
-"Ẏǿŭ ƈȧƞ īƞşŧȧƞŧŀẏ ƥřḗṽīḗẇ ȧ ḓḗşīɠƞ ȧƞḓ īƞşŧȧŀŀ īŧ īƞ ǿƞḗ ƈŀīƈķ ẇīŧħǿŭŧ "
-"ƞḗḗḓīƞɠ ŧǿ řḗşŧȧřŧ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:90
-msgid ""
-"In just a few seconds, you can install a theme and transform the look of "
-"your Firefox web browser. Preview any theme by simply mousing over it; the "
-"design appears in your browser header so you can \"try it on.\" When you're "
-"ready, just click the green <code>Add to Firefox</code> button. Once a theme "
-"is installed, it is saved in the Add-ons Manager, where you can enable or "
-"disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-"
-"ons</code> menu and click on the <code>Appearance</code> tab."
-msgstr ""
-"Īƞ ĵŭşŧ ȧ ƒḗẇ şḗƈǿƞḓş, ẏǿŭ ƈȧƞ īƞşŧȧŀŀ ȧ ŧħḗḿḗ ȧƞḓ ŧřȧƞşƒǿřḿ ŧħḗ ŀǿǿķ ǿƒ "
-"ẏǿŭř Ƒīřḗƒǿẋ ẇḗƀ ƀřǿẇşḗř. Ƥřḗṽīḗẇ ȧƞẏ ŧħḗḿḗ ƀẏ şīḿƥŀẏ ḿǿŭşīƞɠ ǿṽḗř īŧ; ŧħḗ "
-"ḓḗşīɠƞ ȧƥƥḗȧřş īƞ ẏǿŭř ƀřǿẇşḗř ħḗȧḓḗř şǿ ẏǿŭ ƈȧƞ \"ŧřẏ īŧ ǿƞ.\" Ẇħḗƞ ẏǿŭ'řḗ "
-"řḗȧḓẏ, ĵŭşŧ ƈŀīƈķ ŧħḗ ɠřḗḗƞ <code>Ȧḓḓ ŧǿ Ƒīřḗƒǿẋ</code> ƀŭŧŧǿƞ. Ǿƞƈḗ ȧ ŧħḗḿḗ "
-"īş īƞşŧȧŀŀḗḓ, īŧ īş şȧṽḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř, ẇħḗřḗ ẏǿŭ ƈȧƞ ḗƞȧƀŀḗ ǿř "
-"ḓīşȧƀŀḗ ŧħḗḿ ȧş ẏǿŭ ẇīşħ. Şīḿƥŀẏ ɠǿ ŧǿ ŧħḗ <code>Ŧǿǿŀş</code> &gt; "
-"<code>Ȧḓḓ-ǿƞş</code> ḿḗƞŭ ȧƞḓ ƈŀīƈķ ǿƞ ŧħḗ <code>Ȧƥƥḗȧřȧƞƈḗ</code> ŧȧƀ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:105
-msgid "Yes. Themes are free to download and free to use."
-msgstr "Ẏḗş. Ŧħḗḿḗş ȧřḗ ƒřḗḗ ŧǿ ḓǿẇƞŀǿȧḓ ȧƞḓ ƒřḗḗ ŧǿ ŭşḗ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:117
-msgid "There are two easy ways to change your theme. You can either:"
-msgstr "Ŧħḗřḗ ȧřḗ ŧẇǿ ḗȧşẏ ẇȧẏş ŧǿ ƈħȧƞɠḗ ẏǿŭř ŧħḗḿḗ. Ẏǿŭ ƈȧƞ ḗīŧħḗř:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:123
-msgid ""
-"Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite "
-"theme, and click on your choice to instantly change the look of your browser."
-msgstr ""
-"Ṽīşīŧ ŧħḗ <a href=\"%(gallery_url)s\">ɠȧŀŀḗřẏ</a>, ƈħǿǿşḗ ẏǿŭř ƒȧṽǿřīŧḗ "
-"ŧħḗḿḗ, ȧƞḓ ƈŀīƈķ ǿƞ ẏǿŭř ƈħǿīƈḗ ŧǿ īƞşŧȧƞŧŀẏ ƈħȧƞɠḗ ŧħḗ ŀǿǿķ ǿƒ ẏǿŭř ƀřǿẇşḗř."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:130
-msgid ""
-"Once a theme is installed, it is saved in the Add-ons Manager, where you can "
-"enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; "
-"<code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
-msgstr ""
-"Ǿƞƈḗ ȧ ŧħḗḿḗ īş īƞşŧȧŀŀḗḓ, īŧ īş şȧṽḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř, ẇħḗřḗ ẏǿŭ ƈȧƞ "
-"ḗƞȧƀŀḗ ǿř ḓīşȧƀŀḗ ŧħḗḿ ȧş ẏǿŭ ẇīşħ. Şīḿƥŀẏ ɠǿ ŧǿ ŧħḗ <code>Ŧǿǿŀş</code> &gt; "
-"<code>Ȧḓḓ-ǿƞş</code> ḿḗƞŭ ȧƞḓ ƈŀīƈķ ǿƞ ŧħḗ <code>Ȧƥƥḗȧřȧƞƈḗ</code> ŧȧƀ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:142
-msgid ""
-"Yes. If you have a non-default Complete Theme installed, Firefox will "
-"automatically switch to a default theme in order to allow you to use your "
-"choice of Background Theme designs."
-msgstr ""
-"Ẏḗş. Īƒ ẏǿŭ ħȧṽḗ ȧ ƞǿƞ-ḓḗƒȧŭŀŧ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ īƞşŧȧŀŀḗḓ, Ƒīřḗƒǿẋ ẇīŀŀ "
-"ȧŭŧǿḿȧŧīƈȧŀŀẏ şẇīŧƈħ ŧǿ ȧ ḓḗƒȧŭŀŧ ŧħḗḿḗ īƞ ǿřḓḗř ŧǿ ȧŀŀǿẇ ẏǿŭ ŧǿ ŭşḗ ẏǿŭř "
-"ƈħǿīƈḗ ǿƒ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ ḓḗşīɠƞş."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:152
-msgid ""
-"To undo the design you most recently selected, go to <code>Tools</code> &gt; "
-"<code>Add-ons</code> in the menu bar and select the <code>Appearance</code> "
-"tab. Next to the theme you want to undo, click the <code>Disable</code> "
-"button."
-msgstr ""
-"Ŧǿ ŭƞḓǿ ŧħḗ ḓḗşīɠƞ ẏǿŭ ḿǿşŧ řḗƈḗƞŧŀẏ şḗŀḗƈŧḗḓ, ɠǿ ŧǿ <code>Ŧǿǿŀş</code> &gt; "
-"<code>Ȧḓḓ-ǿƞş</code> īƞ ŧħḗ ḿḗƞŭ ƀȧř ȧƞḓ şḗŀḗƈŧ ŧħḗ <code>Ȧƥƥḗȧřȧƞƈḗ</code> "
-"ŧȧƀ. Ƞḗẋŧ ŧǿ ŧħḗ ŧħḗḿḗ ẏǿŭ ẇȧƞŧ ŧǿ ŭƞḓǿ, ƈŀīƈķ ŧħḗ <code>Ḓīşȧƀŀḗ</code> "
-"ƀŭŧŧǿƞ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:163
-msgid ""
-"We're always looking for ways to improve themes, and would love to hear what "
-"you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us "
-"your feedback."
-msgstr ""
-"Ẇḗ'řḗ ȧŀẇȧẏş ŀǿǿķīƞɠ ƒǿř ẇȧẏş ŧǿ īḿƥřǿṽḗ ŧħḗḿḗş, ȧƞḓ ẇǿŭŀḓ ŀǿṽḗ ŧǿ ħḗȧř ẇħȧŧ "
-"ẏǿŭ ŧħīƞķ. Ṽīşīŧ ŧħḗ <a href=\"%(forum_url)s\">ŧħḗḿḗş ƒǿřŭḿ</a> ŧǿ şḗƞḓ ŭş "
-"ẏǿŭř ƒḗḗḓƀȧƈķ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:170
-msgid "Creating Your Own Themes"
-msgstr "Ƈřḗȧŧīƞɠ Ẏǿŭř Ǿẇƞ Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:173
-msgid "Can I create my own Theme?"
-msgstr "Ƈȧƞ Ī ƈřḗȧŧḗ ḿẏ ǿẇƞ Ŧħḗḿḗ?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:175
-msgid ""
-"Absolutely! All you need to do is create two graphics files in your favorite "
-"graphics editing program (e.g., Photoshop). To get started <a "
-"href=\"%(tutorial_url)s\">read more about how to create a theme</a>."
-msgstr ""
-"Ȧƀşǿŀŭŧḗŀẏ! Ȧŀŀ ẏǿŭ ƞḗḗḓ ŧǿ ḓǿ īş ƈřḗȧŧḗ ŧẇǿ ɠřȧƥħīƈş ƒīŀḗş īƞ ẏǿŭř ƒȧṽǿřīŧḗ "
-"ɠřȧƥħīƈş ḗḓīŧīƞɠ ƥřǿɠřȧḿ (ḗ.ɠ., Ƥħǿŧǿşħǿƥ). Ŧǿ ɠḗŧ şŧȧřŧḗḓ <a "
-"href=\"%(tutorial_url)s\">řḗȧḓ ḿǿřḗ ȧƀǿŭŧ ħǿẇ ŧǿ ƈřḗȧŧḗ ȧ ŧħḗḿḗ</a>."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:186
-msgid ""
-"Yes. We are big fans of creativity, but want to ensure that the art "
-"displayed in the Themes gallery meets a basic set of guidelines. Please "
-"review the <a href=\"%(tos_url)s\">Terms of Service</a> for authoritative "
-"and complete language, but the following gives you an overview of the "
-"requirements:"
-msgstr ""
-"Ẏḗş. Ẇḗ ȧřḗ ƀīɠ ƒȧƞş ǿƒ ƈřḗȧŧīṽīŧẏ, ƀŭŧ ẇȧƞŧ ŧǿ ḗƞşŭřḗ ŧħȧŧ ŧħḗ ȧřŧ "
-"ḓīşƥŀȧẏḗḓ īƞ ŧħḗ Ŧħḗḿḗş ɠȧŀŀḗřẏ ḿḗḗŧş ȧ ƀȧşīƈ şḗŧ ǿƒ ɠŭīḓḗŀīƞḗş. Ƥŀḗȧşḗ "
-"řḗṽīḗẇ ŧħḗ <a href=\"%(tos_url)s\">Ŧḗřḿş ǿƒ Şḗřṽīƈḗ</a> ƒǿř ȧŭŧħǿřīŧȧŧīṽḗ "
-"ȧƞḓ ƈǿḿƥŀḗŧḗ ŀȧƞɠŭȧɠḗ, ƀŭŧ ŧħḗ ƒǿŀŀǿẇīƞɠ ɠīṽḗş ẏǿŭ ȧƞ ǿṽḗřṽīḗẇ ǿƒ ŧħḗ "
-"řḗɋŭīřḗḿḗƞŧş:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:196
-msgid ""
-"You either own all the elements of your design OR you are authorized "
-"worldwide to reproduce and distribute them (and allow others to do so) by "
-"the owner or the law."
-msgstr ""
-"Ẏǿŭ ḗīŧħḗř ǿẇƞ ȧŀŀ ŧħḗ ḗŀḗḿḗƞŧş ǿƒ ẏǿŭř ḓḗşīɠƞ ǾŘ ẏǿŭ ȧřḗ ȧŭŧħǿřīzḗḓ "
-"ẇǿřŀḓẇīḓḗ ŧǿ řḗƥřǿḓŭƈḗ ȧƞḓ ḓīşŧřīƀŭŧḗ ŧħḗḿ (ȧƞḓ ȧŀŀǿẇ ǿŧħḗřş ŧǿ ḓǿ şǿ) ƀẏ "
-"ŧħḗ ǿẇƞḗř ǿř ŧħḗ ŀȧẇ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:203
-msgid "Your design does not contain sexually explicit or offensive content."
-msgstr "Ẏǿŭř ḓḗşīɠƞ ḓǿḗş ƞǿŧ ƈǿƞŧȧīƞ şḗẋŭȧŀŀẏ ḗẋƥŀīƈīŧ ǿř ǿƒƒḗƞşīṽḗ ƈǿƞŧḗƞŧ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:208
-msgid ""
-"Your design does not include identifiable elements of any non-celebrity "
-"person(s) other than yourself or individuals who have given you permission "
-"to do so."
-msgstr ""
-"Ẏǿŭř ḓḗşīɠƞ ḓǿḗş ƞǿŧ īƞƈŀŭḓḗ īḓḗƞŧīƒīȧƀŀḗ ḗŀḗḿḗƞŧş ǿƒ ȧƞẏ ƞǿƞ-ƈḗŀḗƀřīŧẏ "
-"ƥḗřşǿƞ(ş) ǿŧħḗř ŧħȧƞ ẏǿŭřşḗŀƒ ǿř īƞḓīṽīḓŭȧŀş ẇħǿ ħȧṽḗ ɠīṽḗƞ ẏǿŭ ƥḗřḿīşşīǿƞ "
-"ŧǿ ḓǿ şǿ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:215
-msgid ""
-"Your design does not depict violence or Nazi imagery, nor is it "
-"discriminatory or hateful."
-msgstr ""
-"Ẏǿŭř ḓḗşīɠƞ ḓǿḗş ƞǿŧ ḓḗƥīƈŧ ṽīǿŀḗƞƈḗ ǿř Ƞȧzī īḿȧɠḗřẏ, ƞǿř īş īŧ "
-"ḓīşƈřīḿīƞȧŧǿřẏ ǿř ħȧŧḗƒŭŀ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:221
-msgid "Your design does not relate to gambling."
-msgstr "Ẏǿŭř ḓḗşīɠƞ ḓǿḗş ƞǿŧ řḗŀȧŧḗ ŧǿ ɠȧḿƀŀīƞɠ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:226
-msgid ""
-"Your design does not violate any applicable law or regulation or the rights "
-"of any person or entity."
-msgstr ""
-"Ẏǿŭř ḓḗşīɠƞ ḓǿḗş ƞǿŧ ṽīǿŀȧŧḗ ȧƞẏ ȧƥƥŀīƈȧƀŀḗ ŀȧẇ ǿř řḗɠŭŀȧŧīǿƞ ǿř ŧħḗ řīɠħŧş "
-"ǿƒ ȧƞẏ ƥḗřşǿƞ ǿř ḗƞŧīŧẏ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:231
-msgid ""
-"Also, note that your design needs to be suitable for the Background Themes "
-"format (see guidelines), of usable quality, and not duplicative of a prior "
-"submission. Finally, while Mozilla does provide guidelines for submissions, "
-"Mozilla retains the discretion to reject or remove designs for any reason. "
-"In some cases, this is necessary for legal reasons, but it also allows us to "
-"maintain the integrity of the site."
-msgstr ""
-"Ȧŀşǿ, ƞǿŧḗ ŧħȧŧ ẏǿŭř ḓḗşīɠƞ ƞḗḗḓş ŧǿ ƀḗ şŭīŧȧƀŀḗ ƒǿř ŧħḗ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗş "
-"ƒǿřḿȧŧ (şḗḗ ɠŭīḓḗŀīƞḗş), ǿƒ ŭşȧƀŀḗ ɋŭȧŀīŧẏ, ȧƞḓ ƞǿŧ ḓŭƥŀīƈȧŧīṽḗ ǿƒ ȧ ƥřīǿř "
-"şŭƀḿīşşīǿƞ. Ƒīƞȧŀŀẏ, ẇħīŀḗ Ḿǿzīŀŀȧ ḓǿḗş ƥřǿṽīḓḗ ɠŭīḓḗŀīƞḗş ƒǿř şŭƀḿīşşīǿƞş, "
-"Ḿǿzīŀŀȧ řḗŧȧīƞş ŧħḗ ḓīşƈřḗŧīǿƞ ŧǿ řḗĵḗƈŧ ǿř řḗḿǿṽḗ ḓḗşīɠƞş ƒǿř ȧƞẏ řḗȧşǿƞ. "
-"Īƞ şǿḿḗ ƈȧşḗş, ŧħīş īş ƞḗƈḗşşȧřẏ ƒǿř ŀḗɠȧŀ řḗȧşǿƞş, ƀŭŧ īŧ ȧŀşǿ ȧŀŀǿẇş ŭş ŧǿ "
-"ḿȧīƞŧȧīƞ ŧħḗ īƞŧḗɠřīŧẏ ǿƒ ŧħḗ şīŧḗ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:242
-msgid ""
-"<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme "
-"designs.</a>"
-msgstr ""
-"<a href=\"%(tutorial_url)s\">Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ħǿẇ ŧǿ ƈřḗȧŧḗ ƈǿǿŀ ŧħḗḿḗ "
-"ḓḗşīɠƞş.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:252
-msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr "Ẏḗş. Ẏǿŭř ȧřŧẇǿřķ ẇīŀŀ ȧŀẇȧẏş ƀḗ <em>ẏǿŭř</em> ȧřŧẇǿřķ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:260
-msgid ""
-"Yes. If at any point you need to edit or delete your theme design after it "
-"has been submitted to the gallery, you can access it from the <a "
-"href=\"%(dashboard_url)s\">Submissions dashboard</a>. From there, you can "
-"view your current designs. By clicking on each, you can make changes to each "
-"design's settings."
-msgstr ""
-"Ẏḗş. Īƒ ȧŧ ȧƞẏ ƥǿīƞŧ ẏǿŭ ƞḗḗḓ ŧǿ ḗḓīŧ ǿř ḓḗŀḗŧḗ ẏǿŭř ŧħḗḿḗ ḓḗşīɠƞ ȧƒŧḗř īŧ "
-"ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ ɠȧŀŀḗřẏ, ẏǿŭ ƈȧƞ ȧƈƈḗşş īŧ ƒřǿḿ ŧħḗ <a "
-"href=\"%(dashboard_url)s\">Şŭƀḿīşşīǿƞş ḓȧşħƀǿȧřḓ</a>. Ƒřǿḿ ŧħḗřḗ, ẏǿŭ ƈȧƞ "
-"ṽīḗẇ ẏǿŭř ƈŭřřḗƞŧ ḓḗşīɠƞş. Ɓẏ ƈŀīƈķīƞɠ ǿƞ ḗȧƈħ, ẏǿŭ ƈȧƞ ḿȧķḗ ƈħȧƞɠḗş ŧǿ ḗȧƈħ "
-"ḓḗşīɠƞ'ş şḗŧŧīƞɠş."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:268
-msgid ""
-"The theme you upload may not exceed 300 KB for the header or the footer "
-"image."
-msgstr ""
-"Ŧħḗ ŧħḗḿḗ ẏǿŭ ŭƥŀǿȧḓ ḿȧẏ ƞǿŧ ḗẋƈḗḗḓ 300 ĶƁ ƒǿř ŧħḗ ħḗȧḓḗř ǿř ŧħḗ ƒǿǿŧḗř "
-"īḿȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:276
-msgid ""
-"Couldn't find the answer you're looking for? Consider visiting the <a "
-"href=\"%(support_url)s\">Firefox support</a> website for more help."
-msgstr ""
-"Ƈǿŭŀḓƞ'ŧ ƒīƞḓ ŧħḗ ȧƞşẇḗř ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř? Ƈǿƞşīḓḗř ṽīşīŧīƞɠ ŧħḗ <a "
-"href=\"%(support_url)s\">Ƒīřḗƒǿẋ şŭƥƥǿřŧ</a> ẇḗƀşīŧḗ ƒǿř ḿǿřḗ ħḗŀƥ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:3
-msgid "How to Create Your Own Background Theme"
-msgstr "Ħǿẇ ŧǿ Ƈřḗȧŧḗ Ẏǿŭř Ǿẇƞ Ɓȧƈķɠřǿŭƞḓ Ŧħḗḿḗ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:4
-msgid "Getting Started | Themes"
-msgstr "Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ | Ŧħḗḿḗş"
-
-#: apps/devhub/templates/devhub/docs/themes.html:12
-msgid "How to create a theme"
-msgstr "Ħǿẇ ŧǿ ƈřḗȧŧḗ ȧ ŧħḗḿḗ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:15
-msgid "Submit your theme"
-msgstr "Şŭƀḿīŧ ẏǿŭř ŧħḗḿḗ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:35
-msgid ""
-"Themes are made up of two graphic image files&mdash;a \"header\" image and a "
-"\"footer\" image&mdash;which skin the default Firefox UI background."
-msgstr ""
-"Ŧħḗḿḗş ȧřḗ ḿȧḓḗ ŭƥ ǿƒ ŧẇǿ ɠřȧƥħīƈ īḿȧɠḗ ƒīŀḗş&mdash;ȧ \"ħḗȧḓḗř\" īḿȧɠḗ ȧƞḓ ȧ "
-"\"ƒǿǿŧḗř\" īḿȧɠḗ&mdash;ẇħīƈħ şķīƞ ŧħḗ ḓḗƒȧŭŀŧ Ƒīřḗƒǿẋ ŬĪ ƀȧƈķɠřǿŭƞḓ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:41
-msgid ""
-"<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right "
-"now!</a>"
-msgstr ""
-"<a href=\"%(submit_url)s\">Ƒīƞīşħḗḓ Ẏǿŭř Ḓḗşīɠƞ? Ẏǿŭ ƈȧƞ şŭƀḿīŧ īŧ řīɠħŧ "
-"ƞǿẇ!</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:46
-msgid "Creating a Theme Header Image"
-msgstr "Ƈřḗȧŧīƞɠ ȧ Ŧħḗḿḗ Ħḗȧḓḗř Īḿȧɠḗ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:48
-msgid ""
-"The header image is displayed as the background of the top of the browser "
-"window, nestling in behind the toolbars, address bar, search bar and the tab "
-"strip. It will be <b>anchored to the top-right corner</b> of the browser "
-"window."
-msgstr ""
-"Ŧħḗ ħḗȧḓḗř īḿȧɠḗ īş ḓīşƥŀȧẏḗḓ ȧş ŧħḗ ƀȧƈķɠřǿŭƞḓ ǿƒ ŧħḗ ŧǿƥ ǿƒ ŧħḗ ƀřǿẇşḗř "
-"ẇīƞḓǿẇ, ƞḗşŧŀīƞɠ īƞ ƀḗħīƞḓ ŧħḗ ŧǿǿŀƀȧřş, ȧḓḓřḗşş ƀȧř, şḗȧřƈħ ƀȧř ȧƞḓ ŧħḗ ŧȧƀ "
-"şŧřīƥ. Īŧ ẇīŀŀ ƀḗ <b>ȧƞƈħǿřḗḓ ŧǿ ŧħḗ ŧǿƥ-řīɠħŧ ƈǿřƞḗř</b> ǿƒ ŧħḗ ƀřǿẇşḗř "
-"ẇīƞḓǿẇ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:57
-msgid "View a sample Theme Header here."
-msgstr "Ṽīḗẇ ȧ şȧḿƥŀḗ Ŧħḗḿḗ Ħḗȧḓḗř ħḗřḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:59
-#: apps/devhub/templates/devhub/docs/themes.html:130
-msgid "Image Requirements"
-msgstr "Īḿȧɠḗ Řḗɋŭīřḗḿḗƞŧş"
-
-#: apps/devhub/templates/devhub/docs/themes.html:62
-msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
-msgstr "Ḓīḿḗƞşīǿƞş şħǿŭŀḓ ƀḗ <b>3000ƥẋ ẇīḓḗ &times; 200ƥẋ ħīɠħ</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:67
-#: apps/devhub/templates/devhub/docs/themes.html:138
-msgid "PNG or JPG file format"
-msgstr "ƤȠƓ ǿř ĴƤƓ ƒīŀḗ ƒǿřḿȧŧ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:72
-#: apps/devhub/templates/devhub/docs/themes.html:143
-msgid "Image must be no larger than 300 KB in file size"
-msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ƞǿ ŀȧřɠḗř ŧħȧƞ 300 ĶƁ īƞ ƒīŀḗ şīzḗ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:77
-#: apps/devhub/templates/devhub/docs/themes.html:148
-msgid "Tips"
-msgstr "Ŧīƥş"
-
-#: apps/devhub/templates/devhub/docs/themes.html:80
-#: apps/devhub/templates/devhub/docs/themes.html:151
-msgid ""
-"Subtle, soft contrast images and gradients work best; highly detailed images "
-"will compete with the browser UI."
-msgstr ""
-"Şŭƀŧŀḗ, şǿƒŧ ƈǿƞŧřȧşŧ īḿȧɠḗş ȧƞḓ ɠřȧḓīḗƞŧş ẇǿřķ ƀḗşŧ; ħīɠħŀẏ ḓḗŧȧīŀḗḓ īḿȧɠḗş "
-"ẇīŀŀ ƈǿḿƥḗŧḗ ẇīŧħ ŧħḗ ƀřǿẇşḗř ŬĪ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:86
-msgid ""
-"Firefox may reveal more of the lower portion of the image if another toolbar "
-"or other UI element is added to the top of the window."
-msgstr ""
-"Ƒīřḗƒǿẋ ḿȧẏ řḗṽḗȧŀ ḿǿřḗ ǿƒ ŧħḗ ŀǿẇḗř ƥǿřŧīǿƞ ǿƒ ŧħḗ īḿȧɠḗ īƒ ȧƞǿŧħḗř ŧǿǿŀƀȧř "
-"ǿř ǿŧħḗř ŬĪ ḗŀḗḿḗƞŧ īş ȧḓḓḗḓ ŧǿ ŧħḗ ŧǿƥ ǿƒ ŧħḗ ẇīƞḓǿẇ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:93
-msgid ""
-"The upper right-hand side of the image should have the most important "
-"information&mdash;as a user increases the width of the browser window, the "
-"browser reveals more of the left-hand side of the image."
-msgstr ""
-"Ŧħḗ ŭƥƥḗř řīɠħŧ-ħȧƞḓ şīḓḗ ǿƒ ŧħḗ īḿȧɠḗ şħǿŭŀḓ ħȧṽḗ ŧħḗ ḿǿşŧ īḿƥǿřŧȧƞŧ "
-"īƞƒǿřḿȧŧīǿƞ&mdash;ȧş ȧ ŭşḗř īƞƈřḗȧşḗş ŧħḗ ẇīḓŧħ ǿƒ ŧħḗ ƀřǿẇşḗř ẇīƞḓǿẇ, ŧħḗ "
-"ƀřǿẇşḗř řḗṽḗȧŀş ḿǿřḗ ǿƒ ŧħḗ ŀḗƒŧ-ħȧƞḓ şīḓḗ ǿƒ ŧħḗ īḿȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:100
-msgid "Online Image Editor Resources"
-msgstr "Ǿƞŀīƞḗ Īḿȧɠḗ Ḗḓīŧǿř Řḗşǿŭřƈḗş"
-
-#: apps/devhub/templates/devhub/docs/themes.html:103
-msgid ""
-"<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and "
-"easy-to-use tools for creating and editing images within a browser."
-msgstr ""
-"<a href=\"%(pixlr_url)s\">Ƥīẋŀř</a> &mdash; Ƥīẋŀř ǿƒƒḗřş ƥřǿƒḗşşīǿƞȧŀ ȧƞḓ "
-"ḗȧşẏ-ŧǿ-ŭşḗ ŧǿǿŀş ƒǿř ƈřḗȧŧīƞɠ ȧƞḓ ḗḓīŧīƞɠ īḿȧɠḗş ẇīŧħīƞ ȧ ƀřǿẇşḗř."
-
-#: apps/devhub/templates/devhub/docs/themes.html:110
-msgid ""
-"<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch "
-"up photos with Photoshop&reg; Express, a free online photo editor."
-msgstr ""
-"<a href=\"%(photoshop_url)s\">Ƥħǿŧǿşħǿƥ</a> &mdash; Ŧẇḗȧķ, řǿŧȧŧḗ ȧƞḓ ŧǿŭƈħ "
-"ŭƥ ƥħǿŧǿş ẇīŧħ Ƥħǿŧǿşħǿƥ&reg; Ḗẋƥřḗşş, ȧ ƒřḗḗ ǿƞŀīƞḗ ƥħǿŧǿ ḗḓīŧǿř."
-
-#: apps/devhub/templates/devhub/docs/themes.html:118
-msgid "Creating a Theme Footer Image"
-msgstr "Ƈřḗȧŧīƞɠ ȧ Ŧħḗḿḗ Ƒǿǿŧḗř Īḿȧɠḗ"
-
-#: apps/devhub/templates/devhub/docs/themes.html:120
-msgid ""
-"The footer image is displayed as the background of the bottom of the browser "
-"window, behind the add-on and find bars. It will be anchored to the bottom-"
-"left corner of the browser window."
-msgstr ""
-"Ŧħḗ ƒǿǿŧḗř īḿȧɠḗ īş ḓīşƥŀȧẏḗḓ ȧş ŧħḗ ƀȧƈķɠřǿŭƞḓ ǿƒ ŧħḗ ƀǿŧŧǿḿ ǿƒ ŧħḗ ƀřǿẇşḗř "
-"ẇīƞḓǿẇ, ƀḗħīƞḓ ŧħḗ ȧḓḓ-ǿƞ ȧƞḓ ƒīƞḓ ƀȧřş. Īŧ ẇīŀŀ ƀḗ ȧƞƈħǿřḗḓ ŧǿ ŧħḗ ƀǿŧŧǿḿ-"
-"ŀḗƒŧ ƈǿřƞḗř ǿƒ ŧħḗ ƀřǿẇşḗř ẇīƞḓǿẇ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:128
-msgid "View a sample Theme Footer here."
-msgstr "Ṽīḗẇ ȧ şȧḿƥŀḗ Ŧħḗḿḗ Ƒǿǿŧḗř ħḗřḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:133
-msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
-msgstr "Ḓīḿḗƞşīǿƞş şħǿŭŀḓ ƀḗ <b>3000ƥẋ ẇīḓḗ &times; 100ƥẋ ħīɠħ</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:157
-msgid ""
-"Firefox may reveal more of the upper portion of the image if the find bar is "
-"open or if an extension adds more height to the bottom of the window."
-msgstr ""
-"Ƒīřḗƒǿẋ ḿȧẏ řḗṽḗȧŀ ḿǿřḗ ǿƒ ŧħḗ ŭƥƥḗř ƥǿřŧīǿƞ ǿƒ ŧħḗ īḿȧɠḗ īƒ ŧħḗ ƒīƞḓ ƀȧř īş "
-"ǿƥḗƞ ǿř īƒ ȧƞ ḗẋŧḗƞşīǿƞ ȧḓḓş ḿǿřḗ ħḗīɠħŧ ŧǿ ŧħḗ ƀǿŧŧǿḿ ǿƒ ŧħḗ ẇīƞḓǿẇ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:164
-msgid ""
-"The left-hand side of the image should have the most importan "
-"information&mdash;as a user increases the width of the browser window, the "
-"browser reveals more of the right-hand side of the image."
-msgstr ""
-"Ŧħḗ ŀḗƒŧ-ħȧƞḓ şīḓḗ ǿƒ ŧħḗ īḿȧɠḗ şħǿŭŀḓ ħȧṽḗ ŧħḗ ḿǿşŧ īḿƥǿřŧȧƞ "
-"īƞƒǿřḿȧŧīǿƞ&mdash;ȧş ȧ ŭşḗř īƞƈřḗȧşḗş ŧħḗ ẇīḓŧħ ǿƒ ŧħḗ ƀřǿẇşḗř ẇīƞḓǿẇ, ŧħḗ "
-"ƀřǿẇşḗř řḗṽḗȧŀş ḿǿřḗ ǿƒ ŧħḗ řīɠħŧ-ħȧƞḓ şīḓḗ ǿƒ ŧħḗ īḿȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:171
-msgid "Submitting your Theme Images"
-msgstr "Şŭƀḿīŧŧīƞɠ ẏǿŭř Ŧħḗḿḗ Īḿȧɠḗş"
-
-#: apps/devhub/templates/devhub/docs/themes.html:173
-msgid "To get started submitting your images, go to the Theme Submission page:"
-msgstr "Ŧǿ ɠḗŧ şŧȧřŧḗḓ şŭƀḿīŧŧīƞɠ ẏǿŭř īḿȧɠḗş, ɠǿ ŧǿ ŧħḗ Ŧħḗḿḗ Şŭƀḿīşşīǿƞ ƥȧɠḗ:"
-
-#: apps/devhub/templates/devhub/docs/themes.html:179
-msgid ""
-"<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate "
-"names are not allowed, so you may need to try a few times to find a unique "
-"name."
-msgstr ""
-"<b>Ƞȧḿḗ ẏǿŭř ŧħḗḿḗ</b> &mdash; ƥīƈķ ȧ ŭƞīɋŭḗ ƞȧḿḗ ƒǿř ẏǿŭř ŧħḗḿḗ. Ḓŭƥŀīƈȧŧḗ "
-"ƞȧḿḗş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ, şǿ ẏǿŭ ḿȧẏ ƞḗḗḓ ŧǿ ŧřẏ ȧ ƒḗẇ ŧīḿḗş ŧǿ ƒīƞḓ ȧ ŭƞīɋŭḗ "
-"ƞȧḿḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:186
-msgid ""
-"<b>Pick a category and tags</b> &mdash; select a category and enter some "
-"tags that best describe your theme. Keep in mind that a reviewer may reject "
-"your theme if it is obvious that your category and/or tags are unrelated to "
-"your theme."
-msgstr ""
-"<b>Ƥīƈķ ȧ ƈȧŧḗɠǿřẏ ȧƞḓ ŧȧɠş</b> &mdash; şḗŀḗƈŧ ȧ ƈȧŧḗɠǿřẏ ȧƞḓ ḗƞŧḗř şǿḿḗ "
-"ŧȧɠş ŧħȧŧ ƀḗşŧ ḓḗşƈřīƀḗ ẏǿŭř ŧħḗḿḗ. Ķḗḗƥ īƞ ḿīƞḓ ŧħȧŧ ȧ řḗṽīḗẇḗř ḿȧẏ řḗĵḗƈŧ "
-"ẏǿŭř ŧħḗḿḗ īƒ īŧ īş ǿƀṽīǿŭş ŧħȧŧ ẏǿŭř ƈȧŧḗɠǿřẏ ȧƞḓ/ǿř ŧȧɠş ȧřḗ ŭƞřḗŀȧŧḗḓ ŧǿ "
-"ẏǿŭř ŧħḗḿḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:194
-msgid ""
-"<b>Describe your theme</b> &mdash; write a short description of your theme. "
-"Keep in mind that a reviewer may reject your theme if your description is "
-"not an accurate representation of your theme."
-msgstr ""
-"<b>Ḓḗşƈřīƀḗ ẏǿŭř ŧħḗḿḗ</b> &mdash; ẇřīŧḗ ȧ şħǿřŧ ḓḗşƈřīƥŧīǿƞ ǿƒ ẏǿŭř ŧħḗḿḗ. "
-"Ķḗḗƥ īƞ ḿīƞḓ ŧħȧŧ ȧ řḗṽīḗẇḗř ḿȧẏ řḗĵḗƈŧ ẏǿŭř ŧħḗḿḗ īƒ ẏǿŭř ḓḗşƈřīƥŧīǿƞ īş "
-"ƞǿŧ ȧƞ ȧƈƈŭřȧŧḗ řḗƥřḗşḗƞŧȧŧīǿƞ ǿƒ ẏǿŭř ŧħḗḿḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:201
-msgid ""
-"<b>Select a license for your theme</b> &mdash; decide on a copyright license "
-"for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative "
-"Common licenses.</a>"
-msgstr ""
-"<b>Şḗŀḗƈŧ ȧ ŀīƈḗƞşḗ ƒǿř ẏǿŭř ŧħḗḿḗ</b> &mdash; ḓḗƈīḓḗ ǿƞ ȧ ƈǿƥẏřīɠħŧ ŀīƈḗƞşḗ "
-"ƒǿř ẏǿŭř ẇǿřķ. <a href=\"%(cc_url)s\">Řḗȧḓ ḿǿřḗ ȧƀǿŭŧ ŧħḗ ŧẏƥḗş ǿƒ Ƈřḗȧŧīṽḗ "
-"Ƈǿḿḿǿƞ ŀīƈḗƞşḗş.</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:208
-msgid ""
-"<b>Important:</b> Please be sure you have the rights to use the image in "
-"your theme!"
-msgstr ""
-"<b>Īḿƥǿřŧȧƞŧ:</b> Ƥŀḗȧşḗ ƀḗ şŭřḗ ẏǿŭ ħȧṽḗ ŧħḗ řīɠħŧş ŧǿ ŭşḗ ŧħḗ īḿȧɠḗ īƞ "
-"ẏǿŭř ŧħḗḿḗ!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:216
-msgid ""
-"<b>Upload your images</b> &mdash; make sure they are under 300 KB in size "
-"and JPG or PNG format!"
-msgstr ""
-"<b>Ŭƥŀǿȧḓ ẏǿŭř īḿȧɠḗş</b> &mdash; ḿȧķḗ şŭřḗ ŧħḗẏ ȧřḗ ŭƞḓḗř 300 ĶƁ īƞ şīzḗ "
-"ȧƞḓ ĴƤƓ ǿř ƤȠƓ ƒǿřḿȧŧ!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:222
-msgid ""
-"<b>Select text and tab colors</b> &mdash; you can choose the tab "
-"(\"background\") color and foreground text color that work best with your "
-"header image."
-msgstr ""
-"<b>Şḗŀḗƈŧ ŧḗẋŧ ȧƞḓ ŧȧƀ ƈǿŀǿřş</b> &mdash; ẏǿŭ ƈȧƞ ƈħǿǿşḗ ŧħḗ ŧȧƀ "
-"(\"ƀȧƈķɠřǿŭƞḓ\") ƈǿŀǿř ȧƞḓ ƒǿřḗɠřǿŭƞḓ ŧḗẋŧ ƈǿŀǿř ŧħȧŧ ẇǿřķ ƀḗşŧ ẇīŧħ ẏǿŭř "
-"ħḗȧḓḗř īḿȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:229
-msgid ""
-"<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply "
-"mouse over the image above the Submit Theme button, and see how it looks "
-"instantly."
-msgstr ""
-"<b>Ƥřḗṽīḗẇ ẏǿŭř ŧħḗḿḗ</b> &mdash; ẏǿŭ'řḗ řḗȧḓẏ ŧǿ ƥřḗṽīḗẇ ẏǿŭř ŧħḗḿḗ! Şīḿƥŀẏ "
-"ḿǿŭşḗ ǿṽḗř ŧħḗ īḿȧɠḗ ȧƀǿṽḗ ŧħḗ Şŭƀḿīŧ Ŧħḗḿḗ ƀŭŧŧǿƞ, ȧƞḓ şḗḗ ħǿẇ īŧ ŀǿǿķş "
-"īƞşŧȧƞŧŀẏ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:236
-msgid ""
-"<b>Submit your theme</b> &mdash; if everything looks right, click the Submit "
-"Theme button and you're done! You can see all the themes you've authored on "
-"your profile page."
-msgstr ""
-"<b>Şŭƀḿīŧ ẏǿŭř ŧħḗḿḗ</b> &mdash; īƒ ḗṽḗřẏŧħīƞɠ ŀǿǿķş řīɠħŧ, ƈŀīƈķ ŧħḗ Şŭƀḿīŧ "
-"Ŧħḗḿḗ ƀŭŧŧǿƞ ȧƞḓ ẏǿŭ'řḗ ḓǿƞḗ! Ẏǿŭ ƈȧƞ şḗḗ ȧŀŀ ŧħḗ ŧħḗḿḗş ẏǿŭ'ṽḗ ȧŭŧħǿřḗḓ ǿƞ "
-"ẏǿŭř ƥřǿƒīŀḗ ƥȧɠḗ."
-
-#: apps/devhub/templates/devhub/docs/themes.html:243
-msgid ""
-"<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure "
-"it complies with the content guidelines and terms of service!"
-msgstr ""
-"<b>Ŧīƥ:</b> ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭř ŧħḗḿḗ īş ȧƥƥřǿṽḗḓ ƒǿř ŧħḗ ɠȧŀŀḗřẏ, ƀḗ şŭřḗ "
-"īŧ ƈǿḿƥŀīḗş ẇīŧħ ŧħḗ ƈǿƞŧḗƞŧ ɠŭīḓḗŀīƞḗş ȧƞḓ ŧḗřḿş ǿƒ şḗřṽīƈḗ!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:254
-msgid "Submit Your Theme Now"
-msgstr "Şŭƀḿīŧ Ẏǿŭř Ŧħḗḿḗ Ƞǿẇ"
-
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
 msgstr "Ẏǿŭ ħȧṽḗ ḓīşȧƀŀḗḓ ŧħīş ȧḓḓ-ǿƞ"
@@ -10374,7 +7922,7 @@ msgstr "{0} şŭƈƈḗşş řḗƥǿřŧş"
 msgid "Developer News"
 msgstr "Ḓḗṽḗŀǿƥḗř Ƞḗẇş"
 
-#: apps/devhub/templates/devhub/includes/blog_posts.html:21
+#: apps/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
 msgstr "Ṽīḗẇ ŧħḗ ƀŀǿɠ &#9658;"
 
@@ -11205,35 +8753,35 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ƈȧƞƈḗŀ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ?"
 
-#: apps/discovery/modules.py:137
+#: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
 msgstr "Şħǿƥƥīƞɠ Ḿȧḓḗ Ḗȧşẏ"
 
-#: apps/discovery/modules.py:138
+#: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr "Şȧṽḗ ǿƞ ẏǿŭř ƒȧṽǿřīŧḗ īŧḗḿş ƒřǿḿ ŧħḗ ƈǿḿƒǿřŧ ǿƒ ẏǿŭř ƀřǿẇşḗř."
 
-#: apps/discovery/modules.py:146
+#: apps/discovery/modules.py:149
 msgid "Build the perfect website"
 msgstr "Ɓŭīŀḓ ŧħḗ ƥḗřƒḗƈŧ ẇḗƀşīŧḗ"
 
-#: apps/discovery/modules.py:153
+#: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
 msgstr "Ħḗŀƥ ŧḗşŧ Ƒīřḗƒǿẋ ẇīŧħ ŧħḗşḗ ŧǿǿŀş"
 
-#: apps/discovery/modules.py:161
+#: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
 msgstr "Ƒīřşŧ ŧīḿḗ ẇīŧħ Ȧḓḓ-ǿƞş?"
 
-#: apps/discovery/modules.py:162
+#: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
 msgstr "Ƞǿŧ ŧǿ ẇǿřřẏ, ħḗřḗ ȧřḗ ŧħřḗḗ ŧǿ ɠḗŧ şŧȧřŧḗḓ."
 
-#: apps/discovery/modules.py:166
+#: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
 msgstr "Ŧřȧƞşŀȧŧḗ ƈǿƞŧḗƞŧ ǿƞ ŧħḗ ẇḗƀ ƒřǿḿ ȧƞḓ īƞŧǿ ǿṽḗř 40 ŀȧƞɠŭȧɠḗş."
 
-#: apps/discovery/modules.py:168
+#: apps/discovery/modules.py:171
 msgid ""
 "Easily connect to your social networks, and share or comment on the page "
 "you're visiting."
@@ -11241,53 +8789,53 @@ msgstr ""
 "Ḗȧşīŀẏ ƈǿƞƞḗƈŧ ŧǿ ẏǿŭř şǿƈīȧŀ ƞḗŧẇǿřķş, ȧƞḓ şħȧřḗ ǿř ƈǿḿḿḗƞŧ ǿƞ ŧħḗ ƥȧɠḗ "
 "ẏǿŭ'řḗ ṽīşīŧīƞɠ."
 
-#: apps/discovery/modules.py:170
+#: apps/discovery/modules.py:173
 msgid ""
 "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
 "Ȧ ɋŭīƈķ ṽīḗẇ ŧǿ ƈǿḿƥȧřḗ ƥřīƈḗş ẇħḗƞ ẏǿŭ şħǿƥ ǿƞŀīƞḗ ǿř şḗȧřƈħ ƒǿř ƒŀīɠħŧş."
 
-#: apps/discovery/modules.py:180
+#: apps/discovery/modules.py:183
 msgid "Firefox 4 Collection"
 msgstr "Ƒīřḗƒǿẋ 4 Ƈǿŀŀḗƈŧīǿƞ"
 
-#: apps/discovery/modules.py:181
+#: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
 msgstr "Ħḗřḗ ȧřḗ şǿḿḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř Ƒīřḗƒǿẋ 4."
 
-#: apps/discovery/modules.py:190
+#: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "Şŧ. Ƥȧŧřīƈķ&rsquo;ş Ḓȧẏ Ŧħḗḿḗş"
 
-#: apps/discovery/modules.py:191
+#: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ḓḗƈǿřȧŧḗ ẏǿŭř ƀřǿẇşḗř ŧǿ ƈḗŀḗƀřȧŧḗ Şŧ. Ƥȧŧřīƈķ&rsquo;ş Ḓȧẏ."
 
-#: apps/discovery/modules.py:200
+#: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
 msgstr "Ƒīřḗƒǿẋ Şŭḿḿḗř Ƈǿŀŀḗƈŧīǿƞ"
 
-#: apps/discovery/modules.py:201
+#: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
 msgstr "Ħḗřḗ ȧřḗ şǿḿḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř Ƒīřḗƒǿẋ."
 
-#: apps/discovery/modules.py:209
+#: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
 msgstr "Ŧħŭƞḓḗřƀīřḓ Ƈǿŀŀḗƈŧīǿƞ"
 
-#: apps/discovery/modules.py:210
+#: apps/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
 msgstr "Ħḗřḗ ȧřḗ şǿḿḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř Ŧħŭƞḓḗřƀīřḓ."
 
-#: apps/discovery/modules.py:218
+#: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
 msgstr "Şīŧ Ɓȧƈķ ȧƞḓ Řḗŀȧẋ"
 
-#: apps/discovery/modules.py:219
+#: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
 msgstr "Ȧḓḓ-ǿƞş ŧħȧŧ ħḗŀƥ ẏǿŭ ǿƞ ẏǿŭř ŧřȧṽḗŀş!"
 
-#: apps/discovery/modules.py:223
+#: apps/discovery/modules.py:226
 msgid ""
 "Displays a country flag depicting the location of the current website's "
 "server and more."
@@ -11295,11 +8843,11 @@ msgstr ""
 "Ḓīşƥŀȧẏş ȧ ƈǿŭƞŧřẏ ƒŀȧɠ ḓḗƥīƈŧīƞɠ ŧħḗ ŀǿƈȧŧīǿƞ ǿƒ ŧħḗ ƈŭřřḗƞŧ ẇḗƀşīŧḗ'ş "
 "şḗřṽḗř ȧƞḓ ḿǿřḗ."
 
-#: apps/discovery/modules.py:225
+#: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "ƑǿẋƇŀǿƈķş ŀḗŧ ẏǿŭ ķḗḗƥ ȧƞ ḗẏḗ ǿƞ ŧħḗ ŧīḿḗ ȧřǿŭƞḓ ŧħḗ ẇǿřŀḓ."
 
-#: apps/discovery/modules.py:227
+#: apps/discovery/modules.py:230
 msgid ""
 "Automatically get the lowest price when you shop online or search for "
 "flights."
@@ -11307,43 +8855,43 @@ msgstr ""
 "Ȧŭŧǿḿȧŧīƈȧŀŀẏ ɠḗŧ ŧħḗ ŀǿẇḗşŧ ƥřīƈḗ ẇħḗƞ ẏǿŭ şħǿƥ ǿƞŀīƞḗ ǿř şḗȧřƈħ ƒǿř "
 "ƒŀīɠħŧş."
 
-#: apps/discovery/modules.py:237
+#: apps/discovery/modules.py:240
 msgid "A+ add-ons for School"
 msgstr "Ȧ+ ȧḓḓ-ǿƞş ƒǿř Şƈħǿǿŀ"
 
-#: apps/discovery/modules.py:238
+#: apps/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "Ȧḓḓ-ǿƞş ƒǿř ŧḗȧƈħḗřş, ƥȧřḗƞŧş, ȧƞḓ şŧŭḓḗƞŧş ħḗȧḓīƞɠ ƀȧƈķ ŧǿ şƈħǿǿŀ."
 
-#: apps/discovery/modules.py:243
+#: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
 msgstr "Ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ ķƞǿẇ ẇħīƈħ ẇḗƀşīŧḗş ẏǿŭ ƈȧƞ ŧřŭşŧ?"
 
-#: apps/discovery/modules.py:244
+#: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Ẋḿȧřķş īş ŧħḗ #1 ƀǿǿķḿȧřķīƞɠ ȧḓḓ-ǿƞ."
 
-#: apps/discovery/modules.py:245
+#: apps/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Ẇḗƀ ƥȧɠḗ ȧƞḓ ŧḗẋŧ ŧřȧƞşŀȧŧǿř, ḓīƈŧīǿƞȧřẏ, ȧƞḓ ḿǿřḗ!"
 
-#: apps/discovery/modules.py:262
+#: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
 msgstr "Ȧḓḓ-ǿƞş ŧǿ ħḗŀƥ ẏǿŭ ǿƞ ẏǿŭř ẇȧẏ īƞ 2012"
 
-#: apps/discovery/modules.py:269
+#: apps/discovery/modules.py:272
 msgid "Love is in the Air"
 msgstr "Ŀǿṽḗ īş īƞ ŧħḗ Ȧīř"
 
-#: apps/discovery/modules.py:270
+#: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
 msgstr "Ȧḓḓ şǿḿḗ řǿḿȧƞƈḗ ŧǿ ẏǿŭř Ƒīřḗƒǿẋ."
 
-#: apps/discovery/modules.py:277
+#: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
 msgstr "Ƥŭŧ ȧ Ŧħḗḿḗ ǿƞ Īŧ!"
 
-#: apps/discovery/modules.py:278
+#: apps/discovery/modules.py:281
 msgid ""
 "Visit addons.mozilla.org from Firefox for Android and dress up your mobile "
 "browser to match your style, mood, or the season."
@@ -11351,31 +8899,31 @@ msgstr ""
 "Ṽīşīŧ ȧḓḓǿƞş.ḿǿzīŀŀȧ.ǿřɠ ƒřǿḿ Ƒīřḗƒǿẋ ƒǿř Ȧƞḓřǿīḓ ȧƞḓ ḓřḗşş ŭƥ ẏǿŭř ḿǿƀīŀḗ "
 "ƀřǿẇşḗř ŧǿ ḿȧŧƈħ ẏǿŭř şŧẏŀḗ, ḿǿǿḓ, ǿř ŧħḗ şḗȧşǿƞ."
 
-#: apps/discovery/modules.py:287
+#: apps/discovery/modules.py:290
 msgid "Get up and move!"
 msgstr "Ɠḗŧ ŭƥ ȧƞḓ ḿǿṽḗ!"
 
-#: apps/discovery/modules.py:288
+#: apps/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "Īƞşŧȧŀŀ ŧħḗşḗ ƒīŧƞḗşş ȧḓḓ-ǿƞş ŧǿ ķḗḗƥ ẏǿŭ ȧƈŧīṽḗ ȧƞḓ ħḗȧŀŧħẏ."
 
-#: apps/discovery/modules.py:296
+#: apps/discovery/modules.py:299
 msgid "New &amp; Now"
 msgstr "Ƞḗẇ &amp; Ƞǿẇ"
 
-#: apps/discovery/modules.py:297
+#: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "Ɠḗŧ ŧħḗ ŀȧŧḗşŧ, ḿŭşŧ-ħȧṽḗ ȧḓḓ-ǿƞş ǿƒ ŧħḗ ḿǿḿḗƞŧ."
 
-#: apps/discovery/modules.py:329
+#: apps/discovery/modules.py:332
 msgid "Worry-free browsing"
 msgstr "Ẇǿřřẏ-ƒřḗḗ ƀřǿẇşīƞɠ"
 
-#: apps/discovery/modules.py:330
+#: apps/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Ƥřǿŧḗƈŧ ẏǿŭř ƥřīṽȧƈẏ ǿƞŀīƞḗ ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş īƞ ŧħīş ƈǿŀŀḗƈŧīǿƞ."
 
-#: apps/discovery/modules.py:339
+#: apps/discovery/modules.py:342
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
@@ -11383,11 +8931,11 @@ msgstr ""
 "Ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř ẇǿřķ, ƒŭƞ, ƥřīṽȧƈẏ, ƥřǿḓŭƈŧīṽīŧẏ&hellip; ĵŭşŧ ȧƀǿŭŧ "
 "ȧƞẏŧħīƞɠ!"
 
-#: apps/discovery/modules.py:347
+#: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
 msgstr "Ȧḓḓ-ǿƞş ƒǿř Ȧŭşŧřȧŀīş Ƈǿƞŧḗşŧ Ẇīƞƞḗřş"
 
-#: apps/discovery/modules.py:355
+#: apps/discovery/modules.py:358
 msgid "What are your interests?"
 msgstr "Ẇħȧŧ ȧřḗ ẏǿŭř īƞŧḗřḗşŧş?"
 
@@ -11992,40 +9540,40 @@ msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
 msgid "Overdue (Over 10 days)"
 msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
-#: apps/editors/views.py:421
+#: apps/editors/views.py:422
 msgid "An unknown error occurred"
 msgstr "Ȧƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
 
-#: apps/editors/views.py:447
+#: apps/editors/views.py:448
 msgid "Self-reviews are not allowed."
 msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 
-#: apps/editors/views.py:466
+#: apps/editors/views.py:467
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
-#: apps/editors/views.py:653
+#: apps/editors/views.py:654
 msgid "was approved"
 msgstr "ẇȧş ȧƥƥřǿṽḗḓ"
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:655
 msgid "given preliminary review"
 msgstr "ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:656
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:657
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "ḗşƈȧŀȧŧḗḓ"
 
-#: apps/editors/views.py:658
+#: apps/editors/views.py:659
 msgid "needs more information"
 msgstr "ƞḗḗḓş ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
 
-#: apps/editors/views.py:659
+#: apps/editors/views.py:660
 msgid "needs super review"
 msgstr "ƞḗḗḓş şŭƥḗř řḗṽīḗẇ"
 
@@ -12768,44 +10316,44 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s. 
 msgid "There was an error accessing file %s."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
 
-#: apps/files/utils.py:254
+#: apps/files/utils.py:257
 msgid "Could not parse uploaded file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ."
 
-#: apps/files/utils.py:291
+#: apps/files/utils.py:294
 msgid "Invalid file name in archive: {0}"
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ƞȧḿḗ īƞ ȧřƈħīṽḗ: {0}"
 
-#: apps/files/utils.py:299
+#: apps/files/utils.py:302
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ƒīŀḗ ḗẋƈḗḗḓīƞɠ şīzḗ ŀīḿīŧ īƞ ȧřƈħīṽḗ: {0}"
 
-#: apps/files/utils.py:349
+#: apps/files/utils.py:352
 msgid "Invalid archive."
 msgstr "Īƞṽȧŀīḓ ȧřƈħīṽḗ."
 
-#: apps/files/utils.py:439
 #: apps/files/utils.py:442
+#: apps/files/utils.py:445
 msgid "Could not parse install.rdf."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ īƞşŧȧŀŀ.řḓƒ."
 
-#: apps/files/utils.py:452
+#: apps/files/utils.py:455
 msgid "Could not find a UUID."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧ ŬŬĪḒ."
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:457
 msgid "UUID doesn't match add-on."
 msgstr "ŬŬĪḒ ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ."
 
-#: apps/files/utils.py:458
+#: apps/files/utils.py:461
 msgid "Duplicate UUID found."
 msgstr "Ḓŭƥŀīƈȧŧḗ ŬŬĪḒ ƒǿŭƞḓ."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:464
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ħȧṽḗ ƒḗẇḗř ŧħȧƞ 32 ƈħȧřȧƈŧḗřş."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:467
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
@@ -12813,7 +10361,7 @@ msgstr ""
 "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ǿƞŀẏ ƈǿƞŧȧīƞ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ȧƞḓ ŧħḗşḗ ƥŭƞƈŧŭȧŧīǿƞ "
 "ƈħȧřȧƈŧḗřş: +*.-_."
 
-#: apps/files/utils.py:481
+#: apps/files/utils.py:484
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ"
 
@@ -14312,6 +11860,12 @@ msgid ""
 msgstr ""
 "Ȧ şīŧḗ ŧǿ ƥřǿṽīḓḗ ƞǿƞ-ĵŭḓɠḿḗƞŧȧŀ ɠŭīḓȧƞƈḗ ǿƞ ƈħǿǿşīƞɠ ȧ ŀīƈḗƞşḗ ƒǿř ẏǿŭř "
 "ǿƥḗƞ şǿŭřƈḗ ƥřǿĵḗƈŧ."
+
+#: apps/pages/templates/pages/faq.html:3
+#: apps/pages/templates/pages/faq.html:9
+#: apps/pages/templates/pages/faq.html:10
+msgid "Frequently Asked Questions"
+msgstr "Ƒřḗɋŭḗƞŧŀẏ Ȧşķḗḓ Ɋŭḗşŧīǿƞş"
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"

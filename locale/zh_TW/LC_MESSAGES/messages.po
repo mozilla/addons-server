@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 09:20-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2015-02-06 18:48+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -84,37 +84,37 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有的標籤至少為 {0} 字元。"
 
-#: apps/addons/forms.py:219
+#: apps/addons/forms.py:222
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "您的附加元件目前為此應用程式的精選物件，無法更改類別。"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:223
+#: apps/addons/forms.py:226
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
 
-#: apps/addons/forms.py:231
+#: apps/addons/forms.py:234
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "這個雜項類別不能與其他的類別結合。"
 
-#: apps/addons/forms.py:354
+#: apps/addons/forms.py:357
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "在您更動您的預設語系前，您必須為那個語系填入名稱、概要與敘述。您目前沒有填入 %s。"
 
-#: apps/addons/forms.py:467 apps/addons/forms.py:558
+#: apps/addons/forms.py:470 apps/addons/forms.py:561
 msgid "A license must be selected."
 msgstr "您必須選擇一項授權條款。"
 
-#: apps/addons/forms.py:539
+#: apps/addons/forms.py:542
 msgid "Give Your Theme a Name."
 msgstr "給您的佈景主題一個名稱。"
 
-#: apps/addons/forms.py:545 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:548 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "敘述您的佈景主題。"
 
-#: apps/addons/forms.py:686
+#: apps/addons/forms.py:689
 msgid "Enter a new author's email address"
 msgstr "輸入一個新的作者電子郵件地址"
 
@@ -122,7 +122,7 @@ msgstr "輸入一個新的作者電子郵件地址"
 msgid "Not Reviewed"
 msgstr "尚未審查"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:318 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:319 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -138,29 +138,29 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "在附加元件管理員中詢問使用者(包含 Firefox 4 或更新的版本)"
 
 # Column name in a table.
-#: apps/addons/models.py:1858
+#: apps/addons/models.py:1870
 msgid "Listed"
 msgstr "顯示"
 
-#: apps/addons/views.py:319 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:320 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "熱門"
 
-#: apps/addons/views.py:320 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
+#: apps/addons/views.py:321 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
 msgid "Recently Added"
 msgstr "最近新增"
 
-#: apps/addons/views.py:321 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
+#: apps/addons/views.py:322 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
 msgstr "最近更新"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
-#: apps/addons/views.py:504
+#: apps/addons/views.py:507
 msgid "Contribution for {0}"
 msgstr "贊助 {0}"
 
-#: apps/addons/views.py:592
+#: apps/addons/views.py:595
 msgid "Abuse reported."
 msgstr "已回報濫用。"
 
@@ -225,7 +225,7 @@ msgstr "捐款"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -332,7 +332,7 @@ msgid "Add-on Information for {0}"
 msgstr "{0} 的附加元件資訊"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:71
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:72
 msgid "Updated"
 msgstr "更新日期"
 
@@ -612,7 +612,7 @@ msgstr "每日使用者數"
 msgid "License"
 msgstr "授權"
 
-#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:50
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:49
 msgid "Awaiting Review"
 msgstr "等待審查"
 
@@ -780,7 +780,7 @@ msgstr "回報"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:62 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
@@ -951,7 +951,7 @@ msgstr "技術支援網站"
 msgid "Support E-mail"
 msgstr "技術支援用電子郵件信箱"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:373
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
 msgid "Version {0}"
 msgstr "版本 {0}"
 
@@ -963,7 +963,7 @@ msgstr "資訊"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "使用 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 授權發行"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:124 apps/devhub/forms.py:153
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "自訂授權"
@@ -1097,7 +1097,7 @@ msgstr "更多"
 msgid "Add to collection"
 msgstr "新增至收藏集"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:38 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:72 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "我的附加元件"
 
@@ -1159,7 +1159,7 @@ msgstr "使用者數"
 msgid "Weekly Downloads"
 msgstr "每週下載次數"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:965 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "版本"
 
@@ -1236,8 +1236,7 @@ msgstr "附加元件是可以讓您個人化您 Firefox 的應用程式，並額
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:179 apps/devhub/templates/devhub/nav.html:45 apps/devhub/templates/devhub/docs/how-to-other-addons.html:46 apps/devhub/templates/devhub/docs/themes-faq.html:7
-#: apps/devhub/templates/devhub/docs/themes.html:28 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "佈景主題"
@@ -1271,7 +1270,7 @@ msgstr "試穿看看!"
 msgid "Theme Info &raquo;"
 msgstr "佈景主題資訊 &raquo;"
 
-#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:49
+#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "工具"
 
@@ -1303,8 +1302,7 @@ msgstr "管理我的提交"
 msgid "Submit a New Add-on"
 msgstr "上傳一個新的附加元件"
 
-#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:31 apps/devhub/templates/devhub/index.html:36
-#: apps/devhub/templates/devhub/addons/dashboard.html:29
+#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:23 apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "提交一個新的佈景主題"
 
@@ -1857,7 +1855,7 @@ msgstr "探索"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:172 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:171 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "擴充套件"
 
@@ -1887,7 +1885,7 @@ msgstr "我最愛的附加元件"
 msgid "Add-ons for Mobile"
 msgstr "Mobile 附加元件"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:175 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:174 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "搜尋工具"
 
@@ -1947,7 +1945,7 @@ msgstr "無效的資料內容：{0}"
 msgid "Add-on did not validate: %s"
 msgstr "附加元件尚未驗證：%s"
 
-#: apps/api/views.py:248
+#: apps/api/views.py:256
 msgid "Not implemented yet."
 msgstr "尚未實作。"
 
@@ -2084,11 +2082,11 @@ msgstr "不允許加入鏈結。"
 msgid "This url is already in use by another collection"
 msgstr "這個網址已被其他的收藏集使用"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1059
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1000
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1077 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1018 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
@@ -2128,7 +2126,7 @@ msgstr "最愛"
 msgid "Remove from favorites"
 msgstr "從最愛中移除"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:70 apps/devhub/views.py:78
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:71 apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2402,8 +2400,7 @@ msgstr "不行"
 msgid "Edit {0}"
 msgstr "編輯 {0}"
 
-#: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/package_addon.html:34 apps/devhub/templates/devhub/addons/edit/details.html:20
-#: apps/editors/templates/editors/themes/themes.html:62
+#: apps/bandwagon/templates/bandwagon/edit.html:29 apps/devhub/templates/devhub/addons/edit/details.html:20 apps/editors/templates/editors/themes/themes.html:62
 msgid "Description"
 msgstr "敘述"
 
@@ -2422,7 +2419,7 @@ msgstr "儲存變更"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:133
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:132
 msgid "Owner"
 msgstr "所有人"
 
@@ -2485,7 +2482,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>警告：</b>改變此收藏集的擁有者，您將無法再編輯此收藏集的內容，且只能新增與移除附加元件。"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:54 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2572,7 +2569,7 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr "如欲在收藏集中新增一個附加元件，在下方的框中輸入名稱並確認送出。您也可以透過<strong>加入收藏集</strong>連結新增附加元件。"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:383 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "附加元件"
 
@@ -2698,15 +2695,15 @@ msgstr "最多使用者"
 msgid "Up & Coming"
 msgstr "嶄露頭角"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:72 apps/devhub/views.py:79 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:454 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "建立日期"
 
-#: apps/browse/views.py:455 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:455 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "下載次數"
 
-#: apps/browse/views.py:456 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:456 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "評分"
@@ -2718,7 +2715,7 @@ msgstr "{0}: 精選附加元件"
 
 #: apps/browse/templates/browse/creatured.html:12 apps/browse/templates/browse/featured.html:4 apps/browse/templates/browse/featured.html:12 apps/browse/templates/browse/featured.html:13
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:3 apps/devhub/templates/devhub/docs/policies-recommended.html:7 apps/devhub/templates/devhub/docs/policies-recommended.html:9
-#: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:338 apps/discovery/templates/discovery/pane.html:53
+#: apps/devhub/templates/devhub/docs/policies.html:21 apps/devhub/templates/devhub/docs/policies.html:90 apps/discovery/modules.py:341 apps/discovery/templates/discovery/pane.html:53
 #: templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "精選附加元件"
@@ -2760,7 +2757,7 @@ msgstr "列舉您的語系可用的語言套件與字典。"
 msgid "Language"
 msgstr "語言"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:161
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:160
 msgid "Dictionary"
 msgstr "字典檔"
 
@@ -2820,7 +2817,7 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 瀏覽
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr "在 <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Mozilla 開發者交流中心</a><a href=\"https://developer.mozilla.org/\">製作您自己的搜尋引擎</a>"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:173
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
 msgstr "完整佈景主題"
 
@@ -2908,7 +2905,7 @@ msgstr "{0} 的佈景主題"
 msgid "View Profile"
 msgstr "檢視個人檔案"
 
-#: apps/browse/templates/browse/personas/base.html:44 apps/devhub/templates/devhub/docs/themes.html:9
+#: apps/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
 msgstr "建立您自己的佈景主題"
 
@@ -2985,7 +2982,7 @@ msgstr "二進位"
 msgid "Non-binary"
 msgstr "非二進位"
 
-#: apps/compat/views.py:84 apps/constants/base.py:371 apps/devhub/forms.py:144
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
 msgid "Other"
 msgstr "其它"
 
@@ -3009,7 +3006,7 @@ msgstr "所有前 95% 的附加元件"
 msgid "All active add-ons"
 msgstr "所有有效的附加元件"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:384
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
 msgid "App"
 msgstr "App"
 
@@ -3077,7 +3074,7 @@ msgstr "依應用程式過濾"
 msgid "Report Type"
 msgstr "報告類型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:962 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "應用程式"
 
@@ -3165,15 +3162,15 @@ msgstr "尚待初步審查"
 msgid "Awaiting Full Review"
 msgstr "等待完整審核"
 
-#: apps/constants/base.py:29 apps/constants/base.py:51
+#: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Fully Reviewed"
 msgstr "完整審核"
 
-#: apps/constants/base.py:30 apps/constants/base.py:52
+#: apps/constants/base.py:30 apps/constants/base.py:51
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
-#: apps/constants/base.py:31 apps/constants/base.py:54
+#: apps/constants/base.py:31 apps/constants/base.py:53
 msgid "Preliminarily Reviewed"
 msgstr "已初步審核"
 
@@ -3189,243 +3186,243 @@ msgstr "已刪除"
 msgid "Pending approval"
 msgstr "等待審核中"
 
-#: apps/constants/base.py:46
+#: apps/constants/base.py:45
 msgid "Flagged for further review"
 msgstr "將它標記並等待進一步審核"
 
-#: apps/constants/base.py:53
+#: apps/constants/base.py:52
 msgid "Beta"
 msgstr "Beta 測試版"
 
-#: apps/constants/base.py:122
+#: apps/constants/base.py:121
 msgid "Full"
 msgstr "全部"
 
-#: apps/constants/base.py:123
+#: apps/constants/base.py:122
 msgid "Preliminary"
 msgstr "初步的"
 
-#: apps/constants/base.py:134 apps/users/notifications.py:157
+#: apps/constants/base.py:133 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "開發者"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:135
+#: apps/constants/base.py:134
 msgid "Viewer"
 msgstr "檢視者"
 
-#: apps/constants/base.py:136 templates/mobile/header.html:7
+#: apps/constants/base.py:135 templates/mobile/header.html:7
 msgid "Support"
 msgstr "支援"
 
-#: apps/constants/base.py:158 apps/constants/base.py:171 apps/constants/platforms.py:11
+#: apps/constants/base.py:157 apps/constants/base.py:170 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "不限"
 
-#: apps/constants/base.py:159
+#: apps/constants/base.py:158
 msgid "Extension"
 msgstr "擴充套件"
 
-#: apps/constants/base.py:160
+#: apps/constants/base.py:159
 msgid "Complete Theme"
 msgstr "完整佈景主題"
 
-#: apps/constants/base.py:162
+#: apps/constants/base.py:161
 msgid "Search Engine"
 msgstr "搜尋引擎"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:162
 msgid "Language Pack (Application)"
 msgstr "語言套件（應用程式）"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:163
 msgid "Language Pack (Add-on)"
 msgstr "語言套件（附加元件）"
 
-#: apps/constants/base.py:165
+#: apps/constants/base.py:164
 msgid "Plugin"
 msgstr "外掛程式"
 
-#: apps/constants/base.py:166 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:165 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "佈景主題"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:174
+#: apps/constants/base.py:173
 msgid "Dictionaries"
 msgstr "字典"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:176
+#: apps/constants/base.py:175
 msgid "Language Packs (Application)"
 msgstr "語言套件（應用程式）"
 
-#: apps/constants/base.py:177
+#: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
 msgstr "語言套件（附加元件）"
 
-#: apps/constants/base.py:178
+#: apps/constants/base.py:177
 msgid "Plugins"
 msgstr "外掛程式"
 
-#: apps/constants/base.py:243
+#: apps/constants/base.py:242
 msgid "Free"
 msgstr "免費版"
 
-#: apps/constants/base.py:244
+#: apps/constants/base.py:243
 msgid "Premium"
 msgstr "付費版"
 
-#: apps/constants/base.py:245
+#: apps/constants/base.py:244
 msgid "Premium with in-app payments"
 msgstr "付費版，啟用應用程式內付款"
 
-#: apps/constants/base.py:246
+#: apps/constants/base.py:245
 msgid "Free with in-app payments"
 msgstr "免費版，啟用應用程式內付款"
 
-#: apps/constants/base.py:247
+#: apps/constants/base.py:246
 msgid "I'll use my own system for in-app payments"
 msgstr "我會使用自己的應用程式內付款"
 
-#: apps/constants/base.py:303
+#: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "只在附加元件頁面與開發者個人檔案中詢問"
 
-#: apps/constants/base.py:304
+#: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
 msgstr "在使用者下載此附加元件後詢問"
 
-#: apps/constants/base.py:305
+#: apps/constants/base.py:304
 msgid "Ask before users can download this add-on"
 msgstr "在使用者下載此附加元件時詢問"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:371
 msgid "Exception"
 msgstr "例外"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:372
 msgid "Release"
 msgstr "釋出"
 
-#: apps/constants/base.py:374
+#: apps/constants/base.py:373
 msgid "Change"
 msgstr "修改"
 
-#: apps/constants/base.py:385
+#: apps/constants/base.py:384
 msgid "Persona"
 msgstr "個性面板"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:415
 msgid "Manual Reviewer Points"
 msgstr "手動審核點數"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:416
 msgid "Full Add-on Review"
 msgstr "完整附加元件審核"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:417
 msgid "Preliminary Add-on Review"
 msgstr "初步附加元件審核"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:418
 msgid "Updated Add-on Review"
 msgstr "更新附加元件審核"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:419
 msgid "Full Dictionary Review"
 msgstr "完整字典審核"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:420
 msgid "Preliminary Dictionary Review"
 msgstr "初階字典審核"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:421
 msgid "Updated Dictionary Review"
 msgstr "更新字典審核"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:422
 msgid "Full Language Pack Review"
 msgstr "完整語言包審核"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:423
 msgid "Preliminary Language Pack Review"
 msgstr "初階語言包審核"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:424
 msgid "Updated Language Pack Review"
 msgstr "更新語言包審核"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:425
 msgid "Theme Review"
 msgstr "主題審核"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:426
 msgid "Full Search Provider Review"
 msgstr "完整搜尋提供商審核"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:427
 msgid "Preliminary Search Provider Review"
 msgstr "初步搜尋提供商審核"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:428
 msgid "Updated Search Provider Review"
 msgstr "更新搜尋提供商審核"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:429
 msgid "Complete Theme Review"
 msgstr "完整主題審核"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:430
 msgid "Preliminary Complete Theme Review"
 msgstr "完整主題初步審核"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:431
 msgid "Updated Complete Theme Review"
 msgstr "已更新的完整佈景主題審核"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:432
 msgid "Moderated Addon Review"
 msgstr "有問題的附加元件評論"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
 msgstr "已還原附加元件審查管理"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:478
 msgid "Level 1"
 msgstr "第1級"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:479
 msgid "Level 2"
 msgstr "第2級"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:480
 msgid "Level 3"
 msgstr "第3級"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:481
 msgid "Level 4"
 msgstr "第4級"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:482
 msgid "Level 5"
 msgstr "第5級"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:483
 msgid "Level 6"
 msgstr "第6級"
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:506
 msgid "Not signed"
 msgstr "未簽署"
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:507
 msgid "Signed for a full review"
 msgstr "已簽署要求完整審查"
 
-#: apps/constants/base.py:509
+#: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
 msgstr "已簽署要求初步審查"
 
@@ -3543,7 +3540,7 @@ msgid "Solaris"
 msgstr "Solaris"
 
 # 保留
-#: apps/constants/platforms.py:61 apps/devhub/forms.py:516
+#: apps/constants/platforms.py:61
 msgid "Android"
 msgstr "Android"
 
@@ -3555,295 +3552,177 @@ msgstr "%s 最近的更改"
 msgid "Recent Changes for My Add-ons"
 msgstr "我的附加元件最近的更改"
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:66
 msgid "Must have at least one owner."
 msgstr "至少需要一位擁有者。"
 
-#: apps/devhub/forms.py:72
+#: apps/devhub/forms.py:69
 msgid "At least one author must be listed."
 msgstr "至少需要列出一位作者。"
 
-#: apps/devhub/forms.py:76
+#: apps/devhub/forms.py:73
 msgid "An author can only be listed once."
 msgstr "每位作者只可被列出一次。"
 
-#: apps/devhub/forms.py:94
+#: apps/devhub/forms.py:91
 msgid "Password incorrect."
 msgstr "密碼不正確。"
 
-#: apps/devhub/forms.py:113 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "詳細資訊"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:120
 msgid "What is your license's name?"
 msgstr "您的授權名稱？"
 
-#: apps/devhub/forms.py:126
+#: apps/devhub/forms.py:123
 msgid "Provide the text of your license."
 msgstr "敘述您的授權。"
 
-#: apps/devhub/forms.py:161
+#: apps/devhub/forms.py:158
 msgid "License text is required when choosing Other."
 msgstr "選擇其他時必須填寫授權內容。"
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:206
 msgid "This add-on has an End-User License Agreement"
 msgstr "此附加元件包含終端使用者授權合約"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "請指定您附加元件的終端使用者授權合約"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
 msgstr "這個附加元件有隱私權保護政策"
 
-#: apps/devhub/forms.py:218
+#: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "請註明您附加元件的隱私權保護政策："
 
-#: apps/devhub/forms.py:256
+#: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
 msgstr "開發這個附加元件的原因？"
 
-#: apps/devhub/forms.py:257
+#: apps/devhub/forms.py:254
 msgid "What's next for this add-on?"
 msgstr "這個附加元件的下一步發展？"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:291
 msgid "The developers of this add-on"
 msgstr "這個附加元件的開發者"
 
-#: apps/devhub/forms.py:295
+#: apps/devhub/forms.py:292
 msgid "The Mozilla Foundation"
 msgstr "Mozilla 基金會"
 
-#: apps/devhub/forms.py:296
+#: apps/devhub/forms.py:293
 msgid "An organization of my choice"
 msgstr "我所選擇的組織"
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:336
 msgid "Please enter a suggested amount greater than 0."
 msgstr "請輸入大於 0 的建議金額。"
 
-#: apps/devhub/forms.py:342
+#: apps/devhub/forms.py:339
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "請輸入小於 ${0} 的建議金額。"
 
-#: apps/devhub/forms.py:351
+#: apps/devhub/forms.py:348
 msgid "PayPal ID required to accept contributions."
 msgstr "必須填寫 PayPal 帳號才能接受捐款。"
 
-#: apps/devhub/forms.py:357
+#: apps/devhub/forms.py:354
 msgid "Could not validate PayPal id."
 msgstr "無法驗證 PayPal 帳號。"
 
-#: apps/devhub/forms.py:372
+#: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
 
-#: apps/devhub/forms.py:391
+#: apps/devhub/forms.py:388
 msgid "View current"
 msgstr "檢視目前檔案"
 
-#: apps/devhub/forms.py:440 apps/devhub/forms.py:889
+#: apps/devhub/forms.py:437
 msgid "Invalid version range."
 msgstr "無效的版本號碼範圍。"
 
-#: apps/devhub/forms.py:469
+#: apps/devhub/forms.py:466
 msgid "Need at least one compatible application."
 msgstr "至少需要一個相容的應用程式。"
 
-#: apps/devhub/forms.py:482 apps/devhub/forms.py:499
+#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上傳過程發生錯誤，請再試一次。"
 
-#: apps/devhub/forms.py:487
+#: apps/devhub/forms.py:484
 msgid "Override failed validation"
 msgstr "無視驗證失敗"
 
-#: apps/devhub/forms.py:520 apps/devhub/forms.py:582
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "您選的不是有效的選項，請選擇有效的選項。"
+#: apps/devhub/forms.py:511
+msgid "Yes, include my add-on on AMO."
+msgstr ""
 
-#: apps/devhub/forms.py:536
-msgid "Need at least one platform."
-msgstr "至少要選擇一個平台。"
+#: apps/devhub/forms.py:512
+msgid ""
+"Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
+"reasons to uncheck it."
+msgstr ""
 
-#: apps/devhub/forms.py:543 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "完整審核"
 
-#: apps/devhub/forms.py:544 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步審核"
 
-#: apps/devhub/forms.py:548
+#: apps/devhub/forms.py:535
 msgid "Please choose a review nomination type"
 msgstr "請選擇送交審核的類型"
 
-#: apps/devhub/forms.py:552 apps/devhub/forms.py:588
+#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "檔案版本結尾包含a|alpha|b|beta 與數字會被偵測為 beta 測試版。"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:556
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:611
+#: apps/devhub/forms.py:568
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "您選的不是有效的選項，請選擇有效的選項。"
+
+#: apps/devhub/forms.py:597
 msgid "You cannot upload any more files for this version."
 msgstr "您不行再對這個版本上傳檔案。"
 
-#: apps/devhub/forms.py:617
+#: apps/devhub/forms.py:603
 msgid "Version doesn't match"
 msgstr "版本不相符"
 
-#: apps/devhub/forms.py:646
+#: apps/devhub/forms.py:632
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "當審核開始後您就無法刪除檔案。您必須刪除整個版本。"
 
-#: apps/devhub/forms.py:666
+#: apps/devhub/forms.py:652
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "所有平台不能與某特定平台結合。"
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:657
 msgid "A platform can only be chosen once."
 msgstr "只能選擇一個平台。"
 
-#: apps/devhub/forms.py:684
+#: apps/devhub/forms.py:670
 msgid "A review type must be selected."
 msgstr "您必須選擇一項審核方式。"
 
-#: apps/devhub/forms.py:763
-msgid "Give your add-on a name. The most successful add-ons give some indication of their function in their name."
-msgstr "為您的附加元件命名。最成功的附加元件在名稱中多多少少指出它們提供的功能。"
-
-#: apps/devhub/forms.py:768
-msgid "Briefly describe your add-on in one sentence. This appears in the Add-ons Manager."
-msgstr "以一句話簡單敘述您的附加元件。這句話會顯示於附加元件管理員的頁面。"
-
-#: apps/devhub/forms.py:772
-msgid "Enter your initial version number. Depending on the number of releases and your preferences, this is usually 0.1 or 1.0"
-msgstr "輸入您的初版號碼。依據發行次數與個人偏好，通常是 0.1 或 1.0"
-
-#: apps/devhub/forms.py:776
-msgid "Each add-on requires a unique ID in the form of a UUID or an email address, such as addon-name@developer.com. The email address does not have to be valid."
-msgstr "每一個附加元件需要一個獨一無二的 ID，以 UUID 或電子郵件的形式來表示，例如 addon-name@developer.com。該電子郵件不須為真實的。"
-
-#: apps/devhub/forms.py:782
-msgid "The package name of your add-on used within the browser. This should be a short form of its name (for example, Test Extension might be test_extension)."
-msgstr "在瀏覽器使用的附加元件封裝名稱。該封裝名稱應為附加元件名稱的簡寫(例如，附加元件名稱為 Test Extension，封存名稱為 test_extension)。"
-
-#: apps/devhub/forms.py:787
-msgid "Enter the name of the person or entity to be listed as the author of this add-on."
-msgstr "請輸入這個附加元件的作者名稱或組織名稱。"
-
-#: apps/devhub/forms.py:791
-msgid "Enter the names of any other contributors to this extension, one per line."
-msgstr "輸入此擴充套件的其餘貢獻者姓名，每一行只列出一個姓名。"
-
-#: apps/devhub/forms.py:800
-msgid "Add-on names should not contain Mozilla trademarks."
-msgstr "附加元件不應該含有 Mozilla 商標。"
-
-#: apps/devhub/forms.py:807
-msgid "Enter a valid package name consisting of letters, numbers, or underscores."
-msgstr "輸入一個有效的封裝名稱包含英文、數字或底線。"
-
-#: apps/devhub/forms.py:811
-msgid "This package name is already in use."
-msgstr "這個封裝的名稱已經有人使用了。"
-
-#: apps/devhub/forms.py:814
-msgid "The package name cannot be: %s."
-msgstr "這個封裝名稱不能是: %s。"
-
-#: apps/devhub/forms.py:825
-msgid "The add-on ID must be a UUID string or an email address."
-msgstr "附加元件 ID 必須是個 UUID 字串或 email 地址。"
-
-#: apps/devhub/forms.py:831
-msgid "The version string is invalid."
-msgstr "版本字串不正確。"
-
-#: apps/devhub/forms.py:839
-msgid "Minimum"
-msgstr "最小"
-
-#: apps/devhub/forms.py:842
-msgid "Maximum"
-msgstr "最大"
-
-#: apps/devhub/forms.py:893
-msgid "Min version must be less than Max version."
-msgstr "最小版本必須小於最大版本。"
-
-#: apps/devhub/forms.py:918
-msgid "{0} is a required target application."
-msgstr "{0} 需要一個目標應用程式。"
-
-#: apps/devhub/forms.py:930
-msgid "About dialog"
-msgstr "關於對話框"
-
-#: apps/devhub/forms.py:931
-msgid "Creates a standard About dialog for your extension"
-msgstr "替您的擴充套件建立一個標準的關於對話框"
-
-#: apps/devhub/forms.py:935
-msgid "Preferences dialog"
-msgstr "偏好設定對話框"
-
-#: apps/devhub/forms.py:936
-msgid "Creates an example Preferences window"
-msgstr "建立一個樣本偏好設定視窗"
-
-#: apps/devhub/forms.py:939
-msgid "Toolbar"
-msgstr "工具列"
-
-#: apps/devhub/forms.py:940
-msgid "Creates an example toolbar for your extension"
-msgstr "在您的擴充套件裡新增一個樣本工具列"
-
-#: apps/devhub/forms.py:943
-msgid "Toolbar button"
-msgstr "工具列按鈕"
-
-#: apps/devhub/forms.py:944
-msgid "Creates an example button on the browser toolbar"
-msgstr "在瀏覽器裡的工具列建立一個樣本按紐"
-
-#: apps/devhub/forms.py:948
-msgid "Main menu command"
-msgstr "主選單命令"
-
-#: apps/devhub/forms.py:949
-msgid "Creates an item on the Tools menu"
-msgstr "在工具選單上建立一個物件"
-
-#: apps/devhub/forms.py:952
-msgid "Context menu command"
-msgstr "內容功能表命令"
-
-#: apps/devhub/forms.py:953
-msgid "Creates a context menu item for images"
-msgstr "建立一個圖片的右鍵清單項目"
-
-#: apps/devhub/forms.py:956
-msgid "Sidebar support"
-msgstr "側邊欄支援"
-
-#: apps/devhub/forms.py:957
-msgid "Creates an example sidebar panel"
-msgstr "建立一個樣本側邊攔"
-
-#: apps/devhub/forms.py:966 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "先選擇一個應用程式"
 
-#: apps/devhub/forms.py:1018
+#: apps/devhub/forms.py:804
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必要的附加元件不能超過三個。"
 
@@ -3873,19 +3752,19 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#: apps/devhub/models.py:370 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "意見"
 
-#: apps/devhub/tasks.py:327
+#: apps/devhub/tasks.py:300
 msgid "%s responded with %s (%s)."
 msgstr "%s 回應了 %s (%s)。"
 
-#: apps/devhub/tasks.py:331
+#: apps/devhub/tasks.py:304
 msgid "Connection to \"%s\" timed out."
 msgstr "至「%s」的連線已經逾時。"
 
-#: apps/devhub/tasks.py:333
+#: apps/devhub/tasks.py:306
 msgid "Could not contact host at \"%s\"."
 msgstr "無法連線至主機「%s」。"
 
@@ -3893,181 +3772,138 @@ msgstr "無法連線至主機「%s」。"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s 比訊息。在處理完這些訊息所提到的問題後，您將可以看到其他的錯誤或警告訊息。"
 
-#: apps/devhub/views.py:176
+#: apps/devhub/views.py:177
 msgid "All My Add-ons"
 msgstr "我所有的附加元件"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "All Activity"
 msgstr "所有活動"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Updates"
 msgstr "附加元件更新"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Status"
 msgstr "附加元件狀態"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "User Collections"
 msgstr "使用者收藏集"
 
-#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "使用者意見"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1156
+#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1097
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1572
+#: apps/devhub/views.py:328 apps/devhub/views.py:1518
 msgid "Please check the form for errors."
 msgstr "請檢查表格是否有錯誤。"
 
-#: apps/devhub/views.py:339
+#: apps/devhub/views.py:340
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "無法刪除此附加元件，請停用。"
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Theme deleted."
 msgstr "已刪除佈景主題。"
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Add-on deleted."
 msgstr "已刪除附加元件。"
 
-#: apps/devhub/views.py:355
+#: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "密碼錯誤。佈景主題無法刪除。"
 
-#: apps/devhub/views.py:360
+#: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "密碼錯誤。附加元件無法刪除。"
 
-#: apps/devhub/views.py:433
+#: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
 msgstr "已為您的附加元件新增作者"
 
-#: apps/devhub/views.py:440
+#: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
 msgstr "您的附加元件的某位作者的角色發生變更"
 
-#: apps/devhub/views.py:459
+#: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
 msgstr "您的附加元件中的某位作者已被移除"
 
-#: apps/devhub/views.py:502
+#: apps/devhub/views.py:503
 msgid "There were errors in your submission."
 msgstr "您的提交發生錯誤。"
 
-#: apps/devhub/views.py:566
+#: apps/devhub/views.py:567
 msgid "Validate Add-on"
 msgstr "驗證附加元件"
 
-#: apps/devhub/views.py:575
+#: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
 msgstr "檢查附加元件的相容性"
 
-#: apps/devhub/views.py:698
+#: apps/devhub/views.py:639
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: apps/devhub/views.py:1061 apps/users/forms.py:419
+#: apps/devhub/views.py:1002 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: apps/devhub/views.py:1065
+#: apps/devhub/views.py:1006
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: apps/devhub/views.py:1067
+#: apps/devhub/views.py:1008
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
-#: apps/devhub/views.py:1080
+#: apps/devhub/views.py:1021
 msgid "Images cannot be larger than %dKB."
 msgstr "圖片大小不能超過 %dKB。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1090
+#: apps/devhub/views.py:1031
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "圖檔的寬必須剛好為 {0} 像素並且高 {1} 像素。"
 
-#: apps/devhub/views.py:1097
+#: apps/devhub/views.py:1038
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: apps/devhub/views.py:1195
+#: apps/devhub/views.py:1136
 msgid "Version %s disabled."
 msgstr "已停用 %s 版本。"
 
-#: apps/devhub/views.py:1198
+#: apps/devhub/views.py:1140
 msgid "Version %s deleted."
 msgstr "已刪除版本 %s。"
 
-#: apps/devhub/views.py:1208
+#: apps/devhub/views.py:1150
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: apps/devhub/views.py:1618
+#: apps/devhub/views.py:1335
+msgid "Skipping to step 6 because the add-on won't be listed"
+msgstr ""
+
+#: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
 msgstr "已要求初步審核。"
 
-#: apps/devhub/views.py:1619
+#: apps/devhub/views.py:1565
 msgid "Full Review Requested."
 msgstr "已要求完整審核。"
 
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "返回附加元件網站"
-
-#: apps/devhub/templates/devhub/builder.html:3 apps/devhub/templates/devhub/builder.html:30
-msgid "Add-on SDK"
-msgstr "Add-on SDK"
-
-#. Section in strong tag is bigger and on it's own line
-#: apps/devhub/templates/devhub/builder.html:11
-msgid "<strong>Add-on SDK:</strong> Create Add-ons Quickly and Easily"
-msgstr "<strong>Add-on SDK:</strong> 快速簡單地建立附加元件"
-
-#: apps/devhub/templates/devhub/builder.html:16
-msgid ""
-"The Add-on SDK provides powerful APIs that allow developers to create add-ons for Firefox using HTML, CSS and JavaScript. When your add-on is complete, we make it easy to share it with over 400 "
-"million Firefox users world wide."
-msgstr "Add-on SDK 提供強大的 API，讓開發者可以使用 HTML、CSS 與 JavaScript 建立附加元件。當您的附加元件完成後，我們可以讓您很簡單就能與全球的四億 Firefox 使用者分享。"
-
-#: apps/devhub/templates/devhub/builder.html:32
-msgid "The Add-on SDK is set of APIs bundled with a command line utility that allows you to develop add-ons with your own tool chain."
-msgstr "Add-on SDK 將 API 包在一個命令列工具裡，讓您可以使用您自己的 tool chain 開發附加元件。"
-
-#: apps/devhub/templates/devhub/builder.html:38
-msgid "Choose your own code editor"
-msgstr "選擇您自己的原始碼編輯器"
-
-#: apps/devhub/templates/devhub/builder.html:39
-msgid "Access your development files locally"
-msgstr "存取您本機的開發檔案"
-
-#: apps/devhub/templates/devhub/builder.html:40
-msgid "Get greater control over SDK build steps"
-msgstr "在 SDK 編譯時調整更多選項"
-
-#: apps/devhub/templates/devhub/builder.html:43
-msgid "Download the Add-on SDK"
-msgstr "下載 Add-on SDK"
-
-#: apps/devhub/templates/devhub/builder.html:49
-msgid "Help is at Hand!"
-msgstr "說明近在咫尺!"
-
-#: apps/devhub/templates/devhub/builder.html:51
-msgid "Need some support building your add-on? We have <a href=\"%(url_docs)s\">extensive documentation</a> and a massive developer community to make sure you're never on your own."
-msgstr "編譯附加元件時需要協助嗎？我們有<a href=\"%(url_docs)s\">廣泛的文件</a>以及大量的開發者社群以確保您永遠不是一個人。"
-
-#: apps/devhub/templates/devhub/builder.html:60
-msgid "Interested in making the Add-on SDK even better? Grab the source code, and find out how to help <a href='%(url_wiki)s'>here</a>."
-msgstr "有興趣讓 Add-on SDK 變得更好嗎？把原始碼抓下來，並且<a href='%(url_wiki)s'>到這裡</a>看看如何幫忙我們。"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4098,130 +3934,73 @@ msgstr "請輸入搜尋關鍵字。"
 msgid "Loading results&hellip;"
 msgstr "正在載入結果&hellip;"
 
-#: apps/devhub/templates/devhub/index.html:23
-msgid "Calling All Add-ons!"
-msgstr "全體附加元件集合!"
-
-#: apps/devhub/templates/devhub/index.html:25
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "沒有比把您的附加元件放到 Mozilla Add-ons 更好的散佈辦法了。"
-
-#: apps/devhub/templates/devhub/index.html:29 apps/devhub/templates/devhub/index.html:34
+#: apps/devhub/templates/devhub/index.html:21
 msgid "Submit an Add-on"
 msgstr "送出附加元件"
 
-#: apps/devhub/templates/devhub/index.html:49 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
+#: apps/devhub/templates/devhub/index.html:26
+msgid "AMO Reviewers"
+msgstr "AMO 審核者"
+
+#: apps/devhub/templates/devhub/index.html:28
+msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
+msgstr "向前走！今天就成為 AMO 審核者，讓您的附加元件能更快被審核。"
+
+#: apps/devhub/templates/devhub/index.html:31
+msgid "Become an AMO Reviewer"
+msgstr "成為 AMO 審核者"
+
+#: apps/devhub/templates/devhub/index.html:38
+msgid "Learn All About Add-ons"
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:40
+msgid ""
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:50
+msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:57
+msgid "Start Making Add-ons"
+msgstr "開始製作附加元件"
+
+#: apps/devhub/templates/devhub/index.html:85 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
 msgstr "狀態："
 
-#: apps/devhub/templates/devhub/index.html:54
+#: apps/devhub/templates/devhub/index.html:90
 msgid "Latest Version:"
 msgstr "最新版本："
 
-#: apps/devhub/templates/devhub/index.html:63 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
+#: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
 msgstr "佇列位置："
 
-#: apps/devhub/templates/devhub/index.html:64 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
+#: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
 msgstr "第 %(position)s 位，共 %(total)s 位"
 
-#: apps/devhub/templates/devhub/index.html:74 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
 msgstr "上傳新版本"
 
-#: apps/devhub/templates/devhub/index.html:80
+#: apps/devhub/templates/devhub/index.html:118
 msgid "View all add-ons ►"
 msgstr "瀏覽所有附加元件►"
 
-#: apps/devhub/templates/devhub/index.html:83
-msgid "AMO Reviewers"
-msgstr "AMO 審核者"
-
-#: apps/devhub/templates/devhub/index.html:85
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "向前走！今天就成為 AMO 審核者，讓您的附加元件能更快被審核。"
-
-#: apps/devhub/templates/devhub/index.html:88
-msgid "Become an AMO Reviewer"
-msgstr "成為 AMO 審核者"
-
-#: apps/devhub/templates/devhub/index.html:96
-msgid "Firefox Add-ons Made Easy"
-msgstr "製作 Firefox 附加元件變得簡單了"
-
-#: apps/devhub/templates/devhub/index.html:98
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know HTML, JavaScript and CSS, you already have what it takes to make great add-"
-"ons with the Add-on SDK. What's more, add-ons built with the SDK are restartless by default."
+#: apps/devhub/templates/devhub/index.html:121
+msgid "Publish your add-ons!"
 msgstr ""
-"附加元件可以讓數以百萬計的 Firefox 使用者增強與自訂瀏覽體驗。若您是一位熟悉 HTML、JavaScript 與 CSS 的網頁開發者，您已經擁有使用 Add-on SDK 開發附加元件的能力。更厲害的是，使用 SDK 開發出的附加元件"
-"在安裝移除時不必重開瀏覽器。"
 
-#: apps/devhub/templates/devhub/index.html:106
-msgid "Start Making Add-ons"
-msgstr "開始製作附加元件"
-
-#: apps/devhub/templates/devhub/index.html:113
-msgid "Learn &amp; Explore"
-msgstr "學習&amp;探索"
-
-#: apps/devhub/templates/devhub/index.html:119 apps/devhub/templates/devhub/nav.html:41 apps/devhub/templates/devhub/docs/how-to-extension-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:6 apps/devhub/templates/devhub/docs/how-to-other-addons.html:6 apps/devhub/templates/devhub/docs/how-to-theme-development.html:6
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:6 apps/devhub/templates/devhub/docs/how-to.html:3 apps/devhub/templates/devhub/docs/how-to.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:61 apps/devhub/templates/devhub/docs/how-to.html:62
-msgid "How-to Library"
-msgstr "教學文庫"
-
-#: apps/devhub/templates/devhub/index.html:121 apps/devhub/templates/devhub/docs/how-to.html:64
-msgid "Get add-on development guidance in a top-notch collection of tutorials, articles, and more."
-msgstr "一流的精選教學文件當中可以找到更多的附加元件指南。"
-
-#: apps/devhub/templates/devhub/index.html:132
-msgid "API & Language Reference"
-msgstr "API & Language 參考資料"
-
-#: apps/devhub/templates/devhub/index.html:134 apps/devhub/templates/devhub/docs/reference.html:14
-msgid "The official documentation on APIs and languages. What you need, when you need it, to create your masterpiece."
-msgstr "API 與 Language 的官方文件，創造鉅作時您最佳的幫手。"
-
-#: apps/devhub/templates/devhub/index.html:145 apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/case-studies.html:3 apps/devhub/templates/devhub/docs/case-studies.html:8
-#: apps/devhub/templates/devhub/docs/case-studies.html:31 apps/devhub/templates/devhub/docs/case-studies.html:32
-msgid "Case Studies"
-msgstr "個案研究"
-
-#: apps/devhub/templates/devhub/index.html:147 apps/devhub/templates/devhub/docs/case-studies.html:35
-msgid "Start-to-finish success stories. See how add-on developers made magic with Mozilla."
-msgstr "從零到一的成功故事，看附加元件開發者如何和 Mozilla 一起施展魔法。"
-
-#: apps/devhub/templates/devhub/index.html:159
-msgid "Create &amp; Connect"
-msgstr "新建 &amp; 連結"
-
-#: apps/devhub/templates/devhub/index.html:165
-msgid "Developer Forums"
-msgstr "開發者討論區"
-
-#: apps/devhub/templates/devhub/index.html:167
-msgid "Discuss development, brainstorm ideas, and make connections in the world of add-ons."
-msgstr "討論關於開發附加元件。激發點子，以及與全世界的附加元件連結。"
-
-#: apps/devhub/templates/devhub/index.html:178 apps/devhub/templates/devhub/nav.html:52 apps/devhub/templates/devhub/package_addon.html:4 apps/devhub/templates/devhub/package_addon_success.html:3
-msgid "Add-on Packager"
-msgstr "附加元件封裝工具"
-
-#: apps/devhub/templates/devhub/index.html:180
-msgid "Auto-generate add-on packaging by entering basic info and picking UI parts. Get working without setup."
-msgstr "透過鍵入基本資料並選擇 UI 零件，自動生成附加元件。無痛快速上手。"
-
-#: apps/devhub/templates/devhub/index.html:191 apps/devhub/templates/devhub/nav.html:54
-msgid "Add-on Validator"
-msgstr "附加元件驗證器"
-
-#: apps/devhub/templates/devhub/index.html:193
-msgid "Check your add-on for common problems and errors. Open to anyone, not just add-ons hosted here."
-msgstr "為您的附加元件檢查常見問題與錯誤。不只寄放附加元件，更開放給每一個人。"
+#: apps/devhub/templates/devhub/index.html:126
+msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
+msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4240,157 +4019,48 @@ msgstr "更多附加元件…"
 msgid "Documentation"
 msgstr "文件集"
 
-#: apps/devhub/templates/devhub/nav.html:35 apps/devhub/templates/devhub/addons/submit/sidebar.html:4 apps/devhub/templates/devhub/docs/getting-started.html:3
-#: apps/devhub/templates/devhub/docs/getting-started.html:6 apps/devhub/templates/devhub/docs/getting-started.html:8 apps/devhub/templates/devhub/docs/how-to-getting-started.html:3
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:7 apps/devhub/templates/devhub/docs/how-to-getting-started.html:9 apps/devhub/templates/devhub/docs/how-to-theme-development.html:16
-#: apps/devhub/templates/devhub/docs/how-to.html:13 apps/devhub/templates/devhub/docs/how-to.html:74
-msgid "Getting Started"
-msgstr "馬上開始"
+#: apps/devhub/templates/devhub/nav.html:35
+msgid "Extension Development"
+msgstr "擴充套件開發"
 
-#: apps/devhub/templates/devhub/nav.html:37 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
+#: apps/devhub/templates/devhub/nav.html:37
+msgid "Lightweight Themes"
+msgstr ""
+
+#: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
 #: apps/devhub/templates/devhub/docs/policies-submission.html:6 apps/devhub/templates/devhub/docs/policies.html:3 apps/devhub/templates/devhub/docs/policies.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:38 apps/devhub/templates/devhub/docs/policies.html:39
 msgid "Add-on Policies"
 msgstr "附加元件政策"
 
-#: apps/devhub/templates/devhub/nav.html:43
-msgid "API &amp; Language Reference"
-msgstr "API &amp; Language 參考"
+#: apps/devhub/templates/devhub/nav.html:46
+msgid "Add-on Validator"
+msgstr "附加元件驗證器"
 
-#: apps/devhub/templates/devhub/nav.html:56
+#: apps/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
 msgstr "附加元件相容性檢查器"
 
-#: apps/devhub/templates/devhub/nav.html:58
+#: apps/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
 msgstr "附加元件開發"
 
-#: apps/devhub/templates/devhub/nav.html:62
-msgid "Community"
-msgstr "社群"
+#: apps/devhub/templates/devhub/nav.html:54
+msgid "Community & Support"
+msgstr ""
 
-#: apps/devhub/templates/devhub/nav.html:65
+#: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
 msgstr "附加元件部落格"
 
-#: apps/devhub/templates/devhub/nav.html:67
+#: apps/devhub/templates/devhub/nav.html:59
 msgid "Add-ons Forum"
 msgstr "附加元件討論區"
 
-#: apps/devhub/templates/devhub/package_addon.html:17
-msgid "Enter some basic information about your add-on below and select which interface components to start with, and your custom-built add-on will be ready for download."
-msgstr "輸入一些關於您附加元件的基本資料，並且選擇要從哪個介面元件開始，然後您就可以下載您的自訂附加元件了。"
-
-#: apps/devhub/templates/devhub/package_addon.html:24 apps/devhub/templates/devhub/addons/submit/sidebar.html:6
-msgid "Describe your add-on"
-msgstr "描述您的附加元件"
-
-#: apps/devhub/templates/devhub/package_addon.html:26
-msgid "First, you need to enter some basic information about your add-on. This will be displayed in the Add-ons Manager when your extension is installed."
-msgstr "首先，您需要數入一些關於您附加元件的基本資料。當您的套件安裝後，這些資料會顯示在 Add-ons Manager 上。"
-
-#: apps/devhub/templates/devhub/package_addon.html:33
-msgid "Add-on Name"
-msgstr "附加元件名稱"
-
-#: apps/devhub/templates/devhub/package_addon.html:35
-msgid "Add-on Version"
-msgstr "附加元件版本"
-
-#: apps/devhub/templates/devhub/package_addon.html:36
-msgid "Unique ID"
-msgstr "唯一的 ID"
-
-#: apps/devhub/templates/devhub/package_addon.html:37
-msgid "Package Name"
-msgstr "封裝名稱"
-
-#: apps/devhub/templates/devhub/package_addon.html:41
-msgid "Who's working on your add-on?"
-msgstr "誰和你一起製作附加元件？"
-
-#: apps/devhub/templates/devhub/package_addon.html:43
-msgid "Tell us about the people or companies behind this add-on. This information appears in the add-on's About dialog."
-msgstr "告訴我們關於這個附加元件身後的人或公司。這些資訊會出現在附加元件的「關於」對話框。"
-
-#: apps/devhub/templates/devhub/package_addon.html:49
-msgid "Primary Author"
-msgstr "首要作者"
-
-#: apps/devhub/templates/devhub/package_addon.html:50
-msgid "Contributors"
-msgstr "貢獻者"
-
-#: apps/devhub/templates/devhub/package_addon.html:54
-msgid "Where will your add-on run?"
-msgstr "您的附加元件會在哪裡執行？"
-
-#: apps/devhub/templates/devhub/package_addon.html:56
-msgid ""
-"Select the applications and versions that your add-on will support. The versions that you select will be the only versions that your add-on will be installable on. Make sure you only select "
-"applications and versions that you intend to test your add-on with."
-msgstr "選擇您附加元件會支援的平台。您的附加元件只能安裝在您指定的版本上。請確定您只選了您想要測試附加元件的應用程式和版本。"
-
-#: apps/devhub/templates/devhub/package_addon.html:64
-msgid "Supported Applications and Versions"
-msgstr "支援的應用程式與其版本"
-
-#: apps/devhub/templates/devhub/package_addon.html:80
-msgid "Choose pre-built features"
-msgstr "選擇 pre-built 功能"
-
-#: apps/devhub/templates/devhub/package_addon.html:82
-msgid "Get started quickly by selecting user interface components to include in your add-on package. We'll include documented code for each item you select so your extension will work out of the box."
-msgstr "選擇您的附加元件封裝裡包含那些使用者介面元件。每個您選擇的項目之程式碼都有註解，因此您的擴充套件無須修改即能運作。"
-
-#: apps/devhub/templates/devhub/package_addon.html:95
-msgid "Submit and Build"
-msgstr "送出並編譯"
-
-#: apps/devhub/templates/devhub/package_addon.html:102
-msgid "Advanced Building"
-msgstr "進階組建"
-
-#: apps/devhub/templates/devhub/package_addon.html:104
-msgid "Want to create XULRunner applications, XPCOM components, and other advanced skeletons? Visit the <a href=\"%(url)s\">MozDev Project Wizard</a>."
-msgstr "您想要建立 XULRunner 應用程式、XPCOM 元件，或其他進階的架構嗎? 請使用<a href=\"%(url)s\">MozDev Project Wizard</a>。"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:10
-msgid "Add-on packaged successfully!"
-msgstr "附加元件封裝成功！"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:14
-msgid ""
-"Use the download link below to save a copy of your extension's compressed source. To install as an extension in Firefox or another compatible application, simply rename the <kbd>.zip</kbd> "
-"extension to <kbd>.xpi</kbd>."
-msgstr "利用下面的下載連結備份您套件的壓縮原始碼。如欲在 Firefox 或其他相容應用程式上安裝，只要把副檔名 <kbd>.zip</kbd> 改成 <kbd>.xpi</kbd> 即可。"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:22
-msgid "Please wait&hellip;"
-msgstr "請稍等&hellip;"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:24
-msgid "JavaScript needs to be enabled to fetch the packaged add-on."
-msgstr "需要啟用 JavaScript 以下載已封裝的附加元件。"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:29
-msgid "What do I do next?"
-msgstr "下一步要怎麼做?"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:30
-msgid ""
-"<ol> <li> Follow the instructions in the packaged source code to create your own preferences and make your own customizations. </li> <li>Remove any source code that you don't eventually use.</li> "
-"<li>Read the documentation and ask for help when you need it!</li> </ol>"
-msgstr "<ol> <li>請按照已封裝的原始碼的指示來建立您自己的偏好設定與自訂。</li><li>移除任何您不再需要的原始碼。</li><li>請閱讀技術文件，如有問題請發問。</li></ol>"
-
-#: apps/devhub/templates/devhub/package_addon_success.html:41
-msgid ""
-"Now that you've got an extension skeleton, the fun part begins: hacking on the extension to make it do what you want. If you need some help, check out our <a href=\"%(gs_url)s\">Getting Started</a> "
-"page for the basics, or visit the <a href=\"%(ht_url)s\">How-to Library</a> for tutorials and documentation."
-msgstr ""
-"現在您已經取得套件的骨架，最有趣的部份來了：撰寫套件讓他成為您想要的。如果您需要些幫助，請造訪我們的 <a href=\"%(gs_url)s\">Getting Started</a> 頁面取得基本說明，或者到 <a href=\"%(ht_url)s\">How-"
-"to Library</a> 取得教學和文件。"
+#: apps/devhub/templates/devhub/nav.html:61
+msgid "More Resources"
+msgstr "更多資源"
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
@@ -5210,9 +4880,17 @@ msgstr "無法要求完整審核於 10 天內完成"
 msgid "Choose Preliminary Review"
 msgstr "選擇初步審核"
 
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
+msgid "Getting Started"
+msgstr "馬上開始"
+
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
 msgid "Upload your add-on"
 msgstr "上傳您的附加元件"
+
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
+msgid "Describe your add-on"
+msgstr "描述您的附加元件"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Add images"
@@ -5280,755 +4958,16 @@ msgid "Use the fields below to upload your add-on package and select any platfor
 msgstr "使用下方欄位上傳您的附加元件並選擇可執行的平台。當上傳完成後，將會對您的檔案進行一系列自動化的驗證測試。"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
-msgid "Which desktop platforms is this file compatible with?"
-msgstr "這個檔案與哪一個桌面平台相容?"
+msgid "Which platforms is this file compatible with?"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:35 apps/devhub/templates/devhub/versions/add_file_modal.html:31
-msgid "Which mobile platforms is this file compatible with?"
-msgstr "這個檔案與哪一個 Mobile 平台相容?"
+#: apps/devhub/templates/devhub/addons/submit/upload.html:37
+msgid "Do you want your add-on listed on AMO?"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:43 apps/devhub/templates/devhub/versions/add_file_modal.html:48
+#: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "管理員覆寫"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:12
-msgid "StumbleUpon"
-msgstr "StumbleUpon"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:16
-msgid "Download Statusbar"
-msgstr "Download Statusbar"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:20
-msgid "Cooliris"
-msgstr "Cooliris"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:44
-msgid "by <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a>"
-msgstr "由 <a href=\"http://www.stumbleupon.com\">StumbleUpon, Inc.</a> 提供"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:48
-msgid "Personalized Browsing with StumbleUpon"
-msgstr "透過 StumbleUpon 個人化瀏覽"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:50
-msgid "StumbleUpon is a recommendation engine that helps users discover and share great websites. With over 8 million users, it has become one of the most popular sharing services on the Web today."
-msgstr "StumbleUpon 是個協助使用者發現並分享超讚網站的推薦引擎。擁有超過八百萬個使用者，他已成為網路上最受歡迎的分享服務之一。"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:55
-msgid "Learn how StumbleUpon got its start with Firefox"
-msgstr "了解如何讓 StumbleUpon 與 Firefox 合作"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:63
-msgid "by <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a>"
-msgstr "由 <a href=\"https://addons.mozilla.org/en-US/firefox/user/9\">Devon Jensen</a> 製作"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:67
-msgid "Easy Download Management with Download Statusbar"
-msgstr "透過下載狀態列輕鬆管理下載"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:70
-msgid ""
-"Download Statusbar shows the progress of current downloads right in the browser&#039;s statusbar. There&#039;s no need to open the Download Manager when downloads can be managed from anywhere in "
-"the browser."
-msgstr "下載狀態列會在瀏覽器下方顯示現在下載進度&#039;s 狀態列。您無須開啟下載管理員，即可直接管理下載檔案。"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:75
-msgid "Read about how someone new to software development made one of the most popular Firefox add-ons"
-msgstr "了解如何從軟體開發新手到 Firefox 最熱門的附加元件之一"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:83
-msgid "by <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-msgstr "由 <a href=\"http://www.cooliris.com\">Cooliris, Inc.</a>"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:87
-msgid "Immersive 3-D Experience with Cooliris"
-msgstr "透過 Cooliris 進行沈浸式的 3-D 體驗"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:90
-msgid ""
-"Cooliris lets users browse photos and videos from the Web or local computer on an infinitely scrollable 3-D wall. Its award-winning design brings speed and elegance to searching, finding and "
-"enjoying rich content."
-msgstr "Cooliris 讓使用者在可滑動的 3-D 牆面上瀏覽網頁或本機上的照片和影片。獲獎無數的使用者介面讓搜尋、瀏覽照片變得更加快速、優雅。"
-
-#: apps/devhub/templates/devhub/docs/case-studies.html:95
-msgid "Find out how Cooliris re-invented photo browsing"
-msgstr "了解 Cooliris 如何重新創造照片瀏覽體驗"
-
-#. Localization note: this page is intended to be fun and jokes around to make add-on development sound easy for those getting started. Please feel free
-#. to translate humorous parts/metaphors into something that works in your locale, or take them out if you want. Thanks!
-#: apps/devhub/templates/devhub/docs/getting-started.html:16
-msgid ""
-"If you've used Firefox add-ons before, you know that they're capable of some pretty impressive features &mdash; from inspecting the underlying framework of a website to displaying a scrolling 3-D "
-"wall of pictures and video. But some of the most popular add-ons just make minor changes to Firefox through easily learned languages like JavaScript, XUL, and CSS. If you have an idea for your "
-"first add-on, start out with something simple to learn the basics of how extensions are packaged and interact with Firefox."
-msgstr ""
-"如果您以前曾經過 Firefox 附加元件，您會知道他們具有某些令人印象深刻的功能 &mdash; 透過檢索網頁底層結構，顯示一個可滑動的照片、影片 3D 牆。然而，有些最熱門的附加元件只透過容易上手的語言，像是 "
-"JavaScript、XUL 和 CSS，對 Firefox 做一點小改變。假如您已經有了您第一個附加元件的點子，開始了解附加元件是怎麼被封裝、怎麼和 Firefox 互動的吧。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:24
-msgid "Learn the basics"
-msgstr "打好基礎"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:26
-msgid ""
-"The easiest way to do that is to follow along with the <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Firefox Add-ons Developer Guide</a> as it explains in detail the "
-"technologies used in extensions and walks through the creation of several basic extensions."
-msgstr "最簡單的方式就是參考 <a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\"> Firefox 附加元件開發指引</a>，當中解釋了擴充套件所用的技術並帶您動手作出一些基礎擴充套件。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:32
-msgid "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">Visit the Firefox Add-ons Developer Guide</a>"
-msgstr "<a href=\"https://developer.mozilla.org/En/Firefox_addons_developer_guide\">閱讀 Firefox 附加元件開發指南</a>"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:38
-msgid ""
-"If you'd rather dive right in, there are several other tutorials in our <a href=\"%(base_docs)show-to/getting-started\">Getting Started section</a> of the <a href=\"%(base_docs)show-to\">How-to "
-"Library</a> that jump straight into code. And if you have some time to spare, you may prefer a video walkthrough of extension basics: <a href=\"http://design-challenge.mozilla.com/resources/"
-"#extension_bootcamp\">Extension Bootcamp: Zero to Hello World! in 45 Minutes</a>."
-msgstr ""
-"如果您準備好要深入了解，<a href=\"%(base_docs)show-to\">「如何…」圖書館</a> 裡的 <a href=\"%(base_docs)show-to/getting-started\">「快速入門」段落</a> 有些教學文件可以讓您直接進入編寫程式的部份。如果"
-"您有些閒暇時間，您可以觀看關於套件基礎的教學影片：<a href=\"http://design-challenge.mozilla.com/resources/#extension_bootcamp\">套件訓練營：四十五分鐘，從零到 Hello World！</a>。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:47
-msgid "Build your add-on"
-msgstr "打造您的附加元件"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:49
-msgid ""
-"Once you're familiar with the extension development environment, it's time to start on your first add-on. Back in the day, this meant climbing up a hill in the snow to find a suitable template to "
-"copy for your add-on's install manifest. Fortunately, the Add-on Developer Hub (that's this!) introduces the snowmobile of extension packaging: the <a href=\"%(url)s\">Add-on Packager</a>!"
-msgstr ""
-"在您熟悉擴充套件開發環境後就開始建立您第一個附加元件吧。以前，我們必須費盡心力找到一個適合的範本作為附加元件的 manifest。好家在，附加元件開發者交流中心(就是這裡!)推出讓封裝擴充套件更容易的工具: <a "
-"href=\"%(url)s\">Add-on Packager</a>!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:54
-msgid ""
-"Just follow the steps to enter your add-on's name, version number, supported applications, and other details, and it will make your extension package for download. Not only does it generate your "
-"install manifest, but you can select common interface elements like toolbars, sidebars, and context menus to make a working extension skeleton. We're practically writing your extension for you!"
-msgstr ""
-"只要跟著步驟，輸入您附加元件的名稱、版本號、支援的應用程式以及其他細節，您就可以封裝附加元件以便下載。不只自動產生您的安裝資訊，您還可以選擇常用的介面元素，像是工具列、側邊欄以及內容選單，製作您套件"
-"的框架。我們幾乎在幫您撰寫您的套件！"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:60
-msgid "Take me to the Add-on Packager!"
-msgstr "帶我去 Add-on Packager！"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:65
-msgid "Add some flair"
-msgstr "添加一些派頭"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:67
-msgid ""
-"If your add-on needs more functionality than the empty sidebar the Packager made for you, there are several ways to find out how to add the functionality you want. One of the most common ways of "
-"learning how to do something in an extension is to look at what other extensions already do. Just remember that if the other extension's license doesn't allow you to copy its source, you can't."
-msgstr ""
-"若您的附加元件需要比 Packager 給您的空白側邊欄之外的功能，還有不同方式可以找到您想要的功能。最常見的方法就是直接拆開別人的擴充套件看看人家是怎麼做的。但請記得若別人的套件不允許您直接複製其原始碼，您"
-"就不該這麼做。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:72
-msgid ""
-"We also have two areas here in the Hub that may help you out: the <a href=\"%(base_docs)sreference\">API &amp; Language References</a> page has links to official documentation for extension "
-"languages and APIs like JavaScript, XUL, XPCOM, and FUEL. Secondly, the <a href=\"%(base_docs)show-to\">How-to Library</a> is full of tutorials, walkthroughs, videos, and articles written by smart "
-"people on extension development and best practices."
-msgstr ""
-"我們也有兩個資源協助您: 第一個是<a href=\"%(base_docs)sreference\">API&amp; Language 參考資料</a>頁面，記載了擴充套件 Language &amp; API 的官方文件連結，像是 Javascript, XUL, XPCOM與FUEL。再來，<a "
-"href=\"%(base_docs)show-to\">How-to 圖書館</a>滿載了擴充元件開發與最佳最法的相關資源: 教學、指南、影片、文章，由最聰明的人撰寫。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:78
-msgid "View the References"
-msgstr "檢視參考資料"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:79
-msgid "Enter the How-to Library"
-msgstr "進入『如何完成...』圖書館"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:81
-msgid ""
-"If you already know what you're looking for, just <a href=\"/en-US/developers/search\">search for it!</a> Our search will scour the best add-on resources to find that missing interface or common "
-"problem you're having. If search isn't cutting it, feel free to <a href=\"https://forums.addons.mozilla.org\">ask for help</a> in our forums."
-msgstr ""
-"您已經知道關鍵字了嗎?<a href=\"/en-US/developers/search\">立即搜尋!</a>我們的搜尋引擎挖出最好的附加元件資源，協助您找到所缺乏的介面或解答您常遇到的問題。如果搜尋結果無法滿足您，請多利用我們的討論區"
-"<a href=\"https://forums.addons.mozilla.org\">發問</a>。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:89
-msgid "Test your add-on"
-msgstr "測試您的附加元件"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:91
-msgid ""
-"Even entomologists don't like bugs in their software, so it's important to test your add-on thoroughly before it's ready for general consumption. At minimum, you should make sure your add-on works "
-"on all the platforms and applications it claims to support."
-msgstr "就算是昆蟲學家也不喜歡含蟲軟體，所以在上架以前，對您的附加元件進行全面的測試是非常必要的。至少至少，您應該確保您的附加元件可以在您支援的平台以及應用程式上執行。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:97
-msgid ""
-"To help detect common problems with packaging and security, you should run our <a href=\"%(link_validator)s\">Add-on Validator</a> tool on your file. It's like Spell Check for add-ons. Your add-on "
-"will automatically be validated upon submission, but you may want to test it out beforehand. Plus, passing makes you feel good."
-msgstr ""
-"為協助您偵測包裝及安全性的常見問題，請對您的檔案執行我們的 <a href=\"%(link_validator)s\">Add-on Validator</a> 工具。它就像對附加元件的拼字檢查。送出後您的附加元件將自動被驗證，但您最好在送出之前先"
-"自行測試。此外，通過驗證感覺很爽。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:103
-msgid "Validate my Add-on"
-msgstr "驗證我的附加元件"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:107
-msgid "Share your add-on with the world"
-msgstr "與全世界分享您的附加元件"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:109
-msgid ""
-"Woah, you finished your add-on already? Just so you know, <a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> is hiring. Alright, if you've tested your add-on out and it's free of problems, it's "
-"time to submit your add-on to <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>. With over <em>1.5 billion</em> add-on downloads served, it's the best place to let your new creation live. "
-"Before you submit it, there are a few things to go over."
-msgstr ""
-"哇，您已經完成您的附加元件了？就像您知道的，<a href=\"http://labs.mozilla.com/\">Mozilla Labs</a> 正在招兵買馬。好吧，如果您已經測試好您的附加元件，並且沒有任何問題，您可以把附加元件送到擁有 <em>一"
-"億五千萬個</em> 附加元件的 <a href=\"https://addons.mozilla.org\">Mozilla Add-ons</a>。 在您送出之前，這還有一些事要做。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:115
-msgid ""
-"Mozilla cares a lot about user experience and security. That's why we have a team of volunteer Editors that review add-ons submitted to the site before they are allowed to roam free. We have a "
-"number of policies that we require add-on developers and their contributions to adhere to. Please review these policies before submitting your add-on to ensure your add-on is approved the first "
-"time."
-msgstr ""
-"Mozilla 非常重視使用者經驗和安全性。這就是為什麼我們有一群審核志工，負責在釋出前審核送到網站的附加元件。我們訂定了一些政策，需要附加元件開發者共同遵守。請在送出附加元件之前，詳細閱讀政策，以利您附件"
-"元件的審核。"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:121
-msgid "Review Add-on Policies"
-msgstr "檢閱附加元件政策"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:124
-msgid "Everything in compliance? Great. There's only one thing left to do&hellip;"
-msgstr "全部都順利完成了？恭喜，現在只剩下最後一件事要做&hellip;"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:130
-msgid "Submit my Add-on!"
-msgstr "送出我的附加元件!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:133
-msgid "Congratulations!"
-msgstr "恭喜您!"
-
-#: apps/devhub/templates/devhub/docs/getting-started.html:141
-msgid ""
-"If you're feeling talkative, we'd love to <a href=\"https://forums.addons.mozilla.org\">hear your feedback</a> on how your experience creating an add-on was. Hearing what new developers struggle "
-"with helps us make the experience better for future generations of add-on innovators. Whether you want to comment on the platform, the documentation, or the website, we'll listen. Better yet, since "
-"Mozilla is open, you might even be able to fix that bug or lack of documentation yourself! It's like the circle of life."
-msgstr ""
-"如果您有一些建議，我們非常希望<a href=\"https://forums.addons.mozilla.org\">聽到您關於製作附加元件的意見反饋</a>。了解新手開發者的困難點，協助我們改善未來的附加元件。無論您想評論關於平台、文件或者是"
-"網站，我們都會傾聽。更棒的是，因為 Mozilla 是個開放社群，您甚至可以自行修復臭蟲或者補足缺少的文件！這就像是生命的循環。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:3 apps/devhub/templates/devhub/docs/how-to-extension-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:9 apps/devhub/templates/devhub/docs/how-to.html:17 apps/devhub/templates/devhub/docs/how-to.html:85
-msgid "Extension Development"
-msgstr "擴充套件開發"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:12 apps/devhub/templates/devhub/docs/how-to.html:88
-msgid "Once you know the basics, these guides will help you with intermediate to advanced extension development topics."
-msgstr "當您通曉基礎後，這些指南將幫助您進入進階的套件開發文件。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:17
-msgid "Best Practices"
-msgstr "最佳做法"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:23
-msgid "Respecting the JavaScript Global Namespace"
-msgstr "確認 JavaScript 全域命名空間 (Global Namespace)"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:27
-msgid "In this blog post, Mark Ziesemer explains how to prevevent global namespace pollution by wrapping your extension's variables."
-msgstr "在這篇部落格文章，Mark Ziesemer 將解釋如果透過包裝您的套件變數來避免污染全域命名空間 (global namespace)。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:36 apps/devhub/templates/devhub/docs/how-to-getting-started.html:21
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:93
-msgid "Editor's Pick:"
-msgstr "審核者精選："
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:38
-msgid "Security Best Practices in Extensions"
-msgstr "擴充元件安全性最佳做法"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:42
-msgid "Every extension developer should know and follow the security best practices outlined in this document to keep users safe."
-msgstr "每個套件開發者都應該知道並且遵循這份文件標示的安全性最佳原則，以策使用者安全。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:53
-msgid "Localizing an Extension"
-msgstr "擴充套件在地化"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:56
-msgid "This article explains how to localize an extension, including XUL and JavaScript strings."
-msgstr "這個文章向讀者解釋如何在地化一個擴充套件，包括 XUL 與 JavaScript 字串。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:67
-msgid "Responsible First-run Usage"
-msgstr "負責任的首次執行使用方式"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:70
-msgid "This blog post describes what a bad first-run experience means for users, and gives tips for improving that experience."
-msgstr "這個部落格文章告訴你不良的首次執行經驗對使用者會有什麼影響，並且提供改善經驗的小提示。"
-
-# This is the name/category for a group of tests
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:77
-msgid "Security"
-msgstr "安全性"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:84
-msgid "Evaluating Code with Restricted Privileges"
-msgstr "以受限的權限 eval 程式碼"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:87
-msgid "This article describes the use of Components.utils.evalInSandbox, which is a way to evaluate code \"such as remote code\" without chrome privileges."
-msgstr "這個文章描述 Components.utils.evalInSandbox 的使用，是一種沒有 chrome 權限的情形下 eval 程式碼 \"例如遠端程式碼\" 的方式。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:99
-msgid "Creating Sandboxed HTTP Connections"
-msgstr "建立置於沙盒內的 HTTP 連線"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:102
-msgid "This article explains how to create sandboxed HTTP connections that don't affect the user's cookies."
-msgstr "這篇文章將解釋如何建立不影響使用者 cookies 的沙盒 HTTP 連線。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:112
-msgid "Displaying Web Content in an Extension"
-msgstr "在擴充套件上顯示網路內容"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:115
-msgid "Learn how to display web content in an extension without security issues."
-msgstr "學習如何在擴充套件中安全的顯示網路內容"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:125
-msgid "Five Wrong Reasons to Use eval in an Extension"
-msgstr "五個在擴充套件使用eval的壞處"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:129
-msgid "In this blog post, Wladimir Palant gives five wrong ways to evaluate code in an extension."
-msgstr "Wladimir Palant 透過這個部落格文章告訴您五個在擴充套件使用eval的壞處。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:136
-msgid "Localization"
-msgstr "在地化"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:142
-msgid "Localizing Extension Descriptions"
-msgstr "將擴充套件敘述本地化"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:145
-msgid "Learn how to localize the names and descriptions in extension install manifests."
-msgstr "學習如何本地化擴充套件安裝資訊中的名稱與敘述。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:155
-msgid "Localization and Plurals"
-msgstr "在地化與複數"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:158
-msgid "This article explains how to properly localize strings with plurals."
-msgstr "此文章向您解釋如何正確地本地化含有複數的字串。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:170
-msgid "BabelZilla overview"
-msgstr "BabelZilla 概觀"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:173
-msgid "Learn how the BabelZilla localization community works."
-msgstr "了解 BabelZilla 本地化社區如何運作。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:180
-msgid "Advanced Topics"
-msgstr "進階主題"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:186
-msgid "Video:"
-msgstr "影片:"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:187
-msgid "Stupid/Awesome Extension Development Hacks"
-msgstr "Stupid/Awesome Extension Development Hacks"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:190
-msgid ""
-"In this video, Jono Xia explains how to go further in extension development using XPCOM, overlays, XHRs, DOM manipulation, etc. in order to make Firefox do things you might have never thought "
-"possible."
-msgstr "Jono Xia 在這部影片解釋如何使用 XPCOM, overlays, XHRs, DOM manipulation 等...來進一步開發擴充套件，讓 Firefox 執行您意想不到的功能。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:200
-msgid "JavaScript Code Modules"
-msgstr "JavaScript 程式碼模組"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:203
-msgid ""
-"JavaScript code modules let multiple privileged JavaScript scopes share code. For example, a module could be used by Firefox itself as well as by extensions, in order to avoid code duplication."
-msgstr "Javascript 程式碼模組容許多個有權限的 JavaScript 範圍共用程式碼。舉例來說， Firefox與擴充套件可以共享同一個模組，避免需要寫下重複的程式碼。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:213
-msgid "Creating Custom Firefox Extensions with the Mozilla Build System"
-msgstr "使用 Mozilla Build System 建立自訂的 Firefox 擴充套件"
-
-# 很複雜的翻譯，有問題的話記得幫我修正
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:216
-msgid ""
-"This article describes how to set up the development environment for a large, complex Firefox extension with a need for high-performance, use of third-party libraries in C/C++, or interfaces not "
-"exposed via XPCOM."
-msgstr "這篇文章敘述如何架設一個用來開發大型又複雜的Firefox 擴充套件，且要有高效能、需要使用第三方 C/C++ 資料庫或是介面沒有透過 XPCOM 公開。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:226
-msgid "Multiple Item Packaging"
-msgstr "封存多重物件"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:229
-msgid "This article explains how to create an extension package with multiple items \"extensions\"."
-msgstr "這個文章解釋如何建立一個含有多重物件 \"擴充套件\" 之擴充套件封裝。"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:241
-msgid "Extension Documentation Index"
-msgstr "擴充套件文件索引"
-
-#: apps/devhub/templates/devhub/docs/how-to-extension-development.html:244
-msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Extensions landing page."
-msgstr "如果您在上面的文章找不到您想要的資訊，試試 Mozilla 開發者交流中心擴充套件發送頁面。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:12
-msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner's guides."
-msgstr "本節滿載初學者指南，教您在 Mozilla 平台開發擴充套件之基本知識。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:16
-msgid "The Basics"
-msgstr "基礎"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:23
-msgid "XUL School Tutorial"
-msgstr "XUL 教學"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:26
-msgid ""
-"This tutorial will guide you through all the basics of add-on development, teaching you how to package them, create a suitable development environment, and program the most common features found in "
-"add-ons. It includes working code samples and the references and tools to explore all topics more in depth."
-msgstr "這個教學帶領您學習所有附加元件開發的基本知識，教您如何封裝，建立一個適當的開發環境，撰寫附加元件常見的功能。教學包含數列可以立即使用的程式碼範例，以及用來深度探索所有主題之參考資料與工具。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:36
-msgid "Setting Up an Extension Development Environment"
-msgstr "架構擴充套件開發環境"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:39
-msgid "This article gives suggestions on how to set up your Mozilla application for extension development, including setting up a profile, changing preferences, and helpful development tools."
-msgstr "這篇文章給予使用者，設定 Mozilla 應用程式開發環境的建議，包含設定個人檔案、改變偏好設定與有用的開發工具。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:52
-msgid "Building an Extension"
-msgstr "組建擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:55
-msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Firefox browser containing the text \"Hello, World!\""
-msgstr "這個教學帶您逐步建構一個非常基本的擴充套件 - 該擴充套件新增一個含有 \"哈囉，世界!\" 的狀態列至 Firefox 瀏覽器。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:65
-msgid "Extension Packaging"
-msgstr "擴充套件封存"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:68
-msgid "Learn more details on how extensions are packaged and installed."
-msgstr "進一步了解如何封裝與安裝擴充套件。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:78
-msgid "Install Manifests"
-msgstr "安裝資訊檔"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:81
-msgid "This document explains install manifests \"install.rdf\" and all of properties available for use in your add-on."
-msgstr "此文件向您解釋安裝資訊檔「install.rdf」以及其所有可以用在您附加元件的屬性。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:88
-msgid "Other Tutorials"
-msgstr "其他教學課程"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:95
-msgid "Firefox Add-ons Developer Guide"
-msgstr "Firefox 附加元件開發者指南"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:98
-msgid ""
-"In this detailed guide to extension development, you'll learn the basics of packaging extensions, building an interface with XUL, implementing advanced processes with XPCOM, and how to put it all "
-"together."
-msgstr "這個詳細的擴充套件開發指南教您有關封存擴充套件、使用 XUL 建構一個介面、使用 XPCOM 實作進階程序之基本知識，以及如何將它們組合起來。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:108
-msgid "How to Develop a Firefox Extension"
-msgstr "如何開發 Firefox 擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:111
-msgid "In this walk-through, Robert Nyman explains how to develop a Firefox extension from scratch."
-msgstr "Robert Nyman 逐步解釋如何從零開始開發一個 Firefox 擴充套件。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:121
-msgid "How to Build a Firefox Extension"
-msgstr "如何組建 Firefox 擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:124
-msgid "Lifehacker gives tips and helpful hints on developing your first Firefox extension."
-msgstr "Lifehacker 提供開發您的第一個 Firefox 擴充套件之提示與有用建議。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:134
-msgid "Firefox Extension Development Tutorial"
-msgstr "Firefox 擴充元件開發教學"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:137
-msgid "A multi-page tutorial covering a variety of extension development topics."
-msgstr "多頁教學涵蓋各式各樣的擴充元件開發主題。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:149
-msgid "Creating a Status Bar Extension"
-msgstr "建立狀態列擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:152
-msgid "Learn how to create a simple status bar extension and add more advanced functionality in subsequent tutorials, linked below."
-msgstr "學習如何建立一個簡單的狀態列擴充套件，於後續教學中，新增更多進階功能。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:162
-msgid "Creating a Dynamic Status Bar Extension"
-msgstr "建立動態狀態列擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:165
-msgid "This article modifies the status bar extension created in the above tutorial by fetching content from a website at a regular interval."
-msgstr "這篇文章以下的教學內容，為修改狀態列附加元件的範例，透過固定週期抓取網站內容。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:175
-msgid "Adding Preferences to an Extension"
-msgstr "新增偏好設定至擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:178
-msgid "This article shows how to add preferences to the dynamic status bar created in the above tutorial."
-msgstr "這篇文章將告訴您如何在動態狀態列新增偏好設定。"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:187
-msgid "Books"
-msgstr "書籍"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:193
-msgid "Build Your Own Firefox Extension E-book"
-msgstr "建立您的 Firefox 電子書擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-getting-started.html:196
-msgid "With a little JavaScript know-how, author James Edwards will show you just how straightforward it is to build your own Firefox extensions."
-msgstr "只要有些 Javascript 專門知識，作者 James Edwards 告訴您開發您自己的 Firefox 擴充套件有多簡單。"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:3 apps/devhub/templates/devhub/docs/how-to-other-addons.html:7 apps/devhub/templates/devhub/docs/how-to-other-addons.html:9
-#: apps/devhub/templates/devhub/docs/how-to.html:29 apps/devhub/templates/devhub/docs/how-to.html:125
-msgid "Other Types of Add-ons"
-msgstr "其他類型的附加元件"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:12 apps/devhub/templates/devhub/docs/how-to.html:128
-msgid "Find information on Search Plug-ins, Jetpack, Themes, and other types of add-ons here."
-msgstr "在這裡閱讀搜尋外掛程式、JetPack、佈景主題與其他類別附加元件的資訊。"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:17
-msgid "Jetpack"
-msgstr "Jetpack"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:23
-msgid "Jetpack Tutorial"
-msgstr "Jetpack 教學"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:26
-msgid "Learn how easy it is to extend Firefox with Jetpack in this tutorial."
-msgstr "您可以在這個教學當中學到使用 Jetpack 擴充 Firefox 有多簡單。"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:36
-msgid "Jetpack API Documentation"
-msgstr "Jetpack API 文件"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:39
-msgid "This Jetpack API documentation is a must-have for working on your Jetpack."
-msgstr "Jetpack API 文件是您使用 Jetpack 不可或缺的。"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:53
-msgid "How to Create Themes"
-msgstr "如何建立佈景主題"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:56
-msgid "Learn how to create your very own Theme with this official walk-through."
-msgstr "閱讀官方操作手冊學習建立您個人的佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:63
-msgid "Search Plug-ins"
-msgstr "搜尋引擎外掛程式"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:70
-msgid "Creating OpenSearch Plug-ins for Firefox"
-msgstr "建立給 Firefox 使用的 OpenSearch 外掛程式"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:73
-msgid "This article explains the structure and requirements of search plug-ins in Firefox."
-msgstr "這篇文章解釋 Firefox 搜尋引擎外掛程式的需求與架構。"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:80
-msgid "Plug-ins"
-msgstr "外掛程式"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:87
-msgid "Plug-in Documentation Index"
-msgstr "外掛程式文件索引"
-
-#: apps/devhub/templates/devhub/docs/how-to-other-addons.html:90
-msgid ""
-"Plug-ins to Mozilla-based applications are binary components that can display content that the application itself can't display natively. Explore the Mozilla Developer Center's plug-in "
-"documentation index to learn more."
-msgstr "對於使用 Mozilla 為基礎的應用程式，外掛程式是用來顯示應用程式無法原生處理的內容的二進位套件。欲知詳情，請瀏覽 Mozilla 開發者交流中心之外掛程式文件索引。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:3 apps/devhub/templates/devhub/docs/how-to-theme-development.html:7
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:8 apps/devhub/templates/devhub/docs/how-to-theme-development.html:47 apps/devhub/templates/devhub/docs/how-to.html:25
-#: apps/devhub/templates/devhub/docs/how-to.html:111
-msgid "Theme Development"
-msgstr "佈景主題開發"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:11 apps/devhub/templates/devhub/docs/how-to.html:115
-msgid "Style Mozilla applications the way you want with pixel-perfect themes."
-msgstr "彩繪您的 Mozilla 應用程式，讓每個細節都趨於完美。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:22
-msgid "Creating a Skin for Firefox"
-msgstr "建立 Firefox 的面板"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:26
-msgid "Learn how to find the right files to edit, make your changes, and package up your new theme in this tutorial."
-msgstr "這個教學課程教您如何找到正確的檔案來編輯、修改以及封存您的新主題。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:37
-msgid "How to Create a Firefox Theme"
-msgstr "如何製作 Firefox 佈景主題"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:40
-msgid "Thomas McMahon explains how to create a Firefox theme from start-to-finish in this tutorial."
-msgstr "Thomas McMahon 解釋如何重頭打造 Firefox 佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:54
-msgid "Theme Packaging"
-msgstr "打包佈景主題"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:57
-msgid "This article explains the packaging of themes."
-msgstr "此文章解釋如何打包佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:67
-msgid "First Steps in Theme Design"
-msgstr "佈景主題設計第一步"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:70
-msgid "This blog post by Lim Chee Aun explains the use of -moz-image-region in themes."
-msgstr "這篇部落格文章解釋如何在佈景主題中，使用 -moz-image-region 屬性。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:81
-msgid "Making Sure Your Theme Works with RTL Locales"
-msgstr "確認您的主題與從右往左 (RTL) 書寫方式之語系相容"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:85
-msgid "It's important to make sure your theme works in all locales. This article explains how to tweak your theme to look great for users who browse in right-to-left."
-msgstr "您的主題務必與所有的語系相容。這個文章解釋如何調校您的主題，讓使用由右至左書寫語系的使用者也能好好欣賞您的主題。"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:95
-msgid "Theme Documentation Index"
-msgstr "主題文件索引"
-
-#: apps/devhub/templates/devhub/docs/how-to-theme-development.html:98
-msgid "If you haven't found what you're looking for yet, try the Mozilla Developer Center's Themes section."
-msgstr "如果您找不到想要的內容，請到 Mozilla 開發者中心裡與主題相關的章節找找看。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:3 apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:7
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:9 apps/devhub/templates/devhub/docs/how-to.html:21
-msgid "Thunderbird & Mobile Add-ons"
-msgstr "Thunderbird & Mobile 附加元件"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:13
-msgid "Add-ons aren't just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "並非只有 Firefox 瀏覽器才能透過附加元件擴充。學習如何擴充其他 Mozilla 應用程式，像是 Thunderbird 客戶端郵件收發程式與行動版 Firefox 瀏覽器。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:18
-msgid "Developing Add-ons for Thunderbird"
-msgstr "開發 Thunderbird 附加元件"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:24
-msgid "Building a Thunderbird Extension"
-msgstr "建立 Thunderbird 擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:27
-msgid "This tutorial will take you through the steps required to build a very basic extension - one which adds a status bar panel to the Thunderbird Mail Client containing the text \"Hello, World!\""
-msgstr "這份教學將會帶您一步一步的建立最基本的擴充套件，在 Thunderbird 郵件應用程式當中新增一個「Hello, World!」狀態列面板。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:37
-msgid "An Overview of Thunderbird Components"
-msgstr "Thunderbird 元件概觀"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:40
-msgid "This article describes the Thunderbird user interface, discusses example modifications, and introduces some of the APIs most commonly used by extension developers."
-msgstr "這篇文章描述 Thunderbird 的使用者介面、修改範例討論、介紹一些擴充套件開發者最常用的 API。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:52
-msgid "Thunderbird How-tos"
-msgstr "Thunderbird How-To"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:55
-msgid "This section contains many code samples and how-to articles on common Thunderbird extension tasks."
-msgstr "這個部分包含許多 Thunderbird 附加元件的範例程式與教學文章。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:65
-msgid "Thunderbird Extensions Documentation Index"
-msgstr "Thunderbird 擴充套件文件索引"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:68
-msgid "If you can't find what you're looking for in the above articles, try the Mozilla Developer Center's Thunderbird extensions landing page."
-msgstr "如果您從以上文章找不到資訊，試試看 Mozilla 開發者交流中心中，Thunderbird 的主頁面。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:75
-msgid "Developing Add-ons for Mobile"
-msgstr "開發 Mobile 附加元件"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:81
-msgid "Mobile Extensions"
-msgstr "Mobile 擴充套件"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:84
-msgid "This document explains the specifics on creating an extension for mobile."
-msgstr "這個文件解釋建立Mobile 擴充套件之細節。"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:95
-msgid "Mobile Code Snippets"
-msgstr "Mobile 程式碼片段"
-
-#: apps/devhub/templates/devhub/docs/how-to-thunderbird-mobile.html:98
-msgid "Code snippets specific to mobile."
-msgstr "Mobile 專用的程式碼片段。"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:35 apps/devhub/templates/devhub/docs/reference.html:305
-msgid "More Resources"
-msgstr "更多資源"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:38 apps/devhub/templates/devhub/docs/reference.html:308
-msgid "Already know what you're looking for? <a href=\"%(link_search)s\">Search for it!</a>"
-msgstr "已經知道要找什麼嗎? <a href=\"%(link_search)s\">立即搜尋！</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:43
-msgid "Browse through <a href=\"%(link_reference)s\">API & Language References</a> to find that interface you hope exists"
-msgstr "瀏覽 <a href=\"%(link_reference)s\">API 與語言支援</a> 找出您期待的介面"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:48 apps/devhub/templates/devhub/docs/reference.html:318
-msgid "Need help? <a href=\"https://forums.addons.mozilla.org\">Visit our forums</a>"
-msgstr "需要說明嗎?<a href=\"https://forums.addons.mozilla.org\">進入我們的討論區</a>"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:77
-msgid "Learn the basics of developing an extension on the Mozilla platform with this section full of beginner&#039;s guides."
-msgstr "學習在 Mozilla 平台上，初學者的基礎擴充套件開發指南。"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:99
-msgid "Thunderbird &amp; Mobile Add-ons"
-msgstr "Thunderbird &amp; Mobile 附加元件"
-
-#: apps/devhub/templates/devhub/docs/how-to.html:103
-msgid "Add-ons aren&#039;t just for Firefox. Learn how to extend other Mozilla applications, such as the Thunderbird mail client and Firefox for mobile devices."
-msgstr "附加元件不專屬於 Firefox。了解更多其他 Mozilla 的應用程式，像是 Thunderbird 郵件程式與 Firefox Mobile。"
-
-#: apps/devhub/templates/devhub/docs/marketplace.html:3
-msgid "Marketplace"
-msgstr "Marketplace"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6878,595 +5817,6 @@ msgstr "關於提交您的著作至本站的服務條款。開發者在提交前
 msgid "How to get in touch with us regarding these policies or your add-on."
 msgstr "如何聯絡我們關於這些政策或您的附加元件。"
 
-#: apps/devhub/templates/devhub/docs/reference.html:3 apps/devhub/templates/devhub/docs/reference.html:8
-msgid "API & Language References"
-msgstr "API 與 Langauge 參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:11
-msgid "API &amp; Language References"
-msgstr "API &amp; Language 參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:19
-msgid "XUL: Defining User Interfaces"
-msgstr "XUL: 定義使用者介面"
-
-#: apps/devhub/templates/devhub/docs/reference.html:23
-msgid "XUL Overview"
-msgstr "XUL 概觀"
-
-#: apps/devhub/templates/devhub/docs/reference.html:26 apps/devhub/templates/devhub/docs/reference.html:75 apps/devhub/templates/devhub/docs/reference.html:91
-#: apps/devhub/templates/devhub/docs/reference.html:107 apps/devhub/templates/devhub/docs/reference.html:127 apps/devhub/templates/devhub/docs/reference.html:143
-#: apps/devhub/templates/devhub/docs/reference.html:175 apps/devhub/templates/devhub/docs/reference.html:191 apps/devhub/templates/devhub/docs/reference.html:206
-#: apps/devhub/templates/devhub/docs/reference.html:226 apps/devhub/templates/devhub/docs/reference.html:241 apps/devhub/templates/devhub/docs/reference.html:260
-#: apps/devhub/templates/devhub/docs/reference.html:276
-msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a>"
-msgstr "透過 <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla 開發者交流中心</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:31
-msgid "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet."
-msgstr "XUL (XML 使用者介面語言)是 Mozilla 以 XML 為基礎的語言，讓您建構功能豐富、跨平台的應用程式，無論是否連到網際網路皆可執行。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:38
-msgid "XUL Reference"
-msgstr "XUL 參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:41 apps/devhub/templates/devhub/docs/reference.html:56
-msgid "via <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla Developer Center</a></span>"
-msgstr "透過 <a class=\"refsource\" href=\"http://developer.mozilla.org\">Mozilla 開發者交流中心</a></span>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:45
-msgid "A list of all available XUL elements."
-msgstr "所有可用的 XUL 元素之列表。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:53
-msgid "XUL Controls List"
-msgstr "XUL 控制表"
-
-#: apps/devhub/templates/devhub/docs/reference.html:60
-msgid "A description of many available XUL controls, including screenshots."
-msgstr "許多可用的 XUL 控制之說明書，包含螢幕捷圖。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:67
-msgid "JavaScript: Specifying Behavior"
-msgstr "JavaScript: 指定行為"
-
-#: apps/devhub/templates/devhub/docs/reference.html:72
-msgid "JavaScript Overview"
-msgstr "JavaScript 概觀"
-
-#: apps/devhub/templates/devhub/docs/reference.html:80
-msgid "JavaScript is a small, lightweight, object-oriented, cross-platform scripting language."
-msgstr "JavaScript 是一個小型、輕巧、物件導向、跨平台的指令碼語言。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:88
-msgid "Gecko JavaScript Language Reference"
-msgstr "Gecko JavaScript 語言參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:96
-msgid "Mozilla Developer Center's JavaScript documentation, including functions, statements, properties, and more."
-msgstr "Mozilla 開發者交流中心的 JavaScript 文件，包含了 function, statement, properties, 以及其他東西。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:104
-msgid "JavaScript Style Guide"
-msgstr "JavaScript 寫作指南"
-
-#: apps/devhub/templates/devhub/docs/reference.html:112
-msgid "Mozilla's JavaScript coding standards."
-msgstr "Mozilla 的 JavaScript 程式撰寫規範。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:120
-msgid "CSS: Adding Visual Effects"
-msgstr "CSS: 加入視覺效果"
-
-#: apps/devhub/templates/devhub/docs/reference.html:124
-msgid "CSS Overview"
-msgstr "CSS 概觀"
-
-#: apps/devhub/templates/devhub/docs/reference.html:133
-msgid "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML and is used to style a XUL-based application's user interface."
-msgstr "層疊樣式表 (CSS) 是一個樣式表語言，用來描述以 HTML 或 XML 寫成的文件之版面。它也用來設計 XUL 為基礎的應用程式使用者介面。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:140
-msgid "Gecko CSS Reference"
-msgstr "Gecko CSS 參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:148
-msgid "Mozilla Developer Center's CSS documentation, listing all available properties, values, and selectors."
-msgstr "Mozilla 開發者交流中心的 CSS 文件，列出所有可用的屬性、數值與選擇器（Selector）。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:156
-msgid "W3C CSS Homepage"
-msgstr "W3C CSS 首頁"
-
-#: apps/devhub/templates/devhub/docs/reference.html:159
-msgid "via <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-msgstr "透過 <a class=\"refsource\" href=\"http://www.w3.org\">World Wide Web Consortium</a>"
-
-#: apps/devhub/templates/devhub/docs/reference.html:163
-msgid "Find CSS news, specifications, and tools at the W3C's CSS homepage."
-msgstr "在 W3C CSS 首頁搜尋新聞、規格與工具。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:167
-msgid "FUEL: Easier Extension Development"
-msgstr "FUEL: 擴充套件開發更簡單了"
-
-#: apps/devhub/templates/devhub/docs/reference.html:180
-msgid "FUEL is a JavaScript library designed to help developers build extensions using terminology and interfaces that are familiar to them."
-msgstr "FUEL 為 JavaScript 程式庫，是為了協助開發者以他們自己熟悉的術語與介面建立擴充元件而設計的。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:187
-msgid "STEEL API"
-msgstr "STEEL API"
-
-#: apps/devhub/templates/devhub/docs/reference.html:196
-msgid "STEEL is the Scriptable Thunderbird Easy Extension Library. It is a FUEL-like set of interfaces to facilitate Thunderbird extension development."
-msgstr "STEEL 為 Scriptable Thunderbird Easy Extension Library 的縮寫，類似 FUEL 的介面組，使得開發 Thunderbird 擴充套件更簡單。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:203
-msgid "SMILE API"
-msgstr "SMILE API"
-
-#: apps/devhub/templates/devhub/docs/reference.html:211
-msgid "SMILE is a FUEL-like set of interfaces to facilitate SeaMonkey extension development."
-msgstr "SMILE 是一個類似 FUEL 的介面組，使得開發 SeaMonkey 擴充套件更簡單。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:219
-msgid "XPCOM: Cross-Platform Components"
-msgstr "XPCOM: 跨平台元件"
-
-#: apps/devhub/templates/devhub/docs/reference.html:223
-msgid "XPCOM Overview"
-msgstr "XPCOM 概觀"
-
-#: apps/devhub/templates/devhub/docs/reference.html:231
-msgid "XPCOM is a cross-platform component object model with multiple language bindings, letting the XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr "XPCOM 為跨平台元件物件模組，其與多個程式語言繫結，讓JavaScript、Java與 Python 得以使用與實作XPCOM 元件，而不僅限於 C++。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:238
-msgid "XPCOM Reference"
-msgstr "XPCOM 參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:246
-msgid "Mozilla Developer Center's XPCOM API documentation, listing frozen interfaces and functions."
-msgstr "Mozilla 開發者交流中心之 XPCOM API 文件，列出已經凍結的介面與功能。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:253
-msgid "DOM: Interacting with Content"
-msgstr "DOM: 與內容互動"
-
-#: apps/devhub/templates/devhub/docs/reference.html:257
-msgid "DOM Overview"
-msgstr "DOM 概觀"
-
-#: apps/devhub/templates/devhub/docs/reference.html:265
-msgid "The Document Object Model (DOM) is an API for HTML and XML documents. It provides a structural representation of the document, enabling you to modify its content and visual presentation."
-msgstr "文件物件模型 (Document Object Model, DOM)，是 HTML 或 XML文件之 API，提供文件之結構性代表，讓您修改其內容與視覺效果。"
-
-#: apps/devhub/templates/devhub/docs/reference.html:273
-msgid "Gecko DOM Reference"
-msgstr "Gecko DOM 參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:281
-msgid "Mozilla Developer Center's DOM API documentation"
-msgstr "Mozilla 開發者中心 DOM API 文件"
-
-#: apps/devhub/templates/devhub/docs/reference.html:292
-msgid "Jump to Reference"
-msgstr "跳躍至參考資料"
-
-#: apps/devhub/templates/devhub/docs/reference.html:294
-msgid "XUL"
-msgstr "XUL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:295
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: apps/devhub/templates/devhub/docs/reference.html:296
-msgid "CSS"
-msgstr "CSS"
-
-#: apps/devhub/templates/devhub/docs/reference.html:298
-msgid "FUEL"
-msgstr "FUEL"
-
-#: apps/devhub/templates/devhub/docs/reference.html:299
-msgid "XPCOM"
-msgstr "XPCOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:300
-msgid "DOM"
-msgstr "DOM"
-
-#: apps/devhub/templates/devhub/docs/reference.html:313
-msgid "Learn how to use these APIs and more in our <a href=\"%(link_howto)s\">How-to Library</a>"
-msgstr "我們的<a href=\"%(link_howto)s\">How-to 圖書館</a> 可以教您如何使用這些 API 與其他知識"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:3 apps/devhub/templates/devhub/docs/themes.html:18 apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
-#: apps/pages/templates/pages/faq.html:10
-msgid "Frequently Asked Questions"
-msgstr "常見問題集"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:4
-msgid "Frequently Asked Questions | Themes"
-msgstr "常見問題 | 佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:14 apps/devhub/templates/devhub/docs/themes-faq.html:44
-msgid "Introducing Background Themes"
-msgstr "向您介紹背景佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:16
-msgid "What Are Background Themes?"
-msgstr "什麼是背景佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:17 apps/devhub/templates/devhub/docs/themes-faq.html:59
-msgid "What kind of computers and operating systems do Background Themes work with?"
-msgstr "背景佈景主題相容於哪一種類型的電腦與作業系統?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:18 apps/devhub/templates/devhub/docs/themes-faq.html:68
-msgid "What's the difference between Background Themes and Complete Themes?"
-msgstr "背景佈景主題與完整佈景主題有何不同之處?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:21 apps/devhub/templates/devhub/docs/themes-faq.html:85
-msgid "Installing Background Themes"
-msgstr "安裝背景佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:23 apps/devhub/templates/devhub/docs/themes-faq.html:88
-msgid "How do I add Background Themes to my Firefox?"
-msgstr "我要如何新增背景佈景主題至我的 Firefox 瀏覽器?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:24 apps/devhub/templates/devhub/docs/themes-faq.html:103
-msgid "Are Background Themes free?"
-msgstr "背景佈景主題是免費提供的嗎?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:27 apps/devhub/templates/devhub/docs/themes-faq.html:112
-msgid "Using Background Themes"
-msgstr "使用背景佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:29 apps/devhub/templates/devhub/docs/themes-faq.html:115
-msgid "How do I change my current Background Theme?"
-msgstr "我要如何更改我目前使用的背景佈景主題?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:30 apps/devhub/templates/devhub/docs/themes-faq.html:140
-msgid "If I have a Complete Theme installed, will Background Themes still work?"
-msgstr "如果我已經安裝了一個完整佈景主題，背景佈景主題還能運作嗎?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:31 apps/devhub/templates/devhub/docs/themes-faq.html:150
-msgid "How do I undo a Background Theme?"
-msgstr "我要如何解除安裝背景佈景主題?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:32 apps/devhub/templates/devhub/docs/themes-faq.html:161
-msgid "How do I provide feedback?"
-msgstr "我要如何傳送意見?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:35
-msgid "Creating Your Own Background Themes"
-msgstr "建立您自己的背景佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:37
-msgid "Can I create my own Background Theme?"
-msgstr "我可以建立我自己的背景佈景主題嗎?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:38 apps/devhub/templates/devhub/docs/themes-faq.html:184
-msgid "Are there any content guidelines?"
-msgstr "內容指南為何?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:39 apps/devhub/templates/devhub/docs/themes-faq.html:250
-msgid "Do I still retain ownership over artwork that I upload?"
-msgstr "我仍然保有我上傳的藝術品的所有權嗎?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:40 apps/devhub/templates/devhub/docs/themes-faq.html:258
-msgid "After creating a Background Theme, can I edit the design?"
-msgstr "在建立一個背景佈景主題後，我能編輯這個設計嗎?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:41 apps/devhub/templates/devhub/docs/themes-faq.html:266
-msgid "What's the maximum file size allowable for my Background Theme?"
-msgstr "我的背景佈景主題檔案大小上限為何?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:47
-msgid "What are Background Themes?"
-msgstr "什麼是背景佈景主題?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:49
-msgid ""
-"Background themes are easy-to-install, easy-to-use skins that change the look of your Firefox web browser. There are hundreds of thousands community-designed themes to choose from, with more added "
-"every day. <a href=\"%(browse_url)s\">Start looking here for designs that fit your style.</a>"
-msgstr "背景佈景主題可以改變您的 Firefox 瀏覽器的外貌，而且相當容易安裝與使用。您可以從數以千計，甚至還在每天增加中的社群設計主題中選擇。<a href=\"%(browse_url)s\">來看看符合您風格的設計。</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:61
-msgid "Background Themes work with any type of computer that has Firefox installed. This includes Mac, Linux, Windows, and Android platforms."
-msgstr "只要任何一個作業系統有安裝 Firefox 就可以使用背景佈景主題，這包括 Mac, Linux, Windows 與 Android。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:70
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus."
-msgstr "完整的佈景主題可以完全改變您瀏覽器的外貌，包括視窗框架，位址列，按鈕，分頁，以及選單。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:76
-msgid "Background Themes change just the header and footer areas of your browser. You can instantly preview a design and install it in one click without needing to restart."
-msgstr "背景佈景主題只會改變瀏覽器的頂部與底部區域。你可以馬上預覽一個設計，並在不需要重新啟動瀏覽器的狀況下安裝它。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:90
-msgid ""
-"In just a few seconds, you can install a theme and transform the look of your Firefox web browser. Preview any theme by simply mousing over it; the design appears in your browser header so you can "
-"\"try it on.\" When you're ready, just click the green <code>Add to Firefox</code> button. Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you "
-"wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the <code>Appearance</code> tab."
-msgstr ""
-"只需要幾秒鐘，您就可以安裝一個佈景主題來改變您 Firefox 瀏覽器的外觀。預覽任何佈景主題只需要將滑鼠移上去，讓它出現在瀏覽器的頂部區域來「試穿」。準備好要安裝時，也只需要按下<code>新增至 Firefox</code>"
-"按鈕。佈景主題安裝完成後，會被儲存在附加元件管理員中，讓您任意啟用或停用。只要到<code>工具</code> &gt; <code>附加元件</code>選單並進入 <code>外觀設定</code>分頁。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:105
-msgid "Yes. Themes are free to download and free to use."
-msgstr "是的。佈景主題可以免費下載，免費使用。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:117
-msgid "There are two easy ways to change your theme. You can either:"
-msgstr "有兩個簡單的方式可以改變您的佈景主題，您只要:"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:123
-msgid "Visit the <a href=\"%(gallery_url)s\">gallery</a>, choose your favorite theme, and click on your choice to instantly change the look of your browser."
-msgstr "參訪<a href=\"%(gallery_url)s\">藝廊</a>，選擇喜歡的佈景主題並點下，來立即改變您瀏覽器的外貌。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:130
-msgid ""
-"Once a theme is installed, it is saved in the Add-ons Manager, where you can enable or disable them as you wish. Simply go to the <code>Tools</code> &gt; <code>Add-ons</code> menu and click on the "
-"<code>Appearance</code> tab."
-msgstr "佈景主題安裝完成後，會被儲存在附加元件管理員中，讓您任意啟用或停用。只要到<code>工具</code> &gt; <code>附加元件</code>選單並進入 <code>外觀設定</code>分頁。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:142
-msgid "Yes. If you have a non-default Complete Theme installed, Firefox will automatically switch to a default theme in order to allow you to use your choice of Background Theme designs."
-msgstr "是的。若您安裝了一套非預設的完整佈景主題，Firefox 將自動切換到預設佈景主題來讓您選用背景佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:152
-msgid ""
-"To undo the design you most recently selected, go to <code>Tools</code> &gt; <code>Add-ons</code> in the menu bar and select the <code>Appearance</code> tab. Next to the theme you want to undo, "
-"click the <code>Disable</code> button."
-msgstr "要取下您最近選擇的設計，到<code>工具</code> &gt; <code>附加元件</code>選單並進入 <code>外觀設定</code>分頁。接著按下您要取下的佈景主題旁的<code>停用</code>按鈕。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:163
-msgid "We're always looking for ways to improve themes, and would love to hear what you think. Visit the <a href=\"%(forum_url)s\">themes forum</a> to send us your feedback."
-msgstr "我們永遠在尋找方法來改進佈景主題，且樂意聆聽您的想法。造訪<a href=\"%(forum_url)s\">佈景主題討論區</a>來提出您的回饋。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:170
-msgid "Creating Your Own Themes"
-msgstr "建立您自己的佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:173
-msgid "Can I create my own Theme?"
-msgstr "我可以建立我自己的佈景主題嗎?"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:175
-msgid ""
-"Absolutely! All you need to do is create two graphics files in your favorite graphics editing program (e.g., Photoshop). To get started <a href=\"%(tutorial_url)s\">read more about how to create a "
-"theme</a>."
-msgstr "當然！您只需用喜愛的繪圖軟體（如 Photoshop）來建立兩張圖檔即可。<a href=\"%(tutorial_url)s\">閱讀更多製作佈景主題的說明</a>。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:186
-msgid ""
-"Yes. We are big fans of creativity, but want to ensure that the art displayed in the Themes gallery meets a basic set of guidelines. Please review the <a href=\"%(tos_url)s\">Terms of Service</a> "
-"for authoritative and complete language, but the following gives you an overview of the requirements:"
-msgstr "是的。我們熱中創意，但也要保證佈景主題藝廊中的作品都符合基本方針。參閱<a href=\"%(tos_url)s\">服務條款</a>來取得完整官方說明，以下是這些基本需求的概要："
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:196
-msgid "You either own all the elements of your design OR you are authorized worldwide to reproduce and distribute them (and allow others to do so) by the owner or the law."
-msgstr "您必須擁有所有設計的元素，或是所有人/法律授權您在全世界重製與散佈該作品的權利 (並將前述權利轉授權他人)。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:203
-msgid "Your design does not contain sexually explicit or offensive content."
-msgstr "您的設計不能含有任何猥褻或冒犯性的內容。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:208
-msgid "Your design does not include identifiable elements of any non-celebrity person(s) other than yourself or individuals who have given you permission to do so."
-msgstr "您的設計不得包含任何非公眾人物的可辨識元素，除非這是您本人或是您已經獲得這個人的授權。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:215
-msgid "Your design does not depict violence or Nazi imagery, nor is it discriminatory or hateful."
-msgstr "您的設計不能描寫暴力或納粹圖像，也不得帶有歧視或仇恨的意味。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:221
-msgid "Your design does not relate to gambling."
-msgstr "您的設計不能涉及賭博。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:226
-msgid "Your design does not violate any applicable law or regulation or the rights of any person or entity."
-msgstr "您的設計不能違反任何準據法，規定或侵犯個人或實體的權利。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:231
-msgid ""
-"Also, note that your design needs to be suitable for the Background Themes format (see guidelines), of usable quality, and not duplicative of a prior submission. Finally, while Mozilla does provide "
-"guidelines for submissions, Mozilla retains the discretion to reject or remove designs for any reason. In some cases, this is necessary for legal reasons, but it also allows us to maintain the "
-"integrity of the site."
-msgstr ""
-"此外，您的設計必須遵循背景佈景主題格式 (詳情請閱讀指南)，具備可用性，以及不與已提交的作品重複。最後，Mozilla 發佈的提交方針僅供參考，我們保留權利以任何理由退回或移除任何設計。在某些情況下是因為法律"
-"規定，同時維護這個網站的完整性。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:242
-msgid "<a href=\"%(tutorial_url)s\">Learn more about how to create cool theme designs.</a>"
-msgstr "<a href=\"%(tutorial_url)s\">學習如何建立很棒的佈景主題設計。</a>"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:252
-msgid "Yes. Your artwork will always be <em>your</em> artwork."
-msgstr "是的。您的藝術作品仍然是<em>屬於您的</em>。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:260
-msgid ""
-"Yes. If at any point you need to edit or delete your theme design after it has been submitted to the gallery, you can access it from the <a href=\"%(dashboard_url)s\">Submissions dashboard</a>. "
-"From there, you can view your current designs. By clicking on each, you can make changes to each design's settings."
-msgstr ""
-"是的。在提交您的佈景主題至藝廊後，如果想要編輯或刪除您的佈景主題設計，您可以進入<a href=\"%(dashboard_url)s\">提交儀錶板</a>檢視您目前的設計。需要更改任一設計的設定的話，只要點選該設計即可改變其設"
-"定。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:268
-msgid "The theme you upload may not exceed 300 KB for the header or the footer image."
-msgstr "您上傳的佈景主題的頂部與底部圖片各自的檔案大小不能超過 300KB。"
-
-#: apps/devhub/templates/devhub/docs/themes-faq.html:276
-msgid "Couldn't find the answer you're looking for? Consider visiting the <a href=\"%(support_url)s\">Firefox support</a> website for more help."
-msgstr "還是沒有解答您的問題嗎? 請訪問 <a href=\"%(support_url)s\">Firefox 技術支援</a>網站取得進一步的說明。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:3
-msgid "How to Create Your Own Background Theme"
-msgstr "如何建立您自己的背景佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes.html:4
-msgid "Getting Started | Themes"
-msgstr "開始製作 | 佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes.html:12
-msgid "How to create a theme"
-msgstr "如何建立佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes.html:15
-msgid "Submit your theme"
-msgstr "提交您的佈景主題"
-
-#: apps/devhub/templates/devhub/docs/themes.html:35
-msgid "Themes are made up of two graphic image files&mdash;a \"header\" image and a \"footer\" image&mdash;which skin the default Firefox UI background."
-msgstr "佈景主題由兩張圖檔構成&mdash;一張頂部圖片與一張頂部圖片&mdash;作為 Firefox 瀏覽器預設的使用者介面背景。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:41
-msgid "<a href=\"%(submit_url)s\">Finished Your Design? You can submit it right now!</a>"
-msgstr "<a href=\"%(submit_url)s\">設計完成了嗎? 現在就可以提交囉!</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:46
-msgid "Creating a Theme Header Image"
-msgstr "建立一張主題頂部圖片"
-
-#: apps/devhub/templates/devhub/docs/themes.html:48
-msgid ""
-"The header image is displayed as the background of the top of the browser window, nestling in behind the toolbars, address bar, search bar and the tab strip. It will be <b>anchored to the top-right "
-"corner</b> of the browser window."
-msgstr "頂部圖片為瀏覽器視窗頂部的背景，顯示在工具列、位址列、搜尋列與分頁列的後方。這張圖片的錨點在瀏覽器視窗的<b>右上角</b>。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:57
-msgid "View a sample Theme Header here."
-msgstr "在這邊檢視範例主題頂部圖片。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:59 apps/devhub/templates/devhub/docs/themes.html:130
-msgid "Image Requirements"
-msgstr "圖片需求"
-
-#: apps/devhub/templates/devhub/docs/themes.html:62
-msgid "Dimensions should be <b>3000px wide &times; 200px high</b>"
-msgstr "尺寸必須是 <b>3000 px 寬 &times; 200px 高</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:67 apps/devhub/templates/devhub/docs/themes.html:138
-msgid "PNG or JPG file format"
-msgstr "PNG 或 JPG 檔案格式"
-
-#: apps/devhub/templates/devhub/docs/themes.html:72 apps/devhub/templates/devhub/docs/themes.html:143
-msgid "Image must be no larger than 300 KB in file size"
-msgstr "圖片不能大於 300 KB"
-
-#: apps/devhub/templates/devhub/docs/themes.html:77 apps/devhub/templates/devhub/docs/themes.html:148
-msgid "Tips"
-msgstr "祕訣"
-
-#: apps/devhub/templates/devhub/docs/themes.html:80 apps/devhub/templates/devhub/docs/themes.html:151
-msgid "Subtle, soft contrast images and gradients work best; highly detailed images will compete with the browser UI."
-msgstr "圖片與漸層最好有微小又柔和的對比；太過複雜的圖片會與瀏覽器使用者介面起衝突。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:86
-msgid "Firefox may reveal more of the lower portion of the image if another toolbar or other UI element is added to the top of the window."
-msgstr "如果在視窗頂端新增另一個工具列或其他使用者介面元素，Firefox 會揭露更多的圖片下方部分。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:93
-msgid ""
-"The upper right-hand side of the image should have the most important information&mdash;as a user increases the width of the browser window, the browser reveals more of the left-hand side of the "
-"image."
-msgstr "圖片右側的上半部應顯示最重要的資訊&mdash;使用者增加瀏覽器視窗的寬度時，瀏覽器將顯示更多圖片的左側部分。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:100
-msgid "Online Image Editor Resources"
-msgstr "線上圖片編輯程式資源"
-
-#: apps/devhub/templates/devhub/docs/themes.html:103
-msgid "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash; Pixlr offers professional and easy-to-use tools for creating and editing images within a browser."
-msgstr "<a href=\"%(pixlr_url)s\">Pixlr</a> &mdash 讓使用者在瀏覽器裡使用專業又簡單易用的工具建立與編輯圖片。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:110
-msgid "<a href=\"%(photoshop_url)s\">Photoshop</a> &mdash; Tweak, rotate and touch up photos with Photoshop&reg; Express, a free online photo editor."
-msgstr "<a href=\"%(photoshop_url)s\">Photoshop</a>&mdash; Tweak, Rotate and touch up 圖片 with photoshop &reg; Express, 免費的線上圖片編輯程式。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:118
-msgid "Creating a Theme Footer Image"
-msgstr "建立一個佈景主題底部圖片"
-
-#: apps/devhub/templates/devhub/docs/themes.html:120
-msgid "The footer image is displayed as the background of the bottom of the browser window, behind the add-on and find bars. It will be anchored to the bottom-left corner of the browser window."
-msgstr "底部圖片為瀏覽器視窗頂部的背景，顯示在附加元件列與文字尋找列的後方。這張圖片的錨點在瀏覽器視窗的左下角。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:128
-msgid "View a sample Theme Footer here."
-msgstr "在這邊檢視範例佈景主題底部圖片。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:133
-msgid "Dimensions should be <b>3000px wide &times; 100px high</b>"
-msgstr "<b>寬度應為 3000 px，高度應為 100px</b>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:157
-msgid "Firefox may reveal more of the upper portion of the image if the find bar is open or if an extension adds more height to the bottom of the window."
-msgstr "如果開啟文字尋找列或擴充套件由視窗底端增加高度的話，Firefox 會顯示更多圖片的上半部分。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:164
-msgid ""
-"The left-hand side of the image should have the most importan information&mdash;as a user increases the width of the browser window, the browser reveals more of the right-hand side of the image."
-msgstr "您應該將最重要的資訊顯示在圖片的左手邊部分&mdash;使用者增加瀏覽器視窗寬度時，瀏覽器會顯示更多圖片右手邊部分。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:171
-msgid "Submitting your Theme Images"
-msgstr "提交您的佈景主題圖片"
-
-#: apps/devhub/templates/devhub/docs/themes.html:173
-msgid "To get started submitting your images, go to the Theme Submission page:"
-msgstr "準備好提交您的圖片了嗎? 前往佈景主題提交頁面:"
-
-#: apps/devhub/templates/devhub/docs/themes.html:179
-msgid "<b>Name your theme</b> &mdash; pick a unique name for your theme. Duplicate names are not allowed, so you may need to try a few times to find a unique name."
-msgstr "<b>為您的佈景主題命名</b> &mdash; 選擇一個獨一無二的名稱。名稱不能與其他佈景主題重複，故您可能需要再三嘗試才能找到一個獨一無二的名稱。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:186
-msgid ""
-"<b>Pick a category and tags</b> &mdash; select a category and enter some tags that best describe your theme. Keep in mind that a reviewer may reject your theme if it is obvious that your category "
-"and/or tags are unrelated to your theme."
-msgstr "<b>選擇類別與標籤</b> &mdash; 選擇一個類別並且輸入最能描述您佈景主題的標籤。如果您選擇的類別與(或)標籤無關於您的佈景主題，審核者得退回您的佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:194
-msgid ""
-"<b>Describe your theme</b> &mdash; write a short description of your theme. Keep in mind that a reviewer may reject your theme if your description is not an accurate representation of your theme."
-msgstr "<b>佈景主題的敘述</b> &mdash; 寫下您的佈景主題的簡短敘述。如果您為不實的陳述，審核者有權退回您提交的佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:201
-msgid "<b>Select a license for your theme</b> &mdash; decide on a copyright license for your work. <a href=\"%(cc_url)s\">Read more about the types of Creative Common licenses.</a>"
-msgstr "<b>選擇您佈景主題的授權條款</b> &mdash; 選擇您作品的授權條款。<a href=\"%(cc_url)s\">了解更多有關 Creative Common 授權條款的類別。</a>"
-
-#: apps/devhub/templates/devhub/docs/themes.html:208
-msgid "<b>Important:</b> Please be sure you have the rights to use the image in your theme!"
-msgstr "<b>非常重要:</b> 您必須有權使用這張圖片才能用於佈景主題!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:216
-msgid "<b>Upload your images</b> &mdash; make sure they are under 300 KB in size and JPG or PNG format!"
-msgstr "<b>上傳您的圖片</b> &mdash; 檔案大小不能超過 300 KB，檔案格式必須是 JPG 或 PNG!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:222
-msgid "<b>Select text and tab colors</b> &mdash; you can choose the tab (\"background\") color and foreground text color that work best with your header image."
-msgstr "<b>選擇文字與分頁顏色</b>&mdash; 您可以挑選最適合您的頂部圖片的標籤(背景)顏色與前景文字顏色。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:229
-msgid "<b>Preview your theme</b> &mdash; you're ready to preview your theme! Simply mouse over the image above the Submit Theme button, and see how it looks instantly."
-msgstr "<b>預覽您的佈景主題</b> &mdash; 準備好預覽您的佈景主題了囉! 直接移動您的滑鼠游標到提交您的佈景主題按鈕上方的圖片，立即預覽佈景主題套用後的樣子。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:236
-msgid "<b>Submit your theme</b> &mdash; if everything looks right, click the Submit Theme button and you're done! You can see all the themes you've authored on your profile page."
-msgstr "<b>提交您的佈景主題</b> &mdash; 已經完成每一個步驟了嗎? 點選提交您的佈景主題按鈕就完成囉! 您可以到您的個人檔案頁面檢視所有您建立的佈景主題。"
-
-#: apps/devhub/templates/devhub/docs/themes.html:243
-msgid "<b>Tip:</b> to ensure that your theme is approved for the gallery, be sure it complies with the content guidelines and terms of service!"
-msgstr "<b>秘訣:</b> 為了確保您的佈景主題核准在藝廊展示，您的作品務必遵守內容方針與服務條款!"
-
-#: apps/devhub/templates/devhub/docs/themes.html:254
-msgid "Submit Your Theme Now"
-msgstr "立即提交您的佈景主題"
-
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
 msgstr "您已經停用這個附加元件"
@@ -7608,7 +5958,7 @@ msgstr "{0} 筆成功報告"
 msgid "Developer News"
 msgstr "開發者新聞"
 
-#: apps/devhub/templates/devhub/includes/blog_posts.html:21
+#: apps/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
 msgstr "瀏覽部落格 &#9658;"
 
@@ -8024,11 +6374,11 @@ msgstr "如果您將新檔案加入至已審核通過的版本，新檔案仍需
 msgid "Select the target platform for this file."
 msgstr "選擇這個檔案的目標平台。"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:38
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
 msgstr "您想要送交哪種類型的審核？"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:43
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
 msgstr "僅發佈此版本到我的 Beta 頻道。"
 
@@ -8253,167 +6603,167 @@ msgstr "取消您的附加元件審核要求，元件將會停留在尚未完成
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "您是否確定要取消審核要求？"
 
-#: apps/discovery/modules.py:137
+#: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
 msgstr "輕鬆購物"
 
-#: apps/discovery/modules.py:138
+#: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr "從舒適的瀏覽器儲存你最愛的項目"
 
-#: apps/discovery/modules.py:146
+#: apps/discovery/modules.py:149
 msgid "Build the perfect website"
 msgstr "打造完美的網站"
 
-#: apps/discovery/modules.py:153
+#: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
 msgstr "使用這些工具協助測試 Firefox"
 
-#: apps/discovery/modules.py:161
+#: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
 msgstr "第一次使用附加元件？"
 
-#: apps/discovery/modules.py:162
+#: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
 msgstr "不用擔心，從以下三個元件開始探索吧！"
 
-#: apps/discovery/modules.py:166
+#: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
 msgstr "將網路上的內容在超過四十種語言間互相翻譯。"
 
-#: apps/discovery/modules.py:168
+#: apps/discovery/modules.py:171
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "簡單地連結到社群網路，分享或評論您正在瀏覽的網頁。"
 
-#: apps/discovery/modules.py:170
+#: apps/discovery/modules.py:173
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr "在線上購物時快速比價，或快速搜尋航班。"
 
-#: apps/discovery/modules.py:180
+#: apps/discovery/modules.py:183
 msgid "Firefox 4 Collection"
 msgstr "Firefox 4 收藏集"
 
-#: apps/discovery/modules.py:181
+#: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
 msgstr "這裡有一些很棒的 Firefox 4 附加元件。"
 
-#: apps/discovery/modules.py:190
+#: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "聖派屈克節主題"
 
-#: apps/discovery/modules.py:191
+#: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "妝點您的瀏覽器來慶祝聖派屈克節。"
 
-#: apps/discovery/modules.py:200
+#: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
 msgstr "Firefox 暑假收藏集"
 
-#: apps/discovery/modules.py:201
+#: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
 msgstr "試試這些很棒的 Firefox 附加元件。"
 
-#: apps/discovery/modules.py:209
+#: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
 msgstr "Thunderbird 收藏集"
 
-#: apps/discovery/modules.py:210
+#: apps/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
 msgstr "試試這些很棒的 Thunderbird 附加元件。"
 
-#: apps/discovery/modules.py:218
+#: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
 msgstr "輕鬆一下"
 
-#: apps/discovery/modules.py:219
+#: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
 msgstr "這些附加元件讓您旅途順利！"
 
-#: apps/discovery/modules.py:223
+#: apps/discovery/modules.py:226
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr "以國旗表示代管這個網站的伺服器之位置以及更多功能。"
 
-#: apps/discovery/modules.py:225
+#: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "FoxClock 讓您一眼盡收世界各地的時間。"
 
-#: apps/discovery/modules.py:227
+#: apps/discovery/modules.py:230
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr "線上購物或航班查詢時自動取得最低報價。"
 
-#: apps/discovery/modules.py:237
+#: apps/discovery/modules.py:240
 msgid "A+ add-ons for School"
 msgstr "上學時不可或缺的甲等附加元件"
 
-#: apps/discovery/modules.py:238
+#: apps/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "教師、學生、家長回到學校後可用的附加元件。"
 
-#: apps/discovery/modules.py:243
+#: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
 msgstr "哪些網站是值得信賴的？"
 
-#: apps/discovery/modules.py:244
+#: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Xmarks 是書籤類的最佳附加元件。"
 
-#: apps/discovery/modules.py:245
+#: apps/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "整頁翻譯、文字翻譯、字典，還有其他好元件!"
 
-#: apps/discovery/modules.py:262
+#: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
 msgstr "幫助您在 2012 年更得心應手的附加元件"
 
-#: apps/discovery/modules.py:269
+#: apps/discovery/modules.py:272
 msgid "Love is in the Air"
 msgstr "愛在空中"
 
-#: apps/discovery/modules.py:270
+#: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
 msgstr "讓您的 Firefox 變得更羅曼蒂克。"
 
-#: apps/discovery/modules.py:277
+#: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
 msgstr "套上佈景主題吧!"
 
-#: apps/discovery/modules.py:278
+#: apps/discovery/modules.py:281
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
 msgstr "使用 Firefox for Android 開啟 addons.mozilla.org，為您的行動瀏覽器穿上符合您樣式、心情或季節的佈景主題！"
 
-#: apps/discovery/modules.py:287
+#: apps/discovery/modules.py:290
 msgid "Get up and move!"
 msgstr "動起來！"
 
-#: apps/discovery/modules.py:288
+#: apps/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "安裝這些健身附加元件，繼續運動，常保健康。"
 
-#: apps/discovery/modules.py:296
+#: apps/discovery/modules.py:299
 msgid "New &amp; Now"
 msgstr "最近 &amp; 最新"
 
-#: apps/discovery/modules.py:297
+#: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "立刻取得最近最新、不可或缺的附加元件。"
 
-#: apps/discovery/modules.py:329
+#: apps/discovery/modules.py:332
 msgid "Worry-free browsing"
 msgstr "無憂瀏覽"
 
-#: apps/discovery/modules.py:330
+#: apps/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "這個收藏集的附加元件保護您的網路隱私權。"
 
-#: apps/discovery/modules.py:339
+#: apps/discovery/modules.py:342
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "工作、娛樂、隱私保全、生產力&hellip; 幾乎包含各式各樣的東西!"
 
-#: apps/discovery/modules.py:347
+#: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
 msgstr "Australis 競賽得獎附加元件"
 
-#: apps/discovery/modules.py:355
+#: apps/discovery/modules.py:358
 msgid "What are your interests?"
 msgstr "您的興趣是什麼？"
 
@@ -8942,44 +7292,44 @@ msgstr "可通過 (五至十天)"
 msgid "Overdue (Over 10 days)"
 msgstr "逾期 (超過十天)"
 
-#: apps/editors/views.py:421
+#: apps/editors/views.py:422
 msgid "An unknown error occurred"
 msgstr "發生了未知的錯誤"
 
-#: apps/editors/views.py:447
+#: apps/editors/views.py:448
 msgid "Self-reviews are not allowed."
 msgstr "不允許自我審核。"
 
-#: apps/editors/views.py:466
+#: apps/editors/views.py:467
 msgid "Review successfully processed."
 msgstr "審核流程已順利開始。"
 
-#: apps/editors/views.py:653
+#: apps/editors/views.py:654
 msgid "was approved"
 msgstr "已經審核通過"
 
 # 80%
 # 100%
-#: apps/editors/views.py:654
+#: apps/editors/views.py:655
 msgid "given preliminary review"
 msgstr "給予初步審核"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:656
 msgid "rejected"
 msgstr "已退回"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:657
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "已提升審核層級"
 
 # 79%
 # 100%
-#: apps/editors/views.py:658
+#: apps/editors/views.py:659
 msgid "needs more information"
 msgstr "需要更多資訊"
 
-#: apps/editors/views.py:659
+#: apps/editors/views.py:660
 msgid "needs super review"
 msgstr "需要超級審核"
 
@@ -9653,47 +8003,47 @@ msgstr "在存取檔案 %s 時發生錯誤。%s。"
 msgid "There was an error accessing file %s."
 msgstr "存取檔案 %s 時發生錯誤。"
 
-#: apps/files/utils.py:254
+#: apps/files/utils.py:257
 msgid "Could not parse uploaded file."
 msgstr "無法解析已上傳的檔案。"
 
-#: apps/files/utils.py:291
+#: apps/files/utils.py:294
 msgid "Invalid file name in archive: {0}"
 msgstr "壓縮檔中有無效檔名: {0}"
 
-#: apps/files/utils.py:299
+#: apps/files/utils.py:302
 msgid "File exceeding size limit in archive: {0}"
 msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 
-#: apps/files/utils.py:349
+#: apps/files/utils.py:352
 msgid "Invalid archive."
 msgstr "無效的封存。"
 
-#: apps/files/utils.py:439 apps/files/utils.py:442
+#: apps/files/utils.py:442 apps/files/utils.py:445
 msgid "Could not parse install.rdf."
 msgstr "無法解析 install.rdf。"
 
-#: apps/files/utils.py:452
+#: apps/files/utils.py:455
 msgid "Could not find a UUID."
 msgstr "找不到 UUID。"
 
-#: apps/files/utils.py:454
+#: apps/files/utils.py:457
 msgid "UUID doesn't match add-on."
 msgstr "UUID 與附加元件不相符。"
 
-#: apps/files/utils.py:458
+#: apps/files/utils.py:461
 msgid "Duplicate UUID found."
 msgstr "發現重複的 UUID。"
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:464
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "版本號碼應該少於 32 個字元。"
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:467
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本號碼只能含有英文字母、數字，以及這些標點符號: +*.-_。"
 
-#: apps/files/utils.py:481
+#: apps/files/utils.py:484
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> 與附加元件不相符"
 
@@ -10723,6 +9073,10 @@ msgstr "維基百科上關於常見開放原始碼授權的比較條目。"
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr "一個幫助您選擇開放原始碼專案授權的指南網站"
 
+#: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9 apps/pages/templates/pages/faq.html:10
+msgid "Frequently Asked Questions"
+msgstr "常見問題集"
+
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
 msgstr "使用附加元件"
@@ -11199,15 +9553,13 @@ msgstr "批評某套附加元件原有的功能。舉例來說，假設某套附
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
-msgstr ""
-"請使用「回報此評論」功能來回報或標示有問題的評論，這些評論將會被送交審查。我們的審查團隊將會依照評論指南上所列的規範來判斷是否該刪除該留言，或將其還原。"
+msgstr "請使用「回報此評論」功能來回報或標示有問題的評論，這些評論將會被送交審查。我們的審查團隊將會依照評論指南上所列的規範來判斷是否該刪除該留言，或將其還原。"
 
 #: apps/pages/templates/pages/review_guide.html:138
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"請回報或點擊「回報此評論」來標示任何有問題的評論，這些評論將被送回給我們的管理團隊，依照評論指南上的方式來處理，並決定要刪除該評論或將其還原至網站上。"
+msgstr "請回報或點擊「回報此評論」來標示任何有問題的評論，這些評論將被送回給我們的管理團隊，依照評論指南上的方式來處理，並決定要刪除該評論或將其還原至網站上。"
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11217,10 +9569,7 @@ msgstr "我是附加元件作者，我可以回應審核評論嗎？"
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
-msgstr ""
-"可以，附加元件作者可以對評論提供一次回應。您可以到 <a "
-"href=\"http://forums.mozilla.org/viewforum.php?f=23\">討論區</a> "
-"設定討論主題，來讓使用者做其他討論。"
+msgstr "可以，附加元件作者可以對評論提供一次回應。您可以到 <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">討論區</a> 設定討論主題，來讓使用者做其他討論。"
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -11231,8 +9580,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"一般來說，不行。但如該評論並未符合上述的評論指南上描述的內容，您可以點擊「回報此評論」交給我們審查。若該評論當中抱怨的問題在您新版的附加元件中已不存在，"
-"我們可能會刪除該評論。若有更多的請求，請寫明至 amo-editors@mozilla.org。"
+"一般來說，不行。但如該評論並未符合上述的評論指南上描述的內容，您可以點擊「回報此評論」交給我們審查。若該評論當中抱怨的問題在您新版的附加元件中已不存在，我們可能會刪除該評論。若有更多的請求，請寫明"
+"至 amo-editors@mozilla.org。"
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -12941,7 +11290,7 @@ msgstr "使用二進位元件的附加元件。"
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加元件已要求進行嚴格的相容性檢測。"
 
-#: apps/versions/models.py:659
+#: apps/versions/models.py:657
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 

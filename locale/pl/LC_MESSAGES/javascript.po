@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2013-08-25 10:49+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1081,11 +1081,6 @@ msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłąc
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Usuń tę lokalizację"
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "Pobierz plik {0}"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2015-01-09 12:17+0300\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1082,11 +1082,6 @@ msgstr "Пока мы производим техническое обслужи
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Удалить эту локализацию"
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "Загрузить {0}"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"

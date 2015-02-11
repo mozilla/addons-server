@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2015-02-03 05:39+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1062,11 +1062,6 @@ msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "移除此本地化"
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "下载 {0}"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-04 08:35-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2011-12-24 11:49+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1071,11 +1071,6 @@ msgstr "האפשרות הזאת כבויה זמנית בזמן שאנחנו עו
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "להסיר את התרגום הזה"
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr ""
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"

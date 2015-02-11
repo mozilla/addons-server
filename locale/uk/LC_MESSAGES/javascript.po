@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-07 08:57-0700\n"
+"POT-Creation-Date: 2015-02-11 09:57-0700\n"
 "PO-Revision-Date: 2015-02-09 13:07+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1423487238.0\n"
 
@@ -104,22 +103,15 @@ msgstr "Ваш додаток пройшов перевірку без поми�
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Включити детальні примітки до випуску (це може бути зроблено в наступному "
-"кроці)."
+msgstr "Включити детальні примітки до випуску (це може бути зроблено в наступному кроці)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
-"Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові "
-"ім'я користувача та пароль у примітках до випуску (це може бути зроблено в "
-"наступному кроці)."
+msgstr "Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
-"Якщо ваш додаток призначений для обмеженого кола, вам слід вибрати попередню "
-"перевірку замість повної перевірки."
+msgstr "Якщо ваш додаток призначений для обмеженого кола, вам слід вибрати попередню перевірку замість повної перевірки."
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
@@ -127,37 +119,29 @@ msgstr "Контрольний перелік при представленні 
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Перевірте наступні пункти перед завершенням вашого представлення. Це "
-"зменшить затримку чи нерозуміння під час процесу розгляду:"
+msgstr "Перевірте наступні пункти перед завершенням вашого представлення. Це зменшить затримку чи нерозуміння під час процесу розгляду:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи "
-"обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для "
-"перевірки окремо. Переконайтеся, що ви використовуєте поле завантаження "
-"програмного коду, щоб запобігти відхиленню вашого запиту."
+"Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для перевірки окремо. Переконайтеся, що ви "
+"використовуєте поле завантаження програмного коду, щоб запобігти відхиленню вашого запиту."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Під час процесу перевірки було знайдено наступні проблеми, які можуть "
-"призвести до відхилення:"
+msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
-"Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це "
-"тут."
+msgstr "Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це тут."
 
-#: static/js/common/upload-addon.js:425
+#: static/js/common/upload-addon.js:424
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Деякі платформи недоступні для цього типу додатків."
 
-#: static/js/common/upload-addon.js:427
+#: static/js/common/upload-addon.js:426
 msgid "Sorry, no supported platform has been found."
 msgstr "Нажаль, не знайдено підтримуваних платформ."
 
@@ -780,7 +764,7 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Інше"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1264 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1258 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Спочатку виберіть програму"
 
@@ -965,57 +949,57 @@ msgstr "Більше не стежити"
 msgid "Your browser does not support the video tag"
 msgstr "Ваш браузер не підтримує тег відео"
 
-#: static/js/zamboni/devhub.js:382
+#: static/js/zamboni/devhub.js:376
 msgid "Changes Saved"
 msgstr "Зміни збережено"
 
-#: static/js/zamboni/devhub.js:398
+#: static/js/zamboni/devhub.js:392
 msgid "Enter a new author's email address"
 msgstr "Введіть нову адресу ел. пошти автора"
 
-#: static/js/zamboni/devhub.js:545
+#: static/js/zamboni/devhub.js:539
 msgid "There was an error uploading your file."
 msgstr "Сталась помилка при вивантаженні вашого файлу."
 
-#: static/js/zamboni/devhub.js:690
+#: static/js/zamboni/devhub.js:684
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файли"
 msgstr[2] "{files} файлів"
 
-#: static/js/zamboni/devhub.js:693
+#: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} відгук користувача"
 msgstr[1] "{reviews} відгуки користувача"
 msgstr[2] "{reviews} відгуків користувача"
 
-#: static/js/zamboni/devhub.js:805
+#: static/js/zamboni/devhub.js:799
 msgid "Learn more"
 msgstr "Дізнатись більше"
 
-#: static/js/zamboni/devhub.js:809
+#: static/js/zamboni/devhub.js:803
 msgid "Example"
 msgstr "Приклад"
 
-#: static/js/zamboni/devhub.js:1165
+#: static/js/zamboni/devhub.js:1159
 msgid "Image changes being processed"
 msgstr "Обробка змін зображень"
 
-#: static/js/zamboni/devhub.js:1292
+#: static/js/zamboni/devhub.js:1286
 msgid "Starting tests..."
 msgstr "Починаю тести..."
 
-#: static/js/zamboni/devhub.js:1299
+#: static/js/zamboni/devhub.js:1293
 msgid "Waiting for test results..."
 msgstr "Чекаю результати тесту..."
 
-#: static/js/zamboni/devhub.js:1301 static/js/zamboni/devhub.js:1306
+#: static/js/zamboni/devhub.js:1295 static/js/zamboni/devhub.js:1300
 msgid "Internal Server Error"
 msgstr "Внутрішня помилка сервера"
 
-#: static/js/zamboni/devhub.js:1341
+#: static/js/zamboni/devhub.js:1335
 msgid "Must be a valid e-mail address."
 msgstr "Повинна бути дійсна адреса ел. пошти."
 
@@ -1098,11 +1082,6 @@ msgstr "Дана функція тимчасово вимкнута доки м�
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Вилучити цю локалізацію"
-
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/packager.js:31
-msgid "Download {0}"
-msgstr "Завантажити {0}"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
