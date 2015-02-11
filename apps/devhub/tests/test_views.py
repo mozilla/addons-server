@@ -1583,6 +1583,20 @@ class TestSubmitStep7(TestSubmitBase):
         eq_(next_steps.eq(1).attr('href'), self.addon.get_dev_url('profile'))
 
     @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    def test_finish_submitting_unlisted_addon(self):
+        eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
+        self.addon.update(is_listed=False)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        # For unlisted add-ons, there's only the devhub page link displayed.
+        content = doc('.addon-submission-process')
+        assert len(content('a')) == 1
+        assert content('a').attr('href') == self.addon.get_dev_url()
+
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
