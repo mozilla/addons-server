@@ -75,6 +75,7 @@ HERA = []
 LOG_LEVEL = logging.DEBUG
 
 LOGGING['loggers'].update({
+    'adi.updatecountsfromfile': {'level': logging.INFO},
     'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
