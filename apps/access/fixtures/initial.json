@@ -28,5 +28,15 @@
         "created": "2010-09-08 07:06:05",
         "modified": "2010-09-08 07:06:05"
     }
+  },
+  {
+    "pk": 4,
+    "model": "access.group",
+    "fields": {
+        "name": "Senior Add-on Reviewers",
+        "rules": "Addons:Review,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View,Addons:ReviewUnlisted",
+        "created": "2010-09-08 07:06:05",
+        "modified": "2010-09-08 07:06:05"
+    }
   }
 ]
