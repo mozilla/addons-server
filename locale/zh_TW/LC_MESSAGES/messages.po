@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-06 18:48+0000\n"
+"PO-Revision-Date: 2015-02-11 18:30+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423248497.0\n"
+"X-POOTLE-MTIME: 1423679433.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3662,13 +3662,14 @@ msgstr "無視驗證失敗"
 
 #: apps/devhub/forms.py:511
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "好，請將我的附加元件上架至 AMO。"
 
 #: apps/devhub/forms.py:512
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"不選取此欄位仍會上傳並審查您的附加元件，但不會在 AMO 當中公開顯示，也不會被任何使用者下載。若您有任何問題，請保持勾選此欄位，平常不大需要取消勾選。"
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3891,7 +3892,7 @@ msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "因為附加元件不會公開上架，跳至第六步"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -3952,7 +3953,7 @@ msgstr "成為 AMO 審核者"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "了解附加元件"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -3960,10 +3961,17 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 與 <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> 的 Web "
+"開發者，您已經具備了開發附加元件所必需的能力。"
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"請前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
+"Network</a> 以了解您還需要知道哪些事情才能開始下手。"
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -3996,11 +4004,11 @@ msgstr "瀏覽所有附加元件►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "發布您的附加元件！"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+msgstr "上傳 <a href=\"%(addon_url)s\">附加元件</a> 或 <a href=\"%(theme_url)s\">佈景主題</a>！"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4025,7 +4033,7 @@ msgstr "擴充套件開發"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "個性面板"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4048,7 +4056,7 @@ msgstr "附加元件開發"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "社群與技術支援"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -4959,11 +4967,11 @@ msgstr "使用下方欄位上傳您的附加元件並選擇可執行的平台。
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "這個檔案與哪些平台相容？"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "您想將您的附加元件上架至 AMO 嗎？"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
