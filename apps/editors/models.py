@@ -667,19 +667,25 @@ class RereviewQueueTheme(amo.models.ModelBase):
 
     @property
     def header_path(self):
+        """Return the path to the header image."""
         return self.theme._image_path(self.header or self.theme.header)
 
     @property
     def footer_path(self):
-        return self.theme._image_path(self.footer or self.theme.footer)
+        """Return the path to the optional footer image."""
+        footer = self.footer or self.theme.footer
+        return footer and self.theme._image_path(footer) or ''
 
     @property
     def header_url(self):
+        """Return the url of the header imager."""
         return self.theme._image_url(self.header or self.theme.header)
 
     @property
     def footer_url(self):
-        return self.theme._image_url(self.footer or self.theme.footer)
+        """Return the url of the optional footer image."""
+        footer = self.footer or self.theme.footer
+        return footer and self.theme._image_url(footer) or ''
 
 
 class ThemeLock(amo.models.ModelBase):
