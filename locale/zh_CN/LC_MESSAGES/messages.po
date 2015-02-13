@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-11 22:11+0000\n"
+"PO-Revision-Date: 2015-02-13 02:45+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423692676.0\n"
+"X-POOTLE-MTIME: 1423795518.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1458,11 +1458,11 @@ msgstr "已被保留"
 
 #: apps/amo/log.py:195
 msgid "{addon} {version} escalated."
-msgstr "{addon} {version} 已进入升级流程。"
+msgstr "{addon} {version} 已向上呈报。"
 
 #: apps/amo/log.py:196
 msgid "Escalated"
-msgstr "已进入升级流程"
+msgstr "已向上呈报"
 
 #: apps/amo/log.py:205
 msgid "{addon} {version} review requested."
@@ -1631,7 +1631,7 @@ msgstr "应用已停用"
 
 #: apps/amo/log.py:421
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr "{addon} 已进入升级流程，因为滥用报告量过高。"
+msgstr "因为滥用报告量过高，{addon} 已向上呈报。"
 
 #: apps/amo/log.py:422
 msgid "High Abuse Reports"
@@ -1639,7 +1639,7 @@ msgstr "高滥用报告量"
 
 #: apps/amo/log.py:429
 msgid "{addon} escalated by reviewer."
-msgstr "{addon} 已经由审核者提升。"
+msgstr "{addon} 已经由审核者已向上呈报。"
 
 #: apps/amo/log.py:430
 msgid "Reviewer escalation"
@@ -3413,11 +3413,11 @@ msgstr "未签名"
 
 #: apps/constants/base.py:507
 msgid "Signed for a full review"
-msgstr "已签名要求完整审核"
+msgstr "已签名为全面审核"
 
 #: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
-msgstr "已签名要求初步审核"
+msgstr "已签名为初步审核"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -7298,7 +7298,7 @@ msgstr "已拒绝"
 #: apps/editors/views.py:657
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr "已进入升级流程"
+msgstr "已向上呈报"
 
 #: apps/editors/views.py:659
 msgid "needs more information"
