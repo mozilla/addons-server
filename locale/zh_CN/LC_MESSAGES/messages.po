@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-13 02:45+0000\n"
+"PO-Revision-Date: 2015-02-13 04:11+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423795518.0\n"
+"X-POOTLE-MTIME: 1423800682.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1619,11 +1619,11 @@ msgstr "账户已更新。"
 
 #: apps/amo/log.py:405
 msgid "Escalation cleared for {addon}."
-msgstr "{addon} 的升级已清除。"
+msgstr "{addon} 的向上呈报已清除。"
 
 #: apps/amo/log.py:406
 msgid "Escalation cleared"
-msgstr "升级已清除"
+msgstr "向上呈报已清除"
 
 #: apps/amo/log.py:414
 msgid "App disabled"
@@ -1639,11 +1639,11 @@ msgstr "高滥用报告量"
 
 #: apps/amo/log.py:429
 msgid "{addon} escalated by reviewer."
-msgstr "{addon} 已经由审核者已向上呈报。"
+msgstr "{addon} 已经由审核者向上呈报。"
 
 #: apps/amo/log.py:430
 msgid "Reviewer escalation"
-msgstr "审核者提升"
+msgstr "审核者向上呈报"
 
 #: apps/amo/log.py:438
 msgid "Video removed from {addon} because of a problem with the video."
@@ -7830,7 +7830,7 @@ msgstr "审核选项"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr "审核后自动提升"
+msgstr "审核后自动下一个"
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
