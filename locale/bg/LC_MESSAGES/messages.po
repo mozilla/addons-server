@@ -7,16 +7,17 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2013-05-16 16:54+0200\n"
-"Last-Translator: Bogomil <bogomil@efb.bg>\n"
+"PO-Revision-Date: 2015-02-14 23:33+0000\n"
+"Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-POOTLE-MTIME: 1423956837.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -140,7 +141,8 @@ msgstr "Препоръчани"
 
 #: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
-msgstr "Потребителите имат възможност да даряват повече или по-малко от тази сума. "
+msgstr ""
+"Потребителите имат възможност да даряват повече или по-малко от тази сума."
 
 #: apps/addons/models.py:314
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
@@ -238,7 +240,7 @@ msgstr "Допринеси"
 #: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
-msgstr "или "
+msgstr "или"
 
 #: apps/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
@@ -262,7 +264,7 @@ msgstr "Mozilla се ангажира да поддържа жизнена и з
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr "Направи дарение "
+msgstr "Дарение"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:9
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
@@ -317,7 +319,7 @@ msgstr "(незадължително)"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
-msgstr "Направи дарение "
+msgstr "Направи дарение"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
@@ -325,7 +327,7 @@ msgstr "Свързване с PayPal"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
-msgstr "Не, благодаря "
+msgstr "Не, благодаря"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
@@ -504,7 +506,7 @@ msgstr "Препоръчани колекции"
 #: apps/addons/templates/addons/listing_header.html:3 apps/addons/templates/addons/impala/listing/sorter.html:2 apps/amo/templates/amo/mobile/sort_by.html:2
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:126
 msgid "Sort by:"
-msgstr "Сортирай по: "
+msgstr "Сортирай по:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -663,7 +665,7 @@ msgstr "Редактирай"
 #. For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: apps/addons/templates/addons/persona_preview.html:66
 msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
+msgstr "%d.%m.%Y"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -672,7 +674,7 @@ msgstr "от {0} на {1}"
 #: apps/addons/templates/addons/persona_preview.html:75 apps/reviews/helpers.py:16 apps/reviews/templates/reviews/review_list.html:63 apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr "Все още неоценен "
+msgstr "Все още неоценен"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
@@ -945,7 +947,7 @@ msgstr "Без рестарт"
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Запознай се с разработчика:  <a href=\"%(url)s\">%(name)s</a>"
+msgstr[0] "Запознай се с разработчика: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Запознай се с разработчиците</a>"
 
 # {0} is an add-on name.
@@ -1032,11 +1034,13 @@ msgstr "Благодарим Ви, че инсталирахте {0}"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:12
 msgid "Meet the {0} Developer"
-msgstr "Запознай се с разработчика на {0} "
+msgstr "Запознай се с разработчика на {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:41
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Преди да свалите тази добавка, моля обмислете подкрепата на развитието ѝ като допринесете. "
+msgstr ""
+"Преди да свалите тази добавка, моля обмислете подкрепата на развитието ѝ "
+"като допринесете."
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
@@ -1088,7 +1092,7 @@ msgstr "{0} потребителя"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr "permalink"
+msgstr ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
@@ -1181,7 +1185,7 @@ msgstr "Седмични сваляния"
 
 #: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
-msgstr "Версия "
+msgstr "Версия"
 
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
@@ -1358,7 +1362,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2 apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3 apps/stats/templates/stats/stats.html:77
 #: templates/menu_links.html:12
 msgid "Collections"
-msgstr "Колекции "
+msgstr "Колекции"
 
 #: apps/amo/helpers.py:164 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
@@ -1849,7 +1853,9 @@ msgstr "Протича поддръжка"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Това свойство е временно спряно, докато правим промени по сайта. Моля, използвайте бутона \"Назад\" и опитайте пак малко по-късно."
+msgstr ""
+"Това свойство е временно спряно докато правим промени по сайта. Моля, "
+"използвайте бутона Назад и опитайте пак малко по-късно."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
@@ -2037,7 +2043,7 @@ msgstr "GUID"
 #. {0} is an add-on name.
 #: apps/applications/templates/applications/appversions.html:26 apps/versions/templates/versions/version_list.html:18
 msgid "Versions"
-msgstr "Версии "
+msgstr "Версии"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
@@ -2111,7 +2117,7 @@ msgstr "Моля, използвайте изображения по-малки 
 
 #: apps/bandwagon/helpers.py:49
 msgid "Remove from Favorites"
-msgstr "Премахни от Любими "
+msgstr "Премахни от Любими"
 
 #: apps/bandwagon/helpers.py:53
 msgid "Add to Favorites"
@@ -2123,7 +2129,7 @@ msgstr "Добави позитивен глас за тази колекция"
 
 #: apps/bandwagon/helpers.py:75
 msgid "Add a negative vote for this collection"
-msgstr "Добави негативен глас за тази колекция "
+msgstr "Добави негативен глас за тази колекция"
 
 #: apps/bandwagon/helpers.py:76
 msgid "Remove my vote for this collection"
@@ -2149,7 +2155,7 @@ msgstr "Премахни от любими"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
-msgstr "Име "
+msgstr "Име"
 
 #: apps/bandwagon/views.py:92
 msgid "Recently Popular"
@@ -2197,7 +2203,7 @@ msgstr "Както е отбелязано в <a href=\"%(legal)s\">легалн
 
 #: apps/bandwagon/templates/bandwagon/add.html:33 apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr "Създай колекция "
+msgstr "Създай колекция"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
@@ -2407,7 +2413,7 @@ msgstr "Изтрий {0}"
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 #: apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133 apps/devhub/templates/devhub/versions/list.html:153
 msgid "Delete"
-msgstr "Изтрий "
+msgstr "Изтрий"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:16
 msgid "Are you sure?"
@@ -2516,7 +2522,7 @@ msgstr "<b>Внимание:</b> Като промените собствени�
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
-msgstr "Продължи "
+msgstr "Продължи"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:84
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
@@ -2553,7 +2559,10 @@ msgstr "Наскоро популярни колекции"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr " Колекциите са групи от сродни добавки, които всеки може да създава и споделя. Разгледайте колекциите, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
+msgstr ""
+"Колекциите са групи от сродни добавки, които всеки може да създава и "
+"споделя. Разгледайте колекциите, създадени от други потребители или <a "
+"href=\"%(url)s\">създайте ваша собствена</a>."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
@@ -2769,7 +2778,7 @@ msgstr "Инсталирай езиков пакет"
 
 #: apps/browse/templates/browse/language_tools.html:12
 msgid "Download Dictionary"
-msgstr "Свали речника "
+msgstr "Свали речника"
 
 #: apps/browse/templates/browse/language_tools.html:13
 msgid "Download Language Pack"
@@ -3244,7 +3253,7 @@ msgstr "Разработчик"
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:134
 msgid "Viewer"
-msgstr "Viewer"
+msgstr "Наблюдател"
 
 #: apps/constants/base.py:135 templates/mobile/header.html:7
 msgid "Support"
@@ -3339,7 +3348,7 @@ msgstr "Изключение"
 
 #: apps/constants/base.py:372
 msgid "Release"
-msgstr "Release"
+msgstr ""
 
 #: apps/constants/base.py:373
 msgid "Change"
@@ -3778,8 +3787,8 @@ msgstr "Документи за разработчици"
 #: apps/devhub/helpers.py:206
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} грешка "
-msgstr[1] "{0} грешки "
+msgstr[0] "{0} грешка"
+msgstr[1] "{0} грешки"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
@@ -4135,7 +4144,7 @@ msgstr "Валидирано на:"
 
 #: apps/devhub/templates/devhub/validation.html:26
 msgid "Tested for compatibility against:"
-msgstr "Тествано за съвместимост спрямо: "
+msgstr "Тествано за съвместимост със:"
 
 #: apps/devhub/templates/devhub/addons/activity.html:4 apps/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
@@ -4243,7 +4252,7 @@ msgstr "Управление на автори и лиценз"
 
 #: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:292
 msgid "Authors"
-msgstr "Автори "
+msgstr "Автори"
 
 #: apps/devhub/templates/devhub/addons/owner.html:30
 msgid "About author roles"
@@ -4666,7 +4675,7 @@ msgstr "Качи нова версия на тази добавка."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "New Version"
-msgstr "Нова версия "
+msgstr "Нова версия"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:44
 msgid "Daily statistics on downloads and users."
@@ -5481,7 +5490,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
-msgstr "memory leaks"
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:112
 msgid "possible conflicts with other add-ons"
@@ -6074,9 +6083,8 @@ msgstr ""
 # 85%
 # 100%
 #: apps/devhub/templates/devhub/payments/tier.html:18
-#, fuzzy
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "или <a href=\"%(url)s\">Отказ</a>"
+msgstr "или <a href=\"%(cancel)s\">Отказ</a>"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:2 apps/stats/templates/stats/addon_report_menu.html:39
 msgid "Contributions"
@@ -6355,7 +6363,7 @@ msgstr "3000 &times; 200 пиксела"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:9 apps/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
-msgstr "300 KB max"
+msgstr "максимално 300КБ"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
@@ -6483,9 +6491,8 @@ msgstr ""
 # 78%
 # 100%
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
-#, fuzzy
 msgid "By %(user_name)s on %(date)s"
-msgstr "от %(user)s на %(date)s"
+msgstr "От %(user_name)s на %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
@@ -7123,21 +7130,19 @@ msgstr[1] ""
 # 75%
 # 100%
 #: apps/editors/helpers.py:155
-#, fuzzy
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Предварителен преглед"
-msgstr[1] ""
+msgstr[0] "Предварителен преглед ({0})"
+msgstr[1] "Предварителни прегледи ({0})"
 
 # 80%
 # 77%
 # 100%
 #: apps/editors/helpers.py:160
-#, fuzzy
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Модерирани рецензии"
-msgstr[1] ""
+msgstr[0] "Модерирана рецензия ({0})"
+msgstr[1] "Модерирани рецензии ({0})"
 
 #: apps/editors/helpers.py:191
 msgid "Addon"
@@ -7509,11 +7514,10 @@ msgstr[1] ""
 # 88%
 # 100%
 #: apps/editors/templates/editors/home.html:25
-#, fuzzy
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "Предварителен преглед"
-msgstr[1] ""
+msgstr[0] "Предварителен преглед ({num})"
+msgstr[1] "Предварителни прегледи ({num})"
 
 #: apps/editors/templates/editors/home.html:36
 msgid "Current waiting times:"
@@ -7522,11 +7526,10 @@ msgstr ""
 # 81%
 # 100%
 #: apps/editors/templates/editors/home.html:44
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} Добавки"
-msgstr[1] ""
+msgstr[0] "{0} разширение"
+msgstr[1] "{0} разширения"
 
 #: apps/editors/templates/editors/home.html:45
 msgid "{0}%"
@@ -7554,11 +7557,10 @@ msgstr ""
 # 100%
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:120
-#, fuzzy
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Модерирани рецензии"
-msgstr[1] ""
+msgstr[0] "Модерирана рецензия ({num})"
+msgstr[1] "Модерирани рецензии ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
@@ -7700,7 +7702,7 @@ msgstr "Полица на добавката"
 
 #: apps/editors/templates/editors/queue.html:184
 msgid "Editors' Guide"
-msgstr "Ръководство на редакторите"
+msgstr "Наръчник на редакторите"
 
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
@@ -8152,9 +8154,8 @@ msgstr "Назад към добавки"
 # 75%
 # 100%
 #: apps/files/templates/files/file.html:2
-#, fuzzy
 msgid "Download {0}"
-msgstr "Свали сега"
+msgstr "Изтегляне {0}"
 
 #: apps/files/templates/files/file.html:4
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
@@ -9272,8 +9273,11 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it. Add-ons that cause large start-up performance issues will have warning messages on their details page."
 msgstr ""
-"Повечето добавки не водят до осезаемо забавяне на производителността на (app_name)s, въпреки че инсталирането на много може да доведе до неблагоприятни ефекти. Ако подозирате, че добавка забавя "
-"%(app_name)s, опитайте да я спрете. Добавките, които причиняват голямо забавяне на производителността, ще имат предупредително съобщение на страниците си."
+"Повечето разширения не водят до осезаемо забавяне на производителността на %"
+"(app_name)s, въпреки че инсталирането на много може да доведе до "
+"неблагоприятни ефекти. Ако подозирате, че разширение забавя %(app_name)s, "
+"опитайте да я спрете. Разширенията, които причиняват голямо забавяне на "
+"производителността, ще имат предупредително съобщение на страниците си."
 
 #: apps/pages/templates/pages/faq.html:142
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
@@ -9506,8 +9510,10 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Мобилните добавки работят с <a href=\"%(mobile_url)s\">Firefox за мобилни</a> и добавят или променят функционалността също като десктоп добавките. Можете да намерите добавки, които работят с "
-"Firefox за мобилни устройства в нашата a href=\"%(gallery_url)s\">галерия</a>."
+"Мобилните разширения работят с <a href=\"%(mobile_url)s\">Firefox за "
+"мобилни</a> и добавят или променят функционалността също като разширенията "
+"за настолната версия. Можете да намерите разширения, които работят с Firefox "
+"за мобилни устройства в нашата <a href=\"%(gallery_url)s\">галерия</a>."
 
 #: apps/pages/templates/pages/faq.html:316
 msgid "Developer Topics"
@@ -9760,7 +9766,7 @@ msgstr "Прегледай историята на тази добавка"
 #. L10n: This describes the number of stars given out of 5
 #: apps/reviews/feeds.py:51
 msgid "Rated %d out of 5 stars"
-msgstr "Оцени с %d от 6 звезди"
+msgstr "Оценени с %d от 5 звезди"
 
 #: apps/reviews/forms.py:118
 msgid "Keep review; remove flags"
@@ -9904,13 +9910,12 @@ msgstr[1] "{num} рецензии"
 # 87%
 # 100%
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
-#, fuzzy
 msgid "Rated {0} out of 5 stars"
-msgstr "Оцени с %d от 6 звезди"
+msgstr "Оценени с {0} от 5 звезди"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Оценени с %(rating)s от 5 звезди"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:3 apps/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
@@ -10116,13 +10121,13 @@ msgstr "Добави в Delicious"
 
 #: apps/sharing/__init__.py:28
 msgid "Digg this!"
-msgstr "Digg this!"
+msgstr ""
 
 #: apps/sharing/__init__.py:34
 msgid "{0} digg"
 msgid_plural "{0} diggs"
-msgstr[0] "{0} digg"
-msgstr[1] "{0} diggs"
+msgstr[0] ""
+msgstr[1] ""
 
 #: apps/sharing/__init__.py:40
 msgid "Post to Facebook"
@@ -10340,16 +10345,14 @@ msgstr "{0} :: Табло със статистики :: Добавки за {1}
 # 77%
 # 100%
 #: apps/stats/templates/stats/stats.html:20
-#, fuzzy
 msgid "{0} :: Statistics Dashboard"
-msgstr "Покажи таблото със статистики"
+msgstr "{0} :: Табло със статистики"
 
 # 82%
 # 100%
 #: apps/stats/templates/stats/stats.html:22
-#, fuzzy
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "{0} :: Табло със статистики :: Добавки за {1}"
+msgstr "Табло със статистики :: Разширения за {0}"
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
@@ -10655,7 +10658,7 @@ msgstr ""
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
-msgstr "Нова парола "
+msgstr "Нова парола"
 
 #: apps/users/forms.py:223 apps/users/forms.py:404
 msgid "Wrong password entered!"
@@ -10929,7 +10932,7 @@ msgstr "Вече сте влезли в акаунт."
 
 #: apps/users/views.py:646
 msgid "Congratulations! Your user account was successfully created."
-msgstr "Поздравления! Потребителският Ви акаунт е създаден успешно. "
+msgstr "Поздравления! Потребителският ви профил е създаден успешно."
 
 #: apps/users/views.py:670
 msgid "You already have an account."
@@ -11066,7 +11069,9 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Представете се на общността, ако желаете! Този текст ще се показва публично на потребителската ви страница. "
+msgstr ""
+"Представете се на общността, ако желаете! Този текст ще се показва публично "
+"на потребителската ви страница."
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
@@ -11222,12 +11227,12 @@ msgstr "Следвани от мен"
 # "Me" in this context is the user shown on the User Info page
 #: apps/users/templates/users/profile.html:89
 msgid "Created by Me"
-msgstr "Създаден от мен "
+msgstr "Създаден от мен"
 
 # "My" in this context is the logged in user who is reading the page
 #: apps/users/templates/users/profile.html:97
 msgid "My Reviews"
-msgstr "Моите прегледи "
+msgstr "Моите прегледи"
 
 #: apps/users/templates/users/profile.html:110
 msgid "No add-on reviews yet."
@@ -11370,7 +11375,7 @@ msgstr "Информация за разработчици"
 
 #: apps/users/templates/users/vcard.html:34
 msgid "User since"
-msgstr "Потребител от "
+msgstr "Потребител от"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
@@ -11457,7 +11462,7 @@ msgstr "Пуснат под <a href=\"%(url)s\">%(name)s</a>"
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
 msgid "What's this?"
-msgstr "Какво е това? "
+msgstr "Какво е това?"
 
 #: apps/versions/templates/versions/version.html:60
 msgid "View the source"
@@ -11560,7 +11565,7 @@ msgstr "Относно"
 # Link text to the AMO blog.
 #: templates/footer.html:5 templates/menu_links.html:32
 msgid "Blog"
-msgstr "Блог "
+msgstr "Блог"
 
 # Link text to the Frequently Asked Questions page.
 #: templates/footer.html:7
@@ -11694,7 +11699,7 @@ msgstr "Виж целия сайт"
 
 #: templates/mobile/base_addons.html:78
 msgid "Legal Notices"
-msgstr "Legal Notices"
+msgstr ""
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
