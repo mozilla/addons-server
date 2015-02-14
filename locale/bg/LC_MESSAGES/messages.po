@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-14 23:33+0000\n"
+"PO-Revision-Date: 2015-02-14 23:42+0000\n"
 "Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1423956837.0\n"
+"X-POOTLE-MTIME: 1423957366.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1799,12 +1799,20 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>Съжаляваме, но не можем да намерим това, което търсите.</h1> <p> Страницата или файлът, който сте поискали не бе намерен на нашия сайт. Възможно е да сте кликнали остаряла връзка или да сте "
-"написали адреса грешно. </p> <ul> <li>Ако сте написали адреса, моля проверете пак дали е правилно написан.</li> <li> Ако сте последвали връзка от някъде, моля кажете ни на <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Кажете ни от къде дойдохте и какво търсихте, и ние ще направим каквото можем, за да го оправим. </li> </ul> <p>Или може просто да прескочите към "
-"някои от по-известните страници на сайта ни.</p> <ul> <li>Интересувате ли се от <a href=\"%(rec)s\">списък с препоръчани добавки</a>?</li> <li> Искате ли да <a href=\"%(search)s\">търсите добавки</"
-"a>? Можете да отидете на <a href=\"%(search)s\">страницата за търсене</a> или просто да използвате полето отгоре. </li> <li> Ако предпочитате да започнете отначало, просто отидете на  <a href="
-"\"%(home)s\">главната страница на добавките</a>. </li> </ul>"
+"<h1>Съжаляваме, но не можем да намерим това, което търсите.</h1> <p> "
+"Страницата или файлът, който сте поискали не бе намерен на нашия сайт. "
+"Възможно е да сте кликнали остаряла връзка или да сте написали адреса "
+"грешно. </p> <ul> <li>Ако сте написали адреса, моля проверете пак дали е "
+"правилно написан.</li> <li> Ако сте последвали връзка от някъде, моля кажете "
+"ни на <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. "
+"Кажете ни от къде дойдохте и какво търсихте, и ние ще направим всичко "
+"възможно, за да го оправим. </li> </ul> <p>Или може просто да прескочите към "
+"някои от по-известните страници на сайта ни.</p> <ul> <li>Интересувате ли "
+"се от <a href=\"%(rec)s\">списък с препоръчани добавки</a>?</li> <li> Искате "
+"ли да <a href=\"%(search)s\">търсите добавки</a>? Можете да отидете на <a "
+"href=\"%(search)s\">страницата за търсене</a> или просто да използвате полето "
+"отгоре. </li> <li> Ако предпочитате да започнете отначало, просто отидете на "
+"<a href=\"%(home)s\">главната страница на добавките</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -2499,7 +2507,7 @@ msgstr "Роля"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr "Въведете имейл адреса на  сътрудника"
+msgstr "Въведете адрес на ел. поща на сътрудника"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
@@ -4564,7 +4572,9 @@ msgstr "Качи собствена иконка..."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG и JPF са поддържани. Иконките ще се оразмерят до 64x64 пиксела, ако са по-големи от това."
+msgstr ""
+"Поддържат се PNG и JPG. Иконите ще бъдат преоразмерени до 64x64 пиксела ако "
+"изображението е по-голямо."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
 msgid "Screenshots"
@@ -6816,7 +6826,7 @@ msgstr "Открий добавки"
 
 #: apps/discovery/templates/discovery/pane.html:24
 msgid "What are Add-ons?"
-msgstr "Add on style.  Add on function.  Add features to Firefox."
+msgstr "Какво са разширенията?"
 
 #: apps/discovery/templates/discovery/pane.html:29
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -8570,9 +8580,8 @@ msgstr ""
 # 76%
 # 100%
 #: apps/pages/templates/pages/dev_faq.html:4
-#, fuzzy
 msgid "Developer FAQ"
-msgstr "Център за разработчици"
+msgstr "ЧЗВ за разработчици"
 
 # 75%
 # 100%
@@ -8617,9 +8626,8 @@ msgstr ""
 # 75%
 # 100%
 #: apps/pages/templates/pages/dev_faq.html:44
-#, fuzzy
 msgid "Add-on Developer FAQ"
-msgstr "Разработчик на добавки"
+msgstr "ЧЗВ за разработчици на добавки"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
@@ -11504,7 +11512,7 @@ msgstr "История на версиите"
 
 #: apps/zadmin/forms.py:50
 msgid "Current Max. Version"
-msgstr "Текуща Макс. верия"
+msgstr "Текуща макс. верия"
 
 #: apps/zadmin/forms.py:53
 msgid "Target Version"
