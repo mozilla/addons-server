@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2014-12-24 06:36+0000\n"
+"PO-Revision-Date: 2015-02-15 12:40+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1419403003.0\n"
+"X-POOTLE-MTIME: 1424004029.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -500,7 +501,7 @@ msgstr "Дивитися всі »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr "Розширення, які незабаром вийдуть"
+msgstr "Розширення, які набирають популярність"
 
 #: apps/addons/templates/addons/home.html:69 apps/browse/templates/browse/personas/category_landing.html:61 apps/discovery/templates/discovery/pane.html:97
 msgid "Featured Themes"
@@ -1613,15 +1614,15 @@ msgstr "{user} схвалив {review} для {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Відгук {review} для {addon} видалено."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} видалив {review} для {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Максимальна версія програми для {version} оновлена."
 
 #: apps/amo/log.py:355
 msgid "Authors emailed about compatibility of {version}."
@@ -2746,7 +2747,7 @@ msgstr "Найбільше користувачів"
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:276 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:92
 msgid "Up & Coming"
-msgstr "Незабаром з'являться"
+msgstr "Набирають популярність"
 
 #: apps/browse/views.py:454 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
@@ -2902,7 +2903,7 @@ msgstr "Нещодавно оновлені розширення"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr "Розширення, які незабаром з'являться"
+msgstr "Розширення, які набирають популярність"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
@@ -2935,7 +2936,7 @@ msgstr "Нещодавно оновлені повні теми"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr "Повні теми, які незабаром з'являться"
+msgstr "Повні теми, які набирають популярність"
 
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -3001,11 +3002,11 @@ msgstr "Повні теми перетворюють вигляд вікна, п
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Теми, які набирають популярність"
 
 #: apps/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Переглянути всі, які набирають популярність"
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
@@ -6599,35 +6600,35 @@ msgstr ""
 
 #: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Легко купувати"
 
 #: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Економте на улюблених речах з комфортом зі свого браузера."
 
 #: apps/discovery/modules.py:149
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Створіть бездоганний веб-сайт"
 
 #: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
-msgstr ""
+msgstr "Допоможіть тестувати Firefox за допомогою цих інструментів"
 
 #: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Вперше в додатках?"
 
 #: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Не варто хвилюватися, ось три кроки для початку."
 
 #: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Перекладайте вміст в інтернеті більш ніж 40 мовами."
 
 #: apps/discovery/modules.py:171
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "Легко підключайтесь до своїх соціальних мереж та діліться чи коментуйте сторінки, які відвідуєте."
 
 #: apps/discovery/modules.py:173
 msgid "A quick view to compare prices when you shop online or search for flights."
@@ -6639,7 +6640,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
-msgstr ""
+msgstr "Збірка Firefox 4"
 
 #: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
@@ -6651,31 +6652,31 @@ msgstr ""
 
 #: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
-msgstr ""
+msgstr "Літня збірка Firefox"
 
 #: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
-msgstr ""
+msgstr "Ось кілька чудових додатків для Firefox."
 
 #: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
-msgstr ""
+msgstr "Збірка Thunderbird"
 
 #: apps/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
-msgstr ""
+msgstr "Ось кілька чудових додатків для Thunderbird."
 
 #: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Сядьте та розслабтеся"
 
 #: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Додатки, які допомагають вам під час подорожей!"
 
 #: apps/discovery/modules.py:226
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
+msgstr "Відображає прапор країни, який показує розташування сервера поточного веб-сайту та інше."
 
 #: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
@@ -6683,27 +6684,27 @@ msgstr ""
 
 #: apps/discovery/modules.py:230
 msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
+msgstr "Автоматично отримуйте найнижчу ціну при покупках онлайн чи пошуку авіаквитків."
 
 #: apps/discovery/modules.py:240
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "Додатки для школи A+"
 
 #: apps/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Додатки для вчителів, батьків та студентів, які повертаються в школу."
 
 #: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Бажаєте знати, яким веб-сайтам ви можете довіряти?"
 
 #: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks - додаток керування закладками №1."
 
 #: apps/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Перекладач веб-сторінок та тексту, словник та інше!"
 
 #: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
@@ -6715,7 +6716,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Додайте до свого Firefox трохи романтики."
 
 #: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
@@ -6739,19 +6740,19 @@ msgstr ""
 
 #: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Отримайте найновіші, найкорисніші додатки цього часу."
 
 #: apps/discovery/modules.py:332
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Вільний перегляд без проблем"
 
 #: apps/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Захистіть свою приватність в мережі за допомогою додатків з цієї збірки."
 
 #: apps/discovery/modules.py:342
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Чудові додатки для роботи, розваг, приватності, продуктивності&hellip; на будь-який смак!"
 
 #: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
@@ -6759,7 +6760,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Які у вас інтереси?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -6775,19 +6776,19 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
-msgstr ""
+msgstr "Рекомендовані для вас"
 
 #: apps/discovery/templates/discovery/pane.html:66
 msgid "What is this?"
-msgstr ""
+msgstr "Що це таке?"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Докладніше про додатки"
 
 #: apps/discovery/templates/discovery/pane.html:89 apps/discovery/templates/discovery/pane.html:96
 msgid "See all"
-msgstr ""
+msgstr "Дивитися всі"
 
 #: apps/discovery/templates/discovery/pane.html:102
 msgid "More ways to customize"
@@ -6799,24 +6800,24 @@ msgstr "Переглянути всі додатки"
 
 #: apps/discovery/templates/discovery/pane.html:108
 msgid "See all complete themes"
-msgstr ""
+msgstr "Дивитися всі повні теми"
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
-msgstr ""
+msgstr "Закрити відео"
 
 #: apps/discovery/templates/discovery/pane.html:117
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Поки відтворюється відео, зазначені додатки будуть з'являтися тут."
 
 #. {0} is the user's login name.
 #: apps/discovery/templates/discovery/pane_account.html:6
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Привіт, {0}"
 
 #: apps/discovery/templates/discovery/pane_account.html:17
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Дякуємо за використання %(app)s та підтримку <a href=\"%(url)s\">місії Mozilla</a>!"
 
 #: apps/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
@@ -6824,7 +6825,7 @@ msgstr "Завантажено додатків:"
 
 #: apps/discovery/templates/discovery/addons/detail.html:71
 msgid "Active Users"
-msgstr ""
+msgstr "Активних користувачів"
 
 #: apps/discovery/templates/discovery/addons/detail.html:80
 msgid "Last Updated"
@@ -6844,7 +6845,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
-msgstr ""
+msgstr "Отримати мобільні додатки"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
@@ -6868,7 +6869,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Вибір місяця від Mozilla"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
