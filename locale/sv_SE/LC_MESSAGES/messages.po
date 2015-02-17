@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-01-25 10:19+0000\n"
+"PO-Revision-Date: 2015-02-17 17:11+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422181153.0\n"
+"X-POOTLE-MTIME: 1424193117.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3343,75 +3343,75 @@ msgstr "Persona"
 
 #: apps/constants/base.py:415
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Manuella granskningspoäng"
 
 #: apps/constants/base.py:416
 msgid "Full Add-on Review"
-msgstr ""
+msgstr "Fullständig tilläggsgranskning"
 
 #: apps/constants/base.py:417
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Preliminär tilläggsgranskning"
 
 #: apps/constants/base.py:418
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Uppdaterad tilläggsgranskning"
 
 #: apps/constants/base.py:419
 msgid "Full Dictionary Review"
-msgstr ""
+msgstr "Fullständig ordlistsgranskning"
 
 #: apps/constants/base.py:420
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Preliminär ordlistsgranskning"
 
 #: apps/constants/base.py:421
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Uppdaterad ordlistsgranskning"
 
 #: apps/constants/base.py:422
 msgid "Full Language Pack Review"
-msgstr ""
+msgstr "Fullständig språkpaketsgranskning"
 
 #: apps/constants/base.py:423
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Preliminär språkpaketsgranskning"
 
 #: apps/constants/base.py:424
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Uppdaterad språkpaketsgranskning"
 
 #: apps/constants/base.py:425
 msgid "Theme Review"
-msgstr ""
+msgstr "Temagranskning"
 
 #: apps/constants/base.py:426
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Fullständig sökleverantörsgranskning"
 
 #: apps/constants/base.py:427
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Preliminär sökleverantörsgranskning"
 
 #: apps/constants/base.py:428
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Uppdaterad sökleverantörsgranskning"
 
 #: apps/constants/base.py:429
 msgid "Complete Theme Review"
-msgstr ""
+msgstr "Komplett temagranskning"
 
 #: apps/constants/base.py:430
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Preliminär komplett temagranskning"
 
 #: apps/constants/base.py:431
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Uppdaterad komplett temagranskning"
 
 #: apps/constants/base.py:432
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Modererad tilläggsgranskning"
 
 #: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
@@ -3607,27 +3607,27 @@ msgstr "Licenstext krävs när du väljer annat."
 
 #: apps/devhub/forms.py:206
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Detta tillägg har ett slutanvändarlicensavtal"
 
 #: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Ange ditt tilläggs slutanvändarlicensavtal:"
 
 #: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Detta tillägg har en sekretesspolicy"
 
 #: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Ange ditt tilläggs sekretesspolicy:"
 
 #: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Varför skapade du det här tillägget?"
 
 #: apps/devhub/forms.py:254
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Vad är framtiden för detta tillägg?"
 
 #: apps/devhub/forms.py:291
 msgid "The developers of this add-on"
@@ -3639,7 +3639,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:293
 msgid "An organization of my choice"
-msgstr ""
+msgstr "En organisation av mitt val"
 
 #: apps/devhub/forms.py:336
 msgid "Please enter a suggested amount greater than 0."
@@ -3655,7 +3655,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:354
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "Det gick inte att validera PayPal-id."
 
 #: apps/devhub/forms.py:369
 msgid "Unsupported file type, please upload an archive file {extensions}."
@@ -3693,11 +3693,11 @@ msgstr ""
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
-msgstr ""
+msgstr "Fullständig granskning"
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
-msgstr ""
+msgstr "Preliminär granskning"
 
 #: apps/devhub/forms.py:535
 msgid "Please choose a review nomination type"
@@ -3709,7 +3709,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:556
 msgid "Version %s already exists"
-msgstr ""
+msgstr "Version %s finns redan"
 
 #: apps/devhub/forms.py:568
 msgid "Select a valid choice. That choice is not one of the available choices."
@@ -3831,11 +3831,11 @@ msgstr ""
 
 #: apps/devhub/views.py:350
 msgid "Theme deleted."
-msgstr ""
+msgstr "Tema borttaget."
 
 #: apps/devhub/views.py:350
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Tillägg borttaget."
 
 #: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
@@ -6571,11 +6571,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
-msgstr "Första gången med tillägg?"
+msgstr "Är det din första gång med tillägg?"
 
 #: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
-msgstr "Oroa dig inte, här är tre för att komma igång."
+msgstr "Oroa dig inte, här har du tre för att komma igång."
 
 #: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
@@ -6599,19 +6599,19 @@ msgstr "Här är några bra tillägg för Firefox 4."
 
 #: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Teman St. Patrick&rsquo;s Day"
 
 #: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Dekorera din webbläsare för att fira Saint Patrick&rsquo;s Day."
 
 #: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
-msgstr ""
+msgstr "Firefox sommarsamling"
 
 #: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
-msgstr ""
+msgstr "Här är några bra tillägg för Firefox."
 
 #: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
@@ -6623,11 +6623,11 @@ msgstr "Här är några bra tillägg för Thunderbird."
 
 #: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Luta dig tillbaka och koppla av"
 
 #: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Tillägg som hjälper dig på dina resor!"
 
 #: apps/discovery/modules.py:226
 msgid "Displays a country flag depicting the location of the current website's server and more."
@@ -6826,7 +6826,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla&rsquo;s val för månaden!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
@@ -8980,7 +8980,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9 apps/pages/templates/pages/faq.html:10
 msgid "Frequently Asked Questions"
-msgstr "Ofta ställda frågor"
+msgstr "Vanliga frågor"
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
@@ -9719,7 +9719,7 @@ msgstr "Titel:"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
-msgstr ""
+msgstr "Inget betyg ännu."
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
@@ -9763,19 +9763,19 @@ msgstr "sök efter samlingar"
 
 #: apps/search/forms.py:25
 msgid "search for themes"
-msgstr ""
+msgstr "sök efter teman"
 
 #: apps/search/forms.py:26
 msgid "search for apps"
-msgstr ""
+msgstr "sök efter appar"
 
 #: apps/search/forms.py:49
 msgid "Sort By"
-msgstr "Sortera på"
+msgstr "Sortera efter"
 
 #: apps/search/forms.py:84
 msgid "Relevance"
-msgstr ""
+msgstr "Relevans"
 
 #: apps/search/helpers.py:24
 msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
@@ -9811,11 +9811,11 @@ msgstr ""
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:593
 msgid "All Systems"
-msgstr ""
+msgstr "Alla system"
 
 #: apps/search/views.py:604
 msgid "All Tags"
-msgstr ""
+msgstr "Alla taggar"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/collections.html:8
@@ -9846,7 +9846,7 @@ msgstr ""
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Tagg"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:16
@@ -9861,7 +9861,7 @@ msgstr[1] ""
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtrera resultat"
 
 #: apps/search/templates/search/results.html:69
 msgid "Category"
@@ -9869,11 +9869,11 @@ msgstr "Kategori"
 
 #: apps/search/templates/search/results.html:84
 msgid "Tag"
-msgstr ""
+msgstr "Tagg"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "Sökresultat <i>({num})</i>"
 
 #: apps/sharing/__init__.py:14
 msgid "{0} post"
@@ -9926,68 +9926,68 @@ msgstr[1] "{0} tweets"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:78
 msgid "localservice1"
-msgstr ""
+msgstr "localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:80
 msgid "Post to localservice1"
-msgstr ""
+msgstr "Post to localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:82
 msgid "http://localservice1/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice1/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:87
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} post on localservice1"
+msgstr[1] "{0} posts on localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:93
 msgid "localservice2"
-msgstr ""
+msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:95
 msgid "Post to localservice2"
-msgstr ""
+msgstr "Post to localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:97
 msgid "http://localservice2/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice2/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:102
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} post on localservice2"
+msgstr[1] "{0} posts on localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:108
 msgid "localservice3"
-msgstr ""
+msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:110
 msgid "Post to localservice3"
-msgstr ""
+msgstr "Post to localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:112
 msgid "http://localservice3/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice3/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:117
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} post on localservice3"
+msgstr[1] "{0} posts on localservice3"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -10003,7 +10003,7 @@ msgstr "Tack för att du bidragit till {addon_name}"
 
 #: apps/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
-msgstr ""
+msgstr "Översikt"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
@@ -10031,11 +10031,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Prenumeranter"
 
 #: apps/stats/templates/stats/collection_report_menu.html:12
 msgid "Ratings"
-msgstr ""
+msgstr "Betyg"
 
 #: apps/stats/templates/stats/dashboard.html:3
 msgid "Add-on Statistics"
@@ -10079,11 +10079,11 @@ msgstr "Från"
 
 #: apps/stats/templates/stats/popup.html:19
 msgid "To"
-msgstr ""
+msgstr "Till"
 
 #: apps/stats/templates/stats/report.html:7
 msgid "Export"
-msgstr ""
+msgstr "Exportera"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: apps/stats/templates/stats/stats.html:18
@@ -10236,7 +10236,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:9 apps/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
-msgstr ""
+msgstr "Laddar..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
@@ -10462,19 +10462,19 @@ msgstr ""
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "algoritm"
 
 #: apps/users/models.py:64
 msgid "salt"
-msgstr ""
+msgstr "salt"
 
 #: apps/users/models.py:65
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
-msgstr ""
+msgstr "Ingen användare med den e-postadressen."
 
 #: apps/users/models.py:367
 msgid "Your account has been restricted"
@@ -10682,7 +10682,7 @@ msgstr ""
 
 #: apps/users/widgets.py:37
 msgid "new"
-msgstr ""
+msgstr "ny"
 
 #: apps/users/templates/users/delete.html:4 apps/users/templates/users/delete.html:10
 msgid "Delete User Account"
@@ -10775,7 +10775,7 @@ msgstr "Bekräfta lösenord"
 
 #: apps/users/templates/users/edit.html:84
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: apps/users/templates/users/edit.html:86
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
@@ -10835,7 +10835,7 @@ msgstr "Mozilla reserverar sig rätten att kontakta dig individuellt om eventuel
 
 #: apps/users/templates/users/edit.html:201
 msgid "Admin"
-msgstr ""
+msgstr "Administratör"
 
 #: apps/users/templates/users/edit.html:233
 msgid "Delete Account"
@@ -10843,15 +10843,15 @@ msgstr "Ta bort konto"
 
 #: apps/users/templates/users/edit.html:235
 msgid "Update Account"
-msgstr ""
+msgstr "Uppdatera konto"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr ""
+msgstr "Inga"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr ""
+msgstr "Alla"
 
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -10905,15 +10905,15 @@ msgstr "Användarinformation för {0}"
 
 #: apps/users/templates/users/profile.html:12
 msgid "Edit profile"
-msgstr ""
+msgstr "Redigera profil"
 
 #: apps/users/templates/users/profile.html:17
 msgid "Manage user"
-msgstr ""
+msgstr "Hantera användare"
 
 #: apps/users/templates/users/profile.html:21 apps/users/templates/users/report_abuse_full.html:10
 msgid "Report user"
-msgstr ""
+msgstr "Rapportera användare"
 
 #: apps/users/templates/users/profile.html:32
 msgid "Add-ons Developer"
@@ -10925,7 +10925,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
-msgstr ""
+msgstr "Om mig"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
@@ -10941,7 +10941,7 @@ msgstr "Mina mest populära teman"
 
 #: apps/users/templates/users/profile.html:77
 msgid "Themes I've created"
-msgstr ""
+msgstr "Teman jag har skapat"
 
 #: apps/users/templates/users/profile.html:87
 msgid "Followed by Me"
@@ -10961,7 +10961,7 @@ msgstr "Inga tilläggsrecensioner ännu."
 
 #: apps/users/templates/users/profile.html:123
 msgid "Report User"
-msgstr ""
+msgstr "Rapportera användare"
 
 #: apps/users/templates/users/pwreset_complete.html:11
 msgid "Success!"
@@ -11034,7 +11034,7 @@ msgstr "Om du vill kan du läsa vår <a href=\"%(legal)s\" title=\"Legal Notices
 
 #: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:96 templates/mobile/header_auth.html:11
 msgid "Register"
-msgstr ""
+msgstr "Registrera"
 
 #: apps/users/templates/users/register.html:53
 msgid "Display name"
@@ -11355,6 +11355,8 @@ msgstr "<a href=\"%(reg)s\">Registrera</a> eller <a href=\"%(login)s\">Logga in<
 #: templates/impala/base.html:119
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
+"För att prova de tusentals tillägg tillgängliga här, ladda ner <a href=\"%"
+"(url)s\">Mozilla Firefox</a>, ett snabbt och gratis sätt att surfa på webben!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:130
