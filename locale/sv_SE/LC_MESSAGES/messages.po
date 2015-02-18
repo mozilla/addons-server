@@ -11354,9 +11354,7 @@ msgstr "<a href=\"%(reg)s\">Registrera</a> eller <a href=\"%(login)s\">Logga in<
 
 #: templates/impala/base.html:119
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
-"För att prova de tusentals tillägg tillgängliga här, ladda ner <a href=\"%"
-"(url)s\">Mozilla Firefox</a>, ett snabbt och gratis sätt att surfa på webben!"
+msgstr "För att prova de tusentals tillägg tillgängliga här, ladda ner <a href=\"%(url)s\">Mozilla Firefox</a>, ett snabbt och gratis sätt att surfa på webben!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:130

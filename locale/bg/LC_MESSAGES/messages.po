@@ -141,8 +141,7 @@ msgstr "Препоръчани"
 
 #: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
-"Потребителите имат възможност да даряват повече или по-малко от тази сума."
+msgstr "Потребителите имат възможност да даряват повече или по-малко от тази сума."
 
 #: apps/addons/models.py:314
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
@@ -1038,9 +1037,7 @@ msgstr "Запознай се с разработчика на {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:41
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr ""
-"Преди да свалите тази добавка, моля обмислете подкрепата на развитието ѝ "
-"като допринесете."
+msgstr "Преди да свалите тази добавка, моля обмислете подкрепата на развитието ѝ като допринесете."
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
@@ -1799,20 +1796,12 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>Съжаляваме, но не можем да намерим това, което търсите.</h1> <p> "
-"Страницата или файлът, който сте поискали не бе намерен на нашия сайт. "
-"Възможно е да сте кликнали остаряла връзка или да сте написали адреса "
-"грешно. </p> <ul> <li>Ако сте написали адреса, моля проверете пак дали е "
-"правилно написан.</li> <li> Ако сте последвали връзка от някъде, моля кажете "
-"ни на <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. "
-"Кажете ни от къде дойдохте и какво търсихте, и ние ще направим всичко "
-"възможно, за да го оправим. </li> </ul> <p>Или може просто да прескочите към "
-"някои от по-известните страници на сайта ни.</p> <ul> <li>Интересувате ли "
-"се от <a href=\"%(rec)s\">списък с препоръчани добавки</a>?</li> <li> Искате "
-"ли да <a href=\"%(search)s\">търсите добавки</a>? Можете да отидете на <a "
-"href=\"%(search)s\">страницата за търсене</a> или просто да използвате полето "
-"отгоре. </li> <li> Ако предпочитате да започнете отначало, просто отидете на "
-"<a href=\"%(home)s\">главната страница на добавките</a>. </li> </ul>"
+"<h1>Съжаляваме, но не можем да намерим това, което търсите.</h1> <p> Страницата или файлът, който сте поискали не бе намерен на нашия сайт. Възможно е да сте кликнали остаряла връзка или да сте "
+"написали адреса грешно. </p> <ul> <li>Ако сте написали адреса, моля проверете пак дали е правилно написан.</li> <li> Ако сте последвали връзка от някъде, моля кажете ни на <a href=\"mailto:"
+"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Кажете ни от къде дойдохте и какво търсихте, и ние ще направим всичко възможно, за да го оправим. </li> </ul> <p>Или може просто да прескочите към "
+"някои от по-известните страници на сайта ни.</p> <ul> <li>Интересувате ли се от <a href=\"%(rec)s\">списък с препоръчани добавки</a>?</li> <li> Искате ли да <a href=\"%(search)s\">търсите добавки</"
+"a>? Можете да отидете на <a href=\"%(search)s\">страницата за търсене</a> или просто да използвате полето отгоре. </li> <li> Ако предпочитате да започнете отначало, просто отидете на <a href="
+"\"%(home)s\">главната страница на добавките</a>. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1861,9 +1850,7 @@ msgstr "Протича поддръжка"
 
 #: apps/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
-"Това свойство е временно спряно докато правим промени по сайта. Моля, "
-"използвайте бутона Назад и опитайте пак малко по-късно."
+msgstr "Това свойство е временно спряно докато правим промени по сайта. Моля, използвайте бутона Назад и опитайте пак малко по-късно."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
@@ -2567,10 +2554,7 @@ msgstr "Наскоро популярни колекции"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
-"Колекциите са групи от сродни добавки, които всеки може да създава и "
-"споделя. Разгледайте колекциите, създадени от други потребители или <a "
-"href=\"%(url)s\">създайте ваша собствена</a>."
+msgstr "Колекциите са групи от сродни добавки, които всеки може да създава и споделя. Разгледайте колекциите, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37 apps/browse/templates/browse/extensions.html:13 apps/browse/templates/browse/themes.html:14
 msgid "Subscribe"
@@ -4572,9 +4556,7 @@ msgstr "Качи собствена иконка..."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
-"Поддържат се PNG и JPG. Иконите ще бъдат преоразмерени до 64x64 пиксела ако "
-"изображението е по-голямо."
+msgstr "Поддържат се PNG и JPG. Иконите ще бъдат преоразмерени до 64x64 пиксела ако изображението е по-голямо."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
 msgid "Screenshots"
@@ -9281,11 +9263,8 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it. Add-ons that cause large start-up performance issues will have warning messages on their details page."
 msgstr ""
-"Повечето разширения не водят до осезаемо забавяне на производителността на %"
-"(app_name)s, въпреки че инсталирането на много може да доведе до "
-"неблагоприятни ефекти. Ако подозирате, че разширение забавя %(app_name)s, "
-"опитайте да я спрете. Разширенията, които причиняват голямо забавяне на "
-"производителността, ще имат предупредително съобщение на страниците си."
+"Повечето разширения не водят до осезаемо забавяне на производителността на %(app_name)s, въпреки че инсталирането на много може да доведе до неблагоприятни ефекти. Ако подозирате, че разширение "
+"забавя %(app_name)s, опитайте да я спрете. Разширенията, които причиняват голямо забавяне на производителността, ще имат предупредително съобщение на страниците си."
 
 #: apps/pages/templates/pages/faq.html:142
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
@@ -9518,10 +9497,8 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Мобилните разширения работят с <a href=\"%(mobile_url)s\">Firefox за "
-"мобилни</a> и добавят или променят функционалността също като разширенията "
-"за настолната версия. Можете да намерите разширения, които работят с Firefox "
-"за мобилни устройства в нашата <a href=\"%(gallery_url)s\">галерия</a>."
+"Мобилните разширения работят с <a href=\"%(mobile_url)s\">Firefox за мобилни</a> и добавят или променят функционалността също като разширенията за настолната версия. Можете да намерите разширения, "
+"които работят с Firefox за мобилни устройства в нашата <a href=\"%(gallery_url)s\">галерия</a>."
 
 #: apps/pages/templates/pages/faq.html:316
 msgid "Developer Topics"
@@ -11077,9 +11054,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
-"Представете се на общността, ако желаете! Този текст ще се показва публично "
-"на потребителската ви страница."
+msgstr "Представете се на общността, ако желаете! Този текст ще се показва публично на потребителската ви страница."
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."

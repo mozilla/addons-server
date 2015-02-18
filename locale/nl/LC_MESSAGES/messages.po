@@ -2983,10 +2983,7 @@ msgstr "Alle hoogst beoordeelde bekijken"
 
 #: apps/browse/templates/browse/personas/category_landing.html:40
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"Meer dan 300.000 ontwerpen om uw browser mee te personaliseren! Beweeg uw "
-"muis over een achtergrondthema om dit te proberen. <a href=\"%(url)s\" class"
-"=\"more-info\">Begin met verkennen</a>"
+msgstr "Meer dan 300.000 ontwerpen om uw browser mee te personaliseren! Beweeg uw muis over een achtergrondthema om dit te proberen. <a href=\"%(url)s\" class=\"more-info\">Begin met verkennen</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
@@ -3726,10 +3723,8 @@ msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
-"Als u dit veld uitvinkt kunt u uw add-on uploaden en laten beoordelen, maar "
-"is deze niet zichtbaar op AMO of downloadbaar door eindgebruikers. Laat in "
-"geval van twijfel dit veld aangevinkt - er zijn maar weinig redenen het uit "
-"te vinken."
+"Als u dit veld uitvinkt kunt u uw add-on uploaden en laten beoordelen, maar is deze niet zichtbaar op AMO of downloadbaar door eindgebruikers. Laat in geval van twijfel dit veld aangevinkt - er "
+"zijn maar weinig redenen het uit te vinken."
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4022,18 +4017,13 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
-"Met add-ons kunnen miljoenen Firefox-gebruikers hun surfervaring verbeteren "
-"en aanpassen. Als u een webontwikkelaar bent en verstand hebt van <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> en "
-"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, dan hebt u al "
-"de benodigde vaardigheden om een geweldige add-on te maken."
+"Met add-ons kunnen miljoenen Firefox-gebruikers hun surfervaring verbeteren en aanpassen. Als u een webontwikkelaar bent en verstand hebt van <a href=\"https://developer.mozilla.org/docs/Web/HTML"
+"\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> en <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, dan hebt u al de benodigde vaardigheden "
+"om een geweldige add-on te maken."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-"Ga naar het <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
-"Developer Network</a> om alles wat u moet weten om te beginnen te leren."
+msgstr "Ga naar het <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> om alles wat u moet weten om te beginnen te leren."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4070,9 +4060,7 @@ msgstr "Publiceer uw add-ons!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
-"Upload een <a href=\"%(addon_url)s\">add-on</a> of <a href=\"%"
-"(theme_url)s\">thema</a> om te beginnen!"
+msgstr "Upload een <a href=\"%(addon_url)s\">add-on</a> of <a href=\"%(theme_url)s\">thema</a> om te beginnen!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"

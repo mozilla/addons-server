@@ -3655,8 +3655,7 @@ msgstr "是，将我的附加组件放上 AMO。"
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
-msgstr ""
-"取消此框仍会将您的附加组件上传并进行审核，但它不会在 AMO 上被任何终端用户可见和可下载。如不确定，请保持此框选中 - 很少有理由取消勾选它。"
+msgstr "取消此框仍会将您的附加组件上传并进行审核，但它不会在 AMO 上被任何终端用户可见和可下载。如不确定，请保持此框选中 - 很少有理由取消勾选它。"
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3948,17 +3947,12 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
-"附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您是一名网页开发者并且熟悉 <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 和 <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作"
-"一个超棒的附加组件了。"
+"附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您是一名网页开发者并且熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla."
+"org/docs/Web/JavaScript\">JavaScript</a> 和 <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作一个超棒的附加组件了。"
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-"请前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
-"开发者网络</a>了解您还需要熟悉哪些事物才能开始动手。"
+msgstr "请前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla 开发者网络</a>了解您还需要熟悉哪些事物才能开始动手。"
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -9533,9 +9527,7 @@ msgstr "我该怎么报告有问题的评论？"
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"请点击“报告此评论”来报告或标记任何有问题的评论，这将被提交给网站的管理团队。我们的管理团队将依照评论指南评估并决定是否要删除该评论，或者将评论还原到网"
-"站上。"
+msgstr "请点击“报告此评论”来报告或标记任何有问题的评论，这将被提交给网站的管理团队。我们的管理团队将依照评论指南评估并决定是否要删除该评论，或者将评论还原到网站上。"
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -9545,9 +9537,7 @@ msgstr "我是一个附加组件的作者，我可以回应评论吗？"
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
-msgstr ""
-"可以，附加组件作者可以对每个评论提供一次回应。您可以在我们的<a href=\"http://forums.mozilla.org/viewforum.p"
-"hp?f=23\">论坛</a>建立一个讨论主题，让用户进行更多讨论或跟进。"
+msgstr "可以，附加组件作者可以对每个评论提供一次回应。您可以在我们的<a href=\"http://forums.mozilla.org/viewforum.php?f=23\">论坛</a>建立一个讨论主题，让用户进行更多讨论或跟进。"
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -9558,8 +9548,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"一般来说，不能。但如果评论不符合上述评论准则，您可以点击“报告此评论”，之后会有管理人员进行审核。如果一条抱怨评论因为您的附加组件已经发布了新版本而不再"
-"有效，我们可以考虑删除该评论。请提交您的详细请求至 amo-editors@mozilla.org。"
+"一般来说，不能。但如果评论不符合上述评论准则，您可以点击“报告此评论”，之后会有管理人员进行审核。如果一条抱怨评论因为您的附加组件已经发布了新版本而不再有效，我们可以考虑删除该评论。请提交您的详细请求"
+"至 amo-editors@mozilla.org。"
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"

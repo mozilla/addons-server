@@ -3733,11 +3733,8 @@ msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
-"Togliendo la spunta a questa casella il componente aggiuntivo verrà comunque "
-"caricato e sottoposto a revisione, ma non risulterà visibile su AMO né "
-"potrà essere scaricato dagli utenti finali. A meno che tu non abbia una "
-"ragione particolare per deselezionare questa opzione, ti consigliamo di "
-"lasciare la spunta."
+"Togliendo la spunta a questa casella il componente aggiuntivo verrà comunque caricato e sottoposto a revisione, ma non risulterà visibile su AMO né potrà essere scaricato dagli utenti finali. A "
+"meno che tu non abbia una ragione particolare per deselezionare questa opzione, ti consigliamo di lasciare la spunta."
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3962,9 +3959,7 @@ msgstr "La validazione del file caricato è fallita, pertanto potrebbero mancare
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
-"Verrai reindirizzato direttamente al passaggio 6, in quanto il componente "
-"aggiuntivo non apparirà sulle pagine di AMO."
+msgstr "Verrai reindirizzato direttamente al passaggio 6, in quanto il componente aggiuntivo non apparirà sulle pagine di AMO."
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -4033,20 +4028,13 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
-"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare e "
-"personalizzare la loro esperienza di navigazione. Se sei uno sviluppatore "
-"web e conosci i linguaggi <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, sei già in "
-"possesso di tutti gli strumenti necessari per realizzare un componente "
-"aggiuntivo perfettamente funzionante."
+"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare e personalizzare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi <a href=\"https://"
+"developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, sei "
+"già in possesso di tutti gli strumenti necessari per realizzare un componente aggiuntivo perfettamente funzionante."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-"Puoi trovare tutte le informazioni che ti servono per iniziare visitando <a "
-"href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a>."
+msgstr "Puoi trovare tutte le informazioni che ti servono per iniziare visitando <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a>."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4083,9 +4071,7 @@ msgstr "Pubblica i tuoi componenti aggiuntivi"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
-"Per iniziare carica un <a href=\"%(addon_url)s\">componente aggiuntivo</a> o "
-"un <a href=\"%(theme_url)s\">tema</a>."
+msgstr "Per iniziare carica un <a href=\"%(addon_url)s\">componente aggiuntivo</a> o un <a href=\"%(theme_url)s\">tema</a>."
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"

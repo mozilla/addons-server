@@ -3668,8 +3668,7 @@ msgstr "好，請將我的附加元件上架至 AMO。"
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
-msgstr ""
-"不選取此欄位仍會上傳並審查您的附加元件，但不會在 AMO 當中公開顯示，也不會被任何使用者下載。若您有任何問題，請保持勾選此欄位，平常不大需要取消勾選。"
+msgstr "不選取此欄位仍會上傳並審查您的附加元件，但不會在 AMO 當中公開顯示，也不會被任何使用者下載。若您有任何問題，請保持勾選此欄位，平常不大需要取消勾選。"
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3961,17 +3960,12 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
-"附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 與 <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> 的 Web "
-"開發者，您已經具備了開發附加元件所必需的能力。"
+"附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla.org/docs/Web/"
+"JavaScript\">JavaScript</a> 與 <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件所必需的能力。"
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-"請前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
-"Network</a> 以了解您還需要知道哪些事情才能開始下手。"
+msgstr "請前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> 以了解您還需要知道哪些事情才能開始下手。"
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
