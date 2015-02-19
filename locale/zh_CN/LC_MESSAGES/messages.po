@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-19 02:28+0000\n"
+"PO-Revision-Date: 2015-02-19 08:30+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424312939.0\n"
+"X-POOTLE-MTIME: 1424334645.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4149,7 +4149,7 @@ msgstr "支持的版本"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:31 apps/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr "添加另一个应用程序&hellip；"
+msgstr "添加其他应用程序&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
@@ -4245,7 +4245,7 @@ msgstr "给您的附加组件选择一个短小、唯一的网址。"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
 #: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
-msgstr "查看页面"
+msgstr "查看公开页面"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:50
 msgid "Summary"
@@ -5268,13 +5268,14 @@ msgstr "成长性不足 &mdash; 精选附加组件通常同时具有较高的下
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
-msgstr "负面评论&mdash；精选附加组件一般拥有良好的用户体验和非常少的漏洞，所以有较多负面评论的附加组件会被重新考虑。"
+msgstr "负面评论 &mdash; 精选附加组件一般拥有良好的用户体验和非常少的漏洞，所以有较多负面评论的附加组件会被重新考虑。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
-msgstr "与下个版本的火狐不兼容&mdash；精选附加组件可以兼容稳定版和开发版火狐。在稳定版放出四周前还未能兼容开发版的附加组件将会失去他们的精选资格。"
+msgstr ""
+"与下个版本的火狐不兼容 &mdash; 精选附加组件可以兼容稳定版和开发版火狐。在稳定版放出四周前还未能兼容开发版的附加组件将会失去他们的精选资格。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -5688,9 +5689,10 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>附加组件是否经过全面的测试，是否没有明显或严重的缺陷？</strong>我们在评价一个附加组件时，把测试过程中获得的附加组件的用户评价和其没有严重问题或对浏览器有负面作用作为一个重要的考虑因素。如果"
-"评论反馈了诸如附加组件重大性能问题、崩溃、主要功能频繁出错、或者是故障控制台收到大量信息反馈，您应该重视这些问题，在尽力修改后重新提交您的附加组件。我们并不要求您将它优化的完美无缺或是完全没有"
-"bug&mdash；即使是火狐本身也在这些方面着持续不断的改进 &mdash；不过我们希望您能尽您所能减少缺点，并明确地声明那些仍然存在的可能会使用户惊异的地方。"
+"<strong>附加组件是否经过全面的测试，是否没有明显或严重的缺陷？</strong>我们在评价一个附加组件时，把测试过程中获得的附加组件的用户评价和"
+"其没有严重问题或对浏览器有负面作用作为一个重要的考虑因素。如果评论反馈了诸如附加组件重大性能问题、崩溃、主要功能频繁出错、或者是故障控制台收到大量信息反"
+"馈，您应该重视这些问题，在尽力修改后重新提交您的附加组件。我们并不要求您将它优化的完美无缺或是完全没有bug &mdash; 即使是 Firefox "
+"本身也在这些方面着持续不断的改进 &mdash; 不过我们希望您能尽您所能减少缺点，并明确地声明那些仍然存在的可能会使用户惊异的地方。"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -5740,8 +5742,8 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
-"当作者没有明确声明同意您引用他或她的代码&mdash的行为，比如把它们置于开源证书下；您应意识到您没有权利复用他人的代码。您可以联系附加组件作者征求同意，不过我们不为您提供这样做的特权，因为这列在网站上，"
-"或者作者未给您答复。"
+"当作者没有明确地声明同意您引用他或她的代码的行为时 &mdash; 比如未将它们置于开源证书下；您应当意识到此时您没有权利复用他的代码。您可以联系附加组"
+"件的作者征求许可，不过我们不能因为它公布在本网站上或者作者未给您答复而为您提供任何特权。"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
