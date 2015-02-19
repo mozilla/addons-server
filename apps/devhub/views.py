@@ -1591,23 +1591,23 @@ def docs(request, doc_name=None):
         'how-to/other-addons': '#Other_types_of_add-ons',
         'how-to/thunderbird-mobile': '#Application-specific',
         'how-to/theme-development': '#Themes',
-        'themes': 'Themes/Background',
-        'themes/faq': 'Themes/Background/FAQ',
+        'themes': '/Themes/Background',
+        'themes/faq': '/Themes/Background/FAQ',
     }
     if waffle.switch_is_active('mdn-policy-docs'):
         mdn_docs.update({
-            'policies': 'AMO/Policy',
-            'policies/submission': 'AMO/Policy/Submission',
-            'policies/reviews': 'AMO/Policy/Reviews',
-            'policies/maintenance': 'AMO/Policy/Maintenance',
-            'policies/recommended': 'AMO/Policy/Featured',
-            'policies/contact': 'AMO/Policy/Contact',
+            'policies': '/AMO/Policy',
+            'policies/submission': '/AMO/Policy/Submission',
+            'policies/reviews': '/AMO/Policy/Reviews',
+            'policies/maintenance': '/AMO/Policy/Maintenance',
+            'policies/recommended': '/AMO/Policy/Featured',
+            'policies/contact': '/AMO/Policy/Contact',
         })
     if waffle.switch_is_active('mdn-agreement-docs'):
         # This will most likely depend on MDN being able to protect
         # pages.
         mdn_docs.update({
-            'policies/agreement': 'AMO/Policy/Agreement',
+            'policies/agreement': '/AMO/Policy/Agreement',
         })
 
     all_docs = ('policies',
