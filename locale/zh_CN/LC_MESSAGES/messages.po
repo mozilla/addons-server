@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-13 04:11+0000\n"
+"PO-Revision-Date: 2015-02-19 02:28+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423800682.0\n"
+"X-POOTLE-MTIME: 1424312939.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3577,7 +3577,7 @@ msgstr "这个附加组件有最终用户许可协议"
 
 #: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "请指定附加组件的最终用户许可协议："
+msgstr "请指定附加组件的最终用户许可协议:"
 
 #: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
@@ -3585,7 +3585,7 @@ msgstr "这个附加组件有自己的隐私策略"
 
 #: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "请指定您的附加组件的隐私政策："
+msgstr "请指定您的附加组件的隐私政策:"
 
 #: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
@@ -3973,7 +3973,7 @@ msgstr "队列位置："
 
 #: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
-msgstr "%(position)s 共 %(total)s"
+msgstr "共%(total)s位，您是第%(pos)s位"
 
 #: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
@@ -4365,7 +4365,7 @@ msgstr "附加组件标记"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons."
-msgstr "这些标记用来把附加组件归类。"
+msgstr "这些标记用来归类附加组件。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:73
 msgid "This is a site-specific add-on."
@@ -4793,7 +4793,7 @@ msgstr "第 4 步"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:6
 msgid "Step 4. Add Images"
-msgstr "第 4 步：添加图像"
+msgstr "第 4 步：添加图片"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:9
 msgid ""
@@ -6465,7 +6465,7 @@ msgstr "0 个文件"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr "审核队列位置：%(pos)s of %(total)s"
+msgstr "审核队列位置：共%(total)s位，您是第%(pos)s位"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
