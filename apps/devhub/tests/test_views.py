@@ -1770,6 +1770,16 @@ class TestSubmitSteps(amo.tests.TestCase):
         self.assert_linked(doc, [3, 4, 5, 6])
         self.assert_highlight(doc, 6)
 
+    def test_menu_step_6_unlisted(self):
+        SubmitStep.objects.create(addon_id=3615, step=6)
+        Addon.objects.get(pk=3615).update(is_listed=False)
+        url = reverse('devhub.submit.6', args=['a3615'])
+        doc = pq(self.client.get(url).content)
+        # Skipped from step 2 to 6, as unlisted add-ons don't need listing
+        # information. Thus none of the steps from 3 to 6 should be links.
+        self.assert_linked(doc, [])
+        self.assert_highlight(doc, 6)
+
     def test_menu_step_7(self):
         url = reverse('devhub.submit.7', args=['a3615'])
         doc = pq(self.client.get(url).content)

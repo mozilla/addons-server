@@ -27,7 +27,7 @@
           {# 1. We have an addon, so don't link to non-addon steps.
              2. Don't link steps above the max step the addon has reached.
              3. If step.max == MAX the addon is done, so we only show the final page. #}
-          {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
+          {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX or not addon.is_listed %}
             {{ text }}
           {% else %}
             <a href="{{ url(BASE % loop.index, addon.slug) }}">{{ text }}</a>
