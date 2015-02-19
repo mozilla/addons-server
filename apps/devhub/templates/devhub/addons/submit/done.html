@@ -8,51 +8,51 @@
 <h3>{{ _("You're done!") }}</h3>
 <p>
 {% if addon.status == amo.STATUS_UNREVIEWED %}
-  {% trans %}
-    Your add-on has been submitted to the Preliminary Review queue.
-  {% endtrans %}
+  {{ _('Your add-on has been submitted to the Preliminary Review queue.') }}
 {% elif addon.status == amo.STATUS_NOMINATED %}
-  {% trans %}
-    Your add-on has been submitted to the Full Review queue.
-  {% endtrans %}
+  {{ _('Your add-on has been submitted to the Full Review queue.') }}
 {% endif %}
 </p>
-<p>
-{% trans %}
-  You'll receive an email once it has been reviewed by an editor. In
-  the meantime, you and your friends can install it directly from its
-  details page:
-{% endtrans %}
-</p>
-<p>
-  <a id="submitted-addon-url" href="{{ addon.get_url_path() }}">
-    {{ addon.get_url_path()|absolutify|display_url }}</a>
-</p>
-<div class="done-next-steps">
-  <p><strong>{{ _('Next steps:') }}</strong></p>
-  <ul>
-    {% if is_platform_specific %}
-      {% set files_url = url('devhub.versions.edit',
-                              addon.slug, addon.current_version.id) %}
-      <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|f(files_url) }}</li>
-    {% endif %}
-    {% set edit_url = addon.get_dev_url() %}
-    <li>{{ _('Provide more details by <a href="{0}">editing its listing</a>.')|f(edit_url) }}</li>
-    {% set profile_url = addon.get_dev_url('profile') %}
-    <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|f(profile_url) }}</li>
-    {% set feed_url = url('devhub.feed', addon.slug) %}
-    <li>{{ _('View and subscribe to your add-on\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(feed_url) }}</li>
-    <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21') }}</li>
-  </ul>
-</div>
+{% if addon.is_listed %}
+  <p>
+    {{ _('You\'ll receive an email once it has been reviewed by an editor. In
+          the meantime, you and your friends can install it directly from its
+          details page:') }}
+  </p>
+  <p>
+    <a id="submitted-addon-url" href="{{ addon.get_url_path() }}">
+      {{ addon.get_url_path()|absolutify|display_url }}</a>
+  </p>
+  <div class="done-next-steps">
+    <p><strong>{{ _('Next steps:') }}</strong></p>
+    <ul>
+      {% if is_platform_specific %}
+        {% set files_url = url('devhub.versions.edit',
+                                addon.slug, addon.current_version.id) %}
+        <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|f(files_url) }}</li>
+      {% endif %}
+      <li>{{ _('Provide more details by <a href="{0}">editing its listing</a>.')|f(addon.get_dev_url()) }}</li>
+      <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|f(addon.get_dev_url('profile')) }}</li>
+      <li>{{ _('View and subscribe to your add-on\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|f(url('devhub.feed', addon.slug)) }}</li>
+      <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|f('https://forums.addons.mozilla.org/viewforum.php?f=21') }}</li>
+    </ul>
+  </div>
 
-<div id="editor-pitch" class="action-needed">
-<h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
-<p>
-  {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
-  <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
-    {{ _('Learn More') }}</a>
-</p>
-</div>
-
+  <div id="editor-pitch" class="action-needed">
+  <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
+  <p>
+    {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
+    <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
+      {{ _('Learn More') }}</a>
+  </p>
+  </div>
+{% else %}
+  <p>
+    {{ _('You\'ll receive an email once it has been reviewed by an editor.') }}
+    <strong>{{ _('Your add-on will not be publicly available on AMO.') }}</strong>
+  </p>
+  <p>
+    {{ _('If you need to adjust any details of your add-on please <a href="{0}">edit the listing</a>.')|f(addon.get_dev_url()) }}
+  </p>
+{% endif %}
 {% endblock %}
