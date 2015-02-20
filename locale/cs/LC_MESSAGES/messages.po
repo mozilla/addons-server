@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-01-31 15:27+0000\n"
+"PO-Revision-Date: 2015-02-20 19:22+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422718025.0\n"
+"X-POOTLE-MTIME: 1424460174.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3736,13 +3736,17 @@ msgstr "Přepsat nezdařenou validaci"
 
 #: apps/devhub/forms.py:511
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "Ano, zobrazit můj doplněk na AMO."
 
 #: apps/devhub/forms.py:512
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"Zrušením zaškrtnutí této volby umožní váš doplněk nahrát a zkontrolovat, ale "
+"nebude na AMO viditelný ani dostupný ke stažení pro koncové uživatele. "
+"Pokud si nejste jistí, ponechte tuto volbu zaškrtnutou - pro zrušení je "
+"obvykle jen velmi málo důvodů."
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4030,7 +4034,7 @@ msgstr "Stát se redaktorem na AMO"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Dozvědět se vše o doplňcích"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -4038,10 +4042,19 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšit a upravit prohlížeč "
+"podle svého způsobu prohlížení. Pokud jste webový vývojář, znáte <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, máte tedy "
+"všechny potřebné schopnosti pro vytvoření skvělého doplňku."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Podívejte se na <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
+"Developer Network</a>, kde se můžete dozvědět všechno, co budete pro začátek "
+"potřebovat."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4074,11 +4087,13 @@ msgstr "Zobrazit všechny doplňky ►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Publikujte svůj doplněk!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Nahrajte <a href=\"%(addon_url)s\">doplněk</a> nebo <a href=\"%"
+"(theme_url)s\">vzhled</a> a začněte!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4126,7 +4141,7 @@ msgstr "Vývoj doplňků"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Komunita a Podpora"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -5060,11 +5075,11 @@ msgstr "Pro nahrání balíčku se svým doplňkem a omezení cílových platfor
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "S kterými platformami je tento soubor kompatibilní?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "Chcete, aby se váš doplněk zobrazoval na AMO?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
