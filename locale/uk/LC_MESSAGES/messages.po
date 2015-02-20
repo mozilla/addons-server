@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-15 12:40+0000\n"
+"PO-Revision-Date: 2015-02-20 19:48+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424004029.0\n"
+"X-POOTLE-MTIME: 1424461702.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6407,11 +6408,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
-msgstr ""
+msgstr "Стан схвалення"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:131
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Примітки для рецензентів"
 
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -6419,7 +6420,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Програмний код"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -6427,15 +6428,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:145 apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
-msgstr ""
+msgstr "Завантажити новий файл"
 
 #: apps/devhub/templates/devhub/versions/edit.html:147
 msgid "Add File"
-msgstr ""
+msgstr "Додати файл"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Файл {file_id} ({platform})"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -6447,7 +6448,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
-msgstr ""
+msgstr "Показати історію файла"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
@@ -6455,40 +6456,40 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
-msgstr ""
+msgstr "Змінити цю версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:12 apps/versions/templates/versions/version.html:6 apps/versions/templates/versions/mobile/version.html:6
 msgctxt "addon_display_header_version"
 msgid "Version {0}"
-msgstr ""
+msgstr "Версія {0}"
 
 #. {0} is the number of files
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} файл"
+msgstr[1] "{0} файли"
+msgstr[2] "{0} файлів"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
-msgstr ""
+msgstr "0 файлів"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Позиція в черзі: %(pos)s із %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr ""
+msgstr "Не затверджено."
 
 #: apps/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
-msgstr ""
+msgstr "Затвердити зараз."
 
 #: apps/devhub/templates/devhub/versions/list.html:73
 msgid "Request Full Review"
-msgstr ""
+msgstr "Запитати повний розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:74
 msgid "Request Preliminary Review"
@@ -6583,7 +6584,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to disable your add-on?"
-msgstr ""
+msgstr "Ви впевнені, що хочете відключити свій додаток?"
 
 #: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -6595,7 +6596,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Ви впевнені, що хочете скасувати свій запит на відгук?"
 
 #: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
@@ -6635,7 +6636,7 @@ msgstr "Швидко порівнюйте ціни при покупках в І
 
 #: apps/discovery/modules.py:183
 msgid "Firefox 4 Collection"
-msgstr ""
+msgstr "Збірка Firefox 4"
 
 #: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
@@ -6643,11 +6644,11 @@ msgstr "Збірка Firefox 4"
 
 #: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Теми до дня Святого Патріка"
 
 #: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Прикрасьте свій браузер, щоб відзначити день Святого Патріка."
 
 #: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
@@ -6679,7 +6680,7 @@ msgstr "Відображає прапор країни, який показує 
 
 #: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
+msgstr "FoxClocks дозволяє вам слідкувати за часом по всьому Світу."
 
 #: apps/discovery/modules.py:230
 msgid "Automatically get the lowest price when you shop online or search for flights."
@@ -6711,7 +6712,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:272
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Повітря наповнене любов'ю"
 
 #: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
@@ -6727,11 +6728,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:290
 msgid "Get up and move!"
-msgstr ""
+msgstr "Вставайте та рухайтесь!"
 
 #: apps/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Встановіть ці додатки для фітнесу, щоб бути активними та здоровими."
 
 #: apps/discovery/modules.py:299
 msgid "New &amp; Now"
@@ -6755,7 +6756,7 @@ msgstr "Чудові додатки для роботи, розваг, прив�
 
 #: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Додатки для переможців конкурсу Australis"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
@@ -6763,7 +6764,7 @@ msgstr "Які у вас інтереси?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Відкрийте додатки"
 
 #: apps/discovery/templates/discovery/pane.html:24
 msgid "What are Add-ons?"
@@ -6836,11 +6837,14 @@ msgstr "Скасувати встановлення"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
-msgstr ""
+msgstr "Отримуйте додатки де б ви не були"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:8
 msgid "Visit <a href=\"%(url)s\">firefox.com/m</a> to get Firefox on your phone and personalize your browser anytime, anywhere. Easily discover and install add-ons from the mobile Add-ons Manager."
 msgstr ""
+"Відвідайте <a href=\"%(url)s\">firefox.com/m</a>, щоб отримати Firefox на свій "
+"телефон та налаштувати свій браузер під себе будь-коли, де завгодно. Легко "
+"знаходьте та встановлюйте додатки з мобільного менеджера додатків."
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
@@ -6880,41 +6884,41 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
-msgstr ""
+msgstr "Покажіть свою підтримку"
 
 #: apps/editors/forms.py:31
 msgid "Approved reviews"
-msgstr ""
+msgstr "Схвалені розгляди"
 
 #: apps/editors/forms.py:32
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Видалені розгляди"
 
 #: apps/editors/forms.py:40 apps/editors/forms.py:59
 msgid "View entries between"
-msgstr ""
+msgstr "Перегляд версій між"
 
 #: apps/editors/forms.py:42 apps/editors/forms.py:60
 msgid "and"
-msgstr ""
+msgstr "та"
 
 #: apps/editors/forms.py:44
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Фільтр за типом/дією"
 
 #: apps/editors/forms.py:61
 msgid "containing"
-msgstr ""
+msgstr "яка містить"
 
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:67
 msgid "start"
-msgstr ""
+msgstr "початкова"
 
 #. L10n: end, as in "end date"
 #: apps/editors/forms.py:71
 msgid "end"
-msgstr ""
+msgstr "кінцева"
 
 #. L10n: Description of what can be searched for
 #: apps/editors/forms.py:74
@@ -6939,15 +6943,15 @@ msgstr ""
 
 #: apps/editors/forms.py:105
 msgid "Max. Version"
-msgstr ""
+msgstr "Найвища версія"
 
 #: apps/editors/forms.py:109
 msgid "Days Since Submission"
-msgstr ""
+msgstr "Днів з моменту представлення"
 
 #: apps/editors/forms.py:114
 msgid "Add-on Types"
-msgstr ""
+msgstr "Типи додатків"
 
 #: apps/editors/forms.py:118 apps/editors/helpers.py:197
 msgid "Platforms"
@@ -6956,23 +6960,23 @@ msgstr "Платформи"
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: apps/editors/forms.py:230
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: apps/editors/forms.py:245 apps/files/templates/files/viewer.html:50
 msgid "Files:"
-msgstr ""
+msgstr "Файли:"
 
 #: apps/editors/forms.py:248
 msgid "Comments:"
-msgstr ""
+msgstr "Коментарі:"
 
 #: apps/editors/forms.py:252
 msgid "Operating systems:"
-msgstr ""
+msgstr "Операційні системи:"
 
 #: apps/editors/forms.py:254
 msgid "Applications:"
-msgstr ""
+msgstr "Програми:"
 
 #: apps/editors/forms.py:256
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -7018,43 +7022,43 @@ msgstr ""
 
 #: apps/editors/helpers.py:54
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Відхилено чи не розглянуто"
 
 #: apps/editors/helpers.py:108
 msgid "Queue"
-msgstr ""
+msgstr "Черга"
 
 #: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
 msgid "Pending Updates"
-msgstr ""
+msgstr "Очікувані оновлення"
 
 #: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
 msgid "Full Reviews"
-msgstr ""
+msgstr "Повні розгляди"
 
 #: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
 msgid "Preliminary Reviews"
-msgstr ""
+msgstr "Попередні розгляди"
 
 #: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Модеровані розгляди"
 
 #: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
 msgid "Fast Track"
-msgstr ""
+msgstr "Швидке відстеження"
 
 #: apps/editors/helpers.py:115
 msgid "Pending Themes"
-msgstr ""
+msgstr "Очікувані теми"
 
 #: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Відмічені теми"
 
 #: apps/editors/helpers.py:117
 msgid "Update Themes"
-msgstr ""
+msgstr "Оновити теми"
 
 #: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
@@ -7113,7 +7117,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:200
 msgid "Additional"
-msgstr ""
+msgstr "Додатково"
 
 #: apps/editors/helpers.py:215
 msgid "Site Specific"
@@ -7121,11 +7125,11 @@ msgstr ""
 
 #: apps/editors/helpers.py:217
 msgid "Requires External Software"
-msgstr ""
+msgstr "Потребує стороннє ПЗ"
 
 #: apps/editors/helpers.py:219
 msgid "Binary Components"
-msgstr ""
+msgstr "Бінарні компоненти"
 
 #: apps/editors/helpers.py:243
 msgid "moments ago"
@@ -7135,33 +7139,33 @@ msgstr ""
 #: apps/editors/helpers.py:246
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} хвилина"
+msgstr[1] "{0} хвилини"
+msgstr[2] "{0} хвилин"
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:250
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} година"
+msgstr[1] "{0} години"
+msgstr[2] "{0} годин"
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:254
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} день"
+msgstr[1] "{0} дні"
+msgstr[2] "{0} днів"
 
 #: apps/editors/helpers.py:397
 msgid "Push to public"
-msgstr ""
+msgstr "Відправити в загальний доступ"
 
 #: apps/editors/helpers.py:405
 msgid "Request more information"
-msgstr ""
+msgstr "Запитати додаткову інформацію"
 
 #: apps/editors/helpers.py:408
 msgid "Request super-review"
@@ -7227,15 +7231,15 @@ msgstr ""
 
 #: apps/editors/helpers.py:532
 msgid "add-on"
-msgstr ""
+msgstr "додаток"
 
 #: apps/editors/helpers.py:794 apps/editors/helpers.py:814
 msgid "Flagged"
-msgstr ""
+msgstr "Відмічено"
 
 #: apps/editors/helpers.py:798 apps/editors/helpers.py:817
 msgid "Updates"
-msgstr ""
+msgstr "Оновлення"
 
 #: apps/editors/models.py:178
 msgid "Admin Review"
