@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-19 08:30+0000\n"
+"PO-Revision-Date: 2015-02-21 16:31+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424334645.0\n"
+"X-POOTLE-MTIME: 1424536313.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -289,13 +289,13 @@ msgstr "捐款金额必须是数字。"
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr "建议一次捐助 {0}"
+msgstr "建议单次捐助 {0}"
 
 #. {0} is a currency symbol (e.g., $),
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr "一次捐助 {0} {1}"
+msgstr "单次捐助 {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
@@ -6014,7 +6014,7 @@ msgstr "您目前正在请求用户<b>捐款</b>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "您的贡献页：<a href=\"%(url)s\">%(url_full)s</a>"
+msgstr "您的捐款页面：<a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -6026,7 +6026,7 @@ msgstr "自愿捐款"
 
 #: apps/devhub/templates/devhub/payments/payments.html:38
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "已加入我们的捐款计划的附加组件可以向用户请求自愿性地捐款。"
+msgstr "已加入我们的捐款计划的附加组件可以向用户请求自愿的捐款。"
 
 #: apps/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
@@ -6038,7 +6038,7 @@ msgstr "选择何时以及如何询问用户进行捐款"
 
 #: apps/devhub/templates/devhub/payments/payments.html:42
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "在 Paypal 账户中接受捐款或者发到您选择的组织"
+msgstr "在 Paypal 账户中接受捐款或者将捐款发到您选择的组织"
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -6066,7 +6066,7 @@ msgstr "捐款"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "请填写下面的表单以便开始向用户请求自愿性地捐款。"
+msgstr "请填写下面的表单以便开始向用户请求自愿的捐款。"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
@@ -10279,7 +10279,7 @@ msgstr "这个仪表板目前是<b>公开显示的</b>。"
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr "贡献统计目前是<b>私密的</b>。"
+msgstr "捐款统计目前是<b>私密的</b>。"
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
@@ -10315,7 +10315,7 @@ msgstr "依照日期统计的收藏集创建"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr "依照日期统计的贡献"
+msgstr "依照日期统计的捐款"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"

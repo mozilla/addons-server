@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-03 05:39+0000\n"
+"PO-Revision-Date: 2015-02-21 16:27+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422941979.0\n"
+"X-POOTLE-MTIME: 1424536055.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -286,7 +286,7 @@ msgstr "合计（美元）"
 
 #: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
-msgstr "捐款量"
+msgstr "捐款次数"
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
@@ -600,12 +600,12 @@ msgstr "{0} 至 {1} 的下载来源"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:182
 msgid "Contributions, last {0} days"
-msgstr "最近 {0} 天的捐助"
+msgstr "最近 {0} 天的捐款"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:184
 msgid "Contributions from {0} to {1}"
-msgstr "{0} 至 {1} 的捐款"
+msgstr "从 {0} 至 {1} 的捐款"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:188
