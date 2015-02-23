@@ -57,12 +57,7 @@ def call_signing(file_obj):
 
     log.info('File signature contents: %s' % jar.signatures)
 
-    # From https://wiki.mozilla.org/AMO/SigningService/API:
-    # "A unique identifier for the combination of addon name and version that
-    # will be used in the generated key and certificate. A strong preference
-    # for human readable.
-    addon_id = u"{slug}-{version}".format(slug=file_obj.version.addon.slug,
-                                          version=file_obj.version.version)
+    addon_id = file_obj.version.addon.guid
 
     log.info('Calling signing service: %s' % endpoint)
     try:
