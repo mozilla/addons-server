@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-20 19:48+0000\n"
+"PO-Revision-Date: 2015-02-23 11:28+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424461702.0\n"
+"X-POOTLE-MTIME: 1424690905.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6493,22 +6493,22 @@ msgstr "Запитати повний розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:74
 msgid "Request Preliminary Review"
-msgstr ""
+msgstr "Запитати попередній розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:83
 msgid "Full nomination will be available in {0} day"
 msgid_plural "Full nomination will be available in {0} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Повна номінація буде доступна через {0} день"
+msgstr[1] "Повна номінація буде доступна через {0} дні"
+msgstr[2] "Повна номінація буде доступна через {0} днів"
 
 #: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:253 apps/devhub/templates/devhub/versions/list.html:276
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Скасувати запит на розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:106
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Зараз на AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -6527,15 +6527,15 @@ msgstr "Швидкодія"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Наступна версія цього додатку"
 
 #: apps/devhub/templates/devhub/versions/list.html:141
 msgid "Older versions"
-msgstr ""
+msgstr "Старіші версії"
 
 #: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Завантажити нову версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:186
 msgid "Delete Version {version}"
@@ -6581,6 +6581,8 @@ msgstr "Додати версію"
 #: apps/devhub/templates/devhub/versions/list.html:227
 msgid "Disabling your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Відключення вашого додатку призведе до його видалення з вашої галереї та "
+"припинить автоматичні оновлення для користувачів."
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to disable your add-on?"
@@ -6589,10 +6591,15 @@ msgstr "Ви впевнені, що хочете відключити свій �
 #: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr ""
+"Скасування вашого запиту на розгляд залишить ваш додаток, як попередньо "
+"розглянутий."
 
 #: apps/devhub/templates/devhub/versions/list.html:261
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
+"Скасування вашого запиту на розгляд відмітить ваш додаток, як незавершений. "
+"Якщо ви протягом кількох днів не відправите повторний запит для розгляду, "
+"додаток буде видалений."
 
 #: apps/devhub/templates/devhub/versions/list.html:269
 msgid "Are you sure you wish to cancel your review request?"
@@ -6640,7 +6647,7 @@ msgstr "Збірка Firefox 4"
 
 #: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
-msgstr "Збірка Firefox 4"
+msgstr "Ось кілька чудових додатків для Firefox 4."
 
 #: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
@@ -6872,7 +6879,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Вибір місяця від Mozilla"
+msgstr "Вибір місяця від Mozilla!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
@@ -6880,7 +6887,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Приєднуйтесь до нас в святкуванні всесвітнього духу спільноти."
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
@@ -6927,15 +6934,15 @@ msgstr ""
 
 #: apps/editors/forms.py:90
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Пошук за назвою додатку / електронною адресою автора"
 
 #: apps/editors/forms.py:95
 msgid "yes"
-msgstr ""
+msgstr "так"
 
 #: apps/editors/forms.py:96
 msgid "no"
-msgstr ""
+msgstr "ні"
 
 #: apps/editors/forms.py:97
 msgid "Admin Flag"
@@ -6981,6 +6988,8 @@ msgstr "Програми:"
 #: apps/editors/forms.py:256
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr ""
+"Повідомити мене при наступному оновленні цього додатку. (Подальші оновлення "
+"не призведуть до відправлення електронного листа)"
 
 #: apps/editors/forms.py:261
 msgid "Clear Admin Review Flag"
@@ -6992,7 +7001,7 @@ msgstr ""
 
 #: apps/editors/forms.py:310
 msgid "You must select some files."
-msgstr ""
+msgstr "Ви повинні вибрати які-небудь файли."
 
 #: apps/editors/forms.py:316
 msgid "File %s is not pending review."
@@ -7018,7 +7027,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:47
 msgid "Pending Full Review"
-msgstr ""
+msgstr "Очікує повного розгляду"
 
 #: apps/editors/helpers.py:54
 msgid "Rejected or Unreviewed"
@@ -7063,41 +7072,41 @@ msgstr "Оновити теми"
 #: apps/editors/helpers.py:143
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Швидке відстеження ({0})"
+msgstr[1] "Швидкі відстеження ({0})"
+msgstr[2] "Швидких відстежень ({0})"
 
 #: apps/editors/helpers.py:147
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Повний розгляд ({0})"
+msgstr[1] "Повні розгляди ({0})"
+msgstr[2] "Повних розглядів ({0})"
 
 #: apps/editors/helpers.py:151
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Очікуване оновлення ({0})"
+msgstr[1] "Очікувані оновлення ({0})"
+msgstr[2] "Очікуваних оновлень ({0})"
 
 #: apps/editors/helpers.py:155
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Попередній розгляд ({0})"
+msgstr[1] "Попередні розгляди ({0})"
+msgstr[2] "Попередніх розглядів ({0})"
 
 #: apps/editors/helpers.py:160
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Модерований розгляд ({0})"
+msgstr[1] "Модеровані розгляди ({0})"
+msgstr[2] "Модерованих розглядів ({0})"
 
 #: apps/editors/helpers.py:191
 msgid "Addon"
-msgstr ""
+msgstr "Додаток"
 
 #: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
@@ -7105,7 +7114,7 @@ msgstr "Тип"
 
 #: apps/editors/helpers.py:193
 msgid "Waiting Time"
-msgstr ""
+msgstr "Час очікування"
 
 #: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
 msgid "Flags"
@@ -7113,7 +7122,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:195
 msgid "Applications"
-msgstr ""
+msgstr "Програми"
 
 #: apps/editors/helpers.py:200
 msgid "Additional"
@@ -7188,34 +7197,43 @@ msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
+"Якщо у вас є сумніви щодо безпеки, авторських прав чи інших проблем цього "
+"додатку, які потребують вивчення адміністратором, введіть свої коментарі у "
+"полі внизу. Вони будуть надіслані адміністраторам, але не авторам."
 
 #: apps/editors/helpers.py:432
 msgid "This will reject the add-on and remove it from the review queue."
-msgstr ""
+msgstr "Це відхилить додаток і прибере його з черги на розгляд."
 
 #: apps/editors/helpers.py:434
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr ""
+msgstr "Залиште коментар для цієї версії. Автор не зможе його побачити."
 
 #: apps/editors/helpers.py:438
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "Це відхилить файли та прибере їх з черги на розгляд."
 
 #: apps/editors/helpers.py:442
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
+"Це відмітить додаток, як попередньо розглянутий. Майбутні версії будуть "
+"підлягати попередньому розгляду."
 
 #: apps/editors/helpers.py:447
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
+"Це відмітить файли, як попередньо розглянуті. Майбутні версії будуть "
+"підлягати попередньому розгляду."
 
 #: apps/editors/helpers.py:452
 msgid "Retain preliminary review"
-msgstr ""
+msgstr "Залишити попередній розгляд"
 
 #: apps/editors/helpers.py:453
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
+"Це залишить додаток, як попередньо розглянутий. Майбутні версії будуть "
+"підлягати попередньому розгляду."
 
 #: apps/editors/helpers.py:458
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
@@ -7275,19 +7293,19 @@ msgstr ""
 
 #: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Проблема з представленням вашої теми"
 
 #: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Представлена тема відмічена для розгляду"
 
 #: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Питання щодо представлення вашої теми"
 
 #: apps/editors/views.py:104
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Нові додатки (Менше 5 днів)"
 
 #: apps/editors/views.py:105
 msgid "Passable (5 to 10 days)"
@@ -7299,7 +7317,7 @@ msgstr ""
 
 #: apps/editors/views.py:422
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Сталася невідома помилка"
 
 #: apps/editors/views.py:448
 msgid "Self-reviews are not allowed."
@@ -7311,7 +7329,7 @@ msgstr ""
 
 #: apps/editors/views.py:654
 msgid "was approved"
-msgstr ""
+msgstr "було схвалено"
 
 #: apps/editors/views.py:655
 msgid "given preliminary review"
@@ -7351,15 +7369,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Звіт про зловживання для {addon} ({num})"
 
 #: apps/editors/templates/editors/abuse_reports.html:18
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s на %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/abuse_reports.html:22
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>anonymous</i> в %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
@@ -7389,7 +7407,7 @@ msgstr ""
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45 apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "Фільтр"
 
 #: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
@@ -7397,11 +7415,11 @@ msgstr "Дата"
 
 #: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
-msgstr ""
+msgstr "Подія"
 
 #: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:129
 msgid "More details."
-msgstr ""
+msgstr "Детальніше."
 
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
@@ -7438,46 +7456,46 @@ msgstr ""
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Повний розгляд ({num})"
+msgstr[1] "Повні розгляди ({num})"
+msgstr[2] "Повних розглядів ({num})"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Очікуване оновлення ({num})"
+msgstr[1] "Очікувані оновлення ({num})"
+msgstr[2] "Очікуваних оновлень ({num})"
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Попередній розгляд ({num})"
+msgstr[1] "Попередні розгляди ({num})"
+msgstr[2] "Попередніх розглядів ({num})"
 
 #: apps/editors/templates/editors/home.html:36
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Поточний час очікування:"
 
 #: apps/editors/templates/editors/home.html:44
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} додаток"
+msgstr[1] "{0} додатки"
+msgstr[2] "{0} додатків"
 
 #: apps/editors/templates/editors/home.html:45
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: apps/editors/templates/editors/home.html:58 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
-msgstr ""
+msgstr "Всього розглядів"
 
 #: apps/editors/templates/editors/home.html:59 apps/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Розгляди цього місяця"
 
 #: apps/editors/templates/editors/home.html:60
 msgid "New Editors"
@@ -7513,7 +7531,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Повідомлення дня"
 
 #: apps/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
@@ -7521,7 +7539,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:246
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 #: apps/editors/templates/editors/performance.html:10
 msgctxt "editorcp_reviewlog_page_heading"
@@ -7530,19 +7548,19 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
-msgstr ""
+msgstr "Перегляд статистики для користувача"
 
 #: apps/editors/templates/editors/performance.html:29
 msgid "Range"
-msgstr ""
+msgstr "Діапазон"
 
 #: apps/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
-msgstr ""
+msgstr "Ваші відгуки"
 
 #: apps/editors/templates/editors/performance.html:34
 msgid "By {user_name}"
-msgstr ""
+msgstr "Від {user_name}"
 
 #: apps/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
@@ -7578,15 +7596,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:93
 msgid "All-Time"
-msgstr ""
+msgstr "Весь час"
 
 #: apps/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
-msgstr ""
+msgstr "Розширений пошук"
 
 #: apps/editors/templates/editors/queue.html:30
 msgid "clear search"
-msgstr ""
+msgstr "очистити пошук"
 
 #: apps/editors/templates/editors/queue.html:72 apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
