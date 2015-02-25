@@ -1,0 +1,33 @@
+{
+    "name": "Olympia",
+    "description": "Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey.",
+    "repository": {
+        "url": "https://github.com/mozilla/olympia",
+        "license": "BSD 3-Clause",
+        "tests": "https://travis-ci.org/mozilla/olympia"
+    },
+    "participate": {
+        "home": "https://wiki.mozilla.org/Webdev/GetInvolved/addons.mozilla.org",
+        "docs": "http://olympia.readthedocs.org/",
+        "irc": "irc://irc.mozilla.org/#amo",
+        "irc-contacts": ["magopian", "clouserw"]
+    },
+    "bugs": {
+        "list": "https://bugzilla.mozilla.org/describecomponents.cgi?product=addons.mozilla.org",
+        "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org"
+    },
+    "urls": {
+        "prod": "https://addons.mozilla.org/",
+        "stage": "https://addons.allizom.org/",
+        "dev": "https://addons-dev.allizom.org/"
+    },
+    "keywords": [
+        "django",
+        "mysql",
+        "python",
+        "celery",
+        "elasticsearch",
+        "jquery",
+        "javascript"
+    ]
+}
