@@ -89,7 +89,7 @@ receipts==0.2.9
 redis==2.8.0
 requests==2.0.0
 sasl==0.1.3
-signing_clients==0.1.8
+signing_clients==0.1.10
 six==1.4.1
 slumber==0.5.3
 SQLAlchemy==0.7.5
