@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-21 16:31+0000\n"
+"PO-Revision-Date: 2015-02-26 03:26+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424536313.0\n"
+"X-POOTLE-MTIME: 1424921189.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1292,7 +1292,7 @@ msgstr "我的收藏夹"
 
 #: apps/amo/context_processors.py:84 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr "登出"
+msgstr "退出"
 
 #: apps/amo/context_processors.py:89 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
@@ -1695,7 +1695,7 @@ msgstr "用户 {user} 已限制。"
 
 #: apps/amo/log.py:507
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "管理员“{0}”已审阅用户“{user}”的活动日志。"
+msgstr "管理员 {0} 查看了 {user} 的活动日志。"
 
 #: apps/amo/log.py:514
 msgid "{review} for {addon} updated."
@@ -1960,11 +1960,11 @@ msgstr "不授权访问"
 
 #: apps/api/templates/piston/request_token_ready.html:21
 msgid "You have chosen to give access to %(consumer)s. They will be able to act on your behalf or retrieve information about you."
-msgstr "您已选择授予“%(consumer)s”访问权限，他们将能够代表您进行操作或获取您的信息。"
+msgstr "您已选择授予 %(consumer)s 访问权限，他们将能够代表您进行操作或获取您的信息。"
 
 #: apps/api/templates/piston/request_token_ready.html:32
 msgid "You have chosen to not give access to %(consumer)s. They will not be able to act on your behalf or retrieve information about you."
-msgstr "您已选择不授予“%(consumer)s”访问权限，他们将不能够代表您进行操作或获取您的信息。"
+msgstr "您已选择不授予 %(consumer)s 访问权限，他们将不能够代表您进行操作或获取您的信息。"
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
@@ -2056,7 +2056,7 @@ msgstr "网址："
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr "描述收藏集（不允许使用链接）。"
+msgstr "描述您的收藏集（不允许使用链接）。"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -5548,7 +5548,9 @@ msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
-"违法犯罪的附加组件，例如<a href=\"http://en.wikipedia.org/wiki/Click_fraud\">点击欺诈</a>生成器、<a href=\"http://zh.wikipedia.org/wiki/Warez\">盗版软件</a>下载与目录辅助软件以及儿童色情搜索器等。"
+"违法犯罪的附加组件，例如<a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">点击欺诈</a>生成器、<a "
+"href=\"http://zh.wikipedia.org/wiki/Warez\">盗版软件</a>下载与目录辅助软件、儿童色情搜索器等。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -6862,7 +6864,7 @@ msgstr "Mozilla 的本月推荐！"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
-msgstr "使用<br>您的国旗标志</br>自定义Firefox"
+msgstr "用国旗标志<br>自定义您的 Firefox"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
@@ -9094,7 +9096,9 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<a href=\"%(browse_url)s\">完整主题</a></strong>更改 %(app_name)s 的整体外观，通常包括图标、颜色、对话框，以及其他视觉样式。"
+msgstr ""
+"<strong><a href=\"%(browse_url)s\">完整主题</a></strong>更改 %(app_name)s "
+"的整体外观，通常包括图标、颜色、对话框，以及其他视觉样式。"
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -10897,7 +10901,7 @@ msgstr "给我们提供更多有关您的信息。所有这些字段都是可选
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr "这个网址只对开发者显示。"
+msgstr "只有在您是一名开发者时才会显示这个网址。"
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
@@ -10909,7 +10913,7 @@ msgstr "删除当前照片"
 
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr "这是用于现实您的资料（例如描述信息）的默认语种。"
+msgstr "这是用来显示有关您的资料（例如描述信息）的默认语种。"
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
