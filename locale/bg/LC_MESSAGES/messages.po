@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-14 23:42+0000\n"
+"PO-Revision-Date: 2015-02-27 22:10+0000\n"
 "Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1423957366.0\n"
+"X-POOTLE-MTIME: 1425075030.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1016,7 +1016,9 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Внимание:</strong> Версиите на тази добавка в процес на разработка не са прегледани от Mozilla"
+msgstr ""
+"<strong>Внимание:</strong> Версиите на тази добавка в процес на разработка "
+"не са прегледани от Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1264,7 +1266,7 @@ msgstr "Теми"
 
 #: apps/addons/templates/addons/mobile/home.html:47
 msgid "View all Featured add-ons"
-msgstr "Виж всички препоръчани добавки."
+msgstr "Всички препоръчани добавки"
 
 #: apps/addons/templates/addons/mobile/home.html:53
 msgid "View all Popular add-ons"
@@ -1620,7 +1622,7 @@ msgstr "{addon} manifest обновен."
 
 #: apps/amo/log.py:381
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} одобрен, но изчаква да бъде направен публичен"
+msgstr "{addon} {version} одобрен, но изчаква да бъде направен публичен."
 
 #: apps/amo/log.py:382
 msgid "Approved but waiting"
@@ -1692,7 +1694,7 @@ msgstr ""
 
 #: apps/amo/log.py:471
 msgid "Created: {0}."
-msgstr "Създаден: {0}"
+msgstr "Създаден: {0}."
 
 #: apps/amo/log.py:477
 msgid "Edited field: {2} set to: {0}."
@@ -2064,7 +2066,7 @@ msgstr "{0} :: Колекции :: {1}"
 
 #: apps/bandwagon/forms.py:19
 msgid "Only I can view this collection."
-msgstr "Само аз мога да виждам тази колекция"
+msgstr "Само аз мога да виждам тази колекция."
 
 #: apps/bandwagon/forms.py:20
 msgid "Anybody can view this collection."
@@ -2675,7 +2677,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Блокиран на %(date)s. <a href=\"%(link)s\">Виж искането за блокиране</a>"
+msgstr "Блокиран на %(date)s. <a href=\"%(link)s\">Виж искането за блокиране</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
@@ -3324,7 +3326,7 @@ msgstr ""
 
 #: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
-msgstr "Питай само на страницата на тази добавка и на профила на разработчика."
+msgstr "Питай само на страницата на тази добавка и на профила на разработчика"
 
 #: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
@@ -3598,7 +3600,7 @@ msgstr "Поне един автор трябва да бъде показан."
 
 #: apps/devhub/forms.py:73
 msgid "An author can only be listed once."
-msgstr "Авторът може да бъде показван само веднъж"
+msgstr "Авторът може да бъде показван само веднъж."
 
 #: apps/devhub/forms.py:91
 msgid "Password incorrect."
@@ -6023,7 +6025,7 @@ msgstr "Отмени"
 
 #: apps/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "В момента искате <b>дарения</b> от потребителите."
+msgstr "В момента искате <b>дарения</b> от потребителите"
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
@@ -7743,7 +7745,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:147
 msgid "This version has not been reviewed."
-msgstr "Тази версия не е прегледана"
+msgstr "Тази версия не е прегледана."
 
 #: apps/editors/templates/editors/review.html:177
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -9360,8 +9362,10 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"Някои автори на добавки искат потребителите, които се наслаждават на добавките им да допринесат за развитието им, като направят малко парично дарение. Тези дарения отиват директно при разработчика, "
-"освен ако не е указана трета страна, като фондацията с нестопанска цел Mozilla"
+"Някои автори на добавки искат потребителите, които се наслаждават на "
+"добавките им да допринесат за развитието им, като направят малко парично "
+"дарение. Тези дарения отиват директно при разработчика, освен ако не е "
+"указана трета страна, като фондацията с нестопанска цел Mozilla."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -11231,9 +11235,8 @@ msgstr "Докладвай потребител"
 # 87%
 # 100%
 #: apps/users/templates/users/pwreset_complete.html:11
-#, fuzzy
 msgid "Success!"
-msgstr "Успех"
+msgstr "Успех!"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
