@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-27 22:10+0000\n"
+"PO-Revision-Date: 2015-02-27 22:13+0000\n"
 "Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: -1,272,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1425075030.0\n"
+"X-POOTLE-MTIME: 1425075228.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -309,7 +309,7 @@ msgstr "Еднократно дарение от {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr "Остави коментар или искане с дарението си. "
+msgstr "Остави коментар или искане с дарението си."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74 apps/bandwagon/templates/bandwagon/ajax_new.html:20 apps/bandwagon/templates/bandwagon/includes/addedit.html:34
 #: apps/reviews/templates/reviews/mobile/add_form.html:13 templates/includes/forms.html:10
@@ -4806,7 +4806,9 @@ msgstr "Добавката ви бе пратена на опашката за �
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:21
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
-msgstr "Ще получите имейл веднъж щом е прегледана от редактор. Междувременно вие и вашите приятели можете да я инсталирате директно от страницата ѝ с детайли: "
+msgstr ""
+"Ще получите имейл веднъж щом е прегледана от редактор. Междувременно вие и "
+"вашите приятели можете да я инсталирате директно от страницата ѝ с детайли:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
@@ -6082,7 +6084,7 @@ msgstr "или <a href=\"%(cancel)s\">Отказ</a>"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:2 apps/stats/templates/stats/addon_report_menu.html:39
 msgid "Contributions"
-msgstr "Дарения "
+msgstr "Дарения"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
@@ -6545,7 +6547,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
-msgstr "Състояние "
+msgstr "Състояние"
 
 # Header for a column in a table
 #: apps/devhub/templates/devhub/versions/list.html:108 apps/devhub/templates/devhub/versions/list.html:129 apps/devhub/templates/devhub/versions/list.html:149
@@ -6877,7 +6879,7 @@ msgstr "Последно обновен"
 
 #: apps/discovery/templates/discovery/addons/eula.html:27
 msgid "Cancel Installation"
-msgstr "Откажи инсталацията "
+msgstr "Отказ от инсталация"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
@@ -7447,7 +7449,7 @@ msgstr "Филтър"
 
 #: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
-msgstr "Дата "
+msgstr "Дата"
 
 #: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
@@ -9065,7 +9067,7 @@ msgstr ""
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
 msgid "Spam or otherwise non-review content"
-msgstr "Спам или друго съдържание без преглед "
+msgstr "Спам или друго странично съдържание"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
@@ -9713,7 +9715,7 @@ msgstr ""
 #. Show All, Windows, Mac, Linux. The other names are inserted after the colon.
 #: apps/perf/templates/perf/index.html:40
 msgid "Show:"
-msgstr "Покажи: "
+msgstr "Показване:"
 
 #: apps/perf/templates/perf/index.html:57
 msgid "Impact"
@@ -9972,7 +9974,7 @@ msgstr ""
 
 #: apps/search/forms.py:49
 msgid "Sort By"
-msgstr "Сортирай по "
+msgstr "Подредба по"
 
 #: apps/search/forms.py:84
 msgid "Relevance"
@@ -10102,7 +10104,7 @@ msgstr "Резултати от търсенето <i>({num})</i>"
 msgid "{0} post"
 msgid_plural "{0} posts"
 msgstr[0] "{0} публикация"
-msgstr[1] "{0} публикации "
+msgstr[1] "{0} публикации"
 
 #: apps/sharing/__init__.py:20
 msgid "Add to Delicious"
@@ -10130,7 +10132,7 @@ msgstr "Сподели във FriendFeed"
 msgid "{0} share"
 msgid_plural "{0} shares"
 msgstr[0] "{0} споделяне"
-msgstr[1] "{0} споделяния "
+msgstr[1] "{0} споделяния"
 
 #: apps/sharing/__init__.py:58
 msgid "Post to MySpace"
@@ -10592,7 +10594,7 @@ msgstr "Топ {0} етикети"
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
 msgid "{0} Top Tags"
-msgstr "{0} Топ етикети "
+msgstr "{0} Топ етикети"
 
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
