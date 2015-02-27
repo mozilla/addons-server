@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-02-25 08:27+0000\n"
+"PO-Revision-Date: 2015-02-27 22:16+0000\n"
 "Last-Translator: Стоян <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424852861.0\n"
+"X-POOTLE-MTIME: 1425075411.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -114,11 +114,10 @@ msgid "Add-on submission checklist"
 msgstr "Стъпки за изпращане на добавка"
 
 #: static/js/common/upload-addon.js:351
-#, fuzzy
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
-"Проверете следните точки преди да изпратите добавката. Така ще се намалят "
-"забавяния заради неясноти по време на процеса на преглед:"
+"Проверете следните точки преди да изпратите добавката. Така ще бъдат "
+"намалени забавянията поради неясноти по време на процеса на преглед:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
@@ -965,8 +964,8 @@ msgstr[1] "{files} файла"
 #: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} отзив"
+msgstr[1] "{reviews} отзива"
 
 #: static/js/zamboni/devhub.js:799
 msgid "Learn more"
@@ -1164,8 +1163,8 @@ msgstr[1] "{0} предупреждения"
 #: static/js/zamboni/validator.js:374
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} известие"
+msgstr[1] "{0} известия"
 
 #: static/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
