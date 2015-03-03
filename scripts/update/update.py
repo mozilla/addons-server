@@ -185,5 +185,4 @@ def update(ctx):
     collectstatic()
     schematic()
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('%s manage.py dump_apps' % settings.PYTHON)
         ctx.local('%s manage.py statsd_ping --key=update' % settings.PYTHON)

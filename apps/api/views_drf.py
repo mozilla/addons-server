@@ -2,6 +2,7 @@
 This view is a port of the views.py file (using Piston) to DRF.
 It is a work in progress that is supposed to replace the views.py completely.
 """
+import json
 import urllib
 from datetime import date, timedelta
 
@@ -18,21 +19,23 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 import amo
+import api
 from addons.forms import AddonForm
 from addons.models import Addon, AddonUser
 from amo.decorators import allow_cross_site_request
 from amo.models import manual_order
 from amo.utils import paginate
-import api
 from devhub.forms import LicenseForm
 from search.views import name_query
 from users.models import UserProfile
 from versions.forms import XPIForm
 from versions.models import Version
+from zadmin.models import set_config
 
 from .authentication import RestOAuthAuthentication
 from .authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
                             AllowRelatedAppOwner, AnyOf, ByHttpMethod)
+from .forms import ChecksumsForm
 from .handlers import _form_error, _xpi_form_error
 from .permissions import GroupPermission
 from .renderers import JSONRenderer, XMLTemplateRenderer
@@ -471,3 +474,28 @@ class VersionsViewSet(CORSMixin, RetrieveModelMixin, UpdateModelMixin,
         version = self.get_object()
         version.delete()
         return Response(status=204)
+
+
+class ChecksumsView(DRFView):
+    authentication_classes = [RestOAuthAuthentication]
+    permission_classes = [ByHttpMethod({
+        'get': AllowAny,
+        'post': GroupPermission('ReviewerAdminTools', 'View'),
+    })]
+    renderer_classes = JSONRenderer,
+
+    def post(self, request):
+        form = ChecksumsForm(request.POST)
+        if not form.is_valid():
+            return Response({'status': 'failed',
+                             'errors': form.errors})
+
+        set_config('validator-known-libraries',
+                   json.dumps(form.cleaned_data['checksum_json']))
+
+        return Response(status=204)
+
+    @allow_cross_site_request
+    def get(self, request):
+        from devhub.tasks import get_libraries
+        return Response(get_libraries())

@@ -580,6 +580,12 @@ class APITest(TestCase):
         result = doc('performance application platform result').eq(0)
         eq_(result.attr('above_threshold'), 'true')
 
+    def test_checksums_get(self):
+        from devhub.tasks import get_libraries
+        response = self.client.get('/en-US/firefox/api/2/validator-checksums')
+        eq_(response['Content-Type'], 'application/json')
+        eq_(response.content, json.dumps(get_libraries()))
+
     @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %

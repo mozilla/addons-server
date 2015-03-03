@@ -238,3 +238,18 @@ def version_disabled(version):
     disabled = [status == amo.STATUS_DISABLED
                 for _id, status in version.statuses]
     return all(disabled)
+
+
+@register.function
+def library_class(data):
+    banned = data.get('banned')
+    if banned is True:
+        return 'library-banned'
+    if banned:
+        return 'library-maybe-banned'
+    return ''
+
+
+@register.inclusion_tag('devhub/known_library_messages.html')
+def library_messages(data):
+    return data

@@ -116,6 +116,9 @@ $(function() {
 
     $('#page').delegate('.expando .toggle', 'click', _pd(function() {
         $(this).closest('.expando').toggleClass('expanded');
+        // We need to make sure to trigger the (fragile) sticky footer
+        // recalculation.
+        $(window).resize();
     }));
 
     $('#page').delegate('.scrollto', 'click', function(e) {

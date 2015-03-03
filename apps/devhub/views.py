@@ -51,6 +51,7 @@ from files.utils import is_beta, parse_addon
 from search.views import BaseAjaxSearch
 from translations.models import delete_translation
 from users.models import UserProfile
+from versions.compare import version_int
 from versions.models import Version
 from zadmin.models import ValidationResult
 
@@ -1633,6 +1634,27 @@ def docs(request, doc_name=None):
         return render(request, 'devhub/docs/%s' % filename)
 
     raise http.Http404()
+
+
+def known_libraries(request, format=None):
+    library_data = tasks.get_libraries()
+    library_types = (
+        ('libraries', _('Libraries')),
+        ('frameworks', _('Add-on Frameworks')),
+    )
+
+    def sort_versions(v):
+        return sorted(v, key=lambda t: version_int(t[0]))
+
+    return render(request, 'devhub/known_libraries.html',
+                  {'library_data': library_data,
+                   'library_types': library_types,
+                   'sort_versions': sort_versions})
+
+
+@json_view
+def known_libraries_json(request):
+    return tasks.get_libraries()
 
 
 def search(request):

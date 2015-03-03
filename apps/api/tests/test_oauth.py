@@ -37,11 +37,13 @@ from nose.tools import eq_
 from piston.models import Consumer
 
 import amo
+from access.models import Group, GroupUser
 from amo.helpers import absolutify
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from api.authentication import AMOOAuthAuthentication
 from addons.models import Addon, AddonUser, BlacklistedGuid
+from devhub.tasks import get_libraries
 from devhub.models import ActivityLog, SubmitStep
 from files.models import File
 from perf.models import (Performance, PerformanceAppVersions,
@@ -940,3 +942,46 @@ class TestPerformanceAPI(BaseOAuth):
         eq_(PerformanceOSVersion.objects.all().count(), 1)
         self.test_form_data()
         eq_(PerformanceOSVersion.objects.all().count(), 1)
+
+
+class TestChecksumsAPI(BaseOAuth):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestChecksumsAPI, self).setUp()
+
+        self.group = Group.objects.create(name='Sr Reviewer',
+                                          rules='ReviewerAdminTools:View')
+        self.group_user = GroupUser.objects.create(user=self.editor,
+                                                   group=self.group)
+
+    def request(self, checksums):
+        data = {'checksum_json': json.dumps(checksums)}
+        return oclient.post('api.checksums', self.accepted_consumer,
+                            self.token, data=data)
+
+    def test_no_permissions(self):
+        self.group_user.delete()
+
+        resp = self.request(get_libraries())
+        assert resp.status_code in (401, 403)
+
+    def test_stock_checksums(self):
+        resp = self.request(get_libraries())
+        assert resp.status_code in (200, 204)
+
+    def test_changed_checksums(self):
+        data = {'libraries': {},
+                'frameworks': {},
+                'hashes': {}}
+
+        resp = self.request(data)
+        assert resp.status_code in (200, 204)
+        eq_(get_libraries(), data)
+
+
+class TestDRFChecksumsAPI(TestChecksumsAPI):
+
+    def setUp(self):
+        super(TestDRFChecksumsAPI, self).setUp()
+        self.create_switch('drf', db=True)
