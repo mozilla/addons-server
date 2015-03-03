@@ -1,4 +1,6 @@
-amo-validator==1.5.2
+# Temporary
+# amo-validator==1.5.2
+-e git+https://github.com/kmaglione/amo-validator@framework-stuff#egg=amo-validator
 amqp==1.0.13
 anyjson==0.3.3
 argparse==1.2.1
