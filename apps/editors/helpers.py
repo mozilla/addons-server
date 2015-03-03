@@ -18,7 +18,10 @@ from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
 from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
-                            ViewPreliminaryQueue)
+                            ViewPreliminaryQueue,
+                            ViewUnlistedFullReviewQueue,
+                            ViewUnlistedPendingQueue,
+                            ViewUnlistedPreliminaryQueue)
 from editors.sql_table import SQLTable
 
 
@@ -103,22 +106,35 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
 
         queue = queue_ids.get(queue_id, 'queue')
 
-    if queue:
-        queues = {
-            'queue': _('Queue'),
-            'pending': _('Pending Updates'),
-            'nominated': _('Full Reviews'),
-            'prelim': _('Preliminary Reviews'),
-            'moderated': _('Moderated Reviews'),
-            'fast_track': _('Fast Track'),
+    listed = not context.get('unlisted')
 
-            'pending_themes': _('Pending Themes'),
-            'flagged_themes': _('Flagged Themes'),
-            'rereview_themes': _('Update Themes'),
-        }
+    if queue:
+        if listed:
+            queues = {
+                'queue': _('Queue'),
+                'pending': _('Pending Updates'),
+                'nominated': _('Full Reviews'),
+                'prelim': _('Preliminary Reviews'),
+                'moderated': _('Moderated Reviews'),
+                'fast_track': _('Fast Track'),
+
+                'pending_themes': _('Pending Themes'),
+                'flagged_themes': _('Flagged Themes'),
+                'rereview_themes': _('Update Themes'),
+            }
+        else:
+            queues = {
+                'queue': _('Queue'),
+                'pending': _('Unlisted Pending Updates'),
+                'nominated': _('Unlisted Full Reviews'),
+                'prelim': _('Unlisted Preliminary Reviews')
+            }
 
         if items and not queue == 'queue':
-            url = reverse('editors.queue_%s' % queue)
+            if listed:
+                url = reverse('editors.queue_{0}'.format(queue))
+            else:
+                url = reverse('editors.unlisted_queue_{0}'.format(queue))
         else:
             # The Addon is the end of the trail.
             url = None
@@ -139,27 +155,51 @@ def queue_tabnav(context):
     from .views import queue_counts
 
     counts = queue_counts()
-    tabnav = [('fast_track', 'queue_fast_track',
-               (ngettext('Fast Track ({0})', 'Fast Track ({0})',
-                         counts['fast_track'])
-                .format(counts['fast_track']))),
-              ('nominated', 'queue_nominated',
-               (ngettext('Full Review ({0})', 'Full Reviews ({0})',
-                         counts['nominated'])
-                .format(counts['nominated']))),
-              ('pending', 'queue_pending',
-               (ngettext('Pending Update ({0})', 'Pending Updates ({0})',
-                         counts['pending'])
-                .format(counts['pending']))),
-              ('prelim', 'queue_prelim',
-               (ngettext('Preliminary Review ({0})',
-                         'Preliminary Reviews ({0})',
-                         counts['prelim'])
-                .format(counts['prelim']))),
-              ('moderated', 'queue_moderated',
-               (ngettext('Moderated Review ({0})', 'Moderated Reviews ({0})',
-                         counts['moderated'])
-                .format(counts['moderated'])))]
+    unlisted_counts = queue_counts(unlisted=True)
+    listed = not context.get('unlisted')
+
+    if listed:
+        tabnav = [('fast_track', 'queue_fast_track',
+                   (ngettext('Fast Track ({0})',
+                             'Fast Track ({0})',
+                             counts['fast_track'])
+                    .format(counts['fast_track']))),
+                  ('nominated', 'queue_nominated',
+                   (ngettext('Full Review ({0})',
+                             'Full Reviews ({0})',
+                             counts['nominated'])
+                    .format(counts['nominated']))),
+                  ('pending', 'queue_pending',
+                   (ngettext('Pending Update ({0})',
+                             'Pending Updates ({0})',
+                             counts['pending'])
+                    .format(counts['pending']))),
+                  ('prelim', 'queue_prelim',
+                   (ngettext('Preliminary Review ({0})',
+                             'Preliminary Reviews ({0})',
+                             counts['prelim'])
+                    .format(counts['prelim']))),
+                  ('moderated', 'queue_moderated',
+                   (ngettext('Moderated Review ({0})',
+                             'Moderated Reviews ({0})',
+                             counts['moderated'])
+                    .format(counts['moderated'])))]
+    else:
+        tabnav = [('nominated', 'unlisted_queue_nominated',
+                   (ngettext('Unlisted Full Review ({0})',
+                             'Unlisted Full Reviews ({0})',
+                             unlisted_counts['nominated'])
+                    .format(unlisted_counts['nominated']))),
+                  ('pending', 'unlisted_queue_pending',
+                   (ngettext('Unlisted Pending Update ({0})',
+                             'Unlisted Pending Updates ({0})',
+                             unlisted_counts['pending'])
+                    .format(unlisted_counts['pending']))),
+                  ('prelim', 'unlisted_queue_prelim',
+                   (ngettext('Unlisted Preliminary Review ({0})',
+                             'Unlisted Preliminary Reviews ({0})',
+                             unlisted_counts['prelim'])
+                    .format(unlisted_counts['prelim'])))]
 
     return tabnav
 
@@ -300,6 +340,24 @@ class ViewFastTrackQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewFastTrackQueue
+
+
+class ViewUnlistedPendingQueueTable(EditorQueueTable):
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewUnlistedPendingQueue
+
+
+class ViewUnlistedFullReviewQueueTable(EditorQueueTable):
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewUnlistedFullReviewQueue
+
+
+class ViewUnlistedPreliminaryQueueTable(EditorQueueTable):
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewUnlistedPreliminaryQueue
 
 
 log = commonware.log.getLogger('z.mailer')

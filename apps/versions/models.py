@@ -207,16 +207,23 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     @property
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
-        from editors.models import (ViewPendingQueue, ViewFullReviewQueue,
-                                    ViewPreliminaryQueue)
+        from editors.models import (ViewFullReviewQueue,
+                                    ViewPendingQueue,
+                                    ViewPreliminaryQueue,
+                                    ViewUnlistedFullReviewQueue,
+                                    ViewUnlistedPendingQueue,
+                                    ViewUnlistedPreliminaryQueue)
 
         if self.addon.status in [amo.STATUS_NOMINATED,
                                  amo.STATUS_LITE_AND_NOMINATED]:
-            return ViewFullReviewQueue
+            return (ViewFullReviewQueue if self.addon.is_listed
+                    else ViewUnlistedFullReviewQueue)
         elif self.addon.status == amo.STATUS_PUBLIC:
-            return ViewPendingQueue
+            return (ViewPendingQueue if self.addon.is_listed
+                    else ViewUnlistedPendingQueue)
         elif self.addon.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]:
-            return ViewPreliminaryQueue
+            return (ViewPreliminaryQueue if self.addon.is_listed
+                    else ViewUnlistedPreliminaryQueue)
 
         return None
 

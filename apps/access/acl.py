@@ -106,6 +106,10 @@ def check_addons_reviewer(request):
     return action_allowed(request, 'Addons', 'Review')
 
 
+def check_unlisted_addons_reviewer(request):
+    return action_allowed(request, 'Addons', 'ReviewUnlisted')
+
+
 def check_personas_reviewer(request):
     return action_allowed(request, 'Personas', 'Review')
 

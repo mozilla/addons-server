@@ -25,6 +25,10 @@ from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
 from applications.models import AppVersion
 from devhub.models import ActivityLog
+from editors.models import (ViewFullReviewQueue, ViewPendingQueue,
+                            ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
+                            ViewUnlistedPendingQueue,
+                            ViewUnlistedPreliminaryQueue)
 from files.models import File
 from files.tests.test_models import UploadTest
 from users.models import UserProfile
@@ -419,6 +423,30 @@ class TestVersion(amo.tests.TestCase):
         addon = Addon.objects.get(pk=3615)
         amo.tests.version_factory(addon=addon)
         assert inv_mock.called
+
+    def test_current_queue(self):
+        queue_to_status = {
+            ViewFullReviewQueue: [amo.STATUS_NOMINATED,
+                                  amo.STATUS_LITE_AND_NOMINATED],
+            ViewPendingQueue: [amo.STATUS_PUBLIC],
+            ViewPreliminaryQueue: [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]}
+        unlisted_queue_to_status = {
+            ViewUnlistedFullReviewQueue: [amo.STATUS_NOMINATED,
+                                          amo.STATUS_LITE_AND_NOMINATED],
+            ViewUnlistedPendingQueue: [amo.STATUS_PUBLIC],
+            ViewUnlistedPreliminaryQueue: [amo.STATUS_LITE,
+                                           amo.STATUS_UNREVIEWED]}
+
+        for queue, statuses in queue_to_status.iteritems():  # Listed queues.
+            for status in statuses:
+                self.version.addon.update(status=status)
+                assert self.version.current_queue == queue
+
+        self.version.addon.update(is_listed=False)  # Unlisted queues.
+        for queue, statuses in unlisted_queue_to_status.iteritems():
+            for status in statuses:
+                self.version.addon.update(status=status)
+                assert self.version.current_queue == queue
 
 
 class TestViews(amo.tests.TestCase):

@@ -109,6 +109,8 @@ class ViewQueue(RawSQLModel):
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
 
+    listed = True  # ViewQueue for listed or unlisted addons.
+
     def base_query(self):
         return {
             'select': SortedDict([
@@ -153,6 +155,8 @@ class ViewQueue(RawSQLModel):
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
+                # Are we showing listed or unlisted addons?
+                '{0} addons.is_listed'.format('' if self.listed else 'NOT'),
             ],
             'group_by': 'id'}
 
@@ -234,6 +238,18 @@ class ViewFastTrackQueue(ViewQueue):
                                amo.STATUS_NOMINATED,
                                amo.STATUS_LITE_AND_NOMINATED)])
         return q
+
+
+class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
+    listed = False
+
+
+class ViewUnlistedPendingQueue(ViewPendingQueue):
+    listed = False
+
+
+class ViewUnlistedPreliminaryQueue(ViewPreliminaryQueue):
+    listed = False
 
 
 class PerformanceGraph(ViewQueue):
