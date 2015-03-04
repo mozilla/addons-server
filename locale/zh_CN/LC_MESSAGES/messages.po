@@ -3973,7 +3973,7 @@ msgstr "队列位置："
 
 #: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
-msgstr "共%(total)s位，您是第%(pos)s位"
+msgstr "共%(total)s位，您是第%(position)s位"
 
 #: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
