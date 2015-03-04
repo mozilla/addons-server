@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-04 09:13-0700\n"
 "PO-Revision-Date: 2015-01-07 23:11+0000\n"
 "Last-Translator: Peter <kollenix@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -647,7 +647,7 @@ msgstr "Licencia"
 msgid "Awaiting Review"
 msgstr "Čaká na kontrolu"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:50
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
 msgid "Rejected"
 msgstr "Zamietnutý"
 
@@ -864,7 +864,7 @@ msgstr "Sprievodca systémom kontroly"
 msgid "Detailed Review"
 msgstr "Podrobná recenzia"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:775 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:833 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Recenzie"
@@ -1272,7 +1272,7 @@ msgstr "Doplnky"
 msgid "Easy ways to personalize."
 msgstr "Jednoduché prispôsobenie"
 
-#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
+#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:46 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Ďalšie informácie"
@@ -1291,7 +1291,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Témy"
@@ -1366,7 +1366,7 @@ msgstr "Odoslať novú tému"
 msgid "Developer Hub"
 msgstr "Centrum vývojárov"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Nástroje editora"
 
@@ -1547,7 +1547,7 @@ msgstr "Vyžiadaná super-kontrola"
 msgid "Comment on {addon} {version}."
 msgstr "Doplnok {addon} {version} bol okomentovaný."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:469
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Komentár"
@@ -2652,7 +2652,7 @@ msgstr "Zadajte názov doplnku, ktorý chcete pridať"
 msgid "Add to Collection"
 msgstr "Pridať do kolekcie"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:790 apps/editors/helpers.py:810
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:848 apps/editors/helpers.py:868
 msgid "Pending"
 msgstr "Čakajúci"
 
@@ -3263,7 +3263,7 @@ msgstr "Predbežne skontrolovaný"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Predbežne skontrolovaný, čakajúci na riadnu kontrolu"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:778 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:836 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Odstránené"
 
@@ -3523,7 +3523,7 @@ msgstr "Označiť"
 msgid "Duplicate"
 msgstr "Duplikovať"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:460 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Odmietnuť"
 
@@ -4852,45 +4852,57 @@ msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr "Váš doplnok bol odoslaný do fronty na predbežnú kontrolu."
 
 # 82%
-#: apps/devhub/templates/devhub/addons/submit/done.html:15
+#: apps/devhub/templates/devhub/addons/submit/done.html:13
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Váš doplnok bol odoslaný do fronty na detailnú kontrolu."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:21
+#: apps/devhub/templates/devhub/addons/submit/done.html:18
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr "Okamžite ako bude doplnok redaktorom skontrolovaný, bude vám doručený e-mail. V medzičase si ho môžete vy a vaši priatelia nainštalovať priamo zo stránky detailov:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
+#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
 msgstr "Ďalšie kroky:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:37
+#: apps/devhub/templates/devhub/addons/submit/done.html:32
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr "<a href=\"{0}\">Odoslať</a> ďalší na platforme závislý súbor pre túto verziu."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:40
+#: apps/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr "Poskytnite viac informácií <a href=\"{0}\">úpravou stránky</a>."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:42
+#: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr "Povedzte vašim používateľom vo svojom <a href=\"{0}\">profile vývojára</a> o tom, že ste tento doplnok vytvorili."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:44
+#: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr "Zobrazte, alebo odoberajte <a href=\"{0}\">informácie o nedávnej aktivite</a> pri svojom doplnku a zostaňte tak informovaný o recenziách, zbierkach a ďalších."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:45
+#: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "Pozrite sa na približný <a href=\"{0}\">čas čakania</a> vo fronte na kontrolu."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:50
+#: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
 msgstr "Postúpte do fronty na kontrolu!"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:52
+#: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "Staňte sa redaktorom na AMO ešte dnes a pomôžte s rýchlejšou kontrolou doplnkov."
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:51
+msgid "You'll receive an email once it has been reviewed by an editor."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:52
+msgid "Your add-on will not be publicly available on AMO."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:55
+msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6698,7 +6710,7 @@ msgid "Validation"
 msgstr "Overenie"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
-#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
+#: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "Výkon"
 
@@ -7133,7 +7145,7 @@ msgstr "Doba od odoslania (dni)"
 msgid "Add-on Types"
 msgstr "Typy doplnkov"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:197
+#: apps/editors/forms.py:118 apps/editors/helpers.py:237
 msgid "Platforms"
 msgstr "Platformy"
 
@@ -7194,69 +7206,81 @@ msgstr ""
 msgid "app, reviewer, or comment"
 msgstr "aplikace, recenze nebo komentář"
 
-#: apps/editors/helpers.py:43
+#: apps/editors/helpers.py:46
 msgid "Pending Preliminary Review"
 msgstr "Čakajúci na predbežnú kontrolu"
 
-#: apps/editors/helpers.py:47
+#: apps/editors/helpers.py:50
 msgid "Pending Full Review"
 msgstr "Čakajúci na riadnu kontrolu"
 
-#: apps/editors/helpers.py:54
+#: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
 msgstr "Zamietnuté a neskontrolované"
 
-#: apps/editors/helpers.py:108
+#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
 msgid "Queue"
 msgstr "Fronta"
 
-#: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
+#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "Nevybavené aktualizácie"
 
-#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
+#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Riadne kontroly"
 
-#: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "Predbežné kontroly"
 
-#: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "Moderované recenzie"
 
-#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "Rýchla kontrola"
 
-#: apps/editors/helpers.py:115
+#: apps/editors/helpers.py:121
 msgid "Pending Themes"
 msgstr "Čakajúce témy"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Označené témy"
 
-#: apps/editors/helpers.py:117
+#: apps/editors/helpers.py:123
 msgid "Update Themes"
 msgstr "Aktualizované témy"
 
-#: apps/editors/helpers.py:143
+#: apps/editors/helpers.py:128
+msgid "Unlisted Pending Updates"
+msgstr ""
+
+#: apps/editors/helpers.py:129
+msgid "Unlisted Full Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:130
+msgid "Unlisted Preliminary Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "Rýchla kontrola ({0})"
 msgstr[1] "Rýchla kontrola ({0})"
 msgstr[2] "Rýchla kontrola ({0})"
 
-#: apps/editors/helpers.py:147
+#: apps/editors/helpers.py:168
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Plná kontrola ({0})"
 msgstr[1] "Plné kontroly ({0})"
 msgstr[2] "Plné kontroly ({0})"
 
-#: apps/editors/helpers.py:151
+#: apps/editors/helpers.py:173
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Čakajúci na aktualizáciu ({0})"
@@ -7264,62 +7288,83 @@ msgstr[1] "Čakajúce na aktualizáciu ({0})"
 msgstr[2] "Čakajúce na aktualizáciu ({0})"
 
 # 88%
-#: apps/editors/helpers.py:155
+#: apps/editors/helpers.py:178
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Predbežná kontrola ({0})"
 msgstr[1] "Predbežné kontroly ({0})"
 msgstr[2] "Predbežné kontroly ({0})"
 
-#: apps/editors/helpers.py:160
+#: apps/editors/helpers.py:183
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Moderovaná recenzia ({0})"
 msgstr[1] "Moderované recenzie ({0})"
 msgstr[2] "Moderované recenzie ({0})"
 
-#: apps/editors/helpers.py:191
+#: apps/editors/helpers.py:189
+msgid "Unlisted Full Review ({0})"
+msgid_plural "Unlisted Full Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: apps/editors/helpers.py:194
+msgid "Unlisted Pending Update ({0})"
+msgid_plural "Unlisted Pending Updates ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: apps/editors/helpers.py:199
+msgid "Unlisted Preliminary Review ({0})"
+msgid_plural "Unlisted Preliminary Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: apps/editors/helpers.py:231
 msgid "Addon"
 msgstr "Doplnok"
 
-#: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Typ"
 
-#: apps/editors/helpers.py:193
+#: apps/editors/helpers.py:233
 msgid "Waiting Time"
 msgstr "Doba čakania"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Označenia"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:235
 msgid "Applications"
 msgstr "Aplikácie"
 
-#: apps/editors/helpers.py:200
+#: apps/editors/helpers.py:240
 msgid "Additional"
 msgstr "Ďalšie"
 
-#: apps/editors/helpers.py:215
+#: apps/editors/helpers.py:255
 msgid "Site Specific"
 msgstr "Pre špecifickú stránku"
 
-#: apps/editors/helpers.py:217
+#: apps/editors/helpers.py:257
 msgid "Requires External Software"
 msgstr "Vyžaduje externý softvér"
 
-#: apps/editors/helpers.py:219
+#: apps/editors/helpers.py:259
 msgid "Binary Components"
 msgstr "Binárne komponenty"
 
-#: apps/editors/helpers.py:243
+#: apps/editors/helpers.py:283
 msgid "moments ago"
 msgstr "pred chvíľou"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:246
+#: apps/editors/helpers.py:286
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minúta"
@@ -7327,7 +7372,7 @@ msgstr[1] "{0} minúty"
 msgstr[2] "{0} minút"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:250
+#: apps/editors/helpers.py:290
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} hodina"
@@ -7335,39 +7380,39 @@ msgstr[1] "{0} hodiny"
 msgstr[2] "{0} hodín"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:254
+#: apps/editors/helpers.py:294
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} deň"
 msgstr[1] "{0} dni"
 msgstr[2] "{0} dní"
 
-#: apps/editors/helpers.py:397
+#: apps/editors/helpers.py:455
 msgid "Push to public"
 msgstr "Schváliť pre verejnosť"
 
-#: apps/editors/helpers.py:405
+#: apps/editors/helpers.py:463
 msgid "Request more information"
 msgstr "Vyžiadať dodatočné informácie"
 
-#: apps/editors/helpers.py:408
+#: apps/editors/helpers.py:466
 msgid "Request super-review"
 msgstr "Požadovať super-recenziu"
 
 # 80%
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:477
 msgid "Grant preliminary review"
 msgstr "Udeliť predbežnú kontrolu"
 
-#: apps/editors/helpers.py:420
+#: apps/editors/helpers.py:478
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Označí súbory ako predbežne schválené."
 
-#: apps/editors/helpers.py:422
+#: apps/editors/helpers.py:480
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "Použite tento formulár na vyžiadanie dodatočných informácií od autora doplnku, ktorý obdrží e-mailovú správu a bude môcť tu odpovedať. Pri jeho odpovedi budete upozornený e-mailovou správou."
 
-#: apps/editors/helpers.py:426
+#: apps/editors/helpers.py:484
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7375,82 +7420,82 @@ msgstr ""
 "Ak máte pochybnosti o bezpečnosti tohto doplnku, problémoch s autorskými právami alebo iné, na ktoré by sa mal pozrieť správca, zadajte do dole uvedenej časti svoje komentáre. Budú odoslané "
 "správcom, nie autorovi."
 
-#: apps/editors/helpers.py:432
+#: apps/editors/helpers.py:490
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Zamietne doplnok a odstráni ho zo zoznamu na kontrolu."
 
-#: apps/editors/helpers.py:434
+#: apps/editors/helpers.py:492
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Pridajte komentár k tejto verzii. Autor ho nebude vidieť."
 
-#: apps/editors/helpers.py:438
+#: apps/editors/helpers.py:496
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Zamietne súbory a odstráni ich zo zoznamu na kontrolu."
 
-#: apps/editors/helpers.py:442
+#: apps/editors/helpers.py:500
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Označí doplnok ako predbežne skontrolovaný. Ďalšie verzie budú opäť prechádzať predbežnou kontrolou."
 
-#: apps/editors/helpers.py:447
+#: apps/editors/helpers.py:505
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Označí súbory ako predbežne skontrolované. Ďalšie verzie budú opäť prechádzať predbežnou kontrolou."
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:510
 msgid "Retain preliminary review"
 msgstr "Predbežná kontrola pozdržaná"
 
-#: apps/editors/helpers.py:453
+#: apps/editors/helpers.py:511
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Zamietne predbežnú kontrolu doplnku. Ďalšie verzie budú opäť prechádzať predbežnou kontrolou."
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:516
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Tým schválite verziu zo Sandboxu nominovanú na uverejnenie, aby sa objavila na verejnej stránke."
 
-#: apps/editors/helpers.py:461
+#: apps/editors/helpers.py:519
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Zamietne verziu verejne dostupného doplnku a odstráni ho z fronty."
 
-#: apps/editors/helpers.py:464
+#: apps/editors/helpers.py:522
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Týmto označíte doplnok a jeho najnovšiu verziu a súbory ako verejné. Budúce verzie prejdú do Sandboxu, kým sa nepodrobia recenzii editorom."
 
 # 83%
-#: apps/editors/helpers.py:532
+#: apps/editors/helpers.py:590
 msgid "add-on"
 msgstr "doplnok"
 
-#: apps/editors/helpers.py:794 apps/editors/helpers.py:814
+#: apps/editors/helpers.py:852 apps/editors/helpers.py:872
 msgid "Flagged"
 msgstr "Označené"
 
 # 85%
-#: apps/editors/helpers.py:798 apps/editors/helpers.py:817
+#: apps/editors/helpers.py:856 apps/editors/helpers.py:875
 msgid "Updates"
 msgstr "Aktualizácie"
 
-#: apps/editors/models.py:178
+#: apps/editors/models.py:182
 msgid "Admin Review"
 msgstr "Recenzia administrátora"
 
-#: apps/editors/models.py:179
+#: apps/editors/models.py:183
 msgid "Jetpack Add-on"
 msgstr "Doplnok typu Jetpack"
 
-#: apps/editors/models.py:181
+#: apps/editors/models.py:185
 msgid "Restartless Add-on"
 msgstr "Doplnok vyžaduje reštart"
 
 # 92%
-#: apps/editors/models.py:182
+#: apps/editors/models.py:186
 msgid "More Information Requested"
 msgstr "Požadované doplňujúce informácie"
 
-#: apps/editors/models.py:183
+#: apps/editors/models.py:187
 msgid "Contains Editor Comment"
 msgstr "Obsahuje komentár redaktora"
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:189
 msgid "Sources provided"
 msgstr ""
 
@@ -7475,57 +7520,57 @@ msgstr "Odoslanie témy označené na kontrolu"
 msgid "A question about your Theme submission"
 msgstr "Při přidávání vašeho motivu nastal problém"
 
-#: apps/editors/views.py:104
+#: apps/editors/views.py:112
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nové doplnky (za posledných 5 dní)"
 
-#: apps/editors/views.py:105
+#: apps/editors/views.py:113
 #, fuzzy
 msgid "Passable (5 to 10 days)"
 msgstr "Snesitelné (5 až 10 dní)"
 
-#: apps/editors/views.py:106
+#: apps/editors/views.py:114
 #, fuzzy
 msgid "Overdue (Over 10 days)"
 msgstr "S prodlevou (více než 10 dní)"
 
-#: apps/editors/views.py:422
+#: apps/editors/views.py:440
 msgid "An unknown error occurred"
 msgstr "Nastala neznáma chyba"
 
-#: apps/editors/views.py:448
+#: apps/editors/views.py:492
 msgid "Self-reviews are not allowed."
 msgstr "Recenzie samým sebou nie sú dovolené."
 
-#: apps/editors/views.py:467
+#: apps/editors/views.py:511
 msgid "Review successfully processed."
 msgstr "Recenzia úspešne spracovaná."
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:701
 msgid "was approved"
 msgstr "schválené"
 
 # 80%
-#: apps/editors/views.py:655
+#: apps/editors/views.py:702
 msgid "given preliminary review"
 msgstr "predbežne skontrolované"
 
 # 87%
-#: apps/editors/views.py:656
+#: apps/editors/views.py:703
 msgid "rejected"
 msgstr "zamietnuté"
 
 # 88%
-#: apps/editors/views.py:657
+#: apps/editors/views.py:704
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "bude detailne skontrolované"
 
-#: apps/editors/views.py:659
+#: apps/editors/views.py:706
 msgid "needs more information"
 msgstr "potrebuje dodatočné informácie"
 
-#: apps/editors/views.py:660
+#: apps/editors/views.py:707
 msgid "needs super review"
 msgstr "potrebuje super-kontrolu"
 
@@ -7570,21 +7615,25 @@ msgstr "Zpět na domovskou stránků Nástroje redaktora"
 msgid "Queues"
 msgstr "Fronty"
 
-#: apps/editors/templates/editors/base.html:63 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
+#: apps/editors/templates/editors/base.html:60
+msgid "Unlisted Queues"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
 msgstr "Denníky"
 
-#: apps/editors/templates/editors/base.html:66 apps/editors/templates/editors/reviewlog.html:4
+#: apps/editors/templates/editors/base.html:78 apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
 msgstr "Záznam kontroly doplnku"
 
 # 80%
-#: apps/editors/templates/editors/base.html:68 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
+#: apps/editors/templates/editors/base.html:80 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
 #, fuzzy
 msgid "Moderated Review Log"
 msgstr "Seznam moderovaných recenzí"
 
-#: apps/editors/templates/editors/base.html:73 apps/editors/templates/editors/includes/daily-message.html:4
+#: apps/editors/templates/editors/base.html:85 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr "Oznámenie"
 
@@ -7601,7 +7650,7 @@ msgstr "Dátum"
 msgid "Event"
 msgstr "Udalosť"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:129
+#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "Ďalšie informácie"
 
@@ -7660,41 +7709,62 @@ msgstr[0] "Čakajúci na predbežnú kontrolu ({num})"
 msgstr[1] "Čakajúci na predbežnú kontrolu ({num})"
 msgstr[2] "Čakajúci na predbežnú kontrolu ({num})"
 
-#: apps/editors/templates/editors/home.html:36
+#: apps/editors/templates/editors/home.html:36 apps/editors/templates/editors/home.html:86
 #, fuzzy
 msgid "Current waiting times:"
 msgstr "Aktuální doby čekání:"
 
-#: apps/editors/templates/editors/home.html:44
+#: apps/editors/templates/editors/home.html:44 apps/editors/templates/editors/home.html:94
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} doplnok"
 msgstr[1] "{0} doplnky"
 msgstr[2] "{0} doplnkov"
 
-#: apps/editors/templates/editors/home.html:45
+#: apps/editors/templates/editors/home.html:45 apps/editors/templates/editors/home.html:95
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:58 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
+#: apps/editors/templates/editors/home.html:61
+msgid "Unlisted Full Review ({num})"
+msgid_plural "Unlisted Full Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: apps/editors/templates/editors/home.html:68
+msgid "Unlisted Pending Update ({num})"
+msgid_plural "Unlisted Pending Updates ({num})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: apps/editors/templates/editors/home.html:75
+msgid "Unlisted Preliminary Review ({num})"
+msgid_plural "Unlisted Preliminary Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
 msgstr "Recenzie celkom"
 
-#: apps/editors/templates/editors/home.html:59 apps/editors/templates/editors/themes/home.html:55
+#: apps/editors/templates/editors/home.html:110 apps/editors/templates/editors/themes/home.html:55
 #, fuzzy
 msgid "Reviews This Month"
 msgstr "Kontrol tento měsíc"
 
-#: apps/editors/templates/editors/home.html:60
+#: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
 msgstr "Noví editori"
 
-#: apps/editors/templates/editors/home.html:75 apps/editors/templates/editors/home.html:90
+#: apps/editors/templates/editors/home.html:126 apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
 msgstr ""
 
 #. num = number of reviews in the queue
-#: apps/editors/templates/editors/home.html:120
+#: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "Moderovaná recenzia ({num})"
@@ -11652,15 +11722,15 @@ msgstr "História verzií %s"
 msgid "Version History with Changelogs"
 msgstr "História verzií s denníkmi zmien"
 
-#: apps/versions/models.py:277
+#: apps/versions/models.py:284
 msgid "Add-on uses binary components."
 msgstr "Doplnok obsahuje binárne komponenty."
 
-#: apps/versions/models.py:280
+#: apps/versions/models.py:287
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Doplnok má nastavenú striktnú kontrolu kompatibility."
 
-#: apps/versions/models.py:657
+#: apps/versions/models.py:664
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"
 

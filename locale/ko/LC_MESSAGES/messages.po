@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-04 09:13-0700\n"
 "PO-Revision-Date: 2014-05-12 07:59+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
@@ -625,7 +625,7 @@ msgstr "라이선스"
 msgid "Awaiting Review"
 msgstr "심사 대기중"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:50
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
 msgid "Rejected"
 msgstr "심사 거부됨"
 
@@ -838,7 +838,7 @@ msgstr "평가 지침"
 msgid "Detailed Review"
 msgstr "자세한 평가 쓰기"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:775 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:833 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "평가"
@@ -1233,7 +1233,7 @@ msgstr "부가 기능"
 msgid "Easy ways to personalize."
 msgstr "개인화를 쉽게 하는 방법."
 
-#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
+#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:46 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "더 알아보기"
@@ -1252,7 +1252,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "테마"
@@ -1327,7 +1327,7 @@ msgstr "새로운 테마 올리기"
 msgid "Developer Hub"
 msgstr "개발자 허브"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "편집자 도구"
 
@@ -1510,7 +1510,7 @@ msgstr "상급 심사 요청됨"
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version}에 코멘트가 달렸습니다."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:469
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "코멘트"
@@ -2599,7 +2599,7 @@ msgstr "추가하고자 하는 부가 기능의 이름을 입력하세요"
 msgid "Add to Collection"
 msgstr "모음집에 추가하기"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:790 apps/editors/helpers.py:810
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:848 apps/editors/helpers.py:868
 msgid "Pending"
 msgstr "대기중"
 
@@ -3199,7 +3199,7 @@ msgstr "예비 심사 통과"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "예비 심사 완료 및 전체 심사 대기중"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:778 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:836 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "삭제됨"
 
@@ -3460,7 +3460,7 @@ msgstr "표시하기"
 msgid "Duplicate"
 msgstr "복사하기"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:460 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "거부"
 
@@ -4772,45 +4772,57 @@ msgstr "완료하셨습니다!"
 msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr "당신의 부가 기능이 예비 심사 대기열에 등록되었습니다."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:15
+#: apps/devhub/templates/devhub/addons/submit/done.html:13
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "당신의 부가 기능이 전체 심사 대기열에 등록되었습니다."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:21
+#: apps/devhub/templates/devhub/addons/submit/done.html:18
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr "편집자의 심사가 끝나면 이메일을 받아보시게 됩니다. 그 전까진 해당 부가 기능의 상세 정보 페이지에서 친구들과 함께 다운로드를 받아 설치해 볼 수 있습니다."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
+#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
 msgstr "다음 단계:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:37
+#: apps/devhub/templates/devhub/addons/submit/done.html:32
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr "해당 버전에 다른 플랫폼 전용 파일을 <a href=\"{0}\">업로드</a> 합니다."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:40
+#: apps/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr "<a href=\"{0}\">목록 노출 내역 편집</a>을 통해 보다 자세한 정보를 적어주세요."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:42
+#: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr "<a href=\"{0}\">개발자 프로필</a>에서 이걸 만든 이유를 사용자에게 알려주세요."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:44
+#: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr "<a href=\"{0}\">활동 내역 피드</a>를 구독해서 제작한 부가 기능에 대한 사용자 평가, 모음집 수록, 그밖에 여러 정보의 업데이트를 받아보세요."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:45
+#: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "대략적인 심사 <a href=\"{0}\">대기 시간</a>을 조회해 보세요."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:50
+#: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
 msgstr "심사 대기시간을 줄이세요!"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:52
+#: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "AMO 심사원이 되서 부가 기능 심사를 더 빠르게 받아봅시다."
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:51
+msgid "You'll receive an email once it has been reviewed by an editor."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:52
+msgid "Your add-on will not be publicly available on AMO."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:55
+msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6625,7 +6637,7 @@ msgid "Validation"
 msgstr "검사"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
-#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
+#: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "성능 향상"
 
@@ -7058,7 +7070,7 @@ msgstr "부가 기능 제출 시기"
 msgid "Add-on Types"
 msgstr "부가 기능 종류"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:197
+#: apps/editors/forms.py:118 apps/editors/helpers.py:237
 msgid "Platforms"
 msgstr "플랫폼"
 
@@ -7117,241 +7129,268 @@ msgstr "다른 사람이 이 테마를 심사중입니다."
 msgid "app, reviewer, or comment"
 msgstr "앱, 심사원, 코멘트"
 
-#: apps/editors/helpers.py:43
+#: apps/editors/helpers.py:46
 msgid "Pending Preliminary Review"
 msgstr "예비 심사 대기중"
 
-#: apps/editors/helpers.py:47
+#: apps/editors/helpers.py:50
 msgid "Pending Full Review"
 msgstr "전체 심사 대기중"
 
-#: apps/editors/helpers.py:54
+#: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
 msgstr "거부 또는 미심사"
 
-#: apps/editors/helpers.py:108
+#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
 msgid "Queue"
 msgstr "대기열"
 
-#: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
+#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "업데이트 대기"
 
-#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
+#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "전체 심사"
 
-#: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "예비 심사"
 
-#: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "심사 조정중"
 
-#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "고속 심사"
 
-#: apps/editors/helpers.py:115
+#: apps/editors/helpers.py:121
 msgid "Pending Themes"
 msgstr "대기중인 테마"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "표시된 테마"
 
-#: apps/editors/helpers.py:117
+#: apps/editors/helpers.py:123
 msgid "Update Themes"
 msgstr "테마 업데이트"
 
-#: apps/editors/helpers.py:143
+#: apps/editors/helpers.py:128
+msgid "Unlisted Pending Updates"
+msgstr ""
+
+#: apps/editors/helpers.py:129
+msgid "Unlisted Full Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:130
+msgid "Unlisted Preliminary Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "고속 심사 ({0})"
 
-#: apps/editors/helpers.py:147
+#: apps/editors/helpers.py:168
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "전체 심사 ({0})"
 
-#: apps/editors/helpers.py:151
+#: apps/editors/helpers.py:173
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "업데이트 대기 ({0})"
 
-#: apps/editors/helpers.py:155
+#: apps/editors/helpers.py:178
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "예비 심사 ({0})"
 
-#: apps/editors/helpers.py:160
+#: apps/editors/helpers.py:183
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "심사 조정 ({0})"
 
-#: apps/editors/helpers.py:191
+#: apps/editors/helpers.py:189
+msgid "Unlisted Full Review ({0})"
+msgid_plural "Unlisted Full Reviews ({0})"
+msgstr[0] ""
+
+#: apps/editors/helpers.py:194
+msgid "Unlisted Pending Update ({0})"
+msgid_plural "Unlisted Pending Updates ({0})"
+msgstr[0] ""
+
+#: apps/editors/helpers.py:199
+msgid "Unlisted Preliminary Review ({0})"
+msgid_plural "Unlisted Preliminary Reviews ({0})"
+msgstr[0] ""
+
+#: apps/editors/helpers.py:231
 msgid "Addon"
 msgstr "부가 기능"
 
-#: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "종류"
 
-#: apps/editors/helpers.py:193
+#: apps/editors/helpers.py:233
 msgid "Waiting Time"
 msgstr "대기 시간"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "표시"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:235
 msgid "Applications"
 msgstr "애플리케이션"
 
-#: apps/editors/helpers.py:200
+#: apps/editors/helpers.py:240
 msgid "Additional"
 msgstr "추가 사항"
 
-#: apps/editors/helpers.py:215
+#: apps/editors/helpers.py:255
 msgid "Site Specific"
 msgstr "사이트 기반"
 
-#: apps/editors/helpers.py:217
+#: apps/editors/helpers.py:257
 msgid "Requires External Software"
 msgstr "외부 소프트웨어 필요"
 
-#: apps/editors/helpers.py:219
+#: apps/editors/helpers.py:259
 msgid "Binary Components"
 msgstr "이진 컴포넌트"
 
-#: apps/editors/helpers.py:243
+#: apps/editors/helpers.py:283
 msgid "moments ago"
 msgstr "방금"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:246
+#: apps/editors/helpers.py:286
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} 분"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:250
+#: apps/editors/helpers.py:290
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} 시간"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:254
+#: apps/editors/helpers.py:294
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 일"
 
-#: apps/editors/helpers.py:397
+#: apps/editors/helpers.py:455
 msgid "Push to public"
 msgstr "공개로 전환"
 
-#: apps/editors/helpers.py:405
+#: apps/editors/helpers.py:463
 msgid "Request more information"
 msgstr "추가 정보 요구"
 
-#: apps/editors/helpers.py:408
+#: apps/editors/helpers.py:466
 msgid "Request super-review"
 msgstr "상급 심사 요구"
 
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:477
 msgid "Grant preliminary review"
 msgstr "예비 심사 등급 부여"
 
-#: apps/editors/helpers.py:420
+#: apps/editors/helpers.py:478
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "이 작업은 파일에 예비 심사 등급을 부여하게 됩니다."
 
-#: apps/editors/helpers.py:422
+#: apps/editors/helpers.py:480
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "제작자에게 추가 정보를 요청하려면 다음의 양식을 기입해 주세요. 제작자들은 이메일을 받은 후 이곳에 답변을 적을 수 있게 됩니다. 제작자의 답변이 오면 이메일로 알림 메시지를 받게 됩니다."
 
-#: apps/editors/helpers.py:426
+#: apps/editors/helpers.py:484
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr "이 부가 기능이 보안, 저작권 등 관리자가 검토해야 한다고 생각되시면 아래에 코멘트를 입력해 주세요. 이 코멘트는 제작자가 아닌, 관리자에게만 전송될 것입니다."
 
-#: apps/editors/helpers.py:432
+#: apps/editors/helpers.py:490
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
 
-#: apps/editors/helpers.py:434
+#: apps/editors/helpers.py:492
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "이 버전에 코멘트를 남겨주세요. 제작자는 코멘트를 볼 수 없습니다."
 
-#: apps/editors/helpers.py:438
+#: apps/editors/helpers.py:496
 msgid "This will reject the files and remove them from the review queue."
 msgstr "파일들의 심사를 거부하며 심사 대기열에서 삭제합니다."
 
-#: apps/editors/helpers.py:442
+#: apps/editors/helpers.py:500
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "부가 기능을 예비 심사 완료로 표시합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
-#: apps/editors/helpers.py:447
+#: apps/editors/helpers.py:505
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "파일들을 예비 심사 완료로 표시합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:510
 msgid "Retain preliminary review"
 msgstr "예비 심사 등급 유지"
 
-#: apps/editors/helpers.py:453
+#: apps/editors/helpers.py:511
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "부가 기능을 예비 심사 완료 상태로 유지합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:516
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "공개 이전 샌드박스 버전의 부가 기능을 공개 상태로 승인합니다."
 
-#: apps/editors/helpers.py:461
+#: apps/editors/helpers.py:519
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "공개 부가 기능 버전을 거부하고 대기열에서 해당 부가 기능을 삭제합니다."
 
-#: apps/editors/helpers.py:464
+#: apps/editors/helpers.py:522
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "이 명령을 사용하면 부가 기능의 최신 버전과 파일을 공개 버전으로 승급하게 됩니다. 이후 등록되는 버전의 경우 편집자의 심사가 있기 전까진 샌드박스로 보내지게 될 것입니다."
 
-#: apps/editors/helpers.py:532
+#: apps/editors/helpers.py:590
 msgid "add-on"
 msgstr "부가 기능"
 
-#: apps/editors/helpers.py:794 apps/editors/helpers.py:814
+#: apps/editors/helpers.py:852 apps/editors/helpers.py:872
 msgid "Flagged"
 msgstr "표시됨"
 
 # 85%
-#: apps/editors/helpers.py:798 apps/editors/helpers.py:817
+#: apps/editors/helpers.py:856 apps/editors/helpers.py:875
 msgid "Updates"
 msgstr "업데이트"
 
-#: apps/editors/models.py:178
+#: apps/editors/models.py:182
 msgid "Admin Review"
 msgstr "관리자 심사"
 
-#: apps/editors/models.py:179
+#: apps/editors/models.py:183
 msgid "Jetpack Add-on"
 msgstr "Jetpack 부가 기능"
 
-#: apps/editors/models.py:181
+#: apps/editors/models.py:185
 msgid "Restartless Add-on"
 msgstr "재시작 없는 부가 기능"
 
-#: apps/editors/models.py:182
+#: apps/editors/models.py:186
 msgid "More Information Requested"
 msgstr "추가 정보 필요"
 
-#: apps/editors/models.py:183
+#: apps/editors/models.py:187
 msgid "Contains Editor Comment"
 msgstr "편집자 코멘트 있음"
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:189
 msgid "Sources provided"
 msgstr ""
 
@@ -7375,54 +7414,54 @@ msgstr "제출된 테마가 심사 상태로 표시됐습니다"
 msgid "A question about your Theme submission"
 msgstr "제출된 테마에 대한 질문사항"
 
-#: apps/editors/views.py:104
+#: apps/editors/views.py:112
 msgid "New Add-ons (Under 5 days)"
 msgstr "신규 부가 기능 (최근 5일 이내)"
 
-#: apps/editors/views.py:105
+#: apps/editors/views.py:113
 msgid "Passable (5 to 10 days)"
 msgstr "통과 가능 (5~10일 이내)"
 
-#: apps/editors/views.py:106
+#: apps/editors/views.py:114
 msgid "Overdue (Over 10 days)"
 msgstr "기한 초과 (10일 초과)"
 
-#: apps/editors/views.py:422
+#: apps/editors/views.py:440
 msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
 
-#: apps/editors/views.py:448
+#: apps/editors/views.py:492
 msgid "Self-reviews are not allowed."
 msgstr "자신의 부가 기능은 심사할 수 없습니다."
 
-#: apps/editors/views.py:467
+#: apps/editors/views.py:511
 msgid "Review successfully processed."
 msgstr "심사 작업을 진행 합니다."
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:701
 msgid "was approved"
 msgstr "이(가) 승인되었습니다"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:702
 msgid "given preliminary review"
 msgstr "이(가) 예비 심사 등급이 주어졌습니다"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:703
 msgid "rejected"
 msgstr "이(가) 심사 거부되었습니다"
 
-#: apps/editors/views.py:657
+#: apps/editors/views.py:704
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "이(가) 검토 대상이 되었습니다"
 
 # 79%
 # 100%
-#: apps/editors/views.py:659
+#: apps/editors/views.py:706
 msgid "needs more information"
 msgstr "추가 정보 요구"
 
-#: apps/editors/views.py:660
+#: apps/editors/views.py:707
 msgid "needs super review"
 msgstr "상급 심사 필요"
 
@@ -7460,21 +7499,25 @@ msgstr "편집자 도구 대문으로 돌아가기"
 msgid "Queues"
 msgstr "대기열"
 
-#: apps/editors/templates/editors/base.html:63 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
+#: apps/editors/templates/editors/base.html:60
+msgid "Unlisted Queues"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
 msgstr "기록"
 
-#: apps/editors/templates/editors/base.html:66 apps/editors/templates/editors/reviewlog.html:4
+#: apps/editors/templates/editors/base.html:78 apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
 msgstr "부가 기능 심사 기록"
 
 # 80%
 # 100%
-#: apps/editors/templates/editors/base.html:68 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
+#: apps/editors/templates/editors/base.html:80 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
 msgstr "심사 조정 기록"
 
-#: apps/editors/templates/editors/base.html:73 apps/editors/templates/editors/includes/daily-message.html:4
+#: apps/editors/templates/editors/base.html:85 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr "알림"
 
@@ -7491,7 +7534,7 @@ msgstr "날짜"
 msgid "Event"
 msgstr "이벤트"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:129
+#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "보다 자세한 정보를 봅니다."
 
@@ -7548,41 +7591,56 @@ msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
 msgstr[0] "예비 심사 ({num})"
 
-#: apps/editors/templates/editors/home.html:36
+#: apps/editors/templates/editors/home.html:36 apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
 msgstr "현재 대기 시간:"
 
 # 81%
 # 100%
-#: apps/editors/templates/editors/home.html:44
+#: apps/editors/templates/editors/home.html:44 apps/editors/templates/editors/home.html:94
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "부가 기능 {0}개"
 
-#: apps/editors/templates/editors/home.html:45
+#: apps/editors/templates/editors/home.html:45 apps/editors/templates/editors/home.html:95
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:58 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
+#: apps/editors/templates/editors/home.html:61
+msgid "Unlisted Full Review ({num})"
+msgid_plural "Unlisted Full Reviews ({num})"
+msgstr[0] ""
+
+#: apps/editors/templates/editors/home.html:68
+msgid "Unlisted Pending Update ({num})"
+msgid_plural "Unlisted Pending Updates ({num})"
+msgstr[0] ""
+
+#: apps/editors/templates/editors/home.html:75
+msgid "Unlisted Preliminary Review ({num})"
+msgid_plural "Unlisted Preliminary Reviews ({num})"
+msgstr[0] ""
+
+#: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
 msgstr "총 심사 수"
 
-#: apps/editors/templates/editors/home.html:59 apps/editors/templates/editors/themes/home.html:55
+#: apps/editors/templates/editors/home.html:110 apps/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
 msgstr "이달의 심사"
 
-#: apps/editors/templates/editors/home.html:60
+#: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
 msgstr "새 편집자"
 
-#: apps/editors/templates/editors/home.html:75 apps/editors/templates/editors/home.html:90
+#: apps/editors/templates/editors/home.html:126 apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
 msgstr "당신은 {0}번이며 {1}개의 심사가 있습니다"
 
 # 87%
 # 100%
 #. num = number of reviews in the queue
-#: apps/editors/templates/editors/home.html:120
+#: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "조정중인 심사 ({num})"
@@ -11446,15 +11504,15 @@ msgstr "%s의 판올림 내역"
 msgid "Version History with Changelogs"
 msgstr "각 버전별 변경 사항"
 
-#: apps/versions/models.py:277
+#: apps/versions/models.py:284
 msgid "Add-on uses binary components."
 msgstr "부가 기능이 이진 콤포넌트를 사용하고 있습니다."
 
-#: apps/versions/models.py:280
+#: apps/versions/models.py:287
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "부가 기능이 엄격한 호환성 검사 방식을 채택했습니다."
 
-#: apps/versions/models.py:657
+#: apps/versions/models.py:664
 msgid "{app} {min} and later"
 msgstr "{app} {min} 이상"
 

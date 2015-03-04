@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-04 09:13-0700\n"
 "PO-Revision-Date: 2015-01-10 17:21+0000\n"
 "Last-Translator: upwinxp <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -649,7 +649,7 @@ msgstr "Licenca"
 msgid "Awaiting Review"
 msgstr "Čaka na pregled"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:50
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
 msgid "Rejected"
 msgstr "Zavrnjeno"
 
@@ -863,7 +863,7 @@ msgstr "Smernice za recenzije"
 msgid "Detailed Review"
 msgstr "Podrobna recenzija"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:775 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:833 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Recenzije"
@@ -1278,7 +1278,7 @@ msgstr "Dodatki"
 msgid "Easy ways to personalize."
 msgstr "Enostavni načini za prilagajanje."
 
-#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
+#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:46 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Več o tem"
@@ -1297,7 +1297,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Teme"
@@ -1372,7 +1372,7 @@ msgstr "Prijavi novo temo"
 msgid "Developer Hub"
 msgstr "Razvojni center"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Uredniška orodja"
 
@@ -1557,7 +1557,7 @@ msgstr "Zahteva se super pregled"
 msgid "Comment on {addon} {version}."
 msgstr "Komentar o {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:469
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Komentar"
@@ -2675,7 +2675,7 @@ msgstr "Vnesite ime dodatke, ki ga hočete vključiti"
 msgid "Add to Collection"
 msgstr "Dodaj v zbirko"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:790 apps/editors/helpers.py:810
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:848 apps/editors/helpers.py:868
 msgid "Pending"
 msgstr "Na čakanju"
 
@@ -3288,7 +3288,7 @@ msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Predhodno pregledan, čaka na popoln pregled"
 
 # 85%
-#: apps/constants/base.py:34 apps/editors/helpers.py:778 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:836 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Izbrisano"
 
@@ -3549,7 +3549,7 @@ msgstr "Zastava"
 msgid "Duplicate"
 msgstr "Podvoji"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:460 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Zavrni"
 
@@ -4879,45 +4879,57 @@ msgstr "Končali ste!"
 msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr "Vaš dodatek je v čakalni vrsti za predhodni pregled."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:15
+#: apps/devhub/templates/devhub/addons/submit/done.html:13
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Vaš dodatek je v čakalni vrsti za polni pregled."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:21
+#: apps/devhub/templates/devhub/addons/submit/done.html:18
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr "Ko bo urednik dodatek pregledal, boste prejeli obvestilo po e-pošti. Do takrat si ga lahko vaši prijatelji in vi sami prenesete neposredno prek strani s podrobnostmi:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
+#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
 msgstr "Naslednji koraki:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:37
+#: apps/devhub/templates/devhub/addons/submit/done.html:32
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr "<a href=\"{0}\">Naloži</a> drugo za platformo specifično datoteko za to različico."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:40
+#: apps/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr "Dodajte še druge podrobnosti, s tem da <a href=\"{0}\">uredite objavo</a>."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:42
+#: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr "Povejte uporabnikom v svojem <a href=\"{0}\">Profilu razvijalca</a>, zakaj ste ta dodatek razvili."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:44
+#: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr "Oglejte si naročnino za svoj dodatek in <a href=\"{0}\"> naročite nanj</a> , da ostanejo na tekočem, kar se ocen, zbirk in drugega tiče."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:45
+#: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "Pokaži približni <a href=\"{0}\">čakalni čas</a> za pregled."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:50
+#: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
 msgstr "Prehitite čakalno vrsto!"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:52
+#: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "Postanite recenzent AMO še danes in poskrbite, da bodo vaši dodatki pregledani prej."
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:51
+msgid "You'll receive an email once it has been reviewed by an editor."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:52
+msgid "Your add-on will not be publicly available on AMO."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:55
+msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6764,7 +6776,7 @@ msgid "Validation"
 msgstr "Preverjanje"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
-#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
+#: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "Zmogljivost"
 
@@ -7195,7 +7207,7 @@ msgstr "Dni od oddaje"
 msgid "Add-on Types"
 msgstr "Vrste dodatka"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:197
+#: apps/editors/forms.py:118 apps/editors/helpers.py:237
 msgid "Platforms"
 msgstr "Platforme"
 
@@ -7254,55 +7266,67 @@ msgstr "To temo pregleduje nekdo drug."
 msgid "app, reviewer, or comment"
 msgstr "aplikacija, recenzent ali komentar"
 
-#: apps/editors/helpers.py:43
+#: apps/editors/helpers.py:46
 msgid "Pending Preliminary Review"
 msgstr "Čaka na predhodni pregled"
 
-#: apps/editors/helpers.py:47
+#: apps/editors/helpers.py:50
 msgid "Pending Full Review"
 msgstr "Čaka na poln pregled"
 
-#: apps/editors/helpers.py:54
+#: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
 msgstr "Zavrnjeno ali nepregledano"
 
-#: apps/editors/helpers.py:108
+#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
 msgid "Queue"
 msgstr "V vrsti"
 
-#: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
+#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "Posodobitve v teku"
 
-#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
+#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Popolni pregledi"
 
-#: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "Predhodni pregledi"
 
-#: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "Moderirani pregledi"
 
-#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "Hitra steza"
 
-#: apps/editors/helpers.py:115
+#: apps/editors/helpers.py:121
 msgid "Pending Themes"
 msgstr "Teme v čakanju"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Označene teme"
 
-#: apps/editors/helpers.py:117
+#: apps/editors/helpers.py:123
 msgid "Update Themes"
 msgstr "Posodobite teme"
 
-#: apps/editors/helpers.py:143
+#: apps/editors/helpers.py:128
+msgid "Unlisted Pending Updates"
+msgstr ""
+
+#: apps/editors/helpers.py:129
+msgid "Unlisted Full Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:130
+msgid "Unlisted Preliminary Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "Hitra steza ({0})"
@@ -7310,7 +7334,7 @@ msgstr[1] "Hitra steza ({0})"
 msgstr[2] "Hitra steza ({0})"
 msgstr[3] "Hitra steza ({0})"
 
-#: apps/editors/helpers.py:147
+#: apps/editors/helpers.py:168
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Popoln pregled ({0})"
@@ -7318,7 +7342,7 @@ msgstr[1] "Popolna pregleda ({0})"
 msgstr[2] "Popolni pregledi ({0})"
 msgstr[3] "Popolnih pregledov ({0})"
 
-#: apps/editors/helpers.py:151
+#: apps/editors/helpers.py:173
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Posodobitev na čakanju ({0})"
@@ -7326,7 +7350,7 @@ msgstr[1] "Posodobitvi na čakanju ({0})"
 msgstr[2] "Posodobitve na čakanju ({0})"
 msgstr[3] "Posodobitve na čakanju ({0})"
 
-#: apps/editors/helpers.py:155
+#: apps/editors/helpers.py:178
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Predhodna recenzija ({0})"
@@ -7334,7 +7358,7 @@ msgstr[1] "Predhodni recenziji ({0})"
 msgstr[2] "Predhodne recenzije ({0})"
 msgstr[3] "Predhodne recenzije ({0})"
 
-#: apps/editors/helpers.py:160
+#: apps/editors/helpers.py:183
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Moderirana recenzija ({0})"
@@ -7342,48 +7366,72 @@ msgstr[1] "Moderirani recenziji ({0})"
 msgstr[2] "Moderirane recenzije ({0})"
 msgstr[3] "Moderirane recenzije ({0})"
 
-#: apps/editors/helpers.py:191
+#: apps/editors/helpers.py:189
+msgid "Unlisted Full Review ({0})"
+msgid_plural "Unlisted Full Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: apps/editors/helpers.py:194
+msgid "Unlisted Pending Update ({0})"
+msgid_plural "Unlisted Pending Updates ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: apps/editors/helpers.py:199
+msgid "Unlisted Preliminary Review ({0})"
+msgid_plural "Unlisted Preliminary Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: apps/editors/helpers.py:231
 msgid "Addon"
 msgstr "Dodatek"
 
-#: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Vrsta"
 
-#: apps/editors/helpers.py:193
+#: apps/editors/helpers.py:233
 msgid "Waiting Time"
 msgstr "Čakalni čas"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Zastave"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:235
 msgid "Applications"
 msgstr "Programi"
 
-#: apps/editors/helpers.py:200
+#: apps/editors/helpers.py:240
 msgid "Additional"
 msgstr "Dodatno"
 
-#: apps/editors/helpers.py:215
+#: apps/editors/helpers.py:255
 msgid "Site Specific"
 msgstr "Tipično za stran"
 
-#: apps/editors/helpers.py:217
+#: apps/editors/helpers.py:257
 msgid "Requires External Software"
 msgstr "Zahteva zunanjo programsko opremo"
 
-#: apps/editors/helpers.py:219
+#: apps/editors/helpers.py:259
 msgid "Binary Components"
 msgstr "Binarne komponente"
 
-#: apps/editors/helpers.py:243
+#: apps/editors/helpers.py:283
 msgid "moments ago"
 msgstr "pred nekaj trenutki"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:246
+#: apps/editors/helpers.py:286
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minuta"
@@ -7392,7 +7440,7 @@ msgstr[2] "{0} minute"
 msgstr[3] "{0} minut"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:250
+#: apps/editors/helpers.py:290
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} ura"
@@ -7401,7 +7449,7 @@ msgstr[2] "{0} ure"
 msgstr[3] "{0} ur"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:254
+#: apps/editors/helpers.py:294
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} dan"
@@ -7409,31 +7457,31 @@ msgstr[1] "{0} dneva"
 msgstr[2] "{0} dnevi"
 msgstr[3] "{0} dni"
 
-#: apps/editors/helpers.py:397
+#: apps/editors/helpers.py:455
 msgid "Push to public"
 msgstr "Prestavi na javno"
 
-#: apps/editors/helpers.py:405
+#: apps/editors/helpers.py:463
 msgid "Request more information"
 msgstr "Zahtevaj dodatne informacije"
 
-#: apps/editors/helpers.py:408
+#: apps/editors/helpers.py:466
 msgid "Request super-review"
 msgstr "Zahtevaj super-pregled"
 
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:477
 msgid "Grant preliminary review"
 msgstr "Dovoli predhodni pregled"
 
-#: apps/editors/helpers.py:420
+#: apps/editors/helpers.py:478
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "To bo označilo datoteke kot predhodno pregledane."
 
-#: apps/editors/helpers.py:422
+#: apps/editors/helpers.py:480
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "S tem obrazcem lahko zahteva dodatne informacije od avtorja. Avtorji bodo prejeli e-pošto in lahko tukaj odgovorili. Vas bomo o odgovoru obvestili po elektronski pošti."
 
-#: apps/editors/helpers.py:426
+#: apps/editors/helpers.py:484
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7441,80 +7489,80 @@ msgstr ""
 "Če ste zaskrbljeni glede varnosti pri tem dodatku, glede avtorskih pravic ali drugih zadev, ki bi jih administrator moral preveriti, potem vnesite svoje pripombe v polje spodaj. Poslalo se jih bo "
 "administratorjem, ne avtorju."
 
-#: apps/editors/helpers.py:432
+#: apps/editors/helpers.py:490
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "To bo dodatek zavrnilo in ga odstranilo iz čakalne vrste za pregled."
 
-#: apps/editors/helpers.py:434
+#: apps/editors/helpers.py:492
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Oddajte pripombo za to različico. Avtor tega ne bo mogel videti."
 
-#: apps/editors/helpers.py:438
+#: apps/editors/helpers.py:496
 msgid "This will reject the files and remove them from the review queue."
 msgstr "To bo datoteke zavrnilo in jih odstranilo iz čakalne vrste za pregled."
 
-#: apps/editors/helpers.py:442
+#: apps/editors/helpers.py:500
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "S tem se označi dodatek kot predhodno pregledan. Prihodnje različice bodo šle skozi predhodni pregled."
 
-#: apps/editors/helpers.py:447
+#: apps/editors/helpers.py:505
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "S tem so datoteke označene kot predhodno pregledane. Prihodnje različice bodo šle skozi predhodni pregled."
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:510
 msgid "Retain preliminary review"
 msgstr "Zadrži predhodni pregled"
 
-#: apps/editors/helpers.py:453
+#: apps/editors/helpers.py:511
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Tako bo dodatek obdržal oznako predhodno pregledan. Prihodnje različice bodo šle skozi predhodni pregled."
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:516
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "To bo potrdilo, da se različica javnega dodatka, ki je v Peskovniku, kaže na objavljenih straneh."
 
-#: apps/editors/helpers.py:461
+#: apps/editors/helpers.py:519
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "To bo zavrnilo različico javnega dodatka in ga odstranilo iz vrste."
 
-#: apps/editors/helpers.py:464
+#: apps/editors/helpers.py:522
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "To bo dodatek in njegovo najnovejšo različico ter datoteke označilo kot javne. Prihodnje različice bodo šle v peskovnik, dokler jih ne pregleda urednik."
 
-#: apps/editors/helpers.py:532
+#: apps/editors/helpers.py:590
 msgid "add-on"
 msgstr "dodatek"
 
-#: apps/editors/helpers.py:794 apps/editors/helpers.py:814
+#: apps/editors/helpers.py:852 apps/editors/helpers.py:872
 msgid "Flagged"
 msgstr "Označeno"
 
 # 85%
-#: apps/editors/helpers.py:798 apps/editors/helpers.py:817
+#: apps/editors/helpers.py:856 apps/editors/helpers.py:875
 msgid "Updates"
 msgstr "Posodobitve"
 
-#: apps/editors/models.py:178
+#: apps/editors/models.py:182
 msgid "Admin Review"
 msgstr "Skrbnikova recenzija"
 
-#: apps/editors/models.py:179
+#: apps/editors/models.py:183
 msgid "Jetpack Add-on"
 msgstr "Dodatek Jetpack"
 
-#: apps/editors/models.py:181
+#: apps/editors/models.py:185
 msgid "Restartless Add-on"
 msgstr "Dodatek brez ponovnega zagona"
 
-#: apps/editors/models.py:182
+#: apps/editors/models.py:186
 msgid "More Information Requested"
 msgstr "Potrebnih je več informacij"
 
-#: apps/editors/models.py:183
+#: apps/editors/models.py:187
 msgid "Contains Editor Comment"
 msgstr "Vsebuje komentar urednika"
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:189
 msgid "Sources provided"
 msgstr "Dobavljeni viri"
 
@@ -7538,54 +7586,54 @@ msgstr "Oddaja teme je označena za pregled"
 msgid "A question about your Theme submission"
 msgstr "Vprašanje glede oddaje vaše Teme"
 
-#: apps/editors/views.py:104
+#: apps/editors/views.py:112
 msgid "New Add-ons (Under 5 days)"
 msgstr "Novi dodatki (pod 5 dni)"
 
-#: apps/editors/views.py:105
+#: apps/editors/views.py:113
 msgid "Passable (5 to 10 days)"
 msgstr "Še gre (5 do 10 dni)"
 
-#: apps/editors/views.py:106
+#: apps/editors/views.py:114
 msgid "Overdue (Over 10 days)"
 msgstr "Zapadlo (Več kot 10 dni)"
 
-#: apps/editors/views.py:422
+#: apps/editors/views.py:440
 msgid "An unknown error occurred"
 msgstr "Prišlo je do neznane napake"
 
-#: apps/editors/views.py:448
+#: apps/editors/views.py:492
 msgid "Self-reviews are not allowed."
 msgstr "Samo-recenzije niso dovoljene."
 
-#: apps/editors/views.py:467
+#: apps/editors/views.py:511
 msgid "Review successfully processed."
 msgstr "Recenzija uspešno obdelana."
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:701
 msgid "was approved"
 msgstr "je bil odobren"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:702
 msgid "given preliminary review"
 msgstr "je bil predhodno pregledan"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:703
 msgid "rejected"
 msgstr "zavrnjen"
 
-#: apps/editors/views.py:657
+#: apps/editors/views.py:704
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "stopnjevan"
 
 # 79%
 # 100%
-#: apps/editors/views.py:659
+#: apps/editors/views.py:706
 msgid "needs more information"
 msgstr "potrebno je več podatkov"
 
-#: apps/editors/views.py:660
+#: apps/editors/views.py:707
 msgid "needs super review"
 msgstr "potrebuje superpregled"
 
@@ -7626,21 +7674,25 @@ msgstr "Nazaj na domačo stran Orodja za urejanje"
 msgid "Queues"
 msgstr "Čakalne vrste"
 
-#: apps/editors/templates/editors/base.html:63 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
+#: apps/editors/templates/editors/base.html:60
+msgid "Unlisted Queues"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
 msgstr "Dnevniki"
 
-#: apps/editors/templates/editors/base.html:66 apps/editors/templates/editors/reviewlog.html:4
+#: apps/editors/templates/editors/base.html:78 apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
 msgstr "Dnevnik s pregledi dodatkov"
 
 # 80%
 # 100%
-#: apps/editors/templates/editors/base.html:68 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
+#: apps/editors/templates/editors/base.html:80 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
 msgstr "Moderiran dnevnik pregledov"
 
-#: apps/editors/templates/editors/base.html:73 apps/editors/templates/editors/includes/daily-message.html:4
+#: apps/editors/templates/editors/base.html:85 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr "Objava"
 
@@ -7657,7 +7709,7 @@ msgstr "Datum"
 msgid "Event"
 msgstr "Dogodek"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:129
+#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "Več podrobnosti."
 
@@ -7723,13 +7775,13 @@ msgstr[1] "Predhodna pregleda ({num})"
 msgstr[2] "Predhodni pregledi ({num})"
 msgstr[3] "Predhodnih pregledov ({num})"
 
-#: apps/editors/templates/editors/home.html:36
+#: apps/editors/templates/editors/home.html:36 apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
 msgstr "Trenutne čakalne dobe:"
 
 # 81%
 # 100%
-#: apps/editors/templates/editors/home.html:44
+#: apps/editors/templates/editors/home.html:44 apps/editors/templates/editors/home.html:94
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} dodatek"
@@ -7737,30 +7789,54 @@ msgstr[1] "{0} dodatka"
 msgstr[2] "{0} dodatki"
 msgstr[3] "{0} dodatkov"
 
-#: apps/editors/templates/editors/home.html:45
+#: apps/editors/templates/editors/home.html:45 apps/editors/templates/editors/home.html:95
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:58 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
+#: apps/editors/templates/editors/home.html:61
+msgid "Unlisted Full Review ({num})"
+msgid_plural "Unlisted Full Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: apps/editors/templates/editors/home.html:68
+msgid "Unlisted Pending Update ({num})"
+msgid_plural "Unlisted Pending Updates ({num})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: apps/editors/templates/editors/home.html:75
+msgid "Unlisted Preliminary Review ({num})"
+msgid_plural "Unlisted Preliminary Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
 msgstr "Skupaj recenzij"
 
-#: apps/editors/templates/editors/home.html:59 apps/editors/templates/editors/themes/home.html:55
+#: apps/editors/templates/editors/home.html:110 apps/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
 msgstr "Pregledi ta mesec"
 
-#: apps/editors/templates/editors/home.html:60
+#: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
 msgstr "Novi uredniki"
 
-#: apps/editors/templates/editors/home.html:75 apps/editors/templates/editors/home.html:90
+#: apps/editors/templates/editors/home.html:126 apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
 msgstr "Vi ste {0}. z {1} pregledi"
 
 # 87%
 # 100%
 #. num = number of reviews in the queue
-#: apps/editors/templates/editors/home.html:120
+#: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "Moderiran pregled ({num})"
@@ -11720,15 +11796,15 @@ msgstr "Zgodovina različice %s"
 msgid "Version History with Changelogs"
 msgstr "Zgodovina različic z dnevniki sprememb"
 
-#: apps/versions/models.py:277
+#: apps/versions/models.py:284
 msgid "Add-on uses binary components."
 msgstr "Dodarek vsebuje binarne komponente."
 
-#: apps/versions/models.py:280
+#: apps/versions/models.py:287
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Dodatek je vključen v strogo preverjanje združljivosti."
 
-#: apps/versions/models.py:657
+#: apps/versions/models.py:664
 msgid "{app} {min} and later"
 msgstr "{app} {min} in kasneje"
 

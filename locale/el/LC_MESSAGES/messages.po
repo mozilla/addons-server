@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-04 09:13-0700\n"
 "PO-Revision-Date: 2011-10-28 22:44+0200\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -631,7 +631,7 @@ msgstr "Άδεια"
 msgid "Awaiting Review"
 msgstr "Αναμένεται αξιολόγηση"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:50
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
 msgid "Rejected"
 msgstr "Απορίφθηκε"
 
@@ -847,7 +847,7 @@ msgstr "Οδηγίες σύνταξης αξιολόγησης"
 msgid "Detailed Review"
 msgstr "Λεπτομερής αξιολόγηση"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:775 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:833 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Αξιολογήσεις"
@@ -1249,7 +1249,7 @@ msgstr "Προσθετα"
 msgid "Easy ways to personalize."
 msgstr "Εύκολοι τρόποι για προσαρμογή."
 
-#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:54 apps/discovery/templates/discovery/pane.html:35
+#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:46 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Μάθετε περισσότερα"
@@ -1268,7 +1268,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Θέματα"
@@ -1343,7 +1343,7 @@ msgstr "Υποβολή νέου θέματος"
 msgid "Developer Hub"
 msgstr "Γωνιά προγραμματιστών"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:70 apps/editors/helpers.py:90 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Εργαλεία συντακτών"
 
@@ -1524,7 +1524,7 @@ msgstr "Ζητήθηκε υπερ αξιολόγηση"
 msgid "Comment on {addon} {version}."
 msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:411
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:469
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Σχόλιο"
@@ -2628,7 +2628,7 @@ msgstr "Εισαγωγή ονόματος πρόσθετου για να συμ�
 msgid "Add to Collection"
 msgstr "Προσθήκη σε συλλογή"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:790 apps/editors/helpers.py:810
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:848 apps/editors/helpers.py:868
 msgid "Pending"
 msgstr "Σε αναμονή"
 
@@ -3239,7 +3239,7 @@ msgstr "Αξιολογημένο προκαταρκτικά"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Αξιολογημένο προκαταρκτικά και σε αναμονή πλήρους αξιολόγησης"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:778 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:836 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Διαγράφηκε"
 
@@ -3499,7 +3499,7 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:402 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:460 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Απόρριψη "
 
@@ -4818,44 +4818,56 @@ msgstr "Τελειώσατε!"
 msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr "Το πρόσθετο σας προστέθηκε στην ουρά για εισαγωγική αξιολόγηση."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:15
+#: apps/devhub/templates/devhub/addons/submit/done.html:13
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Το πρόσθετο σας προστέθηκε στην ουρά για πλήρη αξιολόγηση."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:21
+#: apps/devhub/templates/devhub/addons/submit/done.html:18
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr "Θα λάβετε ένα email μόλις επιθεωρηθεί από έναν συντάκτη. Στο μεταξύ, εσείς και οι φίλοι σας μπορείτε να την εγκαταστήσετε απευθείας από τη σελίδα λεπτομερειών:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/personas/submit_done.html:16
+#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
 msgstr "Επόμενα βήματα:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:37
+#: apps/devhub/templates/devhub/addons/submit/done.html:32
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr "<a href=\"{0}\">Αποστολή</a> κι άλλου αρχείου αυτής της έκδοσης για συγκεκριμένη πλατφόρμα"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:40
+#: apps/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr "Παρέχετε περισσότερεςλεπτομέρειες με την <a href=\"{0}\">επεξεργασία της καταχώρισης</a>."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:42
+#: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr "Πείτε στους χρήστες γιατί δημιουργήσατε αυτό στο <a href=\"{0}\">Προφίλ Προγραμματιστή</a>."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:44
+#: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr "Προβολή και εγγραφή στο <a href=\"{0}\">αρχείο ροής δραστηριότητας</a> του πρόσθετου σας, για να ενημερώνεστε για αξιολογήσεις, συλλογές και ακόμη περισσότερα."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:45
+#: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "Προβολή <a href=\"{0}\">χρόνου αναμονής</a> αξιολόγησης κατά προσέγγιση."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:50
+#: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:52
+#: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:51
+msgid "You'll receive an email once it has been reviewed by an editor."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:52
+msgid "Your add-on will not be publicly available on AMO."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:55
+msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
@@ -6550,7 +6562,7 @@ msgid "Validation"
 msgstr "Επικύρωση"
 
 #: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
-#: apps/editors/templates/editors/base.html:60 apps/editors/templates/editors/performance.html:6
+#: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "Επιδόσεις"
 
@@ -6985,7 +6997,7 @@ msgstr "Ημέρες από την υποβολή"
 msgid "Add-on Types"
 msgstr "Τύποι πρόσθετων"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:197
+#: apps/editors/forms.py:118 apps/editors/helpers.py:237
 msgid "Platforms"
 msgstr "Πλατφόρμες"
 
@@ -7044,172 +7056,202 @@ msgstr "Κάποιος άλλος αξιολογεί αυτό το θέμα"
 msgid "app, reviewer, or comment"
 msgstr "εφαρμογές, κριτικοί, ή σχόλια"
 
-#: apps/editors/helpers.py:43
+#: apps/editors/helpers.py:46
 msgid "Pending Preliminary Review"
 msgstr "Σε αναμονή εισαγωγικής αξιολόγησης"
 
-#: apps/editors/helpers.py:47
+#: apps/editors/helpers.py:50
 msgid "Pending Full Review"
 msgstr "Σε αναμονή πλήρους αξιολόγησης"
 
-#: apps/editors/helpers.py:54
+#: apps/editors/helpers.py:57
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: apps/editors/helpers.py:108
+#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
 msgid "Queue"
 msgstr "Ουρά αναμονής"
 
-#: apps/editors/helpers.py:109 apps/editors/templates/editors/base.html:51
+#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "Ενημερώσεις σε αναμονή"
 
-#: apps/editors/helpers.py:110 apps/editors/templates/editors/base.html:49
+#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Πλήρεις αξιολογήσεις"
 
-#: apps/editors/helpers.py:111 apps/editors/templates/editors/base.html:53
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "Εισαγωγικές αξιολογήσεις"
 
-#: apps/editors/helpers.py:112 apps/editors/templates/editors/base.html:55
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "Ελεγμένες αξιολογήσεις"
 
-#: apps/editors/helpers.py:113 apps/editors/templates/editors/base.html:47
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr ""
 
-#: apps/editors/helpers.py:115
+#: apps/editors/helpers.py:121
 msgid "Pending Themes"
 msgstr "Θέματα σε αναμονή"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Θέματα με επισήμανση"
 
-#: apps/editors/helpers.py:117
+#: apps/editors/helpers.py:123
 msgid "Update Themes"
 msgstr "Ενημέρωση θεμάτων"
 
-#: apps/editors/helpers.py:143
+#: apps/editors/helpers.py:128
+msgid "Unlisted Pending Updates"
+msgstr ""
+
+#: apps/editors/helpers.py:129
+msgid "Unlisted Full Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:130
+msgid "Unlisted Preliminary Reviews"
+msgstr ""
+
+#: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:147
+#: apps/editors/helpers.py:168
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Πλήρης αξιολόγηση ({0})"
 msgstr[1] "Πλήρης αξιολογήσεις ({0})"
 
-#: apps/editors/helpers.py:151
+#: apps/editors/helpers.py:173
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Ενημέρωση σε αναμονή ({0})"
 msgstr[1] "Ενημερώσεις σε αναμονή ({0})"
 
-#: apps/editors/helpers.py:155
+#: apps/editors/helpers.py:178
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Εισαγωγική αξιολόγηση ({0})"
 msgstr[1] "Εισαγωγικές αξιολογήσεις ({0})"
 
-#: apps/editors/helpers.py:160
+#: apps/editors/helpers.py:183
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Ελεγμένη αξιολόγηση ({0})"
 msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
 
-#: apps/editors/helpers.py:191
+#: apps/editors/helpers.py:189
+msgid "Unlisted Full Review ({0})"
+msgid_plural "Unlisted Full Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/editors/helpers.py:194
+msgid "Unlisted Pending Update ({0})"
+msgid_plural "Unlisted Pending Updates ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/editors/helpers.py:199
+msgid "Unlisted Preliminary Review ({0})"
+msgid_plural "Unlisted Preliminary Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/editors/helpers.py:231
 msgid "Addon"
 msgstr "Πρόσθετο"
 
-#: apps/editors/helpers.py:192 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Τύπος"
 
-#: apps/editors/helpers.py:193
+#: apps/editors/helpers.py:233
 msgid "Waiting Time"
 msgstr "Χρόνος αναμονής"
 
-#: apps/editors/helpers.py:194 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Σημάνσεις"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:235
 msgid "Applications"
 msgstr "Εφαρμογές"
 
-#: apps/editors/helpers.py:200
+#: apps/editors/helpers.py:240
 msgid "Additional"
 msgstr ""
 
-#: apps/editors/helpers.py:215
+#: apps/editors/helpers.py:255
 msgid "Site Specific"
 msgstr "Σχετικό με ιστότοπο"
 
-#: apps/editors/helpers.py:217
+#: apps/editors/helpers.py:257
 msgid "Requires External Software"
 msgstr "Απαιτεί πρόσθετο λογισμικό τρίτων"
 
-#: apps/editors/helpers.py:219
+#: apps/editors/helpers.py:259
 msgid "Binary Components"
 msgstr "Εκτελέσιμα στοιχεία"
 
-#: apps/editors/helpers.py:243
+#: apps/editors/helpers.py:283
 msgid "moments ago"
 msgstr "πριν λίγο"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:246
+#: apps/editors/helpers.py:286
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} λεπτό"
 msgstr[1] "{0} λεπτά"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:250
+#: apps/editors/helpers.py:290
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} ώρα"
 msgstr[1] "{0} ώρες"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:254
+#: apps/editors/helpers.py:294
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} ημέρα"
 msgstr[1] "{0} ημέρες"
 
-#: apps/editors/helpers.py:397
+#: apps/editors/helpers.py:455
 msgid "Push to public"
 msgstr "Προώθηση στο δημόσιο χώρο "
 
-#: apps/editors/helpers.py:405
+#: apps/editors/helpers.py:463
 msgid "Request more information"
 msgstr "Αίτηση περισσότερων πληροφοριών "
 
-#: apps/editors/helpers.py:408
+#: apps/editors/helpers.py:466
 msgid "Request super-review"
 msgstr "Αίτηση για αξιολόγηση συντάκτη"
 
-#: apps/editors/helpers.py:419
+#: apps/editors/helpers.py:477
 msgid "Grant preliminary review"
 msgstr "Απόδοση εισαγωγικής αξιολόγησης"
 
-#: apps/editors/helpers.py:420
+#: apps/editors/helpers.py:478
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: apps/editors/helpers.py:422
+#: apps/editors/helpers.py:480
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 "Χρησιμοποιείστε αυτή τη φόρμα για να ζητήσετε περισσότερες πληροφορίες από τον δημιουργό. Θα σταλεί ένα email για να ειδοποιηθούν και να απαντήσουν εδώ και θα ειδοποιηθείτε με τη σειρά σας όταν "
 "απαντήσουν."
 
-#: apps/editors/helpers.py:426
+#: apps/editors/helpers.py:484
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7217,79 +7259,79 @@ msgstr ""
 "Αν πιστεύετε ότι για ένα πρόσθετο υπάρχει κάποιο θέμα με την ασφάλεια, τα πνευματικά δικαιώματα ή κάτι άλλο  που θα πρέπει να δει ένας από τους διαχειριστές μας, εισάγετε τα σχόλια σας στο παρακάτω "
 "πεδίο.  Τα σχόλια σας θα αποσταλούν στους διαχειριστές μας και όχι στον δημιουργό του πρόσθετου."
 
-#: apps/editors/helpers.py:432
+#: apps/editors/helpers.py:490
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Αυτή η ενέργεια θα απορρίψει το πρόσθετο και θα το αφαιρέσει από την ουρά αναμονής αξιολόγησης."
 
-#: apps/editors/helpers.py:434
+#: apps/editors/helpers.py:492
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: apps/editors/helpers.py:438
+#: apps/editors/helpers.py:496
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Αυτή η ενέργεια θα απορρίψει τα αρχεία και θα τα αφαιρέσει από την ουρά αναμονής αξιολόγησης."
 
-#: apps/editors/helpers.py:442
+#: apps/editors/helpers.py:500
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Αυτή η ενέργεια θα σημειώσει το πρόσθετο ως εισαγωγικώς αξιολογημένο. Οι μελλοντικές του εκδόσεις θα περνάνε  από εισαγωγική  αξιολόγηση."
 
-#: apps/editors/helpers.py:447
+#: apps/editors/helpers.py:505
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Αυτή η ενέργεια θα σημειώσει τα αρχεία ως εισαγωγικώς αξιολογημένα. Οι μελλοντικές τους εκδόσεις θα περνάνε  από εισαγωγική  αξιολόγηση."
 
-#: apps/editors/helpers.py:452
+#: apps/editors/helpers.py:510
 msgid "Retain preliminary review"
 msgstr "Διατήρηση εισαγωγικής αξιολόγησης"
 
-#: apps/editors/helpers.py:453
+#: apps/editors/helpers.py:511
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Αυτή η ενέργεια θα διατηρήσει το καθεστώς του πρόσθετου σαν εισαγωγικώς αξιολογημένο. Οι μελλοντικές εκδόσεις του θα περνάνε επίσης από εισαγωγική αξιολόγηση."
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:516
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Αυτό θα επιτρέψει να δημοσιευτεί μια έκδοση πρόσθετου που είναι στο sandbox"
 
-#: apps/editors/helpers.py:461
+#: apps/editors/helpers.py:519
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Αυτή η ενέργεια θα απορρίψει μια έκδοση πρόσθετου που είναι δημόσιο και θα την αφαιρέσει από την ουρά αναμονής."
 
-#: apps/editors/helpers.py:464
+#: apps/editors/helpers.py:522
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Αυτή η ενέργεια θα σημάνει το πρόσθετο, την πιο πρόσφατη έκδοση του και τα αρχεία του σαν δημόσια. Οι μελλοντικές εκδόσεις θα παραμένουν στο sandbox μέχρι να αξιολογηθούν από συντάκτες."
 
-#: apps/editors/helpers.py:532
+#: apps/editors/helpers.py:590
 msgid "add-on"
 msgstr ""
 
-#: apps/editors/helpers.py:794 apps/editors/helpers.py:814
+#: apps/editors/helpers.py:852 apps/editors/helpers.py:872
 msgid "Flagged"
 msgstr "Επισημάνθηκε"
 
-#: apps/editors/helpers.py:798 apps/editors/helpers.py:817
+#: apps/editors/helpers.py:856 apps/editors/helpers.py:875
 msgid "Updates"
 msgstr "Ενημερώσεις"
 
-#: apps/editors/models.py:178
+#: apps/editors/models.py:182
 msgid "Admin Review"
 msgstr "Αξιολόγηση συντάκτη"
 
-#: apps/editors/models.py:179
+#: apps/editors/models.py:183
 msgid "Jetpack Add-on"
 msgstr ""
 
-#: apps/editors/models.py:181
+#: apps/editors/models.py:185
 msgid "Restartless Add-on"
 msgstr ""
 
-#: apps/editors/models.py:182
+#: apps/editors/models.py:186
 msgid "More Information Requested"
 msgstr ""
 
-#: apps/editors/models.py:183
+#: apps/editors/models.py:187
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:189
 msgid "Sources provided"
 msgstr ""
 
@@ -7313,52 +7355,52 @@ msgstr "Η υποβολή του Θέματος επισημάνθηκε για 
 msgid "A question about your Theme submission"
 msgstr "Μια ερώτηση για την υποβολή του Θέματος σας"
 
-#: apps/editors/views.py:104
+#: apps/editors/views.py:112
 msgid "New Add-ons (Under 5 days)"
 msgstr "Νέα πρόσθετα (λιγότερες από 5 ημέρες)"
 
-#: apps/editors/views.py:105
+#: apps/editors/views.py:113
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:106
+#: apps/editors/views.py:114
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:422
+#: apps/editors/views.py:440
 msgid "An unknown error occurred"
 msgstr ""
 
-#: apps/editors/views.py:448
+#: apps/editors/views.py:492
 msgid "Self-reviews are not allowed."
 msgstr "Δεν επιτρέπονται αξιολογήσεις για το δικό σας πρόσθετο"
 
-#: apps/editors/views.py:467
+#: apps/editors/views.py:511
 msgid "Review successfully processed."
 msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία."
 
-#: apps/editors/views.py:654
+#: apps/editors/views.py:701
 msgid "was approved"
 msgstr "εγκρίθηκε"
 
-#: apps/editors/views.py:655
+#: apps/editors/views.py:702
 msgid "given preliminary review"
 msgstr "δόθηκε εισαγωγική αξιολόγηση"
 
-#: apps/editors/views.py:656
+#: apps/editors/views.py:703
 msgid "rejected"
 msgstr "απορρίφθηκε"
 
-#: apps/editors/views.py:657
+#: apps/editors/views.py:704
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "κλιμακώθηκε"
 
-#: apps/editors/views.py:659
+#: apps/editors/views.py:706
 msgid "needs more information"
 msgstr "χρειάζονται περισσότερες πληροφορίες"
 
-#: apps/editors/views.py:660
+#: apps/editors/views.py:707
 msgid "needs super review"
 msgstr "χρειάζεται αξιολόγηση συντάκτη"
 
@@ -7397,19 +7439,23 @@ msgstr "Επιστροφή στην αρχική σελίδα εργαλείων
 msgid "Queues"
 msgstr "Λίστες αναμονής"
 
-#: apps/editors/templates/editors/base.html:63 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
+#: apps/editors/templates/editors/base.html:60
+msgid "Unlisted Queues"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
 msgstr "Καταγραφές"
 
-#: apps/editors/templates/editors/base.html:66 apps/editors/templates/editors/reviewlog.html:4
+#: apps/editors/templates/editors/base.html:78 apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
 msgstr ""
 
-#: apps/editors/templates/editors/base.html:68 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
+#: apps/editors/templates/editors/base.html:80 apps/editors/templates/editors/eventlog.html:4 apps/editors/templates/editors/eventlog.html:8 apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
 msgstr ""
 
-#: apps/editors/templates/editors/base.html:73 apps/editors/templates/editors/includes/daily-message.html:4
+#: apps/editors/templates/editors/base.html:85 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr "Ανακοίνωση"
 
@@ -7426,7 +7472,7 @@ msgstr "Ημερομηνία"
 msgid "Event"
 msgstr "Συμβάν"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:129
+#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "Περισσότερες λεπτομέρειες."
 
@@ -7480,38 +7526,56 @@ msgid_plural "Preliminary Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/templates/editors/home.html:36
+#: apps/editors/templates/editors/home.html:36 apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
 msgstr ""
 
-#: apps/editors/templates/editors/home.html:44
+#: apps/editors/templates/editors/home.html:44 apps/editors/templates/editors/home.html:94
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} πρόσθετο"
 msgstr[1] "{0} πρόσθετα"
 
-#: apps/editors/templates/editors/home.html:45
+#: apps/editors/templates/editors/home.html:45 apps/editors/templates/editors/home.html:95
 msgid "{0}%"
 msgstr "{0}%"
 
-#: apps/editors/templates/editors/home.html:58 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
+#: apps/editors/templates/editors/home.html:61
+msgid "Unlisted Full Review ({num})"
+msgid_plural "Unlisted Full Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/editors/templates/editors/home.html:68
+msgid "Unlisted Pending Update ({num})"
+msgid_plural "Unlisted Pending Updates ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/editors/templates/editors/home.html:75
+msgid "Unlisted Preliminary Review ({num})"
+msgid_plural "Unlisted Preliminary Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
 msgstr "Συνολικές αξιολογήσεις"
 
-#: apps/editors/templates/editors/home.html:59 apps/editors/templates/editors/themes/home.html:55
+#: apps/editors/templates/editors/home.html:110 apps/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
 msgstr "Αξιολογήσεις μηνός"
 
-#: apps/editors/templates/editors/home.html:60
+#: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
 msgstr "Νέοι συντάκτες"
 
-#: apps/editors/templates/editors/home.html:75 apps/editors/templates/editors/home.html:90
+#: apps/editors/templates/editors/home.html:126 apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
 msgstr ""
 
 #. num = number of reviews in the queue
-#: apps/editors/templates/editors/home.html:120
+#: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] ""
@@ -11303,15 +11367,15 @@ msgstr "Ιστορικό εκδόσεων %s"
 msgid "Version History with Changelogs"
 msgstr "Ιστορικό αλλαγών εκδόσεων "
 
-#: apps/versions/models.py:277
+#: apps/versions/models.py:284
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:280
+#: apps/versions/models.py:287
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:657
+#: apps/versions/models.py:664
 msgid "{app} {min} and later"
 msgstr ""
 

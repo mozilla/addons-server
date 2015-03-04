@@ -115,9 +115,7 @@ msgstr "Стъпки за изпращане на добавка"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Проверете следните точки преди да изпратите добавката. Така ще бъдат "
-"намалени забавянията поради неясноти по време на процеса на преглед:"
+msgstr "Проверете следните точки преди да изпратите добавката. Така ще бъдат намалени забавянията поради неясноти по време на процеса на преглед:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
