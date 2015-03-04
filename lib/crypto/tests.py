@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
 import zipfile
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
 
 import amo
 import amo.tests
-from lib.crypto import packaged
+from files.utils import parse_xpi
+from lib.crypto import packaged, tasks
 
 
 def is_signed(filename):
@@ -124,3 +127,49 @@ class TestPackaged(amo.tests.TestCase):
         assert self.file2.cert_serial_num
         assert self.file1.hash
         assert self.file2.hash
+
+
+class TestTasks(amo.tests.TestCase):
+
+    def setUp(self):
+        super(TestTasks, self).setUp()
+        self.addon = amo.tests.addon_factory(version_kw={'version': '1.3'})
+        self.version = self.addon.current_version
+        self.file1 = self.version.all_files[0]
+        self.file1.update(filename='jetpack.xpi')
+
+    def tearDown(self):
+        if os.path.exists(self.file1.file_path):
+            os.unlink(self.file1.file_path)
+        super(TestTasks, self).tearDown()
+
+    def setup_file(self, filepath):
+        # Add actual file to addons.
+        if not os.path.exists(os.path.dirname(self.file1.file_path)):
+            os.makedirs(os.path.dirname(self.file1.file_path))
+        xpi_path = os.path.join(settings.ROOT, filepath)
+        shutil.copyfile(xpi_path, self.file1.file_path)
+
+    def test_bump_version_in_model(self):
+        self.setup_file('apps/files/fixtures/files/jetpack.xpi')
+        assert self.version.version == '1.3'
+        tasks.bump_version_number(self.version)
+        assert self.version.version == '1.3.1'
+
+    def test_bump_version_in_install_rdf(self):
+        self.setup_file('apps/files/fixtures/files/jetpack.xpi')
+        tasks.bump_version_number(self.version)
+        parsed = parse_xpi(self.file1.file_path)
+        assert parsed['version'] == '1.3.1'
+
+    def test_bump_version_in_alt_install_rdf(self):
+        self.setup_file('apps/files/fixtures/files/alt-rdf.xpi')
+        tasks.bump_version_number(self.version)
+        parsed = parse_xpi(self.file1.file_path)
+        assert parsed['version'] == '2.1.106.1'
+
+    def test_bump_version_in_package_json(self):
+        self.setup_file('apps/files/fixtures/files/new-format-0.0.1.xpi')
+        tasks.bump_version_number(self.version)
+        parsed = parse_xpi(self.file1.file_path)
+        assert parsed['version'] == '0.0.1.1'
