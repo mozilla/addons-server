@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-02-26 03:26+0000\n"
+"PO-Revision-Date: 2015-03-04 17:44+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424921189.0\n"
+"X-POOTLE-MTIME: 1425491065.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -320,7 +320,7 @@ msgstr "不，谢谢"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr "已完成捐款，感谢您！"
+msgstr "已完成捐款，谢谢您。"
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
@@ -3577,7 +3577,7 @@ msgstr "这个附加组件有最终用户许可协议"
 
 #: apps/devhub/forms.py:209
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "请指定附加组件的最终用户许可协议:"
+msgstr "请指定您的附加组件的最终用户许可协议:"
 
 #: apps/devhub/forms.py:212
 msgid "This add-on has a Privacy Policy"
@@ -4627,11 +4627,11 @@ msgstr "查看最近更改"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr "编辑这个主题列表的详情。"
+msgstr "编辑这个主题列表的详细信息。"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
-msgstr "查看这个主题的公开列表页。"
+msgstr "查看这个主题的详细信息页面。"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
@@ -4773,15 +4773,15 @@ msgstr "今天就成为 AMO 审核者让您的附加组件能更快完成审核�
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr ""
+msgstr "一旦已被审核者审阅，您将收到一封电子邮件通知。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "您的附加组件将不会公开发布在 AMO 上。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
-msgstr ""
+msgstr "如果您需要调整您的附加组件的详细信息，请<a href=\"{0}\">编辑信息</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -4990,7 +4990,9 @@ msgstr "附加组件用户支持"
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
-msgstr "附加组件不仅限用于 Firefox。学习如何扩展其他的 Mozilla 应用程序，如 Thunderbird 邮件客户端和 Firefox 移动版。"
+msgstr ""
+"如果您对某个附加组件有用户支持方面的问题，例如“我该怎么使用这个附加组件？”或者“为什么它没能正常工作？”之类的问题，请通过附加组件页面中的用户支持通道"
+"联系该附加组件的作者。"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -6310,7 +6312,7 @@ msgstr "您的主题已经提交到审核队列。一旦被审核将会收到电
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "<a href=\"%(edit_url)s\">编辑列表</a>为您的主题提供更多详细情况。"
+msgstr "<a href=\"%(edit_url)s\">编辑详细信息</a>为您的主题提供更多详细情况。"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -6647,7 +6649,7 @@ msgstr "圣帕特里克节主题"
 
 #: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "装扮您的浏览器来庆祝一下圣帕特里克&rsquo;节。"
+msgstr "装扮您的浏览器来庆祝圣帕特里克节。"
 
 #: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
@@ -7058,15 +7060,15 @@ msgstr "更新主题"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "未上架的待定更新"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "未上架的全面审核"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "未上架的初步审核"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
@@ -7096,17 +7098,17 @@ msgstr[0] "提请仲裁的评论（{0}）"
 #: apps/editors/helpers.py:189
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "未上架的全面审核 ({0})"
 
 #: apps/editors/helpers.py:194
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
+msgstr[0] "未上架的待定更新 ({0})"
 
 #: apps/editors/helpers.py:199
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "未上架的初步审核 ({0})"
 
 #: apps/editors/helpers.py:231
 msgid "Addon"
@@ -7377,7 +7379,7 @@ msgstr "队列"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "未上架的队列"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7475,17 +7477,17 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
+msgstr[0] "未上架的全面审核 ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
+msgstr[0] "未上架的待定更新 ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
+msgstr[0] "未上架的初步审核 ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
