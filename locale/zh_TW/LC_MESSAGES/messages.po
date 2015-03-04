@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-02-11 18:30+0000\n"
+"PO-Revision-Date: 2015-03-04 22:35+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423679433.0\n"
+"X-POOTLE-MTIME: 1425508553.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3420,11 +3420,11 @@ msgstr "未簽署"
 
 #: apps/constants/base.py:507
 msgid "Signed for a full review"
-msgstr "已簽署要求完整審查"
+msgstr "已簽署為完整審查"
 
 #: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
-msgstr "已簽署要求初步審查"
+msgstr "已簽署為初步審查"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3598,7 +3598,7 @@ msgstr "這個附加元件有隱私權保護政策"
 
 #: apps/devhub/forms.py:215
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "請註明您附加元件的隱私權保護政策："
+msgstr "請註明您附加元件的隱私權保護政策:"
 
 #: apps/devhub/forms.py:253
 msgid "Why did you make this add-on?"
@@ -4788,15 +4788,15 @@ msgstr "今天就成為 AMO 審核者，讓您的附加元件能更快被審核�
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr ""
+msgstr "經編輯審核後您將會收到郵件通知。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "您的附加元件將不會在 AMO 被公開下載。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
-msgstr ""
+msgstr "若您要修改您附加元件的任何詳細資料，請 <a href=\"{0}\">編輯上架資訊</a>。"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7086,15 +7086,15 @@ msgstr "佈景主題更新"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "未上架的準備中更新"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "未上架的完整審查"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "未上架的初步審查"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
@@ -7124,17 +7124,17 @@ msgstr[0] "有問題的評論 ({0})"
 #: apps/editors/helpers.py:189
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "未上架的完整審查 ({0})"
 
 #: apps/editors/helpers.py:194
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
+msgstr[0] "未上架的準備中更新 ({0})"
 
 #: apps/editors/helpers.py:199
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "未上架的準備中審查 ({0})"
 
 #: apps/editors/helpers.py:231
 msgid "Addon"
@@ -7410,7 +7410,7 @@ msgstr "審核等待區"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "未上架佇列"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7513,17 +7513,17 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
+msgstr[0] "未上架的完整審查 ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
+msgstr[0] "未上架的準備中更新 ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
+msgstr[0] "未上架的初步審查 ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
