@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-02-11 18:08+0000\n"
+"PO-Revision-Date: 2015-03-04 18:31+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423678105.0\n"
+"X-POOTLE-MTIME: 1425493881.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4870,14 +4870,17 @@ msgstr "Werden Sie noch heute AMO-Überprüfer und lassen Sie Ihre Add-ons schne
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
 msgstr ""
+"Sie erhalten eine E-Mail, sobald es von einem Redakteur überprüft wurde."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "Ihr Add-on wird nicht öffentlich auf AMO verfügbar sein."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
 msgstr ""
+"Wenn Sie Details zu Ihrem Add-on anpassen müssen, <a href=\"{0}\">bearbeiten "
+"Sie bitte den Listeneintrag</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7286,15 +7289,15 @@ msgstr "Themes aktualisieren"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Ausstehende Aktualisierungen nicht aufgeführter Add-ons"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Vollständige Überprüfungen nicht aufgeführter Add-ons"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Vorläufige Überprüfungen nicht aufgeführter Add-ons"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
@@ -7323,26 +7326,26 @@ msgstr[1] "Vorläufige Freigaben ({0})"
 #: apps/editors/helpers.py:183
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderierte Überprüfung ({0})"
-msgstr[1] " Moderierte Überprüfungen ({0})"
+msgstr[0] "Vollständige Überprüfung nicht aufgeführter Add-ons ({0})"
+msgstr[1] "Vollständige Überprüfungen nicht aufgeführter Add-ons ({0})"
 
 #: apps/editors/helpers.py:189
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vollständige Überprüfung nicht aufgeführter Add-ons ({0})"
+msgstr[1] "Vollständige Überprüfungen nicht aufgeführter Add-ons ({0})"
 
 #: apps/editors/helpers.py:194
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ausstehende Aktualisierung nicht aufgeführter Add-ons ({0})"
+msgstr[1] "Ausstehende Aktualisierungen nicht aufgeführter Add-ons ({0})"
 
 #: apps/editors/helpers.py:199
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vorläufige Überprüfung nicht aufgeführter Add-ons ({0})"
+msgstr[1] "Vorläufige Überprüfungen nicht aufgeführter Add-ons ({0})"
 
 #: apps/editors/helpers.py:231
 msgid "Addon"
@@ -7622,7 +7625,7 @@ msgstr "Listen"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Warteschlangen für nicht aufgeführte Add-ons"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7724,20 +7727,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vollständige Überprüfung nicht aufgeführter Add-ons ({num})"
+msgstr[1] "Vollständige Überprüfungen nicht aufgeführter Add-ons ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vollständige Überprüfung nicht aufgeführter Add-ons ({num})"
+msgstr[1] "Vollständige Überprüfungen nicht aufgeführter Add-ons ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vorläufige Überprüfung nicht aufgeführter Add-ons ({num})"
+msgstr[1] "Vorläufige Überprüfungen nicht aufgeführter Add-ons ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
