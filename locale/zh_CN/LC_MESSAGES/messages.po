@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-03-04 17:44+0000\n"
+"PO-Revision-Date: 2015-03-04 17:58+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425491065.0\n"
+"X-POOTLE-MTIME: 1425491916.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -760,7 +760,9 @@ msgstr "附加组件的二维码"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr "想在移动版火狐上使用 {0} 吗？扫描此 QR 码（一种二维码）后会直接安装到您的手机上。（您需要一个 QR 码阅读器。如果您的手机上没有，请在您的手机的应用市场里查找）"
+msgstr ""
+"想在您的移动版火狐上使用 {0} 吗？扫描此 QR 码（一种二维码）后会直接安装到您的手机上。（您需要一个 QR "
+"码扫描器。如果您的手机上没有，请在您的手机的应用市场里搜索。）"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:330
@@ -4627,7 +4629,7 @@ msgstr "查看最近更改"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr "编辑这个主题列表的详细信息。"
+msgstr "编辑这个主题显示在公开页面上的详细信息。"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
@@ -5278,7 +5280,9 @@ msgstr "Mozilla 和精选附加组件顾问委员定期评估和淘汰某些精�
 msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
 "a good indicator the add-on may not be very useful to our users."
-msgstr "成长性不足 &mdash; 精选附加组件通常同时具有较高的下载量和活跃用户数。如果一款附加组件在各方面都没有展示出成长性，就明确表明他对于我们的用户可能不是太有用。"
+msgstr ""
+"成长性不足 &mdash; "
+"精选附加组件通常同时具有较高的下载量和活跃用户数。如果一款附加组件在各方面都没有展示出成长性，这可能就表明它对于我们的用户群不是太有用。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
@@ -5288,7 +5292,9 @@ msgstr "负面评论 &mdash; 精选附加组件一般拥有良好的用户体验
 msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
-msgstr "与下个版本的火狐不兼容 &mdash; 精选附加组件可以兼容稳定版和开发版火狐。在稳定版放出四周前还未能兼容开发版的附加组件将会失去他们的精选资格。"
+msgstr ""
+"与即将到来的 Firefox 版本不兼容 &mdash; 精选附加组件应当可以兼容 Firefox "
+"的稳定版和公开测试版（Beta）。未兼容公开测试版（在稳定版发布的四周前发布）的附加组件将会失去其精选资格。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -6862,7 +6868,7 @@ msgstr "安装亚马逊浏览器应用，动动手指就可以得到亚马逊的
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid "Keep an eye on your eBay activity wherever you are on the web when you install the eBay Sidebar for Firefox."
-msgstr "当您在线安装易趣火狐侧边栏时请留意您的易趣是否正在工作。"
+msgstr "为您的 Firefox 安装 eBay Sidebar，保证在上网时时刻留意您的 eBay 动态。"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
@@ -7379,7 +7385,7 @@ msgstr "队列"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr "未上架的队列"
+msgstr "未上架队列"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
