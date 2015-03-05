@@ -39,6 +39,7 @@ HOME=/tmp
 0 22 * * * %(z_cron)s gc
 30 6 * * * %(z_cron)s deliver_hotness
 45 7 * * * %(django)s dump_apps
+0 8 * * * %(django)s update_product_details
 
 # Collect visitor stats from Google Analytics once per day.
 50 10 * * * %(z_cron)s update_google_analytics
