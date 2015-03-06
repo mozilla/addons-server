@@ -85,16 +85,26 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         assert uc.statuses == {'userEnabled': 123}
 
     def test_update_app(self):
-        # Initialize the known applications and their versions.
-        self.command.valid_appversions = {'{app-guid}': ['1.0', '2.0']}
+        firefox_guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
         uc = UpdateCount(addon_id=3615)
         self.command.update_app(uc, 'foobar', '1.0', 123)  # Non-existent app.
         assert not uc.applications
-        # Non-existent version.
-        self.command.update_app(uc, '{app-guid}', '3.0', 123)
+        # Malformed versions.
+        self.command.update_app(uc, firefox_guid, '3.0.1.2', 123)
+        self.command.update_app(uc, firefox_guid, '3.0123', 123)
+        self.command.update_app(uc, firefox_guid, '3.0c2', 123)
+        self.command.update_app(uc, firefox_guid, 'a.b.c', 123)
         assert not uc.applications
-        self.command.update_app(uc, '{app-guid}', '1.0', 123)
-        assert uc.applications == {'{app-guid}': {'1.0': 123}}
+        # Well formed versions.
+        self.command.update_app(uc, firefox_guid, '1.0', 123)
+        self.command.update_app(uc, firefox_guid, '1.0.1', 124)
+        self.command.update_app(uc, firefox_guid, '1.0a1', 125)
+        self.command.update_app(uc, firefox_guid, '1.0b2', 126)
+        assert uc.applications == {firefox_guid: {
+            '1.0': 123,
+            '1.0.1': 124,
+            '1.0a1': 125,
+            '1.0b2': 126}}
 
     def test_update_os(self):
         uc = UpdateCount(addon_id=3615)
