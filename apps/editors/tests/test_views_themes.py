@@ -15,7 +15,7 @@ from access.models import GroupUser
 from addons.models import Persona
 from amo.tests import addon_factory, days_ago
 from amo.urlresolvers import reverse
-from devhub.models import ActivityLog
+from devhub.models import ActivityLog, AddonLog
 from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 from editors.views_themes import _get_themes, home, themes_search
 from users.models import UserProfile
@@ -606,6 +606,27 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
                 .endswith('preview.jpg'))
         assert (copy_mock2.call_args_list[0][0][1]
                 .endswith('preview_large.jpg'))
+
+    def test_single_rejected_reason_9_bug_1140346(self):
+        """Can rereview an updated theme that was rejected for reason 9."""
+        user = UserProfile.objects.get(
+            email='persona_reviewer@mozilla.com')
+        self.login(user)
+        addon = self.theme_factory(status=amo.STATUS_REJECTED)
+        RereviewQueueTheme.objects.create(
+            theme=addon.persona, header='pending_header.png',
+            footer='pending_footer.png')
+        AddonLog.objects.create(
+            addon=addon,
+            activity_log=ActivityLog.objects.create(
+                user=user, action=amo.LOG.THEME_REVIEW.id,
+                _arguments=str(addon.pk),
+                details={'action': 4, 'reject_reason': 9}))
+
+        with self.settings(ALLOW_SELF_REVIEWS=True):
+            res = self.client.get(reverse('editors.themes.single',
+                                          args=[addon.slug]))
+        eq_(res.status_code, 200)
 
 
 class TestDeletedThemeLookup(amo.tests.TestCase):

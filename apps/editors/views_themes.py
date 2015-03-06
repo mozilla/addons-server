@@ -111,7 +111,7 @@ def _themes_queue(request, flagged=False, rereview=False):
         **{'actions': get_actions_json(),
            'formset': formset,
            'flagged': flagged,
-           'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+           'reject_reasons': rvw.THEME_REJECT_REASONS,
            'rereview': rereview,
            'reviewable': True,
            'theme_formsets': zip(themes, formset),
@@ -407,7 +407,7 @@ def themes_single(request, slug):
            'theme_count': 1,
            'rereview': rereview,
            'reviewable': reviewable,
-           'reject_reasons': rvw.THEME_REJECT_REASONS.items(),
+           'reject_reasons': rvw.THEME_REJECT_REASONS,
            'action_dict': rvw.REVIEW_ACTIONS,
            'tab': ('flagged' if theme.addon.status == amo.STATUS_REVIEW_PENDING
                    else 'rereview' if rereview else 'pending')}))
