@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
 from amo.urlresolvers import reverse
-from zadmin.models import Config, _config_cache
+from zadmin.models import Config
 
 
 pytestmark = pytest.mark.django_db
@@ -72,21 +72,13 @@ def test_trailing_slash_middleware():
 class AdminMessageTest(amo.tests.TestCase):
 
     def test_message(self):
-        c = Config()
-        c.key = 'site_notice'
-        c.value = 'ET Sighted.'
-        c.save()
-
-        if ('site_notice',) in _config_cache:
-            del _config_cache[('site_notice',)]
+        c = Config.objects.create(key='site_notice', value='ET Sighted.')
 
         r = self.client.get(reverse('home'), follow=True)
         doc = pq(r.content)
         eq_(doc('#site-notice').text(), 'ET Sighted.')
 
         c.delete()
-
-        del _config_cache[('site_notice',)]
 
         r = self.client.get(reverse('home'), follow=True)
         doc = pq(r.content)

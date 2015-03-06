@@ -1,10 +1,11 @@
 from decimal import Decimal
 import json
 
+import caching
+
 from django.core.cache import cache
 from django.conf import settings
 from django.db import models
-from django.utils.functional import memoize
 
 import amo
 import amo.models
@@ -12,13 +13,12 @@ from amo.urlresolvers import reverse
 from applications.models import AppVersion
 from files.models import File
 
-_config_cache = {}
 
-
-class Config(models.Model):
+class Config(caching.base.CachingMixin, models.Model):
     """Sitewide settings."""
     key = models.CharField(max_length=255, primary_key=True)
     value = models.TextField()
+    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = u'config'
@@ -31,21 +31,17 @@ class Config(models.Model):
             return {}
 
 
-def unmemoized_get_config(conf):
+def get_config(conf):
     try:
-        c = Config.objects.get(key=conf)
-        return c.value
+        return Config.objects.get(key=conf).value
     except Config.DoesNotExist:
         return
-
-get_config = memoize(unmemoized_get_config, _config_cache, 1)
 
 
 def set_config(conf, value):
     cf, created = Config.objects.get_or_create(key=conf)
     cf.value = value
     cf.save()
-    _config_cache.clear()
 
 
 class ValidationJob(amo.models.ModelBase):
