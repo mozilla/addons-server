@@ -41,6 +41,9 @@ def validator(upload_id, **kw):
     upload = FileUpload.objects.using('default').get(pk=upload_id)
     try:
         result = run_validator(upload.path)
+        # Skip the "addon signed" warning if we're not signing.
+        if not settings.SIGNING_SERVER:
+            result = skip_signing_warning(result)
         upload.validation = result
         upload.save()  # We want to hit the custom save().
     except:
@@ -49,6 +52,21 @@ def validator(upload_id, **kw):
         tb = traceback.format_exception(*sys.exc_info())
         upload.update(task_error=''.join(tb))
         raise
+
+
+def skip_signing_warning(result_json):
+    """Remove the "Package already signed" warning if we're not signing."""
+    try:
+        result = json.loads(result_json)
+        messages = result['messages']
+    except (KeyError, ValueError):
+        return result_json
+    messages = [m for m in messages if 'signed_xpi' not in m['id']]
+    diff = len(result['messages']) - len(messages)
+    if diff:  # We did remove a warning.
+        result['messages'] = messages
+        result['warnings'] -= diff
+    return json.dumps(result)
 
 
 @task
