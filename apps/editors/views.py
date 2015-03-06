@@ -296,7 +296,8 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 def motd(request):
     form = None
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
-        form = forms.MOTDForm()
+        form = forms.MOTDForm(
+            initial={'motd': get_config('editors_review_motd')})
     data = context(form=form)
     return render(request, 'editors/motd.html', data)
 
