@@ -1,15 +1,17 @@
 import os
+import fabdeploytools.envs
+import deploysettings as settings
 from os.path import join as pjoin
-
 from fabric.api import (env, execute, lcd, local, parallel,
                         run, roles, task)
-
-import fabdeploytools.envs
 from fabdeploytools import helpers
 
-import deploysettings as settings
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_local'
+
+SCL_NAME = getattr(settings, 'SCL_NAME', False)
+if SCL_NAME:
+    helpers.scl_enable(SCL_NAME)
 
 env.key_filename = settings.SSH_KEY
 fabdeploytools.envs.loadenv(settings.CLUSTER)
