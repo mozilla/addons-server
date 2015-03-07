@@ -74,6 +74,11 @@ VALIDATE_ADDONS = False
 
 ADDON_COLLECTOR_ID = 1
 
+# Default AMO user id to use for tasks (from users.json fixture in zadmin).
+TASK_USER_ID = 10968
+
+# Set to True if we're allowed to use X-SENDFILE.
+XSENDFILE = False
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

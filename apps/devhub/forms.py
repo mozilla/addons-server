@@ -30,7 +30,8 @@ from translations.widgets import TranslationTextarea, TranslationTextInput
 from translations.fields import TransTextarea, TransField
 from translations.models import delete_translation, Translation
 from translations.forms import TranslationFormMixin
-from versions.models import License, Version, ApplicationsVersions
+from versions.models import (ApplicationsVersions, License,
+                             VALID_SOURCE_EXTENSIONS, Version)
 from . import tasks
 
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -355,19 +356,13 @@ def check_paypal_id(paypal_id):
 
 
 class WithSourceMixin(object):
-
-    VALID_SOURCE_EXTENSIONS = (
-        '.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', '.tar.bz2',
-        '.tar.xz'
-    )
-
     def clean_source(self):
         source = self.cleaned_data.get('source')
-        if source and not source.name.endswith(self.VALID_SOURCE_EXTENSIONS):
+        if source and not source.name.endswith(VALID_SOURCE_EXTENSIONS):
             raise forms.ValidationError(
                 _('Unsupported file type, please upload an archive file '
                   '{extensions}.'.format(
-                      extensions=self.VALID_SOURCE_EXTENSIONS))
+                      extensions=VALID_SOURCE_EXTENSIONS))
             )
         return source
 

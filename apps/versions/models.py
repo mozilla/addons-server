@@ -32,6 +32,11 @@ from .compare import version_dict, version_int
 
 log = commonware.log.getLogger('z.versions')
 
+VALID_SOURCE_EXTENSIONS = (
+    '.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', '.tar.bz2',
+    '.tar.xz'
+)
+
 
 class VersionManager(amo.models.ManagerBase):
 
@@ -48,10 +53,20 @@ class VersionManager(amo.models.ManagerBase):
 
 
 def source_upload_path(instance, filename):
+    # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
+    # because we already checked for that in
+    # /apps/devhub/forms.py#WithSourceMixin.clean_source.
+    for ext in VALID_SOURCE_EXTENSIONS:
+        if filename.endswith(ext):
+            break
+
     return os.path.join(
         'version_source',
         id_to_path(instance.pk),
-        filename
+        '{0}-{1}-src{2}'.format(
+            instance.addon.slug,
+            instance.version,
+            ext)
     )
 
 

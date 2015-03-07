@@ -106,6 +106,9 @@ ES_DEFAULT_NUM_SHARDS = 3
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
+# Set to True if we're allowed to use X-SENDFILE.
+XSENDFILE = True
+
 
 ###############################################################################
 # Only if running on a CI server.
