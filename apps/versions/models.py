@@ -55,7 +55,7 @@ class VersionManager(amo.models.ManagerBase):
 def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
     # because we already checked for that in
-    # /apps/devhub/forms.py#WithSourceMixin.clean_source 
+    # /apps/devhub/forms.py#WithSourceMixin.clean_source.
     for ext in VALID_SOURCE_EXTENSIONS:
         if filename.endswith(ext):
             break
