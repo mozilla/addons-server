@@ -113,7 +113,7 @@
       <div class="reject-reason-dropdown rq-dropdown">
         <label>{{ _('Select a reason for rejection') }}:</label>
         <ul>
-          {% for reject_id, val in reject_reasons %}
+          {% for reject_id, val in reject_reasons.items() %}
             <li class="reject_reason" data-id="{{ reject_id }}">
               <strong>{{ reject_id }}</strong>
               <span>{{ val }}</span>

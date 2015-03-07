@@ -1,8 +1,10 @@
+import json
 import os
 import shutil
 import tempfile
 
 from django.conf import settings
+from django.test.utils import override_settings
 
 import mock
 import pytest
@@ -97,6 +99,15 @@ def _uploader(resize_size, final_size):
 
 
 class TestValidator(amo.tests.TestCase):
+    mock_sign_addon_warning = (
+        '{"warnings": 1, "messages": [{"context": null, "editors_only": '
+        'false, "description": "Add-ons which are already signed will be '
+        're-signed when published on AMO. This will replace any existing '
+        'signatures on the add-on.", "column": null, "type": "warning", '
+        '"id": ["testcases_content", "signed_xpi"], "file": "", '
+        '"tier": 2, "for_appversions": null, "message": "Package already '
+        'signed", "uid": "87326f8f699f447e90b3d5a66a78513e", "line": '
+        'null, "compatibility_type": null}]}')
 
     def setUp(self):
         super(TestValidator, self).setUp()
@@ -126,6 +137,27 @@ class TestValidator(amo.tests.TestCase):
             tasks.validator(self.upload.pk)
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
+
+    @override_settings(SIGNING_SERVER='http://full',
+                       PRELIMINARY_SIGNING_SERVER='http://prelim')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_validation_signing_warning(self, _mock):
+        """If we sign addons, warn on signed addon submission."""
+        _mock.return_value = self.mock_sign_addon_warning
+        tasks.validator(self.upload.pk)
+        validation = json.loads(self.get_upload().validation)
+        assert validation['warnings'] == 1
+        assert len(validation['messages']) == 1
+
+    @override_settings(SIGNING_SERVER='', PRELIMINARY_SIGNING_SERVER='')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_validation_no_signing_warning(self, _mock):
+        """If we're not signing addon don't warn on signed addon submission."""
+        _mock.return_value = self.mock_sign_addon_warning
+        tasks.validator(self.upload.pk)
+        validation = json.loads(self.get_upload().validation)
+        assert validation['warnings'] == 0
+        assert len(validation['messages']) == 0
 
 
 class TestFlagBinary(amo.tests.TestCase):

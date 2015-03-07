@@ -12,7 +12,6 @@ import commonware.log
 
 import amo
 from addons.models import Addon
-from applications.models import AppVersion
 from stats.models import update_inc, UpdateCount
 
 from . import get_date_from_file
@@ -27,6 +26,12 @@ LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
                           """, re.VERBOSE)
 VALID_STATUSES = ["userDisabled,incompatible", "userEnabled", "Unknown",
                   "userDisabled", "userEnabled,incompatible"]
+VALID_APP_GUIDS = amo.APP_GUIDS.keys()
+APPVERSION_REGEX = re.compile(
+    r"""^[0-9]{1,3}                # Major version: 2, 35
+        \.[0-9]{1,3}([ab][0-9])?   # Minor version + alpha or beta: .0a1, .0b2
+        (\.[0-9]{1,3})?$           # Patch version: .1, .23
+    """, re.VERBOSE)
 
 
 class Command(BaseCommand):
@@ -95,18 +100,6 @@ class Command(BaseCommand):
         guids_to_addon = (dict(Addon.objects.exclude(guid__isnull=True)
                                             .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
-
-        # This gives a list of (application IDs, version).
-        appversions = AppVersion.objects.values_list('application', 'version')
-        # We want the application GUID, not the application ID.
-        appversions = [(amo.APPS_ALL[app_id].guid, version)
-                       for app_id, version in appversions]
-        # This builds a dict where each key (the application guid) has a list
-        # of all its versions as a value.
-        self.valid_appversions = {}
-        for app_guid, app_version in appversions:
-            self.valid_appversions.setdefault(app_guid, [])
-            self.valid_appversions[app_guid].append(app_version)
 
         index = -1
         for group, filepath in group_filepaths:
@@ -226,21 +219,23 @@ class Command(BaseCommand):
 
     def update_app(self, update_count, app_id, app_ver, count):
         """Update the applications on the update_count with the given data."""
-        # Only update if app_id is a valid application guid, and if app_ver is
-        # a valid version for this app.
-        if app_ver in self.valid_appversions.get(app_id, []):
-            # Applications is a dict of dicts, eg:
-            # {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}":
-            #       {"10.0": 2, "21.0": 1, ....},
-            #  "some other application guid": ...
-            # }
-            if update_count.applications is None:
-                update_count.applications = {}
-            app = update_count.applications.get(app_id, {})
-            # Now overwrite this application's dict with
-            # incremented counts for its versions.
-            update_count.applications.update(
-                {app_id: update_inc(app, app_ver, count)})
+        # Only update if app_id is a valid application guid, and if app_ver
+        # "could be" a valid version.
+        if (app_id not in VALID_APP_GUIDS or
+                not re.match(APPVERSION_REGEX, app_ver)):
+            return
+        # Applications is a dict of dicts, eg:
+        # {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}":
+        #       {"10.0": 2, "21.0": 1, ....},
+        #  "some other application guid": ...
+        # }
+        if update_count.applications is None:
+            update_count.applications = {}
+        app = update_count.applications.get(app_id, {})
+        # Now overwrite this application's dict with
+        # incremented counts for its versions.
+        update_count.applications.update(
+            {app_id: update_inc(app, app_ver, count)})
 
     def update_os(self, update_count, os, count):
         """Update the OSes on the update_count with the given OS."""
