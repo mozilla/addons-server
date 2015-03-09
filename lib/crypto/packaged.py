@@ -78,7 +78,7 @@ def call_signing(file_obj):
         log.error(msg, exc_info=True)
         raise SigningError(msg)
     if response.status_code != 200:
-        msg = 'Posting to add-on signing failed %s' % response.reason
+        msg = 'Posting to add-on signing failed: %s' % response.reason
         log.error(msg)
         raise SigningError(msg)
 
@@ -95,11 +95,6 @@ def call_signing(file_obj):
 
 
 def sign_file(file_obj):
-    if not file_obj.can_be_signed():
-        msg = 'Attempt to sign a non-xpi file %s.' % file_obj.pk
-        log.error(msg)
-        raise SigningError(msg)
-
     try:
         cert_serial_num = call_signing(file_obj)  # Sign file.
         if cert_serial_num:
@@ -119,6 +114,6 @@ def sign(version):
 
     log.info('Signing version: %s' % version.pk)
 
-    for file_obj in [x for x in version.all_files if x.can_be_signed()]:
+    for file_obj in [x for x in version.all_files]:
         with statsd.timer('services.sign.addon'):
             sign_file(file_obj)

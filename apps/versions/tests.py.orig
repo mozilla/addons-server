@@ -420,6 +420,32 @@ class TestVersion(amo.tests.TestCase):
         amo.tests.version_factory(addon=addon)
         assert inv_mock.called
 
+<<<<<<< HEAD
+=======
+    def test_current_queue(self):
+        queue_to_status = {
+            ViewFullReviewQueue: [amo.STATUS_NOMINATED,
+                                  amo.STATUS_LITE_AND_NOMINATED],
+            ViewPendingQueue: [amo.STATUS_PUBLIC],
+            ViewPreliminaryQueue: [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]}
+        unlisted_queue_to_status = {
+            ViewUnlistedFullReviewQueue: [amo.STATUS_NOMINATED,
+                                          amo.STATUS_LITE_AND_NOMINATED],
+            ViewUnlistedPendingQueue: [amo.STATUS_PUBLIC],
+            ViewUnlistedPreliminaryQueue: [amo.STATUS_LITE,
+                                           amo.STATUS_UNREVIEWED]}
+
+        for queue, statuses in queue_to_status.iteritems():  # Listed queues.
+            for status in statuses:
+                self.version.addon.update(status=status)
+                assert self.version.current_queue == queue
+
+        self.version.addon.update(is_listed=False)  # Unlisted queues.
+        for queue, statuses in unlisted_queue_to_status.iteritems():
+            for status in statuses:
+                self.version.addon.update(status=status)
+                assert self.version.current_queue == queue
+
     @mock.patch('lib.crypto.packaged.sign')
     def test_sign_files(self, sign_mock):
         no_sign_types = [t for t in amo.ADDON_TYPE.keys()
@@ -435,6 +461,7 @@ class TestVersion(amo.tests.TestCase):
         self.version.sign_files()
         assert sign_mock.called
 
+>>>>>>> 5a93bd0... Get rid of bogus File.can_be_signed (bug 1141068)
 
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
