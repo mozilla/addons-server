@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-02-12 14:55+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-03-09 18:19+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423752913.0\n"
+"X-POOTLE-MTIME: 1425925146.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4882,14 +4882,19 @@ msgstr "Diventa oggi stesso un revisore AMO per garantire al tuo componente aggi
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
 msgstr ""
+"Quando il componente aggiuntivo sarà stato revisionato riceverai una "
+"notifica tramite email."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
 msgstr ""
+"Il componente aggiuntivo non verrà reso pubblicamente disponibile su AMO."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
 msgstr ""
+"Per aggiornare qualsiasi informazione relativa al componente aggiuntivo <a "
+"href=\"{0}\">clicca qui</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7302,15 +7307,15 @@ msgstr "Aggiorna temi"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Aggiornamenti in sospeso non visualizzati"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Revisioni complete non visualizzate"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Revisioni preliminari non visualizzate"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
@@ -7345,20 +7350,20 @@ msgstr[1] "Revisioni moderate ({0})"
 #: apps/editors/helpers.py:189
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisione completa non visualizzata ({0})"
+msgstr[1] "Revisioni complete non visualizzate ({0})"
 
 #: apps/editors/helpers.py:194
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aggiornamento in sospeso non visualizzato ({0})"
+msgstr[1] "Aggiornamenti in sospeso non visualizzati ({0})"
 
 #: apps/editors/helpers.py:199
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisione preliminare non visualizzata ({0})"
+msgstr[1] "Revisioni preliminari non visualizzate ({0})"
 
 #: apps/editors/helpers.py:231
 msgid "Addon"
@@ -7637,7 +7642,7 @@ msgstr "Code"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Code non visualizzate"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7739,20 +7744,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisione completa non visualizzata ({num})"
+msgstr[1] "Revisioni complete non visualizzate ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aggiornamento in sospeso non visualizzato ({num})"
+msgstr[1] "Aggiornamenti in sospeso non visualizzati ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisione preliminare non visualizzata ({num})"
+msgstr[1] "Revisioni preliminari non visualizzate ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
