@@ -482,8 +482,9 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
             Version.objects.invalidate(self)
 
     def sign_files(self):
-        """Sign the files for this version."""
-        return packaged.sign(self)
+        """Sign the files for this version if it's an extension."""
+        if self.addon.type == amo.ADDON_EXTENSION:
+            packaged.sign(self)
 
 
 @Version.on_change
