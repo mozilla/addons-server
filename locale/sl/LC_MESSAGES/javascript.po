@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-03-10 08:43+0000\n"
-"Last-Translator: Peter <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2015-03-10 08:49+0000\n"
+"Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425977029.0\n"
+"X-POOTLE-MTIME: 1425977381.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -383,7 +383,7 @@ msgstr "Rezultati iskanja"
 
 #: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Oglaševana domača stran"
 
 #: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
