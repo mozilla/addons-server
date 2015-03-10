@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-02-03 22:58+0000\n"
+"PO-Revision-Date: 2015-03-05 00:06+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1423004334.0\n"
+"X-POOTLE-MTIME: 1425513974.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -1650,7 +1650,7 @@ msgstr "Revisão {review} para {addon} excluída."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} excluiu {review} para {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -3513,7 +3513,7 @@ msgstr "Análise moderada do complemento"
 
 #: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderação de revisão de complemento revertida"
 
 #: apps/constants/base.py:478
 msgid "Level 1"
@@ -3541,15 +3541,15 @@ msgstr "Nível 6"
 
 #: apps/constants/base.py:506
 msgid "Not signed"
-msgstr ""
+msgstr "Não assinado"
 
 #: apps/constants/base.py:507
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Assinado para uma revisão completa"
 
 #: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Assinado para uma revisão preliminar"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3782,13 +3782,17 @@ msgstr "Substituir validação com falha"
 
 #: apps/devhub/forms.py:511
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "Sim, incluir o meu complemento no AMO."
 
 #: apps/devhub/forms.py:512
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"Se desmarcar esta caixa, o complemento pode continuar a ser enviado e "
+"revisado, mas não será visível no AMO ou baixado por quaisquer usuários "
+"finais. Em caso de dúvida, deixe esta caixa marcada - há poucas razões para "
+"desmarcá-la."
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3953,11 +3957,11 @@ msgstr "Foi adicionado um autor ao seu complemento"
 
 #: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Foi alterado o papel de um autor do seu complemento"
 
 #: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Foi removido um autor do seu complemento"
 
 #: apps/devhub/views.py:503
 msgid "There were errors in your submission."
@@ -4015,7 +4019,7 @@ msgstr "Esse arquivo falhou em algum dos testes de validação e pode não apres
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "Saltando para a etapa 6 pois o complemento não será listado"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -4076,7 +4080,7 @@ msgstr "Torne-se um revisor do AMO"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Saiba tudo sobre complementos"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -4084,10 +4088,18 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"Os complementos permitem que milhões de usuários do Firefox melhorem e "
+"personalizem a sua experiência de navegação. Se é um desenvolvedor web e "
+"sabe <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem "
+"todas as capacidades necessárias para fazer um ótimo complemento."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Visite a <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
+"Network</a> para aprender tudo o que precisa saber para começar."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4120,11 +4132,13 @@ msgstr "Ver todos os complementos ►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Publique seus complementos!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Envie um <a href=\"%(addon_url)s\">complemento</a> ou um <a href=\"%"
+"(theme_url)s\">tema</a> para começar!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4149,7 +4163,7 @@ msgstr "Desenvolvimento de extensões"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Temas leves"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4172,7 +4186,7 @@ msgstr "Complementos de desenvolvimento"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Comunidade e Suporte"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -5136,11 +5150,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Esse arquivo é compatível com quais plataformas?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "Quer ter o complemento aparecendo no AMO?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
@@ -7061,7 +7075,7 @@ msgstr "Complementos para Vencedores do Concurso Australis"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Quais são os seus interesses?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -7374,7 +7388,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Revisões completas não listadas"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
@@ -7765,23 +7779,23 @@ msgstr "Detalhes do registro"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Título do complemento"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Título da revisão"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Texto da revisão"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "A revisão foi marcada antes da eliminação."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Restaurar"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -8010,7 +8024,7 @@ msgstr "Analisar {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Histórico de alterações de usuário do complemento"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -9944,6 +9958,10 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
+"Revisões de complementoss são uma forma de compartilhar as suas opiniões "
+"sobre os complementos que instalou e usou. A nossa equipa de moderação "
+"reserva o direito de recusar ou de remover qualquer análise que não cumpra "
+"com estas diretrizes."
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -9984,6 +10002,8 @@ msgstr "Você continuará usando esse complemento?"
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Leia novamente a sua revisão antes de enviá-la para minimizar erros "
+"ortográficos."
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
