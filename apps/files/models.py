@@ -115,10 +115,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                        not self.version.addon.disabled_by_user)
         return is_eligible
 
-    def can_be_signed(self):
-        """True only if extension is xpi"""
-        return os.path.splitext(self.filename)[1] == '.xpi'
-
     def get_mirror(self, addon, attachment=False):
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
