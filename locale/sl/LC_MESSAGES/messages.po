@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-01-10 17:21+0000\n"
-"Last-Translator: upwinxp <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2015-03-10 08:47+0000\n"
+"Last-Translator: Peter <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420910462.0\n"
+"X-POOTLE-MTIME: 1425977237.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -31,7 +32,7 @@ msgstr "Nadaljuj s prenosom&nbsp;&rarr;"
 #: apps/addons/buttons.py:207
 msgctxt "install_button"
 msgid "Featured"
-msgstr "Izbran"
+msgstr "Izbrani"
 
 #: apps/addons/buttons.py:212
 msgctxt "install_button"
@@ -143,7 +144,7 @@ msgstr "Ni pregledan"
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr "Izbran"
+msgstr "Izbrani"
 
 #: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
@@ -949,10 +950,10 @@ msgstr[3] ""
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenzija uporabnika"
-msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> recenzij uporabnika"
-msgstr[3] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recenzija uporabnika"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenziji uporabnikov"
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> recenzije uporabnikov"
+msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> recenzij uporabnikov"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -1132,10 +1133,10 @@ msgstr "prevedi"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] "Glej vse preglede uporabnikov"
-msgstr[2] "Glej %(cnt)s pregledov uporabnikov"
-msgstr[3] ""
+msgstr[0] "Oglejte si vse recenzije uporabnikov"
+msgstr[1] "Oglejte si obe %(cnt)s recenziji uporabnikov"
+msgstr[2] "Oglejte si vse %(cnt)s recenzije uporabnikov"
+msgstr[3] "Oglejte si vseh %(cnt)s recenzij uporabnikov"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
@@ -3498,7 +3499,7 @@ msgstr "Moderiran pregled dodatka"
 
 #: apps/constants/base.py:433
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija recenzije dodatka je bila obrnjena"
 
 #: apps/constants/base.py:478
 msgid "Level 1"
@@ -3526,15 +3527,15 @@ msgstr "Raven 6"
 
 #: apps/constants/base.py:506
 msgid "Not signed"
-msgstr ""
+msgstr "Ni podpisano"
 
 #: apps/constants/base.py:507
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Podpisano za poln pregled"
 
 #: apps/constants/base.py:508
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Predloga uvodnega pregleda"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3768,13 +3769,17 @@ msgstr "Preglasi neuspešno validacijo"
 
 #: apps/devhub/forms.py:511
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "Da, vključi moj dodatek na AMO."
 
 #: apps/devhub/forms.py:512
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"Odstranitev izbire iz tega polja vam omogoča prenos in pregled svojega "
+"dodatka, toda ne bo viden na AMO in drugi uporabniki ga ne bodo mogli "
+"prenesti. Če ste v dvomu, pustite to polje označeno - obstaja zelo malo "
+"vzrokov, da odstranite izbiro."
 
 #: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3938,15 +3943,15 @@ msgstr "Geslo je bilo nepravilno. Teme se ni zbrisalo."
 
 #: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Vašemu dodatku je bil dodan avtor"
 
 #: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Avtor vašega dodatka ima spremenjeno vlogo"
 
 #: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Vašemu dodatku je bil odstranjen avtor"
 
 #: apps/devhub/views.py:503
 msgid "There were errors in your submission."
@@ -4003,7 +4008,7 @@ msgstr "Ta prenos pri validiranju ni uspel, lahko da rezultati validiranja niso 
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "Preskok na 6. korak, ker vaš dodatek ne bo dodan na seznam"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -4064,7 +4069,7 @@ msgstr "Postanite recenzent AMO"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Naučite se vse o dodatkih"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -4072,10 +4077,18 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"Dodatki omogočajo milijonim Firefoxovih uporabnikov izboljšanje in "
+"prilagoditev njihove izkušnje brskanja. Če ste spletni razvijalec in znate "
+"<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> in "
+"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, že imate vse "
+"potrebne izkušnje za ustvarjanje imenitnih dodatkov."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Obiščite <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
+"Network</a>, da spoznate vse, kar je potrebno vedeti za začetek."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4109,11 +4122,13 @@ msgstr "Prikaz vseh dodatkov ►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Objavite svoje dodatke!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Prenesite <a href=\"%(addon_url)s\">dodatek</a> ali <a href=\"%"
+"(theme_url)s\">temo</a>, da začnete!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4138,7 +4153,7 @@ msgstr "Razvoj dodatkov"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Lahke teme"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4161,7 +4176,7 @@ msgstr "Dodatki za razvoj"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Skupnost in podpora"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -5112,11 +5127,11 @@ msgstr "Uporabite polja spodaj, da prenesete svoj paket za dodatek in da izberet
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "S katerimi okolji je združljiva ta datoteka?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "Ali želite, da se vaš dodatek pojavi na AMO?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
@@ -6545,8 +6560,10 @@ msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
-"S tem da predložite svojo Temo, se strinjate s  <a href=\"%(tos_url)s\" target=\"_blank\">Pogoji uporabe tem</a>. Vaša tema je predmet postopka odobritve po standardih, ki so navedeni v <a href="
-"\"%(guidelines_url)s\" target=\"_blank\">Smernicah za preglede</a>."
+"S tem da predložite svojo Temo, se strinjate s <a href=\"%(tos_url)s\" "
+"target=\"_blank\">Pogoji uporabe tem</a>. Vaša tema je predmet postopka "
+"odobritve po standardih, ki so navedeni v <a href=\"%(guidelines_url)s\" "
+"target=\"_blank\">Smernicah za preglede</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -7015,7 +7032,7 @@ msgstr "Dodatki za zmagovalce tekmovanja Australis"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Katera so vaša zanimanja?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -7727,23 +7744,23 @@ msgstr "Podrobnosti dnevnika"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Naziv dodatka"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Naziv pregleda"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Besedilo pregleda"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Pregled je bil označen pred izbrisom."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Razveljavi izbris"
 
 # 84%
 # 100%
@@ -7985,7 +8002,7 @@ msgstr "Preglej {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Zgodovina uporabniških sprememb dodatka"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -9905,6 +9922,10 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
+"Z recenzijami dodatkov lahko delite svoja mnenja o nameščenih in "
+"uporabljenih dodatkih. Naša ekipa za moderacijo recenzij si pridržuje "
+"pravice za zavrnitev in odstranitev recenzij, ki niso v skladu s temi "
+"smernicami."
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid "Do:"
@@ -9945,6 +9966,8 @@ msgstr "Ali boste ta dodatek še naprej uporabljali?"
 #: apps/pages/templates/pages/review_guide.html:76
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Vzemite si trenutek, da preberete svojo recenzijo, preden jo pošljete, da "
+"zmanjšate napake."
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Don’t:"
@@ -9953,16 +9976,20 @@ msgstr "Kako je narobe:"
 #: apps/pages/templates/pages/review_guide.html:85
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Pošljite recenzije z eno besedo, kot so \"Super!\", \"Izvrstno\" ali \"Slabo\"."
 
 #: apps/pages/templates/pages/review_guide.html:90
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Objavite tehnične težave, zahteve za podporo ali predloge za značilnosti. "
+"Uporabite razpoložljive možnosti podpore za vsak dodatek, če so na voljo. "
+"Najdete jih v stranskem stolpcu poleg odseka 'O tem dodatku'."
 
 #: apps/pages/templates/pages/review_guide.html:95
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Ne pišite ocen za dodatke, ki jih sami niste uporabljali."
+msgstr "Ne pišite recenzij za dodatke, ki jih sami niste uporabljali."
 
 #: apps/pages/templates/pages/review_guide.html:100
 msgid "Use profanity, sexual language or language that can be construed as hateful."
@@ -9971,6 +9998,8 @@ msgstr "Ne uporabljajte prostaških izrazov ali jezika, ki ga je lahko razumeti 
 #: apps/pages/templates/pages/review_guide.html:106
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr ""
+"Vključite HTML, povezave, izvorno kodo ali izrezke kode. Za recenzije "
+"uporabite samo besedilo."
 
 #: apps/pages/templates/pages/review_guide.html:111
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -9979,16 +10008,23 @@ msgstr "Ne dajajte neresničnih izjav, ne omalovažujte avtorjev dodatka in ne �
 #: apps/pages/templates/pages/review_guide.html:117
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
+"Vključite svojo e-pošto, telefonsko številko in druge osebne podatke ali "
+"podatke drugih oseb."
 
 #: apps/pages/templates/pages/review_guide.html:122
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Ne pošiljajte pregledov za dodatek, ki ste ga vi sami ali vaša organizacija izdelali ali ki ga zastopate."
+msgstr ""
+"Objavite recenzije za dodatek, ki ste ga vi sami ali vaša organizacija "
+"izdelali ali ki ga zastopate."
 
 #: apps/pages/templates/pages/review_guide.html:128
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Kritizirajte dodatek po tem, za kar je narejen. Na primer, oddajte negativno "
+"recenzijo za dodatek, če prikazuje oglase ali zahteva osebne podatke, kadar "
+"je to njegov namen ali pogoj za njegovo delovanje."
 
 #: apps/pages/templates/pages/review_guide.html:136
 msgid "How can I report a problematic review?"
@@ -9999,6 +10035,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Prijavite ali označite vse vprašljive recenzije s klikom na \"Sporoči to "
+"recenzijo\", s čimer jo boste poslali na stran za moderacijo. Naša ekipa za "
+"moderacijo bo uporabila smernice za recenzije za ocenjevanje, ali to "
+"recenzijo izbrisati ali ne, ali jo obnoviti nazaj na stran."
 
 #: apps/pages/templates/pages/review_guide.html:143
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -10009,6 +10049,10 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
+"Da, avtorji dodatkov lahko objavijo en odgovor na recenzijo. Temo o razpravi "
+"lahko objavite na našem <a "
+"href=\"http://forums.mozilla.org/viewforum.php?f=23\">forumu</a>, da se "
+"poglobite v dodatno ali nadaljnjo razpravo."
 
 #: apps/pages/templates/pages/review_guide.html:152
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -10019,6 +10063,11 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"V splošnem ne. Toda če recenzija ne ustreza zgornjim smernicam, lahko "
+"kliknete \"Sporoči to recenzijo\" in jo oddate za moderacijo. Če recenzija "
+"vključuje pritožbo, ki ni več veljavna zaradi nove izdaje vašega dodatka, "
+"bomo premislili o njenem izbrisu. Svojo podrobno zahtevo pošljite na amo-"
+"editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -10220,11 +10269,11 @@ msgstr "Sporoči to recenzijo"
 
 #: apps/reviews/templates/reviews/review.html:82
 msgid "Reply to review"
-msgstr "Odgovor na pregled"
+msgstr "Odgovor na recenzijo"
 
 #: apps/reviews/templates/reviews/review.html:88
 msgid "Edit review"
-msgstr "Uredi pregled"
+msgstr "Uredi recenzijo"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -10234,16 +10283,16 @@ msgstr "{0} :: pregledi"
 #. {0} is an addon name.
 #: apps/reviews/templates/reviews/review_list.html:24 apps/reviews/templates/reviews/mobile/add.html:4 apps/reviews/templates/reviews/mobile/review_list.html:4
 msgid "Reviews for {0}"
-msgstr "Pregledi za {0}"
+msgstr "Recenzije za {0}"
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:27
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> pregled za ta dodatek"
-msgstr[1] "<b>{0}</b> pregleda za ta dodatek"
-msgstr[2] "<b>{0}</b> pregledi za ta dodatek"
-msgstr[3] "<b>{0}</b> pregledov za ta dodatek"
+msgstr[0] "<b>{0}</b> recenzija za ta dodatek"
+msgstr[1] "<b>{0}</b> recenziji za ta dodatek"
+msgstr[2] "<b>{0}</b> recenzije za ta dodatek"
+msgstr[3] "<b>{0}</b> recenzij za ta dodatek"
 
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -11115,7 +11164,7 @@ msgstr "sol"
 
 #: apps/users/models.py:65
 msgid "hash"
-msgstr "lojtra"
+msgstr "hash"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
