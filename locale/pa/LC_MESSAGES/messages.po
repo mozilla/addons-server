@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 09:13-0700\n"
+"POT-Creation-Date: 2015-03-11 11:07-0700\n"
 "PO-Revision-Date: 2014-07-10 15:49+0000\n"
 "Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -969,7 +969,7 @@ msgstr ""
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr ""
@@ -1163,7 +1163,7 @@ msgstr ""
 msgid "Weekly Downloads"
 msgstr ""
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr ""
 
@@ -2974,7 +2974,7 @@ msgstr ""
 msgid "Non-binary"
 msgstr ""
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
 msgid "Other"
 msgstr ""
 
@@ -3068,7 +3068,7 @@ msgstr ""
 msgid "Report Type"
 msgstr ""
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr ""
 
@@ -3537,177 +3537,177 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
-#: apps/devhub/forms.py:66
+#: apps/devhub/forms.py:67
 msgid "Must have at least one owner."
 msgstr ""
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:70
 msgid "At least one author must be listed."
 msgstr ""
 
-#: apps/devhub/forms.py:73
+#: apps/devhub/forms.py:74
 msgid "An author can only be listed once."
 msgstr ""
 
-#: apps/devhub/forms.py:91
+#: apps/devhub/forms.py:92
 msgid "Password incorrect."
 msgstr ""
 
-#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:111 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr ""
 
-#: apps/devhub/forms.py:120
+#: apps/devhub/forms.py:121
 msgid "What is your license's name?"
 msgstr ""
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:124
 msgid "Provide the text of your license."
 msgstr ""
 
-#: apps/devhub/forms.py:158
+#: apps/devhub/forms.py:159
 msgid "License text is required when choosing Other."
 msgstr ""
 
-#: apps/devhub/forms.py:206
+#: apps/devhub/forms.py:207
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:210
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:213
 msgid "This add-on has a Privacy Policy"
 msgstr ""
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:216
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
 
-#: apps/devhub/forms.py:253
+#: apps/devhub/forms.py:254
 msgid "Why did you make this add-on?"
 msgstr ""
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:255
 msgid "What's next for this add-on?"
 msgstr ""
 
-#: apps/devhub/forms.py:291
+#: apps/devhub/forms.py:292
 msgid "The developers of this add-on"
 msgstr ""
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:293
 msgid "The Mozilla Foundation"
 msgstr ""
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:294
 msgid "An organization of my choice"
 msgstr ""
 
-#: apps/devhub/forms.py:336
+#: apps/devhub/forms.py:337
 msgid "Please enter a suggested amount greater than 0."
 msgstr ""
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:340
 msgid "Please enter a suggested amount less than ${0}."
 msgstr ""
 
-#: apps/devhub/forms.py:348
+#: apps/devhub/forms.py:349
 msgid "PayPal ID required to accept contributions."
 msgstr ""
 
-#: apps/devhub/forms.py:354
+#: apps/devhub/forms.py:355
 msgid "Could not validate PayPal id."
 msgstr ""
 
-#: apps/devhub/forms.py:369
+#: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: apps/devhub/forms.py:388
+#: apps/devhub/forms.py:383
 msgid "View current"
 msgstr ""
 
-#: apps/devhub/forms.py:437
+#: apps/devhub/forms.py:432
 msgid "Invalid version range."
 msgstr ""
 
-#: apps/devhub/forms.py:466
+#: apps/devhub/forms.py:461
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: apps/devhub/forms.py:484
+#: apps/devhub/forms.py:479
 msgid "Override failed validation"
 msgstr ""
 
-#: apps/devhub/forms.py:511
+#: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
 msgstr ""
 
-#: apps/devhub/forms.py:512
+#: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
 
-#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr ""
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr ""
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:530
 msgid "Please choose a review nomination type"
 msgstr ""
 
-#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
+#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:556
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr ""
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:563
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:592
 msgid "You cannot upload any more files for this version."
 msgstr ""
 
-#: apps/devhub/forms.py:603
+#: apps/devhub/forms.py:598
 msgid "Version doesn't match"
 msgstr ""
 
-#: apps/devhub/forms.py:632
+#: apps/devhub/forms.py:627
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr ""
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:647
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:652
 msgid "A platform can only be chosen once."
 msgstr ""
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:665
 msgid "A review type must be selected."
 msgstr ""
 
-#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr ""
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:799
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -3741,15 +3741,15 @@ msgstr[1] ""
 msgid "Review"
 msgstr ""
 
-#: apps/devhub/tasks.py:300
+#: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: apps/devhub/tasks.py:304
+#: apps/devhub/tasks.py:322
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: apps/devhub/tasks.py:306
+#: apps/devhub/tasks.py:324
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
@@ -7243,40 +7243,40 @@ msgstr ""
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:440
+#: apps/editors/views.py:441
 msgid "An unknown error occurred"
 msgstr ""
 
-#: apps/editors/views.py:492
+#: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:512
 msgid "Review successfully processed."
 msgstr ""
 
-#: apps/editors/views.py:701
+#: apps/editors/views.py:702
 msgid "was approved"
 msgstr ""
 
-#: apps/editors/views.py:702
+#: apps/editors/views.py:703
 msgid "given preliminary review"
 msgstr ""
 
-#: apps/editors/views.py:703
+#: apps/editors/views.py:704
 msgid "rejected"
 msgstr ""
 
-#: apps/editors/views.py:704
+#: apps/editors/views.py:705
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr ""
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:707
 msgid "needs more information"
 msgstr ""
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:708
 msgid "needs super review"
 msgstr ""
 
@@ -11154,15 +11154,15 @@ msgstr ""
 msgid "Version History with Changelogs"
 msgstr ""
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:299
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:287
+#: apps/versions/models.py:302
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:664
+#: apps/versions/models.py:680
 msgid "{app} {min} and later"
 msgstr ""
 

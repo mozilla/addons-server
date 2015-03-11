@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 09:13-0700\n"
+"POT-Creation-Date: 2015-03-11 11:07-0700\n"
 "PO-Revision-Date: 2015-03-05 07:42+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -990,7 +990,7 @@ msgstr "Informatie"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Uitgegeven onder <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Aangepaste licentie"
@@ -1189,7 +1189,7 @@ msgstr "Gebruikers"
 msgid "Weekly Downloads"
 msgstr "Wekelijkse downloads"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Versie"
 
@@ -3036,7 +3036,7 @@ msgstr "Binair"
 msgid "Non-binary"
 msgstr "Niet binair"
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "Overig"
 
@@ -3132,7 +3132,7 @@ msgstr "Filteren op toepassing"
 msgid "Report Type"
 msgstr "Rapporttype"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Toepassing"
 
@@ -3606,119 +3606,119 @@ msgstr "Recente wijzigingen voor %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Recente wijzigingen voor mijn add-ons"
 
-#: apps/devhub/forms.py:66
+#: apps/devhub/forms.py:67
 msgid "Must have at least one owner."
 msgstr "Er dient ten minste één eigenaar te zijn."
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:70
 msgid "At least one author must be listed."
 msgstr "Er moet minstens één schrijver worden vermeld."
 
-#: apps/devhub/forms.py:73
+#: apps/devhub/forms.py:74
 msgid "An author can only be listed once."
 msgstr "Een schrijver kan maar één keer worden vermeld."
 
-#: apps/devhub/forms.py:91
+#: apps/devhub/forms.py:92
 msgid "Password incorrect."
 msgstr "Wachtwoord onjuist."
 
-#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:111 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Details"
 
-#: apps/devhub/forms.py:120
+#: apps/devhub/forms.py:121
 msgid "What is your license's name?"
 msgstr "Wat is de naam van uw licentie?"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:124
 msgid "Provide the text of your license."
 msgstr "Geef de tekst van uw licentie."
 
-#: apps/devhub/forms.py:158
+#: apps/devhub/forms.py:159
 msgid "License text is required when choosing Other."
 msgstr "Als u Overig kiest, is een licentietekst vereist."
 
-#: apps/devhub/forms.py:206
+#: apps/devhub/forms.py:207
 msgid "This add-on has an End-User License Agreement"
 msgstr "Deze add-on heeft een gebruiksrechtovereenkomst"
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:210
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Geef de gebruiksrechtovereenkomst van uw add-on op:"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:213
 msgid "This add-on has a Privacy Policy"
 msgstr "Deze add-on heeft een privacybeleid"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:216
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Geef het privacybeleid van uw add-on op:"
 
-#: apps/devhub/forms.py:253
+#: apps/devhub/forms.py:254
 msgid "Why did you make this add-on?"
 msgstr "Waarom hebt u bijgedragen?"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:255
 msgid "What's next for this add-on?"
 msgstr "Wat biedt de toekomst voor deze add-on?"
 
-#: apps/devhub/forms.py:291
+#: apps/devhub/forms.py:292
 msgid "The developers of this add-on"
 msgstr "De ontwikkelaars van deze add-on"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:293
 msgid "The Mozilla Foundation"
 msgstr "De Mozilla Foundation"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:294
 msgid "An organization of my choice"
 msgstr "Een door mij gekozen organisatie"
 
-#: apps/devhub/forms.py:336
+#: apps/devhub/forms.py:337
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Voer een voorgesteld bedrag in dat groter is dan 0."
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:340
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Voer een voorgesteld bedrag in dat lager is dan ${0}."
 
-#: apps/devhub/forms.py:348
+#: apps/devhub/forms.py:349
 msgid "PayPal ID required to accept contributions."
 msgstr "PayPal-ID is vereist om bijdragen te kunnen accepteren."
 
-#: apps/devhub/forms.py:354
+#: apps/devhub/forms.py:355
 msgid "Could not validate PayPal id."
 msgstr "Kan PayPal-identiteit niet valideren."
 
-#: apps/devhub/forms.py:369
+#: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een archiefbestand {extensions}."
 
-#: apps/devhub/forms.py:388
+#: apps/devhub/forms.py:383
 msgid "View current"
 msgstr "Huidige weergeven"
 
-#: apps/devhub/forms.py:437
+#: apps/devhub/forms.py:432
 msgid "Invalid version range."
 msgstr "Ongeldig versiebereik."
 
-#: apps/devhub/forms.py:466
+#: apps/devhub/forms.py:461
 msgid "Need at least one compatible application."
 msgstr "Er dient ten minste één compatibele toepassing te zijn."
 
-#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
 msgid "There was an error with your upload. Please try again."
 msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het nog eens."
 
-#: apps/devhub/forms.py:484
+#: apps/devhub/forms.py:479
 msgid "Override failed validation"
 msgstr "Mislukte validatie negeren"
 
-#: apps/devhub/forms.py:511
+#: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
 msgstr "Ja, zet mijn add-on op AMO."
 
-#: apps/devhub/forms.py:512
+#: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
@@ -3726,59 +3726,59 @@ msgstr ""
 "Als u dit veld uitvinkt kunt u uw add-on uploaden en laten beoordelen, maar is deze niet zichtbaar op AMO of downloadbaar door eindgebruikers. Laat in geval van twijfel dit veld aangevinkt - er "
 "zijn maar weinig redenen het uit te vinken."
 
-#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Volledige beoordeling"
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Voorlopige beoordeling"
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:530
 msgid "Please choose a review nomination type"
 msgstr "Kies een beoordelingsnominatietype"
 
-#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
+#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Een bestand met een versie eindigend op a|alpha|b|beta en een optioneel nummer wordt als bèta gedetecteerd."
 
-#: apps/devhub/forms.py:556
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "Versie %s bestaat al"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:563
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Selecteer een geldige keuze. Die keuze is niet beschikbaar."
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:592
 msgid "You cannot upload any more files for this version."
 msgstr "U kunt geen bestanden meer uploaden voor deze versie."
 
-#: apps/devhub/forms.py:603
+#: apps/devhub/forms.py:598
 msgid "Version doesn't match"
 msgstr "Versie komt niet overeen"
 
-#: apps/devhub/forms.py:632
+#: apps/devhub/forms.py:627
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "U kunt een bestand niet verwijderen als het beoordelingsproces is gestart. U dient de gehele versie te verwijderen."
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:647
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Het platform Alle kan niet met specifieke platformen worden gecombineerd."
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:652
 msgid "A platform can only be chosen once."
 msgstr "Een platform kan slechts één keer worden gekozen."
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:665
 msgid "A review type must be selected."
 msgstr "Er dient een beoordelingstype te worden geselecteerd."
 
-#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:799
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Er mogen niet meer dan 3 verplichte add-ons zijn."
 
@@ -3812,16 +3812,16 @@ msgstr[1] "{0} waarschuwingen"
 msgid "Review"
 msgstr "Beoordeling"
 
-#: apps/devhub/tasks.py:300
+#: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
 msgstr "%s heeft geantwoord met %s (%s)."
 
 # consistent w/ products (& verbindingen verlopen niet)
-#: apps/devhub/tasks.py:304
+#: apps/devhub/tasks.py:322
 msgid "Connection to \"%s\" timed out."
 msgstr "Wachttijd voor verbinding met “%s” verstreken."
 
-#: apps/devhub/tasks.py:306
+#: apps/devhub/tasks.py:324
 msgid "Could not contact host at \"%s\"."
 msgstr "Kan geen verbinding maken met de host op “%s”."
 
@@ -4870,9 +4870,7 @@ msgstr "Uw add-on zal niet publiek toegankelijk zijn op AMO."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
-msgstr ""
-"Als u details van uw add-on wilt wijzigen, <a href=\"{0}\">bewerk dan de "
-"lijstingave</a>."
+msgstr "Als u details van uw add-on wilt wijzigen, <a href=\"{0}\">bewerk dan de lijstingave</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7530,40 +7528,40 @@ msgstr "Toelaatbaar (5 tot 10 dagen)"
 msgid "Overdue (Over 10 days)"
 msgstr "Verlaat (meer dan 10 dagen)"
 
-#: apps/editors/views.py:440
+#: apps/editors/views.py:441
 msgid "An unknown error occurred"
 msgstr "Er is een onbekende fout opgetreden"
 
-#: apps/editors/views.py:492
+#: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
 msgstr "Zelfbeoordelingen zijn niet toegestaan."
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:512
 msgid "Review successfully processed."
 msgstr "Beoordeling met succes verwerkt."
 
-#: apps/editors/views.py:701
+#: apps/editors/views.py:702
 msgid "was approved"
 msgstr "is goedgekeurd"
 
-#: apps/editors/views.py:702
+#: apps/editors/views.py:703
 msgid "given preliminary review"
 msgstr "is voorlopig beoordeeld"
 
-#: apps/editors/views.py:703
+#: apps/editors/views.py:704
 msgid "rejected"
 msgstr "is afgewezen"
 
-#: apps/editors/views.py:704
+#: apps/editors/views.py:705
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "is geëscaleerd"
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:707
 msgid "needs more information"
 msgstr "heeft meer informatie nodig"
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "vereist superbeoordeling"
 
@@ -11669,15 +11667,15 @@ msgstr "%s-versiegeschiedenis"
 msgid "Version History with Changelogs"
 msgstr "Versiegeschiedenis met overzicht van wijzigingen"
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:299
 msgid "Add-on uses binary components."
 msgstr "Add-on gebruikt binaire componenten."
 
-#: apps/versions/models.py:287
+#: apps/versions/models.py:302
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Add-on heeft geopteerd voor strenge compatibiliteitscontrole."
 
-#: apps/versions/models.py:664
+#: apps/versions/models.py:680
 msgid "{app} {min} and later"
 msgstr "{app} {min} en hoger"
 

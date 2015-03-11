@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 09:13-0700\n"
+"POT-Creation-Date: 2015-03-11 11:07-0700\n"
 "PO-Revision-Date: 2015-03-07 06:07+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -978,7 +978,7 @@ msgstr "Information"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Släppt under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Anpassad licens"
@@ -1174,7 +1174,7 @@ msgstr "Användare"
 msgid "Weekly Downloads"
 msgstr "Nedladdningar per vecka"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Version"
 
@@ -3008,7 +3008,7 @@ msgstr "Binär"
 msgid "Non-binary"
 msgstr "Icke-binär"
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "Annat"
 
@@ -3104,7 +3104,7 @@ msgstr "Filtrera efter applikation"
 msgid "Report Type"
 msgstr "Rapporttyp"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Applikation"
 
@@ -3573,186 +3573,179 @@ msgstr "Senaste ändringar för %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Senaste ändringar för mitt tillägg"
 
-#: apps/devhub/forms.py:66
+#: apps/devhub/forms.py:67
 msgid "Must have at least one owner."
 msgstr "Måste minst ha en ägare."
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:70
 msgid "At least one author must be listed."
 msgstr "Minst en utvecklare måste listas."
 
-#: apps/devhub/forms.py:73
+#: apps/devhub/forms.py:74
 msgid "An author can only be listed once."
 msgstr "En utvecklare kan endast listas en gång."
 
-#: apps/devhub/forms.py:91
+#: apps/devhub/forms.py:92
 msgid "Password incorrect."
 msgstr "Felaktigt lösenord."
 
-#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:111 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Detaljer"
 
-#: apps/devhub/forms.py:120
+#: apps/devhub/forms.py:121
 msgid "What is your license's name?"
 msgstr "Vilken är ditt licensnamn?"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:124
 msgid "Provide the text of your license."
 msgstr "Tillhandahåll texten till din licens."
 
-#: apps/devhub/forms.py:158
+#: apps/devhub/forms.py:159
 msgid "License text is required when choosing Other."
 msgstr "Licenstext krävs när du väljer annat."
 
-#: apps/devhub/forms.py:206
+#: apps/devhub/forms.py:207
 msgid "This add-on has an End-User License Agreement"
 msgstr "Detta tillägg har ett slutanvändarlicensavtal"
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:210
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ange ditt tilläggs slutanvändarlicensavtal:"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:213
 msgid "This add-on has a Privacy Policy"
 msgstr "Detta tillägg har en sekretesspolicy"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:216
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ange ditt tilläggs sekretesspolicy:"
 
-#: apps/devhub/forms.py:253
+#: apps/devhub/forms.py:254
 msgid "Why did you make this add-on?"
 msgstr "Varför skapade du det här tillägget?"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:255
 msgid "What's next for this add-on?"
 msgstr "Vad är framtiden för detta tillägg?"
 
-#: apps/devhub/forms.py:291
+#: apps/devhub/forms.py:292
 msgid "The developers of this add-on"
 msgstr "Utvecklarna av detta tillägg"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:293
 msgid "The Mozilla Foundation"
 msgstr "Mozilla Foundation"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:294
 msgid "An organization of my choice"
 msgstr "En organisation av mitt val"
 
-#: apps/devhub/forms.py:336
+#: apps/devhub/forms.py:337
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Ange ett föreslaget belopp större än 0."
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:340
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Ange ett föreslaget belopp mindre än ${0}."
 
-#: apps/devhub/forms.py:348
+#: apps/devhub/forms.py:349
 msgid "PayPal ID required to accept contributions."
 msgstr "PayPal-ID krävs för att ta emot bidrag."
 
-#: apps/devhub/forms.py:354
+#: apps/devhub/forms.py:355
 msgid "Could not validate PayPal id."
 msgstr "Det gick inte att validera PayPal-ID."
 
-#: apps/devhub/forms.py:369
+#: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Filtypen stöds inte, vänligen ladda upp en arkivfil {extensions}."
 
-#: apps/devhub/forms.py:388
+#: apps/devhub/forms.py:383
 msgid "View current"
 msgstr "Visa aktuell"
 
-#: apps/devhub/forms.py:437
+#: apps/devhub/forms.py:432
 msgid "Invalid version range."
 msgstr "Ogiltigt versionsintervall."
 
-#: apps/devhub/forms.py:466
+#: apps/devhub/forms.py:461
 msgid "Need at least one compatible application."
 msgstr "Behöver minst en kompatibel applikation."
 
-#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
 msgid "There was an error with your upload. Please try again."
 msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 
-#: apps/devhub/forms.py:484
+#: apps/devhub/forms.py:479
 msgid "Override failed validation"
 msgstr "Åsidosätt misslyckad validering"
 
-#: apps/devhub/forms.py:511
+#: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
 msgstr "Ja, inkludera mina tillägg på AMO."
 
-#: apps/devhub/forms.py:512
+#: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
-"Genom att avmarkera denna ruta kommer ditt tillägg att laddas upp och "
-"granskas, men det kommer inte att vara synligt på AMO eller nedladdningsbart "
-"av några slutanvändare. Om du är osäker, lämna denna ruta markerad - det "
-"finns mycket få skäl att avmarkera den."
+"Genom att avmarkera denna ruta kommer ditt tillägg att laddas upp och granskas, men det kommer inte att vara synligt på AMO eller nedladdningsbart av några slutanvändare. Om du är osäker, lämna "
+"denna ruta markerad - det finns mycket få skäl att avmarkera den."
 
-#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Fullständig granskning"
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Preliminär granskning"
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:530
 msgid "Please choose a review nomination type"
 msgstr "Välj en nomineringstyp för granskning"
 
-#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
+#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr ""
-"En fil med en version som slutar med a|alfa|b|beta och ett valfri siffra "
-"detekteras som beta."
+msgstr "En fil med en version som slutar med a|alfa|b|beta och ett valfri siffra detekteras som beta."
 
-#: apps/devhub/forms.py:556
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "Version %s finns redan"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:563
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-"Välj ett giltigt val. Detta val är inte en av de tillgängliga alternativen."
+msgstr "Välj ett giltigt val. Detta val är inte en av de tillgängliga alternativen."
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:592
 msgid "You cannot upload any more files for this version."
 msgstr "Du kan inte ladda upp några fler filer för denna version."
 
-#: apps/devhub/forms.py:603
+#: apps/devhub/forms.py:598
 msgid "Version doesn't match"
 msgstr "Version matchar inte"
 
-#: apps/devhub/forms.py:632
+#: apps/devhub/forms.py:627
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
-msgstr ""
-"Du kan inte ta bort en fil när granskningsprocessen har startat. Du måste ta "
-"bort hela versionen."
+msgstr "Du kan inte ta bort en fil när granskningsprocessen har startat. Du måste ta bort hela versionen."
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:647
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Plattformen Alla kan inte kombineras med specifika plattformar."
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:652
 msgid "A platform can only be chosen once."
 msgstr "En plattform kan endast väljas en gång."
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:665
 msgid "A review type must be selected."
 msgstr "En granskningstyp måste väljas."
 
-#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Välj en applikation först"
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:799
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Det kan inte finnas fler än 3 tillägg som krävs."
 
@@ -3786,24 +3779,21 @@ msgstr[1] "{0} varningar"
 msgid "Review"
 msgstr "Recensera"
 
-#: apps/devhub/tasks.py:300
+#: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
 msgstr "%s svarade med %s (%s)."
 
-#: apps/devhub/tasks.py:304
+#: apps/devhub/tasks.py:322
 msgid "Connection to \"%s\" timed out."
 msgstr "Anslutning till \"%s\" gjorde timeout."
 
-#: apps/devhub/tasks.py:306
+#: apps/devhub/tasks.py:324
 msgid "Could not contact host at \"%s\"."
 msgstr "Det gick inte att kontakta värd på \"%s\"."
 
 #: apps/devhub/utils.py:57
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
-"Validering genererade för många fel/varningar så %s meddelanden trunkerades. "
-"Efter att ha tagit itu med de meddelande som visas, kommer du att kunna se "
-"de andra."
+msgstr "Validering genererade för många fel/varningar så %s meddelanden trunkerades. Efter att ha tagit itu med de meddelande som visas, kommer du att kunna se de andra."
 
 #: apps/devhub/views.py:177
 msgid "All My Add-ons"
@@ -3920,9 +3910,7 @@ msgstr "Version %s borttagen."
 
 #: apps/devhub/views.py:1150
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
-"Denna uppladdning har misslyckats med validering och kan sakna fullständigt "
-"valideringsresultat. Ta hänsyn till detta vid granskning."
+msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullständigt valideringsresultat. Ta hänsyn till detta vid granskning."
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
@@ -3979,8 +3967,7 @@ msgstr "AMO-granskare"
 
 #: apps/devhub/templates/devhub/index.html:28
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"Avancera! Bli en AMO-granskare idag och få ditt tillägg granskat snabbare."
+msgstr "Avancera! Bli en AMO-granskare idag och få ditt tillägg granskat snabbare."
 
 #: apps/devhub/templates/devhub/index.html:31
 msgid "Become an AMO Reviewer"
@@ -3996,18 +3983,13 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
-"Tillägg låter miljontals Firefox-användare förbättra och anpassa sin "
-"webbupplevelse. Om du är en webbutvecklare och har kunskap inom <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> och "
-"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, har du redan "
-"alla de kunskaper som behövs för att skapa ett bra tillägg."
+"Tillägg låter miljontals Firefox-användare förbättra och anpassa sin webbupplevelse. Om du är en webbutvecklare och har kunskap inom <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</"
+"a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> och <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, har du redan alla de kunskaper som behövs för "
+"att skapa ett bra tillägg."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-"Bege dig till <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
-"utvecklarnätverk</a> för att lära dig allt du behöver för att komma igång."
+msgstr "Bege dig till <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla utvecklarnätverk</a> för att lära dig allt du behöver för att komma igång."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
@@ -4044,9 +4026,7 @@ msgstr "Publicera dina tillägg!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
-"Ladda upp ett <a href=\"%(addon_url)s\">tillägg</a> eller <a href=\"%"
-"(theme_url)s\">tema</a> för att komma igång!"
+msgstr "Ladda upp ett <a href=\"%(addon_url)s\">tillägg</a> eller <a href=\"%(theme_url)s\">tema</a> för att komma igång!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4118,15 +4098,11 @@ msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-"Efter uppladdning, kommer en rad automatiserade valideringstester körs för "
-"att kontrollera kompatibilitet med följande programversionen:"
+msgstr "Efter uppladdning, kommer en rad automatiserade valideringstester körs för att kontrollera kompatibilitet med följande programversionen:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Efter uppladdning, kommer en rad automatiserade valideringstester köras på "
-"din fil."
+msgstr "Efter uppladdning, kommer en rad automatiserade valideringstester köras på din fil."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4180,18 +4156,15 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Detta tillägg är inte kompatibel med <b>%(app_name)s %(app_version)s</b>, "
-"den senaste versionen av %(app_name)s. Överväg att uppdatera ditt tilläggs "
-"kompatibilitetsinfo eller ladda upp en nyare version av detta tillägg."
+"Detta tillägg är inte kompatibel med <b>%(app_name)s %(app_version)s</b>, den senaste versionen av %(app_name)s. Överväg att uppdatera ditt tilläggs kompatibilitetsinfo eller ladda upp en nyare "
+"version av detta tillägg."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
 "\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%"
-"(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" "
-"class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
 "class=\"close\">Ignorera</a>"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:5
@@ -4208,10 +4181,7 @@ msgstr "Uppdatera kompatibilitet"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-"Att justera applikationens information här, kommer att tillåta användare att "
-"installera tillägget även om installationsmanifestet i paketet visar att "
-"tillägget inte är kompatibel."
+msgstr "Att justera applikationens information här, kommer att tillåta användare att installera tillägget även om installationsmanifestet i paketet visar att tillägget inte är kompatibel."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -4269,13 +4239,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>Tillägg kan ha hur många upphovsmän, med 3 möjliga roller: :</p> <ul> "
-"<li><b>Ägare:</b> Kan hantera alla aspekter av tilläggets listning, "
-"inklusive lägga till och ta bort andra upphovsmän</li> "
-"<li><b>Utvecklare:</b> Kan hantera alla aspekter av tilläggets listning, med "
-"undantag för att lägga till och ta bort andra upphovsmän och hantera "
-"betalningar </li> <li><b>Betraktare:</b> kan visa tilläggets inställningar "
-"och statistik, men kan inte göra några ändringar</li> </ul>"
+"<p>Tillägg kan ha hur många upphovsmän, med 3 möjliga roller: :</p> <ul> <li><b>Ägare:</b> Kan hantera alla aspekter av tilläggets listning, inklusive lägga till och ta bort andra upphovsmän</li> "
+"<li><b>Utvecklare:</b> Kan hantera alla aspekter av tilläggets listning, med undantag för att lägga till och ta bort andra upphovsmän och hantera betalningar </li> <li><b>Betraktare:</b> kan visa "
+"tilläggets inställningar och statistik, men kan inte göra några ändringar</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
@@ -4283,9 +4249,7 @@ msgstr "Hantera utvecklarprofil"
 
 #: apps/devhub/templates/devhub/addons/profile.html:16
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
-"Din <a href=\"%(url)s\">utvecklarprofil</a> är för närvarande "
-"<strong>publik</strong> och det <strong>krävs</strong> för bidrag."
+msgstr "Din <a href=\"%(url)s\">utvecklarprofil</a> är för närvarande <strong>publik</strong> och det <strong>krävs</strong> för bidrag."
 
 #: apps/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
@@ -4293,9 +4257,7 @@ msgstr "Ta bort båda"
 
 #: apps/devhub/templates/devhub/addons/profile.html:27
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
-"Din <a href=\"%(url)s\">utvecklarprofil</a> är för närvarande "
-"<strong>publik</strong>."
+msgstr "Din <a href=\"%(url)s\">utvecklarprofil</a> är för närvarande <strong>publik</strong>."
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
 msgid "Remove Profile"
@@ -7335,40 +7297,40 @@ msgstr ""
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:440
+#: apps/editors/views.py:441
 msgid "An unknown error occurred"
 msgstr ""
 
-#: apps/editors/views.py:492
+#: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:512
 msgid "Review successfully processed."
 msgstr ""
 
-#: apps/editors/views.py:701
+#: apps/editors/views.py:702
 msgid "was approved"
 msgstr ""
 
-#: apps/editors/views.py:702
+#: apps/editors/views.py:703
 msgid "given preliminary review"
 msgstr ""
 
-#: apps/editors/views.py:703
+#: apps/editors/views.py:704
 msgid "rejected"
 msgstr ""
 
-#: apps/editors/views.py:704
+#: apps/editors/views.py:705
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr ""
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:707
 msgid "needs more information"
 msgstr ""
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:708
 msgid "needs super review"
 msgstr ""
 
@@ -11251,15 +11213,15 @@ msgstr "%s versionshistorik"
 msgid "Version History with Changelogs"
 msgstr "Versionshistorik med ändringsloggar"
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:299
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:287
+#: apps/versions/models.py:302
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:664
+#: apps/versions/models.py:680
 msgid "{app} {min} and later"
 msgstr ""
 

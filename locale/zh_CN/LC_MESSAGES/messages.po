@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 09:13-0700\n"
+"POT-Creation-Date: 2015-03-11 11:07-0700\n"
 "PO-Revision-Date: 2015-03-04 17:58+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -760,9 +760,7 @@ msgstr "附加组件的二维码"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
-msgstr ""
-"想在您的移动版火狐上使用 {0} 吗？扫描此 QR 码（一种二维码）后会直接安装到您的手机上。（您需要一个 QR "
-"码扫描器。如果您的手机上没有，请在您的手机的应用市场里搜索。）"
+msgstr "想在您的移动版火狐上使用 {0} 吗？扫描此 QR 码（一种二维码）后会直接安装到您的手机上。（您需要一个 QR 码扫描器。如果您的手机上没有，请在您的手机的应用市场里搜索。）"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:330
@@ -966,7 +964,7 @@ msgstr "信息"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "在 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 下发布"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "自定义许可协议"
@@ -1161,7 +1159,7 @@ msgstr "用户量"
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "版本"
 
@@ -2977,7 +2975,7 @@ msgstr "二进制"
 msgid "Non-binary"
 msgstr "非二进制"
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
+#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "其他"
 
@@ -3069,7 +3067,7 @@ msgstr "按应用程序排序"
 msgid "Report Type"
 msgstr "报告类型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "应用程序"
 
@@ -3541,177 +3539,177 @@ msgstr "%s 的近期更改"
 msgid "Recent Changes for My Add-ons"
 msgstr "我的附加组件的近期更改"
 
-#: apps/devhub/forms.py:66
+#: apps/devhub/forms.py:67
 msgid "Must have at least one owner."
 msgstr "至少要有一个所有者。"
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:70
 msgid "At least one author must be listed."
 msgstr "至少要列出一个作者。"
 
-#: apps/devhub/forms.py:73
+#: apps/devhub/forms.py:74
 msgid "An author can only be listed once."
 msgstr "每位作者只能被列出一次。"
 
-#: apps/devhub/forms.py:91
+#: apps/devhub/forms.py:92
 msgid "Password incorrect."
 msgstr "密码不正确。"
 
-#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:111 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "详情"
 
-#: apps/devhub/forms.py:120
+#: apps/devhub/forms.py:121
 msgid "What is your license's name?"
 msgstr "您的许可协议的名称是？"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:124
 msgid "Provide the text of your license."
 msgstr "提供您许可协议的文字内容。"
 
-#: apps/devhub/forms.py:158
+#: apps/devhub/forms.py:159
 msgid "License text is required when choosing Other."
 msgstr "选择其他时必须填写许可协议的文本内容。"
 
-#: apps/devhub/forms.py:206
+#: apps/devhub/forms.py:207
 msgid "This add-on has an End-User License Agreement"
 msgstr "这个附加组件有最终用户许可协议"
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:210
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "请指定您的附加组件的最终用户许可协议:"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:213
 msgid "This add-on has a Privacy Policy"
 msgstr "这个附加组件有自己的隐私策略"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:216
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "请指定您的附加组件的隐私政策:"
 
-#: apps/devhub/forms.py:253
+#: apps/devhub/forms.py:254
 msgid "Why did you make this add-on?"
 msgstr "您开发这个附加组件的原因是什么？"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:255
 msgid "What's next for this add-on?"
 msgstr "这个附加组件的下一步计划是什么？"
 
-#: apps/devhub/forms.py:291
+#: apps/devhub/forms.py:292
 msgid "The developers of this add-on"
 msgstr "此附加组件的开发者"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:293
 msgid "The Mozilla Foundation"
 msgstr "Mozilla 基金会"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:294
 msgid "An organization of my choice"
 msgstr "我所选择的组织"
 
-#: apps/devhub/forms.py:336
+#: apps/devhub/forms.py:337
 msgid "Please enter a suggested amount greater than 0."
 msgstr "请输入大于 0 的建议金额。"
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:340
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "请输入小于 ${0} 的建议金额。"
 
-#: apps/devhub/forms.py:348
+#: apps/devhub/forms.py:349
 msgid "PayPal ID required to accept contributions."
 msgstr "需要 PayPal 账户才能接受捐助。"
 
-#: apps/devhub/forms.py:354
+#: apps/devhub/forms.py:355
 msgid "Could not validate PayPal id."
 msgstr "无法验证 PayPal 账户。"
 
-#: apps/devhub/forms.py:369
+#: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩文件。"
 
-#: apps/devhub/forms.py:388
+#: apps/devhub/forms.py:383
 msgid "View current"
 msgstr "查看当前"
 
-#: apps/devhub/forms.py:437
+#: apps/devhub/forms.py:432
 msgid "Invalid version range."
 msgstr "版本范围无效。"
 
-#: apps/devhub/forms.py:466
+#: apps/devhub/forms.py:461
 msgid "Need at least one compatible application."
 msgstr "需要至少一个兼容的应用程序。"
 
-#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上传过程中发生错误，请重试。"
 
-#: apps/devhub/forms.py:484
+#: apps/devhub/forms.py:479
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-#: apps/devhub/forms.py:511
+#: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
 msgstr "是，将我的附加组件放上 AMO。"
 
-#: apps/devhub/forms.py:512
+#: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr "取消此框仍会将您的附加组件上传并进行审核，但它不会在 AMO 上被任何终端用户可见和可下载。如不确定，请保持此框选中 - 很少有理由取消勾选它。"
 
-#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "全面审核"
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步审核"
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:530
 msgid "Please choose a review nomination type"
 msgstr "请选择提交审核的类型"
 
-#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
+#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "一个文件具有 a|alpha|b|beta 的版本和一个可选的数字将检测为 beta 版本。"
 
-#: apps/devhub/forms.py:556
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:563
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "请选择一个有效的选项。目前的选项不是可用的选项之一。"
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:592
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
-#: apps/devhub/forms.py:603
+#: apps/devhub/forms.py:598
 msgid "Version doesn't match"
 msgstr "版本不匹配"
 
-#: apps/devhub/forms.py:632
+#: apps/devhub/forms.py:627
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "审核过程开始后您不能删除文件。您必须删除整个版本。"
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:647
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "不能既选择所有平台又指定特定平台。"
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:652
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:665
 msgid "A review type must be selected."
 msgstr "必须选择一个审核类型。"
 
-#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "请先选择一个应用程序"
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:799
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
 
@@ -3745,15 +3743,15 @@ msgstr[0] "{0} 个警告"
 msgid "Review"
 msgstr "评论"
 
-#: apps/devhub/tasks.py:300
+#: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
 msgstr "%s 响应 %s（%s）。"
 
-#: apps/devhub/tasks.py:304
+#: apps/devhub/tasks.py:322
 msgid "Connection to \"%s\" timed out."
 msgstr "连接“%s”超时。"
 
-#: apps/devhub/tasks.py:306
+#: apps/devhub/tasks.py:324
 msgid "Could not contact host at \"%s\"."
 msgstr "无法连接到主机“%s”。"
 
@@ -4992,9 +4990,7 @@ msgstr "附加组件用户支持"
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
-msgstr ""
-"如果您对某个附加组件有用户支持方面的问题，例如“我该怎么使用这个附加组件？”或者“为什么它没能正常工作？”之类的问题，请通过附加组件页面中的用户支持通道"
-"联系该附加组件的作者。"
+msgstr "如果您对某个附加组件有用户支持方面的问题，例如“我该怎么使用这个附加组件？”或者“为什么它没能正常工作？”之类的问题，请通过附加组件页面中的用户支持通道联系该附加组件的作者。"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -5280,9 +5276,7 @@ msgstr "Mozilla 和精选附加组件顾问委员定期评估和淘汰某些精�
 msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
 "a good indicator the add-on may not be very useful to our users."
-msgstr ""
-"成长性不足 &mdash; "
-"精选附加组件通常同时具有较高的下载量和活跃用户数。如果一款附加组件在各方面都没有展示出成长性，这可能就表明它对于我们的用户群不是太有用。"
+msgstr "成长性不足 &mdash; 精选附加组件通常同时具有较高的下载量和活跃用户数。如果一款附加组件在各方面都没有展示出成长性，这可能就表明它对于我们的用户群不是太有用。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
@@ -5292,9 +5286,7 @@ msgstr "负面评论 &mdash; 精选附加组件一般拥有良好的用户体验
 msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
-msgstr ""
-"与即将到来的 Firefox 版本不兼容 &mdash; 精选附加组件应当可以兼容 Firefox "
-"的稳定版和公开测试版（Beta）。未兼容公开测试版（在稳定版发布的四周前发布）的附加组件将会失去其精选资格。"
+msgstr "与即将到来的 Firefox 版本不兼容 &mdash; 精选附加组件应当可以兼容 Firefox 的稳定版和公开测试版（Beta）。未兼容公开测试版（在稳定版发布的四周前发布）的附加组件将会失去其精选资格。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -7312,40 +7304,40 @@ msgstr "可通过（五至十天）"
 msgid "Overdue (Over 10 days)"
 msgstr "逾期（超过十天）"
 
-#: apps/editors/views.py:440
+#: apps/editors/views.py:441
 msgid "An unknown error occurred"
 msgstr "发生未知错误"
 
-#: apps/editors/views.py:492
+#: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
 msgstr "不允许自我审核。"
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:512
 msgid "Review successfully processed."
 msgstr "审核处理成功。"
 
-#: apps/editors/views.py:701
+#: apps/editors/views.py:702
 msgid "was approved"
 msgstr "已通过审核"
 
-#: apps/editors/views.py:702
+#: apps/editors/views.py:703
 msgid "given preliminary review"
 msgstr "已给予初步审核"
 
-#: apps/editors/views.py:703
+#: apps/editors/views.py:704
 msgid "rejected"
 msgstr "已拒绝"
 
-#: apps/editors/views.py:704
+#: apps/editors/views.py:705
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "已向上呈报"
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:707
 msgid "needs more information"
 msgstr "需要更多信息"
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "需要超级审核"
 
@@ -11316,15 +11308,15 @@ msgstr "%s 版本历史"
 msgid "Version History with Changelogs"
 msgstr "版本历史记录"
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:299
 msgid "Add-on uses binary components."
 msgstr "添加使用二进制的附加组件。"
 
-#: apps/versions/models.py:287
+#: apps/versions/models.py:302
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加组件选择采用严格的兼容性检查。"
 
-#: apps/versions/models.py:664
+#: apps/versions/models.py:680
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
 

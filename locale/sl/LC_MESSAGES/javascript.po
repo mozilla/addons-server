@@ -11,8 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1425977381.0\n"
 
@@ -109,21 +108,15 @@ msgstr "Vaš dodatek je prestal validacijo brez napak ali opozoril."
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Vključite podrobne opombe o različici (to lahko storite v naslednjem "
-"koraku)."
+msgstr "Vključite podrobne opombe o različici (to lahko storite v naslednjem koraku)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
-"Če za popoln pregled dodatek zahteva račun na spletnem mestu, v Opombe za "
-"recenzenta (to lahko storite v naslednjem koraku)."
+msgstr "Če za popoln pregled dodatek zahteva račun na spletnem mestu, v Opombe za recenzenta (to lahko storite v naslednjem koraku)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
-"Če je vaš dodatek mišljen le za določene uporabnike, raje izberite Predhodni "
-"pregled namesto Popolnega pregleda."
+msgstr "Če je vaš dodatek mišljen le za določene uporabnike, raje izberite Predhodni pregled namesto Popolnega pregleda."
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
@@ -131,19 +124,15 @@ msgstr "Nadzorni seznam oddaje dodatka"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Pred dokončanjem svoje oddaje preverite naslednje točke. To bo zmanjšalo "
-"zakasnitve ali napačne razlage med postopkom pregleda:"
+msgstr "Pred dokončanjem svoje oddaje preverite naslednje točke. To bo zmanjšalo zakasnitve ali napačne razlage med postopkom pregleda:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali "
-"zamaskiranih skriptov (razen znanih dvojiških datotek), morajo biti ločeno "
-"oddani za pregled. Prepričajte se, da uporabite polje za prenos izvorne "
-"kode, da se izognete zavrnitvi svoje oddaje."
+"Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali zamaskiranih skriptov (razen znanih dvojiških datotek), morajo biti ločeno oddani za pregled. Prepričajte se, da uporabite "
+"polje za prenos izvorne kode, da se izognete zavrnitvi svoje oddaje."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
@@ -151,9 +140,7 @@ msgstr "Postopek validacije je odkril te težave, ki lahko vodijo do zavrnitev:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
-"Če se ne spoznate na postopek pregleda dodatkov, si lahko o njem preberete "
-"tukaj."
+msgstr "Če se ne spoznate na postopek pregleda dodatkov, si lahko o njem preberete tukaj."
 
 #: static/js/common/upload-addon.js:424
 msgid "Some platforms are not available for this type of add-on."
@@ -840,9 +827,7 @@ msgstr "Skrbniki in uredniki morajo za prijavo navesti geslo."
 
 #: static/js/zamboni/browserid_support.js:42
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-"Prijava BrowserID je spodletela. Ali ste prepričani, da imate račun s tem "
-"e-poštnim naslovom?"
+msgstr "Prijava BrowserID je spodletela. Ali ste prepričani, da imate račun s tem e-poštnim naslovom?"
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:82
@@ -1210,9 +1195,7 @@ msgstr[3] "{0} obvestil"
 
 #: static/js/zamboni/validator.js:451
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
-"Opravilo preverjanja veljavnosti se ni moglo dokončati ali se je končalo z "
-"napakami"
+msgstr "Opravilo preverjanja veljavnosti se ni moglo dokončati ali se je končalo z napakami"
 
 #: static/js/zamboni/validator.js:469
 msgid "Internal server error"
