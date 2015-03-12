@@ -12,8 +12,8 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from blocklist.models import (BlocklistApp, BlocklistCA, BlocklistDetail,
-                              BlocklistGfx, BlocklistItem, BlocklistPlugin,
-                              BlocklistPref)
+                              BlocklistGfx, BlocklistItem, BlocklistIssuerCert,
+                              BlocklistPlugin, BlocklistPref)
 
 base_xml = """
 <?xml version="1.0"?>
@@ -590,3 +590,31 @@ class BlocklistCATest(BlocklistViewTest):
         dom = minidom.parseString(r.content)
         ca = dom.getElementsByTagName('caBlocklistEntry')[0]
         eq_(base64.b64decode(ca.childNodes[0].toxml()), 'Ètå…, ≥•≤')
+
+
+class BlocklistIssuerCertTest(BlocklistViewTest):
+
+    def setUp(self):
+        super(BlocklistIssuerCertTest, self).setUp()
+        self.issuerCertBlock = BlocklistIssuerCert.objects.create(
+            issuer='testissuer', serial='testserial',
+            details=BlocklistDetail.objects.create(name='one'))
+        self.issuerCertBlock2 = BlocklistIssuerCert.objects.create(
+            issuer='anothertestissuer', serial='anothertestserial',
+            details=BlocklistDetail.objects.create(name='two'))
+
+    def test_extant_nodes(self):
+        r = self.client.get(self.fx4_url)
+        dom = minidom.parseString(r.content)
+
+        certItem = dom.getElementsByTagName('certItem')[0]
+        eq_(certItem.getAttribute('issuerName'), self.issuerCertBlock.issuer)
+        serialNode = dom.getElementsByTagName('serialNumber')[0]
+        serialNumber = serialNode.childNodes[0].wholeText
+        eq_(serialNumber, self.issuerCertBlock.serial)
+
+        certItem = dom.getElementsByTagName('certItem')[1]
+        eq_(certItem.getAttribute('issuerName'), self.issuerCertBlock2.issuer)
+        serialNode = dom.getElementsByTagName('serialNumber')[1]
+        serialNumber = serialNode.childNodes[0].wholeText
+        eq_(serialNumber, self.issuerCertBlock2.serial)
