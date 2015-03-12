@@ -373,7 +373,7 @@ msgstr "Відібрані"
 
 #: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
-msgstr "Незабаром з'являться"
+msgstr "Набирають популярність"
 
 #: static/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
