@@ -609,8 +609,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
 
     def test_single_rejected_reason_9_bug_1140346(self):
         """Can rereview an updated theme that was rejected for reason 9."""
-        user = UserProfile.objects.get(
-            email='persona_reviewer@mozilla.com')
+        user = UserProfile.objects.get(email='persona_reviewer@mozilla.com')
         self.login(user)
         addon = self.theme_factory(status=amo.STATUS_REJECTED)
         RereviewQueueTheme.objects.create(
@@ -627,6 +626,45 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
             res = self.client.get(reverse('editors.themes.single',
                                           args=[addon.slug]))
         eq_(res.status_code, 200)
+
+    @mock.patch('amo.utils.LocalFileStorage.delete')
+    def test_reject_theme_without_footer_bug_1142449(self, delete_mock):
+        """Don't fail on trying to deleted a non existent footer image."""
+        user = UserProfile.objects.get(email='persona_reviewer@mozilla.com')
+        self.login(user)
+        theme = self.theme_factory().persona
+        reject_url = reverse('editors.themes.commit')
+
+        form_data = amo.tests.formset(initial_count=1, total_count=1)
+        form_data['form-0-theme'] = str(theme.pk)
+        form_data['form-0-action'] = str(rvw.ACTION_REJECT)
+        form_data['form-0-reject_reason'] = 1
+
+        # With footer (RereviewQueueTheme created in theme_factory has one).
+        rereview = theme.rereviewqueuetheme_set.first()
+        ThemeLock.objects.create(theme=theme, reviewer=user,
+                                 expiry=self.days_ago(-1))
+
+        with self.settings(ALLOW_SELF_REVIEWS=True):
+            res = self.client.post(reject_url, form_data)
+        eq_(res.status_code, 302)
+        assert delete_mock.call_count == 2  # Did try to delete the footer.
+        delete_mock.assert_any_call(rereview.header_path)
+        delete_mock.assert_any_call(rereview.footer_path)
+
+        delete_mock.reset_mock()  # Clean slate.
+
+        # Without footer.
+        rereview = RereviewQueueTheme.objects.create(
+            theme=theme, header='pending_header.png')
+        ThemeLock.objects.create(theme=theme, reviewer=user,
+                                 expiry=self.days_ago(-1))
+
+        with self.settings(ALLOW_SELF_REVIEWS=True):
+            res = self.client.post(reject_url, form_data)
+        eq_(res.status_code, 302)
+        assert delete_mock.call_count == 1  # Didn't try to delete the footer.
+        delete_mock.assert_any_call(rereview.header_path)
 
 
 class TestDeletedThemeLookup(amo.tests.TestCase):
