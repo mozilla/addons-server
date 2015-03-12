@@ -157,5 +157,6 @@ def reject_rereview(theme):
     reupload = rereview[0]
 
     storage.delete(reupload.header_path)
-    storage.delete(reupload.footer_path)
+    if reupload.footer:
+        storage.delete(reupload.footer_path)
     rereview.delete()
