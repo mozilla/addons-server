@@ -652,6 +652,9 @@ class RereviewQueue(amo.models.ModelBase):
 class RereviewQueueThemeManager(amo.models.ManagerBase):
 
     def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instanciation and understand the consequences.
         amo.models.ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
@@ -672,8 +675,10 @@ class RereviewQueueTheme(amo.models.ModelBase):
     dupe_persona = models.ForeignKey(Persona, null=True,
                                      related_name='dupepersona')
 
-    objects = RereviewQueueThemeManager()
+    # The order of those managers is very important: please read the lengthy
+    # comment above the Addon managers declaration/instanciation.
     with_deleted = RereviewQueueThemeManager(include_deleted=True)
+    objects = RereviewQueueThemeManager()
 
     class Meta:
         db_table = 'rereview_queue_theme'
