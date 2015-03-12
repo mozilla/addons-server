@@ -105,6 +105,16 @@
   </gfxItems>
 {% endif %}
 
+{% if issuerCertBlocks %}
+  <certItems>
+    {% for issuerCertBlock in issuerCertBlocks %}
+    <certItem issuerName="{{ issuerCertBlock.issuer }}">
+      <serialNumber>{{ issuerCertBlock.serial }}</serialNumber>
+    </certItem>
+    {% endfor %}
+  </certItems>
+{% endif %}
+
 {% if cas %}
   <caBlocklistEntry>{{ cas }}</caBlocklistEntry>
 {% endif %}

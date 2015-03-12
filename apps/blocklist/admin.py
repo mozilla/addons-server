@@ -24,7 +24,8 @@ class ItemAdmin(admin.ModelAdmin):
     inlines = stacked_inline(models.BlocklistPref),
 
 
-ms = models.BlocklistItem, models.BlocklistPlugin, models.BlocklistGfx,
+ms = (models.BlocklistItem, models.BlocklistPlugin, models.BlocklistGfx,
+      models.BlocklistIssuerCert)
 inlines = map(stacked_inline, ms)
 
 
@@ -37,4 +38,5 @@ admin.site.register(models.BlocklistCA)
 admin.site.register(models.BlocklistItem, ItemAdmin)
 admin.site.register(models.BlocklistPlugin, PluginAdmin)
 admin.site.register(models.BlocklistGfx)
+admin.site.register(models.BlocklistIssuerCert)
 admin.site.register(models.BlocklistDetail, DetailAdmin)
