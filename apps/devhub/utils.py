@@ -54,6 +54,8 @@ def limit_validation_results(validation, is_compatibility=False):
             validation['messages'].append({
                 'tier': 1,
                 'type': msgtype,
+                # To respect the message structure, see bug 1139674.
+                'id': ['validation', 'messages', 'truncated'],
                 'message': (_('Validation generated too many errors/'
                               'warnings so %s messages were truncated. '
                               'After addressing the visible messages, '

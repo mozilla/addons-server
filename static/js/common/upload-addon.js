@@ -341,7 +341,9 @@
                             ], current, matched, messages = [],
                             // this.id is in the form ["testcases_javascript_instanceactions", "_call_expression", "createelement_variable"],
                             // we usually only match one of the elements.
-                            matchId = function (id) {return _.contains(this.id, id);};
+                            matchId = function (id) {
+                              return this.hasOwnProperty('id') && _.contains(this.id, id);
+                            };
 
                         if (!upload_results.parents('.add-file-modal').length) {
                             // We are uploading a file for an existing addon.
