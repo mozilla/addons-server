@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-04 09:13-0700\n"
-"PO-Revision-Date: 2015-03-16 10:48+0000\n"
+"PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
 "Language: af\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426502892.0\n"
+"X-POOTLE-MTIME: 1426505064.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1149,7 +1149,7 @@ msgstr "My byvoegings"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:68
 msgid "My Themes"
-msgstr ""
+msgstr "My temas"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
@@ -1368,7 +1368,7 @@ msgstr "Dien nuwe byvoeging in"
 
 #: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:23 apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Dien 'n nuwe tema in"
 
 #: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
@@ -2949,7 +2949,7 @@ msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_f
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
-msgstr ""
+msgstr "Volledige temas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
@@ -2982,7 +2982,7 @@ msgstr ""
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured theme.
 #: apps/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Uitgesoekte volledige temas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
@@ -2990,11 +2990,11 @@ msgstr "Mees populêre volledige temas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Topgegradeerde volledige temas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Jongste volledige temas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
@@ -3006,11 +3006,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Onlangs bygewerkte volledige temas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Opkomende volledige temas"
 
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -3038,11 +3038,13 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Skep u eie tema"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
+"'n Eie styl vir u eie blaaier! Trek vir hom 'n baadjie aan wat self ontwerp "
+"is!"
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
@@ -3075,7 +3077,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Opkomende temas"
 
 #: apps/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
@@ -3083,7 +3085,7 @@ msgstr "Sien alle opkomendes"
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Geen temas gevind nie"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
@@ -3091,7 +3093,7 @@ msgstr "Maklik-om-te-gebruik temas vir Firefox"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Meer temas"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
@@ -6748,7 +6750,7 @@ msgstr "Hier is 'n paar oulike byvoegings vir Firefox 4."
 
 #: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Temas vir St. Patrick se dag"
 
 #: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
