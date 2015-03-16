@@ -354,7 +354,10 @@ COLLECTION_AUTHOR_CHOICES = {
 # Contributions.
 FOUNDATION_ORG = 1  # The charities.id of the Mozilla Foundation.
 
-VERSION_BETA = re.compile('(a|alpha|b|beta|pre|rc)\d*$')
+VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
+                              (([\.-]\d)?\d*)         # followed by nothing
+                              $                       # or 123 or .123 or -123
+                              """, re.VERBOSE)
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Editor Tools
