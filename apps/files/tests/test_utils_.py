@@ -19,18 +19,22 @@ pytestmark = pytest.mark.django_db
 
 def test_is_beta():
     assert not is_beta('1.2')
+
     assert is_beta('1.2a')
-    assert is_beta('1.2alpha')
     assert is_beta('1.2a1')
-    assert is_beta('1.2alpha1')
     assert is_beta('1.2a123')
-    assert is_beta('1.2alpha123')
-    assert is_beta('1.2b')
+    assert is_beta('1.2a.1')
+    assert is_beta('1.2a.123')
+    assert is_beta('1.2a-1')
+    assert is_beta('1.2a-123')
+
     assert is_beta('1.2beta')
-    assert is_beta('1.2b1')
     assert is_beta('1.2beta1')
-    assert is_beta('1.2b123')
-    assert is_beta('1.2blpha123')
+    assert is_beta('1.2beta123')
+    assert is_beta('1.2beta.1')
+    assert is_beta('1.2beta.123')
+    assert is_beta('1.2beta-1')
+    assert is_beta('1.2beta-123')
 
 
 class TestFindJetpacks(amo.tests.TestCase):
