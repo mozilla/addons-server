@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2015-03-16 10:34+0000\n"
+"PO-Revision-Date: 2015-03-16 11:06+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: af\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426502084.0\n"
+"X-POOTLE-MTIME: 1426503996.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -837,7 +837,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:145
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla het dié weergawe gemerk as onversoenbaar met u Firefox-weergawe"
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227
