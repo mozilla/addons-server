@@ -10,7 +10,7 @@ from lib.settings_base import *  # noqa
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-DEBUG_PROPAGATE_EXCEPTIONS = DEBUG
+DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # These apps are great during development.
 INSTALLED_APPS += (
