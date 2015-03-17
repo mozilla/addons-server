@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-11 09:57-0700\n"
-"PO-Revision-Date: 2014-07-07 10:02+0000\n"
+"PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404727345.0\n"
+"X-POOTLE-MTIME: 1422784399.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -103,37 +103,40 @@ msgstr "Vaš dodatak je prošao proveru bez grešaka ili upozorenja."
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Uključite detaljne beleške verzije (ovo može biti urađeno u sledećem koraku)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Ako je Vašem dodatku potrebna lozinka do veb stranice kako bi bila potpuno testirana, uključite i korisničko ime i lozinku za test u Beleške recezenta (ovo može biti učinjeno u sledećem koraku)."
 
 #: static/js/common/upload-addon.js:348
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
+msgstr "Ako je Vaš dodatak namenjen za određene korisnike, treba da izaberete preliminarnu recenziju umesto cele recenzije."
 
 #: static/js/common/upload-addon.js:350
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Spisak podnesenih dodataka"
 
 #: static/js/common/upload-addon.js:351
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Molimo Vas da verifikujete naredne takče pre završetka podnošenja. Ovo će minimizovati odlaganja i nerazumevanja tokom procesa recenzije:"
 
 #: static/js/common/upload-addon.js:353
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Kompajlirane binarne datoteke, kao i umanjene skripte (ne računajući poznate biblioteke) treba odvojeno podneti na recenziju. Koristite polje za otpremanje izvornog koda da biste izbegli odbijanje "
+"otpremljenog koda."
 
 #: static/js/common/upload-addon.js:371
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Proces validacije je našao probleme koje mogu dovesti do:"
 
 #: static/js/common/upload-addon.js:388
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
+msgstr "Ako Vam nije poznat proces recenzije dodataka, možete pročitati o tome ovde."
 
 #: static/js/common/upload-addon.js:424
 msgid "Some platforms are not available for this type of add-on."
@@ -503,7 +506,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -969,9 +972,9 @@ msgstr[2] "{files} datoteka"
 #: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{reviews} korisnička recenzija"
+msgstr[1] "{reviews} korisničke recenzije"
+msgstr[2] "{reviews} korisničkih recenzija"
 
 #: static/js/zamboni/devhub.js:799
 msgid "Learn more"
