@@ -264,10 +264,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def addon(self):
-        from addons.models import Addon
-        from versions.models import Version
-        version = Version.with_deleted.get(pk=self.version_id)
-        return Addon.with_deleted.get(pk=version.addon_id)
+        return self.version.addon
 
     @property
     def mirror_file_path(self):

@@ -28,6 +28,7 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            CompatOverrideRange, FrozenAddon,
                            IncompatibleVersions, Persona, Preview)
 from applications.models import AppVersion
+from bandwagon.models import Collection
 from constants.applications import DEVICE_TYPES
 from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from editors.models import EscalationQueue
@@ -295,6 +296,28 @@ class TestAddonManager(amo.tests.TestCase):
             [2464, 7661, 15679])
         f = Addon.objects.featured(amo.THUNDERBIRD)
         assert not f.exists()
+
+    def test_filter_for_many_to_many(self):
+        # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
+        addon = Addon.objects.get(pk=3615)
+        collection = addon.collections.first()
+        assert collection.addons.get() == addon
+
+        # Delete the addon: it shouldn't be listed in collection.addons.
+        addon.update(status=amo.STATUS_DELETED)
+        collection = Collection.objects.get(pk=collection.pk)
+        assert collection.addons.count() == 0
+
+    def test_no_filter_for_relations(self):
+        # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
+        addon = Addon.objects.get(pk=3615)
+        version = addon.versions.first()
+        assert version.addon == addon
+
+        # Delete the addon: version.addon should still work.
+        addon.update(status=amo.STATUS_DELETED)
+        version = Version.objects.get(pk=version.pk)  # Reload from db.
+        assert version.addon == addon
 
 
 class TestAddonModels(amo.tests.TestCase):

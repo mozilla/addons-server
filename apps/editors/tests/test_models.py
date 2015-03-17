@@ -639,3 +639,13 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
             theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='',
             footer='')
         assert rqt.footer_url == ''
+
+    def test_filter_for_many_to_many(self):
+        # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
+        addon = addon_factory(type=amo.ADDON_PERSONA)
+        rqt = RereviewQueueTheme.objects.create(theme=addon.persona)
+        assert addon.persona.rereviewqueuetheme_set.get() == rqt
+
+        # Delete the addon: it shouldn't be listed anymore.
+        addon.update(status=amo.STATUS_DELETED)
+        assert addon.persona.rereviewqueuetheme_set.all().count() == 0

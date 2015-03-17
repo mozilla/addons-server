@@ -131,6 +131,9 @@ def clean_slug(instance, slug_field='slug'):
 class AddonManager(amo.models.ManagerBase):
 
     def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instanciation and understand the consequences.
         amo.models.ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
@@ -358,8 +361,22 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Whether the add-on is listed on AMO or not.
     is_listed = models.BooleanField(default=True, db_index=True)
 
-    objects = AddonManager()
+    # The order of those managers is very important:
+    # The first one discovered, if it has "use_for_related_fields = True"
+    # (which it has if it's inheriting from caching.base.CachingManager), will
+    # be used for relations like `version.addon`. We thus want one that is NOT
+    # filtered in any case, we don't want a 500 if the addon is not found
+    # (because it has the status amo.STATUS_DELETED for example).
+    # The CLASS of the first one discovered will also be used for "many to many
+    # relations" like `collection.addons`. In that case, we do want the
+    # filtered version by default, to make sure we're not displaying stuff by
+    # mistake. You thus want the CLASS of the first one to be filtered by
+    # default.
+    # We don't control the instantiation, but AddonManager sets include_deleted
+    # to False by default, so filtering is enabled by default. This is also why
+    # it's not repeated for 'objects' below.
     with_deleted = AddonManager(include_deleted=True)
+    objects = AddonManager()
 
     class Meta:
         db_table = 'addons'

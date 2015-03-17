@@ -5,7 +5,7 @@ from nose.tools import eq_
 import amo.tests
 from addons.models import Addon
 from reviews import tasks
-from reviews.models import check_spam, Review, GroupedRating, Spam
+from reviews.models import check_spam, GroupedRating, Review, ReviewFlag, Spam
 from users.models import UserProfile
 
 
@@ -46,6 +46,29 @@ class TestReviewModel(amo.tests.TestCase):
 
         eq_(Review.objects.count(), 0)
         eq_(Review.with_deleted.count(), 2)
+
+    def test_filter_for_many_to_many(self):
+        # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
+        review = Review.objects.get(id=1)
+        addon = review.addon
+        assert review in addon._reviews.all()
+
+        # Delete the review: it shouldn't be listed anymore.
+        review.update(deleted=True)
+        addon = Addon.objects.get(pk=addon.pk)
+        assert review not in addon._reviews.all()
+
+    def test_no_filter_for_relations(self):
+        # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
+        review = Review.objects.get(id=1)
+        flag = ReviewFlag.objects.create(review=review,
+                                         flag='review_flag_reason_spam')
+        assert flag.review == review
+
+        # Delete the review: reviewflag.review should still work.
+        review.update(deleted=True)
+        flag = ReviewFlag.objects.get(pk=flag.pk)
+        assert flag.review == review
 
 
 class TestGroupedRating(amo.tests.TestCase):
