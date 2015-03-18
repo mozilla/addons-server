@@ -182,7 +182,7 @@ class TestVersion(amo.tests.TestCase):
 
         addon = Addon.objects.no_cache().get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
-        assert not Version.with_deleted.filter(addon=addon).exists()
+        assert not Version.unfiltered.filter(addon=addon).exists()
 
     def test_version_delete_files(self):
         version = Version.objects.get(pk=81551)
@@ -520,6 +520,12 @@ class TestViews(amo.tests.TestCase):
         eq_(link, reverse('addons.versions', args=[addon.slug, version]))
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
+    def test_version_list_for_unlisted_addon_returns_404(self):
+        """Unlisted addons are not listed and have no version list."""
+        self.addon.update(is_listed=False)
+        url = reverse('addons.versions', args=[self.addon.slug])
+        assert self.client.get(url).status_code == 404
+
 
 class TestFeeds(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon', 'addons/default-to-compat']
@@ -636,6 +642,12 @@ class TestDownloadsBase(amo.tests.TestCase):
     def assert_served_by_mirror(self, response, file_=None):
         url = settings.SITE_URL + user_media_url('addons')
         self.assert_served_by_host(response, url, file_)
+
+    def test_download_for_unlisted_addon_returns_404(self):
+        """File downloading isn't allowed for unlisted addons."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.file_url).status_code == 404
+        assert self.client.get(self.latest_url).status_code == 404
 
 
 class TestDownloads(TestDownloadsBase):
@@ -876,6 +888,11 @@ class TestDownloadSource(amo.tests.TestCase):
         self.version.save()
         response = self.client.get(self.url)
         eq_(response.status_code, 404)
+
+    def test_download_for_unlisted_addon_returns_404(self):
+        """File downloading isn't allowed for unlisted addons."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.url).status_code == 404
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):

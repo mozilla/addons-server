@@ -604,6 +604,16 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, dict(q='%s %s' % (tag_name, tag_name_2)))
         eq_(self.get_results(r), [a.id])
 
+    def test_search_doesnt_return_unlisted_addons(self):
+        unlisted_addon = self.addons[0]
+        r = self.client.get(self.url, {'q': 'Addon'})
+        assert unlisted_addon.pk in self.get_results(r)
+
+        unlisted_addon.update(is_listed=False)
+        self.refresh()
+        r = self.client.get(self.url, {'q': 'Addon'})
+        assert unlisted_addon.pk not in self.get_results(r)
+
 
 class TestPersonaSearch(SearchBase):
 
@@ -1123,7 +1133,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_ajax_search_admin_deleted_by_id(self):
         self._addons.append(amo.tests.addon_factory(status=amo.STATUS_DELETED))
         self.refresh()
-        addon = Addon.with_deleted.filter(status=amo.STATUS_DELETED)[0]
+        addon = Addon.unfiltered.filter(status=amo.STATUS_DELETED)[0]
         self.search_addons('q=%s' % addon.id, [])
 
     def test_ajax_search_personas_by_id(self):

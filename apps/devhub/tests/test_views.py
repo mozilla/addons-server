@@ -2611,7 +2611,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
     def test_success_unlisted(self):
         eq_(Addon.objects.count(), 0)
         r = self.post(is_listed=False)
-        addon = Addon.objects.get()
+        addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         # Skip from step 2 to step 6.
         self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))

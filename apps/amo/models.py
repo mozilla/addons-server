@@ -357,7 +357,7 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
 
     def reload(self):
         """Reloads the instance from the database."""
-        from_db = self.__class__.objects.get(id=self.id)
+        from_db = self.__class__.get_unfiltered_manager().get(id=self.id)
         for field in self.__class__._meta.fields:
             try:
                 setattr(self, field.name, getattr(from_db, field.name))
@@ -367,6 +367,11 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
                 # failing because of that.
                 pass
         return self
+
+    @classmethod
+    def get_unfiltered_manager(cls):
+        """Return the unfiltered manager from the given class."""
+        return getattr(cls, 'unfiltered', cls.objects)  # Fallback on objects.
 
     def update(self, **kw):
         """
@@ -387,8 +392,9 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
                 if attrs[k] != v:
                     kw[k] = v
                     setattr(self, k, v)
-        # We want this to not fail mysteriously for soft deleted objects.
-        objects = getattr(cls, 'with_deleted', cls.objects)
+        # We want this to not fail mysteriously for filtered out objects (eg
+        # deleted or unlisted).
+        objects = cls.get_unfiltered_manager()
         objects.filter(pk=self.pk).update(**kw)
         if signal:
             models.signals.post_save.send(sender=cls, instance=self,

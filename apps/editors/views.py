@@ -17,7 +17,7 @@ from tower import ugettext as _
 import amo
 from abuse.models import AbuseReport
 from access import acl
-from addons.decorators import addon_view
+from addons.decorators import addon_view, addon_view_factory
 from addons.models import Addon, Version
 from amo.decorators import json_view, post_required
 from amo.utils import paginate
@@ -482,12 +482,12 @@ def application_versions_json(request):
 
 
 @addons_reviewer_required
-@addon_view
+@addon_view_factory(qs=Addon.with_unlisted.all)
 def review(request, addon):
-    version = addon.latest_version
-
     if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
-        raise PermissionDenied
+        raise http.Http404
+
+    version = addon.latest_version
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))

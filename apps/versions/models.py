@@ -94,8 +94,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     source = models.FileField(
         upload_to=source_upload_path, null=True, blank=True)
 
+    # The order of those managers is very important: please read the lengthy
+    # comment above the Addon managers declaration/instanciation.
+    unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
-    with_deleted = VersionManager(include_deleted=True)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'versions'

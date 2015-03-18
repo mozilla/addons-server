@@ -35,17 +35,17 @@ class TestReviewModel(amo.tests.TestCase):
 
     def test_soft_delete(self):
         eq_(Review.objects.count(), 2)
-        eq_(Review.with_deleted.count(), 2)
+        eq_(Review.unfiltered.count(), 2)
 
         Review.objects.get(id=1).delete()
 
         eq_(Review.objects.count(), 1)
-        eq_(Review.with_deleted.count(), 2)
+        eq_(Review.unfiltered.count(), 2)
 
         Review.objects.filter(id=2).delete()
 
         eq_(Review.objects.count(), 0)
-        eq_(Review.with_deleted.count(), 2)
+        eq_(Review.unfiltered.count(), 2)
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.

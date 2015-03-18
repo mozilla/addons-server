@@ -34,11 +34,9 @@ def create_addon_file(name, version_str, addon_status, file_status,
         version_kw = {}
     app_vr, created_ = AppVersion.objects.get_or_create(
         application=application.id, version='1.0')
-    try:
-        ad = Addon.objects.get(name__localized_string=name)
-    except Addon.DoesNotExist:
-        ad = Addon.objects.create(
-            type=addon_type, name=name, is_listed=listed)
+    ad, created_ = Addon.with_unlisted.get_or_create(
+        name__localized_string=name,
+        defaults={'type': addon_type, 'name': name, 'is_listed': listed})
     if admin_review:
         ad.update(admin_review=True)
     vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str,
@@ -54,22 +52,20 @@ def create_addon_file(name, version_str, addon_status, file_status,
         vr.update(created=created)
         file_.update(created=created)
     # Update status *after* we are done creating/modifying version and files:
-    Addon.objects.get(pk=ad.id).update(status=addon_status)
+    Addon.with_unlisted.get(pk=ad.id).update(status=addon_status)
     return {'addon': ad, 'version': vr, 'file': file_}
 
 
 def create_search_ext(name, version_str, addon_status, file_status,
                       listed=True):
-    try:
-        ad = Addon.objects.get(name__localized_string=name)
-    except Addon.DoesNotExist:
-        ad = Addon.objects.create(
-            type=amo.ADDON_SEARCH, name=name, is_listed=listed)
-    vr, created = Version.objects.get_or_create(addon=ad, version=version_str)
+    ad, created_ = Addon.with_unlisted.get_or_create(
+        name__localized_string=name,
+        defaults={'type': amo.ADDON_SEARCH, 'name': name, 'is_listed': listed})
+    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str)
     File.objects.create(version=vr, filename=u"%s.xpi" % name,
                         platform=amo.PLATFORM_ALL.id, status=file_status)
     # Update status *after* there are files:
-    Addon.objects.get(pk=ad.id).update(status=addon_status)
+    Addon.with_unlisted.get(pk=ad.id).update(status=addon_status)
     return ad
 
 
@@ -626,7 +622,7 @@ class TestRereviewQueueTheme(amo.tests.TestCase):
         addon.delete()
 
         eq_(RereviewQueueTheme.objects.count(), 1)
-        eq_(RereviewQueueTheme.with_deleted.count(), 2)
+        eq_(RereviewQueueTheme.unfiltered.count(), 2)
 
     def test_footer_path_without_footer(self):
         rqt = RereviewQueueTheme.objects.create(

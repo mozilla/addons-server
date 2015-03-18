@@ -512,7 +512,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('.theme').length, 1)
-        eq_(RereviewQueueTheme.with_deleted.count(), 2)
+        eq_(RereviewQueueTheme.unfiltered.count(), 2)
 
     def test_rejected_addon_in_rqt(self):
         """Test rejected addons in RQT are not displayed in review lists."""

@@ -835,6 +835,11 @@ class TestDetailPage(amo.tests.TestCase):
         eq_(pq(response.content)('#more-webpage').attr('data-more-url'),
             self.addon.get_url_path(more=True))
 
+    def test_unlisted_addon_returns_404(self):
+        """Unlisted addons are not listed and return 404."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.url).status_code == 404
+
 
 class TestImpalaDetailPage(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']

@@ -130,18 +130,22 @@ def clean_slug(instance, slug_field='slug'):
 
 class AddonManager(amo.models.ManagerBase):
 
-    def __init__(self, include_deleted=False):
-        # DO NOT change the default value of include_deleted unless you've read
-        # through the comment just above the Addon managers
-        # declaration/instanciation and understand the consequences.
+    def __init__(self, include_deleted=False, include_unlisted=False):
+        # DO NOT change the default value of include_deleted and
+        # include_unlisted unless you've read through the comment just above
+        # the Addon managers declaration/instanciation and understand the
+        # consequences.
         amo.models.ManagerBase.__init__(self)
         self.include_deleted = include_deleted
+        self.include_unlisted = include_unlisted
 
     def get_query_set(self):
         qs = super(AddonManager, self).get_query_set()
         qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
+        if not self.include_unlisted:
+            qs = qs.exclude(is_listed=False)
         return qs.transform(Addon.transformer)
 
     def id_or_slug(self, val):
@@ -373,9 +377,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     # mistake. You thus want the CLASS of the first one to be filtered by
     # default.
     # We don't control the instantiation, but AddonManager sets include_deleted
-    # to False by default, so filtering is enabled by default. This is also why
-    # it's not repeated for 'objects' below.
-    with_deleted = AddonManager(include_deleted=True)
+    # and include_unlisted to False by default, so filtering is enabled by
+    # default. This is also why it's not repeated for 'objects' below.
+    unfiltered = AddonManager(include_deleted=True, include_unlisted=True)
+    with_unlisted = AddonManager(include_unlisted=True)
     objects = AddonManager()
 
     class Meta:

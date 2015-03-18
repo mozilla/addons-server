@@ -5,7 +5,8 @@ from django.core.exceptions import PermissionDenied
 
 from amo.decorators import login_required
 from access import acl
-from addons.decorators import addon_view
+from addons.decorators import addon_view_factory
+from addons.models import Addon
 from devhub.models import SubmitStep
 
 
@@ -15,7 +16,7 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False):
     When allow_editors is True, an editor can view the page.
     """
     def decorator(f):
-        @addon_view
+        @addon_view_factory(qs=Addon.with_unlisted.all)
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):

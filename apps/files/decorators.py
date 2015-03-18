@@ -18,21 +18,25 @@ log = commonware.log.getLogger('z.addons')
 
 
 def allowed(request, file):
-    allowed = acl.check_addons_reviewer(request)
-    if not allowed:
-        try:
-            addon = file.version.addon
-        except ObjectDoesNotExist:
-            raise http.Http404
+    try:
+        addon = file.version.addon
+    except ObjectDoesNotExist:
+        raise http.Http404
 
-        if addon.view_source and addon.status in amo.REVIEWED_STATUSES:
-            allowed = True
-        else:
-            allowed = acl.check_addon_ownership(request, addon, viewer=True,
-                                                dev=True)
-    if not allowed:
-        raise PermissionDenied
-    return True
+    def is_owner():
+        return acl.check_addon_ownership(request, addon, viewer=True, dev=True)
+
+    # General case: addon is listed.
+    if addon.is_listed:
+        if ((addon.view_source and addon.status in amo.REVIEWED_STATUSES) or
+                acl.check_addons_reviewer(request) or is_owner()):
+            return True  # Public and sources are visible, or reviewer.
+        raise PermissionDenied  # Listed but not allowed.
+    # Not listed? Needs an owner or an "unlisted" admin.
+    else:
+        if acl.check_unlisted_addons_reviewer(request) or is_owner():
+            return True
+    raise http.Http404  # Not listed, not owner or admin.
 
 
 def _get_value(obj, key, value, cast=None):

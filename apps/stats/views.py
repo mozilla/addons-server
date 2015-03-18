@@ -23,7 +23,7 @@ from product_details import product_details
 
 import amo
 from access import acl
-from addons.decorators import addon_view, addon_view_factory
+from addons.decorators import addon_view_factory
 from addons.models import Addon
 from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
@@ -47,6 +47,9 @@ COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'collections_created', 'reviews_created', 'addons_created',
                  'users_created', 'my_apps')
+
+
+addon_view_with_unlisted = addon_view_factory(qs=Addon.with_unlisted.all)
 
 
 def dashboard(request):
@@ -140,7 +143,7 @@ def extract(dicts):
     return extracted
 
 
-@addon_view
+@addon_view_with_unlisted
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -185,7 +188,7 @@ def zip_overview(downloads, updates):
                'data': {'downloads': dl_count, 'updates': up_count}}
 
 
-@addon_view
+@addon_view_with_unlisted
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -199,7 +202,7 @@ def downloads_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_with_unlisted
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -216,7 +219,7 @@ def sources_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_with_unlisted
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -232,7 +235,7 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_with_unlisted
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
     """Generate ADU breakdown of ``field``."""
@@ -330,7 +333,7 @@ def check_stats_permission(request, addon, for_contributions=False):
     raise PermissionDenied
 
 
-@addon_view_factory(Addon.objects.valid)
+@addon_view_factory(qs=Addon.with_unlisted.valid)
 def stats_report(request, addon, report):
     check_stats_permission(request, addon,
                            for_contributions=(report == 'contributions'))
@@ -439,7 +442,7 @@ def site_event_format(request, events):
         }
 
 
-@addon_view
+@addon_view_with_unlisted
 def contributions_series(request, addon, group, start, end, format):
     """Generate summarized contributions grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)

@@ -79,7 +79,7 @@ class Review(amo.models.ModelBase):
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instanciation.
-    with_deleted = ReviewManager(include_deleted=True)
+    unfiltered = ReviewManager(include_deleted=True)
     objects = ReviewManager()
 
     class Meta:

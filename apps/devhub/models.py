@@ -293,11 +293,8 @@ class ActivityLog(amo.models.ModelBase):
             else:
                 (app_label, model_name) = model_name.split('.')
                 model = models.loading.get_model(app_label, model_name)
-                # Cope with soft deleted models.
-                if hasattr(model, 'with_deleted'):
-                    objs.extend(model.with_deleted.filter(pk=pk))
-                else:
-                    objs.extend(model.objects.filter(pk=pk))
+                # Cope with soft deleted models and unlisted addons.
+                objs.extend(model.get_unfiltered_manager().filter(pk=pk))
 
         return objs
 

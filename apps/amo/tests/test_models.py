@@ -7,6 +7,7 @@ from amo.models import manual_order
 from amo.tests import TestCase
 from amo import models as context
 from addons.models import Addon
+from users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db
@@ -143,6 +144,10 @@ class TestModelBase(TestCase):
         # Reload. And it's magically now a persona.
         eq_(addon.reload().type, amo.ADDON_PERSONA)
         eq_(addon.type, amo.ADDON_PERSONA)
+
+    def test_get_unfiltered_manager(self):
+        Addon.get_unfiltered_manager() == Addon.unfiltered
+        UserProfile.get_unfiltered_manager() == UserProfile.objects
 
 
 def test_cache_key():

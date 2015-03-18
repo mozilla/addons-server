@@ -137,6 +137,12 @@ class TestViews(ReviewTest):
         classes = sorted(c.get('class') for c in actions.find('li a'))
         eq_(classes, ['delete-review', 'review-edit'])
 
+    def test_cant_view_unlisted_addon_reviews(self):
+        """An unlisted addon doesn't have reviews."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(helpers.url('addons.reviews.list',
+                                           self.addon.slug)).status_code == 404
+
 
 class TestFlag(ReviewTest):
 
@@ -370,6 +376,11 @@ class TestCreate(ReviewTest):
             eq_(ff[0].flag, True)
             eq_(ff[0].editorreview, True)
             eq_(rf[0].note, 'URLs')
+
+    def test_cant_review_unlisted_addon(self):
+        """Can't review an unlisted addon."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.add).status_code == 404
 
 
 class TestEdit(ReviewTest):
