@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-05 09:05+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "… en nog {0}"
 msgstr[1] "… en nog {0}"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "Volledig validatierapport bekijken"
 
@@ -107,19 +107,19 @@ msgstr ""
 "Als uw add-on een account bij een website vereist om volledig getest te kunnen worden, vermeld dan een testgebruikersnaam en wachtwoord in de Opmerkingen voor de beoordelaar (dit kunt u in de "
 "volgende stap doen)."
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "Als uw add-on bedoeld is voor een beperkt publiek, dient u Voorlopige beoordeling te kiezen in plaats van Volledige beoordeling."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "Checklist add-onindiening"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Controleer de volgende punten voordat u uw inzending afrondt. Dit minimaliseert vertragingen of misvattingen tijdens het beoordelingsproces:"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -127,19 +127,19 @@ msgstr ""
 "Bronnen van gecompileerde binaire codes dienen, net als verkleinde of verborgen scripts (exclusief bekende bibliotheken), apart ter beoordeling te worden ingediend. Zorg er voor dat u het "
 "uploadveld voor broncode gebruikt om te voorkomen dat uw inzending wordt afgewezen."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Het validatieproces heeft de volgende problemen die tot afwijzing zouden kunnen leiden gevonden:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Als u niet bekend bent met het add-onbeoordelingsproces, kunt u er hier meer over lezen."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Sommige platformen zijn niet beschikbaar voor dit type add-on."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "Sorry, geen ondersteund platform gevonden."
 

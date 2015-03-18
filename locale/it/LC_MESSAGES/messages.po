@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:07-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-03-09 18:19+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -139,16 +139,16 @@ msgstr "Non verificato"
 msgid "Featured"
 msgstr "Consigliati"
 
-#: apps/addons/models.py:305
+#: apps/addons/models.py:308
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Gli utenti possono donare un importo superiore o inferiore a questa cifra."
 
-#: apps/addons/models.py:314
+#: apps/addons/models.py:317
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Gli utenti riceveranno una richiesta nella schermata di gestione delle estensioni (Firefox 4 e successivi)"
 
 # Column name in a table.
-#: apps/addons/models.py:1870
+#: apps/addons/models.py:1887
 msgid "Listed"
 msgstr "Visualizzato"
 
@@ -847,7 +847,7 @@ msgid "See the <a href=\"%(support)s\">support section</a> to find out where to 
 msgstr "Consulta la <a href=\"%(support)s\">sezione di supporto</a> per scoprire come ottenere aiuto per questo componente aggiuntivo."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
-#: apps/pages/templates/pages/review_guide.html:47
+#: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
 msgstr "Linee guida per le recensioni"
 
@@ -2625,7 +2625,7 @@ msgstr ""
 "Per aggiungere un componente aggiuntivo a questa raccolta, digitare il nome nel campo seguente e premere invio. È anche possibile utilizzare i link <strong>Aggiungi alla raccolta</strong> presenti "
 "sul sito per aggiungere dei componenti aggiuntivi in seguito."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:385 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Componente aggiuntivo"
 
@@ -3048,7 +3048,7 @@ msgstr "Compilato"
 msgid "Non-binary"
 msgstr "Non compilato"
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
+#: apps/compat/views.py:84 apps/constants/base.py:373 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "Altro"
 
@@ -3072,7 +3072,7 @@ msgstr "95% di tutti i componenti aggiuntivi"
 msgid "All active add-ons"
 msgstr "Tutti i componenti aggiuntivi attivi"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:386
 msgid "App"
 msgstr "App"
 
@@ -3368,131 +3368,131 @@ msgstr "Chiedi agli utenti dopo aver avviato il download di questo componente ag
 msgid "Ask before users can download this add-on"
 msgstr "Chiedi agli utenti prima di consentire il download di questo componente aggiuntivo"
 
-#: apps/constants/base.py:371
+#: apps/constants/base.py:374
 msgid "Exception"
 msgstr "Eccezione"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:375
 msgid "Release"
 msgstr "Versione"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:376
 msgid "Change"
 msgstr "Modifica"
 
-#: apps/constants/base.py:384
+#: apps/constants/base.py:387
 msgid "Persona"
 msgstr "Tema di Personas"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
 msgstr "Manuale per attribuire i punti ai revisori"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:419
 msgid "Full Add-on Review"
 msgstr "Recensione completa del componente aggiuntivo"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
 msgstr "Recensione preliminare del componente aggiuntivo"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:421
 msgid "Updated Add-on Review"
 msgstr "Recensione per il componente aggiuntivo aggiornato"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:422
 msgid "Full Dictionary Review"
 msgstr "Recensione completa del dizionario"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
 msgstr "Recensione preliminare del dizionario"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
 msgstr "Recensione aggiornata del dizionario"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:425
 msgid "Full Language Pack Review"
 msgstr "Recensione completa del language pack"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
 msgstr "Recensione preliminare del language pack"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
 msgstr "Recensione aggiornata del language pack"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:428
 msgid "Theme Review"
 msgstr "Revisione tema"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:429
 msgid "Full Search Provider Review"
 msgstr "Recensione completa del motore di ricerca"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
 msgstr "Recensione preliminare del motore di ricerca"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
 msgstr "Recensione aggiornata del motore di ricerca"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:432
 msgid "Complete Theme Review"
 msgstr "Revisione tema completo"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
 msgstr "Revisione preliminare tema completo"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
 msgstr "Revisione aggiornata tema completo"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:435
 msgid "Moderated Addon Review"
 msgstr "Revisione moderata del componente aggiuntivo"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
 msgstr "Moderazione revisione componente aggiuntivo ripristinata"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 1"
 msgstr "Livello 1"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 2"
 msgstr "Livello 2"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 3"
 msgstr "Livello 3"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 4"
 msgstr "Livello 4"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:485
 msgid "Level 5"
 msgstr "Livello 5"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:486
 msgid "Level 6"
 msgstr "Livello 6"
 
-#: apps/constants/base.py:506
+#: apps/constants/base.py:509
 msgid "Not signed"
 msgstr "Non pronto"
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:510
 msgid "Signed for a full review"
 msgstr "Pronto per una revisione completa"
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
 msgstr "Pronto per una revisione preliminare"
 
@@ -3834,7 +3834,7 @@ msgstr "Tempo per la connessione a \"%s\" esaurito."
 msgid "Could not contact host at \"%s\"."
 msgstr "Impossibile contattare l’host “%s”."
 
-#: apps/devhub/utils.py:57
+#: apps/devhub/utils.py:59
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 "Il processo di convalida per %s ha generato troppi avvisi/messaggi e sono stati perciò troncati. Quando saranno stati risolti i messaggi visualizzati, dovrebbe essere possibile visualizzare il "
@@ -9348,17 +9348,17 @@ msgid "A developer may reply to any review posted to their add-on as long as the
 msgstr "Lo sviluppatore può rispondere a ogni recensione scritta sul proprio componente aggiuntivo semplicemente effettuando l’accesso ad AMO. Inoltre ogni utente può segnalare una recensione come:"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
+#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
 msgstr "spam o contenuti fuori luogo"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
+#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
 msgid "Inappropriate language/dialog"
 msgstr "linguaggio non appropriato"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:156
+#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:161
 msgid "Misplaced bug report or support request"
 msgstr "segnalazione bug o richiesta di supporto inserita nella sezione non corretta"
 
@@ -9842,19 +9842,15 @@ msgstr ""
 "Per ottenere aiuto su Firefox in generale visita il <a href=\"%(sumo_url)s\">sito web dedicato al supporto</a>. Per domande sul sito web e sui componenti aggiuntivi visita il nostro <a href="
 "\"%(forum_url)s\">forum</a>."
 
-#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:54
+#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
 msgstr "Alcuni consigli per scrivere una buona recensione"
 
-#: apps/pages/templates/pages/review_guide.html:39
-msgid "Guidelines for rating add-ons"
-msgstr "Linee guida per valutare un componente aggiuntivo"
-
-#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:134
+#: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
 msgstr "FAQ sulle recensioni"
 
-#: apps/pages/templates/pages/review_guide.html:49
+#: apps/pages/templates/pages/review_guide.html:46
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
@@ -9862,55 +9858,55 @@ msgstr ""
 "Le recensioni rappresentano un canale dove condividere opinioni sui componenti aggiuntivi che hai installato e utilizzato. I nostri moderatori si riservano il diritto di respingere o eliminare le "
 "recensioni che non rispettano le linee guida."
 
-#: apps/pages/templates/pages/review_guide.html:56
+#: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
 msgstr "Si:"
 
-#: apps/pages/templates/pages/review_guide.html:59
+#: apps/pages/templates/pages/review_guide.html:56
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "Scrivi della tua esperienza con il componente aggiuntivo come se la stessi raccontando a un amico."
 
-#: apps/pages/templates/pages/review_guide.html:64
+#: apps/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
 msgstr "Scrivi le tue recensioni in modo sintetico e chiaro."
 
-#: apps/pages/templates/pages/review_guide.html:65
+#: apps/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
 msgstr "Condividi dettagli specifici e utili. Per esempio:"
 
-#: apps/pages/templates/pages/review_guide.html:67
+#: apps/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
 msgstr "Il componente aggiuntivo funziona come ti aspettavi?"
 
-#: apps/pages/templates/pages/review_guide.html:68
+#: apps/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
 msgstr "Quali funzioni ti sono piaciute, e quali no?"
 
-#: apps/pages/templates/pages/review_guide.html:69
+#: apps/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
 msgstr "Ti è stato utile?"
 
-#: apps/pages/templates/pages/review_guide.html:70
+#: apps/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
 msgstr "È facile da utilizzare?"
 
-#: apps/pages/templates/pages/review_guide.html:71
+#: apps/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
 msgstr "Continuerai a utilizzare questo componente aggiuntivo?"
 
-#: apps/pages/templates/pages/review_guide.html:76
+#: apps/pages/templates/pages/review_guide.html:73
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr "Prima di pubblicare la recensione, rileggila con calma per correggere eventuali errori di battitura."
 
-#: apps/pages/templates/pages/review_guide.html:82
+#: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
 msgstr "Non devi:"
 
-#: apps/pages/templates/pages/review_guide.html:85
+#: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Inserire recensioni di una parola del tipo “Bello!”, “Fantastico”, “terribile”."
 
-#: apps/pages/templates/pages/review_guide.html:90
+#: apps/pages/templates/pages/review_guide.html:87
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
@@ -9918,31 +9914,31 @@ msgstr ""
 "Descrivere problemi di natura tecnica, richiedere supporto o l’implementazione di nuove funzioni. È sempre preferibile, quando presenti, utilizzare le opzioni per il supporto rese disponibili dallo "
 "sviluppatore del singolo componente, che si trovano nella colonna laterale accanto alla sezione “Informazioni su questo componente aggiuntivo”."
 
-#: apps/pages/templates/pages/review_guide.html:95
+#: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "scrivere recensioni di componenti aggiuntivi che non hai provato personalmente;"
 
-#: apps/pages/templates/pages/review_guide.html:100
+#: apps/pages/templates/pages/review_guide.html:97
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "usare un linguaggio volgare, osceno o che possa essere considerato fastidioso;"
 
-#: apps/pages/templates/pages/review_guide.html:106
+#: apps/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "Includere codice HTML, link, codice sorgente o frammenti di codice: le recensioni devono contenere unicamente testo."
 
-#: apps/pages/templates/pages/review_guide.html:111
+#: apps/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "fare affermazioni false, screditare o insultare gli autori dei componenti aggiuntivi;"
 
-#: apps/pages/templates/pages/review_guide.html:117
+#: apps/pages/templates/pages/review_guide.html:114
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Includere indirizzi email, numeri di telefono o altre informazioni personali proprie o altrui."
 
-#: apps/pages/templates/pages/review_guide.html:122
+#: apps/pages/templates/pages/review_guide.html:119
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "inserire recensioni su componenti aggiuntivi sviluppati o rappresentati da te o dall’organizzazione a cui appartieni."
 
-#: apps/pages/templates/pages/review_guide.html:128
+#: apps/pages/templates/pages/review_guide.html:125
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
@@ -9950,11 +9946,11 @@ msgstr ""
 "Criticare un componente aggiuntivo per la funzione a cui è destinato. Per esempio inserire una recensione negativa su un componente che mostra annunci pubblicitari o raccoglie dati quando queste "
 "sono le sue esplicite funzioni, oppure quando esso necessita dei dati raccolti per un corretto funzionamento."
 
-#: apps/pages/templates/pages/review_guide.html:136
+#: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
 msgstr "Come posso segnalare una recensione problematica?"
 
-#: apps/pages/templates/pages/review_guide.html:138
+#: apps/pages/templates/pages/review_guide.html:135
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
@@ -9962,11 +9958,11 @@ msgstr ""
 "Ti invitiamo a segnalare le recensioni inappropriate tramite il pulsante “Segnala abuso” per sottoporle all’attenzione dei moderatori, i quali a loro volta valuteranno secondo le linee guida se "
 "eliminarle o mantenerle sul sito."
 
-#: apps/pages/templates/pages/review_guide.html:143
+#: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Sono un autore di componenti aggiuntivi, posso rispondere a una recensione?"
 
-#: apps/pages/templates/pages/review_guide.html:145
+#: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
@@ -9974,11 +9970,11 @@ msgstr ""
 "Sì, l’autore del componente aggiuntivo può fornire una sola risposta per ciascuna recensione. Puoi tuttavia aprire un topic apposito sul <a href=\"http://forums.mozilla.org/viewforum.php?"
 "f=23\">forum</a> per proseguire la discussione."
 
-#: apps/pages/templates/pages/review_guide.html:152
+#: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Sono un autore di componenti aggiuntivi, posso eliminare recensioni e valutazioni sfavorevoli?"
 
-#: apps/pages/templates/pages/review_guide.html:154
+#: apps/pages/templates/pages/review_guide.html:151
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
@@ -10109,7 +10105,7 @@ msgstr "Ignora per il momento"
 msgid "Delete review"
 msgstr "Elimina revisione"
 
-#: apps/reviews/models.py:157
+#: apps/reviews/models.py:162
 msgid "Other (please specify)"
 msgstr "Altro (specificare)"
 

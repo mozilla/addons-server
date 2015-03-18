@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-07 23:29-5000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -63,7 +63,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "... その他 {0} 個"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "検証レポートの詳細を見る"
 
@@ -101,19 +101,19 @@ msgstr "詳しいリリースノートを含める (これは次のステップ�
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザ名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "このアドオンが特定のユーザ層のみを対象としたものである場合、本審査ではなく事前審査を選択してください。"
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "アドオン登録チェックリスト"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "登録を完了する前に以下の点について確認してください。これは審査手続き中の遅延や誤解を最小限にするために役立ちます。"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -121,19 +121,19 @@ msgstr ""
 "コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
 "ドフォームを使い、審査が即座に却下されないようにしてください。"
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "アドオンの審査手続きについてよくご存じない場合は、こちらをご覧ください。"
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "この種類のアドオンは OS によって対応していないことがあります。"
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "申し訳ありませんが、対応プラットフォームがひとつも見つかりませんでした。"
 

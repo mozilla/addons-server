@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:07-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-08 01:21+0100\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -137,16 +137,16 @@ msgstr "Ikke anmeldt"
 msgid "Featured"
 msgstr "Udvalgte"
 
-#: apps/addons/models.py:305
+#: apps/addons/models.py:308
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Brugere har mulighed for, at bidrage med beløb større eller mindre end dette."
 
-#: apps/addons/models.py:314
+#: apps/addons/models.py:317
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Brugere vil altid blive spurgt i fanebladet Tilføjelser (Firefox 4 og nyere)"
 
 # Column name in a table.
-#: apps/addons/models.py:1870
+#: apps/addons/models.py:1887
 msgid "Listed"
 msgstr "Listet"
 
@@ -837,7 +837,7 @@ msgid "See the <a href=\"%(support)s\">support section</a> to find out where to 
 msgstr "Se <a href=\"%(support)s\">support-afsnittet</a> for at finde ud af, hvor du får hjælp til denne tilføjelset."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
-#: apps/pages/templates/pages/review_guide.html:47
+#: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
 msgstr "Retningslinjer for anmeldelser"
 
@@ -2606,7 +2606,7 @@ msgstr ""
 "For at inkludere en tilføjelse i denne samling, skal du indtast tilføjelsens navn i feltet nedenunder og trykke på tasten Enter. Du kan også bruge links med <strong>Føj til samling</strong> for at "
 "inkludere tilføjelser senere."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:385 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Tilføjelse"
 
@@ -3021,7 +3021,7 @@ msgstr "Binær"
 msgid "Non-binary"
 msgstr "Ikke-binær"
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
+#: apps/compat/views.py:84 apps/constants/base.py:373 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "Anden"
 
@@ -3045,7 +3045,7 @@ msgstr "Top 95% af alle tilføjelser"
 msgid "All active add-ons"
 msgstr "Alle aktive tilføjelser"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:386
 msgid "App"
 msgstr "App"
 
@@ -3341,131 +3341,131 @@ msgstr ""
 msgid "Ask before users can download this add-on"
 msgstr ""
 
-#: apps/constants/base.py:371
+#: apps/constants/base.py:374
 msgid "Exception"
 msgstr ""
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:375
 msgid "Release"
 msgstr ""
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:376
 msgid "Change"
 msgstr ""
 
-#: apps/constants/base.py:384
+#: apps/constants/base.py:387
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:419
 msgid "Full Add-on Review"
 msgstr ""
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:421
 msgid "Updated Add-on Review"
 msgstr ""
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:422
 msgid "Full Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:425
 msgid "Full Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:428
 msgid "Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:429
 msgid "Full Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:432
 msgid "Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:435
 msgid "Moderated Addon Review"
 msgstr ""
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
 msgstr ""
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 1"
 msgstr "Niveau 1"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 2"
 msgstr "Niveau 2"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 3"
 msgstr "Niveau 3"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 4"
 msgstr "Niveau 4"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:485
 msgid "Level 5"
 msgstr "Niveau 5"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:486
 msgid "Level 6"
 msgstr "Niveau 6"
 
-#: apps/constants/base.py:506
+#: apps/constants/base.py:509
 msgid "Not signed"
 msgstr ""
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:510
 msgid "Signed for a full review"
 msgstr ""
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
 msgstr ""
 
@@ -3807,7 +3807,7 @@ msgstr "Forbindelsen til \"%s\" løb ud."
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: apps/devhub/utils.py:57
+#: apps/devhub/utils.py:59
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
@@ -9011,17 +9011,17 @@ msgid "A developer may reply to any review posted to their add-on as long as the
 msgstr ""
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
+#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
 msgstr "Spam eller på anden måde ikke en anmeldelse"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
+#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
 msgid "Inappropriate language/dialog"
 msgstr "Upassende sprogbrug"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:156
+#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:161
 msgid "Misplaced bug report or support request"
 msgstr "Fejlplaceret fejlrapport eller support-spørgsmål"
 
@@ -9490,133 +9490,129 @@ msgstr ""
 "Har du brug for hjælp til din Firefox, kan du besøge vores <a href=\"http://mozilladanmark.dk/faahjaelp\">supportwebsted</a>. Hvis du ikke kan finde et svar der, kan du <a href=\"http://forum."
 "mozilladanmark.dk\">spørge i MozillaDanmarks forum</a>."
 
-#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:54
+#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
 msgstr "Råd til hvordan du skriver en god anmeldelse"
 
-#: apps/pages/templates/pages/review_guide.html:39
-msgid "Guidelines for rating add-ons"
-msgstr "Retningslinjer for anmeldelser"
-
-#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:134
+#: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Ofte stillede spørgsmål om anmeldelser"
 
-#: apps/pages/templates/pages/review_guide.html:49
+#: apps/pages/templates/pages/review_guide.html:46
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:56
+#: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
 msgstr "Husk at:"
 
-#: apps/pages/templates/pages/review_guide.html:59
+#: apps/pages/templates/pages/review_guide.html:56
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "Skrive som hvis du fortalte en ven om din oplevelse af tilføjelsen."
 
-#: apps/pages/templates/pages/review_guide.html:64
+#: apps/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
 msgstr "Holde din anmeldelse kortfattet og nem at forstå."
 
-#: apps/pages/templates/pages/review_guide.html:65
+#: apps/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
 msgstr "Give specifikke og brugbare detaljer, eksempelvis:"
 
-#: apps/pages/templates/pages/review_guide.html:67
+#: apps/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
 msgstr "Virkede tilføjelsen som du forventede?"
 
-#: apps/pages/templates/pages/review_guide.html:68
+#: apps/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
 msgstr "Hvad kunne du lide, og hvad kunne du ikke lide ved tilføjelsen?"
 
-#: apps/pages/templates/pages/review_guide.html:69
+#: apps/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
 msgstr "Er tilføjelsen brugbar?"
 
-#: apps/pages/templates/pages/review_guide.html:70
+#: apps/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
 msgstr "Er tilføjelsen nem at bruge?"
 
-#: apps/pages/templates/pages/review_guide.html:71
+#: apps/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
 msgstr "Vil du fortsætte med at bruge denne tilføjelse?"
 
-#: apps/pages/templates/pages/review_guide.html:76
+#: apps/pages/templates/pages/review_guide.html:73
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:82
+#: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
 msgstr "Lad være med at:"
 
-#: apps/pages/templates/pages/review_guide.html:85
+#: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:90
+#: apps/pages/templates/pages/review_guide.html:87
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:95
+#: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Skrive anmeldelser af tilføjelser, som du ikke selv har brugt."
 
-#: apps/pages/templates/pages/review_guide.html:100
+#: apps/pages/templates/pages/review_guide.html:97
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "Bruge sjofelt eller fjendtligt sprog."
 
-#: apps/pages/templates/pages/review_guide.html:106
+#: apps/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:111
+#: apps/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Give falske udtalelser, nedgøre tilføjelsens udviklere eller komme med personlige fornærmelser."
 
-#: apps/pages/templates/pages/review_guide.html:117
+#: apps/pages/templates/pages/review_guide.html:114
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:122
+#: apps/pages/templates/pages/review_guide.html:119
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Anmelde en tilføjelse, som du selv eller din organisation har skrevet eller repræsenterer."
 
-#: apps/pages/templates/pages/review_guide.html:128
+#: apps/pages/templates/pages/review_guide.html:125
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:136
+#: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
 msgstr "Hvordan kan jeg rapportere en problematisk anmeldelse?"
 
-#: apps/pages/templates/pages/review_guide.html:138
+#: apps/pages/templates/pages/review_guide.html:135
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:143
+#: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Jeg er forfatter til en tilføjelse. Kan jeg svare på anmeldelser?"
 
-#: apps/pages/templates/pages/review_guide.html:145
+#: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:152
+#: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Jeg er forfatter til en tilføjelse. Kan jeg slette negative anmeldelser og bedømmelser?"
 
-#: apps/pages/templates/pages/review_guide.html:154
+#: apps/pages/templates/pages/review_guide.html:151
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
@@ -9744,7 +9740,7 @@ msgstr ""
 msgid "Delete review"
 msgstr "Slet anmeldelse"
 
-#: apps/reviews/models.py:157
+#: apps/reviews/models.py:162
 msgid "Other (please specify)"
 msgstr "Andet (angiv hvad)"
 

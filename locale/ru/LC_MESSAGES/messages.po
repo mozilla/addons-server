@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-11 11:07-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-03-07 23:00+0300\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -146,16 +146,16 @@ msgstr "Не проверено"
 msgid "Featured"
 msgstr "Избранное"
 
-#: apps/addons/models.py:305
+#: apps/addons/models.py:308
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Пользователи могут решить внести больше или меньше этой суммы."
 
-#: apps/addons/models.py:314
+#: apps/addons/models.py:317
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Пользователей всегда будут просить в менеджере дополнений (Firefox 4 и выше)"
 
 # Column name in a table.
-#: apps/addons/models.py:1870
+#: apps/addons/models.py:1887
 msgid "Listed"
 msgstr "В списке"
 
@@ -857,7 +857,7 @@ msgid "See the <a href=\"%(support)s\">support section</a> to find out where to 
 msgstr "Для получения сведений о том, как получить помощь по работе с этим дополнением, обратитесь в <a href=\"%(support)s\">раздел поддержки</a>."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
-#: apps/pages/templates/pages/review_guide.html:47
+#: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
 msgstr "Чем следует руководствоваться при написании отзывов"
 
@@ -2648,7 +2648,7 @@ msgstr ""
 "Чтобы включить дополнение в эту подборку, введите его имя в расположенное ниже поле и нажмите Enter. В дальнейшем для добавления дополнений вы также можете использовать расположенные на сайте "
 "ссылки <strong>Добавить в подборку</strong>."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:385 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Дополнение"
 
@@ -3067,7 +3067,7 @@ msgstr "Бинарные"
 msgid "Non-binary"
 msgstr "Не бинарные"
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:142
+#: apps/compat/views.py:84 apps/constants/base.py:373 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "Другое"
 
@@ -3091,7 +3091,7 @@ msgstr "Основные 95% всех дополнений"
 msgid "All active add-ons"
 msgstr "Все активные дополнения"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:386
 msgid "App"
 msgstr "Прил."
 
@@ -3389,131 +3389,131 @@ msgstr "Спросите после того как пользователи н�
 msgid "Ask before users can download this add-on"
 msgstr "Спросите перед тем как пользователи смогут загрузить это дополнение"
 
-#: apps/constants/base.py:371
+#: apps/constants/base.py:374
 msgid "Exception"
 msgstr "Исключение"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:375
 msgid "Release"
 msgstr "Выпуск"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:376
 msgid "Change"
 msgstr "Изменить"
 
-#: apps/constants/base.py:384
+#: apps/constants/base.py:387
 msgid "Persona"
 msgstr "Обои"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
 msgstr "Очки за проверку вручную"
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:419
 msgid "Full Add-on Review"
 msgstr "Полная проверка дополнения"
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
 msgstr "Предварительная проверка дополнения"
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:421
 msgid "Updated Add-on Review"
 msgstr "Обновлённая проверка дополнения"
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:422
 msgid "Full Dictionary Review"
 msgstr "Полная проверка словаря"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
 msgstr "Предварительная проверка словаря"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
 msgstr "Проверка обновлённого словаря"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:425
 msgid "Full Language Pack Review"
 msgstr "Полная проверка локали"
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
 msgstr "Предварительная проверка локали"
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
 msgstr "Проверка обновлённой локали"
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:428
 msgid "Theme Review"
 msgstr "Проверка темы"
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:429
 msgid "Full Search Provider Review"
 msgstr "Полная проверка поисковика"
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
 msgstr "Предварительная проверка поисковика"
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
 msgstr "Проверка обновлённого поисковика"
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:432
 msgid "Complete Theme Review"
 msgstr "Проверка полной темы"
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
 msgstr "Предварительная проверка полной темы"
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
 msgstr "Обновлённая проверка полной темы"
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:435
 msgid "Moderated Addon Review"
 msgstr "Проверка модерируемого дополнения "
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
 msgstr "Откат модерации отзыва на дополнение"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 1"
 msgstr "Уровень 1"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 2"
 msgstr "Уровень 2"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 3"
 msgstr "Уровень 3"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 4"
 msgstr "Уровень 4"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:485
 msgid "Level 5"
 msgstr "Уровень 5"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:486
 msgid "Level 6"
 msgstr "Уровень 6"
 
-#: apps/constants/base.py:506
+#: apps/constants/base.py:509
 msgid "Not signed"
 msgstr "Не подписался"
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:510
 msgid "Signed for a full review"
 msgstr "Подписался на полную проверку"
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
 msgstr "Подписался на предварительную проверку"
 
@@ -3859,7 +3859,7 @@ msgstr "Время ожидание соединения с \"%s\" истекл�
 msgid "Could not contact host at \"%s\"."
 msgstr "Не удалось связаться с хостом на \"%s\"."
 
-#: apps/devhub/utils.py:57
+#: apps/devhub/utils.py:59
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Валидайия сгенерировала слишком много ошибок и предупреждений, поэтому %s сообщений было не отображено. После устранения видимых сообщений, вы сможете увидеть другие."
 
@@ -9369,17 +9369,17 @@ msgid "A developer may reply to any review posted to their add-on as long as the
 msgstr "Разработчик может ответить на любой отзыв, оставленный на его дополнение, если он залогинен на АМО. Кроме того, любой пользователь может отметить отзыв как:"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
+#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
 msgstr "Спам или другое несоответствующее содержимое"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
+#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
 msgid "Inappropriate language/dialog"
 msgstr "Неприемлемые выражения/перебранка"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:156
+#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:161
 msgid "Misplaced bug report or support request"
 msgstr "Отправленное не по назначению сообщение об ошибке или просьба оказать поддержку"
 
@@ -9863,19 +9863,15 @@ msgstr ""
 "Для получения общей поддержки по Firefox, посетите наш <a href=\"%(sumo_url)s\">веб-сайт поддержки</a>. Для общих вопросов по дополнениям и веб-сайту, посетите наш <a href=\"%(forum_url)s\">форум</"
 "a>."
 
-#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:54
+#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
 msgstr "Некоторые советы по написанию хороших отзывов"
 
-#: apps/pages/templates/pages/review_guide.html:39
-msgid "Guidelines for rating add-ons"
-msgstr "Руководство по рейтингу дополнений"
-
-#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:134
+#: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Часто задаваемые вопросы об отзывах"
 
-#: apps/pages/templates/pages/review_guide.html:49
+#: apps/pages/templates/pages/review_guide.html:46
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
@@ -9883,55 +9879,55 @@ msgstr ""
 "Отзывы на дополнения являются для вас способом поделиться своим мнением о дополнениях, которые вы установили и использовали. Наша команда модерации отзывов оставляет за собой право отказать или "
 "удалить любой отзыв, который не соответствует этим принципам."
 
-#: apps/pages/templates/pages/review_guide.html:56
+#: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
 msgstr "Вам следует:"
 
-#: apps/pages/templates/pages/review_guide.html:59
+#: apps/pages/templates/pages/review_guide.html:56
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "Писать так, как будто вы рассказываете другу о своем опыте работы с дополнением."
 
-#: apps/pages/templates/pages/review_guide.html:64
+#: apps/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
 msgstr "Оставлять сжатые и легкие для понимания отзывы."
 
-#: apps/pages/templates/pages/review_guide.html:65
+#: apps/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
 msgstr "Приводить конкретные и полезные детали. Например:"
 
-#: apps/pages/templates/pages/review_guide.html:67
+#: apps/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
 msgstr "Дополнение работало так как вы ожидали?"
 
-#: apps/pages/templates/pages/review_guide.html:68
+#: apps/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
 msgstr "Какие возможности вам нравятся или не нравятся?"
 
-#: apps/pages/templates/pages/review_guide.html:69
+#: apps/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
 msgstr "Было ли оно полезно?"
 
-#: apps/pages/templates/pages/review_guide.html:70
+#: apps/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
 msgstr "Было ли легко его использовать?"
 
-#: apps/pages/templates/pages/review_guide.html:71
+#: apps/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
 msgstr "Будете ли вы продолжать использовать это дополнение?"
 
-#: apps/pages/templates/pages/review_guide.html:76
+#: apps/pages/templates/pages/review_guide.html:73
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr "Найдите немного времени, чтобы прочитать свой отзыв перед отправкой, чтобы минимизировать опечатки."
 
-#: apps/pages/templates/pages/review_guide.html:82
+#: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
 msgstr "Вам не следует:"
 
-#: apps/pages/templates/pages/review_guide.html:85
+#: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Отправлять односложные отзывы такие, как «Отлично!», «замечательно» или «плохо»."
 
-#: apps/pages/templates/pages/review_guide.html:90
+#: apps/pages/templates/pages/review_guide.html:87
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
@@ -9939,31 +9935,31 @@ msgstr ""
 "Задавать технические вопросы, вопросы поддержки или предлагать новые функции. Используйте доступные варианты поддержки для каждого дополнения, если они есть. Вы можете найти их в боковом столбце "
 "рядом с разделом Об этом дополнении."
 
-#: apps/pages/templates/pages/review_guide.html:95
+#: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Писать отзывы на дополнения, которые вы лично не использовали."
 
-#: apps/pages/templates/pages/review_guide.html:100
+#: apps/pages/templates/pages/review_guide.html:97
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "Использовать ненормативную лексику, непристойные выражения или слова, которые могут быть истолкованы как ненависть."
 
-#: apps/pages/templates/pages/review_guide.html:106
+#: apps/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "Включать HTML, ссылки, исходный код или фрагменты кода. Отзывы должны содержать только текст."
 
-#: apps/pages/templates/pages/review_guide.html:111
+#: apps/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Делать ложные заявления, унижать или лично оскорблять авторов дополнений."
 
-#: apps/pages/templates/pages/review_guide.html:117
+#: apps/pages/templates/pages/review_guide.html:114
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Включать ваши собственные или чьи-либо еще адреса эл. почты, номера телефонов или другие персональные данные."
 
-#: apps/pages/templates/pages/review_guide.html:122
+#: apps/pages/templates/pages/review_guide.html:119
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Размещать отзывы на дополнение, написанное или представленное вами или вашей организацией."
 
-#: apps/pages/templates/pages/review_guide.html:128
+#: apps/pages/templates/pages/review_guide.html:125
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
@@ -9971,11 +9967,11 @@ msgstr ""
 "Критиковать дополнение за что-то, что оно предназначено делать. Например, оставлять отрицательный отзыв на дополнение за показ рекламы или требование сбора данных, когда это является целью этого "
 "дополнения, или дополнению необходим сбор данных для его работы."
 
-#: apps/pages/templates/pages/review_guide.html:136
+#: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
 msgstr "Как мне сообщить о некорректном отзыве?"
 
-#: apps/pages/templates/pages/review_guide.html:138
+#: apps/pages/templates/pages/review_guide.html:135
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
@@ -9983,11 +9979,11 @@ msgstr ""
 "Пожалуйста, сообщайте или отмечайте флагом любые сомнительные отзывы, щёлкнув по \"Сообщить об этом отзыве\" и он будет отправлен на сайт для модерации. Наша команда модераторов будет использовать "
 "Руководство по отзывам, чтобы решить, удалить ли отзыв или восстановить его на сайте."
 
-#: apps/pages/templates/pages/review_guide.html:143
+#: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Я автор дополнения, могу ли я отвечать на отзывы?"
 
-#: apps/pages/templates/pages/review_guide.html:145
+#: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
@@ -9995,11 +9991,11 @@ msgstr ""
 "Да, авторы дополнений могут написать один ответ на отзыв. Вы можете создать тему для обсуждения на нашем <a href=\"https://forum.mozilla-russia.org/viewforum.php?id=28\">форуме</a>, чтобы принять "
 "участие в дополнительной или последующей дискуссии."
 
-#: apps/pages/templates/pages/review_guide.html:152
+#: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Я автор дополнения, могу ли я удалять нелицеприятные отзывы или рейтинги?"
 
-#: apps/pages/templates/pages/review_guide.html:154
+#: apps/pages/templates/pages/review_guide.html:151
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
@@ -10130,7 +10126,7 @@ msgstr "Пока пропустить"
 msgid "Delete review"
 msgstr "Удалить отзыв"
 
-#: apps/reviews/models.py:157
+#: apps/reviews/models.py:162
 msgid "Other (please specify)"
 msgstr "Другая (пожалуйста укажите)"
 

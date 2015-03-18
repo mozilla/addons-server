@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 09:13-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-23 11:28+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -147,15 +147,15 @@ msgstr "Не переглянуто"
 msgid "Featured"
 msgstr "Відібрані"
 
-#: apps/addons/models.py:305
+#: apps/addons/models.py:308
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Користувачі можуть зробити внесок, більший або менший зазначеної суми."
 
-#: apps/addons/models.py:314
+#: apps/addons/models.py:317
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище)"
 
-#: apps/addons/models.py:1870
+#: apps/addons/models.py:1887
 msgid "Listed"
 msgstr "У списку"
 
@@ -850,7 +850,7 @@ msgid "See the <a href=\"%(support)s\">support section</a> to find out where to 
 msgstr "Для отримання інформації про те, як отримати допомогу для цього додатку, зверніться до <a href=\"%(support)s\">розділу підтримки</a>."
 
 #: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
-#: apps/pages/templates/pages/review_guide.html:47
+#: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
 msgstr "Щодо відгуків"
 
@@ -1003,7 +1003,7 @@ msgstr "Інформація"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Випущено на умовах <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:121 apps/devhub/forms.py:150
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Custom License"
@@ -1204,7 +1204,7 @@ msgstr "Користувачі"
 msgid "Weekly Downloads"
 msgstr "Щотижневі завантаження"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:751 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:147
 msgid "Version"
 msgstr "Версія"
 
@@ -2624,7 +2624,7 @@ msgid ""
 msgstr ""
 "Щоб додати додаток до цієї збірки, введіть його назву в поле внизу та натисніть enter. Ви також можете скористатися посиланням <strong>Додати до збірки</strong>, яке можна знайти всюди на сайті."
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:382 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:385 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Додаток"
 
@@ -3039,7 +3039,7 @@ msgstr ""
 msgid "Non-binary"
 msgstr ""
 
-#: apps/compat/views.py:84 apps/constants/base.py:370 apps/devhub/forms.py:141
+#: apps/compat/views.py:84 apps/constants/base.py:373 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "Інше"
 
@@ -3063,7 +3063,7 @@ msgstr "Найкращі 95% з усіх додатків"
 msgid "All active add-ons"
 msgstr "Всі активні додатки"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:383
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:386
 msgid "App"
 msgstr ""
 
@@ -3135,7 +3135,7 @@ msgstr ""
 msgid "Report Type"
 msgstr "Тип звіту"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:748 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Програма"
 
@@ -3356,131 +3356,131 @@ msgstr "Запитати після того, як користувачі поч
 msgid "Ask before users can download this add-on"
 msgstr "Запитати перед тим, як користувачі зможуть завантажити цей додаток"
 
-#: apps/constants/base.py:371
+#: apps/constants/base.py:374
 msgid "Exception"
 msgstr "Виключення"
 
-#: apps/constants/base.py:372
+#: apps/constants/base.py:375
 msgid "Release"
 msgstr "Випуск"
 
-#: apps/constants/base.py:373
+#: apps/constants/base.py:376
 msgid "Change"
 msgstr "Змінити"
 
-#: apps/constants/base.py:384
+#: apps/constants/base.py:387
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:415
+#: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#: apps/constants/base.py:416
+#: apps/constants/base.py:419
 msgid "Full Add-on Review"
 msgstr ""
 
-#: apps/constants/base.py:417
+#: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-#: apps/constants/base.py:418
+#: apps/constants/base.py:421
 msgid "Updated Add-on Review"
 msgstr ""
 
-#: apps/constants/base.py:419
+#: apps/constants/base.py:422
 msgid "Full Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:425
 msgid "Full Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:423
+#: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:424
+#: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
 msgstr ""
 
-#: apps/constants/base.py:425
+#: apps/constants/base.py:428
 msgid "Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:426
+#: apps/constants/base.py:429
 msgid "Full Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:427
+#: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:428
+#: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#: apps/constants/base.py:429
+#: apps/constants/base.py:432
 msgid "Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:430
+#: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:431
+#: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#: apps/constants/base.py:432
+#: apps/constants/base.py:435
 msgid "Moderated Addon Review"
 msgstr ""
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
 msgstr ""
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:481
 msgid "Level 1"
 msgstr "Рівень 1"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:482
 msgid "Level 2"
 msgstr "Рівень 2"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:483
 msgid "Level 3"
 msgstr "Рівень 3"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:484
 msgid "Level 4"
 msgstr "Рівень 4"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:485
 msgid "Level 5"
 msgstr "Рівень 5"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:486
 msgid "Level 6"
 msgstr "Рівень 6"
 
-#: apps/constants/base.py:506
+#: apps/constants/base.py:509
 msgid "Not signed"
 msgstr ""
 
-#: apps/constants/base.py:507
+#: apps/constants/base.py:510
 msgid "Signed for a full review"
 msgstr ""
 
-#: apps/constants/base.py:508
+#: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
 msgstr ""
 
@@ -3604,177 +3604,177 @@ msgstr "Нещодавні зміни для %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Нещодавні зміни для моїх додатків"
 
-#: apps/devhub/forms.py:66
+#: apps/devhub/forms.py:67
 msgid "Must have at least one owner."
 msgstr "Необхідний хоча б один власник."
 
-#: apps/devhub/forms.py:69
+#: apps/devhub/forms.py:70
 msgid "At least one author must be listed."
 msgstr "Необхідно зазначити хоча б одного автора."
 
-#: apps/devhub/forms.py:73
+#: apps/devhub/forms.py:74
 msgid "An author can only be listed once."
 msgstr "Автора можна зазначити лише один раз."
 
-#: apps/devhub/forms.py:91
+#: apps/devhub/forms.py:92
 msgid "Password incorrect."
 msgstr "Неправильний пароль."
 
-#: apps/devhub/forms.py:110 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
+#: apps/devhub/forms.py:111 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
 msgstr "Подробиці"
 
-#: apps/devhub/forms.py:120
+#: apps/devhub/forms.py:121
 msgid "What is your license's name?"
 msgstr "Яка назва вашої ліцензії?"
 
-#: apps/devhub/forms.py:123
+#: apps/devhub/forms.py:124
 msgid "Provide the text of your license."
 msgstr "Надайте текст своєї ліцензії."
 
-#: apps/devhub/forms.py:158
+#: apps/devhub/forms.py:159
 msgid "License text is required when choosing Other."
 msgstr "Текст ліцензії необхідний при виборі Інше."
 
-#: apps/devhub/forms.py:206
+#: apps/devhub/forms.py:207
 msgid "This add-on has an End-User License Agreement"
 msgstr "Цей додаток має ліцензійну угоду з кінцевим користувачем"
 
-#: apps/devhub/forms.py:209
+#: apps/devhub/forms.py:210
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Визначте ліцензійну угоду з кінцевим користувачем вашого додатку:"
 
-#: apps/devhub/forms.py:212
+#: apps/devhub/forms.py:213
 msgid "This add-on has a Privacy Policy"
 msgstr "Цей додаток має політику приватності"
 
-#: apps/devhub/forms.py:215
+#: apps/devhub/forms.py:216
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Визначте політику приватності вашого додатку:"
 
-#: apps/devhub/forms.py:253
+#: apps/devhub/forms.py:254
 msgid "Why did you make this add-on?"
 msgstr "Чому ви створили цей додаток?"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:255
 msgid "What's next for this add-on?"
 msgstr "Як буде розвиватись цей додаток?"
 
-#: apps/devhub/forms.py:291
+#: apps/devhub/forms.py:292
 msgid "The developers of this add-on"
 msgstr "Розробники цього додатку"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:293
 msgid "The Mozilla Foundation"
 msgstr "Фундація Mozilla"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:294
 msgid "An organization of my choice"
 msgstr ""
 
-#: apps/devhub/forms.py:336
+#: apps/devhub/forms.py:337
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Введіть пропоновану сумму більшу за 0."
 
-#: apps/devhub/forms.py:339
+#: apps/devhub/forms.py:340
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Введіть пропоновану суму меншу ${0}."
 
-#: apps/devhub/forms.py:348
+#: apps/devhub/forms.py:349
 msgid "PayPal ID required to accept contributions."
 msgstr "Для підтвердження внесків необхідний ідентифікатор PayPal."
 
-#: apps/devhub/forms.py:354
+#: apps/devhub/forms.py:355
 msgid "Could not validate PayPal id."
 msgstr "Не вдалося затвердити ідентифікатор PayPal."
 
-#: apps/devhub/forms.py:369
+#: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Непідтримуваний тип файлу, вивантажте будь ласка файл архіву (розширення)."
 
-#: apps/devhub/forms.py:388
+#: apps/devhub/forms.py:383
 msgid "View current"
 msgstr ""
 
-#: apps/devhub/forms.py:437
+#: apps/devhub/forms.py:432
 msgid "Invalid version range."
 msgstr ""
 
-#: apps/devhub/forms.py:466
+#: apps/devhub/forms.py:461
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: apps/devhub/forms.py:479 apps/devhub/forms.py:496
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: apps/devhub/forms.py:484
+#: apps/devhub/forms.py:479
 msgid "Override failed validation"
 msgstr ""
 
-#: apps/devhub/forms.py:511
+#: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
 msgstr ""
 
-#: apps/devhub/forms.py:512
+#: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
 
-#: apps/devhub/forms.py:530 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr ""
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr ""
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:530
 msgid "Please choose a review nomination type"
 msgstr ""
 
-#: apps/devhub/forms.py:539 apps/devhub/forms.py:574
+#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:556
+#: apps/devhub/forms.py:551
 msgid "Version %s already exists"
 msgstr "Версія %s вже існує"
 
-#: apps/devhub/forms.py:568
+#: apps/devhub/forms.py:563
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Зробіть правильний вибір. Цей вибір не є одним з доступних варіантів."
 
-#: apps/devhub/forms.py:597
+#: apps/devhub/forms.py:592
 msgid "You cannot upload any more files for this version."
 msgstr "Ви більше не можете вивантажувати файли для цієї версії."
 
-#: apps/devhub/forms.py:603
+#: apps/devhub/forms.py:598
 msgid "Version doesn't match"
 msgstr "Версія не підходить"
 
-#: apps/devhub/forms.py:632
+#: apps/devhub/forms.py:627
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Ви не можете видалити файл, якщо почався процес перевірки. Ви повинні видалити повністю всю версію."
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:647
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Платформа Все не може бути об'єднана з конкретними платформами."
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:652
 msgid "A platform can only be chosen once."
 msgstr "Платформа може бути вибрана тільки один раз."
 
-#: apps/devhub/forms.py:670
+#: apps/devhub/forms.py:665
 msgid "A review type must be selected."
 msgstr "Повинен бути вибраний тип перевірки."
 
-#: apps/devhub/forms.py:752 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr ""
 
-#: apps/devhub/forms.py:804
+#: apps/devhub/forms.py:799
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -3810,19 +3810,19 @@ msgstr[2] "{0} попереджень"
 msgid "Review"
 msgstr "Відгук"
 
-#: apps/devhub/tasks.py:300
+#: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: apps/devhub/tasks.py:304
+#: apps/devhub/tasks.py:322
 msgid "Connection to \"%s\" timed out."
 msgstr "Час очікування з'єднання з \"%s\" завершився."
 
-#: apps/devhub/tasks.py:306
+#: apps/devhub/tasks.py:324
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: apps/devhub/utils.py:57
+#: apps/devhub/utils.py:59
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
@@ -7342,40 +7342,40 @@ msgstr ""
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:440
+#: apps/editors/views.py:441
 msgid "An unknown error occurred"
 msgstr "Сталася невідома помилка"
 
-#: apps/editors/views.py:492
+#: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:512
 msgid "Review successfully processed."
 msgstr ""
 
-#: apps/editors/views.py:701
+#: apps/editors/views.py:702
 msgid "was approved"
 msgstr "було схвалено"
 
-#: apps/editors/views.py:702
+#: apps/editors/views.py:703
 msgid "given preliminary review"
 msgstr ""
 
-#: apps/editors/views.py:703
+#: apps/editors/views.py:704
 msgid "rejected"
 msgstr ""
 
-#: apps/editors/views.py:704
+#: apps/editors/views.py:705
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr ""
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:707
 msgid "needs more information"
 msgstr ""
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:708
 msgid "needs super review"
 msgstr ""
 
@@ -9035,17 +9035,17 @@ msgid "A developer may reply to any review posted to their add-on as long as the
 msgstr "Розробник може відповісти на будь-який відгук, розміщений на його додаток, якщо він увійшов до AMO. Крім того, будь-який користувач може відмітити відгук як:"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:154
+#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
 msgstr "Спам чи інший непереглянутий зміст"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:155
+#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
 msgid "Inappropriate language/dialog"
 msgstr "Невідповідна мова/вікно"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:156
+#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:161
 msgid "Misplaced bug report or support request"
 msgstr "Неправильно розміщений звіт про ваду чи запит про підтримку"
 
@@ -9460,133 +9460,129 @@ msgstr "Залишились питання?"
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:54
+#: apps/pages/templates/pages/review_guide.html:36 apps/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:39
-msgid "Guidelines for rating add-ons"
-msgstr ""
-
-#: apps/pages/templates/pages/review_guide.html:42 apps/pages/templates/pages/review_guide.html:134
+#: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:49
+#: apps/pages/templates/pages/review_guide.html:46
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:56
+#: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:59
+#: apps/pages/templates/pages/review_guide.html:56
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:64
+#: apps/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:65
+#: apps/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:67
+#: apps/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:68
+#: apps/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:69
+#: apps/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:70
+#: apps/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:71
+#: apps/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:76
+#: apps/pages/templates/pages/review_guide.html:73
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:82
+#: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:85
+#: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:90
+#: apps/pages/templates/pages/review_guide.html:87
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:95
+#: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:100
+#: apps/pages/templates/pages/review_guide.html:97
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:106
+#: apps/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:111
+#: apps/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:117
+#: apps/pages/templates/pages/review_guide.html:114
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:122
+#: apps/pages/templates/pages/review_guide.html:119
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:128
+#: apps/pages/templates/pages/review_guide.html:125
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:136
+#: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:138
+#: apps/pages/templates/pages/review_guide.html:135
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:143
+#: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:145
+#: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:152
+#: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr ""
 
-#: apps/pages/templates/pages/review_guide.html:154
+#: apps/pages/templates/pages/review_guide.html:151
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
@@ -9709,7 +9705,7 @@ msgstr ""
 msgid "Delete review"
 msgstr "Вилучити відгук"
 
-#: apps/reviews/models.py:157
+#: apps/reviews/models.py:162
 msgid "Other (please specify)"
 msgstr "Інше (будь ласка, уточніть)"
 
@@ -11291,15 +11287,15 @@ msgstr ""
 msgid "Version History with Changelogs"
 msgstr "Історія версій з протоколом змін"
 
-#: apps/versions/models.py:284
+#: apps/versions/models.py:299
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:287
+#: apps/versions/models.py:302
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:664
+#: apps/versions/models.py:680
 msgid "{app} {min} and later"
 msgstr ""
 

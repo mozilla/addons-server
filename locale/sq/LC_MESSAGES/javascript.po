@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-28 23:00+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -69,7 +69,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dhe {0} tjetër"
 msgstr[1] "&hellip;dhe {0} të tjerë"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "Shihni raportin e plotë të vleftësimit"
 
@@ -109,19 +109,19 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 "Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "Nëse shtesa juaj synon një publik të kufizuar, do të duhej të zgjidhnit Shqyrtim Paraprak, në vend se Shqyrtim të Plotë."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "Listë kontrolli parashtrimi shtese"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë procesit të shqyrtimit:"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -129,19 +129,19 @@ msgstr ""
 "Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e tyre, për shqyrtim. Mos harroni të përdorni "
 "fushën e ngarkimit të kodit burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë të parashtrimit:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Nëse procesi i shqyrtimit është i panjohur për ju, rreth tij mund të lexoni këtu."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Kjo shtesë nuk është e passhme për disa platforma."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "Na ndjeni, nuk u gjet platformë e mbuluar."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-20 18:11+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;och {0} mer"
 msgstr[1] "&hellip;och {0} fler"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "Se fullständig valideringsrapport"
 
@@ -105,19 +105,19 @@ msgstr "Inkludera detaljerade versionsanteckningar (detta kan göras i nästa st
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Om ditt tillägg kräver ett konto till en webbplats för att bli fullständigt testat, inkludera ett test användarnamn och lösenord i meddelande till granskaren (detta kan göras i nästa steg)."
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "Om ditt tillägg är avsett för en begränsad publik, bör du välja preliminär granskning istället för fullständig granskning."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "Checklista för att skicka in tillägg"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vänligen kontrollera följande punkter innan du slutför ditt bidrag. Detta kommer att minimera förseningar eller missförstånd under granskningsprocessen:"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -125,19 +125,19 @@ msgstr ""
 "Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive kända bibliotek) måste skicka in sina källor separat för granskning. Se till att du använder uppladdningsfältet för "
 "källkoden för att undvika att ditt bidrag avvisas."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det här."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Vissa plattformar är inte tillgängliga för den här typen av tillägg."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "Tyvärr har ingen plattform som stöds hittats."
 

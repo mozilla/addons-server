@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-03 22:54+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e mais {0}"
 msgstr[1] "&hellip;e mais {0}"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "Ver o relatório de validação completo"
 
@@ -106,19 +106,19 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 "Se o seu complemento necessita de uma conta num site web para ser completamente testado, inclua um nome de usuário e senha de teste nas Notas para o Revisor (isto pode ser feito no próximo passo)."
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "Se o seu complemento se destina a uma audiência limitada, deve escolher Revisão Preliminar em vez de uma Revisão Completa."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "Lista de verificação do envio do complemento"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Por favor confirme os pontos seguintes antes de finalizar o seu envio. Isto irá minimizar atrasos ou confusões durante o processo de revisão:"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -126,19 +126,19 @@ msgstr ""
 "Binários compilados, bem como scripts minificados ou ofuscados (excluindo bibliotecas conhecidas) devem ter as suas fontes enviadass separadamente para revisão. Tenha a certeza que utiliza o campo "
 "de envio de código fonte para evitar que seja rejeitado."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Se não está familiarizado com o processo de revisão de complementos, pode ler mais sobre o mesmo aqui."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Algumas plataformas não estão disponíveis para esse tipo de complemento."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "Desculpe, nenhuma plataforma suportada foi encontrada."
 

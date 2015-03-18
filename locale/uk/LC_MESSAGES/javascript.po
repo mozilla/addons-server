@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-02-09 13:07+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
 msgstr[2] "&hellip;і ще {0}"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "Переглянути повний звіт перевірки"
 
@@ -109,19 +109,19 @@ msgstr "Включити детальні примітки до випуску (
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "Якщо ваш додаток призначений для обмеженого кола, вам слід вибрати попередню перевірку замість повної перевірки."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "Контрольний перелік при представленні додатку"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Перевірте наступні пункти перед завершенням вашого представлення. Це зменшить затримку чи нерозуміння під час процесу розгляду:"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -129,19 +129,19 @@ msgstr ""
 "Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для перевірки окремо. Переконайтеся, що ви "
 "використовуєте поле завантаження програмного коду, щоб запобігти відхиленню вашого запиту."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це тут."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Деякі платформи недоступні для цього типу додатків."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "Нажаль, не знайдено підтримуваних платформ."
 

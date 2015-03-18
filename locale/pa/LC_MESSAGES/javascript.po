@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-22 06:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
 
@@ -105,19 +105,19 @@ msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇ
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, ਸਮੀਖਿਅਕ ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਯੂਜ਼ਰ-ਨਾਂ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਕੇਵਲ ਸੀਮਿਤ ਲੋਕਾਂ ਲਈ ਹੈ, ਤੁਹਾਨੂੰ ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਥਾਂ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਚੁਣਨੀ ਚਾਹੀਦੀ ਹੈ।"
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਾਰਜ ਚੈੱਕਲਿਸਟ"
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਹ ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ।"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -125,19 +125,19 @@ msgstr ""
 "ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
 "ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ,ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "ਅਫਸੋਸ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
 

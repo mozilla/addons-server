@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-11 09:57-0700\n"
+"POT-Creation-Date: 2015-03-18 09:01-0700\n"
 "PO-Revision-Date: 2015-01-10 23:11+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -69,7 +69,7 @@ msgstr[0] "&hellip;a {0} další"
 msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} další"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
 msgid "See full validation report"
 msgstr "Zobrazit podrobný report"
 
@@ -109,19 +109,19 @@ msgstr "Zahrnout podrobné poznámky k verzi (lze nastavit v příštím kroku).
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Pokud váš doplněk vyžaduje účet na webovém server pro možnost plné kontroly, vložte prosím uživatelské jméno a heslo do poznámky pro redaktora (lze provést v příštím kroku)."
 
-#: static/js/common/upload-addon.js:348
+#: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr "Pokud je váš doplněk určen pro vymezenou skupinu uživatelů, měli byste zvolit Předběžnou kontrolu místo Plné kontroly."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:351
+#: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Zkontrolujte prosím následující body před odesláním doplňku ke kontrole. Pomůže tím zrychlit a předejít případnému nedorozumění při procesu kontroly:"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -129,19 +129,19 @@ msgstr ""
 "Zkompilované binární součásti stejně jako obfuscované skripty (vyjma známých knihoven) musí mít předložené zdrojové soubory ke kontrole odděleně. Ujistěte se, že jste použili pole pro nahrání "
 "zdrojových kódů, aby nedošlo k zamítnutí kontroly."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zjistil tyto možné nedostatky, které mohou vést k zamítnutí kontroly:"
 
-#: static/js/common/upload-addon.js:388
+#: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Pokud ještě nevíte, jak probíhá proces kontroly, můžete si o něm zde přečíst."
 
-#: static/js/common/upload-addon.js:424
+#: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Některé platformy nejsou pro tento typ doplňků dostupné."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
 msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
 
