@@ -4,9 +4,9 @@ NUM_THEMES=$(NUM_ADDONS)
 
 UNAME_S := $(shell uname -s)
 
-# If you're using docker and fig, you can use this Makefile to run commands in
-# your docker images by setting the FIG_PREFIX environment variable to:
-# FIG_PREFIX="fig run --rm web"
+# If you're using docker and docker-compose, you can use this Makefile to run
+# commands in your docker images by setting the DOCKER_PREFIX environment variable
+# to: DOCKER_PREFIX="docker-compose run --rm web"
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -27,63 +27,63 @@ help:
 	@echo "Check the Makefile  to know exactly what each target is doing. If you see a "
 
 docs:
-	$(FIG_PREFIX) $(MAKE) -C docs html
+	$(DOCKER_PREFIX) $(MAKE) -C docs html
 
 test:
-	$(FIG_PREFIX) py.test $(ARGS)
+	$(DOCKER_PREFIX) py.test $(ARGS)
 
 test_es:
-	$(FIG_PREFIX) py.test -m es_tests $(ARGS)
+	$(DOCKER_PREFIX) py.test -m es_tests $(ARGS)
 
 test_no_es:
-	$(FIG_PREFIX) py.test -m "not es_tests" $(ARGS)
+	$(DOCKER_PREFIX) py.test -m "not es_tests" $(ARGS)
 
 test_force_db:
-	$(FIG_PREFIX) py.test --create-db $(ARGS)
+	$(DOCKER_PREFIX) py.test --create-db $(ARGS)
 
 tdd:
-	$(FIG_PREFIX) py.test -x --pdb $(ARGS)
+	$(DOCKER_PREFIX) py.test -x --pdb $(ARGS)
 
 test_failed:
-	$(FIG_PREFIX) py.test --lf $(ARGS)
+	$(DOCKER_PREFIX) py.test --lf $(ARGS)
 
 initialize_db:
-	$(FIG_PREFIX) python manage.py reset_db
-	$(FIG_PREFIX) python manage.py syncdb --noinput
-	$(FIG_PREFIX) python manage.py loaddata initial.json
-	$(FIG_PREFIX) python manage.py import_prod_versions
-	$(FIG_PREFIX) schematic --fake migrations/
-	$(FIG_PREFIX) python manage.py createsuperuser
-	$(FIG_PREFIX) python manage.py loaddata zadmin/users
+	$(DOCKER_PREFIX) python manage.py reset_db
+	$(DOCKER_PREFIX) python manage.py syncdb --noinput
+	$(DOCKER_PREFIX) python manage.py loaddata initial.json
+	$(DOCKER_PREFIX) python manage.py import_prod_versions
+	$(DOCKER_PREFIX) schematic --fake migrations/
+	$(DOCKER_PREFIX) python manage.py createsuperuser
+	$(DOCKER_PREFIX) python manage.py loaddata zadmin/users
 
 populate_data:
-	$(FIG_PREFIX) python manage.py generate_addons --app firefox $(NUM_ADDONS)
-	$(FIG_PREFIX) python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
-	$(FIG_PREFIX) python manage.py generate_addons --app android $(NUM_ADDONS)
-	$(FIG_PREFIX) python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
-	$(FIG_PREFIX) python manage.py generate_themes $(NUM_THEMES)
-	$(FIG_PREFIX) python manage.py reindex --wipe --force
+	$(DOCKER_PREFIX) python manage.py generate_addons --app firefox $(NUM_ADDONS)
+	$(DOCKER_PREFIX) python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
+	$(DOCKER_PREFIX) python manage.py generate_addons --app android $(NUM_ADDONS)
+	$(DOCKER_PREFIX) python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
+	$(DOCKER_PREFIX) python manage.py generate_themes $(NUM_THEMES)
+	$(DOCKER_PREFIX) python manage.py reindex --wipe --force
 
 update_code:
-	$(FIG_PREFIX) git checkout master && git pull
+	$(DOCKER_PREFIX) git checkout master && git pull
 
 update_deps:
-	$(FIG_PREFIX) pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/
-	$(FIG_PREFIX) npm install
+	$(DOCKER_PREFIX) pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/
+	$(DOCKER_PREFIX) npm install
 
 update_db:
-	$(FIG_PREFIX) schematic migrations
+	$(DOCKER_PREFIX) schematic migrations
 
 update_assets:
-	$(FIG_PREFIX) python manage.py compress_assets
-	$(FIG_PREFIX) python manage.py collectstatic --noinput
+	$(DOCKER_PREFIX) python manage.py compress_assets
+	$(DOCKER_PREFIX) python manage.py collectstatic --noinput
 
 full_init: update_deps initialize_db populate_data update_assets
 
 full_update: update_code update_deps update_db update_assets
 
 reindex:
-	$(FIG_PREFIX) python manage.py reindex $(ARGS)
+	$(DOCKER_PREFIX) python manage.py reindex $(ARGS)
 
 flake8:
-	$(FIG_PREFIX) flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,build*.py .
+	$(DOCKER_PREFIX) flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,build*.py .
