@@ -45,4 +45,8 @@
   {{ _('or <a href="{0}">Cancel</a>')|f(url('devhub.index')) }}
   </form>
 </div>
+<div class="no-upload">
+    {{ _('If you would like to have your add-on signed but cannot submit to AMO
+          please <a href="{0}">let us know</a>.')|f(settings.REQUEST_CERT_URL) }}
+</div>
 {% endblock %}
