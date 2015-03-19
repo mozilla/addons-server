@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-20 19:22+0000\n"
+"PO-Revision-Date: 2015-03-19 17:11+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424460174.0\n"
+"X-POOTLE-MTIME: 1426785107.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3971,7 +3971,7 @@ msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být n
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "Přeskakujeme na krok 6, protože doplněk nebude v seznamu"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -4108,7 +4108,7 @@ msgstr "Vývoj rozšíření"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Lehké motivy vzhledu"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4888,15 +4888,17 @@ msgstr "Staňte se redaktorem na AMO ještě dnes a pomozte s rychlejší kontro
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr ""
+msgstr "Jakmile bude zkontrolován redaktorem, obdržíte e-mail."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "Váš doplněk nebude veřejně dostupný na AMO."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
 msgstr ""
+"Pokud potřebujete upravit jakékoliv podrobnosti vašeho doplňku, upravte je "
+"prosím <a href=\"{0}\">zde</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
