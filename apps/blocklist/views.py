@@ -15,7 +15,7 @@ from amo.utils import sorted_groupby
 from amo.tasks import flush_front_end_cache_urls
 from versions.compare import version_int
 from .models import (BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx,
-                     BlocklistItem, BlocklistPlugin)
+                     BlocklistItem, BlocklistIssuerCert, BlocklistPlugin)
 
 
 App = collections.namedtuple('App', 'guid min max')
@@ -41,6 +41,7 @@ def _blocklist(request, apiver, app, appver):
     items = get_items(apiver, app, appver)[0]
     plugins = get_plugins(apiver, app, appver)
     gfxs = BlocklistGfx.objects.filter(Q(guid__isnull=True) | Q(guid=app))
+    issuerCertBlocks = BlocklistIssuerCert.objects.all()
     cas = None
 
     try:
@@ -56,7 +57,8 @@ def _blocklist(request, apiver, app, appver):
     # The client expects milliseconds, Python's time returns seconds.
     last_update = int(time.mktime(last_update.timetuple()) * 1000)
     data = dict(items=items, plugins=plugins, gfxs=gfxs, apiver=apiver,
-                appguid=app, appver=appver, last_update=last_update, cas=cas)
+                appguid=app, appver=appver, last_update=last_update, cas=cas,
+                issuerCertBlocks=issuerCertBlocks)
     return render(request, 'blocklist/blocklist.xml', data,
                   content_type='text/xml')
 
@@ -69,7 +71,7 @@ def clear_blocklist(*args, **kw):
 
 
 for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,
-          BlocklistCA, BlocklistDetail):
+          BlocklistCA, BlocklistDetail, BlocklistIssuerCert):
     db_signals.post_save.connect(clear_blocklist, sender=m,
                                  dispatch_uid='save_%s' % m)
     db_signals.post_delete.connect(clear_blocklist, sender=m,
