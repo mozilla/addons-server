@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-02-23 11:28+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-03-20 20:58+0000\n"
+"Last-Translator: Serhii <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1424690905.0\n"
+"X-POOTLE-MTIME: 1426885096.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1665,11 +1666,11 @@ msgstr "Обліковий запис оновлений."
 
 #: apps/amo/log.py:405
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Ескалація для {addon} очищена."
 
 #: apps/amo/log.py:406
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Ескалація очищена"
 
 #: apps/amo/log.py:414
 msgid "App disabled"
@@ -1678,6 +1679,7 @@ msgstr "Застосунок вимкнено"
 #: apps/amo/log.py:421
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr ""
+"{addon} передано вище через велику кількість повідомлень про зловживання"
 
 #: apps/amo/log.py:422
 msgid "High Abuse Reports"
@@ -1685,11 +1687,11 @@ msgstr "Багато скарг"
 
 #: apps/amo/log.py:429
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "Перевіряючий зробив ескалацію {addon}"
 
 #: apps/amo/log.py:430
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Ескалація перевірки"
 
 #: apps/amo/log.py:438
 msgid "Video removed from {addon} because of a problem with the video."
@@ -2029,6 +2031,11 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
+"<p> %(consumer)s хоче отримати право діяти від Вашого імені. Це може "
+"включати: </p> <ul> <li>Завантаження, зміну чи видалення додатків від Вашого "
+"імені.</li> <li>Завантаження, зміну чи видалення версій додатків від Вашого "
+"імені.</li> <li> Доступ до Ваших персональних даних, таких як Ваше ім'я "
+"користувача і адреса електронної пошти (але не Ваш пароль). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -2036,7 +2043,7 @@ msgstr "Підтвердити"
 
 #: apps/api/templates/piston/oauth/challenge.html:3 apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
-msgstr ""
+msgstr "Потребується OAuth "
 
 #: apps/applications/views.py:36 apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
@@ -2044,7 +2051,7 @@ msgstr "Версії програми"
 
 #: apps/applications/views.py:42
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Прийнятні версії для всіх додатків на AMO."
 
 #: apps/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
@@ -2262,7 +2269,7 @@ msgstr "{0} :: Збірки"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
-msgstr ""
+msgstr "приватний"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45 apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
@@ -2352,12 +2359,22 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Додатки, які Ви відзначите як обрані, використовуючи функцію <b>Додати в "
+"Обране</b>, з'являться у розташованому нижче полі. Нині ця добірка є "
+"<b>публічною</b>, що означає, що будь-хто може її побачити. Якщо Ви хочете "
+"приховати її від публічного перегляду, натисніть розташовану нижче кнопку, "
+"щоб зробити її приватною."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:203
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Додатки, які Ви позначите як обрані, використовуючи функцію <b>Додати в "
+"Обране</b>, з'являться у полі розташованому нижче. Ця добірка наразі є "
+"<b>приватною</b>, що означає, що лише Ви зможете її побачити. Якщо Ви "
+"хочете, щоб будь-хто інший міг бачити обрані Вами додатки, натисніть "
+"розташовану нижче кнопку, щоб зробити її публічною. "
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
@@ -2587,7 +2604,7 @@ msgstr "Підписатись"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
-msgstr ""
+msgstr "Слідую"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
@@ -2684,6 +2701,9 @@ msgstr "Що це значить?"
 #: apps/blocklist/templates/blocklist/blocked_detail.html:22
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
 msgstr ""
+"Користувачам наполегливо рекомендується відключити проблемний додаток чи "
+"плагін, хоча вони можуть продовжувати використовувати його, якщо вони "
+"приймають на себе описаний ризик."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
@@ -2694,6 +2714,11 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Коли Mozilla стає відомо про додатки, плагіни чи інші сторонні програми, які "
+"серйозно підривають безпеку, стабільність чи продуктивність %(app)s та "
+"відповідають  <a href=\"%(criteria)s\">певним критеріям</a>, використання цих "
+"програм може бути заблоковане. Для отримання додаткової інформації, будь "
+"ласка, прочитайте <a href=\"%(support)s\">цю статтю</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -2701,11 +2726,13 @@ msgstr "Заблоковано %(date)s. <a href=\"%(link)s\">Перегляну
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Заблоковано %(date)s."
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
 msgstr ""
+"Відомо, що наступні програми викликають серйозні проблеми з безпекою, "
+"стабільністю чи продуктивністю {app}."
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:76 apps/browse/feeds.py:98
@@ -2715,7 +2742,7 @@ msgstr "%s додатків"
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:113
 msgid "%s Themes"
-msgstr ""
+msgstr "%s Теми"
 
 #: apps/browse/feeds.py:129
 msgid "Featured Add-ons :: %s"
@@ -2729,7 +2756,7 @@ msgstr "Ось кілька наших улюблених додатків, що
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:157
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Інструменти пошуку, які мають відношення до %s"
 
 #: apps/browse/feeds.py:159
 msgid "Search tools and search-related extensions"
@@ -2845,7 +2872,7 @@ msgstr "Розширення пошуку"
 
 #: apps/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Додати до Firefox функціональність пов'язану з пошуком."
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
@@ -2867,10 +2894,15 @@ msgstr "Дізнатись більше про <a href=\"http://support.mozilla.
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 msgstr ""
+"Знайдіть ще більше провайдерів пошуку на сайті <a "
+"href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr ""
+"<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Fi"
+"refox\">Зробіть Ваш власний</a> в <a "
+"href=\"https://developer.mozilla.org/\">Центрі розробника Mozilla</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
