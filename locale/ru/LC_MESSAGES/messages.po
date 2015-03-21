@@ -10,16 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-07 23:00+0300\n"
-"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2015-03-21 13:25+0000\n"
+"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.7.4\n"
-"X-POOTLE-MTIME: 1400422920.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1426944333.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1365,7 +1366,7 @@ msgstr "Представить новую тему"
 #: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr "Центр разработчика"
+msgstr "Центр разработки"
 
 #: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
@@ -3815,7 +3816,7 @@ msgstr "Число требуемых дополнений не может пр�
 
 #: apps/devhub/helpers.py:45
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Документация по дополнениям :: Центр разработчика"
+msgstr "Документация по дополнениям :: Центр разработки"
 
 #: apps/devhub/helpers.py:69
 msgid "My Submissions"
@@ -5663,9 +5664,12 @@ msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"Если дополнение специфично для сайта, мы рекомендуем вам предоставить тестовую учётную запись для использования в процессе проверки. Кроме того, включив подробные инструкции по тестированию, вы "
-"поможете редактору лучше понять, как работает дополнение и ускорить процесс тестирования. Эта информация может быть размещена в поле Примечания для проверяющих при редактировании версии в Центре "
-"Разработчика."
+"Если дополнение специфично для сайта, мы рекомендуем вам предоставить "
+"тестовую учётную запись для использования в процессе проверки. Кроме того, "
+"включив подробные инструкции по тестированию, вы поможете редактору лучше "
+"понять, как работает дополнение и ускорить процесс тестирования. Эта "
+"информация может быть размещена в поле Примечания для проверяющих при "
+"редактировании версии в Центре разработки."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
