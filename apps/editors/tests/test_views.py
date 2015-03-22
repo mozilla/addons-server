@@ -297,6 +297,12 @@ class TestReviewLog(EditorTest):
         eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
             'needs super review')
 
+    def test_comment_logs(self):
+        self.make_an_approval(amo.LOG.COMMENT_VERSION)
+        r = self.client.get(self.url)
+        eq_(pq(r.content)('#log-listing tr td a').eq(1).text(),
+            'commented')
+
 
 class TestHome(EditorTest):
     fixtures = EditorTest.fixtures + ['base/addon_3615']
