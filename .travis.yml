@@ -15,7 +15,7 @@ before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.3.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
 install:
-  - pip install tox
+  - pip install tox==1.8.1
 before_script:
   - mysql -e 'create database olympia;'
 script:
