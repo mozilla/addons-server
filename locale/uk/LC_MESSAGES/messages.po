@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-23 19:50+0000\n"
+"PO-Revision-Date: 2015-03-23 19:53+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427140208.0\n"
+"X-POOTLE-MTIME: 1427140389.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3294,11 +3294,11 @@ msgstr "Бета"
 
 #: apps/constants/base.py:121
 msgid "Full"
-msgstr ""
+msgstr "Повний"
 
 #: apps/constants/base.py:122
 msgid "Preliminary"
-msgstr ""
+msgstr "Попередній"
 
 #: apps/constants/base.py:133 apps/users/notifications.py:157
 msgid "Developer"
@@ -3363,23 +3363,23 @@ msgstr "Плагіни"
 
 #: apps/constants/base.py:242
 msgid "Free"
-msgstr ""
+msgstr "Безплатно"
 
 #: apps/constants/base.py:243
 msgid "Premium"
-msgstr ""
+msgstr "Преміум"
 
 #: apps/constants/base.py:244
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Преміум з внутрішніми платежами"
 
 #: apps/constants/base.py:245
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Безплатні з внутрішніми платежами"
 
 #: apps/constants/base.py:246
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Я буду використовувати власну систему для внутрішніх платежів"
 
 #: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
