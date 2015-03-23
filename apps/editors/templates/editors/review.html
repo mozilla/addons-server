@@ -274,7 +274,7 @@
 
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
-    <li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>
+    {% if addon.is_listed %}<li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>{% endif %}
     {% if is_admin %}
     <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
     <li><a href="{{ url('zadmin.addon_manage', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>

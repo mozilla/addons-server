@@ -214,6 +214,8 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.addon.flush_urls()
 
     def get_url_path(self):
+        if not self.addon.is_listed:  # Not listed? Doesn't have a public page.
+            return ''
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
     def delete(self):
@@ -487,6 +489,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         """Sign the files for this version if it's an extension."""
         if self.addon.type == amo.ADDON_EXTENSION:
             packaged.sign(self)
+
+    @property
+    def is_listed(self):
+        return self.addon.is_listed
 
 
 @Version.on_change

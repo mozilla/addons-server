@@ -12,7 +12,7 @@ import amo
 from amo.urlresolvers import reverse
 from amo.utils import HttpResponseSendFile, urlparams
 from access import acl
-from addons.decorators import addon_view_factory
+from addons.decorators import addon_view_factory, owner_or_unlisted_reviewer
 from addons.models import Addon
 from files.models import File
 from versions.models import Version
@@ -83,16 +83,22 @@ def update_info_redirect(request, version_id):
 # Should accept junk at the end for filename goodness.
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
-    addon = get_object_or_404(Addon.objects, pk=file.version.addon_id)
+    addon = get_object_or_404(Addon.with_unlisted, pk=file.version.addon_id)
 
-    if addon.is_disabled or file.status == amo.STATUS_DISABLED:
-        if (acl.check_addon_ownership(request, addon, viewer=True,
-                                      ignore_disabled=True) or
-                acl.check_addons_reviewer(request)):
-            return HttpResponseSendFile(request, file.guarded_file_path,
-                                        content_type='application/xp-install')
-        else:
-            raise http.Http404()
+    # General case: addon is listed.
+    if addon.is_listed:
+        if addon.is_disabled or file.status == amo.STATUS_DISABLED:
+            if (acl.check_addon_ownership(request, addon, viewer=True,
+                                          ignore_disabled=True) or
+                    acl.check_addons_reviewer(request)):
+                return HttpResponseSendFile(
+                    request, file.guarded_file_path,
+                    content_type='application/xp-install')
+            else:
+                raise http.Http404()
+    else:
+        if not owner_or_unlisted_reviewer(request, addon):
+            raise http.Http404  # Not listed, not owner or admin.
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
@@ -103,7 +109,7 @@ def download_file(request, file_id, type=None):
 
 
 def guard():
-    return Addon.objects.filter(_current_version__isnull=False)
+    return Addon.with_unlisted.filter(_current_version__isnull=False)
 
 
 @addon_view_factory(guard)
@@ -128,12 +134,17 @@ def download_latest(request, addon, type='xpi', platform=None):
 def download_source(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
 
-    if (version.source and
-        (acl.check_addon_ownership(request, version.addon,
-                                   viewer=True, ignore_disabled=True)
-         or acl.action_allowed(request, 'Editors', 'BinarySource'))):
-        res = HttpResponseSendFile(request, version.source.path)
-        name = os.path.basename(version.source.path.replace('"', ''))
-        res['Content-Disposition'] = 'attachment; filename="{0}"'.format(name)
-        return res
-    raise http.Http404()
+    # General case: addon is listed.
+    if version.addon.is_listed:
+        if not (version.source and
+                (acl.check_addon_ownership(request, version.addon,
+                                           viewer=True, ignore_disabled=True)
+                 or acl.action_allowed(request, 'Editors', 'BinarySource'))):
+            raise http.Http404()
+    else:
+        if not owner_or_unlisted_reviewer(request, version.addon):
+            raise http.Http404  # Not listed, not owner or admin.
+    res = HttpResponseSendFile(request, version.source.path)
+    name = os.path.basename(version.source.path.replace('"', ''))
+    res['Content-Disposition'] = 'attachment; filename="{0}"'.format(name)
+    return res

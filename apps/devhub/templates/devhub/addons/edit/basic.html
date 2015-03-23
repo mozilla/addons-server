@@ -40,7 +40,7 @@
                 {{ form.slug.errors }}
               {% else %}
                 {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
-                <a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
+                {% if addon.is_listed %}<a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>{% endif %}
               {% endif %}
             </td>
           </tr>

@@ -13,7 +13,7 @@
         <a href="{{ url('devhub.addons') }}" class="controller">
             {{ _('My Add-ons') }}</a>
         <ul>
-          {% set my_addons = request.amo_user.my_addons() %}
+          {% set my_addons = request.amo_user.my_addons(with_unlisted=True) %}
           {% for addon in my_addons %}
             {% if loop.index == 8 %}
               <li><a href="{{ url('devhub.addons') }}">

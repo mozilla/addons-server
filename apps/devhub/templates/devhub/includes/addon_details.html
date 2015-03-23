@@ -1,4 +1,5 @@
 {% from "includes/forms.html" import tip %}
+{% from "devhub/includes/macros.html" import link_if_listed_else_text %}
 
 {% macro status_and_tip(addon, tip) %}
   {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
@@ -82,12 +83,10 @@
 {% if addon.current_version %}
   <li>
     <strong>{{ _('Current Version:') }}</strong>
-    <a href="{{ addon.current_version.get_url_path() }}">
-      {{ addon.current_version }}
-      <span class="tip tooltip" title="{{ _('This is the version of your add-on that will
-                                             be installed if someone clicks the Install
-                                             button on addons.mozilla.org.') }}">?</span>
-    </a>
+    {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
+    <span class="tip tooltip" title="{{ _('This is the version of your add-on that will
+                                           be installed if someone clicks the Install
+                                           button on addons.mozilla.org.') }}">?</span>
   </li>
 {% endif %}
 {% if sorting == 'created' %}
@@ -106,11 +105,9 @@
 {% if addon.latest_version and addon.latest_version != addon.current_version %}
   <li>
     <strong>{{ _('Next Version:') }}</strong>
-    <a href="{{ addon.latest_version.get_url_path() }}">
-      {{ addon.latest_version.version }}
-      <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however
-                                             it isn’t live on the site yet.') }}">?</span>
-    </a>
+    {{ link_if_listed_else_text(addon.latest_version, addon.latest_version.version) }}
+    <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however
+                                           it isn’t live on the site yet.') }}">?</span>
   </li>
 {% endif %}
 {% with position = get_position(addon) %}
