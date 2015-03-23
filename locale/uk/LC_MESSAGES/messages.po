@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-20 20:58+0000\n"
-"Last-Translator: Serhii <kleim.hostel@gmail.com>\n"
+"PO-Revision-Date: 2015-03-23 19:50+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426885096.0\n"
+"X-POOTLE-MTIME: 1427140208.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1679,7 +1679,7 @@ msgstr "Застосунок вимкнено"
 #: apps/amo/log.py:421
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr ""
-"{addon} передано вище через велику кількість повідомлень про зловживання"
+"{addon} передано вище через велику кількість повідомлень про зловживання."
 
 #: apps/amo/log.py:422
 msgid "High Abuse Reports"
@@ -1687,7 +1687,7 @@ msgstr "Багато скарг"
 
 #: apps/amo/log.py:429
 msgid "{addon} escalated by reviewer."
-msgstr "Перевіряючий зробив ескалацію {addon}"
+msgstr "Перевіряючий зробив ескалацію {addon}."
 
 #: apps/amo/log.py:430
 msgid "Reviewer escalation"
@@ -2043,7 +2043,7 @@ msgstr "Підтвердити"
 
 #: apps/api/templates/piston/oauth/challenge.html:3 apps/api/templates/piston/oauth/challenge.html:6
 msgid "OAuth required"
-msgstr "Потребується OAuth "
+msgstr "Потребується OAuth"
 
 #: apps/applications/views.py:36 apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
@@ -2374,7 +2374,7 @@ msgstr ""
 "Обране</b>, з'являться у полі розташованому нижче. Ця добірка наразі є "
 "<b>приватною</b>, що означає, що лише Ви зможете її побачити. Якщо Ви "
 "хочете, щоб будь-хто інший міг бачити обрані Вами додатки, натисніть "
-"розташовану нижче кнопку, щоб зробити її публічною. "
+"розташовану нижче кнопку, щоб зробити її публічною."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:213
 msgid "My favorite add-ons"
@@ -2716,7 +2716,7 @@ msgid ""
 msgstr ""
 "Коли Mozilla стає відомо про додатки, плагіни чи інші сторонні програми, які "
 "серйозно підривають безпеку, стабільність чи продуктивність %(app)s та "
-"відповідають  <a href=\"%(criteria)s\">певним критеріям</a>, використання цих "
+"відповідають <a href=\"%(criteria)s\">певним критеріям</a>, використання цих "
 "програм може бути заблоковане. Для отримання додаткової інформації, будь "
 "ласка, прочитайте <a href=\"%(support)s\">цю статтю</a>."
 
@@ -2760,7 +2760,7 @@ msgstr "Інструменти пошуку, які мають відношен�
 
 #: apps/browse/feeds.py:159
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Засоби пошуку та пов'язані з пошуком розширення"
 
 #: apps/browse/feeds.py:161
 msgid "Search tools"
@@ -2803,7 +2803,7 @@ msgstr "Відібрані додатки"
 #. {0} is a category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:21
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "В {0} немає відібраних додатків."
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -2872,7 +2872,7 @@ msgstr "Розширення пошуку"
 
 #: apps/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr "Додати до Firefox функціональність пов'язану з пошуком."
+msgstr "Додати до Firefox функціональність пов'язану з пошуком"
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
@@ -2972,9 +2972,9 @@ msgstr "Повні теми, які набирають популярність"
 #: apps/browse/templates/browse/impala/category_landing.html:44
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Показати %(cnt)s розширення в %(name)s &raquo;"
+msgstr[1] "Показати всі %(cnt)s розширення в %(name)s &raquo;"
+msgstr[2] "Показати всі %(cnt)s розширень в %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47 apps/perf/templates/perf/index.html:109 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
@@ -2983,12 +2983,12 @@ msgstr "Результатів не знайдено."
 
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} Теми"
 
 #. {0} is a user's name.
 #: apps/browse/templates/browse/personas/base.html:15 apps/browse/templates/browse/personas/base.html:40 apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Теми {0}"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
@@ -3001,6 +3001,7 @@ msgstr "Створити свою власну тему"
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
+"Ваш браузер у Вашому стилі! Використовуйте для нього свій власний дизайн!"
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
@@ -3065,11 +3066,11 @@ msgstr "Всі додатки"
 
 #: apps/compat/forms.py:24
 msgid "Binary"
-msgstr ""
+msgstr "Бінарні"
 
 #: apps/compat/forms.py:25
 msgid "Non-binary"
-msgstr ""
+msgstr "Не бінарні"
 
 #: apps/compat/views.py:84 apps/constants/base.py:373 apps/devhub/forms.py:142
 msgid "Other"
@@ -3097,7 +3098,7 @@ msgstr "Всі активні додатки"
 
 #: apps/compat/templates/compat/index.html:23 apps/constants/base.py:386
 msgid "App"
-msgstr ""
+msgstr "Дод."
 
 #: apps/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
@@ -3124,6 +3125,10 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
 "help supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Звіти, що відправляються нам через <a href=\"%(url_)s\">Add-on "
+"Compatibility Reporter</a>, збираються тут для огляду розробниками. Ці звіти "
+"допомагають нам визначити, яким додаткам буде потрібна допомога по "
+"підтримці в майбутній версії Firefox. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
@@ -3144,16 +3149,16 @@ msgstr "Звіти сумісності {addon}"
 #: apps/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} повідомлення про успіх"
+msgstr[1] "{0} повідомлення про успіх"
+msgstr[2] "{0} повідомлень про успіх"
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} повідомлення про проблему"
+msgstr[1] "{0} повідомлення про проблему"
+msgstr[2] "{0} повідомлень про проблему"
 
 #: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73
 msgid "View all"
@@ -3161,7 +3166,7 @@ msgstr "Переглянути всі"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Фільтр за додатком"
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
@@ -3173,7 +3178,7 @@ msgstr "Програма"
 
 #: apps/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
-msgstr ""
+msgstr "Збирання додатку"
 
 #: apps/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
@@ -3185,11 +3190,11 @@ msgstr "Відправлено"
 
 #: apps/compat/templates/compat/reporter_detail.html:56
 msgid "Success"
-msgstr ""
+msgstr "Успішно"
 
 #: apps/compat/templates/compat/reporter_detail.html:56
 msgid "Problem"
-msgstr ""
+msgstr "Проблема"
 
 #: apps/compat/templates/compat/reporter_detail.html:82
 msgid "No reports found."
@@ -3229,7 +3234,7 @@ msgstr "Невідомо"
 
 #: apps/constants/applications.py:154 templates/mobile/header.html:5
 msgid "Desktop"
-msgstr ""
+msgstr "Десктоп"
 
 #: apps/constants/applications.py:161
 msgid "Firefox Mobile"
@@ -3237,7 +3242,7 @@ msgstr "Мобільний Firefox"
 
 #: apps/constants/applications.py:168
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Планшет Firefox"
 
 #: apps/constants/applications.py:175
 msgid "Firefox OS"
@@ -3245,35 +3250,35 @@ msgstr "Firefox OS"
 
 #: apps/constants/base.py:26
 msgid "Incomplete"
-msgstr ""
+msgstr "Неповний"
 
 #: apps/constants/base.py:27
 msgid "Awaiting Preliminary Review"
-msgstr ""
+msgstr "Очікує попередньої перевірки"
 
 #: apps/constants/base.py:28
 msgid "Awaiting Full Review"
-msgstr ""
+msgstr "Очікує повної перевірки"
 
 #: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Fully Reviewed"
-msgstr ""
+msgstr "Повністю перевірено"
 
 #: apps/constants/base.py:30 apps/constants/base.py:51
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Відключено Mozilla"
 
 #: apps/constants/base.py:31 apps/constants/base.py:53
 msgid "Preliminarily Reviewed"
-msgstr ""
+msgstr "Попередньо перевірено"
 
 #: apps/constants/base.py:32
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr ""
+msgstr "Попередньо перевірено та очікує повної перевірки"
 
 #: apps/constants/base.py:34 apps/editors/helpers.py:836 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
-msgstr ""
+msgstr "Видалено"
 
 #: apps/constants/base.py:39
 msgid "Pending approval"
@@ -3281,7 +3286,7 @@ msgstr "Чекає схвалення"
 
 #: apps/constants/base.py:45
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Відмічено для додаткової перевірки"
 
 #: apps/constants/base.py:52
 msgid "Beta"
@@ -3426,59 +3431,59 @@ msgstr ""
 
 #: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Попередня перевірка словника"
 
 #: apps/constants/base.py:424
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Перевірка оновленого словника"
 
 #: apps/constants/base.py:425
 msgid "Full Language Pack Review"
-msgstr ""
+msgstr "Повна перевірка мовного пакету"
 
 #: apps/constants/base.py:426
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Попередня перевірка мовного пакету"
 
 #: apps/constants/base.py:427
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Перевірка оновленого мовного пакету"
 
 #: apps/constants/base.py:428
 msgid "Theme Review"
-msgstr ""
+msgstr "Перевірка теми"
 
 #: apps/constants/base.py:429
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Повна перевірка провайдера пошуку"
 
 #: apps/constants/base.py:430
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Попередня перевірка провайдера пошуку"
 
 #: apps/constants/base.py:431
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Оновлена перевірка провайдера пошуку"
 
 #: apps/constants/base.py:432
 msgid "Complete Theme Review"
-msgstr ""
+msgstr "Перевірка повної теми"
 
 #: apps/constants/base.py:433
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Попередня перевірка повної теми"
 
 #: apps/constants/base.py:434
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Оновлена перевірка повної теми"
 
 #: apps/constants/base.py:435
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Перевірка модерованого додатку"
 
 #: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Модерація відгуку на додаток повернена"
 
 #: apps/constants/base.py:481
 msgid "Level 1"
@@ -3506,15 +3511,15 @@ msgstr "Рівень 6"
 
 #: apps/constants/base.py:509
 msgid "Not signed"
-msgstr ""
+msgstr "Не підписаний"
 
 #: apps/constants/base.py:510
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Підписаний на повну перевірку"
 
 #: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Підписаний на попередню перевірку"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3522,11 +3527,11 @@ msgstr "Запитати більше інформації"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
-msgstr ""
+msgstr "Прапорець"
 
 #: apps/constants/editors.py:16 apps/editors/templates/editors/themes/queue.html:72 apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублікат"
 
 #: apps/constants/editors.py:17 apps/editors/helpers.py:460 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
@@ -3702,7 +3707,7 @@ msgstr "Фундація Mozilla"
 
 #: apps/devhub/forms.py:294
 msgid "An organization of my choice"
-msgstr ""
+msgstr "Організація за моїм вибором"
 
 #: apps/devhub/forms.py:337
 msgid "Please enter a suggested amount greater than 0."
@@ -3726,49 +3731,56 @@ msgstr "Непідтримуваний тип файлу, вивантажте �
 
 #: apps/devhub/forms.py:383
 msgid "View current"
-msgstr ""
+msgstr "Переглянути поточний"
 
 #: apps/devhub/forms.py:432
 msgid "Invalid version range."
-msgstr ""
+msgstr "Невірний діапазон версій."
 
 #: apps/devhub/forms.py:461
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Потрібен, принаймні, один сумісний додаток."
 
 #: apps/devhub/forms.py:474 apps/devhub/forms.py:491
 msgid "There was an error with your upload. Please try again."
 msgstr ""
+"У процесі Вашого завантаження сталася помилка. Будь ласка, спробуйте знову."
 
 #: apps/devhub/forms.py:479
 msgid "Override failed validation"
-msgstr ""
+msgstr "Ігнорувати невдалу валідацію"
 
 #: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "Так, включити мій додаток у AMO."
 
 #: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"Якщо зняти цей прапорець, Ваш додаток буде завантажено та перевірено, але "
+"його не буде видно в AMO і він не буде доступний для завантаження кінцевими "
+"користувачами. Якщо Ви сумніваєтесь, залиште цей прапорець встановленим - "
+"існує дуже мало причин для його зняття."
 
 #: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
-msgstr ""
+msgstr "Повна перевірка"
 
 #: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
-msgstr ""
+msgstr "Попередня перевірка"
 
 #: apps/devhub/forms.py:530
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Будь ласка, оберіть тип номінації на перевірку"
 
 #: apps/devhub/forms.py:534 apps/devhub/forms.py:569
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Файл з версією, що закінчується на a|alpha|b|beta і необов'язкове число, "
+"визначається як бета."
 
 #: apps/devhub/forms.py:551
 msgid "Version %s already exists"
@@ -3804,19 +3816,19 @@ msgstr "Повинен бути вибраний тип перевірки."
 
 #: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
-msgstr ""
+msgstr "Спочатку оберіть програму"
 
 #: apps/devhub/forms.py:799
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "Кількість необхідних додатків не може перевищувати 3."
 
 #: apps/devhub/helpers.py:45
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Документація по додатках :: Центр розробки"
 
 #: apps/devhub/helpers.py:69
 msgid "My Submissions"
-msgstr ""
+msgstr "Мої представлення"
 
 #: apps/devhub/helpers.py:103
 msgid "Developer Docs"
@@ -3844,7 +3856,7 @@ msgstr "Відгук"
 
 #: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s відповів з %s (%s)."
 
 #: apps/devhub/tasks.py:322
 msgid "Connection to \"%s\" timed out."
@@ -3852,11 +3864,14 @@ msgstr "Час очікування з'єднання з \"%s\" завершив
 
 #: apps/devhub/tasks.py:324
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Не вдалося зв'язатись з хостом на \"%s\"."
 
 #: apps/devhub/utils.py:59
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
+"Валідація згенерувала занадто багато помилок та попереджень, тому %s "
+"повідомлень не було відображено. Після усунення видимих повідомлень, Ви "
+"зможете побачити інші."
 
 #: apps/devhub/views.py:177
 msgid "All My Add-ons"
@@ -3896,43 +3911,43 @@ msgstr "Додаток неможливо видалити. Натомість �
 
 #: apps/devhub/views.py:350
 msgid "Theme deleted."
-msgstr ""
+msgstr "Тема видалена."
 
 #: apps/devhub/views.py:350
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Додаток видалений."
 
 #: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Було введено невірний пароль. Тема не була видалена."
 
 #: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Було введено невірний пароль. Додаток не був видалений."
 
 #: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "До Вашого додатку був доданий автор"
 
 #: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Автор змінив роль у Вашому додатку"
 
 #: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Із Вашого додатку був видалений автор"
 
 #: apps/devhub/views.py:503
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "У Вашому представленні були помилки."
 
 #: apps/devhub/views.py:567
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Валідувати додаток"
 
 #: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Перевірка сумісності додатку"
 
 #: apps/devhub/views.py:639
 msgid "There was an error with the submission."
@@ -3974,28 +3989,30 @@ msgstr "Версію %s видалено."
 #: apps/devhub/views.py:1150
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
+"Це завантаження не пройшло валідацію і у ньому можуть бути відсутніми деякі "
+"результати повної валідації. Будь ласка, будьте уважні при його перевірці."
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "Переходимо до кроку 6, так як додаток не буде показано"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
-msgstr ""
+msgstr "Запитана попередня перевірка."
 
 #: apps/devhub/views.py:1565
 msgid "Full Review Requested."
-msgstr ""
+msgstr "Запитана повна перевірка."
 
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Назад до додатків"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
 #: apps/devhub/templates/devhub/devhub_search.html:4 apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Пошук"
 
 #: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:450 apps/editors/forms.py:452 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
@@ -4005,40 +4022,42 @@ msgstr "Пошук"
 
 #: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
 msgid "Search Results"
-msgstr ""
+msgstr "Результати пошуку"
 
 #. {0} is a search term, such as Firebug.
 #: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Результати пошуку для \"{0}\""
 
 #: apps/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Будь ласка, введіть запит для пошуку."
 
 #: apps/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Завантаження результатів&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:21
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Представити додаток"
 
 #: apps/devhub/templates/devhub/index.html:26
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Рецензенти AMO"
 
 #: apps/devhub/templates/devhub/index.html:28
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Будьте попереду! Ставайте рецензентом AMO сьогодні та прискорюйте перевірку "
+"Ваших додатків."
 
 #: apps/devhub/templates/devhub/index.html:31
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Станьте рецензентом AMO"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Дізнайтесь все про додатки"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -4046,14 +4065,23 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"Додатки дозволяють мільйонам користувачів Firefox розширювати та "
+"налаштовувати своє середовище для роботи в мережі Інтернет. Якщо Ви "
+"веб-розробник і знаєте <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> і <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, у Вас вже є всі "
+"необхідні навички, щоб створити чудовий додаток."
 
 #: apps/devhub/templates/devhub/index.html:50
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Зайдіть в <a href=\"https://developer.mozilla.org/Add-ons\">Мережа розробників "
+"Mozilla</a>, щоб дізнатись все необхідне для початку роботи."
 
 #: apps/devhub/templates/devhub/index.html:57
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Почати створювати додатки"
 
 #: apps/devhub/templates/devhub/index.html:85 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
 #: apps/devhub/templates/devhub/personas/edit.html:43
@@ -4066,7 +4094,7 @@ msgstr "Остання версія:"
 
 #: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
-msgstr ""
+msgstr "Позиція в черзі:"
 
 #: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
@@ -4078,24 +4106,26 @@ msgstr "Вивантажити нову версію"
 
 #: apps/devhub/templates/devhub/index.html:118
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Переглянути всі додатки ►"
 
 #: apps/devhub/templates/devhub/index.html:121
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Публікуйте Ваші додатки!"
 
 #: apps/devhub/templates/devhub/index.html:126
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Щоб почати, завантажте <a href=\"%(addon_url)s\">додаток</a> або <a href=\"%"
+"(theme_url)s\">тему</a>!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Повернутися на домашню сторінку DevHub"
 
 #. Text in small tag is smaller and on its own line.
 #: apps/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Центр розробників <small>Додатків</small>"
 
 #: apps/devhub/templates/devhub/nav.html:20
 msgid "more add-ons..."
@@ -4111,7 +4141,7 @@ msgstr "Розробка розширення"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Легкі теми"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4122,11 +4152,11 @@ msgstr "Правила додатків"
 
 #: apps/devhub/templates/devhub/nav.html:46
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Валідатор додатків"
 
 #: apps/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Центр сумісності додатків"
 
 #: apps/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
@@ -4134,7 +4164,7 @@ msgstr "Розробницькі додатки"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Спільнота і Підтримка"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -4146,65 +4176,70 @@ msgstr "Форум додатків"
 
 #: apps/devhub/templates/devhub/nav.html:61
 msgid "More Resources"
-msgstr ""
+msgstr "Додаткові ресурси"
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Пошук документації для розробників"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
 msgstr ""
+"Використовуйте розташоване нижче поле, щоб завантажити свій пакет додатку."
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr ""
+"Після завантаження буде запущена серія автоматичних валідуючих тестів, які "
+"перевірять сумісність із наступною версією програми:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
+"Після завантаження, над Вашим файлом буде проведена серія автоматичних "
+"валідуючих тестів."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Результати валідації для {0}"
 
 #: apps/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Результати валідації"
 
 #: apps/devhub/templates/devhub/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Валідовано:"
 
 #: apps/devhub/templates/devhub/validation.html:26
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Протестовано на сумісність на:"
 
 #: apps/devhub/templates/devhub/addons/activity.html:4 apps/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Нещодавня активність для моїх додатків"
 
 #: apps/devhub/templates/devhub/addons/activity.html:14 apps/devhub/templates/devhub/addons/activity.html:19 apps/devhub/templates/devhub/addons/dashboard.html:33
 msgid "Recent Activity"
-msgstr ""
+msgstr "Нещодавня активність"
 
 #. first parameter is the name of an Addon
 #: apps/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Остання активність для {0}"
 
 #: apps/devhub/templates/devhub/addons/activity.html:36
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> від %(user)s"
 
 #: apps/devhub/templates/devhub/addons/activity.html:59
 msgid "Refine Activity"
-msgstr ""
+msgstr "Уточнити активність"
 
 #: apps/devhub/templates/devhub/addons/activity.html:72
 msgid "Activity"
-msgstr ""
+msgstr "Активність"
 
 #: apps/devhub/templates/devhub/addons/activity.html:83 apps/devhub/templates/devhub/addons/dashboard.html:34 apps/devhub/templates/devhub/addons/dashboard.html:35
 #: apps/devhub/templates/devhub/includes/blog_posts.html:4 apps/devhub/templates/devhub/includes/blog_posts.html:6
@@ -4216,49 +4251,60 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Цей додаток несумісний з <b>%(app_name)s %(app_version)s</b>, останньою "
+"версією %(app_name)s. Будь ласка, розгляньте питання щодо оновлення "
+"інформації про сумісність Вашого додатку чи завантаження нової версії цього "
+"додатку."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
 "\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%"
+"(update_url)s\">Оновити сумісність</a> <a href=\"%(version_url)s\" "
+"class=\"button\">Завантажити нову версію</a> або <a href=\"#\" "
+"class=\"close\">Ігнорувати</a>"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Переглянути та оновити діапазони сумісності додатків."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:6 apps/devhub/templates/devhub/versions/edit.html:44
 msgid "Compatibility"
-msgstr ""
+msgstr "Сумісність"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:2
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Оновити сумісність"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+"Налаштування інформації про програму тут, дозволить користувачам встановити "
+"Ваш додаток, навіть якщо маніфест встановлення в пакеті вказує, що додаток є "
+"несумісним."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
-msgstr ""
+msgstr "Підтримувані версії"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:31 apps/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Додати іншу програму&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
-msgstr ""
+msgstr "Закрити"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:43 apps/zadmin/templates/zadmin/index.html:22
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s від %(user)s"
 
 #: apps/devhub/templates/devhub/addons/dashboard.html:52
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Старіша активність для моїх додатків"
 
 #. {0} is an integer.
 #: apps/devhub/templates/devhub/addons/dashboard.html:76
