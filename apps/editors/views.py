@@ -706,6 +706,7 @@ def reviewlog(request):
             'escalated', 'editors_review_history_nominated_adminreview'),
         amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
         amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
+        amo.LOG.COMMENT_VERSION.id: _('commented'),
     }
     data = context(form=form, pager=pager, ACTION_DICT=ad)
     return render(request, 'editors/reviewlog.html', data)
