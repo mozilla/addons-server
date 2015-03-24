@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-23 19:53+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-03-24 20:59+0000\n"
+"Last-Translator: Serhii <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427140389.0\n"
+"X-POOTLE-MTIME: 1427230753.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3383,7 +3383,7 @@ msgstr "Я буду використовувати власну систему �
 
 #: apps/constants/base.py:302
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Запитувати лише на сторінці цього додатку та профілю розробника"
 
 #: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
@@ -3415,19 +3415,19 @@ msgstr ""
 
 #: apps/constants/base.py:419
 msgid "Full Add-on Review"
-msgstr ""
+msgstr "Повна перевірка додатка"
 
 #: apps/constants/base.py:420
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Попередня перевірка додатка"
 
 #: apps/constants/base.py:421
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Оновлена перевірка додатка"
 
 #: apps/constants/base.py:422
 msgid "Full Dictionary Review"
-msgstr ""
+msgstr "Повна перевірка словника"
 
 #: apps/constants/base.py:423
 msgid "Preliminary Dictionary Review"
@@ -4310,9 +4310,9 @@ msgstr "Старіша активність для моїх додатків"
 #: apps/devhub/templates/devhub/addons/dashboard.html:76
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> тема"
+msgstr[1] "<b>{0}</b> теми"
+msgstr[2] "<b>{0}</b> тем"
 
 #: apps/devhub/templates/devhub/addons/edit.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:25 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:7
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:2 apps/devhub/templates/devhub/personas/edit.html:6 apps/editors/templates/editors/themes/single.html:37
@@ -4326,7 +4326,7 @@ msgstr "Жодного"
 
 #: apps/devhub/templates/devhub/addons/owner.html:4 apps/devhub/templates/devhub/addons/listing/item_actions.html:52 apps/devhub/templates/devhub/includes/addons_edit_nav.html:3
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Керування авторами і ліцензією"
 
 #: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:292
 msgid "Authors"
@@ -4334,7 +4334,7 @@ msgstr "Автори"
 
 #: apps/devhub/templates/devhub/addons/owner.html:30
 msgid "About author roles"
-msgstr ""
+msgstr "Про ролі автора"
 
 #: apps/devhub/templates/devhub/addons/owner.html:78
 msgid ""
@@ -4342,6 +4342,13 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Додатки можуть мати будь-яку кількість авторів з трьома можливими "
+"ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами "
+"розміщення додатків, включаючи додавання і вилучення авторів</li> "
+"<li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатків, за "
+"виключенням додавання і вилучення інших авторів і керування платежами</li> "
+"<li><b>Глядач:</b> Може переглядати налаштування і статистику додатків, але "
+"не може вносити будь-які зміни</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
@@ -4350,39 +4357,43 @@ msgstr "Впорядкувати Профіль розробника"
 #: apps/devhub/templates/devhub/addons/profile.html:16
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
 msgstr ""
+"Ваш <a href=\"%(url)s\">профіль розробника</a> наразі є "
+"<strong>публічним</strong> і <strong>потрібен</strong> для збору внесків."
 
 #: apps/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
-msgstr ""
+msgstr "Видалити обидва"
 
 #: apps/devhub/templates/devhub/addons/profile.html:27
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
 msgstr ""
+"Ваш <a href=\"%(url)s\">профіль розробника</a> наразі є "
+"<strong>публічним</strong>."
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
 msgid "Remove Profile"
-msgstr ""
+msgstr "Видалити профіль"
 
 #: apps/devhub/templates/devhub/addons/profile.html:42
 msgid "Create Profile"
-msgstr ""
+msgstr "Створити профіль"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:7
 msgid "Basic Information"
-msgstr ""
+msgstr "Основна інформація"
 
 #. {0} is the addon name
 #: apps/devhub/templates/devhub/addons/edit/basic.html:17
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Основна інформація для {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:32
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL додатка"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:33
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Оберіть короткий, унікальний URL slug для Вашого додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
 #: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
@@ -4396,15 +4407,24 @@ msgstr "Звіт"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:52
 msgid "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page."
 msgstr ""
+"Коротке пояснення основних функцій Вашого додатка, який показується у "
+"списках пошуку та перегляду, а також у верхній частині сторінки Вашого "
+"додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
+"Категорії є основним способом перегляду додатків користувачами. Оберіть "
+"будь-яку, під яку підходить Ваш додаток, для максимального ефекту."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Якщо Ваш додаток для цієї програми є Обраним, його категорії не можуть бути "
+"змінені. Якщо у Вас є причина, через яку Вам необхідно змінити Ваші "
+"категорії, будь ласка, напишіть за цією адресою <a href=\"mailto:%(email)s\">%"
+"(email)s</a>."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
@@ -4413,36 +4433,41 @@ msgstr "Мітки"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
+"Мітки допомагають користувачам знайти Ваш додаток і повинні бути коротким "
+"описом, таким як вкладки, панелі або твіттер. Ви можете мати максимум {0} "
+"міток."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:128 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Розділені комами, не менше {0} символа."
+msgstr[1] "Розділені комами, не менше {0} символів."
+msgstr[2] "Розділені комами, не менше {0} символів."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:131 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Приклад: темний, кіно, нуар. Ліміт 20."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:135
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Зарезервована мітка:"
+msgstr[1] "Зарезервовані мітки:"
+msgstr[2] "Зарезервовані мітки:"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
-msgstr ""
+msgstr "Інформація про додаток"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:15
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Інформація про додаток для {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page."
 msgstr ""
+"Детальніший опис особливостей, функціональності та іншої відповідної "
+"інформації. Це поле показується лише на сторінці Вашого додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4451,6 +4476,8 @@ msgstr "Типова Локаль"
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
 msgstr ""
+"Інформація про Ваш додаток буде показуватись цією мовою доки Ви не заміните "
+"її перекладом на іншу мову."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4460,36 +4487,45 @@ msgstr "Домашня сторінка"
 #: apps/devhub/templates/devhub/addons/edit/details.html:62
 msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
 msgstr ""
+"Якщо Ваш додаток має іншу домашню сторінку, введіть її адресу тут. Якщо Ваш "
+"сайт перекладено на інші мови, то для цього поля можна додати декілька "
+"перекладів."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
-msgstr ""
+msgstr "Зображення"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:5
 msgid "Support Information"
-msgstr ""
+msgstr "Інформація про підтримку"
 
 #. {0} is an addon name
 #: apps/devhub/templates/devhub/addons/edit/support.html:15
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Інформація про підтримку для {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:22
 msgid "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
+"Якщо Ви хочете показати адресу електронної пошти для запитів підтримки, "
+"введіть її тут. Якщо у Вас є різні адреси для різних мов, то для цього поля "
+"можна додати декілька перекладів."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:44
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
 msgstr ""
+"Якщо у Вашого додатка є сайт або форум підтримки, введіть тут його адресу. "
+"Якщо Ваш сайт перекладено на інші мови, то для цього поля можна додати "
+"декілька перекладів."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
-msgstr ""
+msgstr "Технічні деталі"
 
 #. {0} is an addon name
 #: apps/devhub/templates/devhub/addons/edit/technical.html:16
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Технічні деталі для {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
