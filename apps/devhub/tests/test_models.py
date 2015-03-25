@@ -68,6 +68,23 @@ class TestActivityLog(amo.tests.TestCase):
         amo.log(amo.LOG.CREATE_ADDON, (Addon, a.id))
         eq_(AddonLog.objects.count(), 1)
 
+    def test_addon_log(self):
+        addon = Addon.objects.get()
+        amo.log(amo.LOG.CREATE_ADDON, (Addon, addon.id))
+        entries = ActivityLog.objects.for_addons(addon)
+        assert len(entries) == 1
+        assert addon.get_url_path() in unicode(entries[0])
+
+    def test_addon_log_unlisted_addon(self):
+        addon = Addon.objects.get()
+        # Get the url before the addon is changed to unlisted.
+        url_path = addon.get_url_path()
+        addon.update(is_listed=False)
+        amo.log(amo.LOG.CREATE_ADDON, (Addon, addon.id))
+        entries = ActivityLog.objects.for_addons(addon)
+        assert len(entries) == 1
+        assert url_path not in unicode(entries[0])
+
     def test_fancy_rendering(self):
         """HTML for Review, and Collection."""
         a = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
@@ -128,7 +145,20 @@ class TestActivityLog(amo.tests.TestCase):
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
                 user=self.request.amo_user)
         entries = ActivityLog.objects.for_version(version)
-        eq_(len(entries), 1)
+        assert len(entries) == 1
+        assert version.get_url_path() in unicode(entries[0])
+
+    def test_version_log_unlisted_addon(self):
+        version = Version.objects.all()[0]
+        addon = version.addon
+        # Get the url before the addon is changed to unlisted.
+        url_path = version.get_url_path()
+        addon.update(is_listed=False)
+        amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
+                user=self.request.amo_user)
+        entries = ActivityLog.objects.for_version(version)
+        assert len(entries) == 1
+        assert url_path not in unicode(entries[0])
 
     def test_version_log_transformer(self):
         addon = Addon.objects.get()

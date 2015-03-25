@@ -358,8 +358,11 @@ class ActivityLog(amo.models.ModelBase):
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                addon = self.f(u'<a href="{0}">{1}</a>',
-                               arg.get_url_path(), arg.name)
+                if arg.is_listed:
+                    addon = self.f(u'<a href="{0}">{1}</a>',
+                                   arg.get_url_path(), arg.name)
+                else:
+                    addon = self.f(u'{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Review) and not review:
                 review = self.f(u'<a href="{0}">{1}</a>',
@@ -367,8 +370,11 @@ class ActivityLog(amo.models.ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = _('Version {0}')
-                version = self.f(u'<a href="{1}">%s</a>' % text,
-                                 arg.version, arg.get_url_path())
+                if arg.is_listed:
+                    version = self.f(u'<a href="{1}">%s</a>' % text,
+                                     arg.version, arg.get_url_path())
+                else:
+                    version = self.f(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = self.f(u'<a href="{0}">{1}</a>',
