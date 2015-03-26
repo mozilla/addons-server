@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-24 20:59+0000\n"
-"Last-Translator: Serhii <kleim.hostel@gmail.com>\n"
+"PO-Revision-Date: 2015-03-26 19:49+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427230753.0\n"
+"X-POOTLE-MTIME: 1427399392.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4631,15 +4631,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Видалити цей залежний додаток"
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Введіть ім'я додатку"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:10
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Медіа додаток для {0}"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
@@ -4656,7 +4656,7 @@ msgstr ""
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:36
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
 msgid "Used in listings of add-ons, like search results and featured add-ons."
@@ -4833,7 +4833,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
-msgstr ""
+msgstr "Видалити цю тему."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
