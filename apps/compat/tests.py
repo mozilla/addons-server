@@ -1,5 +1,6 @@
 import json
 
+import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -112,24 +113,58 @@ class TestIncoming(amo.tests.TestCase):
 class TestReporter(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        super(TestReporter, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+        self.url = reverse('compat.reporter') + '?guid={0}'
+
     def test_success(self):
         r = self.client.get(reverse('compat.reporter'))
         eq_(r.status_code, 200)
 
     def test_redirect(self):
-        addon = Addon.objects.get(id=3615)
-        CompatReport.objects.create(guid=addon.guid, app_guid=amo.FIREFOX.guid)
-        url = reverse('compat.reporter')
-        expected = reverse('compat.reporter_detail', args=[addon.guid])
+        CompatReport.objects.create(guid=self.addon.guid,
+                                    app_guid=amo.FIREFOX.guid)
+        expected = reverse('compat.reporter_detail', args=[self.addon.guid])
 
-        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.id),
-                             expected)
-        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.slug),
-                             expected)
-        self.assertRedirects(self.client.get(url + '?guid=%s' % addon.guid),
-                             expected)
         self.assertRedirects(
-            self.client.get(url + '?guid=%s' % addon.guid[:5]), expected)
+            self.client.get(self.url.format(self.addon.id)), expected)
+        self.assertRedirects(
+            self.client.get(self.url.format(self.addon.slug)), expected)
+        self.assertRedirects(
+            self.client.get(self.url.format(self.addon.guid)), expected)
+        self.assertRedirects(
+            self.client.get(self.url.format(self.addon.guid[:5])), expected)
+
+    @mock.patch('compat.views.owner_or_unlisted_reviewer', lambda r, a: True)
+    def test_unlisted_addon_redirect_for_authorized(self):
+        """Can display the reports for an unlisted addon if authorized."""
+        self.addon.update(is_listed=False)
+        self.test_redirect()
+
+    @mock.patch('compat.views.owner_or_unlisted_reviewer',
+                lambda r, a: False)
+    def test_unlisted_addon_no_redirect_for_unauthorized(self):
+        """If the user isn't authorized, don't redirect to unlisted addon."""
+        self.addon.update(is_listed=False)
+        CompatReport.objects.create(guid=self.addon.guid,
+                                    app_guid=amo.FIREFOX.guid)
+
+        assert self.client.get(
+            self.url.format(self.addon.id)).status_code == 200
+        assert self.client.get(
+            self.url.format(self.addon.slug)).status_code == 200
+        assert self.client.get(
+            self.url.format(self.addon.guid)).status_code == 200
+        assert self.client.get(
+            self.url.format(self.addon.guid[:5])).status_code == 200
+
+    def test_unlisted_addons_listed_in_left_sidebar(self):
+        """Display unlisted addons in the 'reports for your add-ons' list."""
+        self.addon.update(is_listed=False)
+        self.client.login(username='del@icio.us', password='password')
+        response = self.client.get(reverse('compat.reporter'))
+        assert self.addon in response.context['addons']
 
 
 class TestReporterDetail(amo.tests.TestCase):
@@ -258,3 +293,23 @@ class TestReporterDetail(amo.tests.TestCase):
         r = self.check_table(good=1, bad=0, appver='', report_pks=[0])
         msg = 'Unknown (%s)' % app_guid
         assert msg in r.content, 'Expected %s in body' % msg
+
+    @mock.patch('compat.views.owner_or_unlisted_reviewer',
+                lambda r, a: True)
+    def test_unlisted_addon_details_for_authorized(self):
+        """If the user is authorized, display the reports."""
+        self.addon.update(is_listed=False)
+        self._generate()
+        self.check_table(
+            good=3, bad=7, appver='',
+            report_pks=[idx for idx, val in enumerate(self.reports)])
+
+    @mock.patch('compat.views.owner_or_unlisted_reviewer',
+                lambda r, a: False)
+    def test_unlisted_addon_no_details_for_unauthorized(self):
+        """If the user isn't authorized, don't display the reports."""
+        self.addon.update(is_listed=False)
+        self._generate()
+        self.check_table(
+            good=0, bad=0, appver='',
+            report_pks=[])
