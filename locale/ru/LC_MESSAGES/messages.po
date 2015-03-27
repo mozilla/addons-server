@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-21 13:25+0000\n"
+"PO-Revision-Date: 2015-03-27 19:08+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426944333.0\n"
+"X-POOTLE-MTIME: 1427483293.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -10758,7 +10758,7 @@ msgstr "Загрузка последних данных&hellip;"
 #: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
-msgstr "Данных недоступны."
+msgstr "Данные отсутствуют"
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
