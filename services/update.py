@@ -116,7 +116,8 @@ class Update(object):
         sql = """SELECT id, status, addontype_id, guid FROM addons
                  WHERE guid = %(guid)s AND
                        inactive = 0 AND
-                       status != %(STATUS_DELETED)s
+                       status != %(STATUS_DELETED)s AND
+                       is_listed != 0
                  LIMIT 1;"""
         self.cursor.execute(sql, {'guid': self.data['id'],
                                   'STATUS_DELETED': base.STATUS_DELETED})
