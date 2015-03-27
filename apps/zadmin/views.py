@@ -22,7 +22,7 @@ from hera.contrib.django_utils import get_hera, flush_urls
 
 import amo
 import amo.search
-from addons.decorators import addon_view
+from addons.decorators import addon_view_factory
 from addons.models import Addon, AddonUser, CompatOverride
 from addons.search import get_mappings as get_addons_mappings
 from amo import messages, get_user
@@ -662,9 +662,8 @@ def general_search(request, app_id, model_id):
 
 
 @admin_required(reviewers=True)
-@addon_view
+@addon_view_factory(qs=Addon.with_unlisted.all)
 def addon_manage(request, addon):
-
     form = AddonStatusForm(request.POST or None, instance=addon)
     pager = amo.utils.paginate(request, addon.versions.all(), 30)
     # A list coercion so this doesn't result in a subquery with a LIMIT which

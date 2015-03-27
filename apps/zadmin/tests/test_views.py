@@ -1439,6 +1439,11 @@ class TestAddonManagement(amo.tests.TestCase):
         self.url = reverse('zadmin.addon_manage', args=[self.addon.slug])
         self.client.login(username='admin@mozilla.com', password='password')
 
+    def test_can_manage_unlisted_addons(self):
+        """Unlisted addons can be managed too."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.url).status_code == 200
+
     def _form_data(self, data=None):
         initial_data = {
             'status': '4',

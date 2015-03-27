@@ -100,8 +100,9 @@
               <tr class="meta-abuse">
                 <th>{{ _('Abuse Reports') }}</th>
                 <td>
-                  <a href="{{ url('editors.abuse_reports', addon.slug) }}">
-                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong></a>
+                  {% if addon.is_listed %}<a href="{{ url('editors.abuse_reports', addon.slug) }}">{% endif %}
+                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong>
+                  {% if addon.is_listed %}</a>{% endif %}
                 </td>
               </tr>
               {% if not show_actions %}
