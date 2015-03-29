@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-07 06:07+0000\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-03-29 13:41+0100\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425708423.0\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-POOTLE-MTIME: 1427541118.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -294,7 +294,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Ett förslaget engångsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#.                    {1} is an amount input field
+#. {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Ett engångsbidrag på {0} {1}"
@@ -1917,8 +1917,8 @@ msgid "Previous"
 msgstr "Föregående"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.                third argument is the number of total results (e.g., 1,000).
-#.              third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
@@ -2349,8 +2349,8 @@ msgstr[0] "<span>%(followers)s</span> följare"
 msgstr[1] "<span>%(followers)s</span> följare"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2358,7 +2358,7 @@ msgstr[0] "%(num)s följare per vecka"
 msgstr[1] "%(num)s följare per vecka"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2366,8 +2366,8 @@ msgstr[0] "%(num)s följare per månad"
 msgstr[1] "%(num)s följare per månad"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -4305,6 +4305,8 @@ msgstr "Kategorier är det vanliga sättet för användare att bläddra bland ti
 msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Kategorier kan inte ändras medan ditt tillägg är utvald för denna applikation. Skicka ett mejl till <a href=\"mailto:%(email)s\">%(email)s</a> om det finns en anledning till att du behöver ändra "
+"dina kategorier."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
@@ -4312,13 +4314,13 @@ msgstr "Taggar"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Taggar hjälper användarna att hitta ditt tillägg och bör vara korta beskrivningar som flikar, verktygsfält eller twitter. Du kan ha maximalt {0} taggar."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:128 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kommaseparerad, minst {0} tecken."
+msgstr[1] "Kommaseparerad, minst {0} tecken."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:131 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
@@ -4357,7 +4359,7 @@ msgstr "Hemsida"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:62
 msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
-msgstr ""
+msgstr "Om ditt tillägg har en annan hemsida, skriver du in adressen här. Om din webbplats är översatt till andra språk, kan flera översättningar av detta fält läggas till."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4374,11 +4376,11 @@ msgstr "Hjälpinformation för {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:22
 msgid "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added."
-msgstr ""
+msgstr "Om du vill visa en e-postadress för supportfrågor, ange det här. Om du har olika adresser för varje språk, kan flera översättningar av detta fält läggas till."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:44
 msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr ""
+msgstr "Om ditt tillägg har en supportwebbplats eller forum, skriver du in adressen här. Om ditt webbplats är översatt till andra språk, kan flera översättningar av detta fält läggas till."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4403,7 +4405,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
-msgstr ""
+msgstr "Gräns 3"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:68
 msgid "Add-on Flags"
@@ -4415,11 +4417,11 @@ msgstr "Dessa flaggor användas för att klassificera tillägg."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:73
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "Detta är ett webbplats-specifikt tillägg."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:76
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Detta tillägg kräver extern programvara."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:88
 msgid "View Source?"
@@ -4427,119 +4429,121 @@ msgstr "Visa källkod?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:89
 msgid "Whether the source of your add-on can be displayed in our online viewer."
-msgstr "Huruvida källkoden för ditt tillägg kan visas i vår nätgränssnitt."
+msgstr "Huruvida källankoden till ditt tillägg kan visas i vår online-visare."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:93
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Detta tilläggs källkod är offentligt."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:95
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Nej, detta tilläggs källkod är inte offentligt."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:100
 msgid "Public Stats?"
-msgstr ""
+msgstr "Publik statistik?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
-msgstr ""
+msgstr "Huruvida nedladdning och användningsstatistik för ditt tillägg kan visas i vår online-visare."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:105
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Detta tilläggs statistik är offentlig."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Nej, detta tilläggs statistik är inte offentligt."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:113
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Uppgradera SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:114
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
-msgstr ""
+msgstr "Om markerad, kommer vi att försöka att automatiskt uppgradera ditt tillägg när en ny version av SDK släpps."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:117
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Detta tillägg kommer automatiskt uppgraderas till nya versioner av SDK för tillägg."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:119
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Nej, detta tillägg kommer uppgraderas manuellt."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:125
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Unikt ID-nummer"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:126
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:128
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "Ditt tilläggs GUID anges i dess install.rdf och används för att unikt identifiera det. Du kan inte ändra ditt GUID när det väl är inskickat."
+msgstr "Ditt tilläggs UUID specificeras i dess installationsmanifest och är en unik identifierare. Du kan inte ändra din UUID när den har skickats in."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Whiteboardtavla"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"Whiteboardtavlan är en plats att tillhandahålla information som är relevant för ditt tillägg, oavsett version, till redigeraren. Använd den för att ge olika sätt att testa ditt tillägg och "
+"eventuellt ytterligare information som kan hjälpa till. Denna whiteboardtavla är också redigerbar av redigerarna."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Ta bort detta beroende tillägg"
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Ange namnet på ett tillägg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:10
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Tilläggsmedia för {0}"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
-msgstr ""
+msgstr "Ikon för tillägg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr ""
+msgstr "Ladda upp en ikon för ditt tillägg eller välj från en av våra. Ikonen visas nästan överallt där ditt tillägg är. Överförda bilder måste vara en av följande bildtyper: .png, .jpg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Välj en ikon för ditt tillägg:"
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:36
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Används i listor över tillägg, som sökresultat och utvalda tillägg."
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:47
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Används i detaljsidor för tillägg."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:55
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Ladda upp en anpassad ikon..."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG och JPG stöds. Ikoner ändrar storlek till 64x64 pixlar, om de är större."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
 msgid "Screenshots"
@@ -4547,7 +4551,7 @@ msgstr "Skärmdumpar"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:88
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Tillhandahåll minst en skärmdump av ditt tillägg:"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:113
 msgid "Please provide a caption for this screenshot:"
@@ -4559,31 +4563,31 @@ msgstr "Lägg till en skärmdump..."
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
-msgstr ""
+msgstr "Tester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:39
 msgid "General Tests"
-msgstr ""
+msgstr "Generella tester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:9
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "Security Tests"
-msgstr ""
+msgstr "Säkerhetstester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:13
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:66
 msgid "Extension Tests"
-msgstr ""
+msgstr "Utökningstester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:79
 msgid "Localization Tests"
-msgstr ""
+msgstr "Översättningstester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:92
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibilitetstester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:36 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76
@@ -4601,13 +4605,15 @@ msgstr "Ta bort tillägg"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Ta bort ditt tema kommer att permanent ta bort den från webbplatsen."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted ever again, even by you. The existing users of your add-on will remain on this update channel "
 "and never receive updates again."
 msgstr ""
+"Ta bort ditt tillägg kommer att permanent ta bort den från webbplatsen och förhindra dess GUID från att skickas in någonsin igen, även av dig. De befintliga användarna av ditt tillägg stannar kvar "
+"på denna uppdateringskanal och kommer aldrig få uppdateringar igen."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -4615,11 +4621,11 @@ msgstr "Ange ditt lösenord för att bekräfta ditt beslut:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Berätta varför du tar bort ditt tema:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Berätta varför du tar bort ditt tillägg:"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:275
 msgid "Actions"
@@ -4627,15 +4633,15 @@ msgstr "Åtgärder"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Återuppta inskickningsprocessen för detta tillägg."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:8
 msgid "Resume"
-msgstr ""
+msgstr "Återuppta"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Ta bort detta tillägg."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -4664,7 +4670,7 @@ msgstr "Hantera status & versioner"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:62
 msgid "View Add-on Listing"
-msgstr "Visa tilläggslistning"
+msgstr "Visa listning för tillägg"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:63 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:49 apps/devhub/templates/devhub/personas/edit.html:58
@@ -4673,23 +4679,23 @@ msgstr "Visa senaste ändringar"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Redigera detaljer om detta temas listning."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
-msgstr ""
+msgstr "Visa detta temas listningssida."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Visa populariteten för detta tema över tiden."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Ändra ägare av detta tema."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Överför ägarskap"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
@@ -4697,7 +4703,7 @@ msgstr "Ta bort detta tema."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr ""
+msgstr "Detta tillägg kommer att raderas automatiskt efter några dagar om inskickningsprocessen inte är avslutad."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
@@ -4705,30 +4711,30 @@ msgstr "Inaktiverad"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Köplats:</b> %(pos)s av %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:23
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> aktiv användare"
+msgstr[1] "<strong>{0}</strong> aktiva användare"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
 msgid "No test results."
-msgstr ""
+msgstr "Inget testresultat."
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8 apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
 msgid "Start performance tests"
-msgstr ""
+msgstr "Starta prestandatester"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
 msgid "This file is not eligible for performance testing."
-msgstr ""
+msgstr "Den här filen är inte passande för prestandatester."
 
 #: apps/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
-msgstr ""
+msgstr "Skicka in tillägg"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:4
 msgid "Step 3"
@@ -4736,39 +4742,39 @@ msgstr "Steg 3"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:7
 msgid "Step 3. Describe"
-msgstr ""
+msgstr "Steg 3. Beskrivning"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:11
 msgid "Name and version:"
-msgstr ""
+msgstr "Namn och version:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
-msgstr ""
+msgstr "Detaljsidan kommer att vara:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:24 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Använd endast bokstäver, siffror, understreck och bindestreck i din webbadress."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
-msgstr ""
+msgstr "Ge en kort sammanfattning:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:38
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Sammanfattningen kommer att visas i listor och sökningar."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:55
 msgid "Provide a more detailed description:"
-msgstr ""
+msgstr "Ge en mer detaljerad beskrivning:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:59
 msgid "The description will appear on the detail page."
-msgstr ""
+msgstr "Beskrivningen kommer att visas på detaljsidan."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:4 apps/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr ""
+msgstr "Inskickning komplett"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:10 apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
@@ -4776,15 +4782,15 @@ msgstr "Du är klar!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:11
 msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr ""
+msgstr "Ditt tillägg har skickats in till kön för preliminär granskning."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:13
 msgid "Your add-on has been submitted to the Full Review queue."
-msgstr ""
+msgstr "Ditt tillägg har skickats in till kön för fullständig granskning."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:18
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
-msgstr ""
+msgstr "Du kommer att få ett mejl när tillägget har granskats av en redigerare. Under tiden kan du och dina vänner installera det direkt från dess detaljsida:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
@@ -4792,27 +4798,27 @@ msgstr "Nästa steg:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:32
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
-msgstr ""
+msgstr "<a href=\"{0}\">Ladda upp</a> en till plattformsspecifik fil till denna version."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr ""
+msgstr "Ge fler detaljer genom att <a href=\"{0}\">redigera dess listning</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr ""
+msgstr "Berätta för dina användare varför du skapade detta i din <a href=\"{0}\">utvecklatprofil</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Visa och prenumerera på ditt tilläggs <a href=\"{0}\">aktivitetsflöde</a> för att hålla dig uppdaterad på recensioner, samlingar och mer."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr ""
+msgstr "Visa ungefärliga <a href=\"{0}\">väntetider</a> för granskningskö."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Få en fördel i granskningskön!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
@@ -4820,15 +4826,15 @@ msgstr "Bli en AMO-granskare idag och få dina tillägg granskade snabbare."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr ""
+msgstr "Du kommer att få ett mejl när tillägget har granskats av en redigerare."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "Ditt tillägg kommer inte att vara offentligt tillgänglig på AMO."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
-msgstr ""
+msgstr "Om du behöver justera några detaljer om ditt tillägg, vänligen <a href=\"{0}\">redigera listning</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -4840,7 +4846,7 @@ msgstr "Steg 5. Välj en licens"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr ""
+msgstr "Vi kräver att alla tillägg indikerar under vilka villkor deras källkod är licensierad. Välj en licens från listan nedan eller skriv en egen licens."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
@@ -4875,26 +4881,28 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
+"Alla tilläggsvärdar i vårt galleri måste granskas av en redigerare innan de visas i kategorier eller sökresultat. I väntan på granskning, kan ditt tillägg fortfarande nås via sin webbadress. Välj "
+"granskningsprocessen nedan som bäst passar ditt tillägg."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr ""
+msgstr "En komplett granskning av ditt tilläggs källkod och funktionalitet. <a href=\"%(url)s\">Läs mer&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
-msgstr ""
+msgstr "Lämplig för polerade tillägg"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Review should take place within 10 days"
-msgstr ""
+msgstr "Granskning bör ske inom 10 dagar "
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review of subsequent versions within 5 days"
-msgstr ""
+msgstr "Granskning av efterföljande versioner inom 5 dagar"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:35
 msgid "Warning-free installation and no feature limitations"
-msgstr ""
+msgstr "Varning - gratis installation och inga funktionsbegränsningar"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:39
 msgid "Choose Full Review"
@@ -4902,31 +4910,31 @@ msgstr "Välj fullständig granskning"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:48
 msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr ""
+msgstr "En snabbare granskning av ditt tilläggs källkod efter större problem. <a href=\"%(url)s\">Läs mer&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:54
 msgid "Appropriate for experimental add-ons"
-msgstr ""
+msgstr "Lämplig för experimentella tillägg"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:55
 msgid "Review should take place within 3 days"
-msgstr ""
+msgstr "Review bör ske inom tre dagar"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:56
 msgid "Some feature limitations"
-msgstr ""
+msgstr "Några funktionsbegränsningar"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:57
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
+msgstr "Binära och förvrängda tillägg icke lämpliga"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:58
 msgid "Cannot request Full Review for 10 days"
-msgstr ""
+msgstr "Kan inte begära fullständig granskning före 10 dagar"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:62
 msgid "Choose Preliminary Review"
-msgstr ""
+msgstr "Välj preliminär granskning"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
 msgid "Getting Started"
@@ -4968,10 +4976,12 @@ msgstr "Steg 1. Att komma igång"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
 msgstr ""
+"Att vara värd för ditt tillägg i vårt galleri är det bästa sättet att exponera ditt arbete till miljontals Firefox-användare. Vi ger allt du behöver för att distribuera och uppdatera ditt tillägg "
+"för gratis."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
-msgstr ""
+msgstr "För att slutföra denna inskickningsprocess behöver du ditt paketerade tillägg (.xpi, .jar, eller .xml) och minst en skärmdump av ditt tillägg i aktion."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:24
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -4979,19 +4989,19 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:34
 msgid "Printable Version"
-msgstr ""
+msgstr "Utskriftsvänlig version"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:37
 msgid "Additional Add-on Policies"
-msgstr ""
+msgstr "Ytterligare tilläggspolicyer"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:43
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Jag accepterar detta avtal"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:45
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
@@ -5003,29 +5013,29 @@ msgstr "Steg 2. Ladda upp ditt tillägg"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket och välj eventuella plattformsbegränsningar. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Vilka plattformar är denna fil kompatibel med?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "Vill du att ditt tillägg listas på AMO?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Administrativa åsidosättningar"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Utvecklaravtal"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3 apps/devhub/templates/devhub/docs/policies-contact.html:7 apps/devhub/templates/devhub/docs/policies-contact.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:27 apps/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "Kontakta oss"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
@@ -5033,7 +5043,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
-msgstr ""
+msgstr "Support för tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:19
 msgid ""
@@ -5561,11 +5571,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:189
 msgid "Prohibited Add-ons"
-msgstr ""
+msgstr "Förbjudna tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:190
 msgid "The following add-ons are not permitted in any form:"
-msgstr ""
+msgstr "Följande tillägg är inte tillåtna i någon form:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
@@ -5800,7 +5810,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Du har inaktiverat detta tillägg"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:19
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
@@ -5838,52 +5848,52 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:75
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
-msgstr ""
+msgstr "Alla värdbaserade tillägg i vårt galleri måste nu granskas av en redigerare. Om du vill fortsätta vara värd för ditt tillägg, klicka för att välja en granskningsprocess."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "Current Version:"
-msgstr ""
+msgstr "Nuvarande version:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:87
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "Detta är den version av ditt tillägg som kommer att installeras om någon klickar på knappen Installera på addons.mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:95
 msgid "Created:"
-msgstr ""
+msgstr "Skapad:"
 
 #. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%e %b %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:101
 msgid "Last Updated:"
-msgstr ""
+msgstr "Senast uppdaterad:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:108
 msgid "Next Version:"
-msgstr ""
+msgstr "Nästa version:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Detta är den nyaste uppladdade versionen, men den finns ännu inte på webbplatsen."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Köerna granskas inte i strikt ordning"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(krävs eftersom detta tillägg accepterar bidrag)"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:18
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Hantera din utvecklarprofil"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:20
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Skapa en utvecklarprofil"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:24
 msgid ""
@@ -5913,11 +5923,11 @@ msgstr "Visa alla"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
 msgid "Enable Add-on"
-msgstr ""
+msgstr "Aktivera tillägg"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37 apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:242
 msgid "Disable Add-on"
-msgstr ""
+msgstr "Inaktivera tillägg"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:52
 msgid "View Statistics Dashboard"
@@ -5925,7 +5935,7 @@ msgstr "Visa statistikpanelen"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:55
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Kompatibilitetsrapporter"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:57
 msgid "{0} failure reports"
@@ -5961,7 +5971,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#.                {1} is the application name.
+#. {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -7464,7 +7474,7 @@ msgstr ""
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} tillägg"
-msgstr[1] ""
+msgstr[1] "{0} tillägg"
 
 #: apps/editors/templates/editors/home.html:45 apps/editors/templates/editors/home.html:95
 msgid "{0}%"
@@ -9801,11 +9811,11 @@ msgstr[1] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
-msgstr ""
+msgstr "av %(user)s "
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Läs mer&nbsp;&raquo;"
 
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
@@ -9878,7 +9888,7 @@ msgstr "{0} tillägg"
 #. Firefox."
 #: apps/search/views.py:558
 msgid "Any {0}"
-msgstr ""
+msgstr "Någon {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:593
@@ -9900,11 +9910,11 @@ msgstr "Sökresultat för samlingar"
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Sökning ej tillgänglig"
 
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Sökning är ej tillgänglig för tillfället. Försök igen om några minuter."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
@@ -9923,13 +9933,13 @@ msgstr "{0} :: Tagg"
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Sökresultat för tagg \"{0}\""
 
 #: apps/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> träff"
+msgstr[1] "<b>{0}</b> träffar"
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
