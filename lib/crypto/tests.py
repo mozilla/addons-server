@@ -111,8 +111,16 @@ class TestPackaged(amo.tests.TestCase):
         assert not self.file2.cert_serial_num
 
     def test_sign_file(self):
+        assert not is_signed(self.file1.file_path)
+        assert not is_signed(self.file2.file_path)
+        assert not self.file1.cert_serial_num
+        assert not self.file2.cert_serial_num
+        assert not self.file1.hash
+        assert not self.file2.hash
         packaged.sign(self.version)
         assert is_signed(self.file1.file_path)
         assert is_signed(self.file2.file_path)
         assert self.file1.cert_serial_num
         assert self.file2.cert_serial_num
+        assert self.file1.hash
+        assert self.file2.hash
