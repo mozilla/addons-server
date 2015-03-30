@@ -98,7 +98,10 @@ def sign_file(file_obj):
     try:
         cert_serial_num = call_signing(file_obj)  # Sign file.
         if cert_serial_num:
-            file_obj.update(cert_serial_num=cert_serial_num)
+            # Save the certificate serial number for revocation if needed, and
+            # re-hash the file now that it's been signed.
+            file_obj.update(cert_serial_num=cert_serial_num,
+                            hash=file_obj.generate_hash())
     except SigningError:
         log.info('Signing failed for file %s.' % file_obj.pk)
         raise
