@@ -19,7 +19,21 @@
   <div class="hidden">
     {{ new_addon_form.upload }}
   </div>
-  <input type="file" id="upload-addon" data-upload-url="{{ url('devhub.upload') }}">
+  <div class="list-addon">
+    <label>{{ _('Do you want your add-on listed on AMO?') }}</label>
+    <div>
+      <label for="{{ new_addon_form.is_listed.auto_id }}">
+        {{ new_addon_form.is_listed }}
+        {{ new_addon_form.is_listed.label }}
+        <span class="tip tooltip"
+              title="{{ new_addon_form.is_listed.help_text }}">?</span>
+      </label>
+    </div>
+  </div>
+  <input type="file" id="upload-addon"
+    data-upload-url="{{ url('devhub.upload') }}"
+    data-upload-url-listed="{{ url('devhub.upload') }}"
+    data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}">
 
   {{ new_addon_form.non_field_errors() }}
 
@@ -32,17 +46,6 @@
           {{ new_addon_form.supported_platforms }}
         </div>
         {{ new_addon_form.upload }}
-      </div>
-      <div class="list-addon">
-        <label>{{ _('Do you want your add-on listed on AMO?') }}</label>
-        <div>
-          <label for="{{ new_addon_form.is_listed.auto_id }}">
-            {{ new_addon_form.is_listed }}
-            {{ new_addon_form.is_listed.label }}
-            <span class="tip tooltip"
-                  title="{{ new_addon_form.is_listed.help_text }}">?</span>
-          </label>
-        </div>
       </div>
       {% if is_admin %}
       <div class="admin-settings">
