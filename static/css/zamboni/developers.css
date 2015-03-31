@@ -685,6 +685,29 @@ a.extra {
     border-color: #ad1212;
     text-shadow: 0 -1px #e00;
 }
+a.delete-button:hover,
+a.delete-button {
+    border: 1px solid #ad1212;
+    -moz-border-radius: .95em;
+    -webkit-border-radius: .95em;
+    border-radius: .95em;
+    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
+    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.538;
+    padding: 0 .95em;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 #e00;
+}
+a.delete-button:hover {
+    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    color: #fff;
+}
 
 .email_comment {
     white-space: pre-wrap;

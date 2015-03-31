@@ -29,18 +29,6 @@
         <li {% if url in request.path %}class="selected"{% endif %}>
           <a href="{{ url }}">{{ title }}</a></li>
       {% endfor %}
-      <li class="addon-manage">
-        {% if check_addon_ownership(request, addon, dev=True) %}
-          {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-            <a href="{{ addon.get_dev_url('enable') }}" class="enable-addon">{{ _('Enable Add-on') }}</a>
-          {% elif not addon.is_disabled %}
-            <a href="{{ addon.get_dev_url('versions') }}#disable-addon" class="disable-addon">{{ _('Disable Add-on') }}</a>
-          {% endif %}
-        {% endif %}
-        {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
-          <a href="{{ addon.get_dev_url('versions') }}#delete-addon" class="delete-addon">{{ _('Delete Add-on') }}</a>
-        {% endif %}
-      </li>
     </ul>
     <ul class="refinements">
       <li><a href="{{ addon.get_url_path() }}">
