@@ -189,14 +189,43 @@ class TestAddonManager(amo.tests.TestCase):
     def setUp(self):
         super(TestAddonManager, self).setUp()
         set_user(None)
+        self.addon = Addon.objects.get(pk=3615)
+
+    def change_addon_visibility(self, deleted=False, listed=True):
+        self.addon.update(
+            status=amo.STATUS_DELETED if deleted else amo.STATUS_PUBLIC,
+            is_listed=listed)
+
+    def test_managers_public(self):
+        assert self.addon in Addon.objects.all()
+        assert self.addon in Addon.with_unlisted.all()
+        assert self.addon in Addon.unfiltered.all()
+
+    def test_managers_unlisted(self):
+        self.change_addon_visibility(listed=False)
+        assert self.addon not in Addon.objects.all()
+        assert self.addon in Addon.with_unlisted.all()
+        assert self.addon in Addon.unfiltered.all()
+
+    def test_managers_unlisted_deleted(self):
+        self.change_addon_visibility(deleted=True, listed=False)
+        assert self.addon not in Addon.objects.all()
+        assert self.addon not in Addon.with_unlisted.all()
+        assert self.addon in Addon.unfiltered.all()
+
+    def test_managers_deleted(self):
+        self.change_addon_visibility(deleted=True, listed=True)
+        assert self.addon not in Addon.objects.all()
+        assert self.addon not in Addon.with_unlisted.all()
+        assert self.addon in Addon.unfiltered.all()
 
     def test_featured(self):
         eq_(Addon.objects.featured(amo.FIREFOX).count(), 3)
 
     def test_listed(self):
         # We need this for the fixtures, but it messes up the tests.
-        Addon.objects.get(pk=3615).update(disabled_by_user=True)
-        # No continue as normal.
+        self.addon.update(disabled_by_user=True)
+        # Now continue as normal.
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
         eq_(len(q.all()), 4)
@@ -299,25 +328,48 @@ class TestAddonManager(amo.tests.TestCase):
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
-        addon = Addon.objects.get(pk=3615)
-        collection = addon.collections.first()
-        assert collection.addons.get() == addon
+        collection = self.addon.collections.first()
+        assert collection.addons.get() == self.addon
 
-        # Delete the addon: it shouldn't be listed in collection.addons.
-        addon.update(status=amo.STATUS_DELETED)
+        # Addon shouldn't be listed in collection.addons if it's deleted or
+        # unlisted.
+
+        # Unlisted.
+        self.addon.update(is_listed=False)
+        collection = Collection.objects.get(pk=collection.pk)
+        assert collection.addons.count() == 0
+
+        # Deleted and unlisted.
+        self.addon.update(status=amo.STATUS_DELETED)
+        collection = Collection.objects.get(pk=collection.pk)
+        assert collection.addons.count() == 0
+
+        # Only deleted.
+        self.addon.update(is_listed=True)
         collection = Collection.objects.get(pk=collection.pk)
         assert collection.addons.count() == 0
 
     def test_no_filter_for_relations(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
-        addon = Addon.objects.get(pk=3615)
-        version = addon.versions.first()
-        assert version.addon == addon
+        version = self.addon.versions.first()
+        assert version.addon == self.addon
 
-        # Delete the addon: version.addon should still work.
-        addon.update(status=amo.STATUS_DELETED)
+        # Deleted or unlisted, version.addon should still work.
+
+        # Unlisted.
+        self.addon.update(is_listed=False)
         version = Version.objects.get(pk=version.pk)  # Reload from db.
-        assert version.addon == addon
+        assert version.addon == self.addon
+
+        # Deleted and unlisted.
+        self.addon.update(status=amo.STATUS_DELETED)
+        version = Version.objects.get(pk=version.pk)  # Reload from db.
+        assert version.addon == self.addon
+
+        # Only deleted.
+        self.addon.update(is_listed=True)
+        version = Version.objects.get(pk=version.pk)  # Reload from db.
+        assert version.addon == self.addon
 
 
 class TestAddonModels(amo.tests.TestCase):
@@ -452,10 +504,10 @@ class TestAddonModels(amo.tests.TestCase):
         assert BlacklistedGuid.objects.filter(guid=a.guid)
 
     def test_delete(self):
-        deleted_count = Addon.with_deleted.count()
+        deleted_count = Addon.unfiltered.count()
         self._delete()
-        eq_(deleted_count, Addon.with_deleted.count())
-        addon = Addon.with_deleted.get(pk=3615)
+        eq_(deleted_count, Addon.unfiltered.count())
+        addon = Addon.unfiltered.get(pk=3615)
         eq_(addon.status, amo.STATUS_DELETED)
         eq_(addon.slug, None)
         eq_(addon.current_version, None)
@@ -468,9 +520,9 @@ class TestAddonModels(amo.tests.TestCase):
         assert absolutify(url) in mail.outbox[0].body
 
     def test_delete_url(self):
-        count = Addon.with_deleted.count()
+        count = Addon.unfiltered.count()
         self._delete_url()
-        eq_(count, Addon.with_deleted.count())
+        eq_(count, Addon.unfiltered.count())
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
@@ -494,11 +546,11 @@ class TestAddonModels(amo.tests.TestCase):
         a.delete('bye')
         eq_(len(mail.outbox), 1)
         assert BlacklistedGuid.objects.filter(guid=a.guid)
-        eq_(count, Addon.with_deleted.count())
+        eq_(count, Addon.unfiltered.count())
 
     def test_delete_incomplete(self):
         """Test deleting incomplete add-ons."""
-        count = Addon.with_deleted.count()
+        count = Addon.unfiltered.count()
         a = Addon.objects.get(pk=3615)
         a.status = 0
         a.highest_status = 0
@@ -506,7 +558,7 @@ class TestAddonModels(amo.tests.TestCase):
         a.delete(None)
         eq_(len(mail.outbox), 0)
         assert not BlacklistedGuid.objects.filter(guid=a.guid)
-        eq_(Addon.with_deleted.count(), count - 1)
+        eq_(Addon.unfiltered.count(), count - 1)
 
     def test_delete_searchengine(self):
         """
@@ -1518,7 +1570,7 @@ class TestAddonDelete(amo.tests.TestCase):
 
         addon.delete()
 
-        eq_(Addon.with_deleted.filter(pk=addon.pk).exists(), True)
+        eq_(Addon.unfiltered.filter(pk=addon.pk).exists(), True)
         eq_(Review.objects.filter(pk=review.pk).exists(), False)
         eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
 

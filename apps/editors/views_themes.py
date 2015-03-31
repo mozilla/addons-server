@@ -448,8 +448,8 @@ def themes_logs(request):
 @admin_required(theme_reviewers=True)
 def deleted_themes(request):
     data = request.GET.copy()
-    deleted = Addon.with_deleted.filter(type=amo.ADDON_PERSONA,
-                                        status=amo.STATUS_DELETED)
+    deleted = Addon.unfiltered.filter(type=amo.ADDON_PERSONA,
+                                      status=amo.STATUS_DELETED)
 
     if not data.get('start') and not data.get('end'):
         today = datetime.date.today()

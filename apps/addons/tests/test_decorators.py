@@ -95,3 +95,40 @@ class TestAddonView(amo.tests.TestCase):
         eq_(r, mock.sentinel.OK)
         request, addon = self.func.call_args[0]
         eq_(addon, app)
+
+
+class TestAddonViewWithUnlisted(TestAddonView):
+
+    def setUp(self):
+        super(TestAddonViewWithUnlisted, self).setUp()
+        self.view = dec.addon_view_factory(
+            qs=Addon.with_unlisted.all)(self.func)
+
+    @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('access.acl.check_addon_ownership',
+                lambda *args, **kwargs: False)
+    def test_unlisted_addon(self):
+        """Return a 404 for non authorized access."""
+        self.addon.update(is_listed=False)
+        with self.assertRaises(http.Http404):
+            self.view(self.request, self.addon.slug)
+
+    @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('access.acl.check_addon_ownership',
+                lambda *args, **kwargs: True)
+    def test_unlisted_addon_owner(self):
+        """Addon owners have access."""
+        self.addon.update(is_listed=False)
+        assert self.view(self.request, self.addon.slug) == mock.sentinel.OK
+        request, addon = self.func.call_args[0]
+        assert addon == self.addon
+
+    @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: True)
+    @mock.patch('access.acl.check_addon_ownership',
+                lambda *args, **kwargs: False)
+    def test_unlisted_addon_unlisted_admin(self):
+        """Unlisted addon reviewers have access."""
+        self.addon.update(is_listed=False)
+        assert self.view(self.request, self.addon.slug) == mock.sentinel.OK
+        request, addon = self.func.call_args[0]
+        assert addon == self.addon

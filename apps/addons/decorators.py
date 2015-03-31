@@ -4,6 +4,7 @@ from django import http
 from django.shortcuts import get_object_or_404
 
 import commonware.log
+from access import acl
 from addons.models import Addon
 
 log = commonware.log.getLogger('mkt.purchase')
@@ -26,6 +27,14 @@ def addon_view(f, qs=Addon.objects.all):
                 return http.HttpResponsePermanentRedirect(url)
         else:
             addon = get_object_or_404(qs(), slug=addon_id)
+        # If the addon is unlisted it needs either an owner/viewer/dev/support,
+        # or an unlisted addon reviewer.
+        if (not addon.is_listed and
+            not (acl.check_unlisted_addons_reviewer(request) or
+                 acl.check_addon_ownership(
+                     request, addon, admin=False, dev=True, viewer=True,
+                     support=True))):
+            raise http.Http404
         return f(request, addon, *args, **kw)
     return wrapper
 

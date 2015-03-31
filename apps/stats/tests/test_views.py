@@ -10,6 +10,7 @@ from pyquery import PyQuery as pq
 import amo.tests
 from amo.urlresolvers import reverse
 from access.models import Group, GroupUser
+from addons.models import Addon
 from bandwagon.models import Collection
 from stats import views, tasks
 from stats import search
@@ -70,6 +71,34 @@ class StatsTest(amo.tests.TestCase):
             if view.startswith('stats.contributions'):
                 yield (view, args)
 
+    def _check_it(self, views, status):
+        for view, kwargs in views:
+            response = self.get_view_response(view, head=True, **kwargs)
+            eq_(response.status_code, status,
+                'unexpected http status for %s. got %s. expected %s' % (
+                    view, response.status_code, status))
+
+
+class TestUnlistedAddons(StatsTest):
+
+    def setUp(self):
+        super(TestUnlistedAddons, self).setUp()
+        Addon.objects.get(pk=4).update(is_listed=False)
+
+    def test_no_stats_for_unlisted_addon(self):
+        """All the views for the stats return 404 for unlisted addons."""
+        self.login_as_visitor()
+
+        self._check_it(self.public_views_gen(format='json'), 404)
+        self._check_it(self.private_views_gen(format='json'), 404)
+
+    def test_stats_for_unlisted_addon_owner(self):
+        """All the views for the stats return 404 for unlisted addons owner."""
+        self.login_as_admin()
+
+        self._check_it(self.public_views_gen(format='json'), 200)
+        self._check_it(self.private_views_gen(format='json'), 200)
+
 
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
     """Test class with some ES setup."""
@@ -101,13 +130,6 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
 class TestSeriesSecurity(StatsTest):
     """Tests to make sure all restricted data remains restricted."""
     mock_es = True  # We're checking only headers, not content.
-
-    def _check_it(self, views, status):
-        for view, kwargs in views:
-            response = self.get_view_response(view, head=True, **kwargs)
-            eq_(response.status_code, status,
-                'unexpected http status for %s. got %s. expected %s' % (
-                    view, response.status_code, status))
 
     def test_private_addon_no_groups(self):
         # Logged in but no groups

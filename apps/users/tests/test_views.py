@@ -1275,6 +1275,42 @@ class TestProfileSections(amo.tests.TestCase):
         eq_(items('.install[data-addon=3615]').length, 1)
         eq_(items('.install[data-addon=5299]').length, 1)
 
+    def test_my_unlisted_addons(self):
+        """I can't see my own unlisted addons on my profile page."""
+        eq_(pq(self.client.get(self.url).content)('.num-addons a').length, 0)
+
+        AddonUser.objects.create(user=self.user, addon_id=3615)
+        Addon.objects.get(pk=5299).update(is_listed=False)
+        AddonUser.objects.create(user=self.user, addon_id=5299)
+
+        r = self.client.get(self.url)
+        assert list(r.context['addons'].object_list) == [
+            Addon.objects.get(pk=3615)]
+
+        doc = pq(r.content)
+        items = doc('#my-addons .item')
+        eq_(items.length, 1)
+        eq_(items('.install[data-addon=3615]').length, 1)
+
+    def test_not_my_unlisted_addons(self):
+        """I can't see others' unlisted addons on their profile pages."""
+        res = self.client.get('/user/999/', follow=True)
+        eq_(pq(res.content)('.num-addons a').length, 0)
+
+        user = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(user=user, addon_id=3615)
+        Addon.objects.get(pk=5299).update(is_listed=False)
+        AddonUser.objects.create(user=user, addon_id=5299)
+
+        r = self.client.get('/user/999/', follow=True)
+        assert list(r.context['addons'].object_list) == [
+            Addon.objects.get(pk=3615)]
+
+        doc = pq(r.content)
+        items = doc('#my-addons .item')
+        eq_(items.length, 1)
+        eq_(items('.install[data-addon=3615]').length, 1)
+
     def test_my_personas(self):
         eq_(pq(self.client.get(self.url).content)('.num-addons a').length, 0)
 

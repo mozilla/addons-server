@@ -1117,7 +1117,7 @@ class TestModeratedQueue(QueueTest):
         # Make sure it was actually deleted.
         eq_(Review.objects.filter(addon=1865).count(), 1)
         # But make sure it wasn't *actually* deleted.
-        eq_(Review.with_deleted.filter(addon=1865).count(), 2)
+        eq_(Review.unfiltered.filter(addon=1865).count(), 2)
 
     def test_remove_fails_for_own_addon(self):
         """
@@ -1749,7 +1749,7 @@ class TestReview(ReviewBase):
 
     def test_needs_unlisted_reviewer_for_unlisted_addons(self):
         self.addon.update(is_listed=False)
-        assert self.client.head(self.url).status_code == 403
+        assert self.client.head(self.url).status_code == 404
         self.login_as_senior_editor()
         assert self.client.head(self.url).status_code == 200
 
