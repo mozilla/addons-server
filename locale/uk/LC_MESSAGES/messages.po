@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-03-26 19:49+0000\n"
+"PO-Revision-Date: 2015-03-31 18:43+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427399392.0\n"
+"X-POOTLE-MTIME: 1427827421.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3411,7 +3411,7 @@ msgstr "Persona"
 
 #: apps/constants/base.py:418
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Очки за перевірку вручну"
 
 #: apps/constants/base.py:419
 msgid "Full Add-on Review"
@@ -4317,7 +4317,7 @@ msgstr[2] "<b>{0}</b> тем"
 #: apps/devhub/templates/devhub/addons/edit.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:25 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:7
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:2 apps/devhub/templates/devhub/personas/edit.html:6 apps/editors/templates/editors/themes/single.html:37
 msgid "Edit Listing"
-msgstr ""
+msgstr "Редагувати список"
 
 #: apps/devhub/templates/devhub/addons/edit.html:13 apps/devhub/templates/devhub/includes/macros.html:18 apps/localizers/templates/localizers/categories.html:27
 #: apps/translations/templates/translations/all-locales.html:6
@@ -4618,16 +4618,24 @@ msgstr "UUID"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:128
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
+"UUID вашого додатку зазначений у його маніфесті установки і є його "
+"унікальним ідентифікатором. Після його відправлення ви не зможете змінити "
+"UUID."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr ""
+msgstr "Біла дошка "
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"Біла дошка є місцем для надання редактору інформації, яка має відношення до "
+"вашого додатку, незалежно від версії. Використовуйте її, щоб забезпечити "
+"способи тестування додатку, та для розміщення будь-якої додаткової "
+"інформації, яка може допомогти. Ця дошка може також редагуватися "
+"редакторами."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -4643,15 +4651,18 @@ msgstr "Медіа додаток для {0}"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
-msgstr ""
+msgstr "Іконка додатку"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
 msgstr ""
+"Завантажте іконку для вашого додатку або виберіть одну з наших. Іконка "
+"відображається майже скрізь де є ваш додаток. Завантажені іконки повинні "
+"мати одине з наступних розширень: .png, .jpg"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Виберіть іконку для вашого додатку:"
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:36
@@ -4661,6 +4672,8 @@ msgstr "32x32px"
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
+"Використовується у списках додатків, таких як результати пошуку та популярні "
+"додатки."
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:47
@@ -4829,7 +4842,7 @@ msgstr "Змінити власника цієї теми."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Передача власності"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
@@ -4838,6 +4851,8 @@ msgstr "Видалити цю тему."
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
 msgstr ""
+"Цей додаток буде видалений автоматично через декілька днів якщо процес "
+"представлення не буде завершено."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
@@ -4845,7 +4860,7 @@ msgstr "Вимкнено"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Позиція у черзі:</b> %(pos)s з %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:23
@@ -4885,7 +4900,7 @@ msgstr "Назва і версія:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
-msgstr ""
+msgstr "Сторінкою інформації буде:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:24 apps/devhub/templates/devhub/personas/edit.html:89 apps/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
@@ -4893,11 +4908,11 @@ msgstr "Будь ласка, використовуйте в своїй URL ли
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
-msgstr ""
+msgstr "Надайте коротке резюме:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:38
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Це зведення буде відображено на сторінці і в пошуку."
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:55
 msgid "Provide a more detailed description:"
@@ -4909,7 +4924,7 @@ msgstr "Опис з'явиться на сторінці детальної ін
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:4 apps/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr ""
+msgstr "Відправлення завершене"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:10 apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
@@ -4921,11 +4936,13 @@ msgstr "Ваш додаток було відправлено в чергу дл
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:13
 msgid "Your add-on has been submitted to the Full Review queue."
-msgstr ""
+msgstr "Ваш додаток був відправлений в чергу на повну перевірку."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:18
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr ""
+"Ви отримаєте електронний лист, як тільки додаток буде перевірено редактором. "
+"Тим часом ви та ваші друзі можуть встановити його зі сторінки інформації:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
@@ -4938,38 +4955,48 @@ msgstr "<a href=\"{0}\">Вивантажити</a> інший специфічн
 #: apps/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr ""
+"Надайте більше інформації, <a href=\"{0}\">відредагувавши його сторінку</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
 msgstr ""
+"Розкажіть своїм користувачам, чому ви його створили, у вашому <a "
+"href=\"{0}\">профілі розробника</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Перегляньте та підпишіться на <a href=\"{0}\">стрічку активності</a> вашого "
+"додатку, щоб бути в курсі відгуків, збірок та багато іншого."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:37
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr ""
+"Показати приблизний <a href=\"{0}\">час очікування</a> у черзі на проведення "
+"перевірки."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Прорвіться вперед у черзі на перевірку!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "Станьте рецензентом AMO та прискорте перевірку ваших додатків."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
 msgstr ""
+"Ви отримаєте електронний лист, як тільки він буде перевірений редактором."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "Ваш додаток не буде загальнодоступним на AMO."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
 msgstr ""
+"Якщо вам треба змінити якісь властивості вашого додатку, будь ласка, <a "
+"href=\"{0}\">відредагуйте його сторінку</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5000,28 +5027,38 @@ msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
 msgstr ""
+"Власні іконки та знімки екрану приваблюють та допомагають користувачам "
+"зрозуміти, що він робить. Ми наполегливо рекомендуємо завантажити свою "
+"іконку, адже у деяких частинах веб-сайту з'явиться тільки ім'я та іконка."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
-msgstr ""
+msgstr "Крок 6"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
-msgstr ""
+msgstr "Крок 6. Виберіть процес перевірки"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:10
 msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
+"Усі додатки, розміщені у нашій галереї, повинні бути розглянуті редактором "
+"перед тим, як вони з'являться в категоріях чи результатах пошуку. В "
+"очікуванні перевірки ваш додаток може бути доступним для встановлення за "
+"його прямим посиланням. Будь ласка, виберіть нижче процес перевірки, котрий "
+"найкраще підходить для вашого додатку."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Повна перевірка програмного коду та функціональності вашого додатку. <a "
+"href=\"%(url)s\">Докладніше&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
-msgstr ""
+msgstr "Підходить до налагоджених додатків"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Review should take place within 10 days"
@@ -5033,19 +5070,21 @@ msgstr "Наступні версії розглядаються протяго�
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:35
 msgid "Warning-free installation and no feature limitations"
-msgstr ""
+msgstr "Встановлення без попереджень і відсутність функціональних обмежень "
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:39
 msgid "Choose Full Review"
-msgstr ""
+msgstr "Вибрати повну перевірку"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:48
 msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Швидка перевірка програмного коду вашого додатку для виявлення будь-яких "
+"серйозних проблем. <a href=\"%(url)s\">Докладніше&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:54
 msgid "Appropriate for experimental add-ons"
-msgstr ""
+msgstr "Підходить до експериментальних додатків"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:55
 msgid "Review should take place within 3 days"
@@ -5053,27 +5092,27 @@ msgstr "Розгляд буде проведено протягом 3 днів"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:56
 msgid "Some feature limitations"
-msgstr ""
+msgstr "Деякі функціональні обмеження"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:57
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
+msgstr "Додатки з бінарним чи заплутаним кодом є неприпустимими"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:58
 msgid "Cannot request Full Review for 10 days"
-msgstr ""
+msgstr "Не можна запросити повну перевірку в найближчі 10 днів"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:62
 msgid "Choose Preliminary Review"
-msgstr ""
+msgstr "Вибрати попередню перевірку"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
 msgid "Getting Started"
-msgstr ""
+msgstr "Початок роботи"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Завантажити ваш додаток"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
 msgid "Describe your add-on"
@@ -5081,7 +5120,7 @@ msgstr "Опишіть свій додаток"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Add images"
-msgstr ""
+msgstr "Додати зображення"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Select a license"
@@ -5094,7 +5133,7 @@ msgstr "Виберіть процес розгляду"
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:15 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
 #: apps/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
-msgstr ""
+msgstr "Процес відправлення"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:3
 msgid "Step 1"
@@ -5107,10 +5146,15 @@ msgstr "Крок 1. Початок"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
 msgstr ""
+"Розміщення вашого додатку в нашій галереї є найкращим способом відкрити вашу "
+"роботу мільйонам користувачам Firefox. Ми безкоштовно надамо усе необхідне "
+"для поширення та оновлення вашого додатку."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
 msgstr ""
+"Щоб завершити цей процес представлення вам знадобляться пакет вашого додатку "
+"(.xpi, .jar, чи .xml) і хоча б один знімок екрану цього додатку в дії."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:24
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -5126,81 +5170,96 @@ msgstr "Додаткові політики додатку"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:43
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Я приймаю цю угоду"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:45
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "чи<a href=\"{0}\">Скасувати</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
-msgstr ""
+msgstr "Крок 2"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:9
 msgid "Step 2. Upload Your Add-on"
-msgstr ""
+msgstr "Крок 2. Завантажте ваш додаток"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
+"Для завантаження пакету свого додатку і вибору обмежень щодо платформи "
+"користуйтеся полями нижче. Після завантаження ваш файл буде перевірено з "
+"використанням серії автоматичних тестів валідації."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "З якими платформами сумісний цей файл?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:37
 msgid "Do you want your add-on listed on AMO?"
-msgstr ""
+msgstr "Ви хочете відображати ваш додаток на AMO?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Адміністративні дії"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Угода розробника"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3 apps/devhub/templates/devhub/docs/policies-contact.html:7 apps/devhub/templates/devhub/docs/policies-contact.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:27 apps/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "Зв'язок з нами"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Дякуємо за ваш інтерес до зв'язку з командою додатків Mozilla. Будь ласка, "
+"уважно прочитайте цю сторінку, щоб переконатися, що ваш запит потрапить у "
+"потрібне місце."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
-msgstr ""
+msgstr "Підтримка додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:19
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
 msgstr ""
+"Якщо у вас є питання, пов'язане з роботою конкретного додатку, таке як \"як "
+"мені використовувати цей додаток?\" чи \"чому він неправильно працює?\", "
+"зв'яжіться будь ласка з автором додатку через канали підтримки, зазначені на "
+"сторінці інформації додатку."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "Завдання перевіряючого доповнення"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors на mozilla крапка org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid ""
 "If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
 "strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
+"Якщо у вас є питання з приводу рецензії редактора на додаток чи ви бажаєте "
+"повідомити про порушення політики, будь ласка, напишіть %(mail_editors)s. "
+"<strong>Майже усі повідомлення про додатки потрапляють у цю "
+"категорію.</strong> Будь ласка, не забудьте вказати посилання на додаток, "
+"про який йде мова, та детальний опис вашого питання чи коментар."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Вразливості безпеки додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "marketplace-staff at mozilla dot org"
-msgstr ""
+msgstr "marketplace-staff на mozilla крапка org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -5208,24 +5267,34 @@ msgid ""
 "issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Якщо ви виявили вразливість безпеки додатку, навіть якщо його розміщено не "
+"тут, Mozilla буде дуже зацікавлена вашим відкриттям й буде працювати разом з "
+"розробником додатку щодо найшвидшого усунення проблеми. Про проблеми "
+"безпеки додатків можна <a href=\"http://www.mozilla.org/projects/security"
+"/security-bugs-policy.html\">конфіденційно</a> повідомити у <a href=\"%"
+"(link_bugzilla)s\">Bugzilla</a> чи за електронною адресою %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Функціональність та розробка веб-сайту"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
 "If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">file a bug report</a> in Bugzilla, including "
 "the location of the problem and how you encountered it."
 msgstr ""
+"Якщо ви виявили проблему з сайтом, ми з радістю її виправимо. Будь ласка, <a "
+"href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org"
+"\"> відправте повідомлення про помилку </a> в Bugzilla, вказавши розташування "
+"проблеми і як ви з нею зіштовхнулися."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3 apps/devhub/templates/devhub/docs/policies-maintenance.html:7 apps/devhub/templates/devhub/docs/policies-maintenance.html:8
 msgid "Maintaining Your Add-ons"
-msgstr ""
+msgstr "Обслуговування ваших додатків"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:10
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Представлення нових версій вашого додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
