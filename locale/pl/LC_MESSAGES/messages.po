@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2013-11-04 15:26+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -147,16 +147,16 @@ msgstr "Niesprawdzony"
 msgid "Featured"
 msgstr "Polecane"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Otrzymana kwota dotacji może być różna od tutaj podanej."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Prośby o dotacje będą zawsze wyświetlane w menedżerze dodatków (Firefox 4 i nowsze wersje)"
 
 # Column name in a table.
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Wyświetlanie"
 
@@ -999,7 +999,7 @@ msgstr "Pomoc"
 msgid "Support E-mail"
 msgstr "E-mail pomocy"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Wersja {0}"
 
@@ -3836,7 +3836,7 @@ msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
 msgstr[2] "{0} ostrzeżeń"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Opinia"
 
@@ -7594,6 +7594,10 @@ msgstr "potrzebuje więcej informacji"
 #: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "potrzebuje specjalnego sprawdzenia"
+
+#: apps/editors/views.py:709
+msgid "commented"
+msgstr ""
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -11669,15 +11673,15 @@ msgstr "Historia wersji %s"
 msgid "Version History with Changelogs"
 msgstr "Historia wersji z informacjami o zmianach"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr "Dodatek używa komponentów binarnych."
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Dodatek skierowano do sprawdzenia w trybie ścisłej zgodności."
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} i późniejsze"
 

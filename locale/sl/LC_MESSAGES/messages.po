@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2015-03-10 08:47+0000\n"
 "Last-Translator: Peter <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
@@ -145,16 +145,16 @@ msgstr "Ni pregledan"
 msgid "Featured"
 msgstr "Izbrani"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Uporabniki imajo možnost, da prispevajo več ali manj kot je ta znesek."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Uporabnike se bo vedno vprašalo v Upravitelju dodatkov (Firefox 4 in novejši)"
 
 # Column name in a table.
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Na seznamu"
 
@@ -1001,7 +1001,7 @@ msgstr "Stran za podporo"
 msgid "Support E-mail"
 msgstr "Podpora E-pošta"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Različica {0}"
 
@@ -3866,7 +3866,7 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Recenzija"
 
@@ -7641,6 +7641,10 @@ msgstr "potrebno je več podatkov"
 #: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "potrebuje superpregled"
+
+#: apps/editors/views.py:709
+msgid "commented"
+msgstr ""
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -11809,15 +11813,15 @@ msgstr "Zgodovina različice %s"
 msgid "Version History with Changelogs"
 msgstr "Zgodovina različic z dnevniki sprememb"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr "Dodarek vsebuje binarne komponente."
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Dodatek je vključen v strogo preverjanje združljivosti."
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} in kasneje"
 

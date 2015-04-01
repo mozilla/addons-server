@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2014-08-19 04:41+0000\n"
 "Last-Translator: Riyad <riyadrir@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,15 +135,15 @@ msgstr "পর্যালোচিত হয় নি"
 msgid "Featured"
 msgstr "বৈশিষ্ট্যপূর্ণ"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "ব্যবহারকারীদের এর থেকে বেশি বা কম অবদান রাখার সুযোগ রয়েছে।"
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "ব্যবহারকারীরা অ্যাড-অনস ম্যানেজারে সর্বদা জিজ্ঞাসিত হবে (ফায়ারফক্স ৪ ও অধিকের ক্ষেত্রে)"
 
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "তালিকাভুক্ত"
 
@@ -967,7 +967,7 @@ msgstr "সহায়ক সাইট"
 msgid "Support E-mail"
 msgstr "ই-মেইল সহায়তা"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "সংস্করণ {0}"
 
@@ -3750,7 +3750,7 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr ""
 
@@ -7293,6 +7293,10 @@ msgstr ""
 
 #: apps/editors/views.py:708
 msgid "needs super review"
+msgstr ""
+
+#: apps/editors/views.py:709
+msgid "commented"
 msgstr ""
 
 #: apps/editors/views_themes.py:326
@@ -11165,15 +11169,15 @@ msgstr ""
 msgid "Version History with Changelogs"
 msgstr ""
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr ""
 

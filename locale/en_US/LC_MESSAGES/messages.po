@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -137,16 +137,16 @@ msgstr "Not Reviewed"
 msgid "Featured"
 msgstr "Featured"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Users have the option of contributing more or less than this amount."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 
 # Column name in a table.
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Listed"
 
@@ -978,7 +978,7 @@ msgstr "Support site"
 msgid "Support E-mail"
 msgstr "Support E-mail"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Version {0}"
 
@@ -3797,7 +3797,7 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Review"
 
@@ -7519,6 +7519,10 @@ msgstr "needs more information"
 #: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "needs super review"
+
+#: apps/editors/views.py:709
+msgid "commented"
+msgstr "commented"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -11593,15 +11597,15 @@ msgstr "%s Version History"
 msgid "Version History with Changelogs"
 msgstr "Version History with Changelogs"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr "Add-on uses binary components."
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Add-on has opted into strict compatibility checking."
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"
 

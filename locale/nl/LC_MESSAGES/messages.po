@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2015-03-05 07:42+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -138,16 +138,16 @@ msgstr "Niet beoordeeld"
 msgid "Featured"
 msgstr "Aanbevolen"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Gebruikers hebben de keuze om meer of minder dan dit bedrag bij te dragen."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Gebruikers wordt altijd gevraagd in de Add-onbeheerder (Firefox 4 en hoger)"
 
 # Column name in a table.
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Vermeld"
 
@@ -978,7 +978,7 @@ msgstr "Ondersteuningswebsite"
 msgid "Support E-mail"
 msgstr "E-mailadres voor ondersteuning"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Versie {0}"
 
@@ -3808,7 +3808,7 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarschuwing"
 msgstr[1] "{0} waarschuwingen"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Beoordeling"
 
@@ -7564,6 +7564,10 @@ msgstr "heeft meer informatie nodig"
 #: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "vereist superbeoordeling"
+
+#: apps/editors/views.py:709
+msgid "commented"
+msgstr ""
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -11663,15 +11667,15 @@ msgstr "%s-versiegeschiedenis"
 msgid "Version History with Changelogs"
 msgstr "Versiegeschiedenis met overzicht van wijzigingen"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr "Add-on gebruikt binaire componenten."
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Add-on heeft geopteerd voor strenge compatibiliteitscontrole."
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} en hoger"
 

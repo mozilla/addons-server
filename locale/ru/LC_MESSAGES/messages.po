@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2015-03-27 19:08+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -17,8 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1427483293.0\n"
 
@@ -147,16 +146,16 @@ msgstr "Не проверено"
 msgid "Featured"
 msgstr "Избранное"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Пользователи могут решить внести больше или меньше этой суммы."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Пользователей всегда будут просить в менеджере дополнений (Firefox 4 и выше)"
 
 # Column name in a table.
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "В списке"
 
@@ -1000,7 +999,7 @@ msgstr "Сайт поддержки"
 msgid "Support E-mail"
 msgstr "Адрес эл. почты поддержки"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Версия {0}"
 
@@ -3844,7 +3843,7 @@ msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Отзыв"
 
@@ -5664,12 +5663,9 @@ msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"Если дополнение специфично для сайта, мы рекомендуем вам предоставить "
-"тестовую учётную запись для использования в процессе проверки. Кроме того, "
-"включив подробные инструкции по тестированию, вы поможете редактору лучше "
-"понять, как работает дополнение и ускорить процесс тестирования. Эта "
-"информация может быть размещена в поле Примечания для проверяющих при "
-"редактировании версии в Центре разработки."
+"Если дополнение специфично для сайта, мы рекомендуем вам предоставить тестовую учётную запись для использования в процессе проверки. Кроме того, включив подробные инструкции по тестированию, вы "
+"поможете редактору лучше понять, как работает дополнение и ускорить процесс тестирования. Эта информация может быть размещена в поле Примечания для проверяющих при редактировании версии в Центре "
+"разработки."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -7622,6 +7618,10 @@ msgstr "необходимо больше информации"
 #: apps/editors/views.py:708
 msgid "needs super review"
 msgstr "необходимо super review"
+
+#: apps/editors/views.py:709
+msgid "commented"
+msgstr ""
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -11758,15 +11758,15 @@ msgstr "История версий %s"
 msgid "Version History with Changelogs"
 msgstr "История версий со списком изменений"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr "Дополнение содержит бинарные компоненты."
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Дополнение выбрало строгую проверку совместимости."
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"
 

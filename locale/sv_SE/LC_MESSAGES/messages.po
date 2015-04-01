@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2015-03-29 13:41+0100\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -134,15 +134,15 @@ msgstr "Ej granskad"
 msgid "Featured"
 msgstr "Utvalda"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Användare har möjlighet att ge mer eller mindre än detta belopp."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Användarna kommer alltid att bli tillfrågade i tilläggshanteraren (Firefox 4 och uppåt)"
 
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Listad"
 
@@ -294,7 +294,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Ett förslaget engångsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#. {1} is an amount input field
+#.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Ett engångsbidrag på {0} {1}"
@@ -966,7 +966,7 @@ msgstr "Support webbplats"
 msgid "Support E-mail"
 msgstr "Support e-post"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Version {0}"
 
@@ -1917,8 +1917,8 @@ msgid "Previous"
 msgstr "Föregående"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#. third argument is the number of total results (e.g., 1,000).
+#.                third argument is the number of total results (e.g., 1,000).
+#.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
@@ -2349,8 +2349,8 @@ msgstr[0] "<span>%(followers)s</span> följare"
 msgstr[1] "<span>%(followers)s</span> följare"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2358,7 +2358,7 @@ msgstr[0] "%(num)s följare per vecka"
 msgstr[1] "%(num)s följare per vecka"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2366,8 +2366,8 @@ msgstr[0] "%(num)s följare per månad"
 msgstr[1] "%(num)s följare per månad"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -3775,7 +3775,7 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Recensera"
 
@@ -5971,7 +5971,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#. {1} is the application name.
+#.                {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -7342,6 +7342,10 @@ msgstr ""
 
 #: apps/editors/views.py:708
 msgid "needs super review"
+msgstr ""
+
+#: apps/editors/views.py:709
+msgid "commented"
 msgstr ""
 
 #: apps/editors/views_themes.py:326
@@ -11219,15 +11223,15 @@ msgstr "%s versionshistorik"
 msgid "Version History with Changelogs"
 msgstr "Versionshistorik med ändringsloggar"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr ""
 

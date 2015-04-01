@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-01 09:01-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -152,15 +152,15 @@ msgstr "Gan Léirmheas"
 msgid "Featured"
 msgstr "Mór-Le-Rá"
 
-#: apps/addons/models.py:308
+#: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Beidh úsáideoirí in ann níos mó nó níos lú ná an méid seo a thabhairt."
 
-#: apps/addons/models.py:317
+#: apps/addons/models.py:321
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Cuirfear ceist ar úsáideoirí i gcónaí i mBainisteoir na mBreiseán (Firefox 4 agus níos déanaí)"
 
-#: apps/addons/models.py:1887
+#: apps/addons/models.py:1892
 msgid "Listed"
 msgstr "Liostaithe"
 
@@ -1018,7 +1018,7 @@ msgstr "Suíomh tacaíochta"
 msgid "Support E-mail"
 msgstr "Ríomhphost tacaíochta"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
 msgid "Version {0}"
 msgstr "Leagan {0}"
 
@@ -3873,7 +3873,7 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Léirmheas"
 
@@ -7481,6 +7481,10 @@ msgstr ""
 
 #: apps/editors/views.py:708
 msgid "needs super review"
+msgstr ""
+
+#: apps/editors/views.py:709
+msgid "commented"
 msgstr ""
 
 #: apps/editors/views_themes.py:326
@@ -11463,15 +11467,15 @@ msgstr "Stair na Leaganacha %s"
 msgid "Version History with Changelogs"
 msgstr "Stair na Leaganacha le Logchomhaid Athruithe"
 
-#: apps/versions/models.py:299
+#: apps/versions/models.py:301
 msgid "Add-on uses binary components."
 msgstr "Úsáideann an breiseán seo comhpháirteanna dénártha."
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:304
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:680
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} agus níos déanaí"
 
