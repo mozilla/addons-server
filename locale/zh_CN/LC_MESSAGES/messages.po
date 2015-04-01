@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-03-27 10:08+0000\n"
+"PO-Revision-Date: 2015-04-01 18:42+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427450899.0\n"
+"X-POOTLE-MTIME: 1427913760.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7343,7 +7343,7 @@ msgstr "需要超级审核"
 
 #: apps/editors/views.py:709
 msgid "commented"
-msgstr ""
+msgstr "已留言"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
