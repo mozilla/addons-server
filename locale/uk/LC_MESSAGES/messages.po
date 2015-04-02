@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-04-02 09:02+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-04-02 12:02+0000\n"
+"Last-Translator: Tim <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427965376.0\n"
+"X-POOTLE-MTIME: 1427976143.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6399,10 +6399,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
+"Ліцензіар дозволяє іншим копіювати, поширювати і передавати тільки незмінені "
+"копії роботи — не похідні роботи на його основі."
 
 #: apps/devhub/templates/devhub/personas/edit.html:199 apps/devhub/templates/devhub/personas/submit.html:145
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Ваша тема буде випущена на умовах такої ліцензії:"
 
 #: apps/devhub/templates/devhub/personas/edit.html:202 apps/devhub/templates/devhub/personas/submit.html:148
 msgid "Select a different license."
@@ -6418,19 +6420,21 @@ msgstr "Дизайн теми"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Завантажити новий дизайн"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
+"Після завантаження та відправлення форми команда AMO розгляне ваш оновлений "
+"дизайн. Поки що для загалу буде показаний ваш поточний дизайн."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Ваш раніше представлений дизайн, який очікує перевірки."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr ""
+msgstr "Очікуваний заголовок"
 
 #: apps/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
