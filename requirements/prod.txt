@@ -14,12 +14,10 @@ certifi==0.0.8
 chardet==2.1.1
 commonware==0.4.2
 cssutils==0.9.7b3
-curling==0.2.6
 defusedxml==0.4.1
 dennis==0.4.2
 Django==1.6.11
 dj-database-url==0.2.2
-django-aesfield==0.1.2
 django-browserid==0.8
 django-cache-nuggets==0.1.1
 django-celery==3.0.23
@@ -61,8 +59,6 @@ mock==1.0.1
 monolith.client==0.9
 moz-addon-packager==1.0.1
 mozilla-logger==0.2
-mozpay==2.0.0
-m2secret==0.1.1
 ndg-httpsclient==0.3.2
 newrelic==2.20.1.18
 oauth2==1.5.211
@@ -74,7 +70,6 @@ polib==1.0.3
 protobuf==2.5.0
 pyasn1==0.1.7
 PyBrowserID==0.6
-PyJWT-mozilla==0.1.5
 PyMySQL==0.5
 pymemcache==1.2
 pyquery==0.4
