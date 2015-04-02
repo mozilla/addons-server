@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-03-05 07:42+0000\n"
+"PO-Revision-Date: 2015-04-02 06:09+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425541375.0\n"
+"X-POOTLE-MTIME: 1427954977.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7567,7 +7567,7 @@ msgstr "vereist superbeoordeling"
 
 #: apps/editors/views.py:709
 msgid "commented"
-msgstr ""
+msgstr "met opmerking"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
