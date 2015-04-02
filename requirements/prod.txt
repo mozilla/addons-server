@@ -74,7 +74,7 @@ polib==1.0.3
 protobuf==2.5.0
 pyasn1==0.1.7
 PyBrowserID==0.6
-PyJWT-mozilla==0.1.4.2
+PyJWT-mozilla==0.1.5
 PyMySQL==0.5
 pymemcache==1.2
 pyquery==0.4

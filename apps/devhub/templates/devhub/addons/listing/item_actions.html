@@ -59,12 +59,9 @@
           <li><a href="{{ url }}">{{ title }}</a></li>
         {% endfor %}
       </ul>
-      {% set view_urls = ((addon.get_url_path(), _('View Add-on Listing')),
-                          (url('devhub.feed', addon.slug), _('View Recent Changes'))) %}
       <ul>
-        {% for url, title in view_urls %}
-          <li><a href="{{ url }}">{{ title }}</a></li>
-        {% endfor %}
+        {% if addon.is_listed %}<li><a href="{{ addon.get_url_path() }}">{{ _('View Add-on Listing') }}</a></li>{% endif %}
+        <li><a href="{{ url('devhub.feed', addon.slug) }}">{{ _('View Recent Changes') }}</a></li>
       </ul>
     </div>
   </li>

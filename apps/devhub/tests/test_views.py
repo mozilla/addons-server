@@ -120,6 +120,22 @@ class TestNav(HubTest):
         eq_(doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text(),
             'more add-ons...')
 
+    def test_unlisted_addons_are_displayed(self):
+        """Check that unlisted addons are displayed in the nav."""
+        # Assign this add-on to the current user profile.
+        addon = Addon.objects.get(id=57132)
+        addon.name = 'Test'
+        addon.is_listed = False
+        addon.save()
+        addon.addonuser_set.create(user=self.user_profile)
+
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+
+        # Check the anchor for the unlisted add-on.
+        eq_(doc('#site-nav ul li.top li a').eq(0).attr('href'),
+            addon.get_dev_url())
+
 
 class TestDashboard(HubTest):
 
@@ -128,6 +144,10 @@ class TestDashboard(HubTest):
         self.url = reverse('devhub.addons')
         self.themes_url = reverse('devhub.themes')
         eq_(self.client.get(self.url).status_code, 200)
+        self.addon = Addon.objects.get(pk=57132)
+        self.addon.name = 'some addon'
+        self.addon.save()
+        self.addon.addonuser_set.create(user=self.user_profile)
 
     def test_addons_layout(self):
         doc = pq(self.client.get(self.url).content)
@@ -157,8 +177,8 @@ class TestDashboard(HubTest):
         footer appear.
 
         """
-        # Create 10 add-ons.
-        self.clone_addon(10)
+        # Create 9 add-ons, there's already one existing from the setUp.
+        self.clone_addon(9)
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(len(doc('.item .item-info')), 10)
@@ -182,26 +202,21 @@ class TestDashboard(HubTest):
         eq_(len(doc('.item .item-info')), 2)
 
     def test_show_hide_statistics(self):
-        a_pk = self.clone_addon(1)[0]
-
         # when Active and Public show statistics
-        Addon.objects.get(pk=a_pk).update(disabled_by_user=False,
-                                          status=amo.STATUS_PUBLIC)
-        links = self.get_action_links(a_pk)
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_PUBLIC)
+        links = self.get_action_links(self.addon.pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
 
         # when Active and Incomplete hide statistics
-        Addon.objects.get(pk=a_pk).update(disabled_by_user=False,
-                                          status=amo.STATUS_NULL)
-        links = self.get_action_links(a_pk)
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
+        links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
-        addon = Addon.objects.get(id=self.clone_addon(1)[0])
-        eq_(addon.status, amo.STATUS_PUBLIC)
+        eq_(self.addon.status, amo.STATUS_PUBLIC)
         doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid=%s]' % addon.id)
-        eq_(item.find('h3 a').attr('href'), addon.get_dev_url())
+        item = doc('.item[data-addonid=%s]' % self.addon.id)
+        eq_(item.find('h3 a').attr('href'), self.addon.get_dev_url())
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
         assert item.find('.item-details'), 'Expected item details'
@@ -209,7 +224,6 @@ class TestDashboard(HubTest):
             'Unexpected message about incomplete add-on')
 
     def test_dev_news(self):
-        self.clone_addon(1)  # We need one to see this module
         for i in xrange(7):
             bp = BlogPost(title='hi %s' % i,
                           date_posted=datetime.now() - timedelta(days=i))
@@ -223,26 +237,23 @@ class TestDashboard(HubTest):
         eq_(doc('.blog-posts li a').eq(4).text(), "hi 4")
 
     def test_sort_created_filter(self):
-        a_pk = self.clone_addon(1)[0]
-        addon = Addon.objects.get(pk=a_pk)
         response = self.client.get(self.url + '?sort=created')
         doc = pq(response.content)
         eq_(doc('.item-details').length, 1)
         d = doc('.item-details .date-created')
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
-            datetime_filter(addon.created, '%b %e, %Y'))
+            datetime_filter(self.addon.created, '%b %e, %Y'))
 
     def test_sort_updated_filter(self):
-        a_pk = self.clone_addon(1)[0]
-        addon = Addon.objects.get(pk=a_pk)
         response = self.client.get(self.url)
         doc = pq(response.content)
         eq_(doc('.item-details').length, 1)
         d = doc('.item-details .date-updated')
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
-            strip_whitespace(datetime_filter(addon.last_updated)))
+            strip_whitespace(datetime_filter(self.addon.last_updated,
+                                             '%b %e, %Y')))
 
     def test_no_sort_updated_filter_for_themes(self):
         # Create a theme.
@@ -756,6 +767,7 @@ class TestHome(amo.tests.TestCase):
         super(TestHome, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
         self.url = reverse('devhub.index')
+        self.addon = Addon.objects.get(pk=3615)
 
     def get_pq(self):
         r = self.client.get(self.url)
@@ -776,38 +788,44 @@ class TestHome(amo.tests.TestCase):
         eq_(self.get_pq()('#devhub-sidebar #editor-promo').length, 0)
 
     def test_my_addons(self):
-        addon = Addon.objects.get(id=3615)
-
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
                     (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
                     (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
 
         for addon_status in statuses:
-            file = addon.latest_version.files.all()[0]
+            file = self.addon.latest_version.files.all()[0]
             file.update(status=addon_status[1])
 
-            addon.update(status=addon_status[0])
+            self.addon.update(status=addon_status[0])
 
             doc = self.get_pq()
             addon_item = doc('#my-addons .addon-item')
             eq_(addon_item.length, 1)
             eq_(addon_item.find('.addon-name').attr('href'),
-                addon.get_dev_url('edit'))
-            eq_(addon_item.find('p').eq(2).find('a').attr('href'),
-                addon.current_version.get_url_path())
+                self.addon.get_dev_url('edit'))
+            if self.addon.is_listed:
+                # We don't display a link to the inexistent public page for
+                # unlisted addons.
+                eq_(addon_item.find('p').eq(2).find('a').attr('href'),
+                    self.addon.current_version.get_url_path())
             eq_('Queue Position: 1 of 1', addon_item.find('p').eq(3).text())
             eq_(addon_item.find('.upload-new-version a').attr('href'),
-                addon.get_dev_url('versions') + '#version-upload')
+                self.addon.get_dev_url('versions') + '#version-upload')
 
-            addon.status = statuses[1][0]
-            addon.save()
+            self.addon.status = statuses[1][0]
+            self.addon.save()
             doc = self.get_pq()
             addon_item = doc('#my-addons .addon-item')
-            eq_('Status: ' + unicode(addon.STATUS_CHOICES[addon.status]),
+            eq_('Status: ' + unicode(
+                self.addon.STATUS_CHOICES[self.addon.status]),
                 addon_item.find('p').eq(1).text())
 
-        Addon.objects.all().delete()
+        Addon.with_unlisted.all().delete()
         eq_(self.get_pq()('#my-addons').length, 0)
+
+    def test_my_unlisted_addons(self):
+        self.addon.update(is_listed=False)
+        self.test_my_addons()  # Run the test again but with an unlisted addon.
 
     def test_incomplete_no_new_version(self):
         def no_link():
@@ -816,15 +834,13 @@ class TestHome(amo.tests.TestCase):
             eq_(addon_item.length, 1)
             eq_(addon_item.find('.upload-new-version').length, 0)
 
-        addon = Addon.objects.get(id=3615)
-
-        addon.update(status=amo.STATUS_NULL)
+        self.addon.update(status=amo.STATUS_NULL)
         no_link()
 
-        addon.update(status=amo.STATUS_DISABLED)
+        self.addon.update(status=amo.STATUS_DISABLED)
         no_link()
 
-        addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         no_link()
 
 

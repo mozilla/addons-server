@@ -17,6 +17,7 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
+from access import acl
 from access.models import Group, GroupUser
 from amo.helpers import user_media_url
 from amo.tests import addon_factory
@@ -463,6 +464,14 @@ class TestVersion(amo.tests.TestCase):
         self.version.sign_files()
         assert sign_mock.called
 
+    def test_get_url_path(self):
+        eq_(self.version.get_url_path(),
+            '/en-US/firefox/addon/a3615/versions/2.1.072')
+
+    def test_unlisted_addon_get_url_path(self):
+        self.version.addon.update(is_listed=False)
+        eq_(self.version.get_url_path(), '')
+
 
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
@@ -643,11 +652,48 @@ class TestDownloadsBase(amo.tests.TestCase):
         url = settings.SITE_URL + user_media_url('addons')
         self.assert_served_by_host(response, url, file_)
 
+
+class TestDownloadsUnlistedAddons(TestDownloadsBase):
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: True)
+    def test_download_for_unlisted_addon_owner(self):
+        """File downloading is allowed for addon owners."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.file_url).status_code == 302
+        assert self.client.get(self.latest_url).status_code == 302
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
+    def test_download_for_unlisted_addon_reviewer(self):
+        """File downloading isn't allowed for reviewers."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.file_url).status_code == 404
+        assert self.client.get(self.latest_url).status_code == 404
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
+    def test_download_for_unlisted_addon_unlisted_reviewer(self):
+        """File downloading is allowed for unlisted reviewers."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.file_url).status_code == 302
+        assert self.client.get(self.latest_url).status_code == 302
 
 
 class TestDownloads(TestDownloadsBase):
@@ -889,10 +935,41 @@ class TestDownloadSource(amo.tests.TestCase):
         response = self.client.get(self.url)
         eq_(response.status_code, 404)
 
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
         self.addon.update(is_listed=False)
         assert self.client.get(self.url).status_code == 404
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: True)
+    def test_download_for_unlisted_addon_owner(self):
+        """File downloading is allowed for addon owners."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.url).status_code == 200
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
+    def test_download_for_unlisted_addon_reviewer(self):
+        """File downloading isn't allowed for reviewers."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.url).status_code == 404
+
+    @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
+    def test_download_for_unlisted_addon_unlisted_reviewer(self):
+        """File downloading is allowed for unlisted reviewers."""
+        self.addon.update(is_listed=False)
+        assert self.client.get(self.url).status_code == 200
 
 
 class TestVersionFromUpload(UploadTest, amo.tests.TestCase):

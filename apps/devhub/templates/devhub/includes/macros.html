@@ -76,3 +76,11 @@
     {{ form.categories.errors }}
   </div>
 {% endmacro %}
+
+{% macro link_if_listed_else_text(addon_or_version, text) %}
+  {% if addon_or_version.is_listed %}
+    <a href="{{ addon_or_version.get_url_path() }}">{{ text }}</a>
+  {% else %}
+    {{ text }}
+  {% endif %}
+{% endmacro %}

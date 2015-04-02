@@ -43,8 +43,8 @@
       </li>
     </ul>
     <ul class="refinements">
-      <li><a href="{{ addon.get_url_path() }}">
-        {{ _('View Listing') }}</a></li>
+      {% if addon.is_listed %}<li><a href="{{ addon.get_url_path() }}">
+        {{ _('View Listing') }}</a></li>{% endif %}
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
       {% if not theme %}

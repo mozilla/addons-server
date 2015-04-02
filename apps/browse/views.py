@@ -240,11 +240,8 @@ class CategoryLandingFilter(BaseFilter):
                                                     default)
 
     def filter_featured(self):
-        # Never fear this will get & with manual order and the base.
-        return Addon.objects.all()
-
-    def order_featured(self, filter):
-        return manual_order(filter, self.ids, pk_name='addons.id')
+        qs = self.base_queryset.all()
+        return manual_order(qs, self.ids, pk_name='addons.id')
 
 
 def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
@@ -278,27 +275,27 @@ class PersonasFilter(BaseFilter):
             ('popular', _lazy(u'Most Popular')),
             ('rating', _lazy(u'Top Rated')))
 
-    def _filter(self, field):
+    def filter(self, field):
         # Special case with dashes.
         if field == 'up-and-coming':
             # See bug 944096 related to the popularity.
-            return (self.model.objects.filter(persona__popularity__gte=100)
+            return (self.base_queryset.filter(persona__popularity__gte=100)
                     .order_by('-persona__movers'))
         else:
-            return super(PersonasFilter, self)._filter(field)
+            return super(PersonasFilter, self).filter(field)
 
     def filter_created(self):
-        return self.model.objects.order_by('-created')
+        return self.base_queryset.order_by('-created')
 
     def filter_popular(self):
-        return self.model.objects.order_by('-persona__popularity')
+        return self.base_queryset.order_by('-persona__popularity')
 
     def filter_rating(self):
-        return self.model.objects.order_by('-bayesian_rating')
+        return self.base_queryset.order_by('-bayesian_rating')
 
 
 def personas_listing(request, category_slug=None):
-    # Common pieces using by browse and search.
+    # Common pieces used by browse and search.
     TYPE = amo.ADDON_PERSONA
     q = Category.objects.filter(type=TYPE)
     categories = order_by_translation(q, 'name')
