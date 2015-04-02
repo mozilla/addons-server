@@ -191,6 +191,17 @@ class TestActivity(HubTest):
         eq_(len(pq(r.content)('item')), 5)
         assert '<title>Recent Changes for %s</title>' % self.addon in r.content
 
+    def test_rss_unlisted_addon(self):
+        """Unlisted addon logs appear in the rss feed."""
+        self.addon.update(is_listed=False)
+        self.log_creates(5)
+
+        # This will give us a new RssKey
+        self.get_response(addon=self.addon.id)
+        key = RssKey.objects.get()
+        response = self.get_response(privaterss=key.key)
+        assert len(pq(response.content)('item')) == 5
+
     def test_logged_out(self):
         self.client.logout()
         r = self.get_response()
@@ -206,7 +217,26 @@ class TestActivity(HubTest):
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
+    def test_xss_unlisted_addon(self):
+        self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
+                           '</script>')
+        self.addon.is_listed = False
+        self.addon.save()
+        self.log_creates(1)
+        doc = self.get_pq()
+        eq_(len(doc('.item')), 1)
+        assert '<script>' not in unicode(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
+
     def test_xss_collections(self):
+        self.log_collection(1, "<script>alert('v1@gra for u')</script>")
+        doc = self.get_pq()
+        eq_(len(doc('.item')), 1)
+        assert '<script>' not in unicode(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
+
+    def test_xss_collections_unlisted_addon(self):
+        self.addon.update(is_listed=False)
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         eq_(len(doc('.item')), 1)
@@ -220,7 +250,23 @@ class TestActivity(HubTest):
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 
+    def test_xss_tags_unlisted_addon(self):
+        self.addon.update(is_listed=False)
+        self.log_tag(1, "<script src='x.js'>")
+        doc = self.get_pq()
+        eq_(len(doc('.item')), 1)
+        assert '<script' not in unicode(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+
     def test_xss_versions(self):
+        self.log_updates(1, "<script src='x.js'>")
+        doc = self.get_pq()
+        eq_(len(doc('.item')), 2)
+        assert '<script' not in unicode(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+
+    def test_xss_versions_unlisted_addon(self):
+        self.addon.update(is_listed=False)
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
         eq_(len(doc('.item')), 2)

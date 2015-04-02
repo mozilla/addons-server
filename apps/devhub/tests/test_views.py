@@ -850,6 +850,8 @@ class TestActivityFeed(amo.tests.TestCase):
     def setUp(self):
         super(TestActivityFeed, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
+        self.addon = Addon.objects.get(id=3615)
+        self.version = self.addon.versions.first()
 
     def test_feed_for_all(self):
         r = self.client.get(reverse('devhub.feed_all'))
@@ -859,46 +861,75 @@ class TestActivityFeed(amo.tests.TestCase):
         eq_(doc('#breadcrumbs li:eq(2)').text(), 'Recent Activity')
 
     def test_feed_for_addon(self):
-        addon = Addon.objects.no_cache().get(id=3615)
-        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('header h2').text(),
-            'Recent Activity for %s' % addon.name)
-        eq_(doc('#breadcrumbs li:eq(3)').text(),
-            addon.slug)
+            'Recent Activity for %s' % self.addon.name)
+        eq_(doc('#breadcrumbs li:eq(3)').text(), self.addon.slug)
 
     def test_feed_disabled(self):
-        addon = Addon.objects.no_cache().get(id=3615)
-        addon.update(status=amo.STATUS_DISABLED)
-        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        self.addon.update(status=amo.STATUS_DISABLED)
+        r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         eq_(r.status_code, 200)
 
     def test_feed_disabled_anon(self):
         self.client.logout()
-        addon = Addon.objects.no_cache().get(id=3615)
-        r = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         eq_(r.status_code, 302)
 
-    def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
-        addon = Addon.objects.get(id=3615)
+    def add_log(self, action=amo.LOG.ADD_REVIEW):
         amo.set_user(UserProfile.objects.get(email='del@icio.us'))
-        amo.log(action, addon, addon.versions.all()[0])
-        return addon
+        amo.log(action, self.addon, self.version)
+
+    def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
+        self.add_log(action=action)
 
     def test_feed_hidden(self):
-        addon = self.add_hidden_log()
+        self.add_hidden_log()
         self.add_hidden_log(amo.LOG.OBJECT_ADDED)
-        res = self.client.get(reverse('devhub.feed', args=[addon.slug]))
+        res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(res.content)
-        eq_(len(doc('#recent-activity p')), 1)
+        eq_(len(doc('#recent-activity li.item')), 0)
 
     def test_addons_hidden(self):
         self.add_hidden_log()
         self.add_hidden_log(amo.LOG.OBJECT_ADDED)
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
-        eq_(len(doc('#dashboard-sidebar div.recent-activity li.item')), 0)
+        eq_(len(doc('.recent-activity li.item')), 0)
+
+    def test_unlisted_addons_dashboard(self):
+        """Unlisted addons are displayed in the feed on the dashboard page."""
+        self.addon.update(is_listed=False)
+        self.add_log()
+        res = self.client.get(reverse('devhub.addons'))
+        doc = pq(res.content)
+        eq_(len(doc('.recent-activity li.item')), 1)
+
+    def test_unlisted_addons_feed_sidebar(self):
+        """Unlisted addons are displayed in the left side in the feed page."""
+        self.addon.update(is_listed=False)
+        self.add_log()
+        res = self.client.get(reverse('devhub.feed_all'))
+        doc = pq(res.content)
+        eq_(len(doc('#refine-addon li')), 2)  # First li is "All My Add-ons".
+
+    def test_unlisted_addons_feed(self):
+        """Unlisted addons are displayed in the feed page."""
+        self.addon.update(is_listed=False)
+        self.add_log()
+        res = self.client.get(reverse('devhub.feed_all'))
+        doc = pq(res.content)
+        eq_(len(doc('#recent-activity .item')), 1)
+
+    def test_unlisted_addons_feed_filter(self):
+        """Feed page can be filtered on unlisted addon."""
+        self.addon.update(is_listed=False)
+        self.add_log()
+        res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
+        doc = pq(res.content)
+        eq_(len(doc('#recent-activity .item')), 1)
 
 
 class TestProfileBase(amo.tests.TestCase):

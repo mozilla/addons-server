@@ -111,7 +111,7 @@ def index(request):
 @login_required
 def dashboard(request, theme=False):
     addon_items = _get_items(
-        None, request.amo_user.addons.all())[:4]
+        None, Addon.with_unlisted.filter(authors=request.amo_user))[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
@@ -250,10 +250,10 @@ def feed(request, addon_id=None):
         p = urlquote(request.get_full_path())
         return http.HttpResponseRedirect('%s?to=%s' % (url, p))
     else:
-        addons_all = request.amo_user.addons.all()
+        addons_all = Addon.with_unlisted.filter(authors=request.amo_user)
 
         if addon_id:
-            addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
+            addon = get_object_or_404(Addon.with_unlisted.id_or_slug(addon_id))
             addons = addon  # common query set
             try:
                 key = RssKey.objects.get(addon=addons)

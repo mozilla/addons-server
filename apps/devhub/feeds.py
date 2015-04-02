@@ -5,6 +5,7 @@ from django.utils.feedgenerator import Rss201rev2Feed as RSS
 from tower import ugettext as _
 
 import amo
+from addons.models import Addon
 from amo.helpers import absolutify, url, strip_html
 from devhub.models import ActivityLog, RssKey
 
@@ -21,7 +22,7 @@ class ActivityFeedRSS(Feed):
         if key.addon:
             addons = key.addon
         else:  # We are showing all the add-ons
-            addons = key.user.addons.all()
+            addons = Addon.with_unlisted.filter(authors=key.user)
 
         return (ActivityLog.objects.for_addons(addons)
                            .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
