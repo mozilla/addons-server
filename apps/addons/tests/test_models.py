@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
+import jingo
 from mock import Mock, patch
 from nose.tools import assert_not_equal, eq_, ok_
 
@@ -1671,8 +1672,27 @@ class TestAddonGetURLPath(amo.tests.TestCase):
 
     def test_get_url_path_more(self):
         addon = Addon(slug='yeah')
-        eq_(addon.get_url_path(more=True),
-            '/en-US/firefox/addon/yeah/more')
+        eq_(addon.get_url_path(more=True), '/en-US/firefox/addon/yeah/more')
+
+    def test_unlisted_addon_get_url_path(self):
+        addon = Addon(slug='woo', is_listed=False)
+        eq_(addon.get_url_path(), '')
+
+    @patch.object(Addon, 'get_url_path', lambda self: '<script>xss</script>')
+    def test_link_if_listed_else_text_xss(self):
+        """We're playing extra safe here by making sure the data is escaped at
+        the template level.
+
+        We shouldn't have to worry about it though, because the "reverse" will
+        prevent it.
+        """
+        addon = Addon(slug='woo')
+        tpl = jingo.env.from_string(
+            '{% from "devhub/includes/macros.html" '
+            'import link_if_listed_else_text %}'
+            '{{ link_if_listed_else_text(addon, "foo") }}')
+        result = tpl.render({'addon': addon}).strip()
+        assert result == '<a href="&lt;script&gt;xss&lt;/script&gt;">foo</a>'
 
 
 class TestAddonModelsFeatured(amo.tests.TestCase):

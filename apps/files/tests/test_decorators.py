@@ -18,8 +18,7 @@ class AllowedTest(amo.tests.TestCase):
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @patch.object(acl, 'check_addon_ownership',
-                  lambda request, addon, viewer, dev: True)
+    @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_owner_allowed(self):
         self.assertTrue(allowed(self.request, self.file))
 
@@ -30,8 +29,7 @@ class AllowedTest(amo.tests.TestCase):
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @patch.object(acl, 'check_addon_ownership',
-                  lambda request, addon, viewer, dev: False)
+    @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_viewer_unallowed(self):
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
 
@@ -49,8 +47,7 @@ class AllowedTest(amo.tests.TestCase):
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @patch.object(acl, 'check_addon_ownership',
-                  lambda request, addon, viewer, dev: False)
+    @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_unlisted_viewer_unallowed(self):
         addon, file_ = self.get_unlisted_addon_file()
         with pytest.raises(http.Http404):
@@ -58,8 +55,7 @@ class AllowedTest(amo.tests.TestCase):
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: True)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @patch.object(acl, 'check_addon_ownership',
-                  lambda request, addon, viewer, dev: False)
+    @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_unlisted_reviewer_unallowed(self):
         addon, file_ = self.get_unlisted_addon_file()
         with pytest.raises(http.Http404):
@@ -73,8 +69,7 @@ class AllowedTest(amo.tests.TestCase):
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @patch.object(acl, 'check_addon_ownership',
-                  lambda request, addon, viewer, dev: True)
+    @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_unlisted_owner_allowed(self):
         addon, file_ = self.get_unlisted_addon_file()
         assert allowed(self.request, file_)

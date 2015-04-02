@@ -269,9 +269,12 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         return self.addons.reviewed().filter(
             addonuser__user=self, addonuser__listed=True).count()
 
-    def my_addons(self, n=8):
+    def my_addons(self, n=8, with_unlisted=False):
         """Returns n addons"""
-        qs = order_by_translation(self.addons, 'name')
+        addons = self.addons
+        if with_unlisted:
+            addons = self.addons.model.with_unlisted.filter(authors=self)
+        qs = order_by_translation(addons, 'name')
         return qs[:n]
 
     @property

@@ -10,6 +10,15 @@ from addons.models import Addon
 log = commonware.log.getLogger('mkt.purchase')
 
 
+def owner_or_unlisted_reviewer(request, addon):
+    return (acl.check_unlisted_addons_reviewer(request) or
+            # We don't want "admins" here, because it includes anyone with the
+            # "Addons:Edit" perm, we only want those with
+            # "Addons:ReviewUnlisted" perm (which is checked above).
+            acl.check_addon_ownership(request, addon, admin=False, dev=True,
+                                      viewer=True, support=True))
+
+
 def addon_view(f, qs=Addon.objects.all):
     @functools.wraps(f)
     def wrapper(request, addon_id=None, app_slug=None, *args, **kw):
@@ -29,11 +38,7 @@ def addon_view(f, qs=Addon.objects.all):
             addon = get_object_or_404(qs(), slug=addon_id)
         # If the addon is unlisted it needs either an owner/viewer/dev/support,
         # or an unlisted addon reviewer.
-        if (not addon.is_listed and
-            not (acl.check_unlisted_addons_reviewer(request) or
-                 acl.check_addon_ownership(
-                     request, addon, admin=False, dev=True, viewer=True,
-                     support=True))):
+        if not (addon.is_listed or owner_or_unlisted_reviewer(request, addon)):
             raise http.Http404
         return f(request, addon, *args, **kw)
     return wrapper

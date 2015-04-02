@@ -244,59 +244,52 @@ class BaseFilter(object):
 
     def filter(self, field):
         """Get the queryset for the given field."""
-        filter = self._filter(field) & self.base_queryset
-        order = getattr(self, 'order_%s' % field, None)
-        if order:
-            return order(filter)
-        return filter
-
-    def _filter(self, field):
-        return getattr(self, 'filter_%s' % field)()
+        return getattr(self, 'filter_{0}'.format(field))()
 
     def filter_featured(self):
         ids = self.model.featured_random(self.request.APP, self.request.LANG)
-        return manual_order(self.model.objects, ids, 'addons.id')
+        return manual_order(self.base_queryset, ids, 'addons.id')
 
     def filter_free(self):
         if self.model == Addon:
-            return self.model.objects.top_free(self.request.APP, listed=False)
+            return self.base_queryset.top_free(self.request.APP, listed=False)
         else:
-            return self.model.objects.top_free(listed=False)
+            return self.base_queryset.top_free(listed=False)
 
     def filter_paid(self):
         if self.model == Addon:
-            return self.model.objects.top_paid(self.request.APP, listed=False)
+            return self.base_queryset.top_paid(self.request.APP, listed=False)
         else:
-            return self.model.objects.top_paid(listed=False)
+            return self.base_queryset.top_paid(listed=False)
 
     def filter_popular(self):
-        return (self.model.objects.order_by('-weekly_downloads')
+        return (self.base_queryset.order_by('-weekly_downloads')
                 .with_index(addons='downloads_type_idx'))
 
     def filter_downloads(self):
         return self.filter_popular()
 
     def filter_users(self):
-        return (self.model.objects.order_by('-average_daily_users')
+        return (self.base_queryset.order_by('-average_daily_users')
                 .with_index(addons='adus_type_idx'))
 
     def filter_created(self):
-        return (self.model.objects.order_by('-created')
+        return (self.base_queryset.order_by('-created')
                 .with_index(addons='created_type_idx'))
 
     def filter_updated(self):
-        return (self.model.objects.order_by('-last_updated')
+        return (self.base_queryset.order_by('-last_updated')
                 .with_index(addons='last_updated_type_idx'))
 
     def filter_rating(self):
-        return (self.model.objects.order_by('-bayesian_rating')
+        return (self.base_queryset.order_by('-bayesian_rating')
                 .with_index(addons='rating_type_idx'))
 
     def filter_hotness(self):
-        return self.model.objects.order_by('-hotness')
+        return self.base_queryset.order_by('-hotness')
 
     def filter_name(self):
-        return order_by_translation(self.model.objects.all(), 'name')
+        return order_by_translation(self.base_queryset.all(), 'name')
 
 
 class ESBaseFilter(BaseFilter):

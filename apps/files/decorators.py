@@ -11,6 +11,7 @@ from django.utils.http import http_date
 
 import amo
 from access import acl
+from addons.decorators import owner_or_unlisted_reviewer
 from files.helpers import DiffHelper, FileViewer
 from files.models import File
 
@@ -23,18 +24,17 @@ def allowed(request, file):
     except ObjectDoesNotExist:
         raise http.Http404
 
-    def is_owner():
-        return acl.check_addon_ownership(request, addon, viewer=True, dev=True)
-
     # General case: addon is listed.
     if addon.is_listed:
         if ((addon.view_source and addon.status in amo.REVIEWED_STATUSES) or
-                acl.check_addons_reviewer(request) or is_owner()):
+                acl.check_addons_reviewer(request) or
+                acl.check_addon_ownership(request, addon, viewer=True,
+                                          dev=True)):
             return True  # Public and sources are visible, or reviewer.
         raise PermissionDenied  # Listed but not allowed.
     # Not listed? Needs an owner or an "unlisted" admin.
     else:
-        if acl.check_unlisted_addons_reviewer(request) or is_owner():
+        if owner_or_unlisted_reviewer(request, addon):
             return True
     raise http.Http404  # Not listed, not owner or admin.
 

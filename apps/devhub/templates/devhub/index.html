@@ -1,4 +1,5 @@
 {% extends "devhub/base_impala.html" %}
+{% from "devhub/includes/macros.html" import link_if_listed_else_text %}
 
 {% macro docs_ul(docs) %}
   <ul class="listing-list">
@@ -88,9 +89,8 @@
                     {% if item.addon.current_version %}
                       <p>
                         <strong>{{ _('Latest Version:') }}</strong>
-                        <a href="{{ item.addon.current_version.get_url_path() }}">
-                          {{ item.addon.current_version.version }}
-                        </a>
+                        {{ link_if_listed_else_text(item.addon.current_version,
+                                         item.addon.current_version.version) }}
                       </p>
                     {% endif %}
                     {% with position = item.position %}

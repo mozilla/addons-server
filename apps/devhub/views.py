@@ -86,20 +86,19 @@ def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
         qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
-        model = Addon
     else:
-        qs = request.amo_user.addons.exclude(type=amo.ADDON_PERSONA)
-        model = Addon
+        qs = Addon.with_unlisted.filter(authors=request.amo_user).exclude(
+            type=amo.ADDON_PERSONA)
     filter_cls = ThemeFilter if theme else AddonFilter
-    filter = filter_cls(request, qs, 'sort', default, model=model)
-    return filter.qs, filter
+    filter_ = filter_cls(request, qs, 'sort', default)
+    return filter_.qs, filter_
 
 
 def index(request):
 
     ctx = {'blog_posts': _get_posts()}
     if request.amo_user:
-        user_addons = request.amo_user.addons.all()
+        user_addons = Addon.with_unlisted.filter(authors=request.amo_user)
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
@@ -226,11 +225,11 @@ def _get_items(action, addons):
                                 amo.LOG.REMOVE_FROM_COLLECTION,),
                    reviews=(amo.LOG.ADD_REVIEW,))
 
-    filter = filters.get(action)
-    items = (ActivityLog.objects.for_addons(addons).filter()
+    filter_ = filters.get(action)
+    items = (ActivityLog.objects.for_addons(addons)
                         .exclude(action__in=amo.LOG_HIDE_DEVELOPER))
-    if filter:
-        items = items.filter(action__in=[i.id for i in filter])
+    if filter_:
+        items = items.filter(action__in=[i.id for i in filter_])
 
     return items
 
