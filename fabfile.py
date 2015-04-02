@@ -197,6 +197,8 @@ def deploy_jenkins():
     execute(install_cron, rpmbuild.install_to)
     managecmd('cron cleanup_validation_results')
 
+    rpmbuild.clean()
+
 
 @task
 def pre_update_latest_tag():
