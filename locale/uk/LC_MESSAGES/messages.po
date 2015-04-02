@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-03-31 18:43+0000\n"
+"PO-Revision-Date: 2015-04-02 09:02+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427827421.0\n"
+"X-POOTLE-MTIME: 1427965376.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4531,7 +4532,7 @@ msgstr "UUID вашого додатку зазначений у його ман
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
 msgid "Whiteboard"
-msgstr "Біла дошка "
+msgstr "Біла дошка"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:142
 msgid ""
@@ -4949,7 +4950,7 @@ msgstr "Наступні версії розглядаються протяго�
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:35
 msgid "Warning-free installation and no feature limitations"
-msgstr "Встановлення без попереджень і відсутність функціональних обмежень "
+msgstr "Встановлення без попереджень і відсутність функціональних обмежень"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:39
 msgid "Choose Full Review"
@@ -5160,30 +5161,49 @@ msgid ""
 "mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
 "please remember that versions must be reviewed by an editor."
 msgstr ""
+"Розробникам пропонується надавати оновлення для своїх додатків, задля "
+"виправлення помилок, додавання нових функцій та внесення інших змін. Нові "
+"версії додатку повинні мати <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">вищий номер "
+"версії</a> і можуть бути представлені за допомогою наданих Інструментів "
+"Розробника. Не існує ніяких обмежень щодо числа представлених версій, але "
+"будь ласка, пам'ятайте, що версії повинні бути перевірені редактором."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
 msgstr ""
+"Нові версії стануть у чергу на очікування перевірки, і будь-які додаткові "
+"версії, відправлені перед закінченням перевірки, поставлять цю версію у "
+"кінець черги."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
-msgstr ""
+msgstr "Як мені представити бета-версію додатку?"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr ""
+msgstr "Бета-канали доступні тільки для повністю перевірених додатків."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
+"Для створення бета-каналу, завантажте файл з рядком унікальної версії, що "
+"містить будь-який з наступних рядків: <code>a,b,alpha,beta,pre,rc</code>, з "
+"опціональним числом у кінці. Цей текст повинен бути у кінці рядка версії. "
+"Якщо ви розумієте формат regex, ось те, що ми шукаємо в номері версії: "
+"<code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
 "Once a file meeting this criteria is uploaded to AMO, it will automatically be marked as a beta version. Users of add-ons with these unique version numbers will automatically be served the newest "
 "beta updates."
 msgstr ""
+"Як тільки файл, що відповідає цим критеріям, буде завантажений на АМО, він "
+"автоматично буде позначений як бета-версія. Користувачам додатків з цими "
+"унікальними номерами версії будуть автоматично надсилатися найновіші "
+"оновлення бета-версії."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid ""
@@ -5192,10 +5212,20 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
+"Хоч ми й називаємо це \"Бета-версії\", ви можете використовувати цей канал для "
+"нічних збірок, чи альф, або попередніх версій, як ви того хочете. Будь "
+"ласка, зверніть увагу, що для цього є тільки один канал і всі ваші "
+"користувачі на цьому каналі отримуватимуть найновіші представлені додатки. "
+"Наприклад, якщо ви завантажуєте <code>1.0beta1</code> у канал релізів, а "
+"потім завантажуєте <code>1.1alpha1</code>, усім користувачам "
+"<code>1.0beta1</code> буде запропоновано оновлення до "
+"<code>1.1alpha1</code>. Оновлення поширюються за датою представлення, а не "
+"за номером версії, тому користувачі завжди будуть отримувати найновіші "
+"оновлення каналу, незалежно від будь-якого сортування за абеткою."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
-msgstr ""
+msgstr "Потрібні оновлення"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:50
 msgid ""
@@ -5203,121 +5233,178 @@ msgid ""
 "developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
+"Можуть виникнути певні ситуації, за яких Mozilla просить розробника додатку "
+"оновити свій додаток протягом визначеного періоду часу, задля вирішення "
+"серйозної проблеми безпеки чи виправити порушення політики. Ми працюємо з "
+"розробниками, щоб при змозі узгодити це з їх власними графіками, але якщо це "
+"питання з досить серйозним характером, то додатки, які не можуть випустити "
+"оновлення з потрібним виправленням, можуть бути понижені в статусі з "
+"повністю перевіреного, виключені чи назавжди видалені з сайту."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "Передача власності"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:57
 msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
 msgstr ""
+"Додатки можуть мати декілька користувачів, яким дозволено оновлювати і "
+"змінювати його сторінку. Існуючі автори додатку можуть передавати у "
+"власність і додавати додаткових розробників на сторінку додатку через "
+"Інструменти Розробника. Для передачі у власність взаємодія з представниками "
+"Mozilla не потрібна."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
 msgstr ""
+"Mozilla може допомогти з наданням додаткових дозволів на сторінку додатку, "
+"якщо <a href=\"%(link_contact)s\">з нею зв'яжеться</a> поточний власник "
+"додатку."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla рекомендує своїм користувачам висловлювати думку про свій досвід "
+"використання додатку. Це дозволяє іншим користувачам визначити, чи додаток є "
+"стабільним і корисним. Це також надає цінну інформацію для розробників, "
+"дозволяючи їм постійно вдосконалювати свій додаток для задоволення потреб "
+"користувачів."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
 msgstr ""
+"Відгуки повинні відповідати <a href=\"%(link_guidelines)s\">певним "
+"вимогам</a>. Відгуки, що не відповідають зазначеним вимогам, можуть бути "
+"позначені для модерації, але негативні відгуки не будуть видалятися, якщо "
+"тільки вони не містять неправдиву інформацію."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"Багато розробників надають механізм підтримки, такі як форум, дискусійна "
+"група або адресу електронної пошти. Ми рекомендуємо розміщувати питання щодо "
+"підтримки в цих середовищах замість розділу відгуків на додаток."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
-msgstr ""
+msgstr "Оскарження коду"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:90
 msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
+"Багато додатків дозволяють відкрито переглянути їх програмний код. Але це не "
+"значить, що їх програмний код є відкритим або доступний для використання в "
+"іншому додатку. Оригінальний автор додатку зберігає авторські права на свою "
+"роботу, якщо інше не зазначено в ліцензії додатку."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
+"У випадку, якщо ми будемо повідомлені про порушення авторських прав або "
+"ліцензії, ми зробимо кроки для аналізу ситуації і визначення того, чи "
+"відбулося фактичне порушення. Якщо ми визначимо, що відбулося порушення, ми "
+"видалимо цей додаток та зв'яжемося з автором. Новим представленням додатку "
+"(включаючи оновлення), що містять код, який містить порушення, буде "
+"відмовлено в наданні публічного статусу."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
 msgstr ""
+"Якщо ви не впевнені в поточному стані авторських прав на програмний код "
+"додатку, ви повинні зв'язатися з оригінальним автором і отримати дозвіл, "
+"перш ніж використовувати програмний код."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107 apps/devhub/templates/devhub/docs/policies-reviews.html:306 apps/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "Останнє оновлення: 13 січня 2011"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:13
 msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
+"Відібрані додатки є високоякісними розширеннями і темами, виділеними на <a "
+"href=\"%(link_gallery)s\">AMO</a>, менеджері додатків Firefox та інших "
+"веб-сайтах Mozilla. Ці додатки демонструють силу налаштовуваності Firefox і "
+"корисні для широкої аудиторії."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
 msgstr ""
+"Відібрані додатки вибираються кожен місяць Консультативною Радою з "
+"Відібраних додатків, невеликою групою розробників додатків і шанувальників "
+"зі спільноти Mozilla, які зголосилися розглянути кандидатів і проголосувати "
+"за номінаціями."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
 msgstr ""
+"<a href=\"%(link_featured)s\">Відібрані розширення</a> вибираються кожен "
+"місяць, а <a href=\"%(link_themes)s\"> відібрані повні теми </a> вибираються "
+"раз в квартал."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
-msgstr ""
+msgstr "Критерії для відібраних додатків"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
 msgstr ""
+"Перед номінацією додатку до обраних переконайтеся, що він відповідає таким "
+"критеріям:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr ""
+msgstr "Додаток повинен мати повну і інформативну сторінку на AMO. Це означає:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
-msgstr ""
+msgstr "свою 64-піксельну іконку"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:42
 msgid "a clear and concise name (no lengthy keywords)"
-msgstr ""
+msgstr "чітке і коротке ім'я (без довгих ключових слів)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:43
 msgid "a clear and concise summary of the add-on's functionality"
-msgstr ""
+msgstr "чітке і коротке зведення функціональності додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:44
 msgid "detailed description and privacy policy, if applicable"
-msgstr ""
+msgstr "докладний опис і політика приватності, якщо застосовується"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:45
 msgid "updated screenshots of the add-on's functionality"
-msgstr ""
+msgstr "оновлені знімки екрану функціональності додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
 msgstr ""
+"має бути повністю схвалений редакторами АМО (немає записів попередньої "
+"перевірки)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
 msgstr ""
+"Додатки повинні мати відмінні відгуки користувачів, а будь-які проблеми або "
+"запити на підтримку повинні бути негайно розглянуті розробником."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "Додатки повинні мати не менше 2000 користувачів."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -5345,7 +5432,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr ""
+msgstr "назвою додатку, URL, і чи є ви його розробником"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
@@ -5354,6 +5441,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr ""
+"необов'язково, посилання на будь-які зовнішні огляди та статті, що згадують "
+"додаток"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
@@ -5387,29 +5476,40 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr ""
+msgstr "Приєднання до Консультативної Ради з Обраних додатків"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
 msgstr ""
+"Кожні шість місяців на основі заявок від спільноти додатків вибирається нова "
+"Консультативна Рада. Учасники повинні:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
 msgstr ""
+"бути активними членами спільноти додатків, незалежно від того, чи є вони "
+"розробниками, євангелістами, або фанами"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
 msgstr ""
+"зобов'язуються спробувати всі представлені номінації, відправити свої "
+"відгуки та голосувати кожного місяця"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
 msgstr ""
+"утриматися від голосування за додатки, з якими у них є ділові або особисті "
+"відносини, а також за прямих конкурентів будь-яких таких додатків"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
+"Члени команди додатків Mozilla можуть накласти вето на вибір будь-якого "
+"додатку через безпеку, приватність, сумісність або з якоїсь іншої причини, "
+"але в цілому вибір обраних додатків залежить від Ради."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -5424,30 +5524,42 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "Останнє оновлення: 31 січня 2013"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:3 apps/devhub/templates/devhub/docs/policies-reviews.html:7 apps/devhub/templates/devhub/docs/policies-reviews.html:8
 #: apps/devhub/templates/devhub/docs/policies.html:15 apps/devhub/templates/devhub/docs/policies.html:64
 msgid "Review Process"
-msgstr ""
+msgstr "Процес перевірки"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:12
 msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
 "are free to choose the best fit for their add-on."
 msgstr ""
+"Для того, щоб переконатися, що всі додатки, розміщені в нашій галереї, "
+"безпечні для встановлення користувачами, Mozilla почне вимагати, щоб всі "
+"розміщені додатки пройшли перевірку. Ми пропонуємо два типи перевірки і "
+"розробники можуть вибирати найкращий варіант для їх додатку."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
+"<strong><a href=\"#full\">Повна перевірка</a></strong> &mdash; ретельна "
+"перевірка функцій і коду додатку, підходить для додатків, готових для "
+"масового поширення. Для цих додатків доступні всі можливості сайту."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Попередня перевірка</a></strong> &mdash; "
+"більш швидка перевірка, призначена для експериментальних додатків. Попередні "
+"перевірки не перевіряють функціональність і повну відповідність політиці. "
+"Перевірені таким чином додатки видають при установці попередження і мають "
+"деякі обмеження в можливостях."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -5480,45 +5592,59 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "Під час виконання повної перевірки, редактори:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
 msgstr ""
+"встановіть додаток, переконайтеся, що він працює так, як описано, і не має "
+"значних дефектів"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid "perform a source code review, looking for performance and security best practices"
 msgstr ""
+"перевірте програмний код, шукаючи відповідність рекомендаціям з "
+"продуктивності і безпеки"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
 msgstr ""
+"переконайтеся, що політика приватності додатку відповідає його "
+"функціональності"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr ""
+msgstr "перевірте дотримання всіх політик Mozilla, викладених у цих документах"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
 msgstr ""
+"Деякі з найбільш поширених проблем, які ми бачимо при виконанні цих "
+"перевірок:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
+"<strong>Забруднення простору імен JavaScript</strong> &mdash; найбільш "
+"поширене порушення. Не забудьте <a href=\"https://developer.mozilla.org/en/XU"
+"L_School/JavaScript_Object_Management\">обернути свої вільні змінні</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
 msgstr ""
+"належне найменування налаштувань - всі імена налаштувань слід починати з "
+"\"extensions.\", за яким слідує ім'я додатку або інший унікальний "
+"ідентифікатор"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "віддалене виконання або ін'єкція JavaScript"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
-msgstr ""
+msgstr "віддалений XUL"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
@@ -5563,12 +5689,22 @@ msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
+"Багато із зазначених вище обмежень перевіряються автоматично сканером "
+"розширень, який надсилатиме підозрілі додатки на перевірку редактором. Ви "
+"можете дізнатися більше про цей сканер в документі <a href=\"%"
+"(link_validation)s\">Довідка з валідації</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
+"Якщо додаток є специфічним для сайту, ми рекомендуємо вам надати тестовий "
+"обліковий запис для використання в процесі перевірки. Крім того, включивши "
+"докладні інструкції з тестування, ви допоможете редактору краще зрозуміти, "
+"як працює додаток і прискорити процес тестування. Ця інформація може бути "
+"розміщена в поле Примітки для перевіряючих при редагуванні версії в Центрі "
+"розробки."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -5579,6 +5715,10 @@ msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
 msgstr ""
+"Як тільки додаток пройде повну перевірку, він зразу стане доступним в "
+"галереї, відображатиметься на сайті і в результатах пошуку з кнопкою "
+"установки, яка не має попередження. Всі функції, включаючи добровільні "
+"внески та бета-канали будуть доступні."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid ""
@@ -5670,6 +5810,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
 msgstr ""
+"Засновані на Conduit панелі інструментів без явного попереднього схвалення"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
@@ -5680,6 +5821,12 @@ msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
 msgstr ""
+"Сюрпризи можуть бути доречними в різних ситуаціях, але вони не є бажаними, "
+"коли на кону стоїть безпека і приватність користувача або його контроль за "
+"ситуацією. При направленні додатку для розміщення на цьому сайті надзвичайно "
+"важливо дотримуватися максимальної прозорості. Користувач Mozilla має легко "
+"розпізнати, що є функціональністю додатку і не зустрічатися з несподіваними "
+"сюрпризами після встановлення."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
