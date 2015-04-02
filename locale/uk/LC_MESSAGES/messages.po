@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-04-02 12:02+0000\n"
-"Last-Translator: Tim <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2015-04-02 13:40+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427976143.0\n"
+"X-POOTLE-MTIME: 1427982002.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6286,39 +6286,41 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:19
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Що таке URL організації?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:22
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Що таке PayPal ID організації?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:28
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Який у вас PayPal ID?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:29
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Увійти на PayPal"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Яка ваша запропонована сума внеску?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Приклад: 3.99)"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Коли користувачів потрібно буде просити зробити внесок?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Відправити лист подяки?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:47
 msgid "We'll automatically email users who contribute to your add-on with this message."
 msgstr ""
+"Ми автоматично відправимо користувачам, які зробили внесок, електронний лист "
+"з цим повідомленням."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
@@ -6328,73 +6330,84 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Увімкнути внески"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "чи <a id=\"setup-cancel\" href=\"#\">Скасувати</a>"
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Передача володіння"
 
 #: apps/devhub/templates/devhub/personas/edit.html:77 apps/devhub/templates/devhub/personas/submit.html:31
 msgid "Theme Details"
-msgstr ""
+msgstr "Інформація про тему"
 
 #: apps/devhub/templates/devhub/personas/edit.html:87 apps/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Вказати красивий URL для вашої сторінки з відомостями."
 
 #: apps/devhub/templates/devhub/personas/edit.html:92 apps/devhub/templates/devhub/personas/submit.html:41
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Виберіть категорію, яка найкраще описує вашу тему."
 
 #: apps/devhub/templates/devhub/personas/edit.html:95 apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Додайте мітки для опису вашої теми."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106 apps/devhub/templates/devhub/personas/submit.html:54
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
+"Коротке пояснення основних функцій вашої теми, які відображаються в списках "
+"пошуку та перегляду, а також у верхній частині сторінки вашої теми."
 
 #: apps/devhub/templates/devhub/personas/edit.html:122 apps/devhub/templates/devhub/personas/submit.html:68
 msgid "Theme License"
-msgstr ""
+msgstr "Ліцензія теми"
 
 #: apps/devhub/templates/devhub/personas/edit.html:126 apps/devhub/templates/devhub/personas/submit.html:72
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Чи можуть інші ділитися вашою темою, якщо вас вказують як автора?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
+"Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також "
+"виконувати роботу, в тому числі в комерційних цілях."
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr ""
+"Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також "
+"виконувати роботу тільки в некомерційних цілях."
 
 #: apps/devhub/templates/devhub/personas/edit.html:147 apps/devhub/templates/devhub/personas/submit.html:93
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Чи можуть інші використовувати вашу тему в комерційних цілях?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:168 apps/devhub/templates/devhub/personas/submit.html:114
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Чи можуть інші створювати похідні роботи на основі вашої теми?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:174 apps/devhub/templates/devhub/personas/submit.html:120
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
+"Ліцензіар дозволяє іншим копіювати, поширювати, показувати і виконувати "
+"роботу, а також створювати на його основі похідні роботи."
 
 #: apps/devhub/templates/devhub/personas/edit.html:182 apps/devhub/templates/devhub/personas/submit.html:128
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Так, якщо вони так само діляться"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
+"Ліцензіар дозволяє іншим розповсюджувати похідні роботи тільки з тієї ж "
+"ліцензії або ліцензії сумісної з тією, під якою поширюється робота "
+"ліцензіара."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
@@ -6438,27 +6451,28 @@ msgstr "Очікуваний заголовок"
 
 #: apps/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
-msgstr ""
+msgstr "Чекаюче нижнє зображення"
 
 #: apps/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
+"Ви можете оновити дизайн вашої теми тут після того, як вона буде схвалена."
 
 #: apps/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
-msgstr ""
+msgstr "Верхнє зображення"
 
 #: apps/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
-msgstr ""
+msgstr "Нижнє зображення"
 
 #: apps/devhub/templates/devhub/personas/edit.html:274 apps/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Оберіть кольори для вашої теми."
 
 #: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
-msgstr ""
+msgstr "Текст переднього тла"
 
 #: apps/devhub/templates/devhub/personas/edit.html:277 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
@@ -6486,41 +6500,54 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit.html:7
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Створити нову тему"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
+"Фонові теми дозволяють легко персоналізувати зовнішній вигляд вашого "
+"Firefox. Додайте свій власний дизайн нижче, або <a href=\"%"
+"(submit_url)s\">дізнайтеся, як його створити</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Дайте назву своїй темі."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
+"Представляючи свою тему, ви приймаєте <a href=\"%(tos_url)s\" "
+"target=\"_blank\">Умови користування темами</a>. Ваша тема підлягає схваленню "
+"відповідно до вимог, встановлених в <a href=\"%(guidelines_url)s\" "
+"target=\"_blank\">Настановах рецензента</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
-msgstr ""
+msgstr "Представити тему"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:11
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
+"Ваша тема була відправлена в чергу на перевірку. Ви отримаєте електронний "
+"лист після того, як вона буде перевірена, зазвичай протягом 24 годин."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
 msgstr ""
+"Надайте більш детальну інформацію про вашу тему, <a href=\"%"
+"(edit_url)s\">відредагувавши її сторінку</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Перегляньте і підпишіться на <a href=\"%(feed_url)s\">стрічку активності</a> "
+"вашої теми, щоб бути в курсі відгуків, добірок і багато іншого."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr ""
+msgstr "Приєднуйтесь до розмови на наших <a href=\"%(forums_url)s\">форумах</a>."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
@@ -6568,23 +6595,23 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:23
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Оберіть платформу для цього файлу."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:34
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "На який тип перевірки ви хотіли б її номінувати?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Опублікувати цю версію тільки на моєму бета-каналі."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Керування версією {0}"
 
 #: apps/devhub/templates/devhub/versions/edit.html:12 apps/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
-msgstr ""
+msgstr "Стан і версії"
 
 #. {0} is an add-on name.
 #: apps/devhub/templates/devhub/versions/edit.html:16
@@ -6593,21 +6620,24 @@ msgstr "Впорядкувати {0}"
 
 #: apps/devhub/templates/devhub/versions/edit.html:26
 msgid "Files"
-msgstr ""
+msgstr "Файли"
 
 #: apps/devhub/templates/devhub/versions/edit.html:38
 msgid "Upload Another File"
-msgstr ""
+msgstr "Завантажити інший файл"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
 msgid "Version Notes"
-msgstr ""
+msgstr "Примітки до версії"
 
 #: apps/devhub/templates/devhub/versions/edit.html:74
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Інформація про зміни в цьому випуску, нові можливості, відомі помилки та "
+"інша корисна інформація стосовно цього випуску/версії. Ця інформація буде "
+"також показана в менеджері додатків при оновленні."
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -6620,6 +6650,9 @@ msgstr "Примітки для рецензентів"
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
 msgstr ""
+"За бажанням, введіть будь-яку інформацію, яка може бути корисна для "
+"редактора, який перевіряє цей додаток, наприклад, обліковий запис для "
+"тестування."
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -6628,6 +6661,8 @@ msgstr "Програмний код"
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
+"Якщо ваш додаток містить бінарний або заплутаний код, надайте його тут тим, "
+"хто перевіряє."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145 apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
@@ -6644,10 +6679,11 @@ msgstr "Файл {file_id} ({platform})"
 #: apps/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
 msgstr ""
+"Створений %(created)s і його статус змінений %(status_date)s на %(status)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:9
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Створений %(created)s і його статус змінено на %(status)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
@@ -6655,7 +6691,7 @@ msgstr "Показати історію файла"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
-msgstr ""
+msgstr "Від %(user_name)s на %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
@@ -6911,7 +6947,7 @@ msgstr "Перекладач веб-сторінок та тексту, слов
 
 #: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
-msgstr ""
+msgstr "Додатки, які допоможуть вам у 2012 році"
 
 #: apps/discovery/modules.py:272
 msgid "Love is in the Air"
@@ -6923,11 +6959,13 @@ msgstr "Додайте до свого Firefox трохи романтики."
 
 #: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
-msgstr ""
+msgstr "Прикрасьте його темою!"
 
 #: apps/discovery/modules.py:281
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
 msgstr ""
+"Відвідайте addons.mozilla.org з Firefox для Android і одягніть ваш мобільний "
+"браузер під ваш стиль, настрій або сезон."
 
 #: apps/discovery/modules.py:290
 msgid "Get up and move!"
@@ -6939,7 +6977,7 @@ msgstr "Встановіть ці додатки для фітнесу, щоб �
 
 #: apps/discovery/modules.py:299
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Нове і Потрібне"
 
 #: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
@@ -7059,6 +7097,7 @@ msgstr ""
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
 msgstr ""
+"Дізнайтесь про чудові додатки, які допоможуть вам зі святковими покупками."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid "Install the Amazon Browser Apps and receive special Amazon features right at your fingertips."
