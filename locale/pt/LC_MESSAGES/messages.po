@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-03-08 05:08+0000\n"
+"PO-Revision-Date: 2015-04-02 23:23+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425791280.0\n"
+"X-POOTLE-MTIME: 1428017027.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7540,7 +7540,7 @@ msgstr "requer uma super revisão"
 
 #: apps/editors/views.py:709
 msgid "commented"
-msgstr ""
+msgstr "comentado"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
