@@ -98,6 +98,36 @@
   <h2>{{ addon.name }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
+  <h3>{{ _('Addon visibility') }}</h3>
+  <div class="item" id="addon-current-state">
+    <div class="item_wrapper">
+      {% set owner = check_addon_ownership(request, addon, dev=True) %}
+      <label><input name="addon-state" value="listed" type="radio"
+                    {% if not owner or addon.status == amo.STATUS_DISABLED or not addon.is_listed %}disabled="disabled"{% endif %}
+                    {% if not addon.is_disabled and addon.is_listed %}checked="checked"{% endif %}
+                    data-url="{{ addon.get_dev_url('enable') }}"
+                    class="enable-addon">
+             <strong>{{ _('Listed:') }}</strong> {{ _('Visible to everyone on {0} and included in search results and listing pages')|f(settings.SITE_URL) }}</label>
+      <br><br>
+      <label><input name="addon-state" value="hidden" type="radio"
+                    {% if not owner or not addon.is_listed %}disabled="disabled"{% endif %}
+                    {% if addon.is_disabled and addon.is_listed %}checked="checked"{% endif %}
+                    class="disable-addon">
+             <strong>{{ _('Hidden:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
+      <br><br>
+      <label><input name="addon-state" value="unlisted" type="radio"
+                    disabled="disabled"
+                    {% if not addon.is_listed %}checked="checked"{% endif %}
+                    class="unlist-addon">
+             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
+      <br><br>
+      {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+        <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <h3>{{ _('Current versions') }}</h3>
   {% if addon.current_version %}
     <div class="item" id="current-version-status">
       <div class="item_wrapper">
@@ -221,17 +251,17 @@
   <div id="modal-disable" class="modal">
     <form method="post" action="{{ addon.get_dev_url('disable') }}">
       <h3>
-        {{ _('Disable Add-on') }}
+        {{ _('Hide Add-on') }}
       </h3>
       <p>
         {% trans %}
-          Disabling your add-on will prevent it from appearing anywhere in our
+          Hiding your add-on will prevent it from appearing anywhere in our
           gallery and will stop users from receiving automatic updates.
         {% endtrans %}
       </p>
       <p>
         {% trans %}
-          Are you sure you wish to disable your add-on?
+          Are you sure you wish to hide your add-on?
         {% endtrans %}
       </p>
       {{ csrf() }}
@@ -239,7 +269,7 @@
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <p>
         <button type="submit">
-          {{ _('Disable Add-on') }}
+          {{ _('Hide Add-on') }}
         </button>
         {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
       </p>

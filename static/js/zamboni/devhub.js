@@ -197,15 +197,15 @@ $(document).ready(function() {
         }
     }
 
-    $('.enable-addon').bind('click', _pd(function() {
+    $('.enable-addon').bind('click', function() {
         $.ajax({
             'type': 'POST',
-            'url': $(this).attr('href'),
+            'url': $(this).data('url'),
             'success': function() {
                 window.location.reload();
             }
         });
-    }));
+    });
 
     // In-app payments config.
     if ($('#in-app-config').length) {

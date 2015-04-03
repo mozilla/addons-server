@@ -11,7 +11,7 @@ import amo
 import amo.tests
 from amo.urlresolvers import reverse
 from amo.tests import formset, initial
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from applications.models import AppVersion
 from devhub.models import ActivityLog
 from files.models import File
@@ -227,30 +227,71 @@ class TestVersion(amo.tests.TestCase):
         eq_(res.status_code, 403)
         eq_(Addon.objects.get(id=3615).disabled_by_user, False)
 
-    def test_show_disable_button(self):
+    def test_non_owner_cant_change_status(self):
+        """A non-owner can't use the radio buttons."""
+        self.addon.update(disabled_by_user=False)
+        addon_user = AddonUser.objects.get(addon=self.addon)
+        addon_user.role = amo.AUTHOR_ROLE_VIEWER
+        addon_user.save()
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert doc('.enable-addon').attr('checked') == 'checked'
+        assert doc('.enable-addon').attr('disabled') == 'disabled'
+        assert not doc('.disable-addon').attr('checked')
+        assert doc('.disable-addon').attr('disabled') == 'disabled'
+        assert not doc('.unlist-addon').attr('checked')
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+
+    def test_published_addon_radio(self):
+        """Published (listed) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=False)
         res = self.client.get(self.url)
         doc = pq(res.content)
+        assert doc('.enable-addon').attr('checked') == 'checked'
+        enable_url = self.addon.get_dev_url('enable')
+        assert doc('.enable-addon').attr('data-url') == enable_url
+        assert not doc('.enable-addon').attr('disabled')
         assert doc('#modal-disable')
-        assert doc('.disable-addon')
-        assert not doc('.enable-addon')
+        assert not doc('.disable-addon').attr('checked')
+        assert not doc('.disable-addon').attr('disabled')
+        assert not doc('.unlist-addon').attr('checked')
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
 
-    def test_not_show_disable(self):
-        self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        assert not doc('#modal-disable')
-        assert not doc('.disable-addon')
-
-    def test_show_enable_button(self):
+    def test_hidden_addon_radio(self):
+        """Hidden (disabled) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
         doc = pq(res.content)
-        a = doc('.enable-addon')
-        assert a, "Expected Enable addon link"
-        eq_(a.attr('href'), self.enable_url)
-        assert not doc('#modal-disable')
-        assert not doc('.disable-addon')
+        assert not doc('.enable-addon').attr('checked')
+        assert not doc('.enable-addon').attr('disabled')
+        assert doc('.disable-addon').attr('checked') == 'checked'
+        assert not doc('.disable-addon').attr('disabled')
+        assert not doc('.unlist-addon').attr('checked')
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+
+    def test_status_disabled_addon_radio(self):
+        """Disabled by Mozilla addon: hidden selected, can't change status."""
+        self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not doc('.enable-addon').attr('checked')
+        assert doc('.enable-addon').attr('disabled') == 'disabled'
+        assert doc('.disable-addon').attr('checked') == 'checked'
+        assert doc('.disable-addon').attr('disabled') == 'disabled'
+        assert not doc('.unlist-addon').attr('checked')
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+
+    def test_unlisted_addon_cant_change_status(self):
+        """Unlisted addon: can't change its status."""
+        self.addon.update(disabled_by_user=False, is_listed=False)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not doc('.enable-addon').attr('checked')
+        assert doc('.enable-addon').attr('disabled') == 'disabled'
+        assert not doc('.disable-addon').attr('checked')
+        assert doc('.disable-addon').attr('disabled') == 'disabled'
+        assert doc('.unlist-addon').attr('checked') == 'checked'
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
 
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
