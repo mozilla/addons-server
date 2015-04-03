@@ -2046,7 +2046,16 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
-    def test_action_links_as_admin_unlisted_addon(self):
+    def test_unlisted_addon_action_links(self):
+        """No "View Listing" link for unlisted addons, no action links for
+        standard reviewers."""
+        self.addon.update(is_listed=False)
+        r = self.client.get(self.url)
+        check_links([], pq(r.content)('#actions-addon a'), verify=False)
+
+    def test_unlisted_addon_action_links_as_admin(self):
+        """No "View Listing" link for unlisted addons, "edit"/"manage" links
+        for the admins."""
         self.addon.update(is_listed=False)
         self.login_as_admin()
         r = self.client.get(self.url)
@@ -2601,6 +2610,15 @@ class TestAbuseReports(amo.tests.TestCase):
         eq_(r.status_code, 200)
         # We see the two abuse reports created in setUp.
         eq_(len(r.context['reports']), 2)
+
+    def test_no_abuse_reports_link_for_unlisted_addons(self):
+        """Unlisted addons aren't public, and thus have no abuse reports."""
+        addon = Addon.objects.get(pk=3615)
+        addon.update(is_listed=False)
+        self.client.login(username='admin@mozilla.com', password='password')
+        response = reverse('editors.review', args=[addon.slug])
+        abuse_report_url = reverse('editors.abuse_reports', args=['a3615'])
+        assert abuse_report_url not in response
 
 
 class TestLeaderboard(EditorTest):
