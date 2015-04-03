@@ -5,8 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.test.utils import override_settings
 
-from lib.crypto.packaged import sign, SigningError
-from versions.models import Version
+from lib.crypto.tasks import sign_addons
 
 
 class Command(BaseCommand):
@@ -33,17 +32,7 @@ class Command(BaseCommand):
             'preliminary_signing_server', settings.PRELIMINARY_SIGNING_SERVER)
 
         addon_ids = [int(addon_id) for addon_id in args]
-        to_sign = Version.objects.filter(addon_id__in=addon_ids)
-
-        num_versions = to_sign.count()
-        self.stdout.write('Starting the signing of %s versions' % num_versions)
-        for version in to_sign:
-            try:
-                self.stdout.write('Signing version %s' % version.pk)
-                with override_settings(
-                        SIGNING_SERVER=signing_server,
-                        PRELIMINARY_SIGNING_SERVER=preliminary_signing_server):
-                    sign(version)
-            except SigningError as e:
-                self.stderr.write(
-                    'Error while signing version %s: %s' % (version.pk, e))
+        with override_settings(
+                SIGNING_SERVER=signing_server,
+                PRELIMINARY_SIGNING_SERVER=preliminary_signing_server):
+            sign_addons(addon_ids)
