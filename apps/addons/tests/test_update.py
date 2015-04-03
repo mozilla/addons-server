@@ -92,6 +92,14 @@ class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
         up = self.get(data)
         assert up.is_valid()
 
+    def test_unlisted_addon(self):
+        """Don't provide updates for unlisted addons."""
+        addon = Addon.objects.get(pk=3615)
+        addon.update(is_listed=False)
+
+        up = self.get(self.good_data)
+        assert not up.is_valid()
+
 
 class TestLookup(VersionCheckMixin, amo.tests.TestCase):
     fixtures = ['addons/update', 'base/appversion']
