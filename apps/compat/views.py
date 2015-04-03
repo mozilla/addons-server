@@ -10,6 +10,7 @@ from tower import ugettext as _
 
 import amo
 import amo.utils
+from addons.decorators import owner_or_unlisted_reviewer
 from amo.decorators import post_required
 from amo.utils import urlparams
 from amo.urlresolvers import reverse
@@ -134,23 +135,37 @@ def reporter(request):
     if query:
         qs = None
         if query.isdigit():
-            qs = Addon.objects.filter(id=query)
+            qs = Addon.with_unlisted.filter(id=query)
         if not qs:
-            qs = Addon.objects.filter(slug=query)
+            qs = Addon.with_unlisted.filter(slug=query)
         if not qs:
-            qs = Addon.objects.filter(guid=query)
+            qs = Addon.with_unlisted.filter(guid=query)
         if not qs and len(query) > 4:
             qs = CompatReport.objects.filter(guid__startswith=query)
         if qs:
-            return redirect('compat.reporter_detail', qs[0].guid)
-    addons = (request.amo_user.addons.all()
+            guid = qs[0].guid
+            addon = Addon.with_unlisted.get(guid=guid)
+            if addon.is_listed or owner_or_unlisted_reviewer(request, addon):
+                return redirect('compat.reporter_detail', guid)
+    addons = (Addon.with_unlisted.filter(authors=request.amo_user)
               if request.user.is_authenticated() else [])
     return render(request, 'compat/reporter.html',
                   dict(query=query, addons=addons))
 
 
 def reporter_detail(request, guid):
+    try:
+        addon = Addon.with_unlisted.get(guid=guid)
+    except Addon.DoesNotExist:
+        addon = None
+    name = addon.name if addon else guid
     qs = CompatReport.objects.filter(guid=guid)
+
+    if (addon and not addon.is_listed and
+            not owner_or_unlisted_reviewer(request, addon)):
+        # Not authorized? Let's pretend this addon simply doesn't exist.
+        name = guid
+        qs = CompatReport.objects.none()
 
     form = AppVerForm(request.GET)
     if request.GET and form.is_valid() and form.cleaned_data['appver']:
@@ -171,9 +186,6 @@ def reporter_detail(request, guid):
     if works_properly:
         qs = qs.filter(works_properly=works_properly)
     reports = amo.utils.paginate(request, qs.order_by('-created'), 100)
-
-    addon = Addon.objects.filter(guid=guid)
-    name = addon[0].name if addon else guid
 
     return render(request, 'compat/reporter_detail.html',
                   dict(reports=reports, works=works,
