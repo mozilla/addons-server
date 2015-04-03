@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-03-09 18:19+0000\n"
+"PO-Revision-Date: 2015-04-03 13:50+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425925146.0\n"
+"X-POOTLE-MTIME: 1428069002.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7600,7 +7600,7 @@ msgstr "richiesta super revisione"
 
 #: apps/editors/views.py:709
 msgid "commented"
-msgstr ""
+msgstr "ha scritto"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
