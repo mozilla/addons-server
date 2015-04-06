@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-04-04 20:11+0000\n"
-"Last-Translator: Tim <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2015-04-06 07:34+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428178300.0\n"
+"X-POOTLE-MTIME: 1428305662.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5873,6 +5873,10 @@ msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
+"Незаконні і злочинні додатки, такі як генератори <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">клік-фроду</a>, завантаження "
+"<a href=\"http://en.wikipedia.org/wiki/Warez\">варезу</a> і "
+"каталоги-помічники, шукачі дитячої порнографії, і т.д."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -5883,18 +5887,26 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
 msgstr ""
+"Додатки, які після свого встановлення, автоматично встановлюють або "
+"запускають інсталятори програмного забезпечення, яке не стосується Firefox"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid "Add-ons that provide their own update mechanism for code or search engines"
 msgstr ""
+"Додатки, які містять свій власний механізм оновлення для коду або пошукових "
+"систем"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
 msgstr ""
+"Додатки, які вносять зміни в веб-вміст не очевидними або важкими для "
+"відстеження користувачами способами"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
 msgstr ""
+"Додатки, які підглядають або перехоплюють мережевий трафік інших "
+"користувачів"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
@@ -5903,7 +5915,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Такі, що змінюють типові значення і мають несподівані можливості"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
@@ -5925,14 +5937,33 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
+"<p> Кожного разу, коли додаток включає в себе будь-яку несподівану* функцію, "
+"яка </p> <ul> <li>компрометує приватність або безпеку користувача "
+"(наприклад передає дані третім особам),</li> <li>змінює типові налаштування, "
+"наприклад домашню сторінку чи засіб пошуку, або</li> <li>змінює "
+"налаштування чи функції в інших додатках, або деактивує їх "
+"повністю</li></ul><p>функції повинні відповідати таким вимогам:</p> <ul> "
+"<li>Опис додатка повинен чітко вказувати які він робить зміни.</li> "
+"<li>Користувач повинен в явному вигляді погодитися прийняти всі зміни, тобто "
+"користувач повинен провести нестандартні дії по прийняттю змін.</li> <li>У "
+"діалоговому вікні, де відбуваються зміни, має бути чітко зазначено ім'я "
+"додатку, який пропонує зміни.</li> <li>Видалення додатка повинно "
+"відновлювати початкові налаштування користувача, якщо вони були "
+"змінені.</li> </ul> <p>*Несподіваними функціями є такі, що не стосуються "
+"основної функції додатка.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
 msgstr ""
+"Ці функції не можуть бути в оновленні повністю перевіреного додатка; зміна "
+"процесу отримання згоди має бути частиною первинної перевірки."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
 msgstr ""
+"Це мінімальні вимоги і вони не гарантують того, що додаток буде схвалено. "
+"Цей розділ стосується всіх додатків, розміщених на сайті, у тому числі "
+"попередньо схвалених."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
@@ -6020,6 +6051,20 @@ msgid ""
 "cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
 "be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
+"<strong>Додаток описано чітко й акуратно?</strong> Для нас вкрай важливо, "
+"щоб користувачі отримували те, чого вони очікують від роботи нового додатку. "
+"Ім'я вашого додатку повинно бути чітким і зрозумілим, і вам слід "
+"утримуватися від використання спеціальних символів або цифр для отримання "
+"більш високого пошукового рейтингу або в декоративних цілях. Ваш опис має "
+"надавати інформацію про те, що робить додаток, як його можна використовувати "
+"і що повинен очікувати користувач після встановлення додатку. Ви можете "
+"вказати посилання на зовнішні документи з детальними інструкціями, але сам "
+"опис повинен містити основи, щоб дати користувачам впевненість, що вони "
+"знають, що отримають. Крім того, важливо, щоб ви додавали примітки до нових "
+"версій про те, як ви покращуєте і змінюєте ваш додаток. Користувачі повинні "
+"бачити, що нового з'явилося в раніше використовуваному ними додатку, і бути "
+"в курсі змін, які можуть вплинути на їх поточну роботу з додатком після "
+"оновлення."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
 msgid ""
@@ -6027,6 +6072,13 @@ msgid ""
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
+"<strong>Чи всі питання приватності і безпеки прописані чітко?</strong> Це є "
+"аспектом чіткого і точного опису, та є настільки важливим, що потребує "
+"особливої уваги. Багато дуже корисних і добре описаних додатків маніпулюють "
+"тією або іншою формою даних користувача або можуть становити загрозу безпеці "
+"при їх неправильному використанні; ми вітаємо їх на нашому сайті, але вони "
+"повинні дуже чітко проінформувати користувачів, з якими ризиками вони можуть "
+"зіткнутися, і що вони можуть зробити для свого захисту."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:37
 msgid ""
@@ -6036,6 +6088,19 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
+"<strong>Чи додаток було добре протестовано і в нього нема очевидних або "
+"серйозних дефектів?</strong> Одним дуже важливим моментом, на який ми "
+"звертаємо увагу під час розгляду додатку - є відгуки користувачів, які "
+"показують, що додаток пройшов ретельне тестування, і не має серйозних "
+"проблем або негативного впливу на браузер. Якщо у відгуках повідомляється "
+"про серйозні проблеми з продуктивністю, падіннях, постійних проблемах при "
+"використанні функцій додатку або безлічі повідомлень на консолі помилок, ви "
+"повинні ретельно розглянути ці повідомлення, і знову представити ваш додаток "
+"після максимального усунення цих проблем. Ми не очікуємо, що ви досягнете "
+"максимальної оптимізації або повного усунення помилок &mdash; в цих областях "
+"Firefox сам піддається постійним удосконаленням &mdash; але ми хочемо, щоб "
+"ви доклали зусиль до мінімізації недоліків і чітко позначили ті випадки, в "
+"яких користувачі можуть зустріти не очікувані ними  проблеми, що залишилися."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -6043,24 +6108,47 @@ msgid ""
 "activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
 "authors will avoid retaliating with rudeness of their own."
 msgstr ""
+"<strong>Чи відноситься додаток або автор додатка з повагою до "
+"користувача?</strong> Ваша програма не повинна без необхідності втручатися в "
+"роботу користувача, намагатися обдурити або приховувати будь-які свої дії. "
+"Користувачі (або навіть не користувачі) іноді грублять у своїх коментарях, і "
+"поки ми зробимо все можливе, щоб відфільтрувати некоректні відгуки, ми "
+"очікуємо від авторів, що вони не будуть відповідати грубістю на грубість."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:49
 msgid ""
 "<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
 "your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
+"<strong>Чи є додаток корисним для більш-менш широкої частини користувачів "
+"Firefox?</strong> Вашому додатку не обов'язково бути наступним Greasemonkey "
+"або Firebug, але якщо він корисний тільки людям у вашій компанії або тим, "
+"хто є частиною невеликої веб-спільноти, ми можемо вирішити, що він не "
+"підходить для розміщення перед усіма нашими користувачами."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:55
 msgid ""
 "We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
 "Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
 msgstr ""
+"Ми постійно шукаємо шляхи поліпшення організації сайту для кращого "
+"розміщення додатків, які хоч і мають зразкове виконання, але націлені лише "
+"на невелике співтовариство потенційних користувачів. Правильна категоризація "
+"та управління метаданими вашого додатка допоможуть нам зрозуміти, яким "
+"чином ми можемо надати більше додатків подібного типу людям, яким вони "
+"можуть принести найбільшу користь."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:61
 msgid ""
 "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
 "new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
 msgstr ""
+"Якщо ваш додаток просто надає закладки та інші прості точки доступу на ваш "
+"сайт, то, ймовірно, він не підходить для галереї. Як усьому проекту Mozilla, "
+"так і нам, подобаються веб-додатки та нові веб-сервіси, але додатки Firefox "
+"повинні забезпечувати поліпшення веб-перегляду для користувача, а не бути "
+"просто способом просування нового сайту чи послуги через сторінки додатків "
+"Mozilla."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
 msgid ""
@@ -6068,6 +6156,15 @@ msgid ""
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
+"<strong>Чи відсутні в додатку неліцензовані торгові марки та авторські "
+"права?</strong> Хоча можливо ви не хочете заподіяти будь-якої шкоди власнику "
+"товарного знака або власнику захищеної авторським правом роботи, ми не "
+"можемо розміщувати додатки, які зазіхають на товарні знаки або авторські "
+"права. Якщо у вас немає дозволу на використання назви чи зображення торгової "
+"марки, будь ласка, не надсилайте нам ваші додатки. Якщо ваш додаток включає "
+"в себе код, на який поширюється чуже авторське право, і ви не маєте "
+"ліцензії на використання його у вашому додатку, будь ласка, не надсилайте "
+"нам ваші додатки."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:73
 msgid ""
@@ -6075,6 +6172,13 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
+"З точки зору повторного використання початкового коду з інших додатків, якщо "
+"автор не вказав у явному вигляді, що ви маєте право використовувати його "
+"код у вашій роботі &mdash; наприклад, розмістивши його під відкритою "
+"ліцензією &mdash; то ви повинні припустити, що ви не маєте право це робити. "
+"Ви можете зв'язатися з автором, щоб запросити такий дозвіл, але ми не можемо "
+"надати вам на нього які-небудь спеціальні права лише тому, що це розміщено "
+"на сайті, або тому, що автор не відповідає на ваш запит."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
@@ -6082,38 +6186,57 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
+"Це застосовується також до товарних знаків Mozilla Foundation, включаючи "
+"\"Mozilla\", \"Firefox\", і \"Thunderbird\". Політика використання товарних знаків "
+"Mozilla розроблена для захисту від плутанини і для запобігання відкликання "
+"прав на товарні знаки внаслідок відсутності їх захисту; будь ласка, "
+"поважайте необхідність такого захисту, і допоможіть нам зберегти деякі з "
+"найбільш цінних активів Mozilla Foundation."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
-msgstr ""
+msgstr "Ліцензування"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:86
 msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
+"Вибір ліцензії, яка підходить до вашого додатка є дуже важливим кроком у "
+"процесі подання. Ліцензія визначає права, які ви надаєте на ваш початковий "
+"код, і відіграє важливу роль в захисті вашої інтелектуальної власності."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
 msgstr ""
+"В процесі подання додатку, вам буде представлено на вибір список популярних "
+"ліцензій, а також дана можливість вказати свою власну ліцензію. Щоб "
+"дізнатися, який варіант ліцензії вам найкраще підходить, проконсультуйтеся з "
+"юристом. Вибір правильної ліцензії для вашого початкового коду допоможе "
+"уникнути плутанини і конфліктів коду в майбутньому."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12 apps/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
-msgstr ""
+msgstr "Представлення додатка"
 
 #: apps/devhub/templates/devhub/docs/policies.html:18 apps/devhub/templates/devhub/docs/policies.html:78
 msgid "Maintaining Your Add-on"
-msgstr ""
+msgstr "Обслуговування вашого додатка"
 
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
 msgstr ""
+"Mozilla прагне забезпечити відмінну роботу додатків нашим користувачам і "
+"розробникам. Будь ласка, ознайомтеся з наведеним нижче правилами, перед "
+"надсиланням додатка."
 
 #: apps/devhub/templates/devhub/docs/policies.html:55
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
 msgstr ""
+"Дізнайтеся, що очікується від додатків, які ми розміщуємо та які наші "
+"політики зі специфічних практик використання додатків."
 
 #: apps/devhub/templates/devhub/docs/policies.html:67
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
@@ -6129,7 +6252,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
-msgstr ""
+msgstr "Як перспективні додатки стають обраними і що залучено до цього процесу."
 
 #: apps/devhub/templates/devhub/docs/policies.html:106
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
@@ -6139,7 +6262,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
-msgstr ""
+msgstr "Як зв'язатися з нами з приводу цих політик або вашого додатка."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:5
 msgid "You have disabled this add-on"
@@ -6242,6 +6365,10 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
+"Ваш профіль розробника розповість користувачам про вас, про те чому ви "
+"зробили цей додаток та подальші його плани. Цей профіль обов'язковий для "
+"додатків, які містять пропозицію зробити внесок, але може бути корисним для "
+"будь-якого розробника, зацікавленого у встановленні взаємин з користувачами."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
@@ -6736,7 +6863,7 @@ msgstr "Вирівняна по верхньому правому краю"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
-msgstr "Виберіть інше верхнє зображення."
+msgstr "Виберіть інше верхнє зображення"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:19
 msgid "Select a footer image for your Theme."
@@ -6752,7 +6879,7 @@ msgstr "Вирівняна по лівому нижньому краю"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
-msgstr "Виберіть інше нижнє зображення."
+msgstr "Виберіть інше нижнє зображення"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:7
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
