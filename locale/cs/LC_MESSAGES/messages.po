@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-04-06 13:44+0000\n"
+"PO-Revision-Date: 2015-04-06 13:55+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428327885.0\n"
+"X-POOTLE-MTIME: 1428328506.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3468,7 +3468,7 @@ msgstr "Moderovaná kontrola doplňků"
 
 #: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Úprava recenze doplňku byla zrušena"
 
 #: apps/constants/base.py:481
 msgid "Level 1"
@@ -7909,7 +7909,7 @@ msgstr "Kontrola {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Historie změn doplňku uživatelem"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -9906,6 +9906,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Sporné recenze prosím nahlaste nebo označte klepnutím na odkaz \"Nahlásit "
+"recenzi\". Bude tak přidána na seznam ke kontrole a případné úpravě. Náš tým "
+"zkontrolujte, jestli recenze odpovídá \"Příručce recenzenta\" a zda ji "
+"případně smazat nebo naopak vrátit zpět k zobrazení."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
