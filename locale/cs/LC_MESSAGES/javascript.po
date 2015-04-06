@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-01-10 23:11+0000\n"
+"PO-Revision-Date: 2015-04-06 13:38+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1420931482.0\n"
+"X-POOTLE-MTIME: 1428327499.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -115,7 +115,7 @@ msgstr "Pokud je váš doplněk určen pro vymezenou skupinu uživatelů, měli 
 
 #: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Seznam odeslaných doplňků ke kontrole"
 
 #: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"

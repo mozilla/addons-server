@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2015-03-19 17:11+0000\n"
+"PO-Revision-Date: 2015-04-06 13:44+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1426785107.0\n"
+"X-POOTLE-MTIME: 1428327885.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -7270,15 +7270,15 @@ msgstr "Aktualizace motivů"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Čekající nezařazené aktualizace"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Nezařazené plné kontroly"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Nezařazené předběžné kontroly"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
@@ -7318,23 +7318,23 @@ msgstr[2] "Moderované recenze ({0})"
 #: apps/editors/helpers.py:189
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Neřazená plná kontrola ({0})"
+msgstr[1] "Neřazené plné kontroly ({0})"
+msgstr[2] "Neřazené plné kontroly ({0})"
 
 #: apps/editors/helpers.py:194
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Čekající nezařezaná aktualizace ({0})"
+msgstr[1] "Čekající nezařezané aktualizace ({0})"
+msgstr[2] "Čekající nezařezané aktualizace ({0})"
 
 #: apps/editors/helpers.py:199
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nezařazená předběžná kontrola ({0})"
+msgstr[1] "Nezařazené předběžné kontroly ({0})"
+msgstr[2] "Nezařazené předběžné kontroly ({0})"
 
 #: apps/editors/helpers.py:231
 msgid "Addon"
@@ -7579,7 +7579,7 @@ msgstr "potřebuje kontrolu administrátory"
 
 #: apps/editors/views.py:709
 msgid "commented"
-msgstr ""
+msgstr "okomentováno"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -7619,7 +7619,7 @@ msgstr "Fronty"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Nezařazené fronty"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7725,23 +7725,23 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nezařazená plná kontrola ({num})"
+msgstr[1] "Nezařazené plné kontroly ({num})"
+msgstr[2] "Nezařazené plné kontroly ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Čekající nezařezaná aktualizace ({num})"
+msgstr[1] "Čekající nezařezané aktualizace ({num})"
+msgstr[2] "Čekající nezařezané aktualizace ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nezařazená předběžná kontrola ({num})"
+msgstr[1] "Nezařazené předběžné kontroly ({num})"
+msgstr[2] "Nezařazené předběžné kontroly ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
