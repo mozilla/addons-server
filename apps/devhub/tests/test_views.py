@@ -1631,17 +1631,35 @@ class TestSubmitStep7(TestSubmitBase):
 
     @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_unlisted_addon(self):
-        eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
-        self.addon.update(is_listed=False)
+        self.addon.update(is_listed=False, status=amo.STATUS_UNREVIEWED)
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
 
-        # For unlisted add-ons, there's only the devhub page link displayed.
+        # For unlisted add-ons, there's only the devhub page link displayed and
+        # a link to the forum page on the wait times.
+        content = doc('.done-next-steps')
+        assert len(content('a')) == 2
+        assert content('a').eq(0).attr('href') == self.addon.get_dev_url()
+
+    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    def test_finish_submitting_unlisted_addon_signed(self):
+        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
+
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+
+        # For unlisted addon that are already signed, show a url to the devhub
+        # versions page and to the addon listing.
         content = doc('.addon-submission-process')
-        assert len(content('a')) == 1
-        assert content('a').attr('href') == self.addon.get_dev_url()
+        links = content('a')
+        assert len(links) == 2
+        assert links[0].attrib['href'] == reverse(
+            'devhub.versions.edit',
+            args=[self.addon.slug, self.addon.current_version.id])
+        assert links[1].attrib['href'] == self.addon.get_dev_url()
 
     @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_platform_specific_addon(self):
