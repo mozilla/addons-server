@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2014-07-30 20:31+0000\n"
-"Last-Translator: Branislav <sektormaster@atlas.sk>\n"
+"PO-Revision-Date: 2015-04-08 21:13+0000\n"
+"Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1406752284.0\n"
+"X-POOTLE-MTIME: 1428527620.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -103,37 +103,52 @@ msgstr "Overenie váš doplnku skončilo bez chýb alebo upozornení."
 
 #: static/js/common/upload-addon.js:334
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
 #: static/js/common/upload-addon.js:335
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, "
+"zadajte prosím používateľské meno a heslo do poznámky pre redaktora (možno "
+"vykonať v ďalšom kroku)."
 
 #: static/js/common/upload-addon.js:350
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Ak je váš doplnok určený pre vymedzenú skupinu používateľov, mali by ste "
+"vybrať Predbežnú kontrolu namiesto Plnej kontroly."
 
 #: static/js/common/upload-addon.js:352
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Zoznam doplnkov odoslaných na kontrolu"
 
 #: static/js/common/upload-addon.js:353
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Skontrolujte prosím nasledujúce body pred odoslaním doplnku na kontrolu. "
+"Pomôžete tým kontrolu zrýchliť a predísť prípadnému nedorozumeniu pri "
+"procese kontroly:"
 
 #: static/js/common/upload-addon.js:355
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Skompilované binárne súčasti rovnako ako obfuscované skripty (okrem známych "
+"knižníc) musia mať predložené zdrojové súbory na kontrolu oddelene. Uistite "
+"sa, že ste použili pole pre nahranie zdrojových kódov, aby nedošlo k "
+"zamietnutiu kontroly."
 
 #: static/js/common/upload-addon.js:373
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k "
+"zamietnutiu kontroly:"
 
 #: static/js/common/upload-addon.js:390
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Ak ešte neviete, ako prebieha proces kontroly, môžete si o ňom prečítať tu."
 
 #: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
@@ -503,7 +518,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -776,9 +791,9 @@ msgstr[2] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnkov a odosla�
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Odoslať e-mail autorovi {2} doplnku, u ktorého zlyhala kontrola."
+msgstr[1] "Odoslať e-mail autorom {2} doplnkov, u ktorých zlyhala kontrola."
+msgstr[2] "Odoslať e-mail autorom {2} doplnkov, u ktorých zlyhala kontrola."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -969,9 +984,9 @@ msgstr[2] "{files} súborov"
 #: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{reviews} recenzia používateľa"
+msgstr[1] "{reviews} recenzie používateľa"
+msgstr[2] "{reviews} recenzií používateľa"
 
 #: static/js/zamboni/devhub.js:799
 msgid "Learn more"
