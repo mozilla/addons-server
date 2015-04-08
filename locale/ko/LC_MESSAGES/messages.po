@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-01 09:01-0700\n"
+"POT-Creation-Date: 2015-04-08 09:07-0700\n"
 "PO-Revision-Date: 2014-05-12 07:59+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
@@ -127,7 +127,7 @@ msgstr "새 제작자의 이메일 주소를 입력하세요"
 msgid "Not Reviewed"
 msgstr "미심사"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:319 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:312 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:36 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
 #: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:87 apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
@@ -143,29 +143,29 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "사용자는 항상 부가 기능 관리자의 권유를 받게 됩니다 (Firefox 4 이상)"
 
 # Column name in a table.
-#: apps/addons/models.py:1892
+#: apps/addons/models.py:1894
 msgid "Listed"
 msgstr "나열됨"
 
-#: apps/addons/views.py:320 apps/browse/templates/browse/personas/mobile/category_landing.html:27
+#: apps/addons/views.py:313 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "인기"
 
-#: apps/addons/views.py:321 apps/browse/views.py:234 apps/browse/views.py:277 apps/browse/views.py:476
+#: apps/addons/views.py:314 apps/browse/views.py:234 apps/browse/views.py:274 apps/browse/views.py:473
 msgid "Recently Added"
 msgstr "신규 등록"
 
-#: apps/addons/views.py:322 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
+#: apps/addons/views.py:315 apps/bandwagon/views.py:91 apps/browse/views.py:60 apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
 msgstr "최근 업데이트"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
-#: apps/addons/views.py:507
+#: apps/addons/views.py:500
 msgid "Contribution for {0}"
 msgstr "{0}에 기부하기"
 
-#: apps/addons/views.py:595
+#: apps/addons/views.py:588
 msgid "Abuse reported."
 msgstr "정책 위반을 신고했습니다."
 
@@ -194,7 +194,7 @@ msgstr "{0}용"
 msgid "View privacy policy"
 msgstr "개인 정보 보호 정책 보기"
 
-#: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:124 apps/addons/templates/addons/mobile/button.html:33
+#: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
 msgstr "일반 사용자 계약서 보기"
@@ -230,8 +230,8 @@ msgstr "기부하기"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
 #: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:211
-#: apps/devhub/templates/devhub/versions/list.html:244 apps/devhub/templates/devhub/versions/list.html:277 apps/reviews/templates/reviews/edit_review.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "또는"
@@ -337,7 +337,7 @@ msgid "Add-on Information for {0}"
 msgstr "{0}의 부가 기능 정보"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:453 apps/devhub/views.py:72
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:72
 msgid "Updated"
 msgstr "최근 업데이트"
 
@@ -379,47 +379,47 @@ msgid "Abuse Reports"
 msgstr "정책 위반 신고"
 
 #. The Privacy Policy for this add-on.
-#: apps/addons/templates/addons/details_box.html:112 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
+#: apps/addons/templates/addons/details_box.html:113 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
 #: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "개인 정보 보호 정책"
 
-#: apps/addons/templates/addons/details_box.html:115 apps/discovery/templates/discovery/addons/detail.html:30
+#: apps/addons/templates/addons/details_box.html:116 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
 msgstr "개인 정보 보호 정책 보기"
 
-#: apps/addons/templates/addons/details_box.html:121
+#: apps/addons/templates/addons/details_box.html:122
 msgid "EULA"
 msgstr "EULA"
 
-#: apps/addons/templates/addons/details_box.html:162 apps/addons/templates/addons/details_box.html:222
+#: apps/addons/templates/addons/details_box.html:163 apps/addons/templates/addons/details_box.html:223
 msgid "More about this add-on"
 msgstr "상세 정보"
 
-#: apps/addons/templates/addons/details_box.html:171
+#: apps/addons/templates/addons/details_box.html:172
 msgid "Image Gallery"
 msgstr "이미지 갤러리"
 
-#: apps/addons/templates/addons/details_box.html:181
+#: apps/addons/templates/addons/details_box.html:182
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "개발자 코멘트"
 
-#: apps/addons/templates/addons/details_box.html:190 apps/addons/templates/addons/impala/details.html:266
+#: apps/addons/templates/addons/details_box.html:191 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
 msgstr "개발 채널"
 
-#: apps/addons/templates/addons/details_box.html:193 apps/addons/templates/addons/mobile/details.html:124
+#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr "개발 채널은 이 부가 기능이 공개되기 이전의 새 시험용 버전을 테스트해주는 곳입니다. 개발자 버전을 설치하면 이 채널을 통해 업데이트를 지속적으로 받아볼 수 있습니다."
 
-#: apps/addons/templates/addons/details_box.html:198 apps/addons/templates/addons/impala/details.html:276
+#: apps/addons/templates/addons/details_box.html:199 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
 msgstr "개발자 버전 설치"
 
-#: apps/addons/templates/addons/details_box.html:202
+#: apps/addons/templates/addons/details_box.html:203
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
@@ -427,15 +427,15 @@ msgstr ""
 "<strong>주의:</strong> 이 부가 기능의 개발자 버전은 Mozilla의 심사를 거치지 않은 것입니다. 개발자 버전을 설치하면 해당 개발자를 통해 개발자용 업데이트를 계속 받을 수 있습니다. 개발자용 업데이트를 그"
 "만 받으려면 위의 링크를 통해 기본 버전으로 재설치 하시면 됩니다."
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:212 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "버전 {0}:"
 
-#: apps/addons/templates/addons/details_box.html:225
+#: apps/addons/templates/addons/details_box.html:226
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "내용이 아무것도 없습니다! 이 개발자는 세부 정보를 전혀 올려놓지 않았습니다."
 
-#: apps/addons/templates/addons/details_box.html:242
+#: apps/addons/templates/addons/details_box.html:243
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "버전 기록서"
@@ -474,7 +474,7 @@ msgid "Popular Extensions"
 msgstr "인기 확장 기능"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
-#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:278 apps/browse/views.py:475
+#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:275 apps/browse/views.py:472
 msgid "Most Popular"
 msgstr "인기"
 
@@ -792,7 +792,7 @@ msgstr "신고 접수"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
 #: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:211 apps/devhub/templates/devhub/versions/list.html:244 apps/localizers/templates/localizers/sidebar_motd.html:9
+#: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
@@ -964,7 +964,7 @@ msgstr "기술 지원 사이트"
 msgid "Support E-mail"
 msgstr "기술 지원 이메일"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:369
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
 msgid "Version {0}"
 msgstr "버전 {0}"
 
@@ -1110,7 +1110,7 @@ msgstr "더 보기"
 msgid "Add to collection"
 msgstr "모음집에 추가하기"
 
-#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:72 apps/devhub/templates/devhub/nav.html:14
+#: apps/addons/templates/addons/includes/dashboard_tabs.html:4 apps/devhub/templates/devhub/index.html:73 apps/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
 msgstr "나의 부가 기능"
 
@@ -1173,7 +1173,7 @@ msgstr "사용자"
 msgid "Weekly Downloads"
 msgstr "주간 다운로드"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:147
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "버전"
 
@@ -1318,7 +1318,7 @@ msgstr "제출 내역 관리하기"
 msgid "Submit a New Add-on"
 msgstr "새 부가 기능 등록"
 
-#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:23 apps/devhub/templates/devhub/addons/dashboard.html:29
+#: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:24 apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "새로운 테마 올리기"
 
@@ -1860,7 +1860,7 @@ msgid ""
 msgstr ""
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
-#: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:279 apps/search/forms.py:86
+#: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:276 apps/search/forms.py:86
 msgid "Top Rated"
 msgstr "상위 별점"
 
@@ -1892,7 +1892,7 @@ msgid "Collections I'm Following"
 msgstr "팔로우 중인 모음집"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:463
+#: apps/users/models.py:466
 msgid "My Favorite Add-ons"
 msgstr "좋아하는 부가 기능"
 
@@ -2096,11 +2096,11 @@ msgstr "링크는 넣을 수 없습니다."
 msgid "This url is already in use by another collection"
 msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1000
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:999
 msgid "Icons must be either PNG or JPG."
 msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1018 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1017 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB보다 작은 이미지를 사용해 주세요."
 
@@ -2140,7 +2140,7 @@ msgstr "선호 목록"
 msgid "Remove from favorites"
 msgstr "선호 목록에서 삭제하기"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:452 apps/devhub/views.py:71 apps/devhub/views.py:79
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:71 apps/devhub/views.py:79
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2394,7 +2394,7 @@ msgid "Delete {0}"
 msgstr "{0} 삭제하기"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
-#: apps/devhub/templates/devhub/versions/list.html:112 apps/devhub/templates/devhub/versions/list.html:133 apps/devhub/templates/devhub/versions/list.html:153
+#: apps/devhub/templates/devhub/versions/list.html:142 apps/devhub/templates/devhub/versions/list.html:163 apps/devhub/templates/devhub/versions/list.html:183
 msgid "Delete"
 msgstr "삭제"
 
@@ -2708,20 +2708,20 @@ msgstr "검색 도구"
 msgid "Most Users"
 msgstr "최고 사용자 수"
 
-#: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:276 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
+#: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:273 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:92
 msgid "Up & Coming"
 msgstr "인기 급상승"
 
-#: apps/browse/views.py:454 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "신규 등록"
 
-#: apps/browse/views.py:455 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:452 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
-#: apps/browse/views.py:456 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:453 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "별점"
@@ -3001,7 +3001,7 @@ msgstr "이진"
 msgid "Non-binary"
 msgstr "비 이진"
 
-#: apps/compat/views.py:84 apps/constants/base.py:373 apps/devhub/forms.py:142
+#: apps/compat/views.py:85 apps/constants/base.py:373 apps/devhub/forms.py:142
 msgid "Other"
 msgstr "기타"
 
@@ -3561,11 +3561,11 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "안드로이드"
 
-#: apps/devhub/feeds.py:35
+#: apps/devhub/feeds.py:36
 msgid "Recent Changes for %s"
 msgstr "%s의 최근 변경사항"
 
-#: apps/devhub/feeds.py:37
+#: apps/devhub/feeds.py:38
 msgid "Recent Changes for My Add-ons"
 msgstr "내 부가 기능의 최근 변경사항"
 
@@ -3773,7 +3773,7 @@ msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 msgstr[1] "경고 {0}개"
 
-#: apps/devhub/models.py:366 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "평가"
 
@@ -3793,132 +3793,132 @@ msgstr "\"%s\"에 호스트 접속을 할 수 없습니다."
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
 
-#: apps/devhub/views.py:177
+#: apps/devhub/views.py:176
 msgid "All My Add-ons"
 msgstr "내가 제작한 모든 부가 기능"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:203
 msgid "All Activity"
 msgstr "전체 활동 내역"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:204
 msgid "Add-on Updates"
 msgstr "부가 기능 업데이트"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:205
 msgid "Add-on Status"
 msgstr "부가 기능 상태"
 
-#: apps/devhub/views.py:207
+#: apps/devhub/views.py:206
 msgid "User Collections"
 msgstr "사용자 모음집"
 
-#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "사용자 평가"
 
-#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1097
+#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1096
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
 
-#: apps/devhub/views.py:328 apps/devhub/views.py:1518
+#: apps/devhub/views.py:327 apps/devhub/views.py:1517
 msgid "Please check the form for errors."
 msgstr "오류 유형에 체크해 주세요."
 
-#: apps/devhub/views.py:340
+#: apps/devhub/views.py:339
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "부가 기능을 삭제할 수 없습니다. 사용 정지 상태로 만드세요."
 
-#: apps/devhub/views.py:350
+#: apps/devhub/views.py:349
 msgid "Theme deleted."
 msgstr "테마가 삭제됐습니다."
 
-#: apps/devhub/views.py:350
+#: apps/devhub/views.py:349
 msgid "Add-on deleted."
 msgstr "부가 기능이 삭제되었습니다."
 
-#: apps/devhub/views.py:356
+#: apps/devhub/views.py:355
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "비밀번호가 틀렸습니다. 테마가 삭제되지 않았습니다."
 
-#: apps/devhub/views.py:361
+#: apps/devhub/views.py:360
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "비밀번호가 틀렸습니다. 부가 기능이 삭제되지 않았습니다."
 
-#: apps/devhub/views.py:434
+#: apps/devhub/views.py:433
 msgid "An author has been added to your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:441
+#: apps/devhub/views.py:440
 msgid "An author has a role changed on your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:460
+#: apps/devhub/views.py:459
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:503
+#: apps/devhub/views.py:502
 msgid "There were errors in your submission."
 msgstr "등록 과정 도중 오류가 발생했습니다."
 
-#: apps/devhub/views.py:567
+#: apps/devhub/views.py:566
 msgid "Validate Add-on"
 msgstr "부가 기능 검사"
 
-#: apps/devhub/views.py:576
+#: apps/devhub/views.py:575
 msgid "Check Add-on Compatibility"
 msgstr "부가 기능 호환성 검사"
 
-#: apps/devhub/views.py:639
+#: apps/devhub/views.py:638
 msgid "There was an error with the submission."
 msgstr "등록 과정에서 오류가 발생했습니다."
 
-#: apps/devhub/views.py:1002 apps/users/forms.py:419
+#: apps/devhub/views.py:1001 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
 
-#: apps/devhub/views.py:1006
+#: apps/devhub/views.py:1005
 msgid "Icons cannot be animated."
 msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
-#: apps/devhub/views.py:1008
+#: apps/devhub/views.py:1007
 msgid "Images cannot be animated."
 msgstr "움직이는 이미지는 제대로 작동하지 않습니다."
 
-#: apps/devhub/views.py:1021
+#: apps/devhub/views.py:1020
 msgid "Images cannot be larger than %dKB."
 msgstr "이미지는 %dKB보다 작아야 합니다."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1030
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
 
-#: apps/devhub/views.py:1038
+#: apps/devhub/views.py:1037
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
-#: apps/devhub/views.py:1136
+#: apps/devhub/views.py:1135
 msgid "Version %s disabled."
 msgstr "%s 버전이 사용 불가 상태가 되었습니다."
 
-#: apps/devhub/views.py:1140
+#: apps/devhub/views.py:1139
 msgid "Version %s deleted."
 msgstr "%s 버전이 삭제되었습니다."
 
-#: apps/devhub/views.py:1150
+#: apps/devhub/views.py:1149
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 심사시 이점에 유의해 주세요."
 
-#: apps/devhub/views.py:1335
+#: apps/devhub/views.py:1334
 msgid "Skipping to step 6 because the add-on won't be listed"
 msgstr ""
 
-#: apps/devhub/views.py:1564
+#: apps/devhub/views.py:1563
 msgid "Preliminary Review Requested."
 msgstr "예비 심사를 요청했습니다."
 
-#: apps/devhub/views.py:1565
+#: apps/devhub/views.py:1564
 msgid "Full Review Requested."
 msgstr "전체 심사를 요청했습니다."
 
@@ -3955,55 +3955,55 @@ msgstr "검색어를 입력하세요."
 msgid "Loading results&hellip;"
 msgstr "결과를 불러오는 중&hellip;"
 
-#: apps/devhub/templates/devhub/index.html:21
+#: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
 msgstr "부가 기능 등록"
 
-#: apps/devhub/templates/devhub/index.html:26
+#: apps/devhub/templates/devhub/index.html:27
 msgid "AMO Reviewers"
 msgstr "AMO 심사원"
 
-#: apps/devhub/templates/devhub/index.html:28
+#: apps/devhub/templates/devhub/index.html:29
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "출세의 지름길! AMO 심사원이 되서 내 부가 기능을 빠르게 심사합시다."
 
-#: apps/devhub/templates/devhub/index.html:31
+#: apps/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
 msgstr "AMO 심사원 되기"
 
-#: apps/devhub/templates/devhub/index.html:38
+#: apps/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
 msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:40
+#: apps/devhub/templates/devhub/index.html:41
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:50
+#: apps/devhub/templates/devhub/index.html:51
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:57
+#: apps/devhub/templates/devhub/index.html:58
 msgid "Start Making Add-ons"
 msgstr "부가 기능 제작 시작"
 
-#: apps/devhub/templates/devhub/index.html:85 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:14
+#: apps/devhub/templates/devhub/index.html:86 apps/devhub/templates/devhub/addons/listing/items.html:25 apps/devhub/templates/devhub/includes/addon_details.html:15
 #: apps/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
 msgstr "상태:"
 
-#: apps/devhub/templates/devhub/index.html:90
+#: apps/devhub/templates/devhub/index.html:91
 msgid "Latest Version:"
 msgstr "최신 버전:"
 
-#: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:119 apps/devhub/templates/devhub/personas/edit.html:49
+#: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:116 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
 msgstr "현재 대기열:"
 
-#: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:120 apps/devhub/templates/devhub/personas/edit.html:50
+#: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:117 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s / %(total)s"
 
@@ -4185,7 +4185,7 @@ msgid "Add Another Application&hellip;"
 msgstr "다른 애플리케이션 추가&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:309 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "닫기"
 
@@ -4275,7 +4275,7 @@ msgstr "부가 기능 URL"
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr "부가 기능이 갖게될 짧고 고유한 URL 주소로 선택해 주세요."
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
+#: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
 #: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "목록 보기"
@@ -4588,7 +4588,7 @@ msgstr "최상위"
 msgid "Delete Theme"
 msgstr "테마 삭제"
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/includes/addons_edit_nav.html:41
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:125
 msgid "Delete Add-on"
 msgstr "부가 기능 삭제"
 
@@ -4657,12 +4657,12 @@ msgstr "기부금 관리"
 msgid "Manage Status & Versions"
 msgstr "상태 및 버전 관리"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:62
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:63
 msgid "View Add-on Listing"
 msgstr "부가 기능 나열 상태 보기"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:63 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:49 apps/devhub/templates/devhub/personas/edit.html:58
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:64 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37 apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
 msgstr "최근 변경 사항 보기"
 
@@ -4962,32 +4962,30 @@ msgid "Step 1. Getting Started"
 msgstr "1단계. 시작하기"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
-msgid "Hosting your add-on in our gallery is the best way to expose your work to millions of Firefox users. We'll provide everything you need to distribute and update your add-on for free."
+msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
-"제작하신 부가 기능을 저희 갤러리에 호스팅을 맡기는 것이야 말로 여러분의 작품을 수백만 Firefox 사용자들에게 노출시킬 수 있는 최선의 방법입니다. 저희는 여러분이 부가 기능을 배포하고 업데이트하는 데 있"
-"어서 모든 자원을 무료로 제공할 것입니다."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
-msgid "To complete this submission process you'll need your add-on package (.xpi, .jar, or .xml) and at least one screenshot of your add-on in action."
-msgstr "현재 등록 작업을 완료하려면 부가 기능 패키지 (.xpi, .jar, or .xml) 및 작동중인 부가 기능을 찍은 스크린샷이 1개 이상 있어야 합니다."
+msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:24
+#: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr "시작할 준비가 됐다면 <strong>개발자 동의서</strong>를 읽고 동의하세요:"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:34
+#: apps/devhub/templates/devhub/addons/submit/start.html:33
 msgid "Printable Version"
 msgstr "인쇄용 버전"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:37
+#: apps/devhub/templates/devhub/addons/submit/start.html:36
 msgid "Additional Add-on Policies"
 msgstr "추가 부가 기능 정책"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:43
+#: apps/devhub/templates/devhub/addons/submit/start.html:42
 msgid "I Accept this Agreement"
 msgstr "약관에 동의합니다"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:45
+#: apps/devhub/templates/devhub/addons/submit/start.html:44
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "또는 <a href=\"{0}\">취소</a>"
 
@@ -5920,49 +5918,49 @@ msgstr "사이트에 작업물을 제출할 때 필요한 서비스 이용 약�
 msgid "How to get in touch with us regarding these policies or your add-on."
 msgstr "여러 정책 및 부가 기능에 관해 저희에게 연락을 취하는 방법이 나와있습니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:5
+#: apps/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
 msgstr "사용 불가 상태인 부가 기능이 있습니다"
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:19
+#: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr "부가 기능이 목록에 노출되지 않으며 갤러리 및 업데이트 서비스 어느곳에서도 보이지 않습니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:24
+#: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
 msgstr "부가 기능을 마무리 해 주세요."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:28
+#: apps/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
 msgstr "심사가 완료되면 이메일을 받게 됩니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:33 apps/devhub/templates/devhub/includes/addon_details.html:40
+#: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:41
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr "심사 완료시 이메일을 받아보게 됩니다. 그 전까지 부가 기능은 갤러리에 노출되지 않지만 해당 부가 기능의 상세 정보 페이지로 바로 접근은 가능합니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:47
+#: apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "부가 기능이 갤러리에 노출되고 있고 사용자들은 자동으로 업데이트를 받아보게 됩니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:53
+#: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
 msgstr "부가 기능이 사이트 관리자에 의해 사용 정지되어 더이상 갤러리에 노출되지 않습니다. 문의사항이 있으시면 marketplace-staff@mozilla.org로 이메일을 보내주세요."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:60
+#: apps/devhub/templates/devhub/includes/addon_details.html:61
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
 msgstr "부가 기능이 시험용으로 갤러리에 표시되며 사용자들은 자동 업데이트를 받을 수 있습니다. 부가 기능의 일부 기능은 사용할 수 없습니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:67
+#: apps/devhub/templates/devhub/includes/addon_details.html:68
 msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
 msgstr "전체 심사가 완료되면 이메일을 받아볼 수 있습니다. 그 전까지 부가 기능은 시험용으로 갤러리 상에 표시되며 사용자들은 자동 업데이트를 받을 수 있습니다. 일부 기능은 사용할 수 없습니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:75
+#: apps/devhub/templates/devhub/includes/addon_details.html:76
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr "저희 갤러리에서 호스팅 중인 모든 부가 기능은 편집자에 의해 심사를 받아야 합니다. 호스팅 작업을 계속 하고 싶다면 심사 절차 선택을 위해 클릭해주세요."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:84
+#: apps/devhub/templates/devhub/includes/addon_details.html:85
 msgid "Current Version:"
 msgstr "현재 버전:"
 
@@ -5970,28 +5968,28 @@ msgstr "현재 버전:"
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr "addons.mozilla.org에서 설치 버튼을 클릭시 설치될 버전입니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:95
+#: apps/devhub/templates/devhub/includes/addon_details.html:94
 msgid "Created:"
 msgstr "제작일:"
 
 #. {0} is a date. dennis-ignore: E201
-#: apps/devhub/templates/devhub/includes/addon_details.html:97 apps/devhub/templates/devhub/includes/addon_details.html:103
+#: apps/devhub/templates/devhub/includes/addon_details.html:96 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "%b %e, %Y"
 msgstr "%Y년 %b월 %e일"
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:101
+#: apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Last Updated:"
 msgstr "마지막 업데이트:"
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:108
+#: apps/devhub/templates/devhub/includes/addon_details.html:107
 msgid "Next Version:"
 msgstr "다음 버전:"
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:111
+#: apps/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:118 apps/devhub/templates/devhub/versions/list.html:30
+#: apps/devhub/templates/devhub/includes/addon_details.html:115 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
 msgstr "대기열 순서를 정확하게 지켜가며 심사되지는 않습니다."
 
@@ -6035,27 +6033,19 @@ msgstr "사람들에게 앞으로 어떤 기능이 추가되는지 말해준다�
 msgid "View All"
 msgstr "전부 보기"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
-msgid "Enable Add-on"
-msgstr "부가 기능 사용"
-
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37 apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:242
-msgid "Disable Add-on"
-msgstr "부가 기능 사용 중단"
-
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:52
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "View Statistics Dashboard"
 msgstr "통계 대시보드 보기"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:55
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "Compatibility Reports"
 msgstr "호환성 문제 신고"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:57
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:45
 msgid "{0} failure reports"
 msgstr "실패 신고 {0}건"
 
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:59
+#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
 msgid "{0} success reports"
 msgstr "성공 신고 {0}건"
 
@@ -6617,100 +6607,136 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] "{0}일간 전체 심사 후보를 사용할 수 있게 됩니다"
 msgstr[1] "{0}일간 전체 심사 후보를 사용할 수 있게 됩니다"
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:253 apps/devhub/templates/devhub/versions/list.html:276
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:283 apps/devhub/templates/devhub/versions/list.html:306
 msgid "Cancel Review Request"
 msgstr "심사 요청 취소"
 
-#: apps/devhub/templates/devhub/versions/list.html:106
+#: apps/devhub/templates/devhub/versions/list.html:101
+msgid "Addon visibility"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:110
+msgid "Listed:"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:110
+msgid "Visible to everyone on {0} and included in search results and listing pages"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:116
+msgid "Hidden:"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:116
+msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:122
+msgid "Unlisted:"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:122
+msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:130
+msgid "Current versions"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
 msgstr "AMO상의 버전"
 
-#: apps/devhub/templates/devhub/versions/list.html:107 apps/devhub/templates/devhub/versions/list.html:128 apps/devhub/templates/devhub/versions/list.html:148
+#: apps/devhub/templates/devhub/versions/list.html:137 apps/devhub/templates/devhub/versions/list.html:158 apps/devhub/templates/devhub/versions/list.html:178
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
 msgstr "상태"
 
 # Header for a column in a table
-#: apps/devhub/templates/devhub/versions/list.html:108 apps/devhub/templates/devhub/versions/list.html:129 apps/devhub/templates/devhub/versions/list.html:149
+#: apps/devhub/templates/devhub/versions/list.html:138 apps/devhub/templates/devhub/versions/list.html:159 apps/devhub/templates/devhub/versions/list.html:179
 #: apps/editors/templates/editors/review.html:83
 msgid "Validation"
 msgstr "검사"
 
-#: apps/devhub/templates/devhub/versions/list.html:110 apps/devhub/templates/devhub/versions/list.html:131 apps/devhub/templates/devhub/versions/list.html:151
+#: apps/devhub/templates/devhub/versions/list.html:140 apps/devhub/templates/devhub/versions/list.html:161 apps/devhub/templates/devhub/versions/list.html:181
 #: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "성능 향상"
 
-#: apps/devhub/templates/devhub/versions/list.html:127
+#: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Next version of this add-on"
 msgstr "이 부가 기능의 차기 버전"
 
-#: apps/devhub/templates/devhub/versions/list.html:141
+#: apps/devhub/templates/devhub/versions/list.html:171
 msgid "Older versions"
 msgstr "구버전"
 
-#: apps/devhub/templates/devhub/versions/list.html:157
+#: apps/devhub/templates/devhub/versions/list.html:187
 msgid "Upload a New Version"
 msgstr "새 버전 업로드"
 
-#: apps/devhub/templates/devhub/versions/list.html:186
+#: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Delete Version {version}"
 msgstr "버전 {version} 삭제"
 
-#: apps/devhub/templates/devhub/versions/list.html:187
+#: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:188
+#: apps/devhub/templates/devhub/versions/list.html:218
 msgid "Deleting this version will permanently delete:"
 msgstr "삭제하면 이 버전은 다시는 복구할 수 없습니다:"
 
-#: apps/devhub/templates/devhub/versions/list.html:194
+#: apps/devhub/templates/devhub/versions/list.html:224
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr "<strong>중요:</strong> 버전을 삭제하면 같은 버전 넘버로는 다시 올릴 수 없습니다."
 
-#: apps/devhub/templates/devhub/versions/list.html:199
+#: apps/devhub/templates/devhub/versions/list.html:229
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr "이미 심사가 끝난 버전을 삭제하면 다음 업데이트 심사가 상당히 지연될 수 있습니다."
 
-#: apps/devhub/templates/devhub/versions/list.html:202
+#: apps/devhub/templates/devhub/versions/list.html:232
 msgid "Are you sure you wish to delete this version?"
 msgstr "정말 이 버전을 삭제하겠습니까?"
 
-#: apps/devhub/templates/devhub/versions/list.html:207
+#: apps/devhub/templates/devhub/versions/list.html:237
 msgid "Delete Version"
 msgstr "버전 삭제"
 
-#: apps/devhub/templates/devhub/versions/list.html:209
+#: apps/devhub/templates/devhub/versions/list.html:239
 msgid "Disable Version"
 msgstr "버전 사용 불가 상태 만들기"
 
-#: apps/devhub/templates/devhub/versions/list.html:216
+#: apps/devhub/templates/devhub/versions/list.html:246
 msgid "Add a new Version"
 msgstr "새 버전 추가"
 
-#: apps/devhub/templates/devhub/versions/list.html:218
+#: apps/devhub/templates/devhub/versions/list.html:248
 msgid "Add Version"
 msgstr "버전 추가"
 
-#: apps/devhub/templates/devhub/versions/list.html:227
-msgid "Disabling your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "부가 기능을 사용 중단 시키면 목록 어디에서든 찾아볼 수 없게 될 것이며 자동 업데이트 제공도 중단될 것입니다."
+#: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
+msgid "Hide Add-on"
+msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:233
-msgid "Are you sure you wish to disable your add-on?"
-msgstr "정말 부가 기능을 사용 불가 상태로 만드시겠습니까?"
+#: apps/devhub/templates/devhub/versions/list.html:257
+msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
+msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:256
+#: apps/devhub/templates/devhub/versions/list.html:263
+msgid "Are you sure you wish to hide your add-on?"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "심사 요청을 취소하면 부가 기능이 예비 심사 완료 상태가 아니게 됩니다."
 
-#: apps/devhub/templates/devhub/versions/list.html:261
+#: apps/devhub/templates/devhub/versions/list.html:291
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "심사 요청을 취소하면 부가 기능이 미완료 상태로 표시됩니다. 심사 재요청을 몇일 내로 하지 않으면 이 부가 기능은 삭제됩니다."
 
-#: apps/devhub/templates/devhub/versions/list.html:269
+#: apps/devhub/templates/devhub/versions/list.html:299
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "정말 심사 요청을 취소하시겠습니까?"
 
@@ -10839,15 +10865,15 @@ msgstr "hash 값"
 msgid "No user with that email."
 msgstr "해당 이메일로 등록된 사용자가 없습니다"
 
-#: apps/users/models.py:367
+#: apps/users/models.py:370
 msgid "Your account has been restricted"
 msgstr "당신의 계정은 권한이 제한되어 있습니다."
 
-#: apps/users/models.py:431
+#: apps/users/models.py:434
 msgid "Please confirm your email address"
 msgstr "이메일 주소를 확인해 주세요"
 
-#: apps/users/models.py:457
+#: apps/users/models.py:460
 msgid "My Mobile Add-ons"
 msgstr "내 모바일 부가 기능"
 
@@ -11504,15 +11530,15 @@ msgstr "%s의 판올림 내역"
 msgid "Version History with Changelogs"
 msgstr "각 버전별 변경 사항"
 
-#: apps/versions/models.py:301
+#: apps/versions/models.py:303
 msgid "Add-on uses binary components."
 msgstr "부가 기능이 이진 콤포넌트를 사용하고 있습니다."
 
-#: apps/versions/models.py:304
+#: apps/versions/models.py:306
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "부가 기능이 엄격한 호환성 검사 방식을 채택했습니다."
 
-#: apps/versions/models.py:682
+#: apps/versions/models.py:688
 msgid "{app} {min} and later"
 msgstr "{app} {min} 이상"
 
