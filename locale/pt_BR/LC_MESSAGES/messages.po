@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-01 18:58+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2015-04-08 19:48+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1427914701.0\n"
+"X-POOTLE-MTIME: 1428522495.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -1646,7 +1646,7 @@ msgstr "{user} aprovou {review} para {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr "Revisão {review} para {addon} excluída."
+msgstr "Análise {review} para {addon} excluída."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
@@ -3513,7 +3513,7 @@ msgstr "Análise moderada do complemento"
 
 #: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
-msgstr "Moderação de revisão de complemento revertida"
+msgstr "Moderação de análise de complemento revertida"
 
 #: apps/constants/base.py:481
 msgid "Level 1"
@@ -3545,11 +3545,11 @@ msgstr "Não assinado"
 
 #: apps/constants/base.py:510
 msgid "Signed for a full review"
-msgstr "Assinado para uma revisão completa"
+msgstr "Assinado para uma análise completa"
 
 #: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
-msgstr "Assinado para uma revisão preliminar"
+msgstr "Assinado para uma análise preliminar"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3789,8 +3789,10 @@ msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
-"Se desmarcar esta caixa, o complemento pode continuar a ser enviado e revisado, mas não será visível no AMO ou baixado por quaisquer usuários finais. Em caso de dúvida, deixe esta caixa marcada - "
-"há poucas razões para desmarcá-la."
+"Se desmarcar esta caixa, o complemento pode continuar a ser enviado e "
+"analisado, mas não será visível no AMO ou baixado por quaisquer usuários "
+"finais. Em caso de dúvida, deixe esta caixa marcada - há poucas razões para "
+"desmarcá-la."
 
 #: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3878,7 +3880,7 @@ msgstr[1] "{0} alertas"
 
 #: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
-msgstr "Revisão"
+msgstr "Análise"
 
 #: apps/devhub/tasks.py:318
 msgid "%s responded with %s (%s)."
@@ -4070,7 +4072,9 @@ msgstr "Revisores do AMO"
 
 #: apps/devhub/templates/devhub/index.html:29
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Vá em frente! Torne-se um revisor do AMO agora mesmo e acelere o processo de revisão dos seus complementos."
+msgstr ""
+"Vá em frente! Torne-se um revisor do AMO agora mesmo e acelere o processo de "
+"análise dos seus complementos."
 
 #: apps/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
@@ -4291,7 +4295,10 @@ msgstr "Atualizar compatibilidade"
 # %s is href=... and should stay in the <a> tag.
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Ajustar aqui as informações da aplicação permitirá que usuários instalem seu complemento mesmo que o manifesto de instalação do pacote indique que o complemento é incompatível."
+msgstr ""
+"Ajustando as informações do aplicativo aqui, permitirá aos usuários "
+"instalarem o seu complemento mesmo que o manifesto de instalação do pacote "
+"indique que o complemento é incompatível."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -4936,15 +4943,17 @@ msgstr "Ver o <a href=\"{0}\">tempo de espera</a> aproximado da análise."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
-msgstr "Passe na frente na fila de revisão!"
+msgstr "Passe na frente na fila de análise!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:44
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Torne-se um revisor do AMO agora mesmo e acelere o processo de revisão dos seus complementos."
+msgstr ""
+"Torne-se um revisor do AMO agora mesmo e acelere o processo de análise dos "
+"seus complementos."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr "Você receberá um e-mail assim que for revisado por um editor."
+msgstr "Você receberá um e-mail assim que for analisado por um editor."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
@@ -5098,6 +5107,9 @@ msgstr "1º passo. Começando"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
+"Obrigado pela sua contribuição para o ecossistema de complementos da "
+"Mozilla. Este processo de submissão permite que hospede seu complemento no "
+"site ou assina-lo para hospedagem própria."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
@@ -6801,15 +6813,17 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "Na lista:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Visível para todos em {0} e incluídos no resultado de pesquisa e listando "
+"nas páginas "
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Oculto:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
@@ -6817,7 +6831,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "Não listado:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
@@ -6825,7 +6839,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "Versões atuais"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6907,7 +6921,7 @@ msgstr "Adicionar versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Ocultar complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -6915,7 +6929,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Tem certeza de que deseja ocultar o seu complemento?"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -7673,7 +7687,7 @@ msgstr "Ocorreu um erro desconhecido"
 
 #: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
-msgstr "Autoanálises não são permitidas."
+msgstr "Autoavaliações não são permitidas."
 
 #: apps/editors/views.py:512
 msgid "Review successfully processed."
@@ -8833,8 +8847,10 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
-"Se você atualizar para uma nova versão do Firefox ou atualizar o complemento, seus relatórios para as versões antigas não serão exibidos para que você possa testar a nova versão. Se você tiver "
-"dúvidas, por favor, pergunte nos <a href=\"%(url)s\">nossos fóruns</a>."
+"Se atualizar para uma nova versão do Firefox ou atualizar o complemento, "
+"seus relatórios das versões antigas não serão exibidos para permitir que "
+"possa testar a nova versão. Se tiver dúvidas, por favor, pergunte nos <a "
+"href=\"%(url)s\">nossos fóruns</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
 msgid ""
@@ -9186,9 +9202,13 @@ msgid ""
 "to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
 "source code, version control, bug tracking and documentation."
 msgstr ""
-"Sim. Muitos desenvolvedores preferem hospedar seus próprios complementos. Hospedá-los no <a href=\"%(amo_url)s\">Mozilla Add-ons</a>, entretanto, oferece uma grande exposição do seu complemento "
-"devido ao grande volume de visitantes no site. O <a href=\"%(md_url)s\">mozdev.org</a> oferece hospedagem gratuita de projetos para aplicações e extensões Mozilla, oferecendo aos desenvolvedores "
-"ferramentas de gerenciamento de código-fonte, controle de versões catalogação de bugs e documentação."
+"Sim. Muitos desenvolvedores preferem hospedar seus próprios complementos. "
+"Hospedá-los no <a href=\"%(amo_url)s\">Mozilla Add-ons</a>, entretanto, "
+"permite uma maior exposição do seu complemento devido ao grande volume de "
+"visitantes no site. O <a href=\"%(md_url)s\">mozdev.org</a> oferece hospedagem "
+"gratuita de projetos para aplicações e extensões Mozilla, oferecendo aos "
+"desenvolvedores ferramentas de gerenciamento de código-fonte, controle de "
+"versões catalogação de bugs e documentação."
 
 #: apps/pages/templates/pages/dev_faq.html:278
 msgid "Can Mozilla host my add-on?"
@@ -9251,8 +9271,11 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"A página \"Meus complementos\" permite que você envie complementos para o AMO. Você deve ser um usuário registrado no AMO antes de poder enviar um complemento. Antes de enviar seu complemento, "
-"tenha certeza de que você leu o <a href=\"%(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu complemento atende aos critérios usados pelos editores para analisar "
+"A página \"Meus complementos\" permite que envie complementos para o AMO. Você "
+"deve ser um usuário registrado no AMO antes de poder enviar um complemento. "
+"Antes de enviar seu complemento, certifique-se de ler o <a href=\"%"
+"(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu "
+"complemento atende aos critérios usados pelos editores para analisar "
 "complementos."
 
 #: apps/pages/templates/pages/dev_faq.html:337
@@ -9637,9 +9660,13 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"Na maioria dos casos, os complementos podem ser instalados com um clique no botão Instalar. Para remover, gerenciar ou editar um complemento, acesse o menu Gerenciador de Complementos do "
-"%(app_name)s. Para mais informações, leia <a href=\"%(extension_url)s\">este artigo sobre complementos</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver dificuldades ao instalar "
-"complementos, leia o artigo <a href=\"%(troubleshooting_url)s\">Correção de problemas com Complementos e Temas.</a>"
+"Na maioria dos casos, os complementos podem ser instalados com um clique no "
+"botão Instalar. Para gerenciar, desativar  ou desinstalar um complemento, "
+"acesse o menu Gerenciador de Complementos do %(app_name)s. Para mais "
+"informações, leia <a href=\"%(extension_url)s\">este artigo sobre "
+"complementos</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver "
+"dificuldades ao instalar complementos, leia o artigo <a href=\"%"
+"(troubleshooting_url)s\">Correção de problemas com Complementos e Temas.</a>"
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -10075,8 +10102,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será enviada para o site para moderação. A nossa equipa de moderação irá usar as linhas "
-"orientadoras da revisão para avaliar se a análise deve ser eliminada ou reposta no site."
+"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em "
+"\"Reportar esta análise\" e esta será enviada para o site para moderação. A "
+"nossa equipa de moderação irá usar as linhas orientadoras da revisão para "
+"avaliar se a análise deve ser excluída ou reposta no site."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11515,7 +11544,7 @@ msgstr "Apresente-se à comunidade, se você quiser! Esse texto será exibido pu
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr "Uso de HTML permitido: {0}. Os links são proibidas."
+msgstr "HTML permitido: {0}. Links são proibidos."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
