@@ -892,3 +892,21 @@ class TestXss(TestCase):
         response = self.client.get(url)
         assert self.name not in response.content
         assert self.escaped in response.content
+
+
+@contextmanager
+def copy_file(source, dest):
+    """Context manager that copies the source file to the destination.
+
+    The files are relative to the root folder (containing the settings file).
+
+    The copied file is removed on exit."""
+    source = os.path.join(settings.ROOT, source)
+    dest = os.path.join(settings.ROOT, dest)
+    assert not os.path.exists(dest)
+    if not os.path.exists(os.path.dirname(dest)):
+        os.makedirs(os.path.dirname(dest))
+    shutil.copyfile(source, dest)
+    yield
+    if os.path.exists(dest):
+        os.unlink(dest)

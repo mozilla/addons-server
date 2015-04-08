@@ -1,26 +1,16 @@
 # -*- coding: utf-8 -*-
 import os
-import shutil
 import zipfile
 
-from django.conf import settings
 from django.test.utils import override_settings
 
+import mock
 import pytest
 
 import amo
 import amo.tests
 from files.utils import parse_xpi
 from lib.crypto import packaged, tasks
-
-
-def is_signed(filename):
-    """Return True if the file has been signed."""
-    zf = zipfile.ZipFile(filename, mode='r')
-    filenames = zf.namelist()
-    return ('META-INF/mozilla.rsa' in filenames and
-            'META-INF/mozilla.sf' in filenames and
-            'META-INF/manifest.mf' in filenames)
 
 
 @override_settings(SIGNING_SERVER='http://full',
@@ -97,8 +87,8 @@ class TestPackaged(amo.tests.TestCase):
         with self.settings(SIGNING_SERVER=''):
             packaged.sign(self.version)
         # Make sure the files weren't signed.
-        assert not is_signed(self.file1.file_path)
-        assert not is_signed(self.file2.file_path)
+        assert not self.file1.is_signed
+        assert not self.file2.is_signed
         assert not self.file1.cert_serial_num
         assert not self.file2.cert_serial_num
 
@@ -108,21 +98,21 @@ class TestPackaged(amo.tests.TestCase):
         with self.settings(PRELIMINARY_SIGNING_SERVER=''):
             packaged.sign(self.version)
         # Make sure the files weren't signed.
-        assert not is_signed(self.file1.file_path)
-        assert not is_signed(self.file2.file_path)
+        assert not self.file1.is_signed
+        assert not self.file2.is_signed
         assert not self.file1.cert_serial_num
         assert not self.file2.cert_serial_num
 
     def test_sign_file(self):
-        assert not is_signed(self.file1.file_path)
-        assert not is_signed(self.file2.file_path)
+        assert not self.file1.is_signed
+        assert not self.file2.is_signed
         assert not self.file1.cert_serial_num
         assert not self.file2.cert_serial_num
         assert not self.file1.hash
         assert not self.file2.hash
         packaged.sign(self.version)
-        assert is_signed(self.file1.file_path)
-        assert is_signed(self.file2.file_path)
+        assert self.file1.is_signed
+        assert self.file2.is_signed
         assert self.file1.cert_serial_num
         assert self.file2.cert_serial_num
         assert self.file1.hash
@@ -138,38 +128,56 @@ class TestTasks(amo.tests.TestCase):
         self.file1 = self.version.all_files[0]
         self.file1.update(filename='jetpack.xpi')
 
-    def tearDown(self):
-        if os.path.exists(self.file1.file_path):
-            os.unlink(self.file1.file_path)
-        super(TestTasks, self).tearDown()
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_bump_version_in_model(self, mock_sign_file):
+        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                 self.file1.file_path):
+            assert self.version.version == '1.3'
+            tasks.sign_addons([self.addon.pk])
+            assert mock_sign_file.called
+            self.version.reload()
+            assert self.version.version == '1.3.1'
 
-    def setup_file(self, filepath):
-        # Add actual file to addons.
-        if not os.path.exists(os.path.dirname(self.file1.file_path)):
-            os.makedirs(os.path.dirname(self.file1.file_path))
-        xpi_path = os.path.join(settings.ROOT, filepath)
-        shutil.copyfile(xpi_path, self.file1.file_path)
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_dont_resign_dont_bump_version_in_model(self, mock_sign_file):
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/new-addon-signature.xpi',
+                self.file1.file_path):
+            assert self.version.version == '1.3'
+            tasks.sign_addons([self.addon.pk])
+            assert not mock_sign_file.called
+            self.version.reload()
+            assert self.version.version == '1.3'
 
-    def test_bump_version_in_model(self):
-        self.setup_file('apps/files/fixtures/files/jetpack.xpi')
-        assert self.version.version == '1.3'
-        tasks.bump_version_number(self.version)
-        assert self.version.version == '1.3.1'
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_resign_bump_version_in_model_if_force(self, mock_sign_file):
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/new-addon-signature.xpi',
+                self.file1.file_path):
+            assert self.version.version == '1.3'
+            tasks.sign_addons([self.addon.pk], force=True)
+            assert mock_sign_file.called
+            self.version.reload()
+            assert self.version.version == '1.3.1'
 
     def test_bump_version_in_install_rdf(self):
-        self.setup_file('apps/files/fixtures/files/jetpack.xpi')
-        tasks.bump_version_number(self.version)
-        parsed = parse_xpi(self.file1.file_path)
-        assert parsed['version'] == '1.3.1'
+        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                 self.file1.file_path):
+            tasks.bump_version_number(self.file1)
+            parsed = parse_xpi(self.file1.file_path)
+            assert parsed['version'] == '1.3.1'
 
     def test_bump_version_in_alt_install_rdf(self):
-        self.setup_file('apps/files/fixtures/files/alt-rdf.xpi')
-        tasks.bump_version_number(self.version)
-        parsed = parse_xpi(self.file1.file_path)
-        assert parsed['version'] == '2.1.106.1'
+        with amo.tests.copy_file('apps/files/fixtures/files/alt-rdf.xpi',
+                                 self.file1.file_path):
+            tasks.bump_version_number(self.file1)
+            parsed = parse_xpi(self.file1.file_path)
+            assert parsed['version'] == '2.1.106.1'
 
     def test_bump_version_in_package_json(self):
-        self.setup_file('apps/files/fixtures/files/new-format-0.0.1.xpi')
-        tasks.bump_version_number(self.version)
-        parsed = parse_xpi(self.file1.file_path)
-        assert parsed['version'] == '0.0.1.1'
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/new-format-0.0.1.xpi',
+                self.file1.file_path):
+            tasks.bump_version_number(self.file1)
+            parsed = parse_xpi(self.file1.file_path)
+            assert parsed['version'] == '0.0.1.1'
