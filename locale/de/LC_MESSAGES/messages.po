@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-01 18:00+0000\n"
+"PO-Revision-Date: 2015-04-08 16:22+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427911213.0\n"
+"X-POOTLE-MTIME: 1428510150.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5019,10 +5019,15 @@ msgstr "Schritt 1. Erste Schritte"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
+"Vielen Dank für Ihren Beitrag zum Ökosystem von Mozilla-Add-ons. Mit diesem "
+"Einreichungsprozess können Sie Ihr Add-on auf dieser Website hosten oder es "
+"zum Selbst-Hosten signieren lassen."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
 msgstr ""
+"Um Ihre Einreichung abzuschließen, benötigen Sie Ihr Add-on-Paket (.xpi, "
+".jar, oder .xml)."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -6716,35 +6721,40 @@ msgstr "Überprüfungsanforderung abbrechen"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Add-on-Sichtbarkeit"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "Gelistet:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Sichtbar für alle in {0} und sichtbar in Suchergebnissen und Listenseiten"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Versteckt:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Auf {0} gehostet, aber vor allen außer Autoren versteckt. Wird verwendet, um "
+"kurzfristig Listeneinträge zu verstecken oder sie nicht weiterzuverwenden."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "Nicht gelistet:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
+"Nicht über {0} verteilt. Entwickler laden neue Versionen zur Signierung hoch "
+"und verteilen die Add-ons selbst."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "Aktuelle Versionen"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6823,15 +6833,17 @@ msgstr "Version hinzufügen"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Add-on verstecken"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Wenn Sie Ihr Add-on verstecken, erscheint es nicht mehr in unserer Galerie "
+"und Nutzer erhalten keine automatischen Updates mehr."
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Soll Ihr Add-on wirklich versteckt werden?"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
