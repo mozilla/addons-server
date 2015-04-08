@@ -381,6 +381,21 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
 
+    @property
+    def is_signed(self):
+        """Return True if the file has been signed.
+
+        This will simply check the signature filenames, and assume that if
+        they're named "mozilla.*" then the xpi has been signed by us.
+
+        This is in no way a perfect or correct solution, it's just the way we
+        do it until we decide to inspect/walk the certificates chain to
+        validate it comes from Mozilla."""
+        with zipfile.ZipFile(self.file_path, mode='r') as zf:
+            filenames = set(zf.namelist())
+        return set(['META-INF/mozilla.rsa', 'META-INF/mozilla.sf',
+                    'META-INF/manifest.mf']).issubset(filenames)
+
 
 @receiver(models.signals.post_save, sender=File,
           dispatch_uid='cache_localpicker')

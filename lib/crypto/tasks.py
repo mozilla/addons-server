@@ -8,7 +8,7 @@ from lxml import etree
 
 import amo
 from versions.models import Version
-from lib.crypto.packaged import SigningError
+from lib.crypto.packaged import sign_file, SigningError
 
 # Python 2.6 and earlier doesn't have context manager support
 ZipFile = zipfile.ZipFile
@@ -24,43 +24,51 @@ log = logging.getLogger('z.task')
 
 
 @task
-def sign_addons(addon_ids, **kw):
+def sign_addons(addon_ids, force=False, **kw):
     log.info('[{0}] Signing addons.'.format(addon_ids))
     for version in Version.objects.filter(
             addon_id__in=addon_ids, addon__type=amo.ADDON_EXTENSION):
-        log.info('Signing addon {0}, version {1}'.format(version.addon,
-                                                         version))
-        # We need to bump the version number of the file and the version, so
+        # We need to bump the version number of the file and the Version, so
         # the Firefox extension update mecanism picks this new signed version
         # and installs it.
-        bump_version_number(version)
+        if force:
+            to_sign = version.files.all()
+        else:
+            to_sign = [f for f in version.files.all() if not f.is_signed]
+        if not to_sign:
+            log.info('Not signing addon {0}, version {1} (no files or already '
+                     'signed)'.format(version.addon, version))
+            continue
+        log.info('Signing addon {0}, version {1}'.format(version.addon,
+                                                         version))
         try:
-            version.sign_files()
-        except SigningError as e:
+            for file_obj in to_sign:
+                bump_version_number(file_obj)
+                sign_file(file_obj)
+            # Now update the Version model.
+            version.update(version='{0}.1'.format(version.version))
+        except (SigningError, zipfile.BadZipFile) as e:
             log.warning(
                 'Failed signing version {0}: {1}.'.format(version.pk, e))
 
 
-def bump_version_number(version):
+def bump_version_number(file_obj):
     """Add a .1 to the version number in the install.rdf or package.json."""
-    for file_obj in version.files.all():  # Bump the numbers in each file.
-        # Create a new xpi with the bumped version.
-        bumped = '{0}.bumped'.format(file_obj.file_path)
-        # Copy the original XPI, with the updated install.rdf or package.json.
-        with ZipFile(file_obj.file_path, 'r') as source:
-            file_list = source.infolist()
-            with ZipFile(bumped, 'w', zipfile.ZIP_DEFLATED) as dest:
-                for file_ in file_list:
-                    content = source.read(file_.filename)
-                    if file_.filename == 'install.rdf':
-                        content = _bump_version_in_install_rdf(content)
-                    if file_.filename == 'package.json':
-                        content = _bump_version_in_package_json(content)
-                    dest.writestr(file_, content)
-        # Move the bumped file to the original file.
-        shutil.move(bumped, file_obj.file_path)
-    # Now update the Version model.
-    version.update(version='{0}.1'.format(version.version))
+    # Create a new xpi with the bumped version.
+    bumped = '{0}.bumped'.format(file_obj.file_path)
+    # Copy the original XPI, with the updated install.rdf or package.json.
+    with ZipFile(file_obj.file_path, 'r') as source:
+        file_list = source.infolist()
+        with ZipFile(bumped, 'w', zipfile.ZIP_DEFLATED) as dest:
+            for file_ in file_list:
+                content = source.read(file_.filename)
+                if file_.filename == 'install.rdf':
+                    content = _bump_version_in_install_rdf(content)
+                if file_.filename == 'package.json':
+                    content = _bump_version_in_package_json(content)
+                dest.writestr(file_, content)
+    # Move the bumped file to the original file.
+    shutil.move(bumped, file_obj.file_path)
 
 
 def _dot_one(version):

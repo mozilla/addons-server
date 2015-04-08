@@ -17,12 +17,19 @@ def test_no_overridden_settings(monkeypatch):
     monkeypatch.setattr(SIGN_ADDONS, no_endpoint)
     call_command('sign_addons', 123)
 
+<<<<<<< HEAD
+    mock_sign_addons.reset_mock()
+
+    # Override the SIGNING_SERVER setting.
+    def signing_server(ids):
+=======
 
 def test_override_SIGNING_SERVER_setting(monkeypatch):
     """You can override the SIGNING_SERVER settings."""
     assert not settings.SIGNING_SERVER
 
     def signing_server(ids, **kwargs):
+>>>>>>> The sign_addons command now skips already signed addons (bug 1152101)
         assert settings.SIGNING_SERVER == 'http://example.com'
 
     monkeypatch.setattr(SIGN_ADDONS, signing_server)
