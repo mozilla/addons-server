@@ -18,8 +18,8 @@ def is_signed(filename):
     """Return True if the file has been signed."""
     zf = zipfile.ZipFile(filename, mode='r')
     filenames = zf.namelist()
-    return ('META-INF/zigbert.rsa' in filenames and
-            'META-INF/zigbert.sf' in filenames and
+    return ('META-INF/mozilla.rsa' in filenames and
+            'META-INF/mozilla.sf' in filenames and
             'META-INF/manifest.mf' in filenames)
 
 
@@ -62,7 +62,7 @@ class TestPackaged(amo.tests.TestCase):
         """Fake a standard trunion response."""
         class FakeResponse:
             status_code = 200
-            content = '{"zigbert.rsa": ""}'
+            content = '{"mozilla.rsa": ""}'
 
         monkeypatch.setattr(
             'requests.post', lambda url, timeout, data, files: FakeResponse)
