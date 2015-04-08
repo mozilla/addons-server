@@ -1994,7 +1994,7 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> %(customer)s ਤੁਹਾਡੇ ਬਦਲੇ ਕੰਮ ਕਰਨ ਦਾ ਅਧਿਕਾਰ ਚਾਹੁੰਦੇ ਹਨ। ਇਹਨਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋ ਸਕਦਾ: </p> <ul> <li> ਤੁਹਾਡੇ ਬਦਲੇ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰਨਾ, ਬਦਲਣਾ ਜਾਂ ਹਟਾਉਣਾ।</li> <li> ਤੁਹਾਡੇ ਬਦਲੇ ਐਡ-ਆਨ ਦੇ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰਨਾ, ਬਦਲਣਾ ਜਾਂ ਹਟਾਉਣਾ।</li> "
+"<p> %(consumer)s ਤੁਹਾਡੇ ਬਦਲੇ ਕੰਮ ਕਰਨ ਦਾ ਅਧਿਕਾਰ ਚਾਹੁੰਦੇ ਹਨ। ਇਹਨਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋ ਸਕਦਾ: </p> <ul> <li> ਤੁਹਾਡੇ ਬਦਲੇ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰਨਾ, ਬਦਲਣਾ ਜਾਂ ਹਟਾਉਣਾ।</li> <li> ਤੁਹਾਡੇ ਬਦਲੇ ਐਡ-ਆਨ ਦੇ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰਨਾ, ਬਦਲਣਾ ਜਾਂ ਹਟਾਉਣਾ।</li> "
 "<li> ਤੁਹਾਡੇ ਬਾਰੇ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਲੈਣਾ, ਜਿਵੇਂ ਕਿ ਤੁਹਾਡਾ ਯੂਜ਼ਰ ਨਾਂ ਅਤੇ ਈਮੇਲ ਪਤਾ (ਪਰ ਤੁਹਾਡਾ ਪਾਸਵਰਡ ਨਹੀਂ)।<li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
@@ -3652,7 +3652,7 @@ msgstr "PayPal id ਦੀ ਪੜਤਾਲ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
 #: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {ਐਕਸ਼ਟੇਸ਼ਨ} ਅੱਪਲੋਡ ਕਰੋ।"
+msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
 
 #: apps/devhub/forms.py:383
 msgid "View current"
@@ -4867,7 +4867,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਸੋਰਸ ਅਤੇ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਇੱਕ ਮੁੰਕਮਲ ਸਮੀਖਿਆ। <a href=\"%(url)s\">ਹੋਰ ਜਾਣੋ%hellip;</a>"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਸੋਰਸ ਅਤੇ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਇੱਕ ਮੁੰਕਮਲ ਸਮੀਖਿਆ। <a href=\"%(url)s\">ਹੋਰ ਜਾਣੋ&hellip;</a>"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
@@ -5063,7 +5063,7 @@ msgid ""
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 "ਜੇਕਰ ਤੁਸੀਂਂ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਸੁਰੱਖਿਆ ਖਾਮੀ ਖੋਜੀ, ਭਾਵੇ ਉਸ ਨੂੰ ਇੱਥੇ ਪੇਸ਼ ਨਹੀਂ ਕੀਤਾ ਗਿਆ, ਮੌਜੀਲਾ ਨੂੰ ਤੁਹਾਡੀ ਖੋਜ ਵਿੱਚ ਬੜੀ ਦਿਸਚਸਪੀ ਹੈ ਅਤੇ ਇਸ ਨੂੰ ਛੇਤੀ ਤੋਂ ਛੇਤੀ ਠੀਕ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਨਾਲ ਕੰਮ ਕਰੇਗਾ। <a href=\"%(link_bugzilla)s\">ਬੱਗਜੀਲਾ</"
-"a>ਵਿੱਚ <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">ਭਰੋਸੇ ਨਾਲ</a> ਐਡ-ਆਨ ਸੁਰੱਖਿਆ ਖਾਮੀਆਂ ਬਾਰੇ ਸੂਚਿਤ ਕੀਤਾ ਜਾ ਸਕਦਾ ਜਾਂ ਈਮੇਲ ਦੁਆਰਾ %s(mail_admins)s।"
+"a>ਵਿੱਚ <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">ਭਰੋਸੇ ਨਾਲ</a> ਐਡ-ਆਨ ਸੁਰੱਖਿਆ ਖਾਮੀਆਂ ਬਾਰੇ ਸੂਚਿਤ ਕੀਤਾ ਜਾ ਸਕਦਾ ਜਾਂ ਈਮੇਲ ਦੁਆਰਾ %(mail_admins)s।"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -10414,7 +10414,7 @@ msgstr "ਬਰਾਮਦ"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: apps/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "0} :: ਅੰਕੜੇ ਡੈਸਬੋਰਡ :: {1} ਲਈ ਐਡ-ਆਨ"
+msgstr "{0} :: ਅੰਕੜੇ ਡੈਸਬੋਰਡ :: {1} ਲਈ ਐਡ-ਆਨ"
 
 #: apps/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
@@ -11689,7 +11689,7 @@ msgstr "<a href=\"%(reg)s\">ਦਰਜ ਹੋਵੇ</a> ਜਾਂ <a href=\"%(log
 
 #: templates/impala/base.html:119
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "ਇੱਥੇ ਮੌਜੂਦ ਹਜ਼ਾਰਾਂ ਐਡ-ਆਨ ਵਰਤਣ ਲਈ , ਡਾਊਨਲੋਡ<a href=\"%url)s\">ਮੋਜ਼ੀਲਾ ਫਾਇਰਫਾਕਸ</a>,ਇੱਕ ਤੇਜ , ਆਜ਼ਾਦ ਜਰੀਆ ਵੈਬ ਵਰਤੋਂ ਲਈ!"
+msgstr "ਇੱਥੇ ਮੌਜੂਦ ਹਜ਼ਾਰਾਂ ਐਡ-ਆਨ ਵਰਤਣ ਲਈ , ਡਾਊਨਲੋਡ<a href=\"%(url)s\">ਮੋਜ਼ੀਲਾ ਫਾਇਰਫਾਕਸ</a>,ਇੱਕ ਤੇਜ , ਆਜ਼ਾਦ ਜਰੀਆ ਵੈਬ ਵਰਤੋਂ ਲਈ!"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:130
