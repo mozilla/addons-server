@@ -152,7 +152,7 @@ is at :src:`docs/settings/local_settings.dev.py`.
 .. literalinclude:: /settings/local_settings.dev.py
 
 I'm extending ``INSTALLED_APPS`` and ``MIDDLEWARE_CLASSES`` to include the
-`Django Debug Toolbar <http://github.com/robhudson/django-debug-toolbar>`_.
+`Django Debug Toolbar <https://github.com/django-debug-toolbar/django-debug-toolbar>`_.
 It's awesome, you want it.
 
 The file ``local_settings.py`` is for local use only; it will be ignored by
