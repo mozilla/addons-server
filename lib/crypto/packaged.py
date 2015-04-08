@@ -64,7 +64,7 @@ def call_signing(file_obj):
         with statsd.timer('services.sign.addon'):
             response = requests.post(endpoint, timeout=timeout,
                                      data={'addon_id': addon_id},
-                                     files={'file': ('zigbert.sf',
+                                     files={'file': ('mozilla.sf',
                                                      str(jar.signatures))})
     except requests.exceptions.HTTPError as error:
         # Will occur when a 3xx or greater code is returned.
@@ -82,10 +82,10 @@ def call_signing(file_obj):
         log.error(msg)
         raise SigningError(msg)
 
-    pkcs7 = b64decode(json.loads(response.content)['zigbert.rsa'])
+    pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
     try:
         cert_serial_num = get_signature_serial_number(pkcs7)
-        jar.make_signed(pkcs7)
+        jar.make_signed(pkcs7, sigpath='mozilla')
     except:
         msg = 'Addon signing failed'
         log.error(msg, exc_info=True)
