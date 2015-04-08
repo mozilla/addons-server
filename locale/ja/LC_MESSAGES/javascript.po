@@ -3,21 +3,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-18 09:01-0700\n"
-"PO-Revision-Date: 2015-01-07 23:29-5000\n"
-"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
+"PO-Revision-Date: 2015-04-08 02:44+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: \n"
-"X-POOTLE-MTIME: 1382526649.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1428461045.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} つ星"
+msgstr[0] "評価 {0}"
 
 #: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
@@ -56,7 +56,7 @@ msgstr "{0} にエラーがありました"
 #: static/js/common/upload-addon.js:174
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "アドオンは検証に失敗しました。{0} 個のエラーがあります。"
+msgstr[0] "アドオンの検証に失敗しました。{0}個のエラーがあります。"
 
 #: static/js/common/upload-addon.js:188
 msgid "&hellip;and {0} more"
@@ -87,7 +87,7 @@ msgstr "{0} の検証が完了しました"
 #: static/js/common/upload-addon.js:313
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] "アドオンは検証に合格しました。エラーなし、{0} 個のメッセージがあります。"
+msgstr[0] "アドオンは検証に合格しました。エラーはありません。{0} 個のメッセージがあります。"
 
 #: static/js/common/upload-addon.js:318
 msgid "Your add-on passed validation with no errors or warnings."
@@ -131,7 +131,7 @@ msgstr "アドオンの審査手続きについてよくご存じない場合は
 
 #: static/js/common/upload-addon.js:426
 msgid "Some platforms are not available for this type of add-on."
-msgstr "この種類のアドオンは OS によって対応していないことがあります。"
+msgstr "この種類のアドオンは OS によっては対応していない場合があります。"
 
 #: static/js/common/upload-addon.js:428
 msgid "Sorry, no supported platform has been found."
@@ -143,7 +143,7 @@ msgstr "アップロードされたファイルの種類を認識できません
 
 #: static/js/common/upload-base.js:79
 msgid "You cancelled the upload."
-msgstr "アップロードはキャンセルされました。"
+msgstr "アップロードがキャンセルされました。"
 
 #: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
@@ -216,7 +216,7 @@ msgstr "削除マーク付き"
 
 #: static/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr "結果を更新..."
+msgstr "結果を更新しています..."
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
@@ -224,15 +224,15 @@ msgstr "カテゴリ"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> 用テーマを検索"
+msgstr "<b>{0}</b> 用のテーマを検索"
 
 #: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> 用アプリを検索"
+msgstr "<b>{0}</b> 用のアプリを検索"
 
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> 用アドオンを検索"
+msgstr "<b>{0}</b> 用のアドオンを検索"
 
 #: static/js/impala/users.js:33
 msgid "use original"

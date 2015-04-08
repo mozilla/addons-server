@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-01 09:01-0700\n"
-"PO-Revision-Date: 2014-12-05 12:43+0000\n"
-"Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
+"PO-Revision-Date: 2015-04-08 02:44+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1417783419.0\n"
+"X-POOTLE-MTIME: 1428461045.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -462,7 +462,7 @@ msgstr "%(addon_name)s のインストールを続けるには、以下のエン
 
 #: apps/addons/templates/addons/eula.html:34 apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr "{0} のページへ戻る"
+msgstr "{0} のページへ戻る…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -565,7 +565,7 @@ msgstr "このアドオンは Firefox の動作速度を低下させる可能性
 
 #: apps/addons/templates/addons/performance_note.html:5 apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr "その他..."
+msgstr "その他&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
@@ -574,7 +574,7 @@ msgstr "<b>パフォーマンス警告:</b> このアドオンをインストー
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
 msgid "Learn more&hellip;"
-msgstr "詳細..."
+msgstr "詳細&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23 apps/addons/templates/addons/impala/performance_note.html:22
 msgid "Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
@@ -806,7 +806,7 @@ msgstr "キャンセル"
 
 #: apps/addons/templates/addons/review_add_box.html:4 apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
-msgstr "あなたの意見をお聞かせください"
+msgstr "あなたのご意見をお聞かせください"
 
 #: apps/addons/templates/addons/review_add_box.html:8 apps/addons/templates/addons/impala/review_add_box.html:10
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
@@ -858,8 +858,7 @@ msgstr "このレビューに対する作者の返信を表示"
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "このアドオンのレビューをすべて見る"
-msgstr[1] "このアドオンのレビュー %(cnt)s 件をすべて見る"
+msgstr[0] "このアドオンの %(cnt)s 件のレビューをすべて見る"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1081,7 +1080,7 @@ msgstr "ソースコードライセンス"
 
 #: apps/addons/templates/addons/impala/performance_note.html:5
 msgid "Explain&hellip;"
-msgstr "説明..."
+msgstr "説明&hellip;"
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16 apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
@@ -1098,8 +1097,7 @@ msgstr "翻訳"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "ユーザレビューをすべて見る"
-msgstr[1] "ユーザレビュー %(cnt)s 件をすべて見る"
+msgstr[0] "%(cnt)s 件のユーザレビューをすべて見る"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
@@ -1222,7 +1220,9 @@ msgstr "同意する"
 
 #: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:48
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr "アドオンをインストールするには Firefox が必要です。<a href=\"http://www.mozilla.org/mobile/\">詳細&nbsp;&raquo;</a>"
+msgstr ""
+"アドオンをインストールするには Firefox が必要です。<a "
+"href=\"http://mozilla.com/mobile\">詳細&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: apps/addons/templates/addons/mobile/home.html:15 templates/header_title.html:4 templates/impala/header_title.html:3
@@ -1589,11 +1589,11 @@ msgstr "{user} が {addon} の {review} を承認しました。"
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "{addon} のレビュー {review} を削除しました。"
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} が {addon} のレビュー {review} を削除しました。"
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -1862,8 +1862,9 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える"
-"</> か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。"
+"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 "
+"</p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</a> "
+"か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:279 apps/search/forms.py:86
@@ -2082,7 +2083,7 @@ msgstr "URL:"
 
 #: apps/bandwagon/forms.py:126
 msgid "Describe your collection (no links allowed)."
-msgstr "コレクションの説明を記入してください。(リンクの使用は許可されていません)"
+msgstr "コレクションの説明を記入してください (リンクの使用は許可されていません)。"
 
 #: apps/bandwagon/forms.py:131
 msgid "Privacy:"
@@ -2102,11 +2103,11 @@ msgstr "リンクの使用は許可されていません。"
 
 #: apps/bandwagon/forms.py:169
 msgid "This url is already in use by another collection"
-msgstr "この URL は他のコレクションですでに使われています。"
+msgstr "この URL は他のコレクションですでに使われています"
 
 #: apps/bandwagon/forms.py:179 apps/devhub/views.py:1000
 msgid "Icons must be either PNG or JPG."
-msgstr "アイコンは PNG か JPEG 形式でなければなりません。"
+msgstr "アイコンは PNG か JPG 形式でなければなりません。"
 
 #: apps/bandwagon/forms.py:184 apps/devhub/views.py:1018 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
@@ -2297,7 +2298,7 @@ msgstr "移動"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
 msgid "What are Collections?"
-msgstr "コレクションとは"
+msgstr "コレクションとは？"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:149
 msgid "Explore Collections"
@@ -2578,7 +2579,7 @@ msgstr "リセット"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:50
 msgid "PNG and JPG supported. Image will be resized to 32x32."
-msgstr "対応形式は PNG と JPEG です。画像は 32 × 32 ピクセルへリサイズされます。"
+msgstr "対応形式は PNG と JPG です。画像は 32 × 32 ピクセルへリサイズされます。"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3 apps/localizers/templates/localizers/categories.html:19
 msgid "There are errors in this form. Please correct them below."
@@ -2833,7 +2834,8 @@ msgstr "関連情報"
 #. {0} is an app name, like Firefox.
 #: apps/browse/templates/browse/search_tools.html:93
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "{0} の <a href=\"http://support.mozilla.com/ja/kb/Search+bar\">検索バー</a> について詳しく知る"
+msgstr ""
+"{0} の <a href=\"http://support.mozilla.com/kb/Search+bar\">検索バー</a> について詳しく知る"
 
 #: apps/browse/templates/browse/search_tools.html:94
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
@@ -2842,7 +2844,9 @@ msgstr "<a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> でさら�
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr ""
-"<a href=\"https://developer.mozilla.org/\">Mozilla Developer Network</a> で <a href=\"https://developer.mozilla.org/ja/Creating_OpenSearch_plugins_for_Firefox\">検索プラグインの作り方</a> を学ぶ"
+"<a href=\"https://developer.mozilla.org/Creating_OpenSearch_plugins_for_Firef"
+"ox\">検索プラグインの作り方</a> を <a href=\"https://developer.mozilla.org/\">Mozilla "
+"Developer Network</a> で学ぶ"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
@@ -3420,7 +3424,7 @@ msgstr "アドオンの管理者審査"
 
 #: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "アドオンのレビューモデレーションを取り消しました"
 
 #: apps/constants/base.py:481
 msgid "Level 1"
@@ -3448,15 +3452,15 @@ msgstr "レベル 6"
 
 #: apps/constants/base.py:509
 msgid "Not signed"
-msgstr ""
+msgstr "署名なし"
 
 #: apps/constants/base.py:510
 msgid "Signed for a full review"
-msgstr ""
+msgstr "完全レビュー署名済み"
 
 #: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "事前レビュー署名済み"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3688,13 +3692,15 @@ msgstr "失敗した検証を上書き"
 
 #: apps/devhub/forms.py:506
 msgid "Yes, include my add-on on AMO."
-msgstr ""
+msgstr "はい、AMO サイト上の私のアドオンを含めます。"
 
 #: apps/devhub/forms.py:507
 msgid ""
 "Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
 "reasons to uncheck it."
 msgstr ""
+"このオプションのチェックを外すと、アドオンのアップロードとレビューはできますが、AMO サイト上に表示されず、他のエンドユーザがダウンロードできません。"
+"そうしたくなければ、このボックスにチェックを入れてください。チェックを外す理由は限られているでしょう。"
 
 #: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3880,7 +3886,7 @@ msgstr "送信内容にエラーがありました。"
 
 #: apps/devhub/views.py:1002 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
-msgstr "画像は PNG か JPEG 形式でなければなりません。"
+msgstr "画像は PNG か JPG 形式でなければなりません。"
 
 #: apps/devhub/views.py:1006
 msgid "Icons cannot be animated."
@@ -3917,7 +3923,7 @@ msgstr "今回のアップロードは検証に失敗したため、完全な検
 
 #: apps/devhub/views.py:1335
 msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr ""
+msgstr "アドオンはリストに表示されないので、ステップ 6 をスキップします"
 
 #: apps/devhub/views.py:1564
 msgid "Preliminary Review Requested."
@@ -3958,7 +3964,7 @@ msgstr "検索語を入力してください。"
 
 #: apps/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr "検索結果を読み込み中..."
+msgstr "検索結果を読み込み中&hellip;"
 
 # ボタン
 #: apps/devhub/templates/devhub/index.html:21
@@ -3979,7 +3985,7 @@ msgstr "AMO 審査担当者になる"
 
 #: apps/devhub/templates/devhub/index.html:38
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "アドオンについて詳しく学ぶ"
 
 #: apps/devhub/templates/devhub/index.html:40
 msgid ""
@@ -4188,7 +4194,7 @@ msgstr "対応バージョン"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:31 apps/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr "別のアプリケーションを追加..."
+msgstr "別のアプリケーションを追加&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:279 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
@@ -4434,7 +4440,7 @@ msgstr "いいえ、このアドオンのソースコードを一般には公開
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:100
 msgid "Public Stats?"
-msgstr "公開統計情報"
+msgstr "統計情報を公開しますか？"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
@@ -4450,7 +4456,7 @@ msgstr "いいえ、このアドオンの統計情報を一般には公開しま
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:113
 msgid "Upgrade SDK?"
-msgstr "SDK をアップグレード"
+msgstr "SDK をアップグレードしますか？"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:114
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
@@ -4506,7 +4512,9 @@ msgstr "アドオンのアイコン"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
-msgstr "アドオンのアイコンをアップロードするか、以下からひとつ選んでください。アイコンは、アドオンの掲載箇所ほぼすべてで表示されます。アップロードする画像の形式は PNG か JPEG でなければなりません。"
+msgstr ""
+"アドオンのアイコンをアップロードするか、以下からひとつ選んでください。アイコンは、アドオンの掲載箇所ほぼすべてで表示されます。アップロードする画像の形式"
+"は .png か .jpg でなければなりません。"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
 msgid "Select an icon for your add-on:"
@@ -4536,7 +4544,7 @@ msgstr "独自のアイコンをアップロード..."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "対応形式は PNG と JPEG です。アイコンが 64 × 64 ピクセルよりも大きい場合は縮小されます。"
+msgstr "対応形式は PNG と JPG です。アイコンが 64 × 64 ピクセルよりも大きい場合は縮小されます。"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
 msgid "Screenshots"
@@ -5216,7 +5224,7 @@ msgstr "おすすめアドオンの基準"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
-msgstr "おすすめのアドオンに推薦する前に、そのアドオンが以下の基準を満たしていること確認してください。"
+msgstr "おすすめのアドオンに推薦する前に、そのアドオンが以下の基準を満たしていること確認してください:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
@@ -6084,7 +6092,7 @@ msgstr "PayPal へ登録"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
-msgstr "寄付の推奨額は？"
+msgstr "寄付の推奨額とは？"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
@@ -6314,7 +6322,7 @@ msgstr "最大 300 KB"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
-msgstr "PNG または JPEG 形式"
+msgstr "PNG または JPG 形式"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
@@ -7290,7 +7298,7 @@ msgstr "不明なエラーが発生しました"
 
 #: apps/editors/views.py:493
 msgid "Self-reviews are not allowed."
-msgstr "自己審査は認められません"
+msgstr "自己審査は認められません。"
 
 #: apps/editors/views.py:512
 msgid "Review successfully processed."
@@ -8183,7 +8191,7 @@ msgstr ""
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:28
 msgid "Visit the {0} L10n Homepage"
-msgstr "{0} のローカライズホームページへ"
+msgstr "{0} の L10n ホームページへ"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:33
@@ -10219,7 +10227,7 @@ msgstr "統計情報ダッシュボード"
 
 #: apps/stats/templates/stats/stats.html:102
 msgid "Loading the latest data&hellip;"
-msgstr "最新データを読み込み中..."
+msgstr "最新データを読み込み中&hellip;"
 
 #: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
@@ -10276,7 +10284,7 @@ msgstr "日別ダウンロード回数"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr "ダウンロードはどのように数えられているのですか？"
+msgstr "ダウンロード数はどのように数えられていますか？"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -10310,7 +10318,7 @@ msgstr "上位のアプリケーション"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr "他のアプリケーションを表示..."
+msgstr "他のアプリケーションを表示&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
@@ -10318,7 +10326,7 @@ msgstr "上位の言語"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr "他の言語を表示..."
+msgstr "他の言語を表示&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
@@ -10326,7 +10334,7 @@ msgstr "上位のプラットフォーム"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr "他のプラットフォームを表示..."
+msgstr "他のプラットフォームを表示&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
@@ -10636,7 +10644,7 @@ msgstr "不正な確認コードです。"
 
 #: apps/users/views.py:115
 msgid "Successfully verified!"
-msgstr "認証が完了しました。"
+msgstr "認証が完了しました！"
 
 # %1 is the user's email address
 #: apps/users/views.py:131 apps/users/views.py:650
@@ -10854,7 +10862,7 @@ msgstr "この URL はあなたが開発者である場合のみ表示されま�
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
-msgstr "写真を選択..."
+msgstr "写真を選択&hellip;"
 
 #: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
@@ -11333,7 +11341,7 @@ msgstr "モバイル用サイトを表示"
 # フッタ左端
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr "サイト情報"
+msgstr "<b>アドオン</b> について知る"
 
 #: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
