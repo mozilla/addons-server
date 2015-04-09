@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-01 18:42+0000\n"
+"PO-Revision-Date: 2015-04-09 07:00+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427913760.0\n"
+"X-POOTLE-MTIME: 1428562817.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4918,11 +4918,11 @@ msgstr "第 1 步：入门指南"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
-msgstr ""
+msgstr "感谢您向 Mozilla 的附加组件生态系统进行贡献。这个提交流程允许您在本网站上托管您的附加组件，或者获得签名后自行托管。"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
-msgstr ""
+msgstr "要完成您的提交，您需要提供您的附加组件包（.xpi、.jar 或 .xml）。"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -6498,35 +6498,35 @@ msgstr "撤回审核请求"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "附加组件公开程度"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "上架："
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
-msgstr ""
+msgstr "对所有 {0} 的使用者可见，并包含在搜索结果和列表页面中"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "隐藏："
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr ""
+msgstr "在 {0} 上托管，但只对作者可见。可用于暂时在列表中隐藏或暂时下架。"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "不上架："
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
+msgstr "不在 {0} 上架。开发者每次都需要上传新版本进行签名，然后自行分发附加组件。"
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "当前版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6603,15 +6603,15 @@ msgstr "添加版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "隐藏附加组件"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "隐藏您的附加组件会使它从我们的列表和公开页面中消失，并且用户也不会再收到自动更新。"
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "您确定想要隐藏您的附加组件？"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
