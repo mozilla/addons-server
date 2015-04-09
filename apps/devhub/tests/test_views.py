@@ -1856,10 +1856,11 @@ class TestUpload(BaseUploadTest):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.url = reverse('devhub.upload')
+        self.image_path = get_image_path('animated.png')
 
     def post(self):
         # Has to be a binary, non xpi file.
-        data = open(get_image_path('animated.png'), 'rb')
+        data = open(self.image_path, 'rb')
         return self.client.post(self.url, {'upload': data})
 
     def test_login_required(self):
@@ -1872,7 +1873,7 @@ class TestUpload(BaseUploadTest):
 
         upload = FileUpload.objects.get(name='animated.png')
         eq_(upload.name, 'animated.png')
-        data = open(get_image_path('animated.png'), 'rb').read()
+        data = open(self.image_path, 'rb').read()
         eq_(storage.open(upload.path).read(), data)
 
     def test_fileupload_user(self):
@@ -1905,6 +1906,15 @@ class TestUpload(BaseUploadTest):
         upload = FileUpload.objects.get()
         url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
         self.assertRedirects(r, url)
+
+    @mock.patch('validator.validate.validate')
+    def test_upload_unlisted_addon(self, validate_mock):
+        """Unlisted addons are validated as "self hosted" addons."""
+        validate_mock.return_value = '{}'
+        self.url = reverse('devhub.upload_unlisted')
+        self.post()
+        # Make sure it was called with listed=False.
+        assert not validate_mock.call_args[1]['listed']
 
 
 class TestUploadDetail(BaseUploadTest):

@@ -169,6 +169,8 @@ urlpatterns = decorate(write, patterns(
     url('^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
     url('^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
     url('^upload$', views.upload, name='devhub.upload'),
+    url('^upload/unlisted$', views.upload_unlisted,
+        name='devhub.upload_unlisted'),
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='devhub.upload_detail'),
     url('^standalone-upload$', views.standalone_upload,

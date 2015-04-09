@@ -599,7 +599,7 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
 @login_required
 @post_required
 @write
-def upload(request, addon_slug=None, is_standalone=False):
+def upload(request, addon_slug=None, is_standalone=False, is_listed=True):
     filedata = request.FILES['upload']
 
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
@@ -615,7 +615,7 @@ def upload(request, addon_slug=None, is_standalone=False):
         ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
     else:
-        tasks.validator.delay(fu.pk)
+        tasks.validator.delay(fu.pk, listed=is_listed)
     if addon_slug:
         return redirect('devhub.upload_detail_for_addon',
                         addon_slug, fu.pk)
@@ -623,6 +623,14 @@ def upload(request, addon_slug=None, is_standalone=False):
         return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
         return redirect('devhub.upload_detail', fu.pk, 'json')
+
+
+@login_required
+@post_required
+@write
+def upload_unlisted(request, addon_slug=None, is_standalone=False):
+    return upload(request, addon_slug=addon_slug, is_standalone=is_standalone,
+                  is_listed=False)
 
 
 @login_required
@@ -1334,10 +1342,9 @@ def submit_addon(request, step):
                     _("Skipping to step 6 because the add-on won't be listed"))
             SubmitStep.objects.create(addon=addon, step=next_step)
             return redirect(_step_url(next_step), addon.slug)
-    template = 'upload.html'
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
-    return render(request, 'devhub/addons/submit/%s' % template,
+    return render(request, 'devhub/addons/submit/upload.html',
                   {'step': step, 'new_addon_form': form, 'is_admin': is_admin})
 
 

@@ -34,13 +34,13 @@ log = logging.getLogger('z.devhub.task')
 
 @task
 @write
-def validator(upload_id, **kw):
+def validator(upload_id, listed=True, **kw):
     if not settings.VALIDATE_ADDONS:
         return None
     log.info('VALIDATING: %s' % upload_id)
     upload = FileUpload.objects.using('default').get(pk=upload_id)
     try:
-        result = run_validator(upload.path)
+        result = run_validator(upload.path, listed=listed)
         # Skip the "addon signed" warning if we're not signing.
         if not settings.SIGNING_SERVER:
             result = skip_signing_warning(result)
@@ -113,7 +113,7 @@ def file_validator(file_id, **kw):
 
 
 def run_validator(file_path, for_appversions=None, test_all_tiers=False,
-                  overrides=None, compat=False):
+                  overrides=None, compat=False, listed=True):
     """A pre-configured wrapper around the addon validator.
 
     *file_path*
@@ -138,6 +138,10 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
         Set this to `True` when performing a bulk validation. This allows the
         validator to ignore certain tests that should not be run during bulk
         validation (see bug 735841).
+
+    *listed=True*
+        If the addon is unlisted, treat it as if it was a self hosted one
+        (don't fail on the presence of an updateURL).
 
     To validate the addon for compatibility with Firefox 5 and 6,
     you'd pass in::
@@ -174,7 +178,8 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                             spidermonkey=settings.SPIDERMONKEY,
                             overrides=overrides,
                             timeout=settings.VALIDATOR_TIMEOUT,
-                            compat_test=compat)
+                            compat_test=compat,
+                            listed=listed)
     finally:
         if temp:
             os.remove(path)

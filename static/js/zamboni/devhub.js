@@ -52,6 +52,7 @@ $(document).ready(function() {
     $('.perf-tests').exists(initPerfTests, [window.document]);
 
     // Add-on uploader
+    var $uploadAddon = $('#upload-addon');
     if($('#upload-addon').length) {
         var opt = {'cancel': $('.upload-file-cancel') };
         if($('#addon-compat-upload').length) {
@@ -62,7 +63,7 @@ $(document).ready(function() {
                                 $('#id_app_version option:selected').val());
             };
         }
-        $('#upload-addon').addonUploader(opt);
+        $uploadAddon.addonUploader(opt);
         $('#id_admin_override_validation').addClass('addon-upload-failure-dependant')
             .change(function () {
                 if ($(this).attr('checked')) {
@@ -81,6 +82,29 @@ $(document).ready(function() {
             });
         $('.addon-upload-failure-dependant').attr('disabled', true);
     }
+
+    // is_listed checkbox: should the add-on be listed on AMO? If not, change
+    // the addon upload button's data-upload-url.
+    var url = $uploadAddon.attr('data-upload-url');
+    // If this add-on is unlisted, then tell the upload view so
+    // it'll run the validator with the "listed=False"
+    // parameter.
+    var $isListed = $('#id_is_listed');
+    function switchUploadUrl() {
+      if ($isListed.exists() &&
+          $isListed.is(':checked')) {
+        $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+      } else {
+        $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+      }
+      /* Don't allow submitting, need to reupload/revalidate the file. */
+      $('.addon-upload-dependant').attr('disabled', true);
+      $('.addon-upload-failure-dependant').attr({'disabled': true,
+                                                 'checked': false});
+      $('.upload-status').remove();
+    }
+    $isListed.bind('change', switchUploadUrl);
+    switchUploadUrl();
 
     if ($(".add-file-modal").length) {
         $modalFile = $(".add-file-modal").modal(".version-upload", {
