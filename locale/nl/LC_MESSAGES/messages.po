@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-02 06:09+0000\n"
+"PO-Revision-Date: 2015-04-09 09:07+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1427954977.0\n"
+"X-POOTLE-MTIME: 1428570444.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5012,10 +5012,15 @@ msgstr "Stap 1. Van start"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
+"Bedankt voor uw bijdrage aan het Mozilla-add-ons-ecosysteem. Met dit "
+"indieningsproces kunt u uw add-on op deze website laten hosten, of deze "
+"laten aftekenen voor eigen hosting."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
 msgstr ""
+"Voor het voltooien van uw inzending hebt u uw add-onpakket (.xpi, .jar of "
+".xml) nodig."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -6698,35 +6703,41 @@ msgstr "Beoordelingsverzoek annuleren"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Zichtbaarheid add-on"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "Op lijst:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Zichtbaar op {0} voor iedereen en opgenomen in zoekresultaten en "
+"lijstpagina’s"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Verborgen:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Gehost op {0}, maar voor iedereen behalve schrijvers verborgen. Gebruikt om "
+"tijdelijk lijsten te verbergen of deze te stop te zetten."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "Niet op lijst:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
+"Niet verspreid via {0}. Ontwikkelaars uploaden nieuwe versies voor aftekenen "
+"en verspreiden de add-ons zelf."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "Huidige versies"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6805,15 +6816,17 @@ msgstr "Versie toevoegen"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Add-on verbergen"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Door uw add-on te verbergen wordt deze nergens in onze galerij weergegeven "
+"en ontvangen gebruikers geen automatische updates meer."
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Weet u zeker dat u uw add-on wilt verbergen?"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
