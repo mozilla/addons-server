@@ -327,12 +327,28 @@
 
                     $("<strong>").text(message).appendTo(upload_results);
 
+                    // Specific messages for unlisted addons.
+                    var isListed = $('#id_is_listed').is(':checked'),
+                        isSideload = $('#id_is_sideload').is(':checked');
+                    if (!isListed) {
+                      if (isSideload) {
+                        $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
+                      } else {
+                        if (warnings === 0) {
+                          $("<p>").text(gettext("Your submission passed validation and will be automatically signed.")).appendTo(upload_results);
+                        } else {
+                          $("<p>").text(gettext("Your submission didn't pass automatic validation and will go through a manual review.")).appendTo(upload_results);
+                        }
+                      }
+                    }
+
                     if (warnings > 0) {
                         // Validation checklist
                         var checklist_box = $('<div>').attr('class', 'submission-checklist').appendTo(upload_results),
                             checklist = [
                                 gettext("Include detailed version notes (this can be done in the next step)."),
                                 gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."),
+                                gettext("If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."),
                             ],
                             warnings_id = [
                                 'set_innerHTML',
@@ -345,10 +361,6 @@
                               return this.hasOwnProperty('id') && _.contains(this.id, id);
                             };
 
-                        if (!upload_results.parents('.add-file-modal').length) {
-                            // We are uploading a file for an existing addon.
-                            checklist.push(gettext("If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."));
-                        }
                         $('<h5>').text(gettext("Add-on submission checklist")).appendTo(checklist_box);
                         $('<p>').text(gettext("Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:")).appendTo(checklist_box);
                         if (results.validation.metadata.contains_binary_extension) {

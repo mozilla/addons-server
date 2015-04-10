@@ -48,6 +48,7 @@ from devhub.utils import hide_traceback, make_validation_results
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import is_beta, parse_addon
+from lib.crypto.packaged import sign_file
 from search.views import BaseAjaxSearch
 from translations.models import delete_translation
 from users.models import UserProfile
@@ -1172,7 +1173,7 @@ def version_add(request, addon_id, addon):
     )
     if form.is_valid():
         pl = form.cleaned_data.get('supported_platforms', [])
-        v = Version.from_upload(
+        version = Version.from_upload(
             upload=form.cleaned_data['upload'],
             addon=addon,
             platforms=pl,
@@ -1180,22 +1181,36 @@ def version_add(request, addon_id, addon):
             is_beta=form.cleaned_data['beta']
         )
         rejected_versions = addon.versions.filter(
-            version=v.version, files__status=amo.STATUS_DISABLED)[:1]
-        if not v.releasenotes and rejected_versions:
+            version=version.version, files__status=amo.STATUS_DISABLED)[:1]
+        if not version.releasenotes and rejected_versions:
             # Let's reuse the release and approval notes from the previous
             # rejected version.
             last_rejected = rejected_versions[0]
-            v.releasenotes = amo.utils.translations_for_field(
+            version.releasenotes = amo.utils.translations_for_field(
                 last_rejected.releasenotes)
-            v.approvalnotes = last_rejected.approvalnotes
-            v.save()
+            version.approvalnotes = last_rejected.approvalnotes
+            version.save()
         log.info('Version created: %s for: %s' %
-                 (v.pk, form.cleaned_data['upload']))
-        check_validation_override(request, form, addon, v)
+                 (version.pk, form.cleaned_data['upload']))
+        check_validation_override(request, form, addon, version)
         if (addon.status == amo.STATUS_NULL and
                 form.cleaned_data['nomination_type']):
             addon.update(status=form.cleaned_data['nomination_type'])
-        url = reverse('devhub.versions.edit', args=[addon.slug, str(v.id)])
+        url = reverse('devhub.versions.edit',
+                      args=[addon.slug, str(version.id)])
+
+        if not addon.is_listed:  # Not listed? Do we need to sign?
+            # We need to get to the file to check its validation.
+            # We're submitting a new version here, so it has only one file.
+            file_ = version.files.get()
+            # Only if it's not sideload (not fully reviewed).
+            if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]
+                    and not file_.validation.errors
+                    and not file_.validation.warnings):
+                # Passed validation: sign automatically without manual review.
+                file_.update(status=amo.STATUS_LITE)
+                sign_file(file_)
+
         return dict(url=url)
     else:
         return json_view.error(form.errors)
@@ -1221,6 +1236,16 @@ def version_add_file(request, addon_id, addon, version_id):
     check_validation_override(request, form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
+
+    if not new_file.version.addon.is_listed:  # Not listed? Do we need to sign?
+        # Only if it's not sideload (not fully reviewed).
+        if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]
+                and not new_file.validation.errors
+                and not new_file.validation.warnings):
+            # Passed validation: sign automatically without manual review.
+            new_file.update(status=amo.STATUS_LITE)
+            sign_file(new_file)
+
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
 
@@ -1339,7 +1364,17 @@ def submit_addon(request, step):
                 if data.get('is_sideload'):  # Full review needed.
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
-                    addon.update(status=amo.STATUS_UNREVIEWED)
+                    # We need to get to the file to check its validation.
+                    # We're submitting a brand new addon here, so only one
+                    # version, and one file for this version.
+                    addon_file = addon.versions.get().files.get()
+                    validation = addon_file.validation
+                    if not validation.errors and not validation.warnings:
+                        # Passed validation: sign automatically without review.
+                        addon.update(status=amo.STATUS_LITE)
+                        sign_file(addon_file)
+                    else:
+                        addon.update(status=amo.STATUS_UNREVIEWED)
                 next_step = 6
                 messages.info(
                     request,
