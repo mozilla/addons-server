@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-06 07:34+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-04-10 15:14+0000\n"
+"Last-Translator: Tim <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428305662.0\n"
+"X-POOTLE-MTIME: 1428678897.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6007,35 +6008,48 @@ msgstr "Як зв'язатися з нами з приводу цих політ
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Ви вимкнули цей додаток"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Сторінка вашого додатку відключена і не відображається ні в нашій галереї, "
+"ні в службі оновлення."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Будь ласка, доробіть ваш додаток."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Ви отримаєте лист, коли перевірка буде закінчена."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:41
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr ""
+"По завершенні процесу перевірки ви отримаєте лист. До цього моменту ваш "
+"додаток не буде відображатися в галереї, але буде доступним зі своєї "
+"сторінки."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr ""
+"Ваш додаток відображається в нашій галереї та користувачі отримують "
+"автоматичні оновлення."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
 msgstr ""
+"Ваш додаток було відключено адміністратором сайту і більше не показується в "
+"нашій галереї. Якщо у вас є які-небудь питання, будь ласка, напишіть за "
+"адресою marketplace-staff@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:61
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
 msgstr ""
+"Ваш додаток відображається в нашій галереї як експериментальний та "
+"користувачі отримують автоматичні оновлення. Деякі функції для вашого "
+"додатку недоступні."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:68
 msgid ""
@@ -6700,35 +6714,41 @@ msgstr "Скасувати запит на розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Відображення додатку"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "У списку:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Видимий всім на {0} і включений в результати пошуку та інформаційні "
+"сторінки."
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Приховані:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Розміщені на {0}, але приховані для всіх, орім авторів. Використовується, "
+"щоб тимчасово приховати або припинити їх."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "Не перелічені:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
+"Не поширюється на {0}. Розробники завантажуватимуть нові версії для "
+"затвердження і поширення додатків самостійно."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "Поточні версії"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6804,15 +6824,18 @@ msgstr "Додати версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Приховати додаток"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Приховування вашого додатку дозволить запобігти його появі в будь-якому "
+"місці в нашій галереї і заборонити користувачам отримувати автоматичні "
+"оновлення."
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Ви впевнені, що хочете приховати свій додаток?"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -7001,6 +7024,11 @@ msgstr "Що таке додатки?"
 #: apps/discovery/templates/discovery/pane.html:29
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"Додатки - це програми, які дозволяють вам налаштувати %(app)s на свій смак, "
+"додавши в нього додаткові функції або надавши свій стиль. Спробуйте "
+"використовувати бічну панель, яка заощаджує час, налаштуйте повідомлення про "
+"прогноз погоди або змініть зовнішній вигляд, щоб зробити %(app)s саме "
+"таким, як ви бажаєте."
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
@@ -7079,7 +7107,7 @@ msgstr "Отримати мобільні додатки"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Розумний шопінг в цей святковий сезон"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
@@ -7223,12 +7251,12 @@ msgstr "Ви повинні вибрати які-небудь файли."
 
 #: apps/editors/forms.py:316
 msgid "File %s is not pending review."
-msgstr ""
+msgstr "Файл %s не очікує на перевірку."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:339
 msgid "theme name"
-msgstr ""
+msgstr "ім'я теми"
 
 #: apps/editors/forms.py:365
 msgid "Someone else is reviewing this theme."
