@@ -1336,6 +1336,10 @@ def submit_addon(request, step):
                                       addon.current_version)
             next_step = 3
             if not addon.is_listed:  # Not listed? Skip straight to step 6.
+                if data.get('is_sideload'):  # Full review needed.
+                    addon.update(status=amo.STATUS_NOMINATED)
+                else:  # Otherwise, simply do a prelim review.
+                    addon.update(status=amo.STATUS_UNREVIEWED)
                 next_step = 6
                 messages.info(
                     request,
