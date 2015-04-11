@@ -503,12 +503,10 @@ class NewAddonForm(AddonUploadForm):
     is_listed = forms.BooleanField(
         initial=True,
         required=False,
-        label=_lazy(u'Yes, include my add-on on AMO.'),
+        label=_lazy(u'Yes, distribute my add-on on this site.'),
         help_text=_(
-            u'Unchecking this box will allow your add-on to be uploaded and '
-            u'reviewed but it won\'t be visible on AMO or downloadable by any '
-            u'end users. If in doubt, leave this box checked - there are very '
-            u'few reasons to uncheck it.'))
+            u'Uncheck this option if you intend to distribute your add-on on '
+            u'your own and only need it to be signed by Mozilla.'))
 
     def clean(self):
         if not self.errors:
