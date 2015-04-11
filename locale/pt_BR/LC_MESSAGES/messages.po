@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-08 19:48+0000\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-04-11 12:06+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1428522495.0\n"
+"X-POOTLE-MTIME: 1428754003.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -5114,6 +5114,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
 msgstr ""
+"Para concluir a sua submissão, precisa do pacote do seu complemento (.xpi, "
+".jar, ou .xml)."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -6809,7 +6811,7 @@ msgstr "Cancelar solicitação de análise"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Visibilidade do complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
@@ -6828,6 +6830,8 @@ msgstr "Oculto:"
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Hospedado no {0}, mas oculto para todos exceto os autores. Usado para "
+"ocultar temporariamente listagens ou para as descontinuar."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
@@ -6836,6 +6840,8 @@ msgstr "Não listado:"
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
+"Não distribuído no {0}. Os desenvolvedores irão enviar novas versões para "
+"serem assinadas e usarão canais próprios de distribuição dos complementos."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
@@ -6926,6 +6932,9 @@ msgstr "Ocultar complemento"
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Ocultar o seu complemento irá impedir que o mesmo seja apresentado em "
+"qualquer lugar na nossa galeria e irá impedir que os usuários possam receber "
+"atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
