@@ -90,12 +90,17 @@ $(document).ready(function() {
     // it'll run the validator with the "listed=False"
     // parameter.
     var $isListed = $('#id_is_listed');
-    function switchUploadUrl() {
+    var $isSideloadLabel = $('label[for=id_is_sideload]');
+    var $isSideload = $('#id_is_sideload');
+    function updateListedStatus() {
       if ($isListed.exists() &&
           $isListed.is(':checked')) {
         $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+        $isSideloadLabel.hide();
+        $isSideload.attr('checked', false);
       } else {
         $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+        $isSideloadLabel.show();
       }
       /* Don't allow submitting, need to reupload/revalidate the file. */
       $('.addon-upload-dependant').attr('disabled', true);
@@ -103,8 +108,9 @@ $(document).ready(function() {
                                                  'checked': false});
       $('.upload-status').remove();
     }
-    $isListed.bind('change', switchUploadUrl);
-    switchUploadUrl();
+    $isListed.bind('change', updateListedStatus);
+    $isSideload.bind('change', updateListedStatus);
+    updateListedStatus();
 
     if ($(".add-file-modal").length) {
         $modalFile = $(".add-file-modal").modal(".version-upload", {

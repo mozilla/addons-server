@@ -1157,7 +1157,9 @@ class TestSubmitStep2(amo.tests.TestCase):
         response = self.client.get(reverse('devhub.submit.2'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert doc('.list-addon input[type=checkbox]')
+        assert doc('.list-addon input#id_is_listed[type=checkbox]')
+        # There also is a checkbox to select full review (side-load) or prelim.
+        assert doc('.list-addon input#id_is_sideload[type=checkbox]')
 
 
 class TestSubmitStep3(TestSubmitBase):
@@ -2640,10 +2642,10 @@ class TestVersionXSS(UploadTest):
 class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
-             source=None, is_listed=True):
+             source=None, is_listed=True, is_sideload=False):
         d = dict(upload=self.upload.pk, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
-                 is_listed=is_listed)
+                 is_listed=is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
         eq_(r.status_code, 200)
         if not expect_errors:
@@ -2688,6 +2690,20 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         r = self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
+        assert addon.status == amo.STATUS_UNREVIEWED  # Prelim review.
+        # Skip from step 2 to step 6.
+        self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
+            'New add-on creation never logged.')
+
+    def test_success_unlisted_sideload(self):
+        eq_(Addon.objects.count(), 0)
+        r = self.post(is_listed=False, is_sideload=True)
+        addon = Addon.with_unlisted.get()
+        assert not addon.is_listed
+        # Full review for sideload addons.
+        assert addon.status == amo.STATUS_NOMINATED
         # Skip from step 2 to step 6.
         self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)

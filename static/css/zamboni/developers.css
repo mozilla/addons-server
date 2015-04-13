@@ -399,6 +399,10 @@ form .char-count b {
     display: block;
     padding-bottom: 3px;
 }
+.addon-submission-process form label[for=id_is_sideload] {
+    display: none;
+    margin-left: 20px;
+}
 .submit-license input[type=checkbox] + label {
     display: inline;
     padding-bottom: 0;
