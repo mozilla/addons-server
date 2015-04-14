@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-06 13:55+0000\n"
+"PO-Revision-Date: 2015-04-14 18:07+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428328506.0\n"
+"X-POOTLE-MTIME: 1429034853.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5037,10 +5037,15 @@ msgstr "Krok 1. Úvod"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
+"Děkujeme, že jste se zapojili do ekosystému Mozilly. Naše procesy vám umožní "
+"hostovat váš doplněk přímo na této stránce, nebo jej nechat schválit a "
+"podepsat pro vlastní hostování."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
 msgstr ""
+"Po dokončení odeslání budete potřebovat váš zabalený doplněk (.xpi, .jar, "
+"nebo .xml)."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -6706,35 +6711,41 @@ msgstr "Zrušit žádost o kontrolu"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Viditelnost doplňku"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "V seznamu:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Viditelný pro každého na {0} a zobrazovaný ve výsledcích vyhledávání a v "
+"seznamech na stránkách."
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Skrytý:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Hostovaný na {0}, ale skrytý pro všechny vyjma jeho autorů. Lze použít pro "
+"dočasné odebrání ze seznamu nebo jeho úplné skrytí."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "Nazařezený:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
+"Nebude vůbec distribuován na {0}. Jako vývojář můžete nahrát jeho novou "
+"verzi pro podepsání a následně jej distribuovat vlastní cestou."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "Současné verze"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6811,15 +6822,17 @@ msgstr "Přidat verzi"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Skrýt doplněk"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Skrytím svého doplňku zabráníte, aby se zobrazoval kdekoliv v naší galerie, "
+"a uživatelům přestanou být instalovány automatická aktualizace."
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Jste si jisti, že chcete skrýt svůj doplněk?"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
