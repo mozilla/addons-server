@@ -2364,6 +2364,52 @@ class TestVersionAddFile(UploadTest):
         eq_(response.status_code, 400)
         assert 'source' in json.loads(response.content)
 
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_sideload(self, mock_sign_file):
+        """Sideloadable addons need manual full review."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # The status stays unchanged: it needs a manual full review.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_UNREVIEWED
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_fail_validation(self, mock_sign_file):
+        """Files that fail validation need a manual preliminary review."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1}')
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # The status stays unchanged: it needs a manual preliminary review.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_UNREVIEWED
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_pass_validation(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 0}')
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # The status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+
 
 class TestUploadErrors(UploadTest):
     fixtures = ['base/users', 'base/addon_3615']
@@ -2531,6 +2577,52 @@ class TestAddVersion(AddVersionTest):
         f = File.objects.all().order_by('-created')[0]
         assert f.status == amo.STATUS_BETA
 
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_sideload(self, mock_sign_file):
+        """Sideloadable addons need manual full review."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # The status stays unchanged: it needs a manual full review.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_UNREVIEWED
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_fail_validation(self, mock_sign_file):
+        """Files that fail validation need a manual preliminary review."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1}')
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # The status stays unchanged: it needs a manual preliminary review.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_UNREVIEWED
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_pass_validation(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 0}')
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # The status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+
 
 class TestAddBetaVersion(AddVersionTest):
     fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
@@ -2685,25 +2777,48 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    def test_success_unlisted(self):
+    @mock.patch('devhub.views.sign_file')
+    def test_success_unlisted(self, mock_sign_file):
         eq_(Addon.objects.count(), 0)
+        # No validation errors or warning.
+        self.upload = self.get_upload(
+            'extension.xpi',
+            validation=json.dumps(dict(errors=0, warnings=0, notices=2,
+                                       metadata={}, messages=[])))
         r = self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_UNREVIEWED  # Prelim review.
+        assert addon.status == amo.STATUS_LITE  # Automatic signing.
+        assert mock_sign_file.called
         # Skip from step 2 to step 6.
         self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    def test_success_unlisted_sideload(self):
+    @mock.patch('lib.crypto.packaged.sign_file')
+    def test_success_unlisted_fail_validation(self, mock_sign_file):
+        eq_(Addon.objects.count(), 0)
+        r = self.post(is_listed=False)
+        addon = Addon.with_unlisted.get()
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_UNREVIEWED  # Prelim review.
+        assert not mock_sign_file.called
+        # Skip from step 2 to step 6.
+        self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
+            'New add-on creation never logged.')
+
+    @mock.patch('lib.crypto.packaged.sign_file')
+    def test_success_unlisted_sideload(self, mock_sign_file):
         eq_(Addon.objects.count(), 0)
         r = self.post(is_listed=False, is_sideload=True)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         # Full review for sideload addons.
         assert addon.status == amo.STATUS_NOMINATED
+        assert not mock_sign_file.called
         # Skip from step 2 to step 6.
         self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)

@@ -64,14 +64,13 @@ class TestPackaged(amo.tests.TestCase):
                             lambda pkcs7: 'serial number')
 
     def test_get_endpoint(self):
-        # self.file1 is fully reviewed, self.file2 is preliminary reviewed.
-        self.file2.update(status=amo.STATUS_LITE)
+        assert self.addon.status == amo.STATUS_PUBLIC
         with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file1)
-            assert not packaged.get_endpoint(self.file2)
+            assert packaged.get_endpoint(self.file1).startswith('http://full')
+        self.addon.update(status=amo.STATUS_LITE)
         with self.settings(SIGNING_SERVER=''):
-            assert not packaged.get_endpoint(self.file1)
-            assert packaged.get_endpoint(self.file2)
+            assert packaged.get_endpoint(self.file1).startswith(
+                'http://prelim')
 
     def test_no_file(self):
         [f.delete() for f in self.addon.current_version.all_files]
