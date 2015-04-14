@@ -1359,7 +1359,6 @@ def submit_addon(request, step):
             AddonUser(addon=addon, user=request.amo_user).save()
             check_validation_override(request, form, addon,
                                       addon.current_version)
-            next_step = 3
             if not addon.is_listed:  # Not listed? Skip straight to step 6.
                 if data.get('is_sideload'):  # Full review needed.
                     addon.update(status=amo.STATUS_NOMINATED)
@@ -1375,12 +1374,8 @@ def submit_addon(request, step):
                         sign_file(addon_file)
                     else:
                         addon.update(status=amo.STATUS_UNREVIEWED)
-                next_step = 6
-                messages.info(
-                    request,
-                    _("Skipping to step 6 because the add-on won't be listed"))
-            SubmitStep.objects.create(addon=addon, step=next_step)
-            return redirect(_step_url(next_step), addon.slug)
+            SubmitStep.objects.create(addon=addon, step=3)
+            return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     return render(request, 'devhub/addons/submit/upload.html',
@@ -1395,11 +1390,16 @@ def submit_describe(request, addon_id, addon, step):
     cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
                                            request=request)
 
-    if request.method == 'POST' and form.is_valid() and cat_form.is_valid():
+    if request.method == 'POST' and form.is_valid() and (
+            not addon.is_listed or cat_form.is_valid()):
         addon = form.save(addon)
-        cat_form.save()
-        SubmitStep.objects.filter(addon=addon).update(step=4)
-        return redirect(_step_url(4), addon.slug)
+        if addon.is_listed:
+            cat_form.save()
+            next_step = 4
+        else:
+            next_step = 7
+        SubmitStep.objects.filter(addon=addon).update(step=next_step)
+        return redirect(_step_url(next_step), addon.slug)
     return render(request, 'devhub/addons/submit/describe.html',
                   {'form': form, 'cat_form': cat_form, 'addon': addon,
                    'step': step})

@@ -5,7 +5,7 @@
 
 {% block primary %}
   <h3>{{ _('Step 3. Describe') }}</h3>
-  <form method="post" id="submit-describe" class="item">
+  <form method="post" id="submit-describe" class="item{% if not addon.is_listed %} unlisted{% endif %}">
     {{ csrf() }}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name and version:") }}</label>
@@ -16,7 +16,7 @@
              value="{{ version.version }}" size="6">
       {{ form.name.errors }}
     </div>
-    <div class="addon-submission-field">
+    <div class="addon-submission-field slug-edit">
       <label>{{ _("The detail page will be:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
         <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
@@ -35,31 +35,35 @@
       {{ form.summary }}
       {{ form.summary.errors }}
       <div class="edit-addon-details">
-        {% trans %}
-          This summary will be shown in listings and searches.
-        {% endtrans %}
+        {% if addon.is_listed %}
+          {% trans %}
+            This summary will be shown in listings and searches.
+          {% endtrans %}
+        {% endif %}
         <div class="char-count"
              data-for-startswith="{{ form.summary.auto_id }}_"
              data-maxlength="{{ form.summary.field.max_length }}"></div>
       </div>
     </div>
-    <div id="addon-categories-edit" class="addon-submission-field"
-         data-max-categories="{{ amo.MAX_CATEGORIES }}">
-      {{ cat_form.non_form_errors() }}
-      {{ cat_form.management_form }}
-      {% for form in cat_form.initial_forms %}
-        {{ select_cats(amo.MAX_CATEGORIES, form) }}
-      {% endfor %}
-    </div>
-    <div class="addon-submission-field">
-      <label>{{ _('Provide a more detailed description:') }}</label>
-      {{ form.description }}
-      {{ form.description.errors }}
-      <div class="edit-addon-details">
-        {{ _("The description will appear on the detail page.") }}
-        {{ some_html_tip() }}
+    {% if addon.is_listed %}
+      <div id="addon-categories-edit" class="addon-submission-field"
+           data-max-categories="{{ amo.MAX_CATEGORIES }}">
+        {{ cat_form.non_form_errors() }}
+        {{ cat_form.management_form }}
+        {% for form in cat_form.initial_forms %}
+          {{ select_cats(amo.MAX_CATEGORIES, form) }}
+        {% endfor %}
       </div>
-    </div>
+      <div class="addon-submission-field">
+        <label>{{ _('Provide a more detailed description:') }}</label>
+        {{ form.description }}
+        {{ form.description.errors }}
+        <div class="edit-addon-details">
+          {{ _("The description will appear on the detail page.") }}
+          {{ some_html_tip() }}
+        </div>
+      </div>
+    {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
         {{ _('Continue') }}
