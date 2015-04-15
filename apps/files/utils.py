@@ -456,7 +456,7 @@ def check_xpi_info(xpi_info, addon=None):
     if addon and addon.guid != xpi_info['guid']:
         raise forms.ValidationError(_("UUID doesn't match add-on."))
     if (not addon
-            and Addon.objects.filter(guid=xpi_info['guid']).exists()
+            and Addon.with_unlisted.filter(guid=xpi_info['guid']).exists()
             or BlacklistedGuid.objects.filter(guid=xpi_info['guid']).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
     if len(xpi_info['version']) > 32:
