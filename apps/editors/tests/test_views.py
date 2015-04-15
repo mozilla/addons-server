@@ -975,31 +975,33 @@ class TestNominatedQueue(QueueTest):
     def test_results_two_versions(self):
         self.generate_files()
 
-        v1 = self.addons['Nominated One'].versions.all()[0]
-        v2 = self.addons['Nominated Two'].versions.all()[0]
-        a1, a2 = v1.addon, v2.addon
-        f = v2.all_files[0]
+        version1 = self.addons['Nominated One'].versions.all()[0]
+        version2 = self.addons['Nominated Two'].versions.all()[0]
+        file_ = version2.files.get()
 
-        original_nomination = v2.nomination
-        v2.nomination = v2.nomination - timedelta(days=1)
-        v2.save()
+        # Versions are ordered by creation date, so make sure they're set.
+        past = self.days_ago(1)
+        version2.update(created=past, nomination=past)
 
-        # Create another version, v0.2.
-        v2.pk = None
-        v2.nomination = original_nomination
-        v2.version = '0.2'
-        v2.save()
+        # Create another version, v0.2, by "cloning" v0.1.
+        version2.pk = None
+        version2.version = '0.2'
+        future = datetime.now() - timedelta(seconds=1)
+        version2.created = version2.nomination = future
+        version2.save()
 
         # Associate v0.2 it with a file.
-        f.pk = None
-        f.version = v2
-        f.save()
+        file_.pk = None
+        file_.version = version2
+        file_.save()
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         expected = [
-            ('Nominated One 0.1', reverse('editors.review', args=[a1.slug])),
-            ('Nominated Two 0.2', reverse('editors.review', args=[a2.slug])),
+            ('Nominated One 0.1', reverse('editors.review',
+                                          args=[version1.addon.slug])),
+            ('Nominated Two 0.2', reverse('editors.review',
+                                          args=[version2.addon.slug])),
         ]
         check_links(
             expected,
