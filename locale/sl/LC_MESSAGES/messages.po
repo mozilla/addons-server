@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-03-10 08:47+0000\n"
+"PO-Revision-Date: 2015-04-15 13:54+0000\n"
 "Last-Translator: Peter <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425977237.0\n"
+"X-POOTLE-MTIME: 1429106088.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4926,15 +4927,17 @@ msgstr "Postanite recenzent AMO še danes in poskrbite, da bodo vaši dodatki pr
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:51
 msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr ""
+msgstr "Ko ga pregleda urednik, boste dobili e-pošto."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:52
 msgid "Your add-on will not be publicly available on AMO."
-msgstr ""
+msgstr "Vaš dodatek ne bo javno razpoložljiv na AMO."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:55
 msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
 msgstr ""
+"Če morate prilagoditi podrobnosti svojega dodatka, <a href=\"{0}\">uredite "
+"objavo</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -7347,15 +7350,15 @@ msgstr "Posodobite teme"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Nerazvrščene posodobitve na čakanju"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Nerazvrščene polne recenzije"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Nerazvrščene predhodne recenzije"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
