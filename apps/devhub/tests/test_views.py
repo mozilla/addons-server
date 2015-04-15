@@ -2485,6 +2485,11 @@ class TestUploadErrors(UploadTest):
         eq_(list(m['message'] for m in data['validation']['messages']),
             [u'Duplicate UUID found.'])
 
+    def test_dupe_xpi_unlisted_addon(self):
+        """Submitting an xpi with the same UUID as an unlisted addon."""
+        self.addon.update(is_listed=False)
+        self.test_dupe_xpi()
+
 
 class AddVersionTest(UploadTest):
 
