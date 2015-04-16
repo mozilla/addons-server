@@ -1960,8 +1960,6 @@ class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
             type = amo.ADDON_SLUGS[self.type]
         except KeyError:
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
-        if self.type == amo.ADDON_PERSONA:
-            return 'https://addons.mozilla.org/firefox/themes/%s' % self.slug
         return reverse('browse.%s' % type, args=[self.slug])
 
     @staticmethod

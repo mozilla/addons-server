@@ -3,12 +3,12 @@ Thanks for submitting your Theme, {{ theme.addon.name }}!
 
 We're big fans of creativity, and it's fun to see how people are dressing up their browsers.
 
-Once it gets automatically copied to the live server, you'll be able to view it at {{ theme.addon.get_url_path() }}
+Once it gets automatically copied to the live server, you'll be able to view it at {{ theme.addon.get_url_path()|absolutify(base_url) }}
 
 {% if theme.addon.categories.exists() %}
   You can also check it out shortly in the Gallery at
   {% for category in theme.addon.categories.all() %}
-    {{ category.get_url_path() }}{% if not loop.last %} and {% endif %}
+    {{ category.get_url_path()|absolutify(base_url) }}{% if not loop.last %} and {% endif %}
   {% endfor %}
 {% endif %}
 
