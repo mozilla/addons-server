@@ -2,6 +2,7 @@
 import os
 import zipfile
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
@@ -116,6 +117,18 @@ class TestPackaged(amo.tests.TestCase):
         assert self.file2.cert_serial_num
         assert self.file1.hash
         assert self.file2.hash
+
+    def test_no_sign_hotfix_addons(self):
+        """Don't sign hotfix addons."""
+        for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
+            self.addon.update(guid=hotfix_guid)
+            packaged.sign(self.version)
+            assert not self.file1.is_signed
+            assert not self.file2.is_signed
+            assert not self.file1.cert_serial_num
+            assert not self.file2.cert_serial_num
+            assert not self.file1.hash
+            assert not self.file2.hash
 
 
 class TestTasks(amo.tests.TestCase):
