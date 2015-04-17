@@ -1324,6 +1324,9 @@ SIGNING_SERVER = ''
 PRELIMINARY_SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
+# Hotfix addons (don't sign those, they're already signed by Mozilla.
+HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
+                      'thunderbird-hotfix@mozilla.org']
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
