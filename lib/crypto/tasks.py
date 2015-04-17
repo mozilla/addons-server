@@ -47,7 +47,7 @@ def sign_addons(addon_ids, force=False, **kw):
                 sign_file(file_obj)
             # Now update the Version model.
             version.update(version='{0}.1'.format(version.version))
-        except (SigningError, zipfile.BadZipFile) as e:
+        except (SigningError, zipfile.BadZipfile, IOError) as e:
             log.warning(
                 'Failed signing version {0}: {1}.'.format(version.pk, e))
 
