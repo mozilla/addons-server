@@ -21,6 +21,7 @@ from access.models import Group, GroupUser
 from amo.helpers import user_media_url
 from amo.tests import addon_factory
 from amo.urlresolvers import reverse
+from amo.utils import urlparams
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from addons.tests.test_views import TestMobile
 from applications.models import AppVersion
@@ -607,7 +608,8 @@ class TestDownloadsBase(amo.tests.TestCase):
             file_ = self.file
         eq_(response.status_code, 302)
         eq_(response.url,
-            '%s%s/%s' % (host, self.addon.id, file_.filename))
+            urlparams('%s%s/%s' % (host, self.addon.id, file_.filename),
+                      filehash=file_.hash))
         eq_(response['X-Target-Digest'], file_.hash)
 
     def assert_served_internally(self, response):
