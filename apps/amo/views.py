@@ -1,4 +1,5 @@
 import json
+import os
 import re
 
 from django import http
@@ -86,6 +87,11 @@ def robots(request):
         template = render(request, 'amo/robots.html', {'apps': amo.APP_USAGE})
 
     return HttpResponse(template, mimetype="text/plain")
+
+
+def contribute(request):
+    path = os.path.join(settings.ROOT, 'contribute.json')
+    return HttpResponse(open(path, 'rb'), content_type='application/json')
 
 
 def handler403(request):

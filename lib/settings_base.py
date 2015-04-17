@@ -226,17 +226,17 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = (
-    'about', 'admin', 'apps', 'blocklist', 'credits', 'developer_agreement',
-    'developer_faq', 'developers', 'editors', 'faq', 'jsi18n', 'localizers',
-    'review_guide', 'google1f3e37b7351799a5.html', 'robots.txt', 'statistics',
-    'services', 'sunbird', 'static', 'user-media',
+    'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
+    'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
+    'jsi18n', 'localizers', 'review_guide', 'google1f3e37b7351799a5.html',
+    'robots.txt', 'statistics', 'services', 'sunbird', 'static', 'user-media',
 )
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
 SUPPORTED_NONLOCALES = (
-    'google1f3e37b7351799a5.html', 'robots.txt', 'services', 'downloads',
-    'blocklist', 'static', 'user-media',
+    'contribute.json', 'google1f3e37b7351799a5.html', 'robots.txt', 'services',
+    'downloads', 'blocklist', 'static', 'user-media',
 )
 
 # Make this unique, and don't share it with anybody.
