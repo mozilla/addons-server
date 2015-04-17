@@ -361,3 +361,11 @@ class TestCSP(amo.tests.TestCase):
         self.client.post(self.url, json.dumps({'csp-report': {}}),
                          content_type='application/json')
         eq_(log_cef.call_args[0][2]['PATH_INFO'], '/services/csp/report')
+
+
+class TestContribute(amo.tests.TestCase):
+
+    def test_contribute_json(self):
+        res = self.client.get('/contribute.json')
+        eq_(res.status_code, 200)
+        eq_(res._headers['content-type'], ('Content-Type', 'application/json'))
