@@ -388,8 +388,11 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         This is in no way a perfect or correct solution, it's just the way we
         do it until we decide to inspect/walk the certificates chain to
         validate it comes from Mozilla."""
-        with zipfile.ZipFile(self.file_path, mode='r') as zf:
-            filenames = set(zf.namelist())
+        try:
+            with zipfile.ZipFile(self.file_path, mode='r') as zf:
+                filenames = set(zf.namelist())
+        except (zipfile.BadZipfile, IOError):
+            filenames = set()
         return set(['META-INF/mozilla.rsa', 'META-INF/mozilla.sf',
                     'META-INF/manifest.mf']).issubset(filenames)
 
