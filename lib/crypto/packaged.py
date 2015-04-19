@@ -39,6 +39,10 @@ def call_signing(file_obj):
         log.warning('Not signing: no active endpoint')
         return
 
+    if file_obj.version.addon.guid in settings.HOTFIX_ADDON_GUIDS:
+        log.warning('Not signing: addon is an hotfix')
+        return
+
     timeout = settings.SIGNING_SERVER_TIMEOUT
 
     # We only want the (unique) temporary file name.

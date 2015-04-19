@@ -299,6 +299,9 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 file_.file_path):
             assert file_.is_signed
+        # Make sure a bad zip file is not seen as signed.
+        with amo.tests.copy_file(__file__, file_.file_path):
+            assert not file_.is_signed
 
 
 class TestParseXpi(amo.tests.TestCase):
