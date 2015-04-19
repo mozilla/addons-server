@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-03-29 13:41+0100\n"
+"PO-Revision-Date: 2015-04-19 09:15+0100\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -294,7 +294,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Ett förslaget engångsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#.                    {1} is an amount input field
+#. {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Ett engångsbidrag på {0} {1}"
@@ -1917,8 +1917,8 @@ msgid "Previous"
 msgstr "Föregående"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.                third argument is the number of total results (e.g., 1,000).
-#.              third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
@@ -2349,8 +2349,8 @@ msgstr[0] "<span>%(followers)s</span> följare"
 msgstr[1] "<span>%(followers)s</span> följare"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2358,7 +2358,7 @@ msgstr[0] "%(num)s följare per vecka"
 msgstr[1] "%(num)s följare per vecka"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2366,8 +2366,8 @@ msgstr[0] "%(num)s följare per månad"
 msgstr[1] "%(num)s följare per månad"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -5961,7 +5961,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#.                {1} is the application name.
+#. {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -6236,11 +6236,11 @@ msgstr "Välj färger för ditt tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:276 apps/devhub/templates/devhub/personas/submit.html:169
 msgid "Foreground Text"
-msgstr ""
+msgstr "Förgrundstext"
 
 #: apps/devhub/templates/devhub/personas/edit.html:277 apps/devhub/templates/devhub/personas/submit.html:170
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Detta är textfärgen på fliken."
 
 #: apps/devhub/templates/devhub/personas/edit.html:279 apps/devhub/templates/devhub/personas/submit.html:172
 msgid "Background"
@@ -6248,7 +6248,7 @@ msgstr "Bakgrund"
 
 #: apps/devhub/templates/devhub/personas/edit.html:280 apps/devhub/templates/devhub/personas/submit.html:173
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Detta är färgen på flikarna."
 
 #: apps/devhub/templates/devhub/personas/edit.html:285 apps/devhub/templates/devhub/personas/submit.html:178
 msgid "Preview"
@@ -6268,7 +6268,7 @@ msgstr "Skapa ett nytt tema"
 
 #: apps/devhub/templates/devhub/personas/submit.html:18
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Med bakgrundsteman kan du enkelt anpassa utseendet på Firefox. Skicka in din egen design nedan eller <a href=\"%(submit_url)s\">lär dig att skapa en</a>!"
 
 #: apps/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
@@ -6282,11 +6282,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
-msgstr ""
+msgstr "Skicka in tema"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:11
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Ditt tema har skickats in till granskningskön. Du får ett mejl när den har granskats, normalt inom 24 timmar."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:19
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
@@ -6302,15 +6302,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Välj en bild för ditt tema till sidhuvudet."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:8
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 pixlar"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:9 apps/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
-msgstr ""
+msgstr "Max 300 kB"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
@@ -6318,27 +6318,27 @@ msgstr "PNG eller JPG"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Justera överst till höger"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
-msgstr ""
+msgstr "Välj en annan bild för sidhuvud"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:19
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Välj en bild för ditt tema till sidfoten."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:24
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 pixlar"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:27
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Justera längst ner till vänster"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Välj en annan bild för sidfot"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:7
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
@@ -6409,7 +6409,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:145 apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
-msgstr ""
+msgstr "Ladda upp en ny fil"
 
 #: apps/devhub/templates/devhub/versions/edit.html:147
 msgid "Add File"
@@ -6417,23 +6417,23 @@ msgstr "Lägg till fil"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Fil {file_id} ({platform})"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Skapad den %(created)s ändrad till %(status)s den %(status_date)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:9
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Skapad den %(created)s ändrad till %(status)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
-msgstr ""
+msgstr "Visa filhistorik"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
-msgstr ""
+msgstr "Av %(user_name)s den %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
@@ -6457,11 +6457,11 @@ msgstr "0 filer"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Köposition: %(pos)s av %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr ""
+msgstr "Inte validerad."
 
 #: apps/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
@@ -6491,7 +6491,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "Listad:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
@@ -6974,7 +6974,7 @@ msgstr "Plattformar"
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: apps/editors/forms.py:230
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: apps/editors/forms.py:245 apps/files/templates/files/viewer.html:50
 msgid "Files:"
@@ -6986,11 +6986,11 @@ msgstr "Kommentarer:"
 
 #: apps/editors/forms.py:252
 msgid "Operating systems:"
-msgstr ""
+msgstr "Operativsystem:"
 
 #: apps/editors/forms.py:254
 msgid "Applications:"
-msgstr ""
+msgstr "Applikationer:"
 
 #: apps/editors/forms.py:256
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -10670,15 +10670,15 @@ msgstr ""
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Användaraviseringar"
 
 #: apps/users/views.py:88
 msgid "An email address is required."
-msgstr ""
+msgstr "En e-postadress krävs."
 
 #: apps/users/views.py:93
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "En användare med den e-postadressen existerar inte."
 
 #: apps/users/views.py:110
 msgid "Invalid confirmation code!"
@@ -10694,7 +10694,7 @@ msgstr "E-post har skickats till din adress {0} för att bekräfta ditt konto. I
 
 #: apps/users/views.py:135 apps/users/views.py:654
 msgid "Confirmation Email Sent"
-msgstr ""
+msgstr "E-postbekräftelse har skickats"
 
 #: apps/users/views.py:146
 msgid "Profile Deleted"
@@ -10710,21 +10710,23 @@ msgstr "Profilen uppdaterad."
 
 #: apps/users/views.py:195
 msgid "Email Confirmation Sent"
-msgstr ""
+msgstr "E-postbekräftelse har skickats"
 
 #: apps/users/views.py:196
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 msgstr ""
+"Ett mejl har skickats till {0} för att bekräfta din nya e-postadress. För att ändringen ska träda i kraft, måste du klicka på länken i detta mejl. Tills dess kan du logga in med din nuvarande e-"
+"postadress."
 
 #: apps/users/views.py:209
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "Vänligen bekräfta din ändring av e-postadress på %s"
 
 #: apps/users/views.py:223
 msgid "Errors Found"
-msgstr ""
+msgstr "Fel hittades"
 
 #: apps/users/views.py:224
 msgid "There were errors in the changes you made. Please correct them and resubmit."
@@ -10732,11 +10734,11 @@ msgstr "Det fanns fel i dina ändringar. Vänligen korrigera och skicka in igen.
 
 #: apps/users/views.py:277
 msgid "Your email address was changed successfully"
-msgstr ""
+msgstr "Din e-postadress har ändrats"
 
 #: apps/users/views.py:278
 msgid "From now on, please use {0} to log in."
-msgstr ""
+msgstr "Från och med nu kan du använda {0} för att logga in."
 
 #: apps/users/views.py:327
 msgid "Persona authentication failure."
@@ -10935,7 +10937,7 @@ msgstr "Visa samlingar jag följer"
 
 #: apps/users/templates/users/edit.html:179
 msgid "Notifications"
-msgstr "Underrättelser"
+msgstr "Aviseringar"
 
 #: apps/users/templates/users/edit.html:181
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
