@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-08 09:07-0700\n"
-"PO-Revision-Date: 2015-04-19 09:15+0100\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"PO-Revision-Date: 2015-04-19 13:29+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.5\n"
-"X-POOTLE-MTIME: 1427541118.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1429450179.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6122,81 +6122,93 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:77 apps/devhub/templates/devhub/personas/submit.html:31
 msgid "Theme Details"
-msgstr ""
+msgstr "Detaljer för tema"
 
 #: apps/devhub/templates/devhub/personas/edit.html:87 apps/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Tillhandahålla en snygg URL för din detaljsida."
 
 #: apps/devhub/templates/devhub/personas/edit.html:92 apps/devhub/templates/devhub/personas/submit.html:41
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Välj den kategori som bäst beskriver ditt tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:95 apps/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Lägg till några taggar för att beskriva ditt tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106 apps/devhub/templates/devhub/personas/submit.html:54
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
+"En kort förklaring av ditt temas grundläggande funktionalitet som visas i "
+"sök- och bläddrings listor, samt överst på ditt temas informationssida."
 
 #: apps/devhub/templates/devhub/personas/edit.html:122 apps/devhub/templates/devhub/personas/submit.html:68
 msgid "Theme License"
-msgstr ""
+msgstr "Licens för tema"
 
 #: apps/devhub/templates/devhub/personas/edit.html:126 apps/devhub/templates/devhub/personas/submit.html:72
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Kan andra dela ditt tema, så länge du omnämnes?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
+"Licensgivaren tillåter andra att kopiera, distribuera, visa och utförara "
+"arbetet, även för kommersiella ändamål."
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr ""
+"Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra "
+"arbetet endast för icke-kommersiella ändamål."
 
 #: apps/devhub/templates/devhub/personas/edit.html:147 apps/devhub/templates/devhub/personas/submit.html:93
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Kan andra använda ditt tema i kommersiellt syfte?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:168 apps/devhub/templates/devhub/personas/submit.html:114
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Kan andra skapa utvecklingar från ditt tema?"
 
 #: apps/devhub/templates/devhub/personas/edit.html:174 apps/devhub/templates/devhub/personas/submit.html:120
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
+"Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra "
+"arbetet, samt göra utvecklingar av tidigare arbete."
 
 #: apps/devhub/templates/devhub/personas/edit.html:182 apps/devhub/templates/devhub/personas/submit.html:128
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ja, så länge de delar likadant"
 
 #: apps/devhub/templates/devhub/personas/edit.html:183 apps/devhub/templates/devhub/personas/submit.html:129
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
+"Licensgivaren tillåter andra att distribuera utvecklingar endast under samma "
+"licens eller en kompatibel med den som reglerar licensgivarens arbete."
 
 #: apps/devhub/templates/devhub/personas/edit.html:192 apps/devhub/templates/devhub/personas/submit.html:138
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
+"Licensgivaren tillåter andra att kopiera, distribuera och överföra endast "
+"oförändrade kopior av arbetet — inte arbetet som bygger på den."
 
 #: apps/devhub/templates/devhub/personas/edit.html:199 apps/devhub/templates/devhub/personas/submit.html:145
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Ditt tema kommer att släppas under följande licens:"
 
 #: apps/devhub/templates/devhub/personas/edit.html:202 apps/devhub/templates/devhub/personas/submit.html:148
 msgid "Select a different license."
-msgstr ""
+msgstr "Välj en annan licens."
 
 #: apps/devhub/templates/devhub/personas/edit.html:207 apps/devhub/templates/devhub/personas/submit.html:153
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Välj en licens för ditt tema."
 
 #: apps/devhub/templates/devhub/personas/edit.html:217 apps/devhub/templates/devhub/personas/submit.html:163
 msgid "Theme Design"
-msgstr ""
+msgstr "Design för tema"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
@@ -6220,7 +6232,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Du kan uppdatera ditt temas design här när det har godkänts."
 
 #: apps/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
@@ -6279,6 +6291,10 @@ msgid ""
 "By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
 "href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
 msgstr ""
+"Genom att skicka in ditt tema, godkänner du <a href=\"%(tos_url)s\" "
+"target=\"_blank\">villkoren för teman</a>. Ditt tema är föremål för "
+"godkännande i enlighet med de normer som fastställts i <a href=\"%"
+"(guidelines_url)s\" target=\"_blank\">granskningsriktlinjerna</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -7064,11 +7080,11 @@ msgstr ""
 
 #: apps/editors/helpers.py:121
 msgid "Pending Themes"
-msgstr ""
+msgstr "Väntande teman"
 
 #: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Flaggade teman"
 
 #: apps/editors/helpers.py:123
 msgid "Update Themes"
@@ -7432,7 +7448,7 @@ msgstr ""
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45 apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
@@ -7674,7 +7690,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/queue.html:181 apps/editors/templates/editors/themes/queue_list.html:91
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Nyttiga länkar:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
@@ -7807,15 +7823,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/reviewlog.html:59 apps/editors/templates/editors/themes/logs.html:36
 msgid "Show Comments"
-msgstr ""
+msgstr "Visa kommentarer"
 
 #: apps/editors/templates/editors/reviewlog.html:60 apps/editors/templates/editors/themes/logs.html:37
 msgid "Hide Comments"
-msgstr ""
+msgstr "Dölj kommentarer"
 
 #: apps/editors/templates/editors/reviewlog.html:72 apps/editors/templates/editors/themes/logs.html:54
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Inga granskningar funna för denna period."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
@@ -7861,19 +7877,19 @@ msgstr ""
 #: apps/editors/templates/editors/includes/search_results_themes.html:6 apps/editors/templates/editors/themes/history_table.html:7 apps/editors/templates/editors/themes/logs.html:19
 #: apps/editors/templates/editors/themes/queue_list.html:49 apps/editors/templates/editors/themes/single.html:26 apps/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr ""
+msgstr "Granskare"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Borttagna teman"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Datum för borttagning"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Inga borttagna teman hittades för denna period."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -7881,15 +7897,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Granskningsdatum"
 
 #: apps/editors/templates/editors/themes/history_table.html:9 apps/editors/templates/editors/themes/logs.html:18
 msgid "Action"
-msgstr ""
+msgstr "Åtgärd"
 
 #: apps/editors/templates/editors/themes/history_table.html:10
 msgid "Reason"
-msgstr ""
+msgstr "Orsak"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
@@ -7923,7 +7939,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "Granskningsalternativ"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
@@ -7931,43 +7947,43 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Aktivera tangentbordsgenvägar"
 
 #: apps/editors/templates/editors/themes/queue.html:64
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tangentbordsgenvägar"
 
 #: apps/editors/templates/editors/themes/queue.html:67
 msgid "Next Theme"
-msgstr ""
+msgstr "Nästa tema"
 
 #: apps/editors/templates/editors/themes/queue.html:68
 msgid "Previous Theme"
-msgstr ""
+msgstr "Föregående tema"
 
 #: apps/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Din granksningshistorik"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Skicka in granskning"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Skicka in granskningar"
 
 #: apps/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} av {1} granskade"
 
 #: apps/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Det finns för närvarande inga teman att granska."
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Rensa sökning"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
@@ -8000,19 +8016,19 @@ msgstr ""
 #. {previous review action taken on theme}: {comment about review action}
 #: apps/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Mer info begärd: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Flaggad: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
-msgstr ""
+msgstr "Godkänn tema"
 
 #: apps/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
-msgstr ""
+msgstr "Fältet krävs"
 
 #: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
