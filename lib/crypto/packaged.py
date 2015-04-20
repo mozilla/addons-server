@@ -23,7 +23,7 @@ class SigningError(Exception):
 def get_endpoint(file_obj):
     """Get the endpoint to sign the file, depending on its review status."""
     server = settings.SIGNING_SERVER
-    if file_obj.status != amo.STATUS_PUBLIC:
+    if file_obj.version.addon.status != amo.STATUS_PUBLIC:
         server = settings.PRELIMINARY_SIGNING_SERVER
     if not server:
         return

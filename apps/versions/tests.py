@@ -436,21 +436,6 @@ class TestVersion(amo.tests.TestCase):
         self.version.sign_files()
         assert sign_mock.called
 
-    @mock.patch('lib.crypto.packaged.sign')
-    def test_sign_files(self, sign_mock):
-        no_sign_types = [t for t in amo.ADDON_TYPE.keys()
-                         if t != amo.ADDON_EXTENSION]
-        # Don't sign for anything else than an extension.
-        for addon_type in no_sign_types:
-            self.version.addon.update(type=addon_type)
-            assert not sign_mock.called, (
-                'lib.crypto.packaged.sign called for addon type {0}'.format(
-                    addon_type))
-        # Sign files if it's an extension.
-        self.version.addon.update(type=amo.ADDON_EXTENSION)
-        self.version.sign_files()
-        assert sign_mock.called
-
 
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
