@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import shutil
 import zipfile
 
@@ -8,29 +9,25 @@ from lxml import etree
 
 import amo
 from versions.models import Version
-from lib.crypto.packaged import sign_file, SigningError
-
-# Python 2.6 and earlier doesn't have context manager support
-ZipFile = zipfile.ZipFile
-if not hasattr(zipfile.ZipFile, "__enter__"):
-    class ZipFile(zipfile.ZipFile):
-        def __enter__(self):
-            return self
-
-        def __exit__(self, type, value, traceback):
-            self.close()
+from lib.crypto.packaged import sign_file
 
 log = logging.getLogger('z.task')
 
 
 @task
 def sign_addons(addon_ids, force=False, **kw):
-    log.info('[{0}] Signing addons.'.format(addon_ids))
-    for version in Version.objects.filter(
-            addon_id__in=addon_ids, addon__type=amo.ADDON_EXTENSION):
-        # We need to bump the version number of the file and the Version, so
-        # the Firefox extension update mecanism picks this new signed version
-        # and installs it.
+    """Used to sign all the versions of an addon.
+
+    This is used in the 'sign_addons' and 'process_addons --task sign_addons'
+    management commands.
+
+    It also bumps the version number of the file and the Version, so the
+    Firefox extension update mecanism picks this new signed version and
+    installs it.
+    """
+    log.info('[{0}] Signing addons.'.format(len(addon_ids)))
+    for version in Version.objects.filter(addon_id__in=addon_ids,
+                                          addon__type=amo.ADDON_EXTENSION):
         if force:
             to_sign = version.files.all()
         else:
@@ -41,15 +38,27 @@ def sign_addons(addon_ids, force=False, **kw):
             continue
         log.info('Signing addon {0}, version {1}'.format(version.addon,
                                                          version))
-        try:
-            for file_obj in to_sign:
+        signed = False  # Did we sign at least one file?
+        for file_obj in to_sign:
+            if not os.path.exists(file_obj.file_path):
+                log.info('File {0} does not exist, skip'.format(file_obj.pk))
+                continue
+            # Save the original file, before bumping the version.
+            backup_path = '{0}.backup_signature'.format(file_obj.file_path)
+            shutil.copy(file_obj.file_path, backup_path)
+            try:
+                # Need to bump the version (modify install.rdf or package.json)
+                # before the file is signed.
                 bump_version_number(file_obj)
-                sign_file(file_obj)
-            # Now update the Version model.
+                signed = signed or bool(sign_file(file_obj))
+            except:
+                log.error('Failed signing version {0}'.format(version.pk),
+                          exc_info=True)
+                # Revert the version bump, restore the backup.
+                shutil.copy(backup_path, file_obj.file_path)
+        # Now update the Version model, if we signed at least one file.
+        if signed:
             version.update(version=_dot_one(version.version))
-        except (SigningError, zipfile.BadZipfile, IOError) as e:
-            log.warning(
-                'Failed signing version {0}: {1}.'.format(version.pk, e))
 
 
 def bump_version_number(file_obj):
@@ -57,9 +66,9 @@ def bump_version_number(file_obj):
     # Create a new xpi with the bumped version.
     bumped = '{0}.bumped'.format(file_obj.file_path)
     # Copy the original XPI, with the updated install.rdf or package.json.
-    with ZipFile(file_obj.file_path, 'r') as source:
+    with zipfile.ZipFile(file_obj.file_path, 'r') as source:
         file_list = source.infolist()
-        with ZipFile(bumped, 'w', zipfile.ZIP_DEFLATED) as dest:
+        with zipfile.ZipFile(bumped, 'w', zipfile.ZIP_DEFLATED) as dest:
             for file_ in file_list:
                 content = source.read(file_.filename)
                 if file_.filename == 'install.rdf':

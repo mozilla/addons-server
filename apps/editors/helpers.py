@@ -692,11 +692,11 @@ class ReviewFiles(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        # Sign addon.
-        self.version.sign_files()
-
         self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
                        copy_to_mirror=True)
+
+        # Sign addon.
+        self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         self.notify_email('%s_to_public' % self.review_type,
