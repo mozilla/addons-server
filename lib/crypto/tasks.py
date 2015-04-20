@@ -46,14 +46,14 @@ def sign_addons(addon_ids, force=False, **kw):
                 bump_version_number(file_obj)
                 sign_file(file_obj)
             # Now update the Version model.
-            version.update(version='{0}.1'.format(version.version))
+            version.update(version=_dot_one(version.version))
         except (SigningError, zipfile.BadZipfile, IOError) as e:
             log.warning(
                 'Failed signing version {0}: {1}.'.format(version.pk, e))
 
 
 def bump_version_number(file_obj):
-    """Add a .1 to the version number in the install.rdf or package.json."""
+    """Add a '.1-signed' to the version number."""
     # Create a new xpi with the bumped version.
     bumped = '{0}.bumped'.format(file_obj.file_path)
     # Copy the original XPI, with the updated install.rdf or package.json.
@@ -72,12 +72,12 @@ def bump_version_number(file_obj):
 
 
 def _dot_one(version):
-    """Returns the version with an appended .1 on it."""
-    return '{0}.1'.format(version)
+    """Returns the version with an appended '.1-signed' on it."""
+    return '{0}.1-signed'.format(version)
 
 
 def _bump_version_in_install_rdf(content):
-    """Add a '.1' to the version number in the install.rdf provided."""
+    """Add a '.1-signed' to the version number in the install.rdf provided."""
     # We need to use an XML parser, and not a RDF parser, because our
     # install.rdf files aren't really standard (they use default namespaces,
     # don't namespace the "about" attribute... rdflib can parse them, and can
@@ -103,7 +103,7 @@ def _bump_version_in_install_rdf(content):
 
 
 def _bump_version_in_package_json(content):
-    """Add a '.1' to the version number in the package.json provided."""
+    """Add a '.1-signed' to the version number in the package.json provided."""
     bumped = json.loads(content)
     if 'version' in bumped:
         bumped['version'] = _dot_one(bumped['version'])

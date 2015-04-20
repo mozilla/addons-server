@@ -149,7 +149,7 @@ class TestTasks(amo.tests.TestCase):
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
-            assert self.version.version == '1.3.1'
+            assert self.version.version == '1.3.1-signed'
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_resign_dont_bump_version_in_model(self, mock_sign_file):
@@ -180,21 +180,21 @@ class TestTasks(amo.tests.TestCase):
             tasks.sign_addons([self.addon.pk], force=True)
             assert mock_sign_file.called
             self.version.reload()
-            assert self.version.version == '1.3.1'
+            assert self.version.version == '1.3.1-signed'
 
     def test_bump_version_in_install_rdf(self):
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                  self.file1.file_path):
             tasks.bump_version_number(self.file1)
             parsed = parse_xpi(self.file1.file_path)
-            assert parsed['version'] == '1.3.1'
+            assert parsed['version'] == '1.3.1-signed'
 
     def test_bump_version_in_alt_install_rdf(self):
         with amo.tests.copy_file('apps/files/fixtures/files/alt-rdf.xpi',
                                  self.file1.file_path):
             tasks.bump_version_number(self.file1)
             parsed = parse_xpi(self.file1.file_path)
-            assert parsed['version'] == '2.1.106.1'
+            assert parsed['version'] == '2.1.106.1-signed'
 
     def test_bump_version_in_package_json(self):
         with amo.tests.copy_file(
@@ -202,4 +202,4 @@ class TestTasks(amo.tests.TestCase):
                 self.file1.file_path):
             tasks.bump_version_number(self.file1)
             parsed = parse_xpi(self.file1.file_path)
-            assert parsed['version'] == '0.0.1.1'
+            assert parsed['version'] == '0.0.1.1-signed'
