@@ -488,7 +488,8 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     def sign_files(self):
         """Sign the files for this version if it's an extension."""
         if self.addon.type == amo.ADDON_EXTENSION:
-            packaged.sign(self)
+            for file_obj in self.files.all():
+                packaged.sign_file(file_obj)
 
     @property
     def is_listed(self):
