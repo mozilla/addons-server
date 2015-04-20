@@ -403,7 +403,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign')
+    @patch('lib.crypto.packaged.sign_file')
     def test_nomination_to_public(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -417,14 +417,14 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
-            sign_mock.assert_called_with(self.version)
+            sign_mock.assert_called_with(self.file)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign')
+    @patch('lib.crypto.packaged.sign_file')
     def test_nomination_to_preliminary(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -440,7 +440,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
-            sign_mock.assert_called_with(self.version)
+            sign_mock.assert_called_with(self.file)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)
