@@ -38,7 +38,7 @@ def sign_addons(addon_ids, force=False, **kw):
             continue
         log.info('Signing addon {0}, version {1}'.format(version.addon,
                                                          version))
-        signed = False  # Did we sign at least one file?
+        bump_version = False  # Did we sign at least one file?
         for file_obj in to_sign:
             if not os.path.exists(file_obj.file_path):
                 log.info('File {0} does not exist, skip'.format(file_obj.pk))
@@ -50,14 +50,18 @@ def sign_addons(addon_ids, force=False, **kw):
                 # Need to bump the version (modify install.rdf or package.json)
                 # before the file is signed.
                 bump_version_number(file_obj)
-                signed = signed or bool(sign_file(file_obj))
+                signed = bool(sign_file(file_obj))
+                if signed:  # Bump the version number if at least one signed.
+                    bump_version = True
+                else:  # We didn't sign, so revert the version bump.
+                    shutil.move(backup_path, file_obj.file_path)
             except:
-                log.error('Failed signing version {0}'.format(version.pk),
+                log.error('Failed signing file {0}'.format(file_obj.pk),
                           exc_info=True)
                 # Revert the version bump, restore the backup.
-                shutil.copy(backup_path, file_obj.file_path)
+                shutil.move(backup_path, file_obj.file_path)
         # Now update the Version model, if we signed at least one file.
-        if signed:
+        if bump_version:
             version.update(version=_dot_one(version.version))
 
 
