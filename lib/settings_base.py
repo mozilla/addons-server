@@ -984,7 +984,8 @@ CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_HIJACK_ROOT_LOGGER = False
-CELERY_IMPORTS = ('lib.video.tasks', 'lib.es.management.commands.reindex')
+CELERY_IMPORTS = ('lib.crypto.tasks', 'lib.es.management.commands.reindex',
+                  'lib.video.tasks')
 
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
