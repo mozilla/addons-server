@@ -1,22 +1,25 @@
 {# Steps below HAS_ADDON don't have an addon associated.  Once we have an
    addon we can't go back below that line. #}
 {% set HAS_ADDON = 3 %}
-{% set NAV = (_('Getting Started'),
-              _('Upload your add-on'),
-              _('Describe your add-on'),
-              _('Add images'),
-              _('Select a license'),
-              _('Select a review process'),
-              _("You're done!")) %}
+{# List of steps: (text, class). A class of 'all' means the step is relevant
+   to listed or unlisted addons, a class of 'listed' means it's only relevant
+   to listed addons, not unlisted ones. #}
+{% set NAV = ((_('Getting Started'), 'all'),
+              (_('Upload your add-on'), 'all'),
+              (_('Describe your add-on'), 'all'),
+              (_('Add images'), 'listed'),
+              (_('Select a license'), 'listed'),
+              (_('Select a review process'), 'listed'),
+              (_("You're done!"), 'all')) %}
 {% set MAX = 7 %}
 {% set BASE = 'devhub.submit.%s' %}
 <div class="highlight">
   <hgroup>
     <h3>{{ _('Submission Process') }}</h3>
   </hgroup>
-  <ol class="submit-addon-progress">
-    {% for text in NAV %}
-      <li {% if step.current == loop.index %}class="current"{% endif %}>
+  <ol class="submit-addon-progress{% if addon and not addon.is_listed %} unlisted{% endif %}">
+    {% for text, class in NAV %}
+      <li class="{{ class }}{% if step.current == loop.index %} current{% endif %}">
         {% if step.current < HAS_ADDON %}
           {% if loop.index <= step.current %}
             <a href="{{ url(BASE % loop.index) }}">{{ text }}</a>
@@ -27,7 +30,7 @@
           {# 1. We have an addon, so don't link to non-addon steps.
              2. Don't link steps above the max step the addon has reached.
              3. If step.max == MAX the addon is done, so we only show the final page. #}
-          {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX or not addon.is_listed %}
+          {% if loop.index < HAS_ADDON or loop.index > step.max or step.max == MAX %}
             {{ text }}
           {% else %}
             <a href="{{ url(BASE % loop.index, addon.slug) }}">{{ text }}</a>

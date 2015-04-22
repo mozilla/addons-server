@@ -92,15 +92,19 @@ $(document).ready(function() {
     var $isListed = $('#id_is_listed');
     var $isSideloadLabel = $('label[for=id_is_sideload]');
     var $isSideload = $('#id_is_sideload');
+    var $submitAddonProgress = $('.submit-addon-progress');
     function updateListedStatus() {
-      if ($isListed.exists() &&
-          $isListed.is(':checked')) {
-        $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
-        $isSideloadLabel.hide();
-        $isSideload.attr('checked', false);
-      } else {
-        $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
-        $isSideloadLabel.show();
+      if ($isListed.exists()) {
+        if ($isListed.is(':checked')) {  // It's a listed add-on.
+          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+          $isSideloadLabel.hide();
+          $isSideload.attr('checked', false);
+          $submitAddonProgress.removeClass('unlisted');
+        } else {  // It's an unlisted add-on.
+          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+          $isSideloadLabel.show();
+          $submitAddonProgress.addClass('unlisted');
+        }
       }
       /* Don't allow submitting, need to reupload/revalidate the file. */
       $('.addon-upload-dependant').attr('disabled', true);

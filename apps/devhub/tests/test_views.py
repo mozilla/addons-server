@@ -1098,7 +1098,7 @@ class TestSubmitBase(amo.tests.TestCase):
         self.addon = self.get_addon()
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(pk=3615)
+        return Addon.with_unlisted.no_cache().get(pk=3615)
 
     def get_version(self):
         return self.get_addon().versions.get()
@@ -1203,6 +1203,31 @@ class TestSubmitStep3(TestSubmitBase):
         eq_(addon.slug, 'testname')
         eq_(addon.description, 'desc')
         eq_(addon.summary, 'Hello!')
+        # Test add-on log activity.
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), (
+            "Creating a description needn't be logged.")
+
+    def test_submit_unlisted_addon(self):
+        self.addon.update(is_listed=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # Post and be redirected.
+        response = self.client.post(self.url, {'name': 'unlisted addon',
+                                               'slug': 'unlisted-addon',
+                                               'summary': 'summary'})
+        assert response.status_code == 302
+        assert response.url.endswith(reverse('devhub.submit.7',
+                                             args=['unlisted-addon']))
+        # Unlisted addons don't need much info, and their queue is chosen
+        # automatically on step 2, so we skip steps 4, 5 and 6.
+        assert self.get_step().step == 7
+
+        addon = self.get_addon()
+        assert addon.name == 'unlisted addon'
+        assert addon.slug == 'unlisted-addon'
+        assert addon.summary == 'summary'
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
         assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), (
@@ -1851,21 +1876,25 @@ class TestSubmitSteps(amo.tests.TestCase):
         self.assert_linked(doc, [3, 4, 5, 6])
         self.assert_highlight(doc, 6)
 
-    def test_menu_step_6_unlisted(self):
-        SubmitStep.objects.create(addon_id=3615, step=6)
-        Addon.objects.get(pk=3615).update(is_listed=False)
-        url = reverse('devhub.submit.6', args=['a3615'])
-        doc = pq(self.client.get(url).content)
-        # Skipped from step 2 to 6, as unlisted add-ons don't need listing
-        # information. Thus none of the steps from 3 to 6 should be links.
-        self.assert_linked(doc, [])
-        self.assert_highlight(doc, 6)
-
     def test_menu_step_7(self):
         url = reverse('devhub.submit.7', args=['a3615'])
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [])
         self.assert_highlight(doc, 7)
+
+    def test_menu_step_7_unlisted(self):
+        SubmitStep.objects.create(addon_id=3615, step=7)
+        Addon.objects.get(pk=3615).update(is_listed=False)
+        url = reverse('devhub.submit.7', args=['a3615'])
+        doc = pq(self.client.get(url).content)
+        self.assert_linked(doc, [])  # Last step: no previous step linked.
+        # Skipped from step 3 to 7, as unlisted add-ons don't need listing
+        # information. Thus none of the steps from 4 to 6 should be there.
+        # For reference, the steps that are with the "listed" class (instead of
+        # "all") aren't displayed.
+        assert len(doc('.submit-addon-progress li.all')) == 4
+        # The step 7 is thus the 4th visible in the list.
+        self.assert_highlight(doc, 7)  # Current step is still the 7th.
 
 
 class TestUpload(BaseUploadTest):
@@ -2784,51 +2813,36 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     @mock.patch('devhub.views.sign_file')
     def test_success_unlisted(self, mock_sign_file):
-        eq_(Addon.objects.count(), 0)
+        eq_(Addon.with_unlisted.count(), 0)
         # No validation errors or warning.
         self.upload = self.get_upload(
             'extension.xpi',
             validation=json.dumps(dict(errors=0, warnings=0, notices=2,
                                        metadata={}, messages=[])))
-        r = self.post(is_listed=False)
+        self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE  # Automatic signing.
         assert mock_sign_file.called
-        # Skip from step 2 to step 6.
-        self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
-        log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
-            'New add-on creation never logged.')
 
     @mock.patch('lib.crypto.packaged.sign_file')
     def test_success_unlisted_fail_validation(self, mock_sign_file):
-        eq_(Addon.objects.count(), 0)
-        r = self.post(is_listed=False)
+        eq_(Addon.with_unlisted.count(), 0)
+        self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         assert addon.status == amo.STATUS_UNREVIEWED  # Prelim review.
         assert not mock_sign_file.called
-        # Skip from step 2 to step 6.
-        self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
-        log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
-            'New add-on creation never logged.')
 
     @mock.patch('lib.crypto.packaged.sign_file')
     def test_success_unlisted_sideload(self, mock_sign_file):
-        eq_(Addon.objects.count(), 0)
-        r = self.post(is_listed=False, is_sideload=True)
+        eq_(Addon.with_unlisted.count(), 0)
+        self.post(is_listed=False, is_sideload=True)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         # Full review for sideload addons.
         assert addon.status == amo.STATUS_NOMINATED
         assert not mock_sign_file.called
-        # Skip from step 2 to step 6.
-        self.assertRedirects(r, reverse('devhub.submit.6', args=[addon.slug]))
-        log_items = ActivityLog.objects.for_addons(addon)
-        assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
-            'New add-on creation never logged.')
 
     def test_missing_platforms(self):
         r = self.client.post(self.url, dict(upload=self.upload.pk))
