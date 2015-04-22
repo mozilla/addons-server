@@ -4,14 +4,22 @@ import os
 import shutil
 import zipfile
 
+from django.db.models import Q
+
 from celeryutils import task
 from lxml import etree
 
 import amo
 from versions.models import Version
 from lib.crypto.packaged import sign_file
+from versions.compare import version_int
 
 log = logging.getLogger('z.task')
+
+# Minimum Firefox version for default to compatible addons.
+MIN_D2C_VERSION = '4'
+# Minimum Firefox version for not default to compatible addons.
+MIN_NOT_D2C_VERSION = '37'
 
 
 @task
@@ -26,12 +34,30 @@ def sign_addons(addon_ids, force=False, **kw):
     installs it.
     """
     log.info('[{0}] Signing addons.'.format(len(addon_ids)))
+
+    def file_supports_firefox(version):
+        """Return a Q object: files supporting at least a firefox version."""
+        return Q(version__apps__max__application=amo.FIREFOX.id,
+                 version__apps__max__version_int__gte=version_int(version))
+
+    is_default_compatible = Q(binary_components=False,
+                              strict_compatibility=False)
+    # We only want to sign files that are at least compatible with Firefox
+    # MIN_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
+    # to compatible.
+    # The signing feature should be supported from Firefox 40 and above, but
+    # we're still signing some files that are a bit older just in case.
+    ff_version_filter = (
+        (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
+        (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
+
     for version in Version.objects.filter(addon_id__in=addon_ids,
                                           addon__type=amo.ADDON_EXTENSION):
+        to_sign = version.files.filter(ff_version_filter)
         if force:
-            to_sign = version.files.all()
+            to_sign = to_sign.all()
         else:
-            to_sign = [f for f in version.files.all() if not f.is_signed]
+            to_sign = [f for f in to_sign.all() if not f.is_signed]
         if not to_sign:
             log.info('Not signing addon {0}, version {1} (no files or already '
                      'signed)'.format(version.addon, version))
@@ -40,7 +66,7 @@ def sign_addons(addon_ids, force=False, **kw):
                                                          version))
         bump_version = False  # Did we sign at least one file?
         for file_obj in to_sign:
-            if not os.path.exists(file_obj.file_path):
+            if not os.path.isfile(file_obj.file_path):
                 log.info('File {0} does not exist, skip'.format(file_obj.pk))
                 continue
             # Save the original file, before bumping the version.
