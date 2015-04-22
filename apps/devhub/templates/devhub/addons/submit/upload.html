@@ -4,7 +4,8 @@
 
 {% block primary %}
 
-<form method="post" id="create-addon" class="item" enctype="multipart/form-data">
+<form method="post" id="create-addon" class="item" enctype="multipart/form-data"
+    data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}">
   {{ csrf() }}
   <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
   <p>

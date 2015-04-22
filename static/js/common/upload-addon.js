@@ -329,13 +329,18 @@
 
                     // Specific messages for unlisted addons.
                     var isListed = $('#id_is_listed').is(':checked'),
-                        isSideload = $('#id_is_sideload').is(':checked');
+                        isSideload = $('#id_is_sideload').is(':checked'),
+                        automaticValidation = $('#create-addon').data('automatic-validation');
                     if (!isListed) {
                       if (isSideload) {
                         $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
                       } else {
                         if (warnings === 0) {
-                          $("<p>").text(gettext("Your submission passed validation and will be automatically signed.")).appendTo(upload_results);
+                          if (automaticValidation) {  // Automatic validation is enabled.
+                            $("<p>").text(gettext("Your submission passed validation and will be automatically signed.")).appendTo(upload_results);
+                          } else {  // Automatic validation is not enabled.
+                            $("<p>").text(gettext("Your submission passed validation and will go through a manual review.")).appendTo(upload_results);
+                          }
                         } else {
                           $("<p>").text(gettext("Your submission didn't pass automatic validation and will go through a manual review.")).appendTo(upload_results);
                         }
