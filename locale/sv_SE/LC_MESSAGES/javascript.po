@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-22 14:24-0700\n"
 "PO-Revision-Date: 2015-01-20 18:11+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;och {0} mer"
 msgstr[1] "&hellip;och {0} fler"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:401
 msgid "See full validation report"
 msgstr "Se fullständig valideringsrapport"
 
@@ -97,27 +97,43 @@ msgstr[1] "Ditt tillägg passerade validering utan fel och {0} meddelanden."
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Ditt tillägg passerade validering utan fel eller varningar."
 
-#: static/js/common/upload-addon.js:334
+#: static/js/common/upload-addon.js:336
+msgid "Your submission will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:340
+msgid "Your submission passed validation and will be automatically signed."
+msgstr ""
+
+#: static/js/common/upload-addon.js:342
+msgid "Your submission passed validation and will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:345
+msgid "Your submission didn't pass automatic validation and will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkludera detaljerade versionsanteckningar (detta kan göras i nästa steg)."
 
-#: static/js/common/upload-addon.js:335
+#: static/js/common/upload-addon.js:355
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Om ditt tillägg kräver ett konto till en webbplats för att bli fullständigt testat, inkludera ett test användarnamn och lösenord i meddelande till granskaren (detta kan göras i nästa steg)."
 
-#: static/js/common/upload-addon.js:350
-msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr "Om ditt tillägg är avsett för en begränsad publik, bör du välja preliminär granskning istället för fullständig granskning."
+#: static/js/common/upload-addon.js:356
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr ""
 
-#: static/js/common/upload-addon.js:352
+#: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
 msgstr "Checklista för att skicka in tillägg"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:370
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vänligen kontrollera följande punkter innan du slutför ditt bidrag. Detta kommer att minimera förseningar eller missförstånd under granskningsprocessen:"
 
-#: static/js/common/upload-addon.js:355
+#: static/js/common/upload-addon.js:372
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -125,19 +141,19 @@ msgstr ""
 "Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive kända bibliotek) måste skicka in sina källor separat för granskning. Se till att du använder uppladdningsfältet för "
 "källkoden för att undvika att ditt bidrag avvisas."
 
-#: static/js/common/upload-addon.js:373
+#: static/js/common/upload-addon.js:390
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
 
-#: static/js/common/upload-addon.js:390
+#: static/js/common/upload-addon.js:407
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det här."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:443
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Vissa plattformar är inte tillgängliga för den här typen av tillägg."
 
-#: static/js/common/upload-addon.js:428
+#: static/js/common/upload-addon.js:445
 msgid "Sorry, no supported platform has been found."
 msgstr "Tyvärr har ingen plattform som stöds hittats."
 
@@ -760,7 +776,7 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Andra"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1258 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Välj en applikation först"
 
@@ -939,59 +955,59 @@ msgstr "Ta bort från favoriter"
 msgid "Stop following"
 msgstr "Sluta följa"
 
-#: static/js/zamboni/devhub.js:127
+#: static/js/zamboni/devhub.js:161
 msgid "Your browser does not support the video tag"
 msgstr "Din webbläsare stöder inte videotaggen"
 
-#: static/js/zamboni/devhub.js:376
+#: static/js/zamboni/devhub.js:410
 msgid "Changes Saved"
 msgstr "Ändringar sparade"
 
-#: static/js/zamboni/devhub.js:392
+#: static/js/zamboni/devhub.js:426
 msgid "Enter a new author's email address"
 msgstr "Ange en ny e-postadress till utvecklaren"
 
-#: static/js/zamboni/devhub.js:539
+#: static/js/zamboni/devhub.js:573
 msgid "There was an error uploading your file."
 msgstr "Det var problem med uppladdningen av filen."
 
-#: static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub.js:718
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fil"
 msgstr[1] "{files} filer"
 
-#: static/js/zamboni/devhub.js:687
+#: static/js/zamboni/devhub.js:721
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} användarrecension"
 msgstr[1] "{reviews} användarrecensioner"
 
-#: static/js/zamboni/devhub.js:799
+#: static/js/zamboni/devhub.js:833
 msgid "Learn more"
 msgstr "Lär dig mer"
 
-#: static/js/zamboni/devhub.js:803
+#: static/js/zamboni/devhub.js:837
 msgid "Example"
 msgstr "Exempel"
 
-#: static/js/zamboni/devhub.js:1159
+#: static/js/zamboni/devhub.js:1193
 msgid "Image changes being processed"
 msgstr "Bildändringar behandlas"
 
-#: static/js/zamboni/devhub.js:1286
+#: static/js/zamboni/devhub.js:1320
 msgid "Starting tests..."
 msgstr "Börjar tester..."
 
-#: static/js/zamboni/devhub.js:1293
+#: static/js/zamboni/devhub.js:1327
 msgid "Waiting for test results..."
 msgstr "Väntar på testresultat..."
 
-#: static/js/zamboni/devhub.js:1295 static/js/zamboni/devhub.js:1300
+#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
 msgid "Internal Server Error"
 msgstr "Internt serverfel"
 
-#: static/js/zamboni/devhub.js:1335
+#: static/js/zamboni/devhub.js:1369
 msgid "Must be a valid e-mail address."
 msgstr "Måste vara en giltig e-postadress."
 

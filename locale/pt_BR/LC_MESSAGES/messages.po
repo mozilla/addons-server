@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-08 09:07-0700\n"
+"POT-Creation-Date: 2015-04-22 14:24-0700\n"
 "PO-Revision-Date: 2015-04-11 12:06+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -348,7 +348,7 @@ msgid "Add-on Information for {0}"
 msgstr "Informações do complemento {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:72
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:73
 msgid "Updated"
 msgstr "Atualizado"
 
@@ -1216,7 +1216,7 @@ msgstr "Usuários"
 msgid "Weekly Downloads"
 msgstr "Downloads semanais"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Versão"
 
@@ -1277,7 +1277,7 @@ msgstr "Complementos"
 msgid "Easy ways to personalize."
 msgstr "Maneiras fáceis de personalizar."
 
-#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:46 apps/discovery/templates/discovery/pane.html:35
+#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:47 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "Saiba mais"
@@ -2164,11 +2164,11 @@ msgstr "não são permitidos links"
 msgid "This url is already in use by another collection"
 msgstr "Essa URL já está sendo usada por outra coleção"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:999
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1008
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser em PNG ou JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1017 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1026 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Por favor, use imagens menores que %dMB."
 
@@ -2211,7 +2211,7 @@ msgstr "Remover dos favoritos"
 
 # 80%
 # 100%
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:71 apps/devhub/views.py:79
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:72 apps/devhub/views.py:80
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2583,8 +2583,8 @@ msgstr "Configurações de administração"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Alerta:</b> ao mudar o dono dessa coleção, você não poderá mais editá-la. Você somente poderá adicionar e remover complementos dela."
 
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:69
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2801,15 +2801,15 @@ msgstr "Mais populares"
 msgid "Up & Coming"
 msgstr "Em ascensão"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Criação"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:452 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Downloads"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:453 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Avaliação"
@@ -3188,7 +3188,7 @@ msgstr "Filtrar por Aplicação"
 msgid "Report Type"
 msgstr "Tipo de relatório"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplicativo"
 
@@ -3781,72 +3781,74 @@ msgid "Override failed validation"
 msgstr "Substituir validação com falha"
 
 #: apps/devhub/forms.py:506
-msgid "Yes, include my add-on on AMO."
-msgstr "Sim, incluir o meu complemento no AMO."
+msgid "Yes, distribute my add-on on this site."
+msgstr ""
 
 #: apps/devhub/forms.py:507
-msgid ""
-"Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
-"reasons to uncheck it."
+msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
-"Se desmarcar esta caixa, o complemento pode continuar a ser enviado e "
-"analisado, mas não será visível no AMO ou baixado por quaisquer usuários "
-"finais. Em caso de dúvida, deixe esta caixa marcada - há poucas razões para "
-"desmarcá-la."
 
-#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:513
+msgid "This add-on will be side-loaded via application installers."
+msgstr ""
+
+#: apps/devhub/forms.py:515
+msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
+msgstr ""
+
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Análise completa"
 
-#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Análise preliminar"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:536
 msgid "Please choose a review nomination type"
 msgstr "Por favor, escolha um tipo de nomeação para revisão"
 
-#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
+#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Um arquivo com uma versão terminando com a|alpha|b|beta e um número opcional é detectado como beta."
 
-#: apps/devhub/forms.py:551
+#: apps/devhub/forms.py:557
 msgid "Version %s already exists"
 msgstr "A versão %s já existe"
 
-#: apps/devhub/forms.py:563
+#: apps/devhub/forms.py:569
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Selecione uma opção válida. Essa escolha não é uma das opções disponíveis."
 
-#: apps/devhub/forms.py:592
+#: apps/devhub/forms.py:598
 msgid "You cannot upload any more files for this version."
 msgstr "Você não pode enviar mais nenhum arquivo para essa versão."
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:604
 msgid "Version doesn't match"
 msgstr "A versão não corresponde"
 
-#: apps/devhub/forms.py:627
+#: apps/devhub/forms.py:633
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Você não pode excluir um arquivo depois do processo de análise começar. Você deve excluir a versão inteira."
 
-#: apps/devhub/forms.py:647
+#: apps/devhub/forms.py:653
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "A plataforma Todas não pode ser combinada com plataformas específicas."
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:658
 msgid "A platform can only be chosen once."
 msgstr "Uma plataforma só pode ser escolhida uma vez."
 
-#: apps/devhub/forms.py:665
+#: apps/devhub/forms.py:671
 msgid "A review type must be selected."
 msgstr "Um tipo de análise deve ser selecionado."
 
-#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Selecione uma aplicação antes"
 
-#: apps/devhub/forms.py:799
+#: apps/devhub/forms.py:805
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Não pode haver mais que 3 complementos requeridos."
 
@@ -3882,15 +3884,15 @@ msgstr[1] "{0} alertas"
 msgid "Review"
 msgstr "Análise"
 
-#: apps/devhub/tasks.py:318
+#: apps/devhub/tasks.py:323
 msgid "%s responded with %s (%s)."
 msgstr "%s respondeu com %s (%s)."
 
-#: apps/devhub/tasks.py:322
+#: apps/devhub/tasks.py:327
 msgid "Connection to \"%s\" timed out."
 msgstr "A conexão com \"%s\" expirou."
 
-#: apps/devhub/tasks.py:324
+#: apps/devhub/tasks.py:329
 msgid "Could not contact host at \"%s\"."
 msgstr "Não foi possível contatar o servidor em \"%s\"."
 
@@ -3898,134 +3900,130 @@ msgstr "Não foi possível contatar o servidor em \"%s\"."
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "A validação gerou muitos erros/alertas então %s mensagens foram cortadas. Após corrigir as mensagens visíveis, você poderá ver as outras mensagens."
 
-#: apps/devhub/views.py:176
+#: apps/devhub/views.py:177
 msgid "All My Add-ons"
 msgstr "Todos os meus complementos"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "All Activity"
 msgstr "Tudo"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Updates"
 msgstr "Atualizações do complemento"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Status"
 msgstr "Status do complemento"
 
 # %1$s is the name of the collection
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "User Collections"
 msgstr "Coleções de usuários"
 
-#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Análises de usuários"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1096
+#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1105
 msgid "Changes successfully saved."
 msgstr "Alterações salvas com sucesso."
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1517
+#: apps/devhub/views.py:328 apps/devhub/views.py:1569
 msgid "Please check the form for errors."
 msgstr "Por favor, verifique se ha erros no formulário."
 
-#: apps/devhub/views.py:339
+#: apps/devhub/views.py:340
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "O complemento não pode ser excluído, mas você pode desativá-lo."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Theme deleted."
 msgstr "Tema excluído."
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Add-on deleted."
 msgstr "Complemento excluído."
 
-#: apps/devhub/views.py:355
+#: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "A senha estava incorreta. O tema não foi excluído."
 
-#: apps/devhub/views.py:360
+#: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Senha incorreta. O complemento não foi excluído."
 
-#: apps/devhub/views.py:433
+#: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
 msgstr "Foi adicionado um autor ao seu complemento"
 
-#: apps/devhub/views.py:440
+#: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
 msgstr "Foi alterado o papel de um autor do seu complemento"
 
-#: apps/devhub/views.py:459
+#: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
 msgstr "Foi removido um autor do seu complemento"
 
-#: apps/devhub/views.py:502
+#: apps/devhub/views.py:503
 msgid "There were errors in your submission."
 msgstr "Ocorreu um erro no seu envio."
 
-#: apps/devhub/views.py:566
+#: apps/devhub/views.py:567
 msgid "Validate Add-on"
 msgstr "Validar complemento"
 
-#: apps/devhub/views.py:575
+#: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
 msgstr "Verificação de compatibilidade do complemento"
 
-#: apps/devhub/views.py:638
+#: apps/devhub/views.py:647
 msgid "There was an error with the submission."
 msgstr "Houve um erro no envio."
 
-#: apps/devhub/views.py:1001 apps/users/forms.py:419
+#: apps/devhub/views.py:1010 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
 
-#: apps/devhub/views.py:1005
+#: apps/devhub/views.py:1014
 msgid "Icons cannot be animated."
 msgstr "Os ícones não podem ser animados."
 
-#: apps/devhub/views.py:1007
+#: apps/devhub/views.py:1016
 msgid "Images cannot be animated."
 msgstr "As imagens não podem ser animadas."
 
-#: apps/devhub/views.py:1020
+#: apps/devhub/views.py:1029
 msgid "Images cannot be larger than %dKB."
 msgstr "As imagens não podem ser maiores que %d kB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1030
+#: apps/devhub/views.py:1039
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A imagem deve ter exatamente {0} píxeis de largura e {1} píxeis de altura."
 
-#: apps/devhub/views.py:1037
+#: apps/devhub/views.py:1046
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao enviar sua imagem."
 
-#: apps/devhub/views.py:1135
+#: apps/devhub/views.py:1144
 msgid "Version %s disabled."
 msgstr "Versão %s desativada."
 
 # %s is the version number, e.g. 3.2.
-#: apps/devhub/views.py:1139
+#: apps/devhub/views.py:1148
 msgid "Version %s deleted."
 msgstr "Versão %s excluída."
 
-#: apps/devhub/views.py:1149
+#: apps/devhub/views.py:1158
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Esse arquivo falhou em algum dos testes de validação e pode não apresentar resultados completos de validação. Por favor, tome o devido cuidado ao analisá-lo."
 
-#: apps/devhub/views.py:1334
-msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr "Saltando para a etapa 6 pois o complemento não será listado"
-
-#: apps/devhub/views.py:1563
+#: apps/devhub/views.py:1615
 msgid "Preliminary Review Requested."
 msgstr "Análise preliminar solicitada."
 
-#: apps/devhub/views.py:1564
+#: apps/devhub/views.py:1616
 msgid "Full Review Requested."
 msgstr "Análise completa solicitada."
 
@@ -4072,9 +4070,7 @@ msgstr "Revisores do AMO"
 
 #: apps/devhub/templates/devhub/index.html:29
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"Vá em frente! Torne-se um revisor do AMO agora mesmo e acelere o processo de "
-"análise dos seus complementos."
+msgstr "Vá em frente! Torne-se um revisor do AMO agora mesmo e acelere o processo de análise dos seus complementos."
 
 #: apps/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
@@ -4295,10 +4291,7 @@ msgstr "Atualizar compatibilidade"
 # %s is href=... and should stay in the <a> tag.
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-"Ajustando as informações do aplicativo aqui, permitirá aos usuários "
-"instalarem o seu complemento mesmo que o manifesto de instalação do pacote "
-"indique que o complemento é incompatível."
+msgstr "Ajustando as informações do aplicativo aqui, permitirá aos usuários instalarem o seu complemento mesmo que o manifesto de instalação do pacote indique que o complemento é incompatível."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -4885,15 +4878,15 @@ msgstr "Por favor, use apenas letras, números, traços inferiores e barras na s
 msgid "Provide a brief summary:"
 msgstr "Forneça um breve resumo:"
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:38
+#: apps/devhub/templates/devhub/addons/submit/describe.html:39
 msgid "This summary will be shown in listings and searches."
 msgstr "Esse resumo será mostrado nas listagens e pesquisas."
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:55
+#: apps/devhub/templates/devhub/addons/submit/describe.html:58
 msgid "Provide a more detailed description:"
 msgstr "Forneça uma descrição mais detalhada:"
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:59
+#: apps/devhub/templates/devhub/addons/submit/describe.html:62
 msgid "The description will appear on the detail page."
 msgstr "A descrição aparecerá na página de detalhes."
 
@@ -4901,15 +4894,15 @@ msgstr "A descrição aparecerá na página de detalhes."
 msgid "Submission Complete"
 msgstr "Envio concluído"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:10 apps/devhub/templates/devhub/personas/submit_done.html:8
+#: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:13 apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
 msgstr "Você terminou!"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:11
+#: apps/devhub/templates/devhub/addons/submit/done.html:12
 msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr "Seu complemento foi enviado para uma análise preliminar."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:13
+#: apps/devhub/templates/devhub/addons/submit/done.html:14
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Seu complemento foi enviado para uma análise completa."
 
@@ -4917,11 +4910,11 @@ msgstr "Seu complemento foi enviado para uma análise completa."
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr "Você receberá uma mensagem assim que ele for analisado por um editor. Enquanto isso, você e seus amigos podem instalá-lo diretamente da página de detalhes:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
+#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/addons/submit/done.html:77 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
 msgstr "Próximos passos:"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:32
+#: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/addons/submit/done.html:82
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr "<a href=\"{0}\">Enviar</a> outro arquivo específico de uma plataforma para essa versão."
 
@@ -4937,7 +4930,7 @@ msgstr "Conte aos seus usuários por que você o criou no seu <a href=\"{0}\">Pe
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr "Veja e assine a <a href=\"{0}\">atividade do seu complemento</a> para ficar atualizado sobre análises, coleções e mais."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:37
+#: apps/devhub/templates/devhub/addons/submit/done.html:37 apps/devhub/templates/devhub/addons/submit/done.html:86
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "Ver o <a href=\"{0}\">tempo de espera</a> aproximado da análise."
 
@@ -4945,23 +4938,33 @@ msgstr "Ver o <a href=\"{0}\">tempo de espera</a> aproximado da análise."
 msgid "Get Ahead in the Review Queue!"
 msgstr "Passe na frente na fila de análise!"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:44
+#: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
+msgstr "Torne-se um revisor do AMO agora mesmo e acelere o processo de análise dos seus complementos."
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:54
+msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
-"Torne-se um revisor do AMO agora mesmo e acelere o processo de análise dos "
-"seus complementos."
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:51
-msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr "Você receberá um e-mail assim que for analisado por um editor."
+#: apps/devhub/templates/devhub/addons/submit/done.html:64
+msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:52
-msgid "Your add-on will not be publicly available on AMO."
-msgstr "Seu complemento não estará disponível publicamente no AMO."
+#: apps/devhub/templates/devhub/addons/submit/done.html:66
+msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:55
-msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
-msgstr "Se precisa de ajustar todos os detalhes de seu complemento, <a href=\"{0}\">edite a listagem</a>."
+#: apps/devhub/templates/devhub/addons/submit/done.html:70
+msgid "You'll receive an email once it has been reviewed by an editor and signed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:74
+msgid "Your add-on will not be publicly available on this website."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:84
+msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5067,31 +5070,31 @@ msgstr "Não pode solicitar Análise Completa por 10 dias"
 msgid "Choose Preliminary Review"
 msgstr "Escolher análise preliminar"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Getting Started"
 msgstr "Primeiros passos"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Upload your add-on"
 msgstr "Envie seu complemento"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:9
 msgid "Describe your add-on"
 msgstr "Descreva seu complemento"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:10
 msgid "Add images"
 msgstr "Adicione imagens"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:11
 msgid "Select a license"
 msgstr "Selecione uma licença"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:9
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:12
 msgid "Select a review process"
 msgstr "Selecione um processo de análise"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:15 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:18 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
 #: apps/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
 msgstr "Processo de envio"
@@ -5106,16 +5109,11 @@ msgstr "1º passo. Começando"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
-msgstr ""
-"Obrigado pela sua contribuição para o ecossistema de complementos da "
-"Mozilla. Este processo de submissão permite que hospede seu complemento no "
-"site ou assina-lo para hospedagem própria."
+msgstr "Obrigado pela sua contribuição para o ecossistema de complementos da Mozilla. Este processo de submissão permite que hospede seu complemento no site ou assina-lo para hospedagem própria."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
-msgstr ""
-"Para concluir a sua submissão, precisa do pacote do seu complemento (.xpi, "
-".jar, ou .xml)."
+msgstr "Para concluir a sua submissão, precisa do pacote do seu complemento (.xpi, .jar, ou .xml)."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -5141,25 +5139,25 @@ msgstr "ou <a href=\"{0}\">Cancelar</a>"
 msgid "Step 2"
 msgstr "2º passo"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:9
+#: apps/devhub/templates/devhub/addons/submit/upload.html:10
 msgid "Step 2. Upload Your Add-on"
 msgstr "2º passo. Envie seu complemento"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:11
+#: apps/devhub/templates/devhub/addons/submit/upload.html:12
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Use os campos abaixo para enviar o pacote do seu complemento e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes de validação automáticos será executada em seu "
 "arquivo."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+msgid "Do you want your add-on to be distributed on this site?"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "Esse arquivo é compatível com quais plataformas?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:37
-msgid "Do you want your add-on listed on AMO?"
-msgstr "Quer ter o complemento aparecendo no AMO?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Substituições administrativas"
 
@@ -6819,9 +6817,7 @@ msgstr "Na lista:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
-msgstr ""
-"Visível para todos em {0} e incluídos no resultado de pesquisa e listando "
-"nas páginas "
+msgstr "Visível para todos em {0} e incluídos no resultado de pesquisa e listando nas páginas "
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
@@ -6829,9 +6825,7 @@ msgstr "Oculto:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr ""
-"Hospedado no {0}, mas oculto para todos exceto os autores. Usado para "
-"ocultar temporariamente listagens ou para as descontinuar."
+msgstr "Hospedado no {0}, mas oculto para todos exceto os autores. Usado para ocultar temporariamente listagens ou para as descontinuar."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
@@ -6839,9 +6833,7 @@ msgstr "Não listado:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
-"Não distribuído no {0}. Os desenvolvedores irão enviar novas versões para "
-"serem assinadas e usarão canais próprios de distribuição dos complementos."
+msgstr "Não distribuído no {0}. Os desenvolvedores irão enviar novas versões para serem assinadas e usarão canais próprios de distribuição dos complementos."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
@@ -6931,10 +6923,7 @@ msgstr "Ocultar complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
-"Ocultar o seu complemento irá impedir que o mesmo seja apresentado em "
-"qualquer lugar na nossa galeria e irá impedir que os usuários possam receber "
-"atualizações automáticas."
+msgstr "Ocultar o seu complemento irá impedir que o mesmo seja apresentado em qualquer lugar na nossa galeria e irá impedir que os usuários possam receber atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
@@ -8856,10 +8845,8 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
-"Se atualizar para uma nova versão do Firefox ou atualizar o complemento, "
-"seus relatórios das versões antigas não serão exibidos para permitir que "
-"possa testar a nova versão. Se tiver dúvidas, por favor, pergunte nos <a "
-"href=\"%(url)s\">nossos fóruns</a>."
+"Se atualizar para uma nova versão do Firefox ou atualizar o complemento, seus relatórios das versões antigas não serão exibidos para permitir que possa testar a nova versão. Se tiver dúvidas, por "
+"favor, pergunte nos <a href=\"%(url)s\">nossos fóruns</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
 msgid ""
@@ -9211,13 +9198,9 @@ msgid ""
 "to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
 "source code, version control, bug tracking and documentation."
 msgstr ""
-"Sim. Muitos desenvolvedores preferem hospedar seus próprios complementos. "
-"Hospedá-los no <a href=\"%(amo_url)s\">Mozilla Add-ons</a>, entretanto, "
-"permite uma maior exposição do seu complemento devido ao grande volume de "
-"visitantes no site. O <a href=\"%(md_url)s\">mozdev.org</a> oferece hospedagem "
-"gratuita de projetos para aplicações e extensões Mozilla, oferecendo aos "
-"desenvolvedores ferramentas de gerenciamento de código-fonte, controle de "
-"versões catalogação de bugs e documentação."
+"Sim. Muitos desenvolvedores preferem hospedar seus próprios complementos. Hospedá-los no <a href=\"%(amo_url)s\">Mozilla Add-ons</a>, entretanto, permite uma maior exposição do seu complemento "
+"devido ao grande volume de visitantes no site. O <a href=\"%(md_url)s\">mozdev.org</a> oferece hospedagem gratuita de projetos para aplicações e extensões Mozilla, oferecendo aos desenvolvedores "
+"ferramentas de gerenciamento de código-fonte, controle de versões catalogação de bugs e documentação."
 
 #: apps/pages/templates/pages/dev_faq.html:278
 msgid "Can Mozilla host my add-on?"
@@ -9280,12 +9263,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"A página \"Meus complementos\" permite que envie complementos para o AMO. Você "
-"deve ser um usuário registrado no AMO antes de poder enviar um complemento. "
-"Antes de enviar seu complemento, certifique-se de ler o <a href=\"%"
-"(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu "
-"complemento atende aos critérios usados pelos editores para analisar "
-"complementos."
+"A página \"Meus complementos\" permite que envie complementos para o AMO. Você deve ser um usuário registrado no AMO antes de poder enviar um complemento. Antes de enviar seu complemento, "
+"certifique-se de ler o <a href=\"%(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu complemento atende aos critérios usados pelos editores para analisar complementos."
 
 #: apps/pages/templates/pages/dev_faq.html:337
 msgid "What operating system do I choose for my add-on?"
@@ -9669,13 +9648,9 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"Na maioria dos casos, os complementos podem ser instalados com um clique no "
-"botão Instalar. Para gerenciar, desativar  ou desinstalar um complemento, "
-"acesse o menu Gerenciador de Complementos do %(app_name)s. Para mais "
-"informações, leia <a href=\"%(extension_url)s\">este artigo sobre "
-"complementos</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver "
-"dificuldades ao instalar complementos, leia o artigo <a href=\"%"
-"(troubleshooting_url)s\">Correção de problemas com Complementos e Temas.</a>"
+"Na maioria dos casos, os complementos podem ser instalados com um clique no botão Instalar. Para gerenciar, desativar  ou desinstalar um complemento, acesse o menu Gerenciador de Complementos do "
+"%(app_name)s. Para mais informações, leia <a href=\"%(extension_url)s\">este artigo sobre complementos</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver dificuldades ao instalar "
+"complementos, leia o artigo <a href=\"%(troubleshooting_url)s\">Correção de problemas com Complementos e Temas.</a>"
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -10111,10 +10086,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em "
-"\"Reportar esta análise\" e esta será enviada para o site para moderação. A "
-"nossa equipa de moderação irá usar as linhas orientadoras da revisão para "
-"avaliar se a análise deve ser excluída ou reposta no site."
+"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será enviada para o site para moderação. A nossa equipa de moderação irá usar as linhas "
+"orientadoras da revisão para avaliar se a análise deve ser excluída ou reposta no site."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -11902,7 +11875,7 @@ msgstr "O complemento usa componentes binários."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "O complemento optou pela verificação de compatibilidade estrita."
 
-#: apps/versions/models.py:688
+#: apps/versions/models.py:689
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"
 

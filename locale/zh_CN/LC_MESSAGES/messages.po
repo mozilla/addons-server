@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-08 09:07-0700\n"
+"POT-Creation-Date: 2015-04-22 14:24-0700\n"
 "PO-Revision-Date: 2015-04-09 07:00+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -332,7 +332,7 @@ msgid "Add-on Information for {0}"
 msgstr "{0} 的附加组件信息"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:72
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:73
 msgid "Updated"
 msgstr "更新日期"
 
@@ -1159,7 +1159,7 @@ msgstr "用户量"
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:746 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "版本"
 
@@ -1219,7 +1219,7 @@ msgstr "附加组件"
 msgid "Easy ways to personalize."
 msgstr "简单的个性化方式。"
 
-#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:46 apps/discovery/templates/discovery/pane.html:35
+#: apps/addons/templates/addons/mobile/home.html:20 apps/devhub/templates/devhub/addons/submit/done.html:47 apps/discovery/templates/discovery/pane.html:35
 #: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "了解更多"
@@ -2078,11 +2078,11 @@ msgstr "不允许使用链接。"
 msgid "This url is already in use by another collection"
 msgstr "此网址已被其他收藏集使用"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:999
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1008
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1017 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1026 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "请使用小于 %dMB 的图像。"
 
@@ -2122,7 +2122,7 @@ msgstr "收藏夹"
 msgid "Remove from favorites"
 msgstr "从收藏夹中移除"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:71 apps/devhub/views.py:79
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:72 apps/devhub/views.py:80
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2476,8 +2476,8 @@ msgstr "管理设置"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>警告：</b>改变此收藏集的所有者后您就不能再编辑它了，只能添加和删除附加组件。"
 
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:65
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:69
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2688,15 +2688,15 @@ msgstr "用户最多"
 msgid "Up & Coming"
 msgstr "崭露头角"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:73 apps/devhub/views.py:80 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "创建日期"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:452 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "下载次数"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:453 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "评分"
@@ -3067,7 +3067,7 @@ msgstr "按应用程序排序"
 msgid "Report Type"
 msgstr "报告类型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:743 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "应用程序"
 
@@ -3648,68 +3648,74 @@ msgid "Override failed validation"
 msgstr "无视验证失败"
 
 #: apps/devhub/forms.py:506
-msgid "Yes, include my add-on on AMO."
-msgstr "是，将我的附加组件放上 AMO。"
+msgid "Yes, distribute my add-on on this site."
+msgstr ""
 
 #: apps/devhub/forms.py:507
-msgid ""
-"Unchecking this box will allow your add-on to be uploaded and reviewed but it won't be visible on AMO or downloadable by any end users. If in doubt, leave this box checked - there are very few "
-"reasons to uncheck it."
-msgstr "取消此框仍会将您的附加组件上传并进行审核，但它不会在 AMO 上被任何终端用户可见和可下载。如不确定，请保持此框选中 - 很少有理由取消勾选它。"
+msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
+msgstr ""
 
-#: apps/devhub/forms.py:525 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:513
+msgid "This add-on will be side-loaded via application installers."
+msgstr ""
+
+#: apps/devhub/forms.py:515
+msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
+msgstr ""
+
+#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "全面审核"
 
-#: apps/devhub/forms.py:526 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步审核"
 
-#: apps/devhub/forms.py:530
+#: apps/devhub/forms.py:536
 msgid "Please choose a review nomination type"
 msgstr "请选择提交审核的类型"
 
-#: apps/devhub/forms.py:534 apps/devhub/forms.py:569
+#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "一个文件具有 a|alpha|b|beta 的版本和一个可选的数字将检测为 beta 版本。"
 
-#: apps/devhub/forms.py:551
+#: apps/devhub/forms.py:557
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:563
+#: apps/devhub/forms.py:569
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "请选择一个有效的选项。目前的选项不是可用的选项之一。"
 
-#: apps/devhub/forms.py:592
+#: apps/devhub/forms.py:598
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:604
 msgid "Version doesn't match"
 msgstr "版本不匹配"
 
-#: apps/devhub/forms.py:627
+#: apps/devhub/forms.py:633
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "审核过程开始后您不能删除文件。您必须删除整个版本。"
 
-#: apps/devhub/forms.py:647
+#: apps/devhub/forms.py:653
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "不能既选择所有平台又指定特定平台。"
 
-#: apps/devhub/forms.py:652
+#: apps/devhub/forms.py:658
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#: apps/devhub/forms.py:665
+#: apps/devhub/forms.py:671
 msgid "A review type must be selected."
 msgstr "必须选择一个审核类型。"
 
-#: apps/devhub/forms.py:747 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "请先选择一个应用程序"
 
-#: apps/devhub/forms.py:799
+#: apps/devhub/forms.py:805
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
 
@@ -3743,15 +3749,15 @@ msgstr[0] "{0} 个警告"
 msgid "Review"
 msgstr "评论"
 
-#: apps/devhub/tasks.py:318
+#: apps/devhub/tasks.py:323
 msgid "%s responded with %s (%s)."
 msgstr "%s 响应 %s（%s）。"
 
-#: apps/devhub/tasks.py:322
+#: apps/devhub/tasks.py:327
 msgid "Connection to \"%s\" timed out."
 msgstr "连接“%s”超时。"
 
-#: apps/devhub/tasks.py:324
+#: apps/devhub/tasks.py:329
 msgid "Could not contact host at \"%s\"."
 msgstr "无法连接到主机“%s”。"
 
@@ -3759,132 +3765,128 @@ msgstr "无法连接到主机“%s”。"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "验证过程中产生的错误或警告信息过多，%s 个信息已被省略。在处理完可见信息后，您将可以看到其他被省略的信息。"
 
-#: apps/devhub/views.py:176
+#: apps/devhub/views.py:177
 msgid "All My Add-ons"
 msgstr "我的所有附加组件"
 
-#: apps/devhub/views.py:203
+#: apps/devhub/views.py:204
 msgid "All Activity"
 msgstr "所有动态"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "Add-on Updates"
 msgstr "附加组件更新"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Status"
 msgstr "附加组件状态"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "User Collections"
 msgstr "用户收藏集"
 
-#: apps/devhub/views.py:207 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "用户评论"
 
-#: apps/devhub/views.py:320 apps/devhub/views.py:324 apps/devhub/views.py:467 apps/devhub/views.py:496 apps/devhub/views.py:547 apps/devhub/views.py:1096
+#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1105
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
-#: apps/devhub/views.py:327 apps/devhub/views.py:1517
+#: apps/devhub/views.py:328 apps/devhub/views.py:1569
 msgid "Please check the form for errors."
 msgstr "请检查表单中的错误。"
 
-#: apps/devhub/views.py:339
+#: apps/devhub/views.py:340
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "附加组件无法被删除，可以禁用。"
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Theme deleted."
 msgstr "主题已删除。"
 
-#: apps/devhub/views.py:349
+#: apps/devhub/views.py:350
 msgid "Add-on deleted."
 msgstr "附加组件已删除。"
 
-#: apps/devhub/views.py:355
+#: apps/devhub/views.py:356
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "密码不正确。主题没有删除。"
 
-#: apps/devhub/views.py:360
+#: apps/devhub/views.py:361
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "密码错误，附加组件没有删除。"
 
-#: apps/devhub/views.py:433
+#: apps/devhub/views.py:434
 msgid "An author has been added to your add-on"
 msgstr "一个作者已被添加到您的附加组件"
 
-#: apps/devhub/views.py:440
+#: apps/devhub/views.py:441
 msgid "An author has a role changed on your add-on"
 msgstr "您的附加组件的一个作者角色已更改"
 
-#: apps/devhub/views.py:459
+#: apps/devhub/views.py:460
 msgid "An author has been removed from your add-on"
 msgstr "一个作者已被从您的附加组件中移除"
 
-#: apps/devhub/views.py:502
+#: apps/devhub/views.py:503
 msgid "There were errors in your submission."
 msgstr "您的提交发生错误。"
 
-#: apps/devhub/views.py:566
+#: apps/devhub/views.py:567
 msgid "Validate Add-on"
 msgstr "验证附加组件"
 
-#: apps/devhub/views.py:575
+#: apps/devhub/views.py:576
 msgid "Check Add-on Compatibility"
 msgstr "检查附加组件兼容性"
 
-#: apps/devhub/views.py:638
+#: apps/devhub/views.py:647
 msgid "There was an error with the submission."
 msgstr "提交时发生错误。"
 
-#: apps/devhub/views.py:1001 apps/users/forms.py:419
+#: apps/devhub/views.py:1010 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "图像必须为 PNG 或 JPG 格式。"
 
-#: apps/devhub/views.py:1005
+#: apps/devhub/views.py:1014
 msgid "Icons cannot be animated."
 msgstr "不能使用动画图标。"
 
-#: apps/devhub/views.py:1007
+#: apps/devhub/views.py:1016
 msgid "Images cannot be animated."
 msgstr "不能使用动态图像。"
 
-#: apps/devhub/views.py:1020
+#: apps/devhub/views.py:1029
 msgid "Images cannot be larger than %dKB."
 msgstr "图像大小不能超过 %dKB。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1030
+#: apps/devhub/views.py:1039
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "图像宽度必须刚好为 {0} 像素且高度为 {1} 像素。"
 
-#: apps/devhub/views.py:1037
+#: apps/devhub/views.py:1046
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#: apps/devhub/views.py:1135
+#: apps/devhub/views.py:1144
 msgid "Version %s disabled."
 msgstr "已停用版本 %s。"
 
-#: apps/devhub/views.py:1139
+#: apps/devhub/views.py:1148
 msgid "Version %s deleted."
 msgstr "版本 %s 已删除。"
 
-#: apps/devhub/views.py:1149
+#: apps/devhub/views.py:1158
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
 
-#: apps/devhub/views.py:1334
-msgid "Skipping to step 6 because the add-on won't be listed"
-msgstr "因为该附加组件不会上架，跳过第 6 步。"
-
-#: apps/devhub/views.py:1563
+#: apps/devhub/views.py:1615
 msgid "Preliminary Review Requested."
 msgstr "已请求初步审核。"
 
-#: apps/devhub/views.py:1564
+#: apps/devhub/views.py:1616
 msgid "Full Review Requested."
 msgstr "已请求全面审核。"
 
@@ -4707,15 +4709,15 @@ msgstr "在网址中仅能使用字母、数字、下划线和连字符。"
 msgid "Provide a brief summary:"
 msgstr "提供简要的概述："
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:38
+#: apps/devhub/templates/devhub/addons/submit/describe.html:39
 msgid "This summary will be shown in listings and searches."
 msgstr "这段概述将会显示在列表和搜索结果中。"
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:55
+#: apps/devhub/templates/devhub/addons/submit/describe.html:58
 msgid "Provide a more detailed description:"
 msgstr "提供更详细的描述："
 
-#: apps/devhub/templates/devhub/addons/submit/describe.html:59
+#: apps/devhub/templates/devhub/addons/submit/describe.html:62
 msgid "The description will appear on the detail page."
 msgstr "描述将会显示在详细信息页面。"
 
@@ -4723,15 +4725,15 @@ msgstr "描述将会显示在详细信息页面。"
 msgid "Submission Complete"
 msgstr "提交完成"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:10 apps/devhub/templates/devhub/personas/submit_done.html:8
+#: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:13 apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
 msgstr "完成了！"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:11
+#: apps/devhub/templates/devhub/addons/submit/done.html:12
 msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr "您的附加组件已被提交到初步审核队列。"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:13
+#: apps/devhub/templates/devhub/addons/submit/done.html:14
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "您的附加组件已被提交到全面审核队列。"
 
@@ -4739,11 +4741,11 @@ msgstr "您的附加组件已被提交到全面审核队列。"
 msgid "You'll receive an email once it has been reviewed by an editor. In the meantime, you and your friends can install it directly from its details page:"
 msgstr "在它由审核员审核完成后，您将会收到一封电子邮件。在审核期间，您和您的朋友可以直接从它的详细信息页面安装它："
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/personas/submit_done.html:16
+#: apps/devhub/templates/devhub/addons/submit/done.html:27 apps/devhub/templates/devhub/addons/submit/done.html:77 apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
 msgstr "下一步："
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:32
+#: apps/devhub/templates/devhub/addons/submit/done.html:32 apps/devhub/templates/devhub/addons/submit/done.html:82
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr "<a href=\"{0}\">上传</a>另一个特定平台的文件到这个版本。"
 
@@ -4759,7 +4761,7 @@ msgstr "在您的<a href=\"{0}\">开发者简介</a>中向您的用户讲述下�
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
 msgstr "查看并订阅有关您的附加组件的评论、收藏集及更多的<a href=\"{0}\">动态信息</a>以随时获知。"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:37
+#: apps/devhub/templates/devhub/addons/submit/done.html:37 apps/devhub/templates/devhub/addons/submit/done.html:86
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr "查看相似审核队列的<a href=\"{0}\">等待时间</a>。"
 
@@ -4767,21 +4769,33 @@ msgstr "查看相似审核队列的<a href=\"{0}\">等待时间</a>。"
 msgid "Get Ahead in the Review Queue!"
 msgstr "缩短审核队列！"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:44
+#: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "今天就成为 AMO 审核者让您的附加组件能更快完成审核。"
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:51
-msgid "You'll receive an email once it has been reviewed by an editor."
-msgstr "一旦已被审核者审阅，您将收到一封电子邮件通知。"
+#: apps/devhub/templates/devhub/addons/submit/done.html:54
+msgid "Your add-on has been signed and it's ready to use. You can download it here:"
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:52
-msgid "Your add-on will not be publicly available on AMO."
-msgstr "您的附加组件将不会公开发布在 AMO 上。"
+#: apps/devhub/templates/devhub/addons/submit/done.html:64
+msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/done.html:55
-msgid "If you need to adjust any details of your add-on please <a href=\"{0}\">edit the listing</a>."
-msgstr "如果您需要调整您的附加组件的详细信息，请<a href=\"{0}\">编辑信息</a>。"
+#: apps/devhub/templates/devhub/addons/submit/done.html:66
+msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:70
+msgid "You'll receive an email once it has been reviewed by an editor and signed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:74
+msgid "Your add-on will not be publicly available on this website."
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/done.html:84
+msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -4879,31 +4893,31 @@ msgstr "在 10 天内不能请求全面审核"
 msgid "Choose Preliminary Review"
 msgstr "选择初步审核"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:4
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Getting Started"
 msgstr "入门指南"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:5
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Upload your add-on"
 msgstr "上传您的附加组件"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:6
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:9
 msgid "Describe your add-on"
 msgstr "描述您的附加组件"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:7
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:10
 msgid "Add images"
 msgstr "添加图片"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:11
 msgid "Select a license"
 msgstr "选择一种许可协议"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:9
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:12
 msgid "Select a review process"
 msgstr "选择一项审核程序"
 
-#: apps/devhub/templates/devhub/addons/submit/sidebar.html:15 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
+#: apps/devhub/templates/devhub/addons/submit/sidebar.html:18 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
 #: apps/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
 msgstr "提交流程"
@@ -4948,23 +4962,23 @@ msgstr "或<a href=\"{0}\">取消</a>"
 msgid "Step 2"
 msgstr "第 2 步"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:9
+#: apps/devhub/templates/devhub/addons/submit/upload.html:10
 msgid "Step 2. Upload Your Add-on"
 msgstr "第 2 步：上传您的附加组件"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:11
+#: apps/devhub/templates/devhub/addons/submit/upload.html:12
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下面的按钮上传您的附加组件包，并选择可兼容的平台。在上传完成后，将会对您的文件执行一系列的自动化验证测试。"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:30 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+msgid "Do you want your add-on to be distributed on this site?"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "此文件与哪个平台兼容？"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:37
-msgid "Do you want your add-on listed on AMO?"
-msgstr "您想让您的附加组件在 AMO 上架吗？"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:49 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "管理覆盖"
 
@@ -11344,7 +11358,7 @@ msgstr "添加使用二进制的附加组件。"
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加组件选择采用严格的兼容性检查。"
 
-#: apps/versions/models.py:688
+#: apps/versions/models.py:689
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
 

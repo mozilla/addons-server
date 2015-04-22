@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-22 14:24-0700\n"
 "PO-Revision-Date: 2015-01-28 23:00+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -69,7 +69,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dhe {0} tjetër"
 msgstr[1] "&hellip;dhe {0} të tjerë"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:401
 msgid "See full validation report"
 msgstr "Shihni raportin e plotë të vleftësimit"
 
@@ -100,28 +100,44 @@ msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe me {0} mesazhe."
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Shtesa juaj e kaloi pa gabime ose sinjalizime procesin e vleftësimit."
 
-#: static/js/common/upload-addon.js:334
+#: static/js/common/upload-addon.js:336
+msgid "Your submission will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:340
+msgid "Your submission passed validation and will be automatically signed."
+msgstr ""
+
+#: static/js/common/upload-addon.js:342
+msgid "Your submission passed validation and will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:345
+msgid "Your submission didn't pass automatic validation and will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin pasues)."
 
-#: static/js/common/upload-addon.js:335
+#: static/js/common/upload-addon.js:355
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
 
-#: static/js/common/upload-addon.js:350
-msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr "Nëse shtesa juaj synon një publik të kufizuar, do të duhej të zgjidhnit Shqyrtim Paraprak, në vend se Shqyrtim të Plotë."
+#: static/js/common/upload-addon.js:356
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr ""
 
-#: static/js/common/upload-addon.js:352
+#: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
 msgstr "Listë kontrolli parashtrimi shtese"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:370
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë procesit të shqyrtimit:"
 
-#: static/js/common/upload-addon.js:355
+#: static/js/common/upload-addon.js:372
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -129,19 +145,19 @@ msgstr ""
 "Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e tyre, për shqyrtim. Mos harroni të përdorni "
 "fushën e ngarkimit të kodit burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
 
-#: static/js/common/upload-addon.js:373
+#: static/js/common/upload-addon.js:390
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë të parashtrimit:"
 
-#: static/js/common/upload-addon.js:390
+#: static/js/common/upload-addon.js:407
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Nëse procesi i shqyrtimit është i panjohur për ju, rreth tij mund të lexoni këtu."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:443
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Kjo shtesë nuk është e passhme për disa platforma."
 
-#: static/js/common/upload-addon.js:428
+#: static/js/common/upload-addon.js:445
 msgid "Sorry, no supported platform has been found."
 msgstr "Na ndjeni, nuk u gjet platformë e mbuluar."
 
@@ -764,7 +780,7 @@ msgstr "Datë"
 msgid "Other"
 msgstr "Tjetër"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1258 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
@@ -943,59 +959,59 @@ msgstr "Hiqe prej të parapëlqyerve"
 msgid "Stop following"
 msgstr "Resht së ndjekuri"
 
-#: static/js/zamboni/devhub.js:127
+#: static/js/zamboni/devhub.js:161
 msgid "Your browser does not support the video tag"
 msgstr "Shfletuesi juaj nuk e mbulon etiketën video"
 
-#: static/js/zamboni/devhub.js:376
+#: static/js/zamboni/devhub.js:410
 msgid "Changes Saved"
 msgstr "Ndryshimet u Ruajtën"
 
-#: static/js/zamboni/devhub.js:392
+#: static/js/zamboni/devhub.js:426
 msgid "Enter a new author's email address"
 msgstr "Jepni adresën email të autorit të ri"
 
-#: static/js/zamboni/devhub.js:539
+#: static/js/zamboni/devhub.js:573
 msgid "There was an error uploading your file."
 msgstr "Pati një gabim gjatë ngarkimit të kartelës suaj."
 
-#: static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub.js:718
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} kartelë"
 msgstr[1] "{files} kartela"
 
-#: static/js/zamboni/devhub.js:687
+#: static/js/zamboni/devhub.js:721
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} shqyrtim përdoruesi"
 msgstr[1] "{reviews} shqyrtime përdoruesi"
 
-#: static/js/zamboni/devhub.js:799
+#: static/js/zamboni/devhub.js:833
 msgid "Learn more"
 msgstr "Mësoni më tepër"
 
-#: static/js/zamboni/devhub.js:803
+#: static/js/zamboni/devhub.js:837
 msgid "Example"
 msgstr "Shembull"
 
-#: static/js/zamboni/devhub.js:1159
+#: static/js/zamboni/devhub.js:1193
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
 
-#: static/js/zamboni/devhub.js:1286
+#: static/js/zamboni/devhub.js:1320
 msgid "Starting tests..."
 msgstr "Po fillohen provat..."
 
-#: static/js/zamboni/devhub.js:1293
+#: static/js/zamboni/devhub.js:1327
 msgid "Waiting for test results..."
 msgstr "Po pritet për përfundimet e provave..."
 
-#: static/js/zamboni/devhub.js:1295 static/js/zamboni/devhub.js:1300
+#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
 msgid "Internal Server Error"
 msgstr "Gabim i Brendshëm Shërbyesi"
 
-#: static/js/zamboni/devhub.js:1335
+#: static/js/zamboni/devhub.js:1369
 msgid "Must be a valid e-mail address."
 msgstr "Duhet të jetë një adresë e-mail e vlefshme."
 

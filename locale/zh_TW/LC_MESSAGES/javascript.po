@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-18 09:01-0700\n"
+"POT-Creation-Date: 2015-04-22 14:24-0700\n"
 "PO-Revision-Date: 2015-01-09 03:08+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;還有 {0} 個"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:384
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:401
 msgid "See full validation report"
 msgstr "檢視完整的驗證報告"
 
@@ -95,45 +95,61 @@ msgstr[0] "您的附加元件已通過驗證，沒有錯誤，但有 {0} 筆訊�
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "您的附加元件已經通過驗證，沒有發現錯誤或產生警告。"
 
-#: static/js/common/upload-addon.js:334
+#: static/js/common/upload-addon.js:336
+msgid "Your submission will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:340
+msgid "Your submission passed validation and will be automatically signed."
+msgstr ""
+
+#: static/js/common/upload-addon.js:342
+msgid "Your submission passed validation and will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:345
+msgid "Your submission didn't pass automatic validation and will go through a manual review."
+msgstr ""
+
+#: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
-#: static/js/common/upload-addon.js:335
+#: static/js/common/upload-addon.js:355
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的紀錄中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
 
-#: static/js/common/upload-addon.js:350
-msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr "若您的附加元件只是要給部分有條件的使用者使用，您應該選擇初步審核即可。"
+#: static/js/common/upload-addon.js:356
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr ""
 
-#: static/js/common/upload-addon.js:352
+#: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
 msgstr "附加元件送出前檢查清單"
 
-#: static/js/common/upload-addon.js:353
+#: static/js/common/upload-addon.js:370
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "送出前，請確認下列幾項是否已完成。這樣將可以降低審查時間:"
 
-#: static/js/common/upload-addon.js:355
+#: static/js/common/upload-addon.js:372
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr "若有編譯過的二元碼，以及最小化過或擾亂過的指令碼（已知的程式庫除外），請同時另外送出原始碼提供審查。請確定您在原始碼上傳欄位中也上傳了這些檔案，以避免被退回。"
 
-#: static/js/common/upload-addon.js:373
+#: static/js/common/upload-addon.js:390
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "驗證過程找到下列可能會造成您的送出被退回的問題:"
 
-#: static/js/common/upload-addon.js:390
+#: static/js/common/upload-addon.js:407
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "若您不熟悉附加元件的審查過程，可以在此處閱讀。"
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:443
 msgid "Some platforms are not available for this type of add-on."
 msgstr "此類型的附加元件無法在某些平台上運作。"
 
-#: static/js/common/upload-addon.js:428
+#: static/js/common/upload-addon.js:445
 msgid "Sorry, no supported platform has been found."
 msgstr "抱歉，找不到支援的平台。"
 
@@ -756,7 +772,7 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1258 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
@@ -933,57 +949,57 @@ msgstr "從我的最愛移除"
 msgid "Stop following"
 msgstr "停止追蹤"
 
-#: static/js/zamboni/devhub.js:127
+#: static/js/zamboni/devhub.js:161
 msgid "Your browser does not support the video tag"
 msgstr "您的瀏覽器不支援此視訊標籤"
 
-#: static/js/zamboni/devhub.js:376
+#: static/js/zamboni/devhub.js:410
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
-#: static/js/zamboni/devhub.js:392
+#: static/js/zamboni/devhub.js:426
 msgid "Enter a new author's email address"
 msgstr "輸入新作者的電子郵件地址"
 
-#: static/js/zamboni/devhub.js:539
+#: static/js/zamboni/devhub.js:573
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub.js:718
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個檔案"
 
-#: static/js/zamboni/devhub.js:687
+#: static/js/zamboni/devhub.js:721
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 筆使用者評論"
 
-#: static/js/zamboni/devhub.js:799
+#: static/js/zamboni/devhub.js:833
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: static/js/zamboni/devhub.js:803
+#: static/js/zamboni/devhub.js:837
 msgid "Example"
 msgstr "範例"
 
-#: static/js/zamboni/devhub.js:1159
+#: static/js/zamboni/devhub.js:1193
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
-#: static/js/zamboni/devhub.js:1286
+#: static/js/zamboni/devhub.js:1320
 msgid "Starting tests..."
 msgstr "開始測試..."
 
-#: static/js/zamboni/devhub.js:1293
+#: static/js/zamboni/devhub.js:1327
 msgid "Waiting for test results..."
 msgstr "正在等待測試結果出爐..."
 
-#: static/js/zamboni/devhub.js:1295 static/js/zamboni/devhub.js:1300
+#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
 msgid "Internal Server Error"
 msgstr "內部伺服器錯誤"
 
-#: static/js/zamboni/devhub.js:1335
+#: static/js/zamboni/devhub.js:1369
 msgid "Must be a valid e-mail address."
 msgstr "必須為有效的電子郵件地址。"
 
