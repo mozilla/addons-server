@@ -2423,8 +2423,9 @@ class TestVersionAddFile(UploadTest):
         assert not mock_sign_file.called
 
     @mock.patch('devhub.views.sign_file')
-    def test_unlisted_addon_pass_validation(self, mock_sign_file):
-        """Files that pass validation are automatically signed/reviewed."""
+    def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
+        """Files that pass validation are not automatically signed/reviewed if
+        the flag is not enabled."""
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
         # Make sure the file has no validation warnings nor errors.
@@ -2432,9 +2433,31 @@ class TestVersionAddFile(UploadTest):
             validation='{"notices": 2, "errors": 0, "messages": [],'
                        ' "metadata": {}, "warnings": 0}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+
+        # Without the flag: should still go through manual prelim review.
         self.post()
         file_ = File.objects.all().order_by("-created")[0]
-        # The status is changed to preliminary reviewed and the file is signed.
+        # The status is unchanged and the file is not signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_UNREVIEWED
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed if
+        the flag is enabled."""
+        self.create_flag('automatic-validation')
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 0}')
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # With the flag: should be signed.
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
@@ -2641,8 +2664,9 @@ class TestAddVersion(AddVersionTest):
         assert not mock_sign_file.called
 
     @mock.patch('devhub.views.sign_file')
-    def test_unlisted_addon_pass_validation(self, mock_sign_file):
-        """Files that pass validation are automatically signed/reviewed."""
+    def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
+        """Files that pass validation are not automatically signed/reviewed if
+        the flag is not enabled."""
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
         # Make sure the file has no validation warnings nor errors.
@@ -2650,9 +2674,30 @@ class TestAddVersion(AddVersionTest):
             validation='{"notices": 2, "errors": 0, "messages": [],'
                        ' "metadata": {}, "warnings": 0}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # Without the flag: should not be signed.
         self.post()
         file_ = File.objects.all().order_by("-created")[0]
         # The status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_UNREVIEWED
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed if
+        the flag is enabled."""
+        self.create_flag('automatic-validation')
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 0}')
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # With the flag: should be signed.
+        self.post()
+        file_ = File.objects.all().order_by("-created")[0]
+        # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
@@ -2812,7 +2857,24 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
             'New add-on creation never logged.')
 
     @mock.patch('devhub.views.sign_file')
-    def test_success_unlisted(self, mock_sign_file):
+    def test_success_unlisted_no_flag(self, mock_sign_file):
+        """No automatic-validation flag: don't sign automatically."""
+        eq_(Addon.with_unlisted.count(), 0)
+        # No validation errors or warning.
+        self.upload = self.get_upload(
+            'extension.xpi',
+            validation=json.dumps(dict(errors=0, warnings=0, notices=2,
+                                       metadata={}, messages=[])))
+        self.post(is_listed=False)
+        addon = Addon.with_unlisted.get()
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_UNREVIEWED  # No automatic signing.
+        assert not mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_success_unlisted_with_flag(self, mock_sign_file):
+        """With automatic-validation flag: sign automatically."""
+        self.create_flag('automatic-validation')
         eq_(Addon.with_unlisted.count(), 0)
         # No validation errors or warning.
         self.upload = self.get_upload(

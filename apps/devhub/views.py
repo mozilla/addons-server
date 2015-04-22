@@ -1199,7 +1199,9 @@ def version_add(request, addon_id, addon):
         url = reverse('devhub.versions.edit',
                       args=[addon.slug, str(version.id)])
 
-        if not addon.is_listed:  # Not listed? Do we need to sign?
+        # Not listed? Do we need to sign?
+        if (waffle.flag_is_active(request, 'automatic-validation') and
+                not addon.is_listed):
             # We need to get to the file to check its validation.
             # We're submitting a new version here, so it has only one file.
             file_ = version.files.get()
@@ -1237,7 +1239,9 @@ def version_add_file(request, addon_id, addon, version_id):
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
 
-    if not new_file.version.addon.is_listed:  # Not listed? Do we need to sign?
+    # Not listed? Do we need to sign?
+    if (waffle.flag_is_active(request, 'automatic-validation') and
+            not new_file.version.addon.is_listed):
         # Only if it's not sideload (not fully reviewed).
         if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]
                 and not new_file.validation.errors
@@ -1368,7 +1372,9 @@ def submit_addon(request, step):
                     # version, and one file for this version.
                     addon_file = addon.versions.get().files.get()
                     validation = addon_file.validation
-                    if not validation.errors and not validation.warnings:
+                    if (waffle.flag_is_active(request, 'automatic-validation')
+                            and not validation.errors
+                            and not validation.warnings):
                         # Passed validation: sign automatically without review.
                         addon.update(status=amo.STATUS_LITE)
                         sign_file(addon_file)
