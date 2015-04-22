@@ -226,6 +226,14 @@ $(document).ready(function() {
             $modalDisable.render();
         }
     }
+    if ($("#modal-unlist").length) {
+        $modalUnlist = $('#modal-unlist').modal('.unlist-addon', {
+            width: 400
+        });
+        if (window.location.hash === '#unlist-addon') {
+            $modalUnlist.render();
+        }
+    }
 
     $('.enable-addon').bind('click', function() {
         $.ajax({
