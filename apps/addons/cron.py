@@ -454,6 +454,7 @@ def reindex_addons(index=None, addon_type=None):
     ids = (Addon.objects.values_list('id', flat=True)
            .filter(_current_version__isnull=False,
                    status__in=amo.VALID_STATUSES,
+                   is_listed=True,
                    disabled_by_user=False))
     if addon_type:
         ids = ids.filter(type=addon_type)

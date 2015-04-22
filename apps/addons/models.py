@@ -1578,7 +1578,8 @@ def version_changed(sender, **kw):
 def update_search_index(sender, instance, **kw):
     from . import tasks
     if not kw.get('raw'):
-        tasks.index_addons.delay([instance.id])
+        if not instance.disabled_by_user and instance.is_listed:
+            tasks.index_addons.delay([instance.id])
 
 
 @Addon.on_change
