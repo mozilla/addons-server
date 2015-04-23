@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-11 03:55+0000\n"
+"PO-Revision-Date: 2015-04-23 04:56+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428724541.0\n"
+"X-POOTLE-MTIME: 1429764963.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3692,19 +3692,23 @@ msgstr "Sobrepor validação falhada"
 
 #: apps/devhub/forms.py:506
 msgid "Yes, distribute my add-on on this site."
-msgstr ""
+msgstr "Sim, distribuir o meu extra neste sítio."
 
 #: apps/devhub/forms.py:507
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
+"Desmarque esta opção se tenciona distribuir o seu extra de outra forma e "
+"apenas precisa que este seja assinado pela Mozilla."
 
 #: apps/devhub/forms.py:513
 msgid "This add-on will be side-loaded via application installers."
-msgstr ""
+msgstr "Este extra irá ser side-loaded através de instaladores de aplicações."
 
 #: apps/devhub/forms.py:515
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"O código dos extras side-loaded será revisto pela Mozilla antes destes serem "
+"assinados e devem ter um nível de qualidade mais elevado."
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4840,26 +4844,32 @@ msgstr "Torne-se num revisor no AMO e tenha os seus extras revistos mais depress
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"O seu extra foi assinado e está pronto a ser utilizado. Pode transferir o "
+"mesmo aqui:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"O seu extra foi submetido para a fila de revisão preliminar não listada."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
+msgstr "O seu extra foi submetido para a fila de revisão completa não listada."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Irá receber um email assim que este for revisto por um editor e assinado."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "O seu extra não estará disponível publicamente neste sítio web."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
 msgstr ""
+"Pode enviar novas versões do seu extra na <a href=\"{0}\">página do "
+"programador do extra</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5043,7 +5053,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Gostaria que o seu extra fosse distribuído neste sítio?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
