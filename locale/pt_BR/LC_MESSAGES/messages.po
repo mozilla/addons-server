@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-23 11:00+0000\n"
+"PO-Revision-Date: 2015-04-23 22:22+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1429786810.0\n"
+"X-POOTLE-MTIME: 1429827756.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -1359,7 +1359,7 @@ msgstr "Sair"
 
 #: apps/amo/context_processors.py:89 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr "Gerenciar meus aplicativos"
+msgstr "Gerenciar minhas submissões"
 
 #: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
@@ -3863,7 +3863,7 @@ msgstr "Documentação de Complementos :: Central do Desenvolvedor"
 
 #: apps/devhub/helpers.py:69
 msgid "My Submissions"
-msgstr "Meus envios"
+msgstr "As minhas submissões"
 
 #: apps/devhub/helpers.py:103
 msgid "Developer Docs"
@@ -3972,7 +3972,7 @@ msgstr "Foi removido um autor do seu complemento"
 
 #: apps/devhub/views.py:503
 msgid "There were errors in your submission."
-msgstr "Ocorreu um erro no seu envio."
+msgstr "Ocorreram erros na sua submissão."
 
 #: apps/devhub/views.py:567
 msgid "Validate Add-on"
@@ -3984,7 +3984,7 @@ msgstr "Verificação de compatibilidade do complemento"
 
 #: apps/devhub/views.py:647
 msgid "There was an error with the submission."
-msgstr "Houve um erro no envio."
+msgstr "Ocorreu um erro com a submissão."
 
 #: apps/devhub/views.py:1010 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
@@ -4753,7 +4753,7 @@ msgstr "Ações"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr "Continuar o processo de envio desse complemento."
+msgstr "Retomar o processo de submissão para este complemento."
 
 # Alt text to remove tag (verb)
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:8
@@ -4825,7 +4825,9 @@ msgstr "Excluir este tema."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr "Este complemento será excluído automaticamente após alguns dias caso o processo de envio não seja completado."
+msgstr ""
+"Este complemento será excluído automaticamente após alguns dias caso o "
+"processo de submissão não seja completado."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
@@ -4897,7 +4899,7 @@ msgstr "A descrição aparecerá na página de detalhes."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:4 apps/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr "Envio concluído"
+msgstr "Submissão concluída"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:8 apps/devhub/templates/devhub/addons/submit/sidebar.html:13 apps/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
@@ -5110,7 +5112,7 @@ msgstr "Selecione um processo de análise"
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:18 apps/devhub/templates/devhub/docs/policies-submission.html:3 apps/devhub/templates/devhub/docs/policies-submission.html:7
 #: apps/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
-msgstr "Processo de envio"
+msgstr "Processo de submissão"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:3
 msgid "Step 1"
@@ -5122,7 +5124,10 @@ msgstr "1º passo. Começando"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
-msgstr "Obrigado pela sua contribuição para o ecossistema de complementos da Mozilla. Este processo de submissão permite que hospede seu complemento no site ou assina-lo para hospedagem própria."
+msgstr ""
+"Obrigado pela sua contribuição para o ecossistema de complementos da "
+"Mozilla. Este processo de submissão permite que hospede seu complemento "
+"neste site ou assina-lo para hospedagem própria."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
@@ -5299,10 +5304,17 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"Apesar de nós chamarmos de \"versões beta\", você pode usar esse canal de atualizações para nightlies, alphas e versões de pré-lançamento como você desejar. Por favor, perceba que há apenas um "
-"único canal com esse propósito e todos os seus usuários nesse canal receberão os complementos enviados mais recentemente. Por exemplo, se você enviar a versão <code>1.0beta1</code> para o canal de "
-"lançamentos e então enviar a versão <code>1.1alpha1</code>, uma atualização para essa última versão será oferecida a todos usuários da versão <code>1.0beta1</code>. Atualizações são comparadas por "
-"data de envio e não por número de versão, então os usuários sempre obterão a atualização mais recente do canal, independentemente de qualquer ordem alfabética."
+"Apesar de nós chamarmos de \"versões beta\", você pode usar esse canal de "
+"atualizações para versôes nightlies, alphas e de pré-lançamento como "
+"desejar. Por favor, note que há apenas um canal para este fim e todos os "
+"seus seus usuários nesse canal receberão os últimos complementos submetidos. "
+"Por exemplo, se enviar a <code>1.0beta1</code> para o canal de "
+"disponibilização e em seguida enviar a <code>1.1alpha1</code>, será "
+"disponibilizada uma atualização a todos os utilizadores de "
+"<code>1.0beta1</code> para <code>1.1alpha1</code>. As atualizações são "
+"enviadas por data de submissão e não por número de versão, para que os "
+"usuários tenham sempre a atualização mais recente do canal, "
+"independentemente de qualquer tipo de ordenação alfabética."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -5375,9 +5387,12 @@ msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
-"No caso de sermos notificados de uma violação de direitos do autor ou licença, tomaremos medidas para analisar a situação e determinar se de fato ocorreu uma violação. Se determinarmos que existe "
-"uma infração, nós removeremos o complemento em questão e entraremos em contato com o autor. Novos envios de complementos (incluindo atualizações) contendo código infrator terão a aprovação da "
-"publicação negada."
+"No caso de sermos notificados de uma violação de direitos do autor ou "
+"licença, tomaremos medidas para analisar a situação e determinar se de fato "
+"ocorreu uma violação. Se determinarmos que existe uma infração, vamos "
+"remover o complemento em questão e entraremos em contato com o autor. Será "
+"negada a aprovação de publicação a novas submissões do complemento "
+"(incluindo atualizações) com o código em questão."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
@@ -5604,9 +5619,14 @@ msgid ""
 "org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
 "receive an email with any updates throughout the review process."
 msgstr ""
-"Descrições detalhadas de cada opção estão disponíveis abaixo. Após selecionar um processo de análise, o complemento será posicionado na fila de análises. Os complementos são analisados pelos <a "
-"href=\"https://wiki.mozilla.org/AMO:Editors\">Editores do AMO</a>, um grupo de desenvolvedores talentosos que são voluntários para ajudar o projeto Mozilla a analisar os complementos e assegurar-se "
-"de que eles oferecem uma experiência estável e segura aos usuários. Desenvolvedores receberão uma mensagem com quaisquer atualizações durante o processo de análise."
+"Estão disponíveis descrições detalhadas de cada opção abaixo. Após escolher "
+"um processo de revisão na submissão, o complemento será colocado na fila de "
+"revisão. Os complementos são analisados pelos <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">editores do AMO</a>, um grupo de "
+"desenvolvedores talentosos que são voluntários no projeto Mozilla "
+"analisando os complementos para garantir uma experiência estável e segura "
+"para os usuários. Os desenvolvedores receberão uma mensagem com quaisquer "
+"atualizações durante o processo de revisão."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -5929,7 +5949,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
-msgstr "Critérios para envio"
+msgstr "Critérios para submissão"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:13
 msgid ""
@@ -6064,21 +6084,26 @@ msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
-"Selecionar uma licença adequada para o seu complemento é um passo muito importante do processo de envio. Uma licença especifica os direitos que você garante ao seu código-fonte e é importante na "
-"proteção da sua propriedade intelectual."
+"Selecionar uma licença adequada para o seu complemento é um passo muito "
+"importante do processo de submissão. Uma licença especifica os direitos que "
+"concede em seu código-fonte e é importante para proteger a sua propriedade "
+"intelectual."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
 msgstr ""
-"Durante o processo de envio de complementos, será apresentada uma lista de licenças populares para que você possa escolher entre uma delas, além de poder especificar sua própria licença. "
-"Recomendamos que você consulte um profissional de direito para aconselhá-lo sobre a melhor opção para você. Escolher a licença correta para o seu código irá ajudá-lo a evitar confusões e conflitos "
-"de código no futuro."
+"Durante o processo de submissão de complementos, será apresentada uma lista "
+"de licenças populares para que possa escolher entre uma delas, além de poder "
+"especificar sua própria licença. Recomendamos que consulte um profissional "
+"de direito para aconselhá-lo sobre a melhor opção para você. Escolher a "
+"licença correta para o seu código irá ajudá-lo a evitar confusões e "
+"conflitos de código no futuro."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12 apps/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
-msgstr "Envio de complementos"
+msgstr "Submissão de complementos"
 
 #: apps/devhub/templates/devhub/docs/policies.html:18 apps/devhub/templates/devhub/docs/policies.html:78
 msgid "Maintaining Your Add-on"
@@ -6094,7 +6119,9 @@ msgstr "Descubra o que é esperado dos complementos que hospedamos e nossas pol�
 
 #: apps/devhub/templates/devhub/docs/policies.html:67
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
-msgstr "O que acontece depois que um complemento é enviado? Saiba como os editores analisam os complementos enviados."
+msgstr ""
+"O que acontece depois que um complemento é submetido? Saiba mais sobre como "
+"os nossos editores analisam as submissões."
 
 #: apps/devhub/templates/devhub/docs/policies.html:81
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
@@ -6106,7 +6133,9 @@ msgstr "Como complementos em ascensão tornam-se complementos em destaque e o qu
 
 #: apps/devhub/templates/devhub/docs/policies.html:106
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
-msgstr "Termos de serviço para o envio de seu trabalho ao nosso site. Desenvolvedores devem aceitar esses termos obrigatoriamente antes do envio de seus complementos."
+msgstr ""
+"Termos do serviço para a submissão do seu trabalho no nosso site. Os "
+"desenvolvedores são obrigados a aceitar este contrato antes da submissão."
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -6529,7 +6558,9 @@ msgstr "Fazer upload de um design novo"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Após o upload do seu design, o time do AMO vai revisar suas alterações. Enquanto isso, seu design atual fica visível ao público."
+msgstr ""
+"Após envio e submissão do formulário, o time do AMO irá rever o seu projeto "
+"atualizado. Seu projeto atual continuará público nesse período."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
@@ -7306,7 +7337,7 @@ msgstr "Versão máx."
 
 #: apps/editors/forms.py:109
 msgid "Days Since Submission"
-msgstr "Dias desde o envio"
+msgstr "Dias desde a submissão"
 
 #: apps/editors/forms.py:114
 msgid "Add-on Types"
@@ -7662,7 +7693,7 @@ msgstr "Fontes disponíveis"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
-msgstr "Submissões duplicadas"
+msgstr "Submissão duplicada"
 
 #: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
@@ -7670,15 +7701,15 @@ msgstr "Obrigado por enviar seu tema"
 
 #: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
-msgstr "Um problema com o envio do seu tema"
+msgstr "Um problema com a submissão do seu tema"
 
 #: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
-msgstr "Envio de tema marcado para análise"
+msgstr "Submissão de tema marcada para revisão"
 
 #: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
-msgstr "Um dúvida sobre o envio do seu tema"
+msgstr "Uma questão sobre a submissão do seu tema"
 
 #: apps/editors/views.py:112
 msgid "New Add-ons (Under 5 days)"
@@ -8371,7 +8402,7 @@ msgstr "Análise do tema {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr "(Prováveis submissões duplicadas)"
+msgstr "(Provavelmente uma submissão duplicada)"
 
 #: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
@@ -9257,15 +9288,21 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:313
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "A Mozilla possui uma política em vigor que descreva os critérios de envio de complementos?"
+msgstr ""
+"A Mozilla possui uma política que descreva os critérios de submissão de "
+"complementos?"
 
 #: apps/pages/templates/pages/dev_faq.html:315
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sim. As <a href=\"%(p_url)s\">Políticas de complementos</a> da Mozilla descrevem que tipos de envios são aceitos. Essas políticas estão sujeitas a alterações sem aviso prévio. Além disso, a equipe "
-"de editores do AMO usa o <a href=\"%(g_url)s\">Guia de análise para editores</a> para garantir que seu complemento atende aos critérios específicos de funcionalidade e segurança."
+"Sim. As <a href=\"%(p_url)s\">políticas de complementos</a> da Mozilla "
+"descrevem que tipos de submissões são aceitas. Essas políticas estão "
+"sujeitas a alterações sem aviso prévio. Além disso, o time de editores do "
+"AMO usa o <a href=\"%(g_url)s\">Guia de análise para editores</a> para "
+"garantir que seu complemento atende aos critérios específicos de "
+"funcionalidade e segurança."
 
 #: apps/pages/templates/pages/dev_faq.html:325
 msgid "How do I submit my add-on for review?"
@@ -9336,8 +9373,10 @@ msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Todos os complementos enviados, sejam novos ou atualizações, são analisados para garantir que os usuários da Mozilla tenham uma experiência estável e segura. Todos os complementos são analisados "
-"seguindo os critérios do <a href=\"%(url)s\">Guia de análise para editores</a>."
+"Todos os complementos submetidos, sejam novos ou atualizações, são "
+"analisados para garantir que os usuários da Mozilla tenham uma experiência "
+"estável e segura. Todos os complementos são analisados seguindo os critérios "
+"do <a href=\"%(url)s\">Guia de análise para editores</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:394
 msgid "Who reviews my add-on?"
@@ -9376,7 +9415,7 @@ msgstr "Nós não podemos informar um tempo estimado de espera até seu compleme
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:428
 msgid "number of add-on submissions"
-msgstr "número de envios de complementos"
+msgstr "número de submissões de complementos"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:430

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-23 07:34+0000\n"
+"PO-Revision-Date: 2015-04-23 21:53+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429774457.0\n"
+"X-POOTLE-MTIME: 1429826032.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -134,19 +134,23 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
-msgstr "Lista de verificação do envio do complemento"
+msgstr "Lista de verificação da submissão do complemento"
 
 #: static/js/common/upload-addon.js:370
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Por favor confirme os pontos seguintes antes de finalizar o seu envio. Isto irá minimizar atrasos ou confusões durante o processo de revisão:"
+msgstr ""
+"Por favor confirme os pontos seguintes antes de finalizar a sua submissão. "
+"Isto irá minimizar atrasos ou confusões durante o processo de revisão:"
 
 #: static/js/common/upload-addon.js:372
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Binários compilados, bem como scripts minificados ou ofuscados (excluindo bibliotecas conhecidas) devem ter as suas fontes enviadass separadamente para revisão. Tenha a certeza que utiliza o campo "
-"de envio de código fonte para evitar que seja rejeitado."
+"Binários compilados, bem como scripts minificados ou ofuscados (excluindo "
+"bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente "
+"para revisão. Tenha a certeza que utiliza o campo de envio de código fonte "
+"para evitar que as sua submissão seja rejeitada."
 
 #: static/js/common/upload-addon.js:390
 msgid "The validation process found these issues that can lead to rejections:"
