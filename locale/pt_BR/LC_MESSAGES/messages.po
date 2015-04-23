@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-11 12:06+0000\n"
+"PO-Revision-Date: 2015-04-23 11:00+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1428754003.0\n"
+"X-POOTLE-MTIME: 1429786810.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -3782,19 +3782,24 @@ msgstr "Substituir validação com falha"
 
 #: apps/devhub/forms.py:506
 msgid "Yes, distribute my add-on on this site."
-msgstr ""
+msgstr "Sim, distribuir o meu complemento neste site."
 
 #: apps/devhub/forms.py:507
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
+"Desmarque esta opção se tenciona distribuir o seu complemento de outra forma "
+"e apenas precisa que este seja assinado pela Mozilla."
 
 #: apps/devhub/forms.py:513
 msgid "This add-on will be side-loaded via application installers."
 msgstr ""
+"Este complemento será instalado através de um instalador para aplicativos."
 
 #: apps/devhub/forms.py:515
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"O código dos complementos instalados serão revisados pela Mozilla antes de "
+"serem assinados e devem ter um nível de qualidade mais elevado."
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4945,26 +4950,34 @@ msgstr "Torne-se um revisor do AMO agora mesmo e acelere o processo de análise 
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"O seu complemento foi assinado e está pronto a ser usado. Pode ser baixado "
+"aqui:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"O seu complemento foi submetido para a fila de revisão preliminar não "
+"listada."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"O seu complemento foi submetido para a fila de revisão completa não listada."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Você receberá um e-mail assim que for revisado por um editor e assinado."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "O seu complemento não estará disponível publicamente neste site."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
 msgstr ""
+"Você pode enviar novas versões do seu complemento na <a href=\"{0}\">página do "
+"desenvolvedor do complemento</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5151,7 +5164,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Gostaria que o seu complemento fosse distribuído neste site?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
