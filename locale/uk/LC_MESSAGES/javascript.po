@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-02-09 13:07+0000\n"
+"PO-Revision-Date: 2015-04-23 18:30+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423487238.0\n"
+"X-POOTLE-MTIME: 1429813854.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -103,19 +104,21 @@ msgstr "Ваш додаток пройшов перевірку без поми�
 
 #: static/js/common/upload-addon.js:336
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Ваше представлення пройде через перегляд вручну."
 
 #: static/js/common/upload-addon.js:340
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "Ваше представлення пройшло затвердження і буде автоматично підписано."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
+msgstr "Ваше представлення пройшло затвердження і пройде через перегляд вручну."
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
+"Ваше представлення не пройшло автоматичне затвердження і пройде через "
+"перегляд вручну."
 
 #: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -128,6 +131,8 @@ msgstr "Якщо ваш додаток потребує обліковий за�
 #: static/js/common/upload-addon.js:356
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Якщо ваш додаток призначений для обмеженого кола користувачів, ви повинні "
+"вибрати Попередній Перегляд замість Повного Перегляду."
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
