@@ -33,6 +33,7 @@ from access import acl
 from addons import forms as addon_forms
 from addons.decorators import addon_view
 from addons.models import Addon, AddonUser
+from addons.tasks import unindex_addons
 from addons.views import BaseFilter
 from amo import messages
 from amo.decorators import json_view, login_required, post_required, write
@@ -387,6 +388,15 @@ def cancel(request, addon_id, addon):
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
+    return redirect(addon.get_dev_url('versions'))
+
+
+@dev_required
+@post_required
+def unlist(request, addon_id, addon):
+    addon.update(is_listed=False)
+    amo.log(amo.LOG.ADDON_UNLISTED, addon)
+    unindex_addons.delay([addon.id])
     return redirect(addon.get_dev_url('versions'))
 
 
