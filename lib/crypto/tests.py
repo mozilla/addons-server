@@ -61,19 +61,17 @@ class TestPackaged(amo.tests.TestCase):
     def test_get_endpoint(self):
         assert self.addon.status == amo.STATUS_PUBLIC
         with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file_).startswith('http://full')
+            assert packaged.get_endpoint(
+                settings.SIGNING_SERVER).startswith('http://full')
         self.addon.update(status=amo.STATUS_LITE)
         with self.settings(SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file_).startswith(
-                'http://prelim')
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        with self.settings(SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file_).startswith(
-                'http://prelim')
+            assert packaged.get_endpoint(
+                settings.PRELIMINARY_SIGNING_SERVER).startswith(
+                    'http://prelim')
 
     def test_no_server_full(self):
         with self.settings(SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
+            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
@@ -81,23 +79,25 @@ class TestPackaged(amo.tests.TestCase):
     def test_no_server_prelim(self):
         self.file_.update(status=amo.STATUS_LITE)
         with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
+            packaged.sign_file(self.file_, settings.PRELIMINARY_SIGNING_SERVER)
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
 
-        self.file_.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
-        # Make sure the file wasn't signed.
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-
-    def test_sign_file(self):
+    def test_sign_file_full(self):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        assert self.file_.is_signed
+        assert self.file_.cert_serial_num
+        assert self.file_.hash
+
+    def test_sign_file_prelim(self):
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        packaged.sign_file(self.file_, settings.PRELIMINARY_SIGNING_SERVER)
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
@@ -106,23 +106,10 @@ class TestPackaged(amo.tests.TestCase):
         """Don't sign hotfix addons."""
         for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
             self.addon.update(guid=hotfix_guid)
-            packaged.sign_file(self.file_)
+            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
             assert not self.file_.is_signed
             assert not self.file_.cert_serial_num
             assert not self.file_.hash
-
-    def test_no_sign_unreviewed(self):
-        """Don't sign unreviewed files."""
-        self.file_.update(status=amo.STATUS_UNREVIEWED)
-        packaged.sign_file(self.file_)
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not self.file_.hash
-        self.file_.update(status=amo.STATUS_NOMINATED)
-        packaged.sign_file(self.file_)
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not self.file_.hash
 
 
 class TestTasks(amo.tests.TestCase):
@@ -150,13 +137,13 @@ class TestTasks(amo.tests.TestCase):
         self.max_appversion.update(version=version,
                                    version_int=version_int(version))
 
-    def assert_backup(self):
-        """Make sure there's a backup file."""
-        assert os.path.exists(self.backup_file_path)
-
-    def assert_no_backup(self):
-        """Make sure there's no backup file."""
-        assert not os.path.exists(self.backup_file_path)
+    def assert_signed(self, mock_sign_file, is_signed=True,
+                      sign_file_called=True):
+        assert mock_sign_file.called is sign_file_called
+        self.version.reload()
+        assert self.version.version == '1.3.1-signed' if is_signed else '1.3'
+        assert (self.file_hash != self.file_.generate_hash()) is is_signed
+        assert os.path.exists(self.backup_file_path) is is_signed
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
@@ -182,45 +169,55 @@ class TestTasks(amo.tests.TestCase):
                         '1.3.1-signed')
                     assert file_hash != self.file_.generate_hash()
                     assert file2_hash != self.file2.generate_hash()
-                    self.assert_backup()
+                    assert os.path.exists(self.backup_file_path)
                     assert os.path.exists(backup_file2_path)
         finally:
             if os.path.exists(backup_file2_path):
                 os.unlink(backup_file2_path)
 
     @mock.patch('lib.crypto.tasks.sign_file')
-    def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
-        """Don't sign files which are too old, or not default to compatible."""
-        def not_signed():
-            assert not mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
-
+    def test_dont_sign_dont_bump_unreviewed(self, mock_sign_file):
+        """Don't sign unreviewed files."""
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                  self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
+
+            for status in [s for s in amo.VALID_STATUSES
+                           if s not in amo.REVIEWED_STATUSES]:
+                self.file_.update(status=status)
+                assert self.version.version == '1.3'
+                tasks.sign_addons([self.addon.pk])
+                self.assert_signed(mock_sign_file, is_signed=False,
+                                   sign_file_called=False)
+
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
+        """Don't sign files which are too old, or not default to compatible."""
+        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                 self.file_.file_path):
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
 
             # Too old, don't sign.
             self.set_max_appversion('1')  # Very very old.
             tasks.sign_addons([self.addon.pk])
-            not_signed()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=False)
 
             # MIN_D2C_VERSION, but strict compat: don't sign.
             self.set_max_appversion(tasks.MIN_D2C_VERSION)
             self.file_.update(strict_compatibility=True)
             tasks.sign_addons([self.addon.pk])
-            not_signed()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=False)
 
             # MIN_D2C_VERSION, but binary component: don't sign.
             self.file_.update(strict_compatibility=False,
                               binary_components=True)
             tasks.sign_addons([self.addon.pk])
-            not_signed()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=False)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_sign_bump_old_versions_default_compat(self, mock_sign_file):
@@ -228,17 +225,13 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             self.set_max_appversion(tasks.MIN_D2C_VERSION)
             tasks.sign_addons([self.addon.pk], force=True)
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3.1-signed'
-            assert self.version.version_int == version_int('1.3.1-signed')
-            assert file_hash != self.file_.generate_hash()
-            self.assert_backup()
+            self.assert_signed(mock_sign_file, is_signed=True,
+                               sign_file_called=True)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_sign_bump_new_versions_not_default_compat(self, mock_sign_file):
@@ -246,96 +239,72 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             self.file_.update(binary_components=True,
                               strict_compatibility=True)
             tasks.sign_addons([self.addon.pk], force=True)
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3.1-signed'
-            assert self.version.version_int == version_int('1.3.1-signed')
-            assert file_hash != self.file_.generate_hash()
-            self.assert_backup()
+            self.assert_signed(mock_sign_file, is_signed=True,
+                               sign_file_called=True)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_resign_dont_bump_version_in_model(self, mock_sign_file):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
-            assert not mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=False)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_version_bad_zipfile(self, mock_sign_file):
         with amo.tests.copy_file(__file__, self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
-            assert not mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=False)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_sign_error(self, mock_sign_file):
         mock_sign_file.side_effect = IOError()
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                  self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=True)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_bump_not_signed(self, mock_sign_file):
         mock_sign_file.return_value = None  # Pretend we didn't sign.
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                  self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
+            self.assert_signed(mock_sign_file, is_signed=False,
+                               sign_file_called=True)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_resign_bump_version_in_model_if_force(self, mock_sign_file):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
-            file_hash = self.file_.generate_hash()
+            self.file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk], force=True)
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3.1-signed'
-            assert self.version.version_int == version_int('1.3.1-signed')
-            assert file_hash != self.file_.generate_hash()
-            self.assert_backup()
+            self.assert_signed(mock_sign_file, is_signed=True,
+                               sign_file_called=True)
 
     def test_bump_version_in_install_rdf(self):
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',

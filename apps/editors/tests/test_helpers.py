@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 
@@ -417,7 +418,7 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(len(mail.outbox), 1)
             eq_(mail.outbox[0].subject, '%s Fully Reviewed' % self.preamble)
 
-            sign_mock.assert_called_with(self.file)
+            sign_mock.assert_called_with(self.file, settings.SIGNING_SERVER)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.APPROVE_VERSION.id), 1)
@@ -440,7 +441,8 @@ class TestReviewHelper(amo.tests.TestCase):
             eq_(mail.outbox[0].subject,
                 '%s Preliminary Reviewed' % self.preamble)
 
-            sign_mock.assert_called_with(self.file)
+            sign_mock.assert_called_with(self.file,
+                                         settings.PRELIMINARY_SIGNING_SERVER)
             assert storage.exists(self.file.mirror_file_path)
 
             eq_(self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id), 1)

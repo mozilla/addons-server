@@ -111,6 +111,12 @@ def sign_addons(addon_ids, force=False, **kw):
                                                          version))
         bump_version = False  # Did we sign at least one file?
         for file_obj in to_sign:
+            # We only sign files that have been reviewed.
+            if file_obj.status not in amo.REVIEWED_STATUSES:
+                log.info("Not signing file {0}: it isn't reviewed".format(
+                    file_obj.pk))
+                continue
+
             if not os.path.isfile(file_obj.file_path):
                 log.info('File {0} does not exist, skip'.format(file_obj.pk))
                 continue
@@ -121,7 +127,8 @@ def sign_addons(addon_ids, force=False, **kw):
                 # Need to bump the version (modify install.rdf or package.json)
                 # before the file is signed.
                 bump_version_number(file_obj)
-                signed = bool(sign_file(file_obj))
+                signed = bool(sign_file(
+                    file_obj, full=file_obj.status == amo.STATUS_PUBLIC))
                 if signed:  # Bump the version number if at least one signed.
                     bump_version = True
                 else:  # We didn't sign, so revert the version bump.

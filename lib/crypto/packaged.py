@@ -11,8 +11,6 @@ import requests
 from django_statsd.clients import statsd
 from signing_clients.apps import get_signature_serial_number, JarExtractor
 
-import amo
-
 log = commonware.log.getLogger('z.crypto')
 
 
@@ -20,12 +18,9 @@ class SigningError(Exception):
     pass
 
 
-def get_endpoint(file_obj):
-    """Get the endpoint to sign the file, depending on its review status."""
-    server = settings.SIGNING_SERVER
-    if file_obj.version.addon.status != amo.STATUS_PUBLIC:
-        server = settings.PRELIMINARY_SIGNING_SERVER
-    if not server:
+def get_endpoint(server):
+    """Get the endpoint to sign the file, either the full or prelim one."""
+    if not server:  # Setting is empty.
         return
 
     return '{server}/1.0/sign_addon'.format(server=server)
@@ -65,16 +60,16 @@ def call_signing(file_obj, endpoint):
     return cert_serial_num
 
 
-def sign_file(file_obj):
+def sign_file(file_obj, server):
     """Sign a File.
 
     If there's no endpoint (signing is not enabled), or the file is a hotfix,
-    or isn't reviewed yet, or there was an error while signing, log and return
-    nothing.
+    or there was an error while signing, log and return nothing.
 
-    Otherwise return the signed file.
+    Otherwise return the signed file, with the full cert if `full`, otherwise
+    the prelim one.
     """
-    endpoint = get_endpoint(file_obj)
+    endpoint = get_endpoint(server)
     if not endpoint:  # Signing not enabled.
         log.info('Not signing file {0}: no active endpoint'.format(
             file_obj.pk))
@@ -83,11 +78,6 @@ def sign_file(file_obj):
     # Don't sign hotfixes.
     if file_obj.version.addon.guid in settings.HOTFIX_ADDON_GUIDS:
         log.info('Not signing file {0}: addon is a hotfix'.format(file_obj.pk))
-        return
-
-    # We only sign files that have been reviewed.
-    if file_obj.status not in amo.REVIEWED_STATUSES:
-        log.info("Not signing file {0}: it isn't reviewed".format(file_obj.pk))
         return
 
     # Sign the file. If there's any exception, we skip the rest.

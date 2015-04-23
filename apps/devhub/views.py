@@ -1220,8 +1220,8 @@ def version_add(request, addon_id, addon):
                     and not file_.validation.errors
                     and not file_.validation.warnings):
                 # Passed validation: sign automatically without manual review.
+                sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
                 file_.update(status=amo.STATUS_LITE)
-                sign_file(file_)
 
         return dict(url=url)
     else:
@@ -1257,8 +1257,8 @@ def version_add_file(request, addon_id, addon, version_id):
                 and not new_file.validation.errors
                 and not new_file.validation.warnings):
             # Passed validation: sign automatically without manual review.
+            sign_file(new_file, settings.PRELIMINARY_SIGNING_SERVER)
             new_file.update(status=amo.STATUS_LITE)
-            sign_file(new_file)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
@@ -1386,8 +1386,9 @@ def submit_addon(request, step):
                             and not validation.errors
                             and not validation.warnings):
                         # Passed validation: sign automatically without review.
+                        sign_file(addon_file,
+                                  settings.PRELIMINARY_SIGNING_SERVER)
                         addon.update(status=amo.STATUS_LITE)
-                        sign_file(addon_file)
                     else:
                         addon.update(status=amo.STATUS_UNREVIEWED)
             SubmitStep.objects.create(addon=addon, step=3)
