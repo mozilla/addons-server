@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-08 19:29+0000\n"
+"PO-Revision-Date: 2015-04-23 03:23+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428521382.0\n"
+"X-POOTLE-MTIME: 1429759427.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3662,19 +3662,19 @@ msgstr "無視驗證失敗"
 
 #: apps/devhub/forms.py:506
 msgid "Yes, distribute my add-on on this site."
-msgstr ""
+msgstr "是，我要在這個網站發布附加元件。"
 
 #: apps/devhub/forms.py:507
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "若您想自己發行附加元件，只需要請 Mozilla 簽署的話，請取消勾選此選項。"
 
 #: apps/devhub/forms.py:513
 msgid "This add-on will be side-loaded via application installers."
-msgstr ""
+msgstr "此附加元件將與其他應用程式的安裝程式一起安裝進使用者電腦。"
 
 #: apps/devhub/forms.py:515
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
+msgstr "Mozilla 對以其他方式安裝進使用者電腦的附加元件必須先通過程式碼審查後，才會進行簽署，這樣才能確保有更高的品質標準。"
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4790,27 +4790,27 @@ msgstr "今天就成為 AMO 審核者，讓您的附加元件能更快被審核�
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
+msgstr "已簽署您的附加元件，並已可供使用。您可在此處下載:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr ""
+msgstr "您的附加元件已列入未上架初步審查佇列。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
+msgstr "您的附加元件已列入未上架完整審查佇列。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr ""
+msgstr "您將會在編輯審查完此附加元件並簽署後收到電子郵件通知。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "您的附加元件將不會在此網站公開。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
-msgstr ""
+msgstr "您可以在 <a href=\"{0}\">附加元件的開發者頁面</a> 上傳您附加元件的新版本。"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -4987,7 +4987,7 @@ msgstr "使用下方欄位上傳您的附加元件並選擇可執行的平台。
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "您想要在此網站上發行您的附加元件嗎？"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
