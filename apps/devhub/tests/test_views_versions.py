@@ -32,6 +32,7 @@ class TestVersion(amo.tests.TestCase):
 
         self.disable_url = self.addon.get_dev_url('disable')
         self.enable_url = self.addon.get_dev_url('enable')
+        self.unlist_url = self.addon.get_dev_url('unlist')
         self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
         self.delete_data = {'addon_id': self.addon.pk,
                             'version_id': self.version.pk}
@@ -186,6 +187,24 @@ class TestVersion(amo.tests.TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
+    @mock.patch('devhub.views.unindex_addons')
+    def test_user_can_unlist_addon(self, unindex):
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
+                          is_listed=True)
+        res = self.client.post(self.unlist_url)
+        assert res.status_code == 302
+        addon = Addon.with_unlisted.get(id=3615)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert not addon.is_listed
+
+        # Make sure we remove the addon from the search index.
+        assert unindex.delay.called
+
+        entry = ActivityLog.objects.get()
+        assert entry.action == amo.LOG.ADDON_UNLISTED.id
+        msg = entry.to_string()
+        assert self.addon.name.__unicode__() in msg
+
     def test_user_get(self):
         eq_(self.client.get(self.enable_url).status_code, 405)
 
@@ -240,7 +259,7 @@ class TestVersion(amo.tests.TestCase):
         assert not doc('.disable-addon').attr('checked')
         assert doc('.disable-addon').attr('disabled') == 'disabled'
         assert not doc('.unlist-addon').attr('checked')
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'
 
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
@@ -252,10 +271,11 @@ class TestVersion(amo.tests.TestCase):
         assert doc('.enable-addon').attr('data-url') == enable_url
         assert not doc('.enable-addon').attr('disabled')
         assert doc('#modal-disable')
+        assert doc('#modal-unlist')
         assert not doc('.disable-addon').attr('checked')
         assert not doc('.disable-addon').attr('disabled')
         assert not doc('.unlist-addon').attr('checked')
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+        assert not doc('.unlist-addon').attr('disabled')
 
     def test_hidden_addon_radio(self):
         """Hidden (disabled) addon is selected: can hide or publish."""
@@ -267,7 +287,9 @@ class TestVersion(amo.tests.TestCase):
         assert doc('.disable-addon').attr('checked') == 'checked'
         assert not doc('.disable-addon').attr('disabled')
         assert not doc('.unlist-addon').attr('checked')
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+        assert not doc('.unlist-addon').attr('disabled')
+        assert not doc('#modal-disable')
+        assert doc('#modal-unlist')
 
     def test_status_disabled_addon_radio(self):
         """Disabled by Mozilla addon: hidden selected, can't change status."""
@@ -279,7 +301,7 @@ class TestVersion(amo.tests.TestCase):
         assert doc('.disable-addon').attr('checked') == 'checked'
         assert doc('.disable-addon').attr('disabled') == 'disabled'
         assert not doc('.unlist-addon').attr('checked')
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+        assert doc('.unlist-addon').attr('disabled') == 'disabled'
 
     def test_unlisted_addon_cant_change_status(self):
         """Unlisted addon: can't change its status."""
@@ -291,7 +313,9 @@ class TestVersion(amo.tests.TestCase):
         assert not doc('.disable-addon').attr('checked')
         assert doc('.disable-addon').attr('disabled') == 'disabled'
         assert doc('.unlist-addon').attr('checked') == 'checked'
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'  # Readonly.
+        assert not doc('.unlist-addon').attr('disabled')
+        assert doc('#modal-disable')
+        assert not doc('#modal-unlist')
 
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])

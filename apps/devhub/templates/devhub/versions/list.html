@@ -116,7 +116,7 @@
              <strong>{{ _('Hidden:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
       <br><br>
       <label><input name="addon-state" value="unlisted" type="radio"
-                    disabled="disabled"
+                    {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_listed %}checked="checked"{% endif %}
                     class="unlist-addon">
              <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
@@ -276,6 +276,40 @@
     </form>
   </div>
   {% endif %}
+
+  {% if addon.is_listed %}
+  <div id="modal-unlist" class="modal">
+    <form method="post" action="{{ addon.get_dev_url('unlist') }}">
+      <h3>
+        {{ _('Unlist Add-on') }}
+      </h3>
+      <p>
+        {% trans update_url='https://developer.mozilla.org/docs/Mozilla/Add-ons/Install_Manifests#updateURL' %}
+          Unlisting your add-on will make it (and each of its versions/files)
+          invisible on this website. It won't show up in searches, won't have a
+          public facing page, and won't be updated automatically for current
+          users.  It is recommended for unlisted add-ons to provide a custom
+          <a href="{{ update_url }}" target="_blank">updateURL</a> in their
+          install.rdf file for automatic updates.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          Are you sure you wish to unlist your add-on?
+        {% endtrans %}
+      </p>
+      {{ csrf() }}
+      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+      <p>
+        <button type="submit">
+          {{ _('Unlist Add-on') }}
+        </button>
+        {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
+      </p>
+    </form>
+  </div>
+  {% endif %}
+
 
   {% if not addon.is_disabled and addon.is_under_review %}
   <div id="modal-cancel" class="modal">
