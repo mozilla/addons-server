@@ -10,9 +10,10 @@ from celeryutils import task
 from lxml import etree
 
 import amo
-from versions.models import Version
+from addons.models import AddonUser
 from lib.crypto.packaged import sign_file
 from versions.compare import version_int
+from versions.models import Version
 
 log = logging.getLogger('z.task')
 
@@ -20,6 +21,31 @@ log = logging.getLogger('z.task')
 MIN_D2C_VERSION = '4'
 # Minimum Firefox version for not default to compatible addons.
 MIN_NOT_D2C_VERSION = '37'
+
+MAIL_SUBJECT = u'Mozilla Add-ons: {addon} has been automatically signed on AMO'
+MAIL_MESSAGE = u"""
+Your add-on, {addon}, has been automatically signed for distribution in
+upcoming versions of Firefox. The signing process involved repackaging the
+add-on files and adding the string '.1-signed' to their versions numbers. The
+new versions have kept their review status and are now available for your
+users.
+We recommend that you give them a try to make sure they don't have any
+unexpected problems: {addon_url}.
+
+If you are unfamiliar with the extension signing requirement, please read the
+following documents:
+
+* Signing announcement:
+  http://blog.mozilla.org/addons/2015/02/10/extension-signing-safer-experience/
+
+* Documentation page and FAQ: https://wiki.mozilla.org/Addons/Extension_Signing
+
+If you have any questions or comments on this, please reply to this email or
+join #amo-editors on irc.mozilla.org.
+
+You're receiving this email because you have an add-on hosted on
+https://addons.mozilla.org.
+"""
 
 
 @task
@@ -51,6 +77,7 @@ def sign_addons(addon_ids, force=False, **kw):
         (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
         (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
 
+    addons_emailed = []
     for version in Version.objects.filter(addon_id__in=addon_ids,
                                           addon__type=amo.ADDON_EXTENSION):
         to_sign = version.files.filter(ff_version_filter)
@@ -89,6 +116,24 @@ def sign_addons(addon_ids, force=False, **kw):
         # Now update the Version model, if we signed at least one file.
         if bump_version:
             version.update(version=_dot_one(version.version))
+            addon = version.addon
+            if addon.pk not in addons_emailed:
+                # Send a mail to the owners/devs warning them we've
+                # automatically signed their addon.
+                qs = (AddonUser.objects
+                      .filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon)
+                      .exclude(user__email=None))
+                emails = qs.values_list('user__email', flat=True)
+                subject = MAIL_SUBJECT.format(addon=addon.name)
+                message = MAIL_MESSAGE.format(
+                    addon=addon.name,
+                    addon_url=amo.helpers.absolutify(
+                        addon.get_dev_url(action='versions')))
+                amo.utils.send_mail(
+                    subject, message, recipient_list=emails,
+                    fail_silently=True,
+                    headers={'Reply-To': 'amo-editors@mozilla.org'})
+                addons_emailed.append(addon.pk)
 
 
 def bump_version_number(file_obj):
