@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-13 17:23+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-04-25 09:40+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428945797.0\n"
+"X-POOTLE-MTIME: 1429954854.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3727,18 +3727,27 @@ msgstr "Il tentativo di sostituzione forzata è fallito"
 #: apps/devhub/forms.py:506
 msgid "Yes, distribute my add-on on this site."
 msgstr ""
+"Sì, desidero che il mio componente aggiuntivo venga distribuito su questo "
+"sito."
 
 #: apps/devhub/forms.py:507
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
+"Deseleziona questa opzione se ti serve solamente la firma digitale di "
+"Mozilla per distribuire il componente aggiuntivo attraverso altri canali."
 
 #: apps/devhub/forms.py:513
 msgid "This add-on will be side-loaded via application installers."
 msgstr ""
+"Il componente aggiuntivo verrà trasferito localmente attraverso programmi di "
+"installazione."
 
 #: apps/devhub/forms.py:515
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"I componenti aggiuntivi che prevedono il trasferimento locale sono tenuti ad "
+"avere standard qualitativi più alti, saranno pertanto sottoposti a una "
+"revisione del codice prima di essere firmati digitalmente da Mozilla."
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4882,26 +4891,37 @@ msgstr "Diventa oggi stesso un revisore AMO per garantire al tuo componente aggi
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"Il componente aggiuntivo è stato firmato digitalmente per essere distribuito "
+"ed è pronto per essere installato. Scaricalo da qui:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Il componente aggiuntivo è stato inserito alla coda delle revisioni "
+"preliminari per i componenti esterni."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"Il componente aggiuntivo è stato inserito alla coda delle revisioni complete "
+"per i componenti esterni."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Quando il componente aggiuntivo sarà stato revisionato e firmato "
+"digitalmente riceverai una notifica via email."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
 msgstr ""
+"Il componente aggiuntivo non verrà distribuito pubblicamente su questo sito."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
 msgstr ""
+"È possibile caricare le nuove versioni sulla <a href=\"{0}\">pagina dello "
+"sviluppatore del componente aggiuntivo</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5088,7 +5108,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Desideri che il componente aggiuntivo venga distribuito su questo sito?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
@@ -6767,7 +6787,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr "Fuori elenco"
+msgstr "Componenti aggiuntivi esterni:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
@@ -7343,15 +7363,15 @@ msgstr "Aggiorna temi"
 
 #: apps/editors/helpers.py:128
 msgid "Unlisted Pending Updates"
-msgstr "Aggiornamenti in sospeso non visualizzati"
+msgstr "Aggiornamenti in sospeso per componenti esterni"
 
 #: apps/editors/helpers.py:129
 msgid "Unlisted Full Reviews"
-msgstr "Revisioni complete non visualizzate"
+msgstr "Revisioni complete per componenti esterni"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Preliminary Reviews"
-msgstr "Revisioni preliminari non visualizzate"
+msgstr "Revisioni preliminari per componenti esterni"
 
 #: apps/editors/helpers.py:163
 msgid "Fast Track ({0})"
@@ -7386,20 +7406,20 @@ msgstr[1] "Revisioni moderate ({0})"
 #: apps/editors/helpers.py:189
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Revisione completa non visualizzata ({0})"
-msgstr[1] "Revisioni complete non visualizzate ({0})"
+msgstr[0] "Revisione completa per componente esterno ({0})"
+msgstr[1] "Revisioni complete per componenti esterni ({0})"
 
 #: apps/editors/helpers.py:194
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] "Aggiornamento in sospeso non visualizzato ({0})"
-msgstr[1] "Aggiornamenti in sospeso non visualizzati ({0})"
+msgstr[0] "Aggiornamento in sospeso per componente esterno ({0})"
+msgstr[1] "Aggiornamenti in sospeso per componenti esterni ({0})"
 
 #: apps/editors/helpers.py:199
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Revisione preliminare non visualizzata ({0})"
-msgstr[1] "Revisioni preliminari non visualizzate ({0})"
+msgstr[0] "Revisione preliminare per componente esterno ({0})"
+msgstr[1] "Revisioni preliminari per componenti esterni ({0})"
 
 #: apps/editors/helpers.py:231
 msgid "Addon"
@@ -7682,7 +7702,7 @@ msgstr "Code"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr "Code non visualizzate"
+msgstr "Code componenti esterni"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7784,20 +7804,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Revisione completa non visualizzata ({num})"
-msgstr[1] "Revisioni complete non visualizzate ({num})"
+msgstr[0] "Revisione completa per componente esterno ({num})"
+msgstr[1] "Revisioni complete per componenti esterni ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] "Aggiornamento in sospeso non visualizzato ({num})"
-msgstr[1] "Aggiornamenti in sospeso non visualizzati ({num})"
+msgstr[0] "Aggiornamento in sospeso per componente esterno ({num})"
+msgstr[1] "Aggiornamenti in sospeso per componenti esterni ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Revisione preliminare non visualizzata ({num})"
-msgstr[1] "Revisioni preliminari non visualizzate ({num})"
+msgstr[0] "Revisione preliminare per componente esterno ({num})"
+msgstr[1] "Revisioni preliminari per componenti esterni ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
