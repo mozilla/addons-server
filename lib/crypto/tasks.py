@@ -47,6 +47,24 @@ You're receiving this email because you have an add-on hosted on
 https://addons.mozilla.org.
 """
 
+MAIL_UNSIGN_SUBJECT = u'Mozilla Add-ons: {addon} has been unsigned/reverted'
+MAIL_UNSIGN_MESSAGE = u"""
+Your add-on, {addon}, was automatically signed for distribution in upcoming
+versions of Firefox. However, we encountered an issue with older versions of
+Firefox, and had to revert this signature. We restored the backups we had for
+the signed versions.
+We recommend that you give them a try to make sure they don't have any
+unexpected problems: {addon_url}.
+
+Link to the bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1158467
+
+If you have any questions or comments on this, please reply to this email or
+join #amo-editors on irc.mozilla.org.
+
+You're receiving this email because you have an add-on hosted on
+https://addons.mozilla.org, and we had automatically signed it.
+"""
+
 
 @task
 def sign_addons(addon_ids, force=False, **kw):
@@ -192,3 +210,82 @@ def _bump_version_in_package_json(content):
     if 'version' in bumped:
         bumped['version'] = _dot_one(bumped['version'])
     return json.dumps(bumped)
+
+
+@task
+def unsign_addons(addon_ids, force=False, **kw):
+    """Used to unsign all the versions of an addon that were previously signed.
+
+    This is used to revert the signing in case we need to.
+
+    It first moves the backup of the signed file back over its original one,
+    then un-bump the version, and finally re-hash the file.
+    """
+    log.info('[{0}] Unsigning addons.'.format(len(addon_ids)))
+    bumped_suffix = '.1-signed'
+
+    def file_supports_firefox(version):
+        """Return a Q object: files supporting at least a firefox version."""
+        return Q(version__apps__max__application=amo.FIREFOX.id,
+                 version__apps__max__version_int__gte=version_int(version))
+
+    is_default_compatible = Q(binary_components=False,
+                              strict_compatibility=False)
+    # We only want to unsign files that are at least compatible with Firefox
+    # MIN_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
+    # to compatible.
+    # The signing feature should be supported from Firefox 40 and above, but
+    # we're still signing some files that are a bit older just in case.
+    ff_version_filter = (
+        (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
+        (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
+
+    addons_emailed = []
+    for version in Version.objects.filter(addon_id__in=addon_ids,
+                                          addon__type=amo.ADDON_EXTENSION):
+        if not version.version.endswith(bumped_suffix):
+            log.info('Version {0} was not bumped, skip.'.format(version.pk))
+            continue
+        to_unsign = version.files.filter(ff_version_filter)
+        if force:
+            to_unsign = to_unsign.all()
+        else:
+            to_unsign = [f for f in to_unsign.all() if f.is_signed]
+        if not to_unsign:
+            log.info('Not unsigning addon {0}, version {1} (no files or not '
+                     'signed)'.format(version.addon, version))
+            continue
+        log.info('Unsigning addon {0}, version {1}'.format(version.addon,
+                                                           version))
+        for file_obj in to_unsign:
+            if not os.path.isfile(file_obj.file_path):
+                log.info('File {0} does not exist, skip'.format(file_obj.pk))
+                continue
+            backup_path = '{0}.backup_signature'.format(file_obj.file_path)
+            if not os.path.isfile(backup_path):
+                log.info('Backup {0} does not exist, skip'.format(backup_path))
+                continue
+            # Restore the backup.
+            shutil.move(backup_path, file_obj.file_path)
+            file_obj.update(cert_serial_num='', hash=file_obj.generate_hash())
+        # Now update the Version model, to unbump its version.
+        version.update(version=version.version[:-len(bumped_suffix)])
+        # Warn addon owners that we restored backups.
+        addon = version.addon
+        if addon.pk not in addons_emailed:
+            # Send a mail to the owners/devs warning them we've
+            # unsigned their addon and restored backups.
+            qs = (AddonUser.objects
+                  .filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon)
+                  .exclude(user__email=None))
+            emails = qs.values_list('user__email', flat=True)
+            subject = MAIL_UNSIGN_SUBJECT.format(addon=addon.name)
+            message = MAIL_UNSIGN_MESSAGE.format(
+                addon=addon.name,
+                addon_url=amo.helpers.absolutify(
+                    addon.get_dev_url(action='versions')))
+            amo.utils.send_mail(
+                subject, message, recipient_list=emails,
+                fail_silently=True,
+                headers={'Reply-To': 'amo-editors@mozilla.org'})
+            addons_emailed.append(addon.pk)
