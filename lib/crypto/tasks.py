@@ -133,7 +133,9 @@ def sign_addons(addon_ids, force=False, **kw):
                 shutil.move(backup_path, file_obj.file_path)
         # Now update the Version model, if we signed at least one file.
         if bump_version:
-            version.update(version=_dot_one(version.version))
+            bumped_version = _dot_one(version.version)
+            version.update(version=bumped_version,
+                           version_int=version_int(bumped_version))
             addon = version.addon
             if addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've
