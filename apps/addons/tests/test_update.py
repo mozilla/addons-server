@@ -10,7 +10,6 @@ import amo
 import amo.tests
 from addons.models import (Addon, CompatOverride, CompatOverrideRange,
                            IncompatibleVersions)
-from amo.helpers import user_media_url
 from applications.models import AppVersion
 from files.models import File
 from services import update
@@ -732,17 +731,23 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
         rdf = up.get_rdf()
         assert rdf.find(self.good_data['appID']) > -1
 
+    def get_file_url(self):
+        """Return the file url with the hash as parameter."""
+        return ('/user-media/addons/3615/delicious_bookmarks-2.1.072-fx.xpi?'
+                'filehash=sha256%3A3808b13ef8341378b9c8305ca648200954ee7dcd8dc'
+                'e09fef55f2673458bc31f')
+
     def test_url(self):
         up = self.get(self.good_data)
         up.get_rdf()
-        assert user_media_url('addons') in up.data['row']['url']
+        assert up.data['row']['url'] == self.get_file_url()
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
         up = self.get(self.good_data)
         up.get_rdf()
-        assert user_media_url('addons') in up.data['row']['url']
+        assert up.data['row']['url'] == self.get_file_url()
 
     def test_url_remote_beta(self):
         file = File.objects.get(pk=67442)
@@ -759,7 +764,7 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
         self.addon_one.save()
         up.get_rdf()
         eq_(up.data['row']['file_id'], file.pk)
-        assert user_media_url('addons') in up.data['row']['url']
+        assert up.data['row']['url'] == self.get_file_url()
 
     def test_hash(self):
         rdf = self.get(self.good_data).get_rdf()
