@@ -1,6 +1,7 @@
 import dictconfig
 import logging
 import os
+import urllib
 
 # get the right settings module
 settingmodule = os.environ.get('DJANGO_SETTINGS_MODULE', 'settings_local')
@@ -101,7 +102,9 @@ def get_mirror(status, id, row):
     else:
         host = user_media_url('addons')
 
-    return posixpath.join(host, str(id), row['filename'])
+    url = posixpath.join(host, str(id), row['filename'])
+    params = urllib.urlencode({'filehash': row['hash']})
+    return '{0}?{1}'.format(url, params)
 
 
 def getconn():
