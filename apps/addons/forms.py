@@ -45,8 +45,8 @@ def clean_name(name, instance=None):
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):
-        raise forms.ValidationError(_('This name is already in use. Please '
-                                      'choose another.'))
+        raise forms.ValidationError(_('The name "%s" is already in use. '
+                                      'Please choose another.' % name))
     return name
 
 
