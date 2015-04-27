@@ -173,10 +173,13 @@ class TestTasks(amo.tests.TestCase):
                     file_hash = self.file_.generate_hash()
                     file2_hash = self.file2.generate_hash()
                     assert self.version.version == '1.3'
+                    assert self.version.version_int == version_int('1.3')
                     tasks.sign_addons([self.addon.pk])
                     assert mock_sign_file.call_count == 2
                     self.version.reload()
                     assert self.version.version == '1.3.1-signed'
+                    assert self.version.version_int == version_int(
+                        '1.3.1-signed')
                     assert file_hash != self.file_.generate_hash()
                     assert file2_hash != self.file2.generate_hash()
                     self.assert_backup()
@@ -192,6 +195,7 @@ class TestTasks(amo.tests.TestCase):
             assert not mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -199,6 +203,7 @@ class TestTasks(amo.tests.TestCase):
                                  self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
 
             # Too old, don't sign.
             self.set_max_appversion('1')  # Very very old.
@@ -225,11 +230,13 @@ class TestTasks(amo.tests.TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             self.set_max_appversion(tasks.MIN_D2C_VERSION)
             tasks.sign_addons([self.addon.pk], force=True)
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3.1-signed'
+            assert self.version.version_int == version_int('1.3.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -241,12 +248,14 @@ class TestTasks(amo.tests.TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             self.file_.update(binary_components=True,
                               strict_compatibility=True)
             tasks.sign_addons([self.addon.pk], force=True)
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3.1-signed'
+            assert self.version.version_int == version_int('1.3.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -257,10 +266,12 @@ class TestTasks(amo.tests.TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
             assert not mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -269,10 +280,12 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(__file__, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
             assert not mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -283,10 +296,12 @@ class TestTasks(amo.tests.TestCase):
                                  self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -297,10 +312,12 @@ class TestTasks(amo.tests.TestCase):
                                  self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -311,10 +328,12 @@ class TestTasks(amo.tests.TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
             tasks.sign_addons([self.addon.pk], force=True)
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3.1-signed'
+            assert self.version.version_int == version_int('1.3.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
