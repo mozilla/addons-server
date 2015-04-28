@@ -2032,11 +2032,6 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
-    def test_action_links_unlisted_addon(self):
-        self.addon.update(is_listed=False)
-        r = self.client.get(self.url)
-        check_links([], pq(r.content)('#actions-addon a'), verify=False)
-
     def test_action_links_as_admin(self):
         self.login_as_admin()
         r = self.client.get(self.url)
