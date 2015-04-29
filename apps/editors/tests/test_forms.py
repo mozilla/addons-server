@@ -47,6 +47,12 @@ class TestReviewActions(amo.tests.TestCase):
                 eq_(force_unicode(self.set_status(status)['prelim']['label']),
                     'Grant preliminary review')
 
+    def test_nominated_unlisted_addon_no_prelim(self):
+        self.addon.update(is_listed=False)
+        actions = self.set_status(amo.STATUS_NOMINATED)
+        assert 'prelim' not in actions
+        assert actions['public']['label'] == 'Grant full review'
+
     def test_reject(self):
         reject = self.set_status(amo.STATUS_UNREVIEWED)['reject']['details']
         assert force_unicode(reject).startswith('This will reject the add-on')

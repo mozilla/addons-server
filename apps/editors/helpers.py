@@ -450,12 +450,20 @@ class ReviewHelper:
         if not addon.admin_review or acl.action_allowed(
                 request, 'ReviewerAdminTools', 'View'):
             if self.review_type != 'preliminary':
+                if addon.is_listed:
+                    label = _lazy('Push to public')
+                else:
+                    label = _lazy('Grant full review')
                 actions['public'] = {'method': self.handler.process_public,
                                      'minimal': False,
-                                     'label': _lazy('Push to public')}
-            actions['prelim'] = {'method': self.handler.process_preliminary,
-                                 'label': labels['prelim'],
-                                 'minimal': False}
+                                     'label': label}
+            # An unlisted sideload add-on, which requests a full review, cannot
+            # be granted a preliminary review.
+            if addon.is_listed or self.review_type == 'preliminary':
+                actions['prelim'] = {
+                    'method': self.handler.process_preliminary,
+                    'label': labels['prelim'],
+                    'minimal': False}
             actions['reject'] = {'method': self.handler.process_sandbox,
                                  'label': _lazy('Reject'),
                                  'minimal': False}
