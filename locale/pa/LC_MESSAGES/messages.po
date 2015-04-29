@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-22 14:24-0700\n"
-"PO-Revision-Date: 2015-04-06 05:29+0000\n"
+"PO-Revision-Date: 2015-04-24 03:49+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428298146.0\n"
+"X-POOTLE-MTIME: 1429847356.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3676,19 +3676,23 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 
 #: apps/devhub/forms.py:506
 msgid "Yes, distribute my add-on on this site."
-msgstr ""
+msgstr "ਹਾਂ, ਮੇਰੇ ਐਡ-ਆਨ ਨੂੰ ਇਸ ਸਾਈਟ ਤੇ ਵਰਤਾਓ।"
 
 #: apps/devhub/forms.py:507
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
+"ਇਸ ਚੋਣ ਤੋਂ ਨਿਸ਼ਾਨ ਹਟਾਓ ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਆਪ ਵੰਡਣ ਦੇ ਇਛੁੱਕ ਹੋ ਅਤੇ ਇਸ "
+"ਨੂੰ ਕੇਵਲ ਮੌਜੀਲਾ ਵੱਲੋਂ ਹਸਤਾਖਰਿਤ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਹੈ।"
 
 #: apps/devhub/forms.py:513
 msgid "This add-on will be side-loaded via application installers."
-msgstr ""
+msgstr "ਇਹ ਐਡ-ਆਨ ਐਪਲੀਕੇਸ਼ਨ ਇੰਸਟਾਲਰਾਂ ਦੁਆਰਾ ਸਾਈਡ-ਲੋਡ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 #: apps/devhub/forms.py:515
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"ਸਾਈਡ-ਲੋਡ ਹੋਏ ਐਡ-ਆਨਾਂ ਦੇ ਕੋਡ ਦੀ ਸਮੀਖਿਆ ਮੌਜੀਲਾ ਵੱਲੋਂ ਕੀਤੀ ਜਾਵੇਗੀ ਇਸ ਤੋਂ ਪਹਿਲਾਂ "
+"ਦੀ ਉਹ ਹਸਤਾਖਰਿਤ ਹੋਣ ਅਤੇ ਉੱਚ ਗੁਣਵੱਤਾ ਮਿਆਰ ਤੇ ਰੱਖੇ ਜਾਣਗੇ।"
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4810,26 +4814,32 @@ msgstr "ਅੱਜ ਹੀ ਇੱਕ AMO ਸਮੀਖਿਅਕ ਬਣੋ ਅਤੇ
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋ ਚੁੱਕਿਆ ਅਤੇ ਇਹ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਨੂੰ "
+"ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ ਇੱਥੋਂ:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਅਣ-ਸੂਚੀਬੱਧ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਭੇਜਿਆ ਜਾ ਚੁੱਕਿਆ।"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਅਣ-ਸੂਚੀਬੱਧ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਭੇਜਿਆ ਜਾ ਚੁੱਕਿਆ।"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗੀ ਇੱਕ ਵਾਰ ਇਹ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਅਤੇ ਹਸਤਾਖਰਿਤ "
+"ਹੋ ਜਾਵੇ।"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇਸ ਵੈੱਬਸਾਈਟ ਤੇ ਜਨਤਕ ਤੌਰ ਤੇ ਉੱਪਲਬਧ ਨਹੀਂ ਹੋਵੇਗਾ।"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
 msgstr ""
+"ਤੁਸੀਂ <a href=\"{0}\">ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਸਫ਼ੇ</a>ਤੇ ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ "
+"ਕਰ ਸਕਦੇ ਹੋ।"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -4969,10 +4979,15 @@ msgstr "ਕਦਮ 1. ਸ਼ੁਰੂ ਕਰਨਾ"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
+"ਮੌਜੀਲਾ ਐਡ-ਆਨ ਵਾਤਾਵਰਣ ਵਿੱਚ ਤੁਹਾਡੇ ਯੋਗਦਾਨ ਲਈ ਧੰਨਵਾਦ। ਇਹ ਦਾਖਲ ਕਾਰਜ ਤੁਹਾਨੂੰ "
+"ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਇਸ ਸਾਈਟ ਤੇ ਮੇਜ਼ਬਾਨੀ ਦੀ ਪ੍ਰਵਾਨਗੀ ਦਿੰਦਾ, ਜਾਂ ਇਸ ਨੂੰ "
+"ਸਵੈ-ਮੇਜ਼ਬਾਨੀ ਲਈ ਹਸਤਾਖਰਿਤ ਕਰਦਾ ਹੈ।"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
 msgstr ""
+"ਆਪਣਾ ਦਾਖਲ ਕਾਰਜ ਮੁਕੰਮਲ ਕਰਨ ਲਈ, ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਪੈਕੇਜ ਦੀ ਲੋੜ ਹੋਵੇਗੀ "
+"(.xpi, .jar ਜਾਂ .xml)।"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -5008,7 +5023,7 @@ msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ 
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "ਕੀ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇਸ ਸਾਈਟ ਤੇ ਵਰਤਾਇਆ ਜਾਵੇ?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
@@ -6592,35 +6607,40 @@ msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰੋ"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਪ੍ਰਤੱਖਤਾ"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "ਸੂਚੀਬੱਧ:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"ਖੋਜ ਨਤੀਜੇ ਅਤੇ ਸੂਚੀਬੱਧ ਸਫ਼ੇ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ {0} ਤੇ ਹਰੇਕ ਨੂੰ ਵਿਖਾਈ ਦਿੰਦਾ"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "ਲੁਕਿਆ:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"{0} ਤੇ ਮੇਜ਼ਬਾਨ ਹੋਇਆ, ਪਰ ਲੇਖਕਾਂ ਨੂੰ ਛੱਡ ਕੇ ਹਰੇਕ ਲਈ ਲੁਕਿਆ। ਅਸਥਾਈ ਤੌਰ ਤੇ ਸੂਚੀਆਂ "
+"ਨੂੰ ਲੁਕਾਉਣ ਜਾਂ ਬੰਦ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ।"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
-msgstr ""
+msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
+"{0} ਤੇ ਕ੍ਰਮਬੱਧ ਨਹੀਂ ਹੋਇਆ। ਡਿਵੈਲਪਰ ਆਪਣੇ ਨੂੰ ਐਡ-ਆਨ ਵੰਡਣ ਅਤੇ ਹਸਤਾਖਰਿਤ ਕਰਨ ਲਈ "
+"ਨਵੇਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰਨਗੇ।"
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"
-msgstr ""
+msgstr "ਮੌਜੂਦਾ ਵਰਜਨ"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 msgid "Currently on AMO"
@@ -6696,15 +6716,17 @@ msgstr "ਵਰਜਨ ਸ਼ਾਮਲ ਕਰੋ"
 
 #: apps/devhub/templates/devhub/versions/list.html:254 apps/devhub/templates/devhub/versions/list.html:272
 msgid "Hide Add-on"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਲੁਕਾਓ"
 
 #: apps/devhub/templates/devhub/versions/list.html:257
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਇਸ ਨੂੰ ਗੈਲਰੀ ਵਿੱਚ ਵਿਖਾਈ ਦੇਣ ਤੋਂ ਰੋਕੇਗਾ ਅਤੇ ਵਰਤੋਂਕਾਰਾਂ "
+"ਨੂੰ ਆਪਣੇ ਆਪ ਅੱਪਡੇਟਾਂ ਦੇਣਾ ਬੰਦ ਕਰ ਦੇਵੇਗਾ।"
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਕੀ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #: apps/devhub/templates/devhub/versions/list.html:286
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
