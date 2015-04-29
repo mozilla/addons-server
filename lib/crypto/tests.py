@@ -101,6 +101,11 @@ class TestPackaged(amo.tests.TestCase):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
+        # Make sure there's two newlines at the end of the mozilla.sf file (see
+        # bug 1158938).
+        with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
+            with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
+                assert mozillasf.read().endswith('\n\n')
 
     def test_no_sign_hotfix_addons(self):
         """Don't sign hotfix addons."""
