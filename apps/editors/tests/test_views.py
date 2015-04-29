@@ -2493,6 +2493,25 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
+    @patch('lib.crypto.packaged.sign_file')
+    def test_pending_to_public_unlisted_addon(self, mock_sign):
+        self.addon.update(is_listed=False)
+        statuses = (self.version.files.values_list('status', flat=True)
+                    .order_by('status'))
+        assert list(statuses) == [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]
+
+        self.login_as_admin()
+        response = self.client.post(self.url, self.pending_dict())
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        self.assertRedirects(response,
+                             reverse('editors.unlisted_queue_pending'))
+
+        statuses = (self.version.files.values_list('status', flat=True)
+                    .order_by('status'))
+        assert list(statuses) == [amo.STATUS_PUBLIC] * 2
+
+        assert mock_sign.called
+
     def test_disabled_file(self):
         obj = File.objects.create(version=self.version,
                                   status=amo.STATUS_DISABLED)
