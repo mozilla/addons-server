@@ -2589,9 +2589,18 @@ class TestWhiteboard(ReviewBase):
     def test_whiteboard_addition(self):
         whiteboard_info = u'Whiteboard info.'
         url = reverse('editors.whiteboard', args=[self.addon.slug])
-        r = self.client.post(url, {'whiteboard': whiteboard_info})
-        eq_(r.status_code, 302)
-        eq_(self.get_addon().whiteboard, whiteboard_info)
+        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        assert response.status_code == 302
+        assert self.get_addon().whiteboard == whiteboard_info
+
+    @patch('addons.decorators.owner_or_unlisted_reviewer', lambda r, a: True)
+    def test_whiteboard_addition_unlisted_addon(self):
+        self.addon.update(is_listed=False)
+        whiteboard_info = u'Whiteboard info.'
+        url = reverse('editors.whiteboard', args=[self.addon.slug])
+        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        assert response.status_code == 302
+        assert self.addon.reload().whiteboard == whiteboard_info
 
 
 class TestAbuseReports(amo.tests.TestCase):

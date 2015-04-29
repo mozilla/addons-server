@@ -730,7 +730,7 @@ def leaderboard(request):
 
 
 @addons_reviewer_required
-@addon_view
+@addon_view_factory(qs=Addon.with_unlisted.all)
 def whiteboard(request, addon):
     form = forms.WhiteboardForm(request.POST or None, instance=addon)
 
