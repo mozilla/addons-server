@@ -1373,7 +1373,7 @@ def submit_addon(request, step):
             AddonUser(addon=addon, user=request.amo_user).save()
             check_validation_override(request, form, addon,
                                       addon.current_version)
-            if not addon.is_listed:  # Not listed? Skip straight to step 6.
+            if not addon.is_listed:  # Not listed? Automatically choose queue.
                 if data.get('is_sideload'):  # Full review needed.
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
@@ -1409,13 +1409,15 @@ def submit_describe(request, addon_id, addon, step):
     if request.method == 'POST' and form.is_valid() and (
             not addon.is_listed or cat_form.is_valid()):
         addon = form.save(addon)
+        submit_step = SubmitStep.objects.filter(addon=addon)
         if addon.is_listed:
             cat_form.save()
-            next_step = 4
-        else:
-            next_step = 7
-        SubmitStep.objects.filter(addon=addon).update(step=next_step)
-        return redirect(_step_url(next_step), addon.slug)
+            submit_step.update(step=4)
+            return redirect(_step_url(4), addon.slug)
+        else:  # Finished for unlisted addons.
+            submit_step.delete()
+            signals.submission_done.send(sender=addon)
+            return redirect('devhub.submit.7', addon.slug)
     return render(request, 'devhub/addons/submit/describe.html',
                   {'form': form, 'cat_form': cat_form, 'addon': addon,
                    'step': step})

@@ -1221,8 +1221,9 @@ class TestSubmitStep3(TestSubmitBase):
         assert response.url.endswith(reverse('devhub.submit.7',
                                              args=['unlisted-addon']))
         # Unlisted addons don't need much info, and their queue is chosen
-        # automatically on step 2, so we skip steps 4, 5 and 6.
-        assert self.get_step().step == 7
+        # automatically on step 2, so we skip steps 4, 5 and 6. We thus have no
+        # more steps at that point.
+        assert not SubmitStep.objects.filter(addon=self.addon).exists()
 
         addon = self.get_addon()
         assert addon.name == 'unlisted addon'
