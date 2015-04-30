@@ -498,7 +498,10 @@ def review(request, addon):
 
     queue_type = (form.helper.review_type if form.helper.review_type
                   != 'preliminary' else 'prelim')
-    redirect_url = reverse('editors.queue_%s' % queue_type)
+    if addon.is_listed:
+        redirect_url = reverse('editors.queue_%s' % queue_type)
+    else:
+        redirect_url = reverse('editors.unlisted_queue_%s' % queue_type)
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
@@ -600,7 +603,8 @@ def review(request, addon):
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
-                  user_changes=user_changes_log)
+                  user_changes=user_changes_log,
+                  unlisted=not addon.is_listed)
 
     return render(request, 'editors/review.html', ctx)
 
@@ -730,7 +734,7 @@ def leaderboard(request):
 
 
 @addons_reviewer_required
-@addon_view
+@addon_view_factory(qs=Addon.with_unlisted.all)
 def whiteboard(request, addon):
     form = forms.WhiteboardForm(request.POST or None, instance=addon)
 

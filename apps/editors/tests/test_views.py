@@ -1831,6 +1831,17 @@ class TestReview(ReviewBase):
         ]
         self._test_breadcrumbs(expected)
 
+    def test_breadcrumbs_unlisted_addons(self):
+        self.addon.update(is_listed=False)
+        self.generate_files()
+        self.login_as_admin()
+        expected = [
+            ('Unlisted Pending Updates',
+             reverse('editors.unlisted_queue_pending')),
+            (unicode(self.addon.name), None),
+        ]
+        self._test_breadcrumbs(expected)
+
     def test_files_shown(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -2032,11 +2043,6 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
-    def test_action_links_unlisted_addon(self):
-        self.addon.update(is_listed=False)
-        r = self.client.get(self.url)
-        check_links([], pq(r.content)('#actions-addon a'), verify=False)
-
     def test_action_links_as_admin(self):
         self.login_as_admin()
         r = self.client.get(self.url)
@@ -2047,13 +2053,6 @@ class TestReview(ReviewBase):
              reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
-
-    def test_unlisted_addon_action_links(self):
-        """No "View Listing" link for unlisted addons, no action links for
-        standard reviewers."""
-        self.addon.update(is_listed=False)
-        r = self.client.get(self.url)
-        check_links([], pq(r.content)('#actions-addon a'), verify=False)
 
     def test_unlisted_addon_action_links_as_admin(self):
         """No "View Listing" link for unlisted addons, "edit"/"manage" links
@@ -2493,6 +2492,25 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
+    @patch('lib.crypto.packaged.sign_file')
+    def test_pending_to_public_unlisted_addon(self, mock_sign):
+        self.addon.update(is_listed=False)
+        statuses = (self.version.files.values_list('status', flat=True)
+                    .order_by('status'))
+        assert list(statuses) == [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]
+
+        self.login_as_admin()
+        response = self.client.post(self.url, self.pending_dict())
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        self.assertRedirects(response,
+                             reverse('editors.unlisted_queue_pending'))
+
+        statuses = (self.version.files.values_list('status', flat=True)
+                    .order_by('status'))
+        assert list(statuses) == [amo.STATUS_PUBLIC] * 2
+
+        assert mock_sign.called
+
     def test_disabled_file(self):
         obj = File.objects.create(version=self.version,
                                   status=amo.STATUS_DISABLED)
@@ -2589,9 +2607,18 @@ class TestWhiteboard(ReviewBase):
     def test_whiteboard_addition(self):
         whiteboard_info = u'Whiteboard info.'
         url = reverse('editors.whiteboard', args=[self.addon.slug])
-        r = self.client.post(url, {'whiteboard': whiteboard_info})
-        eq_(r.status_code, 302)
-        eq_(self.get_addon().whiteboard, whiteboard_info)
+        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        assert response.status_code == 302
+        assert self.get_addon().whiteboard == whiteboard_info
+
+    @patch('addons.decorators.owner_or_unlisted_reviewer', lambda r, a: True)
+    def test_whiteboard_addition_unlisted_addon(self):
+        self.addon.update(is_listed=False)
+        whiteboard_info = u'Whiteboard info.'
+        url = reverse('editors.whiteboard', args=[self.addon.slug])
+        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        assert response.status_code == 302
+        assert self.addon.reload().whiteboard == whiteboard_info
 
 
 class TestAbuseReports(amo.tests.TestCase):
