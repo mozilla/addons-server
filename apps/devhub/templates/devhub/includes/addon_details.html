@@ -93,6 +93,19 @@
     {% endif %}
   </strong>
 </li>
+
+<li>
+  <strong>{{ _('Visibility:') }}</strong>
+  {% if not addon.is_disabled and addon.is_listed %}
+    {{ _('Listed') }}
+  {% elif addon.is_disabled and addon.is_listed %}
+    {{ _('Hidden') }}
+  {% elif not addon.is_listed %}
+    {{ _('Unlisted') }}
+  {% endif %}
+</li>
+
+</li>
 {% if addon.current_version %}
   <li>
     <strong>{{ _('Current Version:') }}</strong>
