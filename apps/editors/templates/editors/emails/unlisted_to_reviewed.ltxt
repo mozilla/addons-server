@@ -1,0 +1,12 @@
+{% extends "editors/emails/base.ltxt" %}{% block content %}
+Your add-on, {{ name }} {{ number }}, has been reviewed and is now signed and ready for you to download at {{ addon_url }}.
+{% include "editors/emails/files.ltxt" %}
+Reviewer:
+{{ reviewer }}
+
+Comments:
+{{ comments }}
+
+{{ tested }}
+
+{% endblock %}

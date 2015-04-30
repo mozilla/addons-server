@@ -1,0 +1,12 @@
+{% extends "editors/emails/base.ltxt" %}{% block content %}
+Your add-on, {{ name }} {{ number }}, didn't pass review and therefore won't be signed.
+{% include "editors/emails/files.ltxt" %}
+Reviewer:
+{{ reviewer }}
+
+Comments:
+{{ comments }}
+
+{{ tested }}
+
+{% endblock %}

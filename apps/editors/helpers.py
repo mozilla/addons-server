@@ -601,11 +601,14 @@ class ReviewBase(object):
                   emails, Context(data), perm_setting='editor_reviewed')
 
     def get_context_data(self):
+        if self.addon.is_listed:
+            url = self.addon.get_url_path(add_prefix=False)
+        else:
+            url = self.addon.get_dev_url('versions')
         return {'name': self.addon.name,
                 'number': self.version.version,
                 'reviewer': (self.request.user.display_name),
-                'addon_url': absolutify(
-                    self.addon.get_url_path(add_prefix=False)),
+                'addon_url': absolutify(url),
                 'review_url': absolutify(reverse('editors.review',
                                                  args=[self.addon.pk],
                                                  add_prefix=False)),
@@ -669,8 +672,12 @@ class ReviewAddon(ReviewBase):
         self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        self.notify_email('%s_to_public' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Fully Reviewed')
+        template = u'%s_to_public' % self.review_type
+        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
+        if not self.addon.is_listed:
+            template = u'unlisted_to_reviewed'
+            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
+        self.notify_email(template, subject)
 
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -695,8 +702,12 @@ class ReviewAddon(ReviewBase):
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        self.notify_email('%s_to_sandbox' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Rejected')
+        template = u'%s_to_sandbox' % self.review_type
+        subject = u'Mozilla Add-ons: %s %s Rejected'
+        if not self.addon.is_listed:
+            template = u'unlisted_to_sandbox'
+            subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
+        self.notify_email(template, subject)
 
         log.info(u'Making %s disabled' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -714,10 +725,14 @@ class ReviewAddon(ReviewBase):
                                   amo.STATUS_LITE_AND_NOMINATED)):
             changes['highest_status'] = amo.STATUS_LITE
 
-        template = '%s_to_preliminary' % self.review_type
+        template = u'%s_to_preliminary' % self.review_type
+        subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
         if (self.review_type == 'preliminary' and
                 self.addon.status == amo.STATUS_LITE_AND_NOMINATED):
-            template = 'nominated_to_nominated'
+            template = u'nominated_to_nominated'
+        if not self.addon.is_listed:
+            template = u'unlisted_to_reviewed'
+            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
 
         self.set_addon(**changes)
         self.set_files(amo.STATUS_LITE, self.version.files.all(),
@@ -727,8 +742,7 @@ class ReviewAddon(ReviewBase):
         self.version.sign_files()
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
-        self.notify_email(template,
-                          u'Mozilla Add-ons: %s %s Preliminary Reviewed')
+        self.notify_email(template, subject)
 
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
@@ -765,8 +779,12 @@ class ReviewFiles(ReviewBase):
         self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        self.notify_email('%s_to_public' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Fully Reviewed')
+        template = u'%s_to_public' % self.review_type
+        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
+        if not self.addon.is_listed:
+            template = u'unlisted_to_reviewed'
+            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
+        self.notify_email(template, subject)
 
         log.info(u'Making %s files %s public' %
                  (self.addon,
@@ -785,8 +803,12 @@ class ReviewFiles(ReviewBase):
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        self.notify_email('%s_to_sandbox' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Rejected')
+        template = u'%s_to_sandbox' % self.review_type
+        subject = u'Mozilla Add-ons: %s %s Rejected'
+        if not self.addon.is_listed:
+            template = u'unlisted_to_sandbox'
+            subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
+        self.notify_email(template, subject)
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,
@@ -808,8 +830,12 @@ class ReviewFiles(ReviewBase):
         self.version.sign_files()
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
-        self.notify_email('%s_to_preliminary' % self.review_type,
-                          u'Mozilla Add-ons: %s %s Preliminary Reviewed')
+        template = u'%s_to_preliminary' % self.review_type
+        subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
+        if not self.addon.is_listed:
+            template = u'unlisted_to_reviewed'
+            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
+        self.notify_email(template, subject)
 
         log.info(u'Making %s files %s preliminary' %
                  (self.addon,
