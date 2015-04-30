@@ -618,6 +618,16 @@ class TestEditPayments(amo.tests.TestCase):
         eq_(doc('.intro').length, 1)
         eq_(doc('.intro.full-intro').length, 0)
 
+    def test_no_voluntary_contributions_for_unlisted_addons(self):
+        self.addon.update(is_listed=False)
+        r = self.client.get(self.url)
+        doc = pq(r.content)
+        assert doc('.intro').length == 1
+        assert doc('.intro.full-intro').length == 0
+        assert not doc('#do-setup')  # No way to setup the payment.
+        assert doc('.intro .error').text() == (
+            'Contributions are only available for listed add-ons.')
+
 
 class TestDisablePayments(amo.tests.TestCase):
     fixtures = ['base/users', 'base/addon_3615']

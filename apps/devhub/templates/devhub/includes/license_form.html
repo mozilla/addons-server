@@ -3,7 +3,8 @@
 {% if version %}
   <tr>
     <th>{{ tip(_('License'),
-               _('Please choose a license appropriate for the rights you grant on your source code.')) }}</th>
+               _('Please choose a license appropriate for the rights you grant on your source code.
+                  It is only relevant for listed add-ons.')) }}</th>
     <td>
       {{ license_form.builtin.errors }}
       {{ license_form.builtin }}
