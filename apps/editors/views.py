@@ -498,7 +498,10 @@ def review(request, addon):
 
     queue_type = (form.helper.review_type if form.helper.review_type
                   != 'preliminary' else 'prelim')
-    redirect_url = reverse('editors.queue_%s' % queue_type)
+    if addon.is_listed:
+        redirect_url = reverse('editors.queue_%s' % queue_type)
+    else:
+        redirect_url = reverse('editors.unlisted_queue_%s' % queue_type)
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 
