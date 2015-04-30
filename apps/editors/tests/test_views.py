@@ -1831,6 +1831,17 @@ class TestReview(ReviewBase):
         ]
         self._test_breadcrumbs(expected)
 
+    def test_breadcrumbs_unlisted_addons(self):
+        self.addon.update(is_listed=False)
+        self.generate_files()
+        self.login_as_admin()
+        expected = [
+            ('Unlisted Pending Updates',
+             reverse('editors.unlisted_queue_pending')),
+            (unicode(self.addon.name), None),
+        ]
+        self._test_breadcrumbs(expected)
+
     def test_files_shown(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -2032,11 +2043,6 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
-    def test_action_links_unlisted_addon(self):
-        self.addon.update(is_listed=False)
-        r = self.client.get(self.url)
-        check_links([], pq(r.content)('#actions-addon a'), verify=False)
-
     def test_action_links_as_admin(self):
         self.login_as_admin()
         r = self.client.get(self.url)
@@ -2047,13 +2053,6 @@ class TestReview(ReviewBase):
              reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
-
-    def test_unlisted_addon_action_links(self):
-        """No "View Listing" link for unlisted addons, no action links for
-        standard reviewers."""
-        self.addon.update(is_listed=False)
-        r = self.client.get(self.url)
-        check_links([], pq(r.content)('#actions-addon a'), verify=False)
 
     def test_unlisted_addon_action_links_as_admin(self):
         """No "View Listing" link for unlisted addons, "edit"/"manage" links

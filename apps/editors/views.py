@@ -600,7 +600,8 @@ def review(request, addon):
                   allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
-                  user_changes=user_changes_log)
+                  user_changes=user_changes_log,
+                  unlisted=not addon.is_listed)
 
     return render(request, 'editors/review.html', ctx)
 
