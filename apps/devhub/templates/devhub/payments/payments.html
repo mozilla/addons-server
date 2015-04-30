@@ -41,22 +41,30 @@
         <li>{{ _('Choose when and how users are asked to contribute') }}</li>
         <li>{{ _('Receive contributions in your PayPal account or send them to an organization of your choice') }}</li>
       </ul>
-      {% if not addon.has_full_profile() %}
-        <p class="error">
-        {% trans url=addon.get_dev_url('profile') %}
-          Contributions are only available for add-ons with a <a href="{{ url }}">completed developer profile</a>.
-        {% endtrans %}
-        </p>
-      {% elif addon.status != amo.STATUS_PUBLIC %}
+      {% if not addon.is_listed %}
         <p class="error">
         {% trans %}
-          Contributions are only available for fully reviewed add-ons.
+          Contributions are only available for listed add-ons.
         {% endtrans %}
         </p>
       {% else %}
-        <div class="button-wrapper">
-          <a href="#setup" id="do-setup" class="button prominent">{{ _('Set up Contributions') }}</a>
-        </div>
+        {% if not addon.has_full_profile() %}
+          <p class="error">
+          {% trans url=addon.get_dev_url('profile') %}
+            Contributions are only available for add-ons with a <a href="{{ url }}">completed developer profile</a>.
+          {% endtrans %}
+          </p>
+        {% elif addon.status != amo.STATUS_PUBLIC %}
+          <p class="error">
+          {% trans %}
+            Contributions are only available for fully reviewed add-ons.
+          {% endtrans %}
+          </p>
+        {% else %}
+          <div class="button-wrapper">
+            <a href="#setup" id="do-setup" class="button prominent">{{ _('Set up Contributions') }}</a>
+          </div>
+        {% endif %}
       {% endif %}
     </div>
   {% endif %}

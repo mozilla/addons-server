@@ -52,7 +52,7 @@
                        _("A short explanation of your add-on's basic
                           functionality that is displayed in search and browse
                           listings, as well as at the top of your add-on's
-                          details page.")) }}
+                          details page. It is only relevant for listed add-ons.")) }}
               </label>
             </th>
             <td>
@@ -72,7 +72,7 @@
               {{ tip(_("Categories"),
                      _("Categories are the primary way users browse through add-ons.
                         Choose any that fit your add-on's functionality for the most
-                        exposure.")) }}
+                        exposure. It is only relevant for listed add-ons.")) }}
             </th>
             <td id="addon-categories-edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
@@ -118,7 +118,8 @@
               {{ tip(_("Tags"),
                      _("Tags help users find your add-on and should be short
                         descriptors such as tabs, toolbar, or twitter.  You
-                        may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+                        may have a maximum of {0} tags. It is only relevant
+                        for listed add-ons.").format(amo.MAX_TAGS)) }}
             </th>
             <td id="addon_tags_edit">
               {% if editable %}

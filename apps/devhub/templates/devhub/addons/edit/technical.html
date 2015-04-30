@@ -24,7 +24,7 @@
                           necessarily applicable to the add-on summary or description.
                           Common uses include listing known major bugs, information on
                           how to report bugs, anticipated release date of a new version,
-                          etc.")) }}
+                          etc. It is only relevant for listed add-ons.")) }}
               </label>
             </th>
             <td>
@@ -66,7 +66,8 @@
           <tr>
             <th>
               {{ tip(_("Add-on Flags"),
-                     _("These flags are used to classify add-ons.")) }}
+                     _("These flags are used to classify add-ons. It is only
+                        relevant for listed add-ons.")) }}
             </th>
             <td>
               <div id="addon-flags">
@@ -87,7 +88,7 @@
             <th>
               {{ tip(_("View Source?"),
                      _("Whether the source of your add-on can be displayed in our
-                        online viewer.")) }}
+                        online viewer. It is only relevant for listed add-ons.")) }}
             </th>
             <td>
               {{ flags(_("This add-on's source code is publicly viewable."),
@@ -99,7 +100,8 @@
             <th>
               {{ tip(_("Public Stats?"),
                      _("Whether the download and usage stats of your add-on can
-                        be displayed in our online viewer.")) }}
+                        be displayed in our online viewer.
+                        It is only relevant for listed add-ons.")) }}
             </th>
             <td>
               {{ flags(_("This add-on's stats are publicly viewable."),
@@ -111,7 +113,9 @@
           <tr>
             <th>
               {{ tip(_('Upgrade SDK?'),
-                     _('If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released.')) }}
+                     _('If selected, we will try to automatically upgrade your
+                        add-on when a new version of the SDK is released.
+                        It is only relevant for listed add-ons.')) }}
             </th>
             <td>
               {{ flags(_('This add-on will be automatically upgraded to new versions of the Add-on SDK.'),

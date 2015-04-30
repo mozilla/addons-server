@@ -33,20 +33,28 @@
         {{ status_and_tip(addon,
                           _("You will receive an email when the review is complete. Until
                              then, your add-on is not listed in our gallery but can be
-                             accessed directly from its details page.")) }}
+                             accessed directly from its details page.")
+                          if addon.is_listed else
+                          _('You will receive an email when the review is
+                             complete and your add-on is signed.')) }}
       </a>
     {% elif addon.status == amo.STATUS_NOMINATED %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("You will receive an email when the review is complete. Until
                              then, your add-on is not listed in our gallery but can be
-                             accessed directly from its details page. ")) }}
+                             accessed directly from its details page. ")
+                          if addon.is_listed else
+                          _('You will receive an email when the review is
+                             complete and your add-on is signed.')) }}
       </a>
     {% elif addon.status == amo.STATUS_PUBLIC %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("Your add-on is displayed in our gallery and users are
-                             receiving automatic updates.")) }}
+                             receiving automatic updates.")
+                          if addon.is_listed else
+                          _("Your add-on has been signed and can be side-loaded.")) }}
       </a>
     {% elif addon.status == amo.STATUS_DISABLED %}
       <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload">
@@ -60,7 +68,9 @@
         {{ status_and_tip(addon,
                           _("Your add-on is displayed in our gallery as experimental
                              and users are receiving automatic updates. Some features
-                             are unavailable to your add-on.")) }}
+                             are unavailable to your add-on.")
+                          if addon.is_listed else
+                          _('Your add-on has been signed.')) }}
       </a>
     {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
       <a href="{{ addon.get_dev_url('versions') }}">
@@ -68,7 +78,10 @@
                           _("You will receive an email when the full review is complete.
                              Until then, your add-on is displayed in our gallery as
                              experimental and users are receiving automatic updates.
-                             Some features are unavailable to your add-on.")) }}
+                             Some features are unavailable to your add-on.")
+                          if addon.is_listed else
+                          _('You will receive an email when the full review is
+                             complete, making your add-on side-loadable.')) }}
       </a>
     {% elif addon.status == amo.STATUS_PURGATORY %}
       <a href="{{ addon.get_dev_url('versions') }}">
@@ -86,7 +99,8 @@
     {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
     <span class="tip tooltip" title="{{ _('This is the version of your add-on that will
                                            be installed if someone clicks the Install
-                                           button on addons.mozilla.org.') }}">?</span>
+                                           button on addons.mozilla.org. It is only
+                                           relevant for listed add-ons.') }}">?</span>
   </li>
 {% endif %}
 {% if sorting == 'created' %}
