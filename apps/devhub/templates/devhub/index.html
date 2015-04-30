@@ -86,6 +86,16 @@
                       <strong>{{ _('Status:') }}</strong>
                       <span class="{{ status_class(item.addon) }}"><b>{{ item.addon.STATUS_CHOICES[item.addon.status] }}</b></span>
                     </p>
+                    <p>
+                      <strong>{{ _('Visibility:') }}</strong>
+                      {% if not item.addon.is_disabled and item.addon.is_listed %}
+                        {{ _('Listed') }}
+                      {% elif item.addon.is_disabled and item.addon.is_listed %}
+                        {{ _('Hidden') }}
+                      {% elif not item.addon.is_listed %}
+                        {{ _('Unlisted') }}
+                      {% endif %}
+                    </p>
                     {% if item.addon.current_version %}
                       <p>
                         <strong>{{ _('Latest Version:') }}</strong>

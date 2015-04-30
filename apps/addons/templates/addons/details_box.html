@@ -52,6 +52,18 @@
                   <td>{{ addon.compatible_apps[APP] }}</td>
                 </tr>
               {% endif %}
+              <tr>
+                <th>{{ _('Visibility') }}</th>
+                <td>
+                  {% if not addon.is_disabled and addon.is_listed %}
+                    {{ _('Listed') }}
+                  {% elif addon.is_disabled and addon.is_listed %}
+                    {{ _('Hidden') }}
+                  {% elif not addon.is_listed %}
+                    {{ _('Unlisted') }}
+                  {% endif %}
+                </td>
+              </tr>
               {% set deps = addon.all_dependencies %}
               {% if deps %}
                 <tr class="addon-dependencies">

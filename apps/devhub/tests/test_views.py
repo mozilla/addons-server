@@ -806,9 +806,9 @@ class TestHome(amo.tests.TestCase):
             if self.addon.is_listed:
                 # We don't display a link to the inexistent public page for
                 # unlisted addons.
-                eq_(addon_item.find('p').eq(2).find('a').attr('href'),
+                eq_(addon_item.find('p').eq(3).find('a').attr('href'),
                     self.addon.current_version.get_url_path())
-            eq_('Queue Position: 1 of 1', addon_item.find('p').eq(3).text())
+            eq_('Queue Position: 1 of 1', addon_item.find('p').eq(4).text())
             eq_(addon_item.find('.upload-new-version a').attr('href'),
                 self.addon.get_dev_url('versions') + '#version-upload')
 
