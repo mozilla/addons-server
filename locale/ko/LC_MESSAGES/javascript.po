@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:24-0700\n"
+"POT-Creation-Date: 2015-05-01 08:19-0700\n"
 "PO-Revision-Date: 2014-05-08 06:27+0000\n"
 "Last-Translator: Sung-wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -770,7 +770,7 @@ msgstr "날짜"
 msgid "Other"
 msgstr "기타"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -951,53 +951,53 @@ msgstr "팔로우 중단"
 msgid "Your browser does not support the video tag"
 msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 
-#: static/js/zamboni/devhub.js:410
+#: static/js/zamboni/devhub.js:418
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: static/js/zamboni/devhub.js:426
+#: static/js/zamboni/devhub.js:434
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: static/js/zamboni/devhub.js:573
+#: static/js/zamboni/devhub.js:581
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: static/js/zamboni/devhub.js:718
+#: static/js/zamboni/devhub.js:726
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: static/js/zamboni/devhub.js:721
+#: static/js/zamboni/devhub.js:729
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 
-#: static/js/zamboni/devhub.js:833
+#: static/js/zamboni/devhub.js:841
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: static/js/zamboni/devhub.js:837
+#: static/js/zamboni/devhub.js:845
 msgid "Example"
 msgstr "예"
 
-#: static/js/zamboni/devhub.js:1193
+#: static/js/zamboni/devhub.js:1201
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-#: static/js/zamboni/devhub.js:1320
+#: static/js/zamboni/devhub.js:1328
 msgid "Starting tests..."
 msgstr "시험 시작..."
 
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1335
 msgid "Waiting for test results..."
 msgstr "시험 결과 산출 대기중..."
 
-#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
+#: static/js/zamboni/devhub.js:1337 static/js/zamboni/devhub.js:1342
 msgid "Internal Server Error"
 msgstr "내부 서버 오류 발생"
 
-#: static/js/zamboni/devhub.js:1369
+#: static/js/zamboni/devhub.js:1377
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 

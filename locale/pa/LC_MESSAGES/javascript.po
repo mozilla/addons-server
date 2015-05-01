@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:24-0700\n"
+"POT-Creation-Date: 2015-05-01 08:19-0700\n"
 "PO-Revision-Date: 2015-04-28 04:08+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,9 +111,7 @@ msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕ�
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
-msgstr ""
-"ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਪਾਸ ਨਹੀਂ ਕੀਤੀ ਅਤੇ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ "
-"ਲੰਘੇਗੀ।"
+msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਪਾਸ ਨਹੀਂ ਕੀਤੀ ਅਤੇ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
 
 #: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -121,16 +119,11 @@ msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇ
 
 #: static/js/common/upload-addon.js:355
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
-"ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, "
-"ਸਮੀਖਿਅਕ ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਵਰਤੋਂਕਾਰ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ "
-"ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
+msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, ਸਮੀਖਿਅਕ ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਵਰਤੋਂਕਾਰ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
 #: static/js/common/upload-addon.js:356
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr ""
-"ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੱਕ ਸੀਮਿਤ ਜਨਤਾ ਲਈ ਨਿਯਤ ਹੈ ਤੁਹਾਨੂੰ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਦੀ ਥਾਂ "
-"ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਨੂੰ ਚੁਣਨਾ ਚਾਹੀਦਾ ਹੈ।"
+msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੱਕ ਸੀਮਿਤ ਜਨਤਾ ਲਈ ਨਿਯਤ ਹੈ ਤੁਹਾਨੂੰ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਦੀ ਥਾਂ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਨੂੰ ਚੁਣਨਾ ਚਾਹੀਦਾ ਹੈ।"
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
@@ -138,19 +131,15 @@ msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਾਰਜ ਚੈੱਕਲਿਸਟ"
 
 #: static/js/common/upload-addon.js:370
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਸ "
-"ਨਾਲ ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ:"
+msgstr "ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਸ ਨਾਲ ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ:"
 
 #: static/js/common/upload-addon.js:372
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ "
-"ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। "
-"ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ "
-"ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
+"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
+"ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
 #: static/js/common/upload-addon.js:390
 msgid "The validation process found these issues that can lead to rejections:"
@@ -158,9 +147,7 @@ msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ 
 
 #: static/js/common/upload-addon.js:407
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
-"ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ, ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ "
-"ਹੋ।"
+msgstr "ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ, ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।"
 
 #: static/js/common/upload-addon.js:443
 msgid "Some platforms are not available for this type of add-on."
@@ -789,7 +776,7 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਦੂਜਾ"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
 
@@ -972,55 +959,55 @@ msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
 msgid "Your browser does not support the video tag"
 msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
 
-#: static/js/zamboni/devhub.js:410
+#: static/js/zamboni/devhub.js:418
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
-#: static/js/zamboni/devhub.js:426
+#: static/js/zamboni/devhub.js:434
 msgid "Enter a new author's email address"
 msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
 
-#: static/js/zamboni/devhub.js:573
+#: static/js/zamboni/devhub.js:581
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
 
-#: static/js/zamboni/devhub.js:718
+#: static/js/zamboni/devhub.js:726
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ਫਾਈਲ"
 msgstr[1] "{files} ਫਾਈਲਾਂ"
 
-#: static/js/zamboni/devhub.js:721
+#: static/js/zamboni/devhub.js:729
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
 msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: static/js/zamboni/devhub.js:833
+#: static/js/zamboni/devhub.js:841
 msgid "Learn more"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
-#: static/js/zamboni/devhub.js:837
+#: static/js/zamboni/devhub.js:845
 msgid "Example"
 msgstr "ਉਦਾਹਰਨ"
 
-#: static/js/zamboni/devhub.js:1193
+#: static/js/zamboni/devhub.js:1201
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: static/js/zamboni/devhub.js:1320
+#: static/js/zamboni/devhub.js:1328
 msgid "Starting tests..."
 msgstr "ਟੈਸਟ ਸੁਰੂ ਹੋ ਰਹੇ ਹਨ...."
 
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1335
 msgid "Waiting for test results..."
 msgstr "ਟੈਸਟ ਨਤੀਜਿਆਂ ਲਈ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
-#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
+#: static/js/zamboni/devhub.js:1337 static/js/zamboni/devhub.js:1342
 msgid "Internal Server Error"
 msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
 
-#: static/js/zamboni/devhub.js:1369
+#: static/js/zamboni/devhub.js:1377
 msgid "Must be a valid e-mail address."
 msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 

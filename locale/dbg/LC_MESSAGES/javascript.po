@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:24-0700\n"
+"POT-Creation-Date: 2015-05-01 08:19-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -839,7 +839,7 @@ msgid "Other"
 msgstr "Ǿŧħḗř"
 
 #: static/js/zamboni/admin_validation.js:24
-#: static/js/zamboni/devhub.js:1292
+#: static/js/zamboni/devhub.js:1300
 #: static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
@@ -1036,56 +1036,56 @@ msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: static/js/zamboni/devhub.js:410
+#: static/js/zamboni/devhub.js:418
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
-#: static/js/zamboni/devhub.js:426
+#: static/js/zamboni/devhub.js:434
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: static/js/zamboni/devhub.js:573
+#: static/js/zamboni/devhub.js:581
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
-#: static/js/zamboni/devhub.js:718
+#: static/js/zamboni/devhub.js:726
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
 msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
 
-#: static/js/zamboni/devhub.js:721
+#: static/js/zamboni/devhub.js:729
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇ"
 msgstr[1] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇş"
 
-#: static/js/zamboni/devhub.js:833
+#: static/js/zamboni/devhub.js:841
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: static/js/zamboni/devhub.js:837
+#: static/js/zamboni/devhub.js:845
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
-#: static/js/zamboni/devhub.js:1193
+#: static/js/zamboni/devhub.js:1201
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
-#: static/js/zamboni/devhub.js:1320
+#: static/js/zamboni/devhub.js:1328
 msgid "Starting tests..."
 msgstr "Şŧȧřŧīƞɠ ŧḗşŧş..."
 
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1335
 msgid "Waiting for test results..."
 msgstr "Ẇȧīŧīƞɠ ƒǿř ŧḗşŧ řḗşŭŀŧş..."
 
-#: static/js/zamboni/devhub.js:1329
-#: static/js/zamboni/devhub.js:1334
+#: static/js/zamboni/devhub.js:1337
+#: static/js/zamboni/devhub.js:1342
 msgid "Internal Server Error"
 msgstr "Īƞŧḗřƞȧŀ Şḗřṽḗř Ḗřřǿř"
 
-#: static/js/zamboni/devhub.js:1369
+#: static/js/zamboni/devhub.js:1377
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 

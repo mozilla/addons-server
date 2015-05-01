@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:24-0700\n"
+"POT-Creation-Date: 2015-05-01 08:19-0700\n"
 "PO-Revision-Date: 2011-10-28 22:44+0200\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -142,7 +142,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Να γίνεται πάντα ερώτηση στη διαχείριση πρόσθετων (στον Firefox 4 και μεταγενέστερες εκδόσεις)"
 
 # Column name in a table.
-#: apps/addons/models.py:1894
+#: apps/addons/models.py:1895 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Listed"
 msgstr "Δηλωμένοι"
 
@@ -193,7 +193,7 @@ msgstr "για {0}"
 msgid "View privacy policy"
 msgstr "Δείτε την πολιτική απορρήτου"
 
-#: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/mobile/button.html:33
+#: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:137 apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
 msgstr ""
@@ -227,11 +227,11 @@ msgstr "Συνεισφέρετε"
 #. Click Contribute button OR Install button
 #: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/impala/contribution.html:32
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
-#: apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84 apps/devhub/templates/devhub/addons/edit/support.html:66
-#: apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
+#: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
+#: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
-#: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/reviews/templates/reviews/edit_review.html:16
-#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
+#: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
+#: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ή"
 
@@ -338,11 +338,11 @@ msgid "Add-on Information for {0}"
 msgstr "Πληροφορίες πρόσθετου για το {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:73
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:74
 msgid "Updated"
 msgstr "Ενημερωμένα"
 
-#: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:42
+#: apps/addons/templates/addons/details_box.html:42 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:43
 #: apps/discovery/templates/discovery/addons/detail.html:87
 msgid "Website"
 msgstr "Ιστότοπος"
@@ -352,65 +352,77 @@ msgstr "Ιστότοπος"
 msgid "Works with"
 msgstr "Δουλεύει με τον"
 
-#: apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/addons/edit/technical.html:44
+#: apps/addons/templates/addons/details_box.html:56
+msgid "Visibility"
+msgstr ""
+
+#: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
+msgid "Hidden"
+msgstr ""
+
+#: apps/addons/templates/addons/details_box.html:63 apps/devhub/templates/devhub/index.html:96 apps/devhub/templates/devhub/includes/addon_details.html:104
+msgid "Unlisted"
+msgstr ""
+
+#: apps/addons/templates/addons/details_box.html:71 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
 msgstr "Απαιτούμενα πρόσθετα"
 
-#: apps/addons/templates/addons/details_box.html:73 apps/addons/templates/addons/persona_detail_table.html:15
+#: apps/addons/templates/addons/details_box.html:85 apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
 msgid "Rating"
 msgstr "Βαθμολογία"
 
-#: apps/addons/templates/addons/details_box.html:77
+#: apps/addons/templates/addons/details_box.html:89
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
 msgstr "Λήψεις"
 
-#: apps/addons/templates/addons/details_box.html:83 apps/addons/templates/addons/details_box.html:95 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
+#: apps/addons/templates/addons/details_box.html:95 apps/addons/templates/addons/details_box.html:107 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
 #: apps/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
 msgstr "Εμφάνιση στατιστικών"
 
-#: apps/addons/templates/addons/details_box.html:89
+#: apps/addons/templates/addons/details_box.html:101
 msgid "Average Daily Users"
 msgstr "Μέσος όρος καθημερινών χρηστών"
 
-#: apps/addons/templates/addons/details_box.html:101
+#: apps/addons/templates/addons/details_box.html:113
 msgid "Abuse Reports"
 msgstr "Αναφορές κατάχρησης"
 
 #. The Privacy Policy for this add-on.
-#: apps/addons/templates/addons/details_box.html:113 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:19 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
+#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "Πολιτική απορρήτου"
 
-#: apps/addons/templates/addons/details_box.html:116 apps/discovery/templates/discovery/addons/detail.html:30
+#: apps/addons/templates/addons/details_box.html:128 apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
 msgstr "Προβολή πολιτικής απορρήτου"
 
-#: apps/addons/templates/addons/details_box.html:122
+#: apps/addons/templates/addons/details_box.html:134
 msgid "EULA"
 msgstr "ΣΑΤΧ (EULA)"
 
-#: apps/addons/templates/addons/details_box.html:163 apps/addons/templates/addons/details_box.html:223
+#: apps/addons/templates/addons/details_box.html:175 apps/addons/templates/addons/details_box.html:235
 msgid "More about this add-on"
 msgstr "Περισσότερα γι' αυτό το πρόσθετο"
 
-#: apps/addons/templates/addons/details_box.html:172
+#: apps/addons/templates/addons/details_box.html:184
 msgid "Image Gallery"
 msgstr "Συλλογή εικόνων"
 
-#: apps/addons/templates/addons/details_box.html:182
+#: apps/addons/templates/addons/details_box.html:194
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Σχόλια δημιουργού"
 
-#: apps/addons/templates/addons/details_box.html:191 apps/addons/templates/addons/impala/details.html:266
+#: apps/addons/templates/addons/details_box.html:203 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
 msgstr "Κανάλι ανάπτυξης"
 
-#: apps/addons/templates/addons/details_box.html:194 apps/addons/templates/addons/mobile/details.html:124
+#: apps/addons/templates/addons/details_box.html:206 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
@@ -418,11 +430,11 @@ msgstr ""
 "Το κανάλι ανάπτυξης, σας επιτρέπει να δοκιμάσετε μια πειραματική έκδοση αυτού του πρόσθετου πριν αυτό γίνει διαθέσιμο στο ευρύ κοινό. Αφού εγκαταστήσετε την έκδοση του υπό ανάπτυξη πρόσθετου, θα "
 "συνεχίσετε να λαμβάνετε ενημερώσεις από' αυτό το κανάλι."
 
-#: apps/addons/templates/addons/details_box.html:199 apps/addons/templates/addons/impala/details.html:276
+#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
 msgstr "Εγκατάσταση έκδοσης υπό ανάπτυξη"
 
-#: apps/addons/templates/addons/details_box.html:203
+#: apps/addons/templates/addons/details_box.html:215
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
@@ -430,15 +442,15 @@ msgstr ""
 "<strong>Προσοχή:</strong> Οι υπό ανάπτυξη εκδόσεις αυτού του πρόσθετου δεν έχουν αξιολογηθεί από το Mozilla. Αφού εγκαταστήσετε μια έκδοση υπό ανάπτυξη, θα λαμβάνετε ενημερώσεις από τον δημιουργό "
 "του. Για να σταματήσετε να λαμβάνετε νέες εκδόσεις υπό ανάπτυξη, εγκαταστήσετε ξανά τη σταθερή έκδοση του πρόσθετου από τον παραπάνω δεσμό."
 
-#: apps/addons/templates/addons/details_box.html:212 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "Έκδοση {0}:"
 
-#: apps/addons/templates/addons/details_box.html:226
+#: apps/addons/templates/addons/details_box.html:238
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "Ο δημιουργός δεν έχει συμπεριλάβει λεπτομέριες. Δεν υπάρχει τίποτα για προβολή."
 
-#: apps/addons/templates/addons/details_box.html:243
+#: apps/addons/templates/addons/details_box.html:255
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
@@ -798,12 +810,12 @@ msgstr "Αποστολή αναφοράς"
 
 #: apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
-#: apps/devhub/templates/devhub/addons/edit/basic.html:154 apps/devhub/templates/devhub/addons/edit/details.html:87 apps/devhub/templates/devhub/addons/edit/support.html:69
-#: apps/devhub/templates/devhub/addons/edit/technical.html:165 apps/devhub/templates/devhub/addons/forms_shared/media.html:151 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
+#: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
+#: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/localizers/templates/localizers/sidebar_motd.html:9
-#: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
-#: apps/zadmin/templates/zadmin/validation.html:105
+#: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
+#: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
+#: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -847,7 +859,7 @@ msgstr "Οδηγίες σύνταξης αξιολόγησης"
 msgid "Detailed Review"
 msgstr "Λεπτομερής αξιολόγηση"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:833 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:867 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Αξιολογήσεις"
@@ -1524,7 +1536,7 @@ msgstr "Ζητήθηκε υπερ αξιολόγηση"
 msgid "Comment on {addon} {version}."
 msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:469
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:477
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Σχόλιο"
@@ -1777,6 +1789,10 @@ msgstr ""
 
 #: apps/amo/log.py:577
 msgid "{addon} content rating changed."
+msgstr ""
+
+#: apps/amo/log.py:582
+msgid "{addon} unlisted."
 msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
@@ -2115,11 +2131,11 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1008
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1018
 msgid "Icons must be either PNG or JPG."
 msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1026 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1036 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Παρακαλούμε χρησιμοποιήστε εικόνες μικρότερες από %dMB."
 
@@ -2159,7 +2175,7 @@ msgstr "Αγαπημένη"
 msgid "Remove from favorites"
 msgstr "Αφαίρεση από τις αγαπημένες"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:72 apps/devhub/views.py:80
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2455,8 +2471,8 @@ msgstr "Συντελεστές & άλλα"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:54 apps/bandwagon/templates/bandwagon/edit.html:67 apps/bandwagon/templates/bandwagon/edit.html:82
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:35 apps/devhub/templates/devhub/addons/owner.html:59 apps/devhub/templates/devhub/addons/profile.html:42
-#: apps/devhub/templates/devhub/addons/edit/admin.html:101 apps/devhub/templates/devhub/addons/edit/basic.html:151 apps/devhub/templates/devhub/addons/edit/details.html:84
-#: apps/devhub/templates/devhub/addons/edit/support.html:66 apps/devhub/templates/devhub/addons/edit/technical.html:162 apps/devhub/templates/devhub/addons/forms_shared/media.html:148
+#: apps/devhub/templates/devhub/addons/edit/admin.html:101 apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85
+#: apps/devhub/templates/devhub/addons/edit/support.html:67 apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149
 #: apps/devhub/templates/devhub/payments/voluntary.html:64 apps/devhub/templates/devhub/personas/edit.html:35 apps/devhub/templates/devhub/personas/edit.html:304
 #: apps/devhub/templates/devhub/versions/edit.html:139 apps/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
@@ -2526,7 +2542,7 @@ msgstr "Ρυθμίσεις διαχειριστή"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Προειδοποίηση:</b> Αν αλλάξετε τον ιδιοκτήτη της συλλογής, δεν θα μπορείτε πια να την επεξεργαστείτε πέρα από το να προσθέσετε ή να αφαιρέσετε πρόσθετα."
 
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:156 apps/devhub/templates/devhub/addons/submit/describe.html:69
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
@@ -2628,7 +2644,7 @@ msgstr "Εισαγωγή ονόματος πρόσθετου για να συμ�
 msgid "Add to Collection"
 msgstr "Προσθήκη σε συλλογή"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:848 apps/editors/helpers.py:868
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:882 apps/editors/helpers.py:902
 msgid "Pending"
 msgstr "Σε αναμονή"
 
@@ -2745,15 +2761,15 @@ msgstr "Περισσότεροι χρήστες"
 msgid "Up & Coming"
 msgstr "Επερχόμενα"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:74 apps/devhub/views.py:81 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Δημιουργήθηκε"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:452 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Λήψεις"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Βαθμολογία"
@@ -3239,7 +3255,7 @@ msgstr "Αξιολογημένο προκαταρκτικά"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Αξιολογημένο προκαταρκτικά και σε αναμονή πλήρους αξιολόγησης"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:836 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:870 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Διαγράφηκε"
 
@@ -3499,7 +3515,7 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:460 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:468 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Απόρριψη "
 
@@ -3835,128 +3851,128 @@ msgstr "Αδυναμία επικοινωνίας με «%s»."
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά λάθη/προειδοποιήσεις έτσι %s μηνύματα περικόπηκαν. Αφού εντοπίσετε τα ορατά μηνύματα, θα μπορείτε να δείτε τα υπόλοιπα."
 
-#: apps/devhub/views.py:177
+#: apps/devhub/views.py:178
 msgid "All My Add-ons"
 msgstr "Όλα μου τα πρόσθετα"
 
-#: apps/devhub/views.py:204
+#: apps/devhub/views.py:205
 msgid "All Activity"
 msgstr "Όλες οι δραστηριότητες"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "Add-on Updates"
 msgstr "Ενημερώσεις πρόσθετου"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "Add-on Status"
 msgstr "Κατάσταση πρόσθετου"
 
-#: apps/devhub/views.py:207
+#: apps/devhub/views.py:208
 msgid "User Collections"
 msgstr "Συλλογές χρήστη"
 
-#: apps/devhub/views.py:208 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:209 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Αξιολογήσεις χρηστών"
 
-#: apps/devhub/views.py:321 apps/devhub/views.py:325 apps/devhub/views.py:468 apps/devhub/views.py:497 apps/devhub/views.py:548 apps/devhub/views.py:1105
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1115
 msgid "Changes successfully saved."
 msgstr "Οι αλλαγές αποθηκεύτηκαν με επιτυχία. "
 
-#: apps/devhub/views.py:328 apps/devhub/views.py:1569
+#: apps/devhub/views.py:329 apps/devhub/views.py:1581
 msgid "Please check the form for errors."
 msgstr ""
 
-#: apps/devhub/views.py:340
+#: apps/devhub/views.py:341
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Δεν είναι δυνατή η διαγραφή του προσθέτου. Απενεργοποιήστε το πρόσθετο αντ'αυτού."
 
-#: apps/devhub/views.py:350
+#: apps/devhub/views.py:351
 msgid "Theme deleted."
 msgstr "Το θέμα διαγράφηκε."
 
-#: apps/devhub/views.py:350
+#: apps/devhub/views.py:351
 msgid "Add-on deleted."
 msgstr "Διαγράφηκε το πρόσθετο."
 
-#: apps/devhub/views.py:356
+#: apps/devhub/views.py:357
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Ο κωδικός ήταν λάθος. Το θέμα δε διαγράφηκε."
 
-#: apps/devhub/views.py:361
+#: apps/devhub/views.py:362
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Ο κωδικός που δώσατε ήταν λάθος. Το πρόσθετο δεν διαγράφηκε."
 
-#: apps/devhub/views.py:434
+#: apps/devhub/views.py:444
 msgid "An author has been added to your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:441
+#: apps/devhub/views.py:451
 msgid "An author has a role changed on your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:460
+#: apps/devhub/views.py:470
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-#: apps/devhub/views.py:503
+#: apps/devhub/views.py:513
 msgid "There were errors in your submission."
 msgstr "Υπήρχαν σφάλματα στην υποβολή σας."
 
-#: apps/devhub/views.py:567
+#: apps/devhub/views.py:577
 msgid "Validate Add-on"
 msgstr "Επικύρωση πρόσθετου"
 
-#: apps/devhub/views.py:576
+#: apps/devhub/views.py:586
 msgid "Check Add-on Compatibility"
 msgstr "Έλεγχος συμβατότητας πρόσθετου"
 
-#: apps/devhub/views.py:647
+#: apps/devhub/views.py:657
 msgid "There was an error with the submission."
 msgstr "Παρουσιάστηκε σφάλμα κατά την υποβολή."
 
-#: apps/devhub/views.py:1010 apps/users/forms.py:419
+#: apps/devhub/views.py:1020 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
 
-#: apps/devhub/views.py:1014
+#: apps/devhub/views.py:1024
 msgid "Icons cannot be animated."
 msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
-#: apps/devhub/views.py:1016
+#: apps/devhub/views.py:1026
 msgid "Images cannot be animated."
 msgstr "Οι εικόνες δεν επιτρέπεται να έχουν εφέ κίνησης."
 
-#: apps/devhub/views.py:1029
+#: apps/devhub/views.py:1039
 msgid "Images cannot be larger than %dKB."
 msgstr "Οι εικόνες δεν μπορούν να είναι μεγαλύτερες από %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1039
+#: apps/devhub/views.py:1049
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
 
-#: apps/devhub/views.py:1046
+#: apps/devhub/views.py:1056
 msgid "There was an error uploading your preview."
 msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή εικόνας προεπισκόπησης."
 
-#: apps/devhub/views.py:1144
+#: apps/devhub/views.py:1154
 msgid "Version %s disabled."
 msgstr ""
 
-#: apps/devhub/views.py:1148
+#: apps/devhub/views.py:1158
 msgid "Version %s deleted."
 msgstr "Διαγράφηκε η έκδοση %s."
 
-#: apps/devhub/views.py:1158
+#: apps/devhub/views.py:1168
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Αυτή η μεταφόρτωση απέτυχε να επικυρωθεί, και ενδέχεται να υπολείπεται αποτελεσμάτων επικύρωσης. Παρακαλώ επιθεωρήστε την με προσοχή."
 
-#: apps/devhub/views.py:1615
+#: apps/devhub/views.py:1627
 msgid "Preliminary Review Requested."
 msgstr "Αιτήθηκε πρωταρχική αξιολόγηση."
 
-#: apps/devhub/views.py:1616
+#: apps/devhub/views.py:1628
 msgid "Full Review Requested."
 msgstr "Αιτήθηκε πλήρης αξιολόγηση."
 
@@ -4033,31 +4049,35 @@ msgstr "Ξεκινήστε να φτιάχνετε πρόσθετα"
 msgid "Status:"
 msgstr "Κατάσταση:"
 
-#: apps/devhub/templates/devhub/index.html:91
+#: apps/devhub/templates/devhub/index.html:90 apps/devhub/templates/devhub/includes/addon_details.html:98
+msgid "Visibility:"
+msgstr ""
+
+#: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
 msgstr "Τελευταία έκδοση"
 
-#: apps/devhub/templates/devhub/index.html:99 apps/devhub/templates/devhub/includes/addon_details.html:116 apps/devhub/templates/devhub/personas/edit.html:49
+#: apps/devhub/templates/devhub/index.html:109 apps/devhub/templates/devhub/includes/addon_details.html:143 apps/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
 msgstr "Θέση ουράς:"
 
-#: apps/devhub/templates/devhub/index.html:100 apps/devhub/templates/devhub/includes/addon_details.html:117 apps/devhub/templates/devhub/personas/edit.html:50
+#: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addon_details.html:144 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s από %(total)s"
 
-#: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: apps/devhub/templates/devhub/index.html:120 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
 msgstr "Μεταφόρτωση νέας έκδοσης"
 
-#: apps/devhub/templates/devhub/index.html:118
+#: apps/devhub/templates/devhub/index.html:128
 msgid "View all add-ons ►"
 msgstr "Προβολή όλων των προσθέτων"
 
-#: apps/devhub/templates/devhub/index.html:121
+#: apps/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
 msgstr ""
 
-#: apps/devhub/templates/devhub/index.html:126
+#: apps/devhub/templates/devhub/index.html:136
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
 
@@ -4228,7 +4248,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Προσθήκη κι άλλης εφαρμογής&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:309 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:341 apps/devhub/templates/devhub/versions/list.html:343 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -4330,12 +4350,13 @@ msgid "Summary"
 msgstr "Σύνοψη"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:52
-msgid "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page."
-msgstr "Μια σύντομη  περιγραφή των βασικών λειτουργιών του πρόσθετου σας που θα εμφανίζεται  στα αποτελέσματα αναζήτησης, στις λίστες, καθώς και στην κορυφή της σελίδας παρουσίασης του πρόσθετου σας."
+msgid ""
+"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "Οι κατηγορίες είναι ο κυριότερος τρόπος περιήγησης στα πρόσθετα από τους χρήστες. Επιλέξτε όποια ταιριάζει καλύτερα με τη λειτουργία του πρόσθετου σας για να έχετε τη βέλτιστη προβολή."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4349,20 +4370,20 @@ msgid "Tags"
 msgstr "Ετικέτες"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Οι ετικέτες βοηθούν τους χρήστες να βρουν το πρόσθετο σας και πρέπει να είναι σύντομες και περιγραφικές όπως πχ, καρτέλες, εργαλειοθήκη,  twitter κλπ. Μπορείτε να βάλετε το πολύ {0} ετικέτες."
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:128 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
+#: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "λίστα διαχωριζόμενη με κόμματα, ελάχιστο μήκος {0} χαρακτήρα."
 msgstr[1] "λίστα διαχωριζόμενη με κόμματα, ελάχιστο μήκος {0} χαρακτήρες."
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:131 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
+#: apps/devhub/templates/devhub/addons/edit/basic.html:132 apps/devhub/templates/devhub/personas/edit.html:100 apps/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "Παράδειγμα: σκοτάδι, σινεμά, noir. Όριο 20."
 
-#: apps/devhub/templates/devhub/addons/edit/basic.html:135
+#: apps/devhub/templates/devhub/addons/edit/basic.html:136
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Δεσμευμένη ετικέτα:"
@@ -4377,25 +4398,27 @@ msgid "Add-on Details for {0}"
 msgstr "Λεπτομέρειες πρόσθετου για το {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page."
-msgstr "Μια μακροσκελέστερη επεξήγηση των χαρακτηριστικών, της λειτουργίας και άλλων σχετικών πληροφοριών. Αυτό το πεδίο εμφανίζεται μόνο στη σελίδα παρουσίασης του πρόσθετου."
+msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
 msgstr "Αρχικές ρυθμίσεις γλώσσας"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation."
-msgstr "Οι πληροφορίες για το πρόσθετο σας θα εμφανίζονται σ' αυτή τη γλώσσα εκτός αν την επικαλύψετε με μεταφράσεις για συγκεκριμένες γλώσσες."
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:60 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Αρχική σελίδα"
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:62
-msgid "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
-msgstr "Αν το πρόσθετο σας έχει κι άλλη αρχική σελίδα, εισάγετε εδώ τη διεύθυνση της. Αν οι σελίδες σας είναι μεταφρασμένες και σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλά πεδία."
+#: apps/devhub/templates/devhub/addons/edit/details.html:63
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4411,11 +4434,15 @@ msgid "Support Information for {0}"
 msgstr "Πληροφορίες υποστήριξης για το {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:22
-msgid "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added."
-msgstr "Αν θέλετε να εμφανίζεται μια διεύθυνση e-mail για υποστήριξη, εισάγετε την εδώ. Αν έχετε κι άλλες διευθύνσεις ανάλογα με τη γλώσσα του χρήστη, μπορείτε να προσθέσετε πολλαπλά πεδία."
+msgid ""
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/support.html:44
-msgid "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
+#: apps/devhub/templates/devhub/addons/edit/support.html:45
+msgid ""
+"If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
+"listed add-ons."
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
@@ -4434,10 +4461,8 @@ msgstr "Σχόλια δημιουργού"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:23
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
-"anticipated release date of a new version, etc."
+"anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Οποιαδήποτε πληροφορία μπορεί να ενδιαφέρει τους τελικούς χρήστες και δεν είναι απαραίτητη στη σύνοψη ή την περιγραφή του πρόσθετου. Χρησιμοποιείται συχνά για την αναφορά σημαντικών προβλημάτων,  "
-"πληροφορίες για το πως μπορεί να γίνει αναφορά προβλημάτων, αναμενόμενες ημερομηνίες νέων εκδόσεων κλπ."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4448,82 +4473,82 @@ msgid "Add-on Flags"
 msgstr "Επισημάνσεις προσθέτου"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
-msgid "These flags are used to classify add-ons."
-msgstr "Αυτές οι σημαίες χρησιμοποιούνται για την κατηγοριοποίηση των πρόσθετων"
+msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:73
+#: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
 msgstr "Αυτό το πρόσθετο είναι σχετικό με συγκεκριμένο ιστότοπο."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:76
+#: apps/devhub/templates/devhub/addons/edit/technical.html:77
 msgid "This add-on requires external software."
 msgstr "Αυτό το πρόσθετο απαιτεί επιπλέον λογισμικό."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:88
+#: apps/devhub/templates/devhub/addons/edit/technical.html:89
 msgid "View Source?"
 msgstr "Προβολή πηγαίου κώδικα;"
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:89
-msgid "Whether the source of your add-on can be displayed in our online viewer."
-msgstr "Αν θα εμφανίζεται ο πηγαίος κώδικας του πρόσθετου σας στον ενσωματωμένο επεξεργαστή μας."
+#: apps/devhub/templates/devhub/addons/edit/technical.html:90
+msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:93
+#: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
 msgstr "Ο πηγαίος κώδικας του πρόσθετου διατίθεται για δημόσια προβολή."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:95
+#: apps/devhub/templates/devhub/addons/edit/technical.html:96
 msgid "No, this add-on's source code is not publicly viewable."
 msgstr "Όχι, ο πηγαίος κώδικας αυτού του πρόσθετου δεν είναι διαθέσιμος για δημόσια προβολή."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:100
+#: apps/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Public Stats?"
 msgstr "Δημόσια στατιστικά;"
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:101
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer."
-msgstr "Είτε τα στατιστικά λήψεων και χρήσης του προσθέτου σας μπορούν να εμφανιστούν στο διαδικτυακό πρόγραμμα προβολής μας."
+#: apps/devhub/templates/devhub/addons/edit/technical.html:102
+msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:105
+#: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
 msgstr "Τα στατιστικά αυτού του προσθέτου είναι σε δημόσια προβολή."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:107
+#: apps/devhub/templates/devhub/addons/edit/technical.html:109
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Όχι, τα στατιστικά αυτού του προσθέτου δεν είναι σε δημόσια προβολή"
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:113
+#: apps/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "Upgrade SDK?"
 msgstr "Να γίνει ενημέρωση του SDK;"
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:114
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released."
-msgstr "Αν επιλεγεί, θα προσπαθήσουμε να ενημερώσουμε αυτόματα το πρόσθετο σας όταν θα είναι διαθέσιμη μια νέα έκδοση του SDK."
+#: apps/devhub/templates/devhub/addons/edit/technical.html:116
+msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:117
+#: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
 msgstr "Αυτό το πρόσθετο θα ενημερώνεται αυτόματα με τις μελλοντικές εκδόσεις του Add-on SDK."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:119
+#: apps/devhub/templates/devhub/addons/edit/technical.html:123
 msgid "No, this add-on will be upgraded manually."
 msgstr "Όχι, αυτό το πρόσθετο δεν θα ενημερώνεται αυτόματα."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:125
+#: apps/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "Universally unique identifier"
 msgstr "Universally unique identifier"
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:126
+#: apps/devhub/templates/devhub/addons/edit/technical.html:130
 msgid "UUID"
 msgstr "UUID"
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:128
+#: apps/devhub/templates/devhub/addons/edit/technical.html:132
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr "Το UUID του πρόσθετου σας ορίζεται στο install manifest του πρόσθετου και είναι το μοναδιαίο αναγνωριστικό του. Δεν μπορείτε να αλλάξετε το UUID μετά την υποβολή του πρόσθετου."
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:139 apps/devhub/templates/devhub/addons/edit/technical.html:140
+#: apps/devhub/templates/devhub/addons/edit/technical.html:143 apps/devhub/templates/devhub/addons/edit/technical.html:144
 msgid "Whiteboard"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/technical.html:142
+#: apps/devhub/templates/devhub/addons/edit/technical.html:146
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
@@ -4546,54 +4571,54 @@ msgid "Add-on icon"
 msgstr "Εικονίδιο πρόσθετου"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
-msgid "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg"
+msgid ""
+"Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
+"relevant for listed add-ons."
 msgstr ""
-"Μεταφόρτωση ενός εικονιδίου για το πρόσθετο σας ή επιλογή ενός από τα δικά μας. Αυτό το εικονίδιο εμφανίζεται σχεδόν οπουδήποτε βρίσκεται το πρόσθετο σας. Οι εικόνες που μεταφορτώνονται πρέπει να "
-"είναι των εξής τύπων: .png, .jpg"
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:24
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
 msgstr "Επιλογή εικονιδίου για το πρόσθετο σας:"
 
 #. The size of the icon
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:36
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:37
 msgid "32x32px"
 msgstr "32x32px"
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:38
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:39
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr "Χρησιμοποιείται στις καταχωρήσεις προσθέτων όπως πχ στα αποτελέσματα αναζήτησης και στα προβεβλημένα πρόσθετα."
 
 #. The size of the icon
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:47
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "64x64px"
 msgstr "64x64px"
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:48
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
 msgstr "Χρησιμοποιείται στις σελίδες λεπτομερειών του πρόσθετου."
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:55
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:56
 msgid "Upload a Custom Icon..."
 msgstr "Αποστολή προσαρμοσμένου εικονιδίου..."
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:64
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Υποστηρίζονται μορφές PNG και JPG. Το μέγεθος των εικονιδίων μετατρέπεται σε 64x64 pixel αν είναι μεγαλύτερο."
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:82
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:83
 msgid "Screenshots"
 msgstr "Εικόνες προεπισκόπησης"
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:88
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:89
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Παρακαλώ παρέχετε τουλάχιστον ένα στιγμιότυπο του προσθέτου σας:"
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:113
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:114
 msgid "Please provide a caption for this screenshot:"
 msgstr "Παρακαλούμε δώστε μια λεζάντα για την εικόνα:"
 
-#: apps/devhub/templates/devhub/addons/forms_shared/media.html:129
+#: apps/devhub/templates/devhub/addons/forms_shared/media.html:130
 msgid "Add a Screenshot..."
 msgstr "Προσθήκη εικόνας προεπισκόπησης..."
 
@@ -5875,23 +5900,35 @@ msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετο σα
 msgid "You will receive an email when the review is complete."
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:41
+#: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:44
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr "Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετο σας δεν θα εμφανίζεται γενικά στις σελίδες μας αλλά θα μπορείτε να το δείτε μόνο απευθείας στη σελίδα προβολής του."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:48
+#: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
+msgid "You will receive an email when the review is complete and your add-on is signed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Το πρόσθετο σας εμφανίζεται κανονικά στις σελίδες μας κι οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:54
+#: apps/devhub/templates/devhub/includes/addon_details.html:57
+msgid "Your add-on has been signed and can be side-loaded."
+msgstr ""
+
+#: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:61
+#: apps/devhub/templates/devhub/includes/addon_details.html:69
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
 msgstr "Το πρόσθετο σας εμφανίζεται στις σελίδες μας σαν πειραματικό και οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις. Ορισμένα χαρακτηριστικά δεν είναι διαθέσιμα στο πρόσθετο σας."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:68
+#: apps/devhub/templates/devhub/includes/addon_details.html:73
+msgid "Your add-on has been signed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/includes/addon_details.html:78
 msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
@@ -5899,40 +5936,44 @@ msgstr ""
 "Θα λάβετε ένα email όταν ολοκληρωθεί η πλήρης αξιολόγηση. Μέχρι τότε, το πρόσθετο σας θα εμφανίζεται στις σελίδες μας σαν πειραματικό και οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις. Ορισμένα "
 "χαρακτηριστικά δεν είναι διαθέσιμα στο πρόσθετο σας."
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:76
+#: apps/devhub/templates/devhub/includes/addon_details.html:83
+msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
+msgstr ""
+
+#: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:85
+#: apps/devhub/templates/devhub/includes/addon_details.html:111
 msgid "Current Version:"
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:87
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#: apps/devhub/templates/devhub/includes/addon_details.html:113
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:94
+#: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201
-#: apps/devhub/templates/devhub/includes/addon_details.html:96 apps/devhub/templates/devhub/includes/addon_details.html:102
+#: apps/devhub/templates/devhub/includes/addon_details.html:123 apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "%b %e, %Y"
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:100
+#: apps/devhub/templates/devhub/includes/addon_details.html:127
 msgid "Last Updated:"
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:107
+#: apps/devhub/templates/devhub/includes/addon_details.html:134
 msgid "Next Version:"
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:109
+#: apps/devhub/templates/devhub/includes/addon_details.html:136
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:115 apps/devhub/templates/devhub/versions/list.html:30
+#: apps/devhub/templates/devhub/includes/addon_details.html:142 apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
@@ -6001,8 +6042,8 @@ msgid "View the blog &#9658;"
 msgstr ""
 
 #: apps/devhub/templates/devhub/includes/license_form.html:6
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Παρακαλούμε επιλέξτε την κατάλληλη άδεια αναλόγως τα δικαιώματα που παραχωρείτε στον πηγαίο κώδικα σας."
+msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
+msgstr ""
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6028,14 +6069,12 @@ msgstr[1] "Επιλέξτε <b>μέχρι {0}</b> {1} κατηγορίες γι�
 #: apps/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL."
+"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
-"Οι χρήστες θα πρέπει να αποδεχτούν το παρακάτω συμφωνητικό αδειοδότησης τελικού χρήστη (EULA) για να μπορέσουν να εγκαταστήσουν το πρόσθετο σας. Η ύπαρξη EULA επηρεάζει σημαντικά τον αριθμό λήψεων "
-"των πρόσθετων. Επισημαίνουμε ότι η EULA δεν είναι το ίδιο πράγμα με μια άδεια χρήσης πηγαίου κώδικα όπως πχ. οι GPL και MPL."
 
-#: apps/devhub/templates/devhub/includes/policy_form.html:20
-msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Αν το πρόσθετο σας  μεταδίδει οποιαδήποτε δεδομένα του χρήστη, απαιτείται μια πολιτική απορρήτου η οποία θα επεξηγεί ποια δεδομένα θα είναι αυτά και πως χρησιμοποιούνται."
+#: apps/devhub/templates/devhub/includes/policy_form.html:21
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
+msgstr ""
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6090,14 +6129,18 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Δεχτείτε δωρεές στο λογαριασμό σας στο PayPal ή στείλτε τις σε κάποιον οργανισμό που θέλετε"
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
+msgid "Contributions are only available for listed add-ons."
+msgstr ""
+
+#: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
 
-#: apps/devhub/templates/devhub/payments/payments.html:52
+#: apps/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
 msgstr ""
 
-#: apps/devhub/templates/devhub/payments/payments.html:58 apps/devhub/templates/devhub/payments/voluntary.html:2
+#: apps/devhub/templates/devhub/payments/payments.html:65 apps/devhub/templates/devhub/payments/voluntary.html:2
 msgid "Set up Contributions"
 msgstr "Ρύθμιση δωρεών"
 
@@ -6546,7 +6589,7 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] "Η πλήρης υποψηφιότητα θα είναι διαθέσιμη σε {0} ημέρα"
 msgstr[1] "Η πλήρης υποψηφιότητα θα είναι διαθέσιμη σε {0} ημέρες"
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:283 apps/devhub/templates/devhub/versions/list.html:306
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:317 apps/devhub/templates/devhub/versions/list.html:340
 msgid "Cancel Review Request"
 msgstr "Ακύρωση αιτήματος αξιολόγησης"
 
@@ -6667,17 +6710,31 @@ msgstr ""
 msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:286
+#: apps/devhub/templates/devhub/versions/list.html:284 apps/devhub/templates/devhub/versions/list.html:305
+msgid "Unlist Add-on"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:287
+msgid ""
+"Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:297
+msgid "Are you sure you wish to unlist your add-on?"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:320
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "Η ακύρωση του αιτήματος για αξιολόγηση θα αφήσει το πρόσθετο σας σαν προκαταρκτικά αξιολογημένο."
 
-#: apps/devhub/templates/devhub/versions/list.html:291
+#: apps/devhub/templates/devhub/versions/list.html:325
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 "Η ακύρωση του αιτήματος αξιολόγησης θα έχει ως αποτέλεσμα τη σημείωση του πρόσθετου σας ως ημιτελούς. Αν δεν ολοκληρώσετε το πρόσθετο σας μετά από μερικές ημέρες με νέα αίτηση αξιολόγησης, θα "
 "διαγραφεί."
 
-#: apps/devhub/templates/devhub/versions/list.html:299
+#: apps/devhub/templates/devhub/versions/list.html:333
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Θέλετε σίγουρα να ακυρωθεί η αίτηση σας για αξιολόγηση;"
 
@@ -7265,33 +7322,37 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ημέρα"
 msgstr[1] "{0} ημέρες"
 
-#: apps/editors/helpers.py:455
+#: apps/editors/helpers.py:454
 msgid "Push to public"
 msgstr "Προώθηση στο δημόσιο χώρο "
 
-#: apps/editors/helpers.py:463
+#: apps/editors/helpers.py:456
+msgid "Grant full review"
+msgstr ""
+
+#: apps/editors/helpers.py:471
 msgid "Request more information"
 msgstr "Αίτηση περισσότερων πληροφοριών "
 
-#: apps/editors/helpers.py:466
+#: apps/editors/helpers.py:474
 msgid "Request super-review"
 msgstr "Αίτηση για αξιολόγηση συντάκτη"
 
-#: apps/editors/helpers.py:477
+#: apps/editors/helpers.py:485
 msgid "Grant preliminary review"
 msgstr "Απόδοση εισαγωγικής αξιολόγησης"
 
-#: apps/editors/helpers.py:478
+#: apps/editors/helpers.py:486
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: apps/editors/helpers.py:480
+#: apps/editors/helpers.py:488
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 "Χρησιμοποιείστε αυτή τη φόρμα για να ζητήσετε περισσότερες πληροφορίες από τον δημιουργό. Θα σταλεί ένα email για να ειδοποιηθούν και να απαντήσουν εδώ και θα ειδοποιηθείτε με τη σειρά σας όταν "
 "απαντήσουν."
 
-#: apps/editors/helpers.py:484
+#: apps/editors/helpers.py:492
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7299,55 +7360,55 @@ msgstr ""
 "Αν πιστεύετε ότι για ένα πρόσθετο υπάρχει κάποιο θέμα με την ασφάλεια, τα πνευματικά δικαιώματα ή κάτι άλλο  που θα πρέπει να δει ένας από τους διαχειριστές μας, εισάγετε τα σχόλια σας στο παρακάτω "
 "πεδίο.  Τα σχόλια σας θα αποσταλούν στους διαχειριστές μας και όχι στον δημιουργό του πρόσθετου."
 
-#: apps/editors/helpers.py:490
+#: apps/editors/helpers.py:498
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Αυτή η ενέργεια θα απορρίψει το πρόσθετο και θα το αφαιρέσει από την ουρά αναμονής αξιολόγησης."
 
-#: apps/editors/helpers.py:492
+#: apps/editors/helpers.py:500
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: apps/editors/helpers.py:496
+#: apps/editors/helpers.py:504
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Αυτή η ενέργεια θα απορρίψει τα αρχεία και θα τα αφαιρέσει από την ουρά αναμονής αξιολόγησης."
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:508
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Αυτή η ενέργεια θα σημειώσει το πρόσθετο ως εισαγωγικώς αξιολογημένο. Οι μελλοντικές του εκδόσεις θα περνάνε  από εισαγωγική  αξιολόγηση."
 
-#: apps/editors/helpers.py:505
+#: apps/editors/helpers.py:513
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Αυτή η ενέργεια θα σημειώσει τα αρχεία ως εισαγωγικώς αξιολογημένα. Οι μελλοντικές τους εκδόσεις θα περνάνε  από εισαγωγική  αξιολόγηση."
 
-#: apps/editors/helpers.py:510
+#: apps/editors/helpers.py:518
 msgid "Retain preliminary review"
 msgstr "Διατήρηση εισαγωγικής αξιολόγησης"
 
-#: apps/editors/helpers.py:511
+#: apps/editors/helpers.py:519
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Αυτή η ενέργεια θα διατηρήσει το καθεστώς του πρόσθετου σαν εισαγωγικώς αξιολογημένο. Οι μελλοντικές εκδόσεις του θα περνάνε επίσης από εισαγωγική αξιολόγηση."
 
-#: apps/editors/helpers.py:516
+#: apps/editors/helpers.py:524
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Αυτό θα επιτρέψει να δημοσιευτεί μια έκδοση πρόσθετου που είναι στο sandbox"
 
-#: apps/editors/helpers.py:519
+#: apps/editors/helpers.py:527
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Αυτή η ενέργεια θα απορρίψει μια έκδοση πρόσθετου που είναι δημόσιο και θα την αφαιρέσει από την ουρά αναμονής."
 
-#: apps/editors/helpers.py:522
+#: apps/editors/helpers.py:530
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Αυτή η ενέργεια θα σημάνει το πρόσθετο, την πιο πρόσφατη έκδοση του και τα αρχεία του σαν δημόσια. Οι μελλοντικές εκδόσεις θα παραμένουν στο sandbox μέχρι να αξιολογηθούν από συντάκτες."
 
-#: apps/editors/helpers.py:590
+#: apps/editors/helpers.py:598
 msgid "add-on"
 msgstr ""
 
-#: apps/editors/helpers.py:852 apps/editors/helpers.py:872
+#: apps/editors/helpers.py:886 apps/editors/helpers.py:906
 msgid "Flagged"
 msgstr "Επισημάνθηκε"
 
-#: apps/editors/helpers.py:856 apps/editors/helpers.py:875
+#: apps/editors/helpers.py:890 apps/editors/helpers.py:909
 msgid "Updates"
 msgstr "Ενημερώσεις"
 
@@ -7415,36 +7476,36 @@ msgstr ""
 msgid "Self-reviews are not allowed."
 msgstr "Δεν επιτρέπονται αξιολογήσεις για το δικό σας πρόσθετο"
 
-#: apps/editors/views.py:512
+#: apps/editors/views.py:515
 msgid "Review successfully processed."
 msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία."
 
-#: apps/editors/views.py:702
+#: apps/editors/views.py:706
 msgid "was approved"
 msgstr "εγκρίθηκε"
 
-#: apps/editors/views.py:703
+#: apps/editors/views.py:707
 msgid "given preliminary review"
 msgstr "δόθηκε εισαγωγική αξιολόγηση"
 
-#: apps/editors/views.py:704
+#: apps/editors/views.py:708
 msgid "rejected"
 msgstr "απορρίφθηκε"
 
-#: apps/editors/views.py:705
+#: apps/editors/views.py:709
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "κλιμακώθηκε"
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:711
 msgid "needs more information"
 msgstr "χρειάζονται περισσότερες πληροφορίες"
 
-#: apps/editors/views.py:708
+#: apps/editors/views.py:712
 msgid "needs super review"
 msgstr "χρειάζεται αξιολόγηση συντάκτη"
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:713
 msgid "commented"
 msgstr ""
 

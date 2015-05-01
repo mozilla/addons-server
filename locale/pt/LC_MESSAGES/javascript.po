@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:24-0700\n"
+"POT-Creation-Date: 2015-05-01 08:19-0700\n"
 "PO-Revision-Date: 2015-04-23 04:45+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,15 +107,11 @@ msgstr "A sua submissão passou a validação e será automaticamente assinada."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
-"A sua submissão passou a validação e irá passar por um processo de revisão "
-"manual."
+msgstr "A sua submissão passou a validação e irá passar por um processo de revisão manual."
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
-msgstr ""
-"A sua submissão não passou a validação automática e irá passar por um "
-"processo de revisão manual."
+msgstr "A sua submissão não passou a validação automática e irá passar por um processo de revisão manual."
 
 #: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -127,9 +123,7 @@ msgstr "Se o seu extra requer uma conta num site web para ser completamente test
 
 #: static/js/common/upload-addon.js:356
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr ""
-"Se um extra é direcionado a uma audiência limitada deve escolher a Revisão "
-"preliminar em vez de uma Revisão completa"
+msgstr "Se um extra é direcionado a uma audiência limitada deve escolher a Revisão preliminar em vez de uma Revisão completa"
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
@@ -782,7 +776,7 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Selecione primeiro uma aplicação"
 
@@ -965,55 +959,55 @@ msgstr "Parar de seguir"
 msgid "Your browser does not support the video tag"
 msgstr "O seu navegador não suporta a tag video"
 
-#: static/js/zamboni/devhub.js:410
+#: static/js/zamboni/devhub.js:418
 msgid "Changes Saved"
 msgstr "Alterações guardadas"
 
-#: static/js/zamboni/devhub.js:426
+#: static/js/zamboni/devhub.js:434
 msgid "Enter a new author's email address"
 msgstr "Introduza um novo endereço de email do autor"
 
-#: static/js/zamboni/devhub.js:573
+#: static/js/zamboni/devhub.js:581
 msgid "There was an error uploading your file."
 msgstr "Ocorreu um erro ao enviar o seu ficheiro."
 
-#: static/js/zamboni/devhub.js:718
+#: static/js/zamboni/devhub.js:726
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ficheiro"
 msgstr[1] "{files} ficheiros"
 
-#: static/js/zamboni/devhub.js:721
+#: static/js/zamboni/devhub.js:729
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} análise de utilizador"
 msgstr[1] "{reviews} análises de utilizadores"
 
-#: static/js/zamboni/devhub.js:833
+#: static/js/zamboni/devhub.js:841
 msgid "Learn more"
 msgstr "Saber mais"
 
-#: static/js/zamboni/devhub.js:837
+#: static/js/zamboni/devhub.js:845
 msgid "Example"
 msgstr "Exemplo"
 
-#: static/js/zamboni/devhub.js:1193
+#: static/js/zamboni/devhub.js:1201
 msgid "Image changes being processed"
 msgstr "As alterações à imagem estão a ser processadas"
 
-#: static/js/zamboni/devhub.js:1320
+#: static/js/zamboni/devhub.js:1328
 msgid "Starting tests..."
 msgstr "A começar os testes..."
 
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1335
 msgid "Waiting for test results..."
 msgstr "A aguardar pelos resultados do teste..."
 
-#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
+#: static/js/zamboni/devhub.js:1337 static/js/zamboni/devhub.js:1342
 msgid "Internal Server Error"
 msgstr "Erro interno do servidor"
 
-#: static/js/zamboni/devhub.js:1369
+#: static/js/zamboni/devhub.js:1377
 msgid "Must be a valid e-mail address."
 msgstr "Tem de ser um endereço de email válido."
 

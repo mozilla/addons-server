@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 14:24-0700\n"
+"POT-Creation-Date: 2015-05-01 08:19-0700\n"
 "PO-Revision-Date: 2015-04-06 13:38+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -780,7 +780,7 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Jiné"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1292 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Prvně zvolte aplikaci"
 
@@ -965,57 +965,57 @@ msgstr "Ukončit sledování"
 msgid "Your browser does not support the video tag"
 msgstr "Váš prohlížeč nepodporuje značku video."
 
-#: static/js/zamboni/devhub.js:410
+#: static/js/zamboni/devhub.js:418
 msgid "Changes Saved"
 msgstr "Změny uloženy"
 
-#: static/js/zamboni/devhub.js:426
+#: static/js/zamboni/devhub.js:434
 msgid "Enter a new author's email address"
 msgstr "Vložte novou e-mailovou adresu autora"
 
-#: static/js/zamboni/devhub.js:573
+#: static/js/zamboni/devhub.js:581
 msgid "There was an error uploading your file."
 msgstr "Při nahrávání vašeho souboru se vyskytl problém."
 
-#: static/js/zamboni/devhub.js:718
+#: static/js/zamboni/devhub.js:726
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} soubor"
 msgstr[1] "{files} soubory"
 msgstr[2] "{files} souborů"
 
-#: static/js/zamboni/devhub.js:721
+#: static/js/zamboni/devhub.js:729
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recenze uživatele"
 msgstr[1] "{reviews} recenze uživatele"
 msgstr[2] "{reviews} recenzí uživatele"
 
-#: static/js/zamboni/devhub.js:833
+#: static/js/zamboni/devhub.js:841
 msgid "Learn more"
 msgstr "Dozvědět se více"
 
-#: static/js/zamboni/devhub.js:837
+#: static/js/zamboni/devhub.js:845
 msgid "Example"
 msgstr "Příklad"
 
-#: static/js/zamboni/devhub.js:1193
+#: static/js/zamboni/devhub.js:1201
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku."
 
-#: static/js/zamboni/devhub.js:1320
+#: static/js/zamboni/devhub.js:1328
 msgid "Starting tests..."
 msgstr "Probíhá zahájení testů..."
 
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1335
 msgid "Waiting for test results..."
 msgstr "Probíhá čekání na výsledky testů..."
 
-#: static/js/zamboni/devhub.js:1329 static/js/zamboni/devhub.js:1334
+#: static/js/zamboni/devhub.js:1337 static/js/zamboni/devhub.js:1342
 msgid "Internal Server Error"
 msgstr "Interní chyba serveru"
 
-#: static/js/zamboni/devhub.js:1369
+#: static/js/zamboni/devhub.js:1377
 msgid "Must be a valid e-mail address."
 msgstr "Musí se jednat o platnou e-mailovou adresu."
 
