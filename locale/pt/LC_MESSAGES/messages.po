@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-04-23 04:56+0000\n"
+"PO-Revision-Date: 2015-05-01 23:58+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429764963.0\n"
+"X-POOTLE-MTIME: 1430524725.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -353,15 +353,15 @@ msgstr "Funciona com"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilidade"
 
 #: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
-msgstr ""
+msgstr "Oculta"
 
 #: apps/addons/templates/addons/details_box.html:63 apps/devhub/templates/devhub/index.html:96 apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Unlisted"
-msgstr ""
+msgstr "Não listada"
 
 #: apps/addons/templates/addons/details_box.html:71 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
@@ -1784,7 +1784,7 @@ msgstr "Classificação de conteúdo de {addon} alterada."
 
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} não listado."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4027,7 +4027,7 @@ msgstr "Estado:"
 
 #: apps/devhub/templates/devhub/index.html:90 apps/devhub/templates/devhub/includes/addon_details.html:98
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibilidade:"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
@@ -4326,10 +4326,17 @@ msgstr "Resumo"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Uma explicação curta da funcionalidade básica do seu extra que é apresentada "
+"em listas de pesquisas e de navegação, bem como no topo da página de "
+"detalhes do seu extra. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"As categorias são o método primário de navegação para os utilizadores "
+"encontrarem extras. Escolha qualquer uma que se adeque à funcionalidade do "
+"seu extra para uma maior exposição. Isto apenas é relevante para extras "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4345,6 +4352,10 @@ msgstr "Etiquetas"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"As etiquetas ajudam os utilizadores a encontrar o seu extra e devem ser "
+"descritores curtos como separadores, barra de ferramenta, ou twitter. Pode "
+"ter um máximo de {0} etiquetas. Isto apenas é relevante para extras "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4373,6 +4384,9 @@ msgstr "Detalhes do extra para {0}"
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Uma explicação longa de funcionalidades e outras informações relevantes. "
+"Este campo apenas é apresentado na página de detalhes do extra. Isto apenas "
+"é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4381,6 +4395,9 @@ msgstr "Idioma por omissão"
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
+"Informação sobre o seu extra é apresentada no seu idioma a menos que a tenha "
+"sobreposto com uma tradução específica para um idioma. Isto apenas é "
+"relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4392,6 +4409,10 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Se o seu extra tem outra página inicial, introduza o respetivo endereço "
+"aqui. Se o seu sítio web está traduzido em vários idiomas podem ser "
+"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
+"para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4411,12 +4432,20 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Se deseja apresentar uma endereço de email para pedido de apoio, introduza o "
+"mesmo aqui. Se tiver endereços diferentes para cada idioma, podem ser "
+"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
+"para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Se o seu extra tem um sítio web ou fórum de apoio, introduza o respetivo "
+"endereço aqui. Se o seu sítio web está traduzido em vários idiomas podem ser "
+"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
+"para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4436,6 +4465,11 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Qualquer informação que os utilizadores finais podem querer saber e que não "
+"seja necessariamente aplicável no resumo ou descrição do extra. Utilizações "
+"comuns incluem a listagem de bugs significativos conhecidos, informações "
+"sobre como reportar problemas, antecipar a data de lançamento de uma nova "
+"versão, etc. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4448,6 +4482,8 @@ msgstr "Etiquetas do extra"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
+"Estas etiquetas são utilizadas para classificar extras. Isto apenas é "
+"relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4464,6 +4500,8 @@ msgstr "Ver fonte?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Se o código fonte do seu extra pode ser apresentado no nosso visualizadores "
+"online. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4480,6 +4518,9 @@ msgstr "Estatísticas públicas?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Se as estatísticas de transferências e de utilização para o seu extra podem "
+"ser apresentadas no nosso visualizador online. Isto apenas é relevante para "
+"extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4496,6 +4537,9 @@ msgstr "Atualizar SDK?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"Se selecionado, tentaremos atualizar automaticamente o seu extra quando uma "
+"nova versão do SDK for lançada. Isto apenas é relevante para extras "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4550,6 +4594,10 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Envie um ícone para o seu extra ou escolha um dos nossos. O ícone é "
+"apresentado em praticamente todos os locais onde o seu extra é apresentado. "
+"As imagens enviadas devem ser imagens nos seguintes formatos: .png, .jpg. "
+"Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -6038,6 +6086,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
+"Irá receber um email quando a revisão estiver concluída e o seu extra "
+"assinado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6045,7 +6095,7 @@ msgstr "O seu extra está a ser apresentado na nossa galeria e os utilizadores e
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "O seu extra foi assinado e pode ser pré-distribuído."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -6060,7 +6110,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:73
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "O seu extra foi assinado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:78
 msgid ""
@@ -6073,6 +6123,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
 msgstr ""
+"Irá receber um email quando a revisão completa estiver concluída, fazendo "
+"com que o seu extra possa ser pré-distribuído."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6085,6 +6137,9 @@ msgstr "Versão atual:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
+"Esta é a versão do seu extra que será instalada se alguém clicar no botão "
+"Instalar em addons.mozilla.org. Isto apenas é relevante para extras "
+"listados."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6178,6 +6233,8 @@ msgstr "Ver o blogue &#9658;"
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+"Por favor escolha uma licença apropriada para os direitos que concede ao seu "
+"código fonte. Isto apenas é relevante para extras listados."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6205,10 +6262,19 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
+"Os utilizadores terão de aceitar o seu acordo de licenciamento para o "
+"utilizador final (EULA) antes de instalar o seu extra. A presença de um EULA "
+"afeta significativamente o número de transferências que um extra recebe. "
+"Por favor note que um EULA não é o mesmo que uma licença de código, tal como "
+"a GPL ou a MPL. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Se o seu extra transmite quaisquer dados a partir do computador do "
+"utilizador, é necessária uma política de privacidade que explique que dados "
+"são enviados e como são utilizados. Isto apenas é relevante para extras "
+"listados."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6264,7 +6330,7 @@ msgstr "Receba contribuições na sua conta PayPal ou envie-as para uma organiza
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "As contribuições apenas estão disponíveis para extras listados."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -6846,17 +6912,24 @@ msgstr "Tem a certeza que pretende ocultar o seu extra?"
 
 #: apps/devhub/templates/devhub/versions/list.html:284 apps/devhub/templates/devhub/versions/list.html:305
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Não listar extra"
 
 #: apps/devhub/templates/devhub/versions/list.html:287
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
+"Ao não listar o seu extra irá fazer com que o mesmo (e respetivas "
+"versões/ficheiros) fiquem invisíveis para este sítio web. Não será "
+"apresentado em pesquisas, não terá uma página pública e não será atualizado "
+"de forma automática para os utilizadores atuais. É recomendável que os "
+"extras não listados forneçam uma <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> personalizada no seu ficheiro install.rdf para "
+"atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Tem a certeza que pretende não listar o seu extra?"
 
 #: apps/devhub/templates/devhub/versions/list.html:320
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -7460,7 +7533,7 @@ msgstr "Enviar para o público"
 
 #: apps/editors/helpers.py:456
 msgid "Grant full review"
-msgstr ""
+msgstr "Atribuir revisão completa"
 
 #: apps/editors/helpers.py:471
 msgid "Request more information"
