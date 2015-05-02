@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-04-23 00:56+0000\n"
+"PO-Revision-Date: 2015-05-02 21:29+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429750567.0\n"
+"X-POOTLE-MTIME: 1430602154.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -348,15 +348,15 @@ msgstr "兼容于"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "可见性"
 
 #: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
-msgstr ""
+msgstr "隐藏"
 
 #: apps/addons/templates/addons/details_box.html:63 apps/devhub/templates/devhub/index.html:96 apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Unlisted"
-msgstr ""
+msgstr "未上架"
 
 #: apps/addons/templates/addons/details_box.html:71 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
@@ -1761,7 +1761,7 @@ msgstr "{addon} 内容分级已更改。"
 
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} 已下架。"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3983,7 +3983,7 @@ msgstr "状态："
 
 #: apps/devhub/templates/devhub/index.html:90 apps/devhub/templates/devhub/includes/addon_details.html:98
 msgid "Visibility:"
-msgstr ""
+msgstr "可见性："
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
@@ -4276,11 +4276,11 @@ msgstr "概述"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:52
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "对您的附加组件基本功能的简短描述，将显示在搜索结果和上架页面上，以及附加组件的详细信息页面上。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "用户主要依靠分类浏览附加组件。请为您的附加组件选择适当的分类获得最大曝光率。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4294,6 +4294,8 @@ msgstr "标签"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"标签可以帮助用户找到您的附加组件，它应该是简短的描述词，例如：tabs, toolbar, twitter 等。您最多可以使用 {0} "
+"个标签。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4319,7 +4321,7 @@ msgstr "附加组件“{0}”的详细信息"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "有关特点、功能和其他有关信息的较长描述。此项仅显示在附加组件的详细信息页面。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4327,7 +4329,7 @@ msgstr "默认语言"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "您的附加组件的相关信息将以此语系的内容显示，并且您可以对其他特定语系填入翻译盖过这些默认内容。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4339,6 +4341,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"如果您的附加组件有一个官方页面，请在这里输入地址。如果您的网站有多种不同语言的地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4358,12 +4361,16 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"如果您想显示一个电子邮件地址供支持请求，请在这里输入。如果您想对不同的语言显示不同的电子邮件地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附"
+"加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"如果您的附加组件有一个支持网站或者论坛，请在这里输入。如果您的网站有多种不同语言的地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附加组件相关"
+"。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4383,6 +4390,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"任何最终用户可能想要知道的，但不是附加组件的概要或者描述的信息。例如：您可以在这里列出已知的重要 bug、报告 bug "
+"的方式、有关新版本的发布情况等信息。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4394,7 +4403,7 @@ msgstr "附加组件标记"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "这些标志是用来分类附加组件的。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4410,7 +4419,7 @@ msgstr "查看源代码？"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "我们是否可以在我们的在线查看器中显示您的附加组件的源代码。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4426,7 +4435,7 @@ msgstr "公开统计数据？"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "我们是否可以在我们的在线查看器中显示您的附加组件的下载和使用情况统计数据。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4442,7 +4451,7 @@ msgstr "升级 SDK？"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "如果选中，我们将在新版本 SDK 发布时尝试自动升级您的附加组件。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4495,6 +4504,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"为您的附加组件上传一个图标，或者从我们的图库中选择一个。此图标将显示在您的附加组件出现的地方。上传的图像必须采用下列格式之一：.png, "
+".jpg。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5883,7 +5894,7 @@ msgstr "在审核完成后您会收到一封电子邮件通知。在此期间，
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
+msgstr "您将会在您的附加组件完成审核并被签名后收到电子邮件通知。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5891,7 +5902,7 @@ msgstr "您的附加组件已经展示在我们的展示库中，并且用户会
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "您的附加组件已被签名，现在可以被旁路加载。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -5903,7 +5914,7 @@ msgstr "您的附加组件已标记为实验性的附加组件展示在我们的
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:73
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "您的附加组件已被签名。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:78
 msgid ""
@@ -5913,7 +5924,7 @@ msgstr "在全面审核完成后您会收到一封电子邮件通知。在此期
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
-msgstr ""
+msgstr "您将会在您的附加组件完成全面审核并且可以被旁路加载时收到电子邮件通知。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -5925,7 +5936,7 @@ msgstr "当前版本："
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "这是有人在 addons.mozilla.org 上点击“安装”按钮时将被安装的您的附加组件的版本。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6017,7 +6028,7 @@ msgstr "查看博客 &#9658;"
 
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "请选择您对您的源代码采用的许可协议。此项仅与公开上架的附加组件相关。"
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6044,10 +6055,12 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
+"用户将被要求在安装您的附加组件前接受下列最终用户许可协议（EULA）。EULA 的存在将会大幅度影响附加组件的下载次数。请注意，EULA "
+"与代码许可协议（例如 GPL 或 MPL）是不同的东西。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "如果您的附加组件会从用户的计算机上传出任何数据，您需要提供一份隐私政策，解释这些数据的发送和将如何使用它。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6103,7 +6116,7 @@ msgstr "在 Paypal 账户中接受捐款或者将捐款发到您选择的组织"
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "仅公开上架的附加组件可使用捐款功能。"
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -6678,17 +6691,20 @@ msgstr "您确定想要隐藏您的附加组件？"
 
 #: apps/devhub/templates/devhub/versions/list.html:284 apps/devhub/templates/devhub/versions/list.html:305
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "将附加组件下架"
 
 #: apps/devhub/templates/devhub/versions/list.html:287
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
+"下架您的附加组件将使其（包括其所有版本和文件）在本网站上消失。它将不会在搜索结果中出现，亦不会再拥有一个公开页面，且不会再为现有的用户提供自动更新。建议"
+"您在下架的附加组件中的 install.rdf 文件中提供一个自定义的 <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> 以提供自动更新。"
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "您真的确定要将您的附加组件下架吗？"
 
 #: apps/devhub/templates/devhub/versions/list.html:320
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -7277,7 +7293,7 @@ msgstr "发布为公开"
 
 #: apps/editors/helpers.py:456
 msgid "Grant full review"
-msgstr ""
+msgstr "通过全面审核"
 
 #: apps/editors/helpers.py:471
 msgid "Request more information"
