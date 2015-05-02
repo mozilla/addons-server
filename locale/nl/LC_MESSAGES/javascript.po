@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-02-05 09:05+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2015-05-02 06:50+0000\n"
+"Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1423127107.0\n"
+"X-POOTLE-MTIME: 1430549448.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -99,19 +99,23 @@ msgstr "Uw add-on heeft de validatie doorstaan zonder fouten of waarschuwingen."
 
 #: static/js/common/upload-addon.js:336
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Uw inzending wordt handmatig beoordeeld."
 
 #: static/js/common/upload-addon.js:340
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
+"Uw inzending heeft de validatie doorstaan en wordt automatisch ondertekend."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
+"Uw inzending heeft de validatie doorstaan en wordt handmatig beoordeeld."
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
+"Uw inzending heeft de automatische validatie niet doorstaan en wordt "
+"handmatig beoordeeld."
 
 #: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -126,6 +130,8 @@ msgstr ""
 #: static/js/common/upload-addon.js:356
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Als uw add-on is bedoeld voor een beperkt publiek dient u Voorlopige "
+"Beoordeling in plaats van Volledige Beoordeling te kiezen."
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
@@ -575,12 +581,12 @@ msgstr "Toepassingen van {0} tot {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:152
 msgid "Platforms, last {0} days"
-msgstr "Platforms, laatste {0} dagen"
+msgstr "Platformen, laatste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:154
 msgid "Platforms from {0} to {1}"
-msgstr "Platforms van {0} tot {1}"
+msgstr "Platformen van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:158
