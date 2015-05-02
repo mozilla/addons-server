@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-04-23 22:22+0000\n"
+"PO-Revision-Date: 2015-05-02 11:47+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1429827756.0\n"
+"X-POOTLE-MTIME: 1430567252.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -364,15 +364,15 @@ msgstr "Funciona com"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilidade"
 
 #: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
-msgstr ""
+msgstr "Oculto"
 
 #: apps/addons/templates/addons/details_box.html:63 apps/devhub/templates/devhub/index.html:96 apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Unlisted"
-msgstr ""
+msgstr "Não listado"
 
 #: apps/addons/templates/addons/details_box.html:71 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
@@ -1840,7 +1840,7 @@ msgstr "{addon} classificação de conteúdo alterado."
 
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} não listado."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4121,7 +4121,7 @@ msgstr "Status:"
 
 #: apps/devhub/templates/devhub/index.html:90 apps/devhub/templates/devhub/includes/addon_details.html:98
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibilidade:"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
@@ -4428,10 +4428,18 @@ msgstr "Resumo"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Uma explicação curta da funcionalidade básica do seu complemento que é "
+"apresentada em listas de pesquisas e de navegação, bem como no topo da "
+"página de detalhes do seu complemento. Isto apenas é relevante para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"As categorias são o método primário de navegação para os usuários "
+"encontrarem complementos. Escolha qualquer uma que se adeque à "
+"funcionalidade do seu complemento para uma maior exposição. Isto apenas é "
+"relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4447,6 +4455,9 @@ msgstr "Etiquetas"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"As etiquetas ajudam os usuários a encontrar o seu complemento e devem ser "
+"descritores curtos como abas, barra de ferramenta, ou twitter. Pode ter um "
+"máximo de {0} etiquetas. Isto apenas é relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4475,6 +4486,9 @@ msgstr "Detalhes de {0}"
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Uma explicação longa de funcionalidades e outras informações relevantes. "
+"Este campo apenas é apresentado na página de detalhes do complemento. Isto "
+"apenas é relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4483,6 +4497,9 @@ msgstr "Idioma padrão"
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
+"Informação sobre o seu complemento é apresentada no seu idioma a menos que a "
+"tenha sobreposto com uma tradução específica para um idioma. Isto apenas é "
+"relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -6976,7 +6993,7 @@ msgstr "Tem certeza de que deseja ocultar o seu complemento?"
 
 #: apps/devhub/templates/devhub/versions/list.html:284 apps/devhub/templates/devhub/versions/list.html:305
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Não listar complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:287
 msgid ""
