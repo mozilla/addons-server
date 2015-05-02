@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-01-20 18:11+0000\n"
+"PO-Revision-Date: 2015-05-02 11:12+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1421777463.0\n"
+"X-POOTLE-MTIME: 1430565143.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -99,19 +99,23 @@ msgstr "Ditt tillägg passerade validering utan fel eller varningar."
 
 #: static/js/common/upload-addon.js:336
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Ditt bidrag kommer att gå igenom en manuell granskning."
 
 #: static/js/common/upload-addon.js:340
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "Ditt bidrag klarade validering och kommer att automatiskt signeras."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
+"Ditt bidrag klarade validering och kommer att gå igenom en manuell "
+"granskning."
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
+"Ditt bidrag klarade inte automatisk validering och kommer att gå igenom en "
+"manuell granskning."
 
 #: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -124,6 +128,8 @@ msgstr "Om ditt tillägg kräver ett konto till en webbplats för att bli fullst
 #: static/js/common/upload-addon.js:356
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Om ditt tillägg är avsedd för en begränsad publik bör du välja preliminär "
+"granskning istället för fullständig granskning."
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
@@ -762,7 +768,7 @@ msgstr "<b>{0}</b> mellan {1} och {2}"
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:268
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "<b>{0}</b>genomsnitt de senaste {1} dagarna"
+msgstr "<b>{0}</b> genomsnitt de senaste {1} dagarna"
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
@@ -937,7 +943,7 @@ msgstr "En e-postadress krävs."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr "Du kan inte lägga till dig själv som en bidragare"
+msgstr "Du kan inte lägga till dig själv som en bidragare."
 
 #: static/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -1013,7 +1019,7 @@ msgstr "Måste vara en giltig e-postadress."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr "Inga träffar hittades"
+msgstr "Inga träffar hittades."
 
 #: static/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
