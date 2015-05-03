@@ -4,16 +4,16 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-02-09 17:28+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-05-03 14:04+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.11.0-rc1\n"
-"X-POOTLE-MTIME: 1423502909.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1430661892.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -100,19 +100,25 @@ msgstr "Il componente aggiuntivo ha superato i controlli senza errori e senza av
 
 #: static/js/common/upload-addon.js:336
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Il componente aggiuntivo verrà sottoposto a una revisione manuale."
 
 #: static/js/common/upload-addon.js:340
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
+"Il componente aggiuntivo ha superato il processo di validazione e verrà "
+"firmato digitalmente."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
+"Il componente aggiuntivo ha superato il processo di validazione e verrà "
+"sottoposto a una revisione manuale."
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
+"Il componente aggiuntivo non ha superato il processo di validazione "
+"automatico e verrà sottoposto a una revisione manuale."
 
 #: static/js/common/upload-addon.js:354
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -127,6 +133,8 @@ msgstr ""
 #: static/js/common/upload-addon.js:356
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Nel caso in cui il componente aggiuntivo sia destinato a un’utenza limitata, "
+"seleziona Revisione preliminare anziché Revisione completa."
 
 #: static/js/common/upload-addon.js:369
 msgid "Add-on submission checklist"
