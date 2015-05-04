@@ -15,6 +15,9 @@ def run():
 
     If they are, set File.is_multi_package = True
     """
+    # Disable this as a migration, it's taking too long, move it to a
+    # standalone script.
+    return
     # Only (complete) themes and addons can have multi-package XPIs.
     for file_ in File.objects.filter(
             version__addon__type__in=[amo.ADDON_EXTENSION, amo.ADDON_THEME]):
