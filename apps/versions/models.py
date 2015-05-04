@@ -479,6 +479,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         if self.addon.type == amo.ADDON_EXTENSION:
             for file_obj in self.files.all():
                 packaged.sign_file(file_obj)
+        # They can have multi-package XPIs.
+        elif self.addon.type == amo.ADDON_THEME:
+            for file_obj in self.files.filter(is_multi_package=True):
+                packaged.sign_file(file_obj)
 
 
 @Version.on_change

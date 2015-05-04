@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import tempfile
 import zipfile
 
 from django.conf import settings
@@ -10,7 +11,7 @@ import pytest
 
 import amo
 import amo.tests
-from files.utils import parse_xpi
+from files.utils import extract_xpi, parse_xpi
 from lib.crypto import packaged, tasks
 from versions.compare import version_int
 
@@ -139,6 +140,44 @@ class TestPackaged(amo.tests.TestCase):
         assert not packaged.is_signed(self.file_.file_path)
         packaged.sign_file(self.file_)
         assert packaged.is_signed(self.file_.file_path)
+
+    def test_sign_file_multi_package(self):
+        with amo.tests.copy_file('apps/files/fixtures/files/multi-package.xpi',
+                                 self.file_.file_path,
+                                 overwrite=True):
+            self.file_.update(is_multi_package=True)
+            assert not self.file_.is_signed
+            assert not self.file_.cert_serial_num
+            assert not self.file_.hash
+            assert not packaged.is_signed(self.file_.file_path)
+            # Make sure the internal XPIs aren't signed either.
+            folder = tempfile.mkdtemp()
+            try:
+                extract_xpi(self.file_.file_path, folder)
+                assert not packaged.is_signed(
+                    os.path.join(folder, 'random_extension.xpi'))
+                assert not packaged.is_signed(
+                    os.path.join(folder, 'random_theme.xpi'))
+            finally:
+                amo.utils.rm_local_tmp_dir(folder)
+
+            packaged.sign_file(self.file_)
+            assert self.file_.is_signed
+            assert self.file_.cert_serial_num
+            assert self.file_.hash
+            # It's not the multi-package itself that is signed.
+            assert not packaged.is_signed(self.file_.file_path)
+            # It's the internal xpi.
+            folder = tempfile.mkdtemp()
+            try:
+                extract_xpi(self.file_.file_path, folder)
+                assert packaged.is_signed(
+                    os.path.join(folder, 'random_extension.xpi'))
+                # And only the one that is an extension.
+                assert not packaged.is_signed(
+                    os.path.join(folder, 'random_theme.xpi'))
+            finally:
+                amo.utils.rm_local_tmp_dir(folder)
 
 
 class TestTasks(amo.tests.TestCase):
