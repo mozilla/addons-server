@@ -981,6 +981,17 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         eq_(f.filename.endswith('.xml'), True)
 
+    def test_multi_package(self):
+        upload = self.upload('multi-package')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_multi_package': True})
+        assert file_.is_multi_package
+
+    def test_not_multi_package(self):
+        upload = self.upload('extension')
+        file_ = File.from_upload(upload, self.version, self.platform)
+        assert not file_.is_multi_package
+
 
 class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
 
