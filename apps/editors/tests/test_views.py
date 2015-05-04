@@ -571,6 +571,11 @@ class QueueTest(EditorTest):
                 'addon_status': amo.STATUS_UNREVIEWED,
                 'file_status': amo.STATUS_UNREVIEWED,
             }),
+            ('Prelim Three', {
+                'version_str': '1.0-pre-1',
+                'addon_status': amo.STATUS_PUBLIC,
+                'file_status': amo.STATUS_BETA,
+            }),
             ('Public', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_PUBLIC,
@@ -1022,7 +1027,7 @@ class TestPreliminaryQueue(QueueTest):
     def setUp(self):
         super(TestPreliminaryQueue, self).setUp()
         # These should be the only ones present.
-        self.expected_names = ['Prelim One', 'Prelim Two']
+        self.expected_names = ['Prelim One', 'Prelim Two', 'Prelim Three']
         self.url = reverse('editors.queue_prelim')
 
     def test_results(self):
@@ -1033,7 +1038,7 @@ class TestPreliminaryQueue(QueueTest):
 
     def test_queue_count(self):
         # `generate_files` happens within this test.
-        self._test_queue_count(3, 'Preliminary Reviews', 2)
+        self._test_queue_count(3, 'Preliminary Reviews', 3)
 
     def test_get_queue(self):
         # `generate_files` happens within this test.
