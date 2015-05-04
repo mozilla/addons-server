@@ -79,9 +79,12 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # file, used for default to compatible.
     binary_components = models.BooleanField(default=False, db_index=True)
     # Serial number of the certificate use for the signature.
-    cert_serial_num = models.CharField(max_length=255, blank=True)
+    cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
     is_signed = models.BooleanField(default=False)
+    # Is the file a multi-package?
+    #     https://developer.mozilla.org/en-US/docs/Multiple_Item_Packaging
+    is_multi_package = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -153,6 +156,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         f.builder_version = data['builderVersion']
         f.no_restart = parse_data.get('no_restart', False)
         f.strict_compatibility = parse_data.get('strict_compatibility', False)
+        f.is_multi_package = parse_data.get('is_multi_package', False)
         if version.addon.status == amo.STATUS_PUBLIC:
             if is_beta:
                 f.status = amo.STATUS_BETA

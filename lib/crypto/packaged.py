@@ -1,6 +1,8 @@
+import glob
 import json
-import tempfile
+import os
 import shutil
+import tempfile
 import zipfile
 from base64 import b64decode
 
@@ -13,6 +15,7 @@ from django_statsd.clients import statsd
 from signing_clients.apps import get_signature_serial_number, JarExtractor
 
 import amo
+from files.utils import extract_xpi, parse_xpi
 
 log = commonware.log.getLogger('z.crypto')
 
@@ -32,27 +35,25 @@ def get_endpoint(file_obj):
     return '{server}/1.0/sign_addon'.format(server=server)
 
 
-def call_signing(file_obj, endpoint):
+def call_signing(file_path, endpoint, guid):
     """Get the jar signature and send it to the signing server to be signed."""
     # We only want the (unique) temporary file name.
     with tempfile.NamedTemporaryFile() as temp_file:
         temp_filename = temp_file.name
 
     # Extract jar signature.
-    jar = JarExtractor(path=storage.open(file_obj.file_path),
+    jar = JarExtractor(path=storage.open(file_path),
                        outpath=temp_filename,
                        omit_signature_sections=True,
                        extra_newlines=True)
 
     log.debug('File signature contents: {0}'.format(jar.signatures))
 
-    addon_id = file_obj.version.addon.guid
-
     log.debug('Calling signing service: {0}'.format(endpoint))
     with statsd.timer('services.sign.addon'):
         response = requests.post(endpoint,
                                  timeout=settings.SIGNING_SERVER_TIMEOUT,
-                                 data={'addon_id': addon_id},
+                                 data={'addon_id': guid},
                                  files={'file': ('mozilla.sf',
                                                  str(jar.signatures))})
     if response.status_code != 200:
@@ -63,7 +64,7 @@ def call_signing(file_obj, endpoint):
     pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
     cert_serial_num = get_signature_serial_number(pkcs7)
     jar.make_signed(pkcs7, sigpath='mozilla')
-    shutil.move(temp_filename, file_obj.file_path)
+    shutil.move(temp_filename, file_path)
     return cert_serial_num
 
 
@@ -92,8 +93,16 @@ def sign_file(file_obj):
         log.info("Not signing file {0}: it isn't reviewed".format(file_obj.pk))
         return
 
-    # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = call_signing(file_obj, endpoint)  # Sign file.
+    guid = file_obj.version.addon.guid
+
+    if file_obj.is_multi_package:
+        # We need to sign all the internal extensions, if any.
+        cert_serial_num = sign_multi(file_obj.file_path, endpoint, guid)
+        if not cert_serial_num:  # There was no internal extensions to sign.
+            return
+    else:
+        # Sign the file. If there's any exception, we skip the rest.
+        cert_serial_num = str(call_signing(file_obj.file_path, endpoint, guid))
 
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
@@ -102,6 +111,34 @@ def sign_file(file_obj):
                     is_signed=True)
     log.info('Signing complete for file {0}'.format(file_obj.pk))
     return file_obj
+
+
+def sign_multi(file_path, endpoint, guid):
+    """Sign the internal extensions from a multi-package XPI (if any)."""
+    log.info('Signing multi-package file {0}'.format(file_path))
+    # Extract the multi-package to a temp folder.
+    folder = tempfile.mkdtemp()
+    try:
+        extract_xpi(file_path, folder)
+        xpis = glob.glob(os.path.join(folder, '*.xpi'))
+        cert_serial_nums = []  # The certificate serial numbers for the XPIs.
+        for xpi in xpis:
+            xpi_info = parse_xpi(xpi, check=False)
+            if xpi_info['type'] == amo.ADDON_EXTENSION:
+                # Sign the internal extensions in place.
+                cert_serial_nums.append(call_signing(xpi, endpoint, guid))
+        # Repackage (re-zip) the multi-package.
+        # We only want the (unique) temporary file name.
+        with tempfile.NamedTemporaryFile() as temp_file:
+            temp_filename = temp_file.name
+        shutil.make_archive(temp_filename, format='zip', root_dir=folder)
+        # Now overwrite the current multi-package xpi with the repackaged one.
+        # Note that shutil.make_archive automatically added a '.zip' to the end
+        # of the base_name provided as first argument.
+        shutil.move('{0}.zip'.format(temp_filename), file_path)
+        return '\n'.join([str(num) for num in cert_serial_nums])
+    finally:
+        amo.utils.rm_local_tmp_dir(folder)
 
 
 def is_signed(file_path):
