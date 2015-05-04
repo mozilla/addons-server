@@ -457,12 +457,13 @@ class TestVersion(amo.tests.TestCase):
         # Don't sign for anything else than an extension.
         for addon_type in no_sign_types:
             self.version.addon.update(type=addon_type)
+            self.version.sign_files(settings.SIGNING_SERVER)
             assert not sign_mock.called, (
                 'lib.crypto.packaged.sign_file called for addon type {0}'
                 .format(addon_type))
         # Sign files if it's an extension.
         self.version.addon.update(type=amo.ADDON_EXTENSION)
-        self.version.sign_files()
+        self.version.sign_files(settings.SIGNING_SERVER)
         assert sign_mock.called
 
     def test_get_url_path(self):
