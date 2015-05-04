@@ -425,7 +425,7 @@ def extract_xpi(xpi, path, expand=False):
     copy_over(tempdir, path)
 
 
-def parse_xpi(xpi, addon=None):
+def parse_xpi(xpi, addon=None, check=True):
     """Extract and parse an XPI."""
     # Extract to /tmp
     path = tempfile.mkdtemp()
@@ -448,7 +448,10 @@ def parse_xpi(xpi, addon=None):
     finally:
         rm_local_tmp_dir(path)
 
-    return check_xpi_info(xpi_info, addon)
+    if check:
+        return check_xpi_info(xpi_info, addon)
+    else:
+        return xpi_info
 
 
 def check_xpi_info(xpi_info, addon=None):

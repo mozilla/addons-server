@@ -79,7 +79,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # file, used for default to compatible.
     binary_components = models.BooleanField(default=False, db_index=True)
     # Serial number of the certificate use for the signature.
-    cert_serial_num = models.CharField(max_length=255, blank=True)
+    cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
     is_signed = models.BooleanField(default=False)
     # Is the file a multi-package?

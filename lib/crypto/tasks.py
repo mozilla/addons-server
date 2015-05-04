@@ -96,9 +96,18 @@ def sign_addons(addon_ids, force=False, **kw):
         (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
 
     addons_emailed = []
+    # We only care about extensions and (complete) themes. The latter is
+    # because they may have multi-package XPIs, containing extensions.
     for version in Version.objects.filter(addon_id__in=addon_ids,
-                                          addon__type=amo.ADDON_EXTENSION):
+                                          addon__type__in=[
+                                              amo.ADDON_EXTENSION,
+                                              amo.ADDON_THEME]):
         to_sign = version.files.filter(ff_version_filter)
+        # We only care about multi-package XPIs for themes, because they may
+        # have extensions inside.
+        if version.addon.type == amo.ADDON_THEME:
+            to_sign = version.files.filter(is_multi_package=True)
+
         if force:
             to_sign = to_sign.all()
         else:
@@ -244,11 +253,18 @@ def unsign_addons(addon_ids, force=False, **kw):
 
     addons_emailed = []
     for version in Version.objects.filter(addon_id__in=addon_ids,
-                                          addon__type=amo.ADDON_EXTENSION):
+                                          addon__type__in=[
+                                              amo.ADDON_EXTENSION,
+                                              amo.ADDON_THEME]):
         if not version.version.endswith(bumped_suffix):
             log.info('Version {0} was not bumped, skip.'.format(version.pk))
             continue
         to_unsign = version.files.filter(ff_version_filter)
+        # We only care about multi-package XPIs for themes, because they may
+        # have extensions inside.
+        if version.addon.type == amo.ADDON_THEME:
+            to_unsign = version.files.filter(is_multi_package=True)
+
         if force:
             to_unsign = to_unsign.all()
         else:
