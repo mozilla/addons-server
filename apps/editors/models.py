@@ -217,10 +217,11 @@ class ViewPreliminaryQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewPreliminaryQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
-                           'addons.status IN (%s, %s)' % (
-                               amo.STATUS_LITE,
-                               amo.STATUS_UNREVIEWED)])
+        prelim = '(addons.status IN (%s, %s) AND files.status=%s)' % (
+            amo.STATUS_LITE, amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED)
+        beta = '(addons.status=%s AND files.status=%s)' % (
+            amo.STATUS_PUBLIC, amo.STATUS_BETA)
+        q['where'].extend(['%s OR %s' % (prelim, beta)])
         return q
 
 
