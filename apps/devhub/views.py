@@ -628,8 +628,7 @@ def upload(request, addon_slug=None, is_standalone=False, is_listed=True):
     else:
         tasks.validator.delay(fu.pk, listed=is_listed)
     if addon_slug:
-        return redirect('devhub.upload_detail_for_addon',
-                        addon_slug, fu.pk)
+        return redirect('devhub.upload_detail_for_addon', addon_slug, fu.pk)
     elif is_standalone:
         return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
@@ -1233,25 +1232,27 @@ def version_add(request, addon_id, addon):
 @post_required
 def version_add_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
-                             version=version, request=request)
-    if not form.is_valid():
-        return json_view.error(form.errors)
-    upload = form.cleaned_data['upload']
-    new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
-                                form.cleaned_data['beta'],
+    new_file_form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
+                                      version=version, request=request)
+    if not new_file_form.is_valid():
+        return json_view.error(new_file_form.errors)
+    upload = new_file_form.cleaned_data['upload']
+    new_file = File.from_upload(upload, version,
+                                new_file_form.cleaned_data['platform'],
+                                new_file_form.cleaned_data['beta'],
                                 parse_addon(upload, addon))
-    source = form.cleaned_data['source']
+    source = new_file_form.cleaned_data['source']
     if source:
         version.update(source=source)
     storage.delete(upload.path)
-    check_validation_override(request, form, addon, new_file.version)
+    check_validation_override(request, new_file_form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
 
     # Not listed? Do we need to sign?
     if (waffle.flag_is_active(request, 'automatic-validation') and
             not new_file.version.addon.is_listed):
+        print "A"
         # Only if it's not sideload (not fully reviewed).
         if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]
                 and not new_file.validation.errors
@@ -1259,6 +1260,9 @@ def version_add_file(request, addon_id, addon, version_id):
             # Passed validation: sign automatically without manual review.
             new_file.update(status=amo.STATUS_LITE)
             sign_file(new_file)
+    elif new_file_form.cleaned_data.get('beta'):
+        # Beta files always get signed with prelim cert.
+        sign_file(new_file)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})

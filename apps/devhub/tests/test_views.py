@@ -2176,10 +2176,10 @@ class TestVersionAddFile(UploadTest):
             a.application = amo.ANDROID.id
             a.save()
 
-    def post(self, platform=amo.PLATFORM_MAC, source=None):
+    def post(self, platform=amo.PLATFORM_MAC, source=None, beta=False):
         return self.client.post(self.url, dict(upload=self.upload.pk,
                                                platform=platform.id,
-                                               source=source))
+                                               source=source, beta=beta))
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -2471,6 +2471,26 @@ class TestVersionAddFile(UploadTest):
         # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_beta_addon_pass_validation_with_flag(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed if
+        the flag is enabled."""
+        self.create_flag('automatic-validation')
+        version = self.addon.latest_version
+        version.all_files[0].update(status=amo.STATUS_BETA)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 0}')
+        assert self.addon.status == amo.STATUS_PUBLIC
+        # With the flag: should be signed.
+        self.post(beta=True)
+        file_ = File.objects.all().order_by('-created')[0]
+        # File status didn't change and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_BETA
         assert mock_sign_file.called
 
 

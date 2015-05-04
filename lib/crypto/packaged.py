@@ -23,6 +23,7 @@ class SigningError(Exception):
 def get_endpoint(file_obj):
     """Get the endpoint to sign the file, depending on its review status."""
     server = settings.SIGNING_SERVER
+    # TODO: If file_obj.status == amo.STATUS_BETA: always use prelim.
     if file_obj.version.addon.status != amo.STATUS_PUBLIC:
         server = settings.PRELIMINARY_SIGNING_SERVER
     if not server:
@@ -86,8 +87,9 @@ def sign_file(file_obj):
         log.info('Not signing file {0}: addon is a hotfix'.format(file_obj.pk))
         return
 
-    # We only sign files that have been reviewed.
-    if file_obj.status not in amo.REVIEWED_STATUSES:
+    # We only sign files that have been reviewed plus beta files.
+    # TODO: Does this make sense? Check repurcussions of this.
+    if file_obj.status not in amo.REVIEWED_STATUSES + (amo.STATUS_BETA,):
         log.info("Not signing file {0}: it isn't reviewed".format(file_obj.pk))
         return
 
