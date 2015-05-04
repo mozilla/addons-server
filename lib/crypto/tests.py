@@ -77,6 +77,7 @@ class TestPackaged(amo.tests.TestCase):
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
+        assert not packaged.is_signed(self.file_.file_path)
 
     def test_no_server_prelim(self):
         self.file_.update(status=amo.STATUS_LITE)
@@ -85,6 +86,7 @@ class TestPackaged(amo.tests.TestCase):
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
+        assert not packaged.is_signed(self.file_.file_path)
 
         self.file_.update(status=amo.STATUS_LITE_AND_NOMINATED)
         with self.settings(PRELIMINARY_SIGNING_SERVER=''):
@@ -92,6 +94,7 @@ class TestPackaged(amo.tests.TestCase):
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
+        assert not packaged.is_signed(self.file_.file_path)
 
     def test_sign_file(self):
         assert not self.file_.is_signed
@@ -101,6 +104,7 @@ class TestPackaged(amo.tests.TestCase):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
+        assert packaged.is_signed(self.file_.file_path)
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
         with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
@@ -115,6 +119,7 @@ class TestPackaged(amo.tests.TestCase):
             assert not self.file_.is_signed
             assert not self.file_.cert_serial_num
             assert not self.file_.hash
+            assert not packaged.is_signed(self.file_.file_path)
 
     def test_no_sign_unreviewed(self):
         """Don't sign unreviewed files."""
@@ -128,6 +133,12 @@ class TestPackaged(amo.tests.TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
+        assert not packaged.is_signed(self.file_.file_path)
+
+    def test_is_signed(self):
+        assert not packaged.is_signed(self.file_.file_path)
+        packaged.sign_file(self.file_)
+        assert packaged.is_signed(self.file_.file_path)
 
 
 class TestTasks(amo.tests.TestCase):
@@ -231,7 +242,7 @@ class TestTasks(amo.tests.TestCase):
     def test_sign_bump_old_versions_default_compat(self, mock_sign_file):
         """Sign files which are old, but default to compatible."""
         with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-addon-signature.xpi',
+                'apps/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
@@ -249,7 +260,7 @@ class TestTasks(amo.tests.TestCase):
     def test_sign_bump_new_versions_not_default_compat(self, mock_sign_file):
         """Sign files which are recent, event if not default to compatible."""
         with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-addon-signature.xpi',
+                'apps/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
@@ -269,6 +280,7 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
+            self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
@@ -331,6 +343,7 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
+            self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')

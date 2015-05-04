@@ -290,19 +290,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         addon.update(status=amo.STATUS_DELETED)
         eq_(f.addon.id, addon_id)
 
-    def test_is_signed(self):
-        file_ = File.objects.get(pk=67442)
-        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 file_.file_path):
-            assert not file_.is_signed
-        with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-addon-signature.xpi',
-                file_.file_path):
-            assert file_.is_signed
-        # Make sure a bad zip file is not seen as signed.
-        with amo.tests.copy_file(__file__, file_.file_path):
-            assert not file_.is_signed
-
 
 class TestParseXpi(amo.tests.TestCase):
 

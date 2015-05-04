@@ -1,6 +1,7 @@
 import json
 import tempfile
 import shutil
+import zipfile
 from base64 import b64decode
 
 from django.conf import settings
@@ -97,6 +98,29 @@ def sign_file(file_obj):
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
     file_obj.update(cert_serial_num=cert_serial_num,
-                    hash=file_obj.generate_hash())
+                    hash=file_obj.generate_hash(),
+                    is_signed=True)
     log.info('Signing complete for file {0}'.format(file_obj.pk))
     return file_obj
+
+
+def is_signed(file_path):
+    """Return True if the file has been signed.
+
+    This utility function will help detect if a XPI file has been signed by
+    mozilla (if we can't trust the File.is_signed field).
+
+    It will simply check the signature filenames, and assume that if they're
+    named "mozilla.*" then the xpi has been signed by us.
+
+    This is in no way a perfect or correct solution, it's just the way we
+    do it until we decide to inspect/walk the certificates chain to
+    validate it comes from Mozilla.
+    """
+    try:
+        with zipfile.ZipFile(file_path, mode='r') as zf:
+            filenames = set(zf.namelist())
+    except (zipfile.BadZipfile, IOError):
+        filenames = set()
+    return set(['META-INF/mozilla.rsa', 'META-INF/mozilla.sf',
+                'META-INF/manifest.mf']).issubset(filenames)

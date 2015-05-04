@@ -30,7 +30,7 @@ add-on files and adding the string '.1-signed' to their versions numbers. The
 new versions have kept their review status and are now available for your
 users.
 We recommend that you give them a try to make sure they don't have any
-unexpected problems: {addon_url}.
+unexpected problems: {addon_url}
 
 If you are unfamiliar with the extension signing requirement, please read the
 following documents:
@@ -44,7 +44,7 @@ If you have any questions or comments on this, please reply to this email or
 join #amo-editors on irc.mozilla.org.
 
 You're receiving this email because you have an add-on hosted on
-https://addons.mozilla.org.
+https://addons.mozilla.org
 """
 
 MAIL_UNSIGN_SUBJECT = u'Mozilla Add-ons: {addon} has been unsigned/reverted'
@@ -54,7 +54,7 @@ versions of Firefox. However, we encountered an issue with older versions of
 Firefox, and had to revert this signature. We restored the backups we had for
 the signed versions.
 We recommend that you give them a try to make sure they don't have any
-unexpected problems: {addon_url}.
+unexpected problems: {addon_url}
 
 Link to the bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1158467
 
@@ -62,7 +62,7 @@ If you have any questions or comments on this, please reply to this email or
 join #amo-editors on irc.mozilla.org.
 
 You're receiving this email because you have an add-on hosted on
-https://addons.mozilla.org, and we had automatically signed it.
+https://addons.mozilla.org and we had automatically signed it.
 """
 
 
@@ -102,7 +102,7 @@ def sign_addons(addon_ids, force=False, **kw):
         if force:
             to_sign = to_sign.all()
         else:
-            to_sign = [f for f in to_sign.all() if not f.is_signed]
+            to_sign = to_sign.filter(is_signed=False)
         if not to_sign:
             log.info('Not signing addon {0}, version {1} (no files or already '
                      'signed)'.format(version.addon, version))
@@ -252,7 +252,7 @@ def unsign_addons(addon_ids, force=False, **kw):
         if force:
             to_unsign = to_unsign.all()
         else:
-            to_unsign = [f for f in to_unsign.all() if f.is_signed]
+            to_unsign = to_unsign.filter(is_signed=False)
         if not to_unsign:
             log.info('Not unsigning addon {0}, version {1} (no files or not '
                      'signed)'.format(version.addon, version))
@@ -271,7 +271,9 @@ def unsign_addons(addon_ids, force=False, **kw):
             shutil.move(backup_path, file_obj.file_path)
             file_obj.update(cert_serial_num='', hash=file_obj.generate_hash())
         # Now update the Version model, to unbump its version.
-        version.update(version=version.version[:-len(bumped_suffix)])
+        unbumped_version = version.version[:-len(bumped_suffix)]
+        version.update(version=unbumped_version,
+                       version_int=version_int(unbumped_version))
         # Warn addon owners that we restored backups.
         addon = version.addon
         if addon.pk not in addons_emailed:
