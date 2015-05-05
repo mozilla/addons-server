@@ -83,38 +83,40 @@ $(document).ready(function() {
         $('.addon-upload-failure-dependant').attr('disabled', true);
     }
 
-    // is_listed checkbox: should the add-on be listed on AMO? If not, change
-    // the addon upload button's data-upload-url.
-    var url = $uploadAddon.attr('data-upload-url');
-    // If this add-on is unlisted, then tell the upload view so
-    // it'll run the validator with the "listed=False"
-    // parameter.
-    var $isListed = $('#id_is_listed');
-    var $isSideloadLabel = $('label[for=id_is_sideload]');
-    var $isSideload = $('#id_is_sideload');
-    var $submitAddonProgress = $('.submit-addon-progress');
-    function updateListedStatus() {
-      if ($isListed.exists()) {
-        if ($isListed.is(':checked')) {  // It's a listed add-on.
-          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
-          $isSideloadLabel.hide();
-          $isSideload.attr('checked', false);
-          $submitAddonProgress.removeClass('unlisted');
-        } else {  // It's an unlisted add-on.
-          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
-          $isSideloadLabel.show();
-          $submitAddonProgress.addClass('unlisted');
+    if ($('#create-addon').data('unlisted-addons')) {
+      // is_listed checkbox: should the add-on be listed on AMO? If not, change
+      // the addon upload button's data-upload-url.
+      var url = $uploadAddon.attr('data-upload-url');
+      // If this add-on is unlisted, then tell the upload view so
+      // it'll run the validator with the "listed=False"
+      // parameter.
+      var $isListed = $('#id_is_listed');
+      var $isSideloadLabel = $('label[for=id_is_sideload]');
+      var $isSideload = $('#id_is_sideload');
+      var $submitAddonProgress = $('.submit-addon-progress');
+      function updateListedStatus() {
+        if ($isListed.exists()) {
+          if ($isListed.is(':checked')) {  // It's a listed add-on.
+            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+            $isSideloadLabel.hide();
+            $isSideload.attr('checked', false);
+            $submitAddonProgress.removeClass('unlisted');
+          } else {  // It's an unlisted add-on.
+            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+            $isSideloadLabel.show();
+            $submitAddonProgress.addClass('unlisted');
+          }
         }
+        /* Don't allow submitting, need to reupload/revalidate the file. */
+        $('.addon-upload-dependant').attr('disabled', true);
+        $('.addon-upload-failure-dependant').attr({'disabled': true,
+                                                   'checked': false});
+        $('.upload-status').remove();
       }
-      /* Don't allow submitting, need to reupload/revalidate the file. */
-      $('.addon-upload-dependant').attr('disabled', true);
-      $('.addon-upload-failure-dependant').attr({'disabled': true,
-                                                 'checked': false});
-      $('.upload-status').remove();
+      $isListed.bind('change', updateListedStatus);
+      $isSideload.bind('change', updateListedStatus);
+      updateListedStatus();
     }
-    $isListed.bind('change', updateListedStatus);
-    $isSideload.bind('change', updateListedStatus);
-    updateListedStatus();
 
     if ($(".add-file-modal").length) {
         $modalFile = $(".add-file-modal").modal(".version-upload", {
