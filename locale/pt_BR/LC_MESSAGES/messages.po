@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-05-02 11:47+0000\n"
+"PO-Revision-Date: 2015-05-05 17:02+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1430567252.0\n"
+"X-POOTLE-MTIME: 1430845332.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -4583,6 +4583,8 @@ msgstr "Exibir código-fonte?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Se o código fonte do seu complemento pode ser mostrado em nosso visualizador "
+"online. Só é relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4599,6 +4601,8 @@ msgstr "Publicar estatísticas?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Se as estatísticas de download e uso do seu complemento podem ser mostradas "
+"no nosso visualizador online. Só é relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4615,6 +4619,9 @@ msgstr "Atualizar SDK?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"Se selecionado, tentaremos atualizar automaticamente o seu complemento "
+"quando uma nova versão do SDK for lançada. Só é relevante para complementos "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -6166,6 +6173,8 @@ msgstr "Você receberá uma mensagem quando a análise for concluída. Até lá,
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
+"Você irá receber um e-mail quando a revisão estiver concluída e o seu "
+"complemento assinado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6173,7 +6182,7 @@ msgstr "Seu complemento é exibido em nossa galeria e os usuários recebem atual
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "O seu complemento foi assinado e pode ser distribuído."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -6185,7 +6194,7 @@ msgstr "Seu complemento é exibido em nossa galeria como experimental e os usuá
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:73
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "O seu complemento foi assinado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:78
 msgid ""
@@ -6198,6 +6207,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
 msgstr ""
+"Você irá receber um e-mail quando a revisão completa estiver concluída, "
+"fazendo com que o seu complemento possa ser distribuído."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6212,6 +6223,9 @@ msgstr "Versão atual:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
+"Esta é a versão do seu complemento que será instalado se alguém clicar no "
+"botão Instalar em addons.mozilla.org. Isto é relevante somente para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6393,7 +6407,7 @@ msgstr "Receba contribuições na sua conta do PayPal ou mande para uma organiza
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "As contribuições só estão disponíveis para complementos listados."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -7003,7 +7017,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Tem certeza de que não deseja listar o seu complemento?"
 
 #: apps/devhub/templates/devhub/versions/list.html:320
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
