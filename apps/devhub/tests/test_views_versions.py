@@ -205,6 +205,25 @@ class TestVersion(amo.tests.TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg
 
+    @mock.patch('devhub.views.unindex_addons')
+    def test_user_can_unlist_hidden_addon(self, unindex):
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True,
+                          is_listed=True)
+        res = self.client.post(self.unlist_url)
+        assert res.status_code == 302
+        addon = Addon.with_unlisted.get(id=3615)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert not addon.is_listed
+        assert not addon.disabled_by_user
+
+        # Make sure we remove the addon from the search index.
+        assert unindex.delay.called
+
+        entry = ActivityLog.objects.get()
+        assert entry.action == amo.LOG.ADDON_UNLISTED.id
+        msg = entry.to_string()
+        assert self.addon.name.__unicode__() in msg
+
     def test_user_get(self):
         eq_(self.client.get(self.enable_url).status_code, 405)
 
