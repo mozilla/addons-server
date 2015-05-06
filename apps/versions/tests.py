@@ -1084,6 +1084,18 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                     "md5 hash of %r does not match uploaded file" % (
                         file_.file_path))
 
+    def test_file_multi_package(self):
+        version = Version.from_upload(self.get_upload('multi-package.xpi'),
+                                      self.addon,
+                                      [self.platform])
+        files = version.all_files
+        assert files[0].is_multi_package
+
+    def test_file_not_multi_package(self):
+        version = Version.from_upload(self.upload, self.addon, [self.platform])
+        files = version.all_files
+        assert not files[0].is_multi_package
+
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
     filename = 'search.xml'

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
+import shutil
+import tempfile
 import zipfile
 
 from django.conf import settings
@@ -10,7 +12,7 @@ import pytest
 
 import amo
 import amo.tests
-from files.utils import parse_xpi
+from files.utils import extract_xpi, parse_xpi
 from lib.crypto import packaged, tasks
 from versions.compare import version_int
 
@@ -77,6 +79,7 @@ class TestPackaged(amo.tests.TestCase):
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
+        assert not packaged.is_signed(self.file_.file_path)
 
     def test_no_server_prelim(self):
         self.file_.update(status=amo.STATUS_LITE)
@@ -85,6 +88,7 @@ class TestPackaged(amo.tests.TestCase):
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
+        assert not packaged.is_signed(self.file_.file_path)
 
         self.file_.update(status=amo.STATUS_LITE_AND_NOMINATED)
         with self.settings(PRELIMINARY_SIGNING_SERVER=''):
@@ -92,6 +96,7 @@ class TestPackaged(amo.tests.TestCase):
         # Make sure the file wasn't signed.
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
+        assert not packaged.is_signed(self.file_.file_path)
 
     def test_sign_file(self):
         assert not self.file_.is_signed
@@ -101,11 +106,25 @@ class TestPackaged(amo.tests.TestCase):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
+        assert packaged.is_signed(self.file_.file_path)
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
         with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
             with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
                 assert mozillasf.read().endswith('\n\n')
+
+    def test_sign_file_non_ascii_filename(self):
+        src = self.file_.file_path
+        self.file_.update(filename=u'jétpack.xpi')
+        shutil.move(src, self.file_.file_path)
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        packaged.sign_file(self.file_)
+        assert self.file_.is_signed
+        assert self.file_.cert_serial_num
+        assert self.file_.hash
+        assert packaged.is_signed(self.file_.file_path)
 
     def test_no_sign_hotfix_addons(self):
         """Don't sign hotfix addons."""
@@ -115,6 +134,7 @@ class TestPackaged(amo.tests.TestCase):
             assert not self.file_.is_signed
             assert not self.file_.cert_serial_num
             assert not self.file_.hash
+            assert not packaged.is_signed(self.file_.file_path)
 
     def test_no_sign_unreviewed(self):
         """Don't sign unreviewed files."""
@@ -128,6 +148,50 @@ class TestPackaged(amo.tests.TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
+        assert not packaged.is_signed(self.file_.file_path)
+
+    def test_is_signed(self):
+        assert not packaged.is_signed(self.file_.file_path)
+        packaged.sign_file(self.file_)
+        assert packaged.is_signed(self.file_.file_path)
+
+    def test_sign_file_multi_package(self):
+        with amo.tests.copy_file('apps/files/fixtures/files/multi-package.xpi',
+                                 self.file_.file_path,
+                                 overwrite=True):
+            self.file_.update(is_multi_package=True)
+            assert not self.file_.is_signed
+            assert not self.file_.cert_serial_num
+            assert not self.file_.hash
+            assert not packaged.is_signed(self.file_.file_path)
+            # Make sure the internal XPIs aren't signed either.
+            folder = tempfile.mkdtemp()
+            try:
+                extract_xpi(self.file_.file_path, folder)
+                assert not packaged.is_signed(
+                    os.path.join(folder, 'random_extension.xpi'))
+                assert not packaged.is_signed(
+                    os.path.join(folder, 'random_theme.xpi'))
+            finally:
+                amo.utils.rm_local_tmp_dir(folder)
+
+            packaged.sign_file(self.file_)
+            assert self.file_.is_signed
+            assert self.file_.cert_serial_num
+            assert self.file_.hash
+            # It's not the multi-package itself that is signed.
+            assert not packaged.is_signed(self.file_.file_path)
+            # It's the internal xpi.
+            folder = tempfile.mkdtemp()
+            try:
+                extract_xpi(self.file_.file_path, folder)
+                assert packaged.is_signed(
+                    os.path.join(folder, 'random_extension.xpi'))
+                # And only the one that is an extension.
+                assert not packaged.is_signed(
+                    os.path.join(folder, 'random_theme.xpi'))
+            finally:
+                amo.utils.rm_local_tmp_dir(folder)
 
 
 class TestTasks(amo.tests.TestCase):
@@ -142,13 +206,14 @@ class TestTasks(amo.tests.TestCase):
         self.set_max_appversion(tasks.MIN_NOT_D2C_VERSION)
         self.file_ = self.version.all_files[0]
         self.file_.update(filename='jetpack.xpi')
-        self.backup_file_path = '{0}.backup_signature'.format(
-            self.file_.file_path)
 
     def tearDown(self):
-        if os.path.exists(self.backup_file_path):
-            os.unlink(self.backup_file_path)
+        if os.path.exists(self.get_backup_file_path()):
+            os.unlink(self.get_backup_file_path())
         super(TestTasks, self).tearDown()
+
+    def get_backup_file_path(self):
+        return u'{0}.backup_signature'.format(self.file_.file_path)
 
     def set_max_appversion(self, version):
         """Set self.max_appversion to the given version."""
@@ -157,18 +222,19 @@ class TestTasks(amo.tests.TestCase):
 
     def assert_backup(self):
         """Make sure there's a backup file."""
-        assert os.path.exists(self.backup_file_path)
+        assert os.path.exists(self.get_backup_file_path())
 
     def assert_no_backup(self):
         """Make sure there's no backup file."""
-        assert not os.path.exists(self.backup_file_path)
+        assert not os.path.exists(self.get_backup_file_path())
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
         # We want to make sure each file has been signed.
         self.file2 = amo.tests.file_factory(version=self.version)
         self.file2.update(filename='jetpack-b.xpi')
-        backup_file2_path = '{0}.backup_signature'.format(self.file2.file_path)
+        backup_file2_path = u'{0}.backup_signature'.format(
+            self.file2.file_path)
         try:
             with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                      self.file_.file_path):
@@ -228,16 +294,52 @@ class TestTasks(amo.tests.TestCase):
             not_signed()
 
     @mock.patch('lib.crypto.tasks.sign_file')
+    def test_sign_bump_non_ascii_filename(self, mock_sign_file):
+        """Sign files which have non-ascii filenames."""
+        self.file_.update(filename=u'jétpack.xpi')
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/jetpack.xpi',
+                self.file_.file_path):
+            file_hash = self.file_.generate_hash()
+            assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
+            tasks.sign_addons([self.addon.pk])
+            assert mock_sign_file.called
+            self.version.reload()
+            assert self.version.version == '1.3.1-signed'
+            assert self.version.version_int == version_int('1.3.1-signed')
+            assert file_hash != self.file_.generate_hash()
+            self.assert_backup()
+
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_sign_bump_non_ascii_version(self, mock_sign_file):
+        """Sign versions which have non-ascii version numbers."""
+        self.version.update(version=u'é1.3')
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/jetpack.xpi',
+                self.file_.file_path):
+            file_hash = self.file_.generate_hash()
+            assert self.version.version == u'é1.3'
+            assert self.version.version_int == version_int('1.3')
+            tasks.sign_addons([self.addon.pk])
+            assert mock_sign_file.called
+            self.version.reload()
+            assert self.version.version == u'é1.3.1-signed'
+            assert self.version.version_int == version_int(u'é1.3.1-signed')
+            assert file_hash != self.file_.generate_hash()
+            self.assert_backup()
+
+    @mock.patch('lib.crypto.tasks.sign_file')
     def test_sign_bump_old_versions_default_compat(self, mock_sign_file):
         """Sign files which are old, but default to compatible."""
         with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-addon-signature.xpi',
+                'apps/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             self.set_max_appversion(tasks.MIN_D2C_VERSION)
-            tasks.sign_addons([self.addon.pk], force=True)
+            tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3.1-signed'
@@ -249,14 +351,14 @@ class TestTasks(amo.tests.TestCase):
     def test_sign_bump_new_versions_not_default_compat(self, mock_sign_file):
         """Sign files which are recent, event if not default to compatible."""
         with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-addon-signature.xpi',
+                'apps/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
             self.file_.update(binary_components=True,
                               strict_compatibility=True)
-            tasks.sign_addons([self.addon.pk], force=True)
+            tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '1.3.1-signed'
@@ -269,6 +371,7 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
+            self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
@@ -331,6 +434,7 @@ class TestTasks(amo.tests.TestCase):
         with amo.tests.copy_file(
                 'apps/files/fixtures/files/new-addon-signature.xpi',
                 self.file_.file_path):
+            self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')

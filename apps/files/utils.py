@@ -157,6 +157,7 @@ class RDFExtractor(object):
         self.path = path
         install_rdf_path = os.path.join(path, 'install.rdf')
         self.rdf = rdflib.Graph().parse(open(install_rdf_path))
+        self.package_type = None
         self.find_root()
         self.data = {
             'guid': self.find('id'),
@@ -169,15 +170,16 @@ class RDFExtractor(object):
                 self.find('bootstrap') == 'true' or self.find('type') == '64',
             'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
+            'is_multi_package': self.package_type == '32',
         }
 
     def find_type(self):
         # If the extension declares a type that we know about, use
         # that.
-        # FIXME: Fail if it declares a type we don't know about.
-        declared_type = self.find('type')
-        if declared_type and declared_type in self.TYPES:
-            return self.TYPES[declared_type]
+        # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
+        self.package_type = self.find('type')
+        if self.package_type and self.package_type in self.TYPES:
+            return self.TYPES[self.package_type]
 
         # Look for Complete Themes.
         if self.path.endswith('.jar') or self.find('internalName'):
@@ -189,7 +191,7 @@ class RDFExtractor(object):
             return amo.ADDON_DICT
 
         # Consult <em:type>.
-        return self.TYPES.get(declared_type, amo.ADDON_EXTENSION)
+        return self.TYPES.get(self.package_type, amo.ADDON_EXTENSION)
 
     def uri(self, name):
         namespace = 'http://www.mozilla.org/2004/em-rdf'
@@ -423,7 +425,7 @@ def extract_xpi(xpi, path, expand=False):
     copy_over(tempdir, path)
 
 
-def parse_xpi(xpi, addon=None):
+def parse_xpi(xpi, addon=None, check=True):
     """Extract and parse an XPI."""
     # Extract to /tmp
     path = tempfile.mkdtemp()
@@ -446,7 +448,10 @@ def parse_xpi(xpi, addon=None):
     finally:
         rm_local_tmp_dir(path)
 
-    return check_xpi_info(xpi_info, addon)
+    if check:
+        return check_xpi_info(xpi_info, addon)
+    else:
+        return xpi_info
 
 
 def check_xpi_info(xpi_info, addon=None):

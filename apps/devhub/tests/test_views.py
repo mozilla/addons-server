@@ -1161,8 +1161,9 @@ class TestSubmitStep2(amo.tests.TestCase):
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
-    def test_step_2_listed(self):
+    def test_step_2_listed_checkbox_unlisted_addons_flag(self):
         # There is a checkbox for the "is_listed" addon field.
+        self.create_flag('unlisted-addons')
         self.client.post(reverse('devhub.submit.1'))
         response = self.client.get(reverse('devhub.submit.2'))
         eq_(response.status_code, 200)
@@ -1170,6 +1171,15 @@ class TestSubmitStep2(amo.tests.TestCase):
         assert doc('.list-addon input#id_is_listed[type=checkbox]')
         # There also is a checkbox to select full review (side-load) or prelim.
         assert doc('.list-addon input#id_is_sideload[type=checkbox]')
+
+    def test_step_2_no_listed_checkbox_no_unlisted_addons_flag(self):
+        """If the unlisted-addons flag isn't enabled, don't accept them."""
+        self.client.post(reverse('devhub.submit.1'))
+        response = self.client.get(reverse('devhub.submit.2'))
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        assert not doc('.list-addon input#id_is_listed[type=checkbox]')
+        assert not doc('.list-addon input#id_is_sideload[type=checkbox]')
 
 
 class TestSubmitStep3(TestSubmitBase):
@@ -2824,12 +2834,12 @@ class TestVersionXSS(UploadTest):
 class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
-             source=None, is_listed=True, is_sideload=False):
+             source=None, is_listed=True, is_sideload=False, status_code=200):
         d = dict(upload=self.upload.pk, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  is_listed=is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
-        eq_(r.status_code, 200)
+        eq_(r.status_code, status_code)
         if not expect_errors:
             # Show any unexpected form errors.
             if r.context and 'new_addon_form' in r.context:
@@ -2867,9 +2877,21 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
+    def test_list_addon_no_unlisted_addons_flag(self):
+        """List an add-on if unlisted-addons flag isn't set."""
+        self.upload = self.get_upload(
+            'extension.xpi',
+            validation=json.dumps(dict(errors=0, warnings=0, notices=2,
+                                       metadata={}, messages=[])))
+        assert self.post(is_listed=False)  # Post as unlisted.
+        addon = Addon.with_unlisted.get()
+        assert addon.is_listed  # But add-on is still listed.
+
     @mock.patch('devhub.views.sign_file')
-    def test_success_unlisted_no_flag(self, mock_sign_file):
+    def test_success_unlisted_no_automatic_validation_flag(self,
+                                                           mock_sign_file):
         """No automatic-validation flag: don't sign automatically."""
+        self.create_flag('unlisted-addons')
         eq_(Addon.with_unlisted.count(), 0)
         # No validation errors or warning.
         self.upload = self.get_upload(
@@ -2883,8 +2905,10 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert not mock_sign_file.called
 
     @mock.patch('devhub.views.sign_file')
-    def test_success_unlisted_with_flag(self, mock_sign_file):
+    def test_success_unlisted_with_automatic_validation_flag(self,
+                                                             mock_sign_file):
         """With automatic-validation flag: sign automatically."""
+        self.create_flag('unlisted-addons')
         self.create_flag('automatic-validation')
         eq_(Addon.with_unlisted.count(), 0)
         # No validation errors or warning.
@@ -2900,6 +2924,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     @mock.patch('lib.crypto.packaged.sign_file')
     def test_success_unlisted_fail_validation(self, mock_sign_file):
+        self.create_flag('unlisted-addons')
         eq_(Addon.with_unlisted.count(), 0)
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
@@ -2909,6 +2934,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     @mock.patch('lib.crypto.packaged.sign_file')
     def test_success_unlisted_sideload(self, mock_sign_file):
+        self.create_flag('unlisted-addons')
         eq_(Addon.with_unlisted.count(), 0)
         self.post(is_listed=False, is_sideload=True)
         addon = Addon.with_unlisted.get()
