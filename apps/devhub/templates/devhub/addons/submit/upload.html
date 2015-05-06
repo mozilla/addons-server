@@ -5,7 +5,8 @@
 {% block primary %}
 
 <form method="post" id="create-addon" class="item" enctype="multipart/form-data"
-    data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}">
+    data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
+    data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}">
   {{ csrf() }}
   <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
   <p>
@@ -20,27 +21,31 @@
   <div class="hidden">
     {{ new_addon_form.upload }}
   </div>
-  <div class="list-addon">
-    <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
-    <div>
-      <label for="{{ new_addon_form.is_listed.auto_id }}">
-        {{ new_addon_form.is_listed }}
-        {{ new_addon_form.is_listed.label }}
-        <span class="tip tooltip"
-              title="{{ new_addon_form.is_listed.help_text }}">?</span>
-      </label>
-      <label for="{{ new_addon_form.is_sideload.auto_id }}">
-        {{ new_addon_form.is_sideload }}
-        {{ new_addon_form.is_sideload.label }}
-        <span class="tip tooltip"
-              title="{{ new_addon_form.is_sideload.help_text }}">?</span>
-      </label>
+  {% if waffle.flag('unlisted-addons') %}
+    <div class="list-addon">
+      <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
+      <div>
+        <label for="{{ new_addon_form.is_listed.auto_id }}">
+          {{ new_addon_form.is_listed }}
+          {{ new_addon_form.is_listed.label }}
+          <span class="tip tooltip"
+                title="{{ new_addon_form.is_listed.help_text }}">?</span>
+        </label>
+        <label for="{{ new_addon_form.is_sideload.auto_id }}">
+          {{ new_addon_form.is_sideload }}
+          {{ new_addon_form.is_sideload.label }}
+          <span class="tip tooltip"
+                title="{{ new_addon_form.is_sideload.help_text }}">?</span>
+        </label>
+      </div>
     </div>
-  </div>
+  {% endif %}
   <input type="file" id="upload-addon"
     data-upload-url="{{ url('devhub.upload') }}"
-    data-upload-url-listed="{{ url('devhub.upload') }}"
-    data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}">
+    {% if waffle.flag('unlisted-addons') %}
+      data-upload-url-listed="{{ url('devhub.upload') }}"
+      data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}"
+    {% endif %}>
 
   {{ new_addon_form.non_field_errors() }}
 
