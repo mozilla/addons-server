@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-01 08:19-0700\n"
-"PO-Revision-Date: 2015-05-05 17:02+0000\n"
+"PO-Revision-Date: 2015-05-06 09:39+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1430845332.0\n"
+"X-POOTLE-MTIME: 1430905198.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -4511,6 +4511,10 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Se o seu complemento tem outra página inicial, digite o respetivo endereço "
+"aqui. Se o seu site está traduzido em vários idiomas, podem ser adicionadas "
+"múltiplas traduções para este campo. Só é relevante para complementos "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4530,12 +4534,20 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Se deseja mostrar uma endereço de e-mail para suporte, digite o mesmo aqui. "
+"Se tiver endereços diferentes para cada idioma, podem ser adicionadas "
+"múltiplas traduções para este campo. Só é relevante para complementos "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Se o seu complemento tem um site ou fórum de suporte, digite o respetivo "
+"endereço aqui. Se o seu site está traduzido em vários idiomas podem ser "
+"adicionadas múltiplas traduções para este campo. Só é relevante para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4555,6 +4567,11 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Qualquer informação que os usuários finais podem querer saber e que não seja "
+"necessariamente aplicável no resumo ou descrição do complemento. "
+"Utilizações comuns incluem a listagem de bugs significativos conhecidos, "
+"informações sobre como reportar problemas, antecipar a data de lançamento de "
+"uma nova versão, etc. Só é relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4567,6 +4584,8 @@ msgstr "Propriedades"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
+"Estas etiquetas são usadas para classificar complementos. Só é relevante "
+"para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
