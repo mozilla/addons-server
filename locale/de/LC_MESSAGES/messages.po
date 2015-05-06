@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2015-05-01 16:39+0000\n"
+"PO-Revision-Date: 2015-05-06 16:17+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430498391.0\n"
+"X-POOTLE-MTIME: 1430929032.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -764,6 +764,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>Warnung:</strong>Dieses Add-on wurde nicht von Mozilla überprüft und "
+"kann nicht auf Release-Versionen von Firefox installiert werden. Seien Sie "
+"vorsichtig, wenn Sie Drittsoftware installieren, die Ihrem Computer schaden "
+"könnten."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1042,6 +1046,9 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Warnung:</strong> Entwicklerversionen dieses Add-ons wurde nicht von "
+"Mozilla überprüft und können nicht in Release-Versionen von Firefox "
+"installiert werden."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
