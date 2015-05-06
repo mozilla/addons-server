@@ -77,7 +77,7 @@ def sign_addons(addon_ids, force=False, **kw):
     Firefox extension update mecanism picks this new signed version and
     installs it.
     """
-    log.info('[{0}] Signing addons.'.format(len(addon_ids)))
+    log.info(u'[{0}] Signing addons.'.format(len(addon_ids)))
 
     def file_supports_firefox(version):
         """Return a Q object: files supporting at least a firefox version."""
@@ -113,18 +113,18 @@ def sign_addons(addon_ids, force=False, **kw):
         else:
             to_sign = to_sign.filter(is_signed=False)
         if not to_sign:
-            log.info('Not signing addon {0}, version {1} (no files or already '
-                     'signed)'.format(version.addon, version))
+            log.info(u'Not signing addon {0}, version {1} (no files or already'
+                     u' signed)'.format(version.addon, version))
             continue
-        log.info('Signing addon {0}, version {1}'.format(version.addon,
-                                                         version))
+        log.info(u'Signing addon {0}, version {1}'.format(version.addon,
+                                                          version))
         bump_version = False  # Did we sign at least one file?
         for file_obj in to_sign:
             if not os.path.isfile(file_obj.file_path):
-                log.info('File {0} does not exist, skip'.format(file_obj.pk))
+                log.info(u'File {0} does not exist, skip'.format(file_obj.pk))
                 continue
             # Save the original file, before bumping the version.
-            backup_path = '{0}.backup_signature'.format(file_obj.file_path)
+            backup_path = u'{0}.backup_signature'.format(file_obj.file_path)
             shutil.copy(file_obj.file_path, backup_path)
             try:
                 # Need to bump the version (modify install.rdf or package.json)
@@ -136,7 +136,7 @@ def sign_addons(addon_ids, force=False, **kw):
                 else:  # We didn't sign, so revert the version bump.
                     shutil.move(backup_path, file_obj.file_path)
             except:
-                log.error('Failed signing file {0}'.format(file_obj.pk),
+                log.error(u'Failed signing file {0}'.format(file_obj.pk),
                           exc_info=True)
                 # Revert the version bump, restore the backup.
                 shutil.move(backup_path, file_obj.file_path)
@@ -168,7 +168,7 @@ def sign_addons(addon_ids, force=False, **kw):
 def bump_version_number(file_obj):
     """Add a '.1-signed' to the version number."""
     # Create a new xpi with the bumped version.
-    bumped = '{0}.bumped'.format(file_obj.file_path)
+    bumped = u'{0}.bumped'.format(file_obj.file_path)
     # Copy the original XPI, with the updated install.rdf or package.json.
     with zipfile.ZipFile(file_obj.file_path, 'r') as source:
         file_list = source.infolist()
@@ -186,7 +186,7 @@ def bump_version_number(file_obj):
 
 def _dot_one(version):
     """Returns the version with an appended '.1-signed' on it."""
-    return '{0}.1-signed'.format(version)
+    return u'{0}.1-signed'.format(version)
 
 
 def _bump_version_in_install_rdf(content):
@@ -232,8 +232,8 @@ def unsign_addons(addon_ids, force=False, **kw):
     It first moves the backup of the signed file back over its original one,
     then un-bump the version, and finally re-hash the file.
     """
-    log.info('[{0}] Unsigning addons.'.format(len(addon_ids)))
-    bumped_suffix = '.1-signed'
+    log.info(u'[{0}] Unsigning addons.'.format(len(addon_ids)))
+    bumped_suffix = u'.1-signed'
 
     def file_supports_firefox(version):
         """Return a Q object: files supporting at least a firefox version."""
@@ -257,7 +257,7 @@ def unsign_addons(addon_ids, force=False, **kw):
                                               amo.ADDON_EXTENSION,
                                               amo.ADDON_THEME]):
         if not version.version.endswith(bumped_suffix):
-            log.info('Version {0} was not bumped, skip.'.format(version.pk))
+            log.info(u'Version {0} was not bumped, skip.'.format(version.pk))
             continue
         to_unsign = version.files.filter(ff_version_filter)
         # We only care about multi-package XPIs for themes, because they may
@@ -270,18 +270,19 @@ def unsign_addons(addon_ids, force=False, **kw):
         else:
             to_unsign = to_unsign.filter(is_signed=False)
         if not to_unsign:
-            log.info('Not unsigning addon {0}, version {1} (no files or not '
-                     'signed)'.format(version.addon, version))
+            log.info(u'Not unsigning addon {0}, version {1} (no files or not '
+                     u'signed)'.format(version.addon, version))
             continue
-        log.info('Unsigning addon {0}, version {1}'.format(version.addon,
-                                                           version))
+        log.info(u'Unsigning addon {0}, version {1}'.format(version.addon,
+                                                            version))
         for file_obj in to_unsign:
             if not os.path.isfile(file_obj.file_path):
-                log.info('File {0} does not exist, skip'.format(file_obj.pk))
+                log.info(u'File {0} does not exist, skip'.format(file_obj.pk))
                 continue
-            backup_path = '{0}.backup_signature'.format(file_obj.file_path)
+            backup_path = u'{0}.backup_signature'.format(file_obj.file_path)
             if not os.path.isfile(backup_path):
-                log.info('Backup {0} does not exist, skip'.format(backup_path))
+                log.info(u'Backup {0} does not exist, skip'.format(
+                    backup_path))
                 continue
             # Restore the backup.
             shutil.move(backup_path, file_obj.file_path)
