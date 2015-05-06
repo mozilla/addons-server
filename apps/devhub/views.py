@@ -394,7 +394,7 @@ def disable(request, addon_id, addon):
 @dev_required
 @post_required
 def unlist(request, addon_id, addon):
-    addon.update(is_listed=False)
+    addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
     unindex_addons.delay([addon.id])
     return redirect(addon.get_dev_url('versions'))
