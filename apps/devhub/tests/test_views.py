@@ -2877,13 +2877,15 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    def test_permission_denied_no_unlisted_addons_flag(self):
-        """Don't accept unlisted addons if the flag isn't set."""
+    def test_list_addon_no_unlisted_addons_flag(self):
+        """List an add-on if unlisted-addons flag isn't set."""
         self.upload = self.get_upload(
             'extension.xpi',
             validation=json.dumps(dict(errors=0, warnings=0, notices=2,
                                        metadata={}, messages=[])))
-        assert self.post(is_listed=False, status_code=403)
+        assert self.post(is_listed=False)  # Post as unlisted.
+        addon = Addon.with_unlisted.get()
+        assert addon.is_listed  # But add-on is still listed.
 
     @mock.patch('devhub.views.sign_file')
     def test_success_unlisted_no_automatic_validation_flag(self,

@@ -1368,12 +1368,12 @@ def submit_addon(request, step):
 
             p = data.get('supported_platforms', [])
 
-            if (not data['is_listed'] and
-                    not waffle.flag_is_active(request, 'unlisted-addons')):
-                raise PermissionDenied
+            is_listed = data['is_listed']
+            if not waffle.flag_is_active(request, 'unlisted-addons'):
+                is_listed = True
 
             addon = Addon.from_upload(data['upload'], p, source=data['source'],
-                                      is_listed=data['is_listed'])
+                                      is_listed=is_listed)
             AddonUser(addon=addon, user=request.amo_user).save()
             check_validation_override(request, form, addon,
                                       addon.current_version)
