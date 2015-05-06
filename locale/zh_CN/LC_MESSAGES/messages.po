@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2015-05-02 21:29+0000\n"
+"PO-Revision-Date: 2015-05-06 21:00+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430602154.0\n"
+"X-POOTLE-MTIME: 1430946011.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -746,6 +746,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>注意：</strong>此附加组件未经过 Mozilla 审核，不能在 Firefox "
+"的正式发布版本上安装。安装第三方软件有可能会损害您的计算机，请慎重。"
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1012,7 +1014,7 @@ msgstr "在此附加组件发布给所有公众之前，您可以通过开发通
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr ""
+msgstr "<strong>注意：</strong>此附加组件的开发版本未经过 Mozilla 审核，不能在 Firefox 的正式发布版本上安装。"
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
