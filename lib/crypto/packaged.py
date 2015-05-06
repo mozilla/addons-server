@@ -32,7 +32,7 @@ def get_endpoint(file_obj):
     if not server:
         return
 
-    return '{server}/1.0/sign_addon'.format(server=server)
+    return u'{server}/1.0/sign_addon'.format(server=server)
 
 
 def call_signing(file_path, endpoint, guid):
@@ -47,23 +47,23 @@ def call_signing(file_path, endpoint, guid):
                        omit_signature_sections=True,
                        extra_newlines=True)
 
-    log.debug('File signature contents: {0}'.format(jar.signatures))
+    log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
-    log.debug('Calling signing service: {0}'.format(endpoint))
+    log.debug(u'Calling signing service: {0}'.format(endpoint))
     with statsd.timer('services.sign.addon'):
         response = requests.post(endpoint,
                                  timeout=settings.SIGNING_SERVER_TIMEOUT,
                                  data={'addon_id': guid},
-                                 files={'file': ('mozilla.sf',
-                                                 str(jar.signatures))})
+                                 files={'file': (u'mozilla.sf',
+                                                 unicode(jar.signatures))})
     if response.status_code != 200:
-        msg = 'Posting to add-on signing failed: {0}'.format(response.reason)
+        msg = u'Posting to add-on signing failed: {0}'.format(response.reason)
         log.error(msg)
         raise SigningError(msg)
 
     pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
     cert_serial_num = get_signature_serial_number(pkcs7)
-    jar.make_signed(pkcs7, sigpath='mozilla')
+    jar.make_signed(pkcs7, sigpath=u'mozilla')
     shutil.move(temp_filename, file_path)
     return cert_serial_num
 
@@ -79,18 +79,20 @@ def sign_file(file_obj):
     """
     endpoint = get_endpoint(file_obj)
     if not endpoint:  # Signing not enabled.
-        log.info('Not signing file {0}: no active endpoint'.format(
+        log.info(u'Not signing file {0}: no active endpoint'.format(
             file_obj.pk))
         return
 
     # Don't sign hotfixes.
     if file_obj.version.addon.guid in settings.HOTFIX_ADDON_GUIDS:
-        log.info('Not signing file {0}: addon is a hotfix'.format(file_obj.pk))
+        log.info(u'Not signing file {0}: addon is a hotfix'.format(
+            file_obj.pk))
         return
 
     # We only sign files that have been reviewed.
     if file_obj.status not in amo.REVIEWED_STATUSES:
-        log.info("Not signing file {0}: it isn't reviewed".format(file_obj.pk))
+        log.info(u'Not signing file {0}: it isn\'t reviewed'.format(
+            file_obj.pk))
         return
 
     guid = file_obj.version.addon.guid
@@ -102,14 +104,15 @@ def sign_file(file_obj):
             return
     else:
         # Sign the file. If there's any exception, we skip the rest.
-        cert_serial_num = str(call_signing(file_obj.file_path, endpoint, guid))
+        cert_serial_num = unicode(call_signing(
+            file_obj.file_path, endpoint, guid))
 
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
     file_obj.update(cert_serial_num=cert_serial_num,
                     hash=file_obj.generate_hash(),
                     is_signed=True)
-    log.info('Signing complete for file {0}'.format(file_obj.pk))
+    log.info(u'Signing complete for file {0}'.format(file_obj.pk))
     return file_obj
 
 
@@ -120,7 +123,7 @@ def sign_multi(file_path, endpoint, guid):
     folder = tempfile.mkdtemp()
     try:
         extract_xpi(file_path, folder)
-        xpis = glob.glob(os.path.join(folder, '*.xpi'))
+        xpis = glob.glob(os.path.join(folder, u'*.xpi'))
         cert_serial_nums = []  # The certificate serial numbers for the XPIs.
         for xpi in xpis:
             xpi_info = parse_xpi(xpi, check=False)
@@ -135,8 +138,8 @@ def sign_multi(file_path, endpoint, guid):
         # Now overwrite the current multi-package xpi with the repackaged one.
         # Note that shutil.make_archive automatically added a '.zip' to the end
         # of the base_name provided as first argument.
-        shutil.move('{0}.zip'.format(temp_filename), file_path)
-        return '\n'.join([str(num) for num in cert_serial_nums])
+        shutil.move(u'{0}.zip'.format(temp_filename), file_path)
+        return u'\n'.join([unicode(num) for num in cert_serial_nums])
     finally:
         amo.utils.rm_local_tmp_dir(folder)
 
@@ -159,5 +162,5 @@ def is_signed(file_path):
             filenames = set(zf.namelist())
     except (zipfile.BadZipfile, IOError):
         filenames = set()
-    return set(['META-INF/mozilla.rsa', 'META-INF/mozilla.sf',
-                'META-INF/manifest.mf']).issubset(filenames)
+    return set([u'META-INF/mozilla.rsa', u'META-INF/mozilla.sf',
+                u'META-INF/manifest.mf']).issubset(filenames)
