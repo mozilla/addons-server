@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-05-01 23:58+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -392,7 +392,7 @@ msgstr "Denúncias de abuso"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
 
@@ -441,7 +441,7 @@ msgstr ""
 "<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla. Depois de instalar uma versão de desenvolvimento vai continuar a receber atualizações de "
 "desenvolvimento deste programador. Para parar de receber atualizações de desenvolvimento, reinstale a versão por omissão na ligação acima."
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Versão {0}:"
 
@@ -460,7 +460,7 @@ msgstr "Notas da versão"
 msgid "End-User License Agreement for {0}"
 msgstr "Acordo de licenciamento para o utilizador final para {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Acordo de licenciamento para o utilizador final"
@@ -724,7 +724,7 @@ msgstr "Para instalar este tema e muitos mais, <b>obtenha o Firefox</b>, um nave
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "Este extra não foi atualizado para funcionar com a sua versão do %(app)s."
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "Instalar mesmo assim"
 
@@ -754,22 +754,24 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Este Persona necessita do %(app)s %(new_version)s. Está a utilizar o %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>Atenção:</strong> Este extra não foi revisto pela Mozilla. Tenha cuidado ao instalar software de terceiros que possa danificar o seu computador."
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
+msgstr ""
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Atenção:</strong> Este extra não é compatível com o seu sistema operativo."
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "Este extra não é compatível com a sua versão do %(app)s pelo seguinte:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "Ver outras versões"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "Este extra não é compatível com a sua versão do %(app)s."
 
@@ -789,7 +791,7 @@ msgstr ""
 "telefone se não tiver um.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Denunciar abuso"
 
@@ -1031,10 +1033,10 @@ msgstr ""
 "receber atualizações deste canal. Para parar de receber atualizações de desenvolvimento, reinstale a versão por omissão a partir da ligação acima."
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla."
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2529,7 +2531,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Aviso:</b> Ao alterar o dono desta coleção, já não a poderá editar. Apenas poderá adicionar ou remover extras da mesma."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3852,7 +3854,7 @@ msgstr "Comentários do utilizador"
 msgid "Changes successfully saved."
 msgstr "Alterações guardadas com sucesso."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "Por favor confirme se o formulário tem erros."
 
@@ -3941,11 +3943,11 @@ msgstr "Versão %s eliminada."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Este envio falhou a validação e pode não ter os resultados completos da validação. Por favor tenha cuidado quando o estiver a rever."
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "Solicitada uma revisão preliminar."
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "Solicitada uma revisão completa."
 
@@ -4326,17 +4328,14 @@ msgstr "Resumo"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Uma explicação curta da funcionalidade básica do seu extra que é apresentada "
-"em listas de pesquisas e de navegação, bem como no topo da página de "
-"detalhes do seu extra. Isto apenas é relevante para extras listados."
+"Uma explicação curta da funcionalidade básica do seu extra que é apresentada em listas de pesquisas e de navegação, bem como no topo da página de detalhes do seu extra. Isto apenas é relevante para "
+"extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
-"As categorias são o método primário de navegação para os utilizadores "
-"encontrarem extras. Escolha qualquer uma que se adeque à funcionalidade do "
-"seu extra para uma maior exposição. Isto apenas é relevante para extras "
-"listados."
+"As categorias são o método primário de navegação para os utilizadores encontrarem extras. Escolha qualquer uma que se adeque à funcionalidade do seu extra para uma maior exposição. Isto apenas é "
+"relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4352,10 +4351,8 @@ msgstr "Etiquetas"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
-"As etiquetas ajudam os utilizadores a encontrar o seu extra e devem ser "
-"descritores curtos como separadores, barra de ferramenta, ou twitter. Pode "
-"ter um máximo de {0} etiquetas. Isto apenas é relevante para extras "
-"listados."
+"As etiquetas ajudam os utilizadores a encontrar o seu extra e devem ser descritores curtos como separadores, barra de ferramenta, ou twitter. Pode ter um máximo de {0} etiquetas. Isto apenas é "
+"relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4383,10 +4380,7 @@ msgstr "Detalhes do extra para {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Uma explicação longa de funcionalidades e outras informações relevantes. "
-"Este campo apenas é apresentado na página de detalhes do extra. Isto apenas "
-"é relevante para extras listados."
+msgstr "Uma explicação longa de funcionalidades e outras informações relevantes. Este campo apenas é apresentado na página de detalhes do extra. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4394,10 +4388,7 @@ msgstr "Idioma por omissão"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Informação sobre o seu extra é apresentada no seu idioma a menos que a tenha "
-"sobreposto com uma tradução específica para um idioma. Isto apenas é "
-"relevante para extras listados."
+msgstr "Informação sobre o seu extra é apresentada no seu idioma a menos que a tenha sobreposto com uma tradução específica para um idioma. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4409,10 +4400,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Se o seu extra tem outra página inicial, introduza o respetivo endereço "
-"aqui. Se o seu sítio web está traduzido em vários idiomas podem ser "
-"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
-"para extras listados."
+"Se o seu extra tem outra página inicial, introduza o respetivo endereço aqui. Se o seu sítio web está traduzido em vários idiomas podem ser adicionadas múltiplas traduções para este campo. Isto "
+"apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4432,20 +4421,16 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Se deseja apresentar uma endereço de email para pedido de apoio, introduza o "
-"mesmo aqui. Se tiver endereços diferentes para cada idioma, podem ser "
-"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
-"para extras listados."
+"Se deseja apresentar uma endereço de email para pedido de apoio, introduza o mesmo aqui. Se tiver endereços diferentes para cada idioma, podem ser adicionadas múltiplas traduções para este campo. "
+"Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Se o seu extra tem um sítio web ou fórum de apoio, introduza o respetivo "
-"endereço aqui. Se o seu sítio web está traduzido em vários idiomas podem ser "
-"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
-"para extras listados."
+"Se o seu extra tem um sítio web ou fórum de apoio, introduza o respetivo endereço aqui. Se o seu sítio web está traduzido em vários idiomas podem ser adicionadas múltiplas traduções para este "
+"campo. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4465,11 +4450,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Qualquer informação que os utilizadores finais podem querer saber e que não "
-"seja necessariamente aplicável no resumo ou descrição do extra. Utilizações "
-"comuns incluem a listagem de bugs significativos conhecidos, informações "
-"sobre como reportar problemas, antecipar a data de lançamento de uma nova "
-"versão, etc. Isto apenas é relevante para extras listados."
+"Qualquer informação que os utilizadores finais podem querer saber e que não seja necessariamente aplicável no resumo ou descrição do extra. Utilizações comuns incluem a listagem de bugs "
+"significativos conhecidos, informações sobre como reportar problemas, antecipar a data de lançamento de uma nova versão, etc. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4481,9 +4463,7 @@ msgstr "Etiquetas do extra"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Estas etiquetas são utilizadas para classificar extras. Isto apenas é "
-"relevante para extras listados."
+msgstr "Estas etiquetas são utilizadas para classificar extras. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4499,9 +4479,7 @@ msgstr "Ver fonte?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Se o código fonte do seu extra pode ser apresentado no nosso visualizadores "
-"online. Isto apenas é relevante para extras listados."
+msgstr "Se o código fonte do seu extra pode ser apresentado no nosso visualizadores online. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4517,10 +4495,7 @@ msgstr "Estatísticas públicas?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Se as estatísticas de transferências e de utilização para o seu extra podem "
-"ser apresentadas no nosso visualizador online. Isto apenas é relevante para "
-"extras listados."
+msgstr "Se as estatísticas de transferências e de utilização para o seu extra podem ser apresentadas no nosso visualizador online. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4536,10 +4511,7 @@ msgstr "Atualizar SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-"Se selecionado, tentaremos atualizar automaticamente o seu extra quando uma "
-"nova versão do SDK for lançada. Isto apenas é relevante para extras "
-"listados."
+msgstr "Se selecionado, tentaremos atualizar automaticamente o seu extra quando uma nova versão do SDK for lançada. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4594,10 +4566,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envie um ícone para o seu extra ou escolha um dos nossos. O ícone é "
-"apresentado em praticamente todos os locais onde o seu extra é apresentado. "
-"As imagens enviadas devem ser imagens nos seguintes formatos: .png, .jpg. "
-"Isto apenas é relevante para extras listados."
+"Envie um ícone para o seu extra ou escolha um dos nossos. O ícone é apresentado em praticamente todos os locais onde o seu extra é apresentado. As imagens enviadas devem ser imagens nos seguintes "
+"formatos: .png, .jpg. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5103,24 +5073,24 @@ msgstr "ou <a href=\"{0}\">Cancelar</a>"
 msgid "Step 2"
 msgstr "Passo 2"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "Passo 2. Envie o seu extra"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Utilize os campos abaixo para submeter o pacote do seu extra e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes automáticos irão ser executados no seu ficheiro."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Gostaria que o seu extra fosse distribuído neste sítio?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
 
@@ -6085,9 +6055,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"Irá receber um email quando a revisão estiver concluída e o seu extra "
-"assinado."
+msgstr "Irá receber um email quando a revisão estiver concluída e o seu extra assinado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6122,9 +6090,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
-msgstr ""
-"Irá receber um email quando a revisão completa estiver concluída, fazendo "
-"com que o seu extra possa ser pré-distribuído."
+msgstr "Irá receber um email quando a revisão completa estiver concluída, fazendo com que o seu extra possa ser pré-distribuído."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6136,10 +6102,7 @@ msgstr "Versão atual:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr ""
-"Esta é a versão do seu extra que será instalada se alguém clicar no botão "
-"Instalar em addons.mozilla.org. Isto apenas é relevante para extras "
-"listados."
+msgstr "Esta é a versão do seu extra que será instalada se alguém clicar no botão Instalar em addons.mozilla.org. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6232,9 +6195,7 @@ msgstr "Ver o blogue &#9658;"
 
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Por favor escolha uma licença apropriada para os direitos que concede ao seu "
-"código fonte. Isto apenas é relevante para extras listados."
+msgstr "Por favor escolha uma licença apropriada para os direitos que concede ao seu código fonte. Isto apenas é relevante para extras listados."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6262,19 +6223,14 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
-"Os utilizadores terão de aceitar o seu acordo de licenciamento para o "
-"utilizador final (EULA) antes de instalar o seu extra. A presença de um EULA "
-"afeta significativamente o número de transferências que um extra recebe. "
-"Por favor note que um EULA não é o mesmo que uma licença de código, tal como "
-"a GPL ou a MPL. Isto apenas é relevante para extras listados."
+"Os utilizadores terão de aceitar o seu acordo de licenciamento para o utilizador final (EULA) antes de instalar o seu extra. A presença de um EULA afeta significativamente o número de "
+"transferências que um extra recebe. Por favor note que um EULA não é o mesmo que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Se o seu extra transmite quaisquer dados a partir do computador do "
-"utilizador, é necessária uma política de privacidade que explique que dados "
-"são enviados e como são utilizados. Isto apenas é relevante para extras "
-"listados."
+"Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. Isto apenas é "
+"relevante para extras listados."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6919,13 +6875,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
-"Ao não listar o seu extra irá fazer com que o mesmo (e respetivas "
-"versões/ficheiros) fiquem invisíveis para este sítio web. Não será "
-"apresentado em pesquisas, não terá uma página pública e não será atualizado "
-"de forma automática para os utilizadores atuais. É recomendável que os "
-"extras não listados forneçam uma <a href=\"%(update_url)s\" "
-"target=\"_blank\">updateURL</a> personalizada no seu ficheiro install.rdf para "
-"atualizações automáticas."
+"Ao não listar o seu extra irá fazer com que o mesmo (e respetivas versões/ficheiros) fiquem invisíveis para este sítio web. Não será apresentado em pesquisas, não terá uma página pública e não será "
+"atualizado de forma automática para os utilizadores atuais. É recomendável que os extras não listados forneçam uma <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> personalizada no seu "
+"ficheiro install.rdf para atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
@@ -8408,47 +8360,47 @@ msgstr "Ocorreu um erro ao aceder ao ficheiro %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Ocorreu um erro ao aceder ao ficheiro %s."
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível interpretar o ficheiro enviado."
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "Nome de ficheiro inválido no arquivo: {0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "Não foi possível interpretar o install.rdf."
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "Não foi possível encontrar um UUID."
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "O UUID não corresponde ao extra."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "Encontrado um UUID duplicado."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Os números de versão devem ter menos de 32 caracteres."
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Os números de versão devem conter apenas letras, números e estes caracteres de pontuação: +*.-_."
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> não corresponde ao extra"
 
@@ -11804,7 +11756,7 @@ msgstr "O extra utiliza componentes binários."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "O extra optou pela verificação de compatibilidade estrita."
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"
 

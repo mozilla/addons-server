@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-04-24 03:49+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -388,7 +388,7 @@ msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "ਪਰਦਾ ਨੀਤੀ"
 
@@ -435,7 +435,7 @@ msgstr ""
 "<strong>ਸਾਵਧਾਨੀ:</strong> ਇਸ ਐਡ-ਆਨ ਦੇ ਵਿਕਾਸ ਵਰਜਨ ਦੀ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਇੱਕ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ ਤਾਂ ਤੁਹਾਡਾ ਇਸ ਦੇ ਡਿਵੈਲਪਰ ਤੋਂ ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ। ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣੀਆਂ ਬੰਦ ਕਰਨ ਲਈ, "
 "ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "ਵਰਜਨ {0}:"
 
@@ -454,7 +454,7 @@ msgstr "ਵਰਜਨ ਨੋਟ"
 msgid "End-User License Agreement for {0}"
 msgstr "ਲਈ ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ"
@@ -718,7 +718,7 @@ msgstr "ਇਹ ਥੀਮ ਅਤੇ ਹਜ਼ਾਰਾਂ ਹੋਰ ਇੰਸਟ�
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "ਇਹ ਐਡ-ਆਨ %(app)s ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਕੰਮ ਕਰਨ ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "ਠੀਕ ਹੈ ਇੰਸਟਾਲ ਕਰੋ"
 
@@ -748,22 +748,24 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "ਇਸ ਪਰਸੋਨਾ ਨੂੰ %(app)s %(new_version)s ਦੀ ਲੋੜ ਹੈ। ਤੁਸੀਂ ਮੌਜੂਦਾ ਤੌਰ ਤੇ %(app)s {old_version}ਵਰਤ ਰਹੇ ਹੋ।"
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>ਚੇਤਾਵਨੀ:</strong> ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਧਿਆਨ ਰੱਖੋ ਜਦੋਂ ਤੁਸੀਂ ਤੀਜੀ-ਧਿਰ ਦੇ ਸਾਫ਼ਟਵੇਅਰ ਇੰਸਟਾਲ ਕਰ ਰਹੇ ਹੋਵੋ ਜਿਹਨਾਂ ਨਾਲ ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਨੂੰ ਨੁਕਸਾਨ ਹੋ ਸਕਦਾ ਹਨ।"
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
+msgstr ""
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ:</strong> ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "ਇਹ ਐਡ-ਆਨ %(app)s ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ ਕਿਉਂ ਕਿ ਹੇਠ ਦਿੱਤੇ ਅਨੁਸਾਰ:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ %(app)s ਦੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
 
@@ -781,7 +783,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "ਆਪਣੇ ਮੋਬਾਈਲ ਫ਼ਾਇਰਫ਼ਾਕਸ ਤੇ {0}ਚਾਹੀਦਾ? ਆਪਣੇ ਫ਼ੋਨ ਤੇ ਸਿੱਧਾ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਇਸ QR ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰੋ। ( ਤੁਹਾਨੂੰ ਇੱਕ QR ਰੀਡਰ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਆਪਣੇ ਫ਼ੋਨ ਦਾ ਬਾਜ਼ਾਰ ਖੋਜੋ ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਨਹੀਂ ਹੈ।)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
@@ -1021,10 +1023,10 @@ msgstr ""
 "ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>ਚੇਤਾਵਨੀ:</strong> ਇਸ ਐਡ-ਆਨ ਦੇ ਵਿਕਾਸ ਵਰਜਨਾਂ ਦੀ ਸਮੀਖਿਆ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਨਹੀਂ ਕੀਤੀ ਗਈ ਹੈ।"
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2517,7 +2519,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>ਚੇਤਾਵਨੀ:</b> ਇਸ ਸੰਗ੍ਰਹਿ ਦਾ ਮਾਲਕ ਬਦਲਣ ਨਾਲ, ਤੁਸੀਂ ਹੁਣ ਇਸ ਵਿੱਚ ਸੋਧ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਰਹੋਗੇ। ਤੁਸੀਂ ਇਸ ਵਿੱਚ ਕੇਵਲ ਐਡ-ਆਨ ਸ਼ਾਮਲ ਅਤੇ ਹਟਾਉਣ ਦੇ ਯੋਗ ਹੀ ਹੋਵੋਗੇ।"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3836,7 +3838,7 @@ msgstr "ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 msgid "Changes successfully saved."
 msgstr "ਬਦਲਾਵ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
 
@@ -3925,11 +3927,11 @@ msgstr "ਵਰਜਨ %s ਹਟਾਇਆ।"
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ।"
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ।"
 
@@ -5025,23 +5027,23 @@ msgstr "ਜਾਂ <a href=\"{0}\">ਰੱਦ</a>"
 msgid "Step 2"
 msgstr "ਕਦਮ 2"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "ਕਦਮ 2. ਆਪਣਾ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੋਈ ਵੀ ਪਲੇਟਫ਼ਾਰਮ ਪਾਬੰਦੀਆਂ ਚੁਣੋ। ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਸਵੈ ਪ੍ਰਮਾਣਿਕਤਾ ਜਾਂਚਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਉੱਤੇ ਚਲਾਈ ਜਾਏਗੀ।"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "ਕੀ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇਸ ਸਾਈਟ ਤੇ ਵਰਤਾਇਆ ਜਾਵੇ?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "ਇਹ ਫ਼ਾਈਲ ਕਿਸ ਪਲੇਟਫ਼ਾਰਮ ਦੇ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
 
@@ -8233,47 +8235,47 @@ msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖ�
 msgid "There was an error accessing file %s."
 msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "install.rdf ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "ਇੱਕ UUID ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "UUID ਐਡ-ਆਨ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ।"
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "UUID ਨਕਲ ਮਿਲੀ।"
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "ਵਰਜਨ ਨੰਬਰ 32 ਅੱਖਰਾਂ ਤੋਂ ਘੱਟ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ਦਾ ਐਡ-ਆਨ ਨਾਲ ਮੇਲ ਨਹੀਂ"
 
@@ -11555,7 +11557,7 @@ msgstr "ਐਡ-ਆਨ ਬਾਇਨਰੀ ਹਿੱਸੇ ਵਰਤਦਾ ਹੈ�
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "ਐਡ-ਆਨ ਸ਼ਖਤ ਅਨੁਕੂਲਤਾ ਪੜਤਾਲ ਲਈ ਚੁਣਿਆ ਗਿਆ।"
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
 

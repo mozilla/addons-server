@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -403,7 +403,7 @@ msgstr "Извештаји о злоупотреби"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "Полиса приватности"
 
@@ -452,7 +452,7 @@ msgstr ""
 "<strong>Опрез:</strong> Развојна верзија овог додатка није прегледана од стране Mozilla фондације. Када иснталирате развојну верзију, наставићете да добијате развојне надоградње од овог програмера. "
 "Да бисте зауставили примање развојних надоградњи, поново инсталирајте развојну верзију са горе наведене везе."
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Верзија {0}:"
 
@@ -471,7 +471,7 @@ msgstr "Белешке о верзији"
 msgid "End-User License Agreement for {0}"
 msgstr "Уговор о лиценци софтвера за крајњег корисника (EULA) за {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Уговор о лиценци софтвера за крајњег корисника (EULA)"
@@ -742,7 +742,7 @@ msgstr "Да бисте инсталирали ову тему и хиљаду �
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "Овај додатак није ажуриран да одговара Вашој верзији %(app)s-а."
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "Ипак инсталирај"
 
@@ -772,22 +772,24 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Ова Persona захтева %(app)s %(new_version)s. Тренутно користите %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>Опрез:</strong> Mozilla-ини уредници нису прегледали овај додатак. Будите опрезни када инсталирате непроверени софтвер који може угрозити безбедност Вашег рачунара."
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
+msgstr ""
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Напомена:</strong> Овај додатак није компатибилан са Вашим оперативним системом."
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "Овај додатак није компатабилан са Вашом верзијом %(app)s-а због следећег:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "Погледајте друге верзије"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "Овај додатак није компатибилан са Вашом верзијом %(app)s-а."
 
@@ -807,7 +809,7 @@ msgstr ""
 "телефону ако га немате.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Пријави злоупотребу"
 
@@ -1052,10 +1054,10 @@ msgstr ""
 "овог канала. Да бисте прекинули примање новости, поново инсталирајте подразумевану верзију са горње везе."
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Упозорење:</strong> Развојне верзије овог додатка нису биле прегледане од Mozilla фондације."
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2570,7 +2572,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Упозорење:</b> Променом власника ове колекције, више нећете имати могућност њене измене. Моћи ћете само да јој додајете или уклањате додатке."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3902,7 +3904,7 @@ msgstr "Рецензије корисника"
 msgid "Changes successfully saved."
 msgstr "Измене су успешно сачуване."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "Молимо Вас проверите да ли има грешака у форми."
 
@@ -3991,11 +3993,11 @@ msgstr "Верзија %s избрисана."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Отпремање није прошло валидацију, и можда не садржи потпуне резултате валидације. Молимо Вас, добро проверите приликом прегледавања."
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "Захтевана прелиминарна рецензија."
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "Захтевана потпуна рецензија."
 
@@ -5101,25 +5103,25 @@ msgstr "или <a href=\"{0}\">Откажи</a>"
 msgid "Step 2"
 msgstr "Корак 2"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "Корак 2. Поставите додатак"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Искористите поља испод да бисте отпремили Ваш пакет са додатком и одаберите било која ограничења платформе. Након постављања, низ аутоматизованих тестова за проверу ваљаности ће бити покренути на "
 "Вашој датотеци."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Административна поништавања"
 
@@ -8368,47 +8370,47 @@ msgstr "Дошло је до грешке приликом приступања 
 msgid "There was an error accessing file %s."
 msgstr "Дошло је до грешке приликом приступања датотеци %s."
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "Није могуће рашчланити отпремљену датотеку."
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "Неважећи назив датотеке у архиви: {0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Величина прелази ограничење величине у архиви: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "Неважећа архива."
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "Не могу рашчланити install.rdf."
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "Није могуће пронаћи UUID."
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "UUID се не поклапа са додатком."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "Пронађен је дупликат UUID-а."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Број верзије би требало да буде мањи од 32 карактера."
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Број верзије ви требало да садржи само слова, бројеве, и ове карактере: +*.-_."
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> се не поклапа са додатком"
 
@@ -11655,7 +11657,7 @@ msgstr "Додаци користе бинарне компоненте."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Додатак се определио строгом провером компатибилности."
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} и касније"
 

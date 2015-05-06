@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -398,7 +398,7 @@ msgstr "Abuse Reports"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
@@ -447,7 +447,7 @@ msgstr ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Version {0}:"
 
@@ -466,7 +466,7 @@ msgstr "Version Notes"
 msgid "End-User License Agreement for {0}"
 msgstr "End-User License Agreement for {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
@@ -732,7 +732,7 @@ msgstr "To install this Theme and thousands more, <b>get Firefox</b>, a free and
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "This add-on has not been updated to work with your version of %(app)s."
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "Install Anyway"
 
@@ -762,22 +762,26 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
+msgstr ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "This add-on is not compatible with your version of %(app)s because of the following:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "View other versions"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "This add-on is not compatible with your version of %(app)s."
 
@@ -795,7 +799,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Report Abuse"
 
@@ -1036,10 +1040,10 @@ msgstr ""
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2540,7 +2544,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3865,7 +3869,7 @@ msgstr "User Reviews"
 msgid "Changes successfully saved."
 msgstr "Changes successfully saved."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "Please check the form for errors."
 
@@ -3954,11 +3958,11 @@ msgstr "Version %s deleted."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "Preliminary Review Requested."
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "Full Review Requested."
 
@@ -5076,23 +5080,23 @@ msgstr "or <a href=\"{0}\">Cancel</a>"
 msgid "Step 2"
 msgstr "Step 2"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "Step 2. Upload Your Add-on"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Do you want your add-on to be distributed on this site?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "Which platforms is this file compatible with?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Administrative overrides"
 
@@ -8335,47 +8339,47 @@ msgstr "There was an error accessing file %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "There was an error accessing file %s."
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "Could not parse uploaded file."
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "Invalid file name in archive: {0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "Invalid archive."
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "Could not parse install.rdf."
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "Could not find a UUID."
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "UUID doesn't match add-on."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "Duplicate UUID found."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Version numbers should have fewer than 32 characters."
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> doesn't match add-on"
 
@@ -11723,7 +11727,7 @@ msgstr "Add-on uses binary components."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Add-on has opted into strict compatibility checking."
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"
 

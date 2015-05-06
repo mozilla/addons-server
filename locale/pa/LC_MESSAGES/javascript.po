@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-04-28 04:08+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:401
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:403
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
 
@@ -97,43 +97,43 @@ msgstr[1] "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੇ ਬਿਨਾਂ ਖਾਮੀ�
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੇ ਬਿਨਾਂ ਖਾਮੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਦੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ।"
 
-#: static/js/common/upload-addon.js:336
+#: static/js/common/upload-addon.js:337
 msgid "Your submission will go through a manual review."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
 
-#: static/js/common/upload-addon.js:340
+#: static/js/common/upload-addon.js:341
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ ਅਤੇ ਆਪਣੇ ਆਪ ਹੀ ਹਸਤਾਖਰਿਤ ਹੋ ਜਾਵੇਗੀ।"
 
-#: static/js/common/upload-addon.js:342
+#: static/js/common/upload-addon.js:343
 msgid "Your submission passed validation and will go through a manual review."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ ਅਤੇ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
 
-#: static/js/common/upload-addon.js:345
+#: static/js/common/upload-addon.js:346
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਪਾਸ ਨਹੀਂ ਕੀਤੀ ਅਤੇ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
 
-#: static/js/common/upload-addon.js:354
+#: static/js/common/upload-addon.js:356
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:355
+#: static/js/common/upload-addon.js:357
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, ਸਮੀਖਿਅਕ ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਵਰਤੋਂਕਾਰ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:356
+#: static/js/common/upload-addon.js:358
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੱਕ ਸੀਮਿਤ ਜਨਤਾ ਲਈ ਨਿਯਤ ਹੈ ਤੁਹਾਨੂੰ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਦੀ ਥਾਂ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਨੂੰ ਚੁਣਨਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: static/js/common/upload-addon.js:369
+#: static/js/common/upload-addon.js:371
 msgid "Add-on submission checklist"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਾਰਜ ਚੈੱਕਲਿਸਟ"
 
-#: static/js/common/upload-addon.js:370
+#: static/js/common/upload-addon.js:372
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਸ ਨਾਲ ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ:"
 
-#: static/js/common/upload-addon.js:372
+#: static/js/common/upload-addon.js:374
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -141,19 +141,19 @@ msgstr ""
 "ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
 "ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:390
+#: static/js/common/upload-addon.js:392
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
 
-#: static/js/common/upload-addon.js:407
+#: static/js/common/upload-addon.js:409
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ, ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:443
+#: static/js/common/upload-addon.js:445
 msgid "Some platforms are not available for this type of add-on."
 msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:447
 msgid "Sorry, no supported platform has been found."
 msgstr "ਮੁਆਫ਼ੀ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
 
@@ -776,7 +776,7 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਦੂਜਾ"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1302 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
 
@@ -955,59 +955,59 @@ msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
 msgid "Stop following"
 msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
 
-#: static/js/zamboni/devhub.js:161
+#: static/js/zamboni/devhub.js:163
 msgid "Your browser does not support the video tag"
 msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
 
-#: static/js/zamboni/devhub.js:418
+#: static/js/zamboni/devhub.js:420
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
-#: static/js/zamboni/devhub.js:434
+#: static/js/zamboni/devhub.js:436
 msgid "Enter a new author's email address"
 msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
 
-#: static/js/zamboni/devhub.js:581
+#: static/js/zamboni/devhub.js:583
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
 
-#: static/js/zamboni/devhub.js:726
+#: static/js/zamboni/devhub.js:728
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ਫਾਈਲ"
 msgstr[1] "{files} ਫਾਈਲਾਂ"
 
-#: static/js/zamboni/devhub.js:729
+#: static/js/zamboni/devhub.js:731
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
 msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: static/js/zamboni/devhub.js:841
+#: static/js/zamboni/devhub.js:843
 msgid "Learn more"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
-#: static/js/zamboni/devhub.js:845
+#: static/js/zamboni/devhub.js:847
 msgid "Example"
 msgstr "ਉਦਾਹਰਨ"
 
-#: static/js/zamboni/devhub.js:1201
+#: static/js/zamboni/devhub.js:1203
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: static/js/zamboni/devhub.js:1328
+#: static/js/zamboni/devhub.js:1330
 msgid "Starting tests..."
 msgstr "ਟੈਸਟ ਸੁਰੂ ਹੋ ਰਹੇ ਹਨ...."
 
-#: static/js/zamboni/devhub.js:1335
+#: static/js/zamboni/devhub.js:1337
 msgid "Waiting for test results..."
 msgstr "ਟੈਸਟ ਨਤੀਜਿਆਂ ਲਈ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
-#: static/js/zamboni/devhub.js:1337 static/js/zamboni/devhub.js:1342
+#: static/js/zamboni/devhub.js:1339 static/js/zamboni/devhub.js:1344
 msgid "Internal Server Error"
 msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
 
-#: static/js/zamboni/devhub.js:1377
+#: static/js/zamboni/devhub.js:1379
 msgid "Must be a valid e-mail address."
 msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 

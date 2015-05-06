@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-05-03 14:53+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -401,7 +401,7 @@ msgstr "Segnala abuso"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "Informativa sulla privacy"
 
@@ -450,7 +450,7 @@ msgstr ""
 "<strong>Attenzione:</strong> le versioni di sviluppo di questo componente aggiuntivo non sono state verificate da Mozilla. Installando una versione di sviluppo continuerai a ricevere tutti gli "
 "aggiornamenti relativi alle versioni sperimentali. Per non ricevere più questo tipo di aggiornamenti, reinstalla la versione ufficiale utilizzando il link fornito."
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Versione {0}:"
 
@@ -469,7 +469,7 @@ msgstr "Note di versione"
 msgid "End-User License Agreement for {0}"
 msgstr "Licenza per l’utente finale (EULA) per {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Licenza per l’utente finale"
@@ -735,7 +735,7 @@ msgstr "Per installare questo e altre migliaia di temi, <b>scarica Firefox</b>, 
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "Questo componente aggiuntivo non è stato aggiornato per funzionare con la tua versione di %(app)s."
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "Installa comunque"
 
@@ -765,24 +765,24 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Questo tema Personas richiede %(app)s %(new_version)s. Al momento stai utilizzando %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
 msgstr ""
-"<strong>Attenzione:</strong> questo componente aggiuntivo non è stato verificato da Mozilla. Dovresti prestare molta attenzione quando installi del software di terze parti in grado di danneggiare "
-"il tuo computer."
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Attenzione:</strong> questo componente aggiuntivo non è compatibile con il tuo sistema operativo."
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "Questo componente aggiuntivo non è compatibile con la tua versione di %(app)s per i seguenti motivi:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "Mostra altre versioni"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "Questo componente aggiuntivo non è compatibile con la tua versione di %(app)s."
 
@@ -802,7 +802,7 @@ msgstr ""
 "telefono)."
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Segnala abuso"
 
@@ -1045,10 +1045,10 @@ msgstr ""
 "ricevere gli aggiornamenti dal canale di sviluppo. Per non ricevere più questo tipo di aggiornamenti, reinstalla la versione normale utilizzando il link precedente."
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Attenzione:</strong> le versioni di sviluppo di questo componente aggiuntivo non sono state verificate da Mozilla."
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2554,7 +2554,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Attenzione:</b> modificando il proprietario di questa raccolta, non sarai più in grado di modificarla. Avrai solo la possibilità di aggiungere o rimuovere componenti aggiuntivi."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3890,7 +3890,7 @@ msgstr "Recensioni"
 msgid "Changes successfully saved."
 msgstr "Modifiche salvate correttamente."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "Controlla che il modulo non contenga errori."
 
@@ -3979,11 +3979,11 @@ msgstr "Eliminata la versione %s."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "La validazione del file caricato è fallita, pertanto potrebbero mancare i risultati completi della validazione. Tienilo a mente durante il processo di revisione."
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "Richiesta revisione preliminare."
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "Richiesta revisione completa."
 
@@ -4366,18 +4366,14 @@ msgstr "Sommario"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Una breve presentazione delle funzionalità principali del componente "
-"aggiuntivo che verrà visualizzata nei risultati di ricerca, negli elenchi e "
-"in cima alla pagina del componente stesso. Rilevante solo per i componenti "
-"aggiuntivi distribuiti su AMO."
+"Una breve presentazione delle funzionalità principali del componente aggiuntivo che verrà visualizzata nei risultati di ricerca, negli elenchi e in cima alla pagina del componente stesso. Rilevante "
+"solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
-"Le categorie sono il metodo principale attraverso cui gli utenti esplorano i "
-"componenti aggiuntivi. Per ottenere maggiore visibilità seleziona tutte le "
-"categorie compatibili con le funzionalità del componente aggiuntivo. "
-"Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+"Le categorie sono il metodo principale attraverso cui gli utenti esplorano i componenti aggiuntivi. Per ottenere maggiore visibilità seleziona tutte le categorie compatibili con le funzionalità del "
+"componente aggiuntivo. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4393,11 +4389,8 @@ msgstr "Etichette"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
-"Le etichette consentono all’utente di trovare il componente aggiuntivo più "
-"facilmente. Esse dovrebbero consistere in brevissime descrizioni come ad "
-"esempio schede, barra strumenti o twitter. È possibile inserire un massimo "
-"di {0} etichette. Rilevante solo per i componenti aggiuntivi distribuiti su "
-"AMO."
+"Le etichette consentono all’utente di trovare il componente aggiuntivo più facilmente. Esse dovrebbero consistere in brevissime descrizioni come ad esempio schede, barra strumenti o twitter. È "
+"possibile inserire un massimo di {0} etichette. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4422,18 +4415,14 @@ msgstr "Dettagli componente aggiuntivo"
 #: apps/devhub/templates/devhub/addons/edit/details.html:15
 msgid "Add-on Details for {0}"
 msgstr ""
-"Una spiegazione più dettagliata delle caratteristiche, funzionalità e altre "
-"informazioni utili. Questo campo verrà visualizzato solo sulla pagina del "
-"componente aggiuntivo. Rilevante solo per i componenti aggiuntivi "
-"distribuiti su AMO."
+"Una spiegazione più dettagliata delle caratteristiche, funzionalità e altre informazioni utili. Questo campo verrà visualizzato solo sulla pagina del componente aggiuntivo. Rilevante solo per i "
+"componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Una spiegazione più dettagliata delle caratteristiche, funzionalità e altre "
-"informazioni utili. Questo campo verrà visualizzato solo sulla pagina del "
-"componente aggiuntivo. Rilevante solo per i componenti aggiuntivi "
-"distribuiti su AMO."
+"Una spiegazione più dettagliata delle caratteristiche, funzionalità e altre informazioni utili. Questo campo verrà visualizzato solo sulla pagina del componente aggiuntivo. Rilevante solo per i "
+"componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4442,10 +4431,8 @@ msgstr "Locale predefinito"
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
-"A meno che non venga fornita una localizzazione specifica per una "
-"determinata lingua, le informazioni sul componente aggiuntivo verranno "
-"visualizzate utilizzando questa lingua come predefinita. Rilevante solo per "
-"i componenti aggiuntivi distribuiti su AMO."
+"A meno che non venga fornita una localizzazione specifica per una determinata lingua, le informazioni sul componente aggiuntivo verranno visualizzate utilizzando questa lingua come predefinita. "
+"Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4457,10 +4444,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Questo campo è destinato all’URL del sito web dedicato al componente "
-"aggiuntivo, se presente. In caso il sito web sia localizzato in più lingue, "
-"puoi aggiungere altre copie di questo campo. Rilevante solo per i componenti "
-"aggiuntivi distribuiti su AMO."
+"Questo campo è destinato all’URL del sito web dedicato al componente aggiuntivo, se presente. In caso il sito web sia localizzato in più lingue, puoi aggiungere altre copie di questo campo. "
+"Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4480,20 +4465,16 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Questo campo è destinato all’indirizzo email per le richieste di supporto, "
-"se presente. In caso vengano utilizzati indirizzi email diversi per fornire "
-"assistenza in lingue diverse, puoi aggiungere più copie di questo campo. "
-"Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+"Questo campo è destinato all’indirizzo email per le richieste di supporto, se presente. In caso vengano utilizzati indirizzi email diversi per fornire assistenza in lingue diverse, puoi aggiungere "
+"più copie di questo campo. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Questo campo è dedicato all’URL del sito web o forum dedicato al supporto "
-"del componente aggiuntivo, se presente. In caso il sito web sia localizzato "
-"in più lingue, puoi aggiungere diverse copie di questo campo. Rilevante solo "
-"per i componenti aggiuntivi distribuiti su AMO."
+"Questo campo è dedicato all’URL del sito web o forum dedicato al supporto del componente aggiuntivo, se presente. In caso il sito web sia localizzato in più lingue, puoi aggiungere diverse copie di "
+"questo campo. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4513,11 +4494,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Ulteriori informazioni utili per l’utente finale che non possono essere "
-"inserite nei campi sommario e descrizione. Questo campo è solitamente "
-"utilizzato per indicare l’elenco dei bug noti più importanti, le istruzioni "
-"per segnalare nuovi bug, date di rilascio previste di versioni future e "
-"simili. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+"Ulteriori informazioni utili per l’utente finale che non possono essere inserite nei campi sommario e descrizione. Questo campo è solitamente utilizzato per indicare l’elenco dei bug noti più "
+"importanti, le istruzioni per segnalare nuovi bug, date di rilascio previste di versioni future e simili. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4529,9 +4507,7 @@ msgstr "Segnalazioni per questo componente aggiuntivo"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Le segnalazioni vengono utilizzate per classificare i componenti aggiuntivi. "
-"Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+msgstr "Le segnalazioni vengono utilizzate per classificare i componenti aggiuntivi. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4547,10 +4523,7 @@ msgstr "Mostra il codice sorgente?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Specifica se il codice sorgente del componente aggiuntivo può essere "
-"visualizzato sul sito. Rilevante solo per i componenti aggiuntivi "
-"distribuiti su AMO."
+msgstr "Specifica se il codice sorgente del componente aggiuntivo può essere visualizzato sul sito. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4566,10 +4539,7 @@ msgstr "Statistiche pubbliche?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Determina se le statistiche di download e di utilizzo del componente "
-"aggiuntivo possono essere visualizzate sul sito. Rilevante solo per i "
-"componenti aggiuntivi selezionati."
+msgstr "Determina se le statistiche di download e di utilizzo del componente aggiuntivo possono essere visualizzate sul sito. Rilevante solo per i componenti aggiuntivi selezionati."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4586,9 +4556,8 @@ msgstr "Aggiornamento SDK?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
-"Selezionando questa opzione, al rilascio di ogni nuova versione di SDK verrà "
-"effettuato un tentativo automatico di aggiornamento del componente "
-"aggiuntivo. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+"Selezionando questa opzione, al rilascio di ogni nuova versione di SDK verrà effettuato un tentativo automatico di aggiornamento del componente aggiuntivo. Rilevante solo per i componenti "
+"aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4644,10 +4613,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Carica un’icona personalizzata per il componente aggiuntivo oppure scegline "
-"una tra quelle predefinite. L’icona sarà visualizzata praticamente ovunque "
-"compaia il componente aggiuntivo. L’immagine caricata deve essere un file "
-".png o .jpg. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+"Carica un’icona personalizzata per il componente aggiuntivo oppure scegline una tra quelle predefinite. L’icona sarà visualizzata praticamente ovunque compaia il componente aggiuntivo. L’immagine "
+"caricata deve essere un file .png o .jpg. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5155,25 +5122,25 @@ msgstr "o <a href=\"{0}\">Annulla</a>"
 msgid "Step 2"
 msgstr "Passaggio 2"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "Passaggio 2: carica il tuo componente aggiuntivo"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Utilizza il seguente campo per caricare il pacchetto del tuo componente aggiuntivo e specificare eventuali limitazioni sul sistema operativo. Una volta completato il caricamento verranno eseguiti "
 "dei test automatici sul tuo file."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Desideri che il componente aggiuntivo venga distribuito su questo sito?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "Con quali piattaforme è compatibile il file?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Sostituzioni amministrative"
 
@@ -6146,9 +6113,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"Riceverai una notifica via email quando il componente aggiuntivo avrà "
-"superato la revisione e sarà stato firmato digitalmente."
+msgstr "Riceverai una notifica via email quando il componente aggiuntivo avrà superato la revisione e sarà stato firmato digitalmente."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6156,9 +6121,7 @@ msgstr "Il tuo componente aggiuntivo è visualizzato nelle gallerie e gli utenti
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
-"Il componente aggiuntivo è stato firmato digitalmente ed è abilitato al "
-"trasferimento locale."
+msgstr "Il componente aggiuntivo è stato firmato digitalmente ed è abilitato al trasferimento locale."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -6184,9 +6147,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
-msgstr ""
-"Riceverai una notifica via email non appena la revisione completa sarà "
-"terminata e il componente aggiuntivo sarà abilitato al trasferimento locale."
+msgstr "Riceverai una notifica via email non appena la revisione completa sarà terminata e il componente aggiuntivo sarà abilitato al trasferimento locale."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6201,10 +6162,8 @@ msgstr "Versione attuale:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
-"Questa è la versione del componente aggiuntivo che viene installata ogni "
-"volta che l’utente preme il pulsante di installazione sul sito "
-"addons.mozilla.org. Rilevante solo per i componenti aggiuntivi distribuiti "
-"su AMO."
+"Questa è la versione del componente aggiuntivo che viene installata ogni volta che l’utente preme il pulsante di installazione sul sito addons.mozilla.org. Rilevante solo per i componenti "
+"aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6297,10 +6256,7 @@ msgstr "Visualizza il blog &#9658;"
 
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Scegli la licenza appropriata per i diritti che intendi concedere a terzi "
-"sul codice sorgente del componente aggiuntivo. Rilevante solo per i "
-"componenti aggiuntivi distribuiti su AMO."
+msgstr "Scegli la licenza appropriata per i diritti che intendi concedere a terzi sul codice sorgente del componente aggiuntivo. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6328,19 +6284,14 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
-"Prima di installare il componente aggiuntivo gli utenti dovranno "
-"necessariamente accettare la seguente licenza per l’utente finale (EULA). La "
-"presenza di EULA influisce sul numero di download di un componente "
-"aggiuntivo. È da notare che EULA non equivale a una licenza del codice come "
-"GPL o MPL. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
+"Prima di installare il componente aggiuntivo gli utenti dovranno necessariamente accettare la seguente licenza per l’utente finale (EULA). La presenza di EULA influisce sul numero di download di un "
+"componente aggiuntivo. È da notare che EULA non equivale a una licenza del codice come GPL o MPL. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Nel caso il componente aggiuntivo trasmetta qualsiasi tipo di dati dal "
-"dispositivo dell’utente, è necessaria un’informativa sulla privacy che "
-"chiarisca la natura dei dati inviati e il loro utilizzo. Rilevante solo per "
-"i componenti aggiuntivi distribuiti su AMO."
+"Nel caso il componente aggiuntivo trasmetta qualsiasi tipo di dati dal dispositivo dell’utente, è necessaria un’informativa sulla privacy che chiarisca la natura dei dati inviati e il loro "
+"utilizzo. Rilevante solo per i componenti aggiuntivi distribuiti su AMO."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6396,8 +6347,7 @@ msgstr "Ricevi donazioni nel tuo account PayPal o inviale ad un’organizzazione
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
-"Solo i componenti aggiuntivi visualizzati possono usufruire delle donazioni."
+msgstr "Solo i componenti aggiuntivi visualizzati possono usufruire delle donazioni."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -6992,20 +6942,13 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
-"Impostando il tipo di visibilità di un componente aggiuntivo come “esterno” "
-"non sarà più possibile visualizzare le sue versioni e i suoi file su AMO. "
-"Ciò significa che il componente non verrà più incluso nei risultati di "
-"ricerca né avrà una pagina dedicata, inoltre cesseranno gli aggiornamenti "
-"automatici sui dispositivi degli utenti. Quando si ricorre a questa opzione "
-"è pertanto raccomandato includere un <a href=\"%(update_url)s\" "
-"target=\"_blank\">updateURL</a> nel file install.rdf per rendere nuovamente "
-"possibile l’aggiornamento automatico."
+"Impostando il tipo di visibilità di un componente aggiuntivo come “esterno” non sarà più possibile visualizzare le sue versioni e i suoi file su AMO. Ciò significa che il componente non verrà più "
+"incluso nei risultati di ricerca né avrà una pagina dedicata, inoltre cesseranno gli aggiornamenti automatici sui dispositivi degli utenti. Quando si ricorre a questa opzione è pertanto "
+"raccomandato includere un <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> nel file install.rdf per rendere nuovamente possibile l’aggiornamento automatico."
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
-"Impostare il componente aggiuntivo come esterno? In questo modo non sarà più "
-"visualizzabile su AMO."
+msgstr "Impostare il componente aggiuntivo come esterno? In questo modo non sarà più visualizzabile su AMO."
 
 #: apps/devhub/templates/devhub/versions/list.html:320
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -8487,47 +8430,47 @@ msgstr "Si è verificato un errore durante l’accesso al file %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Si è verificato un errore durante l’accesso al file %s."
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "Impossibile analizzare il file caricato."
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "Nome di file non valido nell’archivio: {0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File che supera la dimensione massima consentita nell’archivio: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "Archivio non valido."
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "Impossibile leggere il file install.rdf."
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "Impossibile trovare un UUID."
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "L’UUID non corrisponde al componente aggiuntivo."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "Rilevato UUID duplicato."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "I numeri di versione devono essere lunghi meno di 32 caratteri."
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "I numeri di versione possono contenere solo lettere, numeri e i seguenti caratteri di punteggiatura: +*.-_."
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> non corrisponde al componente aggiuntivo"
 
@@ -11917,7 +11860,7 @@ msgstr "Questo componente aggiuntivo utilizza componenti compilati."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Questo componente aggiuntivo ha optato per un rigoroso controllo di compatibilità."
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} e seguenti"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-05-01 16:56+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -387,7 +387,7 @@ msgstr "濫用回報"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "隱私權保護政策"
 
@@ -432,7 +432,7 @@ msgid ""
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr "<strong>注意:</strong> Mozilla 不會審查此附加元件的開發版本。在您安裝開發版本後，您會持續由該開發者收到開發版本的更新版。如果您不想要再收到此更新，請進入上方的連結重新安裝預設的正式版本。"
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "版本 {0}:"
 
@@ -451,7 +451,7 @@ msgstr "版本資訊"
 msgid "End-User License Agreement for {0}"
 msgstr "{0} 的使用者授權合約"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "使用者授權合約"
@@ -711,7 +711,7 @@ msgstr "如欲安裝此佈景主題，<b>請先下載 Firefox</b>，一套由 Mo
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "這個附加元件必須更新版本，才能在 %(app)s 中執行。"
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "繼續安裝"
 
@@ -741,22 +741,24 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "此個性面板需要 %(app)s %(new_version)s。您現在所使用的是 %(app)s {old_version} 舊版本。"
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>注意：</strong>這個附加元件尚未通過 Mozilla 審查，請注意在安裝第三方軟體時，可能會傷害您的電腦。"
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
+msgstr ""
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>請注意：</strong>這個元件與您的作業系統不相容。"
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "因為下列因素，此附加元件與您的 %(app)s 版本不相容:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "檢視其他版本"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "此附加元件與您的 %(app)s 版本不相容。"
 
@@ -774,7 +776,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "想要安裝 {0} 至您的 Firefox Mobile 嗎? 用行動電話掃瞄此 QR 碼後就會直接安裝到您的行動電話上。(行動電話需具備讀取 QR 碼的功能。如果您的行動電話不具備此功能，請到 Marketplace 下載一套。)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "濫用回報"
 
@@ -1009,10 +1011,10 @@ msgstr ""
 "本。"
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>注意:</strong> 這個附加元件的開發版本未經 Mozilla 審查。"
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2498,7 +2500,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>警告：</b>改變此收藏集的擁有者，您將無法再編輯此收藏集的內容，且只能新增與移除附加元件。"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3822,7 +3824,7 @@ msgstr "使用者意見"
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "請檢查表格是否有錯誤。"
 
@@ -3911,11 +3913,11 @@ msgstr "已刪除版本 %s。"
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "已要求初步審核。"
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "已要求完整審核。"
 
@@ -4306,9 +4308,7 @@ msgstr "標籤"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr ""
-"標籤可幫助使用者尋找附加元件，應該是一些簡短的描述詞，例如 tabs, toolbar, twitter 等等。您最多可使用 {0} "
-"組標籤，此欄位僅與公開上架的附加元件有關。"
+msgstr "標籤可幫助使用者尋找附加元件，應該是一些簡短的描述詞，例如 tabs, toolbar, twitter 等等。您最多可使用 {0} 組標籤，此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4372,15 +4372,13 @@ msgstr "{0} 的支援資訊"
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
-msgstr ""
-"若您想顯示提供技術支援服務的電子郵件信箱，請在此輸入。若您對不同語系提供不同的信箱，您也可在此新增相對應語系的欄位。此欄位僅與公開上架的附加元件有關。"
+msgstr "若您想顯示提供技術支援服務的電子郵件信箱，請在此輸入。若您對不同語系提供不同的信箱，您也可在此新增相對應語系的欄位。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
-msgstr ""
-"若您的附加元件有技術支援網站或討論區，請在此輸入網址。若此網站有不同語言版本，您也可在此新增相對應語系的欄位。此欄位僅與公開上架的附加元件有關。"
+msgstr "若您的附加元件有技術支援網站或討論區，請在此輸入網址。若此網站有不同語言版本，您也可在此新增相對應語系的欄位。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4399,9 +4397,7 @@ msgstr "開發者意見"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr ""
-"任何其他不是附加元件的概要資訊或描述，但使用者可能會想要知道的資訊。例如您可以列出已知的重大 bug、回報 bug "
-"的方式、新版本的預計推出時間等等。此欄位僅與公開上架的附加元件有關。"
+msgstr "任何其他不是附加元件的概要資訊或描述，但使用者可能會想要知道的資訊。例如您可以列出已知的重大 bug、回報 bug 的方式、新版本的預計推出時間等等。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4515,9 +4511,7 @@ msgstr "附加元件圖示"
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
-msgstr ""
-"為您的附加元件上傳圖示，或從我們提供的圖示當中選擇一個。此圖示將顯示在您的附加元件會出現的地方。上傳的圖片必須為以下格式: .png 或 "
-".jpg。此欄位僅與公開上架的附加元件有關。"
+msgstr "為您的附加元件上傳圖示，或從我們提供的圖示當中選擇一個。此圖示將顯示在您的附加元件會出現的地方。上傳的圖片必須為以下格式: .png 或 .jpg。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5014,23 +5008,23 @@ msgstr "或<a href=\"{0}\">取消</a>"
 msgid "Step 2"
 msgstr "步驟二"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "步驟二：上傳您的附加元件"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下方欄位上傳您的附加元件並選擇可執行的平台。當上傳完成後，將會對您的檔案進行一系列自動化的驗證測試。"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "您想要在此網站上發行您的附加元件嗎？"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "這個檔案與哪些平台相容？"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "管理員覆寫"
 
@@ -6064,14 +6058,11 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
-"使用者將在安裝附加元件前被要求接受以下終端使用者授權合約（EULA）。EULA 的存在會大幅度影響附加元件的下載數。請注意 EULA "
-"與原始碼的授權條款（例如 GPL 或 MPL） 不同。此欄位僅與公開上架的附加元件有關。"
+"使用者將在安裝附加元件前被要求接受以下終端使用者授權合約（EULA）。EULA 的存在會大幅度影響附加元件的下載數。請注意 EULA 與原始碼的授權條款（例如 GPL 或 MPL） 不同。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
-"若您的附加元件會從使用者的電腦傳出任何資料，您需要提供隱私權保護政策，當中闡明會送出哪些資料、這些資料是如何被儲存使用的。此欄位僅與公開上架的附加元件有"
-"關。"
+msgstr "若您的附加元件會從使用者的電腦傳出任何資料，您需要提供隱私權保護政策，當中闡明會送出哪些資料、這些資料是如何被儲存使用的。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6716,9 +6707,8 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
-"您的附加元件下架後將讓其從此網站消失（包含所有過去版本與檔案）。附加元件下架後將不會在搜尋中顯示、不會有公開頁面、目前已安裝的使用者也不會再自動收到更新"
-"。建議您在下架的附加元件的 install.rdf 檔案中指定一組自訂的 <a href=\"%(update_url)s\" "
-"target=\"_blank\">updateURL</a> 以提供自動更新。"
+"您的附加元件下架後將讓其從此網站消失（包含所有過去版本與檔案）。附加元件下架後將不會在搜尋中顯示、不會有公開頁面、目前已安裝的使用者也不會再自動收到更新。建議您在下架的附加元件的 install.rdf 檔案中"
+"指定一組自訂的 <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> 以提供自動更新。"
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
@@ -8190,47 +8180,47 @@ msgstr "在存取檔案 %s 時發生錯誤。%s。"
 msgid "There was an error accessing file %s."
 msgstr "存取檔案 %s 時發生錯誤。"
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "無法解析已上傳的檔案。"
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "壓縮檔中有無效檔名: {0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "無效的封存。"
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "無法解析 install.rdf。"
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "找不到 UUID。"
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "UUID 與附加元件不相符。"
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "發現重複的 UUID。"
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "版本號碼應該少於 32 個字元。"
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本號碼只能含有英文字母、數字，以及這些標點符號: +*.-_。"
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> 與附加元件不相符"
 
@@ -11473,7 +11463,7 @@ msgstr "使用二進位元件的附加元件。"
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加元件已要求進行嚴格的相容性檢測。"
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 

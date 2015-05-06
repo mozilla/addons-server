@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2014-05-08 06:27+0000\n"
 "Last-Translator: Sung-wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;추가 오류 {0}개"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:401
+#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:403
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
 
@@ -93,61 +93,61 @@ msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지와 함께 유효�
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "부가 기능이 오류와 경고 없이 검사를 통과했습니다."
 
-#: static/js/common/upload-addon.js:336
+#: static/js/common/upload-addon.js:337
 msgid "Your submission will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:340
+#: static/js/common/upload-addon.js:341
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:342
+#: static/js/common/upload-addon.js:343
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:345
+#: static/js/common/upload-addon.js:346
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:354
+#: static/js/common/upload-addon.js:356
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:355
+#: static/js/common/upload-addon.js:357
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:356
+#: static/js/common/upload-addon.js:358
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:369
+#: static/js/common/upload-addon.js:371
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:370
+#: static/js/common/upload-addon.js:372
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:372
+#: static/js/common/upload-addon.js:374
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:390
+#: static/js/common/upload-addon.js:392
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:407
+#: static/js/common/upload-addon.js:409
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
 
-#: static/js/common/upload-addon.js:443
+#: static/js/common/upload-addon.js:445
 msgid "Some platforms are not available for this type of add-on."
 msgstr "이러한 부가 기능 형태는 일부 플랫폼에선 사용할 수 없습니다."
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:447
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr "날짜"
 msgid "Other"
 msgstr "기타"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1302 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -947,57 +947,57 @@ msgstr "선호 목록에서 삭제"
 msgid "Stop following"
 msgstr "팔로우 중단"
 
-#: static/js/zamboni/devhub.js:161
+#: static/js/zamboni/devhub.js:163
 msgid "Your browser does not support the video tag"
 msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 
-#: static/js/zamboni/devhub.js:418
+#: static/js/zamboni/devhub.js:420
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: static/js/zamboni/devhub.js:434
+#: static/js/zamboni/devhub.js:436
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: static/js/zamboni/devhub.js:581
+#: static/js/zamboni/devhub.js:583
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: static/js/zamboni/devhub.js:726
+#: static/js/zamboni/devhub.js:728
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: static/js/zamboni/devhub.js:729
+#: static/js/zamboni/devhub.js:731
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 
-#: static/js/zamboni/devhub.js:841
+#: static/js/zamboni/devhub.js:843
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: static/js/zamboni/devhub.js:845
+#: static/js/zamboni/devhub.js:847
 msgid "Example"
 msgstr "예"
 
-#: static/js/zamboni/devhub.js:1201
+#: static/js/zamboni/devhub.js:1203
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-#: static/js/zamboni/devhub.js:1328
+#: static/js/zamboni/devhub.js:1330
 msgid "Starting tests..."
 msgstr "시험 시작..."
 
-#: static/js/zamboni/devhub.js:1335
+#: static/js/zamboni/devhub.js:1337
 msgid "Waiting for test results..."
 msgstr "시험 결과 산출 대기중..."
 
-#: static/js/zamboni/devhub.js:1337 static/js/zamboni/devhub.js:1342
+#: static/js/zamboni/devhub.js:1339 static/js/zamboni/devhub.js:1344
 msgid "Internal Server Error"
 msgstr "내부 서버 오류 발생"
 
-#: static/js/zamboni/devhub.js:1377
+#: static/js/zamboni/devhub.js:1379
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 

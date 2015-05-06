@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-01 08:19-0700\n"
+"POT-Creation-Date: 2015-05-06 08:30-0700\n"
 "PO-Revision-Date: 2015-05-02 07:26+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -396,7 +396,7 @@ msgstr "Misbruikrapporten"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:309 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:311 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "Privacybeleid"
 
@@ -445,7 +445,7 @@ msgstr ""
 "<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet beoordeeld door Mozilla. Als u een ontwikkelversie installeert, ontvangt u voortaan ontwikkelingsupdates van deze "
 "ontwikkelaar. Om geen ontwikkelingsupdates meer te ontvangen dient u de standaardversie via bovenstaande koppeling te installeren."
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
 msgstr "Versie {0}:"
 
@@ -464,7 +464,7 @@ msgstr "Versieopmerkingen"
 msgid "End-User License Agreement for {0}"
 msgstr "Eindgebruikerslicentieovereenkomst voor {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "Eindgebruikerslicentieovereenkomst"
@@ -711,11 +711,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Installeren in Thunderbird</strong> <ol> <li>Download het bestand en "
-"sla het op op uw harde schijf.</li> <li>Open Add-ons in het menu Extra in "
-"Mozilla Thunderbird.</li> <li>Selecteer ‘Add-on installeren via bestand…’ "
-"via de optiesknop naast het add-on-zoekveld en zoek de gedownloade add-"
-"on.</li> </ol>"
+"<strong>Installeren in Thunderbird</strong> <ol> <li>Download het bestand en sla het op op uw harde schijf.</li> <li>Open Add-ons in het menu Extra in Mozilla Thunderbird.</li> <li>Selecteer ‘Add-"
+"on installeren via bestand…’ via de optiesknop naast het add-on-zoekveld en zoek de gedownloade add-on.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -733,7 +730,7 @@ msgstr "Om dit thema en nog duizenden andere te installeren dient u <b>Firefox t
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "Deze add-on is nog niet bijgewerkt om met uw versie van %(app)s te kunnen werken."
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
 msgstr "Toch installeren"
 
@@ -763,22 +760,24 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Deze persona vereist %(app)s %(new_version)s. U gebruikt momenteel %(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
-msgid "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla. Be careful when installing third-party software that might harm your computer."
-msgstr "<strong>Waarschuwing:</strong> deze add-on is niet beoordeeld door Mozilla. Wees voorzichtig met het installeren van software van derden die mogelijk uw computer kan beschadigen."
+msgid ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
+"computer."
+msgstr ""
 
-#: apps/addons/templates/addons/popups.html:120
+#: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Opmerking:</strong> deze add-on is niet compatibel met uw besturingssysteem."
 
-#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "Deze add-on is niet compatibel met uw versie van %(app)s vanwege het volgende:"
 
-#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
 msgstr "Overige versies bekijken"
 
-#: apps/addons/templates/addons/popups.html:148
+#: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "Deze add-on is niet compatibel met uw versie van %(app)s."
 
@@ -796,7 +795,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "Wilt u {0} op uw mobiele Firefox? Scan deze QR-code om direct op uw telefoon te installeren. (U hebt een QR-lezer nodig. Zoek op de marktplaats van uw telefoon als u er geen hebt.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
 msgstr "Misbruik rapporteren"
 
@@ -1039,10 +1038,10 @@ msgstr ""
 "voortaan updates via dit kanaal. Installeer de standaardversie via bovenstaande koppeling om geen ontwikkelupdates meer te ontvangen."
 
 #: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet door Mozilla beoordeeld."
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:308 apps/addons/templates/addons/impala/details.html:317 apps/addons/templates/addons/impala/details.html:329
+#: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -2548,7 +2547,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Waarschuwing:</b> door het wijzigen van de eigenaar van deze collectie kunt u deze niet meer bewerken. U kunt alleen nog add-ons eraan toevoegen en eruit verwijderen."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:70 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3743,15 +3742,11 @@ msgstr "Vink deze optie uit als u uw add-on zelf wilt verspreiden en deze alleen
 
 #: apps/devhub/forms.py:513
 msgid "This add-on will be side-loaded via application installers."
-msgstr ""
-"Deze add-on wordt meegeïnstalleerd via installatieprogramma’s van "
-"toepassingen."
+msgstr "Deze add-on wordt meegeïnstalleerd via installatieprogramma’s van toepassingen."
 
 #: apps/devhub/forms.py:515
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-"Meegeïnstalleerde add-ons worden door Mozilla op code beoordeeld voordat ze "
-"worden ondertekend en moeten aan strengere kwaliteitseisen voldoen."
+msgstr "Meegeïnstalleerde add-ons worden door Mozilla op code beoordeeld voordat ze worden ondertekend en moeten aan strengere kwaliteitseisen voldoen."
 
 #: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3884,7 +3879,7 @@ msgstr "Gebruikersbeoordelingen"
 msgid "Changes successfully saved."
 msgstr "Wijzigingen met succes opgeslagen."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1581
+#: apps/devhub/views.py:329 apps/devhub/views.py:1585
 msgid "Please check the form for errors."
 msgstr "Controleer het formulier op fouten."
 
@@ -3973,11 +3968,11 @@ msgstr "Versie %s verwijderd."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "De validatie van deze upload is mislukt en er ontbreken mogelijk volledige validatieresultaten. Let goed op bij de beoordeling."
 
-#: apps/devhub/views.py:1627
+#: apps/devhub/views.py:1631
 msgid "Preliminary Review Requested."
 msgstr "Voorlopige beoordeling aangevraagd."
 
-#: apps/devhub/views.py:1628
+#: apps/devhub/views.py:1632
 msgid "Full Review Requested."
 msgstr "Volledige beoordeling aangevraagd."
 
@@ -4358,16 +4353,13 @@ msgstr "Samenvatting"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Een korte uitleg van de basisfuncties van uw add-on die in zoek- en "
-"bladerlijsten wordt weergegeven, alsmede bovenaan de detailpagina van uw "
-"add-on. Dit is alleen relevant voor vermelde add-ons."
+"Een korte uitleg van de basisfuncties van uw add-on die in zoek- en bladerlijsten wordt weergegeven, alsmede bovenaan de detailpagina van uw add-on. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
-"Categorieën zijn de belangrijkste manier waarop gebruikers door add-ons "
-"bladeren. Kies er een die past bij de functies van uw add-on voor optimale "
-"zichtbaarheid. Dit is alleen relevant voor vermelde add-ons."
+"Categorieën zijn de belangrijkste manier waarop gebruikers door add-ons bladeren. Kies er een die past bij de functies van uw add-on voor optimale zichtbaarheid. Dit is alleen relevant voor "
+"vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4383,9 +4375,8 @@ msgstr "Labels"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
-"Labels helpen gebruikers uw add-on te vinden en dienen korte beschrijvingen "
-"te zijn, zoals tabbladen, werkbalk of twitter. U mag maximaal {0} labels "
-"gebruiken. Dit is alleen relevant voor vermelde add-ons."
+"Labels helpen gebruikers uw add-on te vinden en dienen korte beschrijvingen te zijn, zoals tabbladen, werkbalk of twitter. U mag maximaal {0} labels gebruiken. Dit is alleen relevant voor vermelde "
+"add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4413,10 +4404,7 @@ msgstr "Add-ondetails voor {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Een langere uitleg van functies, werking en andere relevante informatie. Dit "
-"veld wordt alleen weergegeven op de detailpagina van de add-on. Dit is "
-"alleen relevant voor vermelde add-ons."
+msgstr "Een langere uitleg van functies, werking en andere relevante informatie. Dit veld wordt alleen weergegeven op de detailpagina van de add-on. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4424,10 +4412,7 @@ msgstr "Standaardlocale"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Informatie over uw add-on wordt weergegeven in deze locale, tenzij u dit "
-"instelt op een locale-specifieke vertaling. Dit is alleen relevant voor "
-"vermelde add-ons."
+msgstr "Informatie over uw add-on wordt weergegeven in deze locale, tenzij u dit instelt op een locale-specifieke vertaling. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4439,9 +4424,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Als uw add-on een andere startpagina heeft, voer dan hier het adres in. Als "
-"uw website naar andere talen is vertaald kunnen meerdere vertalingen van dit "
-"veld worden toegevoegd. Dit is alleen relevant voor vermelde add-ons."
+"Als uw add-on een andere startpagina heeft, voer dan hier het adres in. Als uw website naar andere talen is vertaald kunnen meerdere vertalingen van dit veld worden toegevoegd. Dit is alleen "
+"relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4461,20 +4445,16 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Als u een e-mailadres voor ondersteuningsvragen wilt weergeven, voer het dan "
-"hier in. Als u verschillende adressen voor elke taal hebt, kunnen meerdere "
-"vertalingen van dit veld worden toegevoegd. Dit is alleen relevant voor "
-"vermelde add-ons."
+"Als u een e-mailadres voor ondersteuningsvragen wilt weergeven, voer het dan hier in. Als u verschillende adressen voor elke taal hebt, kunnen meerdere vertalingen van dit veld worden toegevoegd. "
+"Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Als uw add-on een ondersteuningswebsite of -forum heeft, voer dan hier het "
-"adres in. Als uw website is vertaald naar andere talen, kunnen meerdere "
-"vertalingen van dit veld worden toegevoegd. Dit is alleen relevant voor "
-"vermelde add-ons."
+"Als uw add-on een ondersteuningswebsite of -forum heeft, voer dan hier het adres in. Als uw website is vertaald naar andere talen, kunnen meerdere vertalingen van dit veld worden toegevoegd. Dit is "
+"alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4494,11 +4474,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Alle informatie waarin eindgebruikers mogelijk zijn geïnteresseerd en die "
-"niet noodzakelijkerwijs van toepassing is op de samenvatting of beschrijving "
-"van de add-on. Vaak gebruikt voor het opsommen van bekende fouten, "
-"informatie over hoe bugs gemeld kunnen worden, voorziene releasedatum van "
-"een nieuwe versie, enz. Dit is alleen relevant voor vermelde add-ons."
+"Alle informatie waarin eindgebruikers mogelijk zijn geïnteresseerd en die niet noodzakelijkerwijs van toepassing is op de samenvatting of beschrijving van de add-on. Vaak gebruikt voor het opsommen "
+"van bekende fouten, informatie over hoe bugs gemeld kunnen worden, voorziene releasedatum van een nieuwe versie, enz. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4510,9 +4487,7 @@ msgstr "Add-onmarkeringen"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Deze labels worden gebruikt om add-ons te classificeren. Dit is alleen "
-"relevant voor vermelde add-ons."
+msgstr "Deze labels worden gebruikt om add-ons te classificeren. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4528,9 +4503,7 @@ msgstr "Bron bekijken?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Of de bron van uw add-on in onze online viewer mag worden bekeken. Dit is "
-"alleen relevant voor vermelde add-ons."
+msgstr "Of de bron van uw add-on in onze online viewer mag worden bekeken. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4546,9 +4519,7 @@ msgstr "Publieke statistieken?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Of de download- en gebruiksstatistieken van uw add-on in onze online viewer "
-"mag worden weergegeven. Dit is alleen relevant voor vermelde add-ons."
+msgstr "Of de download- en gebruiksstatistieken van uw add-on in onze online viewer mag worden weergegeven. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4564,10 +4535,7 @@ msgstr "SDK upgraden?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-"Indien geselecteerd zullen we proberen uw add-on automatisch te upgraden als "
-"een nieuwe versie van de SDK wordt uitgegeven. Dit is alleen relevant voor "
-"vermelde add-ons."
+msgstr "Indien geselecteerd zullen we proberen uw add-on automatisch te upgraden als een nieuwe versie van de SDK wordt uitgegeven. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4622,10 +4590,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Upload een pictogram voor uw add-on of kies er een van ons. Het pictogram "
-"wordt vrijwel overal waar uw add-on is weergegeven. Geüploade afbeeldingen "
-"dienen van het type .png of .jpg te zijn. Dit is alleen relevant voor "
-"vermelde add-ons."
+"Upload een pictogram voor uw add-on of kies er een van ons. Het pictogram wordt vrijwel overal waar uw add-on is weergegeven. Geüploade afbeeldingen dienen van het type .png of .jpg te zijn. Dit is "
+"alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -4942,15 +4908,11 @@ msgstr "Uw add-on is ondertekend en kan worden gebruikt. U kunt hem hier downloa
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr ""
-"Uw add-on is ingediend bij de wachtrij voor voorlopige beoordeling Niet "
-"vermeld."
+msgstr "Uw add-on is ingediend bij de wachtrij voor voorlopige beoordeling Niet vermeld."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
-"Uw add-on is ingediend bij de wachtrij voor volledige beoordeling Niet "
-"vermeld."
+msgstr "Uw add-on is ingediend bij de wachtrij voor volledige beoordeling Niet vermeld."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5133,23 +5095,23 @@ msgstr "of <a href=\"{0}\">Annuleer</a>"
 msgid "Step 2"
 msgstr "Stap 2"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:10
+#: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
 msgstr "Stap 2. Upload uw add-on"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:12
+#: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden en selecteer eventuele platformbeperkingen. Na de upload wordt een aantal geautomatiseerde validatietests op uw bestand uitgevoerd."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:24
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Wilt u uw add-on op deze website laten verspreiden?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:51 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
 msgid "Which platforms is this file compatible with?"
 msgstr "Met welke platformen is dit bestand compatibel?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
 msgid "Administrative overrides"
 msgstr "Negeerhandelingen van beheer"
 
@@ -5176,10 +5138,8 @@ msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
 msgstr ""
-"Als u een ondersteuningsvraag hebt over een bepaalde add-on, zoals ‘hoe "
-"gebruik ik deze add-on?’ of ‘waarom werkt dit niet goed?’, neem dan contact "
-"op met de maker van die add-on via de ondersteuningskanalen op de add-"
-"onpagina."
+"Als u een ondersteuningsvraag hebt over een bepaalde add-on, zoals ‘hoe gebruik ik deze add-on?’ of ‘waarom werkt dit niet goed?’, neem dan contact op met de maker van die add-on via de "
+"ondersteuningskanalen op de add-onpagina."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -5262,12 +5222,9 @@ msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
-"Om een bètakanaal te maken dient u een bestand met een unieke versiestring "
-"te uploaden met daarin een van de volgende strings: "
-"<code>a,b,alpha,beta,pre,rc</code>, met een optioneel getal aan het einde. "
-"Deze tekst dient zich aan het einde van de versiestring te bevinden. Als u "
-"de regex-opmaak begrijpt, dan is dit waar we naar zoeken in het "
-"versienummer: <code>‘(a|alpha|b|beta|pre|rc)\\d*$’</code>."
+"Om een bètakanaal te maken dient u een bestand met een unieke versiestring te uploaden met daarin een van de volgende strings: <code>a,b,alpha,beta,pre,rc</code>, met een optioneel getal aan het "
+"einde. Deze tekst dient zich aan het einde van de versiestring te bevinden. Als u de regex-opmaak begrijpt, dan is dit waar we naar zoeken in het versienummer: <code>‘(a|alpha|b|beta|pre|rc)\\d*$’</"
+"code>."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
@@ -5284,16 +5241,10 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"Hoewel we dit ‘bètaversies’ noemen, kunt u dit kanaal naar wens gebruiken "
-"voor nightly’s, alpha’s of prerelease-versies. Bedenk wel dat er slechts één "
-"kanaal voor dit doeleinde is en dat al uw gebruikers op dit kanaal de "
-"laatst ingediende add-ons ontvangen. Als u bijvoorbeeld "
-"<code>1.0beta1</code> naar het release-kanaal uploadt en vervolgens "
-"<code>1.1alpha1</code>, krijgen alle gebruikers van <code>1.0beta1</code> "
-"een upgrade naar <code>1.1alpha1</code> aangeboden. Updates worden doorgezet "
-"op indieningsdatum en niet op versienummer, dus gebruikers krijgen altijd "
-"de meest recente kanaalupdate, onafhankelijk van enige alfabetische "
-"volgorde."
+"Hoewel we dit ‘bètaversies’ noemen, kunt u dit kanaal naar wens gebruiken voor nightly’s, alpha’s of prerelease-versies. Bedenk wel dat er slechts één kanaal voor dit doeleinde is en dat al uw "
+"gebruikers op dit kanaal de laatst ingediende add-ons ontvangen. Als u bijvoorbeeld <code>1.0beta1</code> naar het release-kanaal uploadt en vervolgens <code>1.1alpha1</code>, krijgen alle "
+"gebruikers van <code>1.0beta1</code> een upgrade naar <code>1.1alpha1</code> aangeboden. Updates worden doorgezet op indieningsdatum en niet op versienummer, dus gebruikers krijgen altijd de meest "
+"recente kanaalupdate, onafhankelijk van enige alfabetische volgorde."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -5662,10 +5613,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
-msgstr ""
-"juiste preference-benaming - alle preference-namen dienen te beginnen met "
-"‘extensions.’, gevolgd door de naam van de add-on of een andere unieke "
-"identificatie"
+msgstr "juiste preference-benaming - alle preference-namen dienen te beginnen met ‘extensions.’, gevolgd door de naam van de add-on of een andere unieke identificatie"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
@@ -6050,12 +5998,9 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
-"Dit is tevens van toepassing op de handelsmerken van de Mozilla Foundation, "
-"waaronder ‘Mozilla’, ‘Firefox’ en ‘Thunderbird’. Het beleid van Mozilla "
-"aangaande gebruik van handelsmerken is ontworpen ter bescherming tegen "
-"verwarring en ter voorkoming van overname van handelsmerken door gebrek aan "
-"bescherming; respecteer de noodzaak van een dergelijke bescherming en help "
-"ons de meest waardevolle bezittingen van de Mozilla Foundation te behouden."
+"Dit is tevens van toepassing op de handelsmerken van de Mozilla Foundation, waaronder ‘Mozilla’, ‘Firefox’ en ‘Thunderbird’. Het beleid van Mozilla aangaande gebruik van handelsmerken is ontworpen "
+"ter bescherming tegen verwarring en ter voorkoming van overname van handelsmerken door gebrek aan bescherming; respecteer de noodzaak van een dergelijke bescherming en help ons de meest waardevolle "
+"bezittingen van de Mozilla Foundation te behouden."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
@@ -6135,9 +6080,7 @@ msgstr "U ontvangt een e-mailbericht zodra de beoordeling is voltooid. Tot die t
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"U ontvangt een e-mailbericht wanneer de beoordeling is voltooid en uw add-on "
-"is ondertekend."
+msgstr "U ontvangt een e-mailbericht wanneer de beoordeling is voltooid en uw add-on is ondertekend."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6169,9 +6112,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
-msgstr ""
-"U ontvangt een e-mailbericht wanneer de volledige beoordeling is voltooid, "
-"zodat uw add-on kan worden meegeïnstalleerd."
+msgstr "U ontvangt een e-mailbericht wanneer de volledige beoordeling is voltooid, zodat uw add-on kan worden meegeïnstalleerd."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6183,10 +6124,7 @@ msgstr "Huidige versie:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr ""
-"Dit is de versie van uw add-on die wordt geïnstalleerd als iemand op de knop "
-"Installeren op addons.mozilla.org klikt. Dit is alleen relevant voor "
-"vermelde add-ons."
+msgstr "Dit is de versie van uw add-on die wordt geïnstalleerd als iemand op de knop Installeren op addons.mozilla.org klikt. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6279,9 +6217,7 @@ msgstr "Lees de blog &#9658;"
 
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Kies een licentie die past bij de toegekende rechten op uw broncode. Dit is "
-"alleen relevant voor vermelde add-ons."
+msgstr "Kies een licentie die past bij de toegekende rechten op uw broncode. Dit is alleen relevant voor vermelde add-ons."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6309,18 +6245,14 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
-"Gebruikers dienen de volgende Eindgebruikersovereenkomst (EULA) te "
-"accepteren voordat ze uw add-on kunnen installeren. De aanwezigheid van een "
-"EULA beïnvloedt het aantal downloads van een add-on significant. Merk op dat "
-"een EULA niet hetzelfde is als een codelicentie, zoals de GPL of de MPL. "
-"Dit is alleen relevant voor vermelde add-ons."
+"Gebruikers dienen de volgende Eindgebruikersovereenkomst (EULA) te accepteren voordat ze uw add-on kunnen installeren. De aanwezigheid van een EULA beïnvloedt het aantal downloads van een add-on "
+"significant. Merk op dat een EULA niet hetzelfde is als een codelicentie, zoals de GPL of de MPL. Dit is alleen relevant voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Als uw add-on gegevens vanaf de computer van de gebruiker verzendt is een "
-"privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden "
-"gebruikt verplicht. Dit is alleen relevant voor vermelde add-ons."
+"Als uw add-on gegevens vanaf de computer van de gebruiker verzendt is een privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt verplicht. Dit is alleen relevant "
+"voor vermelde add-ons."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6968,12 +6900,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
-"Door uw add-on niet meer te vermelden wordt deze (en alle versies/bestanden) "
-"onzichtbaar op deze website. Hij verschijnt niet meer in zoekresultaten, "
-"heeft geen publieke pagina en wordt voor huidige gebruikers niet automatisch "
-"bijgewerkt. Het wordt voor niet vermelde add-ons aanbevolen een aangepaste "
-"<a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> voor automatische "
-"updates in hun install.rdf-bestand op te nemen."
+"Door uw add-on niet meer te vermelden wordt deze (en alle versies/bestanden) onzichtbaar op deze website. Hij verschijnt niet meer in zoekresultaten, heeft geen publieke pagina en wordt voor "
+"huidige gebruikers niet automatisch bijgewerkt. Het wordt voor niet vermelde add-ons aanbevolen een aangepaste <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> voor automatische updates "
+"in hun install.rdf-bestand op te nemen."
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
@@ -8458,47 +8387,47 @@ msgstr "Er is een fout opgetreden bij het openen van het bestand %s. %s."
 msgid "There was an error accessing file %s."
 msgstr "Er is een fout opgetreden bij het openen van het bestand %s."
 
-#: apps/files/utils.py:257
+#: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
 msgstr "Kan geüpload bestand niet uitpakken."
 
-#: apps/files/utils.py:294
+#: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
 msgstr "Ongeldige bestandsnaam in archief: {0}"
 
-#: apps/files/utils.py:302
+#: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Te groot bestand in archief: {0}"
 
-#: apps/files/utils.py:352
+#: apps/files/utils.py:354
 msgid "Invalid archive."
 msgstr "Ongeldig archief."
 
-#: apps/files/utils.py:442 apps/files/utils.py:445
+#: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
 msgstr "Kan install.rdf niet ontleden."
 
-#: apps/files/utils.py:455
+#: apps/files/utils.py:460
 msgid "Could not find a UUID."
 msgstr "Kan geen UUID vinden."
 
-#: apps/files/utils.py:457
+#: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
 msgstr "UUID komt niet overeen met add-on."
 
-#: apps/files/utils.py:461
+#: apps/files/utils.py:466
 msgid "Duplicate UUID found."
 msgstr "Dubbele UUID gevonden."
 
-#: apps/files/utils.py:464
+#: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Versienummers mogen uit niet meer dan 32 tekens bestaan."
 
-#: apps/files/utils.py:467
+#: apps/files/utils.py:472
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens bevatten: +*.-_."
 
-#: apps/files/utils.py:484
+#: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> komt niet overeen met add-on"
 
@@ -8724,11 +8653,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, algemeen bekend als ‘AMO’, is de officiële website van "
-"Mozilla voor add-ons bij Mozilla-software, zoals Firefox, Thunderbird en "
-"SeaMonkey. Met add-ons kunt u nieuwe functies toevoegen en de manier waarop "
-"uw browser of toepassing werkt veranderen. Kijk eens rond en verken de "
-"duizenden wijzen om de manier waarop u online dingen doet te wijzigen."
+"addons.mozilla.org, algemeen bekend als ‘AMO’, is de officiële website van Mozilla voor add-ons bij Mozilla-software, zoals Firefox, Thunderbird en SeaMonkey. Met add-ons kunt u nieuwe functies "
+"toevoegen en de manier waarop uw browser of toepassing werkt veranderen. Kijk eens rond en verken de duizenden wijzen om de manier waarop u online dingen doet te wijzigen."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -9037,9 +8963,7 @@ msgstr "Wat is een ‘.xpi’-bestand?"
 
 #: apps/pages/templates/pages/dev_faq.html:103
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
-"Extensies worden verpakt en verspreid in ZIP-bestanden of -bundels, met de "
-"bestandsextensie XPI (uitgesproken als ‘zippy’)."
+msgstr "Extensies worden verpakt en verspreid in ZIP-bestanden of -bundels, met de bestandsextensie XPI (uitgesproken als ‘zippy’)."
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
@@ -9261,10 +9185,8 @@ msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
-"Het dashboard ‘Ontwikkelaarshulpmiddelen’ is het gebied waar u alles kunt "
-"vinden om uw add-ons met succes te beheren. Het biedt de benodigde "
-"functionaliteit om uw add-ons bij AMO in te dienen, add-on-informatie te "
-"beheren en statistieken te bekijken."
+"Het dashboard ‘Ontwikkelaarshulpmiddelen’ is het gebied waar u alles kunt vinden om uw add-ons met succes te beheren. Het biedt de benodigde functionaliteit om uw add-ons bij AMO in te dienen, add-"
+"on-informatie te beheren en statistieken te bekijken."
 
 #: apps/pages/templates/pages/dev_faq.html:313
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
@@ -9307,10 +9229,8 @@ msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
 "\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"De keuze van de categorie hangt af van de doelgroep en de functionaliteit "
-"van uw add-on. Als u niet zeker weet in welke categorie uw add-on valt, kies "
-"dan ‘Overig’. Het AMO-team kan uw add-on eventueel in een andere categorie "
-"indelen als wordt vastgesteld dat die passender is."
+"De keuze van de categorie hangt af van de doelgroep en de functionaliteit van uw add-on. Als u niet zeker weet in welke categorie uw add-on valt, kies dan ‘Overig’. Het AMO-team kan uw add-on "
+"eventueel in een andere categorie indelen als wordt vastgesteld dat die passender is."
 
 #: apps/pages/templates/pages/dev_faq.html:356
 msgid "What does \"nominating\" my add-on mean?"
@@ -9431,9 +9351,7 @@ msgstr "Hoe dien ik een update voor mijn add-on in?"
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
 msgstr ""
-"U kunt een update voor uw add-on indienen via het dashboard "
-"Ontwikkelaarshulpmiddelen door de optie ‘Een nieuwe versie uploaden’ te "
-"kiezen en een nieuw .xpi-bestand voor uw add-on te uploaden."
+"U kunt een update voor uw add-on indienen via het dashboard Ontwikkelaarshulpmiddelen door de optie ‘Een nieuwe versie uploaden’ te kiezen en een nieuw .xpi-bestand voor uw add-on te uploaden."
 
 #: apps/pages/templates/pages/dev_faq.html:474
 msgid "Does my update need to be reviewed by editors?"
@@ -9444,11 +9362,8 @@ msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
 msgstr ""
-"Dat hangt ervan af. Als u alleen maar een beschrijving van uw add-on wijzigt "
-"of de ‘maxVersion’ bijwerkt om compatibiliteit met een nieuwe versie van "
-"Mozilla-software aan te geven, hoeft uw add-on niet opnieuw te worden "
-"beoordeeld. Als u echter een nieuw bijgewerkt bestand uploadt, moet uw add-"
-"on door een editor worden beoordeeld."
+"Dat hangt ervan af. Als u alleen maar een beschrijving van uw add-on wijzigt of de ‘maxVersion’ bijwerkt om compatibiliteit met een nieuwe versie van Mozilla-software aan te geven, hoeft uw add-on "
+"niet opnieuw te worden beoordeeld. Als u echter een nieuw bijgewerkt bestand uploadt, moet uw add-on door een editor worden beoordeeld."
 
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid "What are the Recommended Lists?"
@@ -9564,10 +9479,8 @@ msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
-"In aanvulling op de volledige tekst van de Mozilla Public License (‘MPL’) "
-"biedt dit ook een verkorte versie van de MPL en <abbr title=\"Frequently "
-"Asked Questions\">FAQ</abbr> om u te helpen als u code onder deze licentie "
-"wilt gebruiken of verspreiden."
+"In aanvulling op de volledige tekst van de Mozilla Public License (‘MPL’) biedt dit ook een verkorte versie van de MPL en <abbr title=\"Frequently Asked Questions\">FAQ</abbr> om u te helpen als u "
+"code onder deze licentie wilt gebruiken of verspreiden."
 
 #: apps/pages/templates/pages/dev_faq.html:612
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
@@ -9689,11 +9602,8 @@ msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
 "\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"In Firefox kunnen add-ons die met ‘Geen herstart nodig’ zijn gemarkeerd "
-"zonder herstarten worden geïnstalleerd. Deze add-ons zijn met de <a href=\"%"
-"(sdk_url)s\">Add-on-SDK</a> of door <a href=\"%"
-"(bootstrap_url)s\">bootstrappen</a> gemaakt. Andere add-ons vereisen nog een "
-"herstart voordat u ze kunt gebruiken."
+"In Firefox kunnen add-ons die met ‘Geen herstart nodig’ zijn gemarkeerd zonder herstarten worden geïnstalleerd. Deze add-ons zijn met de <a href=\"%(sdk_url)s\">Add-on-SDK</a> of door <a href="
+"\"%(bootstrap_url)s\">bootstrappen</a> gemaakt. Andere add-ons vereisen nog een herstart voordat u ze kunt gebruiken."
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
@@ -9795,9 +9705,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr ""
-"Wat houdt het in als een add-on ‘experimenteel’ of ‘voorlopig beoordeeld’ "
-"is?"
+msgstr "Wat houdt het in als een add-on ‘experimenteel’ of ‘voorlopig beoordeeld’ is?"
 
 #: apps/pages/templates/pages/faq.html:189
 msgid ""
@@ -9882,11 +9790,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Meld u om een gebruikersbeoordeling van een add-on te rapporteren aan bij uw "
-"account en bezoek de beoordelingenpagina van de add-on. Zoek de beoordeling "
-"die u wilt rapporteren, klik op ‘Deze beoordeling rapporteren’ en selecteer "
-"een reden. Ons team van editors zal de beoordeling onderzoeken en passende "
-"actie ondernemen."
+"Meld u om een gebruikersbeoordeling van een add-on te rapporteren aan bij uw account en bezoek de beoordelingenpagina van de add-on. Zoek de beoordeling die u wilt rapporteren, klik op ‘Deze "
+"beoordeling rapporteren’ en selecteer een reden. Ons team van editors zal de beoordeling onderzoeken en passende actie ondernemen."
 
 #: apps/pages/templates/pages/faq.html:245
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -9933,9 +9838,8 @@ msgstr "Wat is de collectie Mijn favorieten?"
 #: apps/pages/templates/pages/faq.html:274
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
-"Favoriete add-ons zijn add-ons die u hebt gemarkeerd om makkelijk later "
-"terug te vinden. U kunt een add-on aan uw favorietencollectie toevoegen door "
-"op ‘Toevoegen aan favorieten’ op de detailpagina ervan te klikken."
+"Favoriete add-ons zijn add-ons die u hebt gemarkeerd om makkelijk later terug te vinden. U kunt een add-on aan uw favorietencollectie toevoegen door op ‘Toevoegen aan favorieten’ op de detailpagina "
+"ervan te klikken."
 
 #: apps/pages/templates/pages/faq.html:279
 msgid "Personalized recommendations"
@@ -9950,10 +9854,8 @@ msgid ""
 "Firefox recommends add-ons for you based on the add-ons you already have installed. If you have at least 3 add-ons installed, just visit the Get Add-ons area of the Add-ons Manager to see the "
 "\"Recommended for You\" box."
 msgstr ""
-"Firefox beveelt add-ons voor u aan op basis van de al geïnstalleerde add-"
-"ons. Als u minstens drie add-ons hebt geïnstalleerd, ga dan naar het veld "
-"Add-ons verkrijgen van de Add-onbeheerder om het vak ‘Aan u aanbevolen’ te "
-"zien."
+"Firefox beveelt add-ons voor u aan op basis van de al geïnstalleerde add-ons. Als u minstens drie add-ons hebt geïnstalleerd, ga dan naar het veld Add-ons verkrijgen van de Add-onbeheerder om het "
+"vak ‘Aan u aanbevolen’ te zien."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -10071,8 +9973,7 @@ msgstr "Niet doen:"
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
-"Eénwoordbeoordelingen zoals ‘Geweldig!’, ‘prachtig’ of ‘slecht’ indienen."
+msgstr "Eénwoordbeoordelingen zoals ‘Geweldig!’, ‘prachtig’ of ‘slecht’ indienen."
 
 #: apps/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -10123,11 +10024,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Rapporteer of label twijfelachtige beoordelingen door op ‘Deze beoordeling "
-"rapporteren’ te klikken, waarna deze ter evaluatie naar de website zal "
-"worden gestuurd. Ons evaluatieteam gebruikt de Beoordelingsrichtlijnen om te "
-"evalueren of de beoordeling al dan niet moet worden verwijderd of  op de "
-"website moet worden teruggeplaatst."
+"Rapporteer of label twijfelachtige beoordelingen door op ‘Deze beoordeling rapporteren’ te klikken, waarna deze ter evaluatie naar de website zal worden gestuurd. Ons evaluatieteam gebruikt de "
+"Beoordelingsrichtlijnen om te evalueren of de beoordeling al dan niet moet worden verwijderd of  op de website moet worden teruggeplaatst."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -10150,12 +10048,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"In het algemeen niet. Maar als de beoordeling niet aan de "
-"beoordelingsrichtlijnen hierboven voldoet, kunt u op ‘Deze beoordeling "
-"rapporteren’ klikken voor een evaluatie. Als de beoordeling een niet langer "
-"geldige klacht bevat vanwege een nieuwe uitgave van uw add-on, kunnen we "
-"overwegen de beoordeling te verwijderen. Stuur uw gedetailleerde verzoek "
-"naar amo-editors@mozilla.org."
+"In het algemeen niet. Maar als de beoordeling niet aan de beoordelingsrichtlijnen hierboven voldoet, kunt u op ‘Deze beoordeling rapporteren’ klikken voor een evaluatie. Als de beoordeling een niet "
+"langer geldige klacht bevat vanwege een nieuwe uitgave van uw add-on, kunnen we overwegen de beoordeling te verwijderen. Stuur uw gedetailleerde verzoek naar amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -10299,19 +10193,11 @@ msgid ""
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
 "ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Houd deze tips in gedachten:</h2> <ul> <li> Schrijf alsof u een vriend "
-"vertelt over uw ervaring met de add-on. Geef specifieke en nuttige details, "
-"zoals welke eigenschappen u bevielen en/of tegenvielen, hoe eenvoudig het "
-"gebruik is en of er nadelen aan kleven. Vermijd algemene termen als "
-"‘Geweldig’ of ‘Slecht’, tenzij u redenen kunt opgeven waarom dit zo is. "
-"</li> <li> Plaats geen bugrapporten in beoordelingen. We geven uw "
-"e-mailadres niet aan add-on-ontwikkelaars en ze willen mogelijk contact met "
-"u opnemen om te helpen het probleem op te lossen. Kijk in de <a href=\"%"
-"(support)s\">ondersteuningssectie</a> waar u ondersteuning voor deze add-on "
-"kunt krijgen. </li> <li>Houd beoordelingen netjes, vermijd verkeerd "
-"taalgebruik en plaats geen persoonlijke gegevens. </li> </ul> <p>Lees de <a "
-"href=\"%(guide)s\" target=\"_blank\">Beoordelingsrichtlijnen</a> voor meer "
-"details over add-on-beoordelingen door gebruikers.</p>"
+"<h2>Houd deze tips in gedachten:</h2> <ul> <li> Schrijf alsof u een vriend vertelt over uw ervaring met de add-on. Geef specifieke en nuttige details, zoals welke eigenschappen u bevielen en/of "
+"tegenvielen, hoe eenvoudig het gebruik is en of er nadelen aan kleven. Vermijd algemene termen als ‘Geweldig’ of ‘Slecht’, tenzij u redenen kunt opgeven waarom dit zo is. </li> <li> Plaats geen "
+"bugrapporten in beoordelingen. We geven uw e-mailadres niet aan add-on-ontwikkelaars en ze willen mogelijk contact met u opnemen om te helpen het probleem op te lossen. Kijk in de <a href="
+"\"%(support)s\">ondersteuningssectie</a> waar u ondersteuning voor deze add-on kunt krijgen. </li> <li>Houd beoordelingen netjes, vermijd verkeerd taalgebruik en plaats geen persoonlijke gegevens. "
+"</li> </ul> <p>Lees de <a href=\"%(guide)s\" target=\"_blank\">Beoordelingsrichtlijnen</a> voor meer details over add-on-beoordelingen door gebruikers.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -11035,21 +10921,12 @@ msgid ""
 "parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
 "sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Volgen van externe bronnen</h2> <p> Als u vanaf een externe website een "
-"koppeling geeft naar de detailpagina van uw add-on of rechtstreeks naar het "
-"bestand, zoals uw blog of website, kunt u daaraan een parameter toevoegen "
-"die kan worden gevolgd als aanvullende downloadbron op deze pagina. Zo "
-"worden bijvoorbeeld de volgende koppelingen weergegeven als ontspringend aan "
-"uw blog: <dl> <dt>Add-on-detailpagina</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> "
-"<dt>Rechtstreekse bestandskoppeling</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%"
-"(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Alleen src-"
-"parameters die met ‘external-’ beginnen worden gevolgd, tot 61 aanvullende "
-"tekens. U kunt willekeurige tekst na ‘external-’ gebruiken om de bron te "
-"beschrijven, zoals ‘external-blog’, ‘external-zijbalk’, ‘external-"
-"campagne225’, etc. De volgende URL-veilige tekens zijn toegestaan: <code>a-z "
-"A-Z - . _ ~ %% +</code>"
+"<h2>Volgen van externe bronnen</h2> <p> Als u vanaf een externe website een koppeling geeft naar de detailpagina van uw add-on of rechtstreeks naar het bestand, zoals uw blog of website, kunt u "
+"daaraan een parameter toevoegen die kan worden gevolgd als aanvullende downloadbron op deze pagina. Zo worden bijvoorbeeld de volgende koppelingen weergegeven als ontspringend aan uw blog: <dl> "
+"<dt>Add-on-detailpagina</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Rechtstreekse bestandskoppeling</dt> <dd>https://addons.mozilla.org/downloads/latest/"
+"%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Alleen src-parameters die met ‘external-’ beginnen worden gevolgd, tot 61 aanvullende tekens. U kunt willekeurige tekst na "
+"‘external-’ gebruiken om de bron te beschrijven, zoals ‘external-blog’, ‘external-zijbalk’, ‘external-campagne225’, etc. De volgende URL-veilige tekens zijn toegestaan: <code>a-z A-Z - . _ ~ %% +</"
+"code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -11468,9 +11345,7 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-"Door op ‘verwijderen’ te klikken wordt uw account <strong>permanent "
-"verwijderd</strong>. Dat betekent:"
+msgstr "Door op ‘verwijderen’ te klikken wordt uw account <strong>permanent verwijderd</strong>. Dat betekent:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
@@ -11923,7 +11798,7 @@ msgstr "Add-on gebruikt binaire componenten."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Add-on heeft geopteerd voor strenge compatibiliteitscontrole."
 
-#: apps/versions/models.py:689
+#: apps/versions/models.py:693
 msgid "{app} {min} and later"
 msgstr "{app} {min} en hoger"
 
