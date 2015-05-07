@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2015-05-02 06:50+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2015-05-07 05:53+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430549448.0\n"
+"X-POOTLE-MTIME: 1430978015.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -125,11 +125,13 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:358
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Als uw add-on is bedoeld voor een beperkt publiek dient u Voorlopige Beoordeling in plaats van Volledige Beoordeling te kiezen."
+msgstr ""
+"Als uw add-on voor een beperkt publiek is bedoeld, dient u Voorlopige "
+"beoordeling in plaats van Volledige beoordeling te kiezen."
 
 #: static/js/common/upload-addon.js:371
 msgid "Add-on submission checklist"
-msgstr "Checklist add-onindiening"
+msgstr "Checklist voor add-on-indiening"
 
 #: static/js/common/upload-addon.js:372
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
