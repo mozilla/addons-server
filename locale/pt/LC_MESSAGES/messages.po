@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2015-05-01 23:58+0000\n"
+"PO-Revision-Date: 2015-05-07 23:38+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430524725.0\n"
+"X-POOTLE-MTIME: 1431041919.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -758,6 +758,9 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>Atenção:</strong> Este extra não foi revisto pela Mozilla e não pode "
+"ser instalado em versões lançadas do Firefox. Tenha cuidado ao instalar "
+"software de terceiros que pode danificar o seu computador."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1035,6 +1038,9 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Atenção:</strong> As versões de desenvolvimento deste extra não "
+"foram revistas pela Mozilla e não podem ser instaladas em versões lançadas "
+"do Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
