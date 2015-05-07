@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2015-05-03 14:53+0000\n"
+"PO-Revision-Date: 2015-05-07 17:40+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430664783.0\n"
+"X-POOTLE-MTIME: 1431020420.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -769,6 +769,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>Attenzione:</strong> questo componente aggiuntivo non è stato "
+"verificato da Mozilla e non può essere installato sulle versioni stabili di "
+"Firefox. Presta sempre la massima attenzione quando installi software di "
+"terze parti in grado di danneggiare il tuo computer."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1047,6 +1051,9 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Attenzione</strong>: le versioni per sviluppatori di questo "
+"componente aggiuntivo non sono state verificate da Mozilla e non possono "
+"essere installate sulle versioni stabili di Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -6948,7 +6955,9 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr "Impostare il componente aggiuntivo come esterno? In questo modo non sarà più visualizzabile su AMO."
+msgstr ""
+"Impostare il componente aggiuntivo come esterno e non visualizzarlo più su "
+"AMO?"
 
 #: apps/devhub/templates/devhub/versions/list.html:320
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
