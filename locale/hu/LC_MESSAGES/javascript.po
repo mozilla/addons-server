@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2014-06-01 10:59+0000\n"
+"PO-Revision-Date: 2015-05-10 18:57+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1401620350.0\n"
+"X-POOTLE-MTIME: 1431284252.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -101,53 +101,71 @@ msgstr "A kiegészítő hiba és figyelmeztetés nélkül átment az ellenőrzé
 
 #: static/js/common/upload-addon.js:337
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Beküldése kézi értékelésen fog átmenni."
 
 #: static/js/common/upload-addon.js:341
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "Beküldése átment az ellenőrzésen, automatikusan alá lesz írva."
 
 #: static/js/common/upload-addon.js:343
 msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
+msgstr "Beküldése átment az ellenőrzésen, de kézi ellenőrzésen is át fog menni."
 
 #: static/js/common/upload-addon.js:346
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
+"Beküldése nem felelt meg az automatikus ellenőrzésen, kézi ellenőrzésen fog "
+"átmenni."
 
 #: static/js/common/upload-addon.js:356
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Adjon meg részletes verzióinformációt (ezt a következő lépésben is "
+"megteheti)."
 
 #: static/js/common/upload-addon.js:357
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége "
+"a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a "
+"Megjegyzés a vizsgálatot végzőknek résznél (ezt a következő lépésben is "
+"megteheti)."
 
 #: static/js/common/upload-addon.js:358
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Ha a kiegészítő korlátozott közönség számára készült, válassza az Előzetes "
+"vizsgálatot a Teljes vizsgálat helyett."
 
 #: static/js/common/upload-addon.js:371
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
 
 #: static/js/common/upload-addon.js:372
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Kérjük, ellenőrizze a következő pontokat, mielőtt befejezi a beküldést. Ez "
+"csökkenti a vizsgálathoz szükséges időt és a félreértéseket:"
 
 #: static/js/common/upload-addon.js:374
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"A lefordított binárisoknak, mint ahogyan a minimalizált vagy olvashatatlanná "
+"tett parancsfájloknak is (kivéve az ismert könyvtárakat) külön kell "
+"beküldeni a forrását ellenőrzésre. Használja a forráskódfeltöltés mezőt, "
+"hogy elkerülje a beküldés visszautasítását."
 
 #: static/js/common/upload-addon.js:392
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz "
+"vezethetnek:"
 
 #: static/js/common/upload-addon.js:409
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr ""
+msgstr "Ha nem ismeri a bővítmény-ellenőrzési folyamatot, itt olvashat róla."
 
 #: static/js/common/upload-addon.js:445
 msgid "Some platforms are not available for this type of add-on."
@@ -517,7 +535,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -980,8 +998,8 @@ msgstr[1] "{files} fájl"
 #: static/js/zamboni/devhub.js:731
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} felhasználói értékelés"
+msgstr[1] "{reviews} felhasználói értékelés"
 
 #: static/js/zamboni/devhub.js:843
 msgid "Learn more"
