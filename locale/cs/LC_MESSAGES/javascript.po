@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-06 08:30-0700\n"
-"PO-Revision-Date: 2015-04-06 13:38+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-05-10 18:43+0000\n"
+"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428327499.0\n"
+"X-POOTLE-MTIME: 1431283390.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -103,19 +103,20 @@ msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
 
 #: static/js/common/upload-addon.js:337
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Vaše přidání projde ruční kontrolou."
 
 #: static/js/common/upload-addon.js:341
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "Vaše přidání prošlo kontrolou a bude automaticky podepsáno."
 
 #: static/js/common/upload-addon.js:343
 msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
+msgstr "Vaše přidání prošlo kontrolou a bude ručně zkontrolováno."
 
 #: static/js/common/upload-addon.js:346
 msgid "Your submission didn't pass automatic validation and will go through a manual review."
 msgstr ""
+"Vaše přidání neprošlo automatickou kontrolou a bude ručně zkontrolováno."
 
 #: static/js/common/upload-addon.js:356
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -128,6 +129,8 @@ msgstr "Pokud váš doplněk vyžaduje účet na webovém server pro možnost pl
 #: static/js/common/upload-addon.js:358
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Pokud je váš doplněk určen pro omezený počet uživatelů, měli byste zvolit "
+"předběžnou kontrolu na místo té plné."
 
 #: static/js/common/upload-addon.js:371
 msgid "Add-on submission checklist"
