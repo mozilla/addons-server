@@ -4,7 +4,7 @@
 
 {% block primary %}
 
-<form method="post" id="create-addon" class="item" enctype="multipart/form-data"
+<form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
     data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}">
   {{ csrf() }}
@@ -51,30 +51,37 @@
 
   {{ source_form_field(new_addon_form.source) }}
 
-      <div class="platform">
-        <div class="supported-platforms">
-          <label>{{ _('Which platforms is this file compatible with?') }}</label>
-          {{ new_addon_form.errors.supported_platforms }}
-          {{ new_addon_form.supported_platforms }}
-        </div>
-        {{ new_addon_form.upload }}
+    <div class="platform">
+      <div class="supported-platforms">
+        <label>{{ _('Which platforms is this file compatible with?') }}</label>
+        {{ new_addon_form.errors.supported_platforms }}
+        {{ new_addon_form.supported_platforms }}
       </div>
-      {% if is_admin %}
-      <div class="admin-settings">
-        <label>{{ _('Administrative overrides') }}</label>
-        <div>
-          <label for="{{ new_addon_form.admin_override_validation.auto_id }}" class="addon-upload-failure-dependant">
-            {{ new_addon_form.admin_override_validation }}
-            {{ new_addon_form.admin_override_validation.label }}
-          </label>
-        </div>
+      {{ new_addon_form.upload }}
+    </div>
+    {% if is_admin %}
+    <div class="admin-settings">
+      <label>{{ _('Administrative overrides') }}</label>
+      <div>
+        <label for="{{ new_addon_form.admin_override_validation.auto_id }}" class="addon-upload-failure-dependant">
+          {{ new_addon_form.admin_override_validation }}
+          {{ new_addon_form.admin_override_validation.label }}
+        </label>
       </div>
-      {% endif %}
-      <div class="submission-buttons addon-submission-field">
-        <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
-          {{ _('Continue') }}
-        </button>
-      </div>
+    </div>
+    {% endif %}
+    <div id="manual-review" class="hidden">
+      <p class="error">{{ _("Your submission didn't pass automatic validation. Check the checkbox to submit for manual review.") }}</p>
+      <label for="{{ new_addon_form.is_manual_review.auto_id }}">
+        {{ new_addon_form.is_manual_review }}
+        {{ new_addon_form.is_manual_review.label }}
+      </label>
+    </div>
+    <div class="submission-buttons addon-submission-field">
+      <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
+        {{ _('Continue') }}
+      </button>
+    </div>
   </section>
 </form>
 {% endblock primary %}
