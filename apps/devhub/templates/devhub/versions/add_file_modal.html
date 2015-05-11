@@ -1,6 +1,9 @@
 <div class="add-file-modal upload-file modal hidden">
-  <form method="post" id="upload-file" action="{{ action }}"
-        enctype="multipart/form-data">
+  <form method="post" id="upload-file" class="new-addon-file" action="{{ action }}" enctype="multipart/form-data"
+    data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
+    data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}"
+    data-addon-is-listed="{% if addon.is_listed %}true{% else %}false{% endif %}"
+    data-addon-is-sideload="{% if not addon.is_listed and addon.status == amo.STATUS_PUBLIC %}true{% else %}false{% endif %}">
     <h3>{{ title }}</h3>
     <div class="upload-file-box">
       <p>
@@ -51,6 +54,15 @@
       </div>
       {% endif %}
     </div>
+    {% if not addon.is_listed %}
+      <div id="manual-review" class="hidden">
+        <p class="error">{{ _("Your submission didn't pass automatic validation. Check the checkbox to submit for manual review.") }}</p>
+        <label for="{{ new_file_form.is_manual_review.auto_id }}">
+          {{ new_file_form.is_manual_review }}
+          {{ new_file_form.is_manual_review.label }}
+        </label>
+      </div>
+    {% endif %}
 
     <div class="upload-status-button-add">
       <button class="addon-upload-dependant button" id="upload-file-finish" disabled>{{ action_label }}</button>

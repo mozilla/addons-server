@@ -478,6 +478,9 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
     admin_override_validation = forms.BooleanField(
         required=False, label=_lazy(u'Override failed validation'))
     source = forms.FileField(required=False)
+    is_manual_review = forms.BooleanField(
+        initial=False, required=False,
+        label=_lazy(u'Submit my add-on for manual review.'))
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')

@@ -105,6 +105,9 @@
                 /* Remove old errors */
                 $upload_field.closest('form').find('.errorlist').remove();
 
+                /* Set defaults */
+                $('#id_is_manual_review').attr('checked', false);
+
                 /* Don't allow submitting */
                 $('.addon-upload-dependant').attr('disabled', true);
                 $('.addon-upload-failure-dependant').attr({'disabled': true,
@@ -327,10 +330,11 @@
 
                     $("<strong>").text(message).appendTo(upload_results);
 
-                    if ($('#create-addon').data('unlisted-addons')) {
+                    var $new_form = $('.new-addon-file');
+                    if ($new_form.data('unlisted-addons')) {
                       // Specific messages for unlisted addons.
-                      var isListed = $('#id_is_listed').is(':checked'),
-                          isSideload = $('#id_is_sideload').is(':checked'),
+                      var isListed = $('#id_is_listed').is(':checked') || $new_form.data('addon-is-listed'),
+                          isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload'),
                           automaticValidation = $('#create-addon').data('automatic-validation');
                       if (!isListed) {
                         if (isSideload) {
@@ -343,7 +347,9 @@
                               $("<p>").text(gettext("Your submission passed validation and will go through a manual review.")).appendTo(upload_results);
                             }
                           } else {
-                            $("<p>").text(gettext("Your submission didn't pass automatic validation and will go through a manual review.")).appendTo(upload_results);
+                            // If unlisted and not sideload and failed validation, disable submit until checkbox checked.
+                            $('.addon-upload-dependant').attr('disabled', true);
+                            $('#manual-review').show().removeClass('hidden');
                           }
                         }
                       }
