@@ -36,8 +36,8 @@ if you're running a recent version, you can `install them automatically
 
     sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev
 
-Note: 
------
+###### Note:
+ 
 As of writing, M2Crypto is only compatible with swig <=3.0.4 version's. So, if you encounter a libssl exception while running ``make full_init``, you might have to downgrade swig to version <=3.0.4. 
 
 .. _osx-packages:
@@ -50,8 +50,8 @@ The following packages will get you set for olympia::
 
     brew install python libxml2 mysql libmemcached openssl swig jpeg
 
-Note:
------
+###### Note:
+
 As of writing, M2Crypto is only compatible with swig <=3.0.4 version's. So, if you encounter a libssl exception while running ``make full_init``, you might have to downgrade swig to version <=3.0.4.
 
 
