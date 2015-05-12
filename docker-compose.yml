@@ -16,15 +16,20 @@ web:
     - MEMCACHE_LOCATION=memcached:11211
     - ELASTICSEARCH_LOCATION=elasticsearch:9200
     - REDIS_LOCATION=redis:6379
+    - MYSQL_ROOT_PASSWORD='docker'
+    - MYSQL_DATABASE='olympia'
 
 memcached:
-  build: dockerfiles/memcached
+  image: memcached
 
 mysqld:
-  image: dockerfile/mysql
+  image: mysql
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_DATABASE='olympia'
 
 elasticsearch:
-  image: dockerfile/elasticsearch
+  image: elasticsearch:1.3
 
 redis:
   image: redis
