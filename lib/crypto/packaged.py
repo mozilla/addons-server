@@ -83,6 +83,11 @@ def sign_file(file_obj):
             file_obj.pk))
         return
 
+    # No file? No signature.
+    if not os.path.exists(file_obj.file_path):
+        log.info(u'File {0} doesn\'t exist on disk'.format(file_obj.file_path))
+        return
+
     # Don't sign hotfixes.
     if file_obj.version.addon.guid in settings.HOTFIX_ADDON_GUIDS:
         log.info(u'Not signing file {0}: addon is a hotfix'.format(
