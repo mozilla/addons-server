@@ -126,6 +126,17 @@ class TestPackaged(amo.tests.TestCase):
         assert self.file_.hash
         assert packaged.is_signed(self.file_.file_path)
 
+    def test_no_sign_missing_file(self):
+        os.unlink(self.file_.file_path)
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        packaged.sign_file(self.file_)
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        assert not packaged.is_signed(self.file_.file_path)
+
     def test_no_sign_hotfix_addons(self):
         """Don't sign hotfix addons."""
         for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
