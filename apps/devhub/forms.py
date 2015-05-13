@@ -119,7 +119,7 @@ class LicenseForm(AMOModelForm):
                                  renderer=LicenseChoiceRadio))
     name = forms.CharField(widget=TranslationTextInput(),
                            label=_lazy(u"What is your license's name?"),
-                           required=False, initial=_('Custom License'))
+                           required=False, initial=_lazy('Custom License'))
     text = forms.CharField(widget=TranslationTextarea(), required=False,
                            label=_lazy(u'Provide the text of your license.'))
 
@@ -507,7 +507,7 @@ class NewAddonForm(AddonUploadForm):
         initial=True,
         required=False,
         label=_lazy(u'Yes, distribute my add-on on this site.'),
-        help_text=_(
+        help_text=_lazy(
             u'Uncheck this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
     is_sideload = forms.BooleanField(
@@ -515,9 +515,9 @@ class NewAddonForm(AddonUploadForm):
         required=False,
         label=_lazy(u'This add-on will be side-loaded via application '
                     u'installers.'),
-        help_text=_(u'Add-ons that are side-loaded will be code reviewed by '
-                    u'Mozilla before they are signed and are held to a higher '
-                    u'quality standard.'))
+        help_text=_lazy(u'Add-ons that are side-loaded will be code reviewed '
+                        u'by Mozilla before they are signed and are held to a '
+                        u'higher quality standard.'))
 
     def clean(self):
         if not self.errors:
