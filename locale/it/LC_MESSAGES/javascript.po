@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-03 14:04+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-05-13 20:33+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430661892.0\n"
+"X-POOTLE-MTIME: 1431549199.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -69,7 +69,7 @@ msgstr[1] "&hellip;e altri {0}"
 
 #: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:409
 msgid "See full validation report"
-msgstr "Visualizza il risultato completo dei controlli"
+msgstr "Visualizza il risultato completo della validazione"
 
 #: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
