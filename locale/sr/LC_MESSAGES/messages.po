@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -238,7 +238,7 @@ msgstr "Приложи"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -829,7 +829,7 @@ msgstr "Пошаљи пријаву"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -1222,7 +1222,7 @@ msgstr "Корисници"
 msgid "Weekly Downloads"
 msgstr "Седмична преузимања"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Верзија"
 
@@ -2572,7 +2572,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Упозорење:</b> Променом власника ове колекције, више нећете имати могућност њене измене. Моћи ћете само да јој додајете или уклањате додатке."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3174,7 +3174,7 @@ msgstr "Филтрирај по апликацији"
 msgid "Report Type"
 msgstr "Тип извештаја"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Апликација"
 
@@ -3746,7 +3746,7 @@ msgstr "Неисправан опсег верзије."
 msgid "Need at least one compatible application."
 msgstr "Потребна је најмање једна компатибилна апликација."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "Дошло је до грешке током отпремања. Молимо Вас, покушајте поново."
 
@@ -3754,75 +3754,79 @@ msgstr "Дошло је до грешке током отпремања. Мол�
 msgid "Override failed validation"
 msgstr "Препис није прешао валидацију"
 
-#: apps/devhub/forms.py:506
+#: apps/devhub/forms.py:483
+msgid "Submit my add-on for manual review."
+msgstr ""
+
+#: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
 msgstr ""
 
-#: apps/devhub/forms.py:507
+#: apps/devhub/forms.py:510
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
 
-#: apps/devhub/forms.py:513
+#: apps/devhub/forms.py:516
 msgid "This add-on will be side-loaded via application installers."
 msgstr ""
 
-#: apps/devhub/forms.py:515
+#: apps/devhub/forms.py:518
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Пуна рецензија"
 
-#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Прелиминарна рецензија"
 
-#: apps/devhub/forms.py:536
+#: apps/devhub/forms.py:539
 msgid "Please choose a review nomination type"
 msgstr "Молимо Вас изаберите врсту номинације за рецензију"
 
-#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
+#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Датотека са верзијом која се завршава са а|алфа|б|бета и опционим бројем је детектована као бета."
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:560
 msgid "Version %s already exists"
 msgstr "Верзија %s већ постоји"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:572
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Одаберите исправан избор. Тај избор није један од доступних избора."
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:601
 msgid "You cannot upload any more files for this version."
 msgstr "Не можете више датотека отпремити за ову верзију."
 
-#: apps/devhub/forms.py:604
+#: apps/devhub/forms.py:607
 msgid "Version doesn't match"
 msgstr "Верзије се не поклапају"
 
-#: apps/devhub/forms.py:633
+#: apps/devhub/forms.py:636
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Не можете обрисати датотеку чим процес рецензије започне. Морате обрисати целу верзију."
 
-#: apps/devhub/forms.py:653
+#: apps/devhub/forms.py:656
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Платформа Све не може се укомбиновати са одређеним платформама."
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:661
 msgid "A platform can only be chosen once."
 msgstr "Платформа се може само једном изабрати."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:674
 msgid "A review type must be selected."
 msgstr "Морате изабрати тип рецензије."
 
-#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Прво изаберите апликацију"
 
-#: apps/devhub/forms.py:805
+#: apps/devhub/forms.py:808
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Не може бити више од 3 захтевана додатка."
 
@@ -5117,13 +5121,17 @@ msgstr ""
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:30
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:47
 msgid "Administrative overrides"
 msgstr "Административна поништавања"
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
+msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6591,19 +6599,19 @@ msgstr "Поравнато на доле-лево"
 msgid "Select a different footer image"
 msgstr "Изаберите другу слику за подножје"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:7
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:10
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Датотеке додате на прегледане верзије морају бити прегледане пре него буду доступне за преузимање."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:23
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:26
 msgid "Select the target platform for this file."
 msgstr "Изаберите циљану платформу за ову датотеку."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Which review type would you like to nominate for?"
 msgstr "За који тип преглед желите да је номинујете?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Only publish this version to my beta channel."
 msgstr "Објави ову верзију само на мој бета канал."
 

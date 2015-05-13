@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-05-10 18:43+0000\n"
 "Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -43,104 +43,97 @@ msgstr "{0}% dokončeno"
 msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
-#: static/js/common/upload-addon.js:120
+#: static/js/common/upload-addon.js:123
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: static/js/common/upload-addon.js:142
+#: static/js/common/upload-addon.js:145
 msgid "Uploading {0}"
 msgstr "Probíhá nahrávání {0}"
 
-#: static/js/common/upload-addon.js:169
+#: static/js/common/upload-addon.js:172
 msgid "Error with {0}"
 msgstr "Chyba s {0}"
 
-#: static/js/common/upload-addon.js:174
+#: static/js/common/upload-addon.js:177
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Váš doplněk neprošel kontrolou s {0} chybou."
 msgstr[1] "Váš doplněk neprošel kontrolou s {0} chybami."
 msgstr[2] "Váš doplněk neprošel kontrolou s {0} chybami."
 
-#: static/js/common/upload-addon.js:188
+#: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;a {0} další"
 msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} další"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:403
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:409
 msgid "See full validation report"
 msgstr "Zobrazit podrobný report"
 
-#: static/js/common/upload-addon.js:214
+#: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
 msgstr "Probíhá kontrola {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:253
+#: static/js/common/upload-addon.js:256
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
 
-#: static/js/common/upload-addon.js:269
+#: static/js/common/upload-addon.js:272
 msgid "Unexpected server error while validating."
 msgstr "Při kontrole nastala neočekávaná chyba serveru."
 
-#: static/js/common/upload-addon.js:307
+#: static/js/common/upload-addon.js:310
 msgid "Finished validating {0}"
 msgstr "Dokončena kontrola {0}"
 
-#: static/js/common/upload-addon.js:313
+#: static/js/common/upload-addon.js:316
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávou."
 msgstr[1] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
 msgstr[2] "Váš doplněk prošel kontrolou bez chyby a s {0} zprávami."
 
-#: static/js/common/upload-addon.js:318
+#: static/js/common/upload-addon.js:321
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Váš doplněk prošel kontrolou bez chyba a varování."
 
-#: static/js/common/upload-addon.js:337
+#: static/js/common/upload-addon.js:341
 msgid "Your submission will go through a manual review."
 msgstr "Vaše přidání projde ruční kontrolou."
 
-#: static/js/common/upload-addon.js:341
+#: static/js/common/upload-addon.js:345
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "Vaše přidání prošlo kontrolou a bude automaticky podepsáno."
 
-#: static/js/common/upload-addon.js:343
+#: static/js/common/upload-addon.js:347
 msgid "Your submission passed validation and will go through a manual review."
 msgstr "Vaše přidání prošlo kontrolou a bude ručně zkontrolováno."
 
-#: static/js/common/upload-addon.js:346
-msgid "Your submission didn't pass automatic validation and will go through a manual review."
-msgstr ""
-"Vaše přidání neprošlo automatickou kontrolou a bude ručně zkontrolováno."
-
-#: static/js/common/upload-addon.js:356
+#: static/js/common/upload-addon.js:362
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnout podrobné poznámky k verzi (lze nastavit v příštím kroku)."
 
-#: static/js/common/upload-addon.js:357
+#: static/js/common/upload-addon.js:363
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Pokud váš doplněk vyžaduje účet na webovém server pro možnost plné kontroly, vložte prosím uživatelské jméno a heslo do poznámky pro redaktora (lze provést v příštím kroku)."
 
-#: static/js/common/upload-addon.js:358
+#: static/js/common/upload-addon.js:364
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr ""
-"Pokud je váš doplněk určen pro omezený počet uživatelů, měli byste zvolit "
-"předběžnou kontrolu na místo té plné."
+msgstr "Pokud je váš doplněk určen pro omezený počet uživatelů, měli byste zvolit předběžnou kontrolu na místo té plné."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:377
 msgid "Add-on submission checklist"
 msgstr "Seznam odeslaných doplňků ke kontrole"
 
-#: static/js/common/upload-addon.js:372
+#: static/js/common/upload-addon.js:378
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Zkontrolujte prosím následující body před odesláním doplňku ke kontrole. Pomůže tím zrychlit a předejít případnému nedorozumění při procesu kontroly:"
 
-#: static/js/common/upload-addon.js:374
+#: static/js/common/upload-addon.js:380
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -148,19 +141,19 @@ msgstr ""
 "Zkompilované binární součásti stejně jako obfuscované skripty (vyjma známých knihoven) musí mít předložené zdrojové soubory ke kontrole odděleně. Ujistěte se, že jste použili pole pro nahrání "
 "zdrojových kódů, aby nedošlo k zamítnutí kontroly."
 
-#: static/js/common/upload-addon.js:392
+#: static/js/common/upload-addon.js:398
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zjistil tyto možné nedostatky, které mohou vést k zamítnutí kontroly:"
 
-#: static/js/common/upload-addon.js:409
+#: static/js/common/upload-addon.js:415
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Pokud ještě nevíte, jak probíhá proces kontroly, můžete si o něm zde přečíst."
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:451
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Některé platformy nejsou pro tento typ doplňků dostupné."
 
-#: static/js/common/upload-addon.js:447
+#: static/js/common/upload-addon.js:453
 msgid "Sorry, no supported platform has been found."
 msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
 
@@ -783,7 +776,7 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Jiné"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1302 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1310 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Prvně zvolte aplikaci"
 
@@ -964,61 +957,61 @@ msgstr "Odebrat z oblíbených"
 msgid "Stop following"
 msgstr "Ukončit sledování"
 
-#: static/js/zamboni/devhub.js:163
+#: static/js/zamboni/devhub.js:169
 msgid "Your browser does not support the video tag"
 msgstr "Váš prohlížeč nepodporuje značku video."
 
-#: static/js/zamboni/devhub.js:420
+#: static/js/zamboni/devhub.js:426
 msgid "Changes Saved"
 msgstr "Změny uloženy"
 
-#: static/js/zamboni/devhub.js:436
+#: static/js/zamboni/devhub.js:442
 msgid "Enter a new author's email address"
 msgstr "Vložte novou e-mailovou adresu autora"
 
-#: static/js/zamboni/devhub.js:583
+#: static/js/zamboni/devhub.js:589
 msgid "There was an error uploading your file."
 msgstr "Při nahrávání vašeho souboru se vyskytl problém."
 
-#: static/js/zamboni/devhub.js:728
+#: static/js/zamboni/devhub.js:734
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} soubor"
 msgstr[1] "{files} soubory"
 msgstr[2] "{files} souborů"
 
-#: static/js/zamboni/devhub.js:731
+#: static/js/zamboni/devhub.js:737
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recenze uživatele"
 msgstr[1] "{reviews} recenze uživatele"
 msgstr[2] "{reviews} recenzí uživatele"
 
-#: static/js/zamboni/devhub.js:843
+#: static/js/zamboni/devhub.js:849
 msgid "Learn more"
 msgstr "Dozvědět se více"
 
-#: static/js/zamboni/devhub.js:847
+#: static/js/zamboni/devhub.js:853
 msgid "Example"
 msgstr "Příklad"
 
-#: static/js/zamboni/devhub.js:1203
+#: static/js/zamboni/devhub.js:1211
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku."
 
-#: static/js/zamboni/devhub.js:1330
+#: static/js/zamboni/devhub.js:1338
 msgid "Starting tests..."
 msgstr "Probíhá zahájení testů..."
 
-#: static/js/zamboni/devhub.js:1337
+#: static/js/zamboni/devhub.js:1345
 msgid "Waiting for test results..."
 msgstr "Probíhá čekání na výsledky testů..."
 
-#: static/js/zamboni/devhub.js:1339 static/js/zamboni/devhub.js:1344
+#: static/js/zamboni/devhub.js:1347 static/js/zamboni/devhub.js:1352
 msgid "Internal Server Error"
 msgstr "Interní chyba serveru"
 
-#: static/js/zamboni/devhub.js:1379
+#: static/js/zamboni/devhub.js:1387
 msgid "Must be a valid e-mail address."
 msgstr "Musí se jednat o platnou e-mailovou adresu."
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-05-03 14:04+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -43,101 +43,97 @@ msgstr "{0}% completato"
 msgid "{0} of {1}"
 msgstr "{0} di {1}"
 
-#: static/js/common/upload-addon.js:120
+#: static/js/common/upload-addon.js:123
 msgid "Cancel"
 msgstr "Annulla"
 
-#: static/js/common/upload-addon.js:142
+#: static/js/common/upload-addon.js:145
 msgid "Uploading {0}"
 msgstr "Caricamento in corso di {0}"
 
-#: static/js/common/upload-addon.js:169
+#: static/js/common/upload-addon.js:172
 msgid "Error with {0}"
 msgstr "Errore con {0}"
 
-#: static/js/common/upload-addon.js:174
+#: static/js/common/upload-addon.js:177
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Il componente aggiuntivo non ha superato la validazione con {0} errore."
 msgstr[1] "Il componente aggiuntivo non ha superato la validazione con {0} errori."
 
-#: static/js/common/upload-addon.js:188
+#: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e {0} altro"
 msgstr[1] "&hellip;e altri {0}"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:403
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:409
 msgid "See full validation report"
 msgstr "Visualizza il risultato completo dei controlli"
 
-#: static/js/common/upload-addon.js:214
+#: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
 msgstr "Controllo in corso di {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:253
+#: static/js/common/upload-addon.js:256
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Ricevuta una risposta vuota dal server; status: {0}"
 
-#: static/js/common/upload-addon.js:269
+#: static/js/common/upload-addon.js:272
 msgid "Unexpected server error while validating."
 msgstr "Errore inatteso del server durante il controllo."
 
-#: static/js/common/upload-addon.js:307
+#: static/js/common/upload-addon.js:310
 msgid "Finished validating {0}"
 msgstr "Validazione di {0} completata"
 
-#: static/js/common/upload-addon.js:313
+#: static/js/common/upload-addon.js:316
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Il componente aggiuntivo ha superato i controlli senza errori e con {0} messaggio."
 msgstr[1] "Il componente aggiuntivo ha superato i controlli senza errori e con {0} messaggi."
 
-#: static/js/common/upload-addon.js:318
+#: static/js/common/upload-addon.js:321
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Il componente aggiuntivo ha superato i controlli senza errori e senza avvisi."
 
-#: static/js/common/upload-addon.js:337
+#: static/js/common/upload-addon.js:341
 msgid "Your submission will go through a manual review."
 msgstr "Il componente aggiuntivo verrà sottoposto a una revisione manuale."
 
-#: static/js/common/upload-addon.js:341
+#: static/js/common/upload-addon.js:345
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "Il componente aggiuntivo ha superato il processo di validazione e verrà firmato digitalmente."
 
-#: static/js/common/upload-addon.js:343
+#: static/js/common/upload-addon.js:347
 msgid "Your submission passed validation and will go through a manual review."
 msgstr "Il componente aggiuntivo ha superato il processo di validazione e verrà sottoposto a una revisione manuale."
 
-#: static/js/common/upload-addon.js:346
-msgid "Your submission didn't pass automatic validation and will go through a manual review."
-msgstr "Il componente aggiuntivo non ha superato il processo di validazione automatico e verrà sottoposto a una revisione manuale."
-
-#: static/js/common/upload-addon.js:356
+#: static/js/common/upload-addon.js:362
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Includi note di versione dettagliate (è possibile inserirle nel prossimo passaggio)."
 
-#: static/js/common/upload-addon.js:357
+#: static/js/common/upload-addon.js:363
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Se per effettuare il test completo del componente aggiuntivo è necessario accedere a un sito web con nome utente e password, inserisci i dati per l’accesso nella nota per i revisori (è possibile "
 "farlo nel prossimo passaggio)."
 
-#: static/js/common/upload-addon.js:358
+#: static/js/common/upload-addon.js:364
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Nel caso in cui il componente aggiuntivo sia destinato a un’utenza limitata, seleziona Revisione preliminare anziché Revisione completa."
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:377
 msgid "Add-on submission checklist"
 msgstr "Promemoria per il caricamento del componente aggiuntivo"
 
-#: static/js/common/upload-addon.js:372
+#: static/js/common/upload-addon.js:378
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 "Prima di confermare il caricamento verifica che il componente aggiuntivo soddisfi i seguenti requisiti, in modo da ridurre al minimo eventuali ritardi o equivoci nel corso del processo di revisione:"
 
-#: static/js/common/upload-addon.js:374
+#: static/js/common/upload-addon.js:380
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -145,19 +141,19 @@ msgstr ""
 "I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il "
 "componente venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
 
-#: static/js/common/upload-addon.js:392
+#: static/js/common/upload-addon.js:398
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Durante il processo di validazione sono stati rilevati i seguenti problemi, che potrebbero portare al rifiuto del componente aggiuntivo:"
 
-#: static/js/common/upload-addon.js:409
+#: static/js/common/upload-addon.js:415
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Se hai poca dimestichezza con il processo di revisione dei componenti aggiuntivi, qui puoi trovare ulteriori informazioni."
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:451
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Alcune piattaforme non sono disponibili per questo tipo di componente aggiuntivo."
 
-#: static/js/common/upload-addon.js:447
+#: static/js/common/upload-addon.js:453
 msgid "Sorry, no supported platform has been found."
 msgstr "Spiacenti, non è stato possibile trovare alcuna piattaforma compatibile."
 
@@ -783,7 +779,7 @@ msgstr "Data"
 msgid "Other"
 msgstr "Altro"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1302 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1310 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Selezionare un’applicazione"
 
@@ -962,59 +958,59 @@ msgstr "Elimina dai preferiti"
 msgid "Stop following"
 msgstr "Non seguire più"
 
-#: static/js/zamboni/devhub.js:163
+#: static/js/zamboni/devhub.js:169
 msgid "Your browser does not support the video tag"
 msgstr "Il browser in uso non supporta il tag video"
 
-#: static/js/zamboni/devhub.js:420
+#: static/js/zamboni/devhub.js:426
 msgid "Changes Saved"
 msgstr "Modifiche salvate"
 
-#: static/js/zamboni/devhub.js:436
+#: static/js/zamboni/devhub.js:442
 msgid "Enter a new author's email address"
 msgstr "Inserire l’indirizzo email di un nuovo autore"
 
-#: static/js/zamboni/devhub.js:583
+#: static/js/zamboni/devhub.js:589
 msgid "There was an error uploading your file."
 msgstr "Si è verificato un errore durante il caricamento del file."
 
-#: static/js/zamboni/devhub.js:728
+#: static/js/zamboni/devhub.js:734
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} file"
 msgstr[1] "{files} file"
 
-#: static/js/zamboni/devhub.js:731
+#: static/js/zamboni/devhub.js:737
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recensione"
 msgstr[1] "{reviews} recensioni"
 
-#: static/js/zamboni/devhub.js:843
+#: static/js/zamboni/devhub.js:849
 msgid "Learn more"
 msgstr "Ulteriori informazioni"
 
-#: static/js/zamboni/devhub.js:847
+#: static/js/zamboni/devhub.js:853
 msgid "Example"
 msgstr "Esempio"
 
-#: static/js/zamboni/devhub.js:1203
+#: static/js/zamboni/devhub.js:1211
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 
-#: static/js/zamboni/devhub.js:1330
+#: static/js/zamboni/devhub.js:1338
 msgid "Starting tests..."
 msgstr "Inizio test…"
 
-#: static/js/zamboni/devhub.js:1337
+#: static/js/zamboni/devhub.js:1345
 msgid "Waiting for test results..."
 msgstr "In attesa dei risultati…"
 
-#: static/js/zamboni/devhub.js:1339 static/js/zamboni/devhub.js:1344
+#: static/js/zamboni/devhub.js:1347 static/js/zamboni/devhub.js:1352
 msgid "Internal Server Error"
 msgstr "Errore interno del server"
 
-#: static/js/zamboni/devhub.js:1379
+#: static/js/zamboni/devhub.js:1387
 msgid "Must be a valid e-mail address."
 msgstr "L’indirizzo email deve essere valido."
 

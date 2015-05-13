@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-04-08 02:44+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Japanese\n"
@@ -41,95 +41,91 @@ msgstr "{0}% 完了"
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: static/js/common/upload-addon.js:120
+#: static/js/common/upload-addon.js:123
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: static/js/common/upload-addon.js:142
+#: static/js/common/upload-addon.js:145
 msgid "Uploading {0}"
 msgstr "{0} をアップロードしています"
 
-#: static/js/common/upload-addon.js:169
+#: static/js/common/upload-addon.js:172
 msgid "Error with {0}"
 msgstr "{0} にエラーがありました"
 
-#: static/js/common/upload-addon.js:174
+#: static/js/common/upload-addon.js:177
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "アドオンの検証に失敗しました。{0}個のエラーがあります。"
 
-#: static/js/common/upload-addon.js:188
+#: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "... その他 {0} 個"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:403
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:409
 msgid "See full validation report"
 msgstr "検証レポートの詳細を見る"
 
-#: static/js/common/upload-addon.js:214
+#: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
 msgstr "{0} を検証しています"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:253
+#: static/js/common/upload-addon.js:256
 msgid "Received an empty response from the server; status: {0}"
 msgstr "サーバから空の応答が返りました。ステータス: {0}"
 
-#: static/js/common/upload-addon.js:269
+#: static/js/common/upload-addon.js:272
 msgid "Unexpected server error while validating."
 msgstr "検証中に予期せぬサーバエラーが発生しました。"
 
-#: static/js/common/upload-addon.js:307
+#: static/js/common/upload-addon.js:310
 msgid "Finished validating {0}"
 msgstr "{0} の検証が完了しました"
 
-#: static/js/common/upload-addon.js:313
+#: static/js/common/upload-addon.js:316
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "アドオンは検証に合格しました。エラーはありません。{0} 個のメッセージがあります。"
 
-#: static/js/common/upload-addon.js:318
+#: static/js/common/upload-addon.js:321
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "アドオンは検証に合格しました。エラーや警告はありません。"
 
-#: static/js/common/upload-addon.js:337
+#: static/js/common/upload-addon.js:341
 msgid "Your submission will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:341
+#: static/js/common/upload-addon.js:345
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:343
+#: static/js/common/upload-addon.js:347
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:346
-msgid "Your submission didn't pass automatic validation and will go through a manual review."
-msgstr ""
-
-#: static/js/common/upload-addon.js:356
+#: static/js/common/upload-addon.js:362
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "詳しいリリースノートを含める (これは次のステップで行えます)。"
 
-#: static/js/common/upload-addon.js:357
+#: static/js/common/upload-addon.js:363
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザ名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
-#: static/js/common/upload-addon.js:358
+#: static/js/common/upload-addon.js:364
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:377
 msgid "Add-on submission checklist"
 msgstr "アドオン登録チェックリスト"
 
-#: static/js/common/upload-addon.js:372
+#: static/js/common/upload-addon.js:378
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "登録を完了する前に以下の点について確認してください。これは審査手続き中の遅延や誤解を最小限にするために役立ちます。"
 
-#: static/js/common/upload-addon.js:374
+#: static/js/common/upload-addon.js:380
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -137,19 +133,19 @@ msgstr ""
 "コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
 "ドフォームを使い、審査が即座に却下されないようにしてください。"
 
-#: static/js/common/upload-addon.js:392
+#: static/js/common/upload-addon.js:398
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
 
-#: static/js/common/upload-addon.js:409
+#: static/js/common/upload-addon.js:415
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "アドオンの審査手続きについてよくご存じない場合は、こちらをご覧ください。"
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:451
 msgid "Some platforms are not available for this type of add-on."
 msgstr "この種類のアドオンは OS によっては対応していない場合があります。"
 
-#: static/js/common/upload-addon.js:447
+#: static/js/common/upload-addon.js:453
 msgid "Sorry, no supported platform has been found."
 msgstr "申し訳ありませんが、対応プラットフォームがひとつも見つかりませんでした。"
 
@@ -772,7 +768,7 @@ msgstr "日付"
 msgid "Other"
 msgstr "その他"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1302 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1310 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
 
@@ -949,57 +945,57 @@ msgstr "お気に入りから削除"
 msgid "Stop following"
 msgstr "フォローをやめる"
 
-#: static/js/zamboni/devhub.js:163
+#: static/js/zamboni/devhub.js:169
 msgid "Your browser does not support the video tag"
 msgstr "お使いのブラウザは video タグに対応していません"
 
-#: static/js/zamboni/devhub.js:420
+#: static/js/zamboni/devhub.js:426
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
-#: static/js/zamboni/devhub.js:436
+#: static/js/zamboni/devhub.js:442
 msgid "Enter a new author's email address"
 msgstr "新しい作者のメールアドレスを入力してください"
 
-#: static/js/zamboni/devhub.js:583
+#: static/js/zamboni/devhub.js:589
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: static/js/zamboni/devhub.js:728
+#: static/js/zamboni/devhub.js:734
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個のファイル"
 
-#: static/js/zamboni/devhub.js:731
+#: static/js/zamboni/devhub.js:737
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 件のユーザレビュー"
 
-#: static/js/zamboni/devhub.js:843
+#: static/js/zamboni/devhub.js:849
 msgid "Learn more"
 msgstr "詳細"
 
-#: static/js/zamboni/devhub.js:847
+#: static/js/zamboni/devhub.js:853
 msgid "Example"
 msgstr "例"
 
-#: static/js/zamboni/devhub.js:1203
+#: static/js/zamboni/devhub.js:1211
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
-#: static/js/zamboni/devhub.js:1330
+#: static/js/zamboni/devhub.js:1338
 msgid "Starting tests..."
 msgstr "テストを開始します..."
 
-#: static/js/zamboni/devhub.js:1337
+#: static/js/zamboni/devhub.js:1345
 msgid "Waiting for test results..."
 msgstr "テスト結果が出るまで待機しています..."
 
-#: static/js/zamboni/devhub.js:1339 static/js/zamboni/devhub.js:1344
+#: static/js/zamboni/devhub.js:1347 static/js/zamboni/devhub.js:1352
 msgid "Internal Server Error"
 msgstr "内部サーバエラー"
 
-#: static/js/zamboni/devhub.js:1379
+#: static/js/zamboni/devhub.js:1387
 msgid "Must be a valid e-mail address."
 msgstr "正しいメールアドレスを入力してください。"
 

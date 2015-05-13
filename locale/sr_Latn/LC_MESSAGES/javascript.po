@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,102 +43,98 @@ msgstr "{0}% završeno"
 msgid "{0} of {1}"
 msgstr "{0} od {1}"
 
-#: static/js/common/upload-addon.js:120
+#: static/js/common/upload-addon.js:123
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: static/js/common/upload-addon.js:142
+#: static/js/common/upload-addon.js:145
 msgid "Uploading {0}"
 msgstr "Otpremam {0}"
 
-#: static/js/common/upload-addon.js:169
+#: static/js/common/upload-addon.js:172
 msgid "Error with {0}"
 msgstr "Greška sa {0}"
 
-#: static/js/common/upload-addon.js:174
+#: static/js/common/upload-addon.js:177
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Vaš dodatak nije prošao proveru - {0} greška."
 msgstr[1] "Vaš dodatak nije prošao proveru - {0} greške."
 msgstr[2] "Vaš dodatak nije prošao proveru - {0} grešaka."
 
-#: static/js/common/upload-addon.js:188
+#: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;i još {0}"
 msgstr[1] "&hellip;i još {0}"
 msgstr[2] "&hellip;i još {0}"
 
-#: static/js/common/upload-addon.js:202 static/js/common/upload-addon.js:403
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:409
 msgid "See full validation report"
 msgstr "Pogledajte potpuni izveštaj pregleda"
 
-#: static/js/common/upload-addon.js:214
+#: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
 msgstr "Proveravam {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:253
+#: static/js/common/upload-addon.js:256
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Dobijen je prazan odgovor od servera; status: {0}"
 
-#: static/js/common/upload-addon.js:269
+#: static/js/common/upload-addon.js:272
 msgid "Unexpected server error while validating."
 msgstr "Neočekivana greška na serveru tokom provere."
 
-#: static/js/common/upload-addon.js:307
+#: static/js/common/upload-addon.js:310
 msgid "Finished validating {0}"
 msgstr "Završena provera {0}"
 
-#: static/js/common/upload-addon.js:313
+#: static/js/common/upload-addon.js:316
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Vaš dodatak je prošao proveru bez grešaka i {0} porukom."
 msgstr[1] "Vaš dodatak je prošao proveru bez grešaka i {0} poruke."
 msgstr[2] "Vaš dodatak je prošao proveru bez grešaka i {0} poruka."
 
-#: static/js/common/upload-addon.js:318
+#: static/js/common/upload-addon.js:321
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Vaš dodatak je prošao proveru bez grešaka ili upozorenja."
 
-#: static/js/common/upload-addon.js:337
+#: static/js/common/upload-addon.js:341
 msgid "Your submission will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:341
+#: static/js/common/upload-addon.js:345
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:343
+#: static/js/common/upload-addon.js:347
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:346
-msgid "Your submission didn't pass automatic validation and will go through a manual review."
-msgstr ""
-
-#: static/js/common/upload-addon.js:356
+#: static/js/common/upload-addon.js:362
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Uključite detaljne beleške verzije (ovo može biti urađeno u sledećem koraku)."
 
-#: static/js/common/upload-addon.js:357
+#: static/js/common/upload-addon.js:363
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Ako je Vašem dodatku potrebna lozinka do veb stranice kako bi bila potpuno testirana, uključite i korisničko ime i lozinku za test u Beleške recezenta (ovo može biti učinjeno u sledećem koraku)."
 
-#: static/js/common/upload-addon.js:358
+#: static/js/common/upload-addon.js:364
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:371
+#: static/js/common/upload-addon.js:377
 msgid "Add-on submission checklist"
 msgstr "Spisak podnesenih dodataka"
 
-#: static/js/common/upload-addon.js:372
+#: static/js/common/upload-addon.js:378
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Molimo Vas da verifikujete naredne takče pre završetka podnošenja. Ovo će minimizovati odlaganja i nerazumevanja tokom procesa recenzije:"
 
-#: static/js/common/upload-addon.js:374
+#: static/js/common/upload-addon.js:380
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -146,19 +142,19 @@ msgstr ""
 "Kompajlirane binarne datoteke, kao i umanjene skripte (ne računajući poznate biblioteke) treba odvojeno podneti na recenziju. Koristite polje za otpremanje izvornog koda da biste izbegli odbijanje "
 "otpremljenog koda."
 
-#: static/js/common/upload-addon.js:392
+#: static/js/common/upload-addon.js:398
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces validacije je našao probleme koje mogu dovesti do:"
 
-#: static/js/common/upload-addon.js:409
+#: static/js/common/upload-addon.js:415
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ako Vam nije poznat proces recenzije dodataka, možete pročitati o tome ovde."
 
-#: static/js/common/upload-addon.js:445
+#: static/js/common/upload-addon.js:451
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Neke platforme nisu dostupne za ovaj tip dodatka."
 
-#: static/js/common/upload-addon.js:447
+#: static/js/common/upload-addon.js:453
 msgid "Sorry, no supported platform has been found."
 msgstr "Nažalost nije nađena ni jedna podržana platforma."
 
@@ -781,7 +777,7 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostali"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1302 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1310 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Prvo izaberite aplikaciju"
 
@@ -962,61 +958,61 @@ msgstr "Izbriši iz omiljenih"
 msgid "Stop following"
 msgstr "Prekini praćenje"
 
-#: static/js/zamboni/devhub.js:163
+#: static/js/zamboni/devhub.js:169
 msgid "Your browser does not support the video tag"
 msgstr "Vaš pregledač ne podržava oznake video snimaka"
 
-#: static/js/zamboni/devhub.js:420
+#: static/js/zamboni/devhub.js:426
 msgid "Changes Saved"
 msgstr "Izmene sačuvane"
 
-#: static/js/zamboni/devhub.js:436
+#: static/js/zamboni/devhub.js:442
 msgid "Enter a new author's email address"
 msgstr "Unesite adresu e-pošte novog autora"
 
-#: static/js/zamboni/devhub.js:583
+#: static/js/zamboni/devhub.js:589
 msgid "There was an error uploading your file."
 msgstr "Došlo je do greške prilikom otpremanja Vaše datoteke."
 
-#: static/js/zamboni/devhub.js:728
+#: static/js/zamboni/devhub.js:734
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} datoteka"
 msgstr[1] "{files} datoteke"
 msgstr[2] "{files} datoteka"
 
-#: static/js/zamboni/devhub.js:731
+#: static/js/zamboni/devhub.js:737
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} korisnička recenzija"
 msgstr[1] "{reviews} korisničke recenzije"
 msgstr[2] "{reviews} korisničkih recenzija"
 
-#: static/js/zamboni/devhub.js:843
+#: static/js/zamboni/devhub.js:849
 msgid "Learn more"
 msgstr "Saznajte više"
 
-#: static/js/zamboni/devhub.js:847
+#: static/js/zamboni/devhub.js:853
 msgid "Example"
 msgstr "Primer"
 
-#: static/js/zamboni/devhub.js:1203
+#: static/js/zamboni/devhub.js:1211
 msgid "Image changes being processed"
 msgstr "Izmene na slici se obrađuju"
 
-#: static/js/zamboni/devhub.js:1330
+#: static/js/zamboni/devhub.js:1338
 msgid "Starting tests..."
 msgstr "Pokrećem testova..."
 
-#: static/js/zamboni/devhub.js:1337
+#: static/js/zamboni/devhub.js:1345
 msgid "Waiting for test results..."
 msgstr "Čekam rezultate testova..."
 
-#: static/js/zamboni/devhub.js:1339 static/js/zamboni/devhub.js:1344
+#: static/js/zamboni/devhub.js:1347 static/js/zamboni/devhub.js:1352
 msgid "Internal Server Error"
 msgstr "Serverska greška"
 
-#: static/js/zamboni/devhub.js:1379
+#: static/js/zamboni/devhub.js:1387
 msgid "Must be a valid e-mail address."
 msgstr "Adresa e-pošte mora biti ispravna."
 

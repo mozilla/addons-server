@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-05-10 20:41+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -240,7 +240,7 @@ msgstr "Adományozás"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -774,9 +774,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
-"<strong>Figyelem:</strong>A Mozilla ezt a kiegészítőt nem ellenőrizte, és az "
-"nem telepíthető a Firefox stabil verzióira. Óvatosan járjon el olyan külső "
-"szoftverek telepítésekor, melyek kárt tehetnek a számítógépében."
+"<strong>Figyelem:</strong>A Mozilla ezt a kiegészítőt nem ellenőrizte, és az nem telepíthető a Firefox stabil verzióira. Óvatosan járjon el olyan külső szoftverek telepítésekor, melyek kárt "
+"tehetnek a számítógépében."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -830,7 +829,7 @@ msgstr "Jelentés küldése"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -1052,9 +1051,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr ""
-"<strong>Figyelem:</strong> Ezen kiegészítő fejlesztői verzióit a Mozilla nem "
-"ellenőrizte, és azokat nem lehet a Firefox kiadott verzióira telepíteni."
+msgstr "<strong>Figyelem:</strong> Ezen kiegészítő fejlesztői verzióit a Mozilla nem ellenőrizte, és azokat nem lehet a Firefox kiadott verzióira telepíteni."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1217,7 +1214,7 @@ msgstr "Felhasználók"
 msgid "Weekly Downloads"
 msgstr "Heti letöltések"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Verzió"
 
@@ -1631,9 +1628,7 @@ msgstr "A {addon} kiegészítőhöz tartozó {review} értékelés törlésre ke
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
-"{addon} kiegészítőhöz tartozó {review} értékelést {user} felhasználó "
-"törölte."
+msgstr "{addon} kiegészítőhöz tartozó {review} értékelést {user} felhasználó törölte."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -2559,7 +2554,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Figyelem!</b> A gyűjtemény tulajdonosának megváltoztatásakor, többet nem jogosult a gyűjtemény szerkesztéséhez. Ettől kezdve csak kiegészítőket tud majd eltávolítani és hozzáadni."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2718,12 +2713,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Amikor a Mozilla tudomást szerez arról, hogy valamely kiegészítő, bővítmény "
-"vagy más gyártók szoftverkomponense komolyan veszélyezteti a(z) %(app)s "
-"biztonságát, a stabilitását vagy teljesítményét, és megfelel <a href=\"%"
-"(criteria)s\">bizonyos kritériumoknak</a>, a szoftver általános használatát "
-"blokkolhatják. További információkért kérjük, olvassa el <a href=\"%"
-"(support)s\">ezt a leírást</a>."
+"Amikor a Mozilla tudomást szerez arról, hogy valamely kiegészítő, bővítmény vagy más gyártók szoftverkomponense komolyan veszélyezteti a(z) %(app)s biztonságát, a stabilitását vagy teljesítményét, "
+"és megfelel <a href=\"%(criteria)s\">bizonyos kritériumoknak</a>, a szoftver általános használatát blokkolhatják. További információkért kérjük, olvassa el <a href=\"%(support)s\">ezt a leírást</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3163,7 +3154,7 @@ msgstr "Szűrés alkalmazás szerint"
 msgid "Report Type"
 msgstr "Jelentés típusa"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Alkalmazás"
 
@@ -3735,7 +3726,7 @@ msgstr "Érvénytelen verziótartomány."
 msgid "Need at least one compatible application."
 msgstr "Legalább egy kompatibilis alkalmazásra szükség van."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "Hiba történt a feltöltés közben, próbálja újra."
 
@@ -3743,75 +3734,79 @@ msgstr "Hiba történt a feltöltés közben, próbálja újra."
 msgid "Override failed validation"
 msgstr "Sikertelen vizsgálat felülbírálása"
 
-#: apps/devhub/forms.py:506
+#: apps/devhub/forms.py:483
+msgid "Submit my add-on for manual review."
+msgstr ""
+
+#: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
 msgstr ""
 
-#: apps/devhub/forms.py:507
+#: apps/devhub/forms.py:510
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
 
-#: apps/devhub/forms.py:513
+#: apps/devhub/forms.py:516
 msgid "This add-on will be side-loaded via application installers."
 msgstr ""
 
-#: apps/devhub/forms.py:515
+#: apps/devhub/forms.py:518
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Teljes vizsgálat"
 
-#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Előzetes vizsgálat"
 
-#: apps/devhub/forms.py:536
+#: apps/devhub/forms.py:539
 msgid "Please choose a review nomination type"
 msgstr "Válasszon egy vizsgálatajánlási típust"
 
-#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
+#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:560
 msgid "Version %s already exists"
 msgstr "Már létezik %s verzió"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:572
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:601
 msgid "You cannot upload any more files for this version."
 msgstr "Ehhez a verzióhoz több fájl nem tölthető fel."
 
-#: apps/devhub/forms.py:604
+#: apps/devhub/forms.py:607
 msgid "Version doesn't match"
 msgstr "Nem egyeznek a verziók"
 
-#: apps/devhub/forms.py:633
+#: apps/devhub/forms.py:636
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "A vizsgálat elkezdését követően nem törölhet fájlt. Ehhez le kell törölnie a teljes verziót."
 
-#: apps/devhub/forms.py:653
+#: apps/devhub/forms.py:656
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Az Összes platform nem vonható össze más platformokkal."
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:661
 msgid "A platform can only be chosen once."
 msgstr "Egy platform csak egyszer választható ki."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:674
 msgid "A review type must be selected."
 msgstr "Ki kell választani az átvizsgálás típusát."
 
-#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Először válassza ki az alkalmazást"
 
-#: apps/devhub/forms.py:805
+#: apps/devhub/forms.py:808
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nem lehet 3-nál több szükséges kiegészítő."
 
@@ -5098,13 +5093,17 @@ msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez és áll
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:30
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:47
 msgid "Administrative overrides"
 msgstr "Adminisztrációs felülbírálások"
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
+msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -5745,31 +5744,22 @@ msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
-"A kiegészítők tartalmazhatnak bináris, olvashatatlanná tett és minimalizált "
-"forráskódot, de a Mozilla számára engedélyezni kell, hogy megvizsgáljon a "
-"vizsgálatra küldött kiegészítő minden verziójának ember által olvasható "
-"forráskódjából egy másolatot. Ezek a kiegészítők nem fogadhatók el az "
-"előzetes vizsgálaton, hanem a teljes vizsgálat folyamatát kell választani."
+"A kiegészítők tartalmazhatnak bináris, olvashatatlanná tett és minimalizált forráskódot, de a Mozilla számára engedélyezni kell, hogy megvizsgáljon a vizsgálatra küldött kiegészítő minden "
+"verziójának ember által olvasható forráskódjából egy másolatot. Ezek a kiegészítők nem fogadhatók el az előzetes vizsgálaton, hanem a teljes vizsgálat folyamatát kell választani."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid ""
 "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
 "This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
 msgstr ""
-"Ha egy kiegészítő bináris vagy olvashatatlanná tett forráskódot tartalmaz, a "
-"szerző a kiegészítő vizsgálta után egy üzenetet kap, mely jelzi, hogy a "
-"forráskód vizsgálatával kapcsolatosan kivel vegye fel a kapcsolatot a "
-"Mozillánál. Ezt a kódot megvizsgálja egy adminisztrátor, de nem lesz "
-"megosztva vagy közzétéve semmilyen módon. A kódot kizárólag a kiegészítő "
-"vizsgálatára használjuk."
+"Ha egy kiegészítő bináris vagy olvashatatlanná tett forráskódot tartalmaz, a szerző a kiegészítő vizsgálta után egy üzenetet kap, mely jelzi, hogy a forráskód vizsgálatával kapcsolatosan kivel "
+"vegye fel a kapcsolatot a Mozillánál. Ezt a kódot megvizsgálja egy adminisztrátor, de nem lesz megosztva vagy közzétéve semmilyen módon. A kódot kizárólag a kiegészítő vizsgálatára használjuk."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:301
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
 msgstr ""
-"Ha a kiegészítő olyan bináris vagy olvashatatlanná tett kódot tartalmaz, "
-"melynek nem Ön a tulajdonosa, vagy melynek nem tudja beszerezni a "
-"forráskódját, a folytatással kapcsolatos információért <a href=\"%"
-"(link_contact)s\">lépjen kapcsolatba velünk</a>."
+"Ha a kiegészítő olyan bináris vagy olvashatatlanná tett kódot tartalmaz, melynek nem Ön a tulajdonosa, vagy melynek nem tudja beszerezni a forráskódját, a folytatással kapcsolatos információért <a "
+"href=\"%(link_contact)s\">lépjen kapcsolatba velünk</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
@@ -5780,10 +5770,8 @@ msgid ""
 "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
 "and unrestricted:"
 msgstr ""
-"A Mozilla Kiegészítők oldalon megjelenő kiegészítőknek magas minőséget és "
-"továbbfejlesztett webélményt kell nyújtaniuk a felhasználók számára. A "
-"következő dolgokra figyelünk, amikor eldöntjük, hogy egy kiegészítő "
-"alkalmas-e nyilvános és korlátlan használatra:"
+"A Mozilla Kiegészítők oldalon megjelenő kiegészítőknek magas minőséget és továbbfejlesztett webélményt kell nyújtaniuk a felhasználók számára. A következő dolgokra figyelünk, amikor eldöntjük, hogy "
+"egy kiegészítő alkalmas-e nyilvános és korlátlan használatra:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid ""
@@ -5791,14 +5779,9 @@ msgid ""
 "and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
 "discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
-"<strong>Elérhető Ön?</strong> Számítunk rá, hogy az a szerző, aki közzéteszi "
-"kiegészítőjét alkalmazásaink számos felhasználója számára, reagál a "
-"hibajelentésekre, karbantartja a kapcsolattartói információit, és az "
-"aktuális Firefox kiadásokkal és szabályzatainkban történő változásokkal "
-"lépést tartva időben frissíti a kiegészítőt. Ez nem azt jelenti, hogy minden "
-"kérdésre válaszolnia kell, amit valaki közzétesz a vitalapon, vagy akár "
-"minden egyes hibát javítson, de számítunk rá, hogy olyan fokig válaszoljon a "
-"problémákra, hogy az arányos legyen a szóban forgó probléma súlyosságával."
+"<strong>Elérhető Ön?</strong> Számítunk rá, hogy az a szerző, aki közzéteszi kiegészítőjét alkalmazásaink számos felhasználója számára, reagál a hibajelentésekre, karbantartja a kapcsolattartói "
+"információit, és az aktuális Firefox kiadásokkal és szabályzatainkban történő változásokkal lépést tartva időben frissíti a kiegészítőt. Ez nem azt jelenti, hogy minden kérdésre válaszolnia kell, "
+"amit valaki közzétesz a vitalapon, vagy akár minden egyes hibát javítson, de számítunk rá, hogy olyan fokig válaszoljon a problémákra, hogy az arányos legyen a szóban forgó probléma súlyosságával."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:25
 msgid ""
@@ -5808,21 +5791,12 @@ msgid ""
 "cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
 "be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
-"<strong>A bővítmény világosan és pontosan le van írva?</strong> Rendkívül "
-"fontos számunkra, hogy a felhasználók azt kapják, amit elvárnak, amikor "
-"kipróbálnak egy új kiegészítőt. A kiegészítője neve legyen egyértelmű és "
-"tömör, valamint a jobb keresési helyezés és dekoratívabb megjelenés "
-"érdekében tartózkodjon a különleges karakterek és számok használatától. A "
-"leírásnak részletesen tartalmaznia kell, hogy mit csinál a kiegészítő, "
-"hogyan használhatja ki azt a felhasználó, és mire számítson, amikor telepíti "
-"azt. A részletes útmutatókhoz külső dokumentumokra mutató hivatkozások "
-"elfogadhatóak, de a leírásnak önmagában le kell fednie az alapokat, és a "
-"felhasználók számára egyértelműen ki kell derülnie, mit kapnak. Szintén "
-"fontos, hogy megfelelően karbantartsa a verziók megjegyzéseit, ahogyan "
-"javítja és változtatja a kiegészítőt. A felhasználóknak látniuk kell, hogy "
-"milyen újdonságok vannak egy kiegészítőben, amelyet korábban kipróbáltak, és "
-"tudatosítania kell bennük a változásokat, melyek hatással lehetnek a "
-"kiegészítő jelenlegi használatára, amikor frissítenek."
+"<strong>A bővítmény világosan és pontosan le van írva?</strong> Rendkívül fontos számunkra, hogy a felhasználók azt kapják, amit elvárnak, amikor kipróbálnak egy új kiegészítőt. A kiegészítője neve "
+"legyen egyértelmű és tömör, valamint a jobb keresési helyezés és dekoratívabb megjelenés érdekében tartózkodjon a különleges karakterek és számok használatától. A leírásnak részletesen tartalmaznia "
+"kell, hogy mit csinál a kiegészítő, hogyan használhatja ki azt a felhasználó, és mire számítson, amikor telepíti azt. A részletes útmutatókhoz külső dokumentumokra mutató hivatkozások "
+"elfogadhatóak, de a leírásnak önmagában le kell fednie az alapokat, és a felhasználók számára egyértelműen ki kell derülnie, mit kapnak. Szintén fontos, hogy megfelelően karbantartsa a verziók "
+"megjegyzéseit, ahogyan javítja és változtatja a kiegészítőt. A felhasználóknak látniuk kell, hogy milyen újdonságok vannak egy kiegészítőben, amelyet korábban kipróbáltak, és tudatosítania kell "
+"bennük a változásokat, melyek hatással lehetnek a kiegészítő jelenlegi használatára, amikor frissítenek."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
 msgid ""
@@ -5830,14 +5804,9 @@ msgid ""
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
-"<strong>Minden adatvédelmi és biztonsági aggályt érthetően "
-"eloszlatott?</strong> Ez a világos és pontos leírások egyik jellemzője, de "
-"olyannyira fontos, hogy úgy érezzük, külön említést érdemel. Sok nagyon "
-"hasznos és jól megírt kiegészítő dolgozza fel a felhasználói adatok "
-"valamilyen formáját, vagy jelenthet biztonsági veszélyt, ha nem megfelelően "
-"használják; szívesen látjuk ezeket is az oldalon, de világossá kell tenniük "
-"a felhasználók számára, hogy milyen kockázattal számoljanak, és mit "
-"tehetnek, hogy megvédjék magukat."
+"<strong>Minden adatvédelmi és biztonsági aggályt érthetően eloszlatott?</strong> Ez a világos és pontos leírások egyik jellemzője, de olyannyira fontos, hogy úgy érezzük, külön említést érdemel. "
+"Sok nagyon hasznos és jól megírt kiegészítő dolgozza fel a felhasználói adatok valamilyen formáját, vagy jelenthet biztonsági veszélyt, ha nem megfelelően használják; szívesen látjuk ezeket is az "
+"oldalon, de világossá kell tenniük a felhasználók számára, hogy milyen kockázattal számoljanak, és mit tehetnek, hogy megvédjék magukat."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:37
 msgid ""
@@ -6517,19 +6486,19 @@ msgstr "Bal alulra igazítva"
 msgid "Select a different footer image"
 msgstr "Válasszon másik alsó képet"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:7
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:10
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Az ellenőrzött verziókhoz hozzáadott fájlokat ellenőrizni kell, mielőtt azokat elérhetők lesznek."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:23
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:26
 msgid "Select the target platform for this file."
 msgstr "Válassza ki a fájl futtatására alkalmas platformot."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Which review type would you like to nominate for?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6675,9 +6644,7 @@ msgstr "Felsorolva:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
-msgstr ""
-"Mindenki számára látható itt: {0}, valamint szerepel a találatok között és a "
-"listázási oldalakon"
+msgstr "Mindenki számára látható itt: {0}, valamint szerepel a találatok között és a listázási oldalakon"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
@@ -6685,9 +6652,7 @@ msgstr "Rejtett:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr ""
-"Megjelenítve itt: {0}, de a szerzőkön kívül mindenki számára rejtett. A "
-"listázások ideiglenes elrejtésére vagy megszüntetésére használható."
+msgstr "Megjelenítve itt: {0}, de a szerzőkön kívül mindenki számára rejtett. A listázások ideiglenes elrejtésére vagy megszüntetésére használható."
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Unlisted:"
@@ -6695,9 +6660,7 @@ msgstr "Titkos:"
 
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
-"Nincs közzétéve itt: {0}. A fejlesztők saját maguk töltik fel a bővítmények "
-"új verzióit aláírásra és közzétételre."
+msgstr "Nincs közzétéve itt: {0}. A fejlesztők saját maguk töltik fel a bővítmények új verzióit aláírásra és közzétételre."
 
 #: apps/devhub/templates/devhub/versions/list.html:130
 msgid "Current versions"

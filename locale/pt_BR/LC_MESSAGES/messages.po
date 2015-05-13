@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-05-10 17:37+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -236,7 +236,7 @@ msgstr "Contribuir"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -780,9 +780,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
-"<strong>Atenção:</strong> Este complemento não foi revisado pela Mozilla e "
-"não pode ser instalado em versões lançadas do Firefox. Tenha cuidado ao "
-"instalar software de terceiros que pode danificar o seu computador."
+"<strong>Atenção:</strong> Este complemento não foi revisado pela Mozilla e não pode ser instalado em versões lançadas do Firefox. Tenha cuidado ao instalar software de terceiros que pode danificar "
+"o seu computador."
 
 # %1$s is an application name and version.  Example: Firefox 3.1
 #: apps/addons/templates/addons/popups.html:121
@@ -837,7 +836,7 @@ msgstr "Enviar denúncia"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -1066,10 +1065,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr ""
-"<strong>Atenção:</strong> As versões de desenvolvimento deste complemento "
-"não foram revisadas pela Mozilla e não podem ser instaladas em versões "
-"lançadas do Firefox."
+msgstr "<strong>Atenção:</strong> As versões de desenvolvimento deste complemento não foram revisadas pela Mozilla e não podem ser instaladas em versões lançadas do Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1236,7 +1232,7 @@ msgstr "Usuários"
 msgid "Weekly Downloads"
 msgstr "Downloads semanais"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Versão"
 
@@ -2608,7 +2604,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Alerta:</b> ao mudar o dono dessa coleção, você não poderá mais editá-la. Você somente poderá adicionar e remover complementos dela."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3212,7 +3208,7 @@ msgstr "Filtrar por Aplicação"
 msgid "Report Type"
 msgstr "Tipo de relatório"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplicativo"
 
@@ -3796,7 +3792,7 @@ msgstr "Intervalo de versões inválido."
 msgid "Need at least one compatible application."
 msgstr "Você deve selecionar pelo menos uma aplicação compatível."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "Ocorreu um erro ao enviar seu arquivo. Por favor, tente novamente."
 
@@ -3804,75 +3800,79 @@ msgstr "Ocorreu um erro ao enviar seu arquivo. Por favor, tente novamente."
 msgid "Override failed validation"
 msgstr "Substituir validação com falha"
 
-#: apps/devhub/forms.py:506
+#: apps/devhub/forms.py:483
+msgid "Submit my add-on for manual review."
+msgstr ""
+
+#: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
 msgstr "Sim, distribuir o meu complemento neste site."
 
-#: apps/devhub/forms.py:507
+#: apps/devhub/forms.py:510
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr "Desmarque esta opção se tenciona distribuir o seu complemento de outra forma e apenas precisa que este seja assinado pela Mozilla."
 
-#: apps/devhub/forms.py:513
+#: apps/devhub/forms.py:516
 msgid "This add-on will be side-loaded via application installers."
 msgstr "Este complemento será instalado através de um instalador para aplicativos."
 
-#: apps/devhub/forms.py:515
+#: apps/devhub/forms.py:518
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "O código dos complementos instalados serão revisados pela Mozilla antes de serem assinados e devem ter um nível de qualidade mais elevado."
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Análise completa"
 
-#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Análise preliminar"
 
-#: apps/devhub/forms.py:536
+#: apps/devhub/forms.py:539
 msgid "Please choose a review nomination type"
 msgstr "Por favor, escolha um tipo de nomeação para revisão"
 
-#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
+#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Um arquivo com uma versão terminando com a|alpha|b|beta e um número opcional é detectado como beta."
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:560
 msgid "Version %s already exists"
 msgstr "A versão %s já existe"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:572
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Selecione uma opção válida. Essa escolha não é uma das opções disponíveis."
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:601
 msgid "You cannot upload any more files for this version."
 msgstr "Você não pode enviar mais nenhum arquivo para essa versão."
 
-#: apps/devhub/forms.py:604
+#: apps/devhub/forms.py:607
 msgid "Version doesn't match"
 msgstr "A versão não corresponde"
 
-#: apps/devhub/forms.py:633
+#: apps/devhub/forms.py:636
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Você não pode excluir um arquivo depois do processo de análise começar. Você deve excluir a versão inteira."
 
-#: apps/devhub/forms.py:653
+#: apps/devhub/forms.py:656
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "A plataforma Todas não pode ser combinada com plataformas específicas."
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:661
 msgid "A platform can only be chosen once."
 msgstr "Uma plataforma só pode ser escolhida uma vez."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:674
 msgid "A review type must be selected."
 msgstr "Um tipo de análise deve ser selecionado."
 
-#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Selecione uma aplicação antes"
 
-#: apps/devhub/forms.py:805
+#: apps/devhub/forms.py:808
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Não pode haver mais que 3 complementos requeridos."
 
@@ -4675,10 +4675,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envie um ícone para o seu complemento ou escolha um dos nossos. O ícone é "
-"apresentado em praticamente todos os locais onde o seu complemento é "
-"apresentado. As imagens enviadas devem ser imagens nos seguintes formatos: "
-".png, .jpg. Só é relevante para complementos listados."
+"Envie um ícone para o seu complemento ou escolha um dos nossos. O ícone é apresentado em praticamente todos os locais onde o seu complemento é apresentado. As imagens enviadas devem ser imagens nos "
+"seguintes formatos: .png, .jpg. Só é relevante para complementos listados."
 
 # %s is the application name (Firefox, Thunderbird).
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
@@ -5207,13 +5205,17 @@ msgstr ""
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Gostaria que o seu complemento fosse distribuído neste site?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:30
 msgid "Which platforms is this file compatible with?"
 msgstr "Esse arquivo é compatível com quais plataformas?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:47
 msgid "Administrative overrides"
 msgstr "Substituições administrativas"
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
+msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6314,9 +6316,7 @@ msgstr "Ver o blog &#9658;"
 
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
-"Por favor escolha uma licença apropriada para os direitos que concede ao seu "
-"código fonte. Só é relevante para complementos listados."
+msgstr "Por favor escolha uma licença apropriada para os direitos que concede ao seu código fonte. Só é relevante para complementos listados."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6345,18 +6345,14 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
-"Os usuários terão de aceitar o seu acordo de licenciamento para o usuário "
-"final (EULA) antes de instalar o seu complemento. A presença de um EULA "
-"afeta significativamente o número de downloads que um complemento recebe. "
-"Por favor note que um EULA não é o mesmo que uma licença de código, tal como "
-"a GPL ou a MPL. Só é relevante para complementos listados."
+"Os usuários terão de aceitar o seu acordo de licenciamento para o usuário final (EULA) antes de instalar o seu complemento. A presença de um EULA afeta significativamente o número de downloads que "
+"um complemento recebe. Por favor note que um EULA não é o mesmo que uma licença de código, tal como a GPL ou a MPL. Só é relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Se o seu complemento transmite quaisquer dados a partir do computador do "
-"usuário, é necessária uma política de privacidade que explique que dados são "
-"enviados e como são utilizados. Só é relevante para complementos listados."
+"Se o seu complemento transmite quaisquer dados a partir do computador do usuário, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. Só é relevante "
+"para complementos listados."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6738,19 +6734,19 @@ msgstr "Alinhada ao canto inferior esquerdo"
 msgid "Select a different footer image"
 msgstr "Selecione uma imagem diferente de rodapé"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:7
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:10
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Arquivos adicionados a versões analisadas devem ser analisados antes de estarem disponíveis para download."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:23
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:26
 msgid "Select the target platform for this file."
 msgstr "Selecione a plataforma alvo para este arquivo."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Which review type would you like to nominate for?"
 msgstr "Para que tipo de revisão gostaria de nomear?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Only publish this version to my beta channel."
 msgstr "Publicar esta versão apenas no meu canal beta."
 
@@ -7020,13 +7016,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
-"Ao não listar o seu complemento, irá fazer com que o mesmo (e respetivas "
-"versões/arquivos) fiquem invisíveis neste site. Não será apresentado em "
-"pesquisas, não terá uma página pública e não será atualizado de forma "
-"automática para os usuários atuais. É recomendável que os complementos não "
-"listados forneçam uma <a href=\"%(update_url)s\" target=\"_blank\">URL de "
-"atualização</a> personalizada no seu arquivo install.rdf para atualizações "
-"automáticas."
+"Ao não listar o seu complemento, irá fazer com que o mesmo (e respetivas versões/arquivos) fiquem invisíveis neste site. Não será apresentado em pesquisas, não terá uma página pública e não será "
+"atualizado de forma automática para os usuários atuais. É recomendável que os complementos não listados forneçam uma <a href=\"%(update_url)s\" target=\"_blank\">URL de atualização</a> "
+"personalizada no seu arquivo install.rdf para atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:297
 msgid "Are you sure you wish to unlist your add-on?"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-05-07 05:54+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -234,7 +234,7 @@ msgstr "Bijdragen"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -764,10 +764,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
-"<strong>Waarschuwing:</strong> Deze add-on is niet door Mozilla beoordeeld "
-"en kan niet op vrijgegeven versies van Firefox worden geïnstalleerd. Wees "
-"voorzichtig bij het installeren van software van derden die mogelijk schade "
-"aan uw computer toebrengt."
+"<strong>Waarschuwing:</strong> Deze add-on is niet door Mozilla beoordeeld en kan niet op vrijgegeven versies van Firefox worden geïnstalleerd. Wees voorzichtig bij het installeren van software van "
+"derden die mogelijk schade aan uw computer toebrengt."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -819,7 +817,7 @@ msgstr "Rapport verzenden"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -1043,10 +1041,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr ""
-"<strong>Waarschuwing:</strong> Ontwikkelversies van deze add-on zijn niet "
-"door Mozilla beoordeeld en kunnen niet op vrijgegeven versies van Firefox "
-"worden geïnstalleerd."
+msgstr "<strong>Waarschuwing:</strong> Ontwikkelversies van deze add-on zijn niet door Mozilla beoordeeld en kunnen niet op vrijgegeven versies van Firefox worden geïnstalleerd."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1210,7 +1205,7 @@ msgstr "Gebruikers"
 msgid "Weekly Downloads"
 msgstr "Wekelijkse downloads"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Versie"
 
@@ -2554,7 +2549,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Waarschuwing:</b> door het wijzigen van de eigenaar van deze collectie kunt u deze niet meer bewerken. U kunt alleen nog add-ons eraan toevoegen en eruit verwijderen."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3157,7 +3152,7 @@ msgstr "Filteren op toepassing"
 msgid "Report Type"
 msgstr "Rapporttype"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Toepassing"
 
@@ -3731,7 +3726,7 @@ msgstr "Ongeldig versiebereik."
 msgid "Need at least one compatible application."
 msgstr "Er dient ten minste één compatibele toepassing te zijn."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het nog eens."
 
@@ -3739,75 +3734,79 @@ msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het nog eens."
 msgid "Override failed validation"
 msgstr "Mislukte validatie negeren"
 
-#: apps/devhub/forms.py:506
+#: apps/devhub/forms.py:483
+msgid "Submit my add-on for manual review."
+msgstr ""
+
+#: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
 msgstr "Ja, mijn add-on op deze website verspreiden."
 
-#: apps/devhub/forms.py:507
+#: apps/devhub/forms.py:510
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr "Vink deze optie uit als u uw add-on zelf wilt verspreiden en deze alleen maar door Mozilla wilt laten ondertekenen."
 
-#: apps/devhub/forms.py:513
+#: apps/devhub/forms.py:516
 msgid "This add-on will be side-loaded via application installers."
 msgstr "Deze add-on wordt meegeïnstalleerd via installatieprogramma’s van toepassingen."
 
-#: apps/devhub/forms.py:515
+#: apps/devhub/forms.py:518
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "Meegeïnstalleerde add-ons worden door Mozilla op code beoordeeld voordat ze worden ondertekend en moeten aan strengere kwaliteitseisen voldoen."
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Volledige beoordeling"
 
-#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Voorlopige beoordeling"
 
-#: apps/devhub/forms.py:536
+#: apps/devhub/forms.py:539
 msgid "Please choose a review nomination type"
 msgstr "Kies een beoordelingsnominatietype"
 
-#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
+#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Een bestand met een versie eindigend op a|alpha|b|beta en een optioneel nummer wordt als bèta gedetecteerd."
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:560
 msgid "Version %s already exists"
 msgstr "Versie %s bestaat al"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:572
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Selecteer een geldige keuze. Die keuze is niet beschikbaar."
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:601
 msgid "You cannot upload any more files for this version."
 msgstr "U kunt geen bestanden meer uploaden voor deze versie."
 
-#: apps/devhub/forms.py:604
+#: apps/devhub/forms.py:607
 msgid "Version doesn't match"
 msgstr "Versie komt niet overeen"
 
-#: apps/devhub/forms.py:633
+#: apps/devhub/forms.py:636
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "U kunt een bestand niet verwijderen als het beoordelingsproces is gestart. U dient de gehele versie te verwijderen."
 
-#: apps/devhub/forms.py:653
+#: apps/devhub/forms.py:656
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Het platform Alle kan niet met specifieke platformen worden gecombineerd."
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:661
 msgid "A platform can only be chosen once."
 msgstr "Een platform kan slechts één keer worden gekozen."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:674
 msgid "A review type must be selected."
 msgstr "Er dient een beoordelingstype te worden geselecteerd."
 
-#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
-#: apps/devhub/forms.py:805
+#: apps/devhub/forms.py:808
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Er mogen niet meer dan 3 verplichte add-ons zijn."
 
@@ -5114,13 +5113,17 @@ msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden en selecteer 
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Wilt u uw add-on op deze website laten verspreiden?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:30
 msgid "Which platforms is this file compatible with?"
 msgstr "Met welke platformen is dit bestand compatibel?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:47
 msgid "Administrative overrides"
 msgstr "Negeerhandelingen van beheer"
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
+msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6631,19 +6634,19 @@ msgstr "Linksonder uitgelijnd"
 msgid "Select a different footer image"
 msgstr "Andere footerafbeelding selecteren"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:7
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:10
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Bestanden die worden toegevoegd aan beoordeelde versies dienen te worden beoordeeld voordat ze kunnen worden gedownload."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:23
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:26
 msgid "Select the target platform for this file."
 msgstr "Selecteer het doelplatform voor dit bestand."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Which review type would you like to nominate for?"
 msgstr "Voor welk beoordelingstype wilt u nomineren?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Only publish this version to my beta channel."
 msgstr "Alleen deze versie op mijn bètakanaal publiceren."
 
@@ -8660,11 +8663,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, algemeen bekend als ‘AMO’, is de officiële website van "
-"Mozilla voor add-ons voor Mozilla-software, zoals Firefox, Thunderbird en "
-"SeaMonkey. Met add-ons kunt u nieuwe functies toevoegen en de werking van uw "
-"browser of toepassing wijzigen. Kijk eens rond en verken de duizenden "
-"manieren om de wijze waarop u online dingen doet aan te passen."
+"addons.mozilla.org, algemeen bekend als ‘AMO’, is de officiële website van Mozilla voor add-ons voor Mozilla-software, zoals Firefox, Thunderbird en SeaMonkey. Met add-ons kunt u nieuwe functies "
+"toevoegen en de werking van uw browser of toepassing wijzigen. Kijk eens rond en verken de duizenden manieren om de wijze waarop u online dingen doet aan te passen."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10034,11 +10034,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Rapporteer of label twijfelachtige beoordelingen door op ‘Deze beoordeling "
-"rapporteren’ te klikken, waarna deze ter evaluatie naar de website zal "
-"worden gestuurd. Ons evaluatieteam gebruikt de Beoordelingsrichtlijnen om te "
-"evalueren of de beoordeling al dan niet moet worden verwijderd of op de "
-"website moet worden teruggeplaatst."
+"Rapporteer of label twijfelachtige beoordelingen door op ‘Deze beoordeling rapporteren’ te klikken, waarna deze ter evaluatie naar de website zal worden gestuurd. Ons evaluatieteam gebruikt de "
+"Beoordelingsrichtlijnen om te evalueren of de beoordeling al dan niet moet worden verwijderd of op de website moet worden teruggeplaatst."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"

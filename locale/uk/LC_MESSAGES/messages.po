@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 08:30-0700\n"
+"POT-Creation-Date: 2015-05-13 08:37-0700\n"
 "PO-Revision-Date: 2015-05-06 19:25+0000\n"
 "Last-Translator: Tim <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
@@ -18,8 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1430940341.0\n"
 
@@ -240,7 +239,7 @@ msgstr "Зробити внесок"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:57 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -828,7 +827,7 @@ msgstr "Надіслати звіт"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:58 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -1219,7 +1218,7 @@ msgstr "Користувачі"
 msgid "Weekly Downloads"
 msgstr "Щотижневі завантаження"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:752 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Версія"
 
@@ -2563,7 +2562,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Увага:</b> Змінивши власника цієї збірки, ви більше не зможете редагувати її. Ви зможете тільки додавати або вилучати додатки з неї."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:75 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3164,7 +3163,7 @@ msgstr "Фільтр за додатком"
 msgid "Report Type"
 msgstr "Тип звіту"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:749 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Програма"
 
@@ -3733,7 +3732,7 @@ msgstr "Невірний діапазон версій."
 msgid "Need at least one compatible application."
 msgstr "Потрібен, принаймні, один сумісний додаток."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:491
+#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
 msgid "There was an error with your upload. Please try again."
 msgstr "У процесі Вашого завантаження сталася помилка. Будь ласка, спробуйте знову."
 
@@ -3741,79 +3740,79 @@ msgstr "У процесі Вашого завантаження сталася �
 msgid "Override failed validation"
 msgstr "Ігнорувати невдалу валідацію"
 
-#: apps/devhub/forms.py:506
+#: apps/devhub/forms.py:483
+msgid "Submit my add-on for manual review."
+msgstr ""
+
+#: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
 msgstr "Так, поширювати мій додаток з цього сайту."
 
-#: apps/devhub/forms.py:507
+#: apps/devhub/forms.py:510
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
-"Зніміть цей прапорець, якщо ви збираєтеся самі поширювати свій додаток, і "
-"вам тільки потрібно, щоб він був підписаний Mozilla."
+msgstr "Зніміть цей прапорець, якщо ви збираєтеся самі поширювати свій додаток, і вам тільки потрібно, щоб він був підписаний Mozilla."
 
-#: apps/devhub/forms.py:513
+#: apps/devhub/forms.py:516
 msgid "This add-on will be side-loaded via application installers."
 msgstr "Цей додаток буде побічно завантажено через інсталятор програми."
 
-#: apps/devhub/forms.py:515
+#: apps/devhub/forms.py:518
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-"Код додатків, які є побічними завантаженнями, буде перевірено Mozilla перед "
-"їх підписом, і з підвищеними критеріями якості."
+msgstr "Код додатків, які є побічними завантаженнями, буде перевірено Mozilla перед їх підписом, і з підвищеними критеріями якості."
 
-#: apps/devhub/forms.py:531 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Повна перевірка"
 
-#: apps/devhub/forms.py:532 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Попередня перевірка"
 
-#: apps/devhub/forms.py:536
+#: apps/devhub/forms.py:539
 msgid "Please choose a review nomination type"
 msgstr "Будь ласка, оберіть тип номінації на перевірку"
 
-#: apps/devhub/forms.py:540 apps/devhub/forms.py:575
+#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Файл з версією, що закінчується на a|alpha|b|beta і необов'язкове число, визначається як бета."
 
-#: apps/devhub/forms.py:557
+#: apps/devhub/forms.py:560
 msgid "Version %s already exists"
 msgstr "Версія %s вже існує"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:572
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Зробіть правильний вибір. Цей вибір не є одним з доступних варіантів."
 
-#: apps/devhub/forms.py:598
+#: apps/devhub/forms.py:601
 msgid "You cannot upload any more files for this version."
 msgstr "Ви більше не можете вивантажувати файли для цієї версії."
 
-#: apps/devhub/forms.py:604
+#: apps/devhub/forms.py:607
 msgid "Version doesn't match"
 msgstr "Версія не підходить"
 
-#: apps/devhub/forms.py:633
+#: apps/devhub/forms.py:636
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Ви не можете видалити файл, якщо почався процес перевірки. Ви повинні видалити повністю всю версію."
 
-#: apps/devhub/forms.py:653
+#: apps/devhub/forms.py:656
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Платформа Все не може бути об'єднана з конкретними платформами."
 
-#: apps/devhub/forms.py:658
+#: apps/devhub/forms.py:661
 msgid "A platform can only be chosen once."
 msgstr "Платформа може бути вибрана тільки один раз."
 
-#: apps/devhub/forms.py:671
+#: apps/devhub/forms.py:674
 msgid "A review type must be selected."
 msgstr "Повинен бути вибраний тип перевірки."
 
-#: apps/devhub/forms.py:753 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Спочатку оберіть програму"
 
-#: apps/devhub/forms.py:805
+#: apps/devhub/forms.py:808
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Кількість необхідних додатків не може перевищувати 3."
 
@@ -4368,16 +4367,14 @@ msgstr "Звіт"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Короткий опис основних функцій вашого додатку, яке відображається в списках "
-"пошуку та перегляду, а також у верхній частині сторінки вашого додатку. Це "
-"стосується тільки додатків, що знаходяться в списку."
+"Короткий опис основних функцій вашого додатку, яке відображається в списках пошуку та перегляду, а також у верхній частині сторінки вашого додатку. Це стосується тільки додатків, що знаходяться в "
+"списку."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
-"Категорії є основним способом перегляду додатків користувачами. Виберіть "
-"будь-яку, під яку підпадає ваш додаток і яка дасть максимальний ефект. Це "
-"стосується тільки додатків, що знаходяться в списку."
+"Категорії є основним способом перегляду додатків користувачами. Виберіть будь-яку, під яку підпадає ваш додаток і яка дасть максимальний ефект. Це стосується тільки додатків, що знаходяться в "
+"списку."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4393,9 +4390,8 @@ msgstr "Мітки"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
-"Теги допомагають користувачам знайти ваш додаток і вони повинні бути "
-"коротким описом, таким як вкладки, панель чи twitter. Ви можете мати "
-"максимум {0} тегів. Це стосується лише додатків, які знаходяться в списку."
+"Теги допомагають користувачам знайти ваш додаток і вони повинні бути коротким описом, таким як вкладки, панель чи twitter. Ви можете мати максимум {0} тегів. Це стосується лише додатків, які "
+"знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4425,10 +4421,7 @@ msgstr "Інформація про додаток для {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Більший опис особливостей, функціональності та іншої відповідної інформації. "
-"Це поле відображається тільки на сторінці вашого додатка. Це стосується "
-"лише додатків, які знаходяться в списку."
+msgstr "Більший опис особливостей, функціональності та іншої відповідної інформації. Це поле відображається тільки на сторінці вашого додатка. Це стосується лише додатків, які знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4436,10 +4429,7 @@ msgstr "Типова Локаль"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Інформація про ваш додаток відображається цією мовою, якщо ви не заміните її "
-"перекладом іншою мовою. Це стосується тільки додатків, що знаходяться в "
-"списку."
+msgstr "Інформація про ваш додаток відображається цією мовою, якщо ви не заміните її перекладом іншою мовою. Це стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4451,9 +4441,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Якщо у вашого додатку є інша домашня сторінка, введіть тут її адресу. Якщо "
-"ваш сайт перекладений іншими мови, для цього поля можна додати кілька "
-"перекладів. Це стосується тільки додатків, що знаходяться в списку."
+"Якщо у вашого додатку є інша домашня сторінка, введіть тут її адресу. Якщо ваш сайт перекладений іншими мови, для цього поля можна додати кілька перекладів. Це стосується тільки додатків, що "
+"знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4473,19 +4462,16 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Якщо ви хочете показати адресу електронної пошти для запитів підтримки, "
-"введіть її тут. Якщо у вас є різні адреси для для кожної мови, для цього "
-"поля можна додати кілька перекладів. Це стосується тільки додатків, що "
-"знаходяться в списку."
+"Якщо ви хочете показати адресу електронної пошти для запитів підтримки, введіть її тут. Якщо у вас є різні адреси для для кожної мови, для цього поля можна додати кілька перекладів. Це стосується "
+"тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Якщо у вашого додатка є сайт або форум підтримки, введіть тут його адресу. "
-"Якщо ваш сайт перекладений іншими мовами, для цього поля можна додати кілька "
-"перекладів. Це стосується тільки додатків, що знаходяться в списку."
+"Якщо у вашого додатка є сайт або форум підтримки, введіть тут його адресу. Якщо ваш сайт перекладений іншими мовами, для цього поля можна додати кілька перекладів. Це стосується тільки додатків, що "
+"знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4505,11 +4491,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Будь-яка інформація, яку можливо захочуть дізнатися кінцеві користувачі, але "
-"якій не місце в зведенні або описі додатка. Зазвичай використовується для "
-"відомостей про серйозні помилки, про те як повідомляти про помилки, "
-"передбачувану дату випуску нової версії і т.д. Це стосується тільки "
-"додатків, що знаходяться в списку."
+"Будь-яка інформація, яку можливо захочуть дізнатися кінцеві користувачі, але якій не місце в зведенні або описі додатка. Зазвичай використовується для відомостей про серйозні помилки, про те як "
+"повідомляти про помилки, передбачувану дату випуску нової версії і т.д. Це стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4521,9 +4504,7 @@ msgstr "Прапорці додатку"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Ці прапори використовуються для класифікації додатків. Це стосується тільки "
-"додатків, що знаходяться в списку."
+msgstr "Ці прапори використовуються для класифікації додатків. Це стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4539,9 +4520,7 @@ msgstr "Переглянути програмний код?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Чи може джерело вашого додатка бути відображено в нашому засобі "
-"онлайн-перегляду. Це стосується тільки додатків, що знаходяться в списку."
+msgstr "Чи може джерело вашого додатка бути відображено в нашому засобі онлайн-перегляду. Це стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4557,10 +4536,7 @@ msgstr "Публічна статистика?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Чи може статистика завантажень або використання вашого додатка бути показана "
-"в нашому засобі онлайн-перегляду. Це стосується тільки додатків, що "
-"знаходяться в списку."
+msgstr "Чи може статистика завантажень або використання вашого додатка бути показана в нашому засобі онлайн-перегляду. Це стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4576,10 +4552,7 @@ msgstr "Оновити SDK?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-"Якщо вибрано, ми постараємося автоматично оновити ваш додаток, коли буде "
-"випущена нова версія SDK. Це стосується тільки додатків, що знаходяться в "
-"списку."
+msgstr "Якщо вибрано, ми постараємося автоматично оновити ваш додаток, коли буде випущена нова версія SDK. Це стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4634,10 +4607,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Завантажте значок для вашого додатка або виберіть один з наших. Значок "
-"відображається майже скрізь, де є ваш додаток. Завантажені зображення "
-"повинні мати один з наступних типів: .png, .jpg. Це стосується тільки "
-"додатків, що знаходяться в списку."
+"Завантажте значок для вашого додатка або виберіть один з наших. Значок відображається майже скрізь, де є ваш додаток. Завантажені зображення повинні мати один з наступних типів: .png, .jpg. Це "
+"стосується тільки додатків, що знаходяться в списку."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -4951,27 +4922,19 @@ msgstr "Станьте рецензентом AMO та прискорте пер
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
-"Ваш додаток було підписано і він готовий до використання. Ви можете "
-"завантажити його тут:"
+msgstr "Ваш додаток було підписано і він готовий до використання. Ви можете завантажити його тут:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr ""
-"Ваш додаток був відправлений у чергу на проведення Попередньої Перевірки "
-"Невідображених."
+msgstr "Ваш додаток був відправлений у чергу на проведення Попередньої Перевірки Невідображених."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
-"Ваш додаток був відправлений у чергу на проведення Повної Перевірки "
-"Невідображених."
+msgstr "Ваш додаток був відправлений у чергу на проведення Повної Перевірки Невідображених."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr ""
-"Ви отримаєте лист електронною поштою, як тільки він буде перевірений "
-"редактором і підписаний."
+msgstr "Ви отримаєте лист електронною поштою, як тільки він буде перевірений редактором і підписаний."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
@@ -4979,9 +4942,7 @@ msgstr "Ваш додаток не буде загальнодоступним �
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
-msgstr ""
-"Ви можете вивантажувати нові версії вашого додатка на <a href=\"{0}\">сторінці "
-"розробника додатка</a>."
+msgstr "Ви можете вивантажувати нові версії вашого додатка на <a href=\"{0}\">сторінці розробника додатка</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5165,13 +5126,17 @@ msgstr ""
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:27
+#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:30
 msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:47
 msgid "Administrative overrides"
 msgstr "Адміністративні дії"
+
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
+msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
+msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6668,19 +6633,19 @@ msgstr "Вирівняна по лівому нижньому краю"
 msgid "Select a different footer image"
 msgstr "Виберіть інше нижнє зображення"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:7
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:10
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Файли, додані в перевірені версії, повинні бути перевірені перед тим як вони будуть доступні для завантаження."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:23
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:26
 msgid "Select the target platform for this file."
 msgstr "Оберіть платформу для цього файлу."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:34
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Which review type would you like to nominate for?"
 msgstr "На який тип перевірки ви хотіли б її номінувати?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Only publish this version to my beta channel."
 msgstr "Опублікувати цю версію тільки на моєму бета-каналі."
 
