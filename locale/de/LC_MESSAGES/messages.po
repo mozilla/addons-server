@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-06 16:17+0000\n"
+"PO-Revision-Date: 2015-05-13 16:07+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430929032.0\n"
+"X-POOTLE-MTIME: 1431533237.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3738,7 +3738,7 @@ msgstr "Validierung des Überschreibens fehlgeschlagen"
 
 #: apps/devhub/forms.py:483
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Mein Add-on zur manuellen Überprüfung einreichen."
 
 #: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
@@ -5130,6 +5130,9 @@ msgstr "Überschreibungen durch Administratoren"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
 msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
 msgstr ""
+"Ihre Einreichung hat die automatische Überprüfung nicht bestanden. "
+"Aktivieren Sie das Kontrollkästchen, um Ihr Add-on zur manuellen Überprüfung "
+"einzureichen."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
