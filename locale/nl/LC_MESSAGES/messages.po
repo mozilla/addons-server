@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-07 05:54+0000\n"
+"PO-Revision-Date: 2015-05-14 19:27+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430978095.0\n"
+"X-POOTLE-MTIME: 1431631651.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -764,8 +764,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
-"<strong>Waarschuwing:</strong> Deze add-on is niet door Mozilla beoordeeld en kan niet op vrijgegeven versies van Firefox worden geïnstalleerd. Wees voorzichtig bij het installeren van software van "
-"derden die mogelijk schade aan uw computer toebrengt."
+"<strong>Waarschuwing:</strong> Deze add-on is niet door Mozilla beoordeeld "
+"en kan niet in vrijgegeven versies van Firefox worden geïnstalleerd. Wees "
+"voorzichtig bij het installeren van software van derden die mogelijk schade "
+"aan uw computer kan toebrengen."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -3736,7 +3738,7 @@ msgstr "Mislukte validatie negeren"
 
 #: apps/devhub/forms.py:483
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Mijn add-on voor beoordeling indienen."
 
 #: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
@@ -5124,6 +5126,8 @@ msgstr "Negeerhandelingen van beheer"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
 msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
 msgstr ""
+"Uw add-on heeft de automatische validatie niet doorstaan. Vink het "
+"aanvinkveld aan om voor handmatige beoordeling in te dienen."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
