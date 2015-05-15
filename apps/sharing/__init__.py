@@ -28,17 +28,17 @@ class TWITTER(ServiceBase):
     def count_term(count):
         return ngettext('{0} tweet', '{0} tweets', count).format(count)
 
-class Googleplus(ServiceBase):
+class GOOGLEPLUS(ServiceBase):
     shortname = 'g+'
     label = _(u'Share on g+')
     url = u'https://plus.google.com/share?url={url}'
 
-class Reddit(ServiceBase):
+class REDDIT(ServiceBase):
     shortname = 'Reddit'
     label = _(u'Post to Reddit')
     url = u'http://www.reddit.com/submit?url={url}&title = {title}'
     
-class Tumblr(ServiceBase):
+class TUMBLR(ServiceBase):
     shortname = 'Tumblr'
     label = _(u'Post to Tumblr')
     url =u'http://www.tumblr.com/share/link?url={url}&name={title}'
@@ -92,7 +92,7 @@ class LOCALSERVICE3(ServiceBase):
                         '{0} posts on localservice3', count).format(count)
 
 
-SERVICES_LIST = [FACEBOOK, TWITTER, G+, REDDIT, TUMBLR]
+SERVICES_LIST = [FACEBOOK, TWITTER, GOOGLEPLUS, REDDIT, TUMBLR]
 LOCAL_SERVICES_LIST = [LOCALSERVICE1, LOCALSERVICE2, LOCALSERVICE3]
 
 
