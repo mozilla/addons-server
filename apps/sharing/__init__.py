@@ -13,12 +13,14 @@ class ServiceBase(object):
         """Render this service's share count with the right term."""
         return ngettext('{0} post', '{0} posts', count).format(count)
 
+
 class FACEBOOK(ServiceBase):
     """see: http://www.facebook.com/share_options.php"""
     shortname = 'facebook'
     label = _(u'Post to Facebook')
     url = u'http://www.facebook.com/share.php?u={url}&t={title}'
-    
+
+
 class TWITTER(ServiceBase):
     shortname = 'twitter'
     label = _(u'Tweet on Twitter')
@@ -28,22 +30,25 @@ class TWITTER(ServiceBase):
     def count_term(count):
         return ngettext('{0} tweet', '{0} tweets', count).format(count)
 
+
 class GOOGLEPLUS(ServiceBase):
     shortname = 'gplus'
     label = _(u'Share on g+')
     url = u'https://plus.google.com/share?url={url}'
 
+
 class REDDIT(ServiceBase):
     shortname = 'Reddit'
     label = _(u'Post to Reddit')
     url = u'http://www.reddit.com/submit?url={url}&title = {title}'
-    
+
+
 class TUMBLR(ServiceBase):
     shortname = 'Tumblr'
     label = _(u'Post to Tumblr')
-    url =u'http://www.tumblr.com/share/link?url={url}&name={title}'
+    url = u'http://www.tumblr.com/share/link?url={url}&name = {title}'
     
-
+    
 # These classes are place holders for localizers to add more locale-specific
 # sharing services that are more appropriate for thier audience.
 # For more information: https://wiki.mozilla.org/AMO:Localizers
