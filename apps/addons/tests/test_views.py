@@ -1341,7 +1341,6 @@ class TestAddonSharing(amo.tests.TestCase):
         eq_(r.status_code, 302)
         assert iri_to_uri(addon.name) in r['Location']
         assert iri_to_uri(url) in r['Location']
-        assert iri_to_uri(summary) in r['Location']
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
