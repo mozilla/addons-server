@@ -1337,7 +1337,6 @@ class TestAddonSharing(amo.tests.TestCase):
         r = self.client.get(reverse('addons.share', args=['a3615']),
                             {'service': 'facebook'})
         url = absolutify(unicode(addon.get_url_path()))
-        summary = truncate(addon.summary, length=250)
         eq_(r.status_code, 302)
         assert iri_to_uri(addon.name) in r['Location']
         assert iri_to_uri(url) in r['Location']
