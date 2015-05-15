@@ -14,7 +14,7 @@ import sharing.views
 from amo.tests import BaseTestCase
 from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
-from sharing import FACEBOOK,TWITTER
+from sharing import FACEBOOK
 
 from users.models import UserProfile
 
@@ -51,7 +51,7 @@ class SharingModelsTestCase(BaseTestCase):
     def test_share_count(self):
         addon = Addon.objects.get(id=3615)
 
-        eq_(addon.share_counts[DIGG.shortname], 29)
+        
 
         # total count with no shares
         eq_(addon.share_counts[FACEBOOK.shortname], 0,
@@ -97,7 +97,7 @@ def test_share_form():
 
 def test_get_services_in_en_locale():
     # The order is the same as the order of sharing.SERVICES_LIST
-    l = ['digg', 'facebook', 'delicious', 'myspace', 'friendfeed', 'twitter']
+    l = ['facebook', 'twitter', 'gplus', 'Reddit', 'Tumblr']
     assert l == [s.shortname for s in sharing.get_services()]
 
 
@@ -107,12 +107,11 @@ def test_get_services_in_ja_locale():
     testo.shortname = 'translated-localservice1'
 
     expected = [
-        'digg',
         'facebook',
-        'delicious',
-        'myspace',
-        'friendfeed',
         'twitter',
+        'gplus',
+        'Reddit',
+        'Tumblr',
         'translated-localservice1']
 
     with patch.object(sharing, 'LOCALSERVICE1', testo):
