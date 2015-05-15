@@ -51,7 +51,6 @@ class SharingModelsTestCase(BaseTestCase):
     def test_share_count(self):
         addon = Addon.objects.get(id=3615)
 
-        
 
         # total count with no shares
         eq_(addon.share_counts[FACEBOOK.shortname], 0,
