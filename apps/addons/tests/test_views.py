@@ -26,7 +26,6 @@ from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
 from bandwagon.models import Collection
 from paypal.tests.test import other_error
 from stats.models import Contribution
-from translations.helpers import truncate
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
