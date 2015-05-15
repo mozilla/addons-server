@@ -47,8 +47,8 @@ class TUMBLR(ServiceBase):
     shortname = 'Tumblr'
     label = _(u'Post to Tumblr')
     url = u'http://www.tumblr.com/share/link?url={url}&name = {title}'
-    
-    
+
+
 # These classes are place holders for localizers to add more locale-specific
 # sharing services that are more appropriate for thier audience.
 # For more information: https://wiki.mozilla.org/AMO:Localizers
