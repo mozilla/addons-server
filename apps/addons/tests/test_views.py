@@ -1335,7 +1335,7 @@ class TestAddonSharing(amo.tests.TestCase):
     def test_redirect_sharing(self):
         addon = Addon.objects.get(id=3615)
         r = self.client.get(reverse('addons.share', args=['a3615']),
-                            {'service': 'delicious'})
+                            {'service': 'facebook'})
         url = absolutify(unicode(addon.get_url_path()))
         summary = truncate(addon.summary, length=250)
         eq_(r.status_code, 302)
