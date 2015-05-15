@@ -28,7 +28,7 @@ class TWITTER(ServiceBase):
     def count_term(count):
         return ngettext('{0} tweet', '{0} tweets', count).format(count)
 
- class Googleplus(ServiceBase):
+class Googleplus(ServiceBase):
     shortname = 'g+'
     label = _(u'Share on g+')
     url = u'https://plus.google.com/share?url={url}'
