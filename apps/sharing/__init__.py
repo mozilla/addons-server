@@ -29,7 +29,7 @@ class TWITTER(ServiceBase):
         return ngettext('{0} tweet', '{0} tweets', count).format(count)
 
 class GOOGLEPLUS(ServiceBase):
-    shortname = 'g+'
+    shortname = 'gplus'
     label = _(u'Share on g+')
     url = u'https://plus.google.com/share?url={url}'
 
