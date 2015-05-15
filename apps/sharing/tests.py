@@ -14,7 +14,7 @@ import sharing.views
 from amo.tests import BaseTestCase
 from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
-from sharing import DIGG, FACEBOOK
+from sharing import FACEBOOK,TWITTER
 
 from users.models import UserProfile
 
