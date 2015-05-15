@@ -3,8 +3,8 @@
         "pk": 177155738,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 13,
-            "service": "delicious",
+            "count": 0,
+            "service": "facebook",
             "addon": 3615
         }
     },
@@ -12,8 +12,8 @@
         "pk": 177155739,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 29,
-            "service": "digg",
+            "count": 0,
+            "service": "twitter",
             "addon": 3615
         }
     },
@@ -21,8 +21,8 @@
         "pk": 177155741,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 4,
-            "service": "friendfeed",
+            "count": 0,
+            "service": "gplus",
             "addon": 3615
         }
     },
@@ -30,8 +30,8 @@
         "pk": 177155742,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 14,
-            "service": "myspace",
+            "count": 0,
+            "service": "Reddit",
             "addon": 3615
         }
     },
@@ -39,8 +39,8 @@
         "pk": 177155743,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 4,
-            "service": "twitter",
+            "count": 0,
+            "service": "Tumblr",
             "addon": 3615
         }
     }
