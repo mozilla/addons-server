@@ -20,9 +20,10 @@ class FACEBOOK(ServiceBase):
     label = _(u'Post to Facebook')
     url = u'http://www.facebook.com/share.php?u={url}&t={title}'
 
-    @staticmethod 
-    def count_term(count): 
-        return ngettext('{0} Like', '{0} Likes', count).format(count) 
+    @staticmethod
+    def count_term(count):
+        return ngettext('{0} Like', '{0} Likes', count).format(count)
+
 
 class TWITTER(ServiceBase):
     shortname = 'twitter'
