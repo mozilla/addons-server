@@ -16,12 +16,33 @@ from signing_clients.apps import get_signature_serial_number, JarExtractor
 
 import amo
 from files.utils import extract_xpi, parse_xpi
+from versions.compare import version_int
 
 log = commonware.log.getLogger('z.crypto')
 
 
 class SigningError(Exception):
     pass
+
+
+def supports_firefox(file_obj):
+    """Return True if the file support a high enough version of Firefox.
+
+    We only sign files that are at least compatible with Firefox
+    MIN_NOT_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
+    to compatible.
+    """
+    apps = file_obj.version.apps.all()
+    if not file_obj.binary_components and not file_obj.strict_compatibility:
+        # Version is "default to compatible".
+        return apps.filter(
+            max__application=amo.FIREFOX.id,
+            max__version_int__gte=version_int(settings.MIN_D2C_VERSION))
+    else:
+        # Version isn't "default to compatible".
+        return apps.filter(
+            max__application=amo.FIREFOX.id,
+            max__version_int__gte=version_int(settings.MIN_NOT_D2C_VERSION))
 
 
 def get_endpoint(file_obj):
@@ -98,6 +119,13 @@ def sign_file(file_obj):
     if file_obj.status not in amo.REVIEWED_STATUSES:
         log.info(u'Not signing file {0}: it isn\'t reviewed'.format(
             file_obj.pk))
+        return
+
+    # We only sign files that are compatible with Firefox.
+    if not supports_firefox(file_obj):
+        log.info(
+            u'Not signing version {0}: not for a Firefox version we support'
+            .format(file_obj.version.pk))
         return
 
     guid = file_obj.version.addon.guid
