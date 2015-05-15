@@ -262,11 +262,14 @@
 
 
             $upload_field.bind("upload_success_results", function(e, file, results) {
-                    // If the addon is detected as beta, automatically check the "beta" input.
-                    if (results.beta) {
-                      $('#id_beta').prop('checked', true);
-                      $('.beta-status').show();
-                    }
+                // If the addon is detected as beta, automatically check
+                // the "beta" input, but only if the addon is listed.
+                var $new_form = $('.new-addon-file');
+                var isListed = $('#id_is_listed').is(':checked') || $new_form.data('addon-is-listed')
+                if (results.beta && isListed) {
+                  $('#id_beta').prop('checked', true);
+                  $('.beta-status').show();
+                }
                 if(results.error) {
                     // This shouldn't happen.  But it might.
                     var error = gettext('Unexpected server error while validating.');
@@ -330,12 +333,10 @@
 
                     $("<strong>").text(message).appendTo(upload_results);
 
-                    var $new_form = $('.new-addon-file');
                     if ($new_form.data('unlisted-addons')) {
                       // Specific messages for unlisted addons.
-                      var isListed = $('#id_is_listed').is(':checked') || $new_form.data('addon-is-listed'),
-                          isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload'),
-                          automaticValidation = $('#create-addon').data('automatic-validation');
+                      var isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload');
+                      var automaticValidation = $('#create-addon').data('automatic-validation');
                       if (!isListed) {
                         if (isSideload) {
                           $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);

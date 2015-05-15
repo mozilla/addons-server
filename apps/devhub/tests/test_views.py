@@ -2655,6 +2655,13 @@ class TestAddVersion(AddVersionTest):
         f = File.objects.all().order_by('-created')[0]
         assert f.status == amo.STATUS_BETA
 
+    def test_no_force_beta_for_unlisted_addons(self):
+        """No beta version for unlisted addons."""
+        self.addon.update(is_listed=False)
+        self.post(beta=True)
+        f = File.objects.all().order_by('-created')[0]
+        assert f.status != amo.STATUS_BETA
+
     @mock.patch('devhub.views.sign_file')
     def test_unlisted_addon_sideload(self, mock_sign_file):
         """Sideloadable addons need manual full review."""
