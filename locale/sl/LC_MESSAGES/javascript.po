@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-03-10 08:49+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2015-05-15 11:01+0000\n"
+"Last-Translator: Peter <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1425977381.0\n"
+"X-POOTLE-MTIME: 1431687666.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -108,15 +109,18 @@ msgstr "Vaš dodatek je prestal validacijo brez napak ali opozoril."
 
 #: static/js/common/upload-addon.js:341
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Vaša oddaja bo morala biti ročno pregledana."
 
 #: static/js/common/upload-addon.js:345
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
+"Vaša oddaja je opravila preverjanje veljavnosti in bo samodejno podpisana."
 
 #: static/js/common/upload-addon.js:347
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
+"Vaša oddaja je opravila preverjanje veljavnosti in bo morala biti ročno "
+"pregledana."
 
 #: static/js/common/upload-addon.js:362
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -129,6 +133,8 @@ msgstr "Če za popoln pregled dodatek zahteva račun na spletnem mestu, v Opombe
 #: static/js/common/upload-addon.js:364
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"V primeru, da je vaš dodatek mišljen za omejeno število uporabnikov, namesto "
+"polnega pregleda izberite predhodni pregled."
 
 #: static/js/common/upload-addon.js:377
 msgid "Add-on submission checklist"
@@ -143,8 +149,10 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali zamaskiranih skriptov (razen znanih dvojiških datotek), morajo biti ločeno oddani za pregled. Prepričajte se, da uporabite "
-"polje za prenos izvorne kode, da se izognete zavrnitvi svoje oddaje."
+"Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali "
+"zamaskiranih skriptov (razen znanih dvojiških datotek), mora biti za pregled "
+"oddana ločeno. Prepričajte se, da uporabite polje za prenos izvorne kode, "
+"da se izognete zavrnitvi svoje oddaje."
 
 #: static/js/common/upload-addon.js:398
 msgid "The validation process found these issues that can lead to rejections:"
@@ -438,51 +446,51 @@ msgstr "Zbirke"
 
 #: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Ciljna kat. Vrtiljak Izbrane"
 
 #: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Ciljna kat. Najbolje ocenjeni"
 
 #: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Ciljna kat. Najbolj priljubljeni"
 
 #: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Ciljna kat. Najnovejše"
 
 #: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Izbran"
 
 #: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Največ uporabnikov"
 
 #: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Najbolje ocenjeni"
 
 #: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Ustvarjeno"
 
 #: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Ime"
 
 #: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Najbolj priljubljeni"
 
 #: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Pred kratkim posod."
 
 #: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Brsk. sez. - razv. po Kmalu"
 
 #: static/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
@@ -637,12 +645,12 @@ msgstr "Prispevki od {0} do {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:188
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Metrika strani, zadnjih {0} strani"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:190
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Metrika strani od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:194
@@ -807,7 +815,7 @@ msgstr "Namestitev programa ni dovoljena."
 
 #: static/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Manifest programa ni pravilno oblikovan."
 
 #: static/js/zamboni/apps.js:60
 msgid "App host could not be reached."
@@ -815,11 +823,11 @@ msgstr "Gostitelj programa ni dosegljiv."
 
 #: static/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Manifesta programa ni mogoče razčleniti."
 
 #: static/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Manifest programa je neveljaven."
 
 #: static/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
