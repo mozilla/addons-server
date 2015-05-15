@@ -1,28 +1,31 @@
-FROM python:2.7
+FROM mozillamarketplace/centos-mysql-mkt:0.2
 
-RUN apt-get update \
-    && apt-get install -y \
+# Fix multilib issues when installing openssl-devel.
+RUN yum install -y --enablerepo=centosplus libselinux-devel
+
+ADD docker-mysql.repo /etc/yum.repos.d/mysql.repo
+
+RUN yum update -y \
+    && yum install -y \
+        gcc-c++ \
         curl \
-        libjpeg-dev \
-        libmysqlclient-dev \
-        libsasl2-dev \
-        libssl-dev \
-        libxml2-dev \
-        libxslt1-dev \
-        memcached \
-        mysql-client \
+        libjpeg-devel \
+        cyrus-sasl-devel \
+        m2crypto \
+        libxml2-devel \
+        libxslt-devel \
         nodejs \
-        npm \
-        python-dev \
-        python-virtualenv \
-        swig openssl \
-        zlib1g-dev \
-    && ln -s /usr/bin/nodejs /usr/bin/node
+        zlib-devel
 
 ADD . /code
 WORKDIR /code
 
-RUN pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache \
-    -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/ \
-    --src=/pip-src/
+RUN mkdir -p /pip/{cache,build}
 
+ADD requirements /pip/requirements
+
+# Remove some compiled deps so we just use the packaged versions already installed.
+RUN sed -i 's/m2crypto.*$/# Removed in favour of packaged version/' /pip/requirements/compiled.txt
+
+# This cd into /pip ensures egg-links for git installed deps are created in /pip/src
+RUN cd /pip && pip install -b /pip/build --no-deps --download-cache /pip/cache -r /pip/requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
