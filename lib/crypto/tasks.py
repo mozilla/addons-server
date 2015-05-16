@@ -4,6 +4,7 @@ import os
 import shutil
 import zipfile
 
+from django.conf import settings
 from django.db.models import Q
 
 from celeryutils import task
@@ -17,10 +18,6 @@ from versions.models import Version
 
 log = logging.getLogger('z.task')
 
-# Minimum Firefox version for default to compatible addons.
-MIN_D2C_VERSION = '4'
-# Minimum Firefox version for not default to compatible addons.
-MIN_NOT_D2C_VERSION = '37'
 
 MAIL_SUBJECT = u'Mozilla Add-ons: {addon} has been automatically signed on AMO'
 MAIL_MESSAGE = u"""
@@ -92,8 +89,10 @@ def sign_addons(addon_ids, force=False, **kw):
     # The signing feature should be supported from Firefox 40 and above, but
     # we're still signing some files that are a bit older just in case.
     ff_version_filter = (
-        (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
-        (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
+        (is_default_compatible &
+            file_supports_firefox(settings.MIN_D2C_VERSION)) |
+        (~is_default_compatible &
+            file_supports_firefox(settings.MIN_NOT_D2C_VERSION)))
 
     addons_emailed = []
     # We only care about extensions and (complete) themes. The latter is
@@ -248,8 +247,10 @@ def unsign_addons(addon_ids, force=False, **kw):
     # The signing feature should be supported from Firefox 40 and above, but
     # we're still signing some files that are a bit older just in case.
     ff_version_filter = (
-        (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
-        (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
+        (is_default_compatible &
+            file_supports_firefox(settings.MIN_D2C_VERSION)) |
+        (~is_default_compatible &
+            file_supports_firefox(settings.MIN_NOT_D2C_VERSION)))
 
     addons_emailed = []
     for version in Version.objects.filter(addon_id__in=addon_ids,

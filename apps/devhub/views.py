@@ -1182,13 +1182,14 @@ def version_add(request, addon_id, addon):
         request=request
     )
     if form.is_valid():
+        is_beta = form.cleaned_data['beta'] and addon.is_listed
         pl = form.cleaned_data.get('supported_platforms', [])
         version = Version.from_upload(
             upload=form.cleaned_data['upload'],
             addon=addon,
             platforms=pl,
             source=form.cleaned_data['source'],
-            is_beta=form.cleaned_data['beta']
+            is_beta=is_beta
         )
         rejected_versions = addon.versions.filter(
             version=version.version, files__status=amo.STATUS_DISABLED)[:1]
@@ -1238,8 +1239,9 @@ def version_add_file(request, addon_id, addon, version_id):
     if not form.is_valid():
         return json_view.error(form.errors)
     upload = form.cleaned_data['upload']
+    is_beta = form.cleaned_data['beta'] and addon.is_listed
     new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
-                                form.cleaned_data['beta'],
+                                is_beta,
                                 parse_addon(upload, addon))
     source = form.cleaned_data['source']
     if source:
