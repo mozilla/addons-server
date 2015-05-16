@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-06 19:25+0000\n"
-"Last-Translator: Tim <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2015-05-16 16:12+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430940341.0\n"
+"X-POOTLE-MTIME: 1431792735.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5124,7 +5125,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Ви хочете розповсюджувати свій додаток на цьому сайті?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:30
 msgid "Which platforms is this file compatible with?"
@@ -6112,7 +6113,7 @@ msgstr "Ваш додаток відображається в нашій гал�
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:73
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "Ваш додаток був підписаний."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:78
 msgid ""
@@ -8732,10 +8733,11 @@ msgstr ""
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr ""
+"Розкажіть своїм друзям! Дайте людям знати, які додатки ви використовуєте."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Беріть участь в наших <a href=\"%(url)s\">форумах</a>."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
@@ -8757,7 +8759,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Хто працює над цим веб-сайтом?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
@@ -8767,11 +8769,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Засіб звітів сумісності додатків"
 
 #: apps/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Засіб звітів сумісності додатків був встановлений"
 
 #: apps/pages/templates/pages/acr_firstrun.html:28
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
@@ -8779,7 +8781,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Ось як почати звітувати про сумісність додатків:"
 
 #: apps/pages/templates/pages/acr_firstrun.html:40
 msgid ""
@@ -8807,7 +8809,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
-msgstr ""
+msgstr "Дякуємо!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
@@ -8819,32 +8821,32 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Розробники та адміністратори"
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
-msgstr ""
+msgstr "Локалізатори"
 
 #: apps/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr ""
+msgstr "Рецензенти"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Більше {0} відгуків для додатку"
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Інші помічники"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Попередні розробники та адміністратори"
 
 #: apps/pages/templates/pages/credits.html:57
 msgid "Software and Images"
-msgstr ""
+msgstr "Програми та зображення"
 
 #: apps/pages/templates/pages/credits.html:59
 msgid ""
@@ -8870,20 +8872,20 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:4
 msgid "Developer FAQ"
-msgstr ""
+msgstr "ЧаП розробника"
 
 #: apps/pages/templates/pages/dev_faq.html:31 apps/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr ""
+msgstr "Секції"
 
 #: apps/pages/templates/pages/dev_faq.html:33 apps/pages/templates/pages/dev_faq.html:46
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Розробка додатку"
 
 #. Heading for a list of resources for developers
 #: apps/pages/templates/pages/dev_faq.html:34 apps/pages/templates/pages/dev_faq.html:209
 msgid "Support Resources"
-msgstr ""
+msgstr "Ресурси підтримки"
 
 #: apps/pages/templates/pages/dev_faq.html:35 apps/pages/templates/pages/dev_faq.html:262
 msgid "Contributing your Add-on"
@@ -8891,23 +8893,23 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:36 apps/pages/templates/pages/dev_faq.html:382
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Процес розгляду додатків"
 
 #: apps/pages/templates/pages/dev_faq.html:37 apps/pages/templates/pages/dev_faq.html:445
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Керування своїм додатком"
 
 #: apps/pages/templates/pages/dev_faq.html:38 apps/pages/templates/pages/dev_faq.html:485
 msgid "Recommended Status"
-msgstr ""
+msgstr "Рекомендований статус"
 
 #: apps/pages/templates/pages/dev_faq.html:40 apps/pages/templates/pages/dev_faq.html:581
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Посилання на ліцензії для Відкритого Програмного Коду"
 
 #: apps/pages/templates/pages/dev_faq.html:44
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "ЧаП розробника додатків"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
@@ -8915,7 +8917,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
-msgstr ""
+msgstr "Інші ресурси включають:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
@@ -8923,11 +8925,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Блог додатків Mozilla"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Які інструменти мені знадобляться для створення додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:69
 msgid ""
@@ -8960,7 +8962,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
-msgstr ""
+msgstr "Що таке XUL?"
 
 #: apps/pages/templates/pages/dev_faq.html:111
 msgid ""
@@ -8970,7 +8972,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "Для чого використовується файл \"install.rdf\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:122
 msgid ""
@@ -8989,7 +8991,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:142
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "Чи може мій додаток містити бінарні компоненти?"
 
 #: apps/pages/templates/pages/dev_faq.html:144
 msgid ""
@@ -8999,6 +9001,8 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:151
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
 msgstr ""
+"Чи можу я для створення свого додатку використовувати бібліотеку JavaScript "
+"на зразок jQuery, MooTools чи Prototype?"
 
 #: apps/pages/templates/pages/dev_faq.html:153
 msgid ""
@@ -9028,7 +9032,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Як покращити швидкодію свого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
@@ -9038,7 +9042,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Чи може мій додаток підтримувати декілька мов?"
 
 #: apps/pages/templates/pages/dev_faq.html:198
 msgid ""
@@ -9048,7 +9052,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Мені потрібна порада щодо створення додатку. Де я можу знайти допомогу?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:217
@@ -9082,11 +9086,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Форум додатків"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
