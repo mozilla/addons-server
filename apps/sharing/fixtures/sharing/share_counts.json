@@ -3,7 +3,7 @@
         "pk": 177155738,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 29,
+            "count": 13,
             "service": "facebook",
             "addon": 3615
         }
@@ -12,7 +12,7 @@
         "pk": 177155739,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 0,
+            "count": 29,
             "service": "twitter",
             "addon": 3615
         }
@@ -21,7 +21,7 @@
         "pk": 177155741,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 0,
+            "count": 4,
             "service": "gplus",
             "addon": 3615
         }
@@ -30,7 +30,7 @@
         "pk": 177155742,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 0,
+            "count": 14,
             "service": "Reddit",
             "addon": 3615
         }
@@ -39,7 +39,7 @@
         "pk": 177155743,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 0,
+            "count": 4,
             "service": "Tumblr",
             "addon": 3615
         }
