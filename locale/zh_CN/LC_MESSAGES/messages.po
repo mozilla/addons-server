@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-06 21:00+0000\n"
+"PO-Revision-Date: 2015-05-17 07:21+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430946011.0\n"
+"X-POOTLE-MTIME: 1431847269.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3667,7 +3667,7 @@ msgstr "无视验证失败"
 
 #: apps/devhub/forms.py:483
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "提交我的附加组件进行人工审核。"
 
 #: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
@@ -5019,7 +5019,7 @@ msgstr "管理覆盖"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:59
 msgid "Your submission didn't pass automatic validation. Check the checkbox to submit for manual review."
-msgstr ""
+msgstr "您的提交未通过自动化验证。请选中复选框以提交进行人工审核。"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
