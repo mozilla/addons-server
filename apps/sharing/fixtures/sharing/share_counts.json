@@ -1,14 +1,5 @@
 [
     {
-        "pk": 177155738,
-        "model": "stats.addonsharecounttotal",
-        "fields": {
-            "count": 13,
-            "service": "facebook",
-            "addon": 3615
-        }
-    },
-    {
         "pk": 177155739,
         "model": "stats.addonsharecounttotal",
         "fields": {
