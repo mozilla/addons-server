@@ -48,7 +48,8 @@ def supports_firefox(file_obj):
 def get_endpoint(file_obj):
     """Get the endpoint to sign the file, depending on its review status."""
     server = settings.SIGNING_SERVER
-    if file_obj.version.addon.status != amo.STATUS_PUBLIC:
+    if (file_obj.status == amo.STATUS_BETA or
+            file_obj.version.addon.status != amo.STATUS_PUBLIC):
         server = settings.PRELIMINARY_SIGNING_SERVER
     if not server:
         return
@@ -115,10 +116,10 @@ def sign_file(file_obj):
             file_obj.pk))
         return
 
-    # We only sign files that have been reviewed.
-    if file_obj.status not in amo.REVIEWED_STATUSES:
-        log.info(u'Not signing file {0}: it isn\'t reviewed'.format(
-            file_obj.pk))
+    # We only sign files that have been reviewed, or that are beta.
+    if file_obj.status not in amo.REVIEWED_STATUSES + (amo.STATUS_BETA,):
+        log.info(u'Not signing file {0}: it isn\'t reviewed and isn\t beta'
+                 .format(file_obj.pk))
         return
 
     # We only sign files that are compatible with Firefox.
