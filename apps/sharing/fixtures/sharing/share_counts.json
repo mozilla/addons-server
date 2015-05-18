@@ -1,10 +1,10 @@
 [
     {
-        "pk": 177155739,
+        "pk": 177155738,
         "model": "stats.addonsharecounttotal",
         "fields": {
-            "count": 29,
-            "service": "twitter",
+            "count": 13,
+            "service": "facebook",
             "addon": 3615
         }
     },
