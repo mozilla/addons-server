@@ -14,7 +14,7 @@ import sharing.views
 from amo.tests import BaseTestCase
 from sharing.forms import ShareForm
 from sharing.helpers import sharing_box
-from sharing import TWITTER
+from sharing import TWITTER, FACEBOOK
 
 from users.models import UserProfile
 
@@ -54,7 +54,7 @@ class SharingModelsTestCase(BaseTestCase):
         eq_(addon.share_counts[TWITTER.shortname], 29)
 
         # total count with no shares
-        eq_(addon.share_counts[TWITTER.shortname], 0,
+        eq_(addon.share_counts[FACEBOOK.shortname], 0,
             'Total count with no shares must be 0')
 
 
