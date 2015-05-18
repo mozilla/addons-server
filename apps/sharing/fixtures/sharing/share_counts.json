@@ -9,6 +9,15 @@
         }
     },
     {
+        "pk": 177155739,
+        "model": "stats.addonsharecounttotal",
+        "fields": {
+            "count": 29,
+            "service": "twitter",
+            "addon": 3615
+        }
+    },
+    {
         "pk": 177155741,
         "model": "stats.addonsharecounttotal",
         "fields": {
