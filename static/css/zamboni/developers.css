@@ -784,6 +784,10 @@ pre.email_comment {
     margin-bottom: 1em;
 }
 
+#upload-file .admin-settings {
+    margin-top: 1em;
+}
+
 #upload-status-bar {
     background-color: #F2F2F2;
     -moz-border-radius: 5px;

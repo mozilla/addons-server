@@ -278,10 +278,10 @@
                 }
 
                 // Validation results?  If not, fetch the json again.
-                if(! results.validation) {
+                if (! results.validation) {
                     upload_progress_outside.attr('class', 'progress-idle');
                     // Not loaded yet. Try again!
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $.ajax({
                             url: results.url,
                             dataType: 'json',
@@ -298,7 +298,7 @@
                 } else {
                     var errors = getErrors(results),
                         v = results.validation;
-                    if(errors.length > 0) {
+                    if (errors.length > 0) {
                         $upload_field.trigger("upload_errors", [file, errors, results]);
                         return;
                     }
@@ -315,7 +315,7 @@
                     var message = "";
 
                     var warnings = v.warnings + v.notices;
-                    if(warnings > 0) {
+                    if (warnings > 0) {
                         message = format(ngettext(
                                     "Your add-on passed validation with no errors and {0} message.",
                                     "Your add-on passed validation with no errors and {0} messages.",
@@ -336,7 +336,7 @@
                     if ($new_form.data('unlisted-addons')) {
                       // Specific messages for unlisted addons.
                       var isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload');
-                      var automaticValidation = $('#create-addon').data('automatic-validation');
+                      var automaticValidation = $('#create-addon').data('automatic-validation') || $new_form.data('automatic-validation');
                       if (!isListed) {
                         if (isSideload) {
                           $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
@@ -351,6 +351,13 @@
                             // If unlisted and not sideload and failed validation, disable submit until checkbox checked.
                             $('.addon-upload-dependant').attr('disabled', true);
                             $('#manual-review').show().removeClass('hidden');
+                          }
+                        }
+                      } else {  // This is a listed add-on.
+                        if (automaticValidation && results.beta) {
+                          if (warnings > 0) {
+                            $('#invalid-beta').show().removeClass('hidden');
+                            $('.addon-upload-dependant').attr('disabled', true);
                           }
                         }
                       }

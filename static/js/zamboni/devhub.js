@@ -124,6 +124,18 @@ $(document).ready(function() {
         $('.addon-upload-dependant').attr('disabled', !($(this).is(':checked')));
     });
 
+    $('#id_beta').bind('change', function() {
+        // User unchecked the beta checkbox, meaning they want this file to go
+        // through the usual review process.
+        if ($('#id_beta').is(':checked')) {
+            $('#invalid-beta').show();
+            $('.addon-upload-dependant').attr('disabled', true);
+        } else {
+            $('#invalid-beta').hide();
+            $('.addon-upload-dependant').attr('disabled', false);
+        }
+    });
+
     if ($(".add-file-modal").length) {
         $modalFile = $(".add-file-modal").modal(".version-upload", {
             width: '450px',

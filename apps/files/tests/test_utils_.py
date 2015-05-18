@@ -28,6 +28,23 @@ def test_is_beta():
     assert is_beta('1.2a-1')
     assert is_beta('1.2a-123')
 
+    assert is_beta('1.2alpha')
+    assert is_beta('1.2alpha')
+    assert is_beta('1.2alpha1')
+    assert is_beta('1.2alpha123')
+    assert is_beta('1.2alpha.1')
+    assert is_beta('1.2alpha.123')
+    assert is_beta('1.2alpha-1')
+    assert is_beta('1.2alpha-123')
+
+    assert is_beta('1.2b')
+    assert is_beta('1.2b1')
+    assert is_beta('1.2b123')
+    assert is_beta('1.2b.1')
+    assert is_beta('1.2b.123')
+    assert is_beta('1.2b-1')
+    assert is_beta('1.2b-123')
+
     assert is_beta('1.2beta')
     assert is_beta('1.2beta1')
     assert is_beta('1.2beta123')
@@ -35,6 +52,22 @@ def test_is_beta():
     assert is_beta('1.2beta.123')
     assert is_beta('1.2beta-1')
     assert is_beta('1.2beta-123')
+
+    assert is_beta('1.2pre')
+    assert is_beta('1.2pre1')
+    assert is_beta('1.2pre123')
+    assert is_beta('1.2pre.1')
+    assert is_beta('1.2pre.123')
+    assert is_beta('1.2pre-1')
+    assert is_beta('1.2pre-123')
+
+    assert is_beta('1.2rc')
+    assert is_beta('1.2rc1')
+    assert is_beta('1.2rc123')
+    assert is_beta('1.2rc.1')
+    assert is_beta('1.2rc.123')
+    assert is_beta('1.2rc-1')
+    assert is_beta('1.2rc-123')
 
 
 class TestFindJetpacks(amo.tests.TestCase):
