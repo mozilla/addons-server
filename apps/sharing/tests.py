@@ -54,7 +54,7 @@ class SharingModelsTestCase(BaseTestCase):
         eq_(addon.share_counts[TWITTER.shortname], 29)
 
         # total count with no shares
-        eq_(addon.share_counts[FACEBOOK.shortname], 0,
+        eq_(addon.share_counts[TWITTER.shortname], 0,
             'Total count with no shares must be 0')
 
 
