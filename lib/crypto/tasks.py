@@ -101,7 +101,11 @@ def sign_addons(addon_ids, force=False, **kw):
                                           addon__type__in=[
                                               amo.ADDON_EXTENSION,
                                               amo.ADDON_THEME]):
-        to_sign = version.files.filter(ff_version_filter)
+
+        # We only sign files that have been reviewed and are compatible with
+        # versions of Firefox that are recent enough.
+        to_sign = version.files.filter(ff_version_filter,
+                                       status__in=amo.REVIEWED_STATUSES)
         # We only care about multi-package XPIs for themes, because they may
         # have extensions inside.
         if version.addon.type == amo.ADDON_THEME:
@@ -264,7 +268,8 @@ def unsign_addons(addon_ids, force=False, **kw):
         if not version.version.endswith(bumped_suffix):
             log.info(u'Version {0} was not bumped, skip.'.format(version.pk))
             continue
-        to_unsign = version.files.filter(ff_version_filter)
+        to_unsign = version.files.filter(ff_version_filter,
+                                         status__in=amo.REVIEWED_STATUSES)
         # We only care about multi-package XPIs for themes, because they may
         # have extensions inside.
         if version.addon.type == amo.ADDON_THEME:

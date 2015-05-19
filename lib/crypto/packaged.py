@@ -112,12 +112,6 @@ def sign_file(file_obj, server):
             file_obj.pk))
         return
 
-    # We only sign files that have been reviewed, or that are beta.
-    if file_obj.status not in amo.REVIEWED_STATUSES + (amo.STATUS_BETA,):
-        log.info(u'Not signing file {0}: it isn\'t reviewed and isn\t beta'
-                 .format(file_obj.pk))
-        return
-
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         log.info(

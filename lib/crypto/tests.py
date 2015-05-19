@@ -177,16 +177,6 @@ class TestPackaged(amo.tests.TestCase):
             packaged.sign_file(self.file_, settings.SIGNING_SERVER)
             self.assert_not_signed()
 
-    def test_no_sign_unreviewed(self):
-        """Don't sign unreviewed files."""
-        self.file_.update(status=amo.STATUS_UNREVIEWED)
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
-
-        self.file_.update(status=amo.STATUS_NOMINATED)
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
-
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
@@ -261,6 +251,24 @@ class TestTasks(amo.tests.TestCase):
     def assert_no_backup(self):
         """Make sure there's no backup file."""
         assert not os.path.exists(self.get_backup_file_path())
+
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_no_bump_unreviewed(self, mock_sign_file):
+        """Don't bump nor sign unreviewed files."""
+        for status in (amo.UNREVIEWED_STATUSES + (amo.STATUS_BETA,)):
+            self.file_.update(status=amo.STATUS_UNREVIEWED)
+            with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                     self.file_.file_path):
+                file_hash = self.file_.generate_hash()
+                assert self.version.version == '1.3'
+                assert self.version.version_int == version_int('1.3')
+                tasks.sign_addons([self.addon.pk])
+                assert not mock_sign_file.called
+                self.version.reload()
+                assert self.version.version == '1.3'
+                assert self.version.version_int == version_int('1.3')
+                assert file_hash == self.file_.generate_hash()
+                self.assert_no_backup()
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
