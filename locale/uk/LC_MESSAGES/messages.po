@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-16 16:16+0000\n"
+"PO-Revision-Date: 2015-05-19 14:01+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431792982.0\n"
+"X-POOTLE-MTIME: 1432044096.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -11625,7 +11625,7 @@ msgstr ""
 
 #: apps/versions/models.py:693
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} і вище"
 
 #: apps/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
@@ -11634,7 +11634,7 @@ msgstr "Постійне посилання на цю версію"
 #. {0} is a timestamp, such as September 28, 2011.
 #: apps/versions/templates/versions/version.html:10
 msgid "Released {0}"
-msgstr ""
+msgstr "Випущено {0}"
 
 #: apps/versions/templates/versions/version.html:39
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
