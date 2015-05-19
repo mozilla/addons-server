@@ -1216,7 +1216,7 @@ def version_add(request, addon_id, addon):
                                      not file_.validation.warnings)
             if addon.is_listed and is_beta:
                 if validation_passed:
-                    sign_file(file_)
+                    sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
                 else:
                     raise PermissionDenied
             elif (not addon.is_listed
@@ -1225,7 +1225,7 @@ def version_add(request, addon_id, addon):
                                            amo.STATUS_PUBLIC]):
                 # Passed validation: sign automatically w/o manual review.
                 file_.update(status=amo.STATUS_LITE)
-                sign_file(file_)
+                sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
 
         return dict(url=url)
     else:
@@ -1264,12 +1264,12 @@ def version_add_file(request, addon_id, addon, version_id):
                     and validation_passed):
                 # Passed validation: sign automatically without manual review.
                 new_file.update(status=amo.STATUS_LITE)
-                sign_file(new_file)
+                sign_file(new_file, settings.PRELIMINARY_SIGNING_SERVER)
         elif (new_file.version.addon.is_listed and
                 new_file_form.cleaned_data.get('beta')):
             if validation_passed:
                 # Beta files always get signed with prelim cert.
-                sign_file(new_file)
+                sign_file(new_file, settings.PRELIMINARY_SIGNING_SERVER)
             else:
                 raise PermissionDenied
 
@@ -1404,7 +1404,8 @@ def submit_addon(request, step):
                             and not validation.warnings):
                         # Passed validation: sign automatically without review.
                         addon.update(status=amo.STATUS_LITE)
-                        sign_file(addon_file)
+                        sign_file(addon_file,
+                                  settings.PRELIMINARY_SIGNING_SERVER)
                     else:
                         addon.update(status=amo.STATUS_UNREVIEWED)
             SubmitStep.objects.create(addon=addon, step=3)

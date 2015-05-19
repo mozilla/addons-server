@@ -129,7 +129,11 @@ def sign_addons(addon_ids, force=False, **kw):
                 # Need to bump the version (modify install.rdf or package.json)
                 # before the file is signed.
                 bump_version_number(file_obj)
-                signed = bool(sign_file(file_obj))
+                if file_obj.status == amo.STATUS_PUBLIC:
+                    server = settings.SIGNING_SERVER
+                else:
+                    server = settings.PRELIMINARY_SIGNING_SERVER
+                signed = bool(sign_file(file_obj, server))
                 if signed:  # Bump the version number if at least one signed.
                     bump_version = True
                 else:  # We didn't sign, so revert the version bump.
