@@ -13,6 +13,7 @@ from amo.urlresolvers import reverse
 from amo.tests import formset, initial
 from addons.models import Addon, AddonUser
 from applications.models import AppVersion
+from editors.helpers import ReviewHelper
 from devhub.models import ActivityLog
 from files.models import File
 from users.models import UserProfile
@@ -402,6 +403,28 @@ class TestVersion(amo.tests.TestCase):
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
         eq_(buttons, 'Request Preliminary Review Request Full Review')
+
+    def test_re_request_failed_review(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self.version.files.update(status=amo.STATUS_LITE)
+
+        doc = pq(self.client.get(self.url).content)
+        buttons = doc('.version-status-actions form button').text()
+        eq_(buttons, 'Request Full Review')
+
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        request = mock.Mock(amo_user=user, user=user)
+
+        helper = ReviewHelper(request=request, addon=self.addon,
+                              version=self.version)
+        helper.set_data({'comments': 'foo', 'action': 'prelim',
+                         'operating_systems': 'osx', 'applications': 'Firefox',
+                         'addon_files': self.version.files.all()})
+        helper.handler.process_preliminary()
+
+        doc = pq(self.client.get(self.url).content)
+        buttons = doc('.version-status-actions form button').text()
+        eq_(buttons, None)
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
