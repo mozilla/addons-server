@@ -1920,7 +1920,7 @@ class TestReview(ReviewBase):
                 self.client.post(self.url, d)
                 v.delete()
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_item_history_deleted(self, mock_sign):
         self.generate_deleted_versions()
 
@@ -2000,7 +2000,7 @@ class TestReview(ReviewBase):
         eq_(doc('th').eq(1).text(), 'Comment')
         eq_(doc('.history-comment').text(), 'hello sailor')
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_files_in_item_history(self, mock_sign):
         data = {'action': 'public', 'operating_systems': 'win',
                 'applications': 'something', 'comments': 'something',
@@ -2190,7 +2190,7 @@ class TestReview(ReviewBase):
         eq_(ths.length, 2)
         assert '0.1' in ths.text()
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
         d = dict(action='prelim', operating_systems='win',
@@ -2328,8 +2328,8 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
-    @patch.object(Version, 'sign_files')
-    def test_admin_flagged_addon_actions_as_admin(self, mock_sign_files):
+    @patch('editors.helpers.sign_file')
+    def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_admin()
         response = self.client.post(self.url, self.get_dict(action='public'),
@@ -2337,7 +2337,7 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 200)
         eq_(self.get_addon().status, amo.STATUS_PUBLIC)
 
-        assert mock_sign_files.called
+        assert mock_sign_file.called
 
     def test_admin_flagged_addon_actions_as_editor(self):
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
@@ -2394,7 +2394,7 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_prelim_from_lite(self, mock_sign):
         self.addon.update(status=amo.STATUS_LITE)
         self.version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
@@ -2442,7 +2442,7 @@ class TestReviewPreliminary(ReviewBase):
         self.client.post(self.url, self.prelim_dict())
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_prelim_from_unreviewed(self, mock_sign):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.prelim_dict())
@@ -2476,7 +2476,7 @@ class TestReviewPending(ReviewBase):
         files = list(self.version.files.values_list('id', flat=True))
         return self.get_dict(action='public', addon_files=files)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -2492,7 +2492,7 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_pending_to_public_unlisted_addon(self, mock_sign):
         self.addon.update(is_listed=False)
         statuses = (self.version.files.values_list('status', flat=True)
