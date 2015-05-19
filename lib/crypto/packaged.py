@@ -45,13 +45,9 @@ def supports_firefox(file_obj):
             max__version_int__gte=version_int(settings.MIN_NOT_D2C_VERSION))
 
 
-def get_endpoint(file_obj):
-    """Get the endpoint to sign the file, depending on its review status."""
-    server = settings.SIGNING_SERVER
-    if (file_obj.status == amo.STATUS_BETA or
-            file_obj.version.addon.status != amo.STATUS_PUBLIC):
-        server = settings.PRELIMINARY_SIGNING_SERVER
-    if not server:
+def get_endpoint(server):
+    """Get the endpoint to sign the file, either the full or prelim one."""
+    if not server:  # Setting is empty, signing isn't enabled.
         return
 
     return u'{server}/1.0/sign_addon'.format(server=server)
@@ -90,7 +86,7 @@ def call_signing(file_path, endpoint, guid):
     return cert_serial_num
 
 
-def sign_file(file_obj):
+def sign_file(file_obj, server):
     """Sign a File.
 
     If there's no endpoint (signing is not enabled), or the file is a hotfix,
@@ -99,7 +95,7 @@ def sign_file(file_obj):
 
     Otherwise return the signed file.
     """
-    endpoint = get_endpoint(file_obj)
+    endpoint = get_endpoint(server)
     if not endpoint:  # Signing not enabled.
         log.info(u'Not signing file {0}: no active endpoint'.format(
             file_obj.pk))

@@ -457,13 +457,13 @@ class TestVersion(amo.tests.TestCase):
         # Don't sign for anything else than an extension.
         for addon_type in no_sign_types:
             self.version.addon.update(type=addon_type)
-            self.version.sign_files()
+            self.version.sign_files(settings.SIGNING_SERVER)
             assert not sign_mock.called, (
                 'lib.crypto.packaged.sign_file called for addon type {0}'
                 .format(addon_type))
         # Sign files if it's an extension.
         self.version.addon.update(type=amo.ADDON_EXTENSION)
-        self.version.sign_files()
+        self.version.sign_files(settings.SIGNING_SERVER)
         assert sign_mock.called
 
     @mock.patch('lib.crypto.packaged.call_signing')
@@ -476,7 +476,7 @@ class TestVersion(amo.tests.TestCase):
         good_file = amo.tests.file_factory(version=self.version)
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                  good_file.file_path):
-            self.version.sign_files()
+            self.version.sign_files(settings.SIGNING_SERVER)
         # 'sign_file' got called twice, but only one was signed.
         call_signing_mock.assert_called_once_with(
             good_file.file_path, 'endpoint', good_file.version.addon.guid)

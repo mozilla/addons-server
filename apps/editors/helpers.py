@@ -658,6 +658,9 @@ class ReviewAddon(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
+        # Sign addon.
+        self.version.sign_files(settings.SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -667,9 +670,6 @@ class ReviewAddon(ReviewBase):
                        copy_to_mirror=True)
         self.set_addon(highest_status=amo.STATUS_PUBLIC,
                        status=amo.STATUS_PUBLIC)
-
-        # Sign addon.
-        self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -717,6 +717,9 @@ class ReviewAddon(ReviewBase):
 
     def process_preliminary(self):
         """Set an addon to preliminary."""
+        # Sign addon.
+        self.version.sign_files(settings.PRELIMINARY_SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -737,9 +740,6 @@ class ReviewAddon(ReviewBase):
         self.set_addon(**changes)
         self.set_files(amo.STATUS_LITE, self.version.files.all(),
                        copy_to_mirror=True)
-
-        # Sign addon.
-        self.version.sign_files()
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template, subject)
@@ -769,14 +769,14 @@ class ReviewFiles(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
+        # Sign addon.
+        self.version.sign_files(settings.SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
         self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
                        copy_to_mirror=True)
-
-        # Sign addon.
-        self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -820,14 +820,14 @@ class ReviewFiles(ReviewBase):
 
     def process_preliminary(self):
         """Set an addons files to preliminary."""
+        # Sign addon.
+        self.version.sign_files(settings.PRELIMINARY_SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
         self.set_files(amo.STATUS_LITE, self.data['addon_files'],
                        copy_to_mirror=True)
-
-        # Sign addon.
-        self.version.sign_files()
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         template = u'%s_to_preliminary' % self.review_type

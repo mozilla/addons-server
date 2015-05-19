@@ -485,15 +485,15 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
 
-    def sign_files(self):
+    def sign_files(self, server):
         """Sign the files for this version if it's an extension."""
         if self.addon.type == amo.ADDON_EXTENSION:
             for file_obj in self.files.all():
-                packaged.sign_file(file_obj)
+                packaged.sign_file(file_obj, server)
         # They can have multi-package XPIs.
         elif self.addon.type == amo.ADDON_THEME:
             for file_obj in self.files.filter(is_multi_package=True):
-                packaged.sign_file(file_obj)
+                packaged.sign_file(file_obj, server)
 
     @property
     def is_listed(self):
