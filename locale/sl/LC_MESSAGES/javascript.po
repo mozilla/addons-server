@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-13 08:37-0700\n"
-"PO-Revision-Date: 2015-05-15 11:01+0000\n"
+"PO-Revision-Date: 2015-05-19 09:16+0000\n"
 "Last-Translator: Peter <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431687666.0\n"
+"X-POOTLE-MTIME: 1432026998.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -61,10 +61,10 @@ msgstr "Napaka z {0}"
 #: static/js/common/upload-addon.js:177
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Vaš dodatek ni prestal validacije z {0} napako."
-msgstr[1] "Vaš dodatek ni prestal validacije z {0} napakama."
-msgstr[2] "Vaš dodatek ni prestal validacije s {0} napakami."
-msgstr[3] "Vaš dodatek ni prestal validacije z {0} napakami."
+msgstr[0] "Vaš dodatek ni prestal preverjanje veljavnosti z {0} napako."
+msgstr[1] "Vaš dodatek ni prestal preverjanje veljavnosti z {0} napakama."
+msgstr[2] "Vaš dodatek ni prestal preverjanje veljavnosti s {0} napakami."
+msgstr[3] "Vaš dodatek ni prestal preverjanje veljavnosti z {0} napakami."
 
 #: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
@@ -76,11 +76,11 @@ msgstr[3] "&hellip; in še {0}"
 
 #: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:409
 msgid "See full validation report"
-msgstr "Oglejte si popolno poročilo o validaciji"
+msgstr "Oglejte si popolno poročilo o preverjanju veljavnosti"
 
 #: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
-msgstr "Validiranje {0}"
+msgstr "Preverjanje veljavnosti {0}"
 
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js:256
@@ -151,7 +151,7 @@ msgid ""
 msgstr ""
 "Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali "
 "zamaskiranih skriptov (razen znanih dvojiških datotek), mora biti za pregled "
-"oddana ločeno. Prepričajte se, da uporabite polje za prenos izvorne kode, "
+"poslana ločeno. Prepričajte se, da uporabite polje za prenos izvorne kode, "
 "da se izognete zavrnitvi svoje oddaje."
 
 #: static/js/common/upload-addon.js:398
@@ -462,7 +462,7 @@ msgstr "Ciljna kat. Najnovejše"
 
 #: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
-msgstr "Brsk. sez. - razv. po Izbran"
+msgstr "Brsk. sez. - razv. po Izbrani"
 
 #: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
