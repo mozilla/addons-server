@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-13 08:37-0700\n"
+"POT-Creation-Date: 2015-05-20 10:13-0700\n"
 "PO-Revision-Date: 2015-05-10 20:41+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -240,7 +240,7 @@ msgstr "Adományozás"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:72 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -656,7 +656,7 @@ msgstr "Licenc"
 msgid "Awaiting Review"
 msgstr "Értékelésre vár"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:55
 msgid "Rejected"
 msgstr "Elutasított"
 
@@ -829,7 +829,7 @@ msgstr "Jelentés küldése"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:73 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -874,7 +874,7 @@ msgstr "Értékelési útmutató"
 msgid "Detailed Review"
 msgstr "Részletes értékelés"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:867 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:876 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Értékelések"
@@ -1214,7 +1214,7 @@ msgstr "Felhasználók"
 msgid "Weekly Downloads"
 msgstr "Heti letöltések"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:756 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Verzió"
 
@@ -1293,7 +1293,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:98 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Témák"
@@ -1368,7 +1368,7 @@ msgstr "Új téma beküldése"
 msgid "Developer Hub"
 msgstr "Fejlesztőközpont"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:75 apps/editors/helpers.py:95 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Szerkesztőeszközök"
 
@@ -1549,7 +1549,7 @@ msgstr "Teljes átvizsgálást kér"
 msgid "Comment on {addon} {version}."
 msgstr "Hozzászólás ehhez: {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:477
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:479
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Megjegyzés"
@@ -2143,11 +2143,11 @@ msgstr "Hivatkozások nem engedélyezettek."
 msgid "This url is already in use by another collection"
 msgstr "Ezt az URL-t egy másik gyűjtemény használja"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1018
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1017
 msgid "Icons must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1036 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1035 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Használjon %dMB méretnél kisebb képeket."
 
@@ -2655,7 +2655,7 @@ msgstr "Adja meg a hozzáadni kívánt kiegészítő nevét"
 msgid "Add to Collection"
 msgstr "Hozzáadás gyűjteményhez"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:882 apps/editors/helpers.py:902
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:891 apps/editors/helpers.py:911
 msgid "Pending"
 msgstr "Függő"
 
@@ -3154,7 +3154,7 @@ msgstr "Szűrés alkalmazás szerint"
 msgid "Report Type"
 msgstr "Jelentés típusa"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:753 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Alkalmazás"
 
@@ -3258,7 +3258,7 @@ msgstr "Előzetes vizsgálatra vár"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Előzetesen átvizsgált és teljes átvizsgálásra vár"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:870 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:879 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Törölt"
 
@@ -3518,7 +3518,7 @@ msgstr "Megjelölés"
 msgid "Duplicate"
 msgstr "Többszörös"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:468 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:470 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Visszautasítás"
 
@@ -3766,47 +3766,51 @@ msgstr "Előzetes vizsgálat"
 msgid "Please choose a review nomination type"
 msgstr "Válasszon egy vizsgálatajánlási típust"
 
-#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
+#: apps/devhub/forms.py:543
+msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:560
+#: apps/devhub/forms.py:561
 msgid "Version %s already exists"
 msgstr "Már létezik %s verzió"
 
-#: apps/devhub/forms.py:572
+#: apps/devhub/forms.py:573
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:579
+msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
+msgstr ""
+
+#: apps/devhub/forms.py:602
 msgid "You cannot upload any more files for this version."
 msgstr "Ehhez a verzióhoz több fájl nem tölthető fel."
 
-#: apps/devhub/forms.py:607
+#: apps/devhub/forms.py:608
 msgid "Version doesn't match"
 msgstr "Nem egyeznek a verziók"
 
-#: apps/devhub/forms.py:636
+#: apps/devhub/forms.py:637
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "A vizsgálat elkezdését követően nem törölhet fájlt. Ehhez le kell törölnie a teljes verziót."
 
-#: apps/devhub/forms.py:656
+#: apps/devhub/forms.py:657
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Az Összes platform nem vonható össze más platformokkal."
 
-#: apps/devhub/forms.py:661
+#: apps/devhub/forms.py:662
 msgid "A platform can only be chosen once."
 msgstr "Egy platform csak egyszer választható ki."
 
-#: apps/devhub/forms.py:674
+#: apps/devhub/forms.py:675
 msgid "A review type must be selected."
 msgstr "Ki kell választani az átvizsgálás típusát."
 
-#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:757 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Először válassza ki az alkalmazást"
 
-#: apps/devhub/forms.py:808
+#: apps/devhub/forms.py:809
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nem lehet 3-nál több szükséges kiegészítő."
 
@@ -3880,11 +3884,11 @@ msgstr "Felhasználó gyűjteményei"
 msgid "User Reviews"
 msgstr "Felhasználói értékelések"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1115
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1114
 msgid "Changes successfully saved."
 msgstr "A változások sikeresen elmentve."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1585
+#: apps/devhub/views.py:329 apps/devhub/views.py:1589
 msgid "Please check the form for errors."
 msgstr "Ellenőrizze az űrlap hibáit."
 
@@ -3932,52 +3936,52 @@ msgstr "Kiegészítő ellenőrzése"
 msgid "Check Add-on Compatibility"
 msgstr "Kiegészítő kompatibilitásának ellenőrzése"
 
-#: apps/devhub/views.py:657
+#: apps/devhub/views.py:656
 msgid "There was an error with the submission."
 msgstr "Hiba történt a benyújtási folyamatban."
 
-#: apps/devhub/views.py:1020 apps/users/forms.py:419
+#: apps/devhub/views.py:1019 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-#: apps/devhub/views.py:1024
+#: apps/devhub/views.py:1023
 msgid "Icons cannot be animated."
 msgstr "Az ikon nem lehet animált."
 
-#: apps/devhub/views.py:1026
+#: apps/devhub/views.py:1025
 msgid "Images cannot be animated."
 msgstr "A kép nem lehet animált."
 
-#: apps/devhub/views.py:1039
+#: apps/devhub/views.py:1038
 msgid "Images cannot be larger than %dKB."
 msgstr "A kép nem lehet nagyobb, mint %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1049
+#: apps/devhub/views.py:1048
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A képnek pontosan {0} képpont szélesnek és {1} képpont magasnak kell lennie."
 
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1055
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
 
-#: apps/devhub/views.py:1154
+#: apps/devhub/views.py:1153
 msgid "Version %s disabled."
 msgstr "%s verzió letiltva."
 
-#: apps/devhub/views.py:1158
+#: apps/devhub/views.py:1157
 msgid "Version %s deleted."
 msgstr "%s verzió törölve."
 
-#: apps/devhub/views.py:1168
+#: apps/devhub/views.py:1167
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ezen feltöltés ellenőrzése sikertelen lett, és hiányozhatnak az ellenőrzés teljes eredményei. A vizsgálat során legyen különösen figyelmes."
 
-#: apps/devhub/views.py:1631
+#: apps/devhub/views.py:1635
 msgid "Preliminary Review Requested."
 msgstr "Előzetes vizsgálat igényelve."
 
-#: apps/devhub/views.py:1632
+#: apps/devhub/views.py:1636
 msgid "Full Review Requested."
 msgstr "Teljes átvizsgálást kér."
 
@@ -3991,7 +3995,7 @@ msgstr "Vissza a kiegészítőkhöz"
 msgid "{0} :: Search"
 msgstr "{0} :: Keresés"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:450 apps/editors/forms.py:452 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:449 apps/editors/forms.py:451 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -6502,6 +6506,10 @@ msgstr ""
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:67
+msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
+msgstr ""
+
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
 msgstr "{0} verzió kezelése"
@@ -7134,7 +7142,7 @@ msgstr "Benyújtás óta eltelt napok száma"
 msgid "Add-on Types"
 msgstr "Kiegészítőtípusok"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:237
+#: apps/editors/forms.py:118 apps/editors/helpers.py:239
 msgid "Platforms"
 msgstr "Platformok"
 
@@ -7180,219 +7188,219 @@ msgid "File %s is not pending review."
 msgstr "A(z) %s fájl nem vár felülvizsgálatra."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:339
+#: apps/editors/forms.py:338
 #, fuzzy
 msgid "theme name"
 msgstr "Téma neve"
 
-#: apps/editors/forms.py:365
+#: apps/editors/forms.py:364
 msgid "Someone else is reviewing this theme."
 msgstr ""
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:462
+#: apps/editors/forms.py:461
 msgid "app, reviewer, or comment"
 msgstr ""
 
-#: apps/editors/helpers.py:46
+#: apps/editors/helpers.py:48
 msgid "Pending Preliminary Review"
 msgstr "Előzetes vizsgálatra vár"
 
-#: apps/editors/helpers.py:50
+#: apps/editors/helpers.py:52
 msgid "Pending Full Review"
 msgstr "Teljes vizsgálatra vár"
 
-#: apps/editors/helpers.py:57
+#: apps/editors/helpers.py:59
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
+#: apps/editors/helpers.py:116 apps/editors/helpers.py:129
 msgid "Queue"
 msgstr "Várakozási sor"
 
-#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "Függő frissítések"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Teljes értékelés"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "Előzetes értékelések"
 
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "Moderált értékelések"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr ""
 
-#: apps/editors/helpers.py:121
+#: apps/editors/helpers.py:123
 msgid "Pending Themes"
 msgstr ""
 
-#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:124 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr ""
 
-#: apps/editors/helpers.py:123
+#: apps/editors/helpers.py:125
 msgid "Update Themes"
 msgstr ""
 
-#: apps/editors/helpers.py:128
+#: apps/editors/helpers.py:130
 msgid "Unlisted Pending Updates"
 msgstr "Titkos függő frissítések"
 
-#: apps/editors/helpers.py:129
+#: apps/editors/helpers.py:131
 msgid "Unlisted Full Reviews"
 msgstr "Titkos teljes értékelések"
 
-#: apps/editors/helpers.py:130
+#: apps/editors/helpers.py:132
 msgid "Unlisted Preliminary Reviews"
 msgstr "Titkos előzetes értékelések"
 
-#: apps/editors/helpers.py:163
+#: apps/editors/helpers.py:165
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:168
+#: apps/editors/helpers.py:170
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Teljes vizsgálat ({0})"
 msgstr[1] "Teljes vizsgálat ({0})"
 
-#: apps/editors/helpers.py:173
+#: apps/editors/helpers.py:175
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Függő frissítés ({0})"
 msgstr[1] "Függő frissítések ({0})"
 
-#: apps/editors/helpers.py:178
+#: apps/editors/helpers.py:180
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Előzetes vizsgálat ({0})"
 msgstr[1] "Előzetes vizsgálatok ({0})"
 
-#: apps/editors/helpers.py:183
+#: apps/editors/helpers.py:185
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Moderált vizsgálat ({0})"
 msgstr[1] "Moderált vizsgálatok ({0})"
 
-#: apps/editors/helpers.py:189
+#: apps/editors/helpers.py:191
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "Titkos teljes értékelés ({0})"
 msgstr[1] "Titkos teljes értékelések ({0})"
 
-#: apps/editors/helpers.py:194
+#: apps/editors/helpers.py:196
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "Titkos függő frissítés ({0})"
 msgstr[1] "Titkos függő frissítések ({0})"
 
-#: apps/editors/helpers.py:199
+#: apps/editors/helpers.py:201
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "Titkos előzetes értékelés ({0})"
 msgstr[1] "Titkos előzetes értékelések ({0})"
 
-#: apps/editors/helpers.py:231
+#: apps/editors/helpers.py:233
 msgid "Addon"
 msgstr "Kiegészítő"
 
-#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:234 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Típus"
 
-#: apps/editors/helpers.py:233
+#: apps/editors/helpers.py:235
 msgid "Waiting Time"
 msgstr "Várakozási idő"
 
-#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:236 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Jelzők"
 
-#: apps/editors/helpers.py:235
+#: apps/editors/helpers.py:237
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: apps/editors/helpers.py:240
+#: apps/editors/helpers.py:242
 #, fuzzy
 msgid "Additional"
 msgstr "További"
 
-#: apps/editors/helpers.py:255
+#: apps/editors/helpers.py:257
 msgid "Site Specific"
 msgstr "Webhelyspecifikus"
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:259
 msgid "Requires External Software"
 msgstr "Külső szoftvert igényel"
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:261
 msgid "Binary Components"
 msgstr "Bináris komponensek"
 
-#: apps/editors/helpers.py:283
+#: apps/editors/helpers.py:285
 msgid "moments ago"
 msgstr "pár másodperce"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:286
+#: apps/editors/helpers.py:288
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} perc"
 msgstr[1] "{0} perc"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:290
+#: apps/editors/helpers.py:292
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} óra"
 msgstr[1] "{0} óra"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:294
+#: apps/editors/helpers.py:296
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} nap"
 msgstr[1] "{0} nap"
 
-#: apps/editors/helpers.py:454
+#: apps/editors/helpers.py:456
 msgid "Push to public"
 msgstr "Publikálás"
 
-#: apps/editors/helpers.py:456
+#: apps/editors/helpers.py:458
 msgid "Grant full review"
 msgstr ""
 
-#: apps/editors/helpers.py:471
+#: apps/editors/helpers.py:473
 msgid "Request more information"
 msgstr "További információ kérése"
 
-#: apps/editors/helpers.py:474
+#: apps/editors/helpers.py:476
 msgid "Request super-review"
 msgstr "Teljes vizsgálat kérése"
 
-#: apps/editors/helpers.py:485
+#: apps/editors/helpers.py:487
 msgid "Grant preliminary review"
 msgstr "Előzetes vizsgálat megadása"
 
-#: apps/editors/helpers.py:486
+#: apps/editors/helpers.py:488
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: apps/editors/helpers.py:488
+#: apps/editors/helpers.py:490
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "Használja ezt az űrlapot, amennyiben kapcsolatba szeretne kerülni a készítővel, akit e-mailen értesítünk és lehetősége van itt válaszolni. Értesítést küldünk, amint megérkezik a válasz."
 
-#: apps/editors/helpers.py:492
+#: apps/editors/helpers.py:494
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7400,57 +7408,57 @@ msgstr ""
 "Amennyiben aggályai vannak a kiegészítő biztonságával, licencelésével vagy bármi olyasmivel kapcsolatban, amit egy adminisztrátornak jó lenne ellenőriznie, akkor azt írja az alábbi részbe. Ezt az "
 "adminisztrátorok fogják megkapni, nem pedig a készítő."
 
-#: apps/editors/helpers.py:498
+#: apps/editors/helpers.py:500
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Ezzel a kiegészítő elutasításra kerül és vizsgálatra várakozók listájában sem fog szerepelni."
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:502
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: apps/editors/helpers.py:504
+#: apps/editors/helpers.py:506
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Ez visszautasítja a fájlokat, és eltávolítja azokat a vizsgálati sorból."
 
-#: apps/editors/helpers.py:508
+#: apps/editors/helpers.py:510
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Ez a kiegészítőt előzetesen vizsgáltnak tekinti. A későbbi verzióknak is felülvizsgálaton kell átesniük."
 
-#: apps/editors/helpers.py:513
+#: apps/editors/helpers.py:515
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Ez a fájlt előzetesen vizsgáltnak tekinti. A későbbi verzióknak is felülvizsgálaton kell átesniük."
 
-#: apps/editors/helpers.py:518
+#: apps/editors/helpers.py:520
 msgid "Retain preliminary review"
 msgstr "Előzetes vizsgálat megtartása"
 
-#: apps/editors/helpers.py:519
+#: apps/editors/helpers.py:521
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Ez a kiegészítő előzetesen vizsgálatát megtartja. A későbbi verzióknak is felülvizsgálaton kell átesniük."
 
-#: apps/editors/helpers.py:524
+#: apps/editors/helpers.py:526
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Ez engedélyezi egy publikus kiegészítő meg nem jelent verzióját és elérhetővé teszi azt a publikus oldalon."
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:529
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Ez elutasítja a publikus kiegészítő verzióját és eltávolítja a várakozási sorból."
 
-#: apps/editors/helpers.py:530
+#: apps/editors/helpers.py:532
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "Ez a kiegészítőt és annak legfrissebb változatát publikusnak tekinti. A jövőben megjelenő verziók nem jelennek meg addig, amíg egy szerkesztő nem vizsgálja meg."
 
-#: apps/editors/helpers.py:598
+#: apps/editors/helpers.py:605
 #, fuzzy
 msgid "add-on"
 msgstr "Kiegészítő"
 
-#: apps/editors/helpers.py:886 apps/editors/helpers.py:906
+#: apps/editors/helpers.py:895 apps/editors/helpers.py:915
 #, fuzzy
 msgid "Flagged"
 msgstr "Megjelölve"
 
-#: apps/editors/helpers.py:890 apps/editors/helpers.py:909
+#: apps/editors/helpers.py:899 apps/editors/helpers.py:918
 #, fuzzy
 msgid "Updates"
 msgstr "Frissítések"
@@ -10304,108 +10312,98 @@ msgstr[0] "{0} bejegyzés"
 msgstr[1] "{0} bejegyzés"
 
 #: apps/sharing/__init__.py:20
-msgid "Add to Delicious"
-msgstr "Felvétel Deliciousra"
-
-#: apps/sharing/__init__.py:28
-msgid "Digg this!"
-msgstr "Digg this!"
-
-#: apps/sharing/__init__.py:34
-msgid "{0} digg"
-msgid_plural "{0} diggs"
-msgstr[0] "{0} digg"
-msgstr[1] "{0} digg"
-
-#: apps/sharing/__init__.py:40
 msgid "Post to Facebook"
 msgstr "Elküldés a Facebookra"
 
-#: apps/sharing/__init__.py:47
-msgid "Share on FriendFeed"
-msgstr "Megosztás FriendFeeden"
+#: apps/sharing/__init__.py:25
+msgid "{0} Like"
+msgid_plural "{0} Likes"
+msgstr[0] ""
+msgstr[1] ""
 
-#: apps/sharing/__init__.py:52
-msgid "{0} share"
-msgid_plural "{0} shares"
-msgstr[0] "{0} megosztás"
-msgstr[1] "{0} megosztás"
+#: apps/sharing/__init__.py:30
+msgid "Tweet on Twitter"
+msgstr ""
 
-#: apps/sharing/__init__.py:58
-msgid "Post to MySpace"
-msgstr "Elküldés a MySpace-re"
-
-#: apps/sharing/__init__.py:65
-msgid "Post to Twitter"
-msgstr "Elküldés a Twitterre"
-
-#: apps/sharing/__init__.py:70
+#: apps/sharing/__init__.py:35
 msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} csirip"
 msgstr[1] "{0} csirip"
 
+#: apps/sharing/__init__.py:40
+msgid "Share on g+"
+msgstr ""
+
+#: apps/sharing/__init__.py:46
+msgid "Post to Reddit"
+msgstr ""
+
+#: apps/sharing/__init__.py:52
+msgid "Post to Tumblr"
+msgstr ""
+
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:78
+#: apps/sharing/__init__.py:61
 msgid "localservice1"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:80
+#: apps/sharing/__init__.py:63
 msgid "Post to localservice1"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:82
+#: apps/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:87
+#: apps/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:93
+#: apps/sharing/__init__.py:76
 msgid "localservice2"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:95
+#: apps/sharing/__init__.py:78
 msgid "Post to localservice2"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:97
+#: apps/sharing/__init__.py:80
 msgid "http://localservice2/?url={url}&title={title}"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:102
+#: apps/sharing/__init__.py:85
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:108
+#: apps/sharing/__init__.py:91
 msgid "localservice3"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:110
+#: apps/sharing/__init__.py:93
 msgid "Post to localservice3"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:112
+#: apps/sharing/__init__.py:95
 msgid "http://localservice3/?url={url}&title={title}"
 msgstr ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:117
+#: apps/sharing/__init__.py:100
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] ""
@@ -11602,15 +11600,15 @@ msgstr "%s verziótörténet"
 msgid "Version History with Changelogs"
 msgstr "Verziótörténet a módosítások naplójával"
 
-#: apps/versions/models.py:303
+#: apps/versions/models.py:302
 msgid "Add-on uses binary components."
 msgstr ""
 
-#: apps/versions/models.py:306
+#: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: apps/versions/models.py:693
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr ""
 

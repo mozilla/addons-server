@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-13 08:37-0700\n"
+"POT-Creation-Date: 2015-05-20 10:13-0700\n"
 "PO-Revision-Date: 2015-05-04 14:03+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -234,7 +234,7 @@ msgstr "Kontribuoni"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:72 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -650,7 +650,7 @@ msgstr "Licencë"
 msgid "Awaiting Review"
 msgstr "Në Pritje të Shqyrtimit"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:55
 msgid "Rejected"
 msgstr "E hedhur poshtë"
 
@@ -821,7 +821,7 @@ msgstr "Dërgoje Njoftimin"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:73 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -868,7 +868,7 @@ msgstr "Udhëzues Shqyrtimesh"
 msgid "Detailed Review"
 msgstr "Shqyrtim i Hollësishëm"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:867 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:876 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Shqyrtime"
@@ -1208,7 +1208,7 @@ msgstr "Përdorues"
 msgid "Weekly Downloads"
 msgstr "Shkarkime Javore"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:756 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "Version"
 
@@ -1287,7 +1287,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:98 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Tema"
@@ -1362,7 +1362,7 @@ msgstr "Parashtroni Temë të Re"
 msgid "Developer Hub"
 msgstr "Qendër Zhvilluesish"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:75 apps/editors/helpers.py:95 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Mjete Redaktori"
 
@@ -1544,7 +1544,7 @@ msgstr "Është kërkuar supershqyrtim"
 msgid "Comment on {addon} {version}."
 msgstr "Koment për {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:477
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:479
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Koment"
@@ -2139,11 +2139,11 @@ msgstr "Nuk lejohen lidhje."
 msgid "This url is already in use by another collection"
 msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1018
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1017
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1036 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1035 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Ju lutemi, përdorni figura më të vogla se %dMB."
 
@@ -2651,7 +2651,7 @@ msgstr "Jepni emrin e shtesës që duhet përfshirë"
 msgid "Add to Collection"
 msgstr "Shtojeni në Koleksion"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:882 apps/editors/helpers.py:902
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:891 apps/editors/helpers.py:911
 msgid "Pending"
 msgstr "Në pritje"
 
@@ -3152,7 +3152,7 @@ msgstr "Filtroji sipas Aplikacionesh"
 msgid "Report Type"
 msgstr "Lloj Raporti"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:753 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikacion"
 
@@ -3256,7 +3256,7 @@ msgstr "E shqyrtuar Paraprakisht"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Shqyrtuar Paraprakisht dhe Në Pritje të Shqyrtimit të Plotë"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:870 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:879 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Fshirë"
 
@@ -3516,7 +3516,7 @@ msgstr "Flamur"
 msgid "Duplicate"
 msgstr "Dyfishoje"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:468 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:470 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Hidhe tej"
 
@@ -3764,47 +3764,51 @@ msgstr "Shqyrtim Paraprak"
 msgid "Please choose a review nomination type"
 msgstr "Ju lutemi, zgjidhni lloj kandidimi shqyrtimi"
 
-#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr "Te beta u kap një kartelë me një version që mbaron me a|alpha|b|beta dhe një numër opsional."
+#: apps/devhub/forms.py:543
+msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
+msgstr ""
 
-#: apps/devhub/forms.py:560
+#: apps/devhub/forms.py:561
 msgid "Version %s already exists"
 msgstr "Ka tashmë një version %s"
 
-#: apps/devhub/forms.py:572
+#: apps/devhub/forms.py:573
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Përzgjidhni një zgjedhje të vlefshme. Ajo zgjedhje nuk është një nga zgjedhjet e mundshme."
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:579
+msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
+msgstr "Te beta u kap një kartelë me një version që mbaron me a|alpha|b|beta dhe një numër opsional."
+
+#: apps/devhub/forms.py:602
 msgid "You cannot upload any more files for this version."
 msgstr "Nuk mund të ngarkoni më kartela për këtë version."
 
-#: apps/devhub/forms.py:607
+#: apps/devhub/forms.py:608
 msgid "Version doesn't match"
 msgstr "Versioni nuk përputhet"
 
-#: apps/devhub/forms.py:636
+#: apps/devhub/forms.py:637
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Nuk mund ta fshini një kartelë pasi të ketë nisur procesi i shqyrtimit. Duhet të fshini krejt versionin."
 
-#: apps/devhub/forms.py:656
+#: apps/devhub/forms.py:657
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Krejt nuk mund të ndërthuret me platforma të caktuara."
 
-#: apps/devhub/forms.py:661
+#: apps/devhub/forms.py:662
 msgid "A platform can only be chosen once."
 msgstr "Platforma mund të zgjidhet vetëm një herë."
 
-#: apps/devhub/forms.py:674
+#: apps/devhub/forms.py:675
 msgid "A review type must be selected."
 msgstr "Duhet përzgjedhur lloj rishikimi."
 
-#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:757 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
-#: apps/devhub/forms.py:808
+#: apps/devhub/forms.py:809
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nuk lejohen më tepër se 3 shtesa të domosdoshme."
 
@@ -3880,11 +3884,11 @@ msgstr "Koleksione Përdoruesi"
 msgid "User Reviews"
 msgstr "Shqyrtime Përdoruesi"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1115
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1114
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1585
+#: apps/devhub/views.py:329 apps/devhub/views.py:1589
 msgid "Please check the form for errors."
 msgstr "Ju lutemi, kontrolloni formularin për gabime."
 
@@ -3932,53 +3936,53 @@ msgstr "Vleftëso Shtesën"
 msgid "Check Add-on Compatibility"
 msgstr "Kontrolloni Përputhshmëri Shtese"
 
-#: apps/devhub/views.py:657
+#: apps/devhub/views.py:656
 msgid "There was an error with the submission."
 msgstr "Pati një gabim me parashtrimin."
 
-#: apps/devhub/views.py:1020 apps/users/forms.py:419
+#: apps/devhub/views.py:1019 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 
-#: apps/devhub/views.py:1024
+#: apps/devhub/views.py:1023
 msgid "Icons cannot be animated."
 msgstr "Ikonat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1026
+#: apps/devhub/views.py:1025
 msgid "Images cannot be animated."
 msgstr "Figurat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1039
+#: apps/devhub/views.py:1038
 msgid "Images cannot be larger than %dKB."
 msgstr "Figurat nuk mund të jenë më të mëdha se %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1049
+#: apps/devhub/views.py:1048
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
 
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1055
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
 
-#: apps/devhub/views.py:1154
+#: apps/devhub/views.py:1153
 msgid "Version %s disabled."
 msgstr "Versioni %s u çaktivizua."
 
 # %s is the version number, e.g. 3.2.
-#: apps/devhub/views.py:1158
+#: apps/devhub/views.py:1157
 msgid "Version %s deleted."
 msgstr "Versioni %s u fshi."
 
-#: apps/devhub/views.py:1168
+#: apps/devhub/views.py:1167
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ky ngarkim nuk arriti të vleftësohej, dhe mund t’i mungojnë përfundimet e plota të vleftësimit. Ju lutemi, tregoni kujdesin e duhur, teksa e shqyrtoni."
 
-#: apps/devhub/views.py:1631
+#: apps/devhub/views.py:1635
 msgid "Preliminary Review Requested."
 msgstr "U kërkua Shqyrtim Paraprak."
 
-#: apps/devhub/views.py:1632
+#: apps/devhub/views.py:1636
 msgid "Full Review Requested."
 msgstr "U kërkua Shqyrtim i Plotë."
 
@@ -3992,7 +3996,7 @@ msgstr "Mbrapsht te Shtesat"
 msgid "{0} :: Search"
 msgstr "{0} :: Kërkim"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:450 apps/editors/forms.py:452 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:449 apps/editors/forms.py:451 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -6651,6 +6655,10 @@ msgstr "Për çfarë lloji shqyrtimi doni të kandidohet?"
 msgid "Only publish this version to my beta channel."
 msgstr "Botoje këtë version vetëm te kanali im beta."
 
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:67
+msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
+msgstr ""
+
 # %s is the version number.
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -7291,7 +7299,7 @@ msgstr "Ditë Që Prej Parashtrimit"
 msgid "Add-on Types"
 msgstr "Lloje Shtesash"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:237
+#: apps/editors/forms.py:118 apps/editors/helpers.py:239
 msgid "Platforms"
 msgstr "Platforma"
 
@@ -7337,218 +7345,218 @@ msgid "File %s is not pending review."
 msgstr "Kartela %s nuk është në pritje të shqyrtimit."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:339
+#: apps/editors/forms.py:338
 msgid "theme name"
 msgstr "emër teme"
 
-#: apps/editors/forms.py:365
+#: apps/editors/forms.py:364
 msgid "Someone else is reviewing this theme."
 msgstr "Dikush tjetër po e shqyrton këtë temë."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:462
+#: apps/editors/forms.py:461
 msgid "app, reviewer, or comment"
 msgstr "aplikacion, shqyrtues, ose koment"
 
-#: apps/editors/helpers.py:46
+#: apps/editors/helpers.py:48
 msgid "Pending Preliminary Review"
 msgstr "Në Pritje të Shqyrtimit Paraprak"
 
-#: apps/editors/helpers.py:50
+#: apps/editors/helpers.py:52
 msgid "Pending Full Review"
 msgstr "Në Pritje të Shqyrtimit të Plotë"
 
-#: apps/editors/helpers.py:57
+#: apps/editors/helpers.py:59
 msgid "Rejected or Unreviewed"
 msgstr "Hedhur Tej ose e Pashqyrtuar"
 
-#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
+#: apps/editors/helpers.py:116 apps/editors/helpers.py:129
 msgid "Queue"
 msgstr "Radhë"
 
-#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "Përditësim Në Radhë"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Shqyrtime të Plota"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "Shqyrtime Paraprake"
 
 # %1 is the review count
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "Shqyrtime të Moderuara"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr ""
 
-#: apps/editors/helpers.py:121
+#: apps/editors/helpers.py:123
 msgid "Pending Themes"
 msgstr "Tema Në Pritje"
 
-#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:124 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Tema Me Shenjë"
 
-#: apps/editors/helpers.py:123
+#: apps/editors/helpers.py:125
 msgid "Update Themes"
 msgstr "Përditësoni Tema"
 
-#: apps/editors/helpers.py:128
+#: apps/editors/helpers.py:130
 msgid "Unlisted Pending Updates"
 msgstr ""
 
-#: apps/editors/helpers.py:129
+#: apps/editors/helpers.py:131
 msgid "Unlisted Full Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:130
+#: apps/editors/helpers.py:132
 msgid "Unlisted Preliminary Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:163
+#: apps/editors/helpers.py:165
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:168
+#: apps/editors/helpers.py:170
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Shqyrtim i Plotë ({0})"
 msgstr[1] "Shqyrtime të Plota ({0})"
 
-#: apps/editors/helpers.py:173
+#: apps/editors/helpers.py:175
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Përditësim Në Pritje ({0})"
 msgstr[1] "Përditësime Në Pritje ({0})"
 
-#: apps/editors/helpers.py:178
+#: apps/editors/helpers.py:180
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Shqyrtim Paraprak ({0})"
 msgstr[1] "Shqyrtime Paraprake ({0})"
 
-#: apps/editors/helpers.py:183
+#: apps/editors/helpers.py:185
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Shqyrtim i Moderuar ({0})"
 msgstr[1] "Shqyrtime të Moderuara ({0})"
 
-#: apps/editors/helpers.py:189
+#: apps/editors/helpers.py:191
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:194
+#: apps/editors/helpers.py:196
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:199
+#: apps/editors/helpers.py:201
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:231
+#: apps/editors/helpers.py:233
 msgid "Addon"
 msgstr "Shtesë"
 
-#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:234 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Lloj"
 
-#: apps/editors/helpers.py:233
+#: apps/editors/helpers.py:235
 msgid "Waiting Time"
 msgstr "Kohë Pritjeje"
 
-#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:236 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "Flamurka"
 
-#: apps/editors/helpers.py:235
+#: apps/editors/helpers.py:237
 msgid "Applications"
 msgstr "Aplikacione"
 
-#: apps/editors/helpers.py:240
+#: apps/editors/helpers.py:242
 msgid "Additional"
 msgstr "Shtesë"
 
-#: apps/editors/helpers.py:255
+#: apps/editors/helpers.py:257
 msgid "Site Specific"
 msgstr "Për një Sajt të Dhënë"
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:259
 msgid "Requires External Software"
 msgstr "Lyp Software të Jashtëm"
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:261
 msgid "Binary Components"
 msgstr "Përbërës Dyorë"
 
-#: apps/editors/helpers.py:283
+#: apps/editors/helpers.py:285
 msgid "moments ago"
 msgstr "çaste më parë"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:286
+#: apps/editors/helpers.py:288
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minutë"
 msgstr[1] "{0} minuta"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:290
+#: apps/editors/helpers.py:292
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} orë"
 msgstr[1] "{0} orë"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:294
+#: apps/editors/helpers.py:296
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} ditë"
 msgstr[1] "{0} ditë"
 
-#: apps/editors/helpers.py:454
+#: apps/editors/helpers.py:456
 msgid "Push to public"
 msgstr "Kaloje publike"
 
-#: apps/editors/helpers.py:456
+#: apps/editors/helpers.py:458
 msgid "Grant full review"
 msgstr ""
 
-#: apps/editors/helpers.py:471
+#: apps/editors/helpers.py:473
 msgid "Request more information"
 msgstr "Kërko më tepër të dhëna"
 
-#: apps/editors/helpers.py:474
+#: apps/editors/helpers.py:476
 msgid "Request super-review"
 msgstr "Kërkoni super-shqyrtim"
 
-#: apps/editors/helpers.py:485
+#: apps/editors/helpers.py:487
 msgid "Grant preliminary review"
 msgstr "Jepi shqyrtim paraprak"
 
-#: apps/editors/helpers.py:486
+#: apps/editors/helpers.py:488
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Kjo do t’i shënonte kartelat si të shqyrtuara paraprakisht."
 
-#: apps/editors/helpers.py:488
+#: apps/editors/helpers.py:490
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "Përdorni këtë formular për të kërkuar më tepër të dhëna prej autorit. Ai do të marrë një email dhe do të mundë t’ju përgjigjet këtu. Kur të përgjigjet, do të njoftoheni me email."
 
-#: apps/editors/helpers.py:492
+#: apps/editors/helpers.py:494
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7556,56 +7564,56 @@ msgstr ""
 "Nëse keni shqetësime rreth sigurisë së kësaj shtese, problemesh me të drejtat e kopjimit, ose shqetësime të tjera të cilat duhet t’i shohë një administrator, jepini komentet tuaja në zonën më "
 "poshtë. Ato do t’u dërgohen administratorëve, jo autorit."
 
-#: apps/editors/helpers.py:498
+#: apps/editors/helpers.py:500
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Kështu do të hidhet tej shtesa dhe do të hiqet prej radhës së shqyrtimeve."
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:502
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Bëni një koment mbi këtë version. Autori nuk do të jetë në gjendje ta shohë këtë."
 
-#: apps/editors/helpers.py:504
+#: apps/editors/helpers.py:506
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Kështu do të hidhen tej kartelat dhe do të hiqen prej radhës së shqyrtimeve."
 
-#: apps/editors/helpers.py:508
+#: apps/editors/helpers.py:510
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Kështu shtesa do të shënohet si e shqyrtuar paraprakisht. Versionet e ardhshme do të kalojnë nën shqyrtim paraprak."
 
-#: apps/editors/helpers.py:513
+#: apps/editors/helpers.py:515
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Kështu kartelat do të shënohen si të shqyrtuara paraprakisht. Versionet e ardhshme do të kalojnë nën shqyrtim paraprak."
 
-#: apps/editors/helpers.py:518
+#: apps/editors/helpers.py:520
 msgid "Retain preliminary review"
 msgstr "Mbaja shqyrtimin paraprak"
 
-#: apps/editors/helpers.py:519
+#: apps/editors/helpers.py:521
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Kjo do ta mbajë shtesën si të shqyrtuar paraprakisht. Versionet e ardhshme do të kalojnë nën shqyrtim paraprak."
 
-#: apps/editors/helpers.py:524
+#: apps/editors/helpers.py:526
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "Kjo do të miratojë shfaqjen në pjesën publike të një versioni bankëprovë të një shtese publike."
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:529
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "Kështu do të hidhet tej një version i një shtese publike dhe do të hiqet ajo prej radhës."
 
-#: apps/editors/helpers.py:530
+#: apps/editors/helpers.py:532
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
 "Me këtë, shtesa dhe versioni më i fundit, së bashku me kartelat përkatëse, do të shfaqen si publike. Versione të ardhshme do të kalohen në bankëprovë, deri sa të jenë shqyrtuar nga një redaktor."
 
-#: apps/editors/helpers.py:598
+#: apps/editors/helpers.py:605
 msgid "add-on"
 msgstr "shtesë"
 
-#: apps/editors/helpers.py:886 apps/editors/helpers.py:906
+#: apps/editors/helpers.py:895 apps/editors/helpers.py:915
 msgid "Flagged"
 msgstr "Me Shenjë"
 
-#: apps/editors/helpers.py:890 apps/editors/helpers.py:909
+#: apps/editors/helpers.py:899 apps/editors/helpers.py:918
 msgid "Updates"
 msgstr "Përditësime"
 
@@ -10534,108 +10542,98 @@ msgstr[0] "{0} postim"
 msgstr[1] "{0} postime"
 
 #: apps/sharing/__init__.py:20
-msgid "Add to Delicious"
-msgstr "Shtoje te Delicious"
-
-#: apps/sharing/__init__.py:28
-msgid "Digg this!"
-msgstr "Digg this!"
-
-#: apps/sharing/__init__.py:34
-msgid "{0} digg"
-msgid_plural "{0} diggs"
-msgstr[0] ""
-msgstr[1] ""
-
-#: apps/sharing/__init__.py:40
 msgid "Post to Facebook"
 msgstr "Postoje te Facebook"
 
-#: apps/sharing/__init__.py:47
-msgid "Share on FriendFeed"
-msgstr "Ndajeni te FriendFeed"
+#: apps/sharing/__init__.py:25
+msgid "{0} Like"
+msgid_plural "{0} Likes"
+msgstr[0] ""
+msgstr[1] ""
 
-#: apps/sharing/__init__.py:52
-msgid "{0} share"
-msgid_plural "{0} shares"
-msgstr[0] "{0} ndarje me të tjerët"
-msgstr[1] "{0} ndarje me të tjerët"
+#: apps/sharing/__init__.py:30
+msgid "Tweet on Twitter"
+msgstr ""
 
-#: apps/sharing/__init__.py:58
-msgid "Post to MySpace"
-msgstr "Postoje te MySpace"
-
-#: apps/sharing/__init__.py:65
-msgid "Post to Twitter"
-msgstr "Postoje te Twitter"
-
-#: apps/sharing/__init__.py:70
+#: apps/sharing/__init__.py:35
 msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} cicërimë"
 msgstr[1] "{0} cicërima"
 
+#: apps/sharing/__init__.py:40
+msgid "Share on g+"
+msgstr ""
+
+#: apps/sharing/__init__.py:46
+msgid "Post to Reddit"
+msgstr ""
+
+#: apps/sharing/__init__.py:52
+msgid "Post to Tumblr"
+msgstr ""
+
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:78
+#: apps/sharing/__init__.py:61
 msgid "localservice1"
 msgstr "localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:80
+#: apps/sharing/__init__.py:63
 msgid "Post to localservice1"
 msgstr "Postojeni te localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:82
+#: apps/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
 msgstr "http://localservice1/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:87
+#: apps/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] "{0} postim te localservice1"
 msgstr[1] "{0} postime te localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:93
+#: apps/sharing/__init__.py:76
 msgid "localservice2"
 msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:95
+#: apps/sharing/__init__.py:78
 msgid "Post to localservice2"
 msgstr "Postojeni te localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:97
+#: apps/sharing/__init__.py:80
 msgid "http://localservice2/?url={url}&title={title}"
 msgstr "http://localservice2/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:102
+#: apps/sharing/__init__.py:85
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] "{0} postime te localservice2"
 msgstr[1] "{0} postime te localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:108
+#: apps/sharing/__init__.py:91
 msgid "localservice3"
 msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:110
+#: apps/sharing/__init__.py:93
 msgid "Post to localservice3"
 msgstr "Postojeni te localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:112
+#: apps/sharing/__init__.py:95
 msgid "http://localservice3/?url={url}&title={title}"
 msgstr "http://localservice3/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:117
+#: apps/sharing/__init__.py:100
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] "{0} postim te localservice3"
@@ -11813,15 +11811,15 @@ msgstr "Historik Versionesh për %s"
 msgid "Version History with Changelogs"
 msgstr "Historik Versionesh me Regjistrime Ndryshimesh"
 
-#: apps/versions/models.py:303
+#: apps/versions/models.py:302
 msgid "Add-on uses binary components."
 msgstr "Shtesa përdor përbërës dyorë."
 
-#: apps/versions/models.py:306
+#: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Shtesa ka zgjedhur të bëjë kontroll strikt të përputhshmërisë."
 
-#: apps/versions/models.py:693
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} dhe më të vonshëm"
 

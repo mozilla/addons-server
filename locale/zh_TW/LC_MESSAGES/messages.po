@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-13 08:37-0700\n"
+"POT-Creation-Date: 2015-05-20 10:13-0700\n"
 "PO-Revision-Date: 2015-05-14 11:56+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -225,7 +225,7 @@ msgstr "捐款"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:69 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:72 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:241
 #: apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307 apps/devhub/templates/devhub/versions/list.html:341
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -628,7 +628,7 @@ msgstr "授權"
 msgid "Awaiting Review"
 msgstr "等待審查"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:53
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:55
 msgid "Rejected"
 msgstr "已被退回"
 
@@ -794,7 +794,7 @@ msgstr "回報"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:70 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:73 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:241 apps/devhub/templates/devhub/versions/list.html:274 apps/devhub/templates/devhub/versions/list.html:307
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -839,7 +839,7 @@ msgstr "審查指南"
 msgid "Detailed Review"
 msgstr "填寫詳細評論"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:867 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:876 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "評論"
@@ -1173,7 +1173,7 @@ msgstr "使用者數"
 msgid "Weekly Downloads"
 msgstr "每週下載次數"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:755 apps/devhub/templates/devhub/versions/list.html:177
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:756 apps/devhub/templates/devhub/versions/list.html:177
 msgid "Version"
 msgstr "版本"
 
@@ -1250,7 +1250,7 @@ msgstr "附加元件是可以讓您個人化您 Firefox 的應用程式，並額
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:98 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "佈景主題"
@@ -1325,7 +1325,7 @@ msgstr "提交一個新的佈景主題"
 msgid "Developer Hub"
 msgstr "開發者交流中心"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:73 apps/editors/helpers.py:93 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:75 apps/editors/helpers.py:95 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "審查者工具"
 
@@ -1509,7 +1509,7 @@ msgstr "已要求超級審核者進行審核"
 msgid "Comment on {addon} {version}."
 msgstr "在 {addon} {version} 上的意見。"
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:477
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:479
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "意見"
@@ -2100,11 +2100,11 @@ msgstr "不允許加入鏈結。"
 msgid "This url is already in use by another collection"
 msgstr "這個網址已被其他的收藏集使用"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1018
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1017
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1036 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1035 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
@@ -2599,7 +2599,7 @@ msgstr "輸入您要加入的附加元件名稱"
 msgid "Add to Collection"
 msgstr "加入收藏集"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:882 apps/editors/helpers.py:902
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:891 apps/editors/helpers.py:911
 msgid "Pending"
 msgstr "等待中"
 
@@ -3092,7 +3092,7 @@ msgstr "依應用程式過濾"
 msgid "Report Type"
 msgstr "報告類型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:752 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:753 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "應用程式"
 
@@ -3196,7 +3196,7 @@ msgstr "已初步審核"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "已初步審核並等待完整審核"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:870 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:879 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "已刪除"
 
@@ -3456,7 +3456,7 @@ msgstr "標示"
 msgid "Duplicate"
 msgstr "重製"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:468 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:470 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "退回"
 
@@ -3710,47 +3710,51 @@ msgstr "初步審核"
 msgid "Please choose a review nomination type"
 msgstr "請選擇送交審核的類型"
 
-#: apps/devhub/forms.py:543 apps/devhub/forms.py:578
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr "檔案版本結尾包含a|alpha|b|beta 與數字會被偵測為 beta 測試版。"
+#: apps/devhub/forms.py:543
+msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
+msgstr ""
 
-#: apps/devhub/forms.py:560
+#: apps/devhub/forms.py:561
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:572
+#: apps/devhub/forms.py:573
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "您選的不是有效的選項，請選擇有效的選項。"
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:579
+msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
+msgstr "檔案版本結尾包含a|alpha|b|beta 與數字會被偵測為 beta 測試版。"
+
+#: apps/devhub/forms.py:602
 msgid "You cannot upload any more files for this version."
 msgstr "您不行再對這個版本上傳檔案。"
 
-#: apps/devhub/forms.py:607
+#: apps/devhub/forms.py:608
 msgid "Version doesn't match"
 msgstr "版本不相符"
 
-#: apps/devhub/forms.py:636
+#: apps/devhub/forms.py:637
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "當審核開始後您就無法刪除檔案。您必須刪除整個版本。"
 
-#: apps/devhub/forms.py:656
+#: apps/devhub/forms.py:657
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "所有平台不能與某特定平台結合。"
 
-#: apps/devhub/forms.py:661
+#: apps/devhub/forms.py:662
 msgid "A platform can only be chosen once."
 msgstr "只能選擇一個平台。"
 
-#: apps/devhub/forms.py:674
+#: apps/devhub/forms.py:675
 msgid "A review type must be selected."
 msgstr "您必須選擇一項審核方式。"
 
-#: apps/devhub/forms.py:756 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:757 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "先選擇一個應用程式"
 
-#: apps/devhub/forms.py:808
+#: apps/devhub/forms.py:809
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必要的附加元件不能超過三個。"
 
@@ -3824,11 +3828,11 @@ msgstr "使用者收藏集"
 msgid "User Reviews"
 msgstr "使用者意見"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1115
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478 apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1114
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1585
+#: apps/devhub/views.py:329 apps/devhub/views.py:1589
 msgid "Please check the form for errors."
 msgstr "請檢查表格是否有錯誤。"
 
@@ -3876,52 +3880,52 @@ msgstr "驗證附加元件"
 msgid "Check Add-on Compatibility"
 msgstr "檢查附加元件的相容性"
 
-#: apps/devhub/views.py:657
+#: apps/devhub/views.py:656
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: apps/devhub/views.py:1020 apps/users/forms.py:419
+#: apps/devhub/views.py:1019 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: apps/devhub/views.py:1024
+#: apps/devhub/views.py:1023
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: apps/devhub/views.py:1026
+#: apps/devhub/views.py:1025
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
-#: apps/devhub/views.py:1039
+#: apps/devhub/views.py:1038
 msgid "Images cannot be larger than %dKB."
 msgstr "圖片大小不能超過 %dKB。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1049
+#: apps/devhub/views.py:1048
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "圖檔的寬必須剛好為 {0} 像素並且高 {1} 像素。"
 
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1055
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: apps/devhub/views.py:1154
+#: apps/devhub/views.py:1153
 msgid "Version %s disabled."
 msgstr "已停用 %s 版本。"
 
-#: apps/devhub/views.py:1158
+#: apps/devhub/views.py:1157
 msgid "Version %s deleted."
 msgstr "已刪除版本 %s。"
 
-#: apps/devhub/views.py:1168
+#: apps/devhub/views.py:1167
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: apps/devhub/views.py:1631
+#: apps/devhub/views.py:1635
 msgid "Preliminary Review Requested."
 msgstr "已要求初步審核。"
 
-#: apps/devhub/views.py:1632
+#: apps/devhub/views.py:1636
 msgid "Full Review Requested."
 msgstr "已要求完整審核。"
 
@@ -3935,7 +3939,7 @@ msgstr "返回附加元件網站"
 msgid "{0} :: Search"
 msgstr "{0} :: 搜尋"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:450 apps/editors/forms.py:452 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:449 apps/editors/forms.py:451 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -6461,6 +6465,10 @@ msgstr "您想要送交哪種類型的審核？"
 msgid "Only publish this version to my beta channel."
 msgstr "僅發佈此版本到我的 Beta 頻道。"
 
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:67
+msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
+msgstr ""
+
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
@@ -7086,7 +7094,7 @@ msgstr "已等待的時間"
 msgid "Add-on Types"
 msgstr "附加元件類型"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:237
+#: apps/editors/forms.py:118 apps/editors/helpers.py:239
 msgid "Platforms"
 msgstr "平台"
 
@@ -7134,267 +7142,267 @@ msgid "File %s is not pending review."
 msgstr "檔案 %s 為非等待審核狀態。"
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:339
+#: apps/editors/forms.py:338
 msgid "theme name"
 msgstr "佈景主題名稱"
 
-#: apps/editors/forms.py:365
+#: apps/editors/forms.py:364
 msgid "Someone else is reviewing this theme."
 msgstr "他人正在審核此佈景主題。"
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:462
+#: apps/editors/forms.py:461
 msgid "app, reviewer, or comment"
 msgstr "應用程式，審核者或評論"
 
 # 81%
 # 100%
-#: apps/editors/helpers.py:46
+#: apps/editors/helpers.py:48
 msgid "Pending Preliminary Review"
 msgstr "等待初步審核"
 
 # 75%
 # 100%
-#: apps/editors/helpers.py:50
+#: apps/editors/helpers.py:52
 msgid "Pending Full Review"
 msgstr "等待完整審核"
 
-#: apps/editors/helpers.py:57
+#: apps/editors/helpers.py:59
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未審核"
 
 # 83%
 # 100%
-#: apps/editors/helpers.py:114 apps/editors/helpers.py:127
+#: apps/editors/helpers.py:116 apps/editors/helpers.py:129
 msgid "Queue"
 msgstr "等待審核區"
 
-#: apps/editors/helpers.py:115 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "等待更新"
 
-#: apps/editors/helpers.py:116 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "完整審核"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "初步審核"
 
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "有問題的評論"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "快速審核"
 
-#: apps/editors/helpers.py:121
+#: apps/editors/helpers.py:123
 msgid "Pending Themes"
 msgstr "審核中的佈景主題"
 
-#: apps/editors/helpers.py:122 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:124 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "已標記的佈景主題"
 
-#: apps/editors/helpers.py:123
+#: apps/editors/helpers.py:125
 msgid "Update Themes"
 msgstr "佈景主題更新"
 
-#: apps/editors/helpers.py:128
+#: apps/editors/helpers.py:130
 msgid "Unlisted Pending Updates"
 msgstr "未上架的準備中更新"
 
-#: apps/editors/helpers.py:129
+#: apps/editors/helpers.py:131
 msgid "Unlisted Full Reviews"
 msgstr "未上架的完整審查"
 
-#: apps/editors/helpers.py:130
+#: apps/editors/helpers.py:132
 msgid "Unlisted Preliminary Reviews"
 msgstr "未上架的初步審查"
 
-#: apps/editors/helpers.py:163
+#: apps/editors/helpers.py:165
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "快速審核 ({0})"
 
-#: apps/editors/helpers.py:168
+#: apps/editors/helpers.py:170
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "完整審核 ({0})"
 
-#: apps/editors/helpers.py:173
+#: apps/editors/helpers.py:175
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "等待更新 ({0})"
 
-#: apps/editors/helpers.py:178
+#: apps/editors/helpers.py:180
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "初步審核 ({0})"
 
-#: apps/editors/helpers.py:183
+#: apps/editors/helpers.py:185
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "有問題的評論 ({0})"
 
-#: apps/editors/helpers.py:189
+#: apps/editors/helpers.py:191
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "未上架的完整審查 ({0})"
 
-#: apps/editors/helpers.py:194
+#: apps/editors/helpers.py:196
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "未上架的準備中更新 ({0})"
 
-#: apps/editors/helpers.py:199
+#: apps/editors/helpers.py:201
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "未上架的準備中審查 ({0})"
 
-#: apps/editors/helpers.py:231
+#: apps/editors/helpers.py:233
 msgid "Addon"
 msgstr "附加元件"
 
-#: apps/editors/helpers.py:232 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:234 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "類型"
 
-#: apps/editors/helpers.py:233
+#: apps/editors/helpers.py:235
 msgid "Waiting Time"
 msgstr "等待時間"
 
-#: apps/editors/helpers.py:234 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:236 apps/editors/templates/editors/review.html:307
 msgid "Flags"
 msgstr "標記"
 
-#: apps/editors/helpers.py:235
+#: apps/editors/helpers.py:237
 msgid "Applications"
 msgstr "應用程式"
 
-#: apps/editors/helpers.py:240
+#: apps/editors/helpers.py:242
 msgid "Additional"
 msgstr "額外資訊"
 
-#: apps/editors/helpers.py:255
+#: apps/editors/helpers.py:257
 msgid "Site Specific"
 msgstr "特定網站"
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:259
 msgid "Requires External Software"
 msgstr "需要外部的軟體"
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:261
 msgid "Binary Components"
 msgstr "可執行元件"
 
-#: apps/editors/helpers.py:283
+#: apps/editors/helpers.py:285
 msgid "moments ago"
 msgstr "不久前"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:286
+#: apps/editors/helpers.py:288
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} 分鐘"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:290
+#: apps/editors/helpers.py:292
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} 小時"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:294
+#: apps/editors/helpers.py:296
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#: apps/editors/helpers.py:454
+#: apps/editors/helpers.py:456
 msgid "Push to public"
 msgstr "公開發佈"
 
-#: apps/editors/helpers.py:456
+#: apps/editors/helpers.py:458
 msgid "Grant full review"
 msgstr "通過完整審查"
 
-#: apps/editors/helpers.py:471
+#: apps/editors/helpers.py:473
 msgid "Request more information"
 msgstr "要求更多資訊"
 
-#: apps/editors/helpers.py:474
+#: apps/editors/helpers.py:476
 msgid "Request super-review"
 msgstr "要求超級審核"
 
-#: apps/editors/helpers.py:485
+#: apps/editors/helpers.py:487
 msgid "Grant preliminary review"
 msgstr "通過初步審核"
 
-#: apps/editors/helpers.py:486
+#: apps/editors/helpers.py:488
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "這會將檔案標示為已通過初步審核。"
 
-#: apps/editors/helpers.py:488
+#: apps/editors/helpers.py:490
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "使用此表格向開發者要求更多資訊。他們會收到電子郵件通知而且能夠在此回覆。當開發者回覆時您會收到通知。"
 
-#: apps/editors/helpers.py:492
+#: apps/editors/helpers.py:494
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr "如果您認為此附加元件可能有安全性或著作權爭議的問題，或其他需要管理員調查的事項，請在此區域輸入您的意見。意見將會傳送至管理員，不會傳送至開發者。"
 
-#: apps/editors/helpers.py:498
+#: apps/editors/helpers.py:500
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "這將會退回附加元件並從等待審核區移除。"
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:502
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "對這個版本提出意見。作者是看不到您的意見的。"
 
-#: apps/editors/helpers.py:504
+#: apps/editors/helpers.py:506
 msgid "This will reject the files and remove them from the review queue."
 msgstr "這將會退回檔案並從等待審核區移除。"
 
-#: apps/editors/helpers.py:508
+#: apps/editors/helpers.py:510
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "這將會把附加元件標示為已經過初步審核。未來版本將將會進行初步審核。"
 
-#: apps/editors/helpers.py:513
+#: apps/editors/helpers.py:515
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "這會標記檔案為通過初步審核。未來的版本將會進行初步審核。"
 
-#: apps/editors/helpers.py:518
+#: apps/editors/helpers.py:520
 msgid "Retain preliminary review"
 msgstr "保留初步審核"
 
-#: apps/editors/helpers.py:519
+#: apps/editors/helpers.py:521
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "這當會把附加元件保持為通過初步審核。未來的版本將會進行初步審核。"
 
-#: apps/editors/helpers.py:524
+#: apps/editors/helpers.py:526
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "這將會於公開處先通過一個公開附加元件的沙盒版本。"
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:529
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "這將會退回一個版本的公開附加元件，並將其從審核等待區移除。"
 
-#: apps/editors/helpers.py:530
+#: apps/editors/helpers.py:532
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "這將會把附加元件與其最新的版本標示為公開。未來的版本在被審核者審核之前將會先被放到沙盒之中。"
 
-#: apps/editors/helpers.py:598
+#: apps/editors/helpers.py:605
 msgid "add-on"
 msgstr "附加元件"
 
-#: apps/editors/helpers.py:886 apps/editors/helpers.py:906
+#: apps/editors/helpers.py:895 apps/editors/helpers.py:915
 msgid "Flagged"
 msgstr "已標記"
 
 # 85%
-#: apps/editors/helpers.py:890 apps/editors/helpers.py:909
+#: apps/editors/helpers.py:899 apps/editors/helpers.py:918
 msgid "Updates"
 msgstr "更新"
 
@@ -10208,103 +10216,94 @@ msgid_plural "{0} posts"
 msgstr[0] "{0} 篇意見"
 
 #: apps/sharing/__init__.py:20
-msgid "Add to Delicious"
-msgstr "加到 Delicious"
-
-#: apps/sharing/__init__.py:28
-msgid "Digg this!"
-msgstr "Digg 這篇！"
-
-#: apps/sharing/__init__.py:34
-msgid "{0} digg"
-msgid_plural "{0} diggs"
-msgstr[0] "{0} 個 digg"
-
-#: apps/sharing/__init__.py:40
 msgid "Post to Facebook"
 msgstr "發佈到 Facebook"
 
-#: apps/sharing/__init__.py:47
-msgid "Share on FriendFeed"
-msgstr "在 FriendFeed 分享"
+#: apps/sharing/__init__.py:25
+msgid "{0} Like"
+msgid_plural "{0} Likes"
+msgstr[0] ""
 
-#: apps/sharing/__init__.py:52
-msgid "{0} share"
-msgid_plural "{0} shares"
-msgstr[0] "{0} 個分享"
+#: apps/sharing/__init__.py:30
+msgid "Tweet on Twitter"
+msgstr ""
 
-#: apps/sharing/__init__.py:58
-msgid "Post to MySpace"
-msgstr "發佈到 MySpace"
-
-#: apps/sharing/__init__.py:65
-msgid "Post to Twitter"
-msgstr "張貼到 Twitter"
-
-#: apps/sharing/__init__.py:70
+#: apps/sharing/__init__.py:35
 msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} 則 tweet"
 
+#: apps/sharing/__init__.py:40
+msgid "Share on g+"
+msgstr ""
+
+#: apps/sharing/__init__.py:46
+msgid "Post to Reddit"
+msgstr ""
+
+#: apps/sharing/__init__.py:52
+msgid "Post to Tumblr"
+msgstr ""
+
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:78
+#: apps/sharing/__init__.py:61
 msgid "localservice1"
 msgstr "Plurk"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:80
+#: apps/sharing/__init__.py:63
 msgid "Post to localservice1"
 msgstr "貼到噗浪"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:82
+#: apps/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
 msgstr "http://www.plurk.com/?qualifier=shares&status={url} ({title}) Firefox 附加元件站"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:87
+#: apps/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] "噗浪上的 {0} 篇分享"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:93
+#: apps/sharing/__init__.py:76
 msgid "localservice2"
 msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:95
+#: apps/sharing/__init__.py:78
 msgid "Post to localservice2"
 msgstr "Post to localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:97
+#: apps/sharing/__init__.py:80
 msgid "http://localservice2/?url={url}&title={title}"
 msgstr "http://localservice2/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:102
+#: apps/sharing/__init__.py:85
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] "{0} posts on localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:108
+#: apps/sharing/__init__.py:91
 msgid "localservice3"
 msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:110
+#: apps/sharing/__init__.py:93
 msgid "Post to localservice3"
 msgstr "Post to localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:112
+#: apps/sharing/__init__.py:95
 msgid "http://localservice3/?url={url}&title={title}"
 msgstr "http://localservice3/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
-#: apps/sharing/__init__.py:117
+#: apps/sharing/__init__.py:100
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] "{0} posts on localservice3"
@@ -11463,15 +11462,15 @@ msgstr "%s 的版本歷史"
 msgid "Version History with Changelogs"
 msgstr "版本歷史記錄"
 
-#: apps/versions/models.py:303
+#: apps/versions/models.py:302
 msgid "Add-on uses binary components."
 msgstr "使用二進位元件的附加元件。"
 
-#: apps/versions/models.py:306
+#: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加元件已要求進行嚴格的相容性檢測。"
 
-#: apps/versions/models.py:693
+#: apps/versions/models.py:682
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 

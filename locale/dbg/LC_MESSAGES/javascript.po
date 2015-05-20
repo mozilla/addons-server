@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-13 08:37-0700\n"
+"POT-Creation-Date: 2015-05-20 10:13-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 
 #: static/js/common/upload-addon.js:205
-#: static/js/common/upload-addon.js:409
+#: static/js/common/upload-addon.js:417
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
@@ -78,41 +78,41 @@ msgstr "Ṽȧŀīḓȧŧīƞɠ {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Řḗƈḗīṽḗḓ ȧƞ ḗḿƥŧẏ řḗşƥǿƞşḗ ƒřǿḿ ŧħḗ şḗřṽḗř; şŧȧŧŭş: {0}"
 
-#: static/js/common/upload-addon.js:272
+#: static/js/common/upload-addon.js:275
 msgid "Unexpected server error while validating."
 msgstr "Ŭƞḗẋƥḗƈŧḗḓ şḗřṽḗř ḗřřǿř ẇħīŀḗ ṽȧŀīḓȧŧīƞɠ."
 
-#: static/js/common/upload-addon.js:310
+#: static/js/common/upload-addon.js:313
 msgid "Finished validating {0}"
 msgstr "Ƒīƞīşħḗḓ ṽȧŀīḓȧŧīƞɠ {0}"
 
-#: static/js/common/upload-addon.js:316
+#: static/js/common/upload-addon.js:319
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] "Ẏǿŭř ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
 msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
 
-#: static/js/common/upload-addon.js:321
+#: static/js/common/upload-addon.js:324
 msgid "Your add-on passed validation with no errors or warnings."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ ƞǿ ḗřřǿřş ǿř ẇȧřƞīƞɠş."
 
-#: static/js/common/upload-addon.js:341
+#: static/js/common/upload-addon.js:342
 msgid "Your submission will go through a manual review."
 msgstr "Ẏǿŭř şŭƀḿīşşīǿƞ ẇīŀŀ ɠǿ ŧħřǿŭɠħ ȧ ḿȧƞŭȧŀ řḗṽīḗẇ."
 
-#: static/js/common/upload-addon.js:345
+#: static/js/common/upload-addon.js:346
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "Ẏǿŭř şŭƀḿīşşīǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ȧƞḓ ẇīŀŀ ƀḗ ȧŭŧǿḿȧŧīƈȧŀŀẏ şīɠƞḗḓ."
 
-#: static/js/common/upload-addon.js:347
+#: static/js/common/upload-addon.js:348
 msgid "Your submission passed validation and will go through a manual review."
 msgstr "Ẏǿŭř şŭƀḿīşşīǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ ȧƞḓ ẇīŀŀ ɠǿ ŧħřǿŭɠħ ȧ ḿȧƞŭȧŀ řḗṽīḗẇ."
 
-#: static/js/common/upload-addon.js:362
+#: static/js/common/upload-addon.js:370
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Īƞƈŀŭḓḗ ḓḗŧȧīŀḗḓ ṽḗřşīǿƞ ƞǿŧḗş (ŧħīş ƈȧƞ ƀḗ ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:371
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
@@ -122,7 +122,7 @@ msgstr ""
 "īƞƈŀŭḓḗ ȧ ŧḗşŧ ŭşḗřƞȧḿḗ ȧƞḓ ƥȧşşẇǿřḓ īƞ ŧħḗ Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř (ŧħīş ƈȧƞ ƀḗ "
 "ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
-#: static/js/common/upload-addon.js:364
+#: static/js/common/upload-addon.js:372
 msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
@@ -130,11 +130,11 @@ msgstr ""
 "Īƒ ẏǿŭř ȧḓḓ-ǿƞ īş īƞŧḗƞḓḗḓ ƒǿř ȧ ŀīḿīŧḗḓ ȧŭḓīḗƞƈḗ ẏǿŭ şħǿŭŀḓ ƈħǿǿşḗ "
 "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ īƞşŧḗȧḓ ǿƒ Ƒŭŀŀ Řḗṽīḗẇ."
 
-#: static/js/common/upload-addon.js:377
+#: static/js/common/upload-addon.js:385
 msgid "Add-on submission checklist"
 msgstr "Ȧḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƈħḗƈķŀīşŧ"
 
-#: static/js/common/upload-addon.js:378
+#: static/js/common/upload-addon.js:386
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
@@ -142,7 +142,7 @@ msgstr ""
 "Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīzīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş "
 "ẇīŀŀ ḿīƞīḿīzḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
 
-#: static/js/common/upload-addon.js:380
+#: static/js/common/upload-addon.js:388
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -154,11 +154,11 @@ msgstr ""
 "Ḿȧķḗ şŭřḗ ŧħȧŧ ẏǿŭ ŭşḗ ŧħḗ şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓ ƒīḗŀḓ ŧǿ ȧṽǿīḓ ħȧṽīƞɠ ẏǿŭř "
 "şŭƀḿīşşīǿƞ řḗĵḗƈŧḗḓ."
 
-#: static/js/common/upload-addon.js:398
+#: static/js/common/upload-addon.js:406
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Ŧħḗ ṽȧŀīḓȧŧīǿƞ ƥřǿƈḗşş ƒǿŭƞḓ ŧħḗşḗ īşşŭḗş ŧħȧŧ ƈȧƞ ŀḗȧḓ ŧǿ řḗĵḗƈŧīǿƞş:"
 
-#: static/js/common/upload-addon.js:415
+#: static/js/common/upload-addon.js:423
 msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it "
 "here."
@@ -166,11 +166,11 @@ msgstr ""
 "Īƒ ẏǿŭ ȧřḗ ŭƞƒȧḿīŀīȧř ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş řḗṽīḗẇ ƥřǿƈḗşş, ẏǿŭ ƈȧƞ řḗȧḓ ȧƀǿŭŧ īŧ "
 "ħḗřḗ."
 
-#: static/js/common/upload-addon.js:451
+#: static/js/common/upload-addon.js:459
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Şǿḿḗ ƥŀȧŧƒǿřḿş ȧřḗ ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿƞ."
 
-#: static/js/common/upload-addon.js:453
+#: static/js/common/upload-addon.js:461
 msgid "Sorry, no supported platform has been found."
 msgstr "Şǿřřẏ, ƞǿ şŭƥƥǿřŧḗḓ ƥŀȧŧƒǿřḿ ħȧş ƀḗḗƞ ƒǿŭƞḓ."
 
@@ -831,7 +831,7 @@ msgid "Other"
 msgstr "Ǿŧħḗř"
 
 #: static/js/zamboni/admin_validation.js:24
-#: static/js/zamboni/devhub.js:1310
+#: static/js/zamboni/devhub.js:1322
 #: static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
@@ -1024,60 +1024,60 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 msgid "Stop following"
 msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 
-#: static/js/zamboni/devhub.js:169
+#: static/js/zamboni/devhub.js:181
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: static/js/zamboni/devhub.js:426
+#: static/js/zamboni/devhub.js:438
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
-#: static/js/zamboni/devhub.js:442
+#: static/js/zamboni/devhub.js:454
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: static/js/zamboni/devhub.js:589
+#: static/js/zamboni/devhub.js:601
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
-#: static/js/zamboni/devhub.js:734
+#: static/js/zamboni/devhub.js:746
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
 msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
 
-#: static/js/zamboni/devhub.js:737
+#: static/js/zamboni/devhub.js:749
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇ"
 msgstr[1] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇş"
 
-#: static/js/zamboni/devhub.js:849
+#: static/js/zamboni/devhub.js:861
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: static/js/zamboni/devhub.js:853
+#: static/js/zamboni/devhub.js:865
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
-#: static/js/zamboni/devhub.js:1211
+#: static/js/zamboni/devhub.js:1223
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
-#: static/js/zamboni/devhub.js:1338
+#: static/js/zamboni/devhub.js:1350
 msgid "Starting tests..."
 msgstr "Şŧȧřŧīƞɠ ŧḗşŧş..."
 
-#: static/js/zamboni/devhub.js:1345
+#: static/js/zamboni/devhub.js:1357
 msgid "Waiting for test results..."
 msgstr "Ẇȧīŧīƞɠ ƒǿř ŧḗşŧ řḗşŭŀŧş..."
 
-#: static/js/zamboni/devhub.js:1347
-#: static/js/zamboni/devhub.js:1352
+#: static/js/zamboni/devhub.js:1359
+#: static/js/zamboni/devhub.js:1364
 msgid "Internal Server Error"
 msgstr "Īƞŧḗřƞȧŀ Şḗřṽḗř Ḗřřǿř"
 
-#: static/js/zamboni/devhub.js:1387
+#: static/js/zamboni/devhub.js:1399
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 
