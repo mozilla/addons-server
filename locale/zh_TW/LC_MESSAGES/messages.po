@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-14 11:56+0000\n"
+"PO-Revision-Date: 2015-05-20 17:32+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431604561.0\n"
+"X-POOTLE-MTIME: 1432143121.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3712,7 +3712,7 @@ msgstr "請選擇送交審核的類型"
 
 #: apps/devhub/forms.py:543
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "檔案的版本若以 a|alpha|b|beta|pre|rc 與非必要的數字作為結尾則將偵測為 beta 測試版。"
 
 #: apps/devhub/forms.py:561
 msgid "Version %s already exists"
@@ -6468,6 +6468,7 @@ msgstr "僅發佈此版本到我的 Beta 頻道。"
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr ""
+"已偵測到您的版本為 beta 測試版，並未通過自動驗證因此無法上架。若您沒有要將其作為 beta 測試版送交測試，請取消選擇 beta 頻道選項。"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -10222,11 +10223,11 @@ msgstr "發佈到 Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
+msgstr[0] "{0} 個讚"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "推到 Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -10235,15 +10236,15 @@ msgstr[0] "{0} 則 tweet"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "分享到 G+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "貼到 Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "貼到 Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
