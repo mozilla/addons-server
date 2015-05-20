@@ -68,6 +68,8 @@ detail_patterns = patterns(
         name='devhub.addons.upload_icon'),
     url('^upload$', views.upload_for_addon,
         name='devhub.upload_for_addon'),
+    url('^upload/unlisted$', views.upload_for_addon_unlisted,
+        name='devhub.upload_for_addon_unlisted'),
     url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
         name='devhub.upload_detail_for_addon'),
 

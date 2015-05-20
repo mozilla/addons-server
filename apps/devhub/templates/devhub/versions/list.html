@@ -245,9 +245,10 @@
     </form>
   </div>
 
-  {{ add_version_modal(_("Add a new Version"),
+  {{ add_file_modal(_("Add a new Version"),
                        url('devhub.versions.add', addon.slug),
-                       url('devhub.upload_for_addon', addon.slug), _("Add Version") )}}
+                       _("Add Version"),
+                       'version')}}
 
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">

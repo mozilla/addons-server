@@ -341,12 +341,13 @@
                         if (isSideload) {
                           $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
                         } else {
-                          if (warnings === 0) {
+                          if (v.passed_auto_validation) {
                             if (automaticValidation) {  // Automatic validation is enabled.
                               $("<p>").text(gettext("Your submission passed validation and will be automatically signed.")).appendTo(upload_results);
                             } else {  // Automatic validation is not enabled.
                               $("<p>").text(gettext("Your submission passed validation and will go through a manual review.")).appendTo(upload_results);
                             }
+                            $('#manual-review').hide().addClass('hidden');
                           } else {
                             // If unlisted and not sideload and failed validation, disable submit until checkbox checked.
                             $('.addon-upload-dependant').attr('disabled', true);
@@ -355,7 +356,7 @@
                         }
                       } else {  // This is a listed add-on.
                         if (automaticValidation && results.beta) {
-                          if (warnings > 0) {
+                          if (!v.passed_auto_validation) {
                             $('#invalid-beta').show().removeClass('hidden');
                             $('.addon-upload-dependant').attr('disabled', true);
                           }

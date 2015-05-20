@@ -83,10 +83,10 @@ $(document).ready(function() {
         $('.addon-upload-failure-dependant').attr('disabled', true);
     }
 
-    if ($('#create-addon').data('unlisted-addons')) {
+    var $new_form = $('.new-addon-file');
+    if ($new_form.data('unlisted-addons')) {
       // is_listed checkbox: should the add-on be listed on AMO? If not, change
       // the addon upload button's data-upload-url.
-      var url = $uploadAddon.attr('data-upload-url');
       // If this add-on is unlisted, then tell the upload view so
       // it'll run the validator with the "listed=False"
       // parameter.
@@ -96,17 +96,15 @@ $(document).ready(function() {
       var $isManualReview = $('#manual-review');
       var $submitAddonProgress = $('.submit-addon-progress');
       function updateListedStatus() {
-        if ($isListed.exists()) {
-          if ($isListed.is(':checked')) {  // It's a listed add-on.
-            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
-            $isSideloadLabel.hide();
-            $isSideload.attr('checked', false);
-            $submitAddonProgress.removeClass('unlisted');
-          } else {  // It's an unlisted add-on.
-            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
-            $isSideloadLabel.show();
-            $submitAddonProgress.addClass('unlisted');
-          }
+        if ($isListed.is(':checked') || $new_form.data('addon-is-listed')) {  // It's a listed add-on.
+          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+          $isSideloadLabel.hide();
+          $isSideload.attr('checked', false);
+          $submitAddonProgress.removeClass('unlisted');
+        } else {  // It's an unlisted add-on.
+          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+          $isSideloadLabel.show();
+          $submitAddonProgress.addClass('unlisted');
         }
         /* Don't allow submitting, need to reupload/revalidate the file. */
         $('.addon-upload-dependant').attr('disabled', true);

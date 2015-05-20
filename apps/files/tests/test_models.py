@@ -776,7 +776,10 @@ class TestFileFromUpload(UploadTest):
         if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
             name = name + '.xpi'
 
-        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={}))
+        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={},
+                            signing_summary={'trivial': 0, 'low': 0,
+                                             'medium': 0, 'high': 0},
+                            passed_auto_validation=1))
         fname = nfd_str(self.xpi_path(name))
         if not storage.exists(fname):
             with storage.open(fname, 'w') as fs:
@@ -823,7 +826,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('jetpack')
         file = File.from_upload(upload, self.version, self.platform)
         fv = FileValidation.objects.get(file=file)
-        eq_(fv.validation, upload.validation)
+        eq_(json.loads(fv.validation), json.loads(upload.validation))
         eq_(fv.valid, True)
         eq_(fv.errors, 0)
         eq_(fv.warnings, 1)
