@@ -23,6 +23,8 @@ from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewUnlistedPendingQueue,
                             ViewUnlistedPreliminaryQueue)
 from editors.sql_table import SQLTable
+from lib.crypto.packaged import sign_file
+from users.models import UserProfile
 
 
 @register.function
@@ -546,7 +548,12 @@ class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type):
         self.request = request
-        self.user = self.request.user
+        if request:
+            self.user = self.request.user
+        else:
+            # Use the addons team go-to user "Mozilla" for the automatic
+            # validations.
+            self.user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
         self.addon = addon
         self.version = version
         self.review_type = review_type
@@ -585,7 +592,7 @@ class ReviewBase(object):
     def notify_email(self, template, subject):
         """Notify the authors that their addon has been reviewed."""
         emails = [a.email for a in self.addon.authors.all()]
-        data = self.data.copy()
+        data = self.data.copy() if self.data else {}
         data.update(self.get_context_data())
         data['tested'] = ''
         os, app = data.get('operating_systems'), data.get('applications')
@@ -607,12 +614,12 @@ class ReviewBase(object):
             url = self.addon.get_dev_url('versions')
         return {'name': self.addon.name,
                 'number': self.version.version,
-                'reviewer': (self.request.user.display_name),
+                'reviewer': self.user.display_name,
                 'addon_url': absolutify(url),
                 'review_url': absolutify(reverse('editors.review',
                                                  args=[self.addon.pk],
                                                  add_prefix=False)),
-                'comments': self.data['comments'],
+                'comments': self.data.get('comments'),
                 'SITE_URL': settings.SITE_URL}
 
     def request_information(self):
@@ -658,18 +665,18 @@ class ReviewAddon(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
+        # Sign addon.
+        for file_ in self.files:
+            sign_file(file_, settings.SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_PUBLIC, self.version.files.all(),
-                       copy_to_mirror=True)
+        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
         self.set_addon(highest_status=amo.STATUS_PUBLIC,
                        status=amo.STATUS_PUBLIC)
-
-        # Sign addon.
-        self.version.sign_files()
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -698,7 +705,7 @@ class ReviewAddon(ReviewBase):
         else:
             self.set_addon(status=amo.STATUS_LITE)
 
-        self.set_files(amo.STATUS_DISABLED, self.version.files.all(),
+        self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
@@ -717,6 +724,10 @@ class ReviewAddon(ReviewBase):
 
     def process_preliminary(self):
         """Set an addon to preliminary."""
+        # Sign addon.
+        for file_ in self.files:
+            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -735,11 +746,7 @@ class ReviewAddon(ReviewBase):
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
 
         self.set_addon(**changes)
-        self.set_files(amo.STATUS_LITE, self.version.files.all(),
-                       copy_to_mirror=True)
-
-        # Sign addon.
-        self.version.sign_files()
+        self.set_files(amo.STATUS_LITE, self.files, copy_to_mirror=True)
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         self.notify_email(template, subject)
@@ -747,8 +754,10 @@ class ReviewAddon(ReviewBase):
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
 
-        # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        if self.request:
+            # Assign reviewer incentive scores.
+            ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                       status)
 
     def process_super_review(self):
         """Give an addon super review."""
@@ -769,14 +778,14 @@ class ReviewFiles(ReviewBase):
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
 
+        # Sign addon.
+        for file_ in self.files:
+            sign_file(file_, settings.SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_PUBLIC, self.data['addon_files'],
-                       copy_to_mirror=True)
-
-        # Sign addon.
-        self.version.sign_files()
+        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -787,8 +796,7 @@ class ReviewFiles(ReviewBase):
         self.notify_email(template, subject)
 
         log.info(u'Making %s files %s public' %
-                 (self.addon,
-                  ', '.join([f.filename for f in self.data['addon_files']])))
+                 (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
@@ -799,7 +807,7 @@ class ReviewFiles(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_DISABLED, self.data['addon_files'],
+        self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
@@ -812,7 +820,7 @@ class ReviewFiles(ReviewBase):
 
         log.info(u'Making %s files %s disabled' %
                  (self.addon,
-                  ', '.join([f.filename for f in self.data['addon_files']])))
+                  ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
@@ -820,14 +828,14 @@ class ReviewFiles(ReviewBase):
 
     def process_preliminary(self):
         """Set an addons files to preliminary."""
+        # Sign addon.
+        for file_ in self.files:
+            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_LITE, self.data['addon_files'],
-                       copy_to_mirror=True)
-
-        # Sign addon.
-        self.version.sign_files()
+        self.set_files(amo.STATUS_LITE, self.files, copy_to_mirror=True)
 
         self.log_action(amo.LOG.PRELIMINARY_VERSION)
         template = u'%s_to_preliminary' % self.review_type
@@ -838,12 +846,13 @@ class ReviewFiles(ReviewBase):
         self.notify_email(template, subject)
 
         log.info(u'Making %s files %s preliminary' %
-                 (self.addon,
-                  ', '.join([f.filename for f in self.data['addon_files']])))
+                 (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
 
-        # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        if self.request:
+            # Assign reviewer incentive scores.
+            ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                       status)
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""

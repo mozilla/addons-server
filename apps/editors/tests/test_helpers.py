@@ -404,12 +404,13 @@ class TestReviewHelper(amo.tests.TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_public(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
             self.setup_data(status)
-            self.helper.handler.process_public()
+            with self.settings(SIGNING_SERVER='full'):
+                self.helper.handler.process_public()
 
             assert self.addon.status == amo.STATUS_PUBLIC
             assert self.addon.highest_status == amo.STATUS_PUBLIC
@@ -421,19 +422,20 @@ class TestReviewHelper(amo.tests.TestCase):
                 '%s Fully Reviewed' % self.preamble)
             assert 'has been fully reviewed' in mail.outbox[0].body
 
-            sign_mock.assert_called_with(self.file)
+            sign_mock.assert_called_with(self.file, 'full')
             assert storage.exists(self.file.mirror_file_path)
 
             assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_public_unlisted(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
             self.setup_data(status, is_listed=False)
-            self.helper.handler.process_public()
+            with self.settings(SIGNING_SERVER='full'):
+                self.helper.handler.process_public()
 
             assert self.addon.status == amo.STATUS_PUBLIC
             assert self.addon.highest_status == amo.STATUS_PUBLIC
@@ -445,19 +447,37 @@ class TestReviewHelper(amo.tests.TestCase):
                 '%s signed and ready to download' % self.preamble)
             assert 'has been reviewed and is now signed' in mail.outbox[0].body
 
-            sign_mock.assert_called_with(self.file)
+            sign_mock.assert_called_with(self.file, 'full')
             assert storage.exists(self.file.mirror_file_path)
 
             assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
+    def test_nomination_to_public_failed_signing(self, sign_mock):
+        sign_mock.side_effect = Exception
+        for status in helpers.NOMINATED_STATUSES:
+            sign_mock.reset()
+            self.setup_data(status)
+            with self.settings(SIGNING_SERVER='full'):
+                with self.assertRaises(Exception):
+                    self.helper.handler.process_public()
+
+            # Status unchanged.
+            assert self.addon.status == status
+            assert self.addon.versions.all()[0].files.all()[0].status == status
+
+            assert len(mail.outbox) == 0
+            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
+
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_preliminary(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
             self.setup_data(status)
-            self.helper.handler.process_preliminary()
+            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
+                self.helper.handler.process_preliminary()
 
             assert self.addon.status == amo.STATUS_LITE
             if status == amo.STATUS_LITE_AND_NOMINATED:
@@ -470,19 +490,20 @@ class TestReviewHelper(amo.tests.TestCase):
                 '%s Preliminary Reviewed' % self.preamble)
             assert 'has been granted preliminary review' in mail.outbox[0].body
 
-            sign_mock.assert_called_with(self.file)
+            sign_mock.assert_called_with(self.file, 'prelim')
             assert storage.exists(self.file.mirror_file_path)
 
             assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_preliminary_unlisted(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
             self.setup_data(status, is_listed=False)
-            self.helper.handler.process_preliminary()
+            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
+                self.helper.handler.process_preliminary()
 
             assert self.addon.status == amo.STATUS_LITE
             if status == amo.STATUS_LITE_AND_NOMINATED:
@@ -495,14 +516,31 @@ class TestReviewHelper(amo.tests.TestCase):
                 '%s signed and ready to download' % self.preamble)
             assert 'has been reviewed and is now signed' in mail.outbox[0].body
 
-            sign_mock.assert_called_with(self.file)
+            sign_mock.assert_called_with(self.file, 'prelim')
             assert storage.exists(self.file.mirror_file_path)
 
             assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
+    def test_nomination_to_preliminary_failed_signing(self, sign_mock):
+        sign_mock.side_effect = Exception
+        for status in helpers.NOMINATED_STATUSES:
+            sign_mock.reset()
+            self.setup_data(status)
+            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
+                with self.assertRaises(Exception):
+                    self.helper.handler.process_preliminary()
+
+            # Status unchanged.
+            assert self.addon.status == status
+            assert self.addon.versions.all()[0].files.all()[0].status == status
+
+            assert len(mail.outbox) == 0
+            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
+
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_sandbox(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -521,7 +559,7 @@ class TestReviewHelper(amo.tests.TestCase):
             assert not storage.exists(self.file.mirror_file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_sandbox_unlisted(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -579,7 +617,7 @@ class TestReviewHelper(amo.tests.TestCase):
         self.assertRaises(AssertionError,
                           self.helper.handler.process_public)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_preliminary_to_preliminary(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
@@ -599,7 +637,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_PRELIM)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_preliminary_to_preliminary_unlisted(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -619,7 +657,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_PRELIM)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_preliminary_to_sandbox(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
@@ -636,7 +674,7 @@ class TestReviewHelper(amo.tests.TestCase):
             assert not storage.exists(self.file.mirror_file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_preliminary_to_sandbox_unlisted(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -706,7 +744,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_pending_to_public(self, sign_mock):
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
@@ -728,7 +766,7 @@ class TestReviewHelper(amo.tests.TestCase):
             if status == amo.STATUS_PUBLIC:
                 self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_pending_to_public_unlisted(self, sign_mock):
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -750,7 +788,7 @@ class TestReviewHelper(amo.tests.TestCase):
             if status == amo.STATUS_PUBLIC:
                 self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_pending_to_sandbox(self, sign_mock):
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status)
@@ -767,7 +805,7 @@ class TestReviewHelper(amo.tests.TestCase):
             assert not storage.exists(self.file.mirror_file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('lib.crypto.packaged.sign_file')
+    @patch('editors.helpers.sign_file')
     def test_pending_to_sandbox_unlisted(self, sign_mock):
         for status in helpers.PENDING_STATUSES:
             self.setup_data(status, is_listed=False)

@@ -2414,7 +2414,7 @@ class TestVersionAddFile(UploadTest):
         eq_(response.status_code, 400)
         assert 'source' in json.loads(response.content)
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_sideload(self, mock_sign_file):
         """Sideloadable addons need manual full review."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
@@ -2426,7 +2426,7 @@ class TestVersionAddFile(UploadTest):
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation need a manual preliminary review."""
         self.addon.update(
@@ -2443,7 +2443,7 @@ class TestVersionAddFile(UploadTest):
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
         """Files that pass validation are not automatically signed/reviewed if
         the flag is not enabled."""
@@ -2463,7 +2463,7 @@ class TestVersionAddFile(UploadTest):
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed if
         the flag is enabled."""
@@ -2697,7 +2697,7 @@ class TestAddVersion(AddVersionTest):
         f = File.objects.all().order_by('-created')[0]
         assert f.status != amo.STATUS_BETA
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_sideload(self, mock_sign_file):
         """Sideloadable addons need manual full review."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
@@ -2709,7 +2709,7 @@ class TestAddVersion(AddVersionTest):
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation need a manual preliminary review."""
         self.addon.update(
@@ -2726,7 +2726,7 @@ class TestAddVersion(AddVersionTest):
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
         """Files that pass validation are not automatically signed/reviewed if
         the flag is not enabled."""
@@ -2745,7 +2745,7 @@ class TestAddVersion(AddVersionTest):
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed if
         the flag is enabled."""
@@ -2964,7 +2964,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         addon = Addon.with_unlisted.get()
         assert addon.is_listed  # But add-on is still listed.
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_no_automatic_validation_flag(self,
                                                            mock_sign_file):
         """No automatic-validation flag: don't sign automatically."""
@@ -2981,7 +2981,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert addon.status == amo.STATUS_UNREVIEWED  # No automatic signing.
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_with_automatic_validation_flag(self,
                                                              mock_sign_file):
         """With automatic-validation flag: sign automatically."""

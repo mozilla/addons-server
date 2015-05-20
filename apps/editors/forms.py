@@ -320,8 +320,7 @@ class ReviewFileForm(ReviewAddonForm):
 
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
-    FormClass = ReviewAddonForm
-    form = {ReviewAddon: FormClass,
+    form = {ReviewAddon: ReviewAddonForm,
             ReviewFiles: ReviewFileForm}[helper.handler.__class__]
     return form(data, helper=helper)
 

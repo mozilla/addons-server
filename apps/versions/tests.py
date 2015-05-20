@@ -450,37 +450,6 @@ class TestVersion(amo.tests.TestCase):
                 self.version.addon.update(status=status)
                 assert self.version.current_queue == queue
 
-    @mock.patch('lib.crypto.packaged.sign_file')
-    def test_sign_files(self, sign_mock):
-        no_sign_types = [t for t in amo.ADDON_TYPE.keys()
-                         if t != amo.ADDON_EXTENSION]
-        # Don't sign for anything else than an extension.
-        for addon_type in no_sign_types:
-            self.version.addon.update(type=addon_type)
-            self.version.sign_files()
-            assert not sign_mock.called, (
-                'lib.crypto.packaged.sign_file called for addon type {0}'
-                .format(addon_type))
-        # Sign files if it's an extension.
-        self.version.addon.update(type=amo.ADDON_EXTENSION)
-        self.version.sign_files()
-        assert sign_mock.called
-
-    @mock.patch('lib.crypto.packaged.call_signing')
-    @mock.patch('lib.crypto.packaged.get_endpoint')
-    def test_sign_version_missing_files(self, get_endpoint, call_signing_mock):
-        """If one of the files is missing the others should still be signed."""
-        get_endpoint.return_value = 'endpoint'  # Fake an endpoint.
-        self.version.addon.update(type=amo.ADDON_EXTENSION)
-        # Current file doesn't have a file on disk. We create a file with one.
-        good_file = amo.tests.file_factory(version=self.version)
-        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 good_file.file_path):
-            self.version.sign_files()
-        # 'sign_file' got called twice, but only one was signed.
-        call_signing_mock.assert_called_once_with(
-            good_file.file_path, 'endpoint', good_file.version.addon.guid)
-
     def test_get_url_path(self):
         eq_(self.version.get_url_path(),
             '/en-US/firefox/addon/a3615/versions/2.1.072')
