@@ -4442,7 +4442,7 @@ msgstr "Oznake"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
-"Oznake pomagajo uporabnikom, da najdejo vaš dodatek in morajo biti kratki opisniki, kot so zavihki, orodna vrstica ali twitter. Imate lahko največ {9} oznak. To velja samo za navedene dodatke."
+"Oznake pomagajo uporabnikom, da najdejo vaš dodatek in morajo biti kratki opisniki, kot so zavihki, orodna vrstica ali twitter. Imate lahko največ {0} oznak. To velja samo za navedene dodatke."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
