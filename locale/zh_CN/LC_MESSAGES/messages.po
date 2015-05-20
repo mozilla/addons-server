@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-17 07:21+0000\n"
+"PO-Revision-Date: 2015-05-20 17:22+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431847269.0\n"
+"X-POOTLE-MTIME: 1432142522.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3699,7 +3699,7 @@ msgstr "请选择提交审核的类型"
 
 #: apps/devhub/forms.py:543
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "文件中的版本以 a|alpha|b|beta|pre|rc 结尾（及可选的数字）将被检测为测试版（beta）。"
 
 #: apps/devhub/forms.py:561
 msgid "Version %s already exists"
@@ -6449,7 +6449,7 @@ msgstr "仅发布此版本到我的测试通道。"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
-msgstr ""
+msgstr "您的版本已被检测为测试版（beta）。它没有通过自动验证并因此无法提交。如果您不是有意提交它为测试版，请取消“测试通道”选项。"
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -10189,28 +10189,28 @@ msgstr "投递到 Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
+msgstr[0] "{0} 个赞"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "在 Twitter 上发布推文"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
 msgid_plural "{0} tweets"
-msgstr[0] "{0} 次 tweet"
+msgstr[0] "{0} 则推文"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "在 Google+ 上分享"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "发布到 Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "发布到 Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
