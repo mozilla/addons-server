@@ -317,11 +317,11 @@
                     var warnings = v.warnings + v.notices;
                     if (warnings > 0) {
                         message = format(ngettext(
-                                    "Your add-on passed validation with no errors and {0} message.",
-                                    "Your add-on passed validation with no errors and {0} messages.",
+                                    "Your add-on was validated with no errors and {0} message.",
+                                    "Your add-on was validated with no errors and {0} messages.",
                                     warnings), [warnings]);
                     } else {
-                        message = gettext("Your add-on passed validation with no errors or warnings.");
+                        message = gettext("Your add-on was validated with no errors or warnings.");
                     }
 
                     upload_progress_outside.attr('class', 'bar-success');
