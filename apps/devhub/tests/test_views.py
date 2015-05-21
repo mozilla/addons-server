@@ -209,6 +209,7 @@ class TestDashboard(HubTest):
 
         # when Active and Incomplete hide statistics
         self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
+        SubmitStep.objects.create(addon=self.addon, step=6)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
@@ -845,7 +846,9 @@ class TestHome(amo.tests.TestCase):
             eq_(addon_item.find('.upload-new-version').length, 0)
 
         self.addon.update(status=amo.STATUS_NULL)
+        submit_step = SubmitStep.objects.create(addon=self.addon, step=6)
         no_link()
+        submit_step.delete()
 
         self.addon.update(status=amo.STATUS_DISABLED)
         no_link()
