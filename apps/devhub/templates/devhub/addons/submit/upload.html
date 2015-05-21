@@ -71,7 +71,7 @@
     </div>
     {% endif %}
     <div id="manual-review" class="hidden">
-      <p class="error">{{ _("Your submission didn't pass automatic validation. Check the checkbox to submit for manual review.") }}</p>
+      <p class="error">{{ _("Looks like your add-on requires a manual review before it can be signed.") }}</p>
       <label for="{{ new_addon_form.is_manual_review.auto_id }}">
         {{ new_addon_form.is_manual_review }}
         {{ new_addon_form.is_manual_review.label }}
