@@ -1186,7 +1186,7 @@ def auto_sign_file(file_, is_beta=False):
             # Provide the file to review/sign to the helper.
             helper.set_data({'addon_files': [file_],
                              'comments': 'automatic validation'})
-            helper.handler.process_preliminary()
+            helper.handler.process_preliminary(auto_validation=True)
     elif is_beta:
         # Beta won't be reviewed. Either they pass validation and are
         # automatically reviewed and signed, either they aren't accepted.

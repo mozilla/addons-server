@@ -320,6 +320,7 @@ class TestReviewHelper(amo.tests.TestCase):
                          'pending_to_preliminary', 'pending_to_public',
                          'pending_to_sandbox', 'preliminary_to_preliminary',
                          'author_super_review', 'unlisted_to_reviewed',
+                         'unlisted_to_reviewed_auto',
                          'unlisted_to_sandbox']:
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
@@ -524,14 +525,39 @@ class TestReviewHelper(amo.tests.TestCase):
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
     @patch('editors.helpers.sign_file')
+    def test_nomination_to_preliminary_unlisted_auto(self, sign_mock):
+        for status in helpers.NOMINATED_STATUSES:
+            sign_mock.reset()
+            self.setup_data(status, is_listed=False)
+            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
+                self.helper.handler.process_preliminary(auto_validation=True)
+
+            assert self.addon.status == amo.STATUS_LITE
+            if status == amo.STATUS_LITE_AND_NOMINATED:
+                assert self.addon.highest_status == amo.STATUS_LITE
+            assert self.addon.versions.all()[0].files.all()[0].status == (
+                amo.STATUS_LITE)
+
+            assert len(mail.outbox) == 1
+            assert mail.outbox[0].subject == (
+                '%s signed and ready to download' % self.preamble)
+            assert 'has passed our automatic tests' in mail.outbox[0].body
+
+            sign_mock.assert_called_with(self.file, 'prelim')
+            assert storage.exists(self.file.mirror_file_path)
+
+            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
+
+            assert not ReviewerScore.objects.all()
+
+    @patch('editors.helpers.sign_file')
     def test_nomination_to_preliminary_failed_signing(self, sign_mock):
         sign_mock.side_effect = Exception
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
             self.setup_data(status)
-            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
-                with self.assertRaises(Exception):
-                    self.helper.handler.process_preliminary()
+            with self.assertRaises(Exception):
+                self.helper.handler.process_preliminary()
 
             # Status unchanged.
             assert self.addon.status == status
@@ -656,6 +682,26 @@ class TestReviewHelper(amo.tests.TestCase):
             assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
 
             self._check_score(amo.REVIEWED_ADDON_PRELIM)
+
+    @patch('editors.helpers.sign_file')
+    def test_preliminary_to_preliminary_unlisted_auto(self, sign_mock):
+        for status in helpers.PRELIMINARY_STATUSES:
+            self.setup_data(status, is_listed=False)
+            self.helper.handler.process_preliminary(auto_validation=True)
+
+            for file in self.helper.handler.data['addon_files']:
+                assert file.status == amo.STATUS_LITE
+
+            assert len(mail.outbox) == 1
+            assert mail.outbox[0].subject == (
+                '%s signed and ready to download' % self.preamble)
+            assert 'has passed our automatic tests' in mail.outbox[0].body
+
+            assert sign_mock.called
+            assert storage.exists(self.file.mirror_file_path)
+            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
+
+            assert not ReviewerScore.objects.all()
 
     @patch('editors.helpers.sign_file')
     def test_preliminary_to_sandbox(self, sign_mock):
