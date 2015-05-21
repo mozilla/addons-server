@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-14 19:27+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2015-05-21 14:02+0000\n"
+"Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431631651.0\n"
+"X-POOTLE-MTIME: 1432216966.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3769,6 +3769,8 @@ msgstr "Kies een beoordelingsnominatietype"
 #: apps/devhub/forms.py:543
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
+"Een bestand met een versie die eindigt op a|alpha|b|beta|pre|rc en een "
+"optioneel cijfer wordt als bèta gedetecteerd."
 
 #: apps/devhub/forms.py:561
 msgid "Version %s already exists"
@@ -6657,6 +6659,9 @@ msgstr "Alleen deze versie op mijn bètakanaal publiceren."
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr ""
+"Uw versie is gedetecteerd als bèta. Hij heeft de automatische validatie niet "
+"doorstaan en kan daarom niet worden ingediend. Als u deze niet als bèta "
+"wilde indienen, vink de optie bètakanaal dan uit."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -10530,12 +10535,12 @@ msgstr "Posten op Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} vind-ik-leuk"
+msgstr[1] "{0} vind-ik-leuks"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweeten op Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -10545,15 +10550,15 @@ msgstr[1] "{0} tweets"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Delen op G+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Plaatsen op Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Plaatsen op Tumblr"
 
 # Ter discussie!
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
