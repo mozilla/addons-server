@@ -1392,6 +1392,16 @@ class TestAddonModels(amo.tests.TestCase):
         file.update(binary_components=True)
         eq_(addon.binary_components, True)
 
+    def test_is_incomplete(self):
+        addon = Addon.objects.get(pk=3615)
+        SubmitStep.objects.create(addon=addon, step=6)
+        assert addon.is_incomplete()
+
+    def test_unlisted_is_incomplete(self):
+        addon = Addon.objects.get(pk=3615)
+        SubmitStep.objects.create(addon=addon, step=2)
+        assert addon.is_incomplete()
+
 
 class TestAddonNomination(amo.tests.TestCase):
     fixtures = ['base/addon_3615']

@@ -1239,7 +1239,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
     def is_incomplete(self):
-        return self.status == amo.STATUS_NULL
+        from devhub.models import SubmitStep  # Avoid import loop.
+        return SubmitStep.objects.filter(addon=self).exists()
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING

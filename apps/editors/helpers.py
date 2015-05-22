@@ -722,7 +722,7 @@ class ReviewAddon(ReviewBase):
         # Assign reviewer incentive scores.
         ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
-    def process_preliminary(self):
+    def process_preliminary(self, auto_validation=False):
         """Set an addon to preliminary."""
         # Sign addon.
         for file_ in self.files:
@@ -743,6 +743,8 @@ class ReviewAddon(ReviewBase):
             template = u'nominated_to_nominated'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
+            if auto_validation:
+                template = u'unlisted_to_reviewed_auto'
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
 
         self.set_addon(**changes)
@@ -754,7 +756,7 @@ class ReviewAddon(ReviewBase):
         log.info(u'Making %s preliminary' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
 
-        if self.request:
+        if self.request and not auto_validation:
             # Assign reviewer incentive scores.
             ReviewerScore.award_points(self.request.amo_user, self.addon,
                                        status)
@@ -826,7 +828,7 @@ class ReviewFiles(ReviewBase):
         # Assign reviewer incentive scores.
         ReviewerScore.award_points(self.request.amo_user, self.addon, status)
 
-    def process_preliminary(self):
+    def process_preliminary(self, auto_validation=False):
         """Set an addons files to preliminary."""
         # Sign addon.
         for file_ in self.files:
@@ -842,6 +844,8 @@ class ReviewFiles(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
+            if auto_validation:
+                template = u'unlisted_to_reviewed_auto'
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
@@ -849,7 +853,7 @@ class ReviewFiles(ReviewBase):
                  (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
 
-        if self.request:
+        if self.request and not auto_validation:
             # Assign reviewer incentive scores.
             ReviewerScore.award_points(self.request.amo_user, self.addon,
                                        status)
