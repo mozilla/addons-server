@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-14 03:46+0000\n"
+"PO-Revision-Date: 2015-05-23 23:37+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431575194.0\n"
+"X-POOTLE-MTIME: 1432424262.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3745,6 +3745,8 @@ msgstr "Por favor escolha um tipo de nomeação para a revisão"
 #: apps/devhub/forms.py:543
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
+"Um ficheiro com uma versão terminada com a|alpha|b|beta|pre|rc e com um "
+"número (opcional), é detetada como beta."
 
 #: apps/devhub/forms.py:561
 msgid "Version %s already exists"
@@ -6635,6 +6637,9 @@ msgstr "Publicar esta versão apenas para o meu canal beta."
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr ""
+"A sua versão foi detetada como beta. Não passou a validação automática e, "
+"como tal, não pode ser submetida. Se não pretendia enviar a versão como "
+"beta, por favor desmarque a opção do canal beta."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -10497,12 +10502,12 @@ msgstr "Publicar no Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} like"
+msgstr[1] "{0} likes"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweet no Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -10512,15 +10517,15 @@ msgstr[1] "{0} tweets"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Partilhar no g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Publicar no Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Publicar no Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
