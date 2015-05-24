@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-19 09:16+0000\n"
-"Last-Translator: Peter <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2015-05-21 15:13+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432026998.0\n"
+"X-POOTLE-MTIME: 1432221192.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -29,7 +30,7 @@ msgstr "Pri vzpostavljanju stika s strežnikom je prišlo do napake."
 
 #: static/js/common/upload-addon.js:52
 msgid "Select a file..."
-msgstr "Izberite datoteko..."
+msgstr "Izberite datoteko ..."
 
 #: static/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -88,11 +89,11 @@ msgstr "Prejet prazen odziv s strežnika; stanje: {0}"
 
 #: static/js/common/upload-addon.js:275
 msgid "Unexpected server error while validating."
-msgstr "Nepričakovana napaka strežnika med validacijo."
+msgstr "Nepričakovana napaka strežnika med preverjanjem veljavnosti."
 
 #: static/js/common/upload-addon.js:313
 msgid "Finished validating {0}"
-msgstr "Validacija {0} končana"
+msgstr "Preverjanje veljavnosti {0} končano"
 
 #: static/js/common/upload-addon.js:319
 msgid "Your add-on passed validation with no errors and {0} message."
@@ -104,7 +105,7 @@ msgstr[3] "Vaš dodatek je prestal validacijo brez napak in z {0} sporočili."
 
 #: static/js/common/upload-addon.js:324
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr "Vaš dodatek je prestal validacijo brez napak ali opozoril."
+msgstr "Vaš dodatek je opravil preverjanje veljavnosti brez napak ali opozoril."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission will go through a manual review."
@@ -148,7 +149,9 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:406
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Postopek validacije je odkril te težave, ki lahko vodijo do zavrnitev:"
+msgstr ""
+"Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do "
+"zavrnitev:"
 
 #: static/js/common/upload-addon.js:423
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
@@ -796,10 +799,18 @@ msgstr[3] "Nastavi {0} dodatkov na največjo različico {1} in obvesti avtorja."
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Obvesti avtorja o {2} dodatku, katerega preverjanje je spodletelo."
-msgstr[1] "Obvesti avtorje o {2} dodatkih, katerih preverjanje je spodletelo."
-msgstr[2] "Obvesti avtorje o {2} dodatkih, katerih preverjanje je spodletelo."
-msgstr[3] "Obvesti avtorje o {2} dodatkih, katerih preverjanje je spodletelo."
+msgstr[0] ""
+"Obvesti avtorja o {2} dodatku, katerega preverjanje veljavnosti je "
+"spodletelo."
+msgstr[1] ""
+"Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je "
+"spodletelo."
+msgstr[2] ""
+"Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je "
+"spodletelo."
+msgstr[3] ""
+"Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je "
+"spodletelo."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."

@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-20 06:56+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2015-05-21 15:20+0000\n"
+"Last-Translator: Peter <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432105006.0\n"
+"X-POOTLE-MTIME: 1432221654.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -2030,7 +2031,7 @@ msgstr "Neveljavni podatki: {0}"
 
 #: apps/api/handlers.py:64
 msgid "Add-on did not validate: %s"
-msgstr "Dodatka ni bilo mogoče validirati: %s"
+msgstr "Veljavnosti dodatka ni bilo mogoče preveriti: %s"
 
 #: apps/api/views.py:256
 msgid "Not implemented yet."
@@ -3760,7 +3761,7 @@ msgstr "PayPal ID je potreben, če želite prejemati prispevke."
 
 #: apps/devhub/forms.py:355
 msgid "Could not validate PayPal id."
-msgstr "Id PayPala ni bilo mogoče validirati."
+msgstr "Veljavnosti ID-ja PayPal ni bilo mogoče preveriti."
 
 #: apps/devhub/forms.py:364
 msgid "Unsupported file type, please upload an archive file {extensions}."
@@ -3784,7 +3785,7 @@ msgstr "Prišlo je do napake med nalaganjem. Prosimo, poskusite znova."
 
 #: apps/devhub/forms.py:479
 msgid "Override failed validation"
-msgstr "Preglasi neuspešno validacijo"
+msgstr "Preglasi neuspešno preverjanje veljavnosti"
 
 #: apps/devhub/forms.py:483
 msgid "Submit my add-on for manual review."
@@ -3821,6 +3822,8 @@ msgstr "Izberite vrsto predlaganja pregleda"
 #: apps/devhub/forms.py:543
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
+"Datoteka z različico, ki se konča z a|alpha|b|beta|pre|rc in izbirno "
+"številko je zaznana kot beta."
 
 #: apps/devhub/forms.py:561
 msgid "Version %s already exists"
@@ -3916,7 +3919,10 @@ msgstr "Ni prišlo do stika z gostiteljem na \"%s\"."
 
 #: apps/devhub/utils.py:59
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Med validiranjem je prišlo do preveč napak/opozoril, tako da je %s sporočil skrajšanih. Ko enkrat spravite v red sporočila, ki so vidna, boste lahko videti tudi preostale."
+msgstr ""
+"Med preverjanjem veljavnosti je prišlo do preveč napak/opozoril, tako da je "
+"bilo %s sporočil skrajšanih. Ko enkrat spravite v red vidna sporočila, boste "
+"lahko videli tudi preostala."
 
 #: apps/devhub/views.py:178
 msgid "All My Add-ons"
@@ -3988,7 +3994,7 @@ msgstr "V vaši oddaji so bile napake."
 
 #: apps/devhub/views.py:577
 msgid "Validate Add-on"
-msgstr "Validiraj dodatek"
+msgstr "Preveri veljavnost dodatka"
 
 #: apps/devhub/views.py:586
 msgid "Check Add-on Compatibility"
@@ -4033,7 +4039,10 @@ msgstr "Različica %s izbrisana."
 
 #: apps/devhub/views.py:1167
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "Ta prenos pri validiranju ni uspel, lahko da rezultati validiranja niso v celoti na razpolago. Bodite pozorni, ko jih boste pregledovali."
+msgstr ""
+"Ta prenos ni opravil preverjanja veljavnosti in morda rezultati preverjanja "
+"veljavnosti ne bodo v celoti na razpolago. Bodite pozorni, ko ga boste "
+"pregledovali."
 
 #: apps/devhub/views.py:1635
 msgid "Preliminary Review Requested."
@@ -4186,7 +4195,7 @@ msgstr "Politika za dodatke"
 
 #: apps/devhub/templates/devhub/nav.html:46
 msgid "Add-on Validator"
-msgstr "Validator dodatkov"
+msgstr "Preverjalnik veljavnosti dodatkov"
 
 #: apps/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
@@ -4222,24 +4231,28 @@ msgstr "Uporabite polje spodaj, da prenesete paket za svojo aplikacijo."
 
 #: apps/devhub/templates/devhub/validate_addon.html:19
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Po zaključenem prenosu se bo vašo datoteko potrdilo z nizom samodejnih testov za preverjanje, da se preveri združljivost z naslednjo različico aplikacije:"
+msgstr ""
+"Po zaključenem prenosu se bo zagnal niz samodejnih preskusov za preverjanje "
+"veljavnosti, da se preveri združljivost z naslednjo različico programa:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:34
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr "Po zaključenem prenosu se bo vašo datoteko potrdilo z nizom samodejnih testov."
+msgstr ""
+"Po zaključenem prenosu se bo zagnal niz samodejnih preskusov za preverjanje "
+"veljavnosti vaše datoteke."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
 msgid "Validation Results for {0}"
-msgstr "Rezultati preverjanja za {0}"
+msgstr "Rezultati preverjanja veljavnosti za {0}"
 
 #: apps/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
-msgstr "Rezultati preverjanja"
+msgstr "Rezultati preverjanja veljavnosti"
 
 #: apps/devhub/templates/devhub/validation.html:20
 msgid "Validated at:"
-msgstr "Validirano:"
+msgstr "Veljavnost preverjena ob:"
 
 #: apps/devhub/templates/devhub/validation.html:26
 msgid "Tested for compatibility against:"
@@ -5169,7 +5182,10 @@ msgstr "Korak 2. Naložite svoj dodatek"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Uporabite polja spodaj, da prenesete svoj paket za dodatek in da izberete omejitve glede platform. Po zaključenem prenosu se bo vašo datoteko preverilo z nizom samodejnih testov."
+msgstr ""
+"Uporabite polja spodaj, da prenesete svoj paket za dodatek in da izberete "
+"omejitve glede okolij. Po zaključenem prenosu se bo preverilo veljavnost "
+"vaše datoteke z nizom samodejnih preskusov."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
@@ -5732,8 +5748,10 @@ msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
-"Mnoge od zgoraj navedenih omejitev se samodejno testira s skenerjem za dodatke, ki bo sumljive točke v dodatku označil za pregled urednika. Več si lahko preberete o tem v dokumentu <a href="
-"\"%(link_validation)s\">Pomoč pri preverjanju</a>."
+"Mnoge od zgoraj navedenih omejitev se samodejno preskusi s preiskovalnikom "
+"razširitev, ki bo sumljive dodatke označil za uredniški pregled. Več o tem "
+"si lahko preberete v dokumentu <a href=\"%(link_validation)s\">Pomoč pri "
+"preverjanju veljavnosti</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
@@ -6707,6 +6725,9 @@ msgstr "Objavi to različico le na mojem beta kanalu."
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr ""
+"Vaša različica je bila zaznana kot beta. Ni opravila samodejnega preverjanja "
+"veljavnosti in je zato ni mogoče poslati. Če je niste mislili poslati kot "
+"beta, odznačite možnost kanala beta."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -6816,11 +6837,11 @@ msgstr "Položaj v čakalni vrsti: %(pos)s od %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr "Ni validiran."
+msgstr "Veljavnost ni preverjena."
 
 #: apps/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
-msgstr "Validiraj zdaj."
+msgstr "Preveri veljavnost zdaj."
 
 #: apps/devhub/templates/devhub/versions/list.html:73
 msgid "Request Full Review"
@@ -6887,7 +6908,7 @@ msgstr "Stanje"
 #: apps/devhub/templates/devhub/versions/list.html:138 apps/devhub/templates/devhub/versions/list.html:159 apps/devhub/templates/devhub/versions/list.html:179
 #: apps/editors/templates/editors/review.html:83
 msgid "Validation"
-msgstr "Preverjanje"
+msgstr "Preverjanje veljavnosti"
 
 #: apps/devhub/templates/devhub/versions/list.html:140 apps/devhub/templates/devhub/versions/list.html:161 apps/devhub/templates/devhub/versions/list.html:181
 #: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
@@ -8586,7 +8607,7 @@ msgstr "Prikazovalnik datotek:: Orodja za urejanje"
 
 #: apps/files/templates/files/viewer.html:15
 msgid "Validation failed:"
-msgstr "Preverjanje ni uspelo:"
+msgstr "Preverjanje veljavnosti ni uspelo:"
 
 #: apps/files/templates/files/viewer.html:38
 msgid "Add-on file being processed, please wait."
@@ -10648,14 +10669,14 @@ msgstr "Objavi na Facebooku"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} všeček"
+msgstr[1] "{0} všečka"
+msgstr[2] "{0} všečki"
+msgstr[3] "{0} všečkov"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tvitaj na Twitterju"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -10667,15 +10688,15 @@ msgstr[3] "{0} tvitov"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Deli na g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Objavi na Redditu"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Objavi na Tumblru"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
