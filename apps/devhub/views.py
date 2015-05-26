@@ -394,6 +394,8 @@ def disable(request, addon_id, addon):
 @dev_required
 @post_required
 def unlist(request, addon_id, addon):
+    if not waffle.flag_is_active(request, 'unlisted-addons'):
+        raise PermissionDenied
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
     unindex_addons.delay([addon.id])
