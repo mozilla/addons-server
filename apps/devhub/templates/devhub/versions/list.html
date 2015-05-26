@@ -115,12 +115,14 @@
                     class="disable-addon">
              <strong>{{ _('Hidden:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
       <br><br>
+      {% if waffle.flag('unlisted-addons') %}
       <label><input name="addon-state" value="unlisted" type="radio"
                     {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_listed %}checked="checked"{% endif %}
                     class="unlist-addon">
              <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
       <br><br>
+      {% endif %}
       {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
         <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
       {% endif %}
