@@ -26,7 +26,6 @@ django_csp==2.0.3
 django-extensions==1.2.5
 django-filter==0.7
 django-memcached-pool==0.4.1
-django-mozilla-product-details==0.7
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
 django-quieter-formset==0.4
@@ -105,6 +104,7 @@ urllib3==1.9
 -e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
 -e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
 -e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
+-e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 -e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
 ## Forked.
