@@ -686,6 +686,12 @@ def upload_for_addon(request, addon_id, addon):
     return upload(request, addon_slug=addon.slug)
 
 
+@post_required
+@dev_required
+def upload_for_addon_unlisted(request, addon_id, addon):
+    return upload(request, addon_slug=addon.slug, is_listed=False)
+
+
 @dev_required
 @json_view
 def upload_detail_for_addon(request, addon_id, addon, uuid):
@@ -1175,13 +1181,13 @@ def check_validation_override(request, form, addon, version):
 def auto_sign_file(file_, is_beta=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
-    validation_passed = bool(not file_.validation.errors and
-                             not file_.validation.warnings)
+    validation = file_.validation
+
     # Not listed? Do we need to sign?
     if not addon.is_listed:
         # Only if it's not sideload (not fully reviewed).
         if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC] and
-                validation_passed):
+                validation.passed_auto_validation):
             # Passed validation: sign automatically without manual review.
             helper = ReviewHelper(request=None, addon=addon,
                                   version=file_.version)
@@ -1192,7 +1198,7 @@ def auto_sign_file(file_, is_beta=False):
     elif is_beta:
         # Beta won't be reviewed. Either they pass validation and are
         # automatically reviewed and signed, either they aren't accepted.
-        if validation_passed:
+        if validation.passed_auto_validation:
             # Beta files always get signed with prelim cert.
             sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
         else:

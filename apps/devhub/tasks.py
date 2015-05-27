@@ -41,17 +41,38 @@ def validator(upload_id, listed=True, **kw):
     upload = FileUpload.objects.using('default').get(pk=upload_id)
     try:
         result = run_validator(upload.path, listed=listed)
-        # Skip the "addon signed" warning if we're not signing.
-        if not settings.SIGNING_SERVER:
-            result = skip_signing_warning(result)
-        upload.validation = result
-        upload.save()  # We want to hit the custom save().
     except:
         # Store the error with the FileUpload job, then raise
         # it for normal logging.
         tb = traceback.format_exception(*sys.exc_info())
         upload.update(task_error=''.join(tb))
         raise
+    try:
+        # Try annotating the result with the "passed auto validation" status.
+        validation = json.loads(result)
+        # The automatic validation (which will automatically review and sign
+        # the file) is for unlisted (non-sideload) addons and beta versions.
+        # It only passes this automatic validation if there's no message with a
+        # signing_severity above trivial (so if there's any low/medium/high
+        # severity, it fails).
+        # Any "regular" messages from the amo-validator that should fail the
+        # auto validation now have a signing_severity level attached.
+        passed_auto_validation = False
+        if 'signing_summary' in validation:
+            summary = validation['signing_summary']
+            passed_auto_validation = (summary['low'] == 0 and
+                                      summary['medium'] == 0 and
+                                      summary['high'] == 0)
+        validation['passed_auto_validation'] = passed_auto_validation
+        result = json.dumps(validation)
+    except:
+        # Failed loading the result? No need to set passed_auto_validation.
+        pass
+    # Skip the "addon signed" warning if we're not signing.
+    if not settings.SIGNING_SERVER:
+        result = skip_signing_warning(result)
+    upload.validation = result
+    upload.save()  # We want to hit the custom save().
 
 
 def skip_signing_warning(result_json):

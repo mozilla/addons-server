@@ -159,6 +159,33 @@ class TestValidator(amo.tests.TestCase):
         assert validation['warnings'] == 0
         assert len(validation['messages']) == 0
 
+    @mock.patch('devhub.tasks.run_validator')
+    def test_annotate_passed_auto_validation(self, _mock):
+        """Set passed_auto_validation on reception of the results."""
+        result = {'signing_summary': {'trivial': 1, 'low': 0, 'medium': 0,
+                                      'high': 0}}
+
+        _mock.return_value = json.dumps(result)
+        eq_(self.upload.task_error, None)
+        tasks.validator(self.upload.pk)
+        validation = json.loads(self.get_upload().validation)
+        assert validation['passed_auto_validation']
+
+        result['signing_summary']['low'] = 1
+        _mock.return_value = json.dumps(result)
+        eq_(self.upload.task_error, None)
+        tasks.validator(self.upload.pk)
+        validation = json.loads(self.get_upload().validation)
+        assert not validation['passed_auto_validation']
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_annotate_passed_auto_validation_bogus_result(self, _mock):
+        """Don't set passed_auto_validation, don't fail if results is bogus."""
+        _mock.return_value = ''
+        eq_(self.upload.task_error, None)
+        tasks.validator(self.upload.pk)
+        assert self.get_upload().validation == ''
+
 
 class TestFlagBinary(amo.tests.TestCase):
     fixtures = ['base/addon_3615']

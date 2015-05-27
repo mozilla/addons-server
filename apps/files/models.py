@@ -600,6 +600,11 @@ class FileValidation(amo.models.ModelBase):
     errors = models.IntegerField(default=0)
     warnings = models.IntegerField(default=0)
     notices = models.IntegerField(default=0)
+    signing_trivials = models.IntegerField(default=0)
+    signing_lows = models.IntegerField(default=0)
+    signing_mediums = models.IntegerField(default=0)
+    signing_highs = models.IntegerField(default=0)
+    passed_auto_validation = models.BooleanField(default=False)
     validation = models.TextField()
 
     class Meta:
@@ -608,8 +613,18 @@ class FileValidation(amo.models.ModelBase):
     @classmethod
     def from_json(cls, file, validation):
         js = json.loads(validation)
-        new = cls(file=file, validation=validation, errors=js['errors'],
-                  warnings=js['warnings'], notices=js['notices'])
+        if 'signing_summary' not in js:
+            js['signing_summary'] = {'trivial': 0, 'low': 0, 'medium': 0,
+                                     'high': 0}
+        if 'passed_auto_validation' not in js:
+            js['passed_auto_validation'] = False
+        new = cls(file=file, validation=json.dumps(js), errors=js['errors'],
+                  warnings=js['warnings'], notices=js['notices'],
+                  signing_trivials=js['signing_summary']['trivial'],
+                  signing_lows=js['signing_summary']['low'],
+                  signing_mediums=js['signing_summary']['medium'],
+                  signing_highs=js['signing_summary']['high'],
+                  passed_auto_validation=js['passed_auto_validation'])
         new.valid = new.errors == 0
         if ('metadata' in js and (
                 js['metadata'].get('contains_binary_extension', False) or
