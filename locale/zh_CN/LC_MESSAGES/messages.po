@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-20 10:13-0700\n"
-"PO-Revision-Date: 2015-05-20 17:22+0000\n"
+"PO-Revision-Date: 2015-05-28 23:12+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432142522.0\n"
+"X-POOTLE-MTIME: 1432854739.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -96,7 +96,7 @@ msgstr[0] "您只能选择 {0} 个分类。"
 
 #: apps/addons/forms.py:234
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "这个杂项分类不能与其它的分类混用。"
+msgstr "这个杂项分类不能与其他分类混用。"
 
 #: apps/addons/forms.py:357
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -140,7 +140,7 @@ msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会�
 # Column name in a table.
 #: apps/addons/models.py:1895 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Listed"
-msgstr "已列出"
+msgstr "已上架"
 
 #: apps/addons/views.py:313 apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
@@ -2023,7 +2023,9 @@ msgstr "有效应用程序版本"
 
 #: apps/applications/templates/applications/appversions.html:12
 msgid "Add-ons submitted to Mozilla Add-ons must have an install.rdf file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "提交到 Mozilla 附加组件网站的附加组件必须包含 install.rdf 文件，并且至少要支持以下应用程序之一。对于这些应用程序，只允许使用以下列出的版本。"
+msgstr ""
+"提交到 Mozilla 附加组件网站的附加组件必须包含 install.rdf "
+"文件，并且至少要支持以下应用程序之一。对于这些应用程序，只允许使用下列版本。"
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -4005,7 +4007,7 @@ msgstr "队列位置："
 
 #: apps/devhub/templates/devhub/index.html:110 apps/devhub/templates/devhub/includes/addon_details.html:144 apps/devhub/templates/devhub/personas/edit.html:50
 msgid "%(position)s of %(total)s"
-msgstr "共%(total)s位，您是第%(position)s位"
+msgstr "%(position)s / %(total)s"
 
 #: apps/devhub/templates/devhub/index.html:120 apps/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
@@ -4700,7 +4702,7 @@ msgstr "已停用"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>队列位置：</b>共%(total)s位，您是第%(pos)s位"
+msgstr "<b>队列位置：</b>%(position)s / %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:23
@@ -5881,7 +5883,7 @@ msgstr "您禁用了这个附加组件"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr "已停止列出您的附加组件，他不会显示在展台或更新服务中。"
+msgstr "已停止展示您的附加组件，它将不再出现于网页和更新服务中。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -5893,7 +5895,7 @@ msgstr "审核完成时您会收到邮件。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:44
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr "在审核完成后您会收到一封电子邮件通知。在此期间，您的附加组件不会在我们的展示库中列出，但是可以从它的详细信息页面直接访问到。"
+msgstr "在审核完成后您会收到一封电子邮件通知。在此期间，您的附加组件不会在我们的展示页面上出现，但可以直接访问它的详细信息页面。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
@@ -6552,7 +6554,7 @@ msgstr "0 个文件"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr "审核队列位置：共%(total)s位，您是第%(pos)s位"
+msgstr "队列位置：%(pos)s / %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -7491,7 +7493,7 @@ msgstr "{addon} :: 滥用报告"
 
 #: apps/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr "{addon} 的滥用报告（{num}）"
+msgstr "{addon} 的滥用报告（{num} 条）"
 
 #: apps/editors/templates/editors/abuse_reports.html:18
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -7545,7 +7547,7 @@ msgstr "事件"
 
 #: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
-msgstr "更多详细信息。"
+msgstr "更多细节。"
 
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
@@ -7582,17 +7584,17 @@ msgstr "取消删除"
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
-msgstr[0] "全面审核（{num}）"
+msgstr[0] "全面审核（{num} 项）"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
-msgstr[0] "等待更新（{num}）"
+msgstr[0] "等待更新（{num} 项）"
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "初步审核（{num}）"
+msgstr[0] "初步审核（{num} 项）"
 
 #: apps/editors/templates/editors/home.html:36 apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
@@ -7610,17 +7612,17 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "未上架的全面审核 ({num})"
+msgstr[0] "未上架的全面审核（{num} 项）"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] "未上架的待定更新 ({num})"
+msgstr[0] "未上架的待定更新（{num} 项）"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "未上架的初步审核 ({num})"
+msgstr[0] "未上架的初步审核（{num} 项）"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
@@ -7636,13 +7638,13 @@ msgstr "新审核员"
 
 #: apps/editors/templates/editors/home.html:126 apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
-msgstr "您是 #{0}，共 {1} 条评论"
+msgstr "您在审核第 #{0} 项，共 {1} 项"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "提请仲裁的评论（{num}）"
+msgstr[0] "提请仲裁的评论（{num} 项）"
 
 #: apps/editors/templates/editors/leaderboard.html:3 apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
@@ -7991,17 +7993,17 @@ msgstr "暂时尚无评论。"
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num}个待决定的主题审核{num}个待决定的主题审核"
+msgstr[0] "{num} 项待定的主题审核"
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num}个打标签的审核{num}个打标签的审核"
+msgstr[0] "{num} 项已标记的评论"
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] "{num}个更新{num}个更新"
+msgstr[0] "{num} 个更新"
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
