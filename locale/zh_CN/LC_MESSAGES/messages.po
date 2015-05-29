@@ -4696,7 +4696,7 @@ msgstr "已停用"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>队列位置：</b>%(position)s / %(total)s"
+msgstr "<b>队列位置：</b>%(pos)s / %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:23
