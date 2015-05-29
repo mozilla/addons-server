@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-04-23 07:17+0000\n"
+"PO-Revision-Date: 2015-05-29 20:35+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429773429.0\n"
+"X-POOTLE-MTIME: 1432931724.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -90,12 +90,12 @@ msgstr "Überprüfung abgeschlossen {0}"
 #: static/js/common/upload-addon.js:319
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ihr Add-on wurde ohne Fehler und mit {0} Hinweis validiert."
+msgstr[1] "Ihr Add-on wurde ohne Fehler und mit {0} Hinweisen validiert."
 
 #: static/js/common/upload-addon.js:324
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Ihr Add-on wurde ohne Fehler und Hinweise validiert."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission will go through a manual review."
