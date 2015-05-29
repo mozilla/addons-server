@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-04-23 03:18+0000\n"
+"PO-Revision-Date: 2015-05-29 20:45+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1429759084.0\n"
+"X-POOTLE-MTIME: 1432932358.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -87,11 +87,11 @@ msgstr "已完成驗證 {0}"
 #: static/js/common/upload-addon.js:319
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "已驗證您的附加元件，無錯誤，有 {0} 條訊息。"
 
 #: static/js/common/upload-addon.js:324
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "已驗證您的附加元件，無錯誤或警告。"
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission will go through a manual review."
