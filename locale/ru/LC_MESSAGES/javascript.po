@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-04-26 02:04+0300\n"
+"PO-Revision-Date: 2015-05-31 00:09+0300\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-POOTLE-MTIME: 1399813808.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -93,13 +93,13 @@ msgstr "Закончена валидация {0}"
 #: static/js/common/upload-addon.js:319
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщением."
+msgstr[1] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
+msgstr[2] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 
 #: static/js/common/upload-addon.js:324
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Ваше дополнение прошло валидацию без ошибок или предупреждений."
 
 #: static/js/common/upload-addon.js:342
 msgid "Your submission will go through a manual review."
