@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-05-21 14:02+0000\n"
+"PO-Revision-Date: 2015-05-31 07:07+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432216966.0\n"
+"X-POOTLE-MTIME: 1433056051.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5124,6 +5124,8 @@ msgstr "Negeerhandelingen van beheer"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:64
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
+"Het lijkt er op dat uw add-on handmatig moet worden beoordeeld voordat hij "
+"kan worden afgetekend."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
