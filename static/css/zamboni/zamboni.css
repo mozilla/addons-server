@@ -39,7 +39,7 @@ li.usertag {
 }
 
 #tabzilla-wrapper {
-    background: radial-gradient(ellipse at center center , #EAEFF2 0px, rgba(212, 221, 228, 0.5) 50%) repeat scroll 0% 0%, transparent linear-gradient(to bottom, #CAE1F4 0px, rgba(125, 185, 232, 0) 100%) repeat scroll 0% 0%;
+    background: radial-gradient(ellipse at center center, #eaeff2 0px, rgba(125, 185, 232, 0) 50%) repeat scroll 0% 0%, transparent linear-gradient(to bottom, #cae1f4 0px, rgba(125, 185, 232, 0) 100%) repeat scroll 0% 0%;
 }
 
 header {
