@@ -403,6 +403,8 @@ var installButton = function() {
         var opts = search ? {addPopup: false, addWarning: false} : {};
         versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
+        $button.addClass('concealed');
+        versionsAndPlatforms({addPopup: false});
         $button.addClass('CTA');
         $button.text('Only with Firefox -- Get Firefox Now!');
         $button.attr('href', 'https://www.mozilla.org/firefox/new/?scene=2#download-fx');
