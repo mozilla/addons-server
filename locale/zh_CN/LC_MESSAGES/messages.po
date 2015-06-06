@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-05-30 01:10+0000\n"
+"PO-Revision-Date: 2015-06-06 13:01+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432948228.0\n"
+"X-POOTLE-MTIME: 1433595663.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3671,15 +3671,16 @@ msgstr "是的，在此网站上分发我的附加组件。"
 
 #: apps/devhub/forms.py:510
 msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "选择此项，如果您打算自行发布您的附加组件，只是需要 Mozilla 进行签名。"
+msgstr "如果您打算自行分发您的附加组件，只是需要 Mozilla 进行签名，那么请取消此项。"
 
 #: apps/devhub/forms.py:516
 msgid "This add-on will be side-loaded via application installers."
-msgstr "此附加组件将通过应用程序安装器进行旁路加载。"
+msgstr "将通过软件的安装程序将此附加组件安装到用户电脑。"
 
 #: apps/devhub/forms.py:518
+#, fuzzy
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr "在代码被 Mozilla 审核并确保符合较高质量标准之前，附加组件是通过旁路加载。"
+msgstr "Mozilla 会对将安装到其他用户电脑的附加组件进行代码审核，确保其符合较高的质量标准，然后才会进行签署。"
 
 #: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -5007,7 +5008,7 @@ msgstr "使用下面的按钮上传您的附加组件包，并选择可兼容的
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "您希望在本网站上分发您的附加组件吗？"
+msgstr "您想要在本网站上分发您的附加组件？"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Which platforms is this file compatible with?"
@@ -5900,8 +5901,9 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "您的附加组件已经展示在我们的展示库中，并且用户会自动收到更新。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
+#, fuzzy
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr "您的附加组件已被签名，现在可以被旁路加载。"
+msgstr "您的附加组件已被签名，现在可以进行安装。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
