@@ -407,7 +407,8 @@ var installButton = function() {
         versionsAndPlatforms({addPopup: false});
         $button.addClass('CTA');
         $button.text('Only with Firefox -- Get Firefox Now!');
-        $button.attr('href', 'https://www.mozilla.org/firefox/new/?scene=2#download-fx');
+        $button.attr('href', 'https://www.mozilla.org/firefox/new/?scene=2&utm_source=addons.mozilla.org&utm_medium=referral&utm_campaign=non-fx-button#download-fx');
+        $('#site-nonfx').hide();
     } else if (z.app == 'thunderbird') {
         var msg = function() {
             return $(message('learn_more')()).html();
