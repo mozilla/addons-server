@@ -31,7 +31,7 @@ from reviews.models import Review
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode, UnsubscribeCode
-from users.views import browserid_authenticate
+from users.views import browserid_authenticate, tshirt_eligible
 
 
 def fake_request():
@@ -50,6 +50,41 @@ def check_sidebar_links(self, expected):
     links = pq(r.content)('#secondary-nav ul a')
     amo.tests.check_links(expected, links)
     eq_(links.filter('.selected').attr('href'), self.url)
+
+
+class TestTShirtOrder(amo.tests.TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_normal_user(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        assert not tshirt_eligible(user)
+
+    def test_listed_dev(self):
+        addon = Addon.objects.get(pk=3615)
+        user = addon.authors.get()
+
+        assert tshirt_eligible(user)
+
+    def test_unlisted_dev(self):
+        addon = Addon.objects.get(pk=3615)
+        user = addon.authors.get()
+
+        addon.update(is_listed=False)
+        assert not tshirt_eligible(user)
+
+        addon.versions.get().files.get().update(is_signed=True)
+        assert tshirt_eligible(user)
+
+    def test_persona_dev(self):
+        addon = Addon.objects.get(pk=3615)
+        user = addon.authors.get()
+
+        addon.update(type=amo.ADDON_PERSONA,
+                     average_daily_users=1)
+        assert not tshirt_eligible(user)
+
+        addon.update(average_daily_users=10000)
+        assert tshirt_eligible(user)
 
 
 class UserViewBase(amo.tests.TestCase):
