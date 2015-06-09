@@ -1,0 +1,137 @@
+{% extends "impala/base_shared.html" %}
+{% from 'includes/forms.html' import pretty_field, required %}
+
+{% block title %}{{ page_title(_('T-shirt Order')) }}{% endblock %}
+
+{% block bodyclass %}t-shirt-form{% endblock %}
+
+{% block content %}
+<h1>{{ _('Special Edition Add-on Creator T-shirt') }}</h1>
+{% if eligible %}
+  {% if submitted %}
+    <section class="island c user-input prose">
+      <p>
+        <strong>{{ _('Note:') }}</strong>
+        {% trans %}
+          You have already submitted a request for a t-shirt. You may
+          re-submit this form to update your information, but you will
+          only receive one shirt.
+        {% endtrans %}
+      </p>
+    </section>
+  {% endif %}
+
+  <section class="island c user-input prose">
+    <p>
+    {% trans %}
+      Thank you for helping to make Firefox the most extensible
+      browser available!
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      As a thank you gift, we'd like to send you
+      a special-edition, community-designed t-shirt. To receive your
+      shirt, please fill out the form below.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      We will not use the information you provide for any purpose
+      other than mailing you your t-shirt. It will be deleted from
+      our servers once your t-shirt has been sent.
+    {% endtrans %}
+    </p>
+  </section>
+
+  <section id="t_shirt_order" class="primary full prettyform grid" role="main">
+    <form method="post" class="island c user-input"
+          enctype="multipart/form-data">
+      {{ csrf() }}
+      <div id="t-shirt-order" class="tab-wrapper">
+        <div class="tab-panel">
+          <fieldset>
+            <legend>{{ _('Mailing Address') }}</legend>
+            <ul class="formfields">
+              <li{% if form.name.errors %} class="error"{% endif %}>
+                <label for="id_name">{{ _('Full Name') }} {{ required() }}</label>
+                {{ form.name }}
+                {{ form.name.errors }}
+              </li>
+              <li{% if form.address1.errors %} class="error"{% endif %}>
+                <label for="id_address1">{{ _('Address Line 1') }} {{ required() }}</label>
+                {{ form.address1 }}
+                {{ form.address1.errors }}
+              </li>
+              <li{% if form.address2.errors %} class="error"{% endif %}>
+                <label for="id_address2">{{ _('Address Line 2') }}</label>
+                {{ form.address2 }}
+                {{ form.address2.errors }}
+              </li>
+              <li{% if form.city.errors %} class="error"{% endif %}>
+                <label for="id_city">{{ _('City/Town') }} {{ required() }}</label>
+                {{ form.city }}
+                {{ form.city.errors }}
+              </li>
+              <li{% if form.state.errors %} class="error"{% endif %}>
+                <label for="id_state">{{ _('State/Province (if applicable)') }}</label>
+                {{ form.state }}
+                {{ form.state.errors }}
+              </li>
+              <li{% if form.zip.errors %} class="error"{% endif %}>
+                <label for="id_zip">{{ _('Postal Code (if applicable)') }}</label>
+                {{ form.zip }}
+                {{ form.zip.errors }}
+              </li>
+              <li{% if form.country.errors %} class="error"{% endif %}>
+                <label for="id_country">{{ _('Country') }} {{ required() }}</label>
+                {{ form.country }}
+                {{ form.country.errors }}
+              </li>
+              <li{% if form.telephone.errors %} class="error"{% endif %}>
+                <label for="id_telephone">{{ _('Telephone') }} <small>(required by our carrier)</small> {{ required() }}</label>
+                {{ form.telephone }}
+                {{ form.telephone.errors }}
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset id="more-stuff">
+            <legend>{{ _('T-Shirt Info') }}</legend>
+
+              <li{% if form.shirt_size.errors %} class="error"{% endif %}>
+                <label for="id_shirt_size">{{ _('Shirt Size') }} {{ required() }}</label>
+                {{ form.shirt_size }}
+                {{ form.shirt_size.errors }}
+              </li>
+
+              <li{% if form.shirt_style.errors %} class="error"{% endif %}>
+                <label for="id_shirt_style">{{ _('Shirt Style') }} {{ required() }}</label>
+                {{ form.shirt_style }}
+                {{ form.shirt_style.errors }}
+              </li>
+          </fieldset>
+        </div>
+
+        <div class="footer-submit">
+          <button type="submit" class="button prominent">{{ _('Request T-shirt') }}</button>
+        </div>
+      </div>{# /.tab-wrapper #}
+    </form>
+  </section>
+{% else %}
+  <section class="island c user-input prose">
+    <p>
+    {% trans %}
+      We're sorry, but in order to qualify for our special edition
+      t-shirt, you must be an add-on developer with at least one
+      listed add-on, one unlisted but signed add-on, or any number
+      of background themes with a combined total of 10,000 average
+      daily users.
+    {% endtrans %}
+    </p>
+  </section>
+{% endif %}
+{% endblock content %}
