@@ -7,22 +7,9 @@
 
 <p>
 {% trans %}
-  Thank you for your contribution to the Mozilla add-ons ecosystem. This
-  submission process allows you to host your add-on on this site, or get it
-  signed for self-hosting.
-{% endtrans %}
-</p>
-<p>
-{% trans %}
-  To complete your submission, you'll need your add-on package (.xpi, .jar, or
-  .xml).
-{% endtrans %}
-</p>
-
-<p>
-{% trans %}
-  When you're ready to begin, please read and accept our
-  <strong>Developer Agreement</strong>:
+  Before starting, please read and accept our Firefox Add-on
+  Distribution Agreement. It also links to our Privacy Notice
+  which explains how we handle your information.
 {% endtrans %}
 </p>
 <div id="agreement-container">
@@ -31,9 +18,6 @@
 <div id="agreement-extra-links">
   <a href="{{ url('devhub.docs', 'policies/agreement') }}">
     {{ _('Printable Version') }}</a>
-<span>&bull;</span>
-<a href="{{ url('devhub.docs', 'policies') }}">
-  {{ _('Additional Add-on Policies') }}</a>
 </div>
 <div class="submit-buttons">
   <form method="post">
