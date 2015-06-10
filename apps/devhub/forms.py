@@ -503,12 +503,12 @@ class NewAddonForm(AddonUploadForm):
         coerce=int,
         error_messages={'required': 'Need at least one platform.'}
     )
-    is_listed = forms.BooleanField(
-        initial=True,
+    is_unlisted = forms.BooleanField(
+        initial=False,
         required=False,
-        label=_lazy(u'Yes, distribute my add-on on this site.'),
+        label=_lazy(u'Do not list my add-on on this site (beta)'),
         help_text=_lazy(
-            u'Uncheck this option if you intend to distribute your add-on on '
+            u'Check this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
     is_sideload = forms.BooleanField(
         initial=False,

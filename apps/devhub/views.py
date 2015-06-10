@@ -1386,7 +1386,7 @@ def submit_addon(request, step):
 
             p = data.get('supported_platforms', [])
 
-            is_listed = data['is_listed']
+            is_listed = not data['is_unlisted']
             if not waffle.flag_is_active(request, 'unlisted-addons'):
                 is_listed = True
 
