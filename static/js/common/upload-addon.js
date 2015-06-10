@@ -265,10 +265,14 @@
                 // If the addon is detected as beta, automatically check
                 // the "beta" input, but only if the addon is listed.
                 var $new_form = $('.new-addon-file');
-                var isListed = $('#id_is_listed').is(':checked') || $new_form.data('addon-is-listed')
-                if (results.beta && isListed) {
-                  $('#id_beta').prop('checked', true);
+                var isUnlisted = $('#id_is_unlisted').is(':checked') || !$new_form.data('addon-is-listed')
+                  var $beta = $('#id_beta');
+                if (results.beta && !isUnlisted) {
+                  $beta.prop('checked', true);
                   $('.beta-status').show();
+                } else {
+                  $beta.prop('checked', false);
+                  $('.beta-status').hide();
                 }
                 if(results.error) {
                     // This shouldn't happen.  But it might.
@@ -337,7 +341,7 @@
                       // Specific messages for unlisted addons.
                       var isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload');
                       var automaticValidation = $('#create-addon').data('automatic-validation') || $new_form.data('automatic-validation');
-                      if (!isListed) {
+                      if (isUnlisted) {
                         if (isSideload) {
                           $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
                         } else {
@@ -356,10 +360,22 @@
                         }
                       } else {  // This is a listed add-on.
                         if (automaticValidation && results.beta) {
-                          if (!v.passed_auto_validation) {
-                            $('#invalid-beta').show().removeClass('hidden');
-                            $('.addon-upload-dependant').attr('disabled', true);
+                          function updateBetaStatus() {
+                            if (!$beta.is(':checked') || v.passed_auto_validation) {
+                              $('#invalid-beta').hide().addClass('hidden');
+                              $('.addon-upload-dependant').attr('disabled', false);
+                            } else {
+                              $('#invalid-beta').show().removeClass('hidden');
+                              $('.addon-upload-dependant').attr('disabled', true);
+                            }
+                            if ($beta.is(':checked')) {
+                              $('p.beta-warning').show();
+                            } else {
+                              $('p.beta-warning').hide();
+                            }
                           }
+                          $beta.bind('change', updateBetaStatus);
+                          updateBetaStatus();
                         }
                       }
                     }

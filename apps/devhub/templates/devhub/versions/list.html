@@ -120,7 +120,7 @@
                     {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_listed %}checked="checked"{% endif %}
                     class="unlist-addon">
-             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
+             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)')|f(settings.SITE_URL) }}</label>
       <br><br>
       {% endif %}
       {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
@@ -294,6 +294,12 @@
           users.  It is recommended for unlisted add-ons to provide a custom
           <a href="{{ update_url }}" target="_blank">updateURL</a> in their
           install.rdf file for automatic updates.
+        {% endtrans %}
+      </p>
+      <p class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
+        {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+          Switching add-ons to unlisted is currently in an open beta. Please
+          <a href="{{ bugzilla_url }}">report any bugs</a> that you encounter.
         {% endtrans %}
       </p>
       <p>

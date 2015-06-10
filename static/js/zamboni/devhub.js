@@ -85,24 +85,27 @@ $(document).ready(function() {
 
     var $new_form = $('.new-addon-file');
     if ($new_form.data('unlisted-addons')) {
-      // is_listed checkbox: should the add-on be listed on AMO? If not, change
-      // the addon upload button's data-upload-url.
+      // is_unlisted checkbox: should the add-on be listed on AMO? If not,
+      // change the addon upload button's data-upload-url.
       // If this add-on is unlisted, then tell the upload view so
       // it'll run the validator with the "listed=False"
       // parameter.
-      var $isListed = $('#id_is_listed');
+      var $isUnlisted = $('#id_is_unlisted');
+      var $betaWarningLabel = $('span.beta-warning');
       var $isSideloadLabel = $('label[for=id_is_sideload]');
       var $isSideload = $('#id_is_sideload');
       var $isManualReview = $('#manual-review');
       var $submitAddonProgress = $('.submit-addon-progress');
       function updateListedStatus() {
-        if ($isListed.is(':checked') || $new_form.data('addon-is-listed')) {  // It's a listed add-on.
+        if (!$isUnlisted.is(':checked') || $new_form.data('addon-is-listed')) {  // It's a listed add-on.
           $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+          $betaWarningLabel.hide();
           $isSideloadLabel.hide();
           $isSideload.attr('checked', false);
           $submitAddonProgress.removeClass('unlisted');
         } else {  // It's an unlisted add-on.
           $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+          $betaWarningLabel.show();
           $isSideloadLabel.show();
           $submitAddonProgress.addClass('unlisted');
         }
@@ -113,25 +116,13 @@ $(document).ready(function() {
         $('.upload-status').remove();
         $isManualReview.hide();
       }
-      $isListed.bind('change', updateListedStatus);
+      $isUnlisted.bind('change', updateListedStatus);
       $isSideload.bind('change', updateListedStatus);
       updateListedStatus();
     }
 
     $('#id_is_manual_review').bind('change', function() {
         $('.addon-upload-dependant').attr('disabled', !($(this).is(':checked')));
-    });
-
-    $('#id_beta').bind('change', function() {
-        // User unchecked the beta checkbox, meaning they want this file to go
-        // through the usual review process.
-        if ($('#id_beta').is(':checked')) {
-            $('#invalid-beta').show();
-            $('.addon-upload-dependant').attr('disabled', true);
-        } else {
-            $('#invalid-beta').hide();
-            $('.addon-upload-dependant').attr('disabled', false);
-        }
     });
 
     if ($(".add-file-modal").length) {

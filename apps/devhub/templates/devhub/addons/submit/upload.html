@@ -25,11 +25,19 @@
     <div class="list-addon">
       <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
       <div>
-        <label for="{{ new_addon_form.is_listed.auto_id }}">
-          {{ new_addon_form.is_listed }}
-          {{ new_addon_form.is_listed.label }}
+        <label for="{{ new_addon_form.is_unlisted.auto_id }}">
+          {{ new_addon_form.is_unlisted }}
+          {{ new_addon_form.is_unlisted.label }}
           <span class="tip tooltip"
-                title="{{ new_addon_form.is_listed.help_text }}">?</span>
+                title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
+          <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
+            {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+              Submission of unlisted add-ons for signing is currently in an
+              open beta. Manual review may still be required for a large
+              number of add-ons. Please
+              <a href="{{ bugzilla_url }}">report any bugs</a> that you encounter.
+            {% endtrans %}
+          </span>
         </label>
         <label for="{{ new_addon_form.is_sideload.auto_id }}">
           {{ new_addon_form.is_sideload }}
