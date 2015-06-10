@@ -2688,6 +2688,19 @@ class TestAddVersion(AddVersionTest):
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
 
+    @mock.patch('devhub.views.auto_sign_file')
+    def test_multiple_platforms_unlisted_addon(self, mock_auto_sign_file):
+        self.create_flag('unlisted-addons')
+        self.create_flag('automatic-validation')
+        self.addon.update(is_listed=False)
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC,
+                                           amo.PLATFORM_LINUX])
+        eq_(r.status_code, 200)
+        version = self.addon.versions.get(version='0.1')
+        eq_(len(version.all_files), 2)
+        mock_auto_sign_file.assert_has_calls(
+            [mock.call(f, is_beta=False) for f in version.all_files])
+
     def test_with_source(self):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
@@ -3092,6 +3105,24 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                                         args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+
+    @mock.patch('devhub.views.auto_sign_file')
+    def test_one_xpi_for_multiple_platforms_unlisted_addon(
+            self, mock_auto_sign_file):
+        # Make sure we fixed bug 1173125.
+        self.create_flag('unlisted-addons')
+        self.create_flag('automatic-validation')
+        eq_(Addon.objects.count(), 0)
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC,
+                                           amo.PLATFORM_LINUX],
+                      is_listed=False)
+        addon = Addon.unfiltered.get()
+        self.assertRedirects(r, reverse('devhub.submit.3',
+                                        args=[addon.slug]))
+        eq_(sorted([f.filename for f in addon.current_version.all_files]),
+            [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+        mock_auto_sign_file.assert_has_calls(
+            [mock.call(f) for f in addon.current_version.all_files])
 
     def test_with_source(self):
         tdir = temp.gettempdir()
