@@ -23,26 +23,13 @@ from translations import LOCALES
 
 from . import tasks
 from .models import (UserProfile, UserNotification, BlacklistedName,
-                     BlacklistedEmailDomain, BlacklistedPassword,
-                     TShirtOrder)
+                     BlacklistedEmailDomain, BlacklistedPassword)
 from .widgets import (NotificationsSelectMultiple, RequiredEmailInput,
                       RequiredInputMixin, RequiredTextInput)
 
 
 log = commonware.log.getLogger('z.users')
 admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
-
-
-class TShirtForm(happyforms.ModelForm):
-    """
-    Form for ordering a t-shirt.
-    """
-
-    class Meta:
-        model = TShirtOrder
-        fields = ('name', 'address1', 'address2', 'city', 'state',
-                  'zip', 'country', 'telephone', 'shirt_size',
-                  'shirt_style')
 
 
 class PasswordMixin:
