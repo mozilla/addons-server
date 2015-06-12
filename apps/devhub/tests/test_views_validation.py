@@ -194,11 +194,26 @@ class TestValidateAddon(amo.tests.TestCase):
         eq_(r.status_code, 302)
 
     def test_context(self):
+        self.create_flag('unlisted-addons')
         r = self.client.get(reverse('devhub.validate_addon'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#upload-addon').attr('data-upload-url'),
             reverse('devhub.standalone_upload'))
+        eq_(doc('#upload-addon').attr('data-upload-url-listed'),
+            reverse('devhub.standalone_upload'))
+        eq_(doc('#upload-addon').attr('data-upload-url-unlisted'),
+            reverse('devhub.standalone_upload_unlisted'))
+
+    @mock.patch('validator.validate.validate')
+    def test_upload_unlisted_addon(self, validate_mock):
+        """Unlisted addons are validated as "self hosted" addons."""
+        validate_mock.return_value = '{}'
+        self.url = reverse('devhub.upload_unlisted')
+        data = open(get_image_path('animated.png'), 'rb')
+        self.client.post(self.url, {'upload': data})
+        # Make sure it was called with listed=False.
+        assert not validate_mock.call_args[1]['listed']
 
 
 class TestValidateFile(BaseUploadTest):

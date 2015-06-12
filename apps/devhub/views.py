@@ -577,7 +577,9 @@ def compat_application_versions(request):
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': _('Validate Add-on'),
-                   'upload_url': reverse('devhub.standalone_upload')})
+                   # Hack: we just need the "is_unlisted" field from this form.
+                   'new_addon_form': forms.NewAddonForm(
+                       None, None, request=request)})
 
 
 @login_required
@@ -586,7 +588,9 @@ def check_addon_compatibility(request):
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
                    'title': _('Check Add-on Compatibility'),
-                   'upload_url': reverse('devhub.standalone_upload')})
+                   # Hack: we just need the "is_unlisted" field from this form.
+                   'new_addon_form': forms.NewAddonForm(
+                       None, None, request=request)})
 
 
 @dev_required
@@ -670,6 +674,12 @@ def upload_manifest(request):
 @post_required
 def standalone_upload(request):
     return upload(request, is_standalone=True)
+
+
+@login_required
+@post_required
+def standalone_upload_unlisted(request):
+    return upload(request, is_standalone=True, is_listed=False)
 
 
 @login_required

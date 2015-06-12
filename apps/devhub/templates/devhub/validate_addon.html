@@ -7,7 +7,8 @@
   {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
   <h2>{{ title }}</h2>
 </header>
-<form method="post" id="create-addon" class="item">
+<form method="post" id="create-addon" class="item new-addon-file"
+      data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}">
   {{ csrf() }}
   <p>
   {% trans %}
@@ -38,8 +39,34 @@
     </p>
   {% endif %}
   <section id="upload-file" class="validate-addon">
+    {% if waffle.flag('unlisted-addons') %}
+      <div class="list-addon">
+        <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
+        <div>
+          <label for="{{ new_addon_form.is_unlisted.auto_id }}">
+            {{ new_addon_form.is_unlisted }}
+            {{ new_addon_form.is_unlisted.label }}
+            <span class="tip tooltip"
+                  title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
+            <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
+              {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+                Submission of unlisted add-ons for signing is currently in an
+                open beta. Manual review may still be required for a large
+                number of add-ons. Please
+                <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a> that you encounter.
+              {% endtrans %}
+            </span>
+          </label>
+        </div>
+      </div>
+    {% endif %}
 
-    <input type="file" id="upload-addon" data-upload-url="{{ upload_url }}">
+    <input type="file" id="upload-addon"
+      data-upload-url="{{ url('devhub.standalone_upload') }}"
+      {% if waffle.flag('unlisted-addons') %}
+        data-upload-url-listed="{{ url('devhub.standalone_upload') }}"
+        data-upload-url-unlisted="{{ url('devhub.standalone_upload_unlisted') }}"
+      {% endif %}>
 
   </section>
 </form>
