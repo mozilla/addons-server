@@ -24,7 +24,7 @@ from django.utils.functional import lazy
 import caching.base as caching
 import commonware.log
 import tower
-from tower import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _
 import waffle
 
 import amo
@@ -36,40 +36,6 @@ from translations.models import Translation
 from translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
-
-
-class TShirtOrder(amo.models.ModelBase):
-    SIZE_CHOICES = (
-        ('S', _lazy('Small')),
-        ('M', _lazy('Medium')),
-        ('L', _lazy('Large')),
-        ('XL', _lazy('X-Large')),
-        ('XXL', _lazy('XX-Large')),
-    )
-    STYLE_CHOICES = (
-        ('U', 'Unisex'),
-        ('F', 'Female'),
-    )
-
-    user = models.ForeignKey('UserProfile', related_name='tshirt_order',
-                             unique=True)
-
-    name = models.CharField(max_length=512)
-    address1 = models.CharField(max_length=512)
-    address2 = models.CharField(max_length=512, blank=True)
-    city = models.CharField(max_length=512)
-    state = models.CharField(max_length=512, blank=True)
-    zip = models.CharField(max_length=32, blank=True)
-    country = models.CharField(max_length=512)
-    telephone = models.CharField(max_length=512)
-
-    shirt_size = models.CharField(max_length=3,
-                                  choices=SIZE_CHOICES)
-    shirt_style = models.CharField(max_length=1,
-                                   choices=STYLE_CHOICES)
-
-    class Meta:
-        db_table = 'user_t_shirt_orders'
 
 
 class SHA512PasswordHasher(BasePasswordHasher):
@@ -226,6 +192,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                               editable=False)
     lang = models.CharField(max_length=5, null=True, blank=True,
                             default=settings.LANGUAGE_CODE)
+
+    t_shirt_requested = models.DateTimeField(blank=True, null=True,
+                                             default=None, editable=False)
 
     class Meta:
         db_table = 'users'

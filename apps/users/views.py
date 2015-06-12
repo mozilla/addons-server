@@ -1,4 +1,5 @@
 import functools
+from datetime import datetime
 from functools import partial
 
 from django import http
@@ -40,7 +41,7 @@ from amo.utils import escape_all, log_cef, send_mail
 from bandwagon.models import Collection
 from browse.views import PersonasFilter
 from translations.query import order_by_translation
-from users.models import TShirtOrder, UserNotification
+from users.models import UserNotification
 
 import tasks
 from . import forms
@@ -234,7 +235,7 @@ def tshirt_eligible(user):
     MIN_PERSONA_ADU = 10000
 
     return (
-        user.tshirt_order.exists() or
+        user.t_shirt_requested or
 
         AddonUser.objects.filter(
             user=user,
@@ -265,11 +266,6 @@ def t_shirt(request):
         raise http.Http404()
 
     user = request.user
-    try:
-        instance = user.tshirt_order.get()
-    except TShirtOrder.DoesNotExist:
-        instance = None
-
     eligible = tshirt_eligible(user)
 
     if request.method == 'POST':
@@ -279,32 +275,11 @@ def t_shirt(request):
                              "request a t-shirt at this time."))
             return redirect('users.t-shirt')
 
-        form = forms.TShirtForm(request.POST, instance=instance)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = user
-            try:
-                instance.save()
-            except IntegrityError:
-                messages.error(request,
-                               _('Duplicate t-shirt request submitted'))
-                return redirect('users.t-shirt')
-
-            messages.success(request,
-                             _('T-Shirt request successfully submitted'))
-            return redirect('users.t-shirt')
-        else:
-            messages.error(
-                request,
-                _('Errors Found'),
-                _('There were errors in your submission. Please correct '
-                  'them and resubmit.'))
-    else:
-        form = forms.TShirtForm(instance=instance)
+        if not user.t_shirt_requested:
+            user.update(t_shirt_requested=datetime.now())
 
     return render(request, 'users/t-shirt.html',
-                  {'form': form, 'eligible': eligible,
-                   'submitted': bool(instance)})
+                  {'eligible': eligible, 'user': user})
 
 
 @write
