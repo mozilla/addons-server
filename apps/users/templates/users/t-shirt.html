@@ -8,7 +8,7 @@
 {% block content %}
 <h1>{{ _('Special Edition Add-on Creator T-shirt') }}</h1>
 {% if eligible %}
-  {% if submitted %}
+  {% if user.t_shirt_requested %}
     <section class="island c user-input prose">
       <p>
         <strong>{{ _('Note:') }}</strong>
@@ -40,60 +40,57 @@
     <p>
     {% trans %}
       We will not use the information you provide for any purpose
-      other than mailing you your t-shirt. It will be deleted from
-      our servers once your t-shirt has been sent.
+      other than mailing you your t-shirt, and we will not keep any
+      record of it after your shirt has been shipped.
     {% endtrans %}
     </p>
   </section>
 
-  <section id="t_shirt_order" class="primary full prettyform grid" role="main">
+  <section id="t-shirt-order" class="primary full prettyform grid" role="main">
     <form method="post" class="island c user-input"
+          action="https://docs.google.com/forms/d/1NsnfnYSm4gH4kM-sbsUerkhFwAGAln5CTAxcImzKNJY/formResponse"
+          id="t-shirt-order-form"
           enctype="multipart/form-data">
-      {{ csrf() }}
+
+      <input name="entry.202575966" value="{{ user.id }}" type="hidden">
+      <input name="fbzx" value="908472551766638997" type="hidden">
+
       <div id="t-shirt-order" class="tab-wrapper">
         <div class="tab-panel">
           <fieldset>
             <legend>{{ _('Mailing Address') }}</legend>
             <ul class="formfields">
-              <li{% if form.name.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_name">{{ _('Full Name') }} {{ required() }}</label>
-                {{ form.name }}
-                {{ form.name.errors }}
+                <input name="entry.1631216896" id="id_name" aria-required="true" type="text">
               </li>
-              <li{% if form.address1.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_address1">{{ _('Address Line 1') }} {{ required() }}</label>
-                {{ form.address1 }}
-                {{ form.address1.errors }}
+                <input name="entry.1645850016" id="id_address1" aria-required="true" type="text">
               </li>
-              <li{% if form.address2.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_address2">{{ _('Address Line 2') }}</label>
-                {{ form.address2 }}
-                {{ form.address2.errors }}
+                <input name="entry.1195486863" id="id_address2" type="text">
               </li>
-              <li{% if form.city.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_city">{{ _('City/Town') }} {{ required() }}</label>
-                {{ form.city }}
-                {{ form.city.errors }}
+                <input name="entry.116155144" id="id_city" aria-required="true" type="text">
               </li>
-              <li{% if form.state.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_state">{{ _('State/Province (if applicable)') }}</label>
-                {{ form.state }}
-                {{ form.state.errors }}
+                <input name="entry.1870171116" id="id_state" type="text">
               </li>
-              <li{% if form.zip.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_zip">{{ _('Postal Code (if applicable)') }}</label>
-                {{ form.zip }}
-                {{ form.zip.errors }}
+                <input name="entry.51997947" id="id_zip" type="text">
               </li>
-              <li{% if form.country.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_country">{{ _('Country') }} {{ required() }}</label>
-                {{ form.country }}
-                {{ form.country.errors }}
+                <input name="entry.506045713" id="id_country" aria-required="true" type="text">
               </li>
-              <li{% if form.telephone.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_telephone">{{ _('Telephone') }} <small>(required by our carrier)</small> {{ required() }}</label>
-                {{ form.telephone }}
-                {{ form.telephone.errors }}
+                <input name="entry.1019342583" id="id_telephone" aria-required="true" type="text">
               </li>
             </ul>
           </fieldset>
@@ -101,22 +98,36 @@
           <fieldset id="more-stuff">
             <legend>{{ _('T-Shirt Info') }}</legend>
 
-              <li{% if form.shirt_size.errors %} class="error"{% endif %}>
+              <li>
                 <label for="id_shirt_size">{{ _('Shirt Size') }} {{ required() }}</label>
-                {{ form.shirt_size }}
-                {{ form.shirt_size.errors }}
-              </li>
 
-              <li{% if form.shirt_style.errors %} class="error"{% endif %}>
-                <label for="id_shirt_style">{{ _('Shirt Style') }} {{ required() }}</label>
-                {{ form.shirt_style }}
-                {{ form.shirt_style.errors }}
+                <select name="entry.1606438107" id="id_shirt_size" aria-label="Your t-shirt size" aria-required="true">
+                  <option value="Ladies' S">Ladies' S</option>
+                  <option value="Ladies' M">Ladies' M</option>
+                  <option value="Ladies' L">Ladies' L</option>
+                  <option value="Ladies' XL">Ladies' XL</option>
+                  <option value="Ladies' XXL">Ladies' XXL</option>
+                  <option value="Men's S">Unisex S</option>
+                  <option value="Men's M">Unisex M</option>
+                  <option value="Men's L">Unisex L</option>
+                  <option value="Men's XL">Unisex XL</option>
+                  <option value="Men's XXL">Unisex XXL</option>
+                </select>
               </li>
           </fieldset>
         </div>
 
+        <p>
+          <strong>{{ _('Note:') }}</strong>
+          {% trans %}
+            You will be redirected to Google Forms upon submission.
+          {% endtrans %}
+        </p>
+
         <div class="footer-submit">
-          <button type="submit" class="button prominent">{{ _('Request T-shirt') }}</button>
+          <button type="submit" class="button prominent" id="t-shirt-request-submit" disabled="true">
+            {{ _('Request T-shirt') }}
+          </button>
         </div>
       </div>{# /.tab-wrapper #}
     </form>
