@@ -17,6 +17,21 @@ from lib.crypto import packaged, tasks
 from versions.compare import version_int
 
 
+REQUEST_POST_CALLS = []
+
+
+class FakeResponse:
+    """Used as the response to a request.post call."""
+    status_code = 200
+    content = '{"mozilla.rsa": ""}'
+
+
+def mock_and_log_post(url, timeout, data, files):
+    """Each time a call to request.post is made, log it."""
+    REQUEST_POST_CALLS.append([url, timeout, data, files])
+    return FakeResponse
+
+
 @override_settings(SIGNING_SERVER='http://full',
                    PRELIMINARY_SIGNING_SERVER='http://prelim')
 class TestPackaged(amo.tests.TestCase):
@@ -47,12 +62,8 @@ class TestPackaged(amo.tests.TestCase):
     @pytest.fixture(autouse=True)
     def mock_post(self, monkeypatch):
         """Fake a standard trunion response."""
-        class FakeResponse:
-            status_code = 200
-            content = '{"mozilla.rsa": ""}'
-
         monkeypatch.setattr(
-            'requests.post', lambda url, timeout, data, files: FakeResponse)
+            'requests.post', mock_and_log_post)
 
     @pytest.fixture(autouse=True)
     def mock_get_signature_serial_number(self, monkeypatch):
@@ -203,6 +214,14 @@ class TestPackaged(amo.tests.TestCase):
             assert self.file_.is_signed
             assert self.file_.cert_serial_num
             assert self.file_.hash
+            # We need to make sure the inner extension is signed with its own
+            # guid, not the multi-package (parent) one.
+            # When we log the calls to the "request.post" mock, we have:
+            # [endpoint, timeout, data (dict containing the addon_id), files].
+            # So we're interested in the third item of the last logged call.
+            addon_id = REQUEST_POST_CALLS[-1][2]['addon_id']
+            assert addon_id == 'random_extension@jetpack'
+
             # It's not the multi-package itself that is signed.
             assert not packaged.is_signed(self.file_.file_path)
             # It's the internal xpi.
