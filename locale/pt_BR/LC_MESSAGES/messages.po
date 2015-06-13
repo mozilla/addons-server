@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-05-30 15:14+0000\n"
+"PO-Revision-Date: 2015-06-13 20:31+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1432998882.0\n"
+"X-POOTLE-MTIME: 1434227493.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -2685,8 +2685,9 @@ msgstr "Complementos na sua coleção"
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
-"Para incluir um complemento nessa coleção, insira seu nome no campo abaixo e pressione <kdb>Enter</kbd>. Você também pode usar os links <strong>Adicionar a uma coleção</strong> espalhados pelo site "
-"para incluir complementos mais tarde."
+"Para incluir um complemento nessa coleção, insira seu nome no campo abaixo e "
+"pressione Enter. Você também pode usar os links <strong>Adicionar a uma "
+"coleção</strong> espalhados pelo site para incluir complementos mais tarde."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:385 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
@@ -2940,7 +2941,10 @@ msgstr "Encontre mais mecanismos em <a href=\"http://mycroft.mozdev.org/\">mycro
 
 #: apps/browse/templates/browse/search_tools.html:95
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr "<a href=\"https://developer.mozilla.org/pt/Criando_plugins_OpenSearch_para_o_Firefox\">Crie o seu próprio</a> no <a href=\"https://developer.mozilla.org/\">Mozilla Developer Network</a>"
+msgstr ""
+"<a href=\"https://developer.mozilla.org/pt-BR/docs/Mozilla/Add-"
+"ons/Creating_OpenSearch_plugins_for_Firefox\">Crie o seu próprio</a> no <a "
+"href=\"https://developer.mozilla.org/\">Mozilla Developer Network</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
 msgid "Complete Themes"
@@ -6705,7 +6709,7 @@ msgstr "3000 &times; 200 píxeis"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:9 apps/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
-msgstr "300 kB no máx."
+msgstr "máximo de 300 KB"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
