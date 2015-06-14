@@ -193,6 +193,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     lang = models.CharField(max_length=5, null=True, blank=True,
                             default=settings.LANGUAGE_CODE)
 
+    t_shirt_requested = models.DateTimeField(blank=True, null=True,
+                                             default=None, editable=False)
+
     class Meta:
         db_table = 'users'
 

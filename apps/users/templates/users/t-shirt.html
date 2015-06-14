@@ -1,0 +1,148 @@
+{% extends "impala/base_shared.html" %}
+{% from 'includes/forms.html' import pretty_field, required %}
+
+{% block title %}{{ page_title(_('T-shirt Order')) }}{% endblock %}
+
+{% block bodyclass %}t-shirt-form{% endblock %}
+
+{% block content %}
+<h1>{{ _('Special Edition Add-on Creator T-shirt') }}</h1>
+{% if eligible %}
+  {% if user.t_shirt_requested %}
+    <section class="island c user-input prose">
+      <p>
+        <strong>{{ _('Note:') }}</strong>
+        {% trans %}
+          You have already submitted a request for a t-shirt. You may
+          re-submit this form to update your information, but you will
+          only receive one shirt.
+        {% endtrans %}
+      </p>
+    </section>
+  {% endif %}
+
+  <section class="island c user-input prose">
+    <p>
+    {% trans %}
+      Thank you for helping to make Firefox the most extensible
+      browser available!
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      As a thank you gift, we'd like to send you
+      a special-edition, community-designed t-shirt. To receive your
+      shirt, please fill out the form below.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      We will not use the information you provide for any purpose
+      other than mailing you your t-shirt, and we will not keep any
+      record of it after your shirt has been shipped.
+    {% endtrans %}
+    </p>
+  </section>
+
+  <section id="t-shirt-order" class="primary full prettyform grid" role="main">
+    <form method="post" class="island c user-input"
+          action="https://docs.google.com/forms/d/1NsnfnYSm4gH4kM-sbsUerkhFwAGAln5CTAxcImzKNJY/formResponse"
+          id="t-shirt-order-form"
+          enctype="multipart/form-data">
+
+      <input name="entry.202575966" value="{{ user.id }}" type="hidden">
+      <input name="fbzx" value="908472551766638997" type="hidden">
+
+      <div id="t-shirt-order" class="tab-wrapper">
+        <div class="tab-panel">
+          <fieldset>
+            <legend>{{ _('Mailing Address') }}</legend>
+            <ul class="formfields">
+              <li>
+                <label for="id_name">{{ _('Full Name') }} {{ required() }}</label>
+                <input name="entry.1631216896" id="id_name" aria-required="true" type="text">
+              </li>
+              <li>
+                <label for="id_address1">{{ _('Address Line 1') }} {{ required() }}</label>
+                <input name="entry.1645850016" id="id_address1" aria-required="true" type="text">
+              </li>
+              <li>
+                <label for="id_address2">{{ _('Address Line 2') }}</label>
+                <input name="entry.1195486863" id="id_address2" type="text">
+              </li>
+              <li>
+                <label for="id_city">{{ _('City/Town') }} {{ required() }}</label>
+                <input name="entry.116155144" id="id_city" aria-required="true" type="text">
+              </li>
+              <li>
+                <label for="id_state">{{ _('State/Province (if applicable)') }}</label>
+                <input name="entry.1870171116" id="id_state" type="text">
+              </li>
+              <li>
+                <label for="id_zip">{{ _('Postal Code (if applicable)') }}</label>
+                <input name="entry.51997947" id="id_zip" type="text">
+              </li>
+              <li>
+                <label for="id_country">{{ _('Country') }} {{ required() }}</label>
+                <input name="entry.506045713" id="id_country" aria-required="true" type="text">
+              </li>
+              <li>
+                <label for="id_telephone">{{ _('Telephone') }} <small>(required by our carrier)</small> {{ required() }}</label>
+                <input name="entry.1019342583" id="id_telephone" aria-required="true" type="text">
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset id="more-stuff">
+            <legend>{{ _('T-Shirt Info') }}</legend>
+
+              <li>
+                <label for="id_shirt_size">{{ _('Shirt Size') }} {{ required() }}</label>
+
+                <select name="entry.1606438107" id="id_shirt_size" aria-label="Your t-shirt size" aria-required="true">
+                  <option value="Ladies' S">Ladies' S</option>
+                  <option value="Ladies' M">Ladies' M</option>
+                  <option value="Ladies' L">Ladies' L</option>
+                  <option value="Ladies' XL">Ladies' XL</option>
+                  <option value="Ladies' XXL">Ladies' XXL</option>
+                  <option value="Men's S">Unisex S</option>
+                  <option value="Men's M">Unisex M</option>
+                  <option value="Men's L">Unisex L</option>
+                  <option value="Men's XL">Unisex XL</option>
+                  <option value="Men's XXL">Unisex XXL</option>
+                </select>
+              </li>
+          </fieldset>
+        </div>
+
+        <p>
+          <strong>{{ _('Note:') }}</strong>
+          {% trans %}
+            You will be redirected to Google Forms upon submission.
+          {% endtrans %}
+        </p>
+
+        <div class="footer-submit">
+          <button type="submit" class="button prominent" id="t-shirt-request-submit" disabled="true">
+            {{ _('Request T-shirt') }}
+          </button>
+        </div>
+      </div>{# /.tab-wrapper #}
+    </form>
+  </section>
+{% else %}
+  <section class="island c user-input prose">
+    <p>
+    {% trans %}
+      We're sorry, but in order to qualify for our special edition
+      t-shirt, you must be an add-on developer with at least one
+      listed add-on, one unlisted but signed add-on, or any number
+      of background themes with a combined total of 10,000 average
+      daily users.
+    {% endtrans %}
+    </p>
+  </section>
+{% endif %}
+{% endblock content %}

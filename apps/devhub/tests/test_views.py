@@ -1171,7 +1171,7 @@ class TestSubmitStep2(amo.tests.TestCase):
         response = self.client.get(reverse('devhub.submit.2'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert doc('.list-addon input#id_is_listed[type=checkbox]')
+        assert doc('.list-addon input#id_is_unlisted[type=checkbox]')
         # There also is a checkbox to select full review (side-load) or prelim.
         assert doc('.list-addon input#id_is_sideload[type=checkbox]')
 
@@ -2953,7 +2953,7 @@ class UploadAddon(object):
              source=None, is_listed=True, is_sideload=False, status_code=200):
         d = dict(upload=self.upload.pk, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
-                 is_listed=is_listed, is_sideload=is_sideload)
+                 is_unlisted=not is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
         eq_(r.status_code, status_code)
         if not expect_errors:

@@ -1,4 +1,5 @@
 import functools
+from datetime import datetime
 from functools import partial
 
 from django import http
@@ -7,6 +8,7 @@ from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.db import IntegrityError, transaction
+from django.db.models import Q, Sum
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.template import Context, loader
@@ -28,7 +30,7 @@ from abuse.models import send_abuse_report
 from access import acl
 from access.middleware import ACLMiddleware
 from addons.decorators import addon_view_factory
-from addons.models import Addon, Category
+from addons.models import Addon, AddonUser, Category
 from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
@@ -227,6 +229,57 @@ def edit(request):
         form = forms.UserEditForm(instance=amouser, request=request)
     return render(request, 'users/edit.html',
                   {'form': form, 'amouser': amouser})
+
+
+def tshirt_eligible(user):
+    MIN_PERSONA_ADU = 10000
+
+    return (
+        user.t_shirt_requested or
+
+        AddonUser.objects.filter(
+            user=user,
+            role__in=(amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV),
+            addon__type=amo.ADDON_EXTENSION,
+            addon__disabled_by_user=False)
+        .filter(
+            Q(addon__is_listed=True,
+              addon___current_version__files__status__in=amo.REVIEWED_STATUSES,
+              addon__status__in=amo.REVIEWED_STATUSES) |
+            Q(addon__is_listed=False,
+              addon__versions__files__is_signed=True))
+        .exists() or
+
+        Addon.objects.filter(
+            authors=user,
+            type=amo.ADDON_PERSONA,
+            status=amo.STATUS_PUBLIC,
+            disabled_by_user=False)
+        .aggregate(users=Sum('average_daily_users'))['users'] >=
+        MIN_PERSONA_ADU)
+
+
+@write
+@login_required
+def t_shirt(request):
+    if not waffle.switch_is_active('t-shirt-orders'):
+        raise http.Http404()
+
+    user = request.user
+    eligible = tshirt_eligible(user)
+
+    if request.method == 'POST':
+        if not eligible:
+            messages.error(request,
+                           _("We're sorry, but you are not eligible to "
+                             "request a t-shirt at this time."))
+            return redirect('users.t-shirt')
+
+        if not user.t_shirt_requested:
+            user.update(t_shirt_requested=datetime.now())
+
+    return render(request, 'users/t-shirt.html',
+                  {'eligible': eligible, 'user': user})
 
 
 @write
