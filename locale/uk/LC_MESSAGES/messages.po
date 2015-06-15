@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-06-04 18:53+0000\n"
+"PO-Revision-Date: 2015-06-15 19:35+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1433444022.0\n"
+"X-POOTLE-MTIME: 1434396926.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -775,6 +775,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>Увага:</strong> Цей додаток не був перевірений Mozilla і не може "
+"бути встановлений на стабільні версії Firefox. Будьте обережні, коли "
+"встановлюєте стороннє програмне забезпечення, яке може пошкодити ваш "
+"комп'ютер."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1054,6 +1058,9 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Увага:</strong> Версії цього додатку, які зараз у стадії розробки, "
+"не були перевірені Mozilla й не можуть бути встановлені на стабільні версії "
+"Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -3739,7 +3746,7 @@ msgstr "Ігнорувати невдалу валідацію"
 
 #: apps/devhub/forms.py:483
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Подати мій додаток на ручну перевірку."
 
 #: apps/devhub/forms.py:509
 msgid "Yes, distribute my add-on on this site."
@@ -3772,6 +3779,8 @@ msgstr "Будь ласка, оберіть тип номінації на пе�
 #: apps/devhub/forms.py:543
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
+"Файл з версією, що закінчується на a|alpha|b|beta|pre|rc і необов'язковим "
+"числом, визначається як бета."
 
 #: apps/devhub/forms.py:561
 msgid "Version %s already exists"
@@ -5085,10 +5094,15 @@ msgstr "Крок 1. Початок"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
 msgstr ""
+"Дякуємо за ваш внесок у екосистему додатків Mozilla. Цей процес подання "
+"дозволить вам розмістити на цьому сайті ваш додаток, або підписати його у "
+"разі самостійного хостингу."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:16
 msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
 msgstr ""
+"Для завершення подання вам знадобиться пакет вашого додатку (.xpi, .jar, чи "
+".xml)."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:23
 msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
@@ -5138,6 +5152,8 @@ msgstr "Адміністративні дії"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:64
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
+"Схоже, що ваш додаток потрібно перевірити вручну перед тим, як він може бути "
+"підписаний."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6102,6 +6118,7 @@ msgstr "По завершенні процесу перевірки ви отр�
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
+"По завершенні процесу перевірки та після підпису додатку ви отримаєте лист."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6109,7 +6126,7 @@ msgstr "Ваш додаток відображається в нашій гал�
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "Ваш додаток було підписано і він може бути попутно завантажений."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -8607,7 +8624,7 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/locale_switcher.html:3
 msgid "Change Locale:"
-msgstr ""
+msgstr "Змінити локаль:"
 
 #. Header to an info box in the sidebar
 #: apps/localizers/templates/localizers/sidebar.html:4
@@ -8624,7 +8641,7 @@ msgstr "Відвідайте localize.mozilla.org"
 
 #: apps/localizers/templates/localizers/sidebar.html:21
 msgid "Options"
-msgstr ""
+msgstr "Налаштування"
 
 #: apps/localizers/templates/localizers/sidebar.html:31
 msgid "Need Help?"
@@ -8632,7 +8649,7 @@ msgstr "Потрібна допомога?"
 
 #: apps/localizers/templates/localizers/sidebar.html:34
 msgid "Visit the Newsgroup"
-msgstr ""
+msgstr "Відвідати групу новин"
 
 #: apps/localizers/templates/localizers/sidebar.html:39
 msgid "E-Mail Your Team:"
