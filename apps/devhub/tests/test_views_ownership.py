@@ -83,6 +83,21 @@ class TestEditLicense(TestOwnership):
             del data['text']
         return data
 
+    def test_no_license(self):
+        data = self.formset(builtin='')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        license_form = response.context['license_form']
+        assert license_form.errors == {'builtin': [u'This field is required.']}
+
+    def test_no_license_required_for_unlisted(self):
+        self.addon.update(is_listed=False)
+        self.addon.latest_version.update(version=None)
+        data = self.formset(builtin='')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert not self.addon.latest_version.version
+
     def test_success_add_builtin(self):
         data = self.formset(builtin=1)
         r = self.client.post(self.url, data)
