@@ -141,6 +141,8 @@ class LicenseForm(AMOModelForm):
               for x in License.objects.builtins().filter(on_form=True)]
         cs.append((License.OTHER, _('Other')))
         self.fields['builtin'].choices = cs
+        if addon and not addon.is_listed:
+            self.fields['builtin'].required = False
 
     class Meta:
         model = License
@@ -185,6 +187,8 @@ class LicenseForm(AMOModelForm):
         changed = self.changed_data
 
         builtin = self.cleaned_data['builtin']
+        if builtin == '':  # No license chosen, it must be an unlisted add-on.
+            return
         if builtin != License.OTHER:
             license = License.objects.get(builtin=builtin)
         else:
