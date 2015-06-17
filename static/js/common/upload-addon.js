@@ -265,8 +265,8 @@
                 // If the addon is detected as beta, automatically check
                 // the "beta" input, but only if the addon is listed.
                 var $new_form = $('.new-addon-file');
-                var isUnlisted = $('#id_is_unlisted').is(':checked') || !$new_form.data('addon-is-listed')
-                  var $beta = $('#id_beta');
+                var isUnlisted = ($('#id_is_unlisted').length && $('#id_is_unlisted').is(':checked')) || !$new_form.data('addon-is-listed')
+                var $beta = $('#id_beta');
                 if (results.beta && !isUnlisted) {
                   $beta.prop('checked', true);
                   $('.beta-status').show();

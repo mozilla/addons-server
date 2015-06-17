@@ -178,6 +178,8 @@ urlpatterns = decorate(write, patterns(
         name='devhub.upload_detail'),
     url('^standalone-upload$', views.standalone_upload,
         name='devhub.standalone_upload'),
+    url('^standalone-upload-unlisted$', views.standalone_upload_unlisted,
+        name='devhub.standalone_upload_unlisted'),
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),
 

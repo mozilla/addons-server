@@ -97,7 +97,7 @@ $(document).ready(function() {
       var $isManualReview = $('#manual-review');
       var $submitAddonProgress = $('.submit-addon-progress');
       function updateListedStatus() {
-        if (!$isUnlisted.is(':checked') || $new_form.data('addon-is-listed')) {  // It's a listed add-on.
+        if (($isUnlisted.length && !$isUnlisted.is(':checked')) || $new_form.data('addon-is-listed')) {  // It's a listed add-on.
           $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
           $betaWarningLabel.hide();
           $isSideloadLabel.hide();

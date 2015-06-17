@@ -577,7 +577,9 @@ def compat_application_versions(request):
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': _('Validate Add-on'),
-                   'upload_url': reverse('devhub.standalone_upload')})
+                   # Hack: we just need the "is_unlisted" field from this form.
+                   'new_addon_form': forms.NewAddonForm(
+                       None, None, request=request)})
 
 
 @login_required
@@ -586,7 +588,9 @@ def check_addon_compatibility(request):
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
                    'title': _('Check Add-on Compatibility'),
-                   'upload_url': reverse('devhub.standalone_upload')})
+                   # Hack: we just need the "is_unlisted" field from this form.
+                   'new_addon_form': forms.NewAddonForm(
+                       None, None, request=request)})
 
 
 @dev_required
@@ -670,6 +674,12 @@ def upload_manifest(request):
 @post_required
 def standalone_upload(request):
     return upload(request, is_standalone=True)
+
+
+@login_required
+@post_required
+def standalone_upload_unlisted(request):
+    return upload(request, is_standalone=True, is_listed=False)
 
 
 @login_required
@@ -1247,8 +1257,9 @@ def version_add(request, addon_id, addon):
                   args=[addon.slug, str(version.id)])
 
     if waffle.flag_is_active(request, 'automatic-validation'):
-        file_ = version.files.get()
-        auto_sign_file(file_, is_beta=is_beta)
+        # Sign all the files submitted, one for each platform.
+        for file_ in version.files.all():
+            auto_sign_file(file_, is_beta=is_beta)
 
     return dict(url=url)
 
@@ -1399,13 +1410,11 @@ def submit_addon(request, step):
                 if data.get('is_sideload'):  # Full review needed.
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
-                    # We need to get to the file: we're submitting a brand new
-                    # addon here, so only one version, and one file for this
-                    # version.
-                    addon_file = addon.versions.get().files.get()
                     addon.update(status=amo.STATUS_UNREVIEWED)
                     if waffle.flag_is_active(request, 'automatic-validation'):
-                        auto_sign_file(addon_file)
+                        # Sign all the files submitted, one for each platform.
+                        for file_ in addon.versions.get().files.all():
+                            auto_sign_file(file_)
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
