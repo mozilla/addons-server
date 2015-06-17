@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-29 13:26-0700\n"
-"PO-Revision-Date: 2015-06-15 19:35+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-06-16 13:57+0000\n"
+"Last-Translator: Viktoriia <kach.vikt@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434396926.0\n"
+"X-POOTLE-MTIME: 1434463069.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6151,6 +6151,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
 msgstr ""
+"По завершенню процесу повної перевірки ви отримаєте лист, що зробить ваш "
+"додаток водночас завантажуваним."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6163,6 +6165,9 @@ msgstr "Поточна версія:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
+"Це версія вашого додатку, яка буде встановлена, якщо хтось натисне на кнопку "
+"Встановити на addons.mozilla.org. Це відноситься тільки до наведених "
+"додатків."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
