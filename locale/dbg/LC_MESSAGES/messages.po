@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:26-0700\n"
+"POT-Creation-Date: 2015-06-17 09:38-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,12 +301,12 @@ msgstr "Ƈǿƞŧřīƀŭŧḗ"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:149
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:77
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:97
 #: apps/devhub/templates/devhub/versions/edit.html:139
 #: apps/devhub/templates/devhub/versions/list.html:243
 #: apps/devhub/templates/devhub/versions/list.html:277
-#: apps/devhub/templates/devhub/versions/list.html:310
-#: apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/list.html:317
+#: apps/devhub/templates/devhub/versions/list.html:351
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
@@ -1119,11 +1119,11 @@ msgstr "Şḗƞḓ Řḗƥǿřŧ"
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:152
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:78
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:98
 #: apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:243
 #: apps/devhub/templates/devhub/versions/list.html:277
-#: apps/devhub/templates/devhub/versions/list.html:310
+#: apps/devhub/templates/devhub/versions/list.html:317
 #: apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
@@ -1368,7 +1368,7 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 #: apps/addons/templates/addons/impala/details.html:213
 #: apps/amo/helpers.py:377
 #: apps/devhub/forms.py:122
-#: apps/devhub/forms.py:151
+#: apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
@@ -1605,7 +1605,7 @@ msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
-#: apps/devhub/forms.py:756
+#: apps/devhub/forms.py:760
 #: apps/devhub/templates/devhub/versions/list.html:179
 msgid "Version"
 msgstr "Ṽḗřşīǿƞ"
@@ -2501,7 +2501,7 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ḿ Ƒǿŀŀǿẇīƞɠ"
 #: apps/amo/templates/amo/site_nav.html:71
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:466
+#: apps/users/models.py:469
 msgid "My Favorite Add-ons"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗ Ȧḓḓ-ǿƞş"
 
@@ -2766,12 +2766,12 @@ msgid "This url is already in use by another collection"
 msgstr "Ŧħīş ŭřŀ īş ȧŀřḗȧḓẏ īƞ ŭşḗ ƀẏ ȧƞǿŧħḗř ƈǿŀŀḗƈŧīǿƞ"
 
 #: apps/bandwagon/forms.py:179
-#: apps/devhub/views.py:1025
+#: apps/devhub/views.py:1035
 msgid "Icons must be either PNG or JPG."
 msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:184
-#: apps/devhub/views.py:1043
+#: apps/devhub/views.py:1053
 #: apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
@@ -3283,7 +3283,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:157
 #: apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60
-#: apps/devhub/templates/devhub/addons/submit/upload.html:82
+#: apps/devhub/templates/devhub/addons/submit/upload.html:91
 #: apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111
 #: apps/editors/templates/editors/themes/themes.html:128
@@ -4021,7 +4021,7 @@ msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
 #: apps/compat/templates/compat/reporter_detail.html:47
-#: apps/devhub/forms.py:753
+#: apps/devhub/forms.py:757
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: apps/editors/forms.py:100
 #: apps/zadmin/forms.py:47
@@ -4548,108 +4548,108 @@ msgstr "Ẇħȧŧ īş ẏǿŭř ŀīƈḗƞşḗ'ş ƞȧḿḗ?"
 msgid "Provide the text of your license."
 msgstr "Ƥřǿṽīḓḗ ŧħḗ ŧḗẋŧ ǿƒ ẏǿŭř ŀīƈḗƞşḗ."
 
-#: apps/devhub/forms.py:159
+#: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
 msgstr "Ŀīƈḗƞşḗ ŧḗẋŧ īş řḗɋŭīřḗḓ ẇħḗƞ ƈħǿǿşīƞɠ Ǿŧħḗř."
 
-#: apps/devhub/forms.py:207
+#: apps/devhub/forms.py:211
 msgid "This add-on has an End-User License Agreement"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ȧƞ Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ"
 
-#: apps/devhub/forms.py:210
+#: apps/devhub/forms.py:214
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ:"
 
-#: apps/devhub/forms.py:213
+#: apps/devhub/forms.py:217
 msgid "This add-on has a Privacy Policy"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ȧ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
 
-#: apps/devhub/forms.py:216
+#: apps/devhub/forms.py:220
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ƥřīṽȧƈẏ Ƥǿŀīƈẏ:"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:258
 msgid "Why did you make this add-on?"
 msgstr "Ẇħẏ ḓīḓ ẏǿŭ ḿȧķḗ ŧħīş ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/forms.py:255
+#: apps/devhub/forms.py:259
 msgid "What's next for this add-on?"
 msgstr "Ẇħȧŧ'ş ƞḗẋŧ ƒǿř ŧħīş ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:296
 msgid "The developers of this add-on"
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗřş ǿƒ ŧħīş ȧḓḓ-ǿƞ"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:297
 msgid "The Mozilla Foundation"
 msgstr "Ŧħḗ Ḿǿzīŀŀȧ Ƒǿŭƞḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:298
 msgid "An organization of my choice"
 msgstr "Ȧƞ ǿřɠȧƞīzȧŧīǿƞ ǿƒ ḿẏ ƈħǿīƈḗ"
 
-#: apps/devhub/forms.py:337
+#: apps/devhub/forms.py:341
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ şŭɠɠḗşŧḗḓ ȧḿǿŭƞŧ ɠřḗȧŧḗř ŧħȧƞ 0."
 
-#: apps/devhub/forms.py:340
+#: apps/devhub/forms.py:344
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧ şŭɠɠḗşŧḗḓ ȧḿǿŭƞŧ ŀḗşş ŧħȧƞ ${0}."
 
-#: apps/devhub/forms.py:349
+#: apps/devhub/forms.py:353
 msgid "PayPal ID required to accept contributions."
 msgstr "ƤȧẏƤȧŀ ĪḒ řḗɋŭīřḗḓ ŧǿ ȧƈƈḗƥŧ ƈǿƞŧřīƀŭŧīǿƞş."
 
-#: apps/devhub/forms.py:355
+#: apps/devhub/forms.py:359
 msgid "Could not validate PayPal id."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ṽȧŀīḓȧŧḗ ƤȧẏƤȧŀ īḓ."
 
-#: apps/devhub/forms.py:364
+#: apps/devhub/forms.py:368
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Ŭƞşŭƥƥǿřŧḗḓ ƒīŀḗ ŧẏƥḗ, ƥŀḗȧşḗ ŭƥŀǿȧḓ ȧƞ ȧřƈħīṽḗ ƒīŀḗ {ḗẋŧḗƞşīǿƞş}."
 
-#: apps/devhub/forms.py:383
+#: apps/devhub/forms.py:387
 msgid "View current"
 msgstr "Ṽīḗẇ ƈŭřřḗƞŧ"
 
-#: apps/devhub/forms.py:432
+#: apps/devhub/forms.py:436
 msgid "Invalid version range."
 msgstr "Īƞṽȧŀīḓ ṽḗřşīǿƞ řȧƞɠḗ."
 
-#: apps/devhub/forms.py:461
+#: apps/devhub/forms.py:465
 msgid "Need at least one compatible application."
 msgstr "Ƞḗḗḓ ȧŧ ŀḗȧşŧ ǿƞḗ ƈǿḿƥȧŧīƀŀḗ ȧƥƥŀīƈȧŧīǿƞ."
 
-#: apps/devhub/forms.py:474
-#: apps/devhub/forms.py:494
+#: apps/devhub/forms.py:478
+#: apps/devhub/forms.py:498
 msgid "There was an error with your upload. Please try again."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
 
-#: apps/devhub/forms.py:479
+#: apps/devhub/forms.py:483
 msgid "Override failed validation"
 msgstr "Ǿṽḗřřīḓḗ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ"
 
-#: apps/devhub/forms.py:483
+#: apps/devhub/forms.py:487
 msgid "Submit my add-on for manual review."
 msgstr "Şŭƀḿīŧ ḿẏ ȧḓḓ-ǿƞ ƒǿř ḿȧƞŭȧŀ řḗṽīḗẇ."
 
-#: apps/devhub/forms.py:509
-msgid "Yes, distribute my add-on on this site."
-msgstr "Ẏḗş, ḓīşŧřīƀŭŧḗ ḿẏ ȧḓḓ-ǿƞ ǿƞ ŧħīş şīŧḗ."
+#: apps/devhub/forms.py:513
+msgid "Do not list my add-on on this site (beta)"
+msgstr "Ḓǿ ƞǿŧ ŀīşŧ ḿẏ ȧḓḓ-ǿƞ ǿƞ ŧħīş şīŧḗ (ƀḗŧȧ)"
 
-#: apps/devhub/forms.py:510
+#: apps/devhub/forms.py:514
 msgid ""
-"Uncheck this option if you intend to distribute your add-on on your own and "
+"Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
 msgstr ""
-"Ŭƞƈħḗƈķ ŧħīş ǿƥŧīǿƞ īƒ ẏǿŭ īƞŧḗƞḓ ŧǿ ḓīşŧřīƀŭŧḗ ẏǿŭř ȧḓḓ-ǿƞ ǿƞ ẏǿŭř ǿẇƞ ȧƞḓ "
+"Ƈħḗƈķ ŧħīş ǿƥŧīǿƞ īƒ ẏǿŭ īƞŧḗƞḓ ŧǿ ḓīşŧřīƀŭŧḗ ẏǿŭř ȧḓḓ-ǿƞ ǿƞ ẏǿŭř ǿẇƞ ȧƞḓ "
 "ǿƞŀẏ ƞḗḗḓ īŧ ŧǿ ƀḗ şīɠƞḗḓ ƀẏ Ḿǿzīŀŀȧ."
 
-#: apps/devhub/forms.py:516
+#: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ şīḓḗ-ŀǿȧḓḗḓ ṽīȧ ȧƥƥŀīƈȧŧīǿƞ īƞşŧȧŀŀḗřş."
 
-#: apps/devhub/forms.py:518
+#: apps/devhub/forms.py:522
 msgid ""
 "Add-ons that are side-loaded will be code reviewed by Mozilla before they "
 "are signed and are held to a higher quality standard."
@@ -4657,23 +4657,23 @@ msgstr ""
 "Ȧḓḓ-ǿƞş ŧħȧŧ ȧřḗ şīḓḗ-ŀǿȧḓḗḓ ẇīŀŀ ƀḗ ƈǿḓḗ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ ƀḗƒǿřḗ ŧħḗẏ "
 "ȧřḗ şīɠƞḗḓ ȧƞḓ ȧřḗ ħḗŀḓ ŧǿ ȧ ħīɠħḗř ɋŭȧŀīŧẏ şŧȧƞḓȧřḓ."
 
-#: apps/devhub/forms.py:534
+#: apps/devhub/forms.py:538
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:539
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:46
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 
-#: apps/devhub/forms.py:539
+#: apps/devhub/forms.py:543
 msgid "Please choose a review nomination type"
 msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ řḗṽīḗẇ ƞǿḿīƞȧŧīǿƞ ŧẏƥḗ"
 
-#: apps/devhub/forms.py:543
+#: apps/devhub/forms.py:547
 msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
@@ -4681,15 +4681,15 @@ msgstr ""
 "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ|ƥřḗ|řƈ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ "
 "ƞŭḿƀḗř īş ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
-#: apps/devhub/forms.py:561
+#: apps/devhub/forms.py:565
 msgid "Version %s already exists"
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş"
 
-#: apps/devhub/forms.py:573
+#: apps/devhub/forms.py:577
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. Ŧħȧŧ ƈħǿīƈḗ īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
 
-#: apps/devhub/forms.py:579
+#: apps/devhub/forms.py:583
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
@@ -4697,15 +4697,15 @@ msgstr ""
 "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş "
 "ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
-#: apps/devhub/forms.py:602
+#: apps/devhub/forms.py:606
 msgid "You cannot upload any more files for this version."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:608
+#: apps/devhub/forms.py:612
 msgid "Version doesn't match"
 msgstr "Ṽḗřşīǿƞ ḓǿḗşƞ'ŧ ḿȧŧƈħ"
 
-#: apps/devhub/forms.py:637
+#: apps/devhub/forms.py:641
 msgid ""
 "You cannot delete a file once the review process has started. You must "
 "delete the whole version."
@@ -4713,26 +4713,26 @@ msgstr ""
 "Ẏǿŭ ƈȧƞƞǿŧ ḓḗŀḗŧḗ ȧ ƒīŀḗ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ħȧş şŧȧřŧḗḓ. Ẏǿŭ ḿŭşŧ "
 "ḓḗŀḗŧḗ ŧħḗ ẇħǿŀḗ ṽḗřşīǿƞ."
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:661
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
 
-#: apps/devhub/forms.py:662
+#: apps/devhub/forms.py:666
 msgid "A platform can only be chosen once."
 msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 
-#: apps/devhub/forms.py:675
+#: apps/devhub/forms.py:679
 msgid "A review type must be selected."
 msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
-#: apps/devhub/forms.py:757
+#: apps/devhub/forms.py:761
 #: apps/editors/forms.py:106
 #: apps/zadmin/forms.py:51
 #: apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
-#: apps/devhub/forms.py:809
+#: apps/devhub/forms.py:813
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ŧħḗřḗ ƈȧƞƞǿŧ ƀḗ ḿǿřḗ ŧħȧƞ 3 řḗɋŭīřḗḓ ȧḓḓ-ǿƞş."
 
@@ -4820,12 +4820,12 @@ msgstr "Ŭşḗř Řḗṽīḗẇş"
 #: apps/devhub/views.py:480
 #: apps/devhub/views.py:509
 #: apps/devhub/views.py:560
-#: apps/devhub/views.py:1122
+#: apps/devhub/views.py:1132
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
 #: apps/devhub/views.py:329
-#: apps/devhub/views.py:1597
+#: apps/devhub/views.py:1606
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
@@ -4869,49 +4869,49 @@ msgstr "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ẏǿŭř şŭƀḿīşşī�
 msgid "Validate Add-on"
 msgstr "Ṽȧŀīḓȧŧḗ Ȧḓḓ-ǿƞ"
 
-#: apps/devhub/views.py:588
+#: apps/devhub/views.py:590
 msgid "Check Add-on Compatibility"
 msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 
-#: apps/devhub/views.py:658
+#: apps/devhub/views.py:662
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: apps/devhub/views.py:1027
+#: apps/devhub/views.py:1037
 #: apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1041
 msgid "Icons cannot be animated."
 msgstr "Īƈǿƞş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1033
+#: apps/devhub/views.py:1043
 msgid "Images cannot be animated."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ȧƞīḿȧŧḗḓ."
 
-#: apps/devhub/views.py:1046
+#: apps/devhub/views.py:1056
 msgid "Images cannot be larger than %dKB."
 msgstr "Īḿȧɠḗş ƈȧƞƞǿŧ ƀḗ ŀȧřɠḗř ŧħȧƞ %dĶƁ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1066
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Īḿȧɠḗ ḿŭşŧ ƀḗ ḗẋȧƈŧŀẏ {0} ƥīẋḗŀş ẇīḓḗ ȧƞḓ {1} ƥīẋḗŀş ŧȧŀŀ."
 
-#: apps/devhub/views.py:1063
+#: apps/devhub/views.py:1073
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: apps/devhub/views.py:1161
+#: apps/devhub/views.py:1171
 msgid "Version %s disabled."
 msgstr "Ṽḗřşīǿƞ %s ḓīşȧƀŀḗḓ."
 
-#: apps/devhub/views.py:1165
+#: apps/devhub/views.py:1175
 msgid "Version %s deleted."
 msgstr "Ṽḗřşīǿƞ %s ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/views.py:1175
+#: apps/devhub/views.py:1185
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
@@ -4919,11 +4919,11 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1643
+#: apps/devhub/views.py:1652
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1644
+#: apps/devhub/views.py:1653
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
@@ -5147,11 +5147,11 @@ msgstr "Ḿǿřḗ Řḗşǿŭřƈḗş"
 msgid "Search Developer Docs"
 msgstr "Şḗȧřƈħ Ḓḗṽḗŀǿƥḗř Ḓǿƈş"
 
-#: apps/devhub/templates/devhub/validate_addon.html:13
+#: apps/devhub/templates/devhub/validate_addon.html:14
 msgid "Use the field below to upload your add-on package."
 msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓ ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ."
 
-#: apps/devhub/templates/devhub/validate_addon.html:19
+#: apps/devhub/templates/devhub/validate_addon.html:20
 msgid ""
 "After upload, a series of automated validation tests will run to check "
 "compatibility with the following application version:"
@@ -5159,13 +5159,39 @@ msgstr ""
 "Ȧƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ řŭƞ ŧǿ ƈħḗƈķ "
 "ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ ŧħḗ ƒǿŀŀǿẇīƞɠ ȧƥƥŀīƈȧŧīǿƞ ṽḗřşīǿƞ:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:34
+#: apps/devhub/templates/devhub/validate_addon.html:35
 msgid ""
 "After upload, a series of automated validation tests will be run on your "
 "file."
 msgstr ""
 "Ȧƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř "
 "ƒīŀḗ."
+
+#: apps/devhub/templates/devhub/validate_addon.html:44
+#: apps/devhub/templates/devhub/addons/submit/upload.html:26
+msgid "Do you want your add-on to be distributed on this site?"
+msgstr "Ḓǿ ẏǿŭ ẇȧƞŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ƀḗ ḓīşŧřīƀŭŧḗḓ ǿƞ ŧħīş şīŧḗ?"
+
+#: apps/devhub/templates/devhub/validate_addon.html:51
+#: apps/devhub/templates/devhub/addons/submit/upload.html:33
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:60
+#: apps/devhub/templates/devhub/versions/list.html:299
+msgid "Warning:"
+msgstr "Ẇȧřƞīƞɠ:"
+
+#: apps/devhub/templates/devhub/validate_addon.html:52
+#: apps/devhub/templates/devhub/addons/submit/upload.html:34
+msgid ""
+"Submission of unlisted add-ons for signing is currently in an open beta. "
+"Manual review may still be required for a large number of add-ons. Please <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
+"encounter."
+msgstr ""
+"Şŭƀḿīşşīǿƞ ǿƒ ŭƞŀīşŧḗḓ ȧḓḓ-ǿƞş ƒǿř şīɠƞīƞɠ īş ƈŭřřḗƞŧŀẏ īƞ ȧƞ ǿƥḗƞ ƀḗŧȧ. "
+"Ḿȧƞŭȧŀ řḗṽīḗẇ ḿȧẏ şŧīŀŀ ƀḗ řḗɋŭīřḗḓ ƒǿř ȧ ŀȧřɠḗ ƞŭḿƀḗř ǿƒ ȧḓḓ-ǿƞş. Ƥŀḗȧşḗ <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">řḗƥǿřŧ ȧƞẏ ƀŭɠş</a> ŧħȧŧ ẏǿŭ "
+"ḗƞƈǿŭƞŧḗř."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -5280,8 +5306,8 @@ msgstr "Ȧḓḓ Ȧƞǿŧħḗř Ȧƥƥŀīƈȧŧīǿƞ&hellip;"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:86
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:344
-#: apps/devhub/templates/devhub/versions/list.html:346
+#: apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/list.html:353
 #: templates/impala/base.html:125
 #: templates/impala/base.html:143
 #: templates/impala/base.html:153
@@ -6289,43 +6315,23 @@ msgstr "Şŧḗƥ 1. Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid ""
-"Thank you for your contribution to the Mozilla add-ons ecosystem. This "
-"submission process allows you to host your add-on on this site, or get it "
-"signed for self-hosting."
+"Before starting, please read and accept our Firefox Add-on Distribution "
+"Agreement. It also links to our Privacy Notice which explains how we handle "
+"your information."
 msgstr ""
-"Ŧħȧƞķ ẏǿŭ ƒǿř ẏǿŭř ƈǿƞŧřīƀŭŧīǿƞ ŧǿ ŧħḗ Ḿǿzīŀŀȧ ȧḓḓ-ǿƞş ḗƈǿşẏşŧḗḿ. Ŧħīş "
-"şŭƀḿīşşīǿƞ ƥřǿƈḗşş ȧŀŀǿẇş ẏǿŭ ŧǿ ħǿşŧ ẏǿŭř ȧḓḓ-ǿƞ ǿƞ ŧħīş şīŧḗ, ǿř ɠḗŧ īŧ "
-"şīɠƞḗḓ ƒǿř şḗŀƒ-ħǿşŧīƞɠ."
+"Ɓḗƒǿřḗ şŧȧřŧīƞɠ, ƥŀḗȧşḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ǿŭř Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ "
+"Ȧɠřḗḗḿḗƞŧ. Īŧ ȧŀşǿ ŀīƞķş ŧǿ ǿŭř Ƥřīṽȧƈẏ Ƞǿŧīƈḗ ẇħīƈħ ḗẋƥŀȧīƞş ħǿẇ ẇḗ ħȧƞḓŀḗ "
+"ẏǿŭř īƞƒǿřḿȧŧīǿƞ."
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:16
-msgid ""
-"To complete your submission, you'll need your add-on package (.xpi, .jar, or "
-".xml)."
-msgstr ""
-"Ŧǿ ƈǿḿƥŀḗŧḗ ẏǿŭř şŭƀḿīşşīǿƞ, ẏǿŭ'ŀŀ ƞḗḗḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ (.ẋƥī, .ĵȧř, ǿř "
-".ẋḿŀ)."
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:23
-msgid ""
-"When you're ready to begin, please read and accept our <strong>Developer "
-"Agreement</strong>:"
-msgstr ""
-"Ẇħḗƞ ẏǿŭ'řḗ řḗȧḓẏ ŧǿ ƀḗɠīƞ, ƥŀḗȧşḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ǿŭř <strong>Ḓḗṽḗŀǿƥḗř "
-"Ȧɠřḗḗḿḗƞŧ</strong>:"
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:33
+#: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
 msgstr "Ƥřīƞŧȧƀŀḗ Ṽḗřşīǿƞ"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:36
-msgid "Additional Add-on Policies"
-msgstr "Ȧḓḓīŧīǿƞȧŀ Ȧḓḓ-ǿƞ Ƥǿŀīƈīḗş"
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:42
+#: apps/devhub/templates/devhub/addons/submit/start.html:26
 msgid "I Accept this Agreement"
 msgstr "Ī Ȧƈƈḗƥŧ ŧħīş Ȧɠřḗḗḿḗƞŧ"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:44
+#: apps/devhub/templates/devhub/addons/submit/start.html:28
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ǿř <a href=\"{0}\">Ƈȧƞƈḗŀ</a>"
 
@@ -6347,22 +6353,18 @@ msgstr ""
 "řḗşŧřīƈŧīǿƞş. Ȧƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ "
 "řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:26
-msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Ḓǿ ẏǿŭ ẇȧƞŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ƀḗ ḓīşŧřīƀŭŧḗḓ ǿƞ ŧħīş şīŧḗ?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:35
+#: apps/devhub/templates/devhub/addons/submit/upload.html:65
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which platforms is this file compatible with?"
 msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:52
+#: apps/devhub/templates/devhub/addons/submit/upload.html:73
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:72
 msgid "Administrative overrides"
 msgstr "Ȧḓḿīƞīşŧřȧŧīṽḗ ǿṽḗřřīḓḗş"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:74
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:64
+#: apps/devhub/templates/devhub/addons/submit/upload.html:83
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:84
 msgid ""
 "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
@@ -8505,15 +8507,15 @@ msgstr "Ɠīṽḗ ẏǿŭř Ŧħḗḿḗ ȧ ƞȧḿḗ."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
-"By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" "
-"target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to "
-"approval according to the standards established in the <a "
-"href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
+"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-"
+"on Distribution Agreement</a> and to my information being handled as "
+"described in the <a href=\"%(privacy_notice_url)s\" target=\"_blank\">"
+"Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Ɓẏ şŭƀḿīŧŧīƞɠ ẏǿŭř Ŧħḗḿḗ, ẏǿŭ ȧɠřḗḗ ŧǿ ŧħḗ <a href=\"%(tos_url)s\" "
-"target=\"_blank\">Ŧħḗḿḗş Ŧḗřḿş ǿƒ Şḗřṽīƈḗ</a>. Ẏǿŭř Ŧħḗḿḗ īş şŭƀĵḗƈŧ ŧǿ "
-"ȧƥƥřǿṽȧŀ ȧƈƈǿřḓīƞɠ ŧǿ ŧħḗ şŧȧƞḓȧřḓş ḗşŧȧƀŀīşħḗḓ īƞ ŧħḗ <a "
-"href=\"%(guidelines_url)s\" target=\"_blank\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a>."
+"Ī ȧɠřḗḗ ŧǿ ŧħḗ <a href=\"%(agreement_url)s\" target=\"_blank\">Ƒīřḗƒǿẋ Ȧḓḓ-"
+"ǿƞ Ḓīşŧřīƀŭŧīǿƞ Ȧɠřḗḗḿḗƞŧ</a> ȧƞḓ ŧǿ ḿẏ īƞƒǿřḿȧŧīǿƞ ƀḗīƞɠ ħȧƞḓŀḗḓ ȧş "
+"ḓḗşƈřīƀḗḓ īƞ ŧħḗ <a href=\"%(privacy_notice_url)s\" target=\"_blank\">"
+"Ẇḗƀşīŧḗş, Ƈǿḿḿŭƞīƈȧŧīǿƞş ȧƞḓ Ƈǿǿķīḗş Ƥřīṽȧƈẏ Ƞǿŧīƈḗ</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8597,19 +8599,45 @@ msgstr ""
 "Ƒīŀḗş ȧḓḓḗḓ ŧǿ řḗṽīḗẇḗḓ ṽḗřşīǿƞş ḿŭşŧ ƀḗ řḗṽīḗẇḗḓ ƀḗƒǿřḗ ŧħḗẏ ẇīŀŀ ƀḗ "
 "ȧṽȧīŀȧƀŀḗ ƒǿř ḓǿẇƞŀǿȧḓ."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:31
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:17
+msgid ""
+"Submission of updates to unlisted add-ons for signing is currently in an "
+"open beta. Manual review may still be required for a large number of add-"
+"ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any "
+"bugs</a> that you encounter."
+msgstr ""
+"Şŭƀḿīşşīǿƞ ǿƒ ŭƥḓȧŧḗş ŧǿ ŭƞŀīşŧḗḓ ȧḓḓ-ǿƞş ƒǿř şīɠƞīƞɠ īş ƈŭřřḗƞŧŀẏ īƞ ȧƞ "
+"ǿƥḗƞ ƀḗŧȧ. Ḿȧƞŭȧŀ řḗṽīḗẇ ḿȧẏ şŧīŀŀ ƀḗ řḗɋŭīřḗḓ ƒǿř ȧ ŀȧřɠḗ ƞŭḿƀḗř ǿƒ ȧḓḓ-"
+"ǿƞş. Ƥŀḗȧşḗ <a href=\"%(bugzilla_url)s\" target=\"_blank\">řḗƥǿřŧ ȧƞẏ "
+"ƀŭɠş</a> ŧħȧŧ ẏǿŭ ḗƞƈǿŭƞŧḗř."
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Select the target platform for this file."
 msgstr "Şḗŀḗƈŧ ŧħḗ ŧȧřɠḗŧ ƥŀȧŧƒǿřḿ ƒǿř ŧħīş ƒīŀḗ."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Which review type would you like to nominate for?"
 msgstr "Ẇħīƈħ řḗṽīḗẇ ŧẏƥḗ ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ ƞǿḿīƞȧŧḗ ƒǿř?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:47
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:58
 msgid "Only publish this version to my beta channel."
 msgstr "Ǿƞŀẏ ƥŭƀŀīşħ ŧħīş ṽḗřşīǿƞ ŧǿ ḿẏ ƀḗŧȧ ƈħȧƞƞḗŀ."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:72
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:61
+msgid ""
+"The behavior of the beta channel has changed to accommodate <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>"
+". The new process is currently in an open beta, and may change significantly "
+"in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">"
+"report any bugs</a> that you encounter."
+msgstr ""
+"Ŧħḗ ƀḗħȧṽīǿř ǿƒ ŧħḗ ƀḗŧȧ ƈħȧƞƞḗŀ ħȧş ƈħȧƞɠḗḓ ŧǿ ȧƈƈǿḿḿǿḓȧŧḗ <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">ḿȧƞḓȧŧǿřẏ ȧḓḓ-ǿƞ şīɠƞīƞɠ</a>"
+". Ŧħḗ ƞḗẇ ƥřǿƈḗşş īş ƈŭřřḗƞŧŀẏ īƞ ȧƞ ǿƥḗƞ ƀḗŧȧ, ȧƞḓ ḿȧẏ ƈħȧƞɠḗ şīɠƞīƒīƈȧƞŧŀẏ "
+"īƞ ŧħḗ ƞḗȧř ƒŭŧŭřḗ. Ƥŀḗȧşḗ <a href=\"%(bugzilla_url)s\" target=\"_blank\">"
+"řḗƥǿřŧ ȧƞẏ ƀŭɠş</a> ŧħȧŧ ẏǿŭ ḗƞƈǿŭƞŧḗř."
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:92
 msgid ""
 "Your version was detected as beta. It didn't pass automatic validation and "
 "thus can't be submitted. If you didn't mean to submit it as beta, please "
@@ -8763,8 +8791,8 @@ msgstr[0] "Ƒŭŀŀ ƞǿḿīƞȧŧīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ �
 msgstr[1] "Ƒŭŀŀ ƞǿḿīƞȧŧīǿƞ ẇīŀŀ ƀḗ ȧṽȧīŀȧƀŀḗ īƞ {0} ḓȧẏş"
 
 #: apps/devhub/templates/devhub/versions/list.html:88
-#: apps/devhub/templates/devhub/versions/list.html:320
-#: apps/devhub/templates/devhub/versions/list.html:343
+#: apps/devhub/templates/devhub/versions/list.html:327
+#: apps/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
 msgstr "Ƈȧƞƈḗŀ Řḗṽīḗẇ Řḗɋŭḗşŧ"
 
@@ -8801,10 +8829,10 @@ msgstr "Ŭƞŀīşŧḗḓ:"
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
-"distribute the add-ons on their own."
+"distribute the add-ons on their own. (beta)"
 msgstr ""
 "Ƞǿŧ ḓīşŧřīƀŭŧḗḓ ǿƞ {0}. Ḓḗṽḗŀǿƥḗřş ẇīŀŀ ŭƥŀǿȧḓ ƞḗẇ ṽḗřşīǿƞş ƒǿř şīɠƞīƞɠ ȧƞḓ "
-"ḓīşŧřīƀŭŧḗ ŧħḗ ȧḓḓ-ǿƞş ǿƞ ŧħḗīř ǿẇƞ."
+"ḓīşŧřīƀŭŧḗ ŧħḗ ȧḓḓ-ǿƞş ǿƞ ŧħḗīř ǿẇƞ. (ƀḗŧȧ)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -8921,7 +8949,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ħīḓḗ ẏǿŭř ȧḓḓ-ǿƞ?"
 
 #: apps/devhub/templates/devhub/versions/list.html:287
-#: apps/devhub/templates/devhub/versions/list.html:308
+#: apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
 msgstr "Ŭƞŀīşŧ Ȧḓḓ-ǿƞ"
 
@@ -8942,10 +8970,20 @@ msgstr ""
 "ƒīŀḗ ƒǿř ȧŭŧǿḿȧŧīƈ ŭƥḓȧŧḗş."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
+msgid ""
+"Switching add-ons to unlisted is currently in an open beta. Please <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
+"encounter."
+msgstr ""
+"Şẇīŧƈħīƞɠ ȧḓḓ-ǿƞş ŧǿ ŭƞŀīşŧḗḓ īş ƈŭřřḗƞŧŀẏ īƞ ȧƞ ǿƥḗƞ ƀḗŧȧ. Ƥŀḗȧşḗ <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">řḗƥǿřŧ ȧƞẏ ƀŭɠş</a> ŧħȧŧ ẏǿŭ "
+"ḗƞƈǿŭƞŧḗř."
+
+#: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ŭƞŀīşŧ ẏǿŭř ȧḓḓ-ǿƞ?"
 
-#: apps/devhub/templates/devhub/versions/list.html:323
+#: apps/devhub/templates/devhub/versions/list.html:330
 msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
@@ -8953,7 +8991,7 @@ msgstr ""
 "Ƈȧƞƈḗŀīƞɠ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ ẇīŀŀ ŀḗȧṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧş ƥřḗŀīḿīƞȧřīŀẏ "
 "řḗṽīḗẇḗḓ."
 
-#: apps/devhub/templates/devhub/versions/list.html:328
+#: apps/devhub/templates/devhub/versions/list.html:335
 msgid ""
 "Canceling your review request will mark your add-on incomplete. If you do "
 "not complete your add-on after several days by re-requesting review, it will "
@@ -8963,7 +9001,7 @@ msgstr ""
 "ƞǿŧ ƈǿḿƥŀḗŧḗ ẏǿŭř ȧḓḓ-ǿƞ ȧƒŧḗř şḗṽḗřȧŀ ḓȧẏş ƀẏ řḗ-řḗɋŭḗşŧīƞɠ řḗṽīḗẇ, īŧ ẇīŀŀ "
 "ƀḗ ḓḗŀḗŧḗḓ."
 
-#: apps/devhub/templates/devhub/versions/list.html:336
+#: apps/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ƈȧƞƈḗŀ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ?"
 
@@ -14096,15 +14134,15 @@ msgstr "ħȧşħ"
 msgid "No user with that email."
 msgstr "Ƞǿ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ."
 
-#: apps/users/models.py:370
+#: apps/users/models.py:373
 msgid "Your account has been restricted"
 msgstr "Ẏǿŭř ȧƈƈǿŭƞŧ ħȧş ƀḗḗƞ řḗşŧřīƈŧḗḓ"
 
-#: apps/users/models.py:434
+#: apps/users/models.py:437
 msgid "Please confirm your email address"
 msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: apps/users/models.py:460
+#: apps/users/models.py:463
 msgid "My Mobile Add-ons"
 msgstr "Ḿẏ Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
 
@@ -14182,24 +14220,24 @@ msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ƞḗ�
 msgid "User Notifications"
 msgstr "Ŭşḗř Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:90
 msgid "An email address is required."
 msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:95
 msgid "A user with that email address does not exist."
 msgstr "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:112
 msgid "Invalid confirmation code!"
 msgstr "Īƞṽȧŀīḓ ƈǿƞƒīřḿȧŧīǿƞ ƈǿḓḗ!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:117
 msgid "Successfully verified!"
 msgstr "Şŭƈƈḗşşƒŭŀŀẏ ṽḗřīƒīḗḓ!"
 
-#: apps/users/views.py:131
-#: apps/users/views.py:650
+#: apps/users/views.py:133
+#: apps/users/views.py:703
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -14209,29 +14247,29 @@ msgstr ""
 "ẏǿŭ ƈȧƞ ŀǿɠ īƞ, ẏǿŭ ħȧṽḗ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ȧƈƈǿŭƞŧ ƀẏ ƈŀīƈķīƞɠ ǿƞ ŧħḗ ŀīƞķ "
 "ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ."
 
-#: apps/users/views.py:135
-#: apps/users/views.py:654
+#: apps/users/views.py:137
+#: apps/users/views.py:707
 msgid "Confirmation Email Sent"
 msgstr "Ƈǿƞƒīřḿȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:148
 msgid "Profile Deleted"
 msgstr "Ƥřǿƒīŀḗ Ḓḗŀḗŧḗḓ"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:169
 msgid "Photo Deleted"
 msgstr "Ƥħǿŧǿ Ḓḗŀḗŧḗḓ"
 
-#: apps/users/views.py:186
-#: apps/users/views.py:242
+#: apps/users/views.py:188
+#: apps/users/views.py:295
 msgid "Profile Updated"
 msgstr "Ƥřǿƒīŀḗ Ŭƥḓȧŧḗḓ"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:197
 msgid "Email Confirmation Sent"
 msgstr "Ḗḿȧīŀ Ƈǿƞƒīřḿȧŧīǿƞ Şḗƞŧ"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:198
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email. "
@@ -14241,41 +14279,47 @@ msgstr ""
 "ƈħȧƞɠḗ ŧǿ ŧȧķḗ ḗƒƒḗƈŧ, ẏǿŭ ƞḗḗḓ ŧǿ ƈŀīƈķ ǿƞ ŧħḗ ŀīƞķ ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ. "
 "Ŭƞŧīŀ ŧħḗƞ, ẏǿŭ ƈȧƞ ķḗḗƥ ŀǿɠɠīƞɠ īƞ ẇīŧħ ẏǿŭř ƈŭřřḗƞŧ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:211
 msgid "Please confirm your email address change at %s"
 msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ƈħȧƞɠḗ ȧŧ %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:225
 msgid "Errors Found"
 msgstr "Ḗřřǿřş Ƒǿŭƞḓ"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:226
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ŧħḗ ƈħȧƞɠḗş ẏǿŭ ḿȧḓḗ. Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:277
+#: apps/users/views.py:274
+msgid ""
+"We're sorry, but you are not eligible to request a t-shirt at this time."
+msgstr ""
+"Ẇḗ'řḗ şǿřřẏ, ƀŭŧ ẏǿŭ ȧřḗ ƞǿŧ ḗŀīɠīƀŀḗ ŧǿ řḗɋŭḗşŧ ȧ ŧ-şħīřŧ ȧŧ ŧħīş ŧīḿḗ."
+
+#: apps/users/views.py:330
 msgid "Your email address was changed successfully"
 msgstr "Ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ẇȧş ƈħȧƞɠḗḓ şŭƈƈḗşşƒŭŀŀẏ"
 
-#: apps/users/views.py:278
+#: apps/users/views.py:331
 msgid "From now on, please use {0} to log in."
 msgstr "Ƒřǿḿ ƞǿẇ ǿƞ, ƥŀḗȧşḗ ŭşḗ {0} ŧǿ ŀǿɠ īƞ."
 
-#: apps/users/views.py:327
+#: apps/users/views.py:380
 msgid "Persona authentication failure."
 msgstr "Ƥḗřşǿƞȧ ȧŭŧħḗƞŧīƈȧŧīǿƞ ƒȧīŀŭřḗ."
 
-#: apps/users/views.py:347
+#: apps/users/views.py:400
 msgid "Please use the verified email for this account."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř ŧħīş ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:455
+#: apps/users/views.py:508
 msgid "Wrong email address or password!"
 msgstr "Ẇřǿƞɠ ḗḿȧīŀ ȧḓḓřḗşş ǿř ƥȧşşẇǿřḓ!"
 
-#: apps/users/views.py:467
+#: apps/users/views.py:520
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -14283,7 +14327,7 @@ msgstr ""
 "Ȧ ŀīƞķ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şḗƞŧ ƀẏ ḗḿȧīŀ ŧǿ ẏǿŭř ȧḓḓřḗşş {0}. "
 "Ẏǿŭ ħȧṽḗ ŧǿ ƈŀīƈķ īŧ ƀḗƒǿřḗ ẏǿŭ ƈȧƞ ŀǿɠ īƞ."
 
-#: apps/users/views.py:472
+#: apps/users/views.py:525
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -14295,35 +14339,35 @@ msgstr ""
 "ŭş <a href=\"%s\">řḗşḗƞḓ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḿḗşşȧɠḗ</a> ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş "
 "ḿḗƞŧīǿƞḗḓ ȧƀǿṽḗ."
 
-#: apps/users/views.py:477
+#: apps/users/views.py:530
 msgid "Activation Email Sent"
 msgstr "Ȧƈŧīṽȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
-#: apps/users/views.py:478
+#: apps/users/views.py:531
 msgid "Having Trouble?"
 msgstr "Ħȧṽīƞɠ Ŧřǿŭƀŀḗ?"
 
-#: apps/users/views.py:624
+#: apps/users/views.py:677
 msgid "You are already logged in to an account."
 msgstr "Ẏǿŭ ȧřḗ ȧŀřḗȧḓẏ ŀǿɠɠḗḓ īƞ ŧǿ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:646
+#: apps/users/views.py:699
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş! Ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şŭƈƈḗşşƒŭŀŀẏ ƈřḗȧŧḗḓ."
 
-#: apps/users/views.py:670
+#: apps/users/views.py:723
 msgid "You already have an account."
 msgstr "Ẏǿŭ ȧŀřḗȧḓẏ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:680
+#: apps/users/views.py:733
 msgid "There are errors in this form"
 msgstr "Ŧħḗřḗ ȧřḗ ḗřřǿřş īƞ ŧħīş ƒǿřḿ"
 
-#: apps/users/views.py:681
+#: apps/users/views.py:734
 msgid "Please correct them and resubmit."
 msgstr "Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:696
+#: apps/users/views.py:749
 msgid "User reported."
 msgstr "Ŭşḗř řḗƥǿřŧḗḓ."
 
@@ -14801,6 +14845,113 @@ msgstr ""
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
 msgstr "Řḗƥǿřŧ ŭşḗř {0}"
+
+#: apps/users/templates/users/t-shirt.html:4
+msgid "T-shirt Order"
+msgstr "Ŧ-şħīřŧ Ǿřḓḗř"
+
+#: apps/users/templates/users/t-shirt.html:9
+msgid "Special Edition Add-on Creator T-shirt"
+msgstr "Şƥḗƈīȧŀ Ḗḓīŧīǿƞ Ȧḓḓ-ǿƞ Ƈřḗȧŧǿř Ŧ-şħīřŧ"
+
+#: apps/users/templates/users/t-shirt.html:14
+#: apps/users/templates/users/t-shirt.html:120
+msgid "Note:"
+msgstr "Ƞǿŧḗ:"
+
+#: apps/users/templates/users/t-shirt.html:15
+msgid ""
+"You have already submitted a request for a t-shirt. You may re-submit this "
+"form to update your information, but you will only receive one shirt."
+msgstr ""
+"Ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ şŭƀḿīŧŧḗḓ ȧ řḗɋŭḗşŧ ƒǿř ȧ ŧ-şħīřŧ. Ẏǿŭ ḿȧẏ řḗ-şŭƀḿīŧ ŧħīş "
+"ƒǿřḿ ŧǿ ŭƥḓȧŧḗ ẏǿŭř īƞƒǿřḿȧŧīǿƞ, ƀŭŧ ẏǿŭ ẇīŀŀ ǿƞŀẏ řḗƈḗīṽḗ ǿƞḗ şħīřŧ."
+
+#: apps/users/templates/users/t-shirt.html:26
+msgid ""
+"Thank you for helping to make Firefox the most extensible browser available!"
+msgstr ""
+"Ŧħȧƞķ ẏǿŭ ƒǿř ħḗŀƥīƞɠ ŧǿ ḿȧķḗ Ƒīřḗƒǿẋ ŧħḗ ḿǿşŧ ḗẋŧḗƞşīƀŀḗ ƀřǿẇşḗř ȧṽȧīŀȧƀŀḗ!"
+
+#: apps/users/templates/users/t-shirt.html:33
+msgid ""
+"As a thank you gift, we'd like to send you a special-edition, community-"
+"designed t-shirt. To receive your shirt, please fill out the form below."
+msgstr ""
+"Ȧş ȧ ŧħȧƞķ ẏǿŭ ɠīƒŧ, ẇḗ'ḓ ŀīķḗ ŧǿ şḗƞḓ ẏǿŭ ȧ şƥḗƈīȧŀ-ḗḓīŧīǿƞ, ƈǿḿḿŭƞīŧẏ-"
+"ḓḗşīɠƞḗḓ ŧ-şħīřŧ. Ŧǿ řḗƈḗīṽḗ ẏǿŭř şħīřŧ, ƥŀḗȧşḗ ƒīŀŀ ǿŭŧ ŧħḗ ƒǿřḿ ƀḗŀǿẇ."
+
+#: apps/users/templates/users/t-shirt.html:41
+msgid ""
+"Your contact information will only be used by Mozilla to ship this special "
+"edition t-shirt."
+msgstr ""
+"Ẏǿŭř ƈǿƞŧȧƈŧ īƞƒǿřḿȧŧīǿƞ ẇīŀŀ ǿƞŀẏ ƀḗ ŭşḗḓ ƀẏ Ḿǿzīŀŀȧ ŧǿ şħīƥ ŧħīş şƥḗƈīȧŀ "
+"ḗḓīŧīǿƞ ŧ-şħīřŧ."
+
+#: apps/users/templates/users/t-shirt.html:60
+msgid "Mailing Address"
+msgstr "Ḿȧīŀīƞɠ Ȧḓḓřḗşş"
+
+#: apps/users/templates/users/t-shirt.html:63
+msgid "Full Name"
+msgstr "Ƒŭŀŀ Ƞȧḿḗ"
+
+#: apps/users/templates/users/t-shirt.html:67
+msgid "Address Line 1"
+msgstr "Ȧḓḓřḗşş Ŀīƞḗ 1"
+
+#: apps/users/templates/users/t-shirt.html:71
+msgid "Address Line 2"
+msgstr "Ȧḓḓřḗşş Ŀīƞḗ 2"
+
+#: apps/users/templates/users/t-shirt.html:75
+msgid "City/Town"
+msgstr "Ƈīŧẏ/Town"
+
+#: apps/users/templates/users/t-shirt.html:79
+msgid "State/Province (if applicable)"
+msgstr "Şŧȧŧḗ/Province (īƒ ȧƥƥŀīƈȧƀŀḗ)"
+
+#: apps/users/templates/users/t-shirt.html:83
+msgid "Postal Code (if applicable)"
+msgstr "Ƥǿşŧȧŀ Ƈǿḓḗ (īƒ ȧƥƥŀīƈȧƀŀḗ)"
+
+#: apps/users/templates/users/t-shirt.html:87
+msgid "Country"
+msgstr "Ƈǿŭƞŧřẏ"
+
+#: apps/users/templates/users/t-shirt.html:91
+msgid "Telephone"
+msgstr "Ŧḗŀḗƥħǿƞḗ"
+
+#: apps/users/templates/users/t-shirt.html:98
+msgid "T-Shirt Info"
+msgstr "Ŧ-Şħīřŧ Īƞƒǿ"
+
+#: apps/users/templates/users/t-shirt.html:101
+msgid "Shirt Size"
+msgstr "Şħīřŧ Şīzḗ"
+
+#: apps/users/templates/users/t-shirt.html:121
+msgid "You will be redirected to Google Forms upon submission."
+msgstr "Ẏǿŭ ẇīŀŀ ƀḗ řḗḓīřḗƈŧḗḓ ŧǿ Ɠǿǿɠŀḗ Ƒǿřḿş ŭƥǿƞ şŭƀḿīşşīǿƞ."
+
+#: apps/users/templates/users/t-shirt.html:128
+msgid "Request T-shirt"
+msgstr "Řḗɋŭḗşŧ Ŧ-şħīřŧ"
+
+#: apps/users/templates/users/t-shirt.html:137
+msgid ""
+"We're sorry, but in order to qualify for our special edition t-shirt, you "
+"must be an add-on developer with at least one listed add-on, one unlisted "
+"but signed add-on, or any number of background themes with a combined total "
+"of 10,000 average daily users."
+msgstr ""
+"Ẇḗ'řḗ şǿřřẏ, ƀŭŧ īƞ ǿřḓḗř ŧǿ ɋŭȧŀīƒẏ ƒǿř ǿŭř şƥḗƈīȧŀ ḗḓīŧīǿƞ ŧ-şħīřŧ, ẏǿŭ "
+"ḿŭşŧ ƀḗ ȧƞ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř ẇīŧħ ȧŧ ŀḗȧşŧ ǿƞḗ ŀīşŧḗḓ ȧḓḓ-ǿƞ, ǿƞḗ ŭƞŀīşŧḗḓ "
+"ƀŭŧ şīɠƞḗḓ ȧḓḓ-ǿƞ, ǿř ȧƞẏ ƞŭḿƀḗř ǿƒ ƀȧƈķɠřǿŭƞḓ ŧħḗḿḗş ẇīŧħ ȧ ƈǿḿƀīƞḗḓ ŧǿŧȧŀ "
+"ǿƒ 10,000 ȧṽḗřȧɠḗ ḓȧīŀẏ ŭşḗřş."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""

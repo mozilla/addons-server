@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:26-0700\n"
+"POT-Creation-Date: 2015-06-17 09:38-0700\n"
 "PO-Revision-Date: 2015-05-04 14:03+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -234,8 +234,8 @@ msgstr "Kontribuoni"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:77 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:310 apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:97 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317 apps/devhub/templates/devhub/versions/list.html:351
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ose"
@@ -821,8 +821,8 @@ msgstr "Dërgoje Njoftimin"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:78 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:310
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:98 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
@@ -1010,7 +1010,7 @@ msgstr "Të dhëna"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Hedhur në qarkullim sipas një lejeje <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licencë e Përshtatur"
@@ -1208,7 +1208,7 @@ msgstr "Përdorues"
 msgid "Weekly Downloads"
 msgstr "Shkarkime Javore"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:756 apps/devhub/templates/devhub/versions/list.html:179
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:760 apps/devhub/templates/devhub/versions/list.html:179
 msgid "Version"
 msgstr "Version"
 
@@ -1928,7 +1928,7 @@ msgid "Collections I'm Following"
 msgstr "Koleksionet që Ndjek"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:466
+#: apps/users/models.py:469
 msgid "My Favorite Add-ons"
 msgstr "Shtesat e Mia të Parapëlqyera"
 
@@ -2135,11 +2135,11 @@ msgstr "Nuk lejohen lidhje."
 msgid "This url is already in use by another collection"
 msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1025
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1035
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1043 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1053 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Ju lutemi, përdorni figura më të vogla se %dMB."
 
@@ -2547,7 +2547,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Kujdes:</b> Duke ndryshuar të zotin e këtij koleksioni, nuk do të jeni më në gjendje ta përpunoni. Do të jeni në gjendje vetëm të shtoni ose të hiqni prej tij shtesa."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:91 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3148,7 +3148,7 @@ msgstr "Filtroji sipas Aplikacionesh"
 msgid "Report Type"
 msgstr "Lloj Raporti"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:753 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:757 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikacion"
 
@@ -3648,163 +3648,163 @@ msgstr "Cili është emri i licencës suaj?"
 msgid "Provide the text of your license."
 msgstr "Jepni tekstin e licencës suaj."
 
-#: apps/devhub/forms.py:159
+#: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
 msgstr "Teksti i licencës është i domosdoshëm kur zgjidhet Tjetër."
 
-#: apps/devhub/forms.py:207
+#: apps/devhub/forms.py:211
 msgid "This add-on has an End-User License Agreement"
 msgstr "Kjo shtesë ka një Marrëveshje Licence Përdoruesi të Thjeshtë"
 
-#: apps/devhub/forms.py:210
+#: apps/devhub/forms.py:214
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ju lutemi, përcaktoni Marrëveshje Licence Përdoruesi të Thjeshtë të shtesës suaj:"
 
-#: apps/devhub/forms.py:213
+#: apps/devhub/forms.py:217
 msgid "This add-on has a Privacy Policy"
 msgstr "Kjo shtesë ka Rregulla Privatësi"
 
-#: apps/devhub/forms.py:216
+#: apps/devhub/forms.py:220
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ju lutemi, përcaktoni Rregullat e Privatësi për shtesën tuaj:"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:258
 msgid "Why did you make this add-on?"
 msgstr "Pse e krijuat këtë shtesë?"
 
-#: apps/devhub/forms.py:255
+#: apps/devhub/forms.py:259
 msgid "What's next for this add-on?"
 msgstr "Ç’vijon për këtë shtesë?"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:296
 msgid "The developers of this add-on"
 msgstr "Zhvilluesit e kësaj shtese"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:297
 msgid "The Mozilla Foundation"
 msgstr "The Mozilla Foundation"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:298
 msgid "An organization of my choice"
 msgstr "Një organizëm sipas dëshirës sime"
 
-#: apps/devhub/forms.py:337
+#: apps/devhub/forms.py:341
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Ju lutemi, jepni një sasi të këshillueshme më të madhe se 0."
 
-#: apps/devhub/forms.py:340
+#: apps/devhub/forms.py:344
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Ju lutemi, jepni një sasi të këshillueshme më të vogël se ${0}."
 
-#: apps/devhub/forms.py:349
+#: apps/devhub/forms.py:353
 msgid "PayPal ID required to accept contributions."
 msgstr "Lypset ID Paypal-i për pranim kontributesh."
 
-#: apps/devhub/forms.py:355
+#: apps/devhub/forms.py:359
 msgid "Could not validate PayPal id."
 msgstr "S’vleftësoi dot id PayPal-i."
 
-#: apps/devhub/forms.py:364
+#: apps/devhub/forms.py:368
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
 
-#: apps/devhub/forms.py:383
+#: apps/devhub/forms.py:387
 msgid "View current"
 msgstr "Shihni të tanishmen"
 
-#: apps/devhub/forms.py:432
+#: apps/devhub/forms.py:436
 msgid "Invalid version range."
 msgstr "Interval i pavlefshëm versioni."
 
-#: apps/devhub/forms.py:461
+#: apps/devhub/forms.py:465
 msgid "Need at least one compatible application."
 msgstr "Lyp të paktën një aplikacion të përputhshëm."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
+#: apps/devhub/forms.py:478 apps/devhub/forms.py:498
 msgid "There was an error with your upload. Please try again."
 msgstr "Pati një gabim me ngarkimin tuaj. Ju lutemi, riprovoni."
 
-#: apps/devhub/forms.py:479
+#: apps/devhub/forms.py:483
 msgid "Override failed validation"
 msgstr "Anashkaloje vleftësimin e dështuar"
 
-#: apps/devhub/forms.py:483
+#: apps/devhub/forms.py:487
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-#: apps/devhub/forms.py:509
-msgid "Yes, distribute my add-on on this site."
-msgstr "Po, shpërndajeni shtesën time përmes këtij sajti."
+#: apps/devhub/forms.py:513
+msgid "Do not list my add-on on this site (beta)"
+msgstr ""
 
-#: apps/devhub/forms.py:510
-msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Hiqjani shenjën kësaj mundësie, nëse keni në mendje ta shpërndani vetë shtesën tuaj dhe doni vetëm që ajo të nënshkruhet nga Mozilla."
+#: apps/devhub/forms.py:514
+msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
+msgstr ""
 
-#: apps/devhub/forms.py:516
+#: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
 msgstr "Kjo shtesë do të anashngarkohet përmes instaluesish aplikacionesh."
 
-#: apps/devhub/forms.py:518
+#: apps/devhub/forms.py:522
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "Kodi i shtesave që anashngarkohen do të shqyrtohet nga Mozilla përpara se të nënshkruhen dhe konsiderohen të një shkalle më të lartë cilësie."
 
-#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Shqyrtim i Plotë"
 
-#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:539 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Shqyrtim Paraprak"
 
-#: apps/devhub/forms.py:539
+#: apps/devhub/forms.py:543
 msgid "Please choose a review nomination type"
 msgstr "Ju lutemi, zgjidhni lloj kandidimi shqyrtimi"
 
-#: apps/devhub/forms.py:543
+#: apps/devhub/forms.py:547
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
-#: apps/devhub/forms.py:561
+#: apps/devhub/forms.py:565
 msgid "Version %s already exists"
 msgstr "Ka tashmë një version %s"
 
-#: apps/devhub/forms.py:573
+#: apps/devhub/forms.py:577
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Përzgjidhni një zgjedhje të vlefshme. Ajo zgjedhje nuk është një nga zgjedhjet e mundshme."
 
-#: apps/devhub/forms.py:579
+#: apps/devhub/forms.py:583
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Te beta u kap një kartelë me një version që mbaron me a|alpha|b|beta dhe një numër opsional."
 
-#: apps/devhub/forms.py:602
+#: apps/devhub/forms.py:606
 msgid "You cannot upload any more files for this version."
 msgstr "Nuk mund të ngarkoni më kartela për këtë version."
 
-#: apps/devhub/forms.py:608
+#: apps/devhub/forms.py:612
 msgid "Version doesn't match"
 msgstr "Versioni nuk përputhet"
 
-#: apps/devhub/forms.py:637
+#: apps/devhub/forms.py:641
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "Nuk mund ta fshini një kartelë pasi të ketë nisur procesi i shqyrtimit. Duhet të fshini krejt versionin."
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:661
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Krejt nuk mund të ndërthuret me platforma të caktuara."
 
-#: apps/devhub/forms.py:662
+#: apps/devhub/forms.py:666
 msgid "A platform can only be chosen once."
 msgstr "Platforma mund të zgjidhet vetëm një herë."
 
-#: apps/devhub/forms.py:675
+#: apps/devhub/forms.py:679
 msgid "A review type must be selected."
 msgstr "Duhet përzgjedhur lloj rishikimi."
 
-#: apps/devhub/forms.py:757 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:761 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
-#: apps/devhub/forms.py:809
+#: apps/devhub/forms.py:813
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nuk lejohen më tepër se 3 shtesa të domosdoshme."
 
@@ -3880,11 +3880,11 @@ msgstr "Koleksione Përdoruesi"
 msgid "User Reviews"
 msgstr "Shqyrtime Përdoruesi"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:480 apps/devhub/views.py:509 apps/devhub/views.py:560 apps/devhub/views.py:1122
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:480 apps/devhub/views.py:509 apps/devhub/views.py:560 apps/devhub/views.py:1132
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1597
+#: apps/devhub/views.py:329 apps/devhub/views.py:1606
 msgid "Please check the form for errors."
 msgstr "Ju lutemi, kontrolloni formularin për gabime."
 
@@ -3928,57 +3928,57 @@ msgstr "Pati gabime me parashtrimin tuaj."
 msgid "Validate Add-on"
 msgstr "Vleftëso Shtesën"
 
-#: apps/devhub/views.py:588
+#: apps/devhub/views.py:590
 msgid "Check Add-on Compatibility"
 msgstr "Kontrolloni Përputhshmëri Shtese"
 
-#: apps/devhub/views.py:658
+#: apps/devhub/views.py:662
 msgid "There was an error with the submission."
 msgstr "Pati një gabim me parashtrimin."
 
-#: apps/devhub/views.py:1027 apps/users/forms.py:419
+#: apps/devhub/views.py:1037 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1041
 msgid "Icons cannot be animated."
 msgstr "Ikonat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1033
+#: apps/devhub/views.py:1043
 msgid "Images cannot be animated."
 msgstr "Figurat nuk mund të jenë të animuara."
 
-#: apps/devhub/views.py:1046
+#: apps/devhub/views.py:1056
 msgid "Images cannot be larger than %dKB."
 msgstr "Figurat nuk mund të jenë më të mëdha se %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1066
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
 
-#: apps/devhub/views.py:1063
+#: apps/devhub/views.py:1073
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
 
-#: apps/devhub/views.py:1161
+#: apps/devhub/views.py:1171
 msgid "Version %s disabled."
 msgstr "Versioni %s u çaktivizua."
 
 # %s is the version number, e.g. 3.2.
-#: apps/devhub/views.py:1165
+#: apps/devhub/views.py:1175
 msgid "Version %s deleted."
 msgstr "Versioni %s u fshi."
 
-#: apps/devhub/views.py:1175
+#: apps/devhub/views.py:1185
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ky ngarkim nuk arriti të vleftësohej, dhe mund t’i mungojnë përfundimet e plota të vleftësimit. Ju lutemi, tregoni kujdesin e duhur, teksa e shqyrtoni."
 
-#: apps/devhub/views.py:1643
+#: apps/devhub/views.py:1652
 msgid "Preliminary Review Requested."
 msgstr "U kërkua Shqyrtim Paraprak."
 
-#: apps/devhub/views.py:1644
+#: apps/devhub/views.py:1653
 msgid "Full Review Requested."
 msgstr "U kërkua Shqyrtim i Plotë."
 
@@ -4154,17 +4154,32 @@ msgstr "Më Tepër Burime"
 msgid "Search Developer Docs"
 msgstr "Kërkoni te Dokumentime për Zhvillues"
 
-#: apps/devhub/templates/devhub/validate_addon.html:13
+#: apps/devhub/templates/devhub/validate_addon.html:14
 msgid "Use the field below to upload your add-on package."
 msgstr "Përdorni fushën më poshtë për të ngarkuar paketën e shtesës suaj."
 
-#: apps/devhub/templates/devhub/validate_addon.html:19
+#: apps/devhub/templates/devhub/validate_addon.html:20
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Pas ngarkimit, do të kryhen një varg provash të automatizuara vleftësimi, për t’i kontrolluar përputhshmërinë me versionin vijues të aplikacionit:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:34
+#: apps/devhub/templates/devhub/validate_addon.html:35
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Pas ngarkimit, mbi kartelën tuaj do të kryhen një varg provash të automatizuara vleftësimi."
+
+#: apps/devhub/templates/devhub/validate_addon.html:44 apps/devhub/templates/devhub/addons/submit/upload.html:26
+msgid "Do you want your add-on to be distributed on this site?"
+msgstr "Doni që shtesa juaj të shpërndahet përmes këtij sajti?"
+
+#: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
+msgid "Warning:"
+msgstr ""
+
+#: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
+msgid ""
+"Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
+"\">report any bugs</a> that you encounter."
+msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4254,7 +4269,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Shtoni Një Tjetër Aplikacion&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:344 apps/devhub/templates/devhub/versions/list.html:346 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:351 apps/devhub/templates/devhub/versions/list.html:353 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Mbylle"
 
@@ -5070,30 +5085,18 @@ msgid "Step 1. Getting Started"
 msgstr "Hapi 1. Si T’ia Fillohet"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
-msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
-msgstr "Faleminderit për ndihmesën në ekosistemin e shtesave të Mozilla-s. Ky proces parashtrimi ju lejon ta strehoni shtesën tuaj në këtë sajt, ose të nënshkruhet për strehim nga ana juaj gjetiu."
+msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
+msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:16
-msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
-msgstr "Për plotësimin e parashtrimit tuaj, do t’ju duhet paketa e shtesës suaj (.xpi, .jar, ose .xml)."
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:23
-msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr "Kur të jeni gati për të filluar, ju lutemi, shqyrtoni dhe pranoni <strong>Marrëveshjen tonë për Zhvillues</strong>:"
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:33
+#: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
 msgstr "Version i Shtypshëm"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:36
-msgid "Additional Add-on Policies"
-msgstr "Rregulla Shtesë Rreth Shtesave"
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:42
+#: apps/devhub/templates/devhub/addons/submit/start.html:26
 msgid "I Accept this Agreement"
 msgstr "E pranoj këtë Marrëveshje"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:44
+#: apps/devhub/templates/devhub/addons/submit/start.html:28
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ose <a href=\"{0}\">Anulojeni</a>"
 
@@ -5111,19 +5114,15 @@ msgstr ""
 "Për ngarkimin e paketës së shtesës suaj dhe përzgjedhjen e çfarëdo kufizimi platforme, përdorni fushat më poshtë. Pas ngarkimit, mbi kartelën tuaj do të xhirohen një varg provash të automatizuara "
 "vleftësimi."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:26
-msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Doni që shtesa juaj të shpërndahet përmes këtij sajti?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:35
+#: apps/devhub/templates/devhub/addons/submit/upload.html:65 apps/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which platforms is this file compatible with?"
 msgstr "Me cilat platforma është e përputhshme kjo kartelë?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:52
+#: apps/devhub/templates/devhub/addons/submit/upload.html:73 apps/devhub/templates/devhub/versions/add_file_modal.html:72
 msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:64
+#: apps/devhub/templates/devhub/addons/submit/upload.html:83 apps/devhub/templates/devhub/versions/add_file_modal.html:84
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
 
@@ -6569,11 +6568,9 @@ msgstr "Vërini Temës suaj një emër."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
-"By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
-"href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
+"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Duke parashtruar Temën tuaj, pajtoheni me <a href=\"%(tos_url)s\" target=\"_blank\">Kushtet e Shërbimit për Temat</a>. Tema juaj është subjekt i miratimit sipas standardeve të caktuara te <a href="
-"\"%(guidelines_url)s\" target=\"_blank\">Udhëzime Shqyrtuesi</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -6639,19 +6636,31 @@ msgstr "Përzgjidhni një tjetër figurë fundfaqeje"
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Kartelat e shtuara te versionet e shqyrtuara duhet të merren në shqyrtim, përpara se të shfaqen publikisht për shkarkim."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:31
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:17
+msgid ""
+"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
+"\"_blank\">report any bugs</a> that you encounter."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Select the target platform for this file."
 msgstr "Përzgjidhni platformën objektiv për këtë kartelë."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Which review type would you like to nominate for?"
 msgstr "Për çfarë lloji shqyrtimi doni të kandidohet?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:47
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:58
 msgid "Only publish this version to my beta channel."
 msgstr "Botoje këtë version vetëm te kanali im beta."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:72
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:61
+msgid ""
+"The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
+"change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:92
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr ""
 
@@ -6785,7 +6794,7 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] "Propozimi i plotë do të jetë gati për {0} ditë"
 msgstr[1] "Propozimi i plotë do të jetë gati për {0} ditë"
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:320 apps/devhub/templates/devhub/versions/list.html:343
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:327 apps/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
 msgstr "Anulo Kërkesën për Shqyrtim"
 
@@ -6814,8 +6823,8 @@ msgid "Unlisted:"
 msgstr "E paparaqitur:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
-msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr "Nuk jepet te {0}. Zhvilluesit do të ngarkojnë versione të reja për nënshkrim dhe do ta shpërndajnë vetë shtesën e tyre."
+msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
+msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -6909,7 +6918,7 @@ msgstr "Fshehja e shtesës suaj do t’i pengojë asaj shfaqjen në galerinë to
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Jeni i sigurt se doni të fshihet shtesa juaj?"
 
-#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:308
+#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
 msgstr "Hiqeni Shtesën Nga Listat"
 
@@ -6923,19 +6932,23 @@ msgstr ""
 "përditësime të vetvetishme."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
+msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Jeni i sigurt se doni të hiqet shtesa juaj nga lista?"
 
-#: apps/devhub/templates/devhub/versions/list.html:323
+#: apps/devhub/templates/devhub/versions/list.html:330
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "Anulimi i kërkesës suaj për shqyrtim do ta lërë shtesën tuaj si të shqyrtuar paraprakisht."
 
-#: apps/devhub/templates/devhub/versions/list.html:328
+#: apps/devhub/templates/devhub/versions/list.html:335
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 "Anulimi i kërkesës suaj për shqyrtim do ta ricaktojë gjendjen e shtesës suaj si jo e plotë. Nëse nuk e plotësoni shtesën tuaj pas disa ditësh, duke rikërkuar shqyrtim të saj, ajo do të fshihet."
 
-#: apps/devhub/templates/devhub/versions/list.html:336
+#: apps/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Jeni i sigurt se dëshironi të anulohet kërkesa juaj për shqyrtim?"
 
@@ -11135,15 +11148,15 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Nuk ka përdorues me këtë email."
 
-#: apps/users/models.py:370
+#: apps/users/models.py:373
 msgid "Your account has been restricted"
 msgstr "Llogaria juaj u kufizua"
 
-#: apps/users/models.py:434
+#: apps/users/models.py:437
 msgid "Please confirm your email address"
 msgstr "Ju lutemi, ripohoni adresën tuaj email"
 
-#: apps/users/models.py:460
+#: apps/users/models.py:463
 msgid "My Mobile Add-ons"
 msgstr "Shtesat e Mia për Celular"
 
@@ -11219,48 +11232,48 @@ msgstr "Mozilla dëshiron të më kontaktojë lidhur me rajone të reja të shtu
 msgid "User Notifications"
 msgstr "Njoftime Përdoruesish"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:90
 msgid "An email address is required."
 msgstr "Lypset një adresë email."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:95
 msgid "A user with that email address does not exist."
 msgstr "Nuk ka përdorues me atë adresë email."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:112
 msgid "Invalid confirmation code!"
 msgstr "Kod i pavlefshëm ripohimi!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:117
 msgid "Successfully verified!"
 msgstr "Verifikuar me sukses!"
 
 # %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:650
+#: apps/users/views.py:133 apps/users/views.py:703
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Ju është dërguar email te adresa juaj {0} që të ripohoni llogarinë tuaj. Përpara se të hyni, duhet ta aktivizoni llogarinë tuaj, duke klikuar mbi lidhjen e dhënë në këtë email."
 
-#: apps/users/views.py:135 apps/users/views.py:654
+#: apps/users/views.py:137 apps/users/views.py:707
 msgid "Confirmation Email Sent"
 msgstr "Email-i Për Ripohim u Dërgua"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:148
 msgid "Profile Deleted"
 msgstr "Profili u Fshi"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:169
 msgid "Photo Deleted"
 msgstr "Fotoja u Fshi"
 
-#: apps/users/views.py:186 apps/users/views.py:242
+#: apps/users/views.py:188 apps/users/views.py:295
 msgid "Profile Updated"
 msgstr "Profili u Përditësua"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:197
 msgid "Email Confirmation Sent"
 msgstr "Ripohimi Me Email u Dërgua"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:198
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -11268,43 +11281,47 @@ msgstr ""
 "Është dërguar një email te {0} që të ripohoni adresën tuaj të re email. Që ndryshimi të hyjë në fuqi, lypset të klikoni mbi lidhjen e dhënë te ky email. Sa pa bërë këtë, mund të vazhdoni të hyni me "
 "adresën tuaj të tanishme email."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:211
 msgid "Please confirm your email address change at %s"
 msgstr "Ju lutemi, ripohoni ndryshimin e adresës suaj email te %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:225
 msgid "Errors Found"
 msgstr "U gjetën Gabime"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:226
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Pati gabime në ndryshimet që bëtë. Ndreqini, ju lutemi, dhe riparashtrojini."
 
-#: apps/users/views.py:277
+#: apps/users/views.py:274
+msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
+msgstr ""
+
+#: apps/users/views.py:330
 msgid "Your email address was changed successfully"
 msgstr "Adresa juaj email u ndryshua me sukses"
 
-#: apps/users/views.py:278
+#: apps/users/views.py:331
 msgid "From now on, please use {0} to log in."
 msgstr "Tani e tutje, ju lutemi, përdorni {0} për të bërë hyrjen."
 
-#: apps/users/views.py:327
+#: apps/users/views.py:380
 msgid "Persona authentication failure."
 msgstr "Dështim mirëfilltësimi Persona-je."
 
-#: apps/users/views.py:347
+#: apps/users/views.py:400
 msgid "Please use the verified email for this account."
 msgstr "Ju lutemi, përdorni për këtë llogari email-in e verifikuar."
 
-#: apps/users/views.py:455
+#: apps/users/views.py:508
 msgid "Wrong email address or password!"
 msgstr "Adresë email ose fjalëkalim i gabuar!"
 
-#: apps/users/views.py:467
+#: apps/users/views.py:520
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Te adresa juaj {0} është dërguar me email një lidhje për aktivizimin e llogarisë suaj të përdoruesit. Duhet ta klikoni, përpara se të mund të hyni."
 
-#: apps/users/views.py:472
+#: apps/users/views.py:525
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -11312,36 +11329,36 @@ msgstr ""
 "Nëse nuk e morët email-in e ripohimit, kontrolloni se mos shërbimi juaj email service e ka shënur si \"postë e pavlerë\" ose \"hedhurinë\". Nëse ju duhet, mund të na kërkoni <a href=\"%s\">të "
 "ridërgojmë mesazhin e ripohimit</a> te adresa juaj email e përmendur më sipër."
 
-#: apps/users/views.py:477
+#: apps/users/views.py:530
 msgid "Activation Email Sent"
 msgstr "Email-i i Aktivizimit u Dërgua"
 
 # This is a header for additional help options
-#: apps/users/views.py:478
+#: apps/users/views.py:531
 msgid "Having Trouble?"
 msgstr "Po keni Probleme?"
 
-#: apps/users/views.py:624
+#: apps/users/views.py:677
 msgid "You are already logged in to an account."
 msgstr "Jeni i futur tashmë te një llogari."
 
-#: apps/users/views.py:646
+#: apps/users/views.py:699
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Përgëzime! Llogaria juaj e përdoruesit u krijua me sukses."
 
-#: apps/users/views.py:670
+#: apps/users/views.py:723
 msgid "You already have an account."
 msgstr "Keni tashmë një llogari."
 
-#: apps/users/views.py:680
+#: apps/users/views.py:733
 msgid "There are errors in this form"
 msgstr "Në këtë formular ka gabime"
 
-#: apps/users/views.py:681
+#: apps/users/views.py:734
 msgid "Please correct them and resubmit."
 msgstr "Ju lutemi, ndreqini dhe riparashtrojeni."
 
-#: apps/users/views.py:696
+#: apps/users/views.py:749
 msgid "User reported."
 msgstr "Përdoruesi u raportua."
 
@@ -11718,6 +11735,92 @@ msgstr "Ju lutemi, përshkruani pse po e raportoni këtë përdorues, fjala vjen
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
 msgstr "Raporto përdoruesin {0}"
+
+#: apps/users/templates/users/t-shirt.html:4
+msgid "T-shirt Order"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:9
+msgid "Special Edition Add-on Creator T-shirt"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:14 apps/users/templates/users/t-shirt.html:120
+msgid "Note:"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:15
+msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:26
+msgid "Thank you for helping to make Firefox the most extensible browser available!"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:33
+msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:41
+msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:60
+msgid "Mailing Address"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:63
+msgid "Full Name"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:67
+msgid "Address Line 1"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:71
+msgid "Address Line 2"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:75
+msgid "City/Town"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:79
+msgid "State/Province (if applicable)"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:83
+msgid "Postal Code (if applicable)"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:87
+msgid "Country"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:91
+msgid "Telephone"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:98
+msgid "T-Shirt Info"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:101
+msgid "Shirt Size"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:121
+msgid "You will be redirected to Google Forms upon submission."
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:128
+msgid "Request T-shirt"
+msgstr ""
+
+#: apps/users/templates/users/t-shirt.html:137
+msgid ""
+"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
+"themes with a combined total of 10,000 average daily users."
+msgstr ""
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

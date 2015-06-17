@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 13:26-0700\n"
+"POT-Creation-Date: 2015-06-17 09:38-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -233,8 +233,8 @@ msgstr "Contribute"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:77 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:310 apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:97 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317 apps/devhub/templates/devhub/versions/list.html:351
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "or"
@@ -819,8 +819,8 @@ msgstr "Send Report"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:78 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:310
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:98 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
@@ -1006,7 +1006,7 @@ msgstr "Info"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:151
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Custom License"
@@ -1205,7 +1205,7 @@ msgstr "Users"
 msgid "Weekly Downloads"
 msgstr "Weekly Downloads"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:756 apps/devhub/templates/devhub/versions/list.html:179
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:760 apps/devhub/templates/devhub/versions/list.html:179
 msgid "Version"
 msgstr "Version"
 
@@ -1924,7 +1924,7 @@ msgid "Collections I'm Following"
 msgstr "Collections I'm Following"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:466
+#: apps/users/models.py:469
 msgid "My Favorite Add-ons"
 msgstr "My Favorite Add-ons"
 
@@ -2129,11 +2129,11 @@ msgstr "No links are allowed."
 msgid "This url is already in use by another collection"
 msgstr "This url is already in use by another collection"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1025
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1035
 msgid "Icons must be either PNG or JPG."
 msgstr "Icons must be either PNG or JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1043 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1053 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Please use images smaller than %dMB."
 
@@ -2540,7 +2540,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:82 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:91 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -3137,7 +3137,7 @@ msgstr "Filter by Application"
 msgid "Report Type"
 msgstr "Report Type"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:753 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:757 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Application"
 
@@ -3637,163 +3637,163 @@ msgstr "What is your license's name?"
 msgid "Provide the text of your license."
 msgstr "Provide the text of your license."
 
-#: apps/devhub/forms.py:159
+#: apps/devhub/forms.py:161
 msgid "License text is required when choosing Other."
 msgstr "License text is required when choosing Other."
 
-#: apps/devhub/forms.py:207
+#: apps/devhub/forms.py:211
 msgid "This add-on has an End-User License Agreement"
 msgstr "This add-on has an End-User License Agreement"
 
-#: apps/devhub/forms.py:210
+#: apps/devhub/forms.py:214
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Please specify your add-on's End-User License Agreement:"
 
-#: apps/devhub/forms.py:213
+#: apps/devhub/forms.py:217
 msgid "This add-on has a Privacy Policy"
 msgstr "This add-on has a Privacy Policy"
 
-#: apps/devhub/forms.py:216
+#: apps/devhub/forms.py:220
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Please specify your add-on's Privacy Policy:"
 
-#: apps/devhub/forms.py:254
+#: apps/devhub/forms.py:258
 msgid "Why did you make this add-on?"
 msgstr "Why did you make this add-on?"
 
-#: apps/devhub/forms.py:255
+#: apps/devhub/forms.py:259
 msgid "What's next for this add-on?"
 msgstr "What's next for this add-on?"
 
-#: apps/devhub/forms.py:292
+#: apps/devhub/forms.py:296
 msgid "The developers of this add-on"
 msgstr "The developers of this add-on"
 
-#: apps/devhub/forms.py:293
+#: apps/devhub/forms.py:297
 msgid "The Mozilla Foundation"
 msgstr "The Mozilla Foundation"
 
-#: apps/devhub/forms.py:294
+#: apps/devhub/forms.py:298
 msgid "An organization of my choice"
 msgstr "An organization of my choice"
 
-#: apps/devhub/forms.py:337
+#: apps/devhub/forms.py:341
 msgid "Please enter a suggested amount greater than 0."
 msgstr "Please enter a suggested amount greater than 0."
 
-#: apps/devhub/forms.py:340
+#: apps/devhub/forms.py:344
 msgid "Please enter a suggested amount less than ${0}."
 msgstr "Please enter a suggested amount less than ${0}."
 
-#: apps/devhub/forms.py:349
+#: apps/devhub/forms.py:353
 msgid "PayPal ID required to accept contributions."
 msgstr "PayPal ID required to accept contributions."
 
-#: apps/devhub/forms.py:355
+#: apps/devhub/forms.py:359
 msgid "Could not validate PayPal id."
 msgstr "Could not validate PayPal id."
 
-#: apps/devhub/forms.py:364
+#: apps/devhub/forms.py:368
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Unsupported file type, please upload an archive file {extensions}."
 
-#: apps/devhub/forms.py:383
+#: apps/devhub/forms.py:387
 msgid "View current"
 msgstr "View current"
 
-#: apps/devhub/forms.py:432
+#: apps/devhub/forms.py:436
 msgid "Invalid version range."
 msgstr "Invalid version range."
 
-#: apps/devhub/forms.py:461
+#: apps/devhub/forms.py:465
 msgid "Need at least one compatible application."
 msgstr "Need at least one compatible application."
 
-#: apps/devhub/forms.py:474 apps/devhub/forms.py:494
+#: apps/devhub/forms.py:478 apps/devhub/forms.py:498
 msgid "There was an error with your upload. Please try again."
 msgstr "There was an error with your upload. Please try again."
 
-#: apps/devhub/forms.py:479
+#: apps/devhub/forms.py:483
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-#: apps/devhub/forms.py:483
+#: apps/devhub/forms.py:487
 msgid "Submit my add-on for manual review."
 msgstr "Submit my add-on for manual review."
 
-#: apps/devhub/forms.py:509
-msgid "Yes, distribute my add-on on this site."
-msgstr "Yes, distribute my add-on on this site."
+#: apps/devhub/forms.py:513
+msgid "Do not list my add-on on this site (beta)"
+msgstr "Do not list my add-on on this site (beta)"
 
-#: apps/devhub/forms.py:510
-msgid "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Uncheck this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
+#: apps/devhub/forms.py:514
+msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
+msgstr "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 
-#: apps/devhub/forms.py:516
+#: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
 msgstr "This add-on will be side-loaded via application installers."
 
-#: apps/devhub/forms.py:518
+#: apps/devhub/forms.py:522
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 
-#: apps/devhub/forms.py:534 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "Full Review"
 
-#: apps/devhub/forms.py:535 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:539 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "Preliminary Review"
 
-#: apps/devhub/forms.py:539
+#: apps/devhub/forms.py:543
 msgid "Please choose a review nomination type"
 msgstr "Please choose a review nomination type"
 
-#: apps/devhub/forms.py:543
+#: apps/devhub/forms.py:547
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 
-#: apps/devhub/forms.py:561
+#: apps/devhub/forms.py:565
 msgid "Version %s already exists"
 msgstr "Version %s already exists"
 
-#: apps/devhub/forms.py:573
+#: apps/devhub/forms.py:577
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Select a valid choice. That choice is not one of the available choices."
 
-#: apps/devhub/forms.py:579
+#: apps/devhub/forms.py:583
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 
-#: apps/devhub/forms.py:602
+#: apps/devhub/forms.py:606
 msgid "You cannot upload any more files for this version."
 msgstr "You cannot upload any more files for this version."
 
-#: apps/devhub/forms.py:608
+#: apps/devhub/forms.py:612
 msgid "Version doesn't match"
 msgstr "Version doesn't match"
 
-#: apps/devhub/forms.py:637
+#: apps/devhub/forms.py:641
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "You cannot delete a file once the review process has started. You must delete the whole version."
 
-#: apps/devhub/forms.py:657
+#: apps/devhub/forms.py:661
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "The platform All cannot be combined with specific platforms."
 
-#: apps/devhub/forms.py:662
+#: apps/devhub/forms.py:666
 msgid "A platform can only be chosen once."
 msgstr "A platform can only be chosen once."
 
-#: apps/devhub/forms.py:675
+#: apps/devhub/forms.py:679
 msgid "A review type must be selected."
 msgstr "A review type must be selected."
 
-#: apps/devhub/forms.py:757 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:761 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Select an application first"
 
-#: apps/devhub/forms.py:809
+#: apps/devhub/forms.py:813
 msgid "There cannot be more than 3 required add-ons."
 msgstr "There cannot be more than 3 required add-ons."
 
@@ -3869,11 +3869,11 @@ msgstr "User Collections"
 msgid "User Reviews"
 msgstr "User Reviews"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:480 apps/devhub/views.py:509 apps/devhub/views.py:560 apps/devhub/views.py:1122
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:480 apps/devhub/views.py:509 apps/devhub/views.py:560 apps/devhub/views.py:1132
 msgid "Changes successfully saved."
 msgstr "Changes successfully saved."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1597
+#: apps/devhub/views.py:329 apps/devhub/views.py:1606
 msgid "Please check the form for errors."
 msgstr "Please check the form for errors."
 
@@ -3917,56 +3917,56 @@ msgstr "There were errors in your submission."
 msgid "Validate Add-on"
 msgstr "Validate Add-on"
 
-#: apps/devhub/views.py:588
+#: apps/devhub/views.py:590
 msgid "Check Add-on Compatibility"
 msgstr "Check Add-on Compatibility"
 
-#: apps/devhub/views.py:658
+#: apps/devhub/views.py:662
 msgid "There was an error with the submission."
 msgstr "There was an error with the submission."
 
-#: apps/devhub/views.py:1027 apps/users/forms.py:419
+#: apps/devhub/views.py:1037 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Images must be either PNG or JPG."
 
-#: apps/devhub/views.py:1031
+#: apps/devhub/views.py:1041
 msgid "Icons cannot be animated."
 msgstr "Icons cannot be animated."
 
-#: apps/devhub/views.py:1033
+#: apps/devhub/views.py:1043
 msgid "Images cannot be animated."
 msgstr "Images cannot be animated."
 
-#: apps/devhub/views.py:1046
+#: apps/devhub/views.py:1056
 msgid "Images cannot be larger than %dKB."
 msgstr "Images cannot be larger than %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1066
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
 
-#: apps/devhub/views.py:1063
+#: apps/devhub/views.py:1073
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
 
-#: apps/devhub/views.py:1161
+#: apps/devhub/views.py:1171
 msgid "Version %s disabled."
 msgstr "Version %s disabled."
 
-#: apps/devhub/views.py:1165
+#: apps/devhub/views.py:1175
 msgid "Version %s deleted."
 msgstr "Version %s deleted."
 
-#: apps/devhub/views.py:1175
+#: apps/devhub/views.py:1185
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 
-#: apps/devhub/views.py:1643
+#: apps/devhub/views.py:1652
 msgid "Preliminary Review Requested."
 msgstr "Preliminary Review Requested."
 
-#: apps/devhub/views.py:1644
+#: apps/devhub/views.py:1653
 msgid "Full Review Requested."
 msgstr "Full Review Requested."
 
@@ -4142,17 +4142,34 @@ msgstr "More Resources"
 msgid "Search Developer Docs"
 msgstr "Search Developer Docs"
 
-#: apps/devhub/templates/devhub/validate_addon.html:13
+#: apps/devhub/templates/devhub/validate_addon.html:14
 msgid "Use the field below to upload your add-on package."
 msgstr "Use the field below to upload your add-on package."
 
-#: apps/devhub/templates/devhub/validate_addon.html:19
+#: apps/devhub/templates/devhub/validate_addon.html:20
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:34
+#: apps/devhub/templates/devhub/validate_addon.html:35
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "After upload, a series of automated validation tests will be run on your file."
+
+#: apps/devhub/templates/devhub/validate_addon.html:44 apps/devhub/templates/devhub/addons/submit/upload.html:26
+msgid "Do you want your add-on to be distributed on this site?"
+msgstr "Do you want your add-on to be distributed on this site?"
+
+#: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
+msgid "Warning:"
+msgstr "Warning:"
+
+#: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
+msgid ""
+"Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
+"\">report any bugs</a> that you encounter."
+msgstr ""
+"Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
+"\">report any bugs</a> that you encounter."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4242,7 +4259,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Add Another Application&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:344 apps/devhub/templates/devhub/versions/list.html:346 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:351 apps/devhub/templates/devhub/versions/list.html:353 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Close"
 
@@ -5053,30 +5070,18 @@ msgid "Step 1. Getting Started"
 msgstr "Step 1. Getting Started"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
-msgid "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
-msgstr "Thank you for your contribution to the Mozilla add-ons ecosystem. This submission process allows you to host your add-on on this site, or get it signed for self-hosting."
+msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
+msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:16
-msgid "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
-msgstr "To complete your submission, you'll need your add-on package (.xpi, .jar, or .xml)."
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:23
-msgid "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr "When you're ready to begin, please read and accept our <strong>Developer Agreement</strong>:"
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:33
+#: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
 msgstr "Printable Version"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:36
-msgid "Additional Add-on Policies"
-msgstr "Additional Add-on Policies"
-
-#: apps/devhub/templates/devhub/addons/submit/start.html:42
+#: apps/devhub/templates/devhub/addons/submit/start.html:26
 msgid "I Accept this Agreement"
 msgstr "I Accept this Agreement"
 
-#: apps/devhub/templates/devhub/addons/submit/start.html:44
+#: apps/devhub/templates/devhub/addons/submit/start.html:28
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "or <a href=\"{0}\">Cancel</a>"
 
@@ -5092,19 +5097,15 @@ msgstr "Step 2. Upload Your Add-on"
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:26
-msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Do you want your add-on to be distributed on this site?"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:56 apps/devhub/templates/devhub/versions/add_file_modal.html:35
+#: apps/devhub/templates/devhub/addons/submit/upload.html:65 apps/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which platforms is this file compatible with?"
 msgstr "Which platforms is this file compatible with?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:64 apps/devhub/templates/devhub/versions/add_file_modal.html:52
+#: apps/devhub/templates/devhub/addons/submit/upload.html:73 apps/devhub/templates/devhub/versions/add_file_modal.html:72
 msgid "Administrative overrides"
 msgstr "Administrative overrides"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:64
+#: apps/devhub/templates/devhub/addons/submit/upload.html:83 apps/devhub/templates/devhub/versions/add_file_modal.html:84
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr "Looks like your add-on requires a manual review before it can be signed."
 
@@ -6529,11 +6530,11 @@ msgstr "Give your Theme a name."
 
 #: apps/devhub/templates/devhub/personas/submit.html:198
 msgid ""
-"By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
-"href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
+"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"By submitting your Theme, you agree to the <a href=\"%(tos_url)s\" target=\"_blank\">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a "
-"href=\"%(guidelines_url)s\" target=\"_blank\">Review Guidelines</a>."
+"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -6599,19 +6600,35 @@ msgstr "Select a different footer image"
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
 msgstr "Files added to reviewed versions must be reviewed before they will be available for download."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:31
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:17
+msgid ""
+"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
+"\"_blank\">report any bugs</a> that you encounter."
+msgstr ""
+"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
+"\"_blank\">report any bugs</a> that you encounter."
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Select the target platform for this file."
 msgstr "Select the target platform for this file."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Which review type would you like to nominate for?"
 msgstr "Which review type would you like to nominate for?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:47
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:58
 msgid "Only publish this version to my beta channel."
 msgstr "Only publish this version to my beta channel."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:72
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:61
+msgid ""
+"The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
+"change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+msgstr ""
+"The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
+"change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:92
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 
@@ -6743,7 +6760,7 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] "Full nomination will be available in {0} day"
 msgstr[1] "Full nomination will be available in {0} days"
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:320 apps/devhub/templates/devhub/versions/list.html:343
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:327 apps/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
 msgstr "Cancel Review Request"
 
@@ -6772,8 +6789,8 @@ msgid "Unlisted:"
 msgstr "Unlisted:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
-msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
+msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
+msgstr "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -6865,7 +6882,7 @@ msgstr "Hiding your add-on will prevent it from appearing anywhere in our galler
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Are you sure you wish to hide your add-on?"
 
-#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:308
+#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
 msgstr "Unlist Add-on"
 
@@ -6878,18 +6895,22 @@ msgstr ""
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
+msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+msgstr "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+
+#: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Are you sure you wish to unlist your add-on?"
 
-#: apps/devhub/templates/devhub/versions/list.html:323
+#: apps/devhub/templates/devhub/versions/list.html:330
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "Canceling your review request will leave your add-on as preliminarily reviewed."
 
-#: apps/devhub/templates/devhub/versions/list.html:328
+#: apps/devhub/templates/devhub/versions/list.html:335
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 
-#: apps/devhub/templates/devhub/versions/list.html:336
+#: apps/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Are you sure you wish to cancel your review request?"
 
@@ -11051,15 +11072,15 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "No user with that email."
 
-#: apps/users/models.py:370
+#: apps/users/models.py:373
 msgid "Your account has been restricted"
 msgstr "Your account has been restricted"
 
-#: apps/users/models.py:434
+#: apps/users/models.py:437
 msgid "Please confirm your email address"
 msgstr "Please confirm your email address"
 
-#: apps/users/models.py:460
+#: apps/users/models.py:463
 msgid "My Mobile Add-ons"
 msgstr "My Mobile Add-ons"
 
@@ -11135,48 +11156,48 @@ msgstr "Mozilla wants to contact me about new regions added to the Marketplace"
 msgid "User Notifications"
 msgstr "User Notifications"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:90
 msgid "An email address is required."
 msgstr "An email address is required."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:95
 msgid "A user with that email address does not exist."
 msgstr "A user with that email address does not exist."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:112
 msgid "Invalid confirmation code!"
 msgstr "Invalid confirmation code!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:117
 msgid "Successfully verified!"
 msgstr "Successfully verified!"
 
 # %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:650
+#: apps/users/views.py:133 apps/users/views.py:703
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 
-#: apps/users/views.py:135 apps/users/views.py:654
+#: apps/users/views.py:137 apps/users/views.py:707
 msgid "Confirmation Email Sent"
 msgstr "Confirmation Email Sent"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:148
 msgid "Profile Deleted"
 msgstr "Profile Deleted"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:169
 msgid "Photo Deleted"
 msgstr "Photo Deleted"
 
-#: apps/users/views.py:186 apps/users/views.py:242
+#: apps/users/views.py:188 apps/users/views.py:295
 msgid "Profile Updated"
 msgstr "Profile Updated"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:197
 msgid "Email Confirmation Sent"
 msgstr "Email Confirmation Sent"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:198
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -11184,43 +11205,47 @@ msgstr ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:211
 msgid "Please confirm your email address change at %s"
 msgstr "Please confirm your email address change at %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:225
 msgid "Errors Found"
 msgstr "Errors Found"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:226
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "There were errors in the changes you made. Please correct them and resubmit."
 
-#: apps/users/views.py:277
+#: apps/users/views.py:274
+msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
+msgstr "We're sorry, but you are not eligible to request a t-shirt at this time."
+
+#: apps/users/views.py:330
 msgid "Your email address was changed successfully"
 msgstr "Your email address was changed successfully"
 
-#: apps/users/views.py:278
+#: apps/users/views.py:331
 msgid "From now on, please use {0} to log in."
 msgstr "From now on, please use {0} to log in."
 
-#: apps/users/views.py:327
+#: apps/users/views.py:380
 msgid "Persona authentication failure."
 msgstr "Persona authentication failure."
 
-#: apps/users/views.py:347
+#: apps/users/views.py:400
 msgid "Please use the verified email for this account."
 msgstr "Please use the verified email for this account."
 
-#: apps/users/views.py:455
+#: apps/users/views.py:508
 msgid "Wrong email address or password!"
 msgstr "Wrong email address or password!"
 
-#: apps/users/views.py:467
+#: apps/users/views.py:520
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 
-#: apps/users/views.py:472
+#: apps/users/views.py:525
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -11228,35 +11253,35 @@ msgstr ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 
-#: apps/users/views.py:477
+#: apps/users/views.py:530
 msgid "Activation Email Sent"
 msgstr "Activation Email Sent"
 
-#: apps/users/views.py:478
+#: apps/users/views.py:531
 msgid "Having Trouble?"
 msgstr "Having Trouble?"
 
-#: apps/users/views.py:624
+#: apps/users/views.py:677
 msgid "You are already logged in to an account."
 msgstr "You are already logged in to an account."
 
-#: apps/users/views.py:646
+#: apps/users/views.py:699
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Congratulations! Your user account was successfully created."
 
-#: apps/users/views.py:670
+#: apps/users/views.py:723
 msgid "You already have an account."
 msgstr "You already have an account."
 
-#: apps/users/views.py:680
+#: apps/users/views.py:733
 msgid "There are errors in this form"
 msgstr "There are errors in this form"
 
-#: apps/users/views.py:681
+#: apps/users/views.py:734
 msgid "Please correct them and resubmit."
 msgstr "Please correct them and resubmit."
 
-#: apps/users/views.py:696
+#: apps/users/views.py:749
 msgid "User reported."
 msgstr "User reported."
 
@@ -11632,6 +11657,94 @@ msgstr "Please describe why you are reporting this user, such as for spam or an 
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
 msgstr "Report user {0}"
+
+#: apps/users/templates/users/t-shirt.html:4
+msgid "T-shirt Order"
+msgstr "T-shirt Order"
+
+#: apps/users/templates/users/t-shirt.html:9
+msgid "Special Edition Add-on Creator T-shirt"
+msgstr "Special Edition Add-on Creator T-shirt"
+
+#: apps/users/templates/users/t-shirt.html:14 apps/users/templates/users/t-shirt.html:120
+msgid "Note:"
+msgstr "Note:"
+
+#: apps/users/templates/users/t-shirt.html:15
+msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
+msgstr "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
+
+#: apps/users/templates/users/t-shirt.html:26
+msgid "Thank you for helping to make Firefox the most extensible browser available!"
+msgstr "Thank you for helping to make Firefox the most extensible browser available!"
+
+#: apps/users/templates/users/t-shirt.html:33
+msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
+msgstr "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
+
+#: apps/users/templates/users/t-shirt.html:41
+msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
+msgstr "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
+
+#: apps/users/templates/users/t-shirt.html:60
+msgid "Mailing Address"
+msgstr "Mailing Address"
+
+#: apps/users/templates/users/t-shirt.html:63
+msgid "Full Name"
+msgstr "Full Name"
+
+#: apps/users/templates/users/t-shirt.html:67
+msgid "Address Line 1"
+msgstr "Address Line 1"
+
+#: apps/users/templates/users/t-shirt.html:71
+msgid "Address Line 2"
+msgstr "Address Line 2"
+
+#: apps/users/templates/users/t-shirt.html:75
+msgid "City/Town"
+msgstr "City/Town"
+
+#: apps/users/templates/users/t-shirt.html:79
+msgid "State/Province (if applicable)"
+msgstr "State/Province (if applicable)"
+
+#: apps/users/templates/users/t-shirt.html:83
+msgid "Postal Code (if applicable)"
+msgstr "Postal Code (if applicable)"
+
+#: apps/users/templates/users/t-shirt.html:87
+msgid "Country"
+msgstr "Country"
+
+#: apps/users/templates/users/t-shirt.html:91
+msgid "Telephone"
+msgstr "Telephone"
+
+#: apps/users/templates/users/t-shirt.html:98
+msgid "T-Shirt Info"
+msgstr "T-Shirt Info"
+
+#: apps/users/templates/users/t-shirt.html:101
+msgid "Shirt Size"
+msgstr "Shirt Size"
+
+#: apps/users/templates/users/t-shirt.html:121
+msgid "You will be redirected to Google Forms upon submission."
+msgstr "You will be redirected to Google Forms upon submission."
+
+#: apps/users/templates/users/t-shirt.html:128
+msgid "Request T-shirt"
+msgstr "Request T-shirt"
+
+#: apps/users/templates/users/t-shirt.html:137
+msgid ""
+"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
+"themes with a combined total of 10,000 average daily users."
+msgstr ""
+"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
+"themes with a combined total of 10,000 average daily users."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
