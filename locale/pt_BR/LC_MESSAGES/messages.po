@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-06-19 19:51+0000\n"
+"PO-Revision-Date: 2015-06-19 15:05:03\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -15211,7 +15211,7 @@ msgstr ""
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Nota:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid ""
@@ -15242,7 +15242,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Nome complento"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
@@ -15266,11 +15266,11 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Pais"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefone"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
