@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-06-14 20:28+0000\n"
+"PO-Revision-Date: 2015-06-19 19:51+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "Last-Translators: Marcelo Araldi <mlcaraldi@gmail.com>\n"
-"X-POOTLE-MTIME: 1434313682.0\n"
+"X-POOTLE-MTIME: 1434743466.0\n"
 
 # This is the text that appears on buttons to download add-ons.
 #: apps/addons/buttons.py:185
@@ -3804,11 +3804,13 @@ msgstr "Submeter o meu complemento para revisão manual."
 
 #: apps/devhub/forms.py:513
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "Não listar meu complemento neste site (beta)"
 
 #: apps/devhub/forms.py:514
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
+"Marque esta opção se pretende distribuir seu complemento por conta própria e "
+"só precisa que ele seja assinado pela Mozilla."
 
 #: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
@@ -4244,7 +4246,7 @@ msgstr "Gostaria que o seu complemento fosse distribuído neste site?"
 #: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
-msgstr ""
+msgstr "Aviso:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
@@ -5179,6 +5181,9 @@ msgstr "1º passo. Começando"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de "
+"complementos Firefox. Ele também vincula a nossa notificação de privacidade "
+"que explica como nós tratamos sua informação."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
