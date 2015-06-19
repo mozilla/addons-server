@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-06-19 06:59:49\n"
+"PO-Revision-Date: 2015-06-19 07:40:09\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -7073,11 +7073,12 @@ msgid ""
 "review process."
 msgstr ""
 "Podrobni opisi obeh možnosti so v nadaljevanju. Po izbiri postopka za "
-"pregleda se ob oddaji dodatek postavi v čakalno vrsto. Dodatke pregledujejo "
-"<a href=\"https://wiki.mozilla.org/AMO:Editors\">Uredniki AMO</a>, to je "
-"skupina nadarjenih razvijalcev, ki prostovoljno pomagajo Mozilla s pregledi "
-"dodatkov, da bi tako zagotovili stabilno in varno delo za uporabnike. "
-"Razvijalci bodo prejemali e-pošto z obvestili o poteku pregleda."
+"pregleda se ob pošiljanju dodatek postavi v čakalno vrsto. Dodatke "
+"pregledujejo <a href=\"https://wiki.mozilla.org/AMO:Editors\">Uredniki "
+"AMO</a>, to je skupina nadarjenih razvijalcev, ki prostovoljno pomagajo "
+"Mozilla s pregledi dodatkov, da bi tako zagotovili stabilno in varno delo za"
+" uporabnike. Razvijalci bodo prejemali e-pošto z obvestili o poteku "
+"pregleda."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -7574,7 +7575,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
-msgstr "Merila za oddajo"
+msgstr "Merila za pošiljanje"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:13
 msgid ""
@@ -7810,9 +7811,9 @@ msgid ""
 " the submission process. A license specifies the rights you grant on your "
 "source code and is important in protecting your intellectual property."
 msgstr ""
-"Izbira ustrezne licence za vaš dodatek n je zelo pomemben korak v postopku "
-"predaje. Licenca določa pravice, ki jih dodeljujete za izvorno kodo, in je "
-"pomembno pri zaščiti vaše intelektualne lastnine."
+"Izbira ustrezne licence za vaš dodatek je zelo pomemben korak v postopku "
+"pošiljanja. Licenca določa pravice, ki jih dodeljujete za izvorno kodo, in "
+"je pomembna pri zaščiti vaše intelektualne lastnine."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
@@ -14521,7 +14522,7 @@ msgstr ""
 #: apps/users/views.py:274
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "Trenutni niste upravičeni za zahtevo po majici."
 
 #: apps/users/views.py:330
 msgid "Your email address was changed successfully"
@@ -15079,91 +15080,98 @@ msgstr "Prijavi uporabnika {0}"
 
 #: apps/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "Naročilo majice"
 
 #: apps/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "Posebna izdaja majice Ustvarjalec dodatka"
 
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Opomba:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid ""
 "You have already submitted a request for a t-shirt. You may re-submit this "
 "form to update your information, but you will only receive one shirt."
 msgstr ""
+"Zahtevo za majico ste že poslali. Ta obrazec lahko ponovno pošljete, da "
+"posodobite svoje podatke, vendar boste prejeli samo eno majico."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid ""
 "Thank you for helping to make Firefox the most extensible browser available!"
 msgstr ""
+"Hvala, da pomagate Firefox narediti najbolj razširljiv brskalnik na trgu!"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid ""
 "As a thank you gift, we'd like to send you a special-edition, community-"
 "designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Kot zahvalno darilo bi vam radi poslali posebno izdajo majice, ki jo je "
+"oblikovala skupnost. Da jo prejmete, izpolnite spodnji obrazec."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid ""
 "Your contact information will only be used by Mozilla to ship this special "
 "edition t-shirt."
 msgstr ""
+"Vaše podatke bo Mozilla uporabila samo za pošiljanje posebne izdaje te "
+"majice."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Naslov za pošiljanje"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Polno ime"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "Naslov (1. vrstica)"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Naslov (2. vrstica)"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Mesto/Kraj"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Zv. država/Provinca (v primeru, da velja za vas)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Poštna številka (v primeru, da velja za vas)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Država"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Podatki o majici"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Velikost majice"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Po pošiljanju boste preusmerjeni na Obrazce Google."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Zahtevaj majico"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
@@ -15172,6 +15180,10 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Da ste upravičeni do posebne izdaje naše majice, morate biti razvijalec "
+"dodatkov z vsaj enim navedenim dodatkom, enim nenavedenim, vendar podpisanim"
+" ali katerimkoli številom tem za ozadje s skupnim številom 10.000-ih "
+"povprečnih dnevnih uporabnikov."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""
