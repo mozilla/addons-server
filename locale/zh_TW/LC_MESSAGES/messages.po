@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-05-29 20:46+0000\n"
+"PO-Revision-Date: 2015-06-20 12:40+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432932372.0\n"
+"X-POOTLE-MTIME: 1434804027.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -3680,11 +3680,11 @@ msgstr "送出我的附加元件進行手動審查。"
 
 #: apps/devhub/forms.py:513
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "不要在此網站顯示我的附加元件（測試中）"
 
 #: apps/devhub/forms.py:514
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "若您想自行發布附加元件，僅需要 Mozilla 簽署的話請勾選此選項。"
 
 #: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
@@ -4115,13 +4115,15 @@ msgstr "您想要在此網站上發行您的附加元件嗎？"
 #: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
-msgstr ""
+msgstr "警告:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
 "Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
 msgstr ""
+"送審但不上架附加元件的功能還在開放測試階段。大部分的附加元件可能都還需要人工審查。請 <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">回報您遇到的任何 bug</a>。"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4997,7 +4999,7 @@ msgstr "步驟一：馬上開始"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書。當中亦包含我們的隱私權公告，當中解釋我們會如何處理您的資訊。"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
@@ -6381,6 +6383,10 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"我同意 <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution "
+"Agreement</a>，並同意依照 <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a> "
+"當中所列的方式處理我的資訊。"
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -6453,6 +6459,8 @@ msgid ""
 "Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
 "\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"送審但不上架附加元件的更新版本功能還在開放測試階段。大部分的附加元件可能都還需要人工審查。請 <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">回報您遇到的任何 bug</a>。"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Select the target platform for this file."
@@ -6471,6 +6479,9 @@ msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"我們已調整 Beta 測試頻道的行為以符合 <a href=\"%(addon_signing_url)s\" "
+"target=\"_blank\">附加元件強制簽署</a>。新的流程還在開放測試階段，可能會在未來有大幅度改變。請 <a href=\"%"
+"(bugzilla_url)s\" target=\"_blank\">回報您遇到的任何 bug</a>。"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:92
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
@@ -6630,7 +6641,7 @@ msgstr "不上架:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
-msgstr ""
+msgstr "不在 {0} 上架。開發者將上傳新的版本進行簽署，並自行發布附加元件。（Beta 測試中）"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -6736,6 +6747,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"將附加元件下架的功能還在開放測試階段，請 <a href=\"%(bugzilla_url)s\" target=\"_blank\">回報您遇到的任何 "
+"bug</a>。"
 
 #: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
@@ -10957,7 +10970,7 @@ msgstr "您所作的變更有錯誤，請更正後再重新送出一次。"
 
 #: apps/users/views.py:274
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "很抱歉，您目前不符合申請 T 恤的資格。"
 
 #: apps/users/views.py:330
 msgid "Your email address was changed successfully"
@@ -11393,89 +11406,91 @@ msgstr "舉報使用者 {0}"
 
 #: apps/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "申請 T 恤"
 
 #: apps/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "附加元件作者特別版 T 恤"
 
 #: apps/users/templates/users/t-shirt.html:14 apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "註:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
+msgstr "您已送出 T 恤的請求，您可以重新送出此表單更新您的資訊，但只會收到一件衣服。"
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
+msgstr "感謝您幫助讓 Firefox 變成全世界最能擴充的瀏覽器！"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
+msgstr "做為要感謝您的小禮物，我們想寄一套由社群設計的特別版 T 恤，請填寫以下的表單申請。"
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
+msgstr "Mozilla 將只會使用您的聯絡資訊來寄送這件特別版 T 恤。"
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "郵件地址"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "全名"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "第一行地址"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "第二行地址"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "縣市"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "州/省（若有）"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "郵遞區號（若有）"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "國家"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "電話號碼"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "T 恤資訊"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "衣服尺寸"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "送出後您將會被重導至 Google 表單。"
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "申請 T 恤"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
+"很抱歉，您必須是一位至少有一套已上架的附加元件或一套未上架但經簽署的附加元件，或是任何有超過 10,000 "
+"位日均使用者的附加元件開發者才有資格申請這件特別版的 T 恤。"
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
