@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-06-19 15:05:03\n"
+"PO-Revision-Date: 2015-06-24 16:50:59\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5233,6 +5233,10 @@ msgid ""
 " href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Apresentação dos Complementos na lista para assinatura está atualmente em um"
+" open beta. Revisão manual ainda pode ser necessária para um grande número "
+"de Add-ons. Por favor <a href=\"%(bugzilla_url)s\" target=\"_blank\">relatar"
+" quaisquer bugs</a> que você encontrar."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 # {0} is a filename. example: windows.exe
@@ -8686,6 +8690,10 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Concordo que o <a href=\"%(agreement_url)s\" target=\"_blank\">Acordo de "
+"distribuição do Firefox Add-on</a> e minhas informações sendo tratados "
+"conforme descrito no <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">aviso de privacidade de Cookies, sites e comunicações</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8778,6 +8786,10 @@ msgid ""
 "ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any "
 "bugs</a> that you encounter."
 msgstr ""
+"Apresentação dos Complementos na lista para assinatura está atualmente em um"
+" open beta. Revisão manual ainda pode ser necessária para um grande número "
+"de Add-ons. Por favor <a href=\"%(bugzilla_url)s\" target=\"_blank\">relatar"
+" quaisquer bugs</a> que você encontrar."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:42
 msgid "Select the target platform for this file."
@@ -14638,6 +14650,8 @@ msgstr ""
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
+"Pedimos desculpas, mas você não é elegível para solicitar uma camiseta neste"
+" momento."
 
 # %1 is the new email address
 #: apps/users/views.py:330
@@ -15218,11 +15232,16 @@ msgid ""
 "You have already submitted a request for a t-shirt. You may re-submit this "
 "form to update your information, but you will only receive one shirt."
 msgstr ""
+"Você já apresentou um pedido para uma t-shirt. Você pode re-enviar este "
+"formulário para atualizar suas informações, mas você só vai receber uma "
+"camisa."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid ""
 "Thank you for helping to make Firefox the most extensible browser available!"
 msgstr ""
+"Obrigado por ajudar a tornar o Firefox o navegador mais extensível "
+"disponível!"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid ""
@@ -15246,23 +15265,23 @@ msgstr "Nome complento"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "Endereço Linha 1"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Endereço Linha 2"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Cidade/País"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Estado/província (se aplicável)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Código postal (se aplicável)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
@@ -15278,7 +15297,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Camiseta do tamanho"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
