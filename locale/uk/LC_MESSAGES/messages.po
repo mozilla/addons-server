@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-06-16 13:57+0000\n"
-"Last-Translator: Viktoriia <kach.vikt@gmail.com>\n"
+"PO-Revision-Date: 2015-06-30 06:18+0000\n"
+"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434463069.0\n"
+"X-POOTLE-MTIME: 1435645127.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -8541,35 +8542,35 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:96 apps/files/templates/files/viewer.html:97
 msgid "Next diff"
-msgstr ""
+msgstr "Наступна відмінність"
 
 #: apps/files/templates/files/viewer.html:99 apps/files/templates/files/viewer.html:100
 msgid "Next note"
-msgstr ""
+msgstr "Наступна примітка"
 
 #: apps/files/templates/files/viewer.html:105 apps/files/templates/files/viewer.html:106
 msgid "Expand all"
-msgstr ""
+msgstr "Розгорнути все"
 
 #: apps/files/templates/files/viewer.html:110 apps/files/templates/files/viewer.html:111
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Приховати чи показати дерево"
 
 #: apps/files/templates/files/viewer.html:115 apps/files/templates/files/viewer.html:116
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Загорнути чи розгорнути текст"
 
 #: apps/files/templates/files/viewer.html:124
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "В завантаженому файлі немає файлів."
 
 #: apps/files/templates/files/viewer.html:130
 msgid "Fetching file."
-msgstr ""
+msgstr "Отримання файлу."
 
 #: apps/localizers/views.py:39
 msgid "An error occurred saving this message."
-msgstr ""
+msgstr "При збереженні цього повідомлення сталася помилка."
 
 #: apps/localizers/views.py:42
 msgid "Access Denied"
@@ -8609,7 +8610,7 @@ msgstr "Відвідайте домашню сторінку {0} L10n"
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:33
 msgid "Current Localizers for {0}:"
-msgstr ""
+msgstr "Поточні локалізатори для {0}:"
 
 #: apps/localizers/templates/localizers/locale_switcher.html:3
 msgid "Change Locale:"
@@ -8642,7 +8643,7 @@ msgstr "Відвідати групу новин"
 
 #: apps/localizers/templates/localizers/sidebar.html:39
 msgid "E-Mail Your Team:"
-msgstr ""
+msgstr "Відправте лист своїй команді:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12
 msgid "Submit"
@@ -8650,7 +8651,7 @@ msgstr "Затвердити"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:16
 msgid "(edit)"
-msgstr ""
+msgstr "(редагувати)"
 
 #: apps/localizers/templates/localizers/summary.html:9
 msgid "Mozilla Add-ons Localization"
@@ -8686,13 +8687,19 @@ msgstr "Про додатки Mozilla"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "Що це за веб-сайт?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, також відомий як \"AMO\" є офіційним сайтом Mozilla для "
+"додатків до програмного забезпечення Mozilla, таких як Firefox, Thunderbird "
+"та SeaMonkey. Додатки дозволяють вам додавати нові функції та змінювати "
+"спосіб роботи вашого браузера чи іншої програми. Погляньте навколо і "
+"відкрийте тисячі способів пристосувати своє перебування та роботу в "
+"Інтернеті."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -8703,6 +8710,11 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Розміщені тут додатки були створені тисячами розробників з нашої спільноти, "
+"починаючи від окремих любителів і закінчуючи великими корпораціями. Всі "
+"загальнодоступні додатки перевірені командою редакторів перед їх випуском. "
+"Додатки, позначені як Експериментальні, не були перевірені і їх слід "
+"встановлювати з обережністю."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -8715,14 +8727,20 @@ msgstr "Є кілька способів бути в курсі останніх
 #: apps/pages/templates/pages/about.lhtml:29
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
 msgstr ""
+"Наш <a href=\"%(url)s\">блог додатків</a> регулярно оновлюється інформацією як "
+"від любителів, так і від розробників."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"Ми часто публікуємо новини, поради і хитрощі в нашому обліковому записі "
+"Twitter, <a href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Наші <a href=\"%(url)s\">форуми</a> є хорошим місцем для взаємодії зі "
+"спільнотою додатків та обговорення майбутніх змін на AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -8730,11 +8748,14 @@ msgstr "Це звучить чудово! Як я можу долучитися?
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Є багато способів долучитися. Якщо ви знайомі з технологіями:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Створіть свій власний додаток</a>. Ми надаємо безкоштовний "
+"хостінг та службу оновлень, а також можемо допомогти вам охопити широку "
+"аудиторію користувачів."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
