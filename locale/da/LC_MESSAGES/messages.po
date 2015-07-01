@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17 09:38-0700\n"
+"POT-Creation-Date: 2015-07-01 08:33-0700\n"
 "PO-Revision-Date: 2015-06-28 14:12+0200\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -300,7 +300,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Et foreslået engangsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#. {1} is an amount input field
+#.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Et engangsbidrag på {0} {1}"
@@ -1946,8 +1946,8 @@ msgid "Previous"
 msgstr "Forrige"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#. third argument is the number of total results (e.g., 1,000).
+#.                third argument is the number of total results (e.g., 1,000).
+#.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
@@ -2374,8 +2374,8 @@ msgstr[0] "<span>%(followers)s</span> følger"
 msgstr[1] "<span>%(followers)s</span> følgere"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2383,7 +2383,7 @@ msgstr[0] "%(num)s ugentlig følger"
 msgstr[1] "%(num)s ugentlige følgere"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2391,8 +2391,8 @@ msgstr[0] "%(num)s månedlig følger"
 msgstr[1] "%(num)s månedlige følgere"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -6023,7 +6023,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#. {1} is the application name.
+#.                {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
