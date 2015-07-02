@@ -14,7 +14,6 @@
 (function() {
     var $window = $(window);
     $window.delegate('.install-button a.button', 'click', function(e) {
-        e.preventDefault();
         var $el = $(this);
 
         // When everything is loaded, trigger a click on the button
