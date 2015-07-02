@@ -600,7 +600,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
             'js/common/keys.js',
-            'js/common-min.js',
 
             # jQuery UI
             'js/lib/jquery-ui/jquery.ui.core.js',
