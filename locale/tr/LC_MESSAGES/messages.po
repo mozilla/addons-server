@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2013-12-10 07:51+0000\n"
-"Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
+"PO-Revision-Date: 2014-09-29 07:32+0000\n"
+"Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386661873.0\n"
+"X-POOTLE-MTIME: 1411975936.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -462,7 +462,7 @@ msgstr "Burada bir şey yok! Geliştirici herhangi bir ayrıntı eklememiş."
 #: apps/addons/templates/addons/details_box.html:255
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "Sürüm notları"
 
 # 76%
 # 100%
@@ -612,12 +612,12 @@ msgstr "geliştiren:"
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Daha fazla {0} teması"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Tüm {0} temaları"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -778,7 +778,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
-msgstr ""
+msgstr "Diğer sürümleri görün"
 
 #: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -957,7 +957,7 @@ msgstr "Yönet"
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
-msgstr ""
+msgstr "{0} simgesi"
 
 #: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
@@ -976,7 +976,7 @@ msgstr "{0} neden geliştirildi? Bu eklentiyi gelecekte neler bekliyor?"
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Eklenti Ekran Görüntüsü #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
@@ -1109,11 +1109,11 @@ msgstr "{0} kullanıcı"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "kalıcı bağlantı"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "çevir"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -1144,7 +1144,7 @@ msgstr "Eklentilerim"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6 apps/amo/context_processors.py:68
 msgid "My Themes"
-msgstr ""
+msgstr "Temalarım"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
@@ -1152,7 +1152,7 @@ msgstr "Firefox'a ekle"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Temayı düzenle"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
