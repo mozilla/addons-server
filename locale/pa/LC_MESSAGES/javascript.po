@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-04-28 04:08+0000\n"
-"Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
+"PO-Revision-Date: 2015-06-29 22:55+0000\n"
+"Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430194117.0\n"
+"X-POOTLE-MTIME: 1435618503.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -90,12 +90,12 @@ msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
 #: static/js/common/upload-addon.js:323
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹੇ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹਿਆਂ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
 #: static/js/common/upload-addon.js:328
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਦੇ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
 #: static/js/common/upload-addon.js:346
 msgid "Your submission will go through a manual review."
