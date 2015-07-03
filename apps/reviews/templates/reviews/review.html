@@ -82,7 +82,7 @@
           {{ _('Reply to review') }}</a>
       </li>
     {% endif %}
-    {% if review.user_id == request.user.id %}
+    {% if review.user_id == request.user.id and((is_reply or has_reply) and (perms.is_author or perms.is_admin))}
       <li>
         <a class="review-edit" href="#">
           {{ _('Edit reply') }}</a>
