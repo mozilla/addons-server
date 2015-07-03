@@ -6361,7 +6361,7 @@ msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed
 msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
-msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
+msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
@@ -9634,7 +9634,7 @@ msgstr "私はアドオンの作者ですが、レビューに返答できます
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
-"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
+"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
 

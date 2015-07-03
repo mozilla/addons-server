@@ -6486,8 +6486,8 @@ msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed
 msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독하세요. 사용자 평가, 모음집 등록 등의 정보가 지속적으로 업데이트됩니다."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
-msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr "<a href=\"%(forums_url)s\">포럼</a>에 들어가서 대화를 나눠보세요."
+msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+msgstr "<a href=\"%(forum_url)s\">포럼</a>에 들어가서 대화를 나눠보세요."
 
 # 82%
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
@@ -9888,7 +9888,7 @@ msgstr "부가 기능 제작자입니다. 평가에 답변을 달 수 있나요?
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
-"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
+"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
 
