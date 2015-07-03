@@ -31,7 +31,7 @@ should only be installed with caution.{% endtrans %}</p>
     enthusiasts and developers.{% endtrans %}</li>
     <li>{% trans url="http://twitter.com/mozamo" %}We often post news, tips, and
     tricks to our Twitter account, <a href="{{ url }}">mozamo</a>{% endtrans %}</li>
-    <li>{% trans url="https://forums.addons.mozilla.org" %}Our <a href="{{ url
+    <li>{% trans url="https://discourse.mozilla-community.org/c/add-ons" %}Our <a href="{{ url
     }}">forums</a> are a good place to interact with the add-ons community and
     discuss upcoming changes to AMO.{% endtrans %}</li>
 </ul>
@@ -56,7 +56,7 @@ should only be installed with caution.{% endtrans %}</p>
 are still ways to help:{% endtrans %}</p>
 <ul>
     <li>{% trans %}Tell your friends! Let people know which add-ons you use.{% endtrans %}</li>
-    <li>{% trans url='https://forums.addons.mozilla.org' %}Participate in our <a
+    <li>{% trans url='https://discourse.mozilla-community.org/c/add-ons' %}Participate in our <a
     href="{{ url }}">forums</a>.{% endtrans %}</li>
     <li>{% trans %}Review add-ons on the site. Add-on authors are more likely to
     improve their add-ons and write new ones when they know people appreciate
@@ -64,7 +64,7 @@ are still ways to help:{% endtrans %}</p>
 </ul>
 
 <h3>{{ _('I have a question') }}</h3>
-<p>{% trans faq_url=url('pages.faq'), forum_url="https://forums.addons.mozilla.org" %}A good place
+<p>{% trans faq_url=url('pages.faq'), forum_url="https://discourse.mozilla-community.org/c/add-ons" %}A good place
 to start is our <a href="{{ faq_url }}"><abbr title="Frequently Asked Questions">FAQ</abbr></a>.
 If you don't find an answer there, you can <a href="{{ forum_url }}"> ask on our
 forums</a>.{% endtrans %}</p>

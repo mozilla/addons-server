@@ -6401,8 +6401,8 @@ msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed
 msgstr "檢視並且訂閱您佈景主題的<a href=\"%(feed_url)s\">活動摘要</a>以收到最新的審核，收藏集等訊息。"
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
-msgid "Join the conversation in our <a href=\"%(forums_url)s\">forums</a>."
-msgstr "前往<a href=\"%(forums_url)s\">討論區</a>與其他人交流。"
+msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
+msgstr "前往<a href=\"%(forum_url)s\">討論區</a>與其他人交流。"
 
 # 82%
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
@@ -9771,9 +9771,9 @@ msgstr "我是附加元件作者，我可以回應審核評論嗎？"
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
-"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
+"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional "
 "discussion or follow-up."
-msgstr "可以，附加元件作者可以對評論提供一次回應。您可以到 <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">討論區</a> 設定討論主題，來讓使用者做其他討論。"
+msgstr "可以，附加元件作者可以對評論提供一次回應。您可以到 <a href=\"%(forum_url)s\">討論區</a> 設定討論主題，來讓使用者做其他討論。"
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"

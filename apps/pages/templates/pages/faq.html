@@ -179,11 +179,11 @@
     out both and see which you like better.') }}</dd>
 
     <dt>{{ _('What if I can\'t find an add-on I\'m looking for?') }}</dt>
-    <dd>{% trans forum_url="https://forums.addons.mozilla.org/viewforum.php?f=28" %}
+    <dd>{% trans forum_url="https://discourse.mozilla-community.org/c/add-ons" %}
          With thousands of add-ons available, there's something for everyone.
          But if you're looking for a particular add-on and can't find it, you
          might try searching on other sites or posting about it in our
-         <a href="{{ forum_url }}">Add-on Ideas</a> forum.{% endtrans %}</dd>
+         <a href="{{ forum_url }}">Add-ons </a>forum.{% endtrans %}</dd>
 
     <dt id="preliminary">{{ _('What does it mean if an add-on is "experimental" or "preliminarily reviewed"?') }}</dt>
     <dd>{% trans url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
@@ -321,7 +321,7 @@
     developer-related questions.{% endtrans %}</p>
 
 <h3 id="questions">{{ _('Still have questions?') }}</h3>
-<p>{% trans sumo_url="http://support.mozilla.com", forum_url="https://forums.addons.mozilla.org" %}
+<p>{% trans sumo_url="http://support.mozilla.com", forum_url="https://discourse.mozilla-community.org/c/add-ons" %}
     For general Firefox support, visit our <a href="{{ sumo_url }}">support
     website</a>. For general add-on and website questions, visit our
     <a href="{{ forum_url }}">forum</a>.{% endtrans %}</p>

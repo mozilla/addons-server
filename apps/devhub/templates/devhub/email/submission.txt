@@ -16,7 +16,7 @@ For some light-reading, we recommend the Add-ons Policies ({{ url('devhub.docs',
 * Check wait times (https://blog.mozilla.org/addons/tag/add-on-reviews/): Find out how long you should expect to wait
 * Edit your listing ({{ edit_url }}): Add details and tell people why they need your add-on
 * Get the latest (https://blog.mozilla.org/addons/): Follow our blog to get the latest news straight from the AMO team
-* Introduce yourself (https://forums.mozilla.org/addons/): Join the conversation in our forums
+* Introduce yourself (https://discourse.mozilla-community.org/c/add-ons): Join the conversation in our forums
 
 Get Ahead in the Review Queue!
 
