@@ -11,16 +11,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-06-30 06:18+0000\n"
+"PO-Revision-Date: 2015-07-03 05:38+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435645127.0\n"
+"X-POOTLE-MTIME: 1435901933.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4182,7 +4183,7 @@ msgstr "Ви хочете розповсюджувати свій додаток
 #: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
-msgstr ""
+msgstr "Попередження:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
@@ -8766,17 +8767,22 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "У мене є питання"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
+"Для початку перегляньте наші <abbr title=\"Frequently Asked "
+"Questions\">ЧаП</abbr></a>. Якщо ви не знайдете там відповіді, ви можете <a "
+"href=\"%(forum_url)s\"> задати питання на наших форумах</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Якщо вам дійсно потрібно зв'язатися з кимось із команди Mozilla, перегляньте "
+"нашу сторінку з <a href=\"%(url)s\"> контактною інформацією</a>."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -8787,6 +8793,10 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Протягом років, багато людей зробили свій внесок в цей веб-сайт, як "
+"добровільні помічники зі спільноти, так і окремо команда AMO. Список "
+"важливих помічників можна знайти на нашій сторінці <a href=\"%(url)s\">авторів "
+"сайту</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -8799,6 +8809,8 @@ msgstr "Засіб звітів сумісності додатків був в�
 #: apps/pages/templates/pages/acr_firstrun.html:28
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
 msgstr ""
+"Можна легко допомогти нам переконатися в тому, що додатки оновлюються вчасно "
+"для випуску наступної версії Firefox."
 
 #: apps/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
