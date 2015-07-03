@@ -13247,14 +13247,12 @@ msgstr "Eu sou um autor de complementos, eu posso responder análises?"
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set "
-"up a discussion topic in our <a "
-"href=\"%(forum_url)s\">forum</a> to engage in"
-" additional discussion or follow-up."
+"up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
+"in additional discussion or follow-up."
 msgstr ""
 "Sim, os autores de um extra podem fornecer uma única reposta a uma análise. "
 "Pode definir o tópico de discussão no nosso <a "
-"href=\"%(forum_url)s\">fórum</a> para "
-"continuar a discussão."
+"href=\"%(forum_url)s\">fórum</a> para continuar a discussão."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
