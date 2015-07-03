@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2014-07-27 19:18+0000\n"
-"Last-Translator: Angela <angelavelop@gmail.com>\n"
+"PO-Revision-Date: 2015-06-05 17:11+0000\n"
+"Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1406488694.0\n"
+"X-POOTLE-MTIME: 1433524264.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -367,15 +367,15 @@ msgstr "Funciona con"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilidad"
 
 #: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
-msgstr ""
+msgstr "Oculto"
 
 #: apps/addons/templates/addons/details_box.html:63 apps/devhub/templates/devhub/index.html:96 apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Unlisted"
-msgstr ""
+msgstr "No listado"
 
 #: apps/addons/templates/addons/details_box.html:71 apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
@@ -774,6 +774,9 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>Atención:</strong> Las versiones de desarrollo de este complemento "
+"no han sido revisadas por Mozilla y no pueden ser instaladas en versiones de "
+"lanzamiento de Firefox."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1052,6 +1055,9 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Atención:</strong> Las versiones de desarrollo de este complemento "
+"no han sido revisadas por Mozilla y no pueden ser instaladas en versiones de "
+"lanzamiento de Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1627,11 +1633,11 @@ msgstr "{user} ha aprobado {review} de {addon}."
 
 #: apps/amo/log.py:342
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Revisión {review} para {addon} borrada."
 
 #: apps/amo/log.py:343
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} borró {review} para {addon}."
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
@@ -1809,7 +1815,7 @@ msgstr "{addon} calificación de contenido cambiada."
 
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{complemento} no listado."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1900,6 +1906,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Por favor, introduce <strong>todas las palabras</strong> que aparecen "
+"abajo, <strong>separadas por un espacio si hace falta</strong>. </p> <p> Si "
+"es ilegible, puedes <a href=\"#\" id=\"recaptcha_different\">probar con otras "
+"palabras</a> o <a href=\"#\" id=\"recaptcha_audio\">probar otro tipo de "
+"reto</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:276 apps/search/forms.py:86
@@ -3319,7 +3330,7 @@ msgstr "Paquete de idioma (Aplicación)"
 
 #: apps/constants/base.py:163
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Paquete de idioma (complemento)"
 
 #: apps/constants/base.py:164
 msgid "Plugin"
@@ -3342,7 +3353,7 @@ msgstr "Paquetes de idioma (aplicación)"
 
 #: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Paquetes de idioma (complemento)"
 
 #: apps/constants/base.py:177
 msgid "Plugins"
@@ -3470,7 +3481,7 @@ msgstr "Valoración moderada del complemento"
 
 #: apps/constants/base.py:436
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderación de revisión de complemento revertida"
 
 #: apps/constants/base.py:481
 msgid "Level 1"
@@ -3498,15 +3509,15 @@ msgstr "Nivel 6"
 
 #: apps/constants/base.py:509
 msgid "Not signed"
-msgstr ""
+msgstr "No ha sido firmado"
 
 #: apps/constants/base.py:510
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Firmado para una revisión completa"
 
 #: apps/constants/base.py:511
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Firmado para una revisión preliminar"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3715,10 +3726,12 @@ msgstr "No se ha podido validar el id de PayPal."
 #: apps/devhub/forms.py:368
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"No se admite ese tipo de archivo. Por favor, sube un archivo con formato "
+"{extensions}."
 
 #: apps/devhub/forms.py:387
 msgid "View current"
-msgstr ""
+msgstr "Ver actual"
 
 #: apps/devhub/forms.py:436
 msgid "Invalid version range."
@@ -3738,7 +3751,7 @@ msgstr "Ignorar error en la validación"
 
 #: apps/devhub/forms.py:487
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Enviar mi complemento para revisión manual."
 
 #: apps/devhub/forms.py:513
 msgid "Do not list my add-on on this site (beta)"
@@ -3751,10 +3764,15 @@ msgstr ""
 #: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
 msgstr ""
+"Este complemento será cargado externamente a través de instaladores de "
+"aplicaciones"
 
 #: apps/devhub/forms.py:522
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"El código de los complementos que son cargados externamente será revisado "
+"por Mozilla antes de que sean firmados y se espera un estándar de calidad "
+"más alto."
 
 #: apps/devhub/forms.py:538 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -3771,6 +3789,8 @@ msgstr "Elige un tipo de nominación para revisión"
 #: apps/devhub/forms.py:547
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
+"Los archivos con una versión que termine con a|alpha|b|beta|pre|rc y un "
+"número opcional son detectados como beta."
 
 #: apps/devhub/forms.py:565
 msgid "Version %s already exists"
@@ -3779,10 +3799,13 @@ msgstr "La versión %s ya existe"
 #: apps/devhub/forms.py:577
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
+"Selecciona una opción válida. Esta opción no está entre las disponibles."
 
 #: apps/devhub/forms.py:583
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr ""
+"Un archivo con una versión terminando con a|alfa|b|beta y un número opcional "
+"es detectado como beta."
 
 #: apps/devhub/forms.py:606
 msgid "You cannot upload any more files for this version."
@@ -3916,15 +3939,15 @@ msgstr "La contraseña era incorrecta. El complemento no se ha borrado."
 
 #: apps/devhub/views.py:446
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Un autor ha sido añadido a tu complemento"
 
 #: apps/devhub/views.py:453
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Un autor ha cambiado un rol en tu complemento"
 
 #: apps/devhub/views.py:472
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Un autor ha sido eliminado de tu complemento"
 
 #: apps/devhub/views.py:515
 msgid "There were errors in your submission."
@@ -4038,7 +4061,7 @@ msgstr "Hazte revisor de AMO"
 
 #: apps/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Conócelo todo sobre complementos"
 
 #: apps/devhub/templates/devhub/index.html:41
 msgid ""
@@ -4046,10 +4069,17 @@ msgid ""
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
+"Los complementos le permiten a millones de usuarios de Firefox mejorar y "
+"personalizar su experiencia de navegación. Si eres un desarrollador Web y "
+"sabes <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>HTML</a> "
+"y <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">CSS</a>, ya "
+"tienes todas las habilidades necesarias para crear un gran complemento."
 
 #: apps/devhub/templates/devhub/index.html:51
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Dirígete a <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
+"Network</a> para aprender todo lo que necesitas saber para comenzar."
 
 #: apps/devhub/templates/devhub/index.html:58
 msgid "Start Making Add-ons"
@@ -4062,7 +4092,7 @@ msgstr "Estado:"
 
 #: apps/devhub/templates/devhub/index.html:90 apps/devhub/templates/devhub/includes/addon_details.html:98
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibilidad:"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
@@ -4086,11 +4116,13 @@ msgstr "Ver todos los complementos ►"
 
 #: apps/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "¡Publica tus complementos!"
 
 #: apps/devhub/templates/devhub/index.html:136
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"¡Subir un <a href=\"%(addon_url)s\">complemento</a> o <a href=\"%"
+"(theme_url)s\">tema</a> para comenzar!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -4115,7 +4147,7 @@ msgstr "Desarrollo de extensiones"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Temas ligeros"
 
 #: apps/devhub/templates/devhub/nav.html:39 apps/devhub/templates/devhub/docs/policies-agreement.html:6 apps/devhub/templates/devhub/docs/policies-contact.html:6
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:6 apps/devhub/templates/devhub/docs/policies-recommended.html:6 apps/devhub/templates/devhub/docs/policies-reviews.html:6
@@ -4138,7 +4170,7 @@ msgstr "Complementos de desarrollo"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Comunidad y ayuda"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -4170,7 +4202,7 @@ msgstr "Tras la subida, se ejecutarán una serie de pruebas de validación autom
 
 #: apps/devhub/templates/devhub/validate_addon.html:44 apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "¿Quieres que se distribuya tu complemento en esta página?"
 
 #: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
@@ -4376,10 +4408,18 @@ msgstr "Descripción"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Una breve explicación de la funcionalidad básica de tu complemento que se "
+"muestra en búsquedas y listados de navegación, así como en la parte superior "
+"de la página de detalles de tu complemento. Solo es relevante para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Las categorías son la manera principal con la que los usuarios encuentran "
+"complementos. Elige la que se más se ajuste a la funcionalidad de tu "
+"complemento para mayor exposición. Solo es relevante para los complementos "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4395,6 +4435,10 @@ msgstr "Etiquetas"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"Las etiquetas ayudan a los usuarios a encontrar tu complemento y deberían "
+"ser descriptores breves tales como paneles, barra de herramientas, o "
+"twitter. Puedes tener un máximo de {0} etiquetas. Solo es relevante para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -4423,6 +4467,9 @@ msgstr "Detalles del complento {0}"
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Una explicación más larga de características, funcionalidad, y cualquier "
+"otra información relevante. Este campo solo se muestra en la página de "
+"detalles del complemento. Solo es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4431,6 +4478,9 @@ msgstr "Idioma por defecto"
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
+"La información acerca de tu complemento se muestra en esta configuración "
+"regional a menos que la sobreescribas con una traducción específica. Sólo es "
+"relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4442,6 +4492,9 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Si tu complemento tiene otra página de inicio, escribe su dirección aquí. Si "
+"tu sitio web está localizado en otros idiomas se pueden añadir múltiples "
+"traducciones de este campo. Sólo es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4461,12 +4514,20 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Si deseas mostrar una dirección de correo electrónico para preguntas de "
+"soporte técnico, escríbela aquí. Si tienes diferentes direcciones de correo "
+"para cada idioma, se pueden añadir varias traducciones de este campo. Solo "
+"es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Si tu complemento tiene un sitio web o foro de soporte, escribe su dirección "
+"aquí. Si tu sitio web está localizado en otros idiomas, se pueden añadir "
+"múltiples traducciones de este campo. Solo es relevante para complementos "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4486,6 +4547,12 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Cualquier información que los usuarios finales puedan querer conocer que no "
+"sea necesariamente aplicable al resumen o descripción del complemento. Los "
+"usos comunes incluyen listados de las incidencias conocidas más importantes, "
+"información sobre cómo reportar incidencias, anticipar la fecha de "
+"publicación de una nueva versión, y más. Solo es relevante para complementos "
+"listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -4498,6 +4565,8 @@ msgstr "Indicadores del complemento"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
+"Estos indicadores se utilizan para clasificar complementos. Solo son "
+"relevantes para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4514,6 +4583,8 @@ msgstr "¿Ver el código fuente?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Si la fuente de tu complemento se puede mostrar en nuestro visor en línea. "
+"Solo es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4530,6 +4601,8 @@ msgstr "¿Estadísticas públicas?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Si las estadísticas de descarga y uso de tu complemento pueden ser mostradas "
+"en nuestro visor en línea. Solo es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4546,6 +4619,9 @@ msgstr "¿Actualizar el SDK?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"Si está seleccionado, intentaremos actualizar automáticamente tu complemento "
+"cuando se publique una nueva versión del SDK. Solo es relevante para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4569,13 +4645,17 @@ msgstr "El UUID de tu complemento se especifica en el archivo manifest de instal
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:143 apps/devhub/templates/devhub/addons/edit/technical.html:144
 msgid "Whiteboard"
-msgstr ""
+msgstr "Pizarra"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:146
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"La pizarra es el lugar para proporcionarle al editor información relevante a "
+"tu complemento, sin importar la versión. Úsala para señalar maneras para "
+"probar el complemento, y agregar cualquier información adicional que pueda "
+"ayudar. La pizarra también es editable por los editores."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -4598,6 +4678,10 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Sube un ícono para tu complemento o elige uno de los nuestros. El ícono se "
+"muestra prácticamente en todas partes donde esté tu complemento. Las "
+"imágenes subidas deben ser de uno de los siguientes tipos de imágenes: .png, "
+".jpg. Solo es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -4911,26 +4995,33 @@ msgstr "Conviértete en revisor de AMO hoy mismo y tus complementos tendrán pre
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"Se ha firmado tu complemento y está listo para usarse. Puedes descargarlo "
+"aquí:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Tu complemento ha sido enviado a la cola de Revisión preliminar no listada."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"Tu complemento ha sido enviado a la cola de Revisión completa no listada."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Recibirás un correo electrónico cuando un editor lo haya revisado y firmado."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "Tu complemento no estará disponible públicamente en esta página."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
 msgstr ""
+"Puedes subir nuevas versiones de tu complemento a través de la <a "
+"href=\"{0}\">página de desarrolladores de complementos</a>. "
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -5100,7 +5191,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:65 apps/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "¿Con qué plataformas es compatible este archivo?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:73 apps/devhub/templates/devhub/versions/add_file_modal.html:72
 msgid "Administrative overrides"
@@ -5109,6 +5200,7 @@ msgstr "Anulaciones administrativas"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:83 apps/devhub/templates/devhub/versions/add_file_modal.html:84
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
+"Parece que tu complemento requiere una revisión manual antes de ser firmado."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6085,6 +6177,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
+"Recibirás un correo electrónico cuando la revisión esté completa y tu "
+"complemento haya sido firmado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6092,7 +6186,7 @@ msgstr "Tu complemento se muestra en nuestra galería y los usuarios están reci
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "Tu complemento ha sido firmado y puede ser cargado externamente."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -6105,7 +6199,7 @@ msgstr "Tu complemento se muestra en nuestra galería como experimental y los us
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:73
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "Tu complemento ha sido firmado."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:78
 msgid ""
@@ -6118,6 +6212,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
 msgstr ""
+"Recibirás un correo electrónico cuando la revisión total esté completa, "
+"haciendo que tu complemento se pueda cargar externamente."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6131,6 +6227,9 @@ msgstr "Versión actual:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
+"Esta es la versión de tu complemento que será instalada si alguien hace clic "
+"en el botón de instalación en addons.mozilla.org. Solo es relevante para "
+"complementos listados."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6224,6 +6323,8 @@ msgstr "Ver el blog &#9658;"
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+"Por favor, elige una licencia adecuada para los derechos que concedes en tu "
+"código fuente. Solo es relevante para complementos listados."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6251,18 +6352,29 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
+"Se requerirá que los usuarios acepten el siguiente Acuerdo de licencia de "
+"usuario final (EULA, por sus siglas en inglés) antes de instalar tu "
+"complemento. La presencia de un EULA afecta significativamente el número de "
+"descargas que recibe un complemento. Por favor, ten en cuenta que un EULA no "
+"es lo mismo que una licencia de código, tal como GPL o MPL. Solo es "
+"relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Si tu complemento transmite cualquier dato del equipo del usuario, se "
+"requiere una política de privacidad que explique qué datos son enviados y "
+"cómo se utilizan. Solo es relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
+"Si tu complemento contiene código binario u ofuscado además de bibliotecas "
+"conocidas, sube sus fuentes para revisión."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Leer más sobre la política de revisión del código fuente."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -6311,6 +6423,7 @@ msgstr "Recibe colaboraciones en tu cuenta de PayPal o envíalas a una organizac
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
 msgstr ""
+"Las colaboraciones sólo están disponibles para los complementos listados."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -6660,7 +6773,7 @@ msgstr "¿Para qué tipo de revisión te gustaría postularte?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:58
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Solo publicar esta versión a mi canal beta."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:61
 msgid ""
@@ -6671,6 +6784,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:92
 msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
 msgstr ""
+"Tu versión ha sido detectada como beta. No ha pasado la validación "
+"automática y por tanto no puede ser enviada. Si tu objetivo no era enviarla "
+"como beta, por favor, desmarca la opción del canal beta."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -6720,11 +6836,13 @@ msgstr "Opcionalmente, introduce cualquier información que pueda ser útil para
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Código fuente"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
+"Si tu complemento contiene código binario u ofuscado, haz disponibles las "
+"fuentes aquí para los revisores."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145 apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
@@ -6806,27 +6924,31 @@ msgstr "Cancelar la petición de valoración"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Visibilidad del complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
-msgstr ""
+msgstr "Listados:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Visible para todos en {0} e incluido en resultados de búsquedas y en páginas "
+"de listados"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Ocultos:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Alojado en {0}, pero oculto para todos menos los autores. Usado para ocultar "
+"listados temporalmente, o descontinuarlos."
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Unlisted:"
-msgstr ""
+msgstr "No listados:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
@@ -6834,7 +6956,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
-msgstr ""
+msgstr "Versiones actuales"
 
 #: apps/devhub/templates/devhub/versions/list.html:138
 msgid "Currently on AMO"
@@ -6913,25 +7035,34 @@ msgstr "Agregar versión"
 
 #: apps/devhub/templates/devhub/versions/list.html:257 apps/devhub/templates/devhub/versions/list.html:275
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Ocultar complemento"
 
 #: apps/devhub/templates/devhub/versions/list.html:260
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Ocultar tu complemento prevendrá que aparezca en cualquier lugar de nuestra "
+"galería y no permitirá a los usuarios recibir actualizaciones automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:266
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "¿Estás seguro de que deseas ocultar tu complemento?"
 
 #: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Eliminar complemento de las listas."
 
 #: apps/devhub/templates/devhub/versions/list.html:290
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
+"La eliminación de tu complemento de las listas hará que sea invisible en "
+"este sitio web (así como cada una de sus versiones/archivos). No aparecerá "
+"en búsquedas, no tendrá una portada pública, y no será actualizado "
+"automáticamente para los usuarios actuales. Se recomienda que para los "
+"complementos eliminados de las listas se proporcione una <a href=\"%"
+"(update_url)s\" target=\"_blank\">updateURL</a> personalizada en su archivo "
+"install.rdf para actualizaciones automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
@@ -6939,7 +7070,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres eliminar tu complemento de las listas?"
 
 #: apps/devhub/templates/devhub/versions/list.html:330
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -7115,7 +7246,7 @@ msgstr "Ganadores del concurso de complementos para Australis"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "¿Cuáles son tus intereses?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -7418,15 +7549,15 @@ msgstr "Actualizar temas"
 
 #: apps/editors/helpers.py:130
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Actualizaciones pendientes no listadas"
 
 #: apps/editors/helpers.py:131
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Revisiones completas no listadas"
 
 #: apps/editors/helpers.py:132
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Revisiones preliminares no listadas"
 
 #: apps/editors/helpers.py:165
 msgid "Fast Track ({0})"
@@ -7461,20 +7592,20 @@ msgstr[1] "Revisiones moderadas ({0})"
 #: apps/editors/helpers.py:191
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisión completa no listada ({0})"
+msgstr[1] "Revisiones completas no listadas ({0})"
 
 #: apps/editors/helpers.py:196
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisión pendiente no listada ({0})"
+msgstr[1] "Revisiones pendientes no listadas ({0})"
 
 #: apps/editors/helpers.py:201
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisión preliminar no listadas ({0})"
+msgstr[1] "Revisiones preliminares no listadas ({0})"
 
 #: apps/editors/helpers.py:233
 msgid "Addon"
@@ -7543,7 +7674,7 @@ msgstr "Pasar a público"
 
 #: apps/editors/helpers.py:458
 msgid "Grant full review"
-msgstr ""
+msgstr "Otorgar revisión completa"
 
 #: apps/editors/helpers.py:473
 msgid "Request more information"
@@ -7649,7 +7780,7 @@ msgstr "Contiene un comentario del editor"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "Fuentes facilitadas"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
@@ -7722,7 +7853,7 @@ msgstr "necesita una super revisión"
 
 #: apps/editors/views.py:713
 msgid "commented"
-msgstr ""
+msgstr "comentado"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -7763,7 +7894,7 @@ msgstr "Colas"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Colas no listadas"
 
 #: apps/editors/templates/editors/base.html:75 apps/editors/templates/editors/themes/base.html:19 apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
@@ -7814,23 +7945,23 @@ msgstr "Detalles del registro"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Título de complemento"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Título de revisión"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Texto de revisión"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "La revisión ha sido marcada previamente para su eliminación."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Deshacer borrar"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -7867,20 +7998,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisión completa no listada ({num})"
+msgstr[1] "Revisiones completas no listadas ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Actualización pendiente no listada ({num})"
+msgstr[1] "Actualizaciones pendientes no listadas ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revisión preliminar no listada ({num})"
+msgstr[1] "Revisiones preliminares no listadas ({num})"
 
 #: apps/editors/templates/editors/home.html:109 apps/editors/templates/editors/performance.html:37 apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
@@ -8047,7 +8178,7 @@ msgstr "Revisión {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Historial de cambios de usuario de complemento"
 
 #: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
 msgid "Add-on History"
@@ -8075,15 +8206,15 @@ msgstr "Compatibilidad:"
 
 #: apps/editors/templates/editors/review.html:107
 msgid "Additional sources:"
-msgstr ""
+msgstr "Fuentes alternativas:"
 
 #: apps/editors/templates/editors/review.html:110
 msgid "Download files"
-msgstr ""
+msgstr "Descargar archivos"
 
 #: apps/editors/templates/editors/review.html:112
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "El desarrollador ha proporcionado el código fuente."
 
 #: apps/editors/templates/editors/review.html:147
 msgid "This version has not been reviewed."
@@ -8112,10 +8243,13 @@ msgstr "<strong>¡Atención!</strong> Otro usuario estuvo mirando esta página a
 #: apps/editors/templates/editors/review.html:259
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
+"La pizarra es el lugar para intercambiar información relevante a este "
+"complemento (sin importar la versión) entre el desarrollador y el editor. Es "
+"visible y editable para ambos."
 
 #: apps/editors/templates/editors/review.html:263
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Actualizar la pizarra"
 
 #: apps/editors/templates/editors/review.html:279 apps/editors/templates/editors/review.html:280
 msgid "(admin)"
@@ -8956,6 +9090,9 @@ msgstr "FAQ de desarrolladores de complementos"
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 msgstr ""
+"<h3>¿Cómo creo un complemento?</h3> <p>Mozilla proporciona documentación "
+"sobre cómo crear un complemento a través de <a href=\"%(url)s\">Mozilla "
+"Developer Network</a>.</p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -8964,10 +9101,12 @@ msgstr "Otros recursos incluyen:"
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
 msgstr ""
+"Publicación \"Cómo desarrollar una extensión de Firefox\" en el Blog de "
+"complementos"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Blog de complementos de Mozilla"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -8991,10 +9130,17 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a "
+"href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-"
+"plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
 msgstr ""
+"También puedes aprender más sobre cómo configurar el entorno de desarrollo "
+"mediante el artículo MDN <a href=\"%(url)s\">Configurar el entorno de "
+"desarrollo de extensiones</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -9060,14 +9206,23 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
+"Sí. Es posible, pero una parte de la funcionalidad proporcionada por estas "
+"bibliotecas está disponible a través de XPCOM, XUL, y JavaScript. Además, "
+"los autores deberían estar al tanto de si las bibliotecas modifican objetos "
+"prototype (String.prototype, Date.prototype, y otros) primitivos y/o definir "
+"funciones globales (ejemplo: la función $). Éstas son propensas a causar "
+"conflictos con otros complementos, en particular si diferentes complementos "
+"usan diferentes versiones de las bibliotecas. Los desarrolladores deben ser "
+"muy, muy cuidadosos al utilizarlas. Mozilla no ofrece documentación acerca "
+"de como usarlas para crear complementos."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "¿Cómo puedo depurar mi complemento?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Puedes utilizar el <a href=\"%(url)s\">Depurador de complementos</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -9079,16 +9234,30 @@ msgid ""
 "many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
 "important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Para asegurar la compatibilidad con el software de Mozilla más reciente, es "
+"importante descargar las actualizaciones cuando estén disponibles y probar "
+"tu complemento para estar seguro de que aún funciona como debería.  En "
+"muchos casos, la versión más reciente del software de Mozilla puede ser una "
+"versión beta. Ya que estas versiones a veces incluyen cambios estructurales "
+"que pueden impactar la funcionalidad de tu complemento, es importante estar "
+"involucrado activamente en el proceso beta para asegurarse de que los "
+"usuarios de tu complemento no sean afectados negativamente en las versiones "
+"definitivas del software de Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "¿Cómo mejorar el rendimiento de mi complemento?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
 "\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
+"Las extensiones escritas pobremente pueden tener un severo impacto en la "
+"experiencia de navegación, afectando el rendimiento en general de Firefox. "
+"La siguiente página contiene muy buenas <a href=\"%(url)s\">guías</a> que te "
+"ayudarán a mejorar el rendimiento, tanto si desarrollas Firefox o un "
+"complemento."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -9099,6 +9268,11 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Sí. Los detalles de cómo localizar tu complemento lo puedes encontrar en la "
+"<a href=\"%(l10n_url)s\">página de Localización de MDN</a>. <a href=\"%"
+"(bz_url)s\">El proyecto BabelZilla</a> es también un gran recurso para "
+"aprender acerca de la localización y cómo colaborar en la traducción de "
+"complementos."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -9118,6 +9292,8 @@ msgstr "#amo (para ayuda relacionada con el alojamiento de tu complemento en AMO
 #: apps/pages/templates/pages/dev_faq.html:221
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
 msgstr ""
+"#jetpack (para discusiones sobre el SDK de comeplentos y cfx/jpm - "
+"previamente conocido como Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -9136,11 +9312,12 @@ msgstr "Grupo de Google"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Foro de complementos"
 
+# If this is about the very well known site for asking questions about coding (very likely), then it should stay in english.
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -9159,6 +9336,11 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
 "\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"Sí. Puedes encontrar complementos desarrollados por terceros en el <a href=\""
+"%(forum_url)s\">Foro de complementos</a>, <a href=\"%(list_url)s\"> la lista de "
+"trabajos de Mozilla</a>, <a href=\"%(mz_url)s\"> el Foro mozillaZine</a> o <a "
+"href=\"%(wiki_url)s\">en la Wiki de Mozilla</a>. Debes estar al tanto de que "
+"Mozilla no ofrece recomendaciones de desarrolladores."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -9321,6 +9503,12 @@ msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
+"El grupo editorial de Mozilla sigue la <a href=\"%(url)s\">Guía de revisión "
+"para editores</a> cuando se prueba un complemento para aceptarlo en AMO. Es "
+"importante que el desarrollador del complemento revise la guía para "
+"asegurarse que los problemas comunes sean resueltos antes de enviar un "
+"complemento para revisión. Esto será de gran ayuda a agilizar el proceso de "
+"revisión."
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9537,10 +9725,13 @@ msgstr "La Open Source Initiative proporciona información sobre los términos d
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
 msgstr ""
+"Una comparación de las licencias de código abiertas conocidas en Wikipedia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr ""
+"Un sitio para proporcionar orientación sin prejuicios sobre la elección de "
+"una licencia para tu proyecto de código abierto."
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9 apps/pages/templates/pages/faq.html:10
 msgid "Frequently Asked Questions"
@@ -9966,6 +10157,10 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
 "comply with these guidelines."
 msgstr ""
+"Las valoraciones de complementos son una manera de que compartas tus "
+"opiniones sobre los complementos que has instalado y usado. Nuestro equipo "
+"de moderación de valoraciones se reserva el derecho de rechazar o eliminar "
+"cualquier valoración que no siga estos lineamientos."
 
 #: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
@@ -10006,6 +10201,8 @@ msgstr "¿Seguirás usando este complemento?"
 #: apps/pages/templates/pages/review_guide.html:73
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Tómate un momento para leer tu valoración antes de enviarla, para reducir "
+"errores ortográficos."
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
@@ -10014,12 +10211,18 @@ msgstr "No:"
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Enviar valoraciones de una sola palabra como \"¡Genial!\", \"maravilloso\", o "
+"\"mala\"."
 
 #: apps/pages/templates/pages/review_guide.html:87
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Publicar problemas técnicos, peticiones de ayuda, o sugerencias de "
+"funciones. Usa las opciones de ayuda disponibles para cada complemento, si "
+"las hay. Puedes encontrarlas en la columna lateral al lado de la sección "
+"Acerca de este complemento."
 
 #: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
@@ -10032,6 +10235,8 @@ msgstr "Escribas groserías, referencias sexuales o emplees lenguaje que pueda s
 #: apps/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr ""
+"Incluir HTML, vínculos, código fuente o snippets de código. Las valoraciones "
+"deben estar compuestas solo de texto."
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -10040,6 +10245,8 @@ msgstr "Incluyas falsas declaraciones, desacredites o insultes a los autores de 
 #: apps/pages/templates/pages/review_guide.html:114
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
+"Incluir correos electrónicos, números de teléfono u otros detalles "
+"personales, sean tuyos o de otras personas."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid "Post reviews for an add-on you or your organization wrote or represent."
@@ -10050,6 +10257,10 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Criticar un complemento por algo que se supone que debe hacer. Por ejemplo, "
+"dejar una valoración negativa de un complemento por mostrar publicidad o "
+"requerir recopilación de datos, cuando es el propósito del complemento, o "
+"cuando el complemento requiere recopilar datos para poder funcionar."
 
 #: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
@@ -10060,6 +10271,10 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Por favor reporta o informa sobre cualquier valoración cuestionable haciendo "
+"clic en \"Informar de esta valoración\" y será enviada al sitio para "
+"moderación. Nuestro equipo de moderación utilizará las Pautas de valoración "
+"para evaluar si borrar o no la valoración, o restaurarla al sitio."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -10070,6 +10285,10 @@ msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"http://forums.mozilla.org/viewforum.php?f=23\">forum</a> to engage in additional "
 "discussion or follow-up."
 msgstr ""
+"Sí, los autores de complementos pueden dar una sola respuesta a una "
+"revisión. Puedes organizar un tópico de discusión en nuestro <a "
+"href=\"http://forums.mozilla.org/viewforum.php?f=23\">foro</a> para entablar "
+"una discusión o seguir respondiendo."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -10080,6 +10299,11 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"En general, no. Pero si la valoración no cumple con las pautas de revisión "
+"definidas anteriormente, puedes hacer clic en \"Informar de esta valoración\" "
+"y será moderada. Si una valoración incluye una queja que ya no es válida por "
+"una nueva versión de tu complemento, podemos considerar borrarla. Envía tus "
+"peticiones detalladas a amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -10543,12 +10767,12 @@ msgstr "Publicar en Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} Me gusta"
+msgstr[1] "{0} Me gusta"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tuitear en Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -10558,15 +10782,15 @@ msgstr[1] "{0} tuits"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Compartir en g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Publicar en Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Publicar en Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
@@ -11043,6 +11267,9 @@ msgstr "No se permite esa contraseña."
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr ""
+"Como parte de nuestra nueva política de contraseñas, tu contraseña debe "
+"tener al menos %s caracteres. Por favor, actualiza tu contraseña <a href=\"%"
+"s\"> mediante un restablecimiento de contraseña</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"

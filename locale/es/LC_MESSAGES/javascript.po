@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2014-07-01 20:54+0000\n"
+"PO-Revision-Date: 2015-06-05 17:11+0000\n"
 "Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404248078.0\n"
+"X-POOTLE-MTIME: 1433524264.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -90,58 +90,75 @@ msgstr "Se ha terminado de validar {0}"
 #: static/js/common/upload-addon.js:323
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu complemento fue validado sin errores y {0} mensaje."
+msgstr[1] "Tu complemento fue validado sin errores y {0} mensajes."
 
 #: static/js/common/upload-addon.js:328
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Tu complemento fue validado sin errores ni advertencias."
 
 #: static/js/common/upload-addon.js:346
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Tu envío pasará por una revisión manual."
 
 #: static/js/common/upload-addon.js:350
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "Tu envío ha pasado la validación y será firmado automáticamente."
 
 #: static/js/common/upload-addon.js:352
 msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
+msgstr "Tu envío ha pasado la validación y pasará por una revisión manual."
 
 #: static/js/common/upload-addon.js:387
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Incluye notas detalladas de la versión (esto puede hacerse en el siguiente "
+"paso)."
 
 #: static/js/common/upload-addon.js:388
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Si tu complemento requiere una cuenta en un sitio web para probarlo con "
+"profundidad, incluye un usuario y contraseña de prueba en las Notas para el "
+"revisor (esto puede hacerse en el siguiente paso)."
 
 #: static/js/common/upload-addon.js:389
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Si tu complemento está dirigido a un público limitado deberías seleccionar "
+"Revisión preliminar en lugar de Revisión completa."
 
 #: static/js/common/upload-addon.js:402
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Lista de verificación de envío de complementos"
 
 #: static/js/common/upload-addon.js:403
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Por favor, verifica los siguientes puntos antes de finalizar tu envío. Esto "
+"minimizará retrasos o malentendidos durante el proceso de revisión:"
 
 #: static/js/common/upload-addon.js:405
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Los binarios compilados, así como los scripts minificados u ofuscados "
+"(excluyendo bibliotecas conocidas) deben ser enviados por separado para su "
+"revisión. Asegúrate de que utilizas el campo de subir código fuente para "
+"evitar que tu envío sea rechazado."
 
 #: static/js/common/upload-addon.js:423
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"El proceso de validación encontró estos problemas que pueden llevar a "
+"rechazos:"
 
 #: static/js/common/upload-addon.js:440
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Si no estás familiarizado con el proceso de revisión de complementos, puedes "
+"informarte aquí."
 
 #: static/js/common/upload-addon.js:476
 msgid "Some platforms are not available for this type of add-on."
@@ -511,7 +528,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
