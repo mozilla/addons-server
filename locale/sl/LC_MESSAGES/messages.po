@@ -13104,13 +13104,11 @@ msgstr "Sem avtor dodatka, ali lahko odgovorim na recenzijo?"
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set "
-"up a discussion topic in our <a "
-"href=\"%(forum_url)s\">forum</a> to engage in"
-" additional discussion or follow-up."
+"up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
+"in additional discussion or follow-up."
 msgstr ""
 "Da, avtorji dodatkov lahko objavijo en odgovor na recenzijo. Temo o razpravi"
-" lahko objavite na našem <a "
-"href=\"%(forum_url)s\">forumu</a>, da se "
+" lahko objavite na našem <a href=\"%(forum_url)s\">forumu</a>, da se "
 "poglobite v dodatno ali nadaljnjo razpravo."
 
 #: apps/pages/templates/pages/review_guide.html:149
