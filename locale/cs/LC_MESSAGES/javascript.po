@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-05-10 18:43+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2015-07-06 13:30+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431283390.0\n"
+"X-POOTLE-MTIME: 1436189418.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -853,7 +853,7 @@ msgstr "Doplněk nebyl aktualizován tak, aby byl ve výchozím nastavení kompa
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Je potřeba, abyste používal(a) Firefox 10 či vyšší."
+msgstr "Je potřeba, abyste používali Firefox 10.0 či vyšší."
 
 #: static/js/zamboni/buttons.js:145
 msgid "Mozilla has marked this version as incompatible with your Firefox version."

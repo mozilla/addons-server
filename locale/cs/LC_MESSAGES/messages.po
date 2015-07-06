@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-05-10 19:18+0000\n"
-"Last-Translator: Pavel <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2015-07-06 13:34+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431285529.0\n"
+"X-POOTLE-MTIME: 1436189655.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1852,7 +1852,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr "Oops"
+msgstr "Jejda"
 
 #: apps/amo/templates/amo/500.html:6
 msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -2089,7 +2089,7 @@ msgstr "Verze"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "https://developer.mozilla.org/docs/Install_Manifests"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
@@ -2692,7 +2692,7 @@ msgstr "Blokované doplňky"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8 apps/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr "Blocklist"
+msgstr "Seznam blokování"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
@@ -5404,7 +5404,7 @@ msgstr "Doplněk musí mít skvělé recenze od uživatelů a jakékoliv problé
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr "Doplněk musí mít minimálně 2 tisíce uživatelů."
+msgstr "Doplněk musí mít minimálně 2000 uživatelů."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -5773,7 +5773,10 @@ msgstr "Následující doplňky nejsou v žádné formě dovoleny:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr "Doplňky, které obsahují <a href=\"http://cs.wikipedia.org/wiki/Spyware\">spyware</a> či <a href=\"http://cs.wikipedia.org/wiki/Malware\">malware</a>."
+msgstr ""
+"Doplňky, které obsahují <a "
+"href=\"http://cs.wikipedia.org/wiki/Spyware\">spyware</a> či <a "
+"href=\"http://cs.wikipedia.org/wiki/Malware\">malware</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -6981,7 +6984,7 @@ msgstr "Motivy ke dni Sv. Patrika"
 
 #: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
+msgstr "Ozdobte svůj prohlížeč na oslavu dne Sv. Patrika."
 
 #: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
@@ -7276,7 +7279,7 @@ msgstr "Kontrola administrátorem"
 
 #: apps/editors/forms.py:105
 msgid "Max. Version"
-msgstr "Max. Version"
+msgstr "Max. verze"
 
 #: apps/editors/forms.py:109
 msgid "Days Since Submission"
@@ -10069,8 +10072,10 @@ msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
 msgstr ""
-"Vývoj projektu Sunbird byl ukončen a jeho finální verze vyšla 23. března 2010. Jsme pyšní, že jsme mohli hostovat doplňky Sunbirdu na tomto webu, ale projekt již není dlouhodobě spravován, takže "
-"jsme podporu pro doplňky tohoto projektu ukončili."
+"Vývoj projektu Sunbird byl ukončen a jeho finální verze vyšla 30. března "
+"2010. Jsme pyšní, že jsme mohli hostovat doplňky Sunbirdu na tomto webu, ale "
+"projekt již není dlouhodobě spravován, takže jsme podporu pro doplňky "
+"tohoto projektu ukončili."
 
 #: apps/pages/templates/pages/sunbird.html:38
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
@@ -10928,11 +10933,20 @@ msgid ""
 "parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
 "sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete přidat parametr, který vám umožní sledovat zdroje, "
-"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
-"src=<b>external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
-"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje (např. \"external-blog\", \"external-sidebar"
-"\", \"external-campaign225\" atd.). Jsou povoleny následující znaky, které jsou bezpečné pro URL: alfanumerické znaky a <code>- . _ ~ %% +</code>  "
+"<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na "
+"stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete "
+"přidat parametr, který vám umožní sledovat zdroje, odkud je doplněk "
+"stahován. Například můžete použít následující odkazy jako zdroj pro svůj "
+"blog: <dl> <dt>Stránka s informacemi o doplňku</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> "
+"<dt>Přímý odkaz na soubor</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%"
+"(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
+"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 "
+"dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis "
+"zdroje (např. \"external-blog\", \"external-sidebar\", \"external-campaign225\" "
+"atd.). Jsou povoleny následující znaky, které jsou bezpečné pro URL: "
+"alfanumerické znaky a <code>- . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -11113,7 +11127,7 @@ msgstr "algoritmus"
 
 #: apps/users/models.py:64
 msgid "salt"
-msgstr "salt"
+msgstr "sůl"
 
 #: apps/users/models.py:65
 msgid "hash"
