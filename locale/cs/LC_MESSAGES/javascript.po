@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-07-06 13:30+0000\n"
+"PO-Revision-Date: 2015-07-06 13:52+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436189418.0\n"
+"X-POOTLE-MTIME: 1436190768.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -159,11 +159,11 @@ msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Typ souboru, který jste nahrával(a), nebyl rozpoznán."
+msgstr "Typ souboru, který jste nahráli, nebyl rozpoznán."
 
 #: static/js/common/upload-base.js:79
 msgid "You cancelled the upload."
-msgstr "Zrušil(a) jste nahrávání."
+msgstr "Zrušili jste nahrávání."
 
 #: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
@@ -171,7 +171,7 @@ msgstr "Obrázky musí být v PNG či JPG."
 
 #: static/js/common/upload-image.js:101
 msgid "Videos must be in WebM."
-msgstr "Videa musí být ve formátu WebM"
+msgstr "Videa musí být ve formátu WebM."
 
 #: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -188,7 +188,7 @@ msgstr "Začít sledovat"
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní."
+msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní"
 
 #: static/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
@@ -236,7 +236,7 @@ msgstr "Označeno pro smazání"
 
 #: static/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr "Probíhá aktualizace výsledků..."
+msgstr "Probíhá aktualizace výsledků&hellip;"
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
@@ -870,7 +870,7 @@ msgstr "Přesto stáhnout pro aplikaci {0}"
 
 #: static/js/zamboni/buttons.js:284
 msgid "Not available for your platform"
-msgstr "Není dostupné pro vaši platformu."
+msgstr "Není dostupné pro vaši platformu"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
@@ -959,7 +959,7 @@ msgstr "Ukončit sledování"
 
 #: static/js/zamboni/devhub.js:170
 msgid "Your browser does not support the video tag"
-msgstr "Váš prohlížeč nepodporuje značku video."
+msgstr "Váš prohlížeč nepodporuje značku video"
 
 #: static/js/zamboni/devhub.js:427
 msgid "Changes Saved"
@@ -997,7 +997,7 @@ msgstr "Příklad"
 
 #: static/js/zamboni/devhub.js:1212
 msgid "Image changes being processed"
-msgstr "Jsou prováděny změny obrázku."
+msgstr "Jsou prováděny změny obrázku"
 
 #: static/js/zamboni/devhub.js:1339
 msgid "Starting tests..."
@@ -1045,7 +1045,7 @@ msgstr "Potvrzení nebylo aplikací zkontrolováno."
 
 #: static/js/zamboni/editors.js:268
 msgid "{name} was viewing this add-on first."
-msgstr "{name} prohlédl tento doplněk jako první"
+msgstr "{name} prohlédl tento doplněk jako první."
 
 #: static/js/zamboni/editors.js:279
 msgid "Loading&hellip;"
@@ -1061,7 +1061,7 @@ msgstr "Poznámky pro redaktory"
 
 #: static/js/zamboni/editors.js:294
 msgid "No version notes found"
-msgstr "Nebyla nalezena žádná verze poznámek."
+msgstr "Nebyla nalezena žádná verze poznámek"
 
 #: static/js/zamboni/editors.js:354
 msgid "Average Reviews"
@@ -1102,9 +1102,9 @@ msgstr "Síla hesla:"
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Zbývá {0} znak"
-msgstr[1] "Zbývají {0} znaky"
-msgstr[2] "Zbývá {0} znaků"
+msgstr[0] "Zbývá {0} znak."
+msgstr[1] "Zbývají {0} znaky."
+msgstr[2] "Zbývá {0} znaků."
 
 #: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
 msgid "All"
@@ -1189,7 +1189,7 @@ msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
 
 #: static/js/zamboni/validator.js:472
 msgid "Internal server error"
-msgstr "Interní chyba serveru."
+msgstr "Interní chyba serveru"
 
 #: static/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
