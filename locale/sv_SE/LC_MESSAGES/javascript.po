@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-05-02 11:12+0000\n"
+"PO-Revision-Date: 2015-07-06 18:16+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430565143.0\n"
+"X-POOTLE-MTIME: 1436206611.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -90,12 +90,12 @@ msgstr "Validering klar för {0}"
 #: static/js/common/upload-addon.js:323
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ditt tillägg validerades utan fel och {0} meddelande."
+msgstr[1] "Ditt tillägg validerades utan fel och {0} meddelanden."
 
 #: static/js/common/upload-addon.js:328
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Ditt tillägg validerades utan fel eller varningar."
 
 #: static/js/common/upload-addon.js:346
 msgid "Your submission will go through a manual review."
