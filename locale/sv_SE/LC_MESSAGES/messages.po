@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-06-17 09:38-0700\n"
-"PO-Revision-Date: 2015-05-20 22:11+0000\n"
-"Last-Translator: Andreas <az@kth.se>\n"
+"PO-Revision-Date: 2015-07-08 19:26+0200\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Poedit 1.8.2\n"
 "X-POOTLE-MTIME: 1432159918.0\n"
 
 #: apps/addons/buttons.py:185
@@ -294,7 +294,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Ett förslaget engångsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#.                    {1} is an amount input field
+#. {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Ett engångsbidrag på {0} {1}"
@@ -449,7 +449,7 @@ msgstr "Inget att se här! Utvecklaren inkluderade inte några detaljer."
 #: apps/addons/templates/addons/details_box.html:255
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr "Versionsanteckningar"
+msgstr "Versionsfakta"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -860,7 +860,7 @@ msgstr "Recensioner"
 
 #: apps/addons/templates/addons/review_list_box.html:14 apps/addons/templates/addons/impala/review_list_box.html:14 apps/reviews/templates/reviews/review.html:30
 msgid "by %(user)s on %(date)s"
-msgstr "av %(user)s %(date)s"
+msgstr "av %(user)s den %(date)s"
 
 #: apps/addons/templates/addons/review_list_box.html:19 apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
@@ -1933,8 +1933,8 @@ msgid "Previous"
 msgstr "Föregående"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.                third argument is the number of total results (e.g., 1,000).
-#.              third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
@@ -2365,8 +2365,8 @@ msgstr[0] "<span>%(followers)s</span> följare"
 msgstr[1] "<span>%(followers)s</span> följare"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2374,7 +2374,7 @@ msgstr[0] "%(num)s följare per vecka"
 msgstr[1] "%(num)s följare per vecka"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2382,8 +2382,8 @@ msgstr[0] "%(num)s följare per månad"
 msgstr[1] "%(num)s följare per månad"
 
 #. People "follow" collections to get notified of updates.
-#.                    Like Twitter followers.
-#.                      Like Twitter followers.
+#. Like Twitter followers.
+#. Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -4139,7 +4139,7 @@ msgstr "Vill du att ditt tillägg ska distribueras på denna webbplats?"
 #: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
-msgstr ""
+msgstr "Varning:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
@@ -4393,7 +4393,7 @@ msgstr "En längre förklaring av funktioner, funktionalitet och annan relevant 
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
-msgstr "Standardlokal"
+msgstr "Standardspråk"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
@@ -5275,7 +5275,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107 apps/devhub/templates/devhub/docs/policies-reviews.html:306 apps/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "Senast uppdaterad: 13 januari 2011"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:13
 msgid ""
@@ -5294,7 +5294,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
-msgstr ""
+msgstr "Kriterier för utvalda tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
@@ -5531,7 +5531,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
-msgstr ""
+msgstr "fjärr-XUL"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
@@ -5555,7 +5555,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
-msgstr ""
+msgstr "minnesläckor"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:112
 msgid "possible conflicts with other add-ons"
@@ -5743,7 +5743,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
-msgstr ""
+msgstr "Kriterier för inskickning"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:13
 msgid ""
@@ -5831,7 +5831,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
-msgstr ""
+msgstr "Licensiering"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:86
 msgid ""
@@ -5851,7 +5851,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies.html:18 apps/devhub/templates/devhub/docs/policies.html:78
 msgid "Maintaining Your Add-on"
-msgstr ""
+msgstr "Underhåll av tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
@@ -6052,7 +6052,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#.                {1} is the application name.
+#. {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -6295,23 +6295,23 @@ msgstr "Design för tema"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221 apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Ladda upp en ny design"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "Vid uppladdning och inskickning av formulär kommer gruppen från AMO att granska din uppdaterade design. Din nuvarande utformning kommer fortfarande att vara offentliga under tiden."
 
 #: apps/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Din tidigare inskickade design, som väntar på granskning."
 
 #: apps/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr ""
+msgstr "Väntande sidhuvud"
 
 #: apps/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
-msgstr ""
+msgstr "Väntande sidfot"
 
 #: apps/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
@@ -6393,7 +6393,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Delta i konversationen i vårt <a href=\"%(forum_url)s\">forum</a>."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
@@ -6490,7 +6490,7 @@ msgstr "Ladda upp en annan fil"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
 msgid "Version Notes"
-msgstr ""
+msgstr "Versionsfakta"
 
 #: apps/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -6500,11 +6500,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
-msgstr ""
+msgstr "Godkännandestatus"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:131
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Anteckning för granskare"
 
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -6594,11 +6594,11 @@ msgstr[1] ""
 
 #: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:327 apps/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Avbryt begärd granskning"
 
 #: apps/devhub/templates/devhub/versions/list.html:101
 msgid "Addon visibility"
-msgstr ""
+msgstr "Tilläggets synlighet"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Listed:"
@@ -6606,31 +6606,31 @@ msgstr "Listad:"
 
 #: apps/devhub/templates/devhub/versions/list.html:110
 msgid "Visible to everyone on {0} and included in search results and listing pages"
-msgstr ""
+msgstr "Synlig för alla på {0} och ingår i sökresultaten och listningssidor"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hidden:"
-msgstr ""
+msgstr "Dold:"
 
 #: apps/devhub/templates/devhub/versions/list.html:116
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr ""
+msgstr "Finns på {0}, men dold för andra utom för författarna. Används för att tillfälligt dölja listning eller avbryta dem."
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Unlisted:"
-msgstr ""
+msgstr "Olistad:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
-msgstr ""
+msgstr "Inte distribuerad till {0}. Utvecklare kommer att ladda upp nya versioner för undertecknande och distribuera tillägg på egen hand. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
-msgstr ""
+msgstr "Nuvarande versioner"
 
 #: apps/devhub/templates/devhub/versions/list.html:138
 msgid "Currently on AMO"
-msgstr ""
+msgstr "För närvarande på AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:139 apps/devhub/templates/devhub/versions/list.html:160 apps/devhub/templates/devhub/versions/list.html:180
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
@@ -6649,7 +6649,7 @@ msgstr "Prestanda"
 
 #: apps/devhub/templates/devhub/versions/list.html:159
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Nästa version av detta tillägg"
 
 #: apps/devhub/templates/devhub/versions/list.html:173
 msgid "Older versions"
@@ -6667,18 +6667,20 @@ msgstr "Ta bort version {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Du är på väg att ta bort den nuvarande versionen av ditt tillägg. Detta kan leda till att tilläggets status ändras eller din listning förloras, om detta är den enda offentliga versionen av "
+"tillägget."
 
 #: apps/devhub/templates/devhub/versions/list.html:220
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Tar bort den här versionen kommer att permanent ta bort:"
 
 #: apps/devhub/templates/devhub/versions/list.html:226
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Viktigt:</strong> När en version har tagits bort, kan du inte ladda upp en ny version med samma versionsnummer."
 
 #: apps/devhub/templates/devhub/versions/list.html:231
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
-msgstr ""
+msgstr "Ta bort en version som redan har granskats kan också orsaka en betydande försening i granskningen av din nästa uppdatering."
 
 #: apps/devhub/templates/devhub/versions/list.html:234
 msgid "Are you sure you wish to delete this version?"
@@ -6702,45 +6704,49 @@ msgstr "Lägg till version"
 
 #: apps/devhub/templates/devhub/versions/list.html:257 apps/devhub/templates/devhub/versions/list.html:275
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Dölj tillägg"
 
 #: apps/devhub/templates/devhub/versions/list.html:260
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Dölja ditt tillägg kommer att hindra den från att visas i vårt galleri och kommer att stoppa användare från att ta emot automatiska uppdateringar."
 
 #: apps/devhub/templates/devhub/versions/list.html:266
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Är du säker på att du vill dölja ditt tillägg?"
 
 #: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Lista ej tillägg"
 
 #: apps/devhub/templates/devhub/versions/list.html:290
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
+"Ej lista ditt tillägg kommer att göra det (och var och en av dess versioner/filer) osynligt på denna webbplats. Det kommer inte att dyka upp i sökningar, kommer inte att ha en offentlig sida utåt "
+"och kommer inte att uppdateras automatiskt för de nuvarande användarna. Det rekommenderas för olistade tillägg för att ge en anpassad <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> i "
+"deras install.rdf fil för automatiska uppdateringar."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
-msgstr ""
+msgstr "Växla tillägg till olistad befinner sig nu i en öppen beta. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Rapport eventuella buggar</a> som du stöter på."
 
 #: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Är du säker på att du vill ej vill lista ditt tillägg?"
 
 #: apps/devhub/templates/devhub/versions/list.html:330
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr ""
+msgstr "Avbryta din begäran om granskning kommer att lämna ditt tillägg som preliminärt granskad."
 
 #: apps/devhub/templates/devhub/versions/list.html:335
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
+"Avbryta din begäran om granskning kommer att markera ditt tillägg som ofullständig. Om du inte slutför ditt tillägg efter flera dagar genom att åter begära granskning, kommer det att tas bort."
 
 #: apps/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Är du säker på att du vill avbryta din begäran om granskning?"
 
 #: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
@@ -6748,7 +6754,7 @@ msgstr "Shopping utan problem"
 
 #: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Spara på dina favoritobjekt från bekvämligheten av din webbläsare."
 
 #: apps/discovery/modules.py:149
 msgid "Build the perfect website"
@@ -6756,7 +6762,7 @@ msgstr "Bygg den perfekta webbplatsen"
 
 #: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
-msgstr ""
+msgstr "Hjälp testa Firefox med dessa verktyg"
 
 #: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
@@ -6820,83 +6826,83 @@ msgstr "Tillägg som hjälper dig på dina resor!"
 
 #: apps/discovery/modules.py:226
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
+msgstr "Visar en landsflagga som visar placeringen av den aktuella webbplatsen server och mer."
 
 #: apps/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
+msgstr "FoxClocks låter dig hålla ett öga på tiden runt om i världen."
 
 #: apps/discovery/modules.py:230
 msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
+msgstr "Får automatiskt det lägsta priset när du handlar på nätet eller söker efter flyg."
 
 #: apps/discovery/modules.py:240
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "A+ tillägg för skolan"
 
 #: apps/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Tillägg för lärare, föräldrar och elever på väg tillbaka till skolan."
 
 #: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Vill du veta vilka webbplatser du kan lita på?"
 
 #: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks är tillägget för bokmärkning."
 
 #: apps/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Webbsida och textöversättare, ordbok och mycket mer!"
 
 #: apps/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
-msgstr ""
+msgstr "Tillägg för att hjälpa dig på vägen under 2012"
 
 #: apps/discovery/modules.py:272
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Kärlek är i luften"
 
 #: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Lägg till lite romantik till din Firefox."
 
 #: apps/discovery/modules.py:280
 msgid "Put a Theme on It!"
-msgstr ""
+msgstr "Sätt ett tema på det!"
 
 #: apps/discovery/modules.py:281
 msgid "Visit addons.mozilla.org from Firefox for Android and dress up your mobile browser to match your style, mood, or the season."
-msgstr ""
+msgstr "Besök addons.mozilla.org från Firefox för Android och klä upp din mobila webbläsare för att matcha din stil, humör eller säsongen."
 
 #: apps/discovery/modules.py:290
 msgid "Get up and move!"
-msgstr ""
+msgstr "Stig upp och rör på dig!"
 
 #: apps/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Installera dessa fitnesstillägg för att hålla dig aktiv och hälsosam."
 
 #: apps/discovery/modules.py:299
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nytt &amp; Nu"
 
 #: apps/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Hämta det senaste måste-ha tilläggen för tillfället."
 
 #: apps/discovery/modules.py:332
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Bekymmersfri surfning"
 
 #: apps/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Skydda din integritet på nätet med tillägg i denna samling."
 
 #: apps/discovery/modules.py:342
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Bra tillägg för arbete, nöje, integritet, produktivitet&hellip; precis vad som helst!"
 
 #: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
@@ -6904,7 +6910,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Vilka är dina intressen?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -6922,15 +6928,15 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
-msgstr ""
+msgstr "Rekommenderas för dig"
 
 #: apps/discovery/templates/discovery/pane.html:66
 msgid "What is this?"
-msgstr ""
+msgstr "Vad är detta?"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Lär dig mer om tilläggä"
 
 #: apps/discovery/templates/discovery/pane.html:89 apps/discovery/templates/discovery/pane.html:96
 msgid "See all"
@@ -6954,12 +6960,12 @@ msgstr "Stäng video"
 
 #: apps/discovery/templates/discovery/pane.html:117
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Under tiden videon spelas, kommer tillägg som anges visas här."
 
 #. {0} is the user's login name.
 #: apps/discovery/templates/discovery/pane_account.html:6
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Hej, {0}"
 
 #: apps/discovery/templates/discovery/pane_account.html:17
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
@@ -6967,11 +6973,11 @@ msgstr "Tack för att du använder %(app)s och bidrar till <a href=\"%(url)s\">M
 
 #: apps/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Tillägg nedladdade"
 
 #: apps/discovery/templates/discovery/addons/detail.html:71
 msgid "Active Users"
-msgstr ""
+msgstr "Aktiva användare"
 
 #: apps/discovery/templates/discovery/addons/detail.html:80
 msgid "Last Updated"
@@ -6983,7 +6989,7 @@ msgstr "Avbryt installation"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
-msgstr ""
+msgstr "Hämta tillägg på resande fot"
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:8
 msgid "Visit <a href=\"%(url)s\">firefox.com/m</a> to get Firefox on your phone and personalize your browser anytime, anywhere. Easily discover and install add-ons from the mobile Add-ons Manager."
@@ -6991,7 +6997,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
-msgstr ""
+msgstr "Hämta mobila tillägg"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
@@ -7019,11 +7025,11 @@ msgstr "Mozilla&rsquo;s val för månaden!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
-msgstr ""
+msgstr "Anpassa Firefox<br>med din nations flagga"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Följ med oss för att fira den globala andan av en gemenskap."
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
@@ -7035,7 +7041,7 @@ msgstr ""
 
 #: apps/editors/forms.py:32
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Borttagna granskningar"
 
 #: apps/editors/forms.py:40 apps/editors/forms.py:59
 msgid "View entries between"
@@ -7047,11 +7053,11 @@ msgstr "och"
 
 #: apps/editors/forms.py:44
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrera efter typ/åtgärd"
 
 #: apps/editors/forms.py:61
 msgid "containing"
-msgstr ""
+msgstr "innehåller"
 
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:67
@@ -7090,7 +7096,7 @@ msgstr ""
 
 #: apps/editors/forms.py:109
 msgid "Days Since Submission"
-msgstr ""
+msgstr "Dagar sedan inskickning"
 
 #: apps/editors/forms.py:114
 msgid "Add-on Types"
@@ -7177,7 +7183,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
-msgstr ""
+msgstr "Fullständig granskning"
 
 #: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
@@ -7224,8 +7230,8 @@ msgstr[1] ""
 #: apps/editors/helpers.py:170
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fullständig granskning ({0})"
+msgstr[1] "Fullständiga granskningar ({0})"
 
 #: apps/editors/helpers.py:175
 msgid "Pending Update ({0})"
@@ -7404,7 +7410,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:899 apps/editors/helpers.py:919
 msgid "Flagged"
-msgstr ""
+msgstr "Flaggad"
 
 #: apps/editors/helpers.py:903 apps/editors/helpers.py:922
 msgid "Updates"
@@ -7416,7 +7422,7 @@ msgstr ""
 
 #: apps/editors/models.py:183
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack-tillägg"
 
 #: apps/editors/models.py:185
 msgid "Restartless Add-on"
@@ -7424,11 +7430,11 @@ msgstr ""
 
 #: apps/editors/models.py:186
 msgid "More Information Requested"
-msgstr ""
+msgstr "Mer information begärd"
 
 #: apps/editors/models.py:187
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Innehåller redigeringskommentar"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
@@ -7493,7 +7499,7 @@ msgstr ""
 #: apps/editors/views.py:709
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "upptrappad"
 
 #: apps/editors/views.py:711
 msgid "needs more information"
@@ -7505,7 +7511,7 @@ msgstr ""
 
 #: apps/editors/views.py:713
 msgid "commented"
-msgstr ""
+msgstr "kommenterade"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -7577,7 +7583,7 @@ msgstr "Händelse"
 
 #: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
-msgstr ""
+msgstr "Mer detaljer."
 
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
@@ -7585,11 +7591,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:5
 msgid "Log Details"
-msgstr ""
+msgstr "Loggdetaljer"
 
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
-msgstr ""
+msgstr "Loggdetaljer"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
@@ -7614,8 +7620,8 @@ msgstr ""
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fullständig granskning ({num})"
+msgstr[1] "Fullständiga granskningar ({0})"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
@@ -7631,7 +7637,7 @@ msgstr[1] ""
 
 #: apps/editors/templates/editors/home.html:36 apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Aktuella väntetider:"
 
 #: apps/editors/templates/editors/home.html:44 apps/editors/templates/editors/home.html:94
 msgid "{0} add-on"
@@ -7731,7 +7737,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:34
 msgid "By {user_name}"
-msgstr ""
+msgstr "Av {user_name}"
 
 #: apps/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
@@ -7787,7 +7793,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/queue.html:90
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "av %(user)s den %(date)s %(stars)s (%(locale)s)"
 
 #: apps/editors/templates/editors/queue.html:106
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -7799,7 +7805,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Versionsfakta / Anteckningar för granskare"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
@@ -7840,15 +7846,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:85
 msgid "Contents"
-msgstr ""
+msgstr "Innehåll"
 
 #: apps/editors/templates/editors/review.html:88
 msgid "Compare"
-msgstr ""
+msgstr "Jämför"
 
 #: apps/editors/templates/editors/review.html:96
 msgid "Compatibility:"
-msgstr ""
+msgstr "Kompatibilitet:"
 
 #: apps/editors/templates/editors/review.html:107
 msgid "Additional sources:"
@@ -7908,7 +7914,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:287
 msgid "More Information"
-msgstr ""
+msgstr "Mer information"
 
 #: apps/editors/templates/editors/review.html:289
 msgid "Resolution"
@@ -7918,7 +7924,7 @@ msgstr ""
 #: apps/editors/templates/editors/reviewlog.html:21
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Filter"
-msgstr ""
+msgstr "Filtrera"
 
 #: apps/editors/templates/editors/reviewlog.html:27
 msgctxt "editorcp_reviewlog_page_heading"
@@ -7928,7 +7934,7 @@ msgstr ""
 #: apps/editors/templates/editors/reviewlog.html:34
 msgctxt "editorcp_reviewlog_column_date"
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: apps/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
@@ -8157,7 +8163,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Beskriv dina skäl för avslag"
 
 #: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
@@ -8165,7 +8171,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Beskriv din anledning till flaggning"
 
 #: apps/files/forms.py:87
 msgid "Cannot diff a version against itself"
@@ -8202,11 +8208,11 @@ msgstr ""
 
 #: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Det gick inte att tolka uppladdad fil."
 
 #: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Ogiltigt filnamn i arkivet: {0}"
 
 #: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
@@ -8218,11 +8224,11 @@ msgstr "Felaktigt arkiv."
 
 #: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
-msgstr ""
+msgstr "Det gick inte att tolka install.rdf."
 
 #: apps/files/utils.py:460
 msgid "Could not find a UUID."
-msgstr ""
+msgstr "Kunde inte hitta ett UUID."
 
 #: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
@@ -8278,15 +8284,15 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:42
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Hämtar valideringsresultat..."
 
 #: apps/files/templates/files/viewer.html:53
 msgid "Deleted files:"
-msgstr ""
+msgstr "Borttagna filer:"
 
 #: apps/files/templates/files/viewer.html:62
 msgid "Hide known files"
-msgstr ""
+msgstr "Dölj kända filer"
 
 #: apps/files/templates/files/viewer.html:65
 msgid "Add-on SDK Version:"
@@ -8326,7 +8332,7 @@ msgstr "Expandera alla"
 
 #: apps/files/templates/files/viewer.html:110 apps/files/templates/files/viewer.html:111
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Dölj eller visa träd"
 
 #: apps/files/templates/files/viewer.html:115 apps/files/templates/files/viewer.html:116
 msgid "Wrap or unwrap text"
@@ -8338,7 +8344,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:130
 msgid "Fetching file."
-msgstr ""
+msgstr "Hämtar fil."
 
 #: apps/localizers/views.py:39
 msgid "An error occurred saving this message."
@@ -8359,7 +8365,7 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/categories.html:11 apps/localizers/templates/localizers/dashboard.html:11 apps/localizers/templates/localizers/summary.html:8
 msgid "Localization Dashboard"
-msgstr ""
+msgstr "Översättningsöversikt"
 
 #: apps/localizers/templates/localizers/categories.html:12
 msgid "Category Localization for {0}"
@@ -8386,12 +8392,12 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/locale_switcher.html:3
 msgid "Change Locale:"
-msgstr ""
+msgstr "Ändra språk:"
 
 #. Header to an info box in the sidebar
 #: apps/localizers/templates/localizers/sidebar.html:4
 msgid "Good to know"
-msgstr ""
+msgstr "Bra att veta"
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
@@ -8439,11 +8445,11 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/summary.html:19
 msgid "Get started with AMO L10n"
-msgstr ""
+msgstr "Kom igång med AMO L10n"
 
 #: apps/localizers/templates/localizers/summary.html:23
 msgid "Existing AMO locales"
-msgstr ""
+msgstr "Befintliga AMO språkversioner"
 
 #: apps/localizers/templates/localizers/summary.html:27
 msgid "Locale code"
@@ -8479,7 +8485,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Hur gör jag för att hänga med i vad som händer på AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
@@ -8515,7 +8521,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
-msgstr ""
+msgstr "Hjälp till att förbättra webbplatsen. Det är öppen källkod och du kan skicka in buggar och patchar. <a href=\"%(url)s\"> Bugzilla</a> innehåller alla våra nuvarande buggar."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -8535,7 +8541,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "Jag har en fråga"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
@@ -8567,7 +8573,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:28
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr ""
+msgstr "Det är lätt att hjälpa oss att se till att tillägg uppdateras i tid för lanseringen av nästa version av Firefox."
 
 #: apps/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
@@ -8615,7 +8621,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
-msgstr ""
+msgstr "Översättare"
 
 #: apps/pages/templates/pages/credits.html:34
 msgid "Reviewers"
@@ -8801,7 +8807,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Hur kan jag felsöka mitt tillägg"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
@@ -8860,25 +8866,25 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
 msgid "Mailing List"
-msgstr ""
+msgstr "E-postlista"
 
 #. Label for a link to the extension developers newsgroup
 #: apps/pages/templates/pages/dev_faq.html:230
 msgid "Newsgroup"
-msgstr ""
+msgstr "Nyhetsgrupp"
 
 #. Label for a link to the extension developers Google Group
 #: apps/pages/templates/pages/dev_faq.html:234
 msgid "Google Group"
-msgstr ""
+msgstr "Google grupp"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Tilläggsforum"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -8886,7 +8892,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:245 apps/pages/templates/pages/dev_faq.html:528
 msgid "No."
-msgstr ""
+msgstr "Nej."
 
 #: apps/pages/templates/pages/dev_faq.html:247
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -8919,7 +8925,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:285
 msgid "What is AMO?"
-msgstr ""
+msgstr "Vad är AMO?"
 
 #: apps/pages/templates/pages/dev_faq.html:287
 msgid ""
@@ -9313,7 +9319,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Hur håller jag tillägg uppdaterade?"
 
 #: apps/pages/templates/pages/faq.html:111
 msgid ""
@@ -9542,7 +9548,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13 templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
-msgstr "Mobile-tillägg"
+msgstr "Mobila tillägg"
 
 #: apps/pages/templates/pages/faq.html:306
 msgid "What are mobile add-ons?"
@@ -9576,7 +9582,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:39 apps/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Vanliga frågor om granskning"
 
 #: apps/pages/templates/pages/review_guide.html:46
 msgid ""
@@ -9683,9 +9689,7 @@ msgid "I’m an add-on author, can I respond to reviews?"
 msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:142
-msgid ""
-"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional "
-"discussion or follow-up."
+msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:149
@@ -9788,7 +9792,7 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:121
 msgid "Learn more about performance"
-msgstr ""
+msgstr "Läs mer om prestanda"
 
 #: apps/reviews/feeds.py:25
 msgid "Reviews for %s"
@@ -9859,7 +9863,7 @@ msgstr "Välj en anledning:"
 
 #: apps/reviews/templates/reviews/review.html:26
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "av %(user)s <b>(Utvecklare)</b> %(date)s"
+msgstr "av %(user)s <b>(Utvecklare)</b> den %(date)s"
 
 #. {0} is a version number (like 1.01)
 #: apps/reviews/templates/reviews/review.html:50 apps/reviews/templates/reviews/mobile/review_list.html:41
@@ -9952,11 +9956,11 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:3 apps/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
-msgstr ""
+msgstr "Lägg till en recension"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:5
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Logga in för att lägga till en recension"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
@@ -10294,7 +10298,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/global_report_menu.html:22
 msgid "Collections Created"
-msgstr ""
+msgstr "Samlingar skapade"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
@@ -10441,7 +10445,7 @@ msgstr "Samlingar skapade efter datum"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Bidrag efter datum"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
@@ -10449,7 +10453,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Hur räknas nedladdningar?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -10582,7 +10586,7 @@ msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Befintliga språkversioner"
 
 #: apps/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
@@ -10680,7 +10684,7 @@ msgstr "Profilfoto"
 
 #: apps/users/forms.py:352 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Standardspråk"
 
 #: apps/users/forms.py:489
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10895,7 +10899,7 @@ msgstr ""
 
 #: apps/users/views.py:531
 msgid "Having Trouble?"
-msgstr ""
+msgstr "Har du problem?"
 
 #: apps/users/views.py:677
 msgid "You are already logged in to an account."
@@ -11032,7 +11036,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
-msgstr ""
+msgstr "Ta bort aktuell bild"
 
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
@@ -11170,7 +11174,7 @@ msgstr "Om mig"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
-msgstr "I mer detalj..."
+msgstr "Lite mer i detalj..."
 
 #: apps/users/templates/users/profile.html:62
 msgid "Add-ons I've created"
@@ -11319,11 +11323,11 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "E-postadress"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Fullständigt namn"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
@@ -11347,7 +11351,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
@@ -11549,7 +11553,7 @@ msgstr ""
 
 #: apps/zadmin/forms.py:107
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "Logga e-post istället för att skicka"
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
@@ -11710,7 +11714,7 @@ msgstr "Android tillägg"
 
 #: templates/impala/user_login.html:23
 msgid "Log in / Register"
-msgstr "Logga in/Registrera dig"
+msgstr "Logga in / Registrera dig"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
