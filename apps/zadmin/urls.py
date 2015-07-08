@@ -45,6 +45,9 @@ urlpatterns = patterns(
     url(r'^jetpack/resend/(?P<file_id>\d+)$', views.jetpack_resend,
         name='zadmin.jetpack.resend'),
 
+    url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
+        views.download_file, name='zadmin.download-file'),
+
     url('^features$', views.features, name='zadmin.features'),
     url('^features/collections\.json$', views.es_collections_json,
         name='zadmin.collections_json'),
