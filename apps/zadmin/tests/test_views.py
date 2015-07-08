@@ -1917,10 +1917,10 @@ class TestFileDownload(amo.tests.TestCase):
         assert resp.status_code == 302
 
         self.upload = FileUpload.objects.get()
-        self.url = reverse('zadmin.download-file', args=[self.upload.uuid])
+        self.url = reverse('zadmin.download_file', args=[self.upload.uuid])
 
     def test_download(self):
-        """Tests that downloading file_upload objects works."""
+        """Test that downloading file_upload objects works."""
 
         resp = self.client.get(self.url)
         assert resp.status_code == 200
@@ -1933,9 +1933,9 @@ class TestPerms(amo.tests.TestCase):
     FILE_ID = '1234567890abcdef1234567890abcdef'
 
     def assert_status(self, view, status, **kw):
-        """Checks requesting the named view returns the expected status."""
+        """Check that requesting the named view returns the expected status."""
 
-        eq_(self.client.get(reverse(view, kwargs=kw)).status_code, status)
+        assert self.client.get(reverse(view, kwargs=kw)).status_code == status
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
@@ -1945,7 +1945,7 @@ class TestPerms(amo.tests.TestCase):
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
-        self.assert_status('zadmin.download-file', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
@@ -1963,7 +1963,7 @@ class TestPerms(amo.tests.TestCase):
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
-        self.assert_status('zadmin.download-file', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
@@ -1981,7 +1981,7 @@ class TestPerms(amo.tests.TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
-        self.assert_status('zadmin.download-file', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.settings', 403)
         self.assert_status('zadmin.oauth-consumer-create', 403)
@@ -1998,7 +1998,7 @@ class TestPerms(amo.tests.TestCase):
         self.assert_status('zadmin.validation', 200)
         self.assert_status('zadmin.flagged', 403)
         self.assert_status('zadmin.langpacks', 403)
-        self.assert_status('zadmin.download-file', 403, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.settings', 403)
         self.assert_status('zadmin.oauth-consumer-create', 403)
@@ -2011,7 +2011,7 @@ class TestPerms(amo.tests.TestCase):
         self.assert_status('zadmin.settings', 403)
         self.assert_status('zadmin.flagged', 403)
         self.assert_status('zadmin.langpacks', 403)
-        self.assert_status('zadmin.download-file', 403, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.monthly_pick', 403)
         self.assert_status('zadmin.features', 403)
