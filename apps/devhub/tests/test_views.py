@@ -2513,31 +2513,11 @@ class TestVersionAddFile(UploadTest):
         assert self.addon.status == amo.STATUS_PUBLIC
         # With the flag: should be signed.
         self.post(beta=True)
-        file_ = File.objects.all().order_by('-created')[0]
+        file_ = File.objects.latest()
         # Addon status didn't change and the file is signed.
         assert self.addon.reload().status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_BETA
         assert mock_sign_file.called
-
-    @mock.patch('devhub.views.sign_file')
-    def test_beta_addon_do_not_pass_validation_with_flag(self, mock_sign_file):
-        """Beta files that don't pass validaiton should raise an error."""
-        self.create_flag('automatic-validation')
-        # Make sure the file has no validation signing related messages.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 1, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 1,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 0}')
-        assert self.addon.status == amo.STATUS_PUBLIC
-        response = self.post(beta=True)
-        assert response.status_code == 403
-        file_ = File.objects.all().order_by('-created')[0]
-        # Addon status didn't change, file is not signed, and disabled.
-        assert self.addon.reload().status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_DISABLED
-        assert not mock_sign_file.called
 
 
 class TestUploadErrors(UploadTest):
@@ -2722,14 +2702,14 @@ class TestAddVersion(AddVersionTest):
 
     def test_force_beta(self):
         self.post(beta=True)
-        f = File.objects.all().order_by('-created')[0]
+        f = File.objects.latest()
         assert f.status == amo.STATUS_BETA
 
     def test_no_force_beta_for_unlisted_addons(self):
         """No beta version for unlisted addons."""
         self.addon.update(is_listed=False)
         self.post(beta=True)
-        f = File.objects.all().order_by('-created')[0]
+        f = File.objects.latest()
         assert f.status != amo.STATUS_BETA
 
     @mock.patch('editors.helpers.sign_file')
@@ -2846,7 +2826,7 @@ class TestAddBetaVersion(AddVersionTest):
 
     def test_force_not_beta(self):
         self.post(beta=False)
-        f = File.objects.all().order_by('-created')[0]
+        f = File.objects.latest()
         assert f.status == amo.STATUS_PUBLIC
 
     @mock.patch('devhub.views.sign_file')
@@ -2869,6 +2849,9 @@ class TestAddBetaVersion(AddVersionTest):
         assert self.addon.reload().status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_BETA
         assert mock_sign_file.called
+        # There is a log for that beta file signature (with passed validation).
+        log = ActivityLog.objects.beta_signed_events().get()
+        assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id
 
     @mock.patch('devhub.views.sign_file')
     def test_listed_beta_do_not_pass_validation_with_flag(self,
@@ -2884,33 +2867,14 @@ class TestAddBetaVersion(AddVersionTest):
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 0}')
         assert self.addon.status == amo.STATUS_PUBLIC
-        self.post(beta=True, expected_status=403)
+        self.post(beta=True)
         file_ = File.objects.latest()
-        # Addon status didn't change, file is not signed, and disabled.
-        assert self.addon.reload().status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_DISABLED
-        assert not mock_sign_file.called
-
-    @mock.patch('devhub.views.sign_file')
-    def test_listed_beta_do_not_pass_validation_with_flag_override(
-            self, mock_sign_file):
-        """Beta files that don't pass validation can be overriden."""
-        self.create_flag('automatic-validation')
-        self.addon.update(is_listed=True, status=amo.STATUS_PUBLIC)
-        # Make sure the file has validation warnings.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 1, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 1,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 0}')
-        assert self.addon.status == amo.STATUS_PUBLIC
-        self.post(beta=True, override_validation=True)
-        file_ = File.objects.latest()
-        # Addon status didn't change and the file is signed.
         assert self.addon.reload().status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_BETA
         assert mock_sign_file.called
+        # There is a log for that beta file signature (with failed validation).
+        log = ActivityLog.objects.beta_signed_events().get()
+        assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id
 
 
 class TestAddVersionValidation(AddVersionTest):

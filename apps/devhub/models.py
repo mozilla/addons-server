@@ -4,6 +4,7 @@ import json
 import string
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 import commonware.log
@@ -16,6 +17,7 @@ import amo.models
 from access.models import Group
 from addons.models import Addon
 from bandwagon.models import Collection
+from files.models import File
 from reviews.models import Review
 from tags.models import Tag
 from translations.fields import save_signal, TranslatedField
@@ -191,6 +193,12 @@ class ActivityLogManager(amo.models.ManagerBase):
         return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID))
 
+    def beta_signed_events(self):
+        """List of all the auto signatures of beta files."""
+        return self.filter(action__in=[
+            amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id,
+            amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id])
+
     def total_reviews(self, theme=False):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
@@ -355,6 +363,7 @@ class ActivityLog(amo.models.ModelBase):
         collection = None
         tag = None
         group = None
+        file_ = None
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
@@ -389,12 +398,23 @@ class ActivityLog(amo.models.ModelBase):
             if isinstance(arg, Group) and not group:
                 group = arg.name
                 arguments.remove(arg)
+            if isinstance(arg, File) and not file_:
+                validation = 'passed'
+                if self.action == amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id:
+                    validation = 'failed'
+
+                file_ = self.f(u'<a href="{0}">{1}</a> (validation {2})',
+                               reverse('files.list', args=[arg.pk]),
+                               arg.filename,
+                               validation)
+                arguments.remove(arg)
 
         user = user_link(self.user)
 
         try:
             kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag, user=user, group=group)
+                      collection=collection, tag=tag, user=user, group=group,
+                      file=file_)
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
