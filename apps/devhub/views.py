@@ -1188,7 +1188,7 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, is_beta=False):
+def auto_sign_file(file_, is_beta=False, admin_override=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
     validation = file_.validation
@@ -1206,12 +1206,14 @@ def auto_sign_file(file_, is_beta=False):
                              'comments': 'automatic validation'})
             helper.handler.process_preliminary(auto_validation=True)
     elif is_beta:
-        # Beta won't be reviewed. Either they pass validation and are
-        # automatically reviewed and signed, either they aren't accepted.
-        if validation.passed_auto_validation:
+        # Beta won't be reviewed. Either they pass validation (or have an admin
+        # override) and are automatically reviewed and signed, or they aren't
+        # accepted.
+        if validation.passed_auto_validation or admin_override:
             # Beta files always get signed with prelim cert.
             sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
         else:
+            file_.update(status=amo.STATUS_DISABLED)
             raise PermissionDenied
 
 
@@ -1257,9 +1259,10 @@ def version_add(request, addon_id, addon):
                   args=[addon.slug, str(version.id)])
 
     if waffle.flag_is_active(request, 'automatic-validation'):
+        override = form.cleaned_data.get('admin_override_validation')
         # Sign all the files submitted, one for each platform.
         for file_ in version.files.all():
-            auto_sign_file(file_, is_beta=is_beta)
+            auto_sign_file(file_, is_beta=is_beta, admin_override=override)
 
     return dict(url=url)
 
@@ -1287,7 +1290,8 @@ def version_add_file(request, addon_id, addon, version_id):
     form = [f for f in file_form.forms if f.instance == new_file]
 
     if waffle.flag_is_active(request, 'automatic-validation'):
-        auto_sign_file(new_file, is_beta=is_beta)
+        override = new_file_form.cleaned_data.get('admin_override_validation')
+        auto_sign_file(new_file, is_beta=is_beta, admin_override=override)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
