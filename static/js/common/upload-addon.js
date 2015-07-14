@@ -361,15 +361,6 @@
                       } else {  // This is a listed add-on.
                         if (automaticValidation && results.beta) {
                           function updateBetaStatus() {
-                            if (!$beta.is(':checked') || v.passed_auto_validation) {
-                              $('#invalid-beta').hide().addClass('hidden');
-                              $('.addon-upload-dependant').attr('disabled', false);
-                              $('.addon-upload-failure-dependant').attr('disabled', true);
-                            } else {
-                              $('#invalid-beta').show().removeClass('hidden');
-                              $('.addon-upload-dependant').attr('disabled', true);
-                              $('.addon-upload-failure-dependant').attr('disabled', false);
-                            }
                             if ($beta.is(':checked')) {
                               $('p.beta-warning').show();
                             } else {

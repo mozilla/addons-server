@@ -1206,15 +1206,14 @@ def auto_sign_file(file_, is_beta=False, admin_override=False):
                              'comments': 'automatic validation'})
             helper.handler.process_preliminary(auto_validation=True)
     elif is_beta:
-        # Beta won't be reviewed. Either they pass validation (or have an admin
-        # override) and are automatically reviewed and signed, or they aren't
-        # accepted.
-        if validation.passed_auto_validation or admin_override:
-            # Beta files always get signed with prelim cert.
-            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+        # Beta won't be reviewed. They will always get signed, and logged, for
+        # further review if needed.
+        if validation.passed_auto_validation:
+            amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
         else:
-            file_.update(status=amo.STATUS_DISABLED)
-            raise PermissionDenied
+            amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
+        # Beta files always get signed with prelim cert.
+        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
 
 
 @json_view
