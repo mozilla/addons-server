@@ -51,11 +51,11 @@ if [ ! -d "locale" ]; then
     exit 1
 fi
 
-# if [ ! -z "$(git status --porcelain)" ]; then
-#     echo "Looks like you have some local changes.  Please clean up your root before we start committing random things."
-#     git status
-#     exit 1
-# fi
+if [ ! -z "$(git status --porcelain)" ]; then
+    echo "Looks like you have some local changes.  Please clean up your root before we start committing random things."
+    git status
+    exit 1
+fi
 
 echo "Alright, here we go..."
 
