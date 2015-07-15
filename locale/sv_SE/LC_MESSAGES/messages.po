@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17 09:38-0700\n"
+"POT-Creation-Date: 2015-07-15 11:40-0700\n"
 "PO-Revision-Date: 2015-07-08 19:26+0200\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -226,8 +226,8 @@ msgstr "Bidra"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:97 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317 apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:94 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318 apps/devhub/templates/devhub/versions/list.html:352
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "eller"
@@ -294,7 +294,7 @@ msgid "A one-time suggested contribution of {0}"
 msgstr "Ett förslaget engångsbidrag på {0}"
 
 #. {0} is a currency symbol (e.g., $),
-#. {1} is an amount input field
+#.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
 msgstr "Ett engångsbidrag på {0} {1}"
@@ -808,8 +808,8 @@ msgstr "Skicka rapport"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:98 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:95 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
@@ -982,7 +982,7 @@ msgstr "Support webbplats"
 msgid "Support E-mail"
 msgstr "Support e-post"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:381
 msgid "Version {0}"
 msgstr "Version {0}"
 
@@ -1783,6 +1783,10 @@ msgstr "{addon} innehållsklassificering ändrad."
 msgid "{addon} unlisted."
 msgstr "{addon} olistad."
 
+#: apps/amo/log.py:588 apps/amo/log.py:594
+msgid "{file} was signed."
+msgstr ""
+
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
 msgstr "Inte tillåtet"
@@ -1933,8 +1937,8 @@ msgid "Previous"
 msgstr "Föregående"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#. third argument is the number of total results (e.g., 1,000).
+#.                third argument is the number of total results (e.g., 1,000).
+#.              third argument is the number of total results (e.g., 1,000).
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
@@ -2365,8 +2369,8 @@ msgstr[0] "<span>%(followers)s</span> följare"
 msgstr[1] "<span>%(followers)s</span> följare"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:10 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
@@ -2374,7 +2378,7 @@ msgstr[0] "%(num)s följare per vecka"
 msgstr[1] "%(num)s följare per vecka"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
@@ -2382,8 +2386,8 @@ msgstr[0] "%(num)s följare per månad"
 msgstr[1] "%(num)s följare per månad"
 
 #. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#. Like Twitter followers.
+#.                    Like Twitter followers.
+#.                      Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:26 apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
@@ -3120,7 +3124,7 @@ msgstr "Filtrera efter applikation"
 msgid "Report Type"
 msgstr "Rapporttyp"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:757 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:757 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:111 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Applikation"
 
@@ -3769,7 +3773,7 @@ msgstr "En plattform kan endast väljas en gång."
 msgid "A review type must be selected."
 msgstr "En granskningstyp måste väljas."
 
-#: apps/devhub/forms.py:761 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:761 apps/editors/forms.py:117 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Välj en applikation först"
 
@@ -3803,19 +3807,19 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Recensera"
 
-#: apps/devhub/tasks.py:344
+#: apps/devhub/tasks.py:346
 msgid "%s responded with %s (%s)."
 msgstr "%s svarade med %s (%s)."
 
-#: apps/devhub/tasks.py:348
+#: apps/devhub/tasks.py:350
 msgid "Connection to \"%s\" timed out."
 msgstr "Anslutning till \"%s\" gjorde timeout."
 
-#: apps/devhub/tasks.py:350
+#: apps/devhub/tasks.py:352
 msgid "Could not contact host at \"%s\"."
 msgstr "Det gick inte att kontakta värd på \"%s\"."
 
@@ -3851,7 +3855,7 @@ msgstr "Användarrecensioner"
 msgid "Changes successfully saved."
 msgstr "Ändringar sparade."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1606
+#: apps/devhub/views.py:329 apps/devhub/views.py:1609
 msgid "Please check the form for errors."
 msgstr "Kontrollera formuläret efter fel."
 
@@ -3940,11 +3944,11 @@ msgstr "Version %s borttagen."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullständigt valideringsresultat. Ta hänsyn till detta vid granskning."
 
-#: apps/devhub/views.py:1652
+#: apps/devhub/views.py:1655
 msgid "Preliminary Review Requested."
 msgstr "Preliminär granskning begärd."
 
-#: apps/devhub/views.py:1653
+#: apps/devhub/views.py:1656
 msgid "Full Review Requested."
 msgstr "Fullständig granskning begärd."
 
@@ -3958,7 +3962,7 @@ msgstr "Tillbaka till tillägg"
 msgid "{0} :: Search"
 msgstr "{0} :: Sök"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:449 apps/editors/forms.py:451 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:460 apps/editors/forms.py:462 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -4235,7 +4239,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Lägg till en annan applikation&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:351 apps/devhub/templates/devhub/versions/list.html:353 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Stäng"
 
@@ -6052,7 +6056,7 @@ msgid "Remove this application"
 msgstr ""
 
 #. {0} is the maximum number of add-on categories allowed.
-#. {1} is the application name.
+#.                {1} is the application name.
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
@@ -6463,10 +6467,6 @@ msgid ""
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:92
-msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
-msgstr ""
-
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
 msgstr "Hantera version {0}"
@@ -6592,7 +6592,7 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:327 apps/devhub/templates/devhub/versions/list.html:350
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:328 apps/devhub/templates/devhub/versions/list.html:351
 msgid "Cancel Review Request"
 msgstr "Avbryt begärd granskning"
 
@@ -6714,7 +6714,7 @@ msgstr "Dölja ditt tillägg kommer att hindra den från att visas i vårt galle
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Är du säker på att du vill dölja ditt tillägg?"
 
-#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:315
+#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:316
 msgid "Unlist Add-on"
 msgstr "Lista ej tillägg"
 
@@ -6731,20 +6731,28 @@ msgstr ""
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr "Växla tillägg till olistad befinner sig nu i en öppen beta. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Rapport eventuella buggar</a> som du stöter på."
 
-#: apps/devhub/templates/devhub/versions/list.html:307
+#: apps/devhub/templates/devhub/versions/list.html:306
+msgid "Unlisting an add-on is irreversible!"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:306
+msgid "An unlisted add-on cannot be switched to be listed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Är du säker på att du vill ej vill lista ditt tillägg?"
 
-#: apps/devhub/templates/devhub/versions/list.html:330
+#: apps/devhub/templates/devhub/versions/list.html:331
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "Avbryta din begäran om granskning kommer att lämna ditt tillägg som preliminärt granskad."
 
-#: apps/devhub/templates/devhub/versions/list.html:335
+#: apps/devhub/templates/devhub/versions/list.html:336
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 "Avbryta din begäran om granskning kommer att markera ditt tillägg som ofullständig. Om du inte slutför ditt tillägg efter flera dagar genom att åter begära granskning, kommer det att tas bort."
 
-#: apps/devhub/templates/devhub/versions/list.html:343
+#: apps/devhub/templates/devhub/versions/list.html:344
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Är du säker på att du vill avbryta din begäran om granskning?"
 
@@ -7043,11 +7051,11 @@ msgstr ""
 msgid "Deleted reviews"
 msgstr "Borttagna granskningar"
 
-#: apps/editors/forms.py:40 apps/editors/forms.py:59
+#: apps/editors/forms.py:40 apps/editors/forms.py:70
 msgid "View entries between"
 msgstr ""
 
-#: apps/editors/forms.py:42 apps/editors/forms.py:60
+#: apps/editors/forms.py:42 apps/editors/forms.py:71
 msgid "and"
 msgstr "och"
 
@@ -7056,108 +7064,120 @@ msgid "Filter by type/action"
 msgstr "Filtrera efter typ/åtgärd"
 
 #: apps/editors/forms.py:61
+msgid "Passed automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:63
+msgid "Failed automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:65
+msgid "Filter by automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:72
 msgid "containing"
 msgstr "innehåller"
 
 #. L10n: start, as in "start date"
-#: apps/editors/forms.py:67
+#: apps/editors/forms.py:78
 msgid "start"
 msgstr "start"
 
 #. L10n: end, as in "end date"
-#: apps/editors/forms.py:71
+#: apps/editors/forms.py:82
 msgid "end"
 msgstr "slut"
 
 #. L10n: Description of what can be searched for
-#: apps/editors/forms.py:74
+#: apps/editors/forms.py:85
 msgid "add-on, editor or comment"
 msgstr ""
 
-#: apps/editors/forms.py:90
+#: apps/editors/forms.py:101
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#: apps/editors/forms.py:95
+#: apps/editors/forms.py:106
 msgid "yes"
 msgstr "ja"
 
-#: apps/editors/forms.py:96
+#: apps/editors/forms.py:107
 msgid "no"
 msgstr "nej"
 
-#: apps/editors/forms.py:97
+#: apps/editors/forms.py:108
 msgid "Admin Flag"
 msgstr ""
 
-#: apps/editors/forms.py:105
+#: apps/editors/forms.py:116
 msgid "Max. Version"
 msgstr ""
 
-#: apps/editors/forms.py:109
+#: apps/editors/forms.py:120
 msgid "Days Since Submission"
 msgstr "Dagar sedan inskickning"
 
-#: apps/editors/forms.py:114
+#: apps/editors/forms.py:125
 msgid "Add-on Types"
 msgstr ""
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:239
+#: apps/editors/forms.py:129 apps/editors/helpers.py:239
 msgid "Platforms"
 msgstr "Plattformar"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
-#: apps/editors/forms.py:230
+#: apps/editors/forms.py:241
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
 msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
-#: apps/editors/forms.py:245 apps/files/templates/files/viewer.html:50
+#: apps/editors/forms.py:256 apps/files/templates/files/viewer.html:50
 msgid "Files:"
 msgstr "Filer:"
 
-#: apps/editors/forms.py:248
+#: apps/editors/forms.py:259
 msgid "Comments:"
 msgstr "Kommentarer:"
 
-#: apps/editors/forms.py:252
+#: apps/editors/forms.py:263
 msgid "Operating systems:"
 msgstr "Operativsystem:"
 
-#: apps/editors/forms.py:254
+#: apps/editors/forms.py:265
 msgid "Applications:"
 msgstr "Applikationer:"
 
-#: apps/editors/forms.py:256
+#: apps/editors/forms.py:267
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr ""
 
-#: apps/editors/forms.py:261
+#: apps/editors/forms.py:272
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-#: apps/editors/forms.py:281
+#: apps/editors/forms.py:292
 msgid "Choose a canned response..."
 msgstr ""
 
-#: apps/editors/forms.py:310
+#: apps/editors/forms.py:321
 msgid "You must select some files."
 msgstr ""
 
-#: apps/editors/forms.py:316
+#: apps/editors/forms.py:327
 msgid "File %s is not pending review."
 msgstr ""
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:338
+#: apps/editors/forms.py:349
 msgid "theme name"
 msgstr ""
 
-#: apps/editors/forms.py:364
+#: apps/editors/forms.py:375
 msgid "Someone else is reviewing this theme."
 msgstr ""
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:461
+#: apps/editors/forms.py:472
 msgid "app, reviewer, or comment"
 msgstr ""
 
@@ -7460,56 +7480,56 @@ msgstr ""
 msgid "A question about your Theme submission"
 msgstr ""
 
-#: apps/editors/views.py:112
+#: apps/editors/views.py:129
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
-#: apps/editors/views.py:113
+#: apps/editors/views.py:130
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:114
+#: apps/editors/views.py:131
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: apps/editors/views.py:441
+#: apps/editors/views.py:458
 msgid "An unknown error occurred"
 msgstr ""
 
-#: apps/editors/views.py:493
+#: apps/editors/views.py:510
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: apps/editors/views.py:515
+#: apps/editors/views.py:532
 msgid "Review successfully processed."
 msgstr ""
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:723
 msgid "was approved"
 msgstr ""
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:724
 msgid "given preliminary review"
 msgstr ""
 
-#: apps/editors/views.py:708
+#: apps/editors/views.py:725
 msgid "rejected"
 msgstr ""
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:726
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "upptrappad"
 
-#: apps/editors/views.py:711
+#: apps/editors/views.py:728
 msgid "needs more information"
 msgstr ""
 
-#: apps/editors/views.py:712
+#: apps/editors/views.py:729
 msgid "needs super review"
 msgstr ""
 
-#: apps/editors/views.py:713
+#: apps/editors/views.py:730
 msgid "commented"
 msgstr "kommenterade"
 
@@ -7564,28 +7584,33 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#: apps/editors/templates/editors/base.html:85 apps/editors/templates/editors/includes/daily-message.html:4
+#: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr ""
 
 #. "Filter" is a button label (verb)
-#: apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45 apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
+#: apps/editors/templates/editors/beta_signed_log.html:17 apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45
+#: apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
 msgstr "Filter"
 
-#: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
+#: apps/editors/templates/editors/beta_signed_log.html:23 apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
 msgstr "Datum"
 
-#: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
+#: apps/editors/templates/editors/beta_signed_log.html:24 apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
 msgstr "Händelse"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
+#: apps/editors/templates/editors/beta_signed_log.html:37 apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "Mer detaljer."
 
-#: apps/editors/templates/editors/eventlog.html:53
+#: apps/editors/templates/editors/beta_signed_log.html:46 apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
 msgstr ""
 
@@ -9392,7 +9417,7 @@ msgstr ""
 #: apps/pages/templates/pages/faq.html:182
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-on Ideas</a> forum."
+"our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
 
 #: apps/pages/templates/pages/faq.html:188

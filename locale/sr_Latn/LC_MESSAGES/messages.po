@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17 09:38-0700\n"
+"POT-Creation-Date: 2015-07-15 11:40-0700\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -305,12 +305,12 @@ msgstr "Priloži"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:149
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:97
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:94
 #: apps/devhub/templates/devhub/versions/edit.html:139
 #: apps/devhub/templates/devhub/versions/list.html:243
 #: apps/devhub/templates/devhub/versions/list.html:277
-#: apps/devhub/templates/devhub/versions/list.html:317
-#: apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/list.html:318
+#: apps/devhub/templates/devhub/versions/list.html:352
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
@@ -1122,11 +1122,11 @@ msgstr "Pošalji prijavu"
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:152
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:98
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:95
 #: apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:243
 #: apps/devhub/templates/devhub/versions/list.html:277
-#: apps/devhub/templates/devhub/versions/list.html:317
+#: apps/devhub/templates/devhub/versions/list.html:318
 #: apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
@@ -1363,7 +1363,7 @@ msgid "Support E-mail"
 msgstr "E-pošta podrške"
 
 #: apps/addons/templates/addons/impala/details.html:201
-#: apps/devhub/models.py:372
+#: apps/devhub/models.py:381
 msgid "Version {0}"
 msgstr "Verzija {0}"
 
@@ -2280,6 +2280,10 @@ msgstr "Ocena sadržaja za {addon} promenjena"
 
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
+msgstr ""
+
+#: apps/amo/log.py:588 apps/amo/log.py:594
+msgid "{file} was signed."
 msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
@@ -3993,7 +3997,7 @@ msgstr "Tip izveštaja"
 #: apps/compat/templates/compat/reporter_detail.html:47
 #: apps/devhub/forms.py:757
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
-#: apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/editors/forms.py:111 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikacija"
 
@@ -4683,7 +4687,7 @@ msgstr "Platforma se može samo jednom izabrati."
 msgid "A review type must be selected."
 msgstr "Morate izabrati tip recenzije."
 
-#: apps/devhub/forms.py:761 apps/editors/forms.py:106 apps/zadmin/forms.py:51
+#: apps/devhub/forms.py:761 apps/editors/forms.py:117 apps/zadmin/forms.py:51
 #: apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Prvo izaberite aplikaciju"
@@ -4722,20 +4726,20 @@ msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
 msgstr[2] "{0} upozorenja"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58
+#: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58
 #: apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Pregled"
 
-#: apps/devhub/tasks.py:344
+#: apps/devhub/tasks.py:346
 msgid "%s responded with %s (%s)."
 msgstr "%s je odgovorio sa %s (%s)."
 
-#: apps/devhub/tasks.py:348
+#: apps/devhub/tasks.py:350
 msgid "Connection to \"%s\" timed out."
 msgstr "Konekcija na \"%s\" je istekla."
 
-#: apps/devhub/tasks.py:350
+#: apps/devhub/tasks.py:352
 msgid "Could not contact host at \"%s\"."
 msgstr "Nismo mogli kontaktirati host na \"%s\"."
 
@@ -4779,7 +4783,7 @@ msgstr "Recenzije korisnika"
 msgid "Changes successfully saved."
 msgstr "Izmene su uspešno sačuvane."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1606
+#: apps/devhub/views.py:329 apps/devhub/views.py:1609
 msgid "Please check the form for errors."
 msgstr "Molimo Vas proverite da li ima grešaka u formi."
 
@@ -4872,11 +4876,11 @@ msgstr ""
 "Otpremanje nije prošlo validaciju, i možda ne sadrži potpune rezultate "
 "validacije. Molimo Vas, dobro proverite prilikom pregledavanja."
 
-#: apps/devhub/views.py:1652
+#: apps/devhub/views.py:1655
 msgid "Preliminary Review Requested."
 msgstr "Zahtevana preliminarna recenzija."
 
-#: apps/devhub/views.py:1653
+#: apps/devhub/views.py:1656
 msgid "Full Review Requested."
 msgstr "Zahtevana potpuna recenzija."
 
@@ -4895,8 +4899,8 @@ msgid "{0} :: Search"
 msgstr "{0} :: Pretraži"
 
 #: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:449
-#: apps/editors/forms.py:451 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:460
+#: apps/editors/forms.py:462 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14
 #: apps/search/templates/search/collections.html:17
 #: apps/search/templates/search/personas.html:18
@@ -5242,8 +5246,8 @@ msgstr "Dodaj drugu aplikaciju&hellip;"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:86
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:351
-#: apps/devhub/templates/devhub/versions/list.html:353
+#: apps/devhub/templates/devhub/versions/list.html:352
+#: apps/devhub/templates/devhub/versions/list.html:354
 #: templates/impala/base.html:125 templates/impala/base.html:143
 #: templates/impala/base.html:153
 msgid "Close"
@@ -8356,8 +8360,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
-"Priključi se razgovoru u našim <a href=\"%(forum_url)s\">forumima</a>."
+msgstr "Priključi se razgovoru u našim <a href=\"%(forum_url)s\">forumima</a>."
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
@@ -8436,13 +8439,6 @@ msgid ""
 "The new process is currently in an open beta, and may change significantly "
 "in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
-msgstr ""
-
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:92
-msgid ""
-"Your version was detected as beta. It didn't pass automatic validation and "
-"thus can't be submitted. If you didn't mean to submit it as beta, please "
-"uncheck the beta channel option."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -8593,8 +8589,8 @@ msgstr[1] "Puna nominacija biće dostupna za {0} dana"
 msgstr[2] "Puna nominacija biće dostupna za {0} dana"
 
 #: apps/devhub/templates/devhub/versions/list.html:88
-#: apps/devhub/templates/devhub/versions/list.html:327
-#: apps/devhub/templates/devhub/versions/list.html:350
+#: apps/devhub/templates/devhub/versions/list.html:328
+#: apps/devhub/templates/devhub/versions/list.html:351
 msgid "Cancel Review Request"
 msgstr "Otkaži zahtev za pregled"
 
@@ -8744,7 +8740,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:287
-#: apps/devhub/templates/devhub/versions/list.html:315
+#: apps/devhub/templates/devhub/versions/list.html:316
 msgid "Unlist Add-on"
 msgstr ""
 
@@ -8765,11 +8761,19 @@ msgid ""
 "encounter."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:307
+#: apps/devhub/templates/devhub/versions/list.html:306
+msgid "Unlisting an add-on is irreversible!"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:306
+msgid "An unlisted add-on cannot be switched to be listed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:330
+#: apps/devhub/templates/devhub/versions/list.html:331
 msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
@@ -8777,7 +8781,7 @@ msgstr ""
 "Prekidanje Vašeg zahteva za pregled će učiniti dodatak preliminarno "
 "pregledanim."
 
-#: apps/devhub/templates/devhub/versions/list.html:335
+#: apps/devhub/templates/devhub/versions/list.html:336
 msgid ""
 "Canceling your review request will mark your add-on incomplete. If you do "
 "not complete your add-on after several days by re-requesting review, it will "
@@ -8787,7 +8791,7 @@ msgstr ""
 "Ukoliko ne završite Vaš dodatak za nekoliko dana ponovo tražeći pregled "
 "dodatak će biti izbrisan."
 
-#: apps/devhub/templates/devhub/versions/list.html:343
+#: apps/devhub/templates/devhub/versions/list.html:344
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Da li ste sigurni da želite da prekinete Vaš zahtev za pregled?"
 
@@ -9132,11 +9136,11 @@ msgstr "Odobrene kritike"
 msgid "Deleted reviews"
 msgstr "Obrisane kritike"
 
-#: apps/editors/forms.py:40 apps/editors/forms.py:59
+#: apps/editors/forms.py:40 apps/editors/forms.py:70
 msgid "View entries between"
 msgstr "Pogledaj unose između"
 
-#: apps/editors/forms.py:42 apps/editors/forms.py:60
+#: apps/editors/forms.py:42 apps/editors/forms.py:71
 msgid "and"
 msgstr "i"
 
@@ -9145,78 +9149,90 @@ msgid "Filter by type/action"
 msgstr "Filtriraj po tipu/radnji"
 
 #: apps/editors/forms.py:61
+msgid "Passed automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:63
+msgid "Failed automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:65
+msgid "Filter by automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:72
 msgid "containing"
 msgstr "koji sadrže"
 
 #. L10n: start, as in "start date"
-#: apps/editors/forms.py:67
+#: apps/editors/forms.py:78
 msgid "start"
 msgstr "početak"
 
 #. L10n: end, as in "end date"
-#: apps/editors/forms.py:71
+#: apps/editors/forms.py:82
 msgid "end"
 msgstr "kraj"
 
 #. L10n: Description of what can be searched for
-#: apps/editors/forms.py:74
+#: apps/editors/forms.py:85
 msgid "add-on, editor or comment"
 msgstr "dodatak, urednik ili komentar"
 
-#: apps/editors/forms.py:90
+#: apps/editors/forms.py:101
 msgid "Search by add-on name / author email"
 msgstr "Pretraži po nazivu dodatka / e-pošti autora"
 
-#: apps/editors/forms.py:95
+#: apps/editors/forms.py:106
 msgid "yes"
 msgstr "da"
 
-#: apps/editors/forms.py:96
+#: apps/editors/forms.py:107
 msgid "no"
 msgstr "ne"
 
-#: apps/editors/forms.py:97
+#: apps/editors/forms.py:108
 msgid "Admin Flag"
 msgstr "Admin zastava"
 
-#: apps/editors/forms.py:105
+#: apps/editors/forms.py:116
 msgid "Max. Version"
 msgstr "Poslednja verzija"
 
-#: apps/editors/forms.py:109
+#: apps/editors/forms.py:120
 msgid "Days Since Submission"
 msgstr "Dana od podnošenja"
 
-#: apps/editors/forms.py:114
+#: apps/editors/forms.py:125
 msgid "Add-on Types"
 msgstr "Vrste dodatka"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:239
+#: apps/editors/forms.py:129 apps/editors/helpers.py:239
 msgid "Platforms"
 msgstr "Platforme"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
-#: apps/editors/forms.py:230
+#: apps/editors/forms.py:241
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
 msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
-#: apps/editors/forms.py:245 apps/files/templates/files/viewer.html:50
+#: apps/editors/forms.py:256 apps/files/templates/files/viewer.html:50
 msgid "Files:"
 msgstr "Datoteke:"
 
-#: apps/editors/forms.py:248
+#: apps/editors/forms.py:259
 msgid "Comments:"
 msgstr "Komentari:"
 
-#: apps/editors/forms.py:252
+#: apps/editors/forms.py:263
 msgid "Operating systems:"
 msgstr "Operativni sistemi:"
 
-#: apps/editors/forms.py:254
+#: apps/editors/forms.py:265
 msgid "Applications:"
 msgstr "Aplikacije:"
 
-#: apps/editors/forms.py:256
+#: apps/editors/forms.py:267
 msgid ""
 "Notify me the next time this add-on is updated. (Subsequent updates will not "
 "generate an email)"
@@ -9224,33 +9240,33 @@ msgstr ""
 "Obavesti me sledeći put kada se ovaj dodatak ažurira. (Naknadna ažuriranja "
 "neće generisati e-poštu)"
 
-#: apps/editors/forms.py:261
+#: apps/editors/forms.py:272
 msgid "Clear Admin Review Flag"
 msgstr "Ukloni oznaku za recenziju administratora"
 
-#: apps/editors/forms.py:281
+#: apps/editors/forms.py:292
 msgid "Choose a canned response..."
 msgstr "Izaberi gotov odgovor..."
 
-#: apps/editors/forms.py:310
+#: apps/editors/forms.py:321
 msgid "You must select some files."
 msgstr "Morate izabrati datoteke."
 
-#: apps/editors/forms.py:316
+#: apps/editors/forms.py:327
 msgid "File %s is not pending review."
 msgstr "Datoteka %s nije na čekanju recenzije."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:338
+#: apps/editors/forms.py:349
 msgid "theme name"
 msgstr "naziv teme"
 
-#: apps/editors/forms.py:364
+#: apps/editors/forms.py:375
 msgid "Someone else is reviewing this theme."
 msgstr "Neko drugi pregledava ovu temu."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:461
+#: apps/editors/forms.py:472
 msgid "app, reviewer, or comment"
 msgstr "aplikacija, recenzent, ili komentar"
 
@@ -9602,56 +9618,56 @@ msgstr "Podnešenje teme je označeno za pregled"
 msgid "A question about your Theme submission"
 msgstr "Pitanje o Vašem podnošenju teme"
 
-#: apps/editors/views.py:112
+#: apps/editors/views.py:129
 msgid "New Add-ons (Under 5 days)"
 msgstr "Novi dodatak (ispod 5 dana)"
 
-#: apps/editors/views.py:113
+#: apps/editors/views.py:130
 msgid "Passable (5 to 10 days)"
 msgstr "Prolazno (5 do 10 dana)"
 
-#: apps/editors/views.py:114
+#: apps/editors/views.py:131
 msgid "Overdue (Over 10 days)"
 msgstr "Istekao rok (više od 10 dana)"
 
-#: apps/editors/views.py:441
+#: apps/editors/views.py:458
 msgid "An unknown error occurred"
 msgstr "Pojavila se nepoznata greška"
 
-#: apps/editors/views.py:493
+#: apps/editors/views.py:510
 msgid "Self-reviews are not allowed."
 msgstr "Sopstvene recenzije nisu dozvoljene."
 
-#: apps/editors/views.py:515
+#: apps/editors/views.py:532
 msgid "Review successfully processed."
 msgstr "Recenzija uspešno procesirana."
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:723
 msgid "was approved"
 msgstr "je odobreno"
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:724
 msgid "given preliminary review"
 msgstr "je data preliminarna recenzija"
 
-#: apps/editors/views.py:708
+#: apps/editors/views.py:725
 msgid "rejected"
 msgstr "odbijeno"
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:726
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "eskalirano"
 
-#: apps/editors/views.py:711
+#: apps/editors/views.py:728
 msgid "needs more information"
 msgstr "treba više informacija"
 
-#: apps/editors/views.py:712
+#: apps/editors/views.py:729
 msgid "needs super review"
 msgstr "zahteva super recenziju"
 
-#: apps/editors/views.py:713
+#: apps/editors/views.py:730
 msgid "commented"
 msgstr ""
 
@@ -9719,33 +9735,44 @@ msgstr "Dnevnik recenzija dodatka"
 msgid "Moderated Review Log"
 msgstr "Kontrolisan dnevnik pregleda"
 
-#: apps/editors/templates/editors/base.html:85
+#: apps/editors/templates/editors/base.html:82
+#: apps/editors/templates/editors/beta_signed_log.html:4
+#: apps/editors/templates/editors/beta_signed_log.html:8
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr "Saopštenje"
 
 #. "Filter" is a button label (verb)
+#: apps/editors/templates/editors/beta_signed_log.html:17
 #: apps/editors/templates/editors/eventlog.html:24
 #: apps/editors/templates/editors/themes/macros.html:45
 #: apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
 msgstr "Filtriraj"
 
+#: apps/editors/templates/editors/beta_signed_log.html:23
 #: apps/editors/templates/editors/eventlog.html:30
 #: apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
 msgstr "Datum"
 
+#: apps/editors/templates/editors/beta_signed_log.html:24
 #: apps/editors/templates/editors/eventlog.html:31
 #: apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
 msgstr "Događaj"
 
+#: apps/editors/templates/editors/beta_signed_log.html:37
 #: apps/editors/templates/editors/eventlog.html:44
 #: apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "Više detalja."
 
+#: apps/editors/templates/editors/beta_signed_log.html:46
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
 msgstr "Nema pronađenih događaja za ovaj period."
@@ -12064,12 +12091,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if "
 "you're looking for a particular add-on and can't find it, you might try "
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
-"\">Add-on Ideas</a> forum."
+"\">Add-ons </a>forum."
 msgstr ""
-"Sa hiljadama dodataka na raspolaganju, ima nešto za svakoga. Ali ako ste u "
-"potrazi za određenim dodatkom, a ne možete da ga pronađete, možete da "
-"pokušate da ga potražite na drugim sajtovima, ili da postavite post o tome u "
-"našem <a href=\"%(forum_url)s\">Add-on Ideas</a> forumu."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
@@ -12481,7 +12504,8 @@ msgstr "Ja sam autor dodatka, da li mogu odgovoriti na kritike?"
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set "
-"up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
+"up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
+"in additional discussion or follow-up."
 msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:149

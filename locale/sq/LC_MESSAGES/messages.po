@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-17 09:38-0700\n"
+"POT-Creation-Date: 2015-07-15 11:40-0700\n"
 "PO-Revision-Date: 2015-05-04 14:03+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -234,8 +234,8 @@ msgstr "Kontribuoni"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:97 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317 apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:94 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318 apps/devhub/templates/devhub/versions/list.html:352
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ose"
@@ -821,8 +821,8 @@ msgstr "Dërgoje Njoftimin"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:98 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:317
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:95 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
@@ -998,7 +998,7 @@ msgstr "Sajt asistence"
 msgid "Support E-mail"
 msgstr "E-mail Asistence"
 
-#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:372
+#: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:381
 msgid "Version {0}"
 msgstr "Version {0}"
 
@@ -1802,6 +1802,10 @@ msgstr "Klasifikimi i lëndës për {addon} u ndryshua."
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
 msgstr "{addon} u hoq nga lista."
+
+#: apps/amo/log.py:588 apps/amo/log.py:594
+msgid "{file} was signed."
+msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3148,7 +3152,7 @@ msgstr "Filtroji sipas Aplikacionesh"
 msgid "Report Type"
 msgstr "Lloj Raporti"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:757 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:100 apps/zadmin/forms.py:47
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:757 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:111 apps/zadmin/forms.py:47
 msgid "Application"
 msgstr "Aplikacion"
 
@@ -3800,7 +3804,7 @@ msgstr "Platforma mund të zgjidhet vetëm një herë."
 msgid "A review type must be selected."
 msgstr "Duhet përzgjedhur lloj rishikimi."
 
-#: apps/devhub/forms.py:761 apps/editors/forms.py:106 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
+#: apps/devhub/forms.py:761 apps/editors/forms.py:117 apps/zadmin/forms.py:51 apps/zadmin/forms.py:54
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
@@ -3836,19 +3840,19 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#: apps/devhub/models.py:369 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
+#: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58 apps/reviews/templates/reviews/edit_review.html:10
 msgid "Review"
 msgstr "Shqyrtim"
 
-#: apps/devhub/tasks.py:344
+#: apps/devhub/tasks.py:346
 msgid "%s responded with %s (%s)."
 msgstr "%s u përgjigj me %s (%s)."
 
-#: apps/devhub/tasks.py:348
+#: apps/devhub/tasks.py:350
 msgid "Connection to \"%s\" timed out."
 msgstr "Lidhjes me \"%s\" i mbaroi koha."
 
-#: apps/devhub/tasks.py:350
+#: apps/devhub/tasks.py:352
 msgid "Could not contact host at \"%s\"."
 msgstr "Nuk u lidh dot me strehën te \"%s\"."
 
@@ -3884,7 +3888,7 @@ msgstr "Shqyrtime Përdoruesi"
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1606
+#: apps/devhub/views.py:329 apps/devhub/views.py:1609
 msgid "Please check the form for errors."
 msgstr "Ju lutemi, kontrolloni formularin për gabime."
 
@@ -3974,11 +3978,11 @@ msgstr "Versioni %s u fshi."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ky ngarkim nuk arriti të vleftësohej, dhe mund t’i mungojnë përfundimet e plota të vleftësimit. Ju lutemi, tregoni kujdesin e duhur, teksa e shqyrtoni."
 
-#: apps/devhub/views.py:1652
+#: apps/devhub/views.py:1655
 msgid "Preliminary Review Requested."
 msgstr "U kërkua Shqyrtim Paraprak."
 
-#: apps/devhub/views.py:1653
+#: apps/devhub/views.py:1656
 msgid "Full Review Requested."
 msgstr "U kërkua Shqyrtim i Plotë."
 
@@ -3992,7 +3996,7 @@ msgstr "Mbrapsht te Shtesat"
 msgid "{0} :: Search"
 msgstr "{0} :: Kërkim"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:449 apps/editors/forms.py:451 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:460 apps/editors/forms.py:462 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -4269,7 +4273,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Shtoni Një Tjetër Aplikacion&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:351 apps/devhub/templates/devhub/versions/list.html:353 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Mbylle"
 
@@ -6660,10 +6664,6 @@ msgid ""
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:92
-msgid "Your version was detected as beta. It didn't pass automatic validation and thus can't be submitted. If you didn't mean to submit it as beta, please uncheck the beta channel option."
-msgstr ""
-
 # %s is the version number.
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -6794,7 +6794,7 @@ msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] "Propozimi i plotë do të jetë gati për {0} ditë"
 msgstr[1] "Propozimi i plotë do të jetë gati për {0} ditë"
 
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:327 apps/devhub/templates/devhub/versions/list.html:350
+#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:328 apps/devhub/templates/devhub/versions/list.html:351
 msgid "Cancel Review Request"
 msgstr "Anulo Kërkesën për Shqyrtim"
 
@@ -6918,7 +6918,7 @@ msgstr "Fshehja e shtesës suaj do t’i pengojë asaj shfaqjen në galerinë to
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Jeni i sigurt se doni të fshihet shtesa juaj?"
 
-#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:315
+#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:316
 msgid "Unlist Add-on"
 msgstr "Hiqeni Shtesën Nga Listat"
 
@@ -6935,20 +6935,28 @@ msgstr ""
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:307
+#: apps/devhub/templates/devhub/versions/list.html:306
+msgid "Unlisting an add-on is irreversible!"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:306
+msgid "An unlisted add-on cannot be switched to be listed."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Jeni i sigurt se doni të hiqet shtesa juaj nga lista?"
 
-#: apps/devhub/templates/devhub/versions/list.html:330
+#: apps/devhub/templates/devhub/versions/list.html:331
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "Anulimi i kërkesës suaj për shqyrtim do ta lërë shtesën tuaj si të shqyrtuar paraprakisht."
 
-#: apps/devhub/templates/devhub/versions/list.html:335
+#: apps/devhub/templates/devhub/versions/list.html:336
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 "Anulimi i kërkesës suaj për shqyrtim do ta ricaktojë gjendjen e shtesës suaj si jo e plotë. Nëse nuk e plotësoni shtesën tuaj pas disa ditësh, duke rikërkuar shqyrtim të saj, ajo do të fshihet."
 
-#: apps/devhub/templates/devhub/versions/list.html:343
+#: apps/devhub/templates/devhub/versions/list.html:344
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Jeni i sigurt se dëshironi të anulohet kërkesa juaj për shqyrtim?"
 
@@ -7249,11 +7257,11 @@ msgstr "Shqyrtime të miratuara"
 msgid "Deleted reviews"
 msgstr "Shqyrtime të fshira"
 
-#: apps/editors/forms.py:40 apps/editors/forms.py:59
+#: apps/editors/forms.py:40 apps/editors/forms.py:70
 msgid "View entries between"
 msgstr "Shihni zëra ndërmjet"
 
-#: apps/editors/forms.py:42 apps/editors/forms.py:60
+#: apps/editors/forms.py:42 apps/editors/forms.py:71
 msgid "and"
 msgstr "dhe"
 
@@ -7262,108 +7270,120 @@ msgid "Filter by type/action"
 msgstr "Filtro sipas llojesh/veprimesh"
 
 #: apps/editors/forms.py:61
+msgid "Passed automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:63
+msgid "Failed automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:65
+msgid "Filter by automatic validation"
+msgstr ""
+
+#: apps/editors/forms.py:72
 msgid "containing"
 msgstr "që përmban"
 
 #. L10n: start, as in "start date"
-#: apps/editors/forms.py:67
+#: apps/editors/forms.py:78
 msgid "start"
 msgstr "fillim"
 
 #. L10n: end, as in "end date"
-#: apps/editors/forms.py:71
+#: apps/editors/forms.py:82
 msgid "end"
 msgstr "fund"
 
 #. L10n: Description of what can be searched for
-#: apps/editors/forms.py:74
+#: apps/editors/forms.py:85
 msgid "add-on, editor or comment"
 msgstr "shtesë, redaktor ose koment"
 
-#: apps/editors/forms.py:90
+#: apps/editors/forms.py:101
 msgid "Search by add-on name / author email"
 msgstr "Kërkoni sipas emrash / email-esh autorësh të shtesës"
 
-#: apps/editors/forms.py:95
+#: apps/editors/forms.py:106
 msgid "yes"
 msgstr "po"
 
-#: apps/editors/forms.py:96
+#: apps/editors/forms.py:107
 msgid "no"
 msgstr "jo"
 
-#: apps/editors/forms.py:97
+#: apps/editors/forms.py:108
 msgid "Admin Flag"
 msgstr "Shenjë nga Përgjegjësi"
 
-#: apps/editors/forms.py:105
+#: apps/editors/forms.py:116
 msgid "Max. Version"
 msgstr "Version Maksimum"
 
-#: apps/editors/forms.py:109
+#: apps/editors/forms.py:120
 msgid "Days Since Submission"
 msgstr "Ditë Që Prej Parashtrimit"
 
-#: apps/editors/forms.py:114
+#: apps/editors/forms.py:125
 msgid "Add-on Types"
 msgstr "Lloje Shtesash"
 
-#: apps/editors/forms.py:118 apps/editors/helpers.py:239
+#: apps/editors/forms.py:129 apps/editors/helpers.py:239
 msgid "Platforms"
 msgstr "Platforma"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
-#: apps/editors/forms.py:230
+#: apps/editors/forms.py:241
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
 msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
-#: apps/editors/forms.py:245 apps/files/templates/files/viewer.html:50
+#: apps/editors/forms.py:256 apps/files/templates/files/viewer.html:50
 msgid "Files:"
 msgstr "Kartela:"
 
-#: apps/editors/forms.py:248
+#: apps/editors/forms.py:259
 msgid "Comments:"
 msgstr "Komente:"
 
-#: apps/editors/forms.py:252
+#: apps/editors/forms.py:263
 msgid "Operating systems:"
 msgstr "Sisteme operativë:"
 
-#: apps/editors/forms.py:254
+#: apps/editors/forms.py:265
 msgid "Applications:"
 msgstr "Aplikacione:"
 
-#: apps/editors/forms.py:256
+#: apps/editors/forms.py:267
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Njoftomë herës tjetër që përditësohet kjo shtesë. (Përditësimet e njëpasnjëshme nuk do të shoqërohen me email.)"
 
-#: apps/editors/forms.py:261
+#: apps/editors/forms.py:272
 msgid "Clear Admin Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Redaktori"
 
-#: apps/editors/forms.py:281
+#: apps/editors/forms.py:292
 msgid "Choose a canned response..."
 msgstr "Zgjidhni një përgjigje të gatshme..."
 
-#: apps/editors/forms.py:310
+#: apps/editors/forms.py:321
 msgid "You must select some files."
 msgstr "Duhet të përzgjidhni disa kartela."
 
-#: apps/editors/forms.py:316
+#: apps/editors/forms.py:327
 msgid "File %s is not pending review."
 msgstr "Kartela %s nuk është në pritje të shqyrtimit."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:338
+#: apps/editors/forms.py:349
 msgid "theme name"
 msgstr "emër teme"
 
-#: apps/editors/forms.py:364
+#: apps/editors/forms.py:375
 msgid "Someone else is reviewing this theme."
 msgstr "Dikush tjetër po e shqyrton këtë temë."
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:461
+#: apps/editors/forms.py:472
 msgid "app, reviewer, or comment"
 msgstr "aplikacion, shqyrtues, ose koment"
 
@@ -7670,56 +7690,56 @@ msgstr "Parashtrim teme me shenjë të vënë për shqyrtim"
 msgid "A question about your Theme submission"
 msgstr "Një pyetje rreth parashtrimit të Temës suaj"
 
-#: apps/editors/views.py:112
+#: apps/editors/views.py:129
 msgid "New Add-ons (Under 5 days)"
 msgstr "Shtesa të Reja (Nën 5 ditë)"
 
-#: apps/editors/views.py:113
+#: apps/editors/views.py:130
 msgid "Passable (5 to 10 days)"
 msgstr "Ende në lojë (5 deri në 10 ditë)"
 
-#: apps/editors/views.py:114
+#: apps/editors/views.py:131
 msgid "Overdue (Over 10 days)"
 msgstr "Të kaluara (10 ditë e më tepër)"
 
-#: apps/editors/views.py:441
+#: apps/editors/views.py:458
 msgid "An unknown error occurred"
 msgstr "Ndodhi një gabim i panjohur"
 
-#: apps/editors/views.py:493
+#: apps/editors/views.py:510
 msgid "Self-reviews are not allowed."
 msgstr "Nuk lejohen shqyrtime nga vetja."
 
-#: apps/editors/views.py:515
+#: apps/editors/views.py:532
 msgid "Review successfully processed."
 msgstr "Shqyrtimi u krye me sukses."
 
-#: apps/editors/views.py:706
+#: apps/editors/views.py:723
 msgid "was approved"
 msgstr "qe miratuar"
 
-#: apps/editors/views.py:707
+#: apps/editors/views.py:724
 msgid "given preliminary review"
 msgstr "pati shqyrtim paraprak"
 
-#: apps/editors/views.py:708
+#: apps/editors/views.py:725
 msgid "rejected"
 msgstr "hedhur poshtë"
 
-#: apps/editors/views.py:709
+#: apps/editors/views.py:726
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "shtyrë përpara"
 
-#: apps/editors/views.py:711
+#: apps/editors/views.py:728
 msgid "needs more information"
 msgstr "lyp më tepër të dhëna"
 
-#: apps/editors/views.py:712
+#: apps/editors/views.py:729
 msgid "needs super review"
 msgstr "lyp super-shqyrtim"
 
-#: apps/editors/views.py:713
+#: apps/editors/views.py:730
 msgid "commented"
 msgstr ""
 
@@ -7776,28 +7796,33 @@ msgstr "Regjistër Shqyrtimesh Shtese"
 msgid "Moderated Review Log"
 msgstr "U moderua Regjistri i Shqyrtimeve"
 
-#: apps/editors/templates/editors/base.html:85 apps/editors/templates/editors/includes/daily-message.html:4
+#: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
 msgstr "Njoftim"
 
 #. "Filter" is a button label (verb)
-#: apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45 apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
+#: apps/editors/templates/editors/beta_signed_log.html:17 apps/editors/templates/editors/eventlog.html:24 apps/editors/templates/editors/themes/macros.html:45
+#: apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
 msgstr "Filtër"
 
-#: apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
+#: apps/editors/templates/editors/beta_signed_log.html:23 apps/editors/templates/editors/eventlog.html:30 apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
 msgstr "Datë"
 
-#: apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
+#: apps/editors/templates/editors/beta_signed_log.html:24 apps/editors/templates/editors/eventlog.html:31 apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
 msgstr "Ngjarje"
 
-#: apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
+#: apps/editors/templates/editors/beta_signed_log.html:37 apps/editors/templates/editors/eventlog.html:44 apps/editors/templates/editors/home.html:180
 msgid "More details."
 msgstr "Më tepër hollësi."
 
-#: apps/editors/templates/editors/eventlog.html:53
+#: apps/editors/templates/editors/beta_signed_log.html:46 apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
 msgstr "Nuk u gjetën ngjarje për këtë periudhë."
 
@@ -9741,10 +9766,8 @@ msgstr "Po nëse nuk e gjej dot shtesën që po kërkoj?"
 #: apps/pages/templates/pages/faq.html:182
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-on Ideas</a> forum."
+"our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
-"Me mijëra shtesa të passhme, për gjithkënd ka diçka. Por nëse po kërkoni për një shtesë të veçantë dhe nuk e gjeni, mund të provoni ta kërkoni te sajte të tjera ose të postoni një kërkesë te forumi "
-"ynë <a href=\"%(forum_url)s\">Ide Shtesash</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -10074,11 +10097,8 @@ msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Jam autor shtese, a mundem t’u përgjigjem shqyrtimeve?"
 
 #: apps/pages/templates/pages/review_guide.html:142
-msgid ""
-"Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional "
-"discussion or follow-up."
-msgstr ""
-"Po, autorët e shtesave mund të t’i japin vetëm një përgjigje një shqyrtimi. Për diskutime shtesë apo vazhdim, mund të hapni një temë diskutimesh te <a href=\"%(forum_url)s\">forumi ynë</a>."
+msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
+msgstr "Po, autorët e shtesave mund të t’i japin vetëm një përgjigje një shqyrtimi. Për diskutime shtesë apo vazhdim, mund të hapni një temë diskutimesh te <a href=\"%(forum_url)s\">forumi ynë</a>."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
