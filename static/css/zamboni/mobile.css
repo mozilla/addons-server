@@ -89,36 +89,19 @@ section:after,
 /* 'Mozilla' */
 .moz-menu .tab {
     background: #33589f;
-/*    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(rgb(42,65,135)),
-        to(rgb(59,105,177))
-    );
-    background: -moz-linear-gradient(
-        center bottom,
-        rgb(42,65,135) 0%,
-        rgb(59,105,177) 100%
-    );
-    background: linear-gradient(
-        center bottom,
-        rgb(42,65,135) 0%,
-        rgb(59,105,177) 100%
-    );
-*/}
+}
 
 footer:before,
 .tabs {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -moz-linear-gradient(#fff, #dcedfd);
+                      linear-gradient(#fff, #dcedfd);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcedfd));
 }
 
 #page {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
-                      -moz-linear-gradient(#dcedfd 0, #fff 200px);
+                      linear-gradient(#dcedfd 0, #fff 200px);
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAABCAYAAAASC7TOAAAAEElEQVQIHWP8//8/Aw7wHwBR6AP+G53o6QAAAABJRU5ErkJggg=='),
                       -webkit-gradient(linear, left top, left 200, from(#dcedfd), to(#fff));
     margin-bottom: 30px;
@@ -860,14 +843,6 @@ button:active,
 .button.affirmative,
 .button.add {
     background-color: #84C63C;
-/*    background-image: -moz-linear-gradient(#84C63C, #489615);
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(#84C63C),
-        to(#489615)
-    );*/
     color: #fff;
 }
 /* We're getting rid of orange install buttons someday. Today's not that day. */
@@ -876,14 +851,6 @@ button:active,
 }
 .button.negative {
     background-color: #84C63C;
-/*    background-image: -moz-linear-gradient(#b25951, #932b0d);
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        from(#b25951),
-        to(#932b0d)
-    );*/
     color: #fff;
 }
 .button.cancel {
@@ -907,9 +874,6 @@ button:active,
     background-attachment: scroll, scroll;
     background-clip: border-box, border-box;
     background-color: transparent;
-/*    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
-                    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGlJREFUeNqc0cEJACEMRFFNARaw/RexFe1dG3AjCBJJYDL/kNtjDqn9lRLUnlrixjd5qVdo6WNQOhiXN05Jg7PyYEJuzMmFaRn+GZG6KrQMlxHpY1A6GJc3TkmDs/JgQm7MyYVpqf0CDABVcj3T2ITzOAAAAABJRU5ErkJggg==);
-*/
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGlJREFUeNqc0cEJACEMRFFNARaw/RexFe1dG3AjCBJJYDL/kNtjDqn9lRLUnlrixjd5qVdo6WNQOhiXN05Jg7PyYEJuzMmFaRn+GZG6KrQMlxHpY1A6GJc3TkmDs/JgQm7MyYVpqf0CDABVcj3T2ITzOAAAAABJRU5ErkJggg==);
     background-origin: padding-box, padding-box;
     background-position: 0 0%, 0 0;
@@ -928,7 +892,6 @@ button:active,
 .button.disabled,
 .button.waiting {
     background-color: #d1d4d7;
-/*    background-image: -moz-linear-gradient(#d1d4d7, #c1c5ca);*/
     color: #fff;
     -moz-box-shadow: 0 3px rgba(0, 0, 0, 0.05),
                      0 -4px rgba(0, 0, 0, 0.05) inset;
@@ -982,7 +945,6 @@ button:active,
     line-height: 25px;
     border: 1px solid #ccc;
     background-color: #e6e6e6;
-/*    background-image: -moz-linear-gradient(#e6e6e6, #d3d3d3);*/
 }
 
 .badges li span {
@@ -1212,13 +1174,13 @@ button:active,
 }
 .carousel .control.prev,
 .html-rtl .carousel .control.next {
-    background-image: -moz-linear-gradient(left, #fff 20%, rgba(255,255,255,0));
+    background-image: linear-gradient(to right, #fff 20%, rgba(255,255,255,0));
     right: auto;
     left: 0;
 }
 .carousel .control.next,
 .html-rtl .carousel .control.prev {
-    background-image: -moz-linear-gradient(left, rgba(255,255,255,0), #fff 80%);
+    background-image: linear-gradient(to right, rgba(255,255,255,0), #fff 80%);
     left: auto;
     right: 0;
 }
@@ -1228,7 +1190,6 @@ button:active,
     position: relative;
     padding: 14px 40px;
     overflow: hidden;
-/*    background-image: -moz-linear-gradient(#fff 95%, #dcedfd);*/
     background-color: #fff;
     border-bottom: 2px solid #dcedfd;
     margin-bottom: 20px;
