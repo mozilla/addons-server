@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-01 08:33-0700\n"
-"PO-Revision-Date: 2015-06-26 16:58:33\n"
+"PO-Revision-Date: 2015-07-15 08:54:05.688327\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -8811,6 +8811,12 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(bugzilla_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"O comportamento do canal beta mudou para acomodar a <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">obrigatoriedade do "
+"complemento assinado</a>. O novo processo está atualmente em beta público e "
+"pode mudar significativamente no futuro próximo. Por favor <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">relatar quaisquer bugs</a> que "
+"encontrar."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:92
 msgid ""
@@ -9012,6 +9018,8 @@ msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
+"Não distribuído no {0}. Os desenvolvedores vão enviar novas versões para "
+"assinatura e distribuí-los por conta própria. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -9158,6 +9166,9 @@ msgid ""
 "href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Complementos na lista estão atualmente em beta aberto. Por favor <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">relatar quaisquer bugs</a> que "
+"encontrar."
 
 #: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
@@ -15214,11 +15225,11 @@ msgstr "Denunciar usuário {0}"
 
 #: apps/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "Pedido da camiseta"
 
 #: apps/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "Edição especial da camiseta Add-on Creator"
 
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
@@ -15246,12 +15257,17 @@ msgid ""
 "As a thank you gift, we'd like to send you a special-edition, community-"
 "designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Como um presente de agradecimento, gostaríamos de enviar-lhe uma edição "
+"especial da camiseta community-designed. Para receber sua camisa, por favor,"
+" preencha o formulário abaixo."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid ""
 "Your contact information will only be used by Mozilla to ship this special "
 "edition t-shirt."
 msgstr ""
+"Suas informações só serão utilizadas pela Mozilla para enviar esta edição "
+"especial da camiseta."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -15291,7 +15307,7 @@ msgstr "Telefone"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Informações da camiseta"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
@@ -15299,11 +15315,11 @@ msgstr "Camiseta do tamanho"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Você será redirecionado ao Formulário do Google para submissão."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Pedido da camiseta"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
@@ -15312,6 +15328,10 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Pedimos desculpas, mas para se qualificar para nossa edição especial da "
+"camiseta, você deve ser um desenvolvedor de complemento, com pelo menos um "
+"complemento listado, um complemento não listado mas assinado ou qualquer "
+"número de temas, com um total de 10.000 usuários em média diáriamente."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""
