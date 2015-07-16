@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-06-20 12:40+0000\n"
+"PO-Revision-Date: 2015-07-16 05:43+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434804027.0\n"
+"X-POOTLE-MTIME: 1437025402.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1770,7 +1770,7 @@ msgstr "已下架 {addon}。"
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "已簽署 {file}。"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -6743,11 +6743,11 @@ msgstr "將附加元件下架的功能還在開放測試階段，請 <a href=\"%
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "無法復原下架附加元件！"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "不上架的附加元件無法切換為上架。"
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -7072,15 +7072,15 @@ msgstr "以類型/動作過濾"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "通過自動驗證"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "未通過自動驗證"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "依照自動驗證過濾"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -7594,7 +7594,7 @@ msgstr "有問題的評論之紀錄"
 
 #: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "簽署的 Beta 檔案紀錄"
 
 #: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
@@ -9490,6 +9490,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"若您要尋找某套附加元件卻找不到，您可以試試在其他網站搜尋，或是在我們的 <a href=\"%(forum_url)s\">附加元件討論區</a> "
+"貼文詢問。"
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
