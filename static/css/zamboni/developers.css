@@ -398,7 +398,7 @@ form .char-count b {
     margin-bottom: 1em;
 }
 
-.addon-submission-process form label,
+form.new-addon-file label,
 #edit-addon-basic .addon-app-cats label {
     display: block;
     padding-bottom: 3px;
@@ -409,7 +409,7 @@ form .char-count b {
 .beta-warning em {
     color: #f00;
 }
-.addon-submission-process form label[for=id_is_sideload] {
+form.new-addon-file label[for=id_is_sideload] {
     display: none;
     margin-left: 20px;
 }
