@@ -4,6 +4,7 @@ import os
 import shutil
 import zipfile
 
+from django.conf import settings
 from django.db.models import Q
 
 from celeryutils import task
@@ -17,10 +18,6 @@ from versions.models import Version
 
 log = logging.getLogger('z.task')
 
-# Minimum Firefox version for default to compatible addons.
-MIN_D2C_VERSION = '4'
-# Minimum Firefox version for not default to compatible addons.
-MIN_NOT_D2C_VERSION = '37'
 
 MAIL_SUBJECT = u'Mozilla Add-ons: {addon} has been automatically signed on AMO'
 MAIL_MESSAGE = u"""
@@ -92,8 +89,10 @@ def sign_addons(addon_ids, force=False, **kw):
     # The signing feature should be supported from Firefox 40 and above, but
     # we're still signing some files that are a bit older just in case.
     ff_version_filter = (
-        (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
-        (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
+        (is_default_compatible &
+            file_supports_firefox(settings.MIN_D2C_VERSION)) |
+        (~is_default_compatible &
+            file_supports_firefox(settings.MIN_NOT_D2C_VERSION)))
 
     addons_emailed = []
     # We only care about extensions and (complete) themes. The latter is
@@ -102,7 +101,11 @@ def sign_addons(addon_ids, force=False, **kw):
                                           addon__type__in=[
                                               amo.ADDON_EXTENSION,
                                               amo.ADDON_THEME]):
-        to_sign = version.files.filter(ff_version_filter)
+
+        # We only sign files that have been reviewed and are compatible with
+        # versions of Firefox that are recent enough.
+        to_sign = version.files.filter(ff_version_filter,
+                                       status__in=amo.REVIEWED_STATUSES)
         # We only care about multi-package XPIs for themes, because they may
         # have extensions inside.
         if version.addon.type == amo.ADDON_THEME:
@@ -130,7 +133,11 @@ def sign_addons(addon_ids, force=False, **kw):
                 # Need to bump the version (modify install.rdf or package.json)
                 # before the file is signed.
                 bump_version_number(file_obj)
-                signed = bool(sign_file(file_obj))
+                if file_obj.status == amo.STATUS_PUBLIC:
+                    server = settings.SIGNING_SERVER
+                else:
+                    server = settings.PRELIMINARY_SIGNING_SERVER
+                signed = bool(sign_file(file_obj, server))
                 if signed:  # Bump the version number if at least one signed.
                     bump_version = True
                 else:  # We didn't sign, so revert the version bump.
@@ -248,8 +255,10 @@ def unsign_addons(addon_ids, force=False, **kw):
     # The signing feature should be supported from Firefox 40 and above, but
     # we're still signing some files that are a bit older just in case.
     ff_version_filter = (
-        (is_default_compatible & file_supports_firefox(MIN_D2C_VERSION)) |
-        (~is_default_compatible & file_supports_firefox(MIN_NOT_D2C_VERSION)))
+        (is_default_compatible &
+            file_supports_firefox(settings.MIN_D2C_VERSION)) |
+        (~is_default_compatible &
+            file_supports_firefox(settings.MIN_NOT_D2C_VERSION)))
 
     addons_emailed = []
     for version in Version.objects.filter(addon_id__in=addon_ids,
@@ -259,7 +268,8 @@ def unsign_addons(addon_ids, force=False, **kw):
         if not version.version.endswith(bumped_suffix):
             log.info(u'Version {0} was not bumped, skip.'.format(version.pk))
             continue
-        to_unsign = version.files.filter(ff_version_filter)
+        to_unsign = version.files.filter(ff_version_filter,
+                                         status__in=amo.REVIEWED_STATUSES)
         # We only care about multi-package XPIs for themes, because they may
         # have extensions inside.
         if version.addon.type == amo.ADDON_THEME:

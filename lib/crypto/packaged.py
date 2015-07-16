@@ -16,6 +16,7 @@ from signing_clients.apps import get_signature_serial_number, JarExtractor
 
 import amo
 from files.utils import extract_xpi, parse_xpi
+from versions.compare import version_int
 
 log = commonware.log.getLogger('z.crypto')
 
@@ -24,12 +25,29 @@ class SigningError(Exception):
     pass
 
 
-def get_endpoint(file_obj):
-    """Get the endpoint to sign the file, depending on its review status."""
-    server = settings.SIGNING_SERVER
-    if file_obj.version.addon.status != amo.STATUS_PUBLIC:
-        server = settings.PRELIMINARY_SIGNING_SERVER
-    if not server:
+def supports_firefox(file_obj):
+    """Return True if the file support a high enough version of Firefox.
+
+    We only sign files that are at least compatible with Firefox
+    MIN_NOT_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
+    to compatible.
+    """
+    apps = file_obj.version.apps.all()
+    if not file_obj.binary_components and not file_obj.strict_compatibility:
+        # Version is "default to compatible".
+        return apps.filter(
+            max__application=amo.FIREFOX.id,
+            max__version_int__gte=version_int(settings.MIN_D2C_VERSION))
+    else:
+        # Version isn't "default to compatible".
+        return apps.filter(
+            max__application=amo.FIREFOX.id,
+            max__version_int__gte=version_int(settings.MIN_NOT_D2C_VERSION))
+
+
+def get_endpoint(server):
+    """Get the endpoint to sign the file, either the full or prelim one."""
+    if not server:  # Setting is empty, signing isn't enabled.
         return
 
     return u'{server}/1.0/sign_addon'.format(server=server)
@@ -68,7 +86,7 @@ def call_signing(file_path, endpoint, guid):
     return cert_serial_num
 
 
-def sign_file(file_obj):
+def sign_file(file_obj, server):
     """Sign a File.
 
     If there's no endpoint (signing is not enabled), or the file is a hotfix,
@@ -77,10 +95,15 @@ def sign_file(file_obj):
 
     Otherwise return the signed file.
     """
-    endpoint = get_endpoint(file_obj)
+    endpoint = get_endpoint(server)
     if not endpoint:  # Signing not enabled.
         log.info(u'Not signing file {0}: no active endpoint'.format(
             file_obj.pk))
+        return
+
+    # No file? No signature.
+    if not os.path.exists(file_obj.file_path):
+        log.info(u'File {0} doesn\'t exist on disk'.format(file_obj.file_path))
         return
 
     # Don't sign hotfixes.
@@ -89,10 +112,11 @@ def sign_file(file_obj):
             file_obj.pk))
         return
 
-    # We only sign files that have been reviewed.
-    if file_obj.status not in amo.REVIEWED_STATUSES:
-        log.info(u'Not signing file {0}: it isn\'t reviewed'.format(
-            file_obj.pk))
+    # We only sign files that are compatible with Firefox.
+    if not supports_firefox(file_obj):
+        log.info(
+            u'Not signing version {0}: not for a Firefox version we support'
+            .format(file_obj.version.pk))
         return
 
     guid = file_obj.version.addon.guid

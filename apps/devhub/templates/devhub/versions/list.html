@@ -115,12 +115,14 @@
                     class="disable-addon">
              <strong>{{ _('Hidden:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
       <br><br>
+      {% if waffle.flag('unlisted-addons') %}
       <label><input name="addon-state" value="unlisted" type="radio"
                     {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_listed %}checked="checked"{% endif %}
                     class="unlist-addon">
-             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
+             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)')|f(settings.SITE_URL) }}</label>
       <br><br>
+      {% endif %}
       {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
         <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
       {% endif %}
@@ -243,9 +245,10 @@
     </form>
   </div>
 
-  {{ add_version_modal(_("Add a new Version"),
+  {{ add_file_modal(_("Add a new Version"),
                        url('devhub.versions.add', addon.slug),
-                       url('devhub.upload_for_addon', addon.slug), _("Add Version") )}}
+                       _("Add Version"),
+                       'version')}}
 
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
@@ -293,6 +296,14 @@
           install.rdf file for automatic updates.
         {% endtrans %}
       </p>
+      <p class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
+        {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+          Switching add-ons to unlisted is currently in an open beta. Please
+          <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a> that
+          you encounter.
+        {% endtrans %}
+      </p>
+      <p class="beta-warning"><em>{% trans %}Unlisting an add-on is irreversible!{% endtrans %}</em> {% trans %}An unlisted add-on cannot be switched to be listed.{% endtrans %}</p>
       <p>
         {% trans %}
           Are you sure you wish to unlist your add-on?

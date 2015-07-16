@@ -1,6 +1,9 @@
 <div class="add-file-modal upload-file modal hidden">
-  <form method="post" id="upload-file" action="{{ action }}"
-        enctype="multipart/form-data">
+  <form method="post" id="upload-file" class="new-addon-file" action="{{ action }}" enctype="multipart/form-data"
+    data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
+    data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}"
+    data-addon-is-listed="{% if addon.is_listed %}true{% else %}false{% endif %}"
+    data-addon-is-sideload="{% if not addon.is_listed and addon.status == amo.STATUS_PUBLIC %}true{% else %}false{% endif %}">
     <h3>{{ title }}</h3>
     <div class="upload-file-box">
       <p>
@@ -9,12 +12,28 @@
           will be available for download.
         {% endtrans %}
       </p>
+      {% if not addon.is_listed %}
+        <p class="beta-warning"><em>{{ _('Warning:') }}</em>
+          {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+            Submission of updates to unlisted add-ons for signing is currently
+            in an open beta. Manual review may still be required for a large
+            number of add-ons. Please
+            <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a>
+            that you encounter.
+          {% endtrans %}
+        </p>
+      {% endif %}
       {{ csrf() }}
 
       <div class="hidden">
         {{ new_file_form.upload }}
       </div>
-      <input type="file" id="upload-addon"  data-upload-url="{{ upload_url }}">
+      <input type="file" id="upload-addon"
+        data-upload-url="{{ upload_url }}"
+        {% if waffle.flag('unlisted-addons') %}
+          data-upload-url-listed="{{ upload_url }}"
+          data-upload-url-unlisted="{{ upload_url_unlisted }}"
+        {% endif %}>
 
       {{ source_form_field(new_file_form.source) }}
 
@@ -38,6 +57,15 @@
       <div class="beta-status hide">
         <label>{{ new_file_form.beta }} {{ _('Only publish this version to my beta channel.') }}</label>
         <span class="tip tooltip" title="{{ new_file_form.beta.help_text }}">?</span>
+        <p class="beta-warning"><em>{{ _('Warning:') }}</em>
+          {% trans addon_signing_url='https://wiki.mozilla.org/Addons/Extension_Signing', bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+            The behavior of the beta channel has changed to accommodate
+            <a href="{{ addon_signing_url }}" target="_blank">mandatory add-on signing</a>.
+            The new process is currently in an open beta, and may change
+            significantly in the near future. Please
+            <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a> that you encounter.
+          {% endtrans %}
+        </p>
       </div>
       {% if is_admin %}
       <div class="admin-settings">
@@ -51,6 +79,15 @@
       </div>
       {% endif %}
     </div>
+    {% if not addon.is_listed %}
+      <div id="manual-review" class="hidden">
+        <p class="error">{{ _("Looks like your add-on requires a manual review before it can be signed.") }}</p>
+        <label for="{{ new_file_form.is_manual_review.auto_id }}">
+          {{ new_file_form.is_manual_review }}
+          {{ new_file_form.is_manual_review.label }}
+        </label>
+      </div>
+    {% endif %}
 
     <div class="upload-status-button-add">
       <button class="addon-upload-dependant button" id="upload-file-finish" disabled>{{ action_label }}</button>

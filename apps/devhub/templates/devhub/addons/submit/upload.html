@@ -4,7 +4,7 @@
 
 {% block primary %}
 
-<form method="post" id="create-addon" class="item" enctype="multipart/form-data"
+<form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
     data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}">
   {{ csrf() }}
@@ -25,11 +25,20 @@
     <div class="list-addon">
       <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
       <div>
-        <label for="{{ new_addon_form.is_listed.auto_id }}">
-          {{ new_addon_form.is_listed }}
-          {{ new_addon_form.is_listed.label }}
+        <label for="{{ new_addon_form.is_unlisted.auto_id }}">
+          {{ new_addon_form.is_unlisted }}
+          {{ new_addon_form.is_unlisted.label }}
           <span class="tip tooltip"
-                title="{{ new_addon_form.is_listed.help_text }}">?</span>
+                title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
+          <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
+            {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+              Submission of unlisted add-ons for signing is currently in an
+              open beta. Manual review may still be required for a large
+              number of add-ons. Please
+              <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a>
+              that you encounter.
+            {% endtrans %}
+          </span>
         </label>
         <label for="{{ new_addon_form.is_sideload.auto_id }}">
           {{ new_addon_form.is_sideload }}
@@ -51,30 +60,37 @@
 
   {{ source_form_field(new_addon_form.source) }}
 
-      <div class="platform">
-        <div class="supported-platforms">
-          <label>{{ _('Which platforms is this file compatible with?') }}</label>
-          {{ new_addon_form.errors.supported_platforms }}
-          {{ new_addon_form.supported_platforms }}
-        </div>
-        {{ new_addon_form.upload }}
+    <div class="platform">
+      <div class="supported-platforms">
+        <label>{{ _('Which platforms is this file compatible with?') }}</label>
+        {{ new_addon_form.errors.supported_platforms }}
+        {{ new_addon_form.supported_platforms }}
       </div>
-      {% if is_admin %}
-      <div class="admin-settings">
-        <label>{{ _('Administrative overrides') }}</label>
-        <div>
-          <label for="{{ new_addon_form.admin_override_validation.auto_id }}" class="addon-upload-failure-dependant">
-            {{ new_addon_form.admin_override_validation }}
-            {{ new_addon_form.admin_override_validation.label }}
-          </label>
-        </div>
+      {{ new_addon_form.upload }}
+    </div>
+    {% if is_admin %}
+    <div class="admin-settings">
+      <label>{{ _('Administrative overrides') }}</label>
+      <div>
+        <label for="{{ new_addon_form.admin_override_validation.auto_id }}" class="addon-upload-failure-dependant">
+          {{ new_addon_form.admin_override_validation }}
+          {{ new_addon_form.admin_override_validation.label }}
+        </label>
       </div>
-      {% endif %}
-      <div class="submission-buttons addon-submission-field">
-        <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
-          {{ _('Continue') }}
-        </button>
-      </div>
+    </div>
+    {% endif %}
+    <div id="manual-review" class="hidden">
+      <p class="error">{{ _("Looks like your add-on requires a manual review before it can be signed.") }}</p>
+      <label for="{{ new_addon_form.is_manual_review.auto_id }}">
+        {{ new_addon_form.is_manual_review }}
+        {{ new_addon_form.is_manual_review.label }}
+      </label>
+    </div>
+    <div class="submission-buttons addon-submission-field">
+      <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
+        {{ _('Continue') }}
+      </button>
+    </div>
   </section>
 </form>
 {% endblock primary %}

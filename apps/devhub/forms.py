@@ -119,7 +119,7 @@ class LicenseForm(AMOModelForm):
                                  renderer=LicenseChoiceRadio))
     name = forms.CharField(widget=TranslationTextInput(),
                            label=_lazy(u"What is your license's name?"),
-                           required=False, initial=_('Custom License'))
+                           required=False, initial=_lazy('Custom License'))
     text = forms.CharField(widget=TranslationTextarea(), required=False,
                            label=_lazy(u'Provide the text of your license.'))
 
@@ -141,6 +141,8 @@ class LicenseForm(AMOModelForm):
               for x in License.objects.builtins().filter(on_form=True)]
         cs.append((License.OTHER, _('Other')))
         self.fields['builtin'].choices = cs
+        if addon and not addon.is_listed:
+            self.fields['builtin'].required = False
 
     class Meta:
         model = License
@@ -185,6 +187,8 @@ class LicenseForm(AMOModelForm):
         changed = self.changed_data
 
         builtin = self.cleaned_data['builtin']
+        if builtin == '':  # No license chosen, it must be an unlisted add-on.
+            return
         if builtin != License.OTHER:
             license = License.objects.get(builtin=builtin)
         else:
@@ -478,6 +482,9 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
     admin_override_validation = forms.BooleanField(
         required=False, label=_lazy(u'Override failed validation'))
     source = forms.FileField(required=False)
+    is_manual_review = forms.BooleanField(
+        initial=False, required=False,
+        label=_lazy(u'Submit my add-on for manual review.'))
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -500,21 +507,21 @@ class NewAddonForm(AddonUploadForm):
         coerce=int,
         error_messages={'required': 'Need at least one platform.'}
     )
-    is_listed = forms.BooleanField(
-        initial=True,
+    is_unlisted = forms.BooleanField(
+        initial=False,
         required=False,
-        label=_lazy(u'Yes, distribute my add-on on this site.'),
-        help_text=_(
-            u'Uncheck this option if you intend to distribute your add-on on '
+        label=_lazy(u'Do not list my add-on on this site (beta)'),
+        help_text=_lazy(
+            u'Check this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
     is_sideload = forms.BooleanField(
         initial=False,
         required=False,
         label=_lazy(u'This add-on will be side-loaded via application '
                     u'installers.'),
-        help_text=_(u'Add-ons that are side-loaded will be code reviewed by '
-                    u'Mozilla before they are signed and are held to a higher '
-                    u'quality standard.'))
+        help_text=_lazy(u'Add-ons that are side-loaded will be code reviewed '
+                        u'by Mozilla before they are signed and are held to a '
+                        u'higher quality standard.'))
 
     def clean(self):
         if not self.errors:
@@ -537,8 +544,9 @@ class NewVersionForm(NewAddonForm):
         })
     beta = forms.BooleanField(
         required=False,
-        help_text=_lazy(u'A file with a version ending with a|alpha|b|beta and'
-                        u' an optional number is detected as beta.'))
+        help_text=_lazy(u'A file with a version ending with '
+                        u'a|alpha|b|beta|pre|rc and an optional number is '
+                        u'detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')

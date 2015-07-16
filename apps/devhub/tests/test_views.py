@@ -209,6 +209,7 @@ class TestDashboard(HubTest):
 
         # when Active and Incomplete hide statistics
         self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
+        SubmitStep.objects.create(addon=self.addon, step=6)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
@@ -845,7 +846,9 @@ class TestHome(amo.tests.TestCase):
             eq_(addon_item.find('.upload-new-version').length, 0)
 
         self.addon.update(status=amo.STATUS_NULL)
+        submit_step = SubmitStep.objects.create(addon=self.addon, step=6)
         no_link()
+        submit_step.delete()
 
         self.addon.update(status=amo.STATUS_DISABLED)
         no_link()
@@ -1168,7 +1171,7 @@ class TestSubmitStep2(amo.tests.TestCase):
         response = self.client.get(reverse('devhub.submit.2'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
-        assert doc('.list-addon input#id_is_listed[type=checkbox]')
+        assert doc('.list-addon input#id_is_unlisted[type=checkbox]')
         # There also is a checkbox to select full review (side-load) or prelim.
         assert doc('.list-addon input#id_is_sideload[type=checkbox]')
 
@@ -2006,6 +2009,9 @@ class TestUploadDetail(BaseUploadTest):
             'success': True,
             'warnings': 0,
             'notices': 0,
+            'signing_summary': {'trivial': 1, 'low': 0, 'medium': 0,
+                                'high': 0},
+            'passed_auto_validation': 1,
             'message_tree': {},
             'messages': [],
             'rejected': False,
@@ -2186,10 +2192,10 @@ class TestVersionAddFile(UploadTest):
             a.application = amo.ANDROID.id
             a.save()
 
-    def post(self, platform=amo.PLATFORM_MAC, source=None):
+    def post(self, platform=amo.PLATFORM_MAC, source=None, beta=False):
         return self.client.post(self.url, dict(upload=self.upload.pk,
                                                platform=platform.id,
-                                               source=source))
+                                               source=source, beta=beta))
 
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
@@ -2414,19 +2420,19 @@ class TestVersionAddFile(UploadTest):
         eq_(response.status_code, 400)
         assert 'source' in json.loads(response.content)
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_sideload(self, mock_sign_file):
         """Sideloadable addons need manual full review."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # The status stays unchanged: it needs a manual full review.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation need a manual preliminary review."""
         self.addon.update(
@@ -2435,52 +2441,82 @@ class TestVersionAddFile(UploadTest):
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1}')
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 1,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # The status stays unchanged: it needs a manual preliminary review.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
         """Files that pass validation are not automatically signed/reviewed if
         the flag is not enabled."""
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
-        # Make sure the file has no validation warnings nor errors.
+        # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 0}')
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
 
         # Without the flag: should still go through manual prelim review.
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # The status is unchanged and the file is not signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed if
         the flag is enabled."""
         self.create_flag('automatic-validation')
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
-        # Make sure the file has no validation warnings nor errors.
+        # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 0}')
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # With the flag: should be signed.
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_beta_addon_pass_validation_with_flag(self, mock_sign_file):
+        """Beta files that pass validation are automatically signed/reviewed if
+        the flag is enabled."""
+        self.create_flag('automatic-validation')
+        # Make sure the file has no validation signing related messages.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
+        assert self.addon.status == amo.STATUS_PUBLIC
+        # With the flag: should be signed.
+        self.post(beta=True)
+        file_ = File.objects.latest()
+        # Addon status didn't change and the file is signed.
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_BETA
         assert mock_sign_file.called
 
 
@@ -2616,13 +2652,13 @@ class TestAddVersion(AddVersionTest):
 
     def test_public(self):
         self.post()
-        fle = File.objects.all().order_by("-created")[0]
+        fle = File.objects.latest()
         eq_(fle.status, amo.STATUS_PUBLIC)
 
     def test_not_public(self):
         self.addon.update(trusted=False)
         self.post()
-        fle = File.objects.all().order_by("-created")[0]
+        fle = File.objects.latest()
         assert_not_equal(fle.status, amo.STATUS_PUBLIC)
 
     def test_multiple_platforms(self):
@@ -2631,6 +2667,20 @@ class TestAddVersion(AddVersionTest):
         eq_(r.status_code, 200)
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
+
+    @mock.patch('devhub.views.auto_sign_file')
+    def test_multiple_platforms_unlisted_addon(self, mock_auto_sign_file):
+        self.create_flag('unlisted-addons')
+        self.create_flag('automatic-validation')
+        self.addon.update(is_listed=False)
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC,
+                                           amo.PLATFORM_LINUX])
+        eq_(r.status_code, 200)
+        version = self.addon.versions.get(version='0.1')
+        eq_(len(version.all_files), 2)
+        mock_auto_sign_file.assert_has_calls(
+            [mock.call(f, is_beta=False, admin_override=False)
+             for f in version.all_files])
 
     def test_with_source(self):
         tdir = temp.gettempdir()
@@ -2652,22 +2702,29 @@ class TestAddVersion(AddVersionTest):
 
     def test_force_beta(self):
         self.post(beta=True)
-        f = File.objects.all().order_by('-created')[0]
+        f = File.objects.latest()
         assert f.status == amo.STATUS_BETA
 
-    @mock.patch('devhub.views.sign_file')
+    def test_no_force_beta_for_unlisted_addons(self):
+        """No beta version for unlisted addons."""
+        self.addon.update(is_listed=False)
+        self.post(beta=True)
+        f = File.objects.latest()
+        assert f.status != amo.STATUS_BETA
+
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_sideload(self, mock_sign_file):
         """Sideloadable addons need manual full review."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # The status stays unchanged: it needs a manual full review.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation need a manual preliminary review."""
         self.addon.update(
@@ -2676,15 +2733,18 @@ class TestAddVersion(AddVersionTest):
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1}')
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 1,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 0}')
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # The status stays unchanged: it needs a manual preliminary review.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
         """Files that pass validation are not automatically signed/reviewed if
         the flag is not enabled."""
@@ -2693,17 +2753,20 @@ class TestAddVersion(AddVersionTest):
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 0}')
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # Without the flag: should not be signed.
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # The status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_UNREVIEWED
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed if
         the flag is enabled."""
@@ -2713,11 +2776,14 @@ class TestAddVersion(AddVersionTest):
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 0}')
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # With the flag: should be signed.
         self.post()
-        file_ = File.objects.all().order_by("-created")[0]
+        file_ = File.objects.latest()
         # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
@@ -2760,8 +2826,55 @@ class TestAddBetaVersion(AddVersionTest):
 
     def test_force_not_beta(self):
         self.post(beta=False)
-        f = File.objects.all().order_by('-created')[0]
+        f = File.objects.latest()
         assert f.status == amo.STATUS_PUBLIC
+
+    @mock.patch('devhub.views.sign_file')
+    def test_listed_beta_pass_validation_with_flag(self, mock_sign_file):
+        """Beta files that pass validation are signed with prelim cert if flag
+        is enabled."""
+        self.create_flag('automatic-validation')
+        self.addon.update(
+            is_listed=True, status=amo.STATUS_PUBLIC, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.post(beta=True)
+        file_ = File.objects.latest()
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_BETA
+        assert mock_sign_file.called
+        # There is a log for that beta file signature (with passed validation).
+        log = ActivityLog.objects.beta_signed_events().get()
+        assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id
+
+    @mock.patch('devhub.views.sign_file')
+    def test_listed_beta_do_not_pass_validation_with_flag(self,
+                                                          mock_sign_file):
+        """Beta files that don't pass validation should raise an error."""
+        self.create_flag('automatic-validation')
+        self.addon.update(is_listed=True, status=amo.STATUS_PUBLIC)
+        # Make sure the file has validation warnings.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 1, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 1,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 0}')
+        assert self.addon.status == amo.STATUS_PUBLIC
+        self.post(beta=True)
+        file_ = File.objects.latest()
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_BETA
+        assert mock_sign_file.called
+        # There is a log for that beta file signature (with failed validation).
+        log = ActivityLog.objects.beta_signed_events().get()
+        assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id
 
 
 class TestAddVersionValidation(AddVersionTest):
@@ -2777,6 +2890,9 @@ class TestAddVersionValidation(AddVersionTest):
             'success': False,
             'warnings': 0,
             'notices': 0,
+            'signing_summary': {'trivial': 1, 'low': 0, 'medium': 0,
+                                'high': 0},
+            'passed_auto_validation': 1,
             'message_tree': {},
             'ending_tier': 5,
             'messages': [
@@ -2837,7 +2953,7 @@ class UploadAddon(object):
              source=None, is_listed=True, is_sideload=False, status_code=200):
         d = dict(upload=self.upload.pk, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
-                 is_listed=is_listed, is_sideload=is_sideload)
+                 is_unlisted=not is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
         eq_(r.status_code, status_code)
         if not expect_errors:
@@ -2882,12 +2998,17 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.upload = self.get_upload(
             'extension.xpi',
             validation=json.dumps(dict(errors=0, warnings=0, notices=2,
-                                       metadata={}, messages=[])))
+                                       metadata={}, messages=[],
+                                       signing_summary={
+                                           'trivial': 1, 'low': 0, 'medium': 0,
+                                           'high': 0},
+                                       passed_auto_validation=True
+                                       )))
         assert self.post(is_listed=False)  # Post as unlisted.
         addon = Addon.with_unlisted.get()
         assert addon.is_listed  # But add-on is still listed.
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_no_automatic_validation_flag(self,
                                                            mock_sign_file):
         """No automatic-validation flag: don't sign automatically."""
@@ -2897,14 +3018,19 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.upload = self.get_upload(
             'extension.xpi',
             validation=json.dumps(dict(errors=0, warnings=0, notices=2,
-                                       metadata={}, messages=[])))
+                                       metadata={}, messages=[],
+                                       signing_summary={
+                                           'trivial': 1, 'low': 0, 'medium': 0,
+                                           'high': 0},
+                                       passed_auto_validation=True
+                                       )))
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         assert addon.status == amo.STATUS_UNREVIEWED  # No automatic signing.
         assert not mock_sign_file.called
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_with_automatic_validation_flag(self,
                                                              mock_sign_file):
         """With automatic-validation flag: sign automatically."""
@@ -2915,14 +3041,19 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         self.upload = self.get_upload(
             'extension.xpi',
             validation=json.dumps(dict(errors=0, warnings=0, notices=2,
-                                       metadata={}, messages=[])))
+                                       metadata={}, messages=[],
+                                       signing_summary={
+                                           'trivial': 1, 'low': 0, 'medium': 0,
+                                           'high': 0},
+                                       passed_auto_validation=True
+                                       )))
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE  # Automatic signing.
         assert mock_sign_file.called
 
-    @mock.patch('lib.crypto.packaged.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_fail_validation(self, mock_sign_file):
         self.create_flag('unlisted-addons')
         eq_(Addon.with_unlisted.count(), 0)
@@ -2932,7 +3063,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert addon.status == amo.STATUS_UNREVIEWED  # Prelim review.
         assert not mock_sign_file.called
 
-    @mock.patch('lib.crypto.packaged.sign_file')
+    @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_sideload(self, mock_sign_file):
         self.create_flag('unlisted-addons')
         eq_(Addon.with_unlisted.count(), 0)
@@ -2961,6 +3092,24 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                                         args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+
+    @mock.patch('devhub.views.auto_sign_file')
+    def test_one_xpi_for_multiple_platforms_unlisted_addon(
+            self, mock_auto_sign_file):
+        # Make sure we fixed bug 1173125.
+        self.create_flag('unlisted-addons')
+        self.create_flag('automatic-validation')
+        eq_(Addon.objects.count(), 0)
+        r = self.post(supported_platforms=[amo.PLATFORM_MAC,
+                                           amo.PLATFORM_LINUX],
+                      is_listed=False)
+        addon = Addon.unfiltered.get()
+        self.assertRedirects(r, reverse('devhub.submit.3',
+                                        args=[addon.slug]))
+        eq_(sorted([f.filename for f in addon.current_version.all_files]),
+            [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
+        mock_auto_sign_file.assert_has_calls(
+            [mock.call(f) for f in addon.current_version.all_files])
 
     def test_with_source(self):
         tdir = temp.gettempdir()

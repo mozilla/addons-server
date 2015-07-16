@@ -318,15 +318,14 @@ h1.addon,
                                      ellipse farthest-side,
                                      rgba(16, 83, 130, 0.5),
                                      rgba(16, 83, 130, 0)),
-                -moz-linear-gradient(left,
-                                     #F4F8FC,
-                                     rgba(255,255,255,0),
-                                     #F4F8FC),
-                -moz-linear-gradient(top,
-                                     rgba(255,255,255,0),
-                                     #F4F8FC 50px,
-                                     #F4F8FC 180px,
-                                     rgba(255,255,255,0));
+                linear-gradient(to right,
+                                #F4F8FC,
+                                rgba(255,255,255,0),
+                                #F4F8FC),
+                linear-gradient(rgba(255,255,255,0),
+                                #F4F8FC 50px,
+                                #F4F8FC 180px,
+                                rgba(255,255,255,0));
     background-size: 100% 5px, 100% 5px, auto, auto;
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
     background-position: 0 0, 0 bottom, 0 0, 0 0;
@@ -369,10 +368,10 @@ h1.addon,
     }
     .control {
         &.next {
-            background: -moz-linear-gradient(left, fadeout(#fff, 100%), #fff 50%);
+            background: linear-gradient(to right, fadeout(#fff, 100%), #fff 50%);
         }
         &.prev {
-            background: -moz-linear-gradient(left, #fff 50%, fadeout(#fff, 100%));
+            background: linear-gradient(to right, #fff 50%, fadeout(#fff, 100%));
         }
     }
 }

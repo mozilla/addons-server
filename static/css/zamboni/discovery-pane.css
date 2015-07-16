@@ -91,7 +91,7 @@ section > section {
     border: 1px solid #a8b8d1;
     border-bottom-width: 0;
     border-radius: 8px;
-    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    background: linear-gradient(#fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
     margin-bottom: 10px;
 }
@@ -245,19 +245,19 @@ header:after,
 }
 
 .recs #mission {
-    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    background: linear-gradient(#fff 0, #ecf1f7 100%);
 }
 
 #my-account {
     background:
         url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% 100%,
-        -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+        linear-gradient(#fff 0, #ecf1f7 100%);
     border-radius: 0 8px 8px 0;
 }
 .no-recs header.auth {
     background:
         url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% -moz-calc(100% - 3px),
-        -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+        linear-gradient(#fff 0, #ecf1f7 100%);
 }
 .no-recs #my-account {
     background: none;
@@ -473,7 +473,7 @@ section#featured-addons {
 #lightbox-nav a#lightbox-nav-btnPrev {
     left: 0;
     border-radius: 8px 0 0 8px;
-    background: url("../../img/zamboni/discovery_pane/arrow-left.png") no-repeat center center, -moz-linear-gradient(left, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%) !important;
+    background: url("../../img/zamboni/discovery_pane/arrow-left.png") no-repeat center center, linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%) !important;
     box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) 1px 0px 3px;
 }
 
@@ -486,7 +486,7 @@ section#featured-addons {
 #lightbox-nav a#lightbox-nav-btnNext {
     right: 0;
     border-radius: 0 8px 8px 0;
-    background: url("../../img/zamboni/discovery_pane/arrow-right.png") no-repeat center center, -moz-linear-gradient(right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%) !important;
+    background: url("../../img/zamboni/discovery_pane/arrow-right.png") no-repeat center center, linear-gradient(to left, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 80%) !important;
     box-shadow: inset rgba(255,255,255,0.1) 0px 0px 6px, rgba(125,125,125, 0.1) -1px 0px 3px;
 }
 
@@ -517,7 +517,7 @@ section#featured-addons {
 #more-ways h2 {
     margin: -10px -10px 0;
     padding: 0.45em 10px;
-    background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+    background: linear-gradient(#fff 0, #ecf1f7 100%);
     box-shadow: inset 0 -3px 0 rgba(58,78,103,0.05), 0 3px 0 rgba(175,195,220,.3);
     border-radius: 8px 8px 0 0;
     border-bottom: 1px solid #a8b8d1;
@@ -792,7 +792,7 @@ section#featured-addons {
     }
 
     .no-recs header.auth {
-        background: -moz-linear-gradient(top, #fff 0, #ecf1f7 100%);
+        background: linear-gradient(#fff 0, #ecf1f7 100%);
     }
 
     #main,
@@ -1301,7 +1301,7 @@ a.button {
     color: #333;
     text-decoration: none;
     text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.5) 0, rgba(235,235,235,0.5) 50%, rgba(215,215,215,0.5) 52%, rgba(240,240,240,0.5) 100%);
+    background: linear-gradient(rgba(255,255,255,0.5) 0, rgba(235,235,235,0.5) 50%, rgba(215,215,215,0.5) 52%, rgba(240,240,240,0.5) 100%);
     border-radius: 3px;
     box-shadow: inset 0 0 2px rgba(255,255,255,0.65);
 }
@@ -1311,14 +1311,14 @@ a.button {
 .button:active {
     border-color: rgba(165,175,185,1);
     color: #083681;
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.8) 0, rgba(235,235,235,0.8) 50%, rgba(215,215,215,0.8) 52%, rgba(240,240,240,0.8) 100%);
+    background: linear-gradient(rgba(255,255,255,0.8) 0, rgba(235,235,235,0.8) 50%, rgba(215,215,215,0.8) 52%, rgba(240,240,240,0.8) 100%);
 }
 
 /** @Blue @Button *********/
 .button.go {
     font-weight: bold;
     color: #fff;
-    background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
+    background: linear-gradient(#7bf 40%, #39f 60%);
     border-color: #05e;
     text-shadow: 0 -1px 0 #05e;
 }
@@ -1330,7 +1330,7 @@ a.button {
 }
 
 .button.go:active {
-    background: -moz-linear-gradient(top, #39f 40%, #7bf 60%);
+    background: linear-gradient(#39f 40%, #7bf 60%);
 }
 
 /** @Green @button *********/
@@ -1339,7 +1339,7 @@ a.button {
 .button.installer {
     font-weight: bold;
     color: #fff;
-    background: -moz-linear-gradient(top, #93c85e 30%, #55a802 55%);
+    background: linear-gradient(#93c85e 30%, #55a802 55%);
     border-color: #3a7404;
     text-shadow: 0 -1px 0 #3a7404;
 }
@@ -1356,7 +1356,7 @@ a.button {
 .button.download:active,
 .button.add:active,
 .button.installer:active {
-    background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
+    background: linear-gradient(#55a802 40%, #83c046 65%);
 }
 
 .button.download b,
@@ -1389,7 +1389,7 @@ a.button {
 }
 
 .button.concealed {
-    background-image: -moz-linear-gradient(top, #bbb 40%, #888 60%);
+    background-image: linear-gradient(#bbb 40%, #888 60%);
     border-color: #888;
     text-shadow: 0 -1px 0 #666;
 }
@@ -1401,7 +1401,7 @@ a.button {
 }
 
 .button.concealed:active {
-    background: -moz-linear-gradient(top, #888 40%, #bbb 60%);
+    background: linear-gradient(#888 40%, #bbb 60%);
 }
 
 /* For other platforms */

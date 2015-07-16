@@ -47,10 +47,6 @@ SESSION_COOKIE_DOMAIN = None
 CELERY_ALWAYS_EAGER = True
 CELERY_ROUTES = {}
 
-# Disable timeout code during development because it uses the signal module
-# which can only run in the main thread. Celery uses threads in dev.
-VALIDATOR_TIMEOUT = -1
-
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = True

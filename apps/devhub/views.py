@@ -394,6 +394,8 @@ def disable(request, addon_id, addon):
 @dev_required
 @post_required
 def unlist(request, addon_id, addon):
+    if not waffle.flag_is_active(request, 'unlisted-addons'):
+        raise PermissionDenied
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
     unindex_addons.delay([addon.id])
@@ -575,7 +577,9 @@ def compat_application_versions(request):
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': _('Validate Add-on'),
-                   'upload_url': reverse('devhub.standalone_upload')})
+                   # Hack: we just need the "is_unlisted" field from this form.
+                   'new_addon_form': forms.NewAddonForm(
+                       None, None, request=request)})
 
 
 @login_required
@@ -584,7 +588,9 @@ def check_addon_compatibility(request):
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
                    'title': _('Check Add-on Compatibility'),
-                   'upload_url': reverse('devhub.standalone_upload')})
+                   # Hack: we just need the "is_unlisted" field from this form.
+                   'new_addon_form': forms.NewAddonForm(
+                       None, None, request=request)})
 
 
 @dev_required
@@ -628,8 +634,7 @@ def upload(request, addon_slug=None, is_standalone=False, is_listed=True):
     else:
         tasks.validator.delay(fu.pk, listed=is_listed)
     if addon_slug:
-        return redirect('devhub.upload_detail_for_addon',
-                        addon_slug, fu.pk)
+        return redirect('devhub.upload_detail_for_addon', addon_slug, fu.pk)
     elif is_standalone:
         return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
@@ -672,6 +677,12 @@ def standalone_upload(request):
 
 
 @login_required
+@post_required
+def standalone_upload_unlisted(request):
+    return upload(request, is_standalone=True, is_listed=False)
+
+
+@login_required
 @json_view
 def standalone_upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
@@ -683,6 +694,12 @@ def standalone_upload_detail(request, uuid):
 @dev_required
 def upload_for_addon(request, addon_id, addon):
     return upload(request, addon_slug=addon.slug)
+
+
+@post_required
+@dev_required
+def upload_for_addon_unlisted(request, addon_id, addon):
+    return upload(request, addon_slug=addon.slug, is_listed=False)
 
 
 @dev_required
@@ -1171,6 +1188,34 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
+def auto_sign_file(file_, is_beta=False, admin_override=False):
+    """If the file should be automatically reviewed and signed, do it."""
+    addon = file_.version.addon
+    validation = file_.validation
+
+    # Not listed? Do we need to sign?
+    if not addon.is_listed:
+        # Only if it's not sideload (not fully reviewed).
+        if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC] and
+                validation.passed_auto_validation):
+            # Passed validation: sign automatically without manual review.
+            helper = ReviewHelper(request=None, addon=addon,
+                                  version=file_.version)
+            # Provide the file to review/sign to the helper.
+            helper.set_data({'addon_files': [file_],
+                             'comments': 'automatic validation'})
+            helper.handler.process_preliminary(auto_validation=True)
+    elif is_beta:
+        # Beta won't be reviewed. They will always get signed, and logged, for
+        # further review if needed.
+        if validation.passed_auto_validation:
+            amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
+        else:
+            amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
+        # Beta files always get signed with prelim cert.
+        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+
+
 @json_view
 @dev_required
 @post_required
@@ -1181,51 +1226,44 @@ def version_add(request, addon_id, addon):
         addon=addon,
         request=request
     )
-    if form.is_valid():
-        pl = form.cleaned_data.get('supported_platforms', [])
-        version = Version.from_upload(
-            upload=form.cleaned_data['upload'],
-            addon=addon,
-            platforms=pl,
-            source=form.cleaned_data['source'],
-            is_beta=form.cleaned_data['beta']
-        )
-        rejected_versions = addon.versions.filter(
-            version=version.version, files__status=amo.STATUS_DISABLED)[:1]
-        if not version.releasenotes and rejected_versions:
-            # Let's reuse the release and approval notes from the previous
-            # rejected version.
-            last_rejected = rejected_versions[0]
-            version.releasenotes = amo.utils.translations_for_field(
-                last_rejected.releasenotes)
-            version.approvalnotes = last_rejected.approvalnotes
-            version.save()
-        log.info('Version created: %s for: %s' %
-                 (version.pk, form.cleaned_data['upload']))
-        check_validation_override(request, form, addon, version)
-        if (addon.status == amo.STATUS_NULL and
-                form.cleaned_data['nomination_type']):
-            addon.update(status=form.cleaned_data['nomination_type'])
-        url = reverse('devhub.versions.edit',
-                      args=[addon.slug, str(version.id)])
-
-        # Not listed? Do we need to sign?
-        if (waffle.flag_is_active(request, 'automatic-validation') and
-                not addon.is_listed):
-            # We need to get to the file to check its validation.
-            # We're submitting a new version here, so it has only one file.
-            file_ = version.files.get()
-            # Only if it's not sideload (not fully reviewed).
-            if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]
-                    and not file_.validation.errors
-                    and not file_.validation.warnings):
-                # Passed validation: sign automatically without manual review.
-                file_.update(status=amo.STATUS_LITE)
-                sign_file(file_)
-
-        return dict(url=url)
-    else:
+    if not form.is_valid():
         return json_view.error(form.errors)
+
+    is_beta = form.cleaned_data['beta'] and addon.is_listed
+    pl = form.cleaned_data.get('supported_platforms', [])
+    version = Version.from_upload(
+        upload=form.cleaned_data['upload'],
+        addon=addon,
+        platforms=pl,
+        source=form.cleaned_data['source'],
+        is_beta=is_beta
+    )
+    rejected_versions = addon.versions.filter(
+        version=version.version, files__status=amo.STATUS_DISABLED)[:1]
+    if not version.releasenotes and rejected_versions:
+        # Let's reuse the release and approval notes from the previous
+        # rejected version.
+        last_rejected = rejected_versions[0]
+        version.releasenotes = amo.utils.translations_for_field(
+            last_rejected.releasenotes)
+        version.approvalnotes = last_rejected.approvalnotes
+        version.save()
+    log.info('Version created: %s for: %s' %
+             (version.pk, form.cleaned_data['upload']))
+    check_validation_override(request, form, addon, version)
+    if (addon.status == amo.STATUS_NULL and
+            form.cleaned_data['nomination_type']):
+        addon.update(status=form.cleaned_data['nomination_type'])
+    url = reverse('devhub.versions.edit',
+                  args=[addon.slug, str(version.id)])
+
+    if waffle.flag_is_active(request, 'automatic-validation'):
+        override = form.cleaned_data.get('admin_override_validation')
+        # Sign all the files submitted, one for each platform.
+        for file_ in version.files.all():
+            auto_sign_file(file_, is_beta=is_beta, admin_override=override)
+
+    return dict(url=url)
 
 
 @json_view
@@ -1233,32 +1271,26 @@ def version_add(request, addon_id, addon):
 @post_required
 def version_add_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
-    form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
-                             version=version, request=request)
-    if not form.is_valid():
-        return json_view.error(form.errors)
-    upload = form.cleaned_data['upload']
-    new_file = File.from_upload(upload, version, form.cleaned_data['platform'],
-                                form.cleaned_data['beta'],
-                                parse_addon(upload, addon))
-    source = form.cleaned_data['source']
+    new_file_form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
+                                      version=version, request=request)
+    if not new_file_form.is_valid():
+        return json_view.error(new_file_form.errors)
+    upload = new_file_form.cleaned_data['upload']
+    is_beta = new_file_form.cleaned_data['beta'] and addon.is_listed
+    new_file = File.from_upload(upload, version,
+                                new_file_form.cleaned_data['platform'],
+                                is_beta, parse_addon(upload, addon))
+    source = new_file_form.cleaned_data['source']
     if source:
         version.update(source=source)
     storage.delete(upload.path)
-    check_validation_override(request, form, addon, new_file.version)
+    check_validation_override(request, new_file_form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
 
-    # Not listed? Do we need to sign?
-    if (waffle.flag_is_active(request, 'automatic-validation') and
-            not new_file.version.addon.is_listed):
-        # Only if it's not sideload (not fully reviewed).
-        if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]
-                and not new_file.validation.errors
-                and not new_file.validation.warnings):
-            # Passed validation: sign automatically without manual review.
-            new_file.update(status=amo.STATUS_LITE)
-            sign_file(new_file)
+    if waffle.flag_is_active(request, 'automatic-validation'):
+        override = new_file_form.cleaned_data.get('admin_override_validation')
+        auto_sign_file(new_file, is_beta=is_beta, admin_override=override)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
@@ -1368,7 +1400,7 @@ def submit_addon(request, step):
 
             p = data.get('supported_platforms', [])
 
-            is_listed = data['is_listed']
+            is_listed = not data['is_unlisted']
             if not waffle.flag_is_active(request, 'unlisted-addons'):
                 is_listed = True
 
@@ -1381,19 +1413,11 @@ def submit_addon(request, step):
                 if data.get('is_sideload'):  # Full review needed.
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
-                    # We need to get to the file to check its validation.
-                    # We're submitting a brand new addon here, so only one
-                    # version, and one file for this version.
-                    addon_file = addon.versions.get().files.get()
-                    validation = addon_file.validation
-                    if (waffle.flag_is_active(request, 'automatic-validation')
-                            and not validation.errors
-                            and not validation.warnings):
-                        # Passed validation: sign automatically without review.
-                        addon.update(status=amo.STATUS_LITE)
-                        sign_file(addon_file)
-                    else:
-                        addon.update(status=amo.STATUS_UNREVIEWED)
+                    addon.update(status=amo.STATUS_UNREVIEWED)
+                    if waffle.flag_is_active(request, 'automatic-validation'):
+                        # Sign all the files submitted, one for each platform.
+                        for file_ in addon.versions.get().files.all():
+                            auto_sign_file(file_)
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')

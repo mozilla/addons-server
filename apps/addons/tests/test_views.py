@@ -26,7 +26,6 @@ from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
 from bandwagon.models import Collection
 from paypal.tests.test import other_error
 from stats.models import Contribution
-from translations.helpers import truncate
 from users.helpers import users_list
 from users.models import UserProfile
 from versions.models import Version
@@ -1337,11 +1336,9 @@ class TestAddonSharing(amo.tests.TestCase):
         r = self.client.get(reverse('addons.share', args=['a3615']),
                             {'service': 'facebook'})
         url = absolutify(unicode(addon.get_url_path()))
-        summary = truncate(addon.summary, length=250)
         eq_(r.status_code, 302)
         assert iri_to_uri(addon.name) in r['Location']
         assert iri_to_uri(url) in r['Location']
-        assert iri_to_uri(summary) in r['Location']
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')

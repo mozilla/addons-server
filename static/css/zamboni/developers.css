@@ -398,12 +398,18 @@ form .char-count b {
     margin-bottom: 1em;
 }
 
-.addon-submission-process form label,
+form.new-addon-file label,
 #edit-addon-basic .addon-app-cats label {
     display: block;
     padding-bottom: 3px;
 }
-.addon-submission-process form label[for=id_is_sideload] {
+.addon-submission-process form label span.beta-warning {
+    display: none;
+}
+.beta-warning em {
+    color: #f00;
+}
+form.new-addon-file label[for=id_is_sideload] {
     display: none;
     margin-left: 20px;
 }
@@ -688,7 +694,7 @@ a.extra {
 .delete-button:hover,
 .delete-button {
     background: #c22;
-    background: -moz-linear-gradient(top, #f77, #c22);
+    background: linear-gradient(#f77, #c22);
     background: -webkit-gradient(linear, left top, left bottom, from(#f77), to(#c22));
     border-color: #ad1212;
     text-shadow: 0 -1px #e00;
@@ -782,6 +788,10 @@ pre.email_comment {
 
 #upload-file p {
     margin-bottom: 1em;
+}
+
+#upload-file .admin-settings {
+    margin-top: 1em;
 }
 
 #upload-status-bar {
@@ -1354,7 +1364,7 @@ form.select-review .errorlist {
 
 button.search-button {
   background: #84c63c url("../../img/icons/go-arrow.png") center no-repeat;
-  background-image: url("../../img/icons/go-arrow.png"), -moz-linear-gradient(#84c63c, #489615);
+  background-image: url("../../img/icons/go-arrow.png"), linear-gradient(#84c63c, #489615);
   background-image: url("../../img/icons/go-arrow.png"), -webkit-linear-gradient(#84c63c, #489615);
   border: 0;
   float: right;

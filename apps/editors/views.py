@@ -103,6 +103,23 @@ def eventlog_detail(request, id):
     return render(request, 'editors/eventlog_detail.html', data)
 
 
+@addons_reviewer_required
+def beta_signed_log(request):
+    """Log of all the beta files that got signed."""
+    form = forms.BetaSignedLogForm(request.GET)
+    beta_signed_log = ActivityLog.objects.beta_signed_events()
+
+    if form.is_valid():
+        if form.cleaned_data['filter']:
+            beta_signed_log = beta_signed_log.filter(
+                action=form.cleaned_data['filter'])
+
+    pager = amo.utils.paginate(request, beta_signed_log, 50)
+
+    data = context(form=form, pager=pager)
+    return render(request, 'editors/beta_signed_log.html', data)
+
+
 @any_reviewer_required
 def home(request):
     if (not acl.action_allowed(request, 'Addons', 'Review') and

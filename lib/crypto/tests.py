@@ -60,53 +60,91 @@ class TestPackaged(amo.tests.TestCase):
         monkeypatch.setattr('lib.crypto.packaged.get_signature_serial_number',
                             lambda pkcs7: 'serial number')
 
-    def test_get_endpoint(self):
-        assert self.addon.status == amo.STATUS_PUBLIC
-        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file_).startswith('http://full')
-        self.addon.update(status=amo.STATUS_LITE)
-        with self.settings(SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file_).startswith(
-                'http://prelim')
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        with self.settings(SIGNING_SERVER=''):
-            assert packaged.get_endpoint(self.file_).startswith(
-                'http://prelim')
-
-    def test_no_server_full(self):
-        with self.settings(SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
-        # Make sure the file wasn't signed.
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not packaged.is_signed(self.file_.file_path)
-
-    def test_no_server_prelim(self):
-        self.file_.update(status=amo.STATUS_LITE)
-        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
-        # Make sure the file wasn't signed.
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not packaged.is_signed(self.file_.file_path)
-
-        self.file_.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            packaged.sign_file(self.file_)
-        # Make sure the file wasn't signed.
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not packaged.is_signed(self.file_.file_path)
-
-    def test_sign_file(self):
+    def assert_not_signed(self):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_)
+        assert not packaged.is_signed(self.file_.file_path)
+
+    def assert_signed(self):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
         assert packaged.is_signed(self.file_.file_path)
+
+    def test_supports_firefox_old_not_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Old, and not default to compatible.
+        max_appversion.update(version=settings.MIN_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_D2C_VERSION))
+        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
+
+    def test_supports_firefox_old_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Old, and default to compatible.
+        max_appversion.update(version=settings.MIN_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_D2C_VERSION))
+        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
+
+    def test_supports_firefox_recent_not_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Recent, not default to compatible.
+        max_appversion.update(version=settings.MIN_NOT_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_NOT_D2C_VERSION))
+        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
+
+    def test_supports_firefox_recent_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Recent, default to compatible.
+        max_appversion.update(version=settings.MIN_NOT_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_NOT_D2C_VERSION))
+        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
+
+    def test_get_endpoint(self):
+        assert self.addon.status == amo.STATUS_PUBLIC
+        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
+            assert packaged.get_endpoint(
+                settings.SIGNING_SERVER).startswith('http://full')
+        self.addon.update(status=amo.STATUS_LITE)
+        with self.settings(SIGNING_SERVER=''):
+            assert packaged.get_endpoint(
+                settings.PRELIMINARY_SIGNING_SERVER).startswith(
+                    'http://prelim')
+
+    def test_no_server_full(self):
+        with self.settings(SIGNING_SERVER=''):
+            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
+
+    def test_no_server_prelim(self):
+        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
+            packaged.sign_file(self.file_, settings.PRELIMINARY_SIGNING_SERVER)
+        self.assert_not_signed()
+
+    def test_sign_file(self):
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
         with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
@@ -117,42 +155,31 @@ class TestPackaged(amo.tests.TestCase):
         src = self.file_.file_path
         self.file_.update(filename=u'jétpack.xpi')
         shutil.move(src, self.file_.file_path)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
+
+    def test_no_sign_missing_file(self):
+        os.unlink(self.file_.file_path)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_)
-        assert self.file_.is_signed
-        assert self.file_.cert_serial_num
-        assert self.file_.hash
-        assert packaged.is_signed(self.file_.file_path)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        assert not packaged.is_signed(self.file_.file_path)
 
     def test_no_sign_hotfix_addons(self):
         """Don't sign hotfix addons."""
         for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
             self.addon.update(guid=hotfix_guid)
-            packaged.sign_file(self.file_)
-            assert not self.file_.is_signed
-            assert not self.file_.cert_serial_num
-            assert not self.file_.hash
-            assert not packaged.is_signed(self.file_.file_path)
-
-    def test_no_sign_unreviewed(self):
-        """Don't sign unreviewed files."""
-        self.file_.update(status=amo.STATUS_UNREVIEWED)
-        packaged.sign_file(self.file_)
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not self.file_.hash
-        self.file_.update(status=amo.STATUS_NOMINATED)
-        packaged.sign_file(self.file_)
-        assert not self.file_.is_signed
-        assert not self.file_.cert_serial_num
-        assert not self.file_.hash
-        assert not packaged.is_signed(self.file_.file_path)
+            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+            self.assert_not_signed()
 
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
-        packaged.sign_file(self.file_)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         assert packaged.is_signed(self.file_.file_path)
 
     def test_sign_file_multi_package(self):
@@ -160,10 +187,7 @@ class TestPackaged(amo.tests.TestCase):
                                  self.file_.file_path,
                                  overwrite=True):
             self.file_.update(is_multi_package=True)
-            assert not self.file_.is_signed
-            assert not self.file_.cert_serial_num
-            assert not self.file_.hash
-            assert not packaged.is_signed(self.file_.file_path)
+            self.assert_not_signed()
             # Make sure the internal XPIs aren't signed either.
             folder = tempfile.mkdtemp()
             try:
@@ -175,7 +199,7 @@ class TestPackaged(amo.tests.TestCase):
             finally:
                 amo.utils.rm_local_tmp_dir(folder)
 
-            packaged.sign_file(self.file_)
+            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
             assert self.file_.is_signed
             assert self.file_.cert_serial_num
             assert self.file_.hash
@@ -203,7 +227,7 @@ class TestTasks(amo.tests.TestCase):
         # Make sure our file/version is at least compatible with FF
         # MIN_NOT_D2C_VERSION.
         self.max_appversion = self.version.apps.first().max
-        self.set_max_appversion(tasks.MIN_NOT_D2C_VERSION)
+        self.set_max_appversion(settings.MIN_NOT_D2C_VERSION)
         self.file_ = self.version.all_files[0]
         self.file_.update(filename='jetpack.xpi')
 
@@ -227,6 +251,24 @@ class TestTasks(amo.tests.TestCase):
     def assert_no_backup(self):
         """Make sure there's no backup file."""
         assert not os.path.exists(self.get_backup_file_path())
+
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_no_bump_unreviewed(self, mock_sign_file):
+        """Don't bump nor sign unreviewed files."""
+        for status in (amo.UNREVIEWED_STATUSES + (amo.STATUS_BETA,)):
+            self.file_.update(status=amo.STATUS_UNREVIEWED)
+            with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                     self.file_.file_path):
+                file_hash = self.file_.generate_hash()
+                assert self.version.version == '1.3'
+                assert self.version.version_int == version_int('1.3')
+                tasks.sign_addons([self.addon.pk])
+                assert not mock_sign_file.called
+                self.version.reload()
+                assert self.version.version == '1.3'
+                assert self.version.version_int == version_int('1.3')
+                assert file_hash == self.file_.generate_hash()
+                self.assert_no_backup()
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
@@ -260,6 +302,28 @@ class TestTasks(amo.tests.TestCase):
                 os.unlink(backup_file2_path)
 
     @mock.patch('lib.crypto.tasks.sign_file')
+    def test_sign_full(self, mock_sign_file):
+        """Use the full signing server if files are fully reviewed."""
+        self.file_.update(status=amo.STATUS_PUBLIC)
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/jetpack.xpi',
+                self.file_.file_path):
+            tasks.sign_addons([self.addon.pk])
+            mock_sign_file.assert_called_with(
+                self.file_, settings.SIGNING_SERVER)
+
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_sign_prelim(self, mock_sign_file):
+        """Use the prelim signing server if files aren't fully reviewed."""
+        self.file_.update(status=amo.STATUS_LITE)
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/jetpack.xpi',
+                self.file_.file_path):
+            tasks.sign_addons([self.addon.pk])
+            mock_sign_file.assert_called_with(
+                self.file_, settings.PRELIMINARY_SIGNING_SERVER)
+
+    @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
         """Don't sign files which are too old, or not default to compatible."""
         def not_signed():
@@ -282,7 +346,7 @@ class TestTasks(amo.tests.TestCase):
             not_signed()
 
             # MIN_D2C_VERSION, but strict compat: don't sign.
-            self.set_max_appversion(tasks.MIN_D2C_VERSION)
+            self.set_max_appversion(settings.MIN_D2C_VERSION)
             self.file_.update(strict_compatibility=True)
             tasks.sign_addons([self.addon.pk])
             not_signed()
@@ -338,7 +402,7 @@ class TestTasks(amo.tests.TestCase):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
-            self.set_max_appversion(tasks.MIN_D2C_VERSION)
+            self.set_max_appversion(settings.MIN_D2C_VERSION)
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()

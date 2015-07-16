@@ -195,9 +195,9 @@
       <p class="legal">
         <label>
           {{ form.agreed.as_widget(attrs={'required': ''}) }}
-          {% trans tos_url=url('devhub.docs', 'policies/agreement'),
-                   guidelines_url='https://wiki.mozilla.org/Marketplace/Reviewers/Themes/Guidelines' %}
-            By submitting your Theme, you agree to the <a href="{{ tos_url }}" target="_blank">Themes Terms of Service</a>. Your Theme is subject to approval according to the standards established in the <a href="{{ guidelines_url }}" target="_blank">Review Guidelines</a>.
+          {% trans agreement_url='https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Agreement',
+                   privacy_notice_url='https://www.mozilla.org/en-US/privacy/websites/' %}
+            I agree to the <a href="{{ agreement_url }}" target="_blank">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href="{{ privacy_notice_url }}" target="_blank">Websites, Communications and Cookies Privacy Notice</a>.
           {% endtrans %}
         </label>
         {{ form.agreed.errors }}

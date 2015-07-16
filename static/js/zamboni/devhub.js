@@ -53,7 +53,7 @@ $(document).ready(function() {
 
     // Add-on uploader
     var $uploadAddon = $('#upload-addon');
-    if($('#upload-addon').length) {
+    if ($('#upload-addon').length) {
         var opt = {'cancel': $('.upload-file-cancel') };
         if($('#addon-compat-upload').length) {
             opt.appendFormData = function(formData) {
@@ -83,40 +83,47 @@ $(document).ready(function() {
         $('.addon-upload-failure-dependant').attr('disabled', true);
     }
 
-    if ($('#create-addon').data('unlisted-addons')) {
-      // is_listed checkbox: should the add-on be listed on AMO? If not, change
-      // the addon upload button's data-upload-url.
-      var url = $uploadAddon.attr('data-upload-url');
+    var $new_form = $('.new-addon-file');
+    if ($new_form.data('unlisted-addons')) {
+      // is_unlisted checkbox: should the add-on be listed on AMO? If not,
+      // change the addon upload button's data-upload-url.
       // If this add-on is unlisted, then tell the upload view so
       // it'll run the validator with the "listed=False"
       // parameter.
-      var $isListed = $('#id_is_listed');
+      var $isUnlisted = $('#id_is_unlisted');
+      var $betaWarningLabel = $('span.beta-warning');
       var $isSideloadLabel = $('label[for=id_is_sideload]');
       var $isSideload = $('#id_is_sideload');
+      var $isManualReview = $('#manual-review');
       var $submitAddonProgress = $('.submit-addon-progress');
       function updateListedStatus() {
-        if ($isListed.exists()) {
-          if ($isListed.is(':checked')) {  // It's a listed add-on.
-            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
-            $isSideloadLabel.hide();
-            $isSideload.attr('checked', false);
-            $submitAddonProgress.removeClass('unlisted');
-          } else {  // It's an unlisted add-on.
-            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
-            $isSideloadLabel.show();
-            $submitAddonProgress.addClass('unlisted');
-          }
+        if (($isUnlisted.length && !$isUnlisted.is(':checked')) || $new_form.data('addon-is-listed')) {  // It's a listed add-on.
+          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-listed'));
+          $betaWarningLabel.hide();
+          $isSideloadLabel.hide();
+          $isSideload.attr('checked', false);
+          $submitAddonProgress.removeClass('unlisted');
+        } else {  // It's an unlisted add-on.
+          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+          $betaWarningLabel.show();
+          $isSideloadLabel.show();
+          $submitAddonProgress.addClass('unlisted');
         }
         /* Don't allow submitting, need to reupload/revalidate the file. */
         $('.addon-upload-dependant').attr('disabled', true);
         $('.addon-upload-failure-dependant').attr({'disabled': true,
                                                    'checked': false});
         $('.upload-status').remove();
+        $isManualReview.hide();
       }
-      $isListed.bind('change', updateListedStatus);
+      $isUnlisted.bind('change', updateListedStatus);
       $isSideload.bind('change', updateListedStatus);
       updateListedStatus();
     }
+
+    $('#id_is_manual_review').bind('change', function() {
+        $('.addon-upload-dependant').attr('disabled', !($(this).is(':checked')));
+    });
 
     if ($(".add-file-modal").length) {
         $modalFile = $(".add-file-modal").modal(".version-upload", {
@@ -659,7 +666,7 @@ function initUploadIcon() {
         },
 
         upload_success = function(e, file, upload_hash) {
-            $('#id_icon_upload_hash').val(upload_hash)
+            $('#id_icon_upload_hash').val(upload_hash);
             $('#icons_default a.active').removeClass('active');
 
             $('#icon_preview img').attr('src', file.dataURL);
@@ -1141,7 +1148,7 @@ function imagePoller() {
         window.clearTimeout(this.poll);
         this.poll = null;
     };
-};
+}
 
 var imageStatus = {
     start: function() {
@@ -1184,7 +1191,9 @@ var imageStatus = {
                     }
                 };
                 img.onerror = function() {
-                    setTimeout(function(){ check_images(el) }, 2500);
+                    setTimeout(function() {
+                        check_images(el);
+                    }, 2500);
                     self.polling();
                     $this.attr('style', '').addClass('preview-error');
                     delete img;
@@ -1366,7 +1375,7 @@ function initMerchantAccount() {
         current = $paypal_field.val();
     }).blur(function() {
         // `keyup` makes sure we don't re-fetch without changes.
-        if(! keyup || current == "") return;
+        if(! keyup || current === "") return;
         keyup = false;
 
         if(ajax) {
@@ -1410,7 +1419,7 @@ function initTruncateSummary() {
             text = $summary.val(),
             submitted = ($('.errorlist li', $submit_describe).length > 0);
 
-        if($desc.val() == "" && text.length > max_length && !submitted) {
+        if($desc.val() === "" && text.length > max_length && !submitted) {
             var new_text = text.substr(0, max_length),
                 // New line or punctuation followed by a space
                 punctuation = new_text.match(/\n|[.?!]\s/g);

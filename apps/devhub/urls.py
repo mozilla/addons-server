@@ -68,6 +68,8 @@ detail_patterns = patterns(
         name='devhub.addons.upload_icon'),
     url('^upload$', views.upload_for_addon,
         name='devhub.upload_for_addon'),
+    url('^upload/unlisted$', views.upload_for_addon_unlisted,
+        name='devhub.upload_for_addon_unlisted'),
     url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
         name='devhub.upload_detail_for_addon'),
 
@@ -176,6 +178,8 @@ urlpatterns = decorate(write, patterns(
         name='devhub.upload_detail'),
     url('^standalone-upload$', views.standalone_upload,
         name='devhub.standalone_upload'),
+    url('^standalone-upload-unlisted$', views.standalone_upload_unlisted,
+        name='devhub.standalone_upload_unlisted'),
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),
 

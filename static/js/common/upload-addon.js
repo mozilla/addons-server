@@ -105,6 +105,9 @@
                 /* Remove old errors */
                 $upload_field.closest('form').find('.errorlist').remove();
 
+                /* Set defaults */
+                $('#id_is_manual_review').attr('checked', false);
+
                 /* Don't allow submitting */
                 $('.addon-upload-dependant').attr('disabled', true);
                 $('.addon-upload-failure-dependant').attr({'disabled': true,
@@ -259,11 +262,18 @@
 
 
             $upload_field.bind("upload_success_results", function(e, file, results) {
-                    // If the addon is detected as beta, automatically check the "beta" input.
-                    if (results.beta) {
-                      $('#id_beta').prop('checked', true);
-                      $('.beta-status').show();
-                    }
+                // If the addon is detected as beta, automatically check
+                // the "beta" input, but only if the addon is listed.
+                var $new_form = $('.new-addon-file');
+                var isUnlisted = ($('#id_is_unlisted').length && $('#id_is_unlisted').is(':checked')) || !$new_form.data('addon-is-listed')
+                var $beta = $('#id_beta');
+                if (results.beta && !isUnlisted) {
+                  $beta.prop('checked', true);
+                  $('.beta-status').show();
+                } else {
+                  $beta.prop('checked', false);
+                  $('.beta-status').hide();
+                }
                 if(results.error) {
                     // This shouldn't happen.  But it might.
                     var error = gettext('Unexpected server error while validating.');
@@ -272,10 +282,10 @@
                 }
 
                 // Validation results?  If not, fetch the json again.
-                if(! results.validation) {
+                if (! results.validation) {
                     upload_progress_outside.attr('class', 'progress-idle');
                     // Not loaded yet. Try again!
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $.ajax({
                             url: results.url,
                             dataType: 'json',
@@ -292,7 +302,7 @@
                 } else {
                     var errors = getErrors(results),
                         v = results.validation;
-                    if(errors.length > 0) {
+                    if (errors.length > 0) {
                         $upload_field.trigger("upload_errors", [file, errors, results]);
                         return;
                     }
@@ -309,13 +319,13 @@
                     var message = "";
 
                     var warnings = v.warnings + v.notices;
-                    if(warnings > 0) {
+                    if (warnings > 0) {
                         message = format(ngettext(
-                                    "Your add-on passed validation with no errors and {0} message.",
-                                    "Your add-on passed validation with no errors and {0} messages.",
+                                    "Your add-on was validated with no errors and {0} message.",
+                                    "Your add-on was validated with no errors and {0} messages.",
                                     warnings), [warnings]);
                     } else {
-                        message = gettext("Your add-on passed validation with no errors or warnings.");
+                        message = gettext("Your add-on was validated with no errors or warnings.");
                     }
 
                     upload_progress_outside.attr('class', 'bar-success');
@@ -327,24 +337,38 @@
 
                     $("<strong>").text(message).appendTo(upload_results);
 
-                    if ($('#create-addon').data('unlisted-addons')) {
+                    if ($new_form.data('unlisted-addons')) {
                       // Specific messages for unlisted addons.
-                      var isListed = $('#id_is_listed').is(':checked'),
-                          isSideload = $('#id_is_sideload').is(':checked'),
-                          automaticValidation = $('#create-addon').data('automatic-validation');
-                      if (!isListed) {
+                      var isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload');
+                      var automaticValidation = $('#create-addon').data('automatic-validation') || $new_form.data('automatic-validation');
+                      if (isUnlisted) {
                         if (isSideload) {
                           $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
                         } else {
-                          if (warnings === 0) {
+                          if (v.passed_auto_validation) {
                             if (automaticValidation) {  // Automatic validation is enabled.
                               $("<p>").text(gettext("Your submission passed validation and will be automatically signed.")).appendTo(upload_results);
                             } else {  // Automatic validation is not enabled.
                               $("<p>").text(gettext("Your submission passed validation and will go through a manual review.")).appendTo(upload_results);
                             }
+                            $('#manual-review').hide().addClass('hidden');
                           } else {
-                            $("<p>").text(gettext("Your submission didn't pass automatic validation and will go through a manual review.")).appendTo(upload_results);
+                            // If unlisted and not sideload and failed validation, disable submit until checkbox checked.
+                            $('.addon-upload-dependant').attr('disabled', true);
+                            $('#manual-review').show().removeClass('hidden');
                           }
+                        }
+                      } else {  // This is a listed add-on.
+                        if (automaticValidation && results.beta) {
+                          function updateBetaStatus() {
+                            if ($beta.is(':checked')) {
+                              $('p.beta-warning').show();
+                            } else {
+                              $('p.beta-warning').hide();
+                            }
+                          }
+                          $beta.bind('change', updateBetaStatus);
+                          updateBetaStatus();
                         }
                       }
                     }

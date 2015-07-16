@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta
 from os import path
 
+from django.core.urlresolvers import reverse
+
 import jingo
 from nose.tools import eq_
 from mock import Mock
@@ -204,6 +206,32 @@ class TestActivityLog(amo.tests.TestCase):
         text = jingo.env.from_string('<p>{{ log }}</p>').render({'log': log})
         # There should only be one a, the link to the addon, but no tag link.
         eq_(len(pq(text)('a')), 1)
+
+    def test_beta_signed_events_validation_passed(self):
+        addon = Addon.objects.get()
+        file_ = addon.versions.first().files.first()
+        # Signed beta file which passed validation.
+        amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
+        log = ActivityLog.objects.beta_signed_events().first().to_string()
+        link = pq(log)('a')
+        assert len(link) == 1
+        assert link[0].attrib['href'] == reverse('files.list', args=[file_.pk])
+        msg = '<a href="{0}">{1}</a> (validation passed) was signed.'.format(
+            reverse('files.list', args=[file_.pk]), file_.filename)
+        assert log == msg
+
+    def test_beta_signed_events_validation_failed(self):
+        addon = Addon.objects.get()
+        file_ = addon.versions.first().files.first()
+        # Signed beta file which failed validation.
+        amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
+        log = ActivityLog.objects.beta_signed_events().first().to_string()
+        link = pq(log)('a')
+        assert len(link) == 1
+        assert link[0].attrib['href'] == reverse('files.list', args=[file_.pk])
+        msg = '<a href="{0}">{1}</a> (validation failed) was signed.'.format(
+            reverse('files.list', args=[file_.pk]), file_.filename)
+        assert log == msg
 
 
 class TestVersion(amo.tests.TestCase):

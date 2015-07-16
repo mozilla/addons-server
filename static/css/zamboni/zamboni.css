@@ -153,7 +153,7 @@ ul.errorlist {
         from(#FFFFFF),
         to(#E0EFFD)
     );
-    background: -moz-linear-gradient(#FFFFFF, #E0EFFD);
+    background: linear-gradient(#FFFFFF, #E0EFFD);
 }
 
 /* 'listing footer' */
@@ -167,7 +167,7 @@ ul.errorlist {
         from(#E0EFFD),
         to(#FFFFFF)
     );
-    background: -moz-linear-gradient(#E0EFFD, #FFFFFF);
+    background: linear-gradient(#E0EFFD, #FFFFFF);
 }
 
 /* 'listing item' */
@@ -181,7 +181,7 @@ ul.errorlist {
         from(#FFFFFF),
         to(#F6FBFF)
     );
-    background: -moz-linear-gradient(#FFFFFF, #F6FBFF);
+    background: linear-gradient(#FFFFFF, #F6FBFF);
 }
 
 /* 'Mozilla' */
@@ -200,13 +200,8 @@ span.new  {
         from(rgb(42,65,135)),
         to(rgb(59,105,177))
     );
-    background: -moz-linear-gradient(
-        center bottom,
-        rgb(42,65,135) 0%,
-        rgb(59,105,177) 100%
-    );
     background: linear-gradient(
-        center bottom,
+        to top,
         rgb(42,65,135) 0%,
         rgb(59,105,177) 100%
     );
@@ -224,7 +219,7 @@ input[type=button] {
     font-weight: bold;
     color: #fff;
     background: #39f url("../../img/zamboni/button-blue.png") 0 50% repeat-x;
-    background: -moz-linear-gradient(top, #7bf 40%, #39f 60%);
+    background: linear-gradient(#7bf 40%, #39f 60%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #7bf), color-stop(60%, #39f));
     border: 1px solid #3d6db5;
     padding: 0 .95em;
@@ -293,7 +288,7 @@ input[type=button]:focus {
 a.button:active, button.button:active {
     border-color: #03c;
     background-image: url("../../img/zamboni/button-blue-on.png");
-    background: -moz-linear-gradient(top, #39f 40%, #6fb7ff 60%);
+    background: linear-gradient(#39f 40%, #6fb7ff 60%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
     -moz-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
     -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
@@ -303,7 +298,7 @@ a.button:active, button.button:active {
 .cta a.button:link,
 .cta a.button:visited {
     background: #5af;
-    background: -moz-linear-gradient(top, #acf, #5af);
+    background: linear-gradient(#acf, #5af);
     background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
@@ -324,7 +319,7 @@ a.button:active, button.button:active {
 .cta a.button:active {
     border-color: #03c;
     background: #7bf;
-    background: -moz-linear-gradient(top, #5af, #7bf);
+    background: linear-gradient(#5af, #7bf);
     background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
     -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
@@ -393,7 +388,7 @@ button.mobile,
 input[type=button].mobile,
 input[type=submit].mobile {
     background: #55a802 url("../../img/zamboni/button-green.png") 0 50% repeat-x;
-    background: -moz-linear-gradient(top, #93c85e 30%, #55a802 55%);
+    background: linear-gradient(#93c85e 30%, #55a802 55%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #93c85e), color-stop(55%, #55a802));
     border-color: #3a7404;
     text-shadow: 0 -1px 0 #3a7404;
@@ -414,7 +409,7 @@ a.button.add:active,
 a.button.download:active {
     border-color: #1a5404;
     background-image: url("../../img/zamboni/button-green-on.png");
-    background: -moz-linear-gradient(#55a802 40%, #83c046 65%);
+    background: linear-gradient(#55a802 40%, #83c046 65%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #55a802), color-stop(65%, #83c046));
 }
 
@@ -485,7 +480,7 @@ input[type=submit].caution,
 input[type=button].caution {
     color: #333;
     background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
-    background: -moz-linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
     -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     border-color: #a70;
     text-shadow: 0 1px 0 #ffe56b;
@@ -498,7 +493,7 @@ input[type=submit].caution.concealed,
 input[type=button].caution.concealed {
     color: #859fae;
     border-color: #a70;
-    background: -moz-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
     -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
 }
 
@@ -516,7 +511,7 @@ input[type=button].caution:focus {
 a.button.caution:active {
     border-color: #850;
     background-image: url("../../img/zamboni/button-caution-on.png");
-    background: -moz-linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
+    background: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
     -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
@@ -1697,7 +1692,7 @@ form .error .note.error {
 #featured-addons .featured-inner {
     padding: 10px;
     background: #fff;
-    background: -moz-linear-gradient(#fff, #e4f5fb);
+    background: linear-gradient(#fff, #e4f5fb);
 }
 
 #featured-addons h3 {
@@ -3411,7 +3406,7 @@ td.input {
     padding: 1em;
     min-height: 190px;
     background-image: url(../../img/illustrations/logo-collections-220x270.png),
-                      -moz-linear-gradient(#e4f5fb, #ffffff);
+                      linear-gradient(#e4f5fb, #ffffff);
     background-repeat: no-repeat;
     background-position: 95% 30px, left top;
 }

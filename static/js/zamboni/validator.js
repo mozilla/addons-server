@@ -171,6 +171,16 @@ function initValidator($doc) {
          return msg['type'];
     };
 
+    MsgVisitor.prototype.getMsgSigningSeverity = function(msg) {
+        console.debug();
+        var signingSeverity = msg['signing_severity'];
+        if (signingSeverity) {
+            return 'Signing severity: ' + msg['signing_severity'];
+        } else {
+            return '';
+        }
+    };
+
     MsgVisitor.prototype.getTier = function(tierId, options) {
         if (typeof options === 'undefined')
             options = {app: null};
@@ -206,6 +216,7 @@ function initValidator($doc) {
             //      description: ["foo", "bar"]
             msg.description = [msg.description];
         }
+        msgDiv.append(this.getMsgSigningSeverity(msg));
         $.each(msg.description, function(i, val) {
             msgDiv.append(
                 i == 0 ? format('<p>{0}: {1}</p>', [prefix, val]) :
@@ -326,18 +337,10 @@ function initValidator($doc) {
         });
         vis.finish();
 
-        if (z.apps) {
-            if (validation.errors > 0) {
-                summaryTxt = gettext('App failed validation.');
-            } else {
-                summaryTxt = gettext('App passed validation.');
-            }
+        if (validation.errors > 0) {
+            summaryTxt = gettext('Add-on failed validation.');
         } else {
-            if (validation.errors > 0) {
-                summaryTxt = gettext('Add-on failed validation.');
-            } else {
-                summaryTxt = gettext('Add-on passed validation.');
-            }
+            summaryTxt = gettext('Add-on passed validation.');
         }
         $('.suite-summary span', suite).text(summaryTxt);
         $('.suite-summary', suite).show();

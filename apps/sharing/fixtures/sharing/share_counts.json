@@ -1,19 +1,10 @@
 [
     {
-        "pk": 177155738,
-        "model": "stats.addonsharecounttotal",
-        "fields": {
-            "count": 13,
-            "service": "delicious",
-            "addon": 3615
-        }
-    },
-    {
         "pk": 177155739,
         "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 29,
-            "service": "digg",
+            "service": "twitter",
             "addon": 3615
         }
     },
@@ -22,7 +13,7 @@
         "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 4,
-            "service": "friendfeed",
+            "service": "gplus",
             "addon": 3615
         }
     },
@@ -31,7 +22,7 @@
         "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 14,
-            "service": "myspace",
+            "service": "Reddit",
             "addon": 3615
         }
     },
@@ -40,7 +31,7 @@
         "model": "stats.addonsharecounttotal",
         "fields": {
             "count": 4,
-            "service": "twitter",
+            "service": "Tumblr",
             "addon": 3615
         }
     }

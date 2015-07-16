@@ -23,7 +23,6 @@ from amo.helpers import user_media_path, id_to_path
 from applications.models import AppVersion
 from files import utils
 from files.models import File, cleanup_file
-from lib.crypto import packaged
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField)
 from users.models import UserProfile
@@ -484,16 +483,6 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
             self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
-
-    def sign_files(self):
-        """Sign the files for this version if it's an extension."""
-        if self.addon.type == amo.ADDON_EXTENSION:
-            for file_obj in self.files.all():
-                packaged.sign_file(file_obj)
-        # They can have multi-package XPIs.
-        elif self.addon.type == amo.ADDON_THEME:
-            for file_obj in self.files.filter(is_multi_package=True):
-                packaged.sign_file(file_obj)
 
     @property
     def is_listed(self):

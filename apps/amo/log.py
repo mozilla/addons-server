@@ -583,6 +583,18 @@ class ADDON_UNLISTED(_LOG):
     keep = True
 
 
+class BETA_SIGNED_VALIDATION_PASSED(_LOG):
+    id = 129
+    format = _(u'{file} was signed.')
+    keep = True
+
+
+class BETA_SIGNED_VALIDATION_FAILED(_LOG):
+    id = 130
+    format = _(u'{file} was signed.')
+    keep = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 

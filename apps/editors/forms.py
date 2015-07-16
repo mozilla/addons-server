@@ -54,6 +54,17 @@ class EventLogForm(happyforms.Form):
         return data
 
 
+class BetaSignedLogForm(happyforms.Form):
+    VALIDATION_CHOICES = (
+        ('', ''),
+        (amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id,
+         _lazy(u'Passed automatic validation')),
+        (amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id,
+         _lazy(u'Failed automatic validation')))
+    filter = forms.ChoiceField(required=False, choices=VALIDATION_CHOICES,
+                               label=_lazy(u'Filter by automatic validation'))
+
+
 class ReviewLogForm(happyforms.Form):
     start = forms.DateField(required=False,
                             label=_lazy(u'View entries between'))
@@ -320,8 +331,7 @@ class ReviewFileForm(ReviewAddonForm):
 
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
-    FormClass = ReviewAddonForm
-    form = {ReviewAddon: FormClass,
+    form = {ReviewAddon: ReviewAddonForm,
             ReviewFiles: ReviewFileForm}[helper.handler.__class__]
     return form(data, helper=helper)
 
