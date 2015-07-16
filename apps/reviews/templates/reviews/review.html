@@ -83,16 +83,31 @@
       </li>
     {% endif %}
     {% if review.user_id == request.user.id %}
-      <li>
-        <a class="review-edit" href="#">
-          {{ _('Edit review') }}</a>
-      </li>
+      {% if is_reply %}
+        <li>
+          <a class="review-edit" href="#">
+            {{ _('Edit reply') }}</a>
+        </li>
+      {% elif not is_reply %}
+        <li>
+          <a class="review-edit" href="#">
+            {{ _('Edit review') }}</a>
+        </li>
+      {% endif %}
     {% endif %}
     {% if check_review_delete(review) %}
-      <li>
-        <a class="delete-review" href="{{ url('addons.reviews.delete', addon.slug, review.id) }}">
-          {{ _('Delete review') }}</a>
-      </li>
+      {% if is_reply %}
+    
+        <li>
+          <a class="delete-review" href="{{ url('addons.reviews.delete', addon.slug, review.id) }}">
+            {{ _('Delete reply') }}</a>
+        </li>
+      {% elif not is_reply %}
+        <li>
+          <a class="delete-review" href="{{ url('addons.reviews.delete', addon.slug, review.id) }}">
+            {{ _('Delete review') }}</a>
+        </li>
+      {% endif %}  
     {% endif %}
   </ul>
   {% endif %}
