@@ -8,6 +8,7 @@
   <h2>{{ title }}</h2>
 </header>
 <form method="post" id="create-addon" class="item new-addon-file"
+      data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
       data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}">
   {{ csrf() }}
   <p>
@@ -53,9 +54,16 @@
                 Submission of unlisted add-ons for signing is currently in an
                 open beta. Manual review may still be required for a large
                 number of add-ons. Please
-                <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a> that you encounter.
+                <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a>
+                that you encounter.
               {% endtrans %}
             </span>
+          </label>
+          <label for="{{ new_addon_form.is_sideload.auto_id }}">
+            {{ new_addon_form.is_sideload }}
+            {{ new_addon_form.is_sideload.label }}
+            <span class="tip tooltip"
+                  title="{{ new_addon_form.is_sideload.help_text }}">?</span>
           </label>
         </div>
       </div>
