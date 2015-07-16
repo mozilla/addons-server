@@ -486,19 +486,19 @@ class OBJECT_DELETED(_LOG):
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
-    format = _(u'User {user} edited, reason: {1}')
+    format = _(u'User {0} edited, reason: {1}')
     admin_event = True
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
-    format = _(u'User {user} anonymized.')
+    format = _(u'User {0} anonymized.')
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
-    format = _(u'User {user} restricted.')
+    format = _(u'User {0} restricted.')
     admin_event = True
 
 
@@ -518,6 +518,12 @@ class THEME_REVIEW(_LOG):
     id = 108
     action_class = 'review'
     format = _(u'{addon} reviewed.')
+
+
+class ADMIN_MASS_DELETE(_LOG):
+    id = 109
+    format = _(u'{0} objects {1} mass deleted, reason: {2}')
+    admin_event = True
 
 
 class GROUP_USER_ADDED(_LOG):

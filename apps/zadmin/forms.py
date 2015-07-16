@@ -25,6 +25,8 @@ from compat.forms import CompatForm as BaseCompatForm
 from files.models import File
 from zadmin.models import SiteEvent, ValidationJob
 
+from .helpers import MassDeleteHelper
+
 LOGGER_NAME = 'z.zadmin'
 log = commonware.log.getLogger(LOGGER_NAME)
 
@@ -130,6 +132,52 @@ class NotifyForm(happyforms.Form):
 
     def clean_subject(self):
         return self.check_template(self.cleaned_data['subject'])
+
+
+class MassDeleteForm(happyforms.Form):
+    urls = forms.CharField(label=_lazy(u'URLs to delete'),
+                           widget=forms.Textarea, required=True)
+    reason = forms.CharField(label=_lazy(u'Reason for deletion'),
+                             required=True)
+
+
+class MassDeleteConfirmForm(happyforms.Form):
+    objects = forms.CharField(widget=forms.HiddenInput, required=True)
+    reason = forms.CharField(widget=forms.HiddenInput, required=True)
+
+    def clean_objects(self):
+        # The form data that we're processing here should be
+        # unmodified JSON, as generated in the previous step. Any
+        # syntax or scheme errors indicate client-side meddling.
+
+        try:
+            data = json.loads(self.cleaned_data.get('objects'))
+        except ValueError, e:
+            raise forms.ValidationError(
+                u'Invalid objects JSON: %s' % e)
+
+        if not all(all(isinstance(id_, int) for id_ in ids)
+                   for ids in data.values()):
+            raise forms.ValidationError(
+                u'Invalid ID values in objects JSON')
+
+        for m, ids in data.items():
+            if m not in MassDeleteHelper.MODEL_MAP:
+                raise forms.ValidationError(
+                    u'Invalid model in objects JSON')
+
+            # Purge dups
+            ids = set(ids)
+
+            model = MassDeleteHelper.MODEL_MAP[m]
+            objs = model.objects.in_bulk(ids)
+            if len(objs) != len(ids):
+                raise forms.ValidationError(
+                    u'Invalid IDs in objects JSON')
+
+            data[m] = [objs[i] for i in ids]
+
+        return data
 
 
 class FeaturedCollectionForm(happyforms.ModelForm):
