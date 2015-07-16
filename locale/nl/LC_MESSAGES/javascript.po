@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-05-31 07:06+0000\n"
+"PO-Revision-Date: 2015-07-16 12:13+0000\n"
 "Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1433056015.0\n"
+"X-POOTLE-MTIME: 1437048836.0\n"
 
 #: static/js/common-all.js:10462 static/js/impala-all.js:1512 static/js/zamboni/discovery-all.js:10429 static/js/zamboni/init.js:32 static/js/zamboni/mobile-all.js:10990
 #: static/js/zamboni/mobile-min.js:4
@@ -132,7 +132,7 @@ msgstr "Deze vertaling verwijderen"
 
 #: static/js/common-all.js:18266 static/js/common-min.js:8 static/js/impala-all.js:9862 static/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "App installeren"
 
 #: static/js/common-all.js:18506 static/js/common-min.js:8 static/js/impala-all.js:10202 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -1010,11 +1010,13 @@ msgstr[1] "E-mailbericht versturen naar schrijver van {2} add-ons die de validat
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Uw add-on heeft de validatie zonder fouten en met {0} bericht doorstaan."
 msgstr[1] ""
+"Uw add-on heeft de validatie zonder fouten en met {0} berichten doorstaan."
 
 #: static/js/zamboni/devhub-all.js:554 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Uw add-on heeft de validatie zonder fouten of waarschuwingen doorstaan."
 
 #: static/js/zamboni/devhub-all.js:1113 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:170
 msgid "Your browser does not support the video tag"
@@ -1099,11 +1101,11 @@ msgstr "Compatibiliteitstesten"
 
 #: static/js/zamboni/devhub-all.js:2740 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "App heeft validatie niet doorstaan."
 
 #: static/js/zamboni/devhub-all.js:2742 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "App heeft validatie doorstaan."
 
 #: static/js/zamboni/devhub-all.js:2746 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:341
 msgid "Add-on failed validation."
@@ -1142,7 +1144,7 @@ msgstr "Interne serverfout"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2924 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} downloaden"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -1262,7 +1264,7 @@ msgstr "Installeren…"
 
 #: static/js/zamboni/mobile-all.js:11319 static/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
-msgstr ""
+msgstr "Kopen…"
 
 #: static/js/zamboni/mobile-all.js:11348 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:148
 msgid "This add-on has been preliminarily reviewed by Mozilla."
