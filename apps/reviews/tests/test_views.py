@@ -391,10 +391,15 @@ class TestEdit(ReviewTest):
 
     def test_edit(self):
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218207)
-        r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
-                             X_REQUESTED_WITH='XMLHttpRequest')
-        eq_(r.status_code, 200)
-        eq_('%s' % Review.objects.get(id=218207).body, 'woo woo')
+        response = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
+                                    X_REQUESTED_WITH='XMLHttpRequest')
+        assert response.status_code == 200
+        assert '%s' % Review.objects.get(id=218207).body == 'woo woo'
+
+        response = self.client.get(helpers.url('addons.reviews.list',
+                                   self.addon.slug))
+        doc = pq(response.content)
+        assert doc('#review-218207 .review-edit').text() == 'Edit review'
 
     def test_edit_not_owner(self):
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
@@ -405,12 +410,17 @@ class TestEdit(ReviewTest):
     def test_edit_reply(self):
         self.login_dev()
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
-        r = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
-                             X_REQUESTED_WITH='XMLHttpRequest')
-        eq_(r.status_code, 200)
-        review = Review.objects.get(id=218468)
-        eq_('%s' % review.title, 'fo')
-        eq_('%s' % review.body, 'shizzle')
+        response = self.client.post(url, {'title': 'fo', 'body': 'shizzle'},
+                                    X_REQUESTED_WITH='XMLHttpRequest')
+        assert response.status_code == 200
+        reply = Review.objects.get(id=218468)
+        assert '%s' % reply.title == 'fo'
+        assert '%s' % reply.body == 'shizzle'
+
+        response = self.client.get(helpers.url('addons.reviews.list',
+                                   self.addon.slug))
+        doc = pq(response.content)
+        assert doc('#review-218468 .review-edit').text() == 'Edit reply'
 
 
 class TestTranslate(ReviewTest):
