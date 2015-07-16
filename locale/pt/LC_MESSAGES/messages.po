@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-06-20 03:26+0000\n"
+"PO-Revision-Date: 2015-07-16 20:54+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434770819.0\n"
+"X-POOTLE-MTIME: 1437080087.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
-msgstr "Transferir agora"
+msgstr "Descarregar agora"
 
 #: apps/addons/buttons.py:187
 msgid "Download"
-msgstr "Transferir"
+msgstr "Descarregar"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: apps/addons/buttons.py:191
@@ -698,7 +698,7 @@ msgstr "Saber mais sobre o Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ou <b><a class=\"installer\" href=\"{url}\">transferir de qualquer modo</a></b>"
+msgstr "ou <b><a class=\"installer\" href=\"{url}\">descarregar ainda assim</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
@@ -1056,7 +1056,9 @@ msgstr "Conheça o programador de {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:41
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Antes de transferir este extra, considere ajudar o desenvolvimento deste extra fazendo uma pequena contribuição."
+msgstr ""
+"Antes de o descarregar, colabore com o desenvolvimento deste extra fazendo "
+"uma pequena contribuição."
 
 #: apps/addons/templates/addons/impala/developers.html:80
 msgid "Why was {0} created?"
@@ -1626,7 +1628,7 @@ msgstr "Email enviado ao autor sobre a compatibilidade do extra."
 
 #: apps/amo/log.py:365
 msgid "Password changed."
-msgstr "Senha alterada."
+msgstr "Palavra-passe alterada."
 
 #: apps/amo/log.py:370
 msgid "{addon} failed checks with PayPal."
@@ -1792,7 +1794,7 @@ msgstr "{addon} não listado."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} foi assinado."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2790,11 +2792,11 @@ msgstr "Instalar Pacote de Idioma"
 
 #: apps/browse/templates/browse/language_tools.html:12
 msgid "Download Dictionary"
-msgstr "Transferir Dicionário"
+msgstr "Descarregar dicionário"
 
 #: apps/browse/templates/browse/language_tools.html:13
 msgid "Download Language Pack"
-msgstr "Transferir Pacote de Idioma"
+msgstr "Descarregar pacote de idioma"
 
 #: apps/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
@@ -2846,7 +2848,7 @@ msgstr "Adicionar funcionalidades de pesquisa relacionada ao Firefox"
 
 #: apps/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr "Fornecedores de Pesquisa"
+msgstr "Fornecedores de pesquisa"
 
 #: apps/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
@@ -3348,11 +3350,11 @@ msgstr "Pedir apenas na página deste extra e no perfil do programador"
 
 #: apps/constants/base.py:303
 msgid "Ask after users start downloading this add-on"
-msgstr "Perguntar depois de os utilizadores começarem a transferir este extra"
+msgstr "Perguntar depois de os utilizadores começarem a descarregar este extra"
 
 #: apps/constants/base.py:304
 msgid "Ask before users can download this add-on"
-msgstr "Perguntar antes de os utilizadores poderem transferir este extra"
+msgstr "Perguntar antes de os utilizadores poderem descarregar este extra"
 
 #: apps/constants/base.py:374
 msgid "Exception"
@@ -3616,7 +3618,7 @@ msgstr "Um autor apenas pode ser listado uma vez."
 
 #: apps/devhub/forms.py:92
 msgid "Password incorrect."
-msgstr "Senha incorreta."
+msgstr "Palavra-passe incorreta."
 
 #: apps/devhub/forms.py:111 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
@@ -3882,11 +3884,11 @@ msgstr "Extra eliminado."
 
 #: apps/devhub/views.py:357
 msgid "Password was incorrect. Theme was not deleted."
-msgstr "A senha estava incorreta. O tema não foi eliminado."
+msgstr "A palavra-passe está incorreta. O tema não foi apagado."
 
 #: apps/devhub/views.py:362
 msgid "Password was incorrect. Add-on was not deleted."
-msgstr "A senha está incorreta. O extra não foi eliminado."
+msgstr "A palavra-passe está incorreta. O extra não foi apagado."
 
 #: apps/devhub/views.py:446
 msgid "An author has been added to your add-on"
@@ -4698,7 +4700,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
-msgstr "Introduza a sua senha para confirmar a sua decisão:"
+msgstr "Digite a sua palavra-passe para confirmar a sua decisão:"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -4907,7 +4909,9 @@ msgstr "Torne-se num revisor no AMO e tenha os seus extras revistos mais depress
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr "O seu extra foi assinado e está pronto a ser utilizado. Pode transferir o mesmo aqui:"
+msgstr ""
+"O seu extra foi assinado e está pronto a ser utilizado. Pode descarregá-lo "
+"aqui:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
@@ -6617,7 +6621,9 @@ msgstr "Selecione uma imagem de rodapé diferente"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:10
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr "Ficheiros adicionados a versões já revistas têm de ser novamente revistos antes de ficarem disponíveis para transferir."
+msgstr ""
+"Os ficheiros adicionados a versões já revistas têm de voltar a ser revistos "
+"antes de ficarem disponíveis para serem descarregados."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:17
 msgid ""
@@ -6914,11 +6920,11 @@ msgstr "Alterar os extras para o modo sem publicação está em versão beta abe
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "A não-listagem de um extra é irreversível!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Um extra não-listado não pode ser modificado para ser listado."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -7124,7 +7130,7 @@ msgstr "O que é isto?"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
-msgstr "Saiba mais sobre os extras"
+msgstr "Saiba mais acerca dos extras"
 
 #: apps/discovery/templates/discovery/pane.html:89 apps/discovery/templates/discovery/pane.html:96
 msgid "See all"
@@ -7247,15 +7253,15 @@ msgstr "Filtro por tipo/ação"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Passou a validação automática"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Falhou a validação automática"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrado por validação automática"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -7773,7 +7779,7 @@ msgstr "Registo da moderação da revisão "
 
 #: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Registo de ficheiros beta assinados"
 
 #: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
@@ -8074,7 +8080,7 @@ msgstr "Fontes adicionais:"
 
 #: apps/editors/templates/editors/review.html:110
 msgid "Download files"
-msgstr "Transferir ficheiros"
+msgstr "Descarregar ficheiros"
 
 #: apps/editors/templates/editors/review.html:112
 msgid "The developer has provided source code."
@@ -8472,7 +8478,7 @@ msgstr "Voltar ao extra"
 
 #: apps/files/templates/files/file.html:2
 msgid "Download {0}"
-msgstr "Transferir {0}"
+msgstr "Descarregar {0}"
 
 #: apps/files/templates/files/file.html:4
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
@@ -8673,7 +8679,7 @@ msgstr "Nome do idioma"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr "Sobre os Extras da Mozilla"
+msgstr "Acerca dos extras da Mozilla"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
@@ -8957,7 +8963,7 @@ msgstr "Artigo \"Como desenvolver uma extensão para o Firefox\" no blogue de Ex
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr "Blogue de Extras da Mozilla"
+msgstr "Blogue de extras da Mozilla"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -9739,6 +9745,10 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"Com milhares de extras disponíveis, existe sempre alguma coisa para todos. "
+"Mas se está à procura de um extra específico e não o consegue encontrar, "
+"pode tentar procurar em outros sítios ou fazer uma entrada no nosso fórum de "
+"<a href=\"%(forum_url)s\">Extras</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -11026,7 +11036,7 @@ msgstr "São necessárias letras e números."
 
 #: apps/users/forms.py:61
 msgid "That password is not allowed."
-msgstr "Essa senha não é permitida."
+msgstr "Essa palavra-passe não é permitida."
 
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
@@ -11034,11 +11044,11 @@ msgstr "Como parte da nossa nova política de senhas, a sua senha deve ter pelo 
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
-msgstr "Nova senha"
+msgstr "Nova palavra-passe"
 
 #: apps/users/forms.py:223 apps/users/forms.py:404
 msgid "Wrong password entered!"
-msgstr "Foi introduzida uma senha errada!"
+msgstr "Foi digitada uma palavra-passe errada!"
 
 #: apps/users/forms.py:243
 msgid "Usernames cannot contain only digits."
@@ -11082,7 +11092,7 @@ msgstr "Este nome de apresentação não pode ser utilizado."
 
 #: apps/users/forms.py:326
 msgid "The passwords did not match."
-msgstr "As senhas não coincidem."
+msgstr "As palavras-passe não correspondem."
 
 #: apps/users/forms.py:344 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
@@ -11289,7 +11299,7 @@ msgstr "Por favor, utilize o endereço email confirmado para esta conta."
 
 #: apps/users/views.py:508
 msgid "Wrong email address or password!"
-msgstr "Senha ou endereço de correio incorreto!"
+msgstr "Palavra-passe ou endereço de e-mail incorreto!"
 
 #: apps/users/views.py:520
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
@@ -11370,7 +11380,7 @@ msgstr "Confirmar eliminação da conta"
 #: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:56 apps/users/templates/users/login_form.html:36 apps/users/templates/users/register.html:75
 #: apps/users/templates/users/mobile/login.html:45
 msgid "Password"
-msgstr "Senha"
+msgstr "Palavra-passe"
 
 #: apps/users/templates/users/delete.html:56
 msgid "I understand this step cannot be undone."
@@ -11410,23 +11420,25 @@ msgstr "Ocultar endereço de correio aos outros utilizadores"
 
 #: apps/users/templates/users/edit.html:50
 msgid "Change Password"
-msgstr "Alterar senha"
+msgstr "Alterar palavra-passe"
 
 #: apps/users/templates/users/edit.html:58
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "Senha antiga"
+msgstr ""
+"Altere a sua palavra-passe. Se se esquecer da sua palavra-passe, pode <a "
+"href=\"%(reset_url)s\">usar o formulário de reposição da palavra-passe</a>."
 
 #: apps/users/templates/users/edit.html:64
 msgid "Old Password"
-msgstr "Senha antiga"
+msgstr "Palavra-passe antiga"
 
 #: apps/users/templates/users/edit.html:72
 msgid "New Password"
-msgstr "Nova senha"
+msgstr "Palavra-passe nova"
 
 #: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
-msgstr "Confirmar senha"
+msgstr "Confirme a palavra-passe"
 
 #: apps/users/templates/users/edit.html:84
 msgid "Profile"
@@ -11542,7 +11554,7 @@ msgstr "Não tenho uma conta."
 
 #: apps/users/templates/users/login_help.html:6 apps/users/templates/users/mobile/login.html:73
 msgid "I forgot my password."
-msgstr "Esqueci a minha senha."
+msgstr "Esqueci-me da palavra-passe"
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
@@ -11552,7 +11564,7 @@ msgstr "Está autenticado como <strong>%(user_email)s</strong>!"
 #: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3 apps/users/templates/users/pwreset_sent.html:8
 msgid "Password Reset"
-msgstr "Reposição de senha"
+msgstr "Reposição da palavra-passe"
 
 #: apps/users/templates/users/profile.html:3
 msgid "User Info for {0}"
@@ -11580,7 +11592,7 @@ msgstr "Artista de temas"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
-msgstr "Sobre mim"
+msgstr "Acerca de mim"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
@@ -11624,27 +11636,31 @@ msgstr "Sucesso!"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
-msgstr "Senha reposta com sucesso."
+msgstr "Palavra-passe reposta com sucesso."
 
 #: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:80
 msgid "Confirm password"
-msgstr "Confirmar senha"
+msgstr "Confirme a palavra-passe"
 
 #: apps/users/templates/users/pwreset_confirm.html:41
 msgid "Password reset unsuccessful"
-msgstr "A reposição da senha falhou"
+msgstr "A reposição da palavra-passe falhou"
 
 #: apps/users/templates/users/pwreset_confirm.html:42
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "A ligação para reposição da senha era inválida, possivelmente por causa de já ter sido utilizada. Por favor solicite uma nova reposição de senha."
+msgstr ""
+"A ligação de reposição da palavra-passe não é inválida. Provavelmente, já "
+"foi utilizada. Por favor, solicite uma nova reposição da palavra-passe."
 
 #: apps/users/templates/users/pwreset_request.html:15
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Esqueceu a sua senha? Introduza o seu endereço de correio abaixo e nós enviaremos instruções para definir uma nova."
+msgstr ""
+"Esqueceu-se da palavra-passe? Digite o seu endereço de e-mail abaixo e nós "
+"iremos enviar-lhe instruções para definir uma nova."
 
 #: apps/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
-msgstr "Enviar ligação para repor a senha"
+msgstr "Enviar ligação de reposição da palavra-passe"
 
 #: apps/users/templates/users/pwreset_sent.html:10
 msgid ""
@@ -11796,7 +11812,9 @@ msgstr ""
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "Para a sua conta a senha tem de ter pelo menos 8 caracteres incluindo letras e números."
+msgstr ""
+"A palavra-passe tem de ter, pelo menos, 8 carateres (incluindo letras e "
+"números)."
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
@@ -12055,7 +12073,7 @@ msgstr "Suporte de idioma"
 
 #: templates/menu_links.html:22
 msgid "About Firefox"
-msgstr "Sobre o Firefox"
+msgstr "Acerca do Firefox"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"

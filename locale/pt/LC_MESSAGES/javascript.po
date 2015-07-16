@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-05-29 23:58+0000\n"
+"PO-Revision-Date: 2015-07-16 20:50+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1432943887.0\n"
+"X-POOTLE-MTIME: 1437079833.0\n"
 
 #: static/js/common-all.js:10462 static/js/impala-all.js:1512 static/js/zamboni/discovery-all.js:10429 static/js/zamboni/init.js:32 static/js/zamboni/mobile-all.js:10990
 #: static/js/zamboni/mobile-min.js:4
@@ -62,7 +62,7 @@ msgstr "Adicionar a {0}"
 
 #: static/js/common-all.js:11059 static/js/impala-all.js:2109 static/js/zamboni/buttons.js:87 static/js/zamboni/discovery-all.js:11001
 msgid "Download Now"
-msgstr "Transferir agora"
+msgstr "Descarregar agora"
 
 #: static/js/common-all.js:11100 static/js/impala-all.js:2150 static/js/zamboni/buttons.js:128 static/js/zamboni/discovery-all.js:11042
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -83,7 +83,7 @@ msgstr "Instalar para {0} mesmo assim"
 
 #: static/js/common-all.js:11195 static/js/impala-all.js:2245 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11137
 msgid "Download for {0} anyway"
-msgstr "Transferir para {0} mesmo assim"
+msgstr "Descarregar para {0} mesmo assim"
 
 #: static/js/common-all.js:11252 static/js/impala-all.js:2302 static/js/zamboni/buttons.js:284 static/js/zamboni/discovery-all.js:11194
 msgid "Not available for your platform"
@@ -132,7 +132,7 @@ msgstr "Remover esta tradução"
 
 #: static/js/common-all.js:18266 static/js/common-min.js:8 static/js/impala-all.js:9862 static/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Instalar aplicação"
 
 #: static/js/common-all.js:18506 static/js/common-min.js:8 static/js/impala-all.js:10202 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -227,7 +227,7 @@ msgstr "Tudo"
 
 #: static/js/common-all.js:19960 static/js/common-min.js:9 static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr "Força da senha:"
+msgstr "Força da palavra-passe:"
 
 #: static/js/common-all.js:19966 static/js/common-min.js:9 static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
@@ -350,7 +350,7 @@ msgstr "Cancelar"
 
 #: static/js/common/upload-addon.js:145 static/js/zamboni/devhub-all.js:383 static/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
-msgstr "A enviar {0}"
+msgstr "A carregar {0}"
 
 #: static/js/common/upload-addon.js:172 static/js/zamboni/devhub-all.js:410 static/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
@@ -1005,12 +1005,12 @@ msgstr[1] "Envie um email aos autores de {2} extras que falharam a validação."
 #: static/js/zamboni/devhub-all.js:549 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra passou a validação sem erros e {0} mensagem."
+msgstr[1] "O seu extra passou a validação sem erros e {0} mensagens."
 
 #: static/js/zamboni/devhub-all.js:554 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "O seu extra passou a validação sem erros ou mensagens."
 
 #: static/js/zamboni/devhub-all.js:1113 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:170
 msgid "Your browser does not support the video tag"
@@ -1095,11 +1095,11 @@ msgstr "Testes de compatibilidade"
 
 #: static/js/zamboni/devhub-all.js:2740 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "A validação da aplicação falhou."
 
 #: static/js/zamboni/devhub-all.js:2742 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "A aplicação passou a validação."
 
 #: static/js/zamboni/devhub-all.js:2746 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:341
 msgid "Add-on failed validation."
@@ -1138,7 +1138,7 @@ msgstr "Erro interno do servidor"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2924 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Descarregar {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -1258,7 +1258,7 @@ msgstr "A instalar..."
 
 #: static/js/zamboni/mobile-all.js:11319 static/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
-msgstr ""
+msgstr "A comprar..."
 
 #: static/js/zamboni/mobile-all.js:11348 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:148
 msgid "This add-on has been preliminarily reviewed by Mozilla."
