@@ -21,13 +21,14 @@ from amo.tests import (assert_no_validation_exceptions, assert_required,
 from access.models import Group, GroupUser
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from amo.urlresolvers import reverse
+from amo.tests.test_helpers import get_image_path
 from amo.utils import urlparams
 from applications.models import AppVersion
 from bandwagon.models import FeaturedCollection, MonthlyPick
 from compat.cron import compatibility_report
 from compat.models import CompatReport
 from devhub.models import ActivityLog
-from files.models import Approval, File
+from files.models import Approval, File, FileUpload
 from stats.models import UpdateCount
 from users.models import UserProfile
 from users.utils import get_task_user
@@ -1901,24 +1902,55 @@ class TestEmailDevs(amo.tests.TestCase):
             eq_(len(mail.outbox), 0)
 
 
+class TestFileDownload(amo.tests.TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestFileDownload, self).setUp()
+
+        assert self.client.login(username='admin@mozilla.com',
+                                 password='password')
+
+        self.file = open(get_image_path('animated.png'), 'rb')
+        resp = self.client.post(reverse('devhub.upload'),
+                                {'upload': self.file})
+        assert resp.status_code == 302
+
+        self.upload = FileUpload.objects.get()
+        self.url = reverse('zadmin.download_file', args=[self.upload.uuid])
+
+    def test_download(self):
+        """Test that downloading file_upload objects works."""
+
+        resp = self.client.get(self.url)
+        assert resp.status_code == 200
+        assert resp.content == self.file.read()
+
+
 class TestPerms(amo.tests.TestCase):
     fixtures = ['base/users', 'zadmin/tests/flagged']
+
+    FILE_ID = '1234567890abcdef1234567890abcdef'
+
+    def assert_status(self, view, status, **kw):
+        """Check that requesting the named view returns the expected status."""
+
+        assert self.client.get(reverse(view, kwargs=kw)).status_code == status
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
-        eq_(self.client.get(
-            reverse('discovery.module_admin')).status_code, 200)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 200)
+        self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.settings', 200)
+        self.assert_status('zadmin.flagged', 200)
+        self.assert_status('zadmin.langpacks', 200)
+        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.addon-search', 200)
+        self.assert_status('zadmin.monthly_pick', 200)
+        self.assert_status('zadmin.features', 200)
+        self.assert_status('discovery.module_admin', 200)
+        self.assert_status('zadmin.oauth-consumer-create', 200)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -1927,17 +1959,16 @@ class TestPerms(amo.tests.TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.settings')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.features')).status_code, 200)
-        eq_(self.client.get(
-            reverse('discovery.module_admin')).status_code, 200)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+        self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.settings', 200)
+        self.assert_status('zadmin.flagged', 200)
+        self.assert_status('zadmin.langpacks', 200)
+        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.addon-search', 200)
+        self.assert_status('zadmin.monthly_pick', 200)
+        self.assert_status('zadmin.features', 200)
+        self.assert_status('discovery.module_admin', 200)
+        self.assert_status('zadmin.oauth-consumer-create', 403)
 
     def test_sr_reviewers_user(self):
         # Sr Reviewers users have only a few privileges.
@@ -1947,13 +1978,13 @@ class TestPerms(amo.tests.TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+        self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.flagged', 200)
+        self.assert_status('zadmin.langpacks', 200)
+        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.addon-search', 200)
+        self.assert_status('zadmin.settings', 403)
+        self.assert_status('zadmin.oauth-consumer-create', 403)
 
     def test_bulk_compat_user(self):
         # Bulk Compatibility Updaters only have access to /admin/validation/*.
@@ -1963,30 +1994,29 @@ class TestPerms(amo.tests.TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        eq_(self.client.get(reverse('zadmin.index')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.validation')).status_code, 200)
-        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+        self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.validation', 200)
+        self.assert_status('zadmin.flagged', 403)
+        self.assert_status('zadmin.langpacks', 403)
+        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
+        self.assert_status('zadmin.addon-search', 403)
+        self.assert_status('zadmin.settings', 403)
+        self.assert_status('zadmin.oauth-consumer-create', 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
-        eq_(self.client.get(reverse('zadmin.index')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.settings')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.flagged')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.langpacks')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.addon-search')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.monthly_pick')).status_code, 403)
-        eq_(self.client.get(reverse('zadmin.features')).status_code, 403)
-        eq_(self.client.get(
-            reverse('discovery.module_admin')).status_code, 403)
-        eq_(self.client.get(
-            reverse('zadmin.oauth-consumer-create')).status_code, 403)
+        self.assert_status('zadmin.index', 403)
+        self.assert_status('zadmin.settings', 403)
+        self.assert_status('zadmin.flagged', 403)
+        self.assert_status('zadmin.langpacks', 403)
+        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
+        self.assert_status('zadmin.addon-search', 403)
+        self.assert_status('zadmin.monthly_pick', 403)
+        self.assert_status('zadmin.features', 403)
+        self.assert_status('discovery.module_admin', 403)
+        self.assert_status('zadmin.oauth-consumer-create', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertRedirects(self.client.get(reverse('zadmin.index')),

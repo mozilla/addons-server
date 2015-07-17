@@ -85,20 +85,16 @@ def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.with_unlisted, pk=file.version.addon_id)
 
-    # General case: addon is listed.
-    if addon.is_listed:
-        if addon.is_disabled or file.status == amo.STATUS_DISABLED:
-            if (acl.check_addon_ownership(request, addon, viewer=True,
-                                          ignore_disabled=True) or
-                    acl.check_addons_reviewer(request)):
-                return HttpResponseSendFile(
-                    request, file.guarded_file_path,
-                    content_type='application/xp-install')
-            else:
-                raise http.Http404()
-    else:
-        if not owner_or_unlisted_reviewer(request, addon):
-            raise http.Http404  # Not listed, not owner or admin.
+    if addon.is_disabled or file.status == amo.STATUS_DISABLED:
+        if (acl.check_addon_ownership(request, addon, viewer=True,
+                                      ignore_disabled=True) or
+                acl.check_addons_reviewer(request)):
+            return HttpResponseSendFile(request, file.guarded_file_path,
+                                        content_type='application/x-xpinstall')
+        raise http.Http404()
+
+    if not (addon.is_listed or owner_or_unlisted_reviewer(request, addon)):
+        raise http.Http404  # Not listed, not owner or admin.
 
     attachment = (type == 'attachment' or not request.APP.browser)
 

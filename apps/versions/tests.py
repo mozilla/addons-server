@@ -704,6 +704,41 @@ class TestDownloads(TestDownloadsBase):
         self.addon.save()
         self.assert_served_locally(self.client.get(self.file_url))
 
+    def test_type_attachment(self):
+        self.assert_served_by_mirror(self.client.get(self.file_url))
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_locally(self.client.get(url), attachment=True)
+
+    def test_nonbrowser_app(self):
+        url = self.file_url.replace('firefox', 'thunderbird')
+        self.assert_served_locally(self.client.get(url), attachment=True)
+
+    def test_trailing_filename(self):
+        url = self.file_url + self.file.filename
+        self.assert_served_by_mirror(self.client.get(url))
+
+    def test_beta_file(self):
+        url = reverse('downloads.file', args=[self.beta_file.id])
+        self.assert_served_by_mirror(self.client.get(url),
+                                     file_=self.beta_file)
+
+    def test_null_datestatuschanged(self):
+        self.file.update(datestatuschanged=None)
+        self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_public_addon_beta_file(self):
+        self.file.update(status=amo.STATUS_BETA)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.assert_served_by_mirror(self.client.get(self.file_url))
+
+    def test_beta_addon_beta_file(self):
+        self.addon.update(status=amo.STATUS_BETA)
+        self.file.update(status=amo.STATUS_BETA)
+        self.assert_served_locally(self.client.get(self.file_url))
+
+
+class TestDisabledFileDownloads(TestDownloadsBase):
+
     def test_admin_disabled_404(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         eq_(self.client.get(self.file_url).status_code, 404)
@@ -759,37 +794,12 @@ class TestDownloads(TestDownloadsBase):
         self.client.login(username='admin@mozilla.com', password='password')
         self.assert_served_internally(self.client.get(self.file_url))
 
-    def test_type_attachment(self):
-        self.assert_served_by_mirror(self.client.get(self.file_url))
-        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_locally(self.client.get(url), attachment=True)
 
-    def test_nonbrowser_app(self):
-        url = self.file_url.replace('firefox', 'thunderbird')
-        self.assert_served_locally(self.client.get(url), attachment=True)
+class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
 
-    def test_trailing_filename(self):
-        url = self.file_url + self.file.filename
-        self.assert_served_by_mirror(self.client.get(url))
-
-    def test_beta_file(self):
-        url = reverse('downloads.file', args=[self.beta_file.id])
-        self.assert_served_by_mirror(self.client.get(url),
-                                     file_=self.beta_file)
-
-    def test_null_datestatuschanged(self):
-        self.file.update(datestatuschanged=None)
-        self.assert_served_locally(self.client.get(self.file_url))
-
-    def test_public_addon_beta_file(self):
-        self.file.update(status=amo.STATUS_BETA)
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        self.assert_served_by_mirror(self.client.get(self.file_url))
-
-    def test_beta_addon_beta_file(self):
-        self.addon.update(status=amo.STATUS_BETA)
-        self.file.update(status=amo.STATUS_BETA)
-        self.assert_served_locally(self.client.get(self.file_url))
+    def setUp(self):
+        super(TestDisabledFileDownloads, self).setUp()
+        self.addon.update(is_listed=False)
 
 
 class TestDownloadsLatest(TestDownloadsBase):
