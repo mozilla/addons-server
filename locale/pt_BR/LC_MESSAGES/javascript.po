@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-06-13 20:37+0000\n"
-"Last-Translator: André <andrealvarenga@gmx.net>\n"
+"PO-Revision-Date: 2015-07-17 09:20:29.868879\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -187,7 +187,7 @@ msgstr "Remover essa localização"
 #: static/js/common-all.js:18266 static/js/common-min.js:8
 #: static/js/impala-all.js:9862 static/js/impala-min.js:6
 msgid "Install App"
-msgstr ""
+msgstr "Instalar aplicativo"
 
 #: static/js/common-all.js:18506 static/js/common-min.js:8
 #: static/js/impala-all.js:10202 static/js/impala-min.js:6
@@ -1347,11 +1347,13 @@ msgstr[1] ""
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Seu complemento passou pela validação sem erros e com {0} mensagem."
 msgstr[1] ""
+"Seu complemento passou pela validação sem erros e com {0} mensagens."
 
 #: static/js/zamboni/devhub-all.js:554 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Seu aplicativo passou na validação sem erros ou mensagens."
 
 #: static/js/zamboni/devhub-all.js:1113 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:170
@@ -1459,11 +1461,11 @@ msgstr "Testes de compatibilidade"
 
 #: static/js/zamboni/devhub-all.js:2740 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "O aplicativo não passou na validação."
 
 #: static/js/zamboni/devhub-all.js:2742 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "O aplicativo passou na validação."
 
 #: static/js/zamboni/devhub-all.js:2746 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:341
@@ -1509,7 +1511,7 @@ msgstr "Erro interno do servidor"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2924 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Download {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -1666,7 +1668,7 @@ msgstr "Instalando..."
 
 #: static/js/zamboni/mobile-all.js:11319 static/js/zamboni/mobile-min.js:4
 msgid "Purchasing..."
-msgstr ""
+msgstr "Adquirindo..."
 
 #: static/js/zamboni/mobile-all.js:11348 static/js/zamboni/mobile-min.js:4
 #: static/js/zamboni/mobile/buttons.js:148
