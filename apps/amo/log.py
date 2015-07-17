@@ -584,19 +584,21 @@ class ADDON_UNLISTED(_LOG):
 
 
 class BETA_SIGNED_VALIDATION_PASSED(_LOG):
-    id = 129
+    id = 131
     format = _(u'{file} was signed.')
     keep = True
 
 
 class BETA_SIGNED_VALIDATION_FAILED(_LOG):
-    id = 130
+    id = 132
     format = _(u'{file} was signed.')
     keep = True
 
 
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
+# Make sure there's no duplicate IDs.
+assert len(LOGS) == len(set(log.id for log in LOGS))
 
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = AttributeDict((l.__name__, l) for l in LOGS)
