@@ -32,9 +32,9 @@ from amo.tests import (addon_factory, assert_no_validation_exceptions, formset,
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
-from devhub import tasks
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
+from devhub.tasks import validate
 from files.models import File, FileUpload
 from files.tests.test_models import UploadTest as BaseUploadTest
 from reviews.models import Review
@@ -2538,12 +2538,10 @@ class TestUploadErrors(UploadTest):
                                  'delicious_bookmarks-2.1.106-fx.xpi'),
                     'rb')
 
-    @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch.object(waffle, 'flag_is_active', return_value=True)
+    @mock.patch('devhub.tasks.validate')
     @mock.patch('devhub.tasks.run_validator')
-    def test_version_upload(self, run_validator, flag_is_active):
-        run_validator.return_value = ''
-        flag_is_active.return_value = True
-
+    def test_version_upload(self, run_validator, validate_, flag_is_active):
         # Load the versions page:
         res = self.client.get(self.addon.get_dev_url('versions'))
         eq_(res.status_code, 200)
@@ -2553,25 +2551,32 @@ class TestUploadErrors(UploadTest):
         upload_url = doc('#upload-addon').attr('data-upload-url')
         with self.xpi() as f:
             res = self.client.post(upload_url, {'upload': f}, follow=True)
-        data = json.loads(res.content)
 
-        # Simulate the validation task finishing after a delay:
+        data = json.loads(res.content)
+        poll_url = data['url']
+        upload = FileUpload.objects.get(pk=data['upload'])
+
+        # Check that `tasks.validate` has been called with the expected upload.
+        validate_.assert_called_with(upload, listed=True)
+
+        # Poll and check that we are still pending validation.
+        data = json.loads(self.client.get(poll_url).content)
+        assert data.get('validation') == ''
+
+        # Run the actual validation task which was delayed by the mock.
         run_validator.return_value = self.validator_success
-        tasks.validator.delay(data['upload'])
+        validate(upload, listed=True)
 
-        # javascript: poll for status:
-        res = self.client.get(data['url'])
-        data = json.loads(res.content)
-        if data['validation'] and data['validation']['messages']:
-            raise AssertionError('Unexpected validation errors: %s'
-                                 % data['validation']['messages'])
+        # And poll to see that we now have the expected validation results.
+        data = json.loads(self.client.get(poll_url).content)
+        assert data['validation']
+        assert not data['validation']['messages'], \
+            'Unexpected validation errors: %s' % data['validation']['messages']
 
-    @mock.patch.object(waffle, 'flag_is_active')
+    @mock.patch.object(waffle, 'flag_is_active', return_value=True)
+    @mock.patch('devhub.tasks.validate')
     @mock.patch('devhub.tasks.run_validator')
-    def test_dupe_xpi(self, run_validator, flag_is_active):
-        run_validator.return_value = ''
-        flag_is_active.return_value = True
-
+    def test_dupe_xpi(self, run_validator, validate_, flag_is_active):
         # Submit a new addon:
         self.client.post(reverse('devhub.submit.1'))  # set cookie
         res = self.client.get(reverse('devhub.submit.2'))
@@ -2582,17 +2587,28 @@ class TestUploadErrors(UploadTest):
         upload_url = doc('#upload-addon').attr('data-upload-url')
         with self.xpi() as f:
             res = self.client.post(upload_url, {'upload': f}, follow=True)
-        data = json.loads(res.content)
 
-        # Simulate the validation task finishing after a delay:
+        data = json.loads(res.content)
+        poll_url = data['url']
+        upload = FileUpload.objects.get(pk=data['upload'])
+
+        # Check that `tasks.validate` has been called with the expected upload.
+        validate_.assert_called_with(upload, listed=True)
+
+        # Poll and check that we are still pending validation.
+        data = json.loads(self.client.get(poll_url).content)
+        assert data.get('validation') == ''
+
+        # Run the actual validation task which was delayed by the mock.
         run_validator.return_value = self.validator_success
-        tasks.validator.delay(data['upload'])
+        validate(upload, listed=True)
 
-        # javascript: poll for results:
-        res = self.client.get(data['url'])
-        data = json.loads(res.content)
-        eq_(list(m['message'] for m in data['validation']['messages']),
-            [u'Duplicate UUID found.'])
+        # And poll to see that we now have the expected validation results.
+        data = json.loads(self.client.get(poll_url).content)
+
+        messages = data['validation']['messages']
+        assert len(messages) == 1
+        assert messages[0]['message'] == u'Duplicate UUID found.'
 
     def test_dupe_xpi_unlisted_addon(self):
         """Submitting an xpi with the same UUID as an unlisted addon."""

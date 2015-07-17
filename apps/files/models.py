@@ -33,7 +33,6 @@ from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, user_media_url
 from applications.models import AppVersion
 import devhub.signals
-from devhub.utils import limit_validation_results, escape_validation
 from files.utils import SafeUnzip
 from tags.models import Tag
 from versions.compare import version_int as vint
@@ -162,8 +161,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 f.status = amo.STATUS_BETA
             elif version.addon.trusted:
                 f.status = amo.STATUS_PUBLIC
-        elif (version.addon.status in amo.LITE_STATUSES
-              and version.addon.trusted):
+        elif (version.addon.status in amo.LITE_STATUSES and
+              version.addon.trusted):
             f.status = version.addon.status
         f.hash = f.generate_hash(upload.path)
         if upload.validation:
@@ -179,8 +178,13 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         for dest in destinations:
             copy_stored_file(upload.path,
                              os.path.join(dest, nfd_str(f.filename)))
+
         if upload.validation:
-            FileValidation.from_json(f, upload.validation)
+            # Import loop.
+            from devhub.tasks import annotate_validation_results
+
+            validation = annotate_validation_results(validation)
+            FileValidation.from_json(f, validation)
         return f
 
     @classmethod
@@ -281,6 +285,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     def guarded_file_path(self):
         return os.path.join(user_media_path('guarded_addons'),
                             str(self.version.addon_id), self.filename)
+
+    @property
+    def current_file_path(self):
+        """Returns the current path of the file, whether or not it is
+        guarded."""
+
+        return (self.guarded_file_path if self.status == amo.STATUS_DISABLED
+                else self.file_path)
 
     @property
     def extension(self):
@@ -576,6 +588,9 @@ class FileUpload(amo.models.ModelBase):
             self._escape_validation()
         if not self._escaped_validation:
             return ''
+
+        # Import loop.
+        from devhub.utils import limit_validation_results
         return limit_validation_results(json.loads(self._escaped_validation),
                                         is_compatibility=is_compatibility)
 
@@ -590,6 +605,8 @@ class FileUpload(amo.models.ModelBase):
             tb = traceback.format_exception(*sys.exc_info())
             self.update(task_error=''.join(tb))
         else:
+            # Import loop.
+            from devhub.utils import escape_validation
             escaped_validation = escape_validation(validation)
             self._escaped_validation = json.dumps(escaped_validation)
 
@@ -612,26 +629,36 @@ class FileValidation(amo.models.ModelBase):
 
     @classmethod
     def from_json(cls, file, validation):
-        js = json.loads(validation)
-        if 'signing_summary' not in js:
-            js['signing_summary'] = {'trivial': 0, 'low': 0, 'medium': 0,
-                                     'high': 0}
-        if 'passed_auto_validation' not in js:
-            js['passed_auto_validation'] = False
-        new = cls(file=file, validation=json.dumps(js), errors=js['errors'],
-                  warnings=js['warnings'], notices=js['notices'],
-                  signing_trivials=js['signing_summary']['trivial'],
-                  signing_lows=js['signing_summary']['low'],
-                  signing_mediums=js['signing_summary']['medium'],
-                  signing_highs=js['signing_summary']['high'],
-                  passed_auto_validation=js['passed_auto_validation'])
-        new.valid = new.errors == 0
-        if ('metadata' in js and (
-                js['metadata'].get('contains_binary_extension', False) or
-                js['metadata'].get('contains_binary_content', False))):
-            file.update(binary=True)
-        if 'metadata' in js and js['metadata'].get('binary_components', False):
-            file.update(binary_components=True)
+        if isinstance(validation, basestring):
+            validation = json.loads(validation)
+
+        signing = validation['signing_summary']
+
+        new = cls(file=file, validation=json.dumps(validation),
+                  errors=validation['errors'],
+                  warnings=validation['warnings'],
+                  notices=validation['notices'],
+                  valid=validation['errors'] == 0,
+                  signing_trivials=signing['trivial'],
+                  signing_lows=signing['low'],
+                  signing_mediums=signing['medium'],
+                  signing_highs=signing['high'],
+                  passed_auto_validation=validation['passed_auto_validation'])
+
+        if 'metadata' in validation:
+            if (validation['metadata'].get('contains_binary_extension') or
+                    validation['metadata'].get('contains_binary_content')):
+                file.update(binary=True)
+
+            if validation['metadata'].get('binary_components'):
+                file.update(binary_components=True)
+
+        # Delete any past results.
+        # We most often wind up with duplicate results when multiple requests
+        # for the same validation data are POSTed at the same time, which we
+        # currently do not have the ability to track.
+        cls.objects.filter(file=file).delete()
+
         new.save()
         return new
 

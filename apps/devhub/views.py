@@ -632,7 +632,7 @@ def upload(request, addon_slug=None, is_standalone=False, is_listed=True):
         ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
     else:
-        tasks.validator.delay(fu.pk, listed=is_listed)
+        tasks.validate(fu, listed=is_listed)
     if addon_slug:
         return redirect('devhub.upload_detail_for_addon', addon_slug, fu.pk)
     elif is_standalone:
@@ -764,7 +764,9 @@ def json_file_validation(request, addon_id, addon, file_id):
             return http.HttpResponseNotAllowed(['POST'])
 
         try:
-            v_result = tasks.file_validator(file.id)
+            # This API is, unfortunately, synchronous, so wait for the
+            # task to complete and return the result directly.
+            v_result = tasks.validate(file).get()
         except Exception, exc:
             log.error('file_validator(%s): %s' % (file.id, exc))
             error = "\n".join(traceback.format_exception(*sys.exc_info()))

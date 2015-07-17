@@ -120,13 +120,13 @@ class TestValidator(amo.tests.TestCase):
     @mock.patch('devhub.tasks.run_validator')
     def test_pass_validation(self, _mock):
         _mock.return_value = '{"errors": 0}'
-        tasks.validator(self.upload.pk)
+        tasks.validate(self.upload)
         assert self.get_upload().valid
 
     @mock.patch('devhub.tasks.run_validator')
     def test_fail_validation(self, _mock):
         _mock.return_value = '{"errors": 2}'
-        tasks.validator(self.upload.pk)
+        tasks.validate(self.upload)
         assert not self.get_upload().valid
 
     @mock.patch('devhub.tasks.run_validator')
@@ -134,7 +134,7 @@ class TestValidator(amo.tests.TestCase):
         _mock.side_effect = Exception
         eq_(self.upload.task_error, None)
         with self.assertRaises(Exception):
-            tasks.validator(self.upload.pk)
+            tasks.validate(self.upload)
         error = self.get_upload().task_error
         assert error.startswith('Traceback (most recent call last)'), error
 
@@ -144,7 +144,7 @@ class TestValidator(amo.tests.TestCase):
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
-        tasks.validator(self.upload.pk)
+        tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
@@ -154,7 +154,7 @@ class TestValidator(amo.tests.TestCase):
     def test_validation_no_signing_warning(self, _mock):
         """If we're not signing addon don't warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
-        tasks.validator(self.upload.pk)
+        tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 0
         assert len(validation['messages']) == 0
@@ -167,24 +167,27 @@ class TestValidator(amo.tests.TestCase):
 
         _mock.return_value = json.dumps(result)
         eq_(self.upload.task_error, None)
-        tasks.validator(self.upload.pk)
+        tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
         assert validation['passed_auto_validation']
 
         result['signing_summary']['low'] = 1
         _mock.return_value = json.dumps(result)
         eq_(self.upload.task_error, None)
-        tasks.validator(self.upload.pk)
+        tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
         assert not validation['passed_auto_validation']
 
     @mock.patch('devhub.tasks.run_validator')
     def test_annotate_passed_auto_validation_bogus_result(self, _mock):
         """Don't set passed_auto_validation, don't fail if results is bogus."""
-        _mock.return_value = ''
+        _mock.return_value = '{}'
         eq_(self.upload.task_error, None)
-        tasks.validator(self.upload.pk)
-        assert self.get_upload().validation == ''
+        tasks.validate(self.upload)
+        assert (json.loads(self.get_upload().validation) ==
+                {"passed_auto_validation": True,
+                 "signing_summary": {"high": 0, "medium": 0,
+                                     "low": 0, "trivial": 0}})
 
 
 class TestFlagBinary(amo.tests.TestCase):

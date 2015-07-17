@@ -31,6 +31,7 @@ def make_file(pk, file_path, **kwargs):
     for k, v in kwargs.items():
         setattr(obj, k, v)
     obj.file_path = file_path
+    obj.current_file_path = file_path
     obj.__str__ = lambda x: x.pk
     obj.version = Mock()
     obj.version.version = 1
