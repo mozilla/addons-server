@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-16 01:05+0000\n"
+"PO-Revision-Date: 2015-07-17 18:04+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437008726.0\n"
+"X-POOTLE-MTIME: 1437156252.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -379,7 +379,7 @@ msgstr "查看统计数据"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Average Daily Users"
-msgstr "平均每日用户数"
+msgstr "平均每日用户量"
 
 #: apps/addons/templates/addons/details_box.html:113
 msgid "Abuse Reports"
@@ -1821,7 +1821,7 @@ msgstr "找不到结果"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:62 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:75
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:88
 msgid "Prev"
-msgstr "上一页"
+msgstr "上一类"
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 apps/amo/templates/amo/mobile/impala_paginator.html:16 apps/amo/templates/amo/mobile/paginator.html:14
 #: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:37
@@ -1829,7 +1829,7 @@ msgstr "上一页"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
 #: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:49 apps/stats/templates/stats/stats.html:159
 msgid "Next"
-msgstr "下一页"
+msgstr "下一类"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -4599,7 +4599,7 @@ msgstr "兼容性测试"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
 msgid "Top"
-msgstr "根站点"
+msgstr "回到顶部"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
@@ -10566,7 +10566,7 @@ msgstr "正在载入..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> 平均每日用户"
+msgstr "平均每日 <b>{0}</b> 名用户"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
@@ -10631,24 +10631,27 @@ msgstr "依照日期统计的订阅者"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr "依照日期统计的每日用户"
+msgstr "依照日期统计的每日用户量"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr "什么是每日用户？"
+msgstr "什么是每日用户量？"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
-msgstr "<h2>什么是每日用户数？</h2><p>从这个网站安装的主题每天都会检查一次更新。被检查更新的次数就视为每日活跃用户数，或者说是逐日统计的此主题的用户总数。</p>"
+msgstr ""
+"<h2>什么是每日用户量？</h2><p>从这个网站安装的主题每天都会检查一次更新。被检查更新的次数就视为每日活跃用户数，或者说是逐日统计的此主题的用户"
+"总数。</p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>什么是每日用户？</h2> <p> 从本网站下载的附加组件会在每日检查更新。这些更新的请求数量将作为每日活跃用户数。每日用户数可以按照附加组件版本、操作系统、附加组件状态、应用程序以及地区语言划分。</p>"
+"<h2>什么是每日用户量？</h2> <p> 从本网站下载的附加组件会在每日检查更新。这些更新的请求数量将作为每日活跃用户数。每日用户量可以按照附加组件"
+"版本、操作系统、附加组件状态、应用程序以及地区语言划分。</p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
