@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-15 08:54:05.688327\n"
+"PO-Revision-Date: 2015-07-19 03:31:01.979463\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2335,7 +2335,7 @@ msgstr "{addon} não listado."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} foi assinado."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -9166,11 +9166,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "A remoção de um complemento é irreversível!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Um complemento não listado não pode ser comutado para ser listado."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -9563,15 +9563,15 @@ msgstr "Filtrar por tipo/ação"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Passou na validação automática"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Falhou na validação automática"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrar por validação automática"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -12805,6 +12805,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"Com milhares de complementos disponíveis, tem algo para todo mundo. Mas se "
+"você estiver procurando um complemento em particular e não consegue "
+"encontrá-lo, você pode tentar pesquisar em outros sites ou postar sobre isso"
+" em nosso fórum de <a href=\"%(forum_url)s\">coplementos</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
