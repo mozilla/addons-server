@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-05-10 20:41+0000\n"
+"PO-Revision-Date: 2015-07-20 22:06+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-Bookmarks: 854,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-POOTLE-MTIME: 1431290500.0\n"
+"X-POOTLE-MTIME: 1437429986.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1014,7 +1014,7 @@ msgstr "Info"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> név alatt jelenik meg"
+msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> alatt jelenik meg"
 
 #: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:122 apps/devhub/forms.py:153
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
@@ -1023,7 +1023,7 @@ msgstr "Egyéni licenc"
 
 #: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "<a href=\"%(url)s\">%(name)s</a> név alatt jelenik meg"
+msgstr "<a href=\"%(url)s\">%(name)s</a> alatt jelenik meg"
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
@@ -11740,17 +11740,16 @@ msgstr "Állandó hivatkozás erre a verzióra"
 
 #. {0} is a timestamp, such as September 28, 2011.
 #: apps/versions/templates/versions/version.html:10
-#, fuzzy
 msgid "Released {0}"
-msgstr "Felszabadítva"
+msgstr "Kiadva: {0}"
 
 #: apps/versions/templates/versions/version.html:39
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "A forráskód kiadva <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> alatt"
 
 #: apps/versions/templates/versions/version.html:44
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "A forráskód kiadva <a href=\"%(url)s\">%(name)s</a> alatt"
 
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
@@ -11957,6 +11956,8 @@ msgstr "Válasszon több ezer extra funkció és stílus közül, hogy Firefoxá
 #: templates/impala/base.html:138
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
+"Bővítse extra funkciókkal és stílusokkal, hogy a %(app)s csak az Öné "
+"lehessen."
 
 #: templates/impala/base.html:146
 msgid "On the go?"
