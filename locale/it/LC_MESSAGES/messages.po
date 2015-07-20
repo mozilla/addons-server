@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-06-20 15:33+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-07-20 19:40+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1434814388.0\n"
+"X-POOTLE-MTIME: 1437421255.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1809,7 +1809,7 @@ msgstr "{addon} è esterno e non verrà visualizzato su AMO."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "Il file {file} è stato firmato digitalmente."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -6989,10 +6989,14 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
 msgstr ""
+"Impostare un componente aggiuntivo per la distribuzione esterna è una scelta "
+"che non può essere revocata."
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
 msgstr ""
+"Un componente aggiuntivo distribuito esternamente non potrà più essere "
+"ospitato su AMO."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -7323,15 +7327,15 @@ msgstr "Filtra per tipo/azione"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Il processo di validazione automatico è stato superato."
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Il processo di validazione automatico non è stato superato."
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtra per validazione automatica"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -7848,7 +7852,7 @@ msgstr "Registro di revisione moderato"
 
 #: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Log file beta firmati digitalmente"
 
 #: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
@@ -9832,6 +9836,11 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"Con migliaia di componenti aggiuntivi disponibili, chiunque può trovare "
+"quello che soddisfa le proprie esigenze.Se però non riesci proprio a trovare "
+"il componente aggiuntivo di cui hai bisogno, potresti espandere la ricerca "
+"ad altri siti oppure lasciare una richiesta sul <a href=\"%"
+"(forum_url)s\">forum dedicato ai componenti aggiuntivi</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
