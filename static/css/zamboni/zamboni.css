@@ -495,6 +495,7 @@ input[type=button].caution.concealed {
     border-color: #a70;
     background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
     -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    white-space: normal;
 }
 
 a.button.caution: hover,

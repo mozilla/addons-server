@@ -30,11 +30,11 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import DevEmailBackend
 from amo.urlresolvers import reverse
-from amo.utils import chunked, sorted_groupby
+from amo.utils import HttpResponseSendFile, chunked, sorted_groupby
 from bandwagon.models import Collection
 from compat.models import AppCompat, CompatTotals
 from devhub.models import ActivityLog
-from files.models import Approval, File
+from files.models import Approval, File, FileUpload
 from files.tasks import start_upgrade as start_upgrade_task
 from files.utils import find_jetpacks, JetpackUpgrader
 from stats.search import get_mappings as get_stats_mappings
@@ -700,6 +700,14 @@ def addon_manage(request, addon):
     return render(request, 'zadmin/addon_manage.html', {
         'addon': addon, 'pager': pager, 'versions': versions, 'form': form,
         'formset': formset, 'form_map': form_map, 'file_map': file_map})
+
+
+@admin_required(reviewers=True)
+def download_file(request, uuid):
+    upload = get_object_or_404(FileUpload, uuid=uuid)
+
+    return HttpResponseSendFile(request, upload.path,
+                                content_type='application/octet-stream')
 
 
 @admin.site.admin_view

@@ -7,6 +7,7 @@ from nose.tools import eq_
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.test.client import RequestFactory
 
 import amo
 import amo.tests
@@ -16,6 +17,7 @@ from addons import forms
 from addons.models import Addon, Category
 from files.helpers import copyfileobj
 from tags.models import Tag, AddonTag
+from users.models import UserProfile
 
 
 class FormsTest(amo.tests.TestCase):
@@ -282,3 +284,28 @@ class TestCategoryForm(amo.tests.TestCase):
         form = forms.CategoryFormSet(addon=addon)
         apps = [f.app for f in form.forms]
         eq_(apps, [amo.FIREFOX])
+
+
+class TestThemeForm(amo.tests.TestCase):
+
+    @patch('addons.forms.save_theme')  # Don't save image, we use a fake one.
+    def test_long_author_or_display_username(self, mock_save_theme):
+        # Bug 1181751.
+        user = UserProfile.objects.create(email='foo@bar.com',
+                                          username='a' * 255,
+                                          display_name='b' * 255)
+        request = RequestFactory()
+        request.amo_user = user
+        cat = Category.objects.create(type=amo.ADDON_PERSONA)
+        form = forms.ThemeForm({
+            'name': 'my theme',
+            'slug': 'my-theme',
+            'category': cat.pk,
+            'header': 'some_file.png',
+            'agreed': True,
+            'header_hash': 'hash',
+            'license': 1}, request=request)
+        assert form.is_valid()
+        # Make sure there's no database issue, like too long data for the
+        # author or display_sername fields.
+        form.save()
