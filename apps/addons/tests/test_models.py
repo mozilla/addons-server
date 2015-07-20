@@ -2338,35 +2338,80 @@ class TestSearchSignals(amo.tests.ESTestCase):
         self.empty_index('default')
 
     def test_no_addons(self):
-        eq_(Addon.search().count(), 0)
+        assert Addon.search_public().count() == 0
 
     def test_create(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
+                                     status=amo.STATUS_PUBLIC)
         self.refresh()
-        eq_(Addon.search().count(), 1)
-        eq_(Addon.search().query(name='woo')[0].id, addon.id)
+        assert Addon.search_public().count() == 1
+        assert Addon.search_public().query(name='woo')[0].id == addon.id
 
     def test_update(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
+                                     status=amo.STATUS_PUBLIC)
         self.refresh()
-        eq_(Addon.search().count(), 1)
+        assert Addon.search_public().count() == 1
 
         addon.name = 'yeah'
         addon.save()
         self.refresh()
 
-        eq_(Addon.search().count(), 1)
-        eq_(Addon.search().query(name='woo').count(), 0)
-        eq_(Addon.search().query(name='yeah')[0].id, addon.id)
+        assert Addon.search_public().count() == 1
+        assert Addon.search_public().query(name='woo').count() == 0
+        assert Addon.search_public().query(name='yeah')[0].id == addon.id
+
+    def test_user_disable(self):
+        """Test that add-ons are removed from search results after being
+        disabled by their developers."""
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
+                                     status=amo.STATUS_PUBLIC)
+        self.refresh()
+        assert Addon.search_public().count() == 1
+
+        addon.disabled_by_user = True
+        addon.save()
+        self.refresh()
+
+        assert Addon.search_public().count() == 0
+
+    def test_switch_to_unlisted(self):
+        """Test that add-ons are removed from search results after being
+        switched to unlisted."""
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
+                                     status=amo.STATUS_PUBLIC)
+        self.refresh()
+        assert Addon.search_public().count() == 1
+
+        addon.is_listed = False
+        addon.save()
+        self.refresh()
+
+        assert Addon.search_public().count() == 0
+
+    def test_switch_to_listed(self):
+        """Test that add-ons created as unlisted do not appear in search
+        results until switched to listed."""
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
+                                     status=amo.STATUS_PUBLIC, is_listed=False)
+        self.refresh()
+        assert Addon.search_public().count() == 0
+
+        addon.is_listed = True
+        addon.save()
+        self.refresh()
+
+        assert Addon.search_public().count() == 1
 
     def test_delete(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo')
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
+                                     status=amo.STATUS_PUBLIC)
         self.refresh()
-        eq_(Addon.search().count(), 1)
+        assert Addon.search_public().count() == 1
 
         addon.delete('woo')
         self.refresh()
-        eq_(Addon.search().count(), 0)
+        assert Addon.search_public().count() == 0
 
 
 class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):

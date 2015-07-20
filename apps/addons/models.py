@@ -410,6 +410,17 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         self.clean_slug()
         super(Addon, self).save(**kw)
 
+    # Like the above Manager objects (`objects`, `with_unlisted`, ...), but
+    # for ElasticSearch queries.
+    @classmethod
+    def search_public(cls):
+        return cls.search_with_unlisted().filter(is_listed=True)
+
+    @classmethod
+    def search_with_unlisted(cls):
+        return cls.search().filter(
+            is_disabled=False, status__in=amo.REVIEWED_STATUSES)
+
     @use_master
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
@@ -1579,8 +1590,7 @@ def version_changed(sender, **kw):
 def update_search_index(sender, instance, **kw):
     from . import tasks
     if not kw.get('raw'):
-        if not instance.disabled_by_user and instance.is_listed:
-            tasks.index_addons.delay([instance.id])
+        tasks.index_addons.delay([instance.id])
 
 
 @Addon.on_change

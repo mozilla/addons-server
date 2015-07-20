@@ -41,8 +41,7 @@ def _personas(request):
     form = ESSearchForm(initial, type=amo.ADDON_PERSONA)
     form.is_valid()
 
-    qs = Addon.search().filter(status__in=amo.REVIEWED_STATUSES,
-                               is_disabled=False)
+    qs = Addon.search_public()
     filters = ['sort']
     mapping = {'downloads': '-weekly_downloads',
                'users': '-average_daily_users',
@@ -158,23 +157,18 @@ class BaseAjaxSearch(object):
         results = Addon.objects.none()
         q = self.request.GET.get(self.key)
         if q:
-            pk = None
             try:
                 pk = int(q)
             except ValueError:
-                pass
+                pk = None
             qs = None
             if pk:
-                qs = Addon.objects.filter(id=int(q), disabled_by_user=False)
+                qs = Addon.objects.reviewed().filter(id=int(q))
             elif len(q) > 2:
-                # Oh, how I wish I could elastically exclude terms.
-                # (You can now, but I forgot why I was complaining to
-                # begin with.)
-                qs = (Addon.search().query(or_=name_only_query(q.lower()))
-                      .filter(is_disabled=False))
+                qs = (Addon.search_public()
+                      .query(or_=name_only_query(q.lower())))
             if qs:
-                results = qs.filter(type__in=self.types,
-                                    status__in=amo.REVIEWED_STATUSES)
+                results = qs.filter(type__in=self.types)
         return results
 
     def _build_fields(self, item, fields):
@@ -443,9 +437,7 @@ def search(request, tag_name=None, template=None):
         sort[1] = extra_sort[1]
         del extra_sort[1]
 
-    qs = (Addon.search()
-          .filter(status__in=amo.REVIEWED_STATUSES, is_disabled=False,
-                  app=APP.id)
+    qs = (Addon.search_public().filter(app=APP.id)
           .facet(tags={'terms': {'field': 'tag'}},
                  platforms={'terms': {'field': 'platform'}},
                  appversions={'terms':
