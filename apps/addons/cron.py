@@ -451,11 +451,9 @@ def _group_addons(qs):
 @cronjobs.register
 def reindex_addons(index=None, addon_type=None):
     from . import tasks
-    ids = (Addon.objects.values_list('id', flat=True)
+    ids = (Addon.with_unlisted.values_list('id', flat=True)
            .filter(_current_version__isnull=False,
-                   status__in=amo.VALID_STATUSES,
-                   is_listed=True,
-                   disabled_by_user=False))
+                   status__in=amo.VALID_STATUSES))
     if addon_type:
         ids = ids.filter(type=addon_type)
     ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))

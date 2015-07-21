@@ -1,5 +1,4 @@
 import logging
-from operator import attrgetter
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -28,8 +27,8 @@ def extract(addon):
     """Extract indexable attributes from an add-on."""
     attrs = ('id', 'slug', 'created', 'last_updated', 'weekly_downloads',
              'bayesian_rating', 'average_daily_users', 'status', 'type',
-             'hotness', 'is_disabled', 'premium_type')
-    d = dict(zip(attrs, attrgetter(*attrs)(addon)))
+             'hotness', 'is_disabled', 'is_listed', 'premium_type')
+    d = {attr: getattr(addon, attr) for attr in attrs}
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
     translations = addon.translations

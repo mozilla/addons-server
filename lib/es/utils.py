@@ -20,16 +20,19 @@ unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
 get_indices = Reindexing.objects.get_indices
 
 
-def index_objects(ids, model, search, index=None, transforms=None):
+def index_objects(ids, model, search, index=None, transforms=None,
+                  objects=None):
     if index is None:
         index = model._get_index()
+    if objects is None:
+        objects = model.objects
 
     indices = Reindexing.objects.get_indices(index)
 
     if transforms is None:
         transforms = []
 
-    qs = model.objects.no_cache().filter(id__in=ids)
+    qs = objects.no_cache().filter(id__in=ids)
     for t in transforms:
         qs = qs.transform(t)
 
