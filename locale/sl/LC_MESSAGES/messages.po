@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-06-19 04:40:09\n"
+"PO-Revision-Date: 2015-07-20 22:51:44.680857\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2314,7 +2314,7 @@ msgstr "Nenaveden {addon}."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} je bila podpisana."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -9061,11 +9061,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "Odstranjevanje dodatka s seznama ni mogoče povrniti!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Nenavedenega dodatka ni mogoče zopet navesti."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -9451,15 +9451,15 @@ msgstr "Filter po vrsti/ukrepu"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Samodejno preverjanje veljavnosti uspešno"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Samodejno preverjanje veljavnosti spodletelo"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtriraj po samodejnem preverjanju veljavnosti"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -10062,7 +10062,7 @@ msgstr "Moderiran dnevnik pregledov"
 #: apps/editors/templates/editors/beta_signed_log.html:4
 #: apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Dnevnik podpisanih datotek beta"
 
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
@@ -12669,6 +12669,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"S tisoči objavljenih dodatkov je tu na voljo nekaj za vsakogar. Vendar če "
+"iščete določen dodatek in ga ne morete najti, ga lahko poiščete na drugih "
+"straneh ali o njem pišete v našem <a href=\"%(forum_url)s\">Forumu za "
+"dodatke</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
