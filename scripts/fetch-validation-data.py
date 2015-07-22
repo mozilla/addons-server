@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import datetime, timedelta
 
 import MySQLdb
@@ -27,8 +28,23 @@ def fetch_data_for_date(date):
         for row in cursor.fetchall():
             f.write(row[0] + '\n')
 
+
+def fetch_unlisted_addon_ids():
+    print 'Fetching unlisted addons'
+    cursor.execute('SELECT guid FROM addons WHERE is_listed=0 '
+                   'AND guid IS NOT NULL;')
+    with open('validations/unlisted-addons.txt', 'w') as f:
+        for row in cursor.fetchall():
+            f.write(row[0] + '\n')
+
 if __name__ == '__main__':
-    today = datetime.today()
-    for i in range(30, 0, -1):
-        date = today - timedelta(days=i)
-        fetch_data_for_date(date)
+    action = len(sys.argv) == 2 and sys.argv[1]
+    if action == 'validations':
+        today = datetime.today()
+        for i in range(30, 0, -1):
+            date = today - timedelta(days=i)
+            fetch_data_for_date(date)
+    elif action == 'unlisted':
+        fetch_unlisted_addon_ids()
+    else:
+        print 'Unknown action {action}'.format(action=action)
