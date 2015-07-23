@@ -6,25 +6,26 @@ ACTION_CONTEXT = 'context'
 ACTION_COUNT = 'count'
 ACTIONS = (ACTION_CONTEXT, ACTION_COUNT)
 
-with open('validations/unlisted-addons.txt') as f:
-    UNLISTED_ADDONS = set(guid.strip() for guid in f)
+UNLISTED_ADDONS = set()
 
 
 def parse_validations(results):
     return (json.loads(result) for result in results)
 
 
-def unlisted_validations(results):
+def unlisted_validations(results, unlisted_addons=None):
+    if unlisted_addons is None:
+        unlisted_addons = UNLISTED_ADDONS
     return (result
             for result in results
             if (not result['metadata'].get('listed', True)
-                or result['metadata'].get('id') in UNLISTED_ADDONS))
+                or result['metadata'].get('id') in unlisted_addons))
 
 
 def severe_validations(results):
     return (result
             for result in results
-            if any(err > 0 for err in result['signing_summary']))
+            if any(err > 0 for err in result['signing_summary'].values()))
 
 
 def error_messages(results):
@@ -73,6 +74,12 @@ def format_contexts(results):
             })
 
 
+def parse_unlisted_addons():
+    global UNLISTED_ADDONS
+    with open('validations/unlisted-addons.txt') as f:
+        UNLISTED_ADDONS = set(guid.strip() for guid in f)
+
+
 def main(action):
     pipeline = [
         parse_validations,
@@ -90,6 +97,7 @@ def main(action):
         pipeline.append(format_contexts)
     elif action == ACTION_COUNT:
         pipeline.append(format_error_count)
+        parse_unlisted_addons()
     else:
         raise ValueError('{0} is not a valid action'.format(action))
 
