@@ -46,6 +46,10 @@ function initValidator($doc) {
         this.wakeUp();
     }
 
+    ResultsTier.prototype.clear = function() {
+        this.$tierResults.empty();
+    };
+
     ResultsTier.prototype.tallyMsgType = function(type_) {
         this.counts[type_] += 1;
     };
@@ -66,6 +70,8 @@ function initValidator($doc) {
             resultClass = 'tests-failed';
         } else if (this.counts.warning) {
             resultClass = 'tests-passed-warnings';
+        } else if (this.counts.notice) {
+            resultClass = 'tests-passed-notices';
         } else {
             if (this.testsWereRun) {
                 summaryMsg = gettext('All tests passed successfully.');
@@ -78,9 +84,9 @@ function initValidator($doc) {
             }
             this.$tierResults.append('<span>' + summaryMsg + '</span>');
         }
-        this.$tierResults.removeClass('ajax-loading', 'tests-failed',
-                                      'tests-passed', 'tests-passed-warnings',
-                                      'tests-notrun')
+        this.$tierResults.removeClass('ajax-loading tests-failed ' +
+                                      'tests-passed tests-passed-warnings ' +
+                                      'tests-passed-notices tests-notrun')
                          .addClass(resultClass);
         if ($('.test-tier', this.$suite).length)
             this.topSummary();
@@ -144,6 +150,26 @@ function initValidator($doc) {
         this.appTrans = null;
         this.versionChangeLinks = null;
         this.allCounts = {error: 0, warning: 0};
+        this.automatedSigning = suite.is('.automated-signing');
+        this.fileURL = suite.attr('data-file-url');
+        this.fileID = suite.attr('data-file-id');
+
+        if (this.automatedSigning) {
+            this.hideNonSigning = $('#signing-hide-unnecessary').prop('checked');
+
+            // Hiding ignored messages only makes sense if we're only
+            // showing signing-related messages.
+            $('#signing-hide-ignored-container input').prop('disabled', !this.hideNonSigning);
+            if (!this.hideNonSigning) {
+                $('#signing-hide-ignored').prop('checked', false);
+            }
+
+            this.hideIgnored = $('#signing-hide-ignored').prop('checked');
+        }
+
+        if (!data.signing_ignored_summary) {
+            $("#signing-hide-ignored-container").hide();
+        }
     }
 
     MsgVisitor.prototype.createTier = function(tierId, options) {
@@ -152,7 +178,7 @@ function initValidator($doc) {
         return tier;
     };
 
-    MsgVisitor.prototype.finish = function(msg) {
+    MsgVisitor.prototype.finish = function() {
         var self = this;
         $('.result', this.$suite).each(function(i, res) {
             if (!$('.msg', res).length) {
@@ -167,98 +193,151 @@ function initValidator($doc) {
         });
     };
 
+    MsgVisitor.prototype.clear = function() {
+        $.each(this.tiers, function(tierId, tier) {
+            tier.clear();
+        });
+    };
+
     MsgVisitor.prototype.getMsgType = function(msg) {
          return msg['type'];
     };
 
-    MsgVisitor.prototype.getMsgSigningSeverity = function(msg) {
-        console.debug();
-        var signingSeverity = msg['signing_severity'];
-        if (signingSeverity) {
-            return 'Signing severity: ' + msg['signing_severity'];
-        } else {
-            return '';
-        }
-    };
-
     MsgVisitor.prototype.getTier = function(tierId, options) {
-        if (typeof options === 'undefined')
+        if (typeof options === 'undefined') {
             options = {app: null};
+        }
         if (!options.app
             && this.data.validation.ending_tier
             && this.data.validation.ending_tier < tierId) {
             options.testsWereRun = false;
         }
-        if (typeof this.tiers[tierId] === 'undefined')
+        if (typeof this.tiers[tierId] === 'undefined') {
             this.tiers[tierId] = this.createTier(tierId, options);
+        }
         return this.tiers[tierId];
     };
 
+    MsgVisitor.prototype.filterMessage = function(msg) {
+        return !(this.hideIgnored && msg.ignored ||
+                 this.hideNonSigning && !msg.signing_severity)
+    };
+
     MsgVisitor.prototype.message = function(msg, options) {
-        if (typeof this.msgSet[msg.uid] !== 'undefined')
+        if (!this.filterMessage(msg)) {
             return;
+        }
+
+        if (typeof this.msgSet[msg.uid] !== 'undefined') {
+            return;
+        }
         this.msgSet[msg.uid] = true;
+
         var tier = this.getTier(msg.tier, options),
             msgDiv = $('<div class="msg"><h5></h5></div>'),
             effectiveType = this.getMsgType(msg),
-            prefix = effectiveType=='error' ? gettext('Error')
-                                            : gettext('Warning');
+            prefix = effectiveType == 'error' ? gettext('Error')
+                                              : gettext('Warning');
 
         tier.tallyMsgType(effectiveType);
         msgDiv.attr('id', 'v-msg-' + msg.uid);
         msgDiv.addClass('msg-' + effectiveType);
-        $('h5', msgDiv).html(msg.message);
-        if (!msg.description) {
-            msg.description = [];
-        } else if (typeof(msg.description) === 'string') {
-            // Currently it can be either of these:
-            //      descripion: "foo"
-            //      description: ["foo", "bar"]
-            msg.description = [msg.description];
-        }
-        msgDiv.append(this.getMsgSigningSeverity(msg));
-        $.each(msg.description, function(i, val) {
-            msgDiv.append(
-                i == 0 ? format('<p>{0}: {1}</p>', [prefix, val]) :
-                         format('<p>{0}</p>', [val])
-            );
-        });
-        if (msg.description.length == 0) {
-            msgDiv.append('<p>&nbsp;</p>');
-        }
-        if (msg.file) {
-            msgDiv.append(this.messageContext(msg));
-        }
-        $('.tier-results', tier.$dom).append(msgDiv);
-    };
 
-    MsgVisitor.prototype.messageContext = function(msg) {
-        var ctxFile = msg.file, ctxDiv, code, lines, innerCode;
-        if (typeof(ctxFile) === 'string') {
-            ctxFile = [ctxFile];
+        // The "message", "description", and "signing_help"
+        // properties are escaped and linkified before we receive
+        // them.
+        $('h5', msgDiv).html(msg.message);  // Sanitized HTML value.
+
+        // The validator returns the "description" and
+        // "signing_help" properties as either strings, or
+        // arrays of strings. We turn them all into arrays
+        // when sanitizing.
+        $.each(msg.description, function(i, val) {
+            var $desc = $('<p>').html(val);  // Sanitized HTML value.
+            if (i === 0) {
+                $desc.prepend(format('<strong>{0}:</strong> ', prefix));
+            }
+            msgDiv.append($desc);
+        });
+
+        if (msg.signing_severity) {
+            msgDiv.append(format(
+                '<div class="validator-signing-only">' +
+                '    <p><label>{0}</label> {1}</p>' +
+                '</div>',
+                [gettext('Severity for automated signing:'),
+                 msg.signing_severity]));
         }
-        // e.g. ["silvermelxt_1.3.5.xpi", "chrome/silvermelxt.jar"]
-        ctxFile = joinPaths(ctxFile);
-        ctxDiv = $(format('<div class="context">' +
-                          '<div class="file">{0}</div></div>', [ctxFile]));
-        if (msg.context) {
-            code = $('<div class="code"></div>');
-            lines = $('<div class="lines"></div>');
-            code.append(lines);
-            innerCode = $('<div class="inner-code"></div>');
-            code.append(innerCode);
-            msg.context = formatCodeIndentation(msg.context);
-            $.each(msg.context, function(n, c) {
-                if (c == "") { return }
-                // The line number refers to the middle element of the context,
-                // not the first. Subtract one from the index to get the
-                // right line number.
-                lines.append($(format('<div>{0}</div>', [msg.line + n - 1])));
-                innerCode.append($(format('<div>{0}</div>', [c])));
+
+        if (msg.signing_help) {
+            var messages = msg.signing_help.map(function(help_msg) {
+                // Sanitized HTML value.
+                return format('<p>{0}</p>', [help_msg]);
             });
-            ctxDiv.append(code);
+
+            msgDiv.append(format(
+                '<div class="validator-signing-only">' +
+                '    <h5>{0}</h5>' +
+                '    {1}' +
+                '</div>',
+                [gettext('Suggestions for passing automated signing:'),
+                 messages.join('\n')]));
         }
-        return ctxDiv;
+
+        if (msg.file) {
+            var file = msg.file;
+            if (typeof file !== 'string') {
+                // For sub-packages, this will be a list of archive paths and
+                // a final file path, which we need to turn into a string.
+                //   ['foo.xpi', 'chrome/thing.jar', 'content/file.js']
+                file = file.join('/');
+            }
+
+            if (this.fileURL) {
+                var url = this.fileURL + file;
+                if (msg.line) {
+                    url += "#L" + msg.line;
+                }
+                var $link = $('<a>', { href: url, text: file,
+                                       target: 'file-viewer-' + this.fileID });
+            } else {
+                // There's no file browse URL for bare file uploads, so
+                // just display a path without a link to the sources.
+                $link = $('<span>', { text: file });
+            }
+
+            var $context = $('<div class="context">').append(
+                $('<div class="file">').append($link))
+
+            if (msg.context) {
+                var $code = $('<div class="code"></div>');
+                var $lines = $('<div class="lines"></div>');
+                var $innerCode = $('<div class="inner-code"></div>');
+
+                $code.append($lines, $innerCode);
+
+                // The line number in the message refers to the middle
+                // line of the context, so adjust accordingly.
+                var offset = Math.floor(msg.context.length / 2);
+                msg.context = formatCodeIndentation(msg.context);
+                $.each(msg.context, function(idx, code) {
+                    if (code != null) {
+                        $lines.append($('<div>', { text: msg.line + idx - offset }))
+                        $innerCode.append($('<div>', { text: code }))
+                    }
+                });
+                $context.append($code);
+            } else if (msg.line) {
+                // Normally, the line number would be displayed with the
+                // context. If we have no context, display it with the
+                // filename.
+                $link.text(format('{0}:{1}', [file, msg.line]));
+            }
+
+            msgDiv.append($context);
+        }
+
+        $('.tier-results', tier.$dom).append(msgDiv);
     };
 
     MsgVisitor.prototype.tierOptions = function(options) {
@@ -328,22 +407,33 @@ function initValidator($doc) {
             validation = data.validation,
             summaryTxt;
 
-        if ($('.results', suite).hasClass('compatibility-results'))
-            vis = new CompatMsgVisitor(suite, data);
-        else
-            vis = new MsgVisitor(suite, data);
-        $.each(validation.messages, function(i, msg) {
-            vis.message(msg);
+        $('#signing-hide-unnecessary, #signing-hide-ignored').change(function() {
+            // User changed the message visibility options. Clear
+            // results and build a new set.
+            vis.clear();
+            rebuildResults();
         });
-        vis.finish();
 
-        if (validation.errors > 0) {
-            summaryTxt = gettext('Add-on failed validation.');
-        } else {
-            summaryTxt = gettext('Add-on passed validation.');
+        function rebuildResults() {
+            if ($('.results', suite).hasClass('compatibility-results')) {
+                vis = new CompatMsgVisitor(suite, data);
+            } else {
+                vis = new MsgVisitor(suite, data);
+            }
+            $.each(validation.messages, function(i, msg) {
+                vis.message(msg);
+            });
+            vis.finish();
+
+            if (validation.errors > 0) {
+                summaryTxt = gettext('Add-on failed validation.');
+            } else {
+                summaryTxt = gettext('Add-on passed validation.');
+            }
+            $('.suite-summary span', suite).text(summaryTxt);
+            $('.suite-summary', suite).show();
         }
-        $('.suite-summary span', suite).text(summaryTxt);
-        $('.suite-summary', suite).show();
+        rebuildResults();
     }
 
     function eachAppVer(appVer, visit) {
@@ -379,58 +469,56 @@ function initValidator($doc) {
         return format('{0}, {1}, {2}', errors, warnings, notices);
     }
 
-    function joinPaths(parts) {
-        var p = '';
-        $.each(parts, function(i, part) {
-            if (!part || typeof(part) !== 'string') {
-                // Might be null or empty string.
-                return;
-            }
-            if (p.length) {
-                p += '/';
-                if (part.substring(0,1) === '/') {
-                    // Prevent double slashes.
-                    part = part.substring(1);
-                }
-            }
-            p += part;
-        });
-        return p;
-    }
-
     function formatCodeIndentation(lines) {
-        var indent = null;
-        $.each(lines, function(i, code) {
-            if (code === null) {
-                code = ''; // blank line
-            }
-            lines[i] = code;
-            var m = code.length - code.replace(/^\s+/, '').length;
-            if (indent === null) {
-                indent = m;
-            }
-            // Look for the smallest common indent of white space.
-            if (m < indent) {
-                indent = m;
-            }
-        });
-        $.each(lines, function(i, code) {
-            if (indent > 0) {
-                // Dedent all code to common level.
-                code = code.substring(indent);
-                lines[i] = code;
-            }
-            var n = code.search(/[^\s]/); // first non-space char
-            if (n > 0) {
-                lines[i] = '';
-                // Add back the original indentation.
-                for (var x=0; x<n; x++) {
-                    lines[i] += '&nbsp;';
+        // Replaces leading tabs with spaces, and then trims the
+        // smallest common indentation space from each line.
+
+        function retab(line, tabstops) {
+            // Replaces tabs with spaces, to match the given tab stops.
+
+            var SPACES = "                                ";
+            tabstops = Math.min(tabstops || 4, SPACES.length);
+
+            function replace_tab(full_match, non_tab) {
+                if (non_tab) {
+                    position += non_tab.length;
+                    return non_tab;
                 }
-                lines[i] += $.trim(code);
+                else {
+                    var pos = position;
+                    position += position % tabstops || tabstops;
+                    return SPACES.substr(0, position - pos);
+                }
             }
+
+            var position = 0;
+            return line.replace(/([^\t]+)|\t/g, replace_tab);
+        }
+
+        // Retab all lines and find the common indent.
+        var indent = Infinity;
+        lines = lines.map(function(line) {
+            // When the context line is at the start or end of the file,
+            // the line before or after the context line will be null.
+            if (line == null) {
+                return null;
+            }
+
+            // We need the replace function to run even if there's no
+            // whitespace, so `indent` is properly updated. Stick with
+            // \s* rather than \s+.
+            return line.replace(/^(\s*)/, function(match) {
+                match = retab(match);
+                indent = Math.min(indent, match.length);
+                return match;
+            });
         });
-        return lines;
+
+        // Trim off the common white space.
+        return lines.map(function(line) {
+            // Line may be null. Do not try to slice null.
+            return line && line.slice(indent);
+        });
     }
 
     $('.addon-validator-suite', $doc).bind('validate', function(e) {

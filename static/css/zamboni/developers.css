@@ -1156,8 +1156,14 @@ form.select-review .errorlist {
     text-align: center;
     color: #626363;
     padding: 0.5em;
-    -webkit-border-radius: 0 0 8px 8px;
-    -moz-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #bbcad7;
+    background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
+}
+#addon-validator-suite .suite-options {
+    padding-left: 1em;
+    color: #626363;
+    padding: 0.5em;
     border-radius: 0 0 8px 8px;
     border-top: 1px solid #bbcad7;
     background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
@@ -1182,6 +1188,7 @@ form.select-review .errorlist {
 }
 #addon-validator-suite .results .ajax-loading,
 #addon-validator-suite .results .tests-passed,
+#addon-validator-suite .results .tests-passed-notices,
 #addon-validator-suite .results .tests-passed-warnings,
 #addon-validator-suite .results .tests-failed,
 #addon-validator-suite .results .tests-notrun {
@@ -1246,7 +1253,7 @@ form.select-review .errorlist {
     color: #565656;
 }
 #addon-validator-suite .msg p {
-    margin: 0;
+    margin: .8em 0;
 }
 #addon-validator-suite .msg-error {
     background: transparent url("../../img/developers/test-fail.png") no-repeat 0 1.1em;
@@ -1285,6 +1292,7 @@ form.select-review .errorlist {
     max-width: 45em;
     height: 1.65em;
     overflow: hidden;
+    white-space: pre;
 }
 #addon-validator-suite .context .code:last-child:after {
     content: ".";
@@ -1310,6 +1318,14 @@ form.select-review .errorlist {
     font-size: 95%;
     margin-right: 5px;
 }
+
+#addon-validator-suite .validator-signing-only {
+    display: none;
+}
+#addon-validator-suite.automated-signing .validator-signing-only {
+    display: block;
+}
+
 /* @end */
 
 .loading, .loaded {

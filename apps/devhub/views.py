@@ -45,7 +45,8 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from devhub.utils import hide_traceback, make_validation_results
+from devhub.utils import (ValidationAnnotator, hide_traceback,
+                          make_validation_results)
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import is_beta, parse_addon
@@ -694,12 +695,18 @@ def file_validation(request, addon_id, addon, file_id):
 
     validate_url = reverse('devhub.json_file_validation',
                            args=[addon.slug, file.id])
-    file_url = reverse('files.list', args=[file.id, 'file', ''])
     automated_signing = (addon.automated_signing or
                          file.status == amo.STATUS_BETA)
 
+    prev_file = ValidationAnnotator(file).prev_file
+    if prev_file:
+        file_url = reverse('files.compare', args=[file.id, prev_file.id,
+                                                  'file', ''])
+    else:
+        file_url = reverse('files.list', args=[file.id, 'file', ''])
+
     return render(request, 'devhub/validation.html',
-                  dict(validate_url=validate_url, file_url=file_url,
+                  dict(validate_url=validate_url, file_url=file_url, file=file,
                        filename=file.filename, timestamp=file.created,
                        automated_signing=automated_signing, addon=addon))
 

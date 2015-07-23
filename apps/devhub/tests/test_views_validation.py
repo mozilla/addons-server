@@ -737,9 +737,11 @@ class TestUploadCompatCheck(BaseUploadTest):
             "message_tree": {},
             "messages": [{"type": "warning",
                           "compatibility_type": "error",
+                          "message": "", "description": "",
                           "tier": 1},
                          {"type": "warning",
                           "compatibility_type": None,
+                          "message": "", "description": "",
                           "tier": 1}],
             "metadata": {}
         })
