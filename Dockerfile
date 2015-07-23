@@ -15,7 +15,8 @@ RUN yum update -y \
         libxml2-devel \
         libxslt-devel \
         nodejs \
-        zlib-devel
+        zlib-devel \
+        mysql-community-libs-compat-5.6.14-3.el6.x86_64
 
 ADD . /code
 WORKDIR /code
