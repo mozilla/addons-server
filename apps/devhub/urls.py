@@ -5,6 +5,7 @@ from lib.misc.urlconf_decorator import decorate
 
 from addons.urls import ADDON_ID
 from amo.decorators import write
+from amo.utils import partial
 
 from . import views
 
@@ -66,10 +67,8 @@ detail_patterns = patterns(
         name='devhub.addons.upload_preview'),
     url('^upload_icon$', views.upload_image, {'upload_type': 'icon'},
         name='devhub.addons.upload_icon'),
-    url('^upload$', views.upload_for_addon,
-        name='devhub.upload_for_addon'),
-    url('^upload/unlisted$', views.upload_for_addon_unlisted,
-        name='devhub.upload_for_addon_unlisted'),
+
+    url('^upload$', views.upload_for_addon, name='devhub.upload_for_addon'),
     url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
         name='devhub.upload_detail_for_addon'),
 
@@ -171,15 +170,28 @@ urlpatterns = decorate(write, patterns(
     # TODO: not necessary when devhub homepage is moved out of remora
     url('^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
     url('^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
+
     url('^upload$', views.upload, name='devhub.upload'),
-    url('^upload/unlisted$', views.upload_unlisted,
+    url('^upload/sideload$', partial(views.upload, is_listed=False),
+        name='devhub.upload_sideload'),
+    url('^upload/unlisted$',
+        partial(views.upload, is_listed=False, automated=True),
         name='devhub.upload_unlisted'),
+
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
         name='devhub.upload_detail'),
-    url('^standalone-upload$', views.standalone_upload,
+
+    url('^standalone-upload$',
+        partial(views.upload, is_standalone=True),
         name='devhub.standalone_upload'),
-    url('^standalone-upload-unlisted$', views.standalone_upload_unlisted,
+    url('^standalone-upload-unlisted$',
+        partial(views.upload, is_standalone=True, is_listed=False,
+                automated=True),
         name='devhub.standalone_upload_unlisted'),
+    url('^standalone-upload-sideload$',
+        partial(views.upload, is_standalone=True, is_listed=False),
+        name='devhub.standalone_upload_sideload'),
+
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),
 

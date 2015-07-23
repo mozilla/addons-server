@@ -113,11 +113,8 @@ def docs_breadcrumbs(context, items=None):
 def add_file_modal(context, title, action, action_label, modal_type='file'):
     addon = context['addon']
     upload_url = reverse('devhub.upload_for_addon', args=[addon.slug])
-    upload_url_unlisted = reverse('devhub.upload_for_addon_unlisted',
-                                  args=[addon.slug])
     return new_context(modal_type=modal_type, context=context, title=title,
                        action=action, upload_url=upload_url,
-                       upload_url_unlisted=upload_url_unlisted,
                        action_label=action_label)
 
 

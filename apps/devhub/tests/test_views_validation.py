@@ -45,8 +45,10 @@ class TestUploadValidation(BaseUploadTest):
         data = json.loads(resp.content)
         msg = data['validation']['messages'][1]
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
-        eq_(sorted(msg['context']),
-            [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
+        eq_(msg['description'][0], '&lt;iframe&gt;')
+        eq_(msg['signing_help'][0], '&lt;script&gt;&amp;amp;')
+        eq_(msg['context'],
+            [u'<em:description>...', [u'<foo/>']])
 
     def test_date_on_upload(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
@@ -63,8 +65,7 @@ class TestUploadValidation(BaseUploadTest):
                                      'upload': addon_file})
         uuid = response.url.split('/')[-2]
         upload = FileUpload.objects.get(uuid=uuid)
-        assert upload._escaped_validation, 'escaped validation not saved'
-        eq_(json.loads(upload._escaped_validation)['errors'], 1)
+        eq_(upload.escaped_validation()['errors'], 1)
 
 
 class TestUploadErrors(BaseUploadTest):
@@ -158,8 +159,10 @@ class TestFileValidation(amo.tests.TestCase):
         data = json.loads(r.content)
         msg = data['validation']['messages'][0]
         eq_(msg['message'], 'The value of &lt;em:id&gt; is invalid.')
-        eq_(sorted(msg['context']),
-            [[u'&lt;foo/&gt;'], u'&lt;em:description&gt;...'])
+        eq_(msg['description'][0], '&lt;iframe&gt;')
+        eq_(msg['signing_help'][0], '&lt;script&gt;&amp;amp;')
+        eq_(msg['context'],
+            [u'<em:description>...', [u'<foo/>']])
 
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_post(self, has_been_validated):
@@ -206,14 +209,40 @@ class TestValidateAddon(amo.tests.TestCase):
             reverse('devhub.standalone_upload_unlisted'))
 
     @mock.patch('validator.validate.validate')
+    def test_upload_listed_addon(self, validate_mock):
+        """Listed addons are not validated as "self-hosted" addons."""
+        validate_mock.return_value = '{"errors": 0}'
+        self.url = reverse('devhub.upload')
+        data = open(get_image_path('animated.png'), 'rb')
+        self.client.post(self.url, {'upload': data})
+        # Make sure it was called with listed=True.
+        assert validate_mock.call_args[1]['listed']
+        # No automated signing for listed add-ons.
+        assert FileUpload.objects.get().automated_signing is False
+
+    @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
-        """Unlisted addons are validated as "self hosted" addons."""
-        validate_mock.return_value = '{}'
+        """Unlisted addons are validated as "self-hosted" addons."""
+        validate_mock.return_value = '{"errors": 0}'
         self.url = reverse('devhub.upload_unlisted')
         data = open(get_image_path('animated.png'), 'rb')
         self.client.post(self.url, {'upload': data})
         # Make sure it was called with listed=False.
         assert not validate_mock.call_args[1]['listed']
+        # Automated signing enabled for unlisted, non-sideload add-ons.
+        assert FileUpload.objects.get().automated_signing is True
+
+    @mock.patch('validator.validate.validate')
+    def test_upload_sideload_addon(self, validate_mock):
+        """Sideload addons are validated as "self-hosted" addons."""
+        validate_mock.return_value = '{"errors": 0}'
+        self.url = reverse('devhub.upload_sideload')
+        data = open(get_image_path('animated.png'), 'rb')
+        self.client.post(self.url, {'upload': data})
+        # Make sure it was called with listed=False.
+        assert not validate_mock.call_args[1]['listed']
+        # No automated signing for sideload add-ons.
+        assert FileUpload.objects.get().automated_signing is False
 
 
 class TestValidateFile(BaseUploadTest):

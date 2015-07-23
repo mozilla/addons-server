@@ -28,12 +28,7 @@
       <div class="hidden">
         {{ new_file_form.upload }}
       </div>
-      <input type="file" id="upload-addon"
-        data-upload-url="{{ upload_url }}"
-        {% if waffle.flag('unlisted-addons') %}
-          data-upload-url-listed="{{ upload_url }}"
-          data-upload-url-unlisted="{{ upload_url_unlisted }}"
-        {% endif %}>
+      <input type="file" id="upload-addon" data-upload-url="{{ upload_url }}">
 
       {{ source_form_field(new_file_form.source) }}
 

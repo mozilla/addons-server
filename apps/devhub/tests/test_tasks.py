@@ -99,15 +99,27 @@ def _uploader(resize_size, final_size):
 
 
 class TestValidator(amo.tests.TestCase):
-    mock_sign_addon_warning = (
-        '{"warnings": 1, "messages": [{"context": null, "editors_only": '
-        'false, "description": "Add-ons which are already signed will be '
-        're-signed when published on AMO. This will replace any existing '
-        'signatures on the add-on.", "column": null, "type": "warning", '
-        '"id": ["testcases_content", "signed_xpi"], "file": "", '
-        '"tier": 2, "for_appversions": null, "message": "Package already '
-        'signed", "uid": "87326f8f699f447e90b3d5a66a78513e", "line": '
-        'null, "compatibility_type": null}]}')
+    mock_sign_addon_warning = json.dumps({
+        "warnings": 1,
+        "errors": 0,
+        "messages": [
+            {"context": None,
+             "editors_only": False,
+             "description": "Add-ons which are already signed will be "
+                            "re-signed when published on AMO. This will "
+                            "replace any existing signatures on the add-on.",
+             "column": None,
+             "type": "warning",
+             "id": ["testcases_content", "signed_xpi"],
+             "file": "",
+             "tier": 2,
+             "for_appversions": None,
+             "message": "Package already signed",
+             "uid": "87326f8f699f447e90b3d5a66a78513e",
+             "line": None,
+             "compatibility_type": None},
+        ]
+    })
 
     def setUp(self):
         super(TestValidator, self).setUp()
@@ -163,7 +175,8 @@ class TestValidator(amo.tests.TestCase):
     def test_annotate_passed_auto_validation(self, _mock):
         """Set passed_auto_validation on reception of the results."""
         result = {'signing_summary': {'trivial': 1, 'low': 0, 'medium': 0,
-                                      'high': 0}}
+                                      'high': 0},
+                  'errors': 0}
 
         _mock.return_value = json.dumps(result)
         eq_(self.upload.task_error, None)
@@ -181,11 +194,11 @@ class TestValidator(amo.tests.TestCase):
     @mock.patch('devhub.tasks.run_validator')
     def test_annotate_passed_auto_validation_bogus_result(self, _mock):
         """Don't set passed_auto_validation, don't fail if results is bogus."""
-        _mock.return_value = '{}'
+        _mock.return_value = '{"errors": 0}'
         eq_(self.upload.task_error, None)
         tasks.validate(self.upload)
         assert (json.loads(self.get_upload().validation) ==
-                {"passed_auto_validation": True,
+                {"passed_auto_validation": True, "errors": 0,
                  "signing_summary": {"high": 0, "medium": 0,
                                      "low": 0, "trivial": 0}})
 
