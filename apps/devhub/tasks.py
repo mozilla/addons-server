@@ -72,7 +72,7 @@ def validate_file(file_id, **kw):
     if settings.VALIDATE_ADDONS:
         file_ = File.objects.get(pk=file_id)
         try:
-            return file_.validation.validation
+            return json.loads(file_.validation.validation)
         except FileValidation.DoesNotExist:
             result = run_validator(file_.current_file_path,
                                    listed=file_.version.addon.is_listed)
