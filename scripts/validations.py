@@ -25,7 +25,9 @@ def unlisted_validations(results, unlisted_addons=None):
 def severe_validations(results):
     return (result
             for result in results
-            if any(err > 0 for err in result['signing_summary'].values()))
+            if (result['signing_summary']['high'] > 0 or
+                result['signing_summary']['medium'] > 0 or
+                result['signing_summary']['low'] > 0))
 
 
 def error_messages(results):

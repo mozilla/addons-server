@@ -35,7 +35,9 @@ def test_severe_validations():
             {'high': 0, 'medium': 0, 'trivial': 0, 'low': 0}}
     minor = {'signing_summary':
              {'high': 0, 'medium': 0, 'trivial': 0, 'low': 1}}
+    trivial = {'signing_summary':
+               {'high': 0, 'medium': 0, 'trivial': 1, 'low': 0}}
     severe = {'signing_summary':
               {'high': 10, 'medium': 0, 'trivial': 0, 'low': 0}}
-    results = v.severe_validations([nope, minor, nope, severe, nope])
+    results = v.severe_validations([nope, trivial, minor, nope, severe, nope])
     eq_(list(results), [minor, severe])
