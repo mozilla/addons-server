@@ -6,6 +6,7 @@ import mock
 from django.conf import settings
 
 import amo
+import amo.tests
 from addons.models import Addon
 from devhub import utils
 from devhub.tasks import annotate_validation_results
@@ -242,6 +243,9 @@ class TestValidationComparator(amo.tests.TestCase):
         self.compare(message, {'context': ('a', 'b', 'c')}, {})
         self.compare(message, {'context_data': {}}, {})
         self.compare(message, {'file': 'these-are-not-the-droids.js'}, {})
+
+        message['context'] = None
+        self.compare(message, {'context': ('a', 'b', 'c')}, {})
 
         # Token non-signing message.
         self.compare({'id': ('a', 'b', 'c'),

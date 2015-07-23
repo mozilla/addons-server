@@ -235,7 +235,7 @@ class ValidationComparator(object):
         required when searching for a match."""
 
         # No context, message is not matchable.
-        if 'context' not in message:
+        if not message.get('context'):
             return None
 
         # We need all of these values to be iterable, which means tuples
