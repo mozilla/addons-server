@@ -43,7 +43,11 @@ def validate(file_, listed=None):
     return ValidationAnnotator(file_, listed=listed).task.delay()
 
 
-@task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
+validation_task = task(ignore_result=False,  # Required for groups/chains.
+                       soft_time_limit=settings.VALIDATOR_TIMEOUT)
+
+
+@validation_task
 @write
 def validate_upload(upload_id, listed, **kw):
     """Run the validator against a file at the given path, and return the
@@ -63,7 +67,7 @@ def validate_upload(upload_id, listed, **kw):
         return json.loads(result)
 
 
-@task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
+@validation_task
 def validate_file(file_id, **kw):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
