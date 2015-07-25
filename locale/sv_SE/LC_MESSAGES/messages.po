@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-25 05:47+0000\n"
+"PO-Revision-Date: 2015-07-25 17:41+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437803238.0\n"
+"X-POOTLE-MTIME: 1437846099.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -5829,18 +5829,33 @@ msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
+"Senare versioner av tillägget kommer automatiskt att placeras i kön för "
+"fullständig granskning. Tills granskningen är klar, kommer den nya versionen "
+"att visas i versionshistoriken på sidan för tillägget. När granskningen är "
+"klar, kommer versionen att uppdateras på hela webbplatsen och distribueras "
+"via den automatiska uppdateringstjänsten."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
 msgstr ""
+"Om en version inte uppfyller kriterierna för fullständig granskning, kan det "
+"antingen beviljas preliminär granskning eller inaktiveras om det finns ett "
+"säkerhetsproblem. Upphovsmannen kommer att få ett e-postmeddelande som "
+"förklarar de åtgärder som vidtagits och hur man rättar till det. I de flesta "
+"fall kan utvecklaren helt enkelt åtgärda problemet och åter skicka in för "
+"fullständig granskning."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
+"Preliminära granskning är lämpliga för experimentella tillägg och "
+"tillhandahåller ett sätt att få användartester och återkoppling utan att gå "
+"via längre, mer grundlig granskning. Vi strävar efter att slutföra dessa "
+"granskningar på under 3 dagar."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -5851,6 +5866,11 @@ msgid ""
 "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
 "Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
 msgstr ""
+"När du utför en preliminär granskning, kommer redigerare granska källkoden "
+"för säkerhetsfrågor och viktiga överträdelser av policy, men kommer inte att "
+"installera tillägget att testa funktionaliteten i de flesta fall. "
+"Preliminär granskning kommer att beviljas om en säkerhetsrisk eller större "
+"överträdelse mot policyn upptäcks."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:171
 msgid ""
@@ -5858,20 +5878,34 @@ msgid ""
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
 msgstr ""
+"När preliminär granskning har beviljats, kommer tillägget omedelbart vara "
+"tillgängligt i galleriet, visas vid bläddring och sökresultat, men med en "
+"sämre placering än fullständigt granskade tillägg. Installationsknappar "
+"kommer att ha varningsrand och ett meddelande om att tillägget är "
+"experimentellt och inte helt granskats av Mozilla, men inga extra klick "
+"krävs. Dessutom kan dessa tillägg inte använda frivilliga bidrag och "
+"funktioner för beta-kanal."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
 msgstr ""
+"Efter att ha beviljats preliminär granskning kan Mozilla senare återkalla "
+"granskningen om andra allvarliga problem rapporteras till oss av användarna."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:183
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of "
 "the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
+"Senare versioner av tillägget kommer automatiskt att placeras i kön för "
+"preliminär granskning. Tills granskningen är klar, kommer den nya versionen "
+"att visas i versionshistoriken på tillägget sida. När granskningen är klar, "
+"kommer versionen att uppdateras på hela webbplatsen och distribueras via den "
+"automatiska uppdateringstjänsten."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
-msgstr ""
+msgstr "Policyer för särskilda tilläggsmetoder"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:189
 msgid "Prohibited Add-ons"
@@ -5884,46 +5918,66 @@ msgstr "Följande tillägg är inte tillåtna i någon form:"
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
+"Tillägg som bäddat in kända <a "
+"href=\"http://en.wikipedia.org/wiki/Spyware\">spionprogram</a> eller <a "
+"href=\"http://en.wikipedia.org/wiki/Malware\">skadlig kod</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
+"Olagliga och kriminella tillägg, såsom <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">klickbedrägerier</a> "
+"generatorer, <a href=\"http://en.wikipedia.org/wiki/Warez\">fildelning</a> och "
+"nummerupplysning, barnpornografisökare, etc."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
 msgstr ""
+"Tillägg vars huvudsakliga syfte är att underlätta tillgången till "
+"pornografiskt material eller innehålla hänvisningar till detta material i "
+"sina beskrivningar"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
 msgstr ""
+"Tillägg som vid installation, automatisk installation eller "
+"startinstallatörer av icke-Firefox programvara"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid "Add-ons that provide their own update mechanism for code or search engines"
-msgstr ""
+msgstr "Tillägg som har sin egen uppdateringsmekanism för kod eller sökmotorer"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
 msgstr ""
+"Tillägg som gör ändringar i webbinnehåll på ett sätt som inte är uppenbara "
+"eller svåra att spåra för deras användare"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
-msgstr ""
+msgstr "Tillägg som snokar eller avlyssnar nätverkstrafik från andra användare"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr ""
+msgstr "Conduit-baserade verktygsfält utan explicit förhandsgodkännande"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Ändring av standardvärden och oväntade funktioner"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
 msgstr ""
+"Överraskningar kan vara lämpligt i många situationer, men de är inte "
+"välkomna när användaren säkerhet, integritet och kontroll står på spel. Det "
+"är oerhört viktigt att vara så öppen som möjligt när de skickar in ett "
+"tillägg för att hysas på den här webbplatsen. En Mozilla-användaren ska lätt "
+"kunna urskilja vad funktionaliteten hos ett tillägg är och inte presenteras "
+"med oväntade upplevelser efter installationen."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
@@ -5933,18 +5987,37 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
+"<p> När ett tillägg inkluderar oväntade* funktioner som </p> <ul> "
+"<li>äventyrar användarnas personliga integritet eller säkerhet (som att "
+"skicka data till tredje part)</li> <li>ändrar standardinställningar som "
+"hemsida eller sökmotor</li> <li>ändrar inställningar och funktioner i andra "
+"tillägg eller inaktiverar dem helt och hållet</li> </ul> <p>funktionerna "
+"måste följa följande krav:</p> <ul> <li>Tillägget beskrivningen måste "
+"tydligt ange vilka ändringar som tillägget gör. </li> <li>All ändringar "
+"måste opt-in, vilket innebär att användaren måste vidta icke-standardåtgärd "
+"för att anta ändringen.</li> <li>Opt-in dialogrutan ska tydligt ange namnet "
+"på det tillägg som vill ändra det.</li> <li>Avinstallera tillägget "
+"återställer användarens ursprungliga inställningar om de har ändrats.</li> "
+"</ul> <p>*Oväntade funktioner är de som inte är relaterade till tilläggets "
+"primära funktion.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
 msgstr ""
+"Dessa funktioner kan inte föras in i en uppdatering av en fullt granskad "
+"tillägg; opt-in förändringsprocessen måste vara en del av den första "
+"granskning."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
 msgstr ""
+"Dessa är minimikrav och inte en garanti för att tillägget kommer att "
+"godkännas. Detta avsnitt gäller alla tillägg som hyses på webbplatsen, "
+"inklusive preliminärt granskade tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
-msgstr ""
+msgstr "Privat surfläge"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:282
 msgid ""
