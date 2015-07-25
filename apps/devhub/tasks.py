@@ -32,65 +32,124 @@ from PIL import Image
 log = logging.getLogger('z.devhub.task')
 
 
-@task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
+# Simple wrapper for the sake of tests.
+def validate(file_, listed=None):
+    """Run the validator on the given File or FileUpload object, and annotate
+    the results using the ValidationAnnotator."""
+
+    # Import loop.
+    from .utils import ValidationAnnotator
+
+    return ValidationAnnotator(file_, listed=listed).task.delay()
+
+
+validation_task = task(ignore_result=False,  # Required for groups/chains.
+                       soft_time_limit=settings.VALIDATOR_TIMEOUT)
+
+
+@validation_task
 @write
-def validator(upload_id, listed=True, **kw):
-    if not settings.VALIDATE_ADDONS:
-        return None
+def validate_upload(upload_id, listed, **kw):
+    """Run the validator against a file at the given path, and return the
+    results.
 
-    log.info('VALIDATING: %s' % upload_id)
-    upload = FileUpload.objects.using('default').get(pk=upload_id)
-    try:
-        result = run_validator(upload.path, listed=listed)
-    except Exception:  # Avoid bare except, which will catch system exceptions.
-        # Store the error with the FileUpload job, then raise
-        # it for normal logging.
-        tb = traceback.format_exception(*sys.exc_info())
-        upload.update(task_error=''.join(tb))
-        raise
+    Should only be called directly by ValidationAnnotator."""
+    if settings.VALIDATE_ADDONS:
+        upload = FileUpload.objects.get(pk=upload_id)
+        try:
+            result = run_validator(upload.path, listed=listed)
+        except Exception:
+            # Avoid bare except. We don't want to catch system exceptions.
+            upload.update(task_error=traceback.format_exc())
+            raise
 
-    try:
-        # Try annotating the result with the "passed auto validation" status.
-        validation = json.loads(result)
-        # The automatic validation (which will automatically review and sign
-        # the file) is for unlisted (non-sideload) addons and beta versions.
-        # It only passes this automatic validation if there's no message with a
-        # signing_severity above trivial (so if there's any low/medium/high
-        # severity, it fails).
-        # Any "regular" messages from the amo-validator that should fail the
-        # auto validation now have a signing_severity level attached.
-        passed_auto_validation = False
-        if 'signing_summary' in validation:
-            summary = validation['signing_summary']
-            passed_auto_validation = (summary['low'] == 0 and
-                                      summary['medium'] == 0 and
-                                      summary['high'] == 0)
-        validation['passed_auto_validation'] = passed_auto_validation
-        result = json.dumps(validation)
-    except Exception:  # A bare `except:` would ignore system exceptions.
-        # Failed loading the result? No need to set passed_auto_validation.
-        pass
+        # FIXME: Have validator return native Python datastructure.
+        return json.loads(result)
 
-    # Skip the "addon signed" warning if we're not signing.
-    if not settings.SIGNING_SERVER:
-        result = skip_signing_warning(result)
-    upload.validation = result
+
+@validation_task
+def validate_file(file_id, **kw):
+    """Validate a File instance. If cached validation results exist, return
+    those, otherwise run the validator.
+
+    Should only be called directly by ValidationAnnotator."""
+    if settings.VALIDATE_ADDONS:
+        file_ = File.objects.get(pk=file_id)
+        try:
+            return json.loads(file_.validation.validation)
+        except FileValidation.DoesNotExist:
+            result = run_validator(file_.current_file_path,
+                                   listed=file_.version.addon.is_listed)
+            # FIXME: Have validator return native Python datastructure.
+            return json.loads(result)
+
+
+@task
+@write
+def handle_upload_validation_result(results, upload_id):
+    """Annotates a set of validation results and saves them to the given
+    FileUpload instance."""
+    result = annotate_validation_results(results)
+
+    upload = FileUpload.objects.get(pk=upload_id)
+    upload.validation = json.dumps(result)
     upload.save()  # We want to hit the custom save().
+    return upload
 
 
-def skip_signing_warning(result_json):
+@task
+@write
+def handle_file_validation_result(results, file_id):
+    """Annotates a set of validation results and saves them to the given
+    File instance."""
+    result = annotate_validation_results(results)
+
+    file_ = File.objects.get(pk=file_id)
+    return FileValidation.from_json(file_, result)
+
+
+@task
+def annotate_validation_results(results):
+    """Annotates validation results with information such as whether the
+    results pass auto validation, and which results are unchanged from a
+    previous submission and can be ignored."""
+
+    if isinstance(results, dict):
+        validation = results
+    else:
+        # Import loop.
+        from .utils import ValidationComparator
+
+        validation = (ValidationComparator(results[1])
+                      .compare_results(results[0]))
+
+    summary = validation.setdefault('signing_summary',
+                                    {"trivial": 0, "low": 0,
+                                     "medium": 0, "high": 0})
+
+    validation['passed_auto_validation'] = (summary['low'] +
+                                            summary['medium'] +
+                                            summary['high']) == 0
+
+    if not settings.SIGNING_SERVER:
+        validation = skip_signing_warning(validation)
+
+    return validation
+
+
+def skip_signing_warning(result):
     """Remove the "Package already signed" warning if we're not signing."""
     try:
-        result = json.loads(result_json)
         messages = result['messages']
     except (KeyError, ValueError):
-        return result_json
+        return result
+
     messages = [m for m in messages if 'signed_xpi' not in m['id']]
     diff = len(result['messages']) - len(messages)
     if diff:  # We did remove a warning.
         result['messages'] = messages
         result['warnings'] -= diff
-    return json.dumps(result)
+    return result
 
 
 @task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
@@ -123,17 +182,6 @@ def compatibility_check(upload_id, app_guid, appversion_str, **kw):
         tb = traceback.format_exception(*sys.exc_info())
         upload.update(task_error=''.join(tb))
         raise
-
-
-@task
-@write
-def file_validator(file_id, **kw):
-    if not settings.VALIDATE_ADDONS:
-        return None
-    log.info('VALIDATING file: %s' % file_id)
-    file = File.objects.get(pk=file_id)
-    result = run_validator(file.file_path)
-    return FileValidation.from_json(file, result)
 
 
 def run_validator(file_path, for_appversions=None, test_all_tiers=False,

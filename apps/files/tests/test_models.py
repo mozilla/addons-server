@@ -1049,13 +1049,13 @@ class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
 @mock.patch('files.utils.parse_search')
 def test_parse_addon(search_mock, xpi_mock):
     parse_addon('file.xpi', None)
-    xpi_mock.assert_called_with('file.xpi', None)
+    xpi_mock.assert_called_with('file.xpi', None, True)
 
     parse_addon('file.xml', None)
     search_mock.assert_called_with('file.xml', None)
 
     parse_addon('file.jar', None)
-    xpi_mock.assert_called_with('file.jar', None)
+    xpi_mock.assert_called_with('file.jar', None, True)
 
 
 def test_parse_xpi():

@@ -474,7 +474,7 @@ def check_xpi_info(xpi_info, addon=None):
     return xpi_info
 
 
-def parse_addon(pkg, addon=None):
+def parse_addon(pkg, addon=None, check=True):
     """
     pkg is a filepath or a django.core.files.UploadedFile
     or files.models.FileUpload.
@@ -483,7 +483,7 @@ def parse_addon(pkg, addon=None):
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:
-        parsed = parse_xpi(pkg, addon)
+        parsed = parse_xpi(pkg, addon, check)
 
     if addon and addon.type != parsed['type']:
         raise forms.ValidationError(_("<em:type> doesn't match add-on"))
