@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-22 16:47+0000\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-07-25 05:47+0000\n"
+"Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437583644.0\n"
+"X-POOTLE-MTIME: 1437803238.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4984,8 +4984,10 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Alla tilläggsvärdar i vårt galleri måste granskas av en redigerare innan de visas i kategorier eller sökresultat. I väntan på granskning, kan ditt tillägg fortfarande nås via sin webbadress. Välj "
-"granskningsprocessen nedan som bäst passar ditt tillägg."
+"Alla tillägg som hyses i vårt galleri måste granskas av en redigerare innan "
+"de visas i kategorier eller sökresultat. I väntan på granskning, kan ditt "
+"tillägg fortfarande nås via sin webbadress. Välj granskningsprocessen nedan "
+"som bäst passar ditt tillägg."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
@@ -5180,7 +5182,7 @@ msgid ""
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 "Om du har upptäckt ett säkerhetsproblem i ett tillägg, även om det inte är "
-"lagras här, är Mozilla mycket intresserad av din upptäckt och kommer att "
+"hyses här, är Mozilla mycket intresserad av din upptäckt och kommer att "
 "arbeta med tilläggets utvecklare för att rätta till problemet så snart som "
 "möjligt. Säkerhetsfrågor för tillägg kan rapporteras <a "
 "href=\"http://www.mozilla.org/projects/security/security-bugs-"
@@ -5588,10 +5590,19 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
+"Denna policy för utvalda gäller endast addons.mozilla.org globala lista över "
+"utvalda tillägg. Tillägg utvalda på andra platser är dras ofta från den här "
+"listan, men Mozilla kan ha utvalda tillägg från andra platser utan nämndens "
+"godkännande. Dessutom, språkspecifika funktioner åsidosätter den globala "
+"standarden, så om ett språk har valt att välja sina egna funktioner, några "
+"eller alla av de globala funktionerna kanske inte visas i det språket."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
 msgstr ""
+"Följ <a href=\"%(link_blog)s\">bloggen för tillägg</a> eller <a href=\"%"
+"(link_twitter)s\">@mozamo</a> på Twitter för att veta när nästa "
+"ansökningsperiod öppnar."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
@@ -5607,18 +5618,31 @@ msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
 "are free to choose the best fit for their add-on."
 msgstr ""
+"För att säkerställa att alla tillägg som hyses i vårt galleri är säkra för "
+"användarna att installera, kommer Mozilla att börja kräva att alla tillägg "
+"som hyses ska genomgå granskning. Vi erbjuder två typer av granskning och "
+"utvecklare är fria att välja den som passar bäst för deras tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
+"<strong><a href=\"#full\">Fullständig granskning</a></strong> &mdash; en "
+"grundlig funktionell och kodgranskning av tillägget, lämplig för tillägg som "
+"är redo för distribution. Alla webbplatsfunktioner är tillgängliga för "
+"dessa tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Preliminär granskning</a></strong> &mdash; en "
+"snabbare granskning avsedda för experimentella tillägg. Preliminära "
+"granskningar kontrollerar inte funktionalitet eller full policyefterlevnad, "
+"men de granskade tillägg har varning på installationsknappen och vissa "
+"funktionsbegränsningar."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -5626,88 +5650,121 @@ msgid ""
 "org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
 "receive an email with any updates throughout the review process."
 msgstr ""
+"Detaljerade beskrivningar av varje alternativ finns nedan. När du har valt "
+"en granskningsprocess vid inskickning, kommer tillägget placeras i kön. "
+"Tillägg granskas av <a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO-"
+"redigerare</a>, en grupp begåvade utvecklare som är volontärer för att "
+"hjälpa Mozilla-projektet genom att granska tillägg för att säkerställa en "
+"stabil och säker upplevelse för användarna. Utvecklare kommer få ett mejl "
+"med eventuella uppdateringar under hela granskningsprocessen."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
+"I väntan på granskning, tillägg visas inte någonstans i galleriet "
+"offentligt, men direktlänkar till tilläggets informationssida kommer att "
+"fungera. Denna gör det möjligt för upphovsmän att blogga eller dela länken "
+"med vänner och uppmana dem att prova det, även om den ännu inte har "
+"granskats."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
+"Fullständiga granskningar är lämpliga för tillägg som är väl testade, "
+"stabila, snabba och har bred attraktion till våra användare. Om du inte är "
+"säker på att ditt tillägg uppfyller dessa kriterier, kan du överväga att "
+"arbeta med problemen medan den är i preliminär granskning och ackumulera "
+"återkoppling från användarna först."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
 msgstr ""
+"Vi strävar efter att utföra fullständig granskning på mindre än 10 dagar, "
+"även om de flesta tillägg granskas på mycket kortare tid."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
-msgstr ""
+msgstr "Testmetoder &amp; Vanliga problem"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "När du utför en fullständig granskning, kommer redigerarna:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
 msgstr ""
+"installera tillägget, se till att det fungerar som beskrivs och är fri från "
+"större defekter"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid "perform a source code review, looking for performance and security best practices"
 msgstr ""
+"utför en källkodsgranskning, söker efter bästa metoder för prestanda och "
+"säkerhet"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
 msgstr ""
+"säkerställer att tilläggets sekretesspolicy är i linje med dess "
+"funktionalitet"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr ""
+msgstr "letar efter att alla Mozillas policyer följs, beskrivs i dessa dokument"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
 msgstr ""
+"Några av de vanligaste problemen som vi ser när vi utför dessa granskningar "
+"är:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
+"<strong>JavaScript namespace förstöring</strong> &mdash; den vanligate "
+"felet. Var noga med att <a href=\"https://developer.mozilla.org/en/XUL_School"
+"/JavaScript_Object_Management\">packa in dina lösa variabler</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
 msgstr ""
+"korrekt namngivning för inställning - samtliga inställningsnamn ska börja "
+"med \"extensions.\", följt av tilläggets namn eller någon annan unik "
+"identifierare."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "remote JavaScript exekvering eller injektion"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
-msgstr "fjärr-XUL"
+msgstr "remote XUL"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
-msgstr ""
+msgstr "synkrona XMLHttpRequests"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:106
 msgid "obfuscated code"
-msgstr ""
+msgstr "förvanskad kod"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:107
 msgid "binary components or executables"
-msgstr ""
+msgstr "binära komponenter eller körbara filer"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
-msgstr ""
+msgstr "inkludering av programvara från tredje part"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
-msgstr ""
+msgstr "fel genererade i Felkonsolen"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
@@ -5715,29 +5772,43 @@ msgstr "minnesläckor"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:112
 msgid "possible conflicts with other add-ons"
-msgstr ""
+msgstr "eventuella konflikter med andra tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "uppstart av program eller prestandanedbrytning vid sidladdning"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
+"För information om hur man kan undvika dessa problem, se våra <a href=\"%"
+"(link_howto)s\">instruktioner för bibliotek</a>. Några av dessa metoder, "
+"såsom binär eller förvanskad kod, tillåts under vissa villkor som anges "
+"nedan."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
+"Många av ovanstående begränsningar testas automatiskt av en utökningsskanner "
+"som kommer att flagga misstänkta tillägg för granskning av redigerare. Du "
+"kan läsa mer om denna skanner i dokumentet<a href=\"%"
+"(link_validation)s\">valideringshjälp</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
+"Om tillägget är platsspecifik, är det rekommenderat att ett testkonto "
+"tillhandahålls för användning under granskningsprocessen. Dessutom kommer "
+"bland annat detaljerade testinstruktioner tillåta en redigerare för att "
+"bättre förstå hur tillägget fungerar och påskynda testprocessen. Denna "
+"information kan placeras i fältet Meddelanden till granskare när du "
+"redigerar en version i Utvecklarcenter."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -5748,6 +5819,10 @@ msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
 msgstr ""
+"När ett tillägg beviljats fullständig granskning, kommer det omedelbart att "
+"finnas tillgänglig i galleriet, visas vid bläddring och sökresultat med en "
+"varningsfri installationsknapp. Alla funktioner, inklusive frivilliga bidrag "
+"och beta-kanaler kommer att finnas tillgängliga."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid ""
