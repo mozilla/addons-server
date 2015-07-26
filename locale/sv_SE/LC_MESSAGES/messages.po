@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-25 17:41+0000\n"
+"PO-Revision-Date: 2015-07-26 07:32+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437846099.0\n"
+"X-POOTLE-MTIME: 1437895976.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -449,7 +449,7 @@ msgstr "Inget att se här! Utvecklaren inkluderade inte några detaljer."
 #: apps/addons/templates/addons/details_box.html:255
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr "Versionsfakta"
+msgstr "Versionsanteckningar"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -5031,7 +5031,7 @@ msgstr "Några funktionsbegränsningar"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:57
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Binära och förvrängda tillägg icke lämpliga"
+msgstr "Binära och förvanskade tillägg är inte lämpliga"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:58
 msgid "Cannot request Full Review for 10 days"
@@ -6024,26 +6024,44 @@ msgid ""
 "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
 "session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
 msgstr ""
+"Tillägg som lagrar eller på annat sätt hanterar webbinformation måste stöda "
+"<a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">"
+"privat surfläge</a>. Under en privat surfsession, ska ingen webbinformation "
+"skrivas till disk och alla dessa uppgifter ska raderas när Firefox avslutas "
+"eller den privata surfsessionen avslutas."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
-msgstr ""
+msgstr "Binära komponenter & förvanskad kod"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:289
 msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
+"Tillägg kan innehålla binär, förvanskad och minifirad källkod, men Mozilla "
+"måste få granska en kopia av källkoden för varje version av ett tillägg som "
+"skickas in för granskning. Dessa tillägg är inte berättigade till en "
+"preliminär granskning och måste välja en fullständig granskningsprocess."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid ""
 "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
 "This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
 msgstr ""
+"Om ett tillägg innehåller binär eller förvanskad källkod, kommer "
+"upphovsmannen att få ett meddelande när tillägget granskas vilket indikerar "
+"vem man ska kontakta på Mozilla för att samordna granskning av källkoden. "
+"Denna kod kommer att granskas av en administratör och kommer inte att delas "
+"eller omfördelas på något sätt. Koden kommer endast att användas i syfte att "
+"se granska tillägget."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:301
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
 msgstr ""
+"Om ditt tillägg innehåller binär eller förvanskad kod som du inte äger eller "
+"inte kan få källkoden för, kan du <a href=\"%(link_contact)s\">kontakta "
+"oss</a> för information om hur du ska fortsätta."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
@@ -6054,6 +6072,9 @@ msgid ""
 "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
 "and unrestricted:"
 msgstr ""
+"Tillägg som hyses på Mozilla tillägg bör vara av hög kvalitet och ge "
+"användarna en bättre webbupplevelse. Vi letar efter följande saker när man "
+"beslutar om ett tillägg är lämpligt att vara offentligt och obegränsat:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid ""
@@ -6061,6 +6082,14 @@ msgid ""
 "and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
 "discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
+"<strong>Är du lyhörd?</strong> Vi förväntar oss det av en upphovsman som "
+"främjar sitt tillägg till våra program. Många användare är lyhörda för "
+"problemrapporter, underhåller sina kontaktuppgifter och uppdaterar sitt "
+"tillägg snabbt för att hålla sig uppdaterad med senaste Firefox och "
+"ändringar i vår policyer. Detta betyder inte att du måste svara på alla "
+"frågor som någon postar i diskussionerna eller att du ens behöver fixa varje "
+"bugg, men vi förväntar oss att du kommer att ge svar på frågor på ett sätt "
+"som är lämpligt beroende av svårighetsgraden på den aktuella frågan."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:25
 msgid ""
@@ -6070,6 +6099,20 @@ msgid ""
 "cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
 "be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
+"<strong>Är tillägget tydligt och korrekt beskrivna?</strong> Det är av "
+"yttersta vikt för oss att användare får vad de förväntar sig när de testar "
+"ett nytt tillägg. Tilläggets namn ska vara klart och koncist och du bör "
+"avstå från att använda specialtecken eller siffror för att få bättre "
+"sökrankning eller för dekorativa ändamål. Din beskrivning bör ge information "
+"om vad tillägget gör, hur en användare kan dra nytta av det och vad "
+"användaren bör förvänta sig när de installerar det. Länkar till externa "
+"dokument för detaljerade instruktioner är bra, men beskrivningen själv bör "
+"omfatta grunderna och lämna användare säkra på att de vet vad de får. "
+"Dessutom är det viktigt att du uppdaterar versionsanteckningar när du "
+"förbättrar och ändrar ditt tillägg. Användare ska kunna se vad som är nytt i "
+"ett tillägg som de kan ha testat tidigare och ska göras medvetna om "
+"ändringar som kan påverka deras nuvarande användning av tillägget när de har "
+"uppdaterat."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
 msgid ""
@@ -6794,7 +6837,7 @@ msgstr "Ladda upp en annan fil"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
 msgid "Version Notes"
-msgstr "Versionsfakta"
+msgstr "Versionsanteckningar"
 
 #: apps/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -8134,7 +8177,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr "Versionsfakta / Anteckningar för granskare"
+msgstr "Versionsanteckningar / Anteckningar för granskare"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
@@ -8463,7 +8506,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Tidigare versionsanteckningar"
 
 #. {previous review action taken on theme}: {comment about review action}
 #: apps/editors/templates/editors/themes/themes.html:74
