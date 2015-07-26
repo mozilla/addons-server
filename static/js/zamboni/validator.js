@@ -25,12 +25,15 @@ function initValidator($doc) {
     }
 
     function ResultsTier($suite, tierId, options) {
-        if (typeof options === 'undefined')
+        if (typeof options === 'undefined') {
             options = {}
-        if (typeof options.app === 'undefined')
+        }
+        if (typeof options.app === 'undefined') {
             options.app = null;
-        if (typeof options.testsWereRun === 'undefined')
+        }
+        if (typeof options.testsWereRun === 'undefined') {
             options.testsWereRun = true;
+        }
         this.$results = $('.results', $suite);
         this.app = options.app;
         this.testsWereRun = options.testsWereRun;
@@ -88,8 +91,9 @@ function initValidator($doc) {
                                       'tests-passed tests-passed-warnings ' +
                                       'tests-passed-notices tests-notrun')
                          .addClass(resultClass);
-        if ($('.test-tier', this.$suite).length)
+        if ($('.test-tier', this.$suite).length) {
             this.topSummary();
+        }
         return this.counts;
     };
 
@@ -105,10 +109,11 @@ function initValidator($doc) {
         if (this.counts.error > 0) {
             $top.addClass('tests-failed');
         } else {
-            if (this.testsWereRun)
+            if (this.testsWereRun) {
                 $top.addClass('tests-passed');
-            else
+            } else {
                 $top.addClass('tests-notrun');
+            }
         }
     };
 
@@ -363,9 +368,8 @@ function initValidator($doc) {
         MsgVisitor.prototype.finish.apply(this, arguments);
         // Since results are more dynamic on the compatibility page,
         // hide tiers without messages.
-        $('.result', this.$suite).each(function(i, res) {
-            if (!$('.msg', res).length)
-                $(res).hide();
+        $('.result', this.$suite).each(function() {
+            $(this).toggle($('.msg', this).length > 0);
         });
         if (this.allCounts.error == 0 && this.allCounts.warning == 0) {
             $('#suite-results-tier-1').show();
@@ -378,23 +382,29 @@ function initValidator($doc) {
     };
 
     CompatMsgVisitor.prototype.message = function(msg) {
-        var self = this, effectiveType = this.getMsgType(msg);
         if (msg.for_appversions) {
-            eachAppVer(msg.for_appversions, function(guid, version, id) {
+            if (this.hasMatchingAppVer(msg.for_appversions)) {
                 var app = {guid: guid, version: version, id: id};
-                if (version.split('.')[0] != self.majorTargetVer[guid])
-                    // Since some errors span multiple versions, we only
-                    // care about the first one specific to this target
-                    return true;
                 msg.tier = id;  // change the tier to match app/version
-                MsgVisitor.prototype.message.apply(self, [msg, {app: app}]);
-            });
-        } else {
-            if (effectiveType !== 'error')
-                // For non-appversion messages, only show errors
-                return;
+                MsgVisitor.prototype.message.apply(this, [msg, {app: app}]);
+            }
+        } else if (this.getMsgType(msg) === 'error') {
+            // For non-appversion messages, only show errors
             MsgVisitor.prototype.message.apply(this, arguments);
         }
+    };
+
+    CompatMsgVisitor.hasMatchingAppVer = function(appVersions) {
+        // Returns true if any of the given app version ranges match the
+        // versions we're chacking.
+        //
+        // {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b1']}
+        return _.some(appVersions, function(matchingVersions, guid) {
+            var targetMajorVersion = this.majorTargetVer[guid];
+            return _.some(matchingVersions, function(version) {
+                return version.split('.')[0] == targetMajorVersion;
+            });
+        }, this);
     };
 
     CompatMsgVisitor.prototype.tierOptions = function(options) {
@@ -434,25 +444,6 @@ function initValidator($doc) {
             $('.suite-summary', suite).show();
         }
         rebuildResults();
-    }
-
-    function eachAppVer(appVer, visit) {
-        // Iterates an application/version map and calls
-        // visit(gui, version, key) for each item.
-        //
-        // e.g. {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}':["4.0b1"]}
-        // ->
-        //      visit('{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-        //            "4.0b1",
-        //            'ec8030f7-c20a-464f-9b0e-13a3a9e97384-40b1')
-        if (appVer) {
-            $.each(appVer, function(guid, all_versions) {
-                $.each(all_versions, function(i, version) {
-                    var key = (guid + '-' + version).replace(/[^a-z0-9_-]+/gi, '');
-                    visit(guid, version, key);
-                });
-            });
-        }
     }
 
     function resultSummary(numErrors, numWarnings, numNotices, testsWereRun) {
