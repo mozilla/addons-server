@@ -357,7 +357,7 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
 
     def reload(self):
         """Reloads the instance from the database."""
-        from_db = self.__class__.get_unfiltered_manager().get(id=self.id)
+        from_db = self.__class__.get_unfiltered_manager().get(pk=self.pk)
         for field in self.__class__._meta.fields:
             try:
                 setattr(self, field.name, getattr(from_db, field.name))

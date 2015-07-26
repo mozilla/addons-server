@@ -16,8 +16,7 @@ from pyquery import PyQuery as pq
 
 import amo
 import amo.tests
-from amo.tests import (assert_no_validation_exceptions, assert_required,
-                       formset, initial)
+from amo.tests import assert_required, formset, initial
 from access.models import Group, GroupUser
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 from amo.urlresolvers import reverse
@@ -719,7 +718,7 @@ class TestBulkValidationTask(BulkValidationTest):
         self.start_validation()
         res = ValidationResult.objects.get()
         self.assertCloseToNow(res.completed)
-        assert_no_validation_exceptions(res)
+        assert not res.task_error
         eq_(res.errors, 1)  # package could not be found
         eq_(res.valid, False)
         eq_(res.warnings, 0)

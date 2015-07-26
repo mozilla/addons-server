@@ -3,20 +3,21 @@ import json
 import logging
 import os
 import socket
-import sys
-import tempfile
-import traceback
 import urllib2
+from copy import deepcopy
+from tempfile import NamedTemporaryFile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
+from celery.exceptions import SoftTimeLimitExceeded
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
+import validator
 from amo.decorators import write, set_modified_on
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
@@ -43,28 +44,25 @@ def validate(file_, listed=None):
     return ValidationAnnotator(file_, listed=listed).task.delay()
 
 
+# Override the validator's stock timeout exception so that it can
+# detect and report celery timeouts.
+validator.ValidationTimeout = SoftTimeLimitExceeded
+
+
 validation_task = task(ignore_result=False,  # Required for groups/chains.
                        soft_time_limit=settings.VALIDATOR_TIMEOUT)
 
 
 @validation_task
-@write
-def validate_upload(upload_id, listed, **kw):
+def validate_file_path(path, listed, **kw):
     """Run the validator against a file at the given path, and return the
     results.
 
     Should only be called directly by ValidationAnnotator."""
-    if settings.VALIDATE_ADDONS:
-        upload = FileUpload.objects.get(pk=upload_id)
-        try:
-            result = run_validator(upload.path, listed=listed)
-        except Exception:
-            # Avoid bare except. We don't want to catch system exceptions.
-            upload.update(task_error=traceback.format_exc())
-            raise
 
-        # FIXME: Have validator return native Python datastructure.
-        return json.loads(result)
+    result = run_validator(path, listed=listed)
+    # FIXME: Have validator return native Python datastructure.
+    return json.loads(result)
 
 
 @validation_task
@@ -73,15 +71,15 @@ def validate_file(file_id, **kw):
     those, otherwise run the validator.
 
     Should only be called directly by ValidationAnnotator."""
-    if settings.VALIDATE_ADDONS:
-        file_ = File.objects.get(pk=file_id)
-        try:
-            return json.loads(file_.validation.validation)
-        except FileValidation.DoesNotExist:
-            result = run_validator(file_.current_file_path,
-                                   listed=file_.version.addon.is_listed)
-            # FIXME: Have validator return native Python datastructure.
-            return json.loads(result)
+
+    file_ = File.objects.get(pk=file_id)
+    try:
+        return json.loads(file_.validation.validation)
+    except FileValidation.DoesNotExist:
+        result = run_validator(file_.current_file_path,
+                               listed=file_.version.addon.is_listed)
+        # FIXME: Have validator return native Python datastructure.
+        return json.loads(result)
 
 
 @task
@@ -155,36 +153,29 @@ def skip_signing_warning(result):
 @task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
 @write
 def compatibility_check(upload_id, app_guid, appversion_str, **kw):
-    if not settings.VALIDATE_ADDONS:
-        return None
     log.info('COMPAT CHECK for upload %s / app %s version %s'
              % (upload_id, app_guid, appversion_str))
     upload = FileUpload.objects.get(pk=upload_id)
     app = amo.APP_GUIDS.get(app_guid)
     appver = AppVersion.objects.get(application=app.id, version=appversion_str)
-    try:
-        result = run_validator(
-            upload.path,
-            for_appversions={app_guid: [appversion_str]},
-            test_all_tiers=True,
-            # Ensure we only check compatibility against this one specific
-            # version:
-            overrides={'targetapp_minVersion': {app_guid: appversion_str},
-                       'targetapp_maxVersion': {app_guid: appversion_str}},
-            compat=True)
-        upload.validation = result
-        upload.compat_with_app = app.id
-        upload.compat_with_appver = appver
-        upload.save()  # We want to hit the custom save().
-    except:
-        # Store the error with the FileUpload job, then raise
-        # it for normal logging.
-        tb = traceback.format_exception(*sys.exc_info())
-        upload.update(task_error=''.join(tb))
-        raise
+
+    result = run_validator(
+        upload.path,
+        for_appversions={app_guid: [appversion_str]},
+        test_all_tiers=True,
+        # Ensure we only check compatibility against this one specific
+        # version:
+        overrides={'targetapp_minVersion': {app_guid: appversion_str},
+                   'targetapp_maxVersion': {app_guid: appversion_str}},
+        compat=True)
+
+    upload.validation = result
+    upload.compat_with_app = app.id
+    upload.compat_with_appver = appver
+    upload.save()  # We want to hit the custom save().
 
 
-def run_validator(file_path, for_appversions=None, test_all_tiers=False,
+def run_validator(path, for_appversions=None, test_all_tiers=False,
                   overrides=None, compat=False, listed=True):
     """A pre-configured wrapper around the addon validator.
 
@@ -223,6 +214,12 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     Not all application versions will have a set of registered
     compatibility tests.
     """
+    if not settings.VALIDATE_ADDONS:
+        # This should only ever be set on development instances.
+        # Don't run the validator, just return a skeleton passing result set.
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        results['metadata']['listed'] = listed
+        return json.dumps(results)
 
     from validator.validate import validate
 
@@ -230,15 +227,13 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
     if not os.path.exists(apps):
         call_command('dump_apps')
 
-    path = file_path
-    if path and not os.path.exists(path) and storage.exists(path):
-        path = tempfile.mktemp(suffix='_' + os.path.basename(file_path))
-        with open(path, 'wb') as f:
-            copyfileobj(storage.open(file_path), f)
-        temp = True
-    else:
-        temp = False
-    try:
+    with NamedTemporaryFile(suffix='_' + os.path.basename(path)) as temp:
+        if path and not os.path.exists(path) and storage.exists(path):
+            # This file doesn't exist locally. Write it to our
+            # currently-open temp file and switch to that path.
+            copyfileobj(storage.open(path), temp.file)
+            path = temp.name
+
         with statsd.timer('devhub.validator'):
             return validate(path,
                             for_appversions=for_appversions,
@@ -251,9 +246,6 @@ def run_validator(file_path, for_appversions=None, test_all_tiers=False,
                             overrides=overrides,
                             compat_test=compat,
                             listed=listed)
-    finally:
-        if temp:
-            os.remove(path)
 
 
 @task(rate_limit='4/m')

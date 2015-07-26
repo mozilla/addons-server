@@ -2,9 +2,7 @@ import collections
 import functools
 import json
 import os
-import sys
 import time
-import traceback
 import uuid
 
 from django import forms as django_forms
@@ -45,8 +43,7 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from devhub.utils import (ValidationAnnotator, hide_traceback,
-                          make_validation_results)
+from devhub.utils import ValidationAnnotator, process_validation
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import is_beta, parse_addon
@@ -755,19 +752,13 @@ def json_file_validation(request, addon_id, addon, file_id):
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
-        try:
-            # This API is, unfortunately, synchronous, so wait for the
-            # task to complete and return the result directly.
-            v_result = tasks.validate(file).get()
-        except Exception, exc:
-            log.error('file_validator(%s): %s' % (file.id, exc))
-            error = "\n".join(traceback.format_exception(*sys.exc_info()))
-            return make_validation_results({'validation': '', 'error': error})
+        # This API is, unfortunately, synchronous, so wait for the
+        # task to complete and return the result directly.
+        v_result = tasks.validate(file).get()
     else:
         v_result = file.validation
 
-    validation = json.loads(v_result.validation)
-    return make_validation_results({'validation': validation, 'error': None})
+    return {'validation': v_result.processed_validation, 'error': None}
 
 
 @json_view
@@ -775,15 +766,11 @@ def json_file_validation(request, addon_id, addon, file_id):
 @post_required
 @dev_required(allow_editors=True)
 def json_bulk_compat_result(request, addon_id, addon, result_id):
-    qs = ValidationResult.objects.exclude(completed=None)
-    result = get_object_or_404(qs, pk=result_id)
-    if result.task_error:
-        return make_validation_results({'validation': '',
-                                        'error': result.task_error})
-    else:
-        validation = json.loads(result.validation)
-        return make_validation_results({'validation': validation,
-                                        'error': None})
+    result = get_object_or_404(ValidationResult, pk=result_id,
+                               completed__isnull=False)
+
+    validation = json.loads(result.validation)
+    return {'validation': process_validation(validation), 'error': None}
 
 
 @json_view
@@ -838,15 +825,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
                               url=None):
     if addon_slug and not addon:
         addon = get_object_or_404(Addon, slug=addon_slug)
-    if not settings.VALIDATE_ADDONS:
-        upload.task_error = ''
-        upload.validation = json.dumps({'errors': 0, 'messages': [],
-                                        'metadata': {}, 'notices': 0,
-                                        'warnings': 0})
-        upload.save()
 
-    validation = upload.escaped_validation(
-        is_compatibility=upload.compat_with_app)
     if not url:
         if addon:
             url = reverse('devhub.upload_detail_for_addon',
@@ -856,8 +835,8 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
     return {'upload': upload.uuid,
-            'validation': validation,
-            'error': hide_traceback(upload.task_error),
+            'validation': upload.processed_validation or '',
+            'error': None,
             'url': url,
             'full_report_url': full_report_url}
 

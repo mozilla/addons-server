@@ -147,8 +147,6 @@ CEF_PRODUCT = STATSD_PREFIX
 
 ES_TIMEOUT = 60
 
-EXPOSE_VALIDATOR_TRACEBACKS = True
-
 KNOWN_PROXIES += ['10.2.83.105',
                   '10.2.83.106',
                   '10.2.83.107',

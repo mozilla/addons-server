@@ -351,6 +351,24 @@ COLLECTION_AUTHOR_CHOICES = {
     COLLECTION_ROLE_ADMIN: 'Admin',
 }
 
+# Validation.
+
+# A skeleton set of passing validation results.
+# TODO: Move to validator, generate dynamically via ErrorBundle instance.
+VALIDATOR_SKELETON_RESULTS = {
+    "errors": 0,
+    "warnings": 0,
+    "notices": 0,
+    "success": True,
+    "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
+    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
+    "metadata": {"requires_chrome": False, "listed": True},
+    "messages": [],
+    "message_tree": {},
+    "detected_type": "extension",
+    "ending_tier": 5,
+}
+
 # Contributions.
 FOUNDATION_ORG = 1  # The charities.id of the Mozilla Foundation.
 

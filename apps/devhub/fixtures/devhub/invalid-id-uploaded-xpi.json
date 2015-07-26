@@ -3,7 +3,6 @@
         "pk": "2f95a03a22f94aad8fb42274a09e9109",
         "model": "files.fileupload",
         "fields": {
-            "task_error": null,
             "hash": "sha256:96704ffb5f1acf602bda4715b3409fbe21fb39b461f0aac5a82940cfac62c9ec",
             "name": "invalid-id-20101206.xpi",
             "created": "2010-12-06 14:04:46",

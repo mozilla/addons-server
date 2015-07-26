@@ -1080,6 +1080,7 @@ SYSLOG_TAG2 = "http_app_addons2"
 LOGGING_CONFIG = None
 LOGGING = {
     'loggers': {
+        'amo.validator': {'level': logging.WARNING},
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
         'caching': {'level': logging.WARNING},
@@ -1202,14 +1203,11 @@ REDIS_BACKENDS = {
         location=REDIS_LOCATION)}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
-# binary.  It must be a version compatible with amo-validator
+# binary.  It must be a version compatible with amo-validator.
 SPIDERMONKEY = None
 VALIDATE_ADDONS = True
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
-
-# When True include full tracebacks in JSON. This is useful for QA on preview.
-EXPOSE_VALIDATOR_TRACEBACKS = False
 
 # Max number of warnings/errors to show from validator. Set to None for no
 # limit.
@@ -1258,7 +1256,7 @@ BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
 BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
                         'sdk-versions/')
 
-## elasticsearch
+# Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
