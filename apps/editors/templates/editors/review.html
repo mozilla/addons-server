@@ -68,30 +68,7 @@
       </tr>
       <tr class="listing-body">
         <td class="files">
-          {% set version_files = version.all_files %}
-          {% if version_files %}
-            <div><strong>{{ _('Files in this version:') }}</strong></div>
-            <ul>
-            {% for file in version_files %}
-            <li class="file-info">
-              <span class="light">
-                <strong><a href="{{ file.get_url_path('editor') }}" class="editors-install"
-                    data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file.get_platform_display() }}</a></strong>
-                <div>
-                  {{ file_review_status(addon, file) }}
-                </div>
-                <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
-                &middot;
-                <a href="{{ url('files.list', file.id) }}">{{ _('Contents') }}</a>
-                {% if show_diff and version == addon.latest_version %}
-                &middot;
-                <a class="compare" href="{{ url('files.compare', file.id, file_compare(file, show_diff)) }}">{{ _('Compare') }}</a>
-                {% endif %}
-              </span>
-            </li>
-            {% endfor %}
-            </ul>
-          {% endif %}
+          {{ all_distinct_files(version) }}
           {% if version.compatible_apps_ordered %}
             <div><strong>{{ _('Compatibility:') }}</strong></div>
             <ul>
