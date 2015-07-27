@@ -137,53 +137,63 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def from_upload(cls, upload, version, platform, is_beta=False,
                     parse_data={}):
-        f = cls(version=version, platform=platform)
+        addon = version.addon
+
+        file_ = cls(version=version, platform=platform)
         upload.path = amo.utils.smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
         if ext == '.jar':
             ext = '.xpi'
-        f.filename = f.generate_filename(extension=ext or '.xpi')
+        file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
-        f.size = storage.size(upload.path)
+        file_.size = storage.size(upload.path)
         data = cls.get_jetpack_metadata(upload.path)
         if 'sdkVersion' in data and data['sdkVersion']:
-            f.jetpack_version = data['sdkVersion'][:10]
-        if f.jetpack_version:
-            Tag(tag_text='jetpack').save_tag(version.addon)
-        f.builder_version = data['builderVersion']
-        f.no_restart = parse_data.get('no_restart', False)
-        f.strict_compatibility = parse_data.get('strict_compatibility', False)
-        f.is_multi_package = parse_data.get('is_multi_package', False)
-        if version.addon.status == amo.STATUS_PUBLIC:
-            if is_beta:
-                f.status = amo.STATUS_BETA
-            elif version.addon.trusted:
-                f.status = amo.STATUS_PUBLIC
-        elif (version.addon.status in amo.LITE_STATUSES and
-              version.addon.trusted):
-            f.status = version.addon.status
-        f.hash = f.generate_hash(upload.path)
+            file_.jetpack_version = data['sdkVersion'][:10]
+        if file_.jetpack_version:
+            Tag(tag_text='jetpack').save_tag(addon)
+        file_.builder_version = data['builderVersion']
+        file_.no_restart = parse_data.get('no_restart', False)
+        file_.strict_compatibility = parse_data.get('strict_compatibility',
+                                                    False)
+        file_.is_multi_package = parse_data.get('is_multi_package', False)
+
+        if is_beta and addon.status == amo.STATUS_PUBLIC:
+            file_.status = amo.STATUS_BETA
+        elif addon.trusted:
+            # New files in trusted add-ons automatically receive the correct
+            # approved status for their review class.
+            if addon.status == amo.STATUS_PUBLIC:
+                file_.status = amo.STATUS_PUBLIC
+            elif addon.status in amo.LITE_STATUSES:
+                file_.status = amo.STATUS_LITE
+
+        file_.hash = file_.generate_hash(upload.path)
+
         if upload.validation:
             validation = json.loads(upload.validation)
             if validation['metadata'].get('requires_chrome'):
-                f.requires_chrome = True
-        f.save()
-        log.debug('New file: %r from %r' % (f, upload))
+                file_.requires_chrome = True
+
+        file_.save()
+
+        log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
         destinations = [version.path_prefix]
-        if f.status in amo.MIRROR_STATUSES:
+        if file_.status in amo.MIRROR_STATUSES:
             destinations.append(version.mirror_path_prefix)
         for dest in destinations:
             copy_stored_file(upload.path,
-                             os.path.join(dest, nfd_str(f.filename)))
+                             os.path.join(dest, nfd_str(file_.filename)))
 
         if upload.validation:
             # Import loop.
             from devhub.tasks import annotate_validation_results
 
             validation = annotate_validation_results(validation)
-            FileValidation.from_json(f, validation)
-        return f
+            FileValidation.from_json(file_, validation)
+
+        return file_
 
     @classmethod
     def get_jetpack_metadata(cls, path):

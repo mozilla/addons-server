@@ -2,13 +2,14 @@
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
 import urlparse
 
 import amo
 import amo.tests
 from addons.models import Addon
+from applications.models import AppVersion
 from files.utils import make_xpi
+from versions.compare import version_int
 from zadmin import tasks
 
 
@@ -35,6 +36,13 @@ def RequestMock(response='', headers=None):
 
 
 def make_langpack(version):
+    versions = (version, '%s.*' % version)
+
+    for version in versions:
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id,
+                                         version=version,
+                                         version_int=version_int(version))
+
     return make_xpi({
         'install.rdf': """<?xml version="1.0"?>
 
@@ -43,20 +51,20 @@ def make_langpack(version):
               <Description about="urn:mozilla:install-manifest"
                            em:id="langpack-de-DE@firefox.mozilla.org"
                            em:name="Foo Language Pack"
-                           em:version="%(version)s"
+                           em:version="{0}"
                            em:type="8"
                            em:creator="mozilla.org">
 
                 <em:targetApplication>
                   <Description>
-                    <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-                    <em:minVersion>%(version)s</em:minVersion>
-                    <em:maxVersion>%(version)s.*</em:maxVersion>
+                    <em:id>{{ec8030f7-c20a-464f-9b0e-13a3a9e97384}}</em:id>
+                    <em:minVersion>{0}</em:minVersion>
+                    <em:maxVersion>{1}</em:maxVersion>
                   </Description>
                 </em:targetApplication>
               </Description>
             </RDF>
-        """ % {'version': version}
+        """.format(*versions)
     }).read()
 
 
@@ -86,102 +94,101 @@ class TestLangpackFetcher(amo.tests.TestCase):
         responses = {list_url: RequestMock(self.LISTING),
                      langpack_url: RequestMock(make_langpack(version))}
 
+        self.mock_request.reset_mock()
         self.mock_request.side_effect = lambda url, **kw: responses.get(url)
-        self.mock_request.call_args_list = []
 
         tasks.fetch_langpacks(path)
 
-        eq_(self.mock_request.call_args_list,
+        self.mock_request.assert_has_calls(
             [mock.call(list_url, verify=settings.CA_CERT_BUNDLE_PATH),
              mock.call(langpack_url, verify=settings.CA_CERT_BUNDLE_PATH)])
 
     def test_fetch_new_langpack(self):
-        eq_(self.get_langpacks().count(), 0)
+        assert self.get_langpacks().count() == 0
 
         self.fetch_langpacks(amo.FIREFOX.latest_version)
 
         langpacks = self.get_langpacks()
-        eq_(langpacks.count(), 1)
+        assert langpacks.count() == 1
 
         a = langpacks[0]
-        eq_(a.default_locale, 'de-DE')
-        eq_(a.target_locale, 'de-DE')
+        assert a.default_locale == 'de-DE'
+        assert a.target_locale == 'de-DE'
 
         assert a._current_version
-        eq_(a.current_version.version, amo.FIREFOX.latest_version)
+        assert a.current_version.version == amo.FIREFOX.latest_version
 
-        eq_(a.status, amo.STATUS_PUBLIC)
-        eq_(a.current_version.files.all()[0].status,
-            amo.STATUS_PUBLIC)
+        assert a.status == amo.STATUS_PUBLIC
+        assert a.current_version.files.all()[0].status == amo.STATUS_PUBLIC
 
     def test_fetch_updated_langpack(self):
         versions = ('16.0', '17.0')
 
         self.fetch_langpacks(versions[0])
 
-        eq_(self.get_langpacks().count(), 1)
+        assert self.get_langpacks().count() == 1
 
         self.fetch_langpacks(versions[1])
 
         langpacks = self.get_langpacks()
-        eq_(langpacks.count(), 1)
+        assert langpacks.count() == 1
 
         a = langpacks[0]
-        eq_(a.versions.count(), 2)
+        assert a.versions.count() == 2
 
         v = a.versions.get(version=versions[1])
-        eq_(v.files.all()[0].status, amo.STATUS_PUBLIC)
+        assert v.files.all()[0].status == amo.STATUS_PUBLIC
 
     def test_fetch_duplicate_langpack(self):
         self.fetch_langpacks(amo.FIREFOX.latest_version)
 
         langpacks = self.get_langpacks()
-        eq_(langpacks.count(), 1)
-        eq_(langpacks[0].versions.count(), 1)
-        eq_(langpacks[0].versions.all()[0].version,
-            amo.FIREFOX.latest_version)
+        assert langpacks.count() == 1
+        assert langpacks[0].versions.count() == 1
+        assert (langpacks[0].versions.all()[0].version ==
+                amo.FIREFOX.latest_version)
 
         self.fetch_langpacks(amo.FIREFOX.latest_version)
 
         langpacks = self.get_langpacks()
-        eq_(langpacks.count(), 1)
-        eq_(langpacks[0].versions.count(), 1)
-        eq_(langpacks[0].versions.all()[0].version,
-            amo.FIREFOX.latest_version)
+        assert langpacks.count() == 1
+        assert langpacks[0].versions.count() == 1
+        assert (langpacks[0].versions.all()[0].version ==
+                amo.FIREFOX.latest_version)
 
     def test_fetch_updated_langpack_beta(self):
         versions = ('16.0', '16.0a2')
 
         self.fetch_langpacks(versions[0])
 
-        eq_(self.get_langpacks().count(), 1)
+        assert self.get_langpacks().count() == 1
 
         self.fetch_langpacks(versions[1])
 
         langpacks = self.get_langpacks()
-        eq_(langpacks.count(), 1)
+        assert langpacks.count() == 1
 
         a = langpacks[0]
-        eq_(a.versions.count(), 2)
+        assert a.versions.count() == 2
 
         v = a.versions.get(version=versions[1])
-        eq_(v.files.all()[0].status, amo.STATUS_BETA)
+        assert v.files.all()[0].status == amo.STATUS_BETA
 
     def test_fetch_new_langpack_beta(self):
         self.fetch_langpacks('16.0a2')
 
-        eq_(self.get_langpacks().count(), 0)
+        assert self.get_langpacks().count() == 0
 
     def test_fetch_langpack_wrong_owner(self):
         Addon.objects.create(guid='langpack-de-DE@firefox.mozilla.org',
                              type=amo.ADDON_LPAPP)
 
         self.fetch_langpacks(amo.FIREFOX.latest_version)
-        eq_(self.get_langpacks().count(), 0)
+        assert self.get_langpacks().count() == 0
 
     def test_fetch_langpack_invalid_path_fails(self):
         self.mock_request.return_value = None
 
         with self.assertRaises(ValueError) as exc:
             tasks.fetch_langpacks('../foo/')
-        eq_(str(exc.exception), 'Invalid path')
+        assert str(exc.exception) == 'Invalid path'
