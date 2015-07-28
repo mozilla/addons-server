@@ -95,13 +95,16 @@ def main(action):
     ]
 
     if action == ACTION_CONTEXT:
+        # Only get context for the top 5 errors (they're already sorted by
+        # unique occurrences so we can just take the first 5).
         pipeline.append(lambda results: itertools.islice(results, 5))
         pipeline.append(format_contexts)
     elif action == ACTION_COUNT:
         pipeline.append(format_error_count)
-        parse_unlisted_addons()
     else:
         raise ValueError('{0} is not a valid action'.format(action))
+
+    parse_unlisted_addons()
 
     # Read from STDIN.
     val = sys.stdin
@@ -119,7 +122,7 @@ if __name__ == '__main__':
         print '''Usage: python {name} <action>
     action: {actions}
     values are read from STDIN'''.format(
-            name=sys.argv[0], actions=', '.join(ACTIONS))
+            name=sys.argv[0], actions='|'.join(ACTIONS))
         sys.exit(1)
     else:
         main(sys.argv[1])
