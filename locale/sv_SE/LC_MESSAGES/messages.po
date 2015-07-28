@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-26 08:32+0000\n"
+"PO-Revision-Date: 2015-07-28 19:16+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437899561.0\n"
+"X-POOTLE-MTIME: 1438110960.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -6156,24 +6156,48 @@ msgid ""
 "activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
 "authors will avoid retaliating with rudeness of their own."
 msgstr ""
+"<strong>Behandlar både tillägget och tilläggets upphovsman användaren "
+"respektfullt?</strong> Ditt program ska inte inkräkta på användaren i "
+"onödan, försöka att lura användaren eller dölja någon av sin aktiviteter "
+"från användaren. Användarna (eller även icke-användare) är ibland oförskämda "
+"i sina synpunkter och vi kommer att göra vårt bästa för att filtrera bort "
+"felaktiga recensioner som har rapporterats in till oss. Vi förväntar oss att "
+"upphovsmännen kommer undvika att hämnas med oförskämdhet från deras sida."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:49
 msgid ""
 "<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
 "your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
+"<strong>Är tillägget användbart för en större del av Firefox "
+"användare?</strong> Ditt tillägg behöver inte bli nästa Greasemonkey eller "
+"Firebug, men om det endast är användbart för personer i ditt företag eller "
+"som är en del av en liten gemenskap, kan vi känna att det ännu inte är "
+"lämpligt att lägga den framför alla våra användare."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:55
 msgid ""
 "We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
 "Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
 msgstr ""
+"Vi söker ständigt efter nya sätt att förbättra organisationen av webbplatsen "
+"för att bättre tillgodose tillägg som är exemplariska på andra sätt, men "
+"som riktar sig endast till ett liten gemenskap av potentiella användare. "
+"Korrekt kategorisering och underhålla metadata för ditt tillägg kommer att "
+"hjälpa oss räkna ut hur vi kan få till ytan fler av dessa typer av tillägg "
+"till personer som är mest benägna att dra nytta av dem."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:61
 msgid ""
 "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
 "new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
 msgstr ""
+"Om ditt tillägg endast innehåller bokmärken eller andra enkla accesspunkter "
+"till din webbplats, är det antagligen inte lämpligt för galleriet. Liksom "
+"resten av Mozilla-projektet, gillar vi webbapplikationer och nya "
+"webbtjänster, men Firefox tillägg bör ge en förbättrad surfupplevelse för "
+"användaren och inte bara vara ett sätt att främja en ny webbplats eller "
+"tjänst genom en Mozilla tilläggslistning."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
 msgid ""
@@ -6181,6 +6205,14 @@ msgid ""
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
+"<strong>Är tillägget fri från olicensierade varumärken och "
+"upphovsrätt?</strong> Även om du inte vill något ont till innehavaren av ett "
+"varumärke eller ägaren av ett upphovsrättsskyddat verk, kan vi inte hysa "
+"ett tillägg som strider mot varumärken eller upphovsrätt. Om du inte har "
+"tillåtelse att använda ett varumärkes namn eller bild, ska du inte skicka in "
+"ditt tillägg till oss. Om tillägget innehåller kod som är "
+"upphovsrättsskyddat av någon annan och inte licensieras till dig för "
+"användning i ditt tillägg, ska du inte skicka in ditt tillägg till oss."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:73
 msgid ""
@@ -6188,6 +6220,14 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
+"När det gäller återanvändning av källkoden från andra tillägg, om "
+"upphovsmannen inte tydligt har uppgett att du har rätt att använda deras kod "
+"i ditt eget arbete &mdash; såsom att placera den under en öppen "
+"källkodslicens &mdash; då ska du anta att du inte har rätt att göra det. Du "
+"kan kontakta upphovsmannen för att söka ett sådant tillstånd, men vi kan "
+"inte ge dig några speciella rättigheter till det bara för att det finns med "
+"på webbplatsen eller på grund av att upphovsmannen inte svarar på din "
+"förfrågan."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
@@ -6195,6 +6235,12 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
+"Detta gäller Mozilla stiftelsens varumärken också, bland annat \"Mozilla\", "
+"\"Firefox\" och \"Thunderbird\". Mozilla policy för varumärkesanvändning är "
+"avsedd att skydda mot förvirring och förhindra att varumärken från att "
+"kantra på grund av bristande skydd; vänligen respektera behovet av sådant "
+"skydd och hjälp oss att bevara några av de mest värdefulla tillgångar i "
+"stiftelsen för Mozilla."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
@@ -6205,40 +6251,57 @@ msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
+"Att välja en lämplig licens för ditt tillägg är ett mycket viktigt steg i "
+"inskickningsprocessen. En licens anger de rättigheter du beviljar på din "
+"källkod och är viktigt för att skydda dina immateriella rättigheter."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
 msgstr ""
+"Under tilläggets inskickningsprocess, kommer du att presenteras med en lista "
+"över populära licenser att välja mellan, liksom möjligheten att specificera "
+"din egen licens. Det är bäst att rådgöra med en jurist om vilket licens-"
+"alternativ som är bäst för dig. Att välja rätt licens för källkoden kommer "
+"att bidra till att förhindra förvirring och kodkonflikter i framtiden."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12 apps/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
-msgstr ""
+msgstr "Inskickning tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies.html:18 apps/devhub/templates/devhub/docs/policies.html:78
 msgid "Maintaining Your Add-on"
-msgstr "Underhåll av tillägg"
+msgstr "Underhåll av ditt tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
 msgstr ""
+"Mozilla strävar efter att garantera en bra upplevelse gällande tillägg för "
+"våra användare och utvecklare. Läs igenom policyn nedan innan du skickar in "
+"ditt tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies.html:55
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
 msgstr ""
+"Ta reda på vad som förväntas av tillägg som vi hyser och vår policyer för "
+"särskilda tilläggsmetoder."
 
 #: apps/devhub/templates/devhub/docs/policies.html:67
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
 msgstr ""
+"Vad händer efter ditt tillägg har skickats in? Lär dig mer om hur våra "
+"redigerare granskar inskickningar."
 
 #: apps/devhub/templates/devhub/docs/policies.html:81
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
 msgstr ""
+"Tilläggsuppdateringar, överföra äganderätten, användarrecensioner och vad "
+"som väntar när ditt tillägg är godkänt."
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
-msgstr ""
+msgstr "Hur bubblande tillägg blir utvalda och vad det innebär i processen."
 
 #: apps/devhub/templates/devhub/docs/policies.html:106
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
@@ -6246,7 +6309,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
-msgstr ""
+msgstr "Hur får man kontakt med oss angående dessa policyer eller ditt tillägg."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
@@ -6255,22 +6318,28 @@ msgstr "Du har inaktiverat detta tillägg"
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
 msgstr ""
+"Ditt tilläggs listning är inaktiverad och visas inte någonstans i vårt "
+"galleri eller uppdateringstjänst."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Vänligen färdigställ ditt tillägg."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Du får ett e-postmeddelande när granskningen är klar."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:44
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr ""
+"Du får ett e-postmeddelande när granskningen är klar. Fram till dess listas "
+"inte ditt tillägg i vårt galleri, men kan nås direkt från sin detaljsida."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
+"Du får ett e-postmeddelande när granskningen är klar och ditt tillägg "
+"signerat."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6280,7 +6349,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "Ditt tillägg har signerats och kan laddas på sidan."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -6374,6 +6443,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:61
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr ""
+"Berätta för dina användare vad som snart kommer kan att ge dem något att se "
+"fram emot."
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
