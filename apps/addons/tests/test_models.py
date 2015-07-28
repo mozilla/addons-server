@@ -496,22 +496,37 @@ class TestAddonModels(amo.tests.TestCase):
             addon._backup_version
             addon.latest_version
 
-    def _delete(self):
+    def _delete(self, addon_id):
         """Test deleting add-ons."""
-        a = Addon.objects.get(pk=3615)
-        a.name = u'é'
-        a.delete('bye')
-        eq_(len(mail.outbox), 1)
-        assert BlacklistedGuid.objects.filter(guid=a.guid)
+        set_user(UserProfile.objects.last())
+        addon_count = Addon.unfiltered.count()
+        addon = Addon.objects.get(pk=addon_id)
+        guid = addon.guid
+        addon.delete('bye')
+        assert addon_count == Addon.unfiltered.count()  # Soft deletion.
+        assert BlacklistedGuid.objects.filter(guid=guid)
+        assert addon.status == amo.STATUS_DELETED
+        assert addon.slug is None
+        assert addon.current_version is None
+        assert addon.guid is None
+        deleted_count = Addon.unfiltered.filter(
+            status=amo.STATUS_DELETED).count()
+        assert len(mail.outbox) == deleted_count
+        log = AddonLog.objects.order_by('-id').first().activity_log
+        assert log.action == amo.LOG.DELETE_ADDON.id
+        assert log.to_string() == (
+            "Addon id {0} with GUID {1} has been deleted".format(addon_id,
+                                                                 guid))
 
     def test_delete(self):
-        deleted_count = Addon.unfiltered.count()
-        self._delete()
-        eq_(deleted_count, Addon.unfiltered.count())
         addon = Addon.unfiltered.get(pk=3615)
-        eq_(addon.status, amo.STATUS_DELETED)
-        eq_(addon.slug, None)
-        eq_(addon.current_version, None)
+        addon.name = u'é'  # Make sure we don't have encoding issues.
+        addon.save()
+        self._delete(3615)
+
+        # Delete another add-on, and make sure we don't have integrity errors
+        # with unique constraints on fields that got nullified.
+        self._delete(5299)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
@@ -541,13 +556,14 @@ class TestAddonModels(amo.tests.TestCase):
         non-zero status.
         """
         count = Addon.objects.count()
-        a = Addon.objects.get(pk=3615)
-        a.status = amo.STATUS_UNREVIEWED
-        a.highest_status = 0
-        a.delete('bye')
+        addon = Addon.objects.get(pk=3615)
+        guid = addon.guid  # Save for after add-on deletion.
+        addon.status = amo.STATUS_UNREVIEWED
+        addon.highest_status = 0
+        addon.delete('bye')
         eq_(len(mail.outbox), 1)
-        assert BlacklistedGuid.objects.filter(guid=a.guid)
-        eq_(count, Addon.unfiltered.count())
+        assert BlacklistedGuid.objects.filter(guid=guid)
+        assert count == Addon.unfiltered.count()
 
     def test_delete_incomplete(self):
         """Test deleting incomplete add-ons."""

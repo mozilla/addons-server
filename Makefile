@@ -68,7 +68,7 @@ update_code:
 	$(DOCKER_PREFIX) git checkout master && git pull
 
 update_deps:
-	$(DOCKER_PREFIX) pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/
+	$(DOCKER_PREFIX) pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
 	$(DOCKER_PREFIX) npm install
 
 update_db:

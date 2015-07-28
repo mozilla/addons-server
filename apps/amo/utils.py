@@ -84,6 +84,12 @@ def urlparams(url_, hash=None, **query):
     return new.geturl()
 
 
+def partial(func, *args, **kw):
+    """A thin wrapper around functools.partial which updates the wrapper
+    as would a decorator."""
+    return functools.update_wrapper(functools.partial(func, *args, **kw), func)
+
+
 def isotime(t):
     """Date/Time format according to ISO 8601"""
     if not hasattr(t, 'tzinfo'):

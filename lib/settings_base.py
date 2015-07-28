@@ -400,7 +400,6 @@ INSTALLED_APPS = (
 
     # Third party apps
     'django_extensions',
-    'gunicorn',
     'raven.contrib.django',
     'piston',
     'waffle',
