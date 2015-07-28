@@ -54,6 +54,7 @@
     {% if waffle.flag('unlisted-addons') %}
       data-upload-url-listed="{{ url('devhub.upload') }}"
       data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}"
+      data-upload-url-sideload="{{ url('devhub.upload_sideload') }}"
     {% endif %}>
 
   {{ new_addon_form.non_field_errors() }}

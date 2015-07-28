@@ -74,6 +74,7 @@
       {% if waffle.flag('unlisted-addons') %}
         data-upload-url-listed="{{ url('devhub.standalone_upload') }}"
         data-upload-url-unlisted="{{ url('devhub.standalone_upload_unlisted') }}"
+        data-upload-url-sideload="{{ url('devhub.standalone_upload_sideload') }}"
       {% endif %}>
 
   </section>

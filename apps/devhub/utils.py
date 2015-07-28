@@ -7,7 +7,7 @@ from tower import ugettext as _
 
 import amo
 from addons.models import Addon
-from amo.utils import escape_all
+from amo.urlresolvers import linkify_escape
 from files.models import File, FileUpload
 from files.utils import parse_addon
 from validator.version import Version
@@ -95,8 +95,21 @@ def escape_validation(validation):
             # We can't display a message if it's on tier 0.
             # Should get fixed soon in bug 617481
             msg['tier'] = 1
+
+        msg['message'] = linkify_escape(msg['message'])
+
+        for key in 'description', 'signing_help':
+            if key in msg:
+                # These may be returned as single strings, or lists of
+                # strings. Turn them all into lists for simplicity
+                # on the client side.
+                if not isinstance(msg[key], (list, tuple)):
+                    msg[key] = [msg[key]]
+
+                msg[key] = [linkify_escape(text) for text in msg[key]]
+
     validation['ending_tier'] = ending_tier
-    return escape_all(validation, linkify_only_full=True)
+    return validation
 
 
 class ValidationAnnotator(object):
@@ -145,11 +158,12 @@ class ValidationAnnotator(object):
             except Addon.DoesNotExist:
                 pass
 
-            prev_file = self.find_previous_version(addon_data['version'])
-            if prev_file:
+            self.prev_file = self.find_previous_version(addon_data['version'])
+            if self.prev_file:
                 # Group both tasks so the results can be merged when
                 # the jobs complete.
-                validate = group((validate, self.validate_file(prev_file)))
+                validate = group((validate,
+                                  self.validate_file(self.prev_file)))
 
         # When the validation jobs complete, pass the results to the
         # appropriate annotate/save task for the object type.

@@ -104,7 +104,11 @@ $(document).ready(function() {
           $isSideload.attr('checked', false);
           $submitAddonProgress.removeClass('unlisted');
         } else {  // It's an unlisted add-on.
-          $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+          if ($isSideload.is(':checked')) {  // It's a sideload add-on, not eligible for automated signing.
+            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-sideload'));
+          } else {
+            $uploadAddon.attr('data-upload-url', $uploadAddon.attr('data-upload-url-unlisted'));
+          }
           $betaWarningLabel.show();
           $isSideloadLabel.show();
           $submitAddonProgress.addClass('unlisted');

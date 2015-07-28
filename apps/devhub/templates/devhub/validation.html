@@ -29,7 +29,12 @@
     {% endif %}
 </table>
 
-<div class="addon-validator-suite" id="addon-validator-suite"
+<div class="addon-validator-suite{% if automated_signing %} automated-signing{% endif %}"
+     id="addon-validator-suite"
+     {% if file %}
+        data-file-url="{{ file_url }}"
+        data-file-id="{{ file.id }}"
+     {% endif %}
      data-validateurl="{{ validate_url }}">
   {% if result_type == 'compat' %}
     {% with app_trans=app_trans,

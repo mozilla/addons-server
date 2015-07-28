@@ -505,8 +505,11 @@ class TestFileUpload(UploadTest):
             validation='{"errors": 0, "metadata": {}}')
         assert f.valid
 
-        f = FileUpload.objects.create(validation='wtf')
+        f = FileUpload.objects.create(validation='{"errors": 1}')
         assert not f.valid
+
+        with self.assertRaises(ValueError):
+            f = FileUpload.objects.create(validation='wtf')
 
     def test_update_with_validation(self):
         f = FileUpload.objects.create()
@@ -595,40 +598,6 @@ class TestFileUpload(UploadTest):
         version = Version.objects.filter(addon__pk=3615)[0]
         file_ = File.from_upload(upload, version, amo.PLATFORM_LINUX.id)
         eq_(file_.requires_chrome, True)
-
-    def test_escaped_validation_is_set_on_save(self):
-        upload = FileUpload.objects.create()
-        assert not upload.validation
-        assert not upload._escaped_validation
-        validation = '{"the": "validation"}'
-        escaped_validation = {"the": "validation", "ending_tier": 0}
-        upload.validation = validation
-        upload.save()
-        eq_(upload.validation, validation)
-        eq_(json.loads(upload._escaped_validation), escaped_validation)
-
-    def test_escaped_validation_is_escaped(self):
-        validation = '''{"the": "valid<script>alert('owned')</script>ation"}'''
-        escaped_validation = {
-            "the": "valid&lt;script&gt;alert('owned')&lt;/script&gt;ation",
-            "ending_tier": 0}
-        upload = FileUpload.objects.create(validation=validation)
-        eq_(json.loads(upload._escaped_validation), escaped_validation)
-
-    def test_escaped_validation_ignores_bad_json(self):
-        upload = FileUpload(validation='wtf')
-        assert not upload._escaped_validation
-        upload.save()
-        assert not upload._escaped_validation
-        eq_(upload.task_error.strip().split('\n')[-1],
-            'ValueError: No JSON object could be decoded')
-
-    def test_escaped_validation_will_escape_validation(self):
-        upload = FileUpload(validation='{"messages": [{"the": "validation"}]}')
-        assert not upload._escaped_validation
-        upload.escaped_validation()
-        eq_(json.loads(upload._escaped_validation),
-            {"ending_tier": 0, "messages": [{"the": "validation"}]})
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):

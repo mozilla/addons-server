@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-import bleach
 import hashlib
+import re
 import hmac
 import urllib
 from threading import local
 from urlparse import urlparse, urlsplit, urlunsplit
 
+import bleach
+import jinja2
+
 from django.conf import settings
 from django.core import urlresolvers
 from django.utils import encoding
 from django.utils.translation.trans_real import parse_accept_lang_header
-
-import jinja2
 
 import amo
 
@@ -212,6 +213,31 @@ def linkify_only_full_urls(attrs, new=False):
         return None
 
     return attrs
+
+
+# Match HTTP/HTTPS URLs with a valid TLD (not including new gTLDs).
+# URLs end at the first occurance of white space, or certain special
+# characters (<>()"'). Full stops and commas are included unless
+# they're followed by a space, or the end of the string.
+URL_RE = re.compile(r'\bhttps?://([a-z0-9-]+\.)+({0})/'
+                    r'([^\s<>()"\x27.,]|[.,](?!\s|$))*'
+                    .format('|'.join(bleach.TLDS)))
+
+
+def linkify_escape(text):
+    """Linkifies plain text, escaping any HTML metacharacters already
+    present."""
+    # Bleach 1.4.1 does a monumentally bad job at this. If we pass it escaped
+    # HTML which contains any URLs (&lt;div&gt;http://foo.com/&lt;/div&gt;),
+    # we get back HTML (<div><a href="http://foo.com/</div>).
+    #
+    # So just stick to search-and-replace. We can hardly do a worse job than
+    # Bleach does.
+    def linkify(match):
+        # Parameters are already escaped.
+        return u'<a href="{0}">{0}</a>'.format(match.group(0))
+
+    return URL_RE.sub(linkify, unicode(jinja2.escape(text)))
 
 
 def linkify_with_outgoing(text, nofollow=True, only_full=False):

@@ -3,9 +3,7 @@ import json
 import os
 import posixpath
 import re
-import sys
 import time
-import traceback
 import unicodedata
 import uuid
 import zipfile
@@ -522,8 +520,7 @@ class FileUpload(amo.models.ModelBase):
     user = models.ForeignKey('users.UserProfile', null=True)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
-    _escaped_validation = models.TextField(
-        null=True, db_column='escaped_validation')
+    automated_signing = models.BooleanField(default=False)
     compat_with_app = models.PositiveIntegerField(
         choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
@@ -540,12 +537,8 @@ class FileUpload(amo.models.ModelBase):
 
     def save(self, *args, **kw):
         if self.validation:
-            try:
-                if json.loads(self.validation)['errors'] == 0:
-                    self.valid = True
-            except Exception:
-                log.error('Invalid validation json: %r' % self)
-            self._escape_validation()
+            if json.loads(self.validation)['errors'] == 0:
+                self.valid = True
         super(FileUpload, self).save()
 
     def add_file(self, chunks, filename, size):
@@ -580,35 +573,16 @@ class FileUpload(amo.models.ModelBase):
         The HTML-escaped validation results limited to a message count of
         `settings.VALIDATOR_MESSAGE_LIMIT` and optionally prepared for a
         compatibility report if `is_compatibility` is `True`.
-
-        If `_escaped_validation` is set it will be used, otherwise
-        `_escape_validation` will be called to escape the validation.
         """
-        if self.validation and not self._escaped_validation:
-            self._escape_validation()
-        if not self._escaped_validation:
+        if not self.validation:
             return ''
 
         # Import loop.
-        from devhub.utils import limit_validation_results
-        return limit_validation_results(json.loads(self._escaped_validation),
-                                        is_compatibility=is_compatibility)
+        from devhub.utils import escape_validation, limit_validation_results
 
-    def _escape_validation(self):
-        """
-        HTML-escape `validation` to `_escaped_validation`. This will raise a
-        ValueError if `validation` is not valid JSON.
-        """
-        try:
-            validation = json.loads(self.validation)
-        except ValueError:
-            tb = traceback.format_exception(*sys.exc_info())
-            self.update(task_error=''.join(tb))
-        else:
-            # Import loop.
-            from devhub.utils import escape_validation
-            escaped_validation = escape_validation(validation)
-            self._escaped_validation = json.dumps(escaped_validation)
+        validation = json.loads(self.validation)
+        return limit_validation_results(escape_validation(validation),
+                                        is_compatibility=is_compatibility)
 
 
 class FileValidation(amo.models.ModelBase):

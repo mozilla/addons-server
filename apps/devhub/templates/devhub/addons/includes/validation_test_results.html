@@ -22,6 +22,20 @@
         <div class="tier-summary"></div>
       </div>
     </div>
+    <div class="suite-options validator-signing-only">
+      <div>
+        <label>
+          <input type="checkbox" id="signing-hide-unnecessary" checked="true">
+          {{ _('Hide messages not required for automated signing') }}
+        </label>
+      </div>
+      <div id="signing-hide-ignored-container">
+        <label>
+          <input type="checkbox" id="signing-hide-ignored" checked="true">
+          {{ _('Hide messages present in previous version and ignored') }}
+        </label>
+      </div>
+    </div>
     <div class="suite-summary">
       <span></span>
     </div>

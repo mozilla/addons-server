@@ -36,7 +36,7 @@ from addons.models import Addon, AddonUser
 from addons.tasks import unindex_addons
 from addons.views import BaseFilter
 from amo import messages
-from amo.decorators import json_view, login_required, post_required, write
+from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all, MenuItem
@@ -45,7 +45,8 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from devhub.utils import hide_traceback, make_validation_results
+from devhub.utils import (ValidationAnnotator, hide_traceback,
+                          make_validation_results)
 from editors.helpers import get_position, ReviewHelper
 from files.models import File, FileUpload
 from files.utils import is_beta, parse_addon
@@ -615,11 +616,16 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
 
 @login_required
 @post_required
-@write
-def upload(request, addon_slug=None, is_standalone=False, is_listed=True):
+def upload(request, addon=None, is_standalone=False, is_listed=True,
+           automated=False):
     filedata = request.FILES['upload']
 
+    if addon:
+        # TODO: Handle betas.
+        automated = addon.automated_signing
+
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
+    fu.update(automated_signing=automated)
     log.info('FileUpload created: %s' % fu.pk)
     if request.user.is_authenticated():
         fu.user = request.amo_user
@@ -633,20 +639,18 @@ def upload(request, addon_slug=None, is_standalone=False, is_listed=True):
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
     else:
         tasks.validate(fu, listed=is_listed)
-    if addon_slug:
-        return redirect('devhub.upload_detail_for_addon', addon_slug, fu.pk)
+    if addon:
+        return redirect('devhub.upload_detail_for_addon', addon.slug, fu.pk)
     elif is_standalone:
         return redirect('devhub.standalone_upload_detail', fu.pk)
     else:
         return redirect('devhub.upload_detail', fu.pk, 'json')
 
 
-@login_required
 @post_required
-@write
-def upload_unlisted(request, addon_slug=None, is_standalone=False):
-    return upload(request, addon_slug=addon_slug, is_standalone=is_standalone,
-                  is_listed=False)
+@dev_required
+def upload_for_addon(request, addon_id, addon):
+    return upload(request, addon=addon)
 
 
 @login_required
@@ -671,35 +675,11 @@ def upload_manifest(request):
 
 
 @login_required
-@post_required
-def standalone_upload(request):
-    return upload(request, is_standalone=True)
-
-
-@login_required
-@post_required
-def standalone_upload_unlisted(request):
-    return upload(request, is_standalone=True, is_listed=False)
-
-
-@login_required
 @json_view
 def standalone_upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
     url = reverse('devhub.standalone_upload_detail', args=[uuid])
     return upload_validation_context(request, upload, url=url)
-
-
-@post_required
-@dev_required
-def upload_for_addon(request, addon_id, addon):
-    return upload(request, addon_slug=addon.slug)
-
-
-@post_required
-@dev_required
-def upload_for_addon_unlisted(request, addon_id, addon):
-    return upload(request, addon_slug=addon.slug, is_listed=False)
 
 
 @dev_required
@@ -713,10 +693,22 @@ def upload_detail_for_addon(request, addon_id, addon, uuid):
 def file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
 
-    v = reverse('devhub.json_file_validation', args=[addon.slug, file.id])
+    validate_url = reverse('devhub.json_file_validation',
+                           args=[addon.slug, file.id])
+    automated_signing = (addon.automated_signing or
+                         file.status == amo.STATUS_BETA)
+
+    prev_file = ValidationAnnotator(file).prev_file
+    if prev_file:
+        file_url = reverse('files.compare', args=[file.id, prev_file.id,
+                                                  'file', ''])
+    else:
+        file_url = reverse('files.list', args=[file.id, 'file', ''])
+
     return render(request, 'devhub/validation.html',
-                  dict(validate_url=v, filename=file.filename,
-                       timestamp=file.created, addon=addon))
+                  dict(validate_url=validate_url, file_url=file_url, file=file,
+                       filename=file.filename, timestamp=file.created,
+                       automated_signing=automated_signing, addon=addon))
 
 
 @dev_required(allow_editors=True)
@@ -879,12 +871,14 @@ def upload_detail(request, uuid, format='html'):
 
     validate_url = reverse('devhub.standalone_upload_detail',
                            args=[upload.uuid])
+
     if upload.compat_with_app:
         return _compat_result(request, validate_url,
                               upload.compat_with_app,
                               upload.compat_with_appver)
     return render(request, 'devhub/validation.html',
                   dict(validate_url=validate_url, filename=upload.name,
+                       automated_signing=upload.automated_signing,
                        timestamp=upload.created))
 
 
@@ -1195,18 +1189,14 @@ def auto_sign_file(file_, is_beta=False, admin_override=False):
     addon = file_.version.addon
     validation = file_.validation
 
-    # Not listed? Do we need to sign?
-    if not addon.is_listed:
-        # Only if it's not sideload (not fully reviewed).
-        if (addon.status not in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC] and
-                validation.passed_auto_validation):
-            # Passed validation: sign automatically without manual review.
-            helper = ReviewHelper(request=None, addon=addon,
-                                  version=file_.version)
-            # Provide the file to review/sign to the helper.
-            helper.set_data({'addon_files': [file_],
-                             'comments': 'automatic validation'})
-            helper.handler.process_preliminary(auto_validation=True)
+    if addon.automated_signing and validation.passed_auto_validation:
+        # Passed validation: sign automatically without manual review.
+        helper = ReviewHelper(request=None, addon=addon,
+                              version=file_.version)
+        # Provide the file to review/sign to the helper.
+        helper.set_data({'addon_files': [file_],
+                         'comments': 'automatic validation'})
+        helper.handler.process_preliminary(auto_validation=True)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
