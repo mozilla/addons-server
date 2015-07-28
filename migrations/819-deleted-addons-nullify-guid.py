@@ -12,7 +12,8 @@ from addons.models import Addon
 from users.models import UserProfile
 
 
-addons = Addon.unfiltered.filter(status=amo.STATUS_DELETED)
+addons = Addon.unfiltered.no_cache().filter(status=amo.STATUS_DELETED,
+                                            guid__isnull=False)
 user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
 amo.set_user(user)
 for addon in addons:
