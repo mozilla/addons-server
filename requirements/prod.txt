@@ -25,11 +25,9 @@ django-cronjobs==0.2.3
 django_csp==2.0.3
 django-extensions==1.2.5
 django-filter==0.7
-django-memcached-pool==0.4.1
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
 django-quieter-formset==0.4
-django-pymemcache==0.1.1-fixserial
 django-raven-heka==0.3
 django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.12
@@ -45,7 +43,6 @@ feedparser==5.1.3
 fudge==1.0.3
 GitPython==0.1.7
 google-api-python-client==1.2
-gunicorn==0.17.4
 hera==0.1.2
 html5lib==0.999
 httplib2==0.8.0
@@ -71,7 +68,6 @@ protobuf==2.5.0
 pyasn1==0.1.7
 PyBrowserID==0.6
 PyMySQL==0.5
-pymemcache==1.2
 pyquery==0.4
 python-dateutil==1.5
 python-gflags==2.0
