@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-05-10 18:57+0000\n"
+"PO-Revision-Date: 2015-07-28 21:56+0000\n"
 "Last-Translator: Gábor <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n !=1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431284252.0\n"
+"X-POOTLE-MTIME: 1438120607.0\n"
 
 #: static/js/common-all.js:10462 static/js/impala-all.js:1512 static/js/zamboni/discovery-all.js:10429 static/js/zamboni/init.js:32 static/js/zamboni/mobile-all.js:10990
 #: static/js/zamboni/mobile-min.js:4
@@ -108,7 +108,9 @@ msgstr "További verziók megtekintése"
 #: static/js/common-all.js:11543 static/js/impala-all.js:2593 static/js/zamboni/buttons.js:578 static/js/zamboni/discovery-all.js:11485 static/js/zamboni/mobile-all.js:11222
 #: static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:39
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "A kereső bővítmény telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."
+msgstr ""
+"A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú "
+"böngészőre (pl. Firefox)."
 
 #: static/js/common-all.js:16652 static/js/common-min.js:7 static/js/impala-all.js:8282 static/js/impala-min.js:5 static/js/zamboni/global.js:416
 msgid "Loading..."
