@@ -595,6 +595,14 @@ class BETA_SIGNED_VALIDATION_FAILED(_LOG):
     keep = True
 
 
+class DELETE_ADDON(_LOG):
+    id = 133
+    action_class = 'delete'
+    # L10n: {0} is the add-on GUID.
+    format = _(u'Addon id {0} with GUID {1} has been deleted')
+    keep = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

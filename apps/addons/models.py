@@ -447,6 +447,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                         .values_list('id', flat=True))
 
         if soft_deletion:
+            # /!\ If we ever stop using soft deletion, and remove this code, we
+            # need to make sure that the logs created below aren't cascade
+            # deleted!
 
             if self.guid:
                 log.debug('Adding guid to blacklist: %s' % self.guid)
@@ -492,8 +495,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._reviews.all().delete()
+            # The last parameter is needed to automagically create an AddonLog.
+            amo.log(amo.LOG.DELETE_ADDON, self.pk, self.guid, self)
             self.update(status=amo.STATUS_DELETED, slug=None, app_domain=None,
-                        _current_version=None)
+                        _current_version=None, guid=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)
