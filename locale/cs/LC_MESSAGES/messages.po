@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-15 11:40-0700\n"
-"PO-Revision-Date: 2015-07-06 13:58+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-07-29 07:19+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436191092.0\n"
+"X-POOTLE-MTIME: 1438154397.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1821,7 +1821,7 @@ msgstr "{addon} již není v seznamech."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} byl podepsán."
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3755,7 +3755,7 @@ msgstr "Přepsat nezdařenou validaci"
 
 #: apps/devhub/forms.py:487
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Odeslat doplněk k ruční kontrole."
 
 #: apps/devhub/forms.py:513
 msgid "Do not list my add-on on this site (beta)"
@@ -3788,6 +3788,8 @@ msgstr "Zvolte prosím typ nominace na kontrolu"
 #: apps/devhub/forms.py:547
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
+"Soubory s verzí končící na a|alpha|b|beta|pre|rc a případné číslem jsou "
+"detekovány jako betaverze."
 
 #: apps/devhub/forms.py:565
 msgid "Version %s already exists"
@@ -4199,7 +4201,7 @@ msgstr "Chcete hostovat svůj doplněk na tomto serveru?"
 #: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
-msgstr ""
+msgstr "Varování:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
@@ -4420,6 +4422,9 @@ msgstr "Štítky"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"Tagy pomáhají uživatelům najít doplněk. Měly by to být krátké popisky jako "
+"například panely, lišta nebo twitter. Můžete zadat maximálně {0} tagů. "
+"Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129 apps/devhub/templates/devhub/personas/edit.html:97 apps/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
@@ -5101,6 +5106,9 @@ msgstr "Krok 1. Úvod"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, "
+"které odkazují na naše poznámky k soukromí, které vysvětlují jak nakládáme s "
+"vašimi informacemi."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
@@ -5137,6 +5145,8 @@ msgstr "Změny při administraci"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:83 apps/devhub/templates/devhub/versions/add_file_modal.html:84
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
+"Vypadá to, že váš doplněk potřebuje ruční kontrolu, než bude moct být "
+"podepsán."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6084,6 +6094,8 @@ msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby nen�
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
+"Jakmile bude kontrola dokončena a váš doplněk podepsán, budete informováni "
+"e-mailem."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -6249,6 +6261,10 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
+"Uživatelé budou muset souhlasit s licenční smlouvou (EULA) než budou moci "
+"nainstalovat váš doplněk. Přítomnost licenční smlouvy výrazně ovlivňuje "
+"počet stažení doplňku. Mějte na paměti, že EULA není náhradou licencí kódu "
+"jako GPL či MPL. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
@@ -6560,6 +6576,10 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Souhlasím s <a href=\"%(agreement_url)s\" target=\"_blank\">podmínkami distribce "
+"doplňků pro Firefox</a> a tím, že s mými informacemi dobe nakládáno tak, "
+"jak je pospáno v <a href=\"%(privacy_notice_url)s\" target=\"_blank\"> poznámce "
+"k soukromí ohledně webových stránek, komunikace a cookies</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -10566,7 +10586,7 @@ msgstr[2] "{0} tweetů"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Sdílet na g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
@@ -11730,15 +11750,15 @@ msgstr "Nahlásit uživatele {0}"
 
 #: apps/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "Objednávka trička"
 
 #: apps/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "Speciální edice triček pro vývojáře doplňků"
 
 #: apps/users/templates/users/t-shirt.html:14 apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Poznámka:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
@@ -11746,15 +11766,17 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
+msgstr "Děkujeme, že děláte Firefox nejrozšiřitelnějším dostupným prohlížečem!"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Jako poděkování bychom vám rádi zaslali limitovanou edici komunitou "
+"navrženého trika. Abyste jej mohli získat, vyplňte prosím formulář níže."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
+msgstr "Kontaktní informace budou Mozillou použity pouze k odeslání trika."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -11762,19 +11784,19 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Celé jméno"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "První řádek adresy"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Druhý řádek adresy"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Město"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
@@ -11782,7 +11804,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Poštovní směrovací číslo (je-li nutné)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
@@ -11790,7 +11812,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
@@ -11798,11 +11820,11 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Velikost trika"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Po odeslání budete přesměrováni na Google Formuláře."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
