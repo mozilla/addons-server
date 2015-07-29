@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:40-0700\n"
+"POT-Creation-Date: 2015-07-29 13:03-0700\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,383 +14,79 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1422784399.0\n"
 
-#: static/js/common-all.js:10462 static/js/impala-all.js:1512 static/js/zamboni/discovery-all.js:10429 static/js/zamboni/init.js:32 static/js/zamboni/mobile-all.js:10990
-#: static/js/zamboni/mobile-min.js:4
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ова могућност је привремено онемогућена док обављамо задатак одржавања сајта. Молимо пробајте мало касније."
-
-#: static/js/common-all.js:10879 static/js/impala-all.js:1929 static/js/zamboni/apps.js:54 static/js/zamboni/mobile-all.js:10726 static/js/zamboni/mobile-min.js:4
-msgid "App installation not allowed."
-msgstr "Није дозвољена инсталација апликације."
-
-#: static/js/common-all.js:10882 static/js/impala-all.js:1932 static/js/zamboni/apps.js:57 static/js/zamboni/mobile-all.js:10729 static/js/zamboni/mobile-min.js:4
-msgid "App manifest is malformed."
-msgstr "Манифест апликације је у погрешном формату."
-
-#: static/js/common-all.js:10885 static/js/impala-all.js:1935 static/js/zamboni/apps.js:60 static/js/zamboni/mobile-all.js:10732 static/js/zamboni/mobile-min.js:4
-msgid "App host could not be reached."
-msgstr "Host апликације није доступан."
-
-#: static/js/common-all.js:10888 static/js/impala-all.js:1938 static/js/zamboni/apps.js:63 static/js/zamboni/mobile-all.js:10735 static/js/zamboni/mobile-min.js:4
-msgid "App manifest is unparsable."
-msgstr "Манифест апликације се не може упоредити."
-
-#: static/js/common-all.js:10891 static/js/impala-all.js:1941 static/js/zamboni/apps.js:66 static/js/zamboni/mobile-all.js:10738 static/js/zamboni/mobile-min.js:4
-msgid "App manifest is invalid."
-msgstr "Манифест апликације је неисправан."
-
-#: static/js/common-all.js:10894 static/js/impala-all.js:1944 static/js/zamboni/apps.js:69 static/js/zamboni/mobile-all.js:10741 static/js/zamboni/mobile-min.js:4
-msgid "Install failed. Please try again later."
-msgstr "Инсталација неуспешна. Молимо Вас покушајте касније."
-
-#: static/js/common-all.js:10905 static/js/impala-all.js:1955 static/js/zamboni/apps.js:80 static/js/zamboni/mobile-all.js:10752 static/js/zamboni/mobile-min.js:4
-msgid "App installation failed."
-msgstr "Инсталација апликације није успела."
-
-#: static/js/common-all.js:10906 static/js/impala-all.js:1956 static/js/zamboni/apps.js:81 static/js/zamboni/mobile-all.js:10753 static/js/zamboni/mobile-min.js:4
-msgid "This system does not support installing apps."
-msgstr "Овај систем не подржава иснталације апликација."
-
-#. L10n: {0} is an app name like Firefox.
-#: static/js/common-all.js:11054 static/js/impala-all.js:2104 static/js/zamboni/buttons.js:82 static/js/zamboni/discovery-all.js:10996
-msgid "Accept and Install"
-msgstr "Прихвати и инсталирај"
-
-#: static/js/common-all.js:11054 static/js/impala-all.js:2104 static/js/zamboni/buttons.js:82 static/js/zamboni/discovery-all.js:10996
-msgid "Add to {0}"
-msgstr "Додај у {0}"
-
-#: static/js/common-all.js:11059 static/js/impala-all.js:2109 static/js/zamboni/buttons.js:87 static/js/zamboni/discovery-all.js:11001
-msgid "Download Now"
-msgstr "Преузми одмах"
-
-#: static/js/common-all.js:11100 static/js/impala-all.js:2150 static/js/zamboni/buttons.js:128 static/js/zamboni/discovery-all.js:11042
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Додатак није ажуриран да подржава default-to-compatible."
-
-#: static/js/common-all.js:11105 static/js/impala-all.js:2155 static/js/zamboni/buttons.js:133 static/js/zamboni/discovery-all.js:11047
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Морате користити Firefox 10.0 или новије."
-
-#: static/js/common-all.js:11117 static/js/impala-all.js:2167 static/js/zamboni/buttons.js:145 static/js/zamboni/discovery-all.js:11059
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla је означила ову верзију као некомпатабилну са Вашом верзијом Firefox-а."
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: static/js/common-all.js:11195 static/js/impala-all.js:2245 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11137
-msgid "Install for {0} anyway"
-msgstr "Инсталирај за {0} у сваком случају"
-
-#: static/js/common-all.js:11195 static/js/impala-all.js:2245 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11137
-msgid "Download for {0} anyway"
-msgstr "Преузми за {0} у сваком случају"
-
-#: static/js/common-all.js:11252 static/js/impala-all.js:2302 static/js/zamboni/buttons.js:284 static/js/zamboni/discovery-all.js:11194
-msgid "Not available for your platform"
-msgstr "Није доступно за Вашу платформу"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: static/js/common-all.js:11263 static/js/common-all.js:11300 static/js/impala-all.js:2313 static/js/impala-all.js:2350 static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
-#: static/js/zamboni/discovery-all.js:11205 static/js/zamboni/discovery-all.js:11242
-msgid "Not available for {0} {1}"
-msgstr "Није доступно за {0} {1}"
-
-#: static/js/common-all.js:11326 static/js/impala-all.js:2376 static/js/zamboni/buttons.js:358 static/js/zamboni/discovery-all.js:11268
-msgid "Works with {app} {min} - {max}"
-msgstr "Ради са {app} {min} - {max}"
-
-#: static/js/common-all.js:11328 static/js/impala-all.js:2378 static/js/zamboni/buttons.js:360 static/js/zamboni/discovery-all.js:11270
-msgid "View other versions"
-msgstr "Погледај остале верзије"
-
-#: static/js/common-all.js:11543 static/js/impala-all.js:2593 static/js/zamboni/buttons.js:578 static/js/zamboni/discovery-all.js:11485 static/js/zamboni/mobile-all.js:11222
-#: static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:39
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Жао нам је, треба Вам прегледач базиран на технологији Mozilla фондације (као што је Firefox) да бисте инсталирали прикључак за претраживање."
-
-#: static/js/common-all.js:16652 static/js/common-min.js:7 static/js/impala-all.js:8282 static/js/impala-min.js:5 static/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "Учитавање..."
-
-#. L10n: {0} is the number of characters left.
-#: static/js/common-all.js:16725 static/js/common-min.js:7 static/js/impala-all.js:8355 static/js/impala-min.js:5 static/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> карактер преостао."
-msgstr[1] "<b>{0}</b> карактера преостала."
-msgstr[2] "<b>{0}</b> карактера преостало."
-
-#: static/js/common-all.js:17162 static/js/common-min.js:8 static/js/impala-all.js:8741 static/js/impala-min.js:5 static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:12231
-#: static/js/zamboni/mobile-min.js:5
+#: static/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} зведица"
 msgstr[1] "{0} зведице"
 msgstr[2] "{0} зведица"
 
-#: static/js/common-all.js:17306 static/js/common-min.js:8 static/js/impala-all.js:8885 static/js/impala-min.js:5 static/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "Уклони ову локализацију"
-
-#: static/js/common-all.js:18266 static/js/common-min.js:8 static/js/impala-all.js:9862 static/js/impala-min.js:6
-msgid "Install App"
-msgstr ""
-
-#: static/js/common-all.js:18506 static/js/common-min.js:8 static/js/impala-all.js:10202 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "Назначено за преглед"
-
-#: static/js/common-all.js:18522 static/js/common-min.js:8 static/js/impala-all.js:10219 static/js/impala-min.js:6 static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "Ваш одзив је неопходан"
-
-#: static/js/common-all.js:18591 static/js/common-min.js:8 static/js/impala-all.js:10312 static/js/impala-min.js:6 static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "Обележено за брисање"
-
-#: static/js/common-all.js:19177 static/js/common-min.js:9 static/js/impala-all.js:12078 static/js/impala-min.js:7 static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "обриши скорије гледано"
-
-#: static/js/common-all.js:19349 static/js/common-min.js:9 static/js/impala-all.js:12250 static/js/impala-min.js:7 static/js/zamboni/collections.js:365
-msgid "Adding to Favorites&hellip;"
-msgstr "Додајем у Омиљено&hellip;"
-
-#: static/js/common-all.js:19352 static/js/common-min.js:9 static/js/impala-all.js:12253 static/js/impala-min.js:7 static/js/zamboni/collections.js:368
-msgid "Removing Favorite&hellip;"
-msgstr "Бришем из Омиљених&hellip;"
-
-#: static/js/common-all.js:19355 static/js/common-min.js:9 static/js/impala-all.js:12256 static/js/impala-min.js:7 static/js/zamboni/collections.js:371
-msgid "Add to Favorites"
-msgstr "Додај у Омиљене"
-
-#: static/js/common-all.js:19358 static/js/common-min.js:9 static/js/impala-all.js:12259 static/js/impala-min.js:7 static/js/zamboni/collections.js:374
-msgid "Remove from Favorites"
-msgstr "Избриши из Омиљених"
-
-#: static/js/common-all.js:19421 static/js/common-min.js:9 static/js/impala-all.js:12322 static/js/impala-min.js:7 static/js/zamboni/collections.js:437
-msgid "Pending"
-msgstr "На чекању"
-
-#: static/js/common-all.js:19422 static/js/common-min.js:9 static/js/impala-all.js:12323 static/js/impala-min.js:7 static/js/zamboni/collections.js:438
-msgid "Add a comment"
-msgstr "Додај коментар"
-
-#: static/js/common-all.js:19422 static/js/common-min.js:9 static/js/impala-all.js:12323 static/js/impala-min.js:7 static/js/zamboni/collections.js:438
-msgid "Comment"
-msgstr "Коментар"
-
-#: static/js/common-all.js:19423 static/js/common-min.js:9 static/js/impala-all.js:12324 static/js/impala-min.js:7 static/js/zamboni/collections.js:439
-msgid "Remove this add-on from the collection"
-msgstr "Избриши овај додатак из колекције"
-
-#: static/js/common-all.js:19423 static/js/common-all.js:19452 static/js/common-min.js:9 static/js/impala-all.js:12324 static/js/impala-all.js:12353 static/js/impala-min.js:7
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
-msgid "Remove"
-msgstr "Избриши"
-
-#: static/js/common-all.js:19452 static/js/common-min.js:9 static/js/impala-all.js:12353 static/js/impala-min.js:7 static/js/zamboni/collections.js:468
-msgid "Remove this user as a contributor"
-msgstr "Уклони корисника као сарадника"
-
-#: static/js/common-all.js:19464 static/js/common-min.js:9 static/js/impala-all.js:12365 static/js/impala-min.js:7 static/js/zamboni/collections.js:480
-msgid "An email address is required."
-msgstr "Адреса е-поште је обавезна."
-
-#: static/js/common-all.js:19482 static/js/common-min.js:9 static/js/impala-all.js:12383 static/js/impala-min.js:7 static/js/zamboni/collections.js:498
-msgid "You cannot add yourself as a contributor."
-msgstr "Не можете себе додати као сарадника."
-
-#: static/js/common-all.js:19484 static/js/common-min.js:9 static/js/impala-all.js:12385 static/js/impala-min.js:7 static/js/zamboni/collections.js:500
-msgid "You have already added that user."
-msgstr "Већ сте додали тог корисника."
-
-#: static/js/common-all.js:19691 static/js/common-min.js:9 static/js/impala-all.js:12592 static/js/impala-min.js:7 static/js/zamboni/collections.js:707
-msgid "Add to favorites"
-msgstr "Додај у омиљене"
-
-#: static/js/common-all.js:19695 static/js/common-min.js:9 static/js/impala-all.js:12596 static/js/impala-min.js:7 static/js/zamboni/collections.js:711
-msgid "Remove from favorites"
-msgstr "Избриши из омиљених"
-
-#: static/js/common-all.js:19713 static/js/common-min.js:9 static/js/impala-all.js:12614 static/js/impala-all.js:12680 static/js/impala-min.js:7 static/js/impala/collections.js:10
-#: static/js/zamboni/collections.js:729
-msgid "Follow this Collection"
-msgstr "Прати ову колекцију"
-
-#: static/js/common-all.js:19722 static/js/common-min.js:9 static/js/impala-all.js:12623 static/js/impala-min.js:7 static/js/zamboni/collections.js:738
-msgid "Stop following"
-msgstr "Прекини праћење"
-
-#: static/js/common-all.js:19798 static/js/common-all.js:19811 static/js/common-min.js:9 static/js/impala-all.js:12731 static/js/impala-all.js:12744 static/js/impala-min.js:7
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Све"
-
-#: static/js/common-all.js:19960 static/js/common-min.js:9 static/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "Јачина лозинке:"
-
-#: static/js/common-all.js:19966 static/js/common-min.js:9 static/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Остао је још најмање {0} каратер."
-msgstr[1] "Остало је још најмање {0} каратера."
-msgstr[2] "Остало је још најмање {0} каратера."
-
-#: static/js/common-all.js:20150 static/js/common-min.js:9 static/js/impala-all.js:13126 static/js/impala-min.js:7 static/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "Претражи теме за термин <b>{0}</b>"
-
-#: static/js/common-all.js:20152 static/js/common-min.js:9 static/js/impala-all.js:13128 static/js/impala-min.js:7 static/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "Претражи апликације за термин <b>{0}</b>"
-
-#: static/js/common-all.js:20154 static/js/common-min.js:9 static/js/impala-all.js:13130 static/js/impala-min.js:7 static/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Претражи додатке за термин <b>{0}</b>"
-
-#: static/js/common-all.js:20385 static/js/common-min.js:9 static/js/impala-all.js:13361 static/js/impala-min.js:7 static/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "Категорија"
-
-#: static/js/impala-all.js:3042 static/js/zamboni/browserid_support.js:37 static/js/zamboni/mobile-all.js:12298 static/js/zamboni/mobile-min.js:5
-msgid "Admins and editors must provide a password to log in."
-msgstr "Администратори и уредници морају укуцати лозинку за пријављивање."
-
-#: static/js/impala-all.js:3047 static/js/zamboni/browserid_support.js:42 static/js/zamboni/mobile-all.js:12303 static/js/zamboni/mobile-min.js:5
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Пријава преко BrowserID-а неуспела. Можда немате налог са том адресом е-поште?"
-
-#. L10n: {0} is an app name.
-#: static/js/impala-all.js:10340 static/js/impala-min.js:6 static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
-
-#: static/js/impala-all.js:10852 static/js/impala-all.js:12860 static/js/impala-min.js:6 static/js/impala-min.js:7 static/js/common/upload-image.js:97 static/js/impala/users.js:51
-#: static/js/zamboni/devhub-all.js:719 static/js/zamboni/devhub-min.js:1
-msgid "Images must be either PNG or JPG."
-msgstr "Слике морају бити PNG или JPG."
-
-#: static/js/impala-all.js:10856 static/js/impala-min.js:6 static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:723 static/js/zamboni/devhub-min.js:1
-msgid "Videos must be in WebM."
-msgstr "Видео снимци морају бити у WebM формату."
-
-#: static/js/impala-all.js:10883 static/js/impala-min.js:6 static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128 static/js/zamboni/devhub-all.js:275
-#: static/js/zamboni/devhub-all.js:750 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
 msgstr "Дошло је до проблема при контактирању сервера."
 
-#: static/js/impala-all.js:11602 static/js/impala-min.js:6 static/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "Сва права су задржана"
-
-#: static/js/impala-all.js:11606 static/js/impala-min.js:6 static/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-#: static/js/impala-all.js:11611 static/js/impala-min.js:6 static/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#: static/js/impala-all.js:11616 static/js/impala-min.js:6 static/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#: static/js/impala-all.js:11621 static/js/impala-min.js:6 static/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#: static/js/impala-all.js:11626 static/js/impala-min.js:6 static/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#: static/js/impala-all.js:11631 static/js/impala-min.js:6 static/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#: static/js/impala-all.js:11838 static/js/impala-min.js:6 static/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "Назив Ваше теме"
-
-#: static/js/impala-all.js:12689 static/js/impala-min.js:7 static/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "Прекини праћење"
-
-#: static/js/impala-all.js:12690 static/js/impala-min.js:7 static/js/impala/collections.js:20
-msgid "Following"
-msgstr "Праћење"
-
-#: static/js/impala-all.js:12842 static/js/impala-min.js:7 static/js/impala/users.js:33
-msgid "use original"
-msgstr "користи оригинал"
-
-#: static/js/impala-all.js:13017 static/js/impala-min.js:7 static/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "Ажурирам резултате&hellip;"
-
-#: static/js/common/upload-addon.js:52 static/js/zamboni/devhub-all.js:293 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:52
 msgid "Select a file..."
 msgstr "Изаберите датотеку..."
 
-#: static/js/common/upload-addon.js:53 static/js/zamboni/devhub-all.js:294 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Ваш додатак се треба завршити са .xpi, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:87 static/js/zamboni/devhub-all.js:328 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:87
 msgid "{0}% complete"
 msgstr "{0}% завршено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:90 static/js/zamboni/devhub-all.js:331 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:90
 msgid "{0} of {1}"
 msgstr "{0} од {1}"
 
-#: static/js/common/upload-addon.js:123 static/js/zamboni/devhub-all.js:361 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:123
 msgid "Cancel"
 msgstr "Откажи"
 
-#: static/js/common/upload-addon.js:145 static/js/zamboni/devhub-all.js:383 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:145
 msgid "Uploading {0}"
 msgstr "Отпремам {0}"
 
-#: static/js/common/upload-addon.js:172 static/js/zamboni/devhub-all.js:410 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:172
 msgid "Error with {0}"
 msgstr "Грешка са {0}"
 
-#: static/js/common/upload-addon.js:177 static/js/zamboni/devhub-all.js:415 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:177
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ваш додатак није прошао проверу - {0} грешка."
 msgstr[1] "Ваш додатак није прошао проверу - {0} грешке."
 msgstr[2] "Ваш додатак није прошао проверу - {0} грешака."
 
-#: static/js/common/upload-addon.js:191 static/js/zamboni/devhub-all.js:429 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и још {0}"
 msgstr[1] "&hellip;и још {0}"
 msgstr[2] "&hellip;и још {0}"
 
-#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:427 static/js/zamboni/devhub-all.js:443 static/js/zamboni/devhub-all.js:571 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:427
 msgid "See full validation report"
 msgstr "Погледајте потпуни извештај прегледа"
 
-#: static/js/common/upload-addon.js:217 static/js/zamboni/devhub-all.js:455 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:217
 msgid "Validating {0}"
 msgstr "Проверавам {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:256 static/js/zamboni/devhub-all.js:494 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:256
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Добијен је празан одговор од сервера; статус: {0}"
 
-#: static/js/common/upload-addon.js:279 static/js/zamboni/devhub-all.js:505 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:279
 msgid "Unexpected server error while validating."
 msgstr "Неочекивана грешка на серверу током провере."
 
-#: static/js/common/upload-addon.js:317 static/js/zamboni/devhub-all.js:543 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:317
 msgid "Finished validating {0}"
 msgstr "Завршена провера {0}"
 
@@ -454,839 +150,1104 @@ msgstr "Процес валидације је нашао проблеме ко�
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ако Вам није познат процес рецензије додатака, можете прочитати о томе овде."
 
-#: static/js/common/upload-addon.js:469 static/js/zamboni/devhub-all.js:605 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:469
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Неке платформе нису доступне за овај тип додатка."
 
-#: static/js/common/upload-addon.js:471 static/js/zamboni/devhub-all.js:607 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:471
 msgid "Sorry, no supported platform has been found."
 msgstr "Нажалост није нађена ни једна подржана платформа."
 
-#: static/js/common/upload-base.js:57 static/js/zamboni/devhub-all.js:197 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип датотеке коју сте послали није препознат."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/devhub-all.js:219 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-base.js:79
 msgid "You cancelled the upload."
 msgstr "Отказали сте отпремање."
 
-#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16986 static/js/zamboni/stats-min.js:6
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "Слике морају бити PNG или JPG."
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "Видео снимци морају бити у WebM формату."
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "Прати ову колекцију"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Прекини праћење"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "Праћење"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
+
+#: static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "Сва права су задржана"
+
+#: static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+#: static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+#: static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+#: static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+#: static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "Назив Ваше теме"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "Назначено за преглед"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "Ваш одзив је неопходан"
+
+#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "Обележено за брисање"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "Ажурирам резултате&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "Категорија"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Претражи теме за термин <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Претражи апликације за термин <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Претражи додатке за термин <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "користи оригинал"
+
+#: static/js/impala/stats/chart.js:267
 msgid "Week of {0}"
 msgstr "Седмица од {0}"
 
-#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16988 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:269
 msgid "downloads"
 msgstr "преузимања"
 
-#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16989 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:270
 msgid "{0} users"
 msgstr "{0} корисника"
 
-#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16990 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
 msgstr "{0} додатака"
 
-#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16991 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:272
 msgid "{0} collections"
 msgstr "{0} колекције"
 
-#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16992 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
 msgstr "{0} рецензија"
 
-#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16994 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
 msgstr "{0} продаја"
 
-#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16995 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:276
 msgid "{0} refunds"
 msgstr "{0} рефункдација"
 
-#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16996 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:277
 msgid "{0} installs"
 msgstr "{0} инсталација"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102 static/js/zamboni/stats-all.js:15379 static/js/zamboni/stats-all.js:15478
-#: static/js/zamboni/stats-all.js:17088 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr "Преузимања"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103 static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-all.js:15479
-#: static/js/zamboni/stats-all.js:17098 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr "Број корисника по дану"
 
-#: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17129 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
 msgstr "Количина, у валути USD"
 
-#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97 static/js/zamboni/stats-all.js:15473 static/js/zamboni/stats-all.js:17140 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
 msgid "Number of Contributions"
 msgstr "Број доприноса"
 
-#: static/js/impala/stats/chart.js:447 static/js/zamboni/stats-all.js:17166 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:447
 msgid "More Info..."
 msgstr "Више информација..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js:451 static/js/zamboni/stats-all.js:17170 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:451
 msgid "Details for {0}"
 msgstr "Детаљи о {0}"
 
-#: static/js/impala/stats/csv_keys.js:9 static/js/zamboni/stats-all.js:15385 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
 msgstr "Направљене колекције"
 
-#: static/js/impala/stats/csv_keys.js:12 static/js/zamboni/stats-all.js:15388 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
 msgstr "Додаци који се користе"
 
-#: static/js/impala/stats/csv_keys.js:15 static/js/zamboni/stats-all.js:15391 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
 msgstr "Додатака направљено"
 
-#: static/js/impala/stats/csv_keys.js:18 static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
 msgstr "Додатака преузето"
 
-#: static/js/impala/stats/csv_keys.js:21 static/js/zamboni/stats-all.js:15397 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
 msgstr "Додатака ажурирано"
 
-#: static/js/impala/stats/csv_keys.js:24 static/js/zamboni/stats-all.js:15400 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
 msgstr "Рецензија написано"
 
-#: static/js/impala/stats/csv_keys.js:27 static/js/zamboni/stats-all.js:15403 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
 msgstr "Пријаве корисника"
 
-#: static/js/impala/stats/csv_keys.js:30 static/js/zamboni/stats-all.js:15406 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
 msgstr "Претплатници"
 
-#: static/js/impala/stats/csv_keys.js:33 static/js/zamboni/stats-all.js:15409 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
 msgstr "Оцене"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107 static/js/zamboni/stats-all.js:15412 static/js/zamboni/stats-all.js:15483 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr "Продаје"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106 static/js/zamboni/stats-all.js:15415 static/js/zamboni/stats-all.js:15482 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr "Инсталације"
 
-#: static/js/impala/stats/csv_keys.js:42 static/js/zamboni/stats-all.js:15418 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "Непознато"
 
-#: static/js/impala/stats/csv_keys.js:43 static/js/zamboni/stats-all.js:15419 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "Менаџер додатака"
 
-#: static/js/impala/stats/csv_keys.js:44 static/js/zamboni/stats-all.js:15420 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:44
 msgid "Search Results"
 msgstr "Резултати претраге"
 
-#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47 static/js/zamboni/stats-all.js:15421 static/js/zamboni/stats-all.js:15422
-#: static/js/zamboni/stats-all.js:15423 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr "Промоција на почетној страни"
 
-#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49 static/js/zamboni/stats-all.js:15424 static/js/zamboni/stats-all.js:15425 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
 msgid "Homepage Featured"
 msgstr "Издвојено на почетној страни"
 
-#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51 static/js/zamboni/stats-all.js:15426 static/js/zamboni/stats-all.js:15427 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Up and Coming"
 msgstr "Надолазеће на почетној страни"
 
-#: static/js/impala/stats/csv_keys.js:52 static/js/zamboni/stats-all.js:15428 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
 msgstr "Најпопуларније на почетној страни"
 
-#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55 static/js/zamboni/stats-all.js:15429 static/js/zamboni/stats-all.js:15431 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
 msgstr "Додатне информације"
 
-#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56 static/js/zamboni/stats-all.js:15430 static/js/zamboni/stats-all.js:15432 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
 msgstr "Додатне информације (доле)"
 
-#: static/js/impala/stats/csv_keys.js:57 static/js/zamboni/stats-all.js:15433 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
 msgstr "Додатне информације (Канал за развој)"
 
-#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60 static/js/zamboni/stats-all.js:15434 static/js/zamboni/stats-all.js:15435
-#: static/js/zamboni/stats-all.js:15436 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr "Често коришћено уз"
 
-#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62 static/js/zamboni/stats-all.js:15437 static/js/zamboni/stats-all.js:15438 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
 msgid "Others By Author"
 msgstr "Остало од аутора"
 
-#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64 static/js/zamboni/stats-all.js:15439 static/js/zamboni/stats-all.js:15440 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Dependencies"
 msgstr "Зависи од"
 
-#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66 static/js/zamboni/stats-all.js:15441 static/js/zamboni/stats-all.js:15442 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Upsell"
 msgstr "Технике увећања продаје"
 
-#: static/js/impala/stats/csv_keys.js:68 static/js/zamboni/stats-all.js:15444 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:68
 msgid "Sharing"
 msgstr "Дељење"
 
-#: static/js/impala/stats/csv_keys.js:69 static/js/zamboni/stats-all.js:15445 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
 msgstr "Странице категорија"
 
-#: static/js/impala/stats/csv_keys.js:70 static/js/zamboni/stats-all.js:15446 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:70
 msgid "Collections"
 msgstr "Колекције"
 
-#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15447 static/js/zamboni/stats-all.js:15448 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
 msgstr "Клизач издвојених апл. на почетној страни категорије"
 
-#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74 static/js/zamboni/stats-all.js:15449 static/js/zamboni/stats-all.js:15450 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
 msgstr "Најбоље оцењене апл. на почетној страни категорије"
 
-#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15451 static/js/zamboni/stats-all.js:15452 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
 msgstr "Најпопуларније апл. на почетној страни категорије"
 
-#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78 static/js/zamboni/stats-all.js:15453 static/js/zamboni/stats-all.js:15454 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
 msgstr "Скоро додате апл. на почетној страни категорије"
 
-#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80 static/js/zamboni/stats-all.js:15455 static/js/zamboni/stats-all.js:15456 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
 msgstr "Преглед сортиране листе истакнутих апликација"
 
-#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82 static/js/zamboni/stats-all.js:15457 static/js/zamboni/stats-all.js:15458 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
 msgid "Browse Listing Users Sort"
 msgstr "Преглед сортиране листе корисника"
 
-#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84 static/js/zamboni/stats-all.js:15459 static/js/zamboni/stats-all.js:15460 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
 msgid "Browse Listing Rating Sort"
 msgstr "Преглед сортиране листе оцена"
 
-#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86 static/js/zamboni/stats-all.js:15461 static/js/zamboni/stats-all.js:15462 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
 msgid "Browse Listing Created Sort"
 msgstr "Преглед сортиране листе креираних апликација"
 
-#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88 static/js/zamboni/stats-all.js:15463 static/js/zamboni/stats-all.js:15464 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
 msgid "Browse Listing Name Sort"
 msgstr "Преглед сортиране листе назива"
 
-#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90 static/js/zamboni/stats-all.js:15465 static/js/zamboni/stats-all.js:15466 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
 msgid "Browse Listing Popular Sort"
 msgstr "Преглед сортиране листе популарних апликација"
 
-#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92 static/js/zamboni/stats-all.js:15467 static/js/zamboni/stats-all.js:15468 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
 msgid "Browse Listing Updated Sort"
 msgstr "Преглед сортиране листе ажурираних апликација"
 
-#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94 static/js/zamboni/stats-all.js:15469 static/js/zamboni/stats-all.js:15470 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Преглед сортиране листе надолазећих апликација"
 
-#: static/js/impala/stats/csv_keys.js:98 static/js/zamboni/stats-all.js:15474 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:98
 msgid "Total Amount Contributed"
 msgstr "Укупан број доприноса"
 
-#: static/js/impala/stats/csv_keys.js:99 static/js/zamboni/stats-all.js:15475 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
 msgstr "Просек доприноса"
 
-#: static/js/impala/stats/csv_keys.js:108 static/js/zamboni/stats-all.js:15484 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:108
 msgid "Usage"
 msgstr "Употреба"
 
-#: static/js/impala/stats/csv_keys.js:111 static/js/zamboni/stats-all.js:15487 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:111
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js:112 static/js/zamboni/stats-all.js:15488 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:112
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15489 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:113
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15490 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:114
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js:115 static/js/zamboni/stats-all.js:15491 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:115
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js:116 static/js/zamboni/stats-all.js:15492 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:116
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js:117 static/js/zamboni/stats-all.js:15493 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15498 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:122
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Преузимања и дневни корисници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15500 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:124
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Преузимања и дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:128 static/js/zamboni/stats-all.js:15504 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:128
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Инсталације и дневни корисници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:130 static/js/zamboni/stats-all.js:15506 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:130
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Инсталације и дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:134 static/js/zamboni/stats-all.js:15510 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:134
 msgid "Downloads, last {0} days"
 msgstr "Преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:136 static/js/zamboni/stats-all.js:15512 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:136
 msgid "Downloads from {0} to {1}"
 msgstr "Преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:140 static/js/zamboni/stats-all.js:15516 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:140
 msgid "Daily Users, last {0} days"
 msgstr "Дневни корисници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:142 static/js/zamboni/stats-all.js:15518 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:142
 msgid "Daily Users from {0} to {1}"
 msgstr "Дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:146 static/js/zamboni/stats-all.js:15522 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:146
 msgid "Applications, last {0} days"
 msgstr "Апликације, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:148 static/js/zamboni/stats-all.js:15524 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:148
 msgid "Applications from {0} to {1}"
 msgstr "Апликације од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:152 static/js/zamboni/stats-all.js:15528 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:152
 msgid "Platforms, last {0} days"
 msgstr "Платформе, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:154 static/js/zamboni/stats-all.js:15530 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:154
 msgid "Platforms from {0} to {1}"
 msgstr "Платформе од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:158 static/js/zamboni/stats-all.js:15534 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:158
 msgid "Languages, last {0} days"
 msgstr "Језици, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:160 static/js/zamboni/stats-all.js:15536 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:160
 msgid "Languages from {0} to {1}"
 msgstr "Језици од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:164 static/js/zamboni/stats-all.js:15540 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:164
 msgid "Add-on Versions, last {0} days"
 msgstr "Верзије додатака, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:166 static/js/zamboni/stats-all.js:15542 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:166
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Верзије додатака од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:170 static/js/zamboni/stats-all.js:15546 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:170
 msgid "Add-on Status, last {0} days"
 msgstr "Статус додатака, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:172 static/js/zamboni/stats-all.js:15548 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:172
 msgid "Add-on Status from {0} to {1}"
 msgstr "Статус додатака, од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:176 static/js/zamboni/stats-all.js:15552 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:176
 msgid "Download Sources, last {0} days"
 msgstr "Извори преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:178 static/js/zamboni/stats-all.js:15554 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:178
 msgid "Download Sources from {0} to {1}"
 msgstr "Извори преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:182 static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:182
 msgid "Contributions, last {0} days"
 msgstr "Доприноси, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:184 static/js/zamboni/stats-all.js:15560 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:184
 msgid "Contributions from {0} to {1}"
 msgstr "Доприноси од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:188 static/js/zamboni/stats-all.js:15564 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:188
 msgid "Site Metrics, last {0} days"
 msgstr "Показатељи за сајт, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:190 static/js/zamboni/stats-all.js:15566 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:190
 msgid "Site Metrics from {0} to {1}"
 msgstr "Показатељи за сајт од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:194 static/js/zamboni/stats-all.js:15570 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:194
 msgid "Add-ons in Use, last {0} days"
 msgstr "Додаци у употреби, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:196 static/js/zamboni/stats-all.js:15572 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:196
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Додаци у употреби од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:200 static/js/zamboni/stats-all.js:15576 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:200
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Додатака преузето, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:202 static/js/zamboni/stats-all.js:15578 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:202
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Додатака преузето од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:206 static/js/zamboni/stats-all.js:15582 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:206
 msgid "Add-ons Created, last {0} days"
 msgstr "Додатака направљено, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:208 static/js/zamboni/stats-all.js:15584 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:208
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Додатака направљено од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:212 static/js/zamboni/stats-all.js:15588 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:212
 msgid "Add-ons Updated, last {0} days"
 msgstr "Додатака ажурирано, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:214 static/js/zamboni/stats-all.js:15590 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:214
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Додатака ажурирано од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:218 static/js/zamboni/stats-all.js:15594 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:218
 msgid "Reviews Written, last {0} days"
 msgstr "Рецензија написано, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:220 static/js/zamboni/stats-all.js:15596 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:220
 msgid "Reviews Written from {0} to {1}"
 msgstr "Рецензија написано од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:224 static/js/zamboni/stats-all.js:15600 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:224
 msgid "User Signups, last {0} days"
 msgstr "Регистрације корисника, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:226 static/js/zamboni/stats-all.js:15602 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:226
 msgid "User Signups from {0} to {1}"
 msgstr "Регистрације корисника од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:230 static/js/zamboni/stats-all.js:15606 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:230
 msgid "Collections Created, last {0} days"
 msgstr "Колекција направљено, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:232 static/js/zamboni/stats-all.js:15608 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:232
 msgid "Collections Created from {0} to {1}"
 msgstr "Колекција направљено од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:236 static/js/zamboni/stats-all.js:15612 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:236
 msgid "Subscribers, last {0} days"
 msgstr "Претплатници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:238 static/js/zamboni/stats-all.js:15614 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:238
 msgid "Subscribers from {0} to {1}"
 msgstr "Претплатници од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:242 static/js/zamboni/stats-all.js:15618 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:242
 msgid "Ratings, last {0} days"
 msgstr "Оцењивања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:244 static/js/zamboni/stats-all.js:15620 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:244
 msgid "Ratings from {0} to {1}"
 msgstr "Оцењивања од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:248 static/js/zamboni/stats-all.js:15624 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:248
 msgid "Sales, last {0} days"
 msgstr "Продаја, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:250 static/js/zamboni/stats-all.js:15626 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:250
 msgid "Sales from {0} to {1}"
 msgstr "Продаја од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:254 static/js/zamboni/stats-all.js:15630 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:254
 msgid "Installs, last {0} days"
 msgstr "Инсталације, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:256 static/js/zamboni/stats-all.js:15632 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:256
 msgid "Installs from {0} to {1}"
 msgstr "Инсталације, од {0} до {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:262 static/js/zamboni/stats-all.js:15638 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:262
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> у последњих {1} дана"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270 static/js/zamboni/stats-all.js:15640 static/js/zamboni/stats-all.js:15646 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> од {1} до {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:268 static/js/zamboni/stats-all.js:15644 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:268
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> просечне у последњих {1} дана"
 
-#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16557 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/overview.js:19
 msgid "No data available."
 msgstr "Нема доступних података."
 
-#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17297 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/table.js:74
 msgid "Date"
 msgstr "Датум"
 
-#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16688 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/topchart.js:96
 msgid "Other"
 msgstr "Остали"
 
-#: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2258 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:1311 static/js/zamboni/editors-all.js:15617 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1315 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Прво изаберите апликацију"
 
-#: static/js/zamboni/admin-all.js:207 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:51
+#: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Подесите {0} додатак на максималну верзију од {1} и пошаљи е-пошту аутору."
 msgstr[1] "Подесите {0} додатака на максималну верзију од {1} и пошаљи е-пошту ауторима."
 msgstr[2] "Подесите {0} додатака на максималну верзију од {1} и пошаљи е-пошту ауторима."
 
-#: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:54
+#: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Аутор е-поште има {2} додатак који није прошао проверу ваљаности."
 msgstr[1] "Аутор е-поште има {2} додатка који нису прошли проверу ваљаности."
 msgstr[2] "Аутор е-поште има {2} додатка који нису прошли проверу ваљаности."
 
-#: static/js/zamboni/devhub-all.js:549 static/js/zamboni/devhub-min.js:1
-msgid "Your add-on passed validation with no errors and {0} message."
-msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "Није дозвољена инсталација апликације."
 
-#: static/js/zamboni/devhub-all.js:554 static/js/zamboni/devhub-min.js:1
-msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "Манифест апликације је у погрешном формату."
 
-#: static/js/zamboni/devhub-all.js:1113 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:170
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Host апликације није доступан."
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Манифест апликације се не може упоредити."
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Манифест апликације је неисправан."
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Инсталација неуспешна. Молимо Вас покушајте касније."
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "Инсталација апликације није успела."
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "Овај систем не подржава иснталације апликација."
+
+#: static/js/zamboni/browserid_support.js:37
+msgid "Admins and editors must provide a password to log in."
+msgstr "Администратори и уредници морају укуцати лозинку за пријављивање."
+
+#: static/js/zamboni/browserid_support.js:42
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr "Пријава преко BrowserID-а неуспела. Можда немате налог са том адресом е-поште?"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "Прихвати и инсталирај"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "Додај у {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "Преузми одмах"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "Додатак није ажуриран да подржава default-to-compatible."
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "Морате користити Firefox 10.0 или новије."
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla је означила ову верзију као некомпатабилну са Вашом верзијом Firefox-а."
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "Инсталирај за {0} у сваком случају"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "Преузми за {0} у сваком случају"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "Није доступно за Вашу платформу"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "Није доступно за {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "Ради са {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "Погледај остале верзије"
+
+#: static/js/zamboni/buttons.js:578 static/js/zamboni/mobile/buttons.js:39
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Жао нам је, треба Вам прегледач базиран на технологији Mozilla фондације (као што је Firefox) да бисте инсталирали прикључак за претраживање."
+
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "обриши скорије гледано"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "Додајем у Омиљено&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "Бришем из Омиљених&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "Додај у Омиљене"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "Избриши из Омиљених"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "На чекању"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "Додај коментар"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "Коментар"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "Избриши овај додатак из колекције"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "Избриши"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "Уклони корисника као сарадника"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "Адреса е-поште је обавезна."
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "Не можете себе додати као сарадника."
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "Већ сте додали тог корисника."
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "Додај у омиљене"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "Избриши из омиљених"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "Прекини праћење"
+
+#: static/js/zamboni/devhub.js:174
 msgid "Your browser does not support the video tag"
 msgstr "Ваш прегледач не подржава ознаке видео снимака"
 
-#: static/js/zamboni/devhub-all.js:1368 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:427
+#: static/js/zamboni/devhub.js:431
 msgid "Changes Saved"
 msgstr "Измене сачуване"
 
-#: static/js/zamboni/devhub-all.js:1384 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:443
+#: static/js/zamboni/devhub.js:447
 msgid "Enter a new author's email address"
 msgstr "Унесите адресу е-поште новог аутора"
 
-#: static/js/zamboni/devhub-all.js:1531 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:590
+#: static/js/zamboni/devhub.js:594
 msgid "There was an error uploading your file."
 msgstr "Дошло је до грешке приликом отпремања Ваше датотеке."
 
-#: static/js/zamboni/devhub-all.js:1676 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:735
+#: static/js/zamboni/devhub.js:739
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} датотека"
 msgstr[1] "{files} датотеке"
 msgstr[2] "{files} датотека"
 
-#: static/js/zamboni/devhub-all.js:1679 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:738
+#: static/js/zamboni/devhub.js:742
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} корисничка рецензија"
 msgstr[1] "{reviews} корисничке рецензије"
 msgstr[2] "{reviews} корисничких рецензија"
 
-#: static/js/zamboni/devhub-all.js:1799 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:850
+#: static/js/zamboni/devhub.js:854
 msgid "Learn more"
 msgstr "Сазнајте више"
 
-#: static/js/zamboni/devhub-all.js:1803 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:854
+#: static/js/zamboni/devhub.js:858
 msgid "Example"
 msgstr "Пример"
 
-#: static/js/zamboni/devhub-all.js:2159 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1212
+#: static/js/zamboni/devhub.js:1216
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
-#: static/js/zamboni/devhub-all.js:2286 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1339
+#: static/js/zamboni/devhub.js:1343
 msgid "Starting tests..."
 msgstr "Покрећем тестова..."
 
-#: static/js/zamboni/devhub-all.js:2293 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1346
+#: static/js/zamboni/devhub.js:1350
 msgid "Waiting for test results..."
 msgstr "Чекам резултате тестова..."
 
-#: static/js/zamboni/devhub-all.js:2295 static/js/zamboni/devhub-all.js:2300 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1348 static/js/zamboni/devhub.js:1353
+#: static/js/zamboni/devhub.js:1352 static/js/zamboni/devhub.js:1357
 msgid "Internal Server Error"
 msgstr "Серверска грешка"
 
-#: static/js/zamboni/devhub-all.js:2335 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1388
+#: static/js/zamboni/devhub.js:1392
 msgid "Must be a valid e-mail address."
 msgstr "Адреса е-поште мора бити исправна."
 
-#: static/js/zamboni/devhub-all.js:2480 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:71
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "Нема резултата."
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Жао нам је, нисмо успели наћи препоруке за Вас.<br>Молимо посетите <a href=\"{0}\">страницу са додацима</a> да би пронашли додатке погодне за Вас."
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "Тражим препоруке&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "Ажурирам препоруке&hellip;"
+
+#: static/js/zamboni/editors.js:145
+msgid "{name} was viewing this page first."
+msgstr "{name} је први гледао ову страницу."
+
+#: static/js/zamboni/editors.js:195
+msgid "Receipt checked by app."
+msgstr "Потврда проверена од стране апликације."
+
+#: static/js/zamboni/editors.js:197
+msgid "Receipt was not checked by app."
+msgstr "Потврда није проверена од стране апликације."
+
+#: static/js/zamboni/editors.js:268
+msgid "{name} was viewing this add-on first."
+msgstr "{name} је први прегледавао овај додатак."
+
+#: static/js/zamboni/editors.js:279
+msgid "Loading&hellip;"
+msgstr "Учитавам&hellip;"
+
+#: static/js/zamboni/editors.js:284
+msgid "Version Notes"
+msgstr "Белешке о верзији"
+
+#: static/js/zamboni/editors.js:289
+msgid "Notes for Reviewers"
+msgstr "Белешке за рецензенте"
+
+#: static/js/zamboni/editors.js:294
+msgid "No version notes found"
+msgstr "Није нађена ни једна белешка о верзији"
+
+#: static/js/zamboni/editors.js:354
+msgid "Average Reviews"
+msgstr "Просечне рецензије"
+
+#: static/js/zamboni/editors.js:410
+msgid "Number of Reviews"
+msgstr "Број рецензија"
+
+#: static/js/zamboni/editors.js:469
+msgid "Error loading translation"
+msgstr "Грешка при учитавању превода"
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "Учитавање..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> карактер преостао."
+msgstr[1] "<b>{0}</b> карактера преостала."
+msgstr[2] "<b>{0}</b> карактера преостало."
+
+#: static/js/zamboni/init.js:32
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ова могућност је привремено онемогућена док обављамо задатак одржавања сајта. Молимо пробајте мало касније."
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Уклони ову локализацију"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "Јачина лозинке:"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "Остао је још најмање {0} каратер."
+msgstr[1] "Остало је још најмање {0} каратера."
+msgstr[2] "Остало је још најмање {0} каратера."
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "Све"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Захтеване информације"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Означено"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Дупликат"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Одбијено"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Одобрено"
+
+#: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
 msgstr "Сви тестови су успешно завршени."
 
-#: static/js/zamboni/devhub-all.js:2483 static/js/zamboni/devhub-all.js:2776 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:74 static/js/zamboni/validator.js:370
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:451
 msgid "These tests were not run."
 msgstr "Ови тестови нису извршени."
 
-#: static/js/zamboni/devhub-all.js:2529 static/js/zamboni/devhub-all.js:2542 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:120 static/js/zamboni/validator.js:133
+#: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
 msgid "Tests"
 msgstr "Тестови"
 
-#: static/js/zamboni/devhub-all.js:2603 static/js/zamboni/devhub-all.js:2858 static/js/zamboni/devhub-all.js:2877 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:204
-#: static/js/zamboni/validator.js:452 static/js/zamboni/validator.js:471
+#: static/js/zamboni/validator.js:244 static/js/zamboni/validator.js:531 static/js/zamboni/validator.js:550
 msgid "Error"
 msgstr "Грешка"
 
-#: static/js/zamboni/devhub-all.js:2604 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:205
+#: static/js/zamboni/validator.js:245
 msgid "Warning"
 msgstr "Упозорење"
 
-#: static/js/zamboni/devhub-all.js:2691 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:293
+#: static/js/zamboni/validator.js:273
+msgid "Severity for automated signing:"
+msgstr ""
+
+#: static/js/zamboni/validator.js:288
+msgid "Suggestions for passing automated signing:"
+msgstr ""
+
+#: static/js/zamboni/validator.js:376
 msgid "Compatibility Tests"
 msgstr "Тестови компатибилности"
 
-#: static/js/zamboni/devhub-all.js:2740 static/js/zamboni/devhub-min.js:2
-msgid "App failed validation."
-msgstr ""
-
-#: static/js/zamboni/devhub-all.js:2742 static/js/zamboni/devhub-min.js:2
-msgid "App passed validation."
-msgstr ""
-
-#: static/js/zamboni/devhub-all.js:2746 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:341
+#: static/js/zamboni/validator.js:439
 msgid "Add-on failed validation."
 msgstr "Додатак није прошао проверу."
 
-#: static/js/zamboni/devhub-all.js:2748 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:343
+#: static/js/zamboni/validator.js:441
 msgid "Add-on passed validation."
 msgstr "Додатак је прошао проверу."
 
-#: static/js/zamboni/devhub-all.js:2779 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:373
+#: static/js/zamboni/validator.js:454
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} грешка"
 msgstr[1] "{0} грешке"
 msgstr[2] "{0} грешака"
 
-#: static/js/zamboni/devhub-all.js:2781 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:375
+#: static/js/zamboni/validator.js:456
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} упозорење"
 msgstr[1] "{0} упозорења"
 msgstr[2] "{0} упозорења"
 
-#: static/js/zamboni/devhub-all.js:2783 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:377
+#: static/js/zamboni/validator.js:458
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} обавештење"
 msgstr[1] "{0} обавештења"
 msgstr[2] "{0} обавештења"
 
-#: static/js/zamboni/devhub-all.js:2860 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:454
+#: static/js/zamboni/validator.js:533
 msgid "Validation task could not complete or completed with errors"
 msgstr "Задатак провере није могао бити завршен или је завршен са грешкама"
 
-#: static/js/zamboni/devhub-all.js:2878 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:472
+#: static/js/zamboni/validator.js:551
 msgid "Internal server error"
 msgstr "Грешка на серверу"
 
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/devhub-all.js:2924 static/js/zamboni/devhub-min.js:2
-msgid "Download {0}"
-msgstr ""
-
-#: static/js/zamboni/devhub_search.js:8
-msgid "No results found."
-msgstr "Нема резултата."
-
-#: static/js/zamboni/discovery-all.js:12783 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Жао нам је, нисмо успели наћи препоруке за Вас.<br>Молимо посетите <a href=\"{0}\">страницу са додацима</a> да би пронашли додатке погодне за Вас."
-
-#: static/js/zamboni/discovery-all.js:12813 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Тражим препоруке&hellip;"
-
-#: static/js/zamboni/discovery-all.js:12815 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Ажурирам препоруке&hellip;"
-
-#: static/js/zamboni/editors-all.js:15443 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:145
-msgid "{name} was viewing this page first."
-msgstr "{name} је први гледао ову страницу."
-
-#: static/js/zamboni/editors-all.js:15493 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:195
-msgid "Receipt checked by app."
-msgstr "Потврда проверена од стране апликације."
-
-#: static/js/zamboni/editors-all.js:15495 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:197
-msgid "Receipt was not checked by app."
-msgstr "Потврда није проверена од стране апликације."
-
-#: static/js/zamboni/editors-all.js:15566 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:268
-msgid "{name} was viewing this add-on first."
-msgstr "{name} је први прегледавао овај додатак."
-
-#: static/js/zamboni/editors-all.js:15577 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:279
-msgid "Loading&hellip;"
-msgstr "Учитавам&hellip;"
-
-#: static/js/zamboni/editors-all.js:15582 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:284
-msgid "Version Notes"
-msgstr "Белешке о верзији"
-
-#: static/js/zamboni/editors-all.js:15587 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:289
-msgid "Notes for Reviewers"
-msgstr "Белешке за рецензенте"
-
-#: static/js/zamboni/editors-all.js:15592 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:294
-msgid "No version notes found"
-msgstr "Није нађена ни једна белешка о верзији"
-
-#: static/js/zamboni/editors-all.js:15652 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:354
-msgid "Average Reviews"
-msgstr "Просечне рецензије"
-
-#: static/js/zamboni/editors-all.js:15708 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:410
-msgid "Number of Reviews"
-msgstr "Број рецензија"
-
-#: static/js/zamboni/editors-all.js:15767 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:469
-msgid "Error loading translation"
-msgstr "Грешка при учитавању превода"
-
-#: static/js/zamboni/editors-all.js:16161 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Захтеване информације"
-
-#: static/js/zamboni/editors-all.js:16162 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Означено"
-
-#: static/js/zamboni/editors-all.js:16163 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Дупликат"
-
-#: static/js/zamboni/editors-all.js:16164 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Одбијено"
-
-#: static/js/zamboni/editors-all.js:16165 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Одобрено"
-
-#: static/js/zamboni/mobile-all.js:11258 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:75
+#: static/js/zamboni/mobile/buttons.js:75
 msgid "Not Updated for {0} {1}"
 msgstr "Није ажурирано за {0} {1}"
 
-#: static/js/zamboni/mobile-all.js:11259 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:76
+#: static/js/zamboni/mobile/buttons.js:76
 msgid "Requires Newer Version of {0}"
 msgstr "Захтева верзију новију од {0}"
 
-#: static/js/zamboni/mobile-all.js:11260 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:77
 msgid "Unreviewed"
 msgstr "Неоцењено"
 
-#: static/js/zamboni/mobile-all.js:11261 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:78
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Експериментално <span>(Сазнај више)</span>"
 
-#: static/js/zamboni/mobile-all.js:11262 static/js/zamboni/mobile-all.js:11263 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
 msgid "Not Available for {0}"
 msgstr "Није доступно за {0}"
 
-#: static/js/zamboni/mobile-all.js:11264 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:81
+#: static/js/zamboni/mobile/buttons.js:81
 msgid "Experimental"
 msgstr "Експериментално"
 
-#: static/js/zamboni/mobile-all.js:11265 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:82
 msgid "Themes Require Newer Version of {0}"
 msgstr "Теме захтевају новију верзију од {0}"
 
-#: static/js/zamboni/mobile-all.js:11266 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:83
 msgid "Themes Require {0}"
 msgstr "Теме захтевају {0}"
 
-#: static/js/zamboni/mobile-all.js:11311 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:128
+#: static/js/zamboni/mobile/buttons.js:128
 msgid "Installing..."
 msgstr "Инсталирам..."
 
-#: static/js/zamboni/mobile-all.js:11319 static/js/zamboni/mobile-min.js:4
-msgid "Purchasing..."
-msgstr ""
-
-#: static/js/zamboni/mobile-all.js:11348 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:148
+#: static/js/zamboni/mobile/buttons.js:148
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Овај додатак је прелиминарно прегледан од Mozilla-е."
 
-#: static/js/zamboni/mobile-all.js:11482 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:275
+#: static/js/zamboni/mobile/buttons.js:275
 msgid "Keep it"
 msgstr "Задржи"
 
-#: static/js/zamboni/mobile-all.js:12157 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/general.js:344
+#: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr "Испробавате је!"
 
-#: static/js/zamboni/mobile-all.js:12169 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/general.js:356
+#: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Додато у Firefox"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:40-0700\n"
+"POT-Creation-Date: 2015-07-29 13:03-0700\n"
 "PO-Revision-Date: 2015-07-28 19:16+0000\n"
 "Last-Translator: Andreas <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -142,7 +142,7 @@ msgstr "Användare har möjlighet att ge mer eller mindre än detta belopp."
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Användarna kommer alltid att bli tillfrågade i tilläggshanteraren (Firefox 4 och uppåt)"
 
-#: apps/addons/models.py:1896 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
+#: apps/addons/models.py:1920 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Listed"
 msgstr "Listad"
 
@@ -226,7 +226,7 @@ msgstr "Bidra"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:94 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:89 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
 #: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318 apps/devhub/templates/devhub/versions/list.html:352
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -334,7 +334,7 @@ msgid "Add-on Information for {0}"
 msgstr "Tilläggsinformation för {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:74
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:75
 msgid "Updated"
 msgstr "Uppdaterad"
 
@@ -577,9 +577,7 @@ msgstr "Mer&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8 apps/addons/templates/addons/impala/performance_note.html:8
 msgid "<b>Performance warning:</b> Installing this add-on can slow down Firefox's start-up by <b>%(amount)s%%</b>."
-msgstr ""
-"<b>Prestandavarning:</b> Installera detta tillägg kan slöa ner Firefox "
-"uppstart med <b>%(amount)s%%</b>."
+msgstr "<b>Prestandavarning:</b> Installera detta tillägg kan slöa ner Firefox uppstart med <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14 apps/addons/templates/addons/performance_note.html:27 apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
@@ -615,7 +613,7 @@ msgid "See all Themes by this Artist"
 msgstr "Se alla teman av denna konstnär"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:299
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:276
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "Kategorier"
@@ -639,7 +637,7 @@ msgstr "Licens"
 msgid "Awaiting Review"
 msgstr "Väntar på granskning"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:55
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:56
 msgid "Rejected"
 msgstr "Ej godkänd"
 
@@ -665,7 +663,7 @@ msgstr "Lägg till"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:279
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:256
 msgid "Edit"
 msgstr "Redigera"
 
@@ -810,7 +808,7 @@ msgstr "Skicka rapport"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:95 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:90 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -855,7 +853,7 @@ msgstr "Recensionsriktlinjer"
 msgid "Detailed Review"
 msgstr "utförlig recension"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:880 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:904 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Recensioner"
@@ -1031,10 +1029,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr ""
-"<strong>Varning:</strong> Utvecklingsversioner av detta tillägg har inte "
-"granskats av Mozilla och kan inte installeras på släppta versioner av "
-"Firefox."
+msgstr "<strong>Varning:</strong> Utvecklingsversioner av detta tillägg har inte granskats av Mozilla och kan inte installeras på släppta versioner av Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310 apps/addons/templates/addons/impala/details.html:319 apps/addons/templates/addons/impala/details.html:331
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1273,7 +1268,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:98 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:99 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Teman"
@@ -1348,7 +1343,7 @@ msgstr "Skicka in ett nytt tema"
 msgid "Developer Hub"
 msgstr "Utvecklarcenter"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:75 apps/editors/helpers.py:95 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:76 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Redigeringsverktyg"
 
@@ -1529,7 +1524,7 @@ msgstr "Supergranskning begärd"
 msgid "Comment on {addon} {version}."
 msgstr "Kommentar till {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:479
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:503
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Kommentar"
@@ -1792,6 +1787,11 @@ msgstr "{addon} olistad."
 msgid "{file} was signed."
 msgstr "{file} signerades."
 
+#. L10n: {0} is the add-on GUID.
+#: apps/amo/log.py:602
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
 msgstr "Inte tillåtet"
@@ -1841,16 +1841,16 @@ msgstr "Inga träffar hittades"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:49
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:62 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:75
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:88
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:49 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
 msgstr "Föreg"
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 apps/amo/templates/amo/mobile/impala_paginator.html:16 apps/amo/templates/amo/mobile/paginator.html:14
-#: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:37
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
+#: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:65 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:78
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:49 apps/stats/templates/stats/stats.html:159
 msgid "Next"
 msgstr "Nästa"
@@ -2122,11 +2122,11 @@ msgstr "Inga länkar är tillåtna."
 msgid "This url is already in use by another collection"
 msgstr "Denna URL används redan av en annan samling"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1035
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1031
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner måste vara antingen PNG eller JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1053 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1049 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Använd bilder mindre än %dMB."
 
@@ -2166,7 +2166,7 @@ msgstr "Favorit"
 msgid "Remove from favorites"
 msgstr "Ta bort från favoriter"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:74 apps/devhub/views.py:82
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2531,7 +2531,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Varning:</b> Om du byter ägare på den här samlingen kommer du inte längre att kunna ändra på den. Du kommer bara kunna lägga till och ta bort tillägg från den."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:91 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:92 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2630,7 +2630,7 @@ msgstr "Ange namnet på ett tillägg att inkludera"
 msgid "Add to Collection"
 msgstr "Lägg till i samling"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:895 apps/editors/helpers.py:915
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:919 apps/editors/helpers.py:939
 msgid "Pending"
 msgstr "Väntande"
 
@@ -2744,15 +2744,15 @@ msgstr "Flest användare"
 msgid "Up & Coming"
 msgstr "Bubblare"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Skapad"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:452 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Nerladdningar"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Betyg"
@@ -2776,9 +2776,7 @@ msgstr "Inga utvalda tillägg i {0}."
 
 #: apps/browse/templates/browse/featured.html:15
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
-"Här är några av våra favorittillägg för att hjälpa dig att komma igång med "
-"anpassning %(app)s."
+msgstr "Här är några av våra favorittillägg för att hjälpa dig att komma igång med anpassning %(app)s."
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -3023,7 +3021,7 @@ msgstr "&laquo; Alla teman"
 msgid "All"
 msgstr "Alla"
 
-#: apps/compat/forms.py:23 apps/search/views.py:529
+#: apps/compat/forms.py:23 apps/search/views.py:521
 msgid "All Add-ons"
 msgstr "Alla tillägg"
 
@@ -3235,7 +3233,7 @@ msgstr "Preliminärt granskad"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Preliminärt granskad och väntar på fullständig granskning"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:883 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:907 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Borttagen"
 
@@ -3492,7 +3490,7 @@ msgstr "Flagga"
 msgid "Duplicate"
 msgstr "Duplicera"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:470 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:494 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Avvisa"
 
@@ -3718,9 +3716,7 @@ msgstr "Lista inte mitt tillägg på denna webbplats (beta)"
 
 #: apps/devhub/forms.py:514
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
-"Markera det här alternativet om du tänker distribuera ditt tillägg på egen "
-"hand och bara behöver det för att signeras av Mozilla."
+msgstr "Markera det här alternativet om du tänker distribuera ditt tillägg på egen hand och bara behöver det för att signeras av Mozilla."
 
 #: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
@@ -3744,9 +3740,7 @@ msgstr "Välj en nomineringstyp för granskning"
 
 #: apps/devhub/forms.py:547
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-"En fil med en version som slutar med a|alpha|b|beta|pre|rc och ett valfritt "
-"nummer detekteras som beta."
+msgstr "En fil med en version som slutar med a|alpha|b|beta|pre|rc och ett valfritt nummer detekteras som beta."
 
 #: apps/devhub/forms.py:565
 msgid "Version %s already exists"
@@ -3758,9 +3752,7 @@ msgstr "Välj ett giltigt val. Detta val är inte en av de tillgängliga alterna
 
 #: apps/devhub/forms.py:583
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr ""
-"En fil med en version som slutar med a|alpha|b|beta och ett valfritt nummer "
-"detekteras som beta."
+msgstr "En fil med en version som slutar med a|alpha|b|beta och ett valfritt nummer detekteras som beta."
 
 #: apps/devhub/forms.py:606
 msgid "You cannot upload any more files for this version."
@@ -3807,14 +3799,14 @@ msgid "Developer Docs"
 msgstr "Utvecklardokument"
 
 #. L10n: first parameter is the number of errors
-#: apps/devhub/helpers.py:203
+#: apps/devhub/helpers.py:200
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} fel"
 msgstr[1] "{0} fel"
 
 #. L10n: first parameter is the number of warnings
-#: apps/devhub/helpers.py:206
+#: apps/devhub/helpers.py:203
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
@@ -3824,144 +3816,144 @@ msgstr[1] "{0} varningar"
 msgid "Review"
 msgstr "Recensera"
 
-#: apps/devhub/tasks.py:346
+#: apps/devhub/tasks.py:394
 msgid "%s responded with %s (%s)."
 msgstr "%s svarade med %s (%s)."
 
-#: apps/devhub/tasks.py:350
+#: apps/devhub/tasks.py:398
 msgid "Connection to \"%s\" timed out."
 msgstr "Anslutning till \"%s\" gjorde timeout."
 
-#: apps/devhub/tasks.py:352
+#: apps/devhub/tasks.py:400
 msgid "Could not contact host at \"%s\"."
 msgstr "Det gick inte att kontakta värd på \"%s\"."
 
-#: apps/devhub/utils.py:59
+#: apps/devhub/utils.py:72
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validering genererade för många fel/varningar så %s meddelanden trunkerades. Efter att ha tagit itu med de meddelande som visas, kommer du att kunna se de andra."
 
-#: apps/devhub/views.py:178
+#: apps/devhub/views.py:179
 msgid "All My Add-ons"
 msgstr "Alla mina tillägg"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "All Activity"
 msgstr "All aktivitet"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "Add-on Updates"
 msgstr "Tilläggsuppdateringar"
 
-#: apps/devhub/views.py:207
+#: apps/devhub/views.py:208
 msgid "Add-on Status"
 msgstr "Status för tillägg"
 
-#: apps/devhub/views.py:208
+#: apps/devhub/views.py:209
 msgid "User Collections"
 msgstr "Användarsamlingar"
 
-#: apps/devhub/views.py:209 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:210 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Användarrecensioner"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:480 apps/devhub/views.py:509 apps/devhub/views.py:560 apps/devhub/views.py:1132
+#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:481 apps/devhub/views.py:510 apps/devhub/views.py:561 apps/devhub/views.py:1128
 msgid "Changes successfully saved."
 msgstr "Ändringar sparade."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1609
+#: apps/devhub/views.py:330 apps/devhub/views.py:1601
 msgid "Please check the form for errors."
 msgstr "Kontrollera formuläret efter fel."
 
-#: apps/devhub/views.py:341
+#: apps/devhub/views.py:342
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Tillägg kan inte tas bort. Inaktivera detta tillägg istället."
 
-#: apps/devhub/views.py:351
+#: apps/devhub/views.py:352
 msgid "Theme deleted."
 msgstr "Tema borttaget."
 
-#: apps/devhub/views.py:351
+#: apps/devhub/views.py:352
 msgid "Add-on deleted."
 msgstr "Tillägg borttaget."
 
-#: apps/devhub/views.py:357
+#: apps/devhub/views.py:358
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Felaktigt lösenord. Tema togs inte bort."
 
-#: apps/devhub/views.py:362
+#: apps/devhub/views.py:363
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Felaktigt lösenord. Tillägg togs inte bort."
 
-#: apps/devhub/views.py:446
+#: apps/devhub/views.py:447
 msgid "An author has been added to your add-on"
 msgstr "En upphovsman har lagts till i ditt tillägg"
 
-#: apps/devhub/views.py:453
+#: apps/devhub/views.py:454
 msgid "An author has a role changed on your add-on"
 msgstr "För en upphovsman har en roll ändrats i ditt tillägg"
 
-#: apps/devhub/views.py:472
+#: apps/devhub/views.py:473
 msgid "An author has been removed from your add-on"
 msgstr "En upphovsman har tagits bort från ditt tillägg"
 
-#: apps/devhub/views.py:515
+#: apps/devhub/views.py:516
 msgid "There were errors in your submission."
 msgstr "De uppstod fel när ditt bidrag skickades in."
 
-#: apps/devhub/views.py:579
+#: apps/devhub/views.py:580
 msgid "Validate Add-on"
 msgstr "Validera tillägg"
 
-#: apps/devhub/views.py:590
+#: apps/devhub/views.py:591
 msgid "Check Add-on Compatibility"
 msgstr "Kontrollera tilläggets kompatibilitet"
 
-#: apps/devhub/views.py:662
+#: apps/devhub/views.py:666
 msgid "There was an error with the submission."
 msgstr "Det uppstod ett fel när bidraget skickades in."
 
-#: apps/devhub/views.py:1037 apps/users/forms.py:419
+#: apps/devhub/views.py:1033 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder måste vara antingen PNG eller JPG."
 
-#: apps/devhub/views.py:1041
+#: apps/devhub/views.py:1037
 msgid "Icons cannot be animated."
 msgstr "Ikoner kan inte vara animerade."
 
-#: apps/devhub/views.py:1043
+#: apps/devhub/views.py:1039
 msgid "Images cannot be animated."
 msgstr "Bilder kan inte vara animerade."
 
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1052
 msgid "Images cannot be larger than %dKB."
 msgstr "Bilder kan inte vara större än %dkB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1066
+#: apps/devhub/views.py:1062
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Bild måste vara exakt {0} pixlar bred och {1} pixlar hög."
 
-#: apps/devhub/views.py:1073
+#: apps/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "Ett fel uppstod med uppladdning av förhandsvisning."
 
-#: apps/devhub/views.py:1171
+#: apps/devhub/views.py:1167
 msgid "Version %s disabled."
 msgstr "Version %s inaktiverad."
 
-#: apps/devhub/views.py:1175
+#: apps/devhub/views.py:1171
 msgid "Version %s deleted."
 msgstr "Version %s borttagen."
 
-#: apps/devhub/views.py:1185
+#: apps/devhub/views.py:1181
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullständigt valideringsresultat. Ta hänsyn till detta vid granskning."
 
-#: apps/devhub/views.py:1655
+#: apps/devhub/views.py:1647
 msgid "Preliminary Review Requested."
 msgstr "Preliminär granskning begärd."
 
-#: apps/devhub/views.py:1656
+#: apps/devhub/views.py:1648
 msgid "Full Review Requested."
 msgstr "Fullständig granskning begärd."
 
@@ -4137,36 +4129,34 @@ msgstr "Fler resurser"
 msgid "Search Developer Docs"
 msgstr "Sök i utvecklardokument"
 
-#: apps/devhub/templates/devhub/validate_addon.html:14
+#: apps/devhub/templates/devhub/validate_addon.html:15
 msgid "Use the field below to upload your add-on package."
 msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
 
-#: apps/devhub/templates/devhub/validate_addon.html:20
+#: apps/devhub/templates/devhub/validate_addon.html:21
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Efter uppladdning, kommer en rad automatiserade valideringstester körs för att kontrollera kompatibilitet med följande programversionen:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:35
+#: apps/devhub/templates/devhub/validate_addon.html:36
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Efter uppladdning, kommer en rad automatiserade valideringstester köras på din fil."
 
-#: apps/devhub/templates/devhub/validate_addon.html:44 apps/devhub/templates/devhub/addons/submit/upload.html:26
+#: apps/devhub/templates/devhub/validate_addon.html:45 apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Vill du att ditt tillägg ska distribueras på denna webbplats?"
 
-#: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
+#: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
 msgstr "Varning:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
+#: apps/devhub/templates/devhub/validate_addon.html:53 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
 "Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
 msgstr ""
-"Inskickning av olistade tillägg för signering befinner sig i en öppen beta. "
-"Manuell granskning kan fortfarande krävas för ett stort antal tillägg. <a "
-"href=\"%(bugzilla_url)s\" target=\"_blank\">Rapportera eventuella buggar</a>som "
-"du stöter på."
+"Inskickning av olistade tillägg för signering befinner sig i en öppen beta. Manuell granskning kan fortfarande krävas för ett stort antal tillägg. <a href=\"%(bugzilla_url)s\" target=\"_blank"
+"\">Rapportera eventuella buggar</a>som du stöter på."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4289,7 +4279,7 @@ msgstr "Ingen"
 msgid "Manage Authors & License"
 msgstr "Hantera upphovsmän & licens"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:292
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:269
 msgid "Authors"
 msgstr "Upphovsmän"
 
@@ -4349,7 +4339,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Välj en kort, unikt URL slugg för ditt tillägg."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:254 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "Visa listning"
 
@@ -4418,10 +4408,7 @@ msgstr "Standardspråk"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Information om ditt tillägg visas i detta språk om du inte åsidosätter det "
-"med en språkspecifik översättning. Det är endast relevant för listade "
-"tillägg."
+msgstr "Information om ditt tillägg visas i detta språk om du inte åsidosätter det med en språkspecifik översättning. Det är endast relevant för listade tillägg."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4653,32 +4640,40 @@ msgid "Tests"
 msgstr "Tester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:5
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:39
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
 msgstr "Generella tester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:9
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
 msgstr "Säkerhetstester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:13
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:66
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
 msgstr "Utökningstester"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:17
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:79
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
 msgstr "Översättningstester"
 
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:92
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
 msgstr "Kompatibilitetstester"
 
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:36 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
+msgid "Hide messages not required for automated signing"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
+msgid "Hide messages present in previous version and ignored"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:103
 msgid "Top"
 msgstr "Högst upp"
 
@@ -4714,7 +4709,7 @@ msgstr "Berätta varför du tar bort ditt tema:"
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Berätta varför du tar bort ditt tillägg:"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:275
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:252
 msgid "Actions"
 msgstr "Åtgärder"
 
@@ -4893,9 +4888,7 @@ msgstr "Ge fler detaljer genom att <a href=\"{0}\">redigera dess listning</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr ""
-"Berätta för dina användare varför du skapade detta i din <a "
-"href=\"{0}\">utvecklarprofil</a>."
+msgstr "Berätta för dina användare varför du skapade detta i din <a href=\"{0}\">utvecklarprofil</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4935,9 +4928,7 @@ msgstr "Ditt tillägg kommer inte att vara tillgängliga för allmänheten på d
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
-msgstr ""
-"Du kan ladda upp nya versioner av ditt tillägg på <a href=\"{0}\">tilläggets "
-"utvecklarsida</a>."
+msgstr "Du kan ladda upp nya versioner av ditt tillägg på <a href=\"{0}\">tilläggets utvecklarsida</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -4984,10 +4975,8 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Alla tillägg som hyses i vårt galleri måste granskas av en redigerare innan "
-"de visas i kategorier eller sökresultat. I väntan på granskning, kan ditt "
-"tillägg fortfarande nås via sin webbadress. Välj granskningsprocessen nedan "
-"som bäst passar ditt tillägg."
+"Alla tillägg som hyses i vårt galleri måste granskas av en redigerare innan de visas i kategorier eller sökresultat. I väntan på granskning, kan ditt tillägg fortfarande nås via sin webbadress. "
+"Välj granskningsprocessen nedan som bäst passar ditt tillägg."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:26
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
@@ -5080,10 +5069,7 @@ msgstr "Steg 1. Att komma igång"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
-"Innan du börjar, läs och acceptera vår distributionsavtal för Firefox-"
-"tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi "
-"hanterar dina uppgifter."
+msgstr "Innan du börjar, läs och acceptera vår distributionsavtal för Firefox-tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi hanterar dina uppgifter."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
@@ -5109,18 +5095,17 @@ msgstr "Steg 2. Ladda upp ditt tillägg"
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket och välj eventuella plattformsbegränsningar. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:65 apps/devhub/templates/devhub/versions/add_file_modal.html:46
+#: apps/devhub/templates/devhub/addons/submit/upload.html:66 apps/devhub/templates/devhub/versions/add_file_modal.html:41
 msgid "Which platforms is this file compatible with?"
 msgstr "Vilka plattformar är denna fil kompatibel med?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:73 apps/devhub/templates/devhub/versions/add_file_modal.html:72
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Administrative overrides"
 msgstr "Administrativa åsidosättningar"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:83 apps/devhub/templates/devhub/versions/add_file_modal.html:84
+#: apps/devhub/templates/devhub/addons/submit/upload.html:84 apps/devhub/templates/devhub/versions/add_file_modal.html:79
 msgid "Looks like your add-on requires a manual review before it can be signed."
-msgstr ""
-"Ser ut som ditt tillägg kräver en manuell granskning innan det kan signeras."
+msgstr "Ser ut som ditt tillägg kräver en manuell granskning innan det kan signeras."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -5161,11 +5146,8 @@ msgid ""
 "If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
 "strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
-"Om du har en fråga om en redigerares granskning av ett tillägg eller vill "
-"rapportera ett brott mot reglerna, vänligen e-posta %(mail_editors)s. "
-"<strong>Nästan alla tilläggsrapporter faller under denna kategori.</strong> "
-"Var noga med att inkludera en länk till tillägget i frågan samt en "
-"detaljerad beskrivning av din fråga eller kommentar."
+"Om du har en fråga om en redigerares granskning av ett tillägg eller vill rapportera ett brott mot reglerna, vänligen e-posta %(mail_editors)s. <strong>Nästan alla tilläggsrapporter faller under "
+"denna kategori.</strong> Var noga med att inkludera en länk till tillägget i frågan samt en detaljerad beskrivning av din fråga eller kommentar."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -5181,13 +5163,9 @@ msgid ""
 "issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
-"Om du har upptäckt ett säkerhetsproblem i ett tillägg, även om det inte är "
-"hyses här, är Mozilla mycket intresserad av din upptäckt och kommer att "
-"arbeta med tilläggets utvecklare för att rätta till problemet så snart som "
-"möjligt. Säkerhetsfrågor för tillägg kan rapporteras <a "
-"href=\"http://www.mozilla.org/projects/security/security-bugs-"
-"policy.html\">konfidentiellt</a> i <a href=\"%(link_bugzilla)s\">Bugzilla</a> "
-"eller via e-post %(mail_admins)s."
+"Om du har upptäckt ett säkerhetsproblem i ett tillägg, även om det inte är hyses här, är Mozilla mycket intresserad av din upptäckt och kommer att arbeta med tilläggets utvecklare för att rätta "
+"till problemet så snart som möjligt. Säkerhetsfrågor för tillägg kan rapporteras <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">konfidentiellt</a> i <a href="
+"\"%(link_bugzilla)s\">Bugzilla</a> eller via e-post %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -5237,11 +5215,8 @@ msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
-"För att skapa en betakanal, ladda upp en fil med en unik versionssträng som "
-"innehåller någon av följande strängar: <code>a,b,alpha,beta,pre, rc</code>, "
-"med ett valfritt nummer i slutet. Denna text måste komma i slutet av "
-"versionssträngen. Om du förstår formatet regex, så är detta vad vi ser i "
-"versionsnumret: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
+"För att skapa en betakanal, ladda upp en fil med en unik versionssträng som innehåller någon av följande strängar: <code>a,b,alpha,beta,pre, rc</code>, med ett valfritt nummer i slutet. Denna text "
+"måste komma i slutet av versionssträngen. Om du förstår formatet regex, så är detta vad vi ser i versionsnumret: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
@@ -5258,16 +5233,10 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"Medan vi kallar dessa \"betaversioner\", kan du använda denna kanal för "
-"nightlies eller alphas, eller förhandsversioner om du så önskar. Observera "
-"att det endast finns en kanal för detta ändamål och alla dina användare på "
-"denna kanal kommer att få de senaste tillägget som skickats in. Till "
-"exempel, om du laddar upp <code>1.0beta1</code> till releasekanalen och "
-"sedan laddar upp <code>1.1alpha1</code>, kommer alla användare av "
-"<code>1.0beta1</code> att erbjudas en uppgradering till "
-"<code>1.1alpha1</code>. Uppdateringar släpps efter inskickningsdatum och "
-"inte versionsnummer, så att användarna alltid får den senaste "
-"kanaluppdatering oavsett alfabetisk sortering."
+"Medan vi kallar dessa \"betaversioner\", kan du använda denna kanal för nightlies eller alphas, eller förhandsversioner om du så önskar. Observera att det endast finns en kanal för detta ändamål "
+"och alla dina användare på denna kanal kommer att få de senaste tillägget som skickats in. Till exempel, om du laddar upp <code>1.0beta1</code> till releasekanalen och sedan laddar upp "
+"<code>1.1alpha1</code>, kommer alla användare av <code>1.0beta1</code> att erbjudas en uppgradering till <code>1.1alpha1</code>. Uppdateringar släpps efter inskickningsdatum och inte "
+"versionsnummer, så att användarna alltid får den senaste kanaluppdatering oavsett alfabetisk sortering."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -5279,13 +5248,9 @@ msgid ""
 "developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
-"Vissa situationer kan uppstå där Mozilla begär att ett tilläggs utvecklare "
-"uppdaterar sitt tillägg inom en viss tidsperiod för att ta itu med ett stort "
-"säkerhetsproblem eller brott mot reglerna. Vi arbetar för utvecklarna ska "
-"på ett rimligt sätt tillgodose sina egna scheman, men om frågan är av "
-"tillräckligt allvarlig art, kan tillägg som inte kan utfärda en uppdatering "
-"med den begärda korrigeringen degraderas i status från fullständigt "
-"granskade, inaktiverade eller permanent borttagna från webbplatsen."
+"Vissa situationer kan uppstå där Mozilla begär att ett tilläggs utvecklare uppdaterar sitt tillägg inom en viss tidsperiod för att ta itu med ett stort säkerhetsproblem eller brott mot reglerna. Vi "
+"arbetar för utvecklarna ska på ett rimligt sätt tillgodose sina egna scheman, men om frågan är av tillräckligt allvarlig art, kan tillägg som inte kan utfärda en uppdatering med den begärda "
+"korrigeringen degraderas i status från fullständigt granskade, inaktiverade eller permanent borttagna från webbplatsen."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -5301,40 +5266,31 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
-msgstr ""
-"Mozilla kan hjälpa till med att bevilja ytterligare tillstånd för ett "
-"tilläggs listning om de <a href=\"%(link_contact)s\">kontaktas</a> av "
-"tilläggets nuvarande ägare."
+msgstr "Mozilla kan hjälpa till med att bevilja ytterligare tillstånd för ett tilläggs listning om de <a href=\"%(link_contact)s\">kontaktas</a> av tilläggets nuvarande ägare."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
-"Mozilla uppmanar sina användare att ge återkoppling om sina erfarenheter när "
-"de använder ett tillägg. Detta gör att andra användare kan avgöra om "
-"tillägg är stabila och användbara. Det ger också värdefulla synpunkter till "
-"utvecklare, vilket ger dem möjlighet att kontinuerligt förbättra sina "
-"tillägg för att möta användarnas behov."
+"Mozilla uppmanar sina användare att ge återkoppling om sina erfarenheter när de använder ett tillägg. Detta gör att andra användare kan avgöra om tillägg är stabila och användbara. Det ger också "
+"värdefulla synpunkter till utvecklare, vilket ger dem möjlighet att kontinuerligt förbättra sina tillägg för att möta användarnas behov."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
 msgstr ""
-"Recensioner måste följa <a href=\"%"
-"(link_guidelines)s\">recensionsriktlinjer</a>. Recensioner som inte uppfyller "
-"dessa riktlinjer kan flaggas för moderering, men negativa recensioner "
-"kommer inte att tas bort om de inte ger falsk information."
+"Recensioner måste följa <a href=\"%(link_guidelines)s\">recensionsriktlinjer</a>. Recensioner som inte uppfyller dessa riktlinjer kan flaggas för moderering, men negativa recensioner kommer inte "
+"att tas bort om de inte ger falsk information."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
-"Många utvecklare ger ett stödsystem, såsom ett forum, diskussionsgrupp eller "
-"e-postadress. Det rekommenderas att supportfrågor publiceras via dessa "
-"medier i stället för i ett tilläggs recensionssektion."
+"Många utvecklare ger ett stödsystem, såsom ett forum, diskussionsgrupp eller e-postadress. Det rekommenderas att supportfrågor publiceras via dessa medier i stället för i ett tilläggs "
+"recensionssektion."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -5345,29 +5301,21 @@ msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
-"Många tillägg tillåter deras källkod att visas öppet. Detta betyder inte att "
-"källkoden är öppen källkod eller tillgänglig för användning i en annat "
-"tillägg. Den ursprungliga utvecklaren av ett tillägg behåller upphovsrätten "
-"till sitt arbete om inte annat anges i tilläggets licens."
+"Många tillägg tillåter deras källkod att visas öppet. Detta betyder inte att källkoden är öppen källkod eller tillgänglig för användning i en annat tillägg. Den ursprungliga utvecklaren av ett "
+"tillägg behåller upphovsrätten till sitt arbete om inte annat anges i tilläggets licens."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
-"I händelse av att vi får ett meddelande om upphovsrätt eller licens intrång, "
-"kommer vi att vidta åtgärder för att se över situationen och avgöra om en "
-"verklig överträdelse har skett. Om vi bedömer att det finns en överträdelse, "
-"kommer vi att ta bort den felande tillägget och kontakta utvecklaren. Nya "
-"inskickningar av tillägg (inklusive uppdateringar) innehållande överträdande "
-"kod kommer att nekas tillstånd för publik status."
+"I händelse av att vi får ett meddelande om upphovsrätt eller licens intrång, kommer vi att vidta åtgärder för att se över situationen och avgöra om en verklig överträdelse har skett. Om vi bedömer "
+"att det finns en överträdelse, kommer vi att ta bort den felande tillägget och kontakta utvecklaren. Nya inskickningar av tillägg (inklusive uppdateringar) innehållande överträdande kod kommer att "
+"nekas tillstånd för publik status."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
-msgstr ""
-"Om du är osäker på den aktuella status för upphovsrätt som tilläggets "
-"källkod, måste du kontakta den ursprungliga utvecklaren och få uttryckligt "
-"tillstånd innan du använder källkoden."
+msgstr "Om du är osäker på den aktuella status för upphovsrätt som tilläggets källkod, måste du kontakta den ursprungliga utvecklaren och få uttryckligt tillstånd innan du använder källkoden."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107 apps/devhub/templates/devhub/docs/policies-reviews.html:306 apps/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
@@ -5378,24 +5326,17 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
-"Utvalda tillägg är av högsta kvalitet utökningar och teman lyfts fram på <a "
-"href=\"%(link_gallery)s\">AMO</a>, Firefox tilläggshanterare och över andra "
-"Mozilla-webbplatser. Dessa tillägg visar kraften i Firefox anpassning och är "
-"användbara för en bred publik."
+"Utvalda tillägg är av högsta kvalitet utökningar och teman lyfts fram på <a href=\"%(link_gallery)s\">AMO</a>, Firefox tilläggshanterare och över andra Mozilla-webbplatser. Dessa tillägg visar "
+"kraften i Firefox anpassning och är användbara för en bred publik."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
-msgstr ""
-"Utvalda tillägg väljs av tilläggsdelegation, en liten grupp av "
-"tilläggsutvecklare och fans från Mozillas gemenskap som har erbjudit sig att "
-"granska och rösta om nomineringarna."
+msgstr "Utvalda tillägg väljs av tilläggsdelegation, en liten grupp av tilläggsutvecklare och fans från Mozillas gemenskap som har erbjudit sig att granska och rösta om nomineringarna."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
-msgstr ""
-"<a href=\"%(link_featured)s\">Utvalda utökningar</a> väljs varje månad och <a "
-"href=\"%(link_themes)s\">utvalda kompletta teman</a> väljs varje kvartal."
+msgstr "<a href=\"%(link_featured)s\">Utvalda utökningar</a> väljs varje månad och <a href=\"%(link_themes)s\">utvalda kompletta teman</a> väljs varje kvartal."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -5403,15 +5344,11 @@ msgstr "Kriterier för utvalda tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
-msgstr ""
-"Innan nominering av ett tillägg till att bli utvald, vänligen se till att "
-"den uppfyller följande kriterier:"
+msgstr "Innan nominering av ett tillägg till att bli utvald, vänligen se till att den uppfyller följande kriterier:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr ""
-"Tillägget måste ha en fullständig och informativ listning på AMO. Det "
-"betyder:"
+msgstr "Tillägget måste ha en fullständig och informativ listning på AMO. Det betyder:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
@@ -5435,15 +5372,11 @@ msgstr "uppdaterade skärmdumpar av tilläggets funktionalitet"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
-msgstr ""
-"måste vara fullt godkänd av AMO:s redigerare (inga preliminärt granskade "
-"poster)"
+msgstr "måste vara fullt godkänd av AMO:s redigerare (inga preliminärt granskade poster)"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
-msgstr ""
-"Tillägget måste ha utmärkta användarrecensioner och eventuella problem eller "
-"supportärenden måste omedelbart åtgärdas av utvecklare."
+msgstr "Tillägget måste ha utmärkta användarrecensioner och eventuella problem eller supportärenden måste omedelbart åtgärdas av utvecklare."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -5451,21 +5384,15 @@ msgstr "Tillägget måste ha minst 2.000 användare."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
-msgstr ""
-"Tillägget måste vara kompatibel med den senaste versionen av Firefox och "
-"måste vara kompatibel med betaversioner 4 veckor innan den slutliga "
-"versionen."
+msgstr "Tillägget måste vara kompatibel med den senaste versionen av Firefox och måste vara kompatibel med betaversioner 4 veckor innan den slutliga versionen."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
-"<strong>Viktigast av allt</strong>, tillägget måste ha bred attraktion bland "
-"Firefoxs användare och  vara enastående på nästan alla sätt: "
-"användarupplevelse, prestanda, säkerhet och användbarhet eller "
-"underhållningsvärde. Utvalda komplett teman måste också vara visuellt "
-"tilltalande."
+"<strong>Viktigast av allt</strong>, tillägget måste ha bred attraktion bland Firefoxs användare och  vara enastående på nästan alla sätt: användarupplevelse, prestanda, säkerhet och användbarhet "
+"eller underhållningsvärde. Utvalda komplett teman måste också vara visuellt tilltalande."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -5477,9 +5404,7 @@ msgstr "amo-featured at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
-msgstr ""
-"Om du vill nominera en tillägg till att vara utvalt och det uppfyller "
-"kriterierna ovan, skicka ett mejl till %(mail_featured)s med:"
+msgstr "Om du vill nominera en tillägg till att vara utvalt och det uppfyller kriterierna ovan, skicka ett mejl till %(mail_featured)s med:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
@@ -5487,27 +5412,20 @@ msgstr "tilläggets namn, URL och om du är dess utvecklare"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
-"en kort förklaring till varför tillägget har en bred attraktion och bör bli "
-"utvalt"
+msgstr "en kort förklaring till varför tillägget har en bred attraktion och bör bli utvalt"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr ""
-"valfritt, länkar till alla externa granskningar eller artiklar som hänvisar "
-"till tillägget"
+msgstr "valfritt, länkar till alla externa granskningar eller artiklar som hänvisar till tillägget"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Tillläggsnomineringar granskas av den rådgivande nämnden en gång i månaden "
-"(en gång var 3 månader för nomineringar av kompletta teman). Vanliga orsaker "
-"till avslag inkluderar saknad av en bred attraktion från konsumenterna, en "
-"suboptimal användarupplevelse, kvalitet eller säkerhetsfrågor, "
-"inkompatibilitet och likheten till ett annat utvalt tillägg. Avvisade "
-"tillägg kan inte åter nomineras inom 3 månader."
+"Tillläggsnomineringar granskas av den rådgivande nämnden en gång i månaden (en gång var 3 månader för nomineringar av kompletta teman). Vanliga orsaker till avslag inkluderar saknad av en bred "
+"attraktion från konsumenterna, en suboptimal användarupplevelse, kvalitet eller säkerhetsfrågor, inkompatibilitet och likheten till ett annat utvalt tillägg. Avvisade tillägg kan inte åter "
+"nomineras inom 3 månader."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -5516,36 +5434,27 @@ msgstr "Roterande utvalda tillägg"
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
 msgstr ""
-"Mozilla och den rådgivande nämnden för utvalda tillägg utvärderar "
-"regelbundet och rotera ut utvalda tillägg. Några av de vanligaste orsakerna "
-"till att tillägg avlägsnas från den utvalda listan är:"
+"Mozilla och den rådgivande nämnden för utvalda tillägg utvärderar regelbundet och rotera ut utvalda tillägg. Några av de vanligaste orsakerna till att tillägg avlägsnas från den utvalda listan är:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:83
 msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
 "a good indicator the add-on may not be very useful to our users."
 msgstr ""
-"Brist på tillväxt &mdash; Tillägg som är utvalda upplever en betydande "
-"ökning i både nedladdningar och aktiva användare. Om ett tillägg inte visar "
-"tillväxt på något betydande sätt, det är en bra indikator som visar att "
-"tillägget inte är användbart för våra användare."
+"Brist på tillväxt &mdash; Tillägg som är utvalda upplever en betydande ökning i både nedladdningar och aktiva användare. Om ett tillägg inte visar tillväxt på något betydande sätt, det är en bra "
+"indikator som visar att tillägget inte är användbart för våra användare."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
-msgstr ""
-"Negativa recensioner &mdash; Utvalda tillägg bör ha en fantastisk upplevelse "
-"och väldigt få buggar, så tillägg med många negativa recensioner kan "
-"omprövas."
+msgstr "Negativa recensioner &mdash; Utvalda tillägg bör ha en fantastisk upplevelse och väldigt få buggar, så tillägg med många negativa recensioner kan omprövas."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
 msgstr ""
-"Inkompabilitet med kommande Firefox-versioner &mdash; Utvalda tillägg "
-"förväntas vara kompatibla för stabila och betaversioner av Firefox. Tillägg "
-"som ännu inte är kompatibla med en betaversion av Firefox fyra veckor före "
-"den förväntade släppet kommer att förlora sin utvalda status."
+"Inkompabilitet med kommande Firefox-versioner &mdash; Utvalda tillägg förväntas vara kompatibla för stabila och betaversioner av Firefox. Tillägg som ännu inte är kompatibla med en betaversion av "
+"Firefox fyra veckor före den förväntade släppet kommer att förlora sin utvalda status."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -5553,36 +5462,27 @@ msgstr "Gå med i den rådgivande nämnden för utvalda tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
-msgstr ""
-"Varje halvår väljs en rådgivande nämnd baserat på ansökningar från "
-"gemenskapen för tillägg. Medlemmar måste:"
+msgstr "Varje halvår väljs en rådgivande nämnd baserat på ansökningar från gemenskapen för tillägg. Medlemmar måste:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
-msgstr ""
-"vara aktiva medlemmar i gemenskapen för tillägg, oavsett om du är "
-"utvecklare, missionär eller beundrare"
+msgstr "vara aktiva medlemmar i gemenskapen för tillägg, oavsett om du är utvecklare, missionär eller beundrare"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
-msgstr ""
-"åta sig att försöka testa alla kandidater, ge dem återkoppling och ge dem "
-"röster varje månad"
+msgstr "åta sig att försöka testa alla kandidater, ge dem återkoppling och ge dem röster varje månad"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
-msgstr ""
-"avstå från att rösta på tillägg som de har någon affärs eller personlig "
-"koppling till, liksom direkta konkurrenter till sådana tillägg"
+msgstr "avstå från att rösta på tillägg som de har någon affärs eller personlig koppling till, liksom direkta konkurrenter till sådana tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
-"Medlemmar av Mozilla gruppen för tillägg kan inlägga veto mot varje tilläggs "
-"utbud på grund av säkerhet, integritet, kompatibilitet eller någon annan "
-"orsak, men i allmänhet är det upp till nämnden att välja utvalda tillägg."
+"Medlemmar av Mozilla gruppen för tillägg kan inlägga veto mot varje tilläggs utbud på grund av säkerhet, integritet, kompatibilitet eller någon annan orsak, men i allmänhet är det upp till nämnden "
+"att välja utvalda tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -5590,19 +5490,13 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
-"Denna policy för utvalda gäller endast addons.mozilla.org globala lista över "
-"utvalda tillägg. Tillägg utvalda på andra platser är dras ofta från den här "
-"listan, men Mozilla kan ha utvalda tillägg från andra platser utan nämndens "
-"godkännande. Dessutom, språkspecifika funktioner åsidosätter den globala "
-"standarden, så om ett språk har valt att välja sina egna funktioner, några "
-"eller alla av de globala funktionerna kanske inte visas i det språket."
+"Denna policy för utvalda gäller endast addons.mozilla.org globala lista över utvalda tillägg. Tillägg utvalda på andra platser är dras ofta från den här listan, men Mozilla kan ha utvalda tillägg "
+"från andra platser utan nämndens godkännande. Dessutom, språkspecifika funktioner åsidosätter den globala standarden, så om ett språk har valt att välja sina egna funktioner, några eller alla av de "
+"globala funktionerna kanske inte visas i det språket."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
-msgstr ""
-"Följ <a href=\"%(link_blog)s\">bloggen för tillägg</a> eller <a href=\"%"
-"(link_twitter)s\">@mozamo</a> på Twitter för att veta när nästa "
-"ansökningsperiod öppnar."
+msgstr "Följ <a href=\"%(link_blog)s\">bloggen för tillägg</a> eller <a href=\"%(link_twitter)s\">@mozamo</a> på Twitter för att veta när nästa ansökningsperiod öppnar."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
@@ -5618,31 +5512,24 @@ msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
 "are free to choose the best fit for their add-on."
 msgstr ""
-"För att säkerställa att alla tillägg som hyses i vårt galleri är säkra för "
-"användarna att installera, kommer Mozilla att börja kräva att alla tillägg "
-"som hyses ska genomgå granskning. Vi erbjuder två typer av granskning och "
-"utvecklare är fria att välja den som passar bäst för deras tillägg."
+"För att säkerställa att alla tillägg som hyses i vårt galleri är säkra för användarna att installera, kommer Mozilla att börja kräva att alla tillägg som hyses ska genomgå granskning. Vi erbjuder "
+"två typer av granskning och utvecklare är fria att välja den som passar bäst för deras tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
-"<strong><a href=\"#full\">Fullständig granskning</a></strong> &mdash; en "
-"grundlig funktionell och kodgranskning av tillägget, lämplig för tillägg som "
-"är redo för distribution. Alla webbplatsfunktioner är tillgängliga för "
-"dessa tillägg."
+"<strong><a href=\"#full\">Fullständig granskning</a></strong> &mdash; en grundlig funktionell och kodgranskning av tillägget, lämplig för tillägg som är redo för distribution. Alla "
+"webbplatsfunktioner är tillgängliga för dessa tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
-"<strong><a href=\"#preliminary\">Preliminär granskning</a></strong> &mdash; en "
-"snabbare granskning avsedda för experimentella tillägg. Preliminära "
-"granskningar kontrollerar inte funktionalitet eller full policyefterlevnad, "
-"men de granskade tillägg har varning på installationsknappen och vissa "
-"funktionsbegränsningar."
+"<strong><a href=\"#preliminary\">Preliminär granskning</a></strong> &mdash; en snabbare granskning avsedda för experimentella tillägg. Preliminära granskningar kontrollerar inte funktionalitet "
+"eller full policyefterlevnad, men de granskade tillägg har varning på installationsknappen och vissa funktionsbegränsningar."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -5650,41 +5537,29 @@ msgid ""
 "org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
 "receive an email with any updates throughout the review process."
 msgstr ""
-"Detaljerade beskrivningar av varje alternativ finns nedan. När du har valt "
-"en granskningsprocess vid inskickning, kommer tillägget placeras i kön. "
-"Tillägg granskas av <a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO-"
-"redigerare</a>, en grupp begåvade utvecklare som är volontärer för att "
-"hjälpa Mozilla-projektet genom att granska tillägg för att säkerställa en "
-"stabil och säker upplevelse för användarna. Utvecklare kommer få ett mejl "
-"med eventuella uppdateringar under hela granskningsprocessen."
+"Detaljerade beskrivningar av varje alternativ finns nedan. När du har valt en granskningsprocess vid inskickning, kommer tillägget placeras i kön. Tillägg granskas av <a href=\"https://wiki.mozilla."
+"org/AMO:Editors\">AMO-redigerare</a>, en grupp begåvade utvecklare som är volontärer för att hjälpa Mozilla-projektet genom att granska tillägg för att säkerställa en stabil och säker upplevelse "
+"för användarna. Utvecklare kommer få ett mejl med eventuella uppdateringar under hela granskningsprocessen."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
-"I väntan på granskning, tillägg visas inte någonstans i galleriet "
-"offentligt, men direktlänkar till tilläggets informationssida kommer att "
-"fungera. Denna gör det möjligt för upphovsmän att blogga eller dela länken "
-"med vänner och uppmana dem att prova det, även om den ännu inte har "
-"granskats."
+"I väntan på granskning, tillägg visas inte någonstans i galleriet offentligt, men direktlänkar till tilläggets informationssida kommer att fungera. Denna gör det möjligt för upphovsmän att blogga "
+"eller dela länken med vänner och uppmana dem att prova det, även om den ännu inte har granskats."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
-"Fullständiga granskningar är lämpliga för tillägg som är väl testade, "
-"stabila, snabba och har bred attraktion till våra användare. Om du inte är "
-"säker på att ditt tillägg uppfyller dessa kriterier, kan du överväga att "
-"arbeta med problemen medan den är i preliminär granskning och ackumulera "
-"återkoppling från användarna först."
+"Fullständiga granskningar är lämpliga för tillägg som är väl testade, stabila, snabba och har bred attraktion till våra användare. Om du inte är säker på att ditt tillägg uppfyller dessa kriterier, "
+"kan du överväga att arbeta med problemen medan den är i preliminär granskning och ackumulera återkoppling från användarna först."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
-msgstr ""
-"Vi strävar efter att utföra fullständig granskning på mindre än 10 dagar, "
-"även om de flesta tillägg granskas på mycket kortare tid."
+msgstr "Vi strävar efter att utföra fullständig granskning på mindre än 10 dagar, även om de flesta tillägg granskas på mycket kortare tid."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -5696,21 +5571,15 @@ msgstr "När du utför en fullständig granskning, kommer redigerarna:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid "install the add-on, making sure it functions as described and is free of major defects"
-msgstr ""
-"installera tillägget, se till att det fungerar som beskrivs och är fri från "
-"större defekter"
+msgstr "installera tillägget, se till att det fungerar som beskrivs och är fri från större defekter"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid "perform a source code review, looking for performance and security best practices"
-msgstr ""
-"utför en källkodsgranskning, söker efter bästa metoder för prestanda och "
-"säkerhet"
+msgstr "utför en källkodsgranskning, söker efter bästa metoder för prestanda och säkerhet"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr ""
-"säkerställer att tilläggets sekretesspolicy är i linje med dess "
-"funktionalitet"
+msgstr "säkerställer att tilläggets sekretesspolicy är i linje med dess funktionalitet"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
@@ -5718,25 +5587,19 @@ msgstr "letar efter att alla Mozillas policyer följs, beskrivs i dessa dokument
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid "Some of the most common issues we see when performing these reviews are:"
-msgstr ""
-"Några av de vanligaste problemen som vi ser när vi utför dessa granskningar "
-"är:"
+msgstr "Några av de vanligaste problemen som vi ser när vi utför dessa granskningar är:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
-"<strong>JavaScript namespace förstöring</strong> &mdash; den vanligate "
-"felet. Var noga med att <a href=\"https://developer.mozilla.org/en/XUL_School"
-"/JavaScript_Object_Management\">packa in dina lösa variabler</a>"
+"<strong>JavaScript namespace förstöring</strong> &mdash; den vanligate felet. Var noga med att <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">packa in dina "
+"lösa variabler</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
-msgstr ""
-"korrekt namngivning för inställning - samtliga inställningsnamn ska börja "
-"med \"extensions.\", följt av tilläggets namn eller någon annan unik "
-"identifierare."
+msgstr "korrekt namngivning för inställning - samtliga inställningsnamn ska börja med \"extensions.\", följt av tilläggets namn eller någon annan unik identifierare."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
@@ -5783,32 +5646,24 @@ msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
-"För information om hur man kan undvika dessa problem, se våra <a href=\"%"
-"(link_howto)s\">instruktioner för bibliotek</a>. Några av dessa metoder, "
-"såsom binär eller förvanskad kod, tillåts under vissa villkor som anges "
-"nedan."
+"För information om hur man kan undvika dessa problem, se våra <a href=\"%(link_howto)s\">instruktioner för bibliotek</a>. Några av dessa metoder, såsom binär eller förvanskad kod, tillåts under "
+"vissa villkor som anges nedan."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
 "\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
-"Många av ovanstående begränsningar testas automatiskt av en utökningsskanner "
-"som kommer att flagga misstänkta tillägg för granskning av redigerare. Du "
-"kan läsa mer om denna skanner i dokumentet<a href=\"%"
-"(link_validation)s\">valideringshjälp</a>."
+"Många av ovanstående begränsningar testas automatiskt av en utökningsskanner som kommer att flagga misstänkta tillägg för granskning av redigerare. Du kan läsa mer om denna skanner i dokumentet<a "
+"href=\"%(link_validation)s\">valideringshjälp</a>."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"Om tillägget är platsspecifik, är det rekommenderat att ett testkonto "
-"tillhandahålls för användning under granskningsprocessen. Dessutom kommer "
-"bland annat detaljerade testinstruktioner tillåta en redigerare för att "
-"bättre förstå hur tillägget fungerar och påskynda testprocessen. Denna "
-"information kan placeras i fältet Meddelanden till granskare när du "
-"redigerar en version i Utvecklarcenter."
+"Om tillägget är platsspecifik, är det rekommenderat att ett testkonto tillhandahålls för användning under granskningsprocessen. Dessutom kommer bland annat detaljerade testinstruktioner tillåta en "
+"redigerare för att bättre förstå hur tillägget fungerar och påskynda testprocessen. Denna information kan placeras i fältet Meddelanden till granskare när du redigerar en version i Utvecklarcenter."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -5819,43 +5674,33 @@ msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
 msgstr ""
-"När ett tillägg beviljats fullständig granskning, kommer det omedelbart att "
-"finnas tillgänglig i galleriet, visas vid bläddring och sökresultat med en "
-"varningsfri installationsknapp. Alla funktioner, inklusive frivilliga bidrag "
-"och beta-kanaler kommer att finnas tillgängliga."
+"När ett tillägg beviljats fullständig granskning, kommer det omedelbart att finnas tillgänglig i galleriet, visas vid bläddring och sökresultat med en varningsfri installationsknapp. Alla "
+"funktioner, inklusive frivilliga bidrag och beta-kanaler kommer att finnas tillgängliga."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
-"Senare versioner av tillägget kommer automatiskt att placeras i kön för "
-"fullständig granskning. Tills granskningen är klar, kommer den nya versionen "
-"att visas i versionshistoriken på sidan för tillägget. När granskningen är "
-"klar, kommer versionen att uppdateras på hela webbplatsen och distribueras "
-"via den automatiska uppdateringstjänsten."
+"Senare versioner av tillägget kommer automatiskt att placeras i kön för fullständig granskning. Tills granskningen är klar, kommer den nya versionen att visas i versionshistoriken på sidan för "
+"tillägget. När granskningen är klar, kommer versionen att uppdateras på hela webbplatsen och distribueras via den automatiska uppdateringstjänsten."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
 msgstr ""
-"Om en version inte uppfyller kriterierna för fullständig granskning, kan det "
-"antingen beviljas preliminär granskning eller inaktiveras om det finns ett "
-"säkerhetsproblem. Upphovsmannen kommer att få ett e-postmeddelande som "
-"förklarar de åtgärder som vidtagits och hur man rättar till det. I de flesta "
-"fall kan utvecklaren helt enkelt åtgärda problemet och åter skicka in för "
-"fullständig granskning."
+"Om en version inte uppfyller kriterierna för fullständig granskning, kan det antingen beviljas preliminär granskning eller inaktiveras om det finns ett säkerhetsproblem. Upphovsmannen kommer att få "
+"ett e-postmeddelande som förklarar de åtgärder som vidtagits och hur man rättar till det. I de flesta fall kan utvecklaren helt enkelt åtgärda problemet och åter skicka in för fullständig "
+"granskning."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
-"Preliminära granskning är lämpliga för experimentella tillägg och "
-"tillhandahåller ett sätt att få användartester och återkoppling utan att gå "
-"via längre, mer grundlig granskning. Vi strävar efter att slutföra dessa "
-"granskningar på under 3 dagar."
+"Preliminära granskning är lämpliga för experimentella tillägg och tillhandahåller ett sätt att få användartester och återkoppling utan att gå via längre, mer grundlig granskning. Vi strävar efter "
+"att slutföra dessa granskningar på under 3 dagar."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -5866,11 +5711,8 @@ msgid ""
 "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
 "Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
 msgstr ""
-"När du utför en preliminär granskning, kommer redigerare granska källkoden "
-"för säkerhetsfrågor och viktiga överträdelser av policy, men kommer inte att "
-"installera tillägget att testa funktionaliteten i de flesta fall. "
-"Preliminär granskning kommer att beviljas om en säkerhetsrisk eller större "
-"överträdelse mot policyn upptäcks."
+"När du utför en preliminär granskning, kommer redigerare granska källkoden för säkerhetsfrågor och viktiga överträdelser av policy, men kommer inte att installera tillägget att testa "
+"funktionaliteten i de flesta fall. Preliminär granskning kommer att beviljas om en säkerhetsrisk eller större överträdelse mot policyn upptäcks."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:171
 msgid ""
@@ -5878,30 +5720,21 @@ msgid ""
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
 msgstr ""
-"När preliminär granskning har beviljats, kommer tillägget omedelbart vara "
-"tillgängligt i galleriet, visas vid bläddring och sökresultat, men med en "
-"sämre placering än fullständigt granskade tillägg. Installationsknappar "
-"kommer att ha varningsrand och ett meddelande om att tillägget är "
-"experimentellt och inte helt granskats av Mozilla, men inga extra klick "
-"krävs. Dessutom kan dessa tillägg inte använda frivilliga bidrag och "
-"funktioner för beta-kanal."
+"När preliminär granskning har beviljats, kommer tillägget omedelbart vara tillgängligt i galleriet, visas vid bläddring och sökresultat, men med en sämre placering än fullständigt granskade "
+"tillägg. Installationsknappar kommer att ha varningsrand och ett meddelande om att tillägget är experimentellt och inte helt granskats av Mozilla, men inga extra klick krävs. Dessutom kan dessa "
+"tillägg inte använda frivilliga bidrag och funktioner för beta-kanal."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
-msgstr ""
-"Efter att ha beviljats preliminär granskning kan Mozilla senare återkalla "
-"granskningen om andra allvarliga problem rapporteras till oss av användarna."
+msgstr "Efter att ha beviljats preliminär granskning kan Mozilla senare återkalla granskningen om andra allvarliga problem rapporteras till oss av användarna."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:183
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of "
 "the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
-"Senare versioner av tillägget kommer automatiskt att placeras i kön för "
-"preliminär granskning. Tills granskningen är klar, kommer den nya versionen "
-"att visas i versionshistoriken på tillägget sida. När granskningen är klar, "
-"kommer versionen att uppdateras på hela webbplatsen och distribueras via den "
-"automatiska uppdateringstjänsten."
+"Senare versioner av tillägget kommer automatiskt att placeras i kön för preliminär granskning. Tills granskningen är klar, kommer den nya versionen att visas i versionshistoriken på tillägget sida. "
+"När granskningen är klar, kommer versionen att uppdateras på hela webbplatsen och distribueras via den automatiska uppdateringstjänsten."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
@@ -5917,33 +5750,23 @@ msgstr "Följande tillägg är inte tillåtna i någon form:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr ""
-"Tillägg som bäddat in kända <a "
-"href=\"http://en.wikipedia.org/wiki/Spyware\">spionprogram</a> eller <a "
-"href=\"http://en.wikipedia.org/wiki/Malware\">skadlig kod</a>"
+msgstr "Tillägg som bäddat in kända <a href=\"http://en.wikipedia.org/wiki/Spyware\">spionprogram</a> eller <a href=\"http://en.wikipedia.org/wiki/Malware\">skadlig kod</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
 "Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
 "directory assistants, child pornography finders, etc."
 msgstr ""
-"Olagliga och kriminella tillägg, såsom <a "
-"href=\"http://en.wikipedia.org/wiki/Click_fraud\">klickbedrägerier</a> "
-"generatorer, <a href=\"http://en.wikipedia.org/wiki/Warez\">fildelning</a> och "
+"Olagliga och kriminella tillägg, såsom <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">klickbedrägerier</a> generatorer, <a href=\"http://en.wikipedia.org/wiki/Warez\">fildelning</a> och "
 "nummerupplysning, barnpornografisökare, etc."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
-msgstr ""
-"Tillägg vars huvudsakliga syfte är att underlätta tillgången till "
-"pornografiskt material eller innehålla hänvisningar till detta material i "
-"sina beskrivningar"
+msgstr "Tillägg vars huvudsakliga syfte är att underlätta tillgången till pornografiskt material eller innehålla hänvisningar till detta material i sina beskrivningar"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
-msgstr ""
-"Tillägg som vid installation, automatisk installation eller "
-"startinstallatörer av icke-Firefox programvara"
+msgstr "Tillägg som vid installation, automatisk installation eller startinstallatörer av icke-Firefox programvara"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid "Add-ons that provide their own update mechanism for code or search engines"
@@ -5951,9 +5774,7 @@ msgstr "Tillägg som har sin egen uppdateringsmekanism för kod eller sökmotore
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
-msgstr ""
-"Tillägg som gör ändringar i webbinnehåll på ett sätt som inte är uppenbara "
-"eller svåra att spåra för deras användare"
+msgstr "Tillägg som gör ändringar i webbinnehåll på ett sätt som inte är uppenbara eller svåra att spåra för deras användare"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
@@ -5972,12 +5793,9 @@ msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
 msgstr ""
-"Överraskningar kan vara lämpligt i många situationer, men de är inte "
-"välkomna när användaren säkerhet, integritet och kontroll står på spel. Det "
-"är oerhört viktigt att vara så öppen som möjligt när de skickar in ett "
-"tillägg för att hysas på den här webbplatsen. En Mozilla-användaren ska lätt "
-"kunna urskilja vad funktionaliteten hos ett tillägg är och inte presenteras "
-"med oväntade upplevelser efter installationen."
+"Överraskningar kan vara lämpligt i många situationer, men de är inte välkomna när användaren säkerhet, integritet och kontroll står på spel. Det är oerhört viktigt att vara så öppen som möjligt när "
+"de skickar in ett tillägg för att hysas på den här webbplatsen. En Mozilla-användaren ska lätt kunna urskilja vad funktionaliteten hos ett tillägg är och inte presenteras med oväntade upplevelser "
+"efter installationen."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
@@ -5987,33 +5805,19 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p> När ett tillägg inkluderar oväntade* funktioner som </p> <ul> "
-"<li>äventyrar användarnas personliga integritet eller säkerhet (som att "
-"skicka data till tredje part)</li> <li>ändrar standardinställningar som "
-"hemsida eller sökmotor</li> <li>ändrar inställningar och funktioner i andra "
-"tillägg eller inaktiverar dem helt och hållet</li> </ul> <p>funktionerna "
-"måste följa följande krav:</p> <ul> <li>Tillägget beskrivningen måste "
-"tydligt ange vilka ändringar som tillägget gör. </li> <li>All ändringar "
-"måste opt-in, vilket innebär att användaren måste vidta icke-standardåtgärd "
-"för att anta ändringen.</li> <li>Opt-in dialogrutan ska tydligt ange namnet "
-"på det tillägg som vill ändra det.</li> <li>Avinstallera tillägget "
-"återställer användarens ursprungliga inställningar om de har ändrats.</li> "
-"</ul> <p>*Oväntade funktioner är de som inte är relaterade till tilläggets "
-"primära funktion.</p>"
+"<p> När ett tillägg inkluderar oväntade* funktioner som </p> <ul> <li>äventyrar användarnas personliga integritet eller säkerhet (som att skicka data till tredje part)</li> <li>ändrar "
+"standardinställningar som hemsida eller sökmotor</li> <li>ändrar inställningar och funktioner i andra tillägg eller inaktiverar dem helt och hållet</li> </ul> <p>funktionerna måste följa följande "
+"krav:</p> <ul> <li>Tillägget beskrivningen måste tydligt ange vilka ändringar som tillägget gör. </li> <li>All ändringar måste opt-in, vilket innebär att användaren måste vidta icke-standardåtgärd "
+"för att anta ändringen.</li> <li>Opt-in dialogrutan ska tydligt ange namnet på det tillägg som vill ändra det.</li> <li>Avinstallera tillägget återställer användarens ursprungliga inställningar om "
+"de har ändrats.</li> </ul> <p>*Oväntade funktioner är de som inte är relaterade till tilläggets primära funktion.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr ""
-"Dessa funktioner kan inte föras in i en uppdatering av en fullt granskad "
-"tillägg; opt-in förändringsprocessen måste vara en del av den första "
-"granskning."
+msgstr "Dessa funktioner kan inte föras in i en uppdatering av en fullt granskad tillägg; opt-in förändringsprocessen måste vara en del av den första granskning."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:274
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr ""
-"Dessa är minimikrav och inte en garanti för att tillägget kommer att "
-"godkännas. Detta avsnitt gäller alla tillägg som hyses på webbplatsen, "
-"inklusive preliminärt granskade tillägg."
+msgstr "Dessa är minimikrav och inte en garanti för att tillägget kommer att godkännas. Detta avsnitt gäller alla tillägg som hyses på webbplatsen, inklusive preliminärt granskade tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
@@ -6024,11 +5828,8 @@ msgid ""
 "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
 "session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
 msgstr ""
-"Tillägg som lagrar eller på annat sätt hanterar webbinformation måste stöda "
-"<a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">"
-"privat surfläge</a>. Under en privat surfsession, ska ingen webbinformation "
-"skrivas till disk och alla dessa uppgifter ska raderas när Firefox avslutas "
-"eller den privata surfsessionen avslutas."
+"Tillägg som lagrar eller på annat sätt hanterar webbinformation måste stöda <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">privat surfläge</a>. Under en privat "
+"surfsession, ska ingen webbinformation skrivas till disk och alla dessa uppgifter ska raderas när Firefox avslutas eller den privata surfsessionen avslutas."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -6039,29 +5840,22 @@ msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
-"Tillägg kan innehålla binär, förvanskad och minifirad källkod, men Mozilla "
-"måste få granska en kopia av källkoden för varje version av ett tillägg som "
-"skickas in för granskning. Dessa tillägg är inte berättigade till en "
-"preliminär granskning och måste välja en fullständig granskningsprocess."
+"Tillägg kan innehålla binär, förvanskad och minifirad källkod, men Mozilla måste få granska en kopia av källkoden för varje version av ett tillägg som skickas in för granskning. Dessa tillägg är "
+"inte berättigade till en preliminär granskning och måste välja en fullständig granskningsprocess."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid ""
 "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
 "This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
 msgstr ""
-"Om ett tillägg innehåller binär eller förvanskad källkod, kommer "
-"upphovsmannen att få ett meddelande när tillägget granskas vilket indikerar "
-"vem man ska kontakta på Mozilla för att samordna granskning av källkoden. "
-"Denna kod kommer att granskas av en administratör och kommer inte att delas "
-"eller omfördelas på något sätt. Koden kommer endast att användas i syfte att "
-"se granska tillägget."
+"Om ett tillägg innehåller binär eller förvanskad källkod, kommer upphovsmannen att få ett meddelande när tillägget granskas vilket indikerar vem man ska kontakta på Mozilla för att samordna "
+"granskning av källkoden. Denna kod kommer att granskas av en administratör och kommer inte att delas eller omfördelas på något sätt. Koden kommer endast att användas i syfte att se granska "
+"tillägget."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:301
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
 msgstr ""
-"Om ditt tillägg innehåller binär eller förvanskad kod som du inte äger eller "
-"inte kan få källkoden för, kan du <a href=\"%(link_contact)s\">kontakta "
-"oss</a> för information om hur du ska fortsätta."
+"Om ditt tillägg innehåller binär eller förvanskad kod som du inte äger eller inte kan få källkoden för, kan du <a href=\"%(link_contact)s\">kontakta oss</a> för information om hur du ska fortsätta."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
@@ -6072,9 +5866,8 @@ msgid ""
 "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
 "and unrestricted:"
 msgstr ""
-"Tillägg som hyses på Mozilla tillägg bör vara av hög kvalitet och ge "
-"användarna en bättre webbupplevelse. Vi letar efter följande saker när man "
-"beslutar om ett tillägg är lämpligt att vara offentligt och obegränsat:"
+"Tillägg som hyses på Mozilla tillägg bör vara av hög kvalitet och ge användarna en bättre webbupplevelse. Vi letar efter följande saker när man beslutar om ett tillägg är lämpligt att vara "
+"offentligt och obegränsat:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid ""
@@ -6082,14 +5875,9 @@ msgid ""
 "and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
 "discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
-"<strong>Är du lyhörd?</strong> Vi förväntar oss det av en upphovsman som "
-"främjar sitt tillägg till våra program. Många användare är lyhörda för "
-"problemrapporter, underhåller sina kontaktuppgifter och uppdaterar sitt "
-"tillägg snabbt för att hålla sig uppdaterad med senaste Firefox och "
-"ändringar i vår policyer. Detta betyder inte att du måste svara på alla "
-"frågor som någon postar i diskussionerna eller att du ens behöver fixa varje "
-"bugg, men vi förväntar oss att du kommer att ge svar på frågor på ett sätt "
-"som är lämpligt beroende av svårighetsgraden på den aktuella frågan."
+"<strong>Är du lyhörd?</strong> Vi förväntar oss det av en upphovsman som främjar sitt tillägg till våra program. Många användare är lyhörda för problemrapporter, underhåller sina kontaktuppgifter "
+"och uppdaterar sitt tillägg snabbt för att hålla sig uppdaterad med senaste Firefox och ändringar i vår policyer. Detta betyder inte att du måste svara på alla frågor som någon postar i "
+"diskussionerna eller att du ens behöver fixa varje bugg, men vi förväntar oss att du kommer att ge svar på frågor på ett sätt som är lämpligt beroende av svårighetsgraden på den aktuella frågan."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:25
 msgid ""
@@ -6099,20 +5887,11 @@ msgid ""
 "cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
 "be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
-"<strong>Är tillägget tydligt och korrekt beskrivna?</strong> Det är av "
-"yttersta vikt för oss att användare får vad de förväntar sig när de testar "
-"ett nytt tillägg. Tilläggets namn ska vara klart och koncist och du bör "
-"avstå från att använda specialtecken eller siffror för att få bättre "
-"sökrankning eller för dekorativa ändamål. Din beskrivning bör ge information "
-"om vad tillägget gör, hur en användare kan dra nytta av det och vad "
-"användaren bör förvänta sig när de installerar det. Länkar till externa "
-"dokument för detaljerade instruktioner är bra, men beskrivningen själv bör "
-"omfatta grunderna och lämna användare säkra på att de vet vad de får. "
-"Dessutom är det viktigt att du uppdaterar versionsanteckningar när du "
-"förbättrar och ändrar ditt tillägg. Användare ska kunna se vad som är nytt i "
-"ett tillägg som de kan ha testat tidigare och ska göras medvetna om "
-"ändringar som kan påverka deras nuvarande användning av tillägget när de har "
-"uppdaterat."
+"<strong>Är tillägget tydligt och korrekt beskrivna?</strong> Det är av yttersta vikt för oss att användare får vad de förväntar sig när de testar ett nytt tillägg. Tilläggets namn ska vara klart "
+"och koncist och du bör avstå från att använda specialtecken eller siffror för att få bättre sökrankning eller för dekorativa ändamål. Din beskrivning bör ge information om vad tillägget gör, hur en "
+"användare kan dra nytta av det och vad användaren bör förvänta sig när de installerar det. Länkar till externa dokument för detaljerade instruktioner är bra, men beskrivningen själv bör omfatta "
+"grunderna och lämna användare säkra på att de vet vad de får. Dessutom är det viktigt att du uppdaterar versionsanteckningar när du förbättrar och ändrar ditt tillägg. Användare ska kunna se vad "
+"som är nytt i ett tillägg som de kan ha testat tidigare och ska göras medvetna om ändringar som kan påverka deras nuvarande användning av tillägget när de har uppdaterat."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:31
 msgid ""
@@ -6120,13 +5899,9 @@ msgid ""
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
-"<strong>Är alla integritets- och säkerhetsfrågor klart och tydliga?</strong> "
-"Detta är en aspekt av en tydlig och korrekt beskrivning, men den är så "
-"viktig att vi känner den förtjänar särskilt omnämnande. Många mycket "
-"användbara och välskrivna tillägg manipulera någon form av användardata "
-"eller kan utgöra en säkerhetsrisk om de missbrukas; de är välkomna på "
-"webbplatsen, men de måste göra det mycket klart för användarna vilka risker "
-"de kan råka ut för och vad de kan göra för att skydda sig."
+"<strong>Är alla integritets- och säkerhetsfrågor klart och tydliga?</strong> Detta är en aspekt av en tydlig och korrekt beskrivning, men den är så viktig att vi känner den förtjänar särskilt "
+"omnämnande. Många mycket användbara och välskrivna tillägg manipulera någon form av användardata eller kan utgöra en säkerhetsrisk om de missbrukas; de är välkomna på webbplatsen, men de måste göra "
+"det mycket klart för användarna vilka risker de kan råka ut för och vad de kan göra för att skydda sig."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:37
 msgid ""
@@ -6136,19 +5911,11 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>Har tillägget blivit väl testat och är det fri från uppenbara eller "
-"allvarliga brister?</strong> En viktig sak som vi letar efter när man "
-"överväger ett tillägg är om användarrecensionerna visar på att den har "
-"gjorts en grundlig testning och att det inte har allvarliga problem eller "
-"negativa effekter på webbläsaren. Om granskare rapporterar problem som stora "
-"prestandaproblem, kraschar, ofta problem med funktionerna hos tillägget "
-"eller skräppost av meddelanden till felkonsolen. Då bör du ta till dig dessa "
-"rapporter och åter skicka in ditt tillägg när du har tagit i tur med dem så "
-"gott du kan. Vi förväntar oss inte att du fullständigt optimerar eller har "
-"noll fel &mdash; Firefox själv genomgår ständiga förbättringar inom dessa "
-"områden &mdash; men vi vill att du ska vidta rimliga ansträngningar för att "
-"minimera nackdelar och att tydligt berätta om händelser där användarna kan "
-"bli överraskade av dem som finns kvar."
+"<strong>Har tillägget blivit väl testat och är det fri från uppenbara eller allvarliga brister?</strong> En viktig sak som vi letar efter när man överväger ett tillägg är om användarrecensionerna "
+"visar på att den har gjorts en grundlig testning och att det inte har allvarliga problem eller negativa effekter på webbläsaren. Om granskare rapporterar problem som stora prestandaproblem, "
+"kraschar, ofta problem med funktionerna hos tillägget eller skräppost av meddelanden till felkonsolen. Då bör du ta till dig dessa rapporter och åter skicka in ditt tillägg när du har tagit i tur "
+"med dem så gott du kan. Vi förväntar oss inte att du fullständigt optimerar eller har noll fel &mdash; Firefox själv genomgår ständiga förbättringar inom dessa områden &mdash; men vi vill att du "
+"ska vidta rimliga ansträngningar för att minimera nackdelar och att tydligt berätta om händelser där användarna kan bli överraskade av dem som finns kvar."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
@@ -6156,48 +5923,35 @@ msgid ""
 "activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
 "authors will avoid retaliating with rudeness of their own."
 msgstr ""
-"<strong>Behandlar både tillägget och tilläggets upphovsman användaren "
-"respektfullt?</strong> Ditt program ska inte inkräkta på användaren i "
-"onödan, försöka att lura användaren eller dölja någon av sin aktiviteter "
-"från användaren. Användarna (eller även icke-användare) är ibland oförskämda "
-"i sina synpunkter och vi kommer att göra vårt bästa för att filtrera bort "
-"felaktiga recensioner som har rapporterats in till oss. Vi förväntar oss att "
-"upphovsmännen kommer undvika att hämnas med oförskämdhet från deras sida."
+"<strong>Behandlar både tillägget och tilläggets upphovsman användaren respektfullt?</strong> Ditt program ska inte inkräkta på användaren i onödan, försöka att lura användaren eller dölja någon av "
+"sin aktiviteter från användaren. Användarna (eller även icke-användare) är ibland oförskämda i sina synpunkter och vi kommer att göra vårt bästa för att filtrera bort felaktiga recensioner som har "
+"rapporterats in till oss. Vi förväntar oss att upphovsmännen kommer undvika att hämnas med oförskämdhet från deras sida."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:49
 msgid ""
 "<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
 "your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
-"<strong>Är tillägget användbart för en större del av Firefox "
-"användare?</strong> Ditt tillägg behöver inte bli nästa Greasemonkey eller "
-"Firebug, men om det endast är användbart för personer i ditt företag eller "
-"som är en del av en liten gemenskap, kan vi känna att det ännu inte är "
-"lämpligt att lägga den framför alla våra användare."
+"<strong>Är tillägget användbart för en större del av Firefox användare?</strong> Ditt tillägg behöver inte bli nästa Greasemonkey eller Firebug, men om det endast är användbart för personer i ditt "
+"företag eller som är en del av en liten gemenskap, kan vi känna att det ännu inte är lämpligt att lägga den framför alla våra användare."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:55
 msgid ""
 "We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
 "Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
 msgstr ""
-"Vi söker ständigt efter nya sätt att förbättra organisationen av webbplatsen "
-"för att bättre tillgodose tillägg som är exemplariska på andra sätt, men "
-"som riktar sig endast till ett liten gemenskap av potentiella användare. "
-"Korrekt kategorisering och underhålla metadata för ditt tillägg kommer att "
-"hjälpa oss räkna ut hur vi kan få till ytan fler av dessa typer av tillägg "
-"till personer som är mest benägna att dra nytta av dem."
+"Vi söker ständigt efter nya sätt att förbättra organisationen av webbplatsen för att bättre tillgodose tillägg som är exemplariska på andra sätt, men som riktar sig endast till ett liten gemenskap "
+"av potentiella användare. Korrekt kategorisering och underhålla metadata för ditt tillägg kommer att hjälpa oss räkna ut hur vi kan få till ytan fler av dessa typer av tillägg till personer som är "
+"mest benägna att dra nytta av dem."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:61
 msgid ""
 "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
 "new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
 msgstr ""
-"Om ditt tillägg endast innehåller bokmärken eller andra enkla accesspunkter "
-"till din webbplats, är det antagligen inte lämpligt för galleriet. Liksom "
-"resten av Mozilla-projektet, gillar vi webbapplikationer och nya "
-"webbtjänster, men Firefox tillägg bör ge en förbättrad surfupplevelse för "
-"användaren och inte bara vara ett sätt att främja en ny webbplats eller "
-"tjänst genom en Mozilla tilläggslistning."
+"Om ditt tillägg endast innehåller bokmärken eller andra enkla accesspunkter till din webbplats, är det antagligen inte lämpligt för galleriet. Liksom resten av Mozilla-projektet, gillar vi "
+"webbapplikationer och nya webbtjänster, men Firefox tillägg bör ge en förbättrad surfupplevelse för användaren och inte bara vara ett sätt att främja en ny webbplats eller tjänst genom en Mozilla "
+"tilläggslistning."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
 msgid ""
@@ -6205,14 +5959,9 @@ msgid ""
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
-"<strong>Är tillägget fri från olicensierade varumärken och "
-"upphovsrätt?</strong> Även om du inte vill något ont till innehavaren av ett "
-"varumärke eller ägaren av ett upphovsrättsskyddat verk, kan vi inte hysa "
-"ett tillägg som strider mot varumärken eller upphovsrätt. Om du inte har "
-"tillåtelse att använda ett varumärkes namn eller bild, ska du inte skicka in "
-"ditt tillägg till oss. Om tillägget innehåller kod som är "
-"upphovsrättsskyddat av någon annan och inte licensieras till dig för "
-"användning i ditt tillägg, ska du inte skicka in ditt tillägg till oss."
+"<strong>Är tillägget fri från olicensierade varumärken och upphovsrätt?</strong> Även om du inte vill något ont till innehavaren av ett varumärke eller ägaren av ett upphovsrättsskyddat verk, kan "
+"vi inte hysa ett tillägg som strider mot varumärken eller upphovsrätt. Om du inte har tillåtelse att använda ett varumärkes namn eller bild, ska du inte skicka in ditt tillägg till oss. Om "
+"tillägget innehåller kod som är upphovsrättsskyddat av någon annan och inte licensieras till dig för användning i ditt tillägg, ska du inte skicka in ditt tillägg till oss."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:73
 msgid ""
@@ -6220,14 +5969,9 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
-"När det gäller återanvändning av källkoden från andra tillägg, om "
-"upphovsmannen inte tydligt har uppgett att du har rätt att använda deras kod "
-"i ditt eget arbete &mdash; såsom att placera den under en öppen "
-"källkodslicens &mdash; då ska du anta att du inte har rätt att göra det. Du "
-"kan kontakta upphovsmannen för att söka ett sådant tillstånd, men vi kan "
-"inte ge dig några speciella rättigheter till det bara för att det finns med "
-"på webbplatsen eller på grund av att upphovsmannen inte svarar på din "
-"förfrågan."
+"När det gäller återanvändning av källkoden från andra tillägg, om upphovsmannen inte tydligt har uppgett att du har rätt att använda deras kod i ditt eget arbete &mdash; såsom att placera den under "
+"en öppen källkodslicens &mdash; då ska du anta att du inte har rätt att göra det. Du kan kontakta upphovsmannen för att söka ett sådant tillstånd, men vi kan inte ge dig några speciella rättigheter "
+"till det bara för att det finns med på webbplatsen eller på grund av att upphovsmannen inte svarar på din förfrågan."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
@@ -6235,12 +5979,9 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
-"Detta gäller Mozilla stiftelsens varumärken också, bland annat \"Mozilla\", "
-"\"Firefox\" och \"Thunderbird\". Mozilla policy för varumärkesanvändning är "
-"avsedd att skydda mot förvirring och förhindra att varumärken från att "
-"kantra på grund av bristande skydd; vänligen respektera behovet av sådant "
-"skydd och hjälp oss att bevara några av de mest värdefulla tillgångar i "
-"stiftelsen för Mozilla."
+"Detta gäller Mozilla stiftelsens varumärken också, bland annat \"Mozilla\", \"Firefox\" och \"Thunderbird\". Mozilla policy för varumärkesanvändning är avsedd att skydda mot förvirring och "
+"förhindra att varumärken från att kantra på grund av bristande skydd; vänligen respektera behovet av sådant skydd och hjälp oss att bevara några av de mest värdefulla tillgångar i stiftelsen för "
+"Mozilla."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
@@ -6251,20 +5992,16 @@ msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
-"Att välja en lämplig licens för ditt tillägg är ett mycket viktigt steg i "
-"inskickningsprocessen. En licens anger de rättigheter du beviljar på din "
-"källkod och är viktigt för att skydda dina immateriella rättigheter."
+"Att välja en lämplig licens för ditt tillägg är ett mycket viktigt steg i inskickningsprocessen. En licens anger de rättigheter du beviljar på din källkod och är viktigt för att skydda dina "
+"immateriella rättigheter."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:92
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
 msgstr ""
-"Under tilläggets inskickningsprocess, kommer du att presenteras med en lista "
-"över populära licenser att välja mellan, liksom möjligheten att specificera "
-"din egen licens. Det är bäst att rådgöra med en jurist om vilket licens-"
-"alternativ som är bäst för dig. Att välja rätt licens för källkoden kommer "
-"att bidra till att förhindra förvirring och kodkonflikter i framtiden."
+"Under tilläggets inskickningsprocess, kommer du att presenteras med en lista över populära licenser att välja mellan, liksom möjligheten att specificera din egen licens. Det är bäst att rådgöra med "
+"en jurist om vilket licens-alternativ som är bäst för dig. Att välja rätt licens för källkoden kommer att bidra till att förhindra förvirring och kodkonflikter i framtiden."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12 apps/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
@@ -6276,28 +6013,19 @@ msgstr "Underhåll av ditt tillägg"
 
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
-msgstr ""
-"Mozilla strävar efter att garantera en bra upplevelse gällande tillägg för "
-"våra användare och utvecklare. Läs igenom policyn nedan innan du skickar in "
-"ditt tillägg."
+msgstr "Mozilla strävar efter att garantera en bra upplevelse gällande tillägg för våra användare och utvecklare. Läs igenom policyn nedan innan du skickar in ditt tillägg."
 
 #: apps/devhub/templates/devhub/docs/policies.html:55
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
-msgstr ""
-"Ta reda på vad som förväntas av tillägg som vi hyser och vår policyer för "
-"särskilda tilläggsmetoder."
+msgstr "Ta reda på vad som förväntas av tillägg som vi hyser och vår policyer för särskilda tilläggsmetoder."
 
 #: apps/devhub/templates/devhub/docs/policies.html:67
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
-msgstr ""
-"Vad händer efter ditt tillägg har skickats in? Lär dig mer om hur våra "
-"redigerare granskar inskickningar."
+msgstr "Vad händer efter ditt tillägg har skickats in? Lär dig mer om hur våra redigerare granskar inskickningar."
 
 #: apps/devhub/templates/devhub/docs/policies.html:81
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
-msgstr ""
-"Tilläggsuppdateringar, överföra äganderätten, användarrecensioner och vad "
-"som väntar när ditt tillägg är godkänt."
+msgstr "Tilläggsuppdateringar, överföra äganderätten, användarrecensioner och vad som väntar när ditt tillägg är godkänt."
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
@@ -6317,9 +6045,7 @@ msgstr "Du har inaktiverat detta tillägg"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
-"Ditt tilläggs listning är inaktiverad och visas inte någonstans i vårt "
-"galleri eller uppdateringstjänst."
+msgstr "Ditt tilläggs listning är inaktiverad och visas inte någonstans i vårt galleri eller uppdateringstjänst."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -6331,21 +6057,15 @@ msgstr "Du får ett e-postmeddelande när granskningen är klar."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:34 apps/devhub/templates/devhub/includes/addon_details.html:44
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr ""
-"Du får ett e-postmeddelande när granskningen är klar. Fram till dess listas "
-"inte ditt tillägg i vårt galleri, men kan nås direkt från sin detaljsida."
+msgstr "Du får ett e-postmeddelande när granskningen är klar. Fram till dess listas inte ditt tillägg i vårt galleri, men kan nås direkt från sin detaljsida."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38 apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"Du får ett e-postmeddelande när granskningen är klar och ditt tillägg "
-"signerat."
+msgstr "Du får ett e-postmeddelande när granskningen är klar och ditt tillägg signerat."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
-"Ditt tillägg visas i vårt galleri och användare får automatiska "
-"uppdateringar."
+msgstr "Ditt tillägg visas i vårt galleri och användare får automatiska uppdateringar."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
@@ -6442,9 +6162,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:61
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
-"Berätta för dina användare vad som snart kommer kan att ge dem något att se "
-"fram emot."
+msgstr "Berätta för dina användare vad som snart kommer kan att ge dem något att se fram emot."
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
@@ -6686,9 +6404,7 @@ msgstr "Kan andra dela ditt tema, så länge du omnämnes?"
 #: apps/devhub/templates/devhub/personas/edit.html:132 apps/devhub/templates/devhub/personas/edit.html:153 apps/devhub/templates/devhub/personas/submit.html:78
 #: apps/devhub/templates/devhub/personas/submit.html:99
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-"Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra "
-"arbetet, även för kommersiella ändamål."
+msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, även för kommersiella ändamål."
 
 #: apps/devhub/templates/devhub/personas/edit.html:141 apps/devhub/templates/devhub/personas/edit.html:162 apps/devhub/templates/devhub/personas/submit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:108
@@ -6887,19 +6603,19 @@ msgid ""
 "\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:48
 msgid "Which review type would you like to nominate for?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:58
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
@@ -6926,7 +6642,7 @@ msgstr "Filer"
 msgid "Upload Another File"
 msgstr "Ladda upp en annan fil"
 
-#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
+#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:98
 msgid "Version Notes"
 msgstr "Versionsanteckningar"
 
@@ -6940,7 +6656,7 @@ msgstr ""
 msgid "Approval Status"
 msgstr "Godkännandestatus"
 
-#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:131
+#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:108
 msgid "Notes for Reviewers"
 msgstr "Anteckning för granskare"
 
@@ -7076,7 +6792,7 @@ msgid "Status"
 msgstr "Status"
 
 #: apps/devhub/templates/devhub/versions/list.html:140 apps/devhub/templates/devhub/versions/list.html:161 apps/devhub/templates/devhub/versions/list.html:181
-#: apps/editors/templates/editors/review.html:83
+#: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
 msgstr "Validering"
 
@@ -7560,7 +7276,7 @@ msgstr "Dagar sedan inskickning"
 msgid "Add-on Types"
 msgstr ""
 
-#: apps/editors/forms.py:129 apps/editors/helpers.py:239
+#: apps/editors/forms.py:129 apps/editors/helpers.py:263
 msgid "Platforms"
 msgstr "Plattformar"
 
@@ -7619,258 +7335,258 @@ msgstr ""
 msgid "app, reviewer, or comment"
 msgstr ""
 
-#: apps/editors/helpers.py:48
+#: apps/editors/helpers.py:49
 msgid "Pending Preliminary Review"
 msgstr ""
 
-#: apps/editors/helpers.py:52
+#: apps/editors/helpers.py:53
 msgid "Pending Full Review"
 msgstr ""
 
-#: apps/editors/helpers.py:59
+#: apps/editors/helpers.py:60
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: apps/editors/helpers.py:116 apps/editors/helpers.py:129
+#: apps/editors/helpers.py:117 apps/editors/helpers.py:130
 msgid "Queue"
 msgstr "Kö"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr ""
 
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Fullständig granskning"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr ""
 
-#: apps/editors/helpers.py:123
+#: apps/editors/helpers.py:124
 msgid "Pending Themes"
 msgstr "Väntande teman"
 
-#: apps/editors/helpers.py:124 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:125 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Flaggade teman"
 
-#: apps/editors/helpers.py:125
+#: apps/editors/helpers.py:126
 msgid "Update Themes"
 msgstr ""
 
-#: apps/editors/helpers.py:130
+#: apps/editors/helpers.py:131
 msgid "Unlisted Pending Updates"
 msgstr ""
 
-#: apps/editors/helpers.py:131
+#: apps/editors/helpers.py:132
 msgid "Unlisted Full Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:132
+#: apps/editors/helpers.py:133
 msgid "Unlisted Preliminary Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:165
+#: apps/editors/helpers.py:166
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:170
+#: apps/editors/helpers.py:171
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Fullständig granskning ({0})"
 msgstr[1] "Fullständiga granskningar ({0})"
 
-#: apps/editors/helpers.py:175
+#: apps/editors/helpers.py:176
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:180
+#: apps/editors/helpers.py:181
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:185
+#: apps/editors/helpers.py:186
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:191
+#: apps/editors/helpers.py:192
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:196
+#: apps/editors/helpers.py:197
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:201
+#: apps/editors/helpers.py:202
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:233
+#: apps/editors/helpers.py:257
 msgid "Addon"
 msgstr "Tillägg"
 
-#: apps/editors/helpers.py:234 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:258 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Typ"
 
-#: apps/editors/helpers.py:235
+#: apps/editors/helpers.py:259
 msgid "Waiting Time"
 msgstr "Väntetid"
 
-#: apps/editors/helpers.py:236 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:260 apps/editors/templates/editors/review.html:284
 msgid "Flags"
 msgstr "Flaggor"
 
-#: apps/editors/helpers.py:237
+#: apps/editors/helpers.py:261
 msgid "Applications"
 msgstr "Applikationer"
 
-#: apps/editors/helpers.py:242
+#: apps/editors/helpers.py:266
 msgid "Additional"
 msgstr ""
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:281
 msgid "Site Specific"
 msgstr ""
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:283
 msgid "Requires External Software"
 msgstr ""
 
-#: apps/editors/helpers.py:261
+#: apps/editors/helpers.py:285
 msgid "Binary Components"
 msgstr ""
 
-#: apps/editors/helpers.py:285
+#: apps/editors/helpers.py:309
 msgid "moments ago"
 msgstr ""
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:288
+#: apps/editors/helpers.py:312
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:292
+#: apps/editors/helpers.py:316
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:296
+#: apps/editors/helpers.py:320
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/editors/helpers.py:456
+#: apps/editors/helpers.py:480
 msgid "Push to public"
 msgstr ""
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:482
 msgid "Grant full review"
 msgstr ""
 
-#: apps/editors/helpers.py:473
+#: apps/editors/helpers.py:497
 msgid "Request more information"
 msgstr ""
 
-#: apps/editors/helpers.py:476
+#: apps/editors/helpers.py:500
 msgid "Request super-review"
 msgstr ""
 
-#: apps/editors/helpers.py:487
+#: apps/editors/helpers.py:511
 msgid "Grant preliminary review"
 msgstr ""
 
-#: apps/editors/helpers.py:488
+#: apps/editors/helpers.py:512
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: apps/editors/helpers.py:490
+#: apps/editors/helpers.py:514
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 
-#: apps/editors/helpers.py:494
+#: apps/editors/helpers.py:518
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:524
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr ""
 
-#: apps/editors/helpers.py:502
+#: apps/editors/helpers.py:526
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: apps/editors/helpers.py:506
+#: apps/editors/helpers.py:530
 msgid "This will reject the files and remove them from the review queue."
 msgstr ""
 
-#: apps/editors/helpers.py:510
+#: apps/editors/helpers.py:534
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: apps/editors/helpers.py:515
+#: apps/editors/helpers.py:539
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: apps/editors/helpers.py:520
+#: apps/editors/helpers.py:544
 msgid "Retain preliminary review"
 msgstr ""
 
-#: apps/editors/helpers.py:521
+#: apps/editors/helpers.py:545
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: apps/editors/helpers.py:526
+#: apps/editors/helpers.py:550
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr ""
 
-#: apps/editors/helpers.py:529
+#: apps/editors/helpers.py:553
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
 
-#: apps/editors/helpers.py:532
+#: apps/editors/helpers.py:556
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
 
-#: apps/editors/helpers.py:605
+#: apps/editors/helpers.py:629
 msgid "add-on"
 msgstr "tillägg"
 
-#: apps/editors/helpers.py:899 apps/editors/helpers.py:919
+#: apps/editors/helpers.py:923 apps/editors/helpers.py:943
 msgid "Flagged"
 msgstr "Flaggad"
 
-#: apps/editors/helpers.py:903 apps/editors/helpers.py:922
+#: apps/editors/helpers.py:927 apps/editors/helpers.py:946
 msgid "Updates"
 msgstr ""
 
@@ -8177,7 +7893,7 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:246
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:223
 msgid "Save"
 msgstr "Spara"
 
@@ -8295,7 +8011,7 @@ msgstr ""
 msgid "Add-on user change history"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
+#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:265
 msgid "Add-on History"
 msgstr "Historik för tillägg"
 
@@ -8304,82 +8020,70 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr ""
 
 #: apps/editors/templates/editors/review.html:73
-msgid "Files in this version:"
-msgstr ""
-
-#: apps/editors/templates/editors/review.html:85
-msgid "Contents"
-msgstr "Innehåll"
-
-#: apps/editors/templates/editors/review.html:88
-msgid "Compare"
-msgstr "Jämför"
-
-#: apps/editors/templates/editors/review.html:96
 msgid "Compatibility:"
 msgstr "Kompatibilitet:"
 
-#: apps/editors/templates/editors/review.html:107
+#: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:110
+#: apps/editors/templates/editors/review.html:87
 msgid "Download files"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:112
+#: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:147
+#: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:177
+#: apps/editors/templates/editors/review.html:154
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:184
+#: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:204
+#: apps/editors/templates/editors/review.html:181
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:212
+#: apps/editors/templates/editors/review.html:189
 msgid "Tested on:"
 msgstr "Testad på:"
 
-#: apps/editors/templates/editors/review.html:242
+#: apps/editors/templates/editors/review.html:219
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:259
+#: apps/editors/templates/editors/review.html:236
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:263
+#: apps/editors/templates/editors/review.html:240
 msgid "Update the whiteboard"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:279 apps/editors/templates/editors/review.html:280
+#: apps/editors/templates/editors/review.html:256 apps/editors/templates/editors/review.html:257
 msgid "(admin)"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:280
+#: apps/editors/templates/editors/review.html:257
 msgid "Admin Page"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:285
+#: apps/editors/templates/editors/review.html:262
 msgid "Review This Add-on"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:287
+#: apps/editors/templates/editors/review.html:264
 msgid "More Information"
 msgstr "Mer information"
 
-#: apps/editors/templates/editors/review.html:289
+#: apps/editors/templates/editors/review.html:266
 msgid "Resolution"
 msgstr "Upplösning"
 
@@ -8422,6 +8126,18 @@ msgstr "Inga granskningar funna för denna period."
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
 msgstr ""
+
+#: apps/editors/templates/editors/includes/files_view.html:1
+msgid "Files in this version:"
+msgstr ""
+
+#: apps/editors/templates/editors/includes/files_view.html:13
+msgid "Contents"
+msgstr "Innehåll"
+
+#: apps/editors/templates/editors/includes/files_view.html:16
+msgid "Compare"
+msgstr "Jämför"
 
 #: apps/editors/templates/editors/includes/history.html:6
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -8640,24 +8356,24 @@ msgstr "Beskriv din anledning till flaggning"
 msgid "Cannot diff a version against itself"
 msgstr ""
 
-#: apps/files/helpers.py:155
+#: apps/files/helpers.py:153
 msgid "That file no longer exists."
 msgstr ""
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: apps/files/helpers.py:164
+#: apps/files/helpers.py:162
 msgid "File size is over the limit of {0}."
 msgstr ""
 
-#: apps/files/helpers.py:178
+#: apps/files/helpers.py:176
 msgid "Problems decoding {0}."
 msgstr ""
 
-#: apps/files/helpers.py:188
+#: apps/files/helpers.py:186
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr ""
 
-#: apps/files/helpers.py:196
+#: apps/files/helpers.py:194
 msgid "This file is a directory."
 msgstr ""
 
@@ -10278,7 +9994,7 @@ msgstr ""
 msgid "Skip for now"
 msgstr "Hoppa över nu"
 
-#: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:94
+#: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:107
 msgid "Delete review"
 msgstr "Ta bort recension"
 
@@ -10355,9 +10071,17 @@ msgstr "Rapportera recensionen"
 msgid "Reply to review"
 msgstr "Besvara recension"
 
-#: apps/reviews/templates/reviews/review.html:88
+#: apps/reviews/templates/reviews/review.html:89
+msgid "Edit reply"
+msgstr ""
+
+#: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
 msgstr "Redigera recension"
+
+#: apps/reviews/templates/reviews/review.html:102
+msgid "Delete reply"
+msgstr ""
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -10510,22 +10234,22 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "Visar {0} - {1} av {2} resultat"
 
 #. {0} is an application, like Firefox.
-#: apps/search/views.py:267 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
+#: apps/search/views.py:261 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
 msgstr "{0} tillägg"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:558
+#: apps/search/views.py:550
 msgid "Any {0}"
 msgstr "Någon {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:593
+#: apps/search/views.py:585
 msgid "All Systems"
 msgstr "Alla system"
 
-#: apps/search/views.py:604
+#: apps/search/views.py:596
 msgid "All Tags"
 msgstr "Alla taggar"
 
@@ -11770,28 +11494,19 @@ msgstr "Obs:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
-"Du har redan skickat in en begäran om en t-tröja. Du kan skicka in detta "
-"formulär på nytt för att uppdatera dina uppgifter, men du kommer bara att få "
-"en t-tröja."
+msgstr "Du har redan skickat in en begäran om en t-tröja. Du kan skicka in detta formulär på nytt för att uppdatera dina uppgifter, men du kommer bara att få en t-tröja."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
-"Tack för att du hjälper till att göra Firefox den mest utökningsbara "
-"webbläsaren som finns!"
+msgstr "Tack för att du hjälper till att göra Firefox den mest utökningsbara webbläsaren som finns!"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
-"Som en tackgåva, skulle vi vilja skicka dig en speciellutgåva, en t-tröja "
-"utformad av gemenskapen. För att få din tröja, fyll i formuläret nedan."
+msgstr "Som en tackgåva, skulle vi vilja skicka dig en speciellutgåva, en t-tröja utformad av gemenskapen. För att få din tröja, fyll i formuläret nedan."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-"Dina kontaktuppgifter kommer endast att användas av Mozilla för att leverera "
-"denna specialutgåva t-tröja."
+msgstr "Dina kontaktuppgifter kommer endast att användas av Mozilla för att leverera denna specialutgåva t-tröja."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -11850,10 +11565,8 @@ msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
-"Vi ber om ursäkt, men för att kvalificera sig för vår specialutgåva t-tröja, "
-"måste du vara en utvecklare för tillägg med minst ett listat tillägg, en "
-"olistat men signerat tillägg eller valfritt antal bakgrundsteman med "
-"sammanlagt 10.000 genomsnittliga dagliga användare."
+"Vi ber om ursäkt, men för att kvalificera sig för vår specialutgåva t-tröja, måste du vara en utvecklare för tillägg med minst ett listat tillägg, en olistat men signerat tillägg eller valfritt "
+"antal bakgrundsteman med sammanlagt 10.000 genomsnittliga dagliga användare."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
@@ -12170,9 +11883,7 @@ msgstr "Välkommen till {0} tillägg."
 
 #: templates/impala/base.html:133
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
-"Välj bland tusentals extrafunktioner och stilar för att göra Firefox till "
-"ditt."
+msgstr "Välj bland tusentals extrafunktioner och stilar för att göra Firefox till ditt."
 
 #: templates/impala/base.html:138
 msgid "Add extra features and styles to make %(app)s your own."

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 11:40-0700\n"
+"POT-Creation-Date: 2015-07-29 13:03-0700\n"
 "PO-Revision-Date: 2015-07-16 05:26+0000\n"
 "Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -18,8 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1437024409.0\n"
 
@@ -156,7 +155,7 @@ msgstr "Користувачі можуть зробити внесок, біл�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище)"
 
-#: apps/addons/models.py:1896 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
+#: apps/addons/models.py:1920 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Listed"
 msgstr "У списку"
 
@@ -240,7 +239,7 @@ msgstr "Зробити внесок"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:94 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:89 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
 #: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318 apps/devhub/templates/devhub/versions/list.html:352
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -349,7 +348,7 @@ msgid "Add-on Information for {0}"
 msgstr "Інформація додатку для {0}"
 
 #: apps/addons/templates/addons/details_box.html:34 apps/addons/templates/addons/persona_detail_table.html:3 apps/addons/templates/addons/mobile/details.html:63
-#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:74
+#: apps/addons/templates/addons/mobile/persona_detail_table.html:7 apps/browse/views.py:450 apps/devhub/views.py:75
 msgid "Updated"
 msgstr "Оновлено"
 
@@ -632,7 +631,7 @@ msgid "See all Themes by this Artist"
 msgstr "Дивитись більше тем цього художника"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:299
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:276
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "Категорії"
@@ -656,7 +655,7 @@ msgstr "Ліцензія"
 msgid "Awaiting Review"
 msgstr "Очікує перевірки"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:55
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:56
 msgid "Rejected"
 msgstr "Відхилено"
 
@@ -683,7 +682,7 @@ msgstr "Додати"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:279
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:256
 msgid "Edit"
 msgstr "Редагувати"
 
@@ -830,7 +829,7 @@ msgstr "Надіслати звіт"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:95 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:90 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318
 #: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -875,7 +874,7 @@ msgstr "Щодо відгуків"
 msgid "Detailed Review"
 msgstr "Детальний відгук"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:880 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:904 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Відгуки"
@@ -1299,7 +1298,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:98 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:99 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "Теми"
@@ -1374,7 +1373,7 @@ msgstr "Відправити нову тему"
 msgid "Developer Hub"
 msgstr "Центр розробника"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:75 apps/editors/helpers.py:95 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:76 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Інструменти редактора"
 
@@ -1555,7 +1554,7 @@ msgstr "Запитано спеціальний огляд"
 msgid "Comment on {addon} {version}."
 msgstr "Коментар про {addon} {version}."
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:479
+#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:503
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "Коментар"
@@ -1818,6 +1817,11 @@ msgstr "{addon} прибрано зі списку."
 msgid "{file} was signed."
 msgstr ""
 
+#. L10n: {0} is the add-on GUID.
+#: apps/amo/log.py:602
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
 msgstr "Не дозволено"
@@ -1868,16 +1872,16 @@ msgstr "Результатів не знайдено"
 
 #. abbreviation of 'previous'
 #: apps/amo/templates/amo/paginator.html:6 apps/amo/templates/amo/mobile/paginator.html:4 apps/amo/templates/amo/mobile/paginator.html:6
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:49
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:62 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:75
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:88
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:49 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
 msgstr "Попередня"
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 apps/amo/templates/amo/mobile/impala_paginator.html:16 apps/amo/templates/amo/mobile/paginator.html:14
-#: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:37
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
+#: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:65 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:78
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:49 apps/stats/templates/stats/stats.html:159
 msgid "Next"
 msgstr "Наступна"
@@ -2148,11 +2152,11 @@ msgstr "Посилання не дозволені."
 msgid "This url is already in use by another collection"
 msgstr "Ця адреса URL вже використовується в іншій збірці"
 
-#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1035
+#: apps/bandwagon/forms.py:179 apps/devhub/views.py:1031
 msgid "Icons must be either PNG or JPG."
 msgstr "Іконки повинні мати формат PNG або JPG."
 
-#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1053 apps/users/forms.py:424
+#: apps/bandwagon/forms.py:184 apps/devhub/views.py:1049 apps/users/forms.py:424
 msgid "Please use images smaller than %dMB."
 msgstr "Будь ласка, використовуйте зображення розміром до %dMB."
 
@@ -2192,7 +2196,7 @@ msgstr "Вподобання"
 msgid "Remove from favorites"
 msgstr "Вилучити з вподобань"
 
-#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:73 apps/devhub/views.py:81
+#: apps/bandwagon/views.py:90 apps/bandwagon/views.py:180 apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449 apps/devhub/views.py:74 apps/devhub/views.py:82
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20 apps/editors/templates/editors/leaderboard.html:24 apps/editors/templates/editors/themes/queue_list.html:48 apps/search/forms.py:17
 #: apps/search/forms.py:89 apps/users/templates/users/vcard.html:5
 msgid "Name"
@@ -2565,7 +2569,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Увага:</b> Змінивши власника цієї збірки, ви більше не зможете редагувати її. Ви зможете тільки додавати або вилучати додатки з неї."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:91 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:92 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2663,7 +2667,7 @@ msgstr "Введіть назву додатку щоб включити"
 msgid "Add to Collection"
 msgstr "Додати до збірки"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:895 apps/editors/helpers.py:915
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:919 apps/editors/helpers.py:939
 msgid "Pending"
 msgstr "Очікує"
 
@@ -2777,15 +2781,15 @@ msgstr "Найбільше користувачів"
 msgid "Up & Coming"
 msgstr "Набирають популярність"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82 apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Created"
 msgstr "Створено"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
+#: apps/browse/views.py:452 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/stats/templates/stats/addon_report_menu.html:8 apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Завантаження"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/edit_review.html:9 apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Оцінка"
@@ -3056,7 +3060,7 @@ msgstr "&laquo; Всі теми"
 msgid "All"
 msgstr "Всі"
 
-#: apps/compat/forms.py:23 apps/search/views.py:529
+#: apps/compat/forms.py:23 apps/search/views.py:521
 msgid "All Add-ons"
 msgstr "Всі додатки"
 
@@ -3270,7 +3274,7 @@ msgstr "Попередньо перевірено"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Попередньо перевірено та очікує повної перевірки"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:883 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:34 apps/editors/helpers.py:907 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Видалено"
 
@@ -3527,7 +3531,7 @@ msgstr "Прапорець"
 msgid "Duplicate"
 msgstr "Дублікат"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:470 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:494 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "Відхилити"
 
@@ -3836,7 +3840,7 @@ msgid "Developer Docs"
 msgstr "Документація розробника"
 
 #. L10n: first parameter is the number of errors
-#: apps/devhub/helpers.py:203
+#: apps/devhub/helpers.py:200
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} помилка"
@@ -3844,7 +3848,7 @@ msgstr[1] "{0} помилки"
 msgstr[2] "{0} помилок"
 
 #. L10n: first parameter is the number of warnings
-#: apps/devhub/helpers.py:206
+#: apps/devhub/helpers.py:203
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} попередження"
@@ -3855,144 +3859,144 @@ msgstr[2] "{0} попереджень"
 msgid "Review"
 msgstr "Відгук"
 
-#: apps/devhub/tasks.py:346
+#: apps/devhub/tasks.py:394
 msgid "%s responded with %s (%s)."
 msgstr "%s відповів з %s (%s)."
 
-#: apps/devhub/tasks.py:350
+#: apps/devhub/tasks.py:398
 msgid "Connection to \"%s\" timed out."
 msgstr "Час очікування з'єднання з \"%s\" завершився."
 
-#: apps/devhub/tasks.py:352
+#: apps/devhub/tasks.py:400
 msgid "Could not contact host at \"%s\"."
 msgstr "Не вдалося зв'язатись з хостом на \"%s\"."
 
-#: apps/devhub/utils.py:59
+#: apps/devhub/utils.py:72
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Валідація згенерувала занадто багато помилок та попереджень, тому %s повідомлень не було відображено. Після усунення видимих повідомлень, Ви зможете побачити інші."
 
-#: apps/devhub/views.py:178
+#: apps/devhub/views.py:179
 msgid "All My Add-ons"
 msgstr "Всі мої додатки"
 
-#: apps/devhub/views.py:205
+#: apps/devhub/views.py:206
 msgid "All Activity"
 msgstr "Вся активність"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:207
 msgid "Add-on Updates"
 msgstr "Оновлення додатку"
 
-#: apps/devhub/views.py:207
+#: apps/devhub/views.py:208
 msgid "Add-on Status"
 msgstr "Статус додатку"
 
-#: apps/devhub/views.py:208
+#: apps/devhub/views.py:209
 msgid "User Collections"
 msgstr "Збірки користувача"
 
-#: apps/devhub/views.py:209 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
+#: apps/devhub/views.py:210 apps/devhub/templates/devhub/docs/policies-maintenance.html:68 apps/pages/templates/pages/dev_faq.html:39 apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Відгуки користувачів"
 
-#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:480 apps/devhub/views.py:509 apps/devhub/views.py:560 apps/devhub/views.py:1132
+#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:481 apps/devhub/views.py:510 apps/devhub/views.py:561 apps/devhub/views.py:1128
 msgid "Changes successfully saved."
 msgstr "Зміни успішно збережені."
 
-#: apps/devhub/views.py:329 apps/devhub/views.py:1609
+#: apps/devhub/views.py:330 apps/devhub/views.py:1601
 msgid "Please check the form for errors."
 msgstr "Перевірте форму на наявність помилок."
 
-#: apps/devhub/views.py:341
+#: apps/devhub/views.py:342
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Додаток неможливо видалити. Натомість відключіть його."
 
-#: apps/devhub/views.py:351
+#: apps/devhub/views.py:352
 msgid "Theme deleted."
 msgstr "Тема видалена."
 
-#: apps/devhub/views.py:351
+#: apps/devhub/views.py:352
 msgid "Add-on deleted."
 msgstr "Додаток видалений."
 
-#: apps/devhub/views.py:357
+#: apps/devhub/views.py:358
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Було введено невірний пароль. Тема не була видалена."
 
-#: apps/devhub/views.py:362
+#: apps/devhub/views.py:363
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Було введено невірний пароль. Додаток не був видалений."
 
-#: apps/devhub/views.py:446
+#: apps/devhub/views.py:447
 msgid "An author has been added to your add-on"
 msgstr "До Вашого додатку був доданий автор"
 
-#: apps/devhub/views.py:453
+#: apps/devhub/views.py:454
 msgid "An author has a role changed on your add-on"
 msgstr "Автор змінив роль у Вашому додатку"
 
-#: apps/devhub/views.py:472
+#: apps/devhub/views.py:473
 msgid "An author has been removed from your add-on"
 msgstr "Із Вашого додатку був видалений автор"
 
-#: apps/devhub/views.py:515
+#: apps/devhub/views.py:516
 msgid "There were errors in your submission."
 msgstr "У Вашому представленні були помилки."
 
-#: apps/devhub/views.py:579
+#: apps/devhub/views.py:580
 msgid "Validate Add-on"
 msgstr "Валідувати додаток"
 
-#: apps/devhub/views.py:590
+#: apps/devhub/views.py:591
 msgid "Check Add-on Compatibility"
 msgstr "Перевірка сумісності додатку"
 
-#: apps/devhub/views.py:662
+#: apps/devhub/views.py:666
 msgid "There was an error with the submission."
 msgstr "Під час відправлення сталася помилка."
 
-#: apps/devhub/views.py:1037 apps/users/forms.py:419
+#: apps/devhub/views.py:1033 apps/users/forms.py:419
 msgid "Images must be either PNG or JPG."
 msgstr "Зображення повинні бути у форматі PNG чи JPG."
 
-#: apps/devhub/views.py:1041
+#: apps/devhub/views.py:1037
 msgid "Icons cannot be animated."
 msgstr "Іконки не можуть бути з анімацією."
 
-#: apps/devhub/views.py:1043
+#: apps/devhub/views.py:1039
 msgid "Images cannot be animated."
 msgstr "Зображення не можуть бути з анімацією."
 
-#: apps/devhub/views.py:1056
+#: apps/devhub/views.py:1052
 msgid "Images cannot be larger than %dKB."
 msgstr "Зображення не можуть перевищувати розмір %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1066
+#: apps/devhub/views.py:1062
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Зображення повинно бути точно {0} пікселів завширшки та {1} пікселів заввишки."
 
-#: apps/devhub/views.py:1073
+#: apps/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "При вивантаженні вашого попереднього перегляду сталася помилка."
 
-#: apps/devhub/views.py:1171
+#: apps/devhub/views.py:1167
 msgid "Version %s disabled."
 msgstr "Версію %s відключено."
 
-#: apps/devhub/views.py:1175
+#: apps/devhub/views.py:1171
 msgid "Version %s deleted."
 msgstr "Версію %s видалено."
 
-#: apps/devhub/views.py:1185
+#: apps/devhub/views.py:1181
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Це завантаження не пройшло валідацію і у ньому можуть бути відсутніми деякі результати повної валідації. Будь ласка, будьте уважні при його перевірці."
 
-#: apps/devhub/views.py:1655
+#: apps/devhub/views.py:1647
 msgid "Preliminary Review Requested."
 msgstr "Запитана попередня перевірка."
 
-#: apps/devhub/views.py:1656
+#: apps/devhub/views.py:1648
 msgid "Full Review Requested."
 msgstr "Запитана повна перевірка."
 
@@ -4168,28 +4172,28 @@ msgstr "Додаткові ресурси"
 msgid "Search Developer Docs"
 msgstr "Пошук документації для розробників"
 
-#: apps/devhub/templates/devhub/validate_addon.html:14
+#: apps/devhub/templates/devhub/validate_addon.html:15
 msgid "Use the field below to upload your add-on package."
 msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакет додатку."
 
-#: apps/devhub/templates/devhub/validate_addon.html:20
+#: apps/devhub/templates/devhub/validate_addon.html:21
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Після завантаження буде запущена серія автоматичних валідуючих тестів, які перевірять сумісність із наступною версією програми:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:35
+#: apps/devhub/templates/devhub/validate_addon.html:36
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Після завантаження, над Вашим файлом буде проведена серія автоматичних валідуючих тестів."
 
-#: apps/devhub/templates/devhub/validate_addon.html:44 apps/devhub/templates/devhub/addons/submit/upload.html:26
+#: apps/devhub/templates/devhub/validate_addon.html:45 apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Ви хочете розповсюджувати свій додаток на цьому сайті?"
 
-#: apps/devhub/templates/devhub/validate_addon.html:51 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:60 apps/devhub/templates/devhub/versions/list.html:299
+#: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
 msgstr "Попередження:"
 
-#: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:34
+#: apps/devhub/templates/devhub/validate_addon.html:53 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
 "Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
@@ -4317,7 +4321,7 @@ msgstr "Жодного"
 msgid "Manage Authors & License"
 msgstr "Керування авторами і ліцензією"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:292
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:269
 msgid "Authors"
 msgstr "Автори"
 
@@ -4377,7 +4381,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Оберіть короткий, унікальний URL slug для Вашого додатка."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:277 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:254 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "Переглянути список"
 
@@ -4683,32 +4687,40 @@ msgid "Tests"
 msgstr "Тести"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:5
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:39
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
 msgstr "Загальні тести"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:9
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
 msgstr "Тести безпеки"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:13
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:66
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
 msgstr "Тести розширення"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:17
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:79
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
 msgstr "Тести локалізації"
 
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:92
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
 msgstr "Тести сумісності"
 
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:36 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:63 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76
-#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
+msgid "Hide messages not required for automated signing"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
+msgid "Hide messages present in previous version and ignored"
+msgstr ""
+
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
+#: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:103
 msgid "Top"
 msgstr "Нагору"
 
@@ -4744,7 +4756,7 @@ msgstr "Будь ласка, розкажіть нам, чому ви видал
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Будь ласка, розкажіть нам, чому ви видаляєте свій додаток:"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:275
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:252
 msgid "Actions"
 msgstr "Дії"
 
@@ -5132,15 +5144,15 @@ msgid "Use the fields below to upload your add-on package and select any platfor
 msgstr ""
 "Для завантаження пакету свого додатку і вибору обмежень щодо платформи користуйтеся полями нижче. Після завантаження ваш файл буде перевірено з використанням серії автоматичних тестів валідації."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:65 apps/devhub/templates/devhub/versions/add_file_modal.html:46
+#: apps/devhub/templates/devhub/addons/submit/upload.html:66 apps/devhub/templates/devhub/versions/add_file_modal.html:41
 msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:73 apps/devhub/templates/devhub/versions/add_file_modal.html:72
+#: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Administrative overrides"
 msgstr "Адміністративні дії"
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:83 apps/devhub/templates/devhub/versions/add_file_modal.html:84
+#: apps/devhub/templates/devhub/addons/submit/upload.html:84 apps/devhub/templates/devhub/versions/add_file_modal.html:79
 msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr "Схоже, що ваш додаток потрібно перевірити вручну перед тим, як він може бути підписаний."
 
@@ -6651,19 +6663,19 @@ msgid ""
 "\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:42
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
 msgstr "Оберіть платформу для цього файлу."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:48
 msgid "Which review type would you like to nominate for?"
 msgstr "На який тип перевірки ви хотіли б її номінувати?"
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:58
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
 msgstr "Опублікувати цю версію тільки на моєму бета-каналі."
 
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:61
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
@@ -6690,7 +6702,7 @@ msgstr "Файли"
 msgid "Upload Another File"
 msgstr "Завантажити інший файл"
 
-#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:121
+#: apps/devhub/templates/devhub/versions/edit.html:73 apps/editors/templates/editors/review.html:98
 msgid "Version Notes"
 msgstr "Примітки до версії"
 
@@ -6705,7 +6717,7 @@ msgstr ""
 msgid "Approval Status"
 msgstr "Стан схвалення"
 
-#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:131
+#: apps/devhub/templates/devhub/versions/edit.html:113 apps/editors/templates/editors/review.html:108
 msgid "Notes for Reviewers"
 msgstr "Примітки для рецензентів"
 
@@ -6843,7 +6855,7 @@ msgid "Status"
 msgstr "Статус"
 
 #: apps/devhub/templates/devhub/versions/list.html:140 apps/devhub/templates/devhub/versions/list.html:161 apps/devhub/templates/devhub/versions/list.html:181
-#: apps/editors/templates/editors/review.html:83
+#: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
 msgstr "Перевірка"
 
@@ -6926,12 +6938,8 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
-"Вилучення вашого додатку зробить його (та всі його версії/файли) невидимим "
-"на цьому сайті. Він не буде з'являтися в результатах пошуку, мати публічну "
-"сторінку та автоматично оновлюватись у поточних користувачів. Для "
-"автоматичного оновлення вилучених зі списку додатків рекомендується в файлі "
-"install.rdf надавати власний <a href=\"%(update_url)s\" "
-"target=\"_blank\">updateURL</a>."
+"Вилучення вашого додатку зробить його (та всі його версії/файли) невидимим на цьому сайті. Він не буде з'являтися в результатах пошуку, мати публічну сторінку та автоматично оновлюватись у поточних "
+"користувачів. Для автоматичного оновлення вилучених зі списку додатків рекомендується в файлі install.rdf надавати власний <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a>."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
@@ -7331,7 +7339,7 @@ msgstr "Днів з моменту представлення"
 msgid "Add-on Types"
 msgstr "Типи додатків"
 
-#: apps/editors/forms.py:129 apps/editors/helpers.py:239
+#: apps/editors/forms.py:129 apps/editors/helpers.py:263
 msgid "Platforms"
 msgstr "Платформи"
 
@@ -7390,164 +7398,164 @@ msgstr "Хтось ще перевіряє цю тему."
 msgid "app, reviewer, or comment"
 msgstr "додаток, переглядач чи коментар"
 
-#: apps/editors/helpers.py:48
+#: apps/editors/helpers.py:49
 msgid "Pending Preliminary Review"
 msgstr "Очікує попереднього розгляду"
 
-#: apps/editors/helpers.py:52
+#: apps/editors/helpers.py:53
 msgid "Pending Full Review"
 msgstr "Очікує повного розгляду"
 
-#: apps/editors/helpers.py:59
+#: apps/editors/helpers.py:60
 msgid "Rejected or Unreviewed"
 msgstr "Відхилено чи не розглянуто"
 
-#: apps/editors/helpers.py:116 apps/editors/helpers.py:129
+#: apps/editors/helpers.py:117 apps/editors/helpers.py:130
 msgid "Queue"
 msgstr "Черга"
 
-#: apps/editors/helpers.py:117 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "Очікувані оновлення"
 
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "Повні розгляди"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "Попередні розгляди"
 
-#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "Модеровані розгляди"
 
-#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "Швидке відстеження"
 
-#: apps/editors/helpers.py:123
+#: apps/editors/helpers.py:124
 msgid "Pending Themes"
 msgstr "Очікувані теми"
 
-#: apps/editors/helpers.py:124 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:125 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "Відмічені теми"
 
-#: apps/editors/helpers.py:125
+#: apps/editors/helpers.py:126
 msgid "Update Themes"
 msgstr "Оновити теми"
 
-#: apps/editors/helpers.py:130
+#: apps/editors/helpers.py:131
 msgid "Unlisted Pending Updates"
 msgstr ""
 
-#: apps/editors/helpers.py:131
+#: apps/editors/helpers.py:132
 msgid "Unlisted Full Reviews"
 msgstr "Повні перевірки невказаних"
 
-#: apps/editors/helpers.py:132
+#: apps/editors/helpers.py:133
 msgid "Unlisted Preliminary Reviews"
 msgstr "Попередні перевірки невказаних"
 
-#: apps/editors/helpers.py:165
+#: apps/editors/helpers.py:166
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "Швидке відстеження ({0})"
 msgstr[1] "Швидкі відстеження ({0})"
 msgstr[2] "Швидких відстежень ({0})"
 
-#: apps/editors/helpers.py:170
+#: apps/editors/helpers.py:171
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Повний розгляд ({0})"
 msgstr[1] "Повні розгляди ({0})"
 msgstr[2] "Повних розглядів ({0})"
 
-#: apps/editors/helpers.py:175
+#: apps/editors/helpers.py:176
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Очікуване оновлення ({0})"
 msgstr[1] "Очікувані оновлення ({0})"
 msgstr[2] "Очікуваних оновлень ({0})"
 
-#: apps/editors/helpers.py:180
+#: apps/editors/helpers.py:181
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Попередній розгляд ({0})"
 msgstr[1] "Попередні розгляди ({0})"
 msgstr[2] "Попередніх розглядів ({0})"
 
-#: apps/editors/helpers.py:185
+#: apps/editors/helpers.py:186
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Модерований розгляд ({0})"
 msgstr[1] "Модеровані розгляди ({0})"
 msgstr[2] "Модерованих розглядів ({0})"
 
-#: apps/editors/helpers.py:191
+#: apps/editors/helpers.py:192
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "Повна перевірка невказаних ({0})"
 msgstr[1] "Повні перевірки невказаних ({0})"
 msgstr[2] "Повні перевірки невказаних ({0})"
 
-#: apps/editors/helpers.py:196
+#: apps/editors/helpers.py:197
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: apps/editors/helpers.py:201
+#: apps/editors/helpers.py:202
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: apps/editors/helpers.py:233
+#: apps/editors/helpers.py:257
 msgid "Addon"
 msgstr "Додаток"
 
-#: apps/editors/helpers.py:234 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:258 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "Тип"
 
-#: apps/editors/helpers.py:235
+#: apps/editors/helpers.py:259
 msgid "Waiting Time"
 msgstr "Час очікування"
 
-#: apps/editors/helpers.py:236 apps/editors/templates/editors/review.html:307
+#: apps/editors/helpers.py:260 apps/editors/templates/editors/review.html:284
 msgid "Flags"
 msgstr ""
 
-#: apps/editors/helpers.py:237
+#: apps/editors/helpers.py:261
 msgid "Applications"
 msgstr "Програми"
 
-#: apps/editors/helpers.py:242
+#: apps/editors/helpers.py:266
 msgid "Additional"
 msgstr "Додатково"
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:281
 msgid "Site Specific"
 msgstr ""
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:283
 msgid "Requires External Software"
 msgstr "Потребує стороннє ПЗ"
 
-#: apps/editors/helpers.py:261
+#: apps/editors/helpers.py:285
 msgid "Binary Components"
 msgstr "Бінарні компоненти"
 
-#: apps/editors/helpers.py:285
+#: apps/editors/helpers.py:309
 msgid "moments ago"
 msgstr "щойно"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:288
+#: apps/editors/helpers.py:312
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} хвилина"
@@ -7555,7 +7563,7 @@ msgstr[1] "{0} хвилини"
 msgstr[2] "{0} хвилин"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:292
+#: apps/editors/helpers.py:316
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} година"
@@ -7563,42 +7571,42 @@ msgstr[1] "{0} години"
 msgstr[2] "{0} годин"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:296
+#: apps/editors/helpers.py:320
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} день"
 msgstr[1] "{0} дні"
 msgstr[2] "{0} днів"
 
-#: apps/editors/helpers.py:456
+#: apps/editors/helpers.py:480
 msgid "Push to public"
 msgstr "Відправити в загальний доступ"
 
-#: apps/editors/helpers.py:458
+#: apps/editors/helpers.py:482
 msgid "Grant full review"
 msgstr "Надати повний перегляд"
 
-#: apps/editors/helpers.py:473
+#: apps/editors/helpers.py:497
 msgid "Request more information"
 msgstr "Запитати додаткову інформацію"
 
-#: apps/editors/helpers.py:476
+#: apps/editors/helpers.py:500
 msgid "Request super-review"
 msgstr "Запитати супер-перегляд"
 
-#: apps/editors/helpers.py:487
+#: apps/editors/helpers.py:511
 msgid "Grant preliminary review"
 msgstr "Надати попередній перегляд"
 
-#: apps/editors/helpers.py:488
+#: apps/editors/helpers.py:512
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "Це позначить файли як попередньо переглянуті."
 
-#: apps/editors/helpers.py:490
+#: apps/editors/helpers.py:514
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 
-#: apps/editors/helpers.py:494
+#: apps/editors/helpers.py:518
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
@@ -7606,55 +7614,55 @@ msgstr ""
 "Якщо у вас є сумніви щодо безпеки, авторських прав чи інших проблем цього додатку, які потребують вивчення адміністратором, введіть свої коментарі у полі внизу. Вони будуть надіслані "
 "адміністраторам, але не авторам."
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:524
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "Це відхилить додаток і прибере його з черги на розгляд."
 
-#: apps/editors/helpers.py:502
+#: apps/editors/helpers.py:526
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "Залиште коментар для цієї версії. Автор не зможе його побачити."
 
-#: apps/editors/helpers.py:506
+#: apps/editors/helpers.py:530
 msgid "This will reject the files and remove them from the review queue."
 msgstr "Це відхилить файли та прибере їх з черги на розгляд."
 
-#: apps/editors/helpers.py:510
+#: apps/editors/helpers.py:534
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Це відмітить додаток, як попередньо розглянутий. Майбутні версії будуть підлягати попередньому розгляду."
 
-#: apps/editors/helpers.py:515
+#: apps/editors/helpers.py:539
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Це відмітить файли, як попередньо розглянуті. Майбутні версії будуть підлягати попередньому розгляду."
 
-#: apps/editors/helpers.py:520
+#: apps/editors/helpers.py:544
 msgid "Retain preliminary review"
 msgstr "Залишити попередній розгляд"
 
-#: apps/editors/helpers.py:521
+#: apps/editors/helpers.py:545
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "Це залишить додаток, як попередньо розглянутий. Майбутні версії будуть підлягати попередньому розгляду."
 
-#: apps/editors/helpers.py:526
+#: apps/editors/helpers.py:550
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr ""
 
-#: apps/editors/helpers.py:529
+#: apps/editors/helpers.py:553
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
 
-#: apps/editors/helpers.py:532
+#: apps/editors/helpers.py:556
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
 
-#: apps/editors/helpers.py:605
+#: apps/editors/helpers.py:629
 msgid "add-on"
 msgstr "додаток"
 
-#: apps/editors/helpers.py:899 apps/editors/helpers.py:919
+#: apps/editors/helpers.py:923 apps/editors/helpers.py:943
 msgid "Flagged"
 msgstr "Відмічено"
 
-#: apps/editors/helpers.py:903 apps/editors/helpers.py:922
+#: apps/editors/helpers.py:927 apps/editors/helpers.py:946
 msgid "Updates"
 msgstr "Оновлення"
 
@@ -7970,7 +7978,7 @@ msgstr "Повідомлення дня"
 msgid "Update message of the day"
 msgstr ""
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:246
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:223
 msgid "Save"
 msgstr "Зберегти"
 
@@ -8088,7 +8096,7 @@ msgstr ""
 msgid "Add-on user change history"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:288
+#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:265
 msgid "Add-on History"
 msgstr ""
 
@@ -8097,82 +8105,70 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr ""
 
 #: apps/editors/templates/editors/review.html:73
-msgid "Files in this version:"
-msgstr ""
-
-#: apps/editors/templates/editors/review.html:85
-msgid "Contents"
-msgstr ""
-
-#: apps/editors/templates/editors/review.html:88
-msgid "Compare"
-msgstr ""
-
-#: apps/editors/templates/editors/review.html:96
 msgid "Compatibility:"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:107
+#: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:110
+#: apps/editors/templates/editors/review.html:87
 msgid "Download files"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:112
+#: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:147
+#: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:177
+#: apps/editors/templates/editors/review.html:154
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:184
+#: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:204
+#: apps/editors/templates/editors/review.html:181
 msgid "Notice: Only review more than one file if you have tested <strong>every</strong> file you select."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:212
+#: apps/editors/templates/editors/review.html:189
 msgid "Tested on:"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:242
+#: apps/editors/templates/editors/review.html:219
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:259
+#: apps/editors/templates/editors/review.html:236
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:263
+#: apps/editors/templates/editors/review.html:240
 msgid "Update the whiteboard"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:279 apps/editors/templates/editors/review.html:280
+#: apps/editors/templates/editors/review.html:256 apps/editors/templates/editors/review.html:257
 msgid "(admin)"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:280
+#: apps/editors/templates/editors/review.html:257
 msgid "Admin Page"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:285
+#: apps/editors/templates/editors/review.html:262
 msgid "Review This Add-on"
 msgstr ""
 
-#: apps/editors/templates/editors/review.html:287
+#: apps/editors/templates/editors/review.html:264
 msgid "More Information"
 msgstr "Більше інформації"
 
-#: apps/editors/templates/editors/review.html:289
+#: apps/editors/templates/editors/review.html:266
 msgid "Resolution"
 msgstr ""
 
@@ -8214,6 +8210,18 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
+msgstr ""
+
+#: apps/editors/templates/editors/includes/files_view.html:1
+msgid "Files in this version:"
+msgstr ""
+
+#: apps/editors/templates/editors/includes/files_view.html:13
+msgid "Contents"
+msgstr ""
+
+#: apps/editors/templates/editors/includes/files_view.html:16
+msgid "Compare"
 msgstr ""
 
 #: apps/editors/templates/editors/includes/history.html:6
@@ -8436,24 +8444,24 @@ msgstr "Опишіть спою причину для відмітки прап�
 msgid "Cannot diff a version against itself"
 msgstr "Різниця версії проти самої себе неможлива"
 
-#: apps/files/helpers.py:155
+#: apps/files/helpers.py:153
 msgid "That file no longer exists."
 msgstr "Такий файл більше не існує."
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: apps/files/helpers.py:164
+#: apps/files/helpers.py:162
 msgid "File size is over the limit of {0}."
 msgstr "Розмір файлу перевищує обмеження {0}."
 
-#: apps/files/helpers.py:178
+#: apps/files/helpers.py:176
 msgid "Problems decoding {0}."
 msgstr "Проблеми декодування {0}."
 
-#: apps/files/helpers.py:188
+#: apps/files/helpers.py:186
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "Цей файл неможливо переглянути онлайн. Завантажте його, щоб переглянути."
 
-#: apps/files/helpers.py:196
+#: apps/files/helpers.py:194
 msgid "This file is a directory."
 msgstr "Цей файл є каталогом."
 
@@ -10095,7 +10103,7 @@ msgstr ""
 msgid "Skip for now"
 msgstr ""
 
-#: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:94
+#: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:107
 msgid "Delete review"
 msgstr "Вилучити відгук"
 
@@ -10173,8 +10181,16 @@ msgstr "Звітувати про цей відгук"
 msgid "Reply to review"
 msgstr ""
 
-#: apps/reviews/templates/reviews/review.html:88
+#: apps/reviews/templates/reviews/review.html:89
+msgid "Edit reply"
+msgstr ""
+
+#: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
+msgstr ""
+
+#: apps/reviews/templates/reviews/review.html:102
+msgid "Delete reply"
 msgstr ""
 
 #. {0} is an add-on name.
@@ -10333,22 +10349,22 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "Показ результатів {0} - {1} з {2}"
 
 #. {0} is an application, like Firefox.
-#: apps/search/views.py:267 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
+#: apps/search/views.py:261 templates/base.html:17 templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
 msgstr "Додатки {0}"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:558
+#: apps/search/views.py:550
 msgid "Any {0}"
 msgstr ""
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:593
+#: apps/search/views.py:585
 msgid "All Systems"
 msgstr ""
 
-#: apps/search/views.py:604
+#: apps/search/views.py:596
 msgid "All Tags"
 msgstr ""
 
