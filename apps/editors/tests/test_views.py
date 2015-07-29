@@ -2330,6 +2330,24 @@ class TestReview(ReviewBase):
         data = json.loads(r.content)
         eq_(data[str(self.addon.id)], self.editor.display_name)
 
+    def test_display_same_files_only_once(self):
+        """
+        Test whether identical files for different platforms
+        show up as one link with the appropriate text.
+        """
+        version = Version.objects.create(addon=self.addon, version='0.2')
+        version.created = datetime.today() + timedelta(days=1)
+        version.save()
+
+        for plat in (amo.PLATFORM_WIN, amo.PLATFORM_MAC):
+            File.objects.create(platform=plat.id, version=version,
+                                status=amo.STATUS_PUBLIC)
+        self.addon.update(_current_version=version)
+
+        r = self.client.get(self.url)
+        text = pq(r.content)('.editors-install').eq(1).text()
+        assert text == "Windows / Mac OS X"
+
     def test_no_compare_link(self):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)

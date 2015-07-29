@@ -6,6 +6,7 @@ import jinja2
 from django.conf import settings
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
+from django.utils.translation import force_text
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
@@ -218,6 +219,29 @@ def reviewers_score_bar(context, types=None, addon_type=None):
         total=ReviewerScore.get_total(user),
         **ReviewerScore.get_leaderboards(user, types=types,
                                          addon_type=addon_type)))
+
+
+@register.inclusion_tag('editors/includes/files_view.html')
+@jinja2.contextfunction
+def all_distinct_files(context, version):
+    """Only display a file once even if it's been uploaded
+    for several platforms."""
+    # hashes_to_file will group files per hash:
+    # {<file.hash>: [<file>, 'Windows / Mac OS X']}
+    hashes_to_file = {}
+    for file_ in version.all_files:
+        display_name = force_text(amo.PLATFORMS[file_.platform].name)
+        if file_.hash in hashes_to_file:
+            hashes_to_file[file_.hash][1] += ' / ' + display_name
+        else:
+            hashes_to_file[file_.hash] = [file_, display_name]
+    return new_context(dict(
+        # We don't need the hashes in the template.
+        distinct_files=hashes_to_file.values(),
+        amo=context.get('amo'),
+        addon=context.get('addon'),
+        show_diff=context.get('show_diff'),
+        version=version))
 
 
 class ItemStateTable(object):
