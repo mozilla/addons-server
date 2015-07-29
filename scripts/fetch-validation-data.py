@@ -25,8 +25,9 @@ def fetch_data_for_date(date):
     print 'Fetching for {date}'.format(date=date_string)
     cursor.execute(QUERY_FORMAT, [date_string + '%'])
     with open('validations/{date}.txt'.format(date=date_string), 'w') as f:
-        for row in cursor.fetchall():
-            f.write(row[0] + '\n')
+        for row in cursor:
+            f.write(row[0])
+            f.write('\n')
 
 
 def fetch_unlisted_addon_ids():
@@ -34,8 +35,9 @@ def fetch_unlisted_addon_ids():
     cursor.execute('SELECT guid FROM addons WHERE is_listed=0 '
                    'AND guid IS NOT NULL;')
     with open('validations/unlisted-addons.txt', 'w') as f:
-        for row in cursor.fetchall():
-            f.write(row[0] + '\n')
+        for row in cursor:
+            f.write(row[0])
+            f.write('\n')
 
 if __name__ == '__main__':
     action = len(sys.argv) == 2 and sys.argv[1]
@@ -47,4 +49,4 @@ if __name__ == '__main__':
     elif action == 'unlisted':
         fetch_unlisted_addon_ids()
     else:
-        print 'Unknown action {action}'.format(action=action)
+        print 'Unknown action "{action}"'.format(action=action or '')

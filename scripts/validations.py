@@ -6,8 +6,6 @@ ACTION_CONTEXT = 'context'
 ACTION_COUNT = 'count'
 ACTIONS = (ACTION_CONTEXT, ACTION_COUNT)
 
-UNLISTED_ADDONS = set()
-
 
 def parse_validations(results):
     return (json.loads(result) for result in results)
@@ -15,7 +13,7 @@ def parse_validations(results):
 
 def unlisted_validations(results, unlisted_addons=None):
     if unlisted_addons is None:
-        unlisted_addons = UNLISTED_ADDONS
+        unlisted_addons = get_unlisted_addons()
     return (result
             for result in results
             if (not result['metadata'].get('listed', True)
@@ -76,10 +74,23 @@ def format_contexts(results):
             })
 
 
-def parse_unlisted_addons():
-    global UNLISTED_ADDONS
+def memoize(fn):
+    """Memoize a 0-arg function."""
+    # We're going to store the result in a list so we can mutate it.
+    result = []
+
+    def inner():
+        # If the list is empty make the result of fn the only item in the list.
+        if len(result) == 0:
+            result.append(fn())
+        # Return the only item in the list.
+        return result[0]
+    return inner
+
+
+def get_unlisted_addons():
     with open('validations/unlisted-addons.txt') as f:
-        UNLISTED_ADDONS = set(guid.strip() for guid in f)
+        return set(guid.strip() for guid in f)
 
 
 def main(action):
@@ -104,8 +115,10 @@ def main(action):
     else:
         raise ValueError('{0} is not a valid action'.format(action))
 
-    parse_unlisted_addons()
+    process_pipeline(pipeline)
 
+
+def process_pipeline(pipeline):
     # Read from STDIN.
     val = sys.stdin
 
