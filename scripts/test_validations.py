@@ -1,5 +1,3 @@
-from nose.tools import eq_
-
 from validations import (parse_validations, severe_validations,
                          unlisted_validations)
 
@@ -18,17 +16,17 @@ def test_parse_validations():
         '{"foo":"bar"}\n',
         '["baz",1,{"wat":99}]\n'
     ])
-    eq_(list(results), [{'foo': 'bar'}, ['baz', 1, {'wat': 99}]])
+    assert list(results) == [{'foo': 'bar'}, ['baz', 1, {'wat': 99}]]
 
 
 def test_unlisted_validations_without_unlisted_addons():
     unlisted = unlisted_validations(TEST_ADDONS, set())
-    eq_(list(unlisted), [TEST_ADDON_LISTED_FALSE])
+    assert list(unlisted) == [TEST_ADDON_LISTED_FALSE]
 
 
 def test_unlisted_validations_with_unlisted_addons():
     unlisted = unlisted_validations(TEST_ADDONS, set(['baz', 'wat']))
-    eq_(list(unlisted), [TEST_ADDON_LISTED_FALSE, TEST_ADDON_UNLISTED_ID])
+    assert list(unlisted) == [TEST_ADDON_LISTED_FALSE, TEST_ADDON_UNLISTED_ID]
 
 
 def test_severe_validations():
@@ -41,4 +39,4 @@ def test_severe_validations():
     severe = {'signing_summary':
               {'high': 10, 'medium': 0, 'trivial': 0, 'low': 0}}
     results = severe_validations([nope, trivial, minor, nope, severe, nope])
-    eq_(list(results), [minor, severe])
+    assert list(results) == [minor, severe]
