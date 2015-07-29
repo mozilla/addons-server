@@ -16,8 +16,9 @@ def unlisted_validations(results, unlisted_addons=None):
         unlisted_addons = get_unlisted_addons()
     return (result
             for result in results
-            if (not result['metadata'].get('listed', True)
-                or result['metadata'].get('id') in unlisted_addons))
+            if ('id' in result['metadata'] and
+                (not result['metadata'].get('listed', True)
+                 or result['metadata']['id'] in unlisted_addons)))
 
 
 def severe_validations(results):
@@ -29,7 +30,7 @@ def severe_validations(results):
 
 
 def error_messages(results):
-    return ({'addon': result['metadata'].get('id', 'unknown-addon'),
+    return ({'addon': result['metadata']['id'],
              'message_id': '.'.join(message['id']),
              'context': message['context']}
             for result in results
