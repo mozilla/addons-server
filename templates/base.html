@@ -19,7 +19,7 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block tabzilla_css %}
-      <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
+      <link href="{{ STATIC_URL }}css/tabzilla/tabzilla.css" %}" rel="stylesheet" />
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
@@ -55,7 +55,7 @@
         data-static-url="{{ STATIC_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
-    <div id="tabzilla-wrapper">
+    <div id="main-wrapper">
       {% if ADMIN_MESSAGE or settings.READ_ONLY %}
         <div id="site-notice">
           {% if ADMIN_MESSAGE %}
@@ -68,9 +68,7 @@
       {% endif %}
       <div class="section">
         {% block site_header %}
-          <div id="global-header-tab">
-            <a href="//www.mozilla.org/" id="tabzilla">Mozilla</a>
-          </div>
+          {% include "tabzilla.html" %}
           <div class="amo-header">
             <nav id="aux-nav" role="navigation" class="menu-nav c">
               <ul>
@@ -151,9 +149,6 @@
         <script src="{{ static(url('jsi18n')) }}"></script>
         {{ js('common') }}
         <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
-      {% endblock %}
-      {% block tabzilla_js %}
-        <script src="https://mozorg.cdn.mozilla.net/{{ LANG }}/tabzilla/tabzilla.js"></script>
       {% endblock %}
       {% block js %}{% endblock %}
       {% block footer %}
