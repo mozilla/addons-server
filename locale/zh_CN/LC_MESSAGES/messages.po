@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-17 18:04+0000\n"
+"PO-Revision-Date: 2015-07-29 21:51+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437156252.0\n"
+"X-POOTLE-MTIME: 1438206705.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1772,7 +1772,7 @@ msgstr "{file} 已签名。"
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "带有 GUID {1} 的附加组件 id {0} 已被删除"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4602,11 +4602,11 @@ msgstr "兼容性测试"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "隐藏自动签名时非必要的消息"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "隐藏存在于上一版本并且已忽略的消息"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -9987,7 +9987,7 @@ msgstr "回复评论"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "编辑回复"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -9995,7 +9995,7 @@ msgstr "编辑评论"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "删除回复"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5

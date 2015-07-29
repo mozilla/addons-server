@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-16 01:01+0000\n"
+"PO-Revision-Date: 2015-07-29 21:49+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437008500.0\n"
+"X-POOTLE-MTIME: 1438206597.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1130,11 +1130,11 @@ msgstr "警告"
 
 #: static/js/zamboni/validator.js:273
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "自动签名的严重程度："
 
 #: static/js/zamboni/validator.js:288
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "通过自动签名的建议："
 
 #: static/js/zamboni/validator.js:376
 msgid "Compatibility Tests"
