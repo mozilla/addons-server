@@ -1,3 +1,22 @@
+"""
+Fetch data from the olympia database for validation results and unlisted
+addons for use with the validations.py script.
+
+Expected environment variables:
+    MYSQL_HOST - The MySQL host.
+    MYSQL_USER - The MySQL username.
+    MYSQL_PASSWORD - The MySQL password.
+
+Actions supported:
+    validations - Fetch validation data for the last 30 days and write it to
+        the filesystem in files named `validations/YYYY-MM-DD.txt`.
+    unlisted - Fetch all unlisted addon guids and write the results to
+        `validations/unlisted-addons.txt`.
+
+Usage:
+    python fetch_validation_data.py <action>
+"""
+
 import os
 import sys
 from datetime import datetime, timedelta
@@ -11,13 +30,13 @@ db = MySQLdb.connect(host=os.environ['MYSQL_HOST'],
                      db="addons_mozilla_org")
 cursor = db.cursor()
 
-QUERY_FORMAT = '''
+QUERY_FORMAT = """
     SELECT validation
     FROM file_uploads
     WHERE created LIKE %s
     AND validation IS NOT NULL
     ORDER BY created DESC;
-'''
+"""
 
 
 def fetch_data_for_date(date):

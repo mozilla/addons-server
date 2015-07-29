@@ -1,3 +1,20 @@
+"""
+Process validation data retrieved using fetch_validation_data.py. Two types
+of data are expected. A file at `validations/unlisted-addons.txt` that contains
+the guid of each unlisted addon and input on STDIN which has the validation
+JSON data for each validation to check. See fetch_validation_data.py for how
+this data is retrieved. Results are returned on STDOUT.
+
+The following reports are supported:
+    * count - Return signing errors ordered by addon unique frequency in the
+        format: `error.id.dot.separated total_count unique_addon_count`.
+    * context - Return the context for 5 most common signing errors in the JSON
+        format: `{"context": ["", ...], "error": "error.id"}`.
+
+Usage:
+    cat my-test-data-*.txt | python validations.py <report> > results.txt
+"""
+
 import itertools
 import json
 import sys
@@ -119,9 +136,9 @@ def process_pipeline(pipeline):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2 or sys.argv[1] not in ACTIONS:
-        print '''Usage: python {name} <action>
+        print """Usage: python {name} <action>
     action: {actions}
-    values are read from STDIN'''.format(
+    values are read from STDIN""".format(
             name=sys.argv[0], actions='|'.join(ACTIONS))
         sys.exit(1)
     else:
