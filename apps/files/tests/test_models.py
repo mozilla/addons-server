@@ -917,9 +917,10 @@ class TestFileFromUpload(UploadTest):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED,
                               trusted=True)
-        eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
+
+        assert self.addon.status == amo.STATUS_LITE_AND_NOMINATED
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_LITE_AND_NOMINATED)
+        assert f.status == amo.STATUS_LITE
 
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')

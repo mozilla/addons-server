@@ -516,10 +516,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def from_upload(cls, upload, platforms, is_packaged=False, source=None,
-                    is_listed=True):
+                    is_listed=True, data=None):
         from files.utils import parse_addon
 
-        data = parse_addon(upload)
+        if not data:
+            data = parse_addon(upload)
+
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL

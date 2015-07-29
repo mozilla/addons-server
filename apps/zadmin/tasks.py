@@ -10,13 +10,12 @@ from datetime import datetime
 from itertools import chain
 from urlparse import urljoin
 
-from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.db.models import Sum
 from django.template import Context, Template
-from django.utils.translation import trans_real as translation
+from django.utils import translation
 
 import requests
 from celeryutils import task
@@ -447,12 +446,8 @@ def notify_compatibility_chunk(users, job, data, **kw):
 
 
 @task
-@write
 def fetch_langpacks(path, **kw):
-    log.info('[@None] Fetching language pack updates %s' % path)
-
-    owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
-    orig_lang = translation.get_language()
+    log.info('[@None] Fetching language pack updates {0}'.format(path))
 
     # Treat `path` as relative even if it begins with a leading /
     base_url = urljoin(settings.LANGPACK_DOWNLOAD_BASE,
@@ -462,25 +457,27 @@ def fetch_langpacks(path, **kw):
     list_url = urljoin(base_url, settings.LANGPACK_MANIFEST_PATH)
     list_base = urljoin(list_url, './')
 
-    log.info('[@None] Fetching language pack manifests from %s' % list_url)
+    log.info('[@None] Fetching language pack manifests from {0}'
+             .format(list_url))
 
     if not list_url.startswith(settings.LANGPACK_DOWNLOAD_BASE):
         log.error('[@None] Not fetching language packs from invalid URL: '
-                  '%s' % base_url)
+                  '{0}'.format(base_url))
         raise ValueError('Invalid path')
 
     try:
         req = requests.get(list_url,
                            verify=settings.CA_CERT_BUNDLE_PATH)
     except Exception, e:
-        log.error('[@None] Error fetching language pack list %s: %s'
-                  % (path, e))
+        log.error('[@None] Error fetching language pack list {0}: {1}'
+                  .format(path, e))
         return
 
     xpi_list = [urljoin(list_base, line[-1])
                 for line in map(str.split, req.iter_lines())]
 
-    allowed = re.compile(r'^[A-Za-z-]+\.xpi$')
+    allowed_file = re.compile(r'^[A-Za-z-]+\.xpi$').match
+
     for url in xpi_list:
         # Filter out files not in the target langpack directory.
         if not url.startswith(base_url):
@@ -488,83 +485,120 @@ def fetch_langpacks(path, **kw):
 
         xpi = url[len(base_url):]
         # Filter out entries other than direct child XPIs.
-        if not allowed.match(xpi):
+        if not allowed_file(xpi):
             continue
 
-        lang = os.path.splitext(xpi)[0]
+        fetch_langpack.delay(url, xpi)
 
+
+@task(rate_limit='6/s')
+@write
+def fetch_langpack(url, xpi, **kw):
+    try:
+        req = requests.get(url,
+                           verify=settings.CA_CERT_BUNDLE_PATH)
+
+        if ('content-length' not in req.headers or
+            int(req.headers['content-length']) >
+                settings.LANGPACK_MAX_SIZE):
+            log.error('[@None] Language pack "{0}" too large: {1} > {2}'
+                      .format(xpi, req.headers['content-large'],
+                              settings.LANGPACK_MAX_SIZE))
+            return
+
+        chunks = []
+        size = 0
+        for chunk in req.iter_content(settings.LANGPACK_MAX_SIZE):
+            size += len(chunk)
+            # `requests` doesn't respect the Content-Length header
+            # so we need to check twice.
+            if size > settings.LANGPACK_MAX_SIZE:
+                raise Exception('Response to big')
+            chunks.append(chunk)
+    except Exception, e:
+        log.error('[@None] Error fetching "{0}" language pack: {1}'
+                  .format(xpi, e))
+        return
+
+    upload = FileUpload()
+    upload.add_file(chunks, xpi, size)
+
+    lang = os.path.splitext(xpi)[0]
+
+    # Activate the correct locale for the language pack so it
+    # will be used as the add-on's default locale if available.
+    with translation.override(lang):
         try:
-            req = requests.get(url,
-                               verify=settings.CA_CERT_BUNDLE_PATH)
+            data = parse_addon(upload, check=False)
 
-            if ('content-length' not in req.headers or
-                int(req.headers['content-length']) >
-                    settings.LANGPACK_MAX_SIZE):
-                log.error('[@None] Language pack "%s" too large: %d > %d'
-                          % (xpi, req.headers['content-large'],
-                             settings.LANGPACK_MAX_SIZE))
-                continue
-
-            chunks = []
-            size = 0
-            for chunk in req.iter_content(settings.LANGPACK_MAX_SIZE):
-                size += len(chunk)
-                # `requests` doesn't respect the Content-Length header
-                # so we need to check twice.
-                if size > settings.LANGPACK_MAX_SIZE:
-                    raise Exception('Response to big')
-                chunks.append(chunk)
+            allowed_guid = re.compile(r'^langpack-{0}@'
+                                      r'[a-z]+\.mozilla\.org$'.format(lang))
+            assert allowed_guid.match(data['guid']), 'Unexpected GUID'
         except Exception, e:
-            log.error('[@None] Error fetching "%s" language pack: %s'
-                      % (xpi, e))
-            continue
-
-        upload = FileUpload()
-        upload.add_file(chunks, xpi, size)
-
-        # Activate the correct locale for the language pack so it
-        # will be used as the add-on's default locale if available.
-        translation.activate(lang)
-
-        guid = 'langpack-%s@firefox.mozilla.org' % lang
+            log.error('[@None] Error parsing "{0}" language pack: {1}'
+                      .format(xpi, e),
+                      exc_info=sys.exc_info())
+            return
 
         try:
-            addon = Addon.objects.get(guid=guid)
+            addon = Addon.objects.get(guid=data['guid'])
         except Addon.DoesNotExist:
             addon = None
 
         try:
+            # Parse againn now that we have the add-on.
             data = parse_addon(upload, addon)
-            if data['guid'] != guid:
-                raise forms.ValidationError('Unexpected GUID')
         except Exception, e:
-            log.error('[@None] Error parsing "%s" language pack: %s'
-                      % (xpi, e))
-            continue
+            log.error('[@None] Error parsing "{0}" language pack: {1}'
+                      .format(xpi, e),
+                      exc_info=sys.exc_info())
+            return
+
+        if not data['apps']:
+            # We don't have the app versions that the langpack specifies
+            # in our approved versions list. Don't create a version for it,
+            # so we can retry once they've been added.
+            log.error('[@None] Not creating langpack {guid} {version} because '
+                      'it has no valid compatible apps.'.format(**data))
+            return
+
+        is_beta = amo.VERSION_BETA.search(data['version'])
+        owner = UserProfile.objects.get(email=settings.LANGPACK_OWNER_EMAIL)
 
         if addon:
             if addon.versions.filter(version=data['version']).exists():
-                log.info('[@None] Version %s of "%s" language pack exists'
-                         % (data['version'], xpi))
-                continue
-            if not (addon.addonuser_set
-                         .filter(user__email=settings.LANGPACK_OWNER_EMAIL)
-                         .exists()):
-                log.info('[@None] Skipping language pack "%s": '
-                         'not owned by %s' % (xpi,
-                                              settings.LANGPACK_OWNER_EMAIL))
-                continue
+                log.info('[@None] Version {0} of "{1}" language pack exists'
+                         .format(data['version'], xpi))
+                return
 
-            version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id])
-            log.info('[@None] Updating language pack "%s" to version %s'
-                     % (xpi, data['version']))
+            if not addon.addonuser_set.filter(user=owner).exists():
+                log.info('[@None] Skipping language pack "{0}": '
+                         'not owned by {1}'.format(
+                             xpi, settings.LANGPACK_OWNER_EMAIL))
+                return
+
+            version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id],
+                                          is_beta=is_beta)
+
+            log.info('[@None] Updated language pack "{0}" to version {1}'
+                     .format(xpi, data['version']))
         else:
-            if amo.VERSION_BETA.search(data['version']):
-                log.error('[@None] Not creating beta version %s for new "%s" '
-                          'language pack' % (data['version'], xpi))
-                continue
+            if is_beta:
+                log.error('[@None] Not creating beta version {0} for new '
+                          '"{1}" language pack'.format(data['version'], xpi))
+                return
 
-            addon = Addon.from_upload(upload, [amo.PLATFORM_ALL.id])
+            if (Addon.objects.filter(name__localized_string=data['name'])
+                    .exists()):
+                data['old_name'] = data['name']
+                data['name'] = u'{0} ({1})'.format(
+                    data['old_name'], data['apps'][0].appdata.pretty)
+
+                log.warning(u'[@None] Creating langpack {guid}: Add-on with '
+                            u'name {old_name!r} already exists, trying '
+                            u'{name!r}.'.format(**data))
+
+            addon = Addon.from_upload(upload, [amo.PLATFORM_ALL.id], data=data)
             AddonUser(addon=addon, user=owner).save()
             version = addon.versions.get()
 
@@ -574,19 +608,13 @@ def fetch_langpacks(path, **kw):
 
             addon.save()
 
-            log.info('[@None] Creating new "%s" language pack, version %s'
-                     % (xpi, data['version']))
+            log.info('[@None] Created new "{0}" language pack, version {1}'
+                     .format(xpi, data['version']))
 
-        # Version.from_upload will do this automatically, but only
-        # if the add-on is already public, which it may not be in
-        # the case of new add-ons
-        status = amo.STATUS_PUBLIC
-        if amo.VERSION_BETA.search(version.version):
-            status = amo.STATUS_BETA
-
-        file = version.files.get()
-        file.update(status=status)
+        if not is_beta:
+            # Not `version.files.update`, because we need to trigger save
+            # hooks.
+            file_ = version.files.get()
+            file_.update(status=amo.STATUS_PUBLIC)
 
         addon.update_version()
-
-    translation.activate(orig_lang)
