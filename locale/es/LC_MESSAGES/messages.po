@@ -1809,7 +1809,7 @@ msgstr "{addon} calificación de contenido cambiada."
 
 #: apps/amo/log.py:582
 msgid "{addon} unlisted."
-msgstr "{complemento} no listado."
+msgstr "{addon} no listado."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."

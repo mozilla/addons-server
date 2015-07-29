@@ -7800,7 +7800,7 @@ msgstr ""
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
 msgstr[0] "Fullständig granskning ({num})"
-msgstr[1] "Fullständiga granskningar ({0})"
+msgstr[1] "Fullständiga granskningar ({num})"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
