@@ -75,20 +75,6 @@ def format_contexts(results):
             })
 
 
-def memoize(fn):
-    """Memoize a 0-arg function."""
-    # We're going to store the result in a list so we can mutate it.
-    result = []
-
-    def inner():
-        # If the list is empty make the result of fn the only item in the list.
-        if len(result) == 0:
-            result.append(fn())
-        # Return the only item in the list.
-        return result[0]
-    return inner
-
-
 def get_unlisted_addons():
     with open('validations/unlisted-addons.txt') as f:
         return set(guid.strip() for guid in f)
