@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-19 03:31:57.556235\n"
+"PO-Revision-Date: 2015-07-30 05:31:45.317980\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2340,7 +2340,7 @@ msgstr "{file} foi assinado."
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Id do complemento {0} com GUID {1} foi excluido"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -5922,11 +5922,11 @@ msgstr "Testes de compatibilidade"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Não é necessário ocultar mensagens para a assinatura automática"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Ocultar mensagens presentes na versão anterior e ignoradas"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -13593,7 +13593,7 @@ msgstr "Responder a análise"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Editar resposta"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -13601,7 +13601,7 @@ msgstr "Editar análise"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Excluir resposta"
 
 #. {0} is an add-on name.
 # "My" in this context is the logged in user who is reading the page

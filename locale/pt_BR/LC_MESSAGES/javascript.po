@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-17 09:20:29.868879\n"
+"PO-Revision-Date: 2015-07-30 05:32:53.236852\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1212,11 +1212,11 @@ msgstr "Alerta"
 
 #: static/js/zamboni/validator.js:273
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Severidade para assinatura automatizada:"
 
 #: static/js/zamboni/validator.js:288
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Sugestões para a passagem automática de assinatura:"
 
 #: static/js/zamboni/validator.js:376
 msgid "Compatibility Tests"
