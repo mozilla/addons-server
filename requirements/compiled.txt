@@ -1,11 +1,21 @@
 # These should all be in our wheelhouse to avoid compiling on production and
 # automated testing machines.
 
+# sha256: 0flc6lpiBax68KVmPsUP18ewZaIxUSfrlIZoLhBTQaM
 Jinja2==2.7.2
+
+# sha256: w2u0RCSHrCyVYAXHHBAtFZphsSiIpZZ5PREy9z0I1CQ
 MarkupSafe==0.18
+
+# sha256: iYVXc0oWVjSDmISdtxXzpto_RfKKBDzl95ZoJ1_Jk2I
 lxml==2.2.6
+
+# sha256: eSnjUWPzFnUf4tM90UBXKeP6cJ-U_BopmJ7-gnFwXzk
 m2crypto==0.22.3
+
+# sha256: h2DBGKAhXroWP3eCEQ5-_NuxX4pzIfP2HFrA27sSyZY
 Pillow==2.8.1
 
 # For the addon validator, including C speedups.
+# sha256: Ta2MvLy7BZYHmPtdY7Q7jBp_OAEp_r1iwxC1JF22IwA
 simplejson==2.3.2

@@ -25,10 +25,26 @@ Installing through pip
 
 You can get a development environment with::
 
-    pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/
+    pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse --find-links https://pyrepo.addons.mozilla.org/ --no-index
 
 Or more simply with::
 
     make update_deps
 
 The latter will also install the npm dependencies.
+
+
+Using peep instead of pip
+-------------------------
+
+To have reproducible environments and make sure what we install is what we
+wanted to install, we're moving to use peep_ instead of pip::
+
+    python peep.py install --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse --find-links https://pyrepo.addons.mozilla.org/ --no-index
+
+This will however need all the proper hashes in the requirements files for each
+of the dependencies. They are already present for linux, but if you're using
+another platform, some of those dependencies will use different files (eg if
+they contain binaries), and will thus need another hash.
+
+.. _peep: https://github.com/erikrose/peep

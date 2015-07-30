@@ -1,116 +1,329 @@
+# sha256: KNI631J6q8n1dAMY46v-bhHk569uM3yJ1OqcZX7qerQ
 amo-validator==1.8.0
+
+# sha256: _bTwbM_d1F7XvpdHiTd0xWy97eZ4--ac4RkINdSQOTg
 amqp==1.0.13
+
+# sha256: Xb80vULSLAH8xIvkc1U46CBtbBQlOr0Z_Zj8Ctkgkto
 anyjson==0.3.3
+
+# sha256: vT7LBWrDW7Ad195rYrGdRol8uhCshc9VkqCEDmhvSVw
 argparse==1.2.1
-babel==0.9.6
+
+# sha256: doFVm70_FpSwV3GUK9cbGtmhstOe554MZp7Ii7Gaa7M
+Babel==0.9.6
+
+# sha256: 9g7zMJRJg7PDqZUySH4E3MMSbmH0_aFlMKxVjWt11wU
 basket-client==0.3.7
+
+# sha256: 1kzi5sZ6t5wa9PjMGCn8w9_EuCyt1Bzr0h4Sn5QDFhg
 billiard==2.7.3.34
+
+# sha256: X0jnzQ_ZGjXdBDOyK03hU2z12CamN33qfefuaVxXDaY
 bleach==1.4
+
+# sha256: heA0-FJcG-Lb3kAR0fWrx_d6r67eB1mYF_SmOiNg0is
 boto==2.20.0
+
+# sha256: aslNS1_ZFqPoFu5Zt30n-tyaC4b1y2HvjiL1vIxiPWI
 cef==0.5
+
+# sha256: e42ThmPxzPyavJ0xywjEirJ46XqEx7Y5Kjl7hxb0-NM
 celery==3.0.24
+
+# sha256: qecxOLfKLpHjJGa7nRGjhZGhaw6TudGifygXnScli8M
 celery-tasktree==0.3.2
+
+# sha256: GKSPJdu7O-AtgJhdCIfr8SuGEWSlzzqpMU5MswXCzg8
 certifi==0.0.8
+
+# sha256: El23qDt_GctvDkcQBtye4EuElIJMIdAvCs2eph-BDuI
 chardet==2.1.1
+
+# sha256: kS6lnaHC3dLYR8VggegDRGFsLwneB6M_79FTyYLRF6g
 commonware==0.4.2
+
+# sha256: 3Qc7-ha5qKtxxXRj3ZrXXkW01esNsDbG_FbyFHCH7YU
 cssutils==0.9.7b3
+
+# sha256: 56ryXbWvBIA9OZe6rgg36U--CdJ4CjTS213AHdNMFp0
 defusedxml==0.4.1
+
+# sha256: -hE8UWfDqPfqzjJj0JGluvQzJDfM2DIS5NRLvJRCbFY
 dennis==0.4.2
+
+# sha256: byzISLK3Kt9TpvPyG-BJxHfoLECLznzttX7-sJhL3iQ
 Django==1.6.11
+
+# sha256: QTCy1Y7dRCELl78M7XdgZkLyhYqnnmwcTHISj6pW7oA
 dj-database-url==0.2.2
+
+# sha256: G_fDKCYvkVDLYlV5MRqnm_KmzaDi5bCeOrlvwpn7SVs
 django-browserid==0.8
+
+# sha256: U3Ynm5xGKI4cS64ZfoShb5w17yHOk-POt0rptRrLuyU
 django-cache-nuggets==0.1.1
+
+# sha256: q0SKxcAgN5dmiONe7sLxLiLYP8bluIstO67047aM1gU
 django-celery==3.0.23
+
+# sha256: Qf7diZr5a3BXuvytaP9Crvu03-Kw6KneNMsyrIiSr_c
 django-cronjobs==0.2.3
-django_csp==2.0.3
+
+# sha256: FJshnYATFMrB286SWfSFY27q_uSPfQyp3vSxKYZCg0c
+django-csp==2.0.3
+
+# sha256: C_KPvg-T14vztphgnGDtVh92RvhhLQsI3BeRkXJ56ZM
 django-extensions==1.2.5
+
+# sha256: Ng1qp8B9r5X4Jg25qdwOBHJ-tOLkW-pPAcK0XUci_zg
 django-filter==0.7
+
+# sha256: CwH-OJjKaCmJvUVcnOVa1OI-cLuzNhDTu7qZHJEfYzQ
 django-multidb-router==0.5.1
+
+# sha256: RejhQ0udj0xea4NquFaOwfBfFnvWObenNo11Bs_4YMc
 django-mysql-pymysql==0.1
+
+# sha256: HJ3voHTsXHyntYhx2BwbmhlnZF2pPs9O96hbmY6KU7g
 django-quieter-formset==0.4
+
+# sha256: GABRhXDeXrCpCA3OfzUtHzeyv5qcreObxGD6SVpTX8g
 django-raven-heka==0.3
+
+# sha256: 36epwqkaugPClJoEl3hGdl6fQG_RRIhzjzKVaJrxqrc
 django-recaptcha-mozilla==0.0.1
+
+# sha256: bepaymikSS98VG-BpYKor6B1iVsgaNpQlsaWtnp9IRQ
 djangorestframework==2.3.12
-#django-session-csrf==0.6
+
+# sha256: We1mupCEyuf_rh9IQ04quEqAvhg1UnGb6geJ2WYWvos
 django-statsd-mozilla==0.3.10
+
+# sha256: PfwKXiFy8owwNjwyIDh3G57x9xg7nn16ClCgh3Hx38Y
 django-storages==1.1.8
+
+# sha256: 0H9Op1Fr0jAo_eyXLkl-FHOrDPcmjFhzwbnqgtbdjHo
 django-waffle==0.9.2
+
+# sha256: YMarQRBVHtPJZ5zB_AiUwr3kzy-URM4zl_FDsPp0qVI
 easy-thumbnails==1.4
+
+# sha256: k6udWdw4tMmJOuzyOlX_iLI3w7h2vOI7Y2qKdn9XKb4
 elasticsearch==1.1.1
+
+# sha256: 7tlzvh1UnS-nKLttWI4RHHLvc6Ja0zgcV7k6XaksP9s
 email-reply-parser==0.2.0
+
+# sha256: _OSEQ30DhLkAmkC5O4dBlV74qV6sUEtH5qdtpXwDtXc
 fastchardet==0.2.0
+
+# sha256: A2HN8jZeUn-XHAN3lYrxBExW-hlSigylUVDK1MDvWcM
 feedparser==5.1.3
+
+# sha256: WyQdtt9S33WugBgf9k8zYxXm34uquTRG22Kr7REPdQI
 fudge==1.0.3
+
+# sha256: 0Ju_HK59AVC9Qw37WcVqW6_B5TUxBarrN66T5Qinj7c
 GitPython==0.1.7
+
+# sha256: T3NQkai3d9bslk5msgOANMb9Mh3nsqPqX2zlv_cWuA4
 google-api-python-client==1.2
+
+# sha256: p3zdB2kOCRHOXbcaIiqBd2DHRA88XuFlvKoTK-cjnuM
 hera==0.1.2
+
+# sha256: pMZbr9Y9NOG7qYMUGcm4MaCRt5ei5GAtEwxzn5VIqsc
 html5lib==0.999
-httplib2==0.8.0
+
+# sha256: PmOTq2Kpq_QOzkGHI7d7qeA16x9WqIWQnYsrqs9p0zo
+httplib2==0.8
+
+# sha256: Qf7FjjipvUJo5Swy98N4_AGO-_Q-h52mV79m8B0PQu0
 importlib-no-failure==1.0.2
+
+# sha256: ChHshohWln72bumk-qWZROhyCPYCVgN1iqrxLQ1Zr1M
 jingo==0.7
+
+# sha256: -qIPTFGecy5PWCijwVwxweGgKwMy2Ldr3sOquwCIjSw
 kombu==2.5.16
+
+# sha256: 870Pr3ZTxfL0de85FtpHqglohy5zwX7V8PUGHQ6NSMk
 heka-py==0.30.3
+
+# sha256: 3dB34SOPgLAstPSjAZHDfvodtbnzhEnhUwnGoL4oq-I
 heka-py-cef==0.3.1
+
+# sha256: _USat128GMxOyexLAFSRu1ADI2ndrI8ker6qqi3gC0E
 heka-py-raven==0.6
+
+# sha256: T6WxB8_W0DpBtTNJ5V5tunuYLb181arjKyY8p3iNJ8A
 mock==1.0.1
+
+# sha256: 9cDQ_O1GgChQsMfMlbfDiNaCf2RTMnDFwC7jS0mEWhw
 monolith.client==0.9
+
+# sha256: AuFQXOralbHpnNXlHoBCWqOIkdyQqkqsB39xMq3GhA0
 moz-addon-packager==1.0.1
+
+# sha256: Uv7_deGY27Jry3KPknbXbVvy5QIjYHEEQlwoIG1TXPw
 mozilla-logger==0.2
+
+# sha256: hiVk7xv990n1ZzrjX2QdA4OnA5udotEAbgM2LuJ05gg
 ndg-httpsclient==0.3.2
+
+# sha256: MfNyjq_z77zUltYV-AzVezcjlupkcv5FTvYCcpFItFE
 newrelic==2.20.1.18
+
+# sha256: gbmyqkXeP8i0mJ3Js8LavhH1oDO60MykQiavk2Z-3DU
 oauth2==1.5.211
+
+# sha256: gJURyE0QrmXSTkOnDW7qIDQVMhry-7I97fXDn03BFjw
 oauthlib==0.4.0
+
+# sha256: EmIvt-d4mteXtm8nfkhahFOt0t1fyKLCmJCXc-Rg7Pc
 ordereddict==1.1
+
+# sha256: rtfoy9ElqkQacjFRzfbVxKhswZLCyuM4rfmUi7IbgQM
 phpserialize==1.3
+
+# sha256: -kzki2smIu-gNClnuMELxUeulizLCLCpBhc2Y7Yj0eM
 pyhs2==0.4.1
+
+# sha256: 0VgEoM3XzzZNjt5mPDlxmPo4S-YmNQ9zO9XZlnfiYkk
 polib==1.0.3
+
+# sha256: AgV-YnKnGqiukxjW-YjltGhJZ1hBmnutEX78WgjLrCw
 protobuf==2.5.0
+
+# sha256: TzhAUA_Q5SldEqjrlkt3Lg68MboMxiScdgM0YUJiV_0
 pyasn1==0.1.7
-PyBrowserID==0.6
+
+# sha256: qsFsTyJLyRQ-eZoV9ZokY2uZxxdO8ORH52L2DGbly2o
+PyBrowserID==0.6.0
+
+# sha256: vRQha3r80SzawhdEwVNlfHqTuy6ahCPuOtUH84BzyMc
 PyMySQL==0.5
+
+# sha256: peF2bcbScn7QsPKJszQ74skwA4hqN9yHmDzk6d1NMls
 pyquery==0.4
+
+# sha256: aFwGTOdTFr29NSNqh8a_kNNJvdW6ReHLWaaHs6A1DcY
 python-dateutil==1.5
+
+# sha256: WH3a1r8b1VPnR9NrFPjkWBPudW5jirCC-7n43FwbBKQ
 python-gflags==2.0
+
+# sha256: q66EyvXNzi_vOE5BWGpCb0KxlZD_70ZSx3CnKcT524I
 python-memcached==1.53
+
+# sha256: hinQib8g2mdMd741YPrpl7_GYCeiAjbwARUmUQ3MGm4
 pytz==2013.8
+
+# sha256: OcbbmgjccdxTa9lJXDey3ixLhAb8KfO4RAcWcQtoHjI
 raven==4.2.3
+
+# sha256: 1gzEOJv4Alf28nyOF9wn6fPji5y1AEnmJsRdzCE86p0
 rdflib==3.0.0
+
+# sha256: anHj_go5kVujQ--bKiHweNn1K6311cvsjywm3CQEi38
 recaptcha-client==1.0.6
+
+# sha256: rD5qT91ME_xePSyyiRIbL2jRI5o7o9m3hZZhdkPDAm0
 receipts==0.2.9
+
+# sha256: _akl-zRBy8yfj8m9eSnOfIh2wT_ykycjBbFS83XTCQc
 redis==2.8.0
-requests==2.6.0
+
+# sha256: LvZWOcuWAEQ_hUUd9IeBjDH5k6sojzE9KcydtPPL5u0
+requests==2.0.0
+
+# sha256: i14OWXsPS-8El2rxCiVeTs153s0ecBAB5uAzZjd3OUo
 sasl==0.1.3
-signing_clients==0.1.14
+
+# sha256: OvVWtAXO5xiwm2v9YGPMX2JYiKyHNsxD7WYmzAYui_I
+signing-clients==0.1.8
+
+# sha256: kYujiViN-hzgE0YmD4M7m-XKBIVfU4p73MPllr2z-O0
 six==1.4.1
+
+# sha256: iByfRMNL3GUyURtqPCtmxf46kYvihh6d7Se829SY0DI
 slumber==0.5.3
+
+# sha256: TnbUUVF3aCb3Dl98MsYtc62xMtKaAS0zEQOfW73NxLg
 SQLAlchemy==0.7.5
+
+# sha256: OWs_2lvrwYXYvrh2Fjt4dMo00Cqoo_SmH-zPh9_ivEk
 statsd==2.0.3
+
+# sha256: vUQ2H2itUMJHUcwWZTXBaOgh4fvShjhmEtv00J9EsQU
 suds==0.4
+
+# sha256: hoMje9rZbu6nbiPWofGy0fBJVwRSQAL1nWt_wwWOdLE
 thrift==0.9.1
+
+# sha256: 0HohzT9h-10kNBS6iBXIgl-ElPSL83PtSPDcOPERZfU
 tower==0.4.1
+
+# sha256: cOS-_nEHJ426AqDiJE3oBJI8LtUAMI-rGolicIZvYtE
 urllib3==1.9
 
-## Not on pypi.
--e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
--e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
--e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
-# Temporary fork.
--e git+https://github.com/mozilla/schematic.git@a3adf69738a2d99b718be35eef58addd5857e11c#egg=schematic
--e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
--e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
--e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
--e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
--e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
--e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
+## Not on pypi.
+
+# sha256: Aj2Bomq3SfhtHmvWjXiH7soeXm_gmpYOE9aMcx-a28k
+https://github.com/jbalogh/django-queryset-transform/archive/a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022.zip#egg=django-queryset-transform
+
+# sha256: NhlhYuCGTjkkmMomR1ghItXzkP6F17utEuw9tuOg7No
+https://github.com/miracle2k/django-tables/archive/546f339308103880c823b2056830fcdc9220edd0.zip#egg=django-tables#egg=django-tables
+
+# sha256: XRCUSz0P_fpu2FmgnwdukLX8XnihDlxEY_yv58BhZbs
+https://github.com/mozilla/happyforms/archive/729612c2a824a7e8283d416d2084bf506c671e24.zip#egg=happyforms#egg=happyforms
+
+
+## Temporary fork.
+
+# sha256: Zf7KhhYClEBPTruihC_ylNL7-7zePO1P1X7HH-Ve1v0
+https://github.com/mozilla/schematic/archive/a3adf69738a2d99b718be35eef58addd5857e11c.zip#egg=schematic
+
+# sha256: Wcu93vsdrPG--i0Q50sZFT1QawoMasst2-mfotK_Sc8
+https://github.com/yohanboniface/jingo-minify/archive/amo.2014.09.03.zip#egg=jingo_minify
+
+# sha256: B1eEe8OGXdrUX6gQI4W0ToVdPCQIz_JMYwcZRrL09Xw
+https://github.com/mozilla/django-moz-header/archive/djangoapp.zip#egg=django-moz-header
+
+# sha256: WjOJCs6mhoK-r9gLBNuOW9P1yshzyxPoR3T4D67slgA
+https://github.com/washort/nuggets/archive/02798dfce84030fca64775eaf56e92400f394e4f.zip#egg=nuggets
+
+# sha256: D0SaL0u2cG4z1U6yNY7uVlrvS42Sodpbe9_VOi3Zjy0
+https://github.com/fwenzel/django-mozilla-product-details/archive/d168ab2e689a1b54a30a923386fe7948a74ff334.zip#egg=django-mozilla-product-details
+
+# sha256: uDA8a2lQGB1uEg_sdygAueYurQsQAD6-utf81kFmE9g
+https://github.com/mozilla/django-session-csrf/archive/f00ad913c62e139d36078e8a7e07dab65a021386.zip#egg=django-session-csrf
+
+# sha256: nDhG2fuIY-DJQv1iKNqrMoEqsP1Q6Gy7otsO2XtFQpM
+https://github.com/washort/django-cache-machine/archive/4690198122a96a88267323566dc18a5e0437681f.zip#egg=django-cache-machine
+
+
 ## Forked.
--e git+https://github.com/washort/django-piston-oauth2.git@c89afee6f98241eb7ef6df57d3d5156fabbfa759#egg=django-piston-oauth2
--e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
--e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool
+
+# sha256: pV6ZsQVftHAbayCjbLiWkiJXPe1LyN73aOKy_y0JksI
+https://github.com/washort/django-piston-oauth2/archive/c89afee6f98241eb7ef6df57d3d5156fabbfa759.zip#egg=django-piston-oauth2
+
+# sha256: QNRgQHZY27bZGBBrtmxkxEXa9qQGoIT9-oE8G92bsz4
+https://github.com/andymckay/django-uuidfield/archive/029dd1263794ec36c327617cd6c2346da81c8c33.zip#egg=django-uuidfield
+
+# sha256: 0ZPE0W4lz5ihLK3hl-Ymhe-itR53cNAkMYqU42HJGS4
+https://github.com/washort/django-mysql-pool/archive/76ed372bb9888d46833345ae6c40a39d41b5ba62.zip#egg=django-mysql-pool
 
 
 ## Out of date or not sure on pypi.
--e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
+
+# sha256: oLceTlNNnIRU1s7p_FoNTAfibef0f0jTkVGuAj6FEfs
+https://github.com/jbalogh/django-mobility/archive/e2b60a1f96e4c4aed736395c01bf707e969d8e83.zip#egg=django-mobility
+
 
 ## moved for 2014/04/02 deployment expediency
+
+# sha256: lSnq4SgTEMXgB2q1XNSSS4TqElogCpMOKujATta7jTU
 MySQL-python==1.2.5

@@ -3,6 +3,11 @@
 -r docs.txt
 -r flake8.txt
 
+# sha256: Bb-NHDK2AkV2zJpFUWXdRu1XrUeq0bZsKTlG-SzkRWo
 django-debug-toolbar==1.2
+
+# sha256: jKUU0fUuV0df_HROkxYetQhI3OwkWhbAbYxbe1SXwwU
 django-fixture-magic==0.0.4
+
+# sha256: NvD0CvnvTTWLljqydfYjMQg8aCkKPRSiGZ1d1NmMxF0
 sqlparse==0.1.14

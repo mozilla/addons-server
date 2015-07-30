@@ -1,6 +1,20 @@
 # For buildings docs (also used by RTD)
+
+# sha256: 0SsLPrCgvWNBY56Uo-yWYf1GstVyeepC8Tbutj7Xbf0
 sphinxcontrib-httpdomain==1.1.9
+
+# sha256: ATWZmUCgeJ9UAYx_b2cIxFlROB_Gt2g8SOIQFyiat9g
 docutils==0.11
+
+# sha256: UluUWq9JcXpbwCYOaHCXUK1eArmVr_g4o9drT8vfsPA
 Pygments==1.6
+
+# py26 wheel
+# sha256: xMoiEouDqW3ddrdXydFMS0s1xdYX2RCUvJg7IHtfsl0
+#
+# py27 wheel
+# sha256: lUX_5P0XsZ-LgVaaZQduwaGXIBjczG1wufI2JlAwx18
 Sphinx==1.2.2
+
+# sha256: i-y9lJG2bJvQ-RFz_4RcbeoZK2JgksHbKxfCC6UzhJU
 mdn-sphinx-theme>=0.3
