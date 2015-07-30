@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-15 19:38+0000\n"
+"PO-Revision-Date: 2015-07-30 06:34+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436989081.0\n"
+"X-POOTLE-MTIME: 1438238067.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1808,7 +1808,7 @@ msgstr "{file} wurde signiert."
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Addon ID {0} mit GUID {1} wurde gelöscht"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4707,10 +4707,11 @@ msgstr "Kompatibilitätstests"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
 msgstr ""
+"Nachrichten ausblenden, die für automatische Signierung nicht notwendig sind"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Nachrichten in vorheriger Version und ignorierte ausblenden"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -10363,7 +10364,7 @@ msgstr "Antwort zur Bewertung"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Antwort bearbeiten"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -10371,7 +10372,7 @@ msgstr "Bewertung editieren"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Antwort löschen"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
