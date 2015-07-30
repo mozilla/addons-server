@@ -225,7 +225,8 @@ function initValidator($doc) {
 
     MsgVisitor.prototype.filterMessage = function(msg) {
         return !(this.hideIgnored && msg.ignored ||
-                 this.hideNonSigning && !msg.signing_severity)
+                 this.hideNonSigning && !(msg.signing_severity ||
+                                          msg.type == "error"))
     };
 
     MsgVisitor.prototype.message = function(msg, options) {
