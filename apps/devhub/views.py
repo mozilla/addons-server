@@ -623,6 +623,7 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
     if addon:
         # TODO: Handle betas.
         automated = addon.automated_signing
+        is_listed = addon.is_listed
 
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
     fu.update(automated_signing=automated)
