@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-16 05:43+0000\n"
+"PO-Revision-Date: 2015-07-30 00:59+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437025402.0\n"
+"X-POOTLE-MTIME: 1438217976.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1775,7 +1775,7 @@ msgstr "已簽署 {file}。"
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "已刪除 ID 為 {0} 且 GUID 為 {1} 的附加元件"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4617,11 +4617,11 @@ msgstr "相容性測試"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "隱藏自動簽署不需要的訊息"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "隱藏先前版本已有且忽略的訊息"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -10021,7 +10021,7 @@ msgstr "回覆評論"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "編輯回覆"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -10029,7 +10029,7 @@ msgstr "編輯評論"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "刪除回覆"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
