@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-16 12:13+0000\n"
-"Last-Translator: Mark <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2015-07-30 08:32+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437048836.0\n"
+"X-POOTLE-MTIME: 1438245175.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1808,7 +1808,7 @@ msgstr "{file} is ondertekend."
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Add-on kenmerk {0} met GUID {1} is verwijderd"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2043,8 +2043,11 @@ msgid ""
 "<p> %(consumer)s wants to be authorized to act on your behalf. This may include: </p> <ul> <li>Uploading, changing or removing add-ons on your behalf.</li> <li>Uploading, changing or removing "
 "versions of add-ons on your behalf.</li> <li> Learning personal information about you, such as your username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> %(consumer)s vraagt om toestemming om namens u te handelen. Dit kan inhouden: </p> <ul> <li>Namens u uploaden, wijzigen of verwijderen van add-ons .</li> <li>Namens u uploaden, wijzigen of "
-"verwijderen van versies van add-ons.</li> <li> Lezen van persoonlijke informatie over u, zoals uw gebruikersnaam en e-mailadres (maar niet uw wachtwoord). </li> </ul>"
+"<p> %(consumer)s vraagt om toestemming om namens u te handelen. Dit kan "
+"inhouden: </p> <ul> <li>Namens u uploaden, wijzigen of verwijderen van add-"
+"ons .</li> <li>Namens u uploaden, wijzigen of verwijderen van versies van "
+"add-ons.</li> <li> Lezen van persoonlijke gegevens over u, zoals uw "
+"gebruikersnaam en e-mailadres (maar niet uw wachtwoord). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -3749,7 +3752,9 @@ msgstr "Mijn add-on niet op deze website vermelden (bèta)"
 
 #: apps/devhub/forms.py:514
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Vink deze optie aan als u uw add-on zelf wilt verspreiden en alleen door Mozilla wilt laten aftekenen."
+msgstr ""
+"Vink deze optie aan als u uw add-on zelf wilt verspreiden en alleen door "
+"Mozilla wilt laten ondertekenen."
 
 #: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
@@ -4189,8 +4194,10 @@ msgid ""
 "Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
 msgstr ""
-"Indienen van niet-vermelde add-ons voor aftekening bevindt zich momenteel in een open bèta. Handmatige beoordeling kan nog steeds nodig zijn voor een groot aantal add-ons. <a href=\"%(bugzilla_url)s"
-"\" target=\"_blank\">Meld eventuele fouten</a> die u tegenkomt."
+"Indienen van niet-vermelde add-ons voor ondertekening bevindt zich momenteel "
+"in een open bèta. Voor een groot aantal add-ons kan nog steeds handmatige "
+"beoordeling nodig zijn. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Meld "
+"eventuele fouten</a> die u tegenkomt."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4697,15 +4704,15 @@ msgstr "Lokalisatietests"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
-msgstr "Compatibiliteitstesten"
+msgstr "Compatibiliteitstests"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Berichten die niet nodig zijn voor automatisch ondertekenen verbergen"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Berichten van eerdere versie en genegeerd verbergen"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -5105,7 +5112,10 @@ msgstr "Stap 1. Van start"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "Lees en accepteer voordat u begint onze Firefox Add-on-verspreidingsovereenkomst. Deze verwijst tevens naar onze Privacyverklaring, die uitlegt hoe we met uw informatie omgaan."
+msgstr ""
+"Lees en accepteer voordat u begint onze Firefox Add-on-"
+"verspreidingsovereenkomst. Deze verwijst tevens naar onze Privacyverklaring, "
+"die uitlegt hoe we met uw gegevens omgaan."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
@@ -5141,7 +5151,9 @@ msgstr "Negeerhandelingen van beheer"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:84 apps/devhub/templates/devhub/versions/add_file_modal.html:79
 msgid "Looks like your add-on requires a manual review before it can be signed."
-msgstr "Het lijkt er op dat uw add-on handmatig moet worden beoordeeld voordat hij kan worden afgetekend."
+msgstr ""
+"Het lijkt er op dat uw add-on handmatig moet worden beoordeeld voordat deze "
+"kan worden ondertekend."
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6661,8 +6673,10 @@ msgid ""
 "Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
 "\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
-"Indienen van updates voor niet-vermelde add-ons voor aftekening bevindt zich momenteel in een open bèta. Handmatige beoordeling kan nog steeds nodig zijn voor een groot aantal add-ons. <a href="
-"\"%(bugzilla_url)s\" target=\"_blank\">Meld eventuele fouten</a> die u tegenkomt."
+"Indienen van updates voor niet-vermelde add-ons voor ondertekening bevindt "
+"zich momenteel in een open bèta. Voor een groot aantal add-ons kan nog "
+"steeds handmatige beoordeling nodig zijn. <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">Meld eventuele fouten</a> die u tegenkomt."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
@@ -6681,8 +6695,11 @@ msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
-"Het gedrag van het bètakanaal is gewijzigd om <a href=\"%(addon_signing_url)s\" target=\"_blank\">verplicht aftekenen van add-ons</a> mogelijk te maken. Het nieuwe proces bevindt zich momenteel in "
-"een open bèta, en kan in de nabije toekomst nog significant wijzigen. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Meld eventuele fouten</a> die u tegenkomt."
+"Het gedrag van het bètakanaal is gewijzigd om <a href=\"%"
+"(addon_signing_url)s\" target=\"_blank\">verplicht ondertekenen van add-ons</a> "
+"mogelijk te maken. Het nieuwe proces bevindt zich momenteel in een open "
+"bèta, en kan in de nabije toekomst nog significant wijzigen. <a href=\"%"
+"(bugzilla_url)s\" target=\"_blank\">Meld eventuele fouten</a> die u tegenkomt."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -6842,7 +6859,9 @@ msgstr "Niet vermeld:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
-msgstr "Niet verspreid via {0}. Ontwikkelaar zullen nieuwe versies voor aftekening uploaden en de add-ons zelf verspreiden. (bèta)"
+msgstr ""
+"Niet verspreid via {0}. Ontwikkelaar zullen nieuwe versies voor "
+"ondertekening uploaden en de add-ons zelf verspreiden. (bèta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -6950,11 +6969,14 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
-msgstr "Het omzetten van add-ons naar niet-vermeld bevindt zich momenteel in een open bèta. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Meld eventuele fouten</a> die u tegenkomt."
+msgstr ""
+"Het omzetten van add-ons naar niet vermeld bevindt zich momenteel in een "
+"open bèta. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Meld eventuele "
+"fouten</a> die u tegenkomt."
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr "Omzetten van een add-on naar niet-vermeld kan niet ongedaan worden gemaakt!"
+msgstr "Verwijderen van een add-onvermelding is onomkeerbaar!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
@@ -7763,8 +7785,8 @@ msgstr "met opmerking"
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} themabeoordeling succesvol verwerkt (+{1} punten, {2} totaal)."
-msgstr[1] "{0} themabeoordelingen succesvol verwerkt (+{1} punten, {2} totaal)."
+msgstr[0] "{0} themabeoordeling met succes verwerkt (+{1} punten, {2} totaal)."
+msgstr[1] "{0} themabeoordelingen met succes verwerkt (+{1} punten, {2} totaal)."
 
 #: apps/editors/views_themes.py:341
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -7815,7 +7837,7 @@ msgstr "Gemodereerd beoordelingslogboek"
 
 #: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr "Logboek ondertekende bètabestanden"
+msgstr "Logboek van ondertekende bètabestanden"
 
 #: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
@@ -8813,7 +8835,9 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "Als u echt contact wilt opnemen met iemand uit het Mozilla-team, lees dan onze pagina met <a href=\"%(url)s\">contactinformatie</a>."
+msgstr ""
+"Als u echt contact wilt opnemen met iemand uit het Mozilla-team, lees dan "
+"onze pagina met <a href=\"%(url)s\">contactgegevens</a>."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -10322,7 +10346,7 @@ msgstr "Beoordeling beantwoorden"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Antwoord bewerken"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -10330,7 +10354,7 @@ msgstr "Beoordeling bewerken"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Antwoord bewerken"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -11858,8 +11882,10 @@ msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
-"Sorry, maar om in aanmerking te komen voor ons speciaal uitgegeven T-shirt dient u een add-on-ontwerper met ten minste één vermelde add-on, één niet-vermelde maar afgetekende add-on, of één of meer "
-"achtergrondthema’s met in totaal 10.000 gemiddelde dagelijkse gebruikers te zijn."
+"Sorry, maar om voor ons speciaal uitgegeven T-shirt in aanmerking te komen "
+"dient u een add-on-ontwerper met ten minste één vermelde add-on, één niet-"
+"vermelde maar ondertekende add-on, of een of meer achtergrondthema’s met in "
+"totaal 10.000 gemiddelde dagelijkse gebruikers te zijn."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
