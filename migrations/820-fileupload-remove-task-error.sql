@@ -12,5 +12,5 @@ WHERE
 ALTER TABLE
     `file_uploads`
 DROP COLUMN
-    `task_error` BOOL DEFAULT FALSE
+    `task_error`
 ;
