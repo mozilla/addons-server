@@ -496,7 +496,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._reviews.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
-            amo.log(amo.LOG.DELETE_ADDON, self.pk, self.guid, self)
+            amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None, app_domain=None,
                         _current_version=None, guid=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
