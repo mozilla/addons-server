@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
-import sys
-import traceback
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 
 import mock
 from nose.plugins.attrib import attr
@@ -16,7 +12,6 @@ import waffle
 import amo
 import amo.tests
 from addons.models import Addon
-from amo.tests import assert_no_validation_exceptions
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
@@ -58,14 +53,14 @@ class TestUploadValidation(BaseUploadTest):
         doc = pq(resp.content)
         eq_(doc('td').text(), 'December  6, 2010')
 
-    def test_upload_saves_escaped_validation(self):
+    def test_upload_processed_validation(self):
         addon_file = open('apps/files/fixtures/files/validation-error.xpi')
         response = self.client.post(reverse('devhub.upload'),
                                     {'name': 'addon.xpi',
                                      'upload': addon_file})
         uuid = response.url.split('/')[-2]
         upload = FileUpload.objects.get(uuid=uuid)
-        eq_(upload.escaped_validation()['errors'], 1)
+        assert upload.processed_validation['errors'] == 1
 
 
 class TestUploadErrors(BaseUploadTest):
@@ -164,16 +159,24 @@ class TestFileValidation(amo.tests.TestCase):
         eq_(msg['context'],
             [u'<em:description>...', [u'<foo/>']])
 
-    @mock.patch('files.models.File.has_been_validated')
-    def test_json_results_post(self, has_been_validated):
-        has_been_validated.__nonzero__.return_value = False
-        with transaction.atomic():
-            # The json_file_validation view will raise an IntegrityError when
-            # trying to save a FileValidation, as it's already been created by
-            # the fixture addon-validation-1.
-            eq_(self.client.post(self.json_url).status_code, 200)
-        has_been_validated.__nonzero__.return_value = True
+    @mock.patch('devhub.tasks.run_validator')
+    def test_json_results_post_not_cached(self, validate):
+        validate.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
+
+        self.file.validation.delete()
+        self.file = File.objects.get(pk=self.file.pk)
+        assert not self.file.has_been_validated
+
         eq_(self.client.post(self.json_url).status_code, 200)
+        assert validate.called
+
+    @mock.patch('devhub.tasks.validate')
+    def test_json_results_post_cached(self, validate):
+        assert self.file.has_been_validated
+
+        eq_(self.client.post(self.json_url).status_code, 200)
+
+        assert not validate.called
 
     @mock.patch('files.models.File.has_been_validated')
     def test_json_results_get(self, has_been_validated):
@@ -271,7 +274,6 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_exceptions(data)
         msg = data['validation']['messages'][0]
         ok_('is invalid' in msg['message'])
 
@@ -281,19 +283,6 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         doc = pq(r.content)
         assert doc('time').text()
-
-    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
-    @mock.patch('devhub.tasks.run_validator')
-    def test_validator_errors(self, v):
-        v.side_effect = ValueError('catastrophic failure in amo-validator')
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        eq_(data['validation'], '')
-        eq_(data['error'].strip(),
-            'ValueError: catastrophic failure in amo-validator')
 
     @mock.patch('devhub.tasks.run_validator')
     def test_validator_sets_binary_flag_for_extensions(self, v):
@@ -317,16 +306,9 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_exceptions(data)
+        assert not data['validation']['errors']
         addon = Addon.objects.get(pk=self.addon.id)
-        eq_(addon.binary, True)
-
-    @mock.patch('validator.validate.validate')
-    def test_validator_sets_tier(self, v):
-        self.client.post(reverse('devhub.json_file_validation',
-                                 args=[self.addon.slug, self.file.id]),
-                         follow=True)
-        assert not v.call_args[1].get('compat_test', True)
+        assert addon.binary
 
     @mock.patch('devhub.tasks.run_validator')
     def test_ending_tier_is_preserved(self, v):
@@ -350,7 +332,8 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        eq_(data['validation']['ending_tier'], 5)
+        assert not data['validation']['errors']
+        assert data['validation']['ending_tier'] == 5
 
     @mock.patch('devhub.tasks.run_validator')
     def test_validator_sets_binary_flag_for_content(self, v):
@@ -374,9 +357,9 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_exceptions(data)
+        assert not data['validation']['errors']
         addon = Addon.objects.get(pk=self.addon.id)
-        eq_(addon.binary, True)
+        assert addon.binary
 
     @mock.patch('devhub.tasks.run_validator')
     def test_linkify_validation_messages(self, v):
@@ -406,21 +389,8 @@ class TestValidateFile(BaseUploadTest):
                              follow=True)
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_exceptions(data)
         doc = pq(data['validation']['messages'][0]['description'][0])
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
-
-    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
-    @mock.patch('devhub.tasks.run_validator')
-    def test_hide_validation_traceback(self, run_validator):
-        run_validator.side_effect = RuntimeError('simulated task error')
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        eq_(r.status_code, 200)
-        data = json.loads(r.content)
-        eq_(data['validation'], '')
-        eq_(data['error'], 'RuntimeError: simulated task error')
 
     @mock.patch.object(waffle, 'flag_is_active')
     @mock.patch('devhub.tasks.run_validator')
@@ -549,28 +519,6 @@ class TestCompatibilityResults(amo.tests.TestCase):
         doc = pq(r.content)
         assert doc('time').text()
         eq_(doc('table tr td:eq(1)').text(), 'Firefox 4.0.*')
-
-    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', True)
-    def test_validation_error(self):
-        try:
-            raise RuntimeError('simulated task error')
-        except:
-            error = ''.join(traceback.format_exception(*sys.exc_info()))
-        self.result.update(validation='', task_error=error)
-        data = self.validate()
-        eq_(data['validation'], '')
-        eq_(data['error'], error)
-
-    @mock.patch.object(settings, 'EXPOSE_VALIDATOR_TRACEBACKS', False)
-    def test_hide_validation_traceback(self):
-        try:
-            raise RuntimeError('simulated task error')
-        except:
-            error = ''.join(traceback.format_exception(*sys.exc_info()))
-        self.result.update(validation='', task_error=error)
-        data = self.validate()
-        eq_(data['validation'], '')
-        eq_(data['error'], 'RuntimeError: simulated task error')
 
 
 class TestUploadCompatCheck(BaseUploadTest):

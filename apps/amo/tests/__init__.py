@@ -597,26 +597,6 @@ class AMOPaths(object):
         shutil.copyfile(self.xpi_path(name), file.file_path)
 
 
-def assert_no_validation_exceptions(validation):
-    """Assert that the validation (JSON) does not contain a traceback.
-
-    Note that this does not test whether the addon passed
-    validation or not.
-    """
-    if hasattr(validation, 'task_error'):
-        # FileUpload object:
-        error = validation.task_error
-    else:
-        # Upload detail - JSON output
-        error = validation['error']
-    if error:
-        print '-' * 70
-        print error
-        print '-' * 70
-        raise AssertionError("Unexpected task error: %s" %
-                             error.rstrip().split("\n")[-1])
-
-
 def _get_created(created):
     """
     Returns a datetime.

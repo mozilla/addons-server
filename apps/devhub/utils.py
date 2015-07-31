@@ -10,92 +10,92 @@ from addons.models import Addon
 from amo.urlresolvers import linkify_escape
 from files.models import File, FileUpload
 from files.utils import parse_addon
+from validator.constants import SIGNING_SEVERITIES
 from validator.version import Version
 from . import tasks
 
 
-# FIXME: Move to `validator.constants`.
-SEVERITIES = {'trivial', 'low', 'medium', 'high'}
+def process_validation(validation, is_compatibility=False):
+    """Process validation results into the format expected by the web
+    frontend, including transforming certain fields into HTML,  mangling
+    compatibility messages, and limiting the number of messages displayed."""
 
-
-def make_validation_results(data, is_compatibility=False):
-    if data['validation']:
-        data['validation'] = limit_validation_results(escape_validation(
-            data['validation']))
-    data['error'] = hide_traceback(data['error'])
-    return data
-
-
-def hide_traceback(error):
-    """Safe wrapper around JSON dict containing a validation result.
-    """
-    if not settings.EXPOSE_VALIDATOR_TRACEBACKS and error:
-        # Just expose the message, not the traceback
-        return error.strip().split('\n')[-1].strip()
-    else:
-        return error
-
-
-def limit_validation_results(validation, is_compatibility=False):
-    lim = settings.VALIDATOR_MESSAGE_LIMIT
-    if lim:
-        del validation['messages'][lim:]
-        if validation.get('compatibility_summary'):
-            cs = validation['compatibility_summary']
-            compatibility_count = (
-                cs['errors'] + cs['warnings'] + cs['notices'])
-        else:
-            cs = {}
-            compatibility_count = 0
-        leftover_count = (validation.get('errors', 0)
-                          + validation.get('warnings', 0)
-                          + validation.get('notices', 0)
-                          + compatibility_count
-                          - lim)
-        if leftover_count > 0:
-            msgtype = 'notice'
-            if is_compatibility:
-                if cs.get('errors'):
-                    msgtype = 'error'
-                elif cs.get('warnings'):
-                    msgtype = 'warning'
-            else:
-                if validation['errors']:
-                    msgtype = 'error'
-                elif validation['warnings']:
-                    msgtype = 'warning'
-            validation['messages'].append({
-                'tier': 1,
-                'type': msgtype,
-                # To respect the message structure, see bug 1139674.
-                'id': ['validation', 'messages', 'truncated'],
-                'message': (_('Validation generated too many errors/'
-                              'warnings so %s messages were truncated. '
-                              'After addressing the visible messages, '
-                              "you'll be able to see the others.")
-                            % (leftover_count,)),
-                'compatibility_type': None})
     if is_compatibility:
-        compat = validation['compatibility_summary']
-        for k in ('errors', 'warnings', 'notices'):
-            validation[k] = compat[k]
-        for msg in validation['messages']:
-            if msg['compatibility_type']:
-                msg['type'] = msg['compatibility_type']
+        mangle_compatibility_messages(validation)
+
+    # Set an ending tier if we don't have one (which probably means
+    # we're dealing with mock validation results).
+    validation.setdefault('ending_tier', 0)
+
+    if not validation['ending_tier'] and validation['messages']:
+        validation['ending_tier'] = max(msg.get('tier', -1)
+                                        for msg in validation['messages'])
+
+    limit_validation_results(validation)
+
+    htmlify_validation(validation)
+
     return validation
 
 
-def escape_validation(validation):
-    ending_tier = validation.get('ending_tier', 0)
-    for msg in validation.get('messages', []):
-        tier = msg.get('tier', -1)  # Use -1 so we know it isn't 0.
-        if tier > ending_tier:
-            ending_tier = tier
-        if tier == 0:
-            # We can't display a message if it's on tier 0.
-            # Should get fixed soon in bug 617481
-            msg['tier'] = 1
+def mangle_compatibility_messages(validation):
+    """Mangle compatibility messages so that the message type matches the
+    compatibility type, and alter totals as appropriate."""
 
+    compat = validation['compatibility_summary']
+    for k in ('errors', 'warnings', 'notices'):
+        validation[k] = compat[k]
+
+    for msg in validation['messages']:
+        if msg['compatibility_type']:
+            msg['type'] = msg['compatibility_type']
+
+
+def limit_validation_results(validation):
+    """Limit the number of messages displayed in a set of validation results,
+    and if truncation has occurred, add a new message explaining so."""
+
+    messages = validation['messages']
+    lim = settings.VALIDATOR_MESSAGE_LIMIT
+    if lim and len(messages) > lim:
+        # Sort messages by severity first so that the most important messages
+        # are the one we keep.
+        TYPES = {'error': 0, 'warning': 1, 'notice': 2}
+        messages.sort(key=lambda msg: TYPES.get(msg.get('type')))
+
+        leftover_count = len(messages) - lim
+        del messages[lim:]
+
+        # The type of the truncation message should be the type of the most
+        # severe message in the results.
+        if validation['errors']:
+            msg_type = 'error'
+        elif validation['warnings']:
+            msg_type = 'warning'
+        else:
+            msg_type = 'notice'
+
+        compat_type = (msg_type if any(msg.get('compatibility_type')
+                                       for msg in messages)
+                       else None)
+
+        messages.insert(0, {
+            'tier': 1,
+            'type': msg_type,
+            # To respect the message structure, see bug 1139674.
+            'id': ['validation', 'messages', 'truncated'],
+            'message': _('Validation generated too many errors/'
+                         'warnings so %s messages were truncated. '
+                         'After addressing the visible messages, '
+                         "you'll be able to see the others.") % leftover_count,
+            'compatibility_type': compat_type})
+
+
+def htmlify_validation(validation):
+    """Process the `message`, `description`, and `signing_help` fields into
+    safe HTML, with URLs turned into links."""
+
+    for msg in validation['messages']:
         msg['message'] = linkify_escape(msg['message'])
 
         for key in 'description', 'signing_help':
@@ -107,9 +107,6 @@ def escape_validation(validation):
                     msg[key] = [msg[key]]
 
                 msg[key] = [linkify_escape(text) for text in msg[key]]
-
-    validation['ending_tier'] = ending_tier
-    return validation
 
 
 class ValidationAnnotator(object):
@@ -179,7 +176,7 @@ class ValidationAnnotator(object):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        return tasks.validate_upload.subtask([upload.pk, is_listed])
+        return tasks.validate_file_path.subtask([upload.path, is_listed])
 
     def find_previous_version(self, version):
         """Find the most recent previous version of this add-on, prior to
@@ -310,8 +307,8 @@ class ValidationComparator(object):
         counts of non-ignored messages. An 'ignored_signing_summary' dict
         will be added, containing counts only of ignored messages."""
 
-        signing_summary = {level: 0 for level in SEVERITIES}
-        ignored_summary = {level: 0 for level in SEVERITIES}
+        signing_summary = {level: 0 for level in SIGNING_SEVERITIES}
+        ignored_summary = {level: 0 for level in SIGNING_SEVERITIES}
 
         for msg in validation['messages']:
             severity = msg.get('signing_severity')

@@ -297,7 +297,7 @@ class TestValidationAnnotatorBase(amo.tests.TestCase):
         self.validate_file = self.patch(
             'devhub.tasks.validate_file').subtask
         self.validate_upload = self.patch(
-            'devhub.tasks.validate_upload').subtask
+            'devhub.tasks.validate_file_path').subtask
 
     def tearDown(self):
         for patcher in self.patchers:
@@ -324,7 +324,7 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
         self.validate_file.assert_called_once_with([self.file.pk])
 
         self.validate_upload.assert_called_once_with(
-            [self.file_upload.pk, None])
+            [self.file_upload.path, None])
 
         self.save_upload.assert_called_once_with([self.file_upload.pk])
 
@@ -350,7 +350,7 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
 
         assert not self.validate_file.called
         self.validate_upload.assert_called_once_with(
-            [self.file_upload.pk, None])
+            [self.file_upload.path, None])
 
         self.save_upload.assert_called_once_with([self.file_upload.pk])
 
@@ -382,7 +382,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
         self.validate_file.assert_called_once_with([self.file_1_1.pk])
         self.validate_upload.assert_called_once_with(
-            [self.file_upload.pk, None])
+            [self.file_upload.path, None])
         self.save_upload.assert_called_once_with([self.file_upload.pk])
 
     def test_full_to_unreviewed(self):
@@ -395,7 +395,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
         self.validate_file.assert_called_once_with([self.file.pk])
         self.validate_upload.assert_called_once_with(
-            [self.file_upload.pk, None])
+            [self.file_upload.path, None])
         self.save_upload.assert_called_once_with([self.file_upload.pk])
 
         # We can't prevent matching against prelim or beta versions

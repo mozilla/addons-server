@@ -66,6 +66,9 @@ SITE_URL = 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
+# Turn off validation by default on development instances, until we have an
+# easy way to install a working copy of Spidermonkey. Real Soon Now(R).
+# No, really, though, soon.
 VALIDATE_ADDONS = False
 
 ADDON_COLLECTOR_ID = 1
