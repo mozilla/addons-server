@@ -244,14 +244,64 @@ class TestValidationComparator(amo.tests.TestCase):
         self.compare(message, {'context_data': {}}, {})
         self.compare(message, {'file': 'these-are-not-the-droids.js'}, {})
 
-        message['context'] = None
-        self.compare(message, {'context': ('a', 'b', 'c')}, {})
+        # No context in the old message.
+        msg = merge_dicts(message, {'context': None})
+        self.compare(msg, {'context': ('a', 'b', 'c')}, {})
+        self.compare(msg, {'context': None}, {})
+        del msg['context']
+        self.compare(msg, {'context': ('a', 'b', 'c')}, {})
+        self.compare(msg, {'context': None}, {})
+
+        # No signing severity in the old message.
+        msg = merge_dicts(message, {'signing_severity': None})
+        self.compare(msg, {'signing_severity': 'low'}, {})
+        del msg['signing_severity']
+        self.compare(msg, {'signing_severity': 'low'}, {})
 
         # Token non-signing message.
         self.compare({'id': ('a', 'b', 'c'),
                       'context': ('x', 'y', 'z'),
                       'file': 'foo.js'},
                      {'id': ()}, {})
+
+    def test_file_tuples(self):
+        """Test that messages with file tuples, rather than strings, are
+        treated correctly."""
+
+        file_tuple = (u'thing.jar', u'foo.js')
+        file_list = list(file_tuple)
+        file_string = u'/'.join(file_tuple)
+
+        message = {'id': ('a', 'b', 'c'),
+                   'signing_severity': 'low',
+                   'context': ('x', 'y', 'z'),
+                   'context_data': {'function': 'foo_bar'},
+                   'file': file_tuple}
+
+        matches = {'ignored': True, 'matched': self.old_msg}
+
+        # Tuple, no changes, matches.
+        self.compare(message, {}, matches)
+        self.compare(message, {'file': file_list}, matches)
+        self.compare(message, {'file': file_string}, matches)
+        # Changes, fails.
+        self.compare(message, {'file': 'foo thing.js'}, {})
+
+        # List, no changes, matches.
+        message['file'] = file_list
+        self.compare(message, {}, matches)
+        self.compare(message, {'file': file_list}, matches)
+        self.compare(message, {'file': file_string}, matches)
+        # Changes, fails.
+        self.compare(message, {'file': 'foo thing.js'}, {})
+
+        # String, no changes, matches.
+        message['file'] = file_string
+        self.compare(message, {}, matches)
+        self.compare(message, {'file': file_list}, matches)
+        self.compare(message, {'file': file_string}, matches)
+        # Changes, fails.
+        self.compare(message, {'file': 'foo thing.js'}, {})
 
 
 class TestValidationAnnotatorBase(amo.tests.TestCase):
