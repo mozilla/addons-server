@@ -1127,7 +1127,6 @@ CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ("*", "data:")
 CSP_SCRIPT_SRC = ("'self'",
                   "https://www.google.com",  # Recaptcha
-                  "https://mozorg.cdn.mozilla.net",  # Tabzilla.
                   "https://www.paypalobjects.com",
                   "https://ssl.google-analytics.com",
                   )
