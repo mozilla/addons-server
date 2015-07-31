@@ -240,8 +240,12 @@ class ValidationComparator(object):
         self.validation = validation
 
         self.messages = {self.message_key(msg): msg
-                         for msg in validation['messages']
-                         if 'context' in msg}
+                         for msg in validation['messages']}
+        if None in self.messages:
+            # `message_key` returns None for messages we can't compare.
+            # They should all wind up in a single bucket in the messages dict,
+            # so delete that item if it exists.
+            del self.messages[None]
 
     @staticmethod
     def message_key(message):
@@ -252,13 +256,20 @@ class ValidationComparator(object):
         if not message.get('context'):
             return None
 
+        def file_key(filename):
+            """Return a hashable key for a message's filename, which may be
+            a string, tuple, or list by default."""
+
+            return (u'/'.join(filename) if isinstance(filename, (list, tuple))
+                    else filename)
+
         # We need all of these values to be iterable, which means tuples
         # anywhere we might otherwise use lists. This includes any tuple
         # values emitted by the validator (since `json.loads` turns them into
         # lists), the return value of `.items()`, and so forth.
         return (tuple(message['id']),
                 tuple(message['context']),
-                message['file'],
+                file_key(message['file']),
                 message.get('signing_severity'),
                 ('context_data' in message and
                  tuple(sorted(message['context_data'].items()))))
@@ -291,7 +302,7 @@ class ValidationComparator(object):
         # The `ignore_duplicates` flag will be set by editors, to overrule
         # the basic signing severity heuristic. If it's present, it takes
         # precedence.
-        low_severity = message['signing_severity'] in ('trivial', 'low')
+        low_severity = message.get('signing_severity') in ('trivial', 'low')
         return message.get('ignore_duplicates', low_severity)
 
     def compare_results(self, validation):
