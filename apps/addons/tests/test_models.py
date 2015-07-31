@@ -504,7 +504,8 @@ class TestAddonModels(amo.tests.TestCase):
         guid = addon.guid
         addon.delete('bye')
         assert addon_count == Addon.unfiltered.count()  # Soft deletion.
-        assert BlacklistedGuid.objects.filter(guid=guid)
+        if guid:  # Could be None: Personas don't have GUIDs.
+            assert BlacklistedGuid.objects.filter(guid=guid)
         assert addon.status == amo.STATUS_DELETED
         assert addon.slug is None
         assert addon.current_version is None
@@ -527,6 +528,11 @@ class TestAddonModels(amo.tests.TestCase):
         # Delete another add-on, and make sure we don't have integrity errors
         # with unique constraints on fields that got nullified.
         self._delete(5299)
+
+    def test_delete_persona(self):
+        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        assert addon.guid is None  # Personas don't have GUIDs.
+        self._delete(addon.pk)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
