@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-30 04:14:24.362042\n"
+"PO-Revision-Date: 2015-08-01 09:15:05.688218\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2410,7 +2410,7 @@ msgstr "Ni zadetkov"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
-msgstr "Predh"
+msgstr "Nazaj"
 
 #: apps/amo/templates/amo/paginator.html:26
 #: apps/amo/templates/amo/impala/paginator.html:26
