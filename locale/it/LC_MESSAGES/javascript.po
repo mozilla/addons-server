@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-20 19:38+0000\n"
+"PO-Revision-Date: 2015-08-01 13:56+0000\n"
 "Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437421130.0\n"
+"X-POOTLE-MTIME: 1438437414.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1150,11 +1150,11 @@ msgstr "Avviso"
 
 #: static/js/zamboni/validator.js:273
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Livello di sicurezza della firma digitale automatica:"
 
 #: static/js/zamboni/validator.js:288
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Suggerimenti per superare il processo automatico di firma digitale:"
 
 #: static/js/zamboni/validator.js:376
 msgid "Compatibility Tests"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-20 19:49+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-08-01 13:57+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437421740.0\n"
+"X-POOTLE-MTIME: 1438437448.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1815,6 +1815,7 @@ msgstr "Il file {file} è stato firmato digitalmente."
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
+"Il componente aggiuntivo identificato con {0} con GUID {1} è stato eliminato"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4725,11 +4726,11 @@ msgstr "Test di compatibilità"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Nascondi i messaggi non rilevanti per la firma digitale"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Nascondi i messaggi già presenti nelle versioni precedenti e ignorati"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -10397,7 +10398,7 @@ msgstr "Rispondi alla recensione"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Modifica risposta"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -10405,7 +10406,7 @@ msgstr "Modifica recensione"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Elimina risposta"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
