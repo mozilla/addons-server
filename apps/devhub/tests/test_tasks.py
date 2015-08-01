@@ -160,6 +160,27 @@ class TestValidator(amo.tests.TestCase):
                                                    'unexpected_exception']
         assert not self.upload.valid
 
+    @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=False)
+    @mock.patch('devhub.tasks.annotate_validation_results')
+    @mock.patch('devhub.tasks.run_validator')
+    def test_annotation_error(self, run_validator, annotate):
+        """Test that an error that occurs during annotation is saved as an
+        error result."""
+        annotate.side_effect = Exception
+        run_validator.return_value = '{"errors": 0}'
+
+        assert self.upload.validation is None
+
+        tasks.validate(self.upload)
+        self.upload.reload()
+
+        validation = self.upload.processed_validation
+        assert validation
+        assert validation['errors'] == 1
+        assert validation['messages'][0]['id'] == ['validator',
+                                                   'unexpected_exception']
+        assert not self.upload.valid
+
     @override_settings(SIGNING_SERVER='http://full',
                        PRELIMINARY_SIGNING_SERVER='http://prelim')
     @mock.patch('devhub.tasks.run_validator')

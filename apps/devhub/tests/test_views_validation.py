@@ -164,26 +164,37 @@ class TestFileValidation(amo.tests.TestCase):
         validate.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
 
         self.file.validation.delete()
+        # Not `file.reload()`. It won't update the `validation` foreign key.
         self.file = File.objects.get(pk=self.file.pk)
         assert not self.file.has_been_validated
 
-        eq_(self.client.post(self.json_url).status_code, 200)
+        assert self.client.post(self.json_url).status_code == 200
         assert validate.called
 
     @mock.patch('devhub.tasks.validate')
     def test_json_results_post_cached(self, validate):
         assert self.file.has_been_validated
 
-        eq_(self.client.post(self.json_url).status_code, 200)
+        assert self.client.post(self.json_url).status_code == 200
 
         assert not validate.called
 
-    @mock.patch('files.models.File.has_been_validated')
-    def test_json_results_get(self, has_been_validated):
-        has_been_validated.__nonzero__.return_value = True
-        eq_(self.client.get(self.json_url).status_code, 200)
-        has_been_validated.__nonzero__.return_value = False
-        eq_(self.client.get(self.json_url).status_code, 405)
+    def test_json_results_get_cached(self):
+        """Tests that GET requests return results when they've already been
+        cached."""
+        assert self.file.has_been_validated
+        assert self.client.get(self.json_url).status_code == 200
+
+    def test_json_results_get_not_cached(self):
+        """Tests that GET requests return a Method Not Allowed error when
+        retults have not been cached."""
+
+        self.file.validation.delete()
+        # Not `file.reload()`. It won't update the `validation` foreign key.
+        self.file = File.objects.get(pk=self.file.pk)
+        assert not self.file.has_been_validated
+
+        assert self.client.get(self.json_url).status_code == 405
 
 
 class TestValidateAddon(amo.tests.TestCase):
