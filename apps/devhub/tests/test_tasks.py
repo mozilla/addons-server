@@ -141,14 +141,24 @@ class TestValidator(amo.tests.TestCase):
         tasks.validate(self.upload)
         assert not self.get_upload().valid
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('validator.submain.test_package')
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
-        eq_(self.upload.task_error, None)
-        with self.assertRaises(Exception):
-            tasks.validate(self.upload)
-        error = self.get_upload().task_error
-        assert error.startswith('Traceback (most recent call last)'), error
+
+        self.upload.update(
+            path=os.path.join(settings.ROOT,
+                              'apps/devhub/tests/addons/desktop.xpi'))
+
+        assert self.upload.validation is None
+
+        tasks.validate(self.upload)
+        self.upload.reload()
+        validation = self.upload.processed_validation
+        assert validation
+        assert validation['errors'] == 1
+        assert validation['messages'][0]['id'] == ['validator',
+                                                   'unexpected_exception']
+        assert not self.upload.valid
 
     @override_settings(SIGNING_SERVER='http://full',
                        PRELIMINARY_SIGNING_SERVER='http://prelim')
@@ -179,14 +189,12 @@ class TestValidator(amo.tests.TestCase):
                   'errors': 0}
 
         _mock.return_value = json.dumps(result)
-        eq_(self.upload.task_error, None)
         tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
         assert validation['passed_auto_validation']
 
         result['signing_summary']['low'] = 1
         _mock.return_value = json.dumps(result)
-        eq_(self.upload.task_error, None)
         tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
         assert not validation['passed_auto_validation']
@@ -195,7 +203,6 @@ class TestValidator(amo.tests.TestCase):
     def test_annotate_passed_auto_validation_bogus_result(self, _mock):
         """Don't set passed_auto_validation, don't fail if results is bogus."""
         _mock.return_value = '{"errors": 0}'
-        eq_(self.upload.task_error, None)
         tasks.validate(self.upload)
         assert (json.loads(self.get_upload().validation) ==
                 {"passed_auto_validation": True, "errors": 0,

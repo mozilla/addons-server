@@ -1,4 +1,3 @@
--r compiled.txt
 -r test.txt
 -r docs.txt
 -r flake8.txt

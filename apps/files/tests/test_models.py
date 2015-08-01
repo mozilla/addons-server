@@ -621,11 +621,13 @@ class TestFileUpload(UploadTest):
                 "uid": "bb9948b604b111e09dfdc42c0301fe38"}] * 12,
             "metadata": {}
         }
+
         upload = FileUpload(validation=json.dumps(data))
-        validation = upload.escaped_validation()
-        eq_(len(validation['messages']), 11)
-        assert 'truncated' in validation['messages'][-1]['message']
-        eq_(validation['messages'][-1]['type'], 'warning')
+        validation = upload.processed_validation
+
+        assert len(validation['messages']) == 11
+        assert 'truncated' in validation['messages'][0]['message']
+        assert validation['messages'][0]['type'] == 'warning'
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_compat_errors(self):
@@ -670,16 +672,21 @@ class TestFileUpload(UploadTest):
             ] * 50,
             "metadata": {}
         }
-        upload = FileUpload(validation=json.dumps(data))
-        validation = upload.escaped_validation()
-        eq_(len(validation['messages']), 11)
-        assert 'truncated' in validation['messages'][-1]['message']
-        eq_(validation['messages'][-1]['type'], 'warning')
 
-        validation = upload.escaped_validation(is_compatibility=True)
-        eq_(len(validation['messages']), 11)
-        assert 'truncated' in validation['messages'][-1]['message']
-        eq_(validation['messages'][-1]['type'], 'error')
+        upload = FileUpload(validation=json.dumps(data))
+        validation = upload.processed_validation
+
+        assert len(validation['messages']) == 11
+        assert 'truncated' in validation['messages'][0]['message']
+        assert validation['messages'][0]['type'] == 'warning'
+
+        upload = FileUpload(validation=json.dumps(data),
+                            compat_with_app=1)
+        validation = upload.processed_validation
+
+        assert len(validation['messages']) == 11
+        assert 'truncated' in validation['messages'][0]['message']
+        assert validation['messages'][0]['type'] == 'error'
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_errors(self):
@@ -720,10 +727,11 @@ class TestFileUpload(UploadTest):
             "metadata": {}
         }
         upload = FileUpload(validation=json.dumps(data))
-        validation = upload.escaped_validation()
-        eq_(len(validation['messages']), 11)
-        assert 'truncated' in validation['messages'][-1]['message']
-        eq_(validation['messages'][-1]['type'], 'error')
+        validation = upload.processed_validation
+
+        assert len(validation['messages']) == 11
+        assert 'truncated' in validation['messages'][0]['message']
+        assert validation['messages'][0]['type'] == 'error'
 
 
 class TestFileFromUpload(UploadTest):

@@ -74,7 +74,7 @@ function getGuids() {
     // Store GUIDs of installed extensions.
     var guids = [];
     if (location.hash) {
-        $.each(JSON.parse(location.hash.slice(1)), function(i, val) {
+        $.each(JSON.parse(unescape(location.hash).slice(1)), function(i, val) {
             if (val.type == "extension") {
                 guids.push(i);
             }

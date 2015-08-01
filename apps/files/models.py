@@ -535,7 +535,6 @@ class FileUpload(amo.models.ModelBase):
         choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
         AppVersion, null=True, related_name='uploads_compat_for_appver')
-    task_error = models.TextField(null=True)
 
     objects = amo.models.UncachedManagerBase()
 
@@ -578,21 +577,17 @@ class FileUpload(amo.models.ModelBase):
     def processed(self):
         return bool(self.valid or self.validation)
 
-    def escaped_validation(self, is_compatibility=False):
-        """
-        The HTML-escaped validation results limited to a message count of
-        `settings.VALIDATOR_MESSAGE_LIMIT` and optionally prepared for a
-        compatibility report if `is_compatibility` is `True`.
-        """
-        if not self.validation:
-            return ''
+    @property
+    def processed_validation(self):
+        """Return processed validation results as expected by the frontend."""
+        if self.validation:
+            # Import loop.
+            from devhub.utils import process_validation
 
-        # Import loop.
-        from devhub.utils import escape_validation, limit_validation_results
+            validation = json.loads(self.validation)
+            is_compatibility = self.compat_with_app is not None
 
-        validation = json.loads(self.validation)
-        return limit_validation_results(escape_validation(validation),
-                                        is_compatibility=is_compatibility)
+            return process_validation(validation, is_compatibility)
 
 
 class FileValidation(amo.models.ModelBase):
@@ -645,6 +640,13 @@ class FileValidation(amo.models.ModelBase):
 
         new.save()
         return new
+
+    @property
+    def processed_validation(self):
+        """Return processed validation results as expected by the frontend."""
+        # Import loop.
+        from devhub.utils import process_validation
+        return process_validation(json.loads(self.validation))
 
 
 def nfd_str(u):

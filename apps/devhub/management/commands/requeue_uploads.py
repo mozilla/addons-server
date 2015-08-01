@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         from files.models import FileUpload
         from devhub import tasks
-        qs = FileUpload.objects.filter(task_error=None, validation=None)
+        qs = FileUpload.objects.filter(validation=None)
         pks = qs.values_list('pk', flat=True)
         print 'Restarting %s tasks.' % len(pks)
         for pk in pks:

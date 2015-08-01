@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-24 02:59:25.230930\n"
-"Last-Translator: Marko <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2015-07-30 04:14:24.362042\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2319,7 +2319,7 @@ msgstr "{file} je bila podpisana."
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "ID dodatka {0} z GUID-jem {1} je bil izbrisan"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -5872,11 +5872,11 @@ msgstr "Testi združljivosti"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Skrij sporočila, ki niso zahtevana za samodejno podpisovanje"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Skrij sporočila, ki so prisotna v prejšnjih različicah in prezrta"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -13433,7 +13433,7 @@ msgstr "Odgovor na recenzijo"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Uredi odgovor"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -13441,7 +13441,7 @@ msgstr "Uredi recenzijo"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Izbriši odgovor"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5

@@ -27,8 +27,7 @@ from addons.models import Addon, AddonCategory, Category, Charity
 
 from amo.helpers import absolutify, user_media_path, url as url_reverse
 
-from amo.tests import (addon_factory, assert_no_validation_exceptions, formset,
-                       initial)
+from amo.tests import addon_factory, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
@@ -1959,7 +1958,6 @@ class TestUpload(BaseUploadTest):
     def test_fileupload_validation(self):
         self.post()
         fu = FileUpload.objects.get(name='animated.png')
-        assert_no_validation_exceptions(fu)
         assert fu.validation
         validation = json.loads(fu.validation)
 
@@ -2034,7 +2032,7 @@ class TestUploadDetail(BaseUploadTest):
                                     args=[upload.uuid, 'json']))
         eq_(r.status_code, 200)
         data = json.loads(r.content)
-        assert_no_validation_exceptions(data)
+        assert data['validation']['errors'] == 2
         eq_(data['url'],
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
         eq_(data['full_report_url'],
