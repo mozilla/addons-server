@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-06-29 22:55+0000\n"
-"Last-Translator: jimidar <jimidar@gmail.com>\n"
+"PO-Revision-Date: 2015-07-18 03:09+0000\n"
+"Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1435618503.0\n"
+"X-POOTLE-MTIME: 1437188980.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1781,7 +1781,7 @@ msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
@@ -6820,11 +6820,11 @@ msgstr "ਐਡ-ਆਨਾਂ ਨੂੰ ਗੈਰ-ਸੂਚੀਬੱਧ ਵਿੱ�
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਨੂੰ ਗੈਰ-ਸੂਚੀਬੱਧ ਕਰਨਾ ਅਟੱਲ ਹੈ!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕਰਨ ਲਈ ਸਵਿੱਚ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -7149,15 +7149,15 @@ msgstr "ਕਿਸਮ/ਕੰਮ ਦੁਆਰਾ ਛਾਂਟੋ"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਫੇਲ੍ਹ ਕੀਤੀ"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਦੁਆਰਾ ਛਾਨਣਾ"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -7670,7 +7670,7 @@ msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ਚਿੱਠਾ"
 
 #: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "ਸਾਈਨ ਹੋਈਆਂ ਬੀਟਾ ਫਾਈਲਾਂ ਦਾ ਲਾਗ"
 
 #: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
@@ -9596,6 +9596,10 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"ਉਪਲਬਧ ਹਜ਼ਾਰਾਂ ਐਡ-ਆਨਾਂ ਨਾਲ, ਇੱਥੇ ਹਰੇਕ ਲਈ ਕੁੱਝ ਨਾ ਕੁੱਝ ਹੈ। ਪਰ ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ "
+"ਖਾਸ਼ ਐਡ-ਆਨ ਦੀ ਭਾਲ ਕਰ ਰਹੇ ਹੋ ਅਤੇ ਉਸ ਨੂੰ ਨਹੀਂ ਲੱਭ ਸਕੇ, ਤੁਸੀਂ ਹੋਰ ਸਾਈਟਾਂ ਤੇ "
+"ਖੋਜਣ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਇਸ ਬਾਰੇ ਸਾਡੀ <a href=\"%(forum_url)s\">ਐਡ-ਆਨ "
+"</a>ਫੋਰਮ ਵਿੱਚ ਪੋਸਟ ਕਰ ਸਕਦੇ ਹੋ।"
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
