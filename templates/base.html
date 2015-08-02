@@ -70,29 +70,7 @@
         {% block site_header %}
           {% include "tabzilla.html" %}
           <div class="amo-header">
-            <nav id="aux-nav" role="navigation" class="menu-nav c">
-              <ul>
-                {% if not settings.READ_ONLY %}
-                  {% include "impala/user_login.html" %}
-                {% endif %}
-                {% block aux_nav %}
-                  <li>
-                    <a href="#" id="other-apps"
-                       title="{{ _('Find add-ons for other applications') }}">
-                      {{ _('Other Applications') }}</a>
-                    <ul class="other-apps">
-                      {% for app in amo.APP_USAGE %}
-                        {% if app != request.APP and app != amo.MOBILE %}
-                          <li id="app-{{ app.short }}" class="{{ app.short }}">
-                            <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                          </li>
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                  </li>
-                {% endblock aux_nav %}
-              </ul>
-            </nav>
+            {% include "base_nav.html" %}
             {% block header_search %}
             <div class="header-search" role="search">
               {% block search_form %}
