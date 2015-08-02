@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-16 20:50+0000\n"
+"PO-Revision-Date: 2015-08-02 04:12+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1437079833.0\n"
+"X-POOTLE-MTIME: 1438488754.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1142,11 +1142,11 @@ msgstr "Aviso"
 
 #: static/js/zamboni/validator.js:273
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Severidade para assinatura automática:"
 
 #: static/js/zamboni/validator.js:288
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Sugestões para passar a assinatura automática:"
 
 #: static/js/zamboni/validator.js:376
 msgid "Compatibility Tests"
