@@ -1,5 +1,4 @@
-# This file is used by Jenkins for testing,
-# it is not needed for local testing.
+--no-binary Pillow
 -r prod.txt
 
 execnet==1.2
