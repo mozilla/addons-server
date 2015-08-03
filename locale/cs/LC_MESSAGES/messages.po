@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-29 07:19+0000\n"
+"PO-Revision-Date: 2015-08-03 17:30+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438154397.0\n"
+"X-POOTLE-MTIME: 1438623029.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -1826,7 +1826,7 @@ msgstr "{file} byl podepsán."
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Doplněk id {0} s GUID {1} byl smazán"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -3764,11 +3764,13 @@ msgstr "Odeslat doplněk k ruční kontrole."
 
 #: apps/devhub/forms.py:513
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "Nezveřejňovat můj doplněk na této stránce (beta)"
 
 #: apps/devhub/forms.py:514
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr ""
+"Zaškrtněte, pokud chcete doplněk distribuovat sami a pouze jej potřebujete "
+"Mozillou podepsat."
 
 #: apps/devhub/forms.py:520
 msgid "This add-on will be side-loaded via application installers."
@@ -4211,6 +4213,10 @@ msgid ""
 "Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
 msgstr ""
+"Odeslání nezveřejněných doplňků k podepsání je nyní ve fázi otevřené bety. "
+"Pro velké množství doplňků může být stále potřeba ruční kontroly. <a href=\"%"
+"(bugzilla_url)s\" target=\"_blank\">Nahlašte</a> prosím jakékoli chyby, na "
+"které narazíte."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -4410,6 +4416,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategorie jsou hlavní prvek, podle kterého se uživatelé mezi doplňky "
+"orientují. Pro co nejsnazší nalezení vašeho doplňku vyberte všechny, které "
+"se k němu hodí. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -4455,6 +4464,8 @@ msgstr "Detaily doplňku {0}"
 #: apps/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Delší popis vlastností, funkcí a dalších důležitých informací. Zobrazeno jen "
+"na stránce s detaily doplňku. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44 apps/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4474,6 +4485,9 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Pokud má váš doplněk ještě jinou domovskou stránku, zadejte ji sem. Je-li "
+"stránka přeložena do více jazyků, můžete přidat více překladů tohoto "
+"políčka. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -4493,12 +4507,18 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Chcete-li zobrazit e-mailovou adresu pro dotazy na podporu, zadejte ji zde. "
+"Máte-li různé adresy pro různé jazyky, můžete přidat více překladů tohoto "
+"políčka. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Pokud má doplněk fórum nebo stránky podpory, zadejte jejich adresu zde. "
+"Jsou-li stránky přeloženy do více jazyků, můžete přidat více překladů tohoto "
+"políčka. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -4518,6 +4538,10 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Jakékoli informace, které by uživatelé mohli chtít vědět a které nezapadají "
+"do souhrnu ani do popisu doplňku. Běžně se používá ke zveřejnění seznamu "
+"známých chyb, popisu postupu jejich hlášení, předpokládaného data vydání "
+"příští verze atd. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"

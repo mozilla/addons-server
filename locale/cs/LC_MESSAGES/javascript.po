@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-07-29 07:14+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-08-03 17:19+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438154041.0\n"
+"X-POOTLE-MTIME: 1438622351.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -93,13 +93,13 @@ msgstr "Dokončena kontrola {0}"
 #: static/js/common/upload-addon.js:323
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplněk byl zkontrolován bez chyb a s {0} varováním."
+msgstr[1] "Váš doplněk byl zkontrolován bez chyb a se {0} varováními."
+msgstr[2] "Váš doplněk byl zkontrolován bez chyb a se {0} varováními."
 
 #: static/js/common/upload-addon.js:328
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Váš doplněk byl zkontrolován bez chyb či varování."
 
 #: static/js/common/upload-addon.js:346
 msgid "Your submission will go through a manual review."
