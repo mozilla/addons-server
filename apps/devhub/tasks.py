@@ -5,6 +5,7 @@ import os
 import socket
 import urllib2
 from copy import deepcopy
+from functools import wraps
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
@@ -40,7 +41,6 @@ def validate(file_, listed=None):
 
     # Import loop.
     from .utils import ValidationAnnotator
-
     return ValidationAnnotator(file_, listed=listed).task.delay()
 
 
@@ -49,24 +49,38 @@ def validate(file_, listed=None):
 validator.ValidationTimeout = SoftTimeLimitExceeded
 
 
-validation_task = task(ignore_result=False,  # Required for groups/chains.
-                       soft_time_limit=settings.VALIDATOR_TIMEOUT)
+def validation_task(fn):
+    """Wrap a validation task so that it runs with the correct flags, then
+    parse and annotate the results before returning."""
+
+    @task(ignore_result=False,  # Required for groups/chains.
+          soft_time_limit=settings.VALIDATOR_TIMEOUT)
+    @wraps(fn)
+    def wrapper(id_, hash_, *args, **kw):
+        data = fn(id_, hash_, *args, **kw)
+        result = json.loads(data)
+
+        if hash_:
+            # Import loop.
+            from .utils import ValidationComparator
+            ValidationComparator(result).annotate_results(hash_)
+
+        return result
+    return wrapper
 
 
 @validation_task
-def validate_file_path(path, listed, **kw):
+def validate_file_path(path, hash_, listed, **kw):
     """Run the validator against a file at the given path, and return the
     results.
 
     Should only be called directly by ValidationAnnotator."""
 
-    result = run_validator(path, listed=listed)
-    # FIXME: Have validator return native Python datastructure.
-    return json.loads(result)
+    return run_validator(path, listed=listed)
 
 
 @validation_task
-def validate_file(file_id, **kw):
+def validate_file(file_id, hash_, **kw):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
 
@@ -74,12 +88,10 @@ def validate_file(file_id, **kw):
 
     file_ = File.objects.get(pk=file_id)
     try:
-        return json.loads(file_.validation.validation)
+        return file_.validation.validation
     except FileValidation.DoesNotExist:
-        result = run_validator(file_.current_file_path,
-                               listed=file_.version.addon.is_listed)
-        # FIXME: Have validator return native Python datastructure.
-        return json.loads(result)
+        return run_validator(file_.current_file_path,
+                             listed=file_.version.addon.is_listed)
 
 
 @task

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from copy import deepcopy
 
 from django.core.files.storage import default_storage as storage
 
@@ -17,7 +18,7 @@ from amo.urlresolvers import reverse
 from applications.models import AppVersion
 from devhub.tasks import compatibility_check
 from files.helpers import copyfileobj
-from files.models import File, FileUpload, FileValidation
+from files.models import File, FileUpload, FileValidation, ValidationAnnotation
 from files.tests.test_models import UploadTest as BaseUploadTest
 from files.utils import parse_addon
 from users.models import UserProfile
@@ -43,7 +44,7 @@ class TestUploadValidation(BaseUploadTest):
         eq_(msg['description'][0], '&lt;iframe&gt;')
         eq_(msg['signing_help'][0], '&lt;script&gt;&amp;amp;')
         eq_(msg['context'],
-            [u'<em:description>...', [u'<foo/>']])
+            [u'<em:description>...', u'<foo/>'])
 
     def test_date_on_upload(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
@@ -157,7 +158,7 @@ class TestFileValidation(amo.tests.TestCase):
         eq_(msg['description'][0], '&lt;iframe&gt;')
         eq_(msg['signing_help'][0], '&lt;script&gt;&amp;amp;')
         eq_(msg['context'],
-            [u'<em:description>...', [u'<foo/>']])
+            [u'<em:description>...', u'<foo/>'])
 
     @mock.patch('devhub.tasks.run_validator')
     def test_json_results_post_not_cached(self, validate):
@@ -180,13 +181,13 @@ class TestFileValidation(amo.tests.TestCase):
         assert not validate.called
 
     def test_json_results_get_cached(self):
-        """Tests that GET requests return results when they've already been
+        """Test that GET requests return results when they've already been
         cached."""
         assert self.file.has_been_validated
         assert self.client.get(self.json_url).status_code == 200
 
     def test_json_results_get_not_cached(self):
-        """Tests that GET requests return a Method Not Allowed error when
+        """Test that GET requests return a Method Not Allowed error when
         retults have not been cached."""
 
         self.file.validation.delete()
@@ -195,6 +196,95 @@ class TestFileValidation(amo.tests.TestCase):
         assert not self.file.has_been_validated
 
         assert self.client.get(self.json_url).status_code == 405
+
+
+class TestFileAnnotation(amo.tests.TestCase):
+    fixtures = ['base/users', 'devhub/addon-validation-1']
+
+    def setUp(self):
+        super(TestFileAnnotation, self).setUp()
+        assert self.client.login(username='editor@mozilla.com',
+                                 password='password')
+
+        self.RESULTS = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        self.RESULTS['messages'] = [
+            {'id': ['foo', 'bar'],
+             'context': ['foo', 'bar', 'baz'],
+             'file': 'foo',
+             'signing_severity': 'low',
+             'ignore_duplicates': True,
+             'message': '', 'description': []},
+
+            {'id': ['a', 'b'],
+             'context': ['c', 'd', 'e'],
+             'file': 'f',
+             'ignore_duplicates': False,
+             'signing_severity': 'high',
+             'message': '', 'description': []},
+
+            {'id': ['z', 'y'],
+             'context': ['x', 'w', 'v'],
+             'file': 'u',
+             'signing_severity': 'high',
+             'ignore_duplicates': False,
+             'message': '', 'description': []},
+        ]
+        # Make the results as close to the JSON loaded from the validator
+        # as possible, so pytest reports a better diff when we fail.
+        # At present, just changes all strings to unicode.
+        self.RESULTS = json.loads(json.dumps(self.RESULTS))
+
+        self.file_validation = FileValidation.objects.get(pk=1)
+        self.file_validation.update(validation=json.dumps(self.RESULTS))
+
+        self.file = self.file_validation.file
+        self.file.update(original_hash='xxx')
+
+        self.url = reverse('devhub.json_file_validation',
+                           args=[self.file.version.addon.slug,
+                                 self.file.pk])
+
+        self.annotate_url = reverse('devhub.annotate_file_validation',
+                                    args=[self.file.version.addon.slug,
+                                          self.file.pk])
+
+    def test_base_results(self):
+        """Test that the base results are returned unchanged prior to
+        annotation."""
+
+        resp = self.client.get(self.url)
+        assert json.loads(resp.content) == {u'validation': self.RESULTS,
+                                            u'error': None}
+
+        assert not ValidationAnnotation.objects.exists()
+
+    def annotate_message(self, idx, ignore_duplicates):
+        """Annotate a message in `self.RESULTS` and check that the result
+        is correct."""
+
+        self.client.post(self.annotate_url, {
+            'message': json.dumps(self.RESULTS['messages'][idx]),
+            'ignore_duplicates': ignore_duplicates})
+
+        resp = self.client.get(self.url)
+
+        self.RESULTS['messages'][idx]['ignore_duplicates'] = ignore_duplicates
+
+        assert json.loads(resp.content) == {u'validation': self.RESULTS,
+                                            u'error': None}
+
+    def test_annotated_results(self):
+        """Test that annotations result in modified results and the expected
+        number of annotation objects."""
+
+        self.annotate_message(idx=1, ignore_duplicates=True)
+        assert ValidationAnnotation.objects.count() == 1
+
+        self.annotate_message(idx=1, ignore_duplicates=False)
+        assert ValidationAnnotation.objects.count() == 1
+
+        self.annotate_message(idx=2, ignore_duplicates=True)
+        assert ValidationAnnotation.objects.count() == 2
 
 
 class TestValidateAddon(amo.tests.TestCase):
@@ -225,7 +315,7 @@ class TestValidateAddon(amo.tests.TestCase):
     @mock.patch('validator.validate.validate')
     def test_upload_listed_addon(self, validate_mock):
         """Listed addons are not validated as "self-hosted" addons."""
-        validate_mock.return_value = '{"errors": 0}'
+        validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload')
         data = open(get_image_path('animated.png'), 'rb')
         self.client.post(self.url, {'upload': data})
@@ -237,7 +327,7 @@ class TestValidateAddon(amo.tests.TestCase):
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self-hosted" addons."""
-        validate_mock.return_value = '{"errors": 0}'
+        validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload_unlisted')
         data = open(get_image_path('animated.png'), 'rb')
         self.client.post(self.url, {'upload': data})
@@ -249,7 +339,7 @@ class TestValidateAddon(amo.tests.TestCase):
     @mock.patch('validator.validate.validate')
     def test_upload_sideload_addon(self, validate_mock):
         """Sideload addons are validated as "self-hosted" addons."""
-        validate_mock.return_value = '{"errors": 0}'
+        validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload_sideload')
         data = open(get_image_path('animated.png'), 'rb')
         self.client.post(self.url, {'upload': data})
@@ -274,7 +364,8 @@ class TestUploadURLs(amo.tests.TestCase):
         AddonUser.objects.create(addon=self.addon, user=user)
 
         self.run_validator = self.patch('devhub.tasks.run_validator')
-        self.run_validator.return_value = '{"errors": 0}'
+        self.run_validator.return_value = json.dumps(
+            amo.VALIDATOR_SKELETON_RESULTS)
         self.parse_addon = self.patch('devhub.utils.parse_addon')
         self.parse_addon.return_value = {'guid': self.addon.guid,
                                          'version': '1.0'}

@@ -156,8 +156,9 @@ function initValidator($doc) {
         this.versionChangeLinks = null;
         this.allCounts = {error: 0, warning: 0};
         this.automatedSigning = suite.is('.automated-signing');
-        this.fileURL = suite.attr('data-file-url');
-        this.fileID = suite.attr('data-file-id');
+        this.annotateURL = suite.data('annotateUrl');
+        this.fileURL = suite.data('fileUrl');
+        this.fileID = suite.data('fileId');
 
         if (this.automatedSigning) {
             this.hideNonSigning = $('#signing-hide-unnecessary').prop('checked');
@@ -253,6 +254,15 @@ function initValidator($doc) {
         // properties are escaped and linkified before we receive
         // them.
         $('h5', msgDiv).html(msg.message);  // Sanitized HTML value.
+
+        if (msg.ignore_duplicates != null && this.annotateURL) {
+            msgDiv.append($('<p>').append(
+                $('<label>', {
+                    text: ' ' + gettext('Ignore this message in future updates')
+                }).prepend($('<input>', { type: 'checkbox', checked: msg.ignore_duplicates,
+                                          'class': 'ignore-duplicates-checkbox',
+                                          name: JSON.stringify(msg) }))));
+        }
 
         // The validator returns the "description" and
         // "signing_help" properties as either strings, or
@@ -515,12 +525,29 @@ function initValidator($doc) {
 
     $('.addon-validator-suite', $doc).bind('validate', function(e) {
         var el = $(this),
-            url = el.attr('data-validateurl');
+            data = el.data();
+
+        if (data.annotateUrl) {
+            el.delegate('.ignore-duplicates-checkbox', 'change',
+                        function(event) {
+                var $target = $(event.target);
+                $.ajax({type: 'POST',
+                        url: data.annotateUrl,
+                        data: { message: $target.attr('name'),
+                                ignore_duplicates: $target.prop('checked') || undefined },
+                        dataType: 'json'})
+            });
+        }
+
+        if (data.validation) {
+            buildResults(el, {validation: data.validation})
+            return;
+        }
 
         $('.test-tier,.tier-results', el).addClass('ajax-loading');
 
         $.ajax({type: 'POST',
-                url: url,
+                url: data.validateurl,
                 data: {},
                 success: function(data) {
                     if (data.validation == '') {

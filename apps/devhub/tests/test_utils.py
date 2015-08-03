@@ -1,3 +1,4 @@
+import json
 import os.path
 from copy import deepcopy
 
@@ -10,7 +11,7 @@ import amo.tests
 from addons.models import Addon
 from devhub import utils
 from devhub.tasks import annotate_validation_results
-from files.models import File, FileUpload
+from files.models import File, FileUpload, FileValidation, ValidationAnnotation
 from versions.models import Version
 
 
@@ -47,6 +48,14 @@ class TestValidationComparator(amo.tests.TestCase):
         self.old_msg.update(old)
         self.new_msg.update(merge_dicts(old, changes))
         self.expected_msg.update(merge_dicts(self.new_msg, expected_changes))
+
+        if ('signing_severity' in self.expected_msg and
+                'ignore_duplicates' not in self.expected_msg):
+            # The annotator should add an ignore_duplicates key to all
+            # signing-related messages that don't have one.
+            if utils.ValidationComparator.message_key(self.expected_msg):
+                self.expected_msg['ignore_duplicates'] = (
+                    utils.ValidationComparator.is_ignorable(self.expected_msg))
 
         results = self.run_comparator(self.old_msg, self.new_msg.copy())
 
@@ -303,6 +312,102 @@ class TestValidationComparator(amo.tests.TestCase):
         # Changes, fails.
         self.compare(message, {'file': 'foo thing.js'}, {})
 
+    def test_json_deserialization(self):
+        """Test that the JSON deserializer returns the expected hashable
+        objects."""
+        assert (utils.json_decode('["foo", ["bar", "baz"], 12, null, '
+                                  '[], false]') ==
+                ('foo', ('bar', 'baz'), 12, None, (), False))
+
+    def test_annotate_results(self):
+        """Test that results are annotated as expected."""
+
+        RESULTS = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        RESULTS['messages'] = [
+            {'id': ['foo', 'bar'],
+             'context': ['foo', 'bar', 'baz'],
+             'file': 'foo',
+             'signing_severity': 'low'},
+
+            {'id': ['a', 'b'],
+             'context': ['c', 'd', 'e'],
+             'file': 'f',
+             'ignore_duplicates': False,
+             'signing_severity': 'high'},
+
+            {'id': ['z', 'y'],
+             'context': ['x', 'w', 'v'],
+             'file': 'u',
+             'signing_severity': 'high'},
+        ]
+
+        HASH = 'xxx'
+
+        def annotation(hash_, message, **kw):
+            """Create a ValidationAnnotation object for the given file hash,
+            and the key of the given message, with the given keywords."""
+
+            key = utils.ValidationComparator.message_key(message)
+            return ValidationAnnotation(
+                file_hash=hash_, message_key=json.dumps(key), **kw)
+
+        # Create two annotations for this file, and one for a message in this
+        # file, but with the wrong hash.
+        ValidationAnnotation.objects.bulk_create((
+            annotation(HASH, RESULTS['messages'][0], ignore_duplicates=False),
+            annotation(HASH, RESULTS['messages'][1], ignore_duplicates=True),
+            annotation('zzz', RESULTS['messages'][2], ignore_duplicates=True),
+        ))
+
+        # Annote a copy of the results.
+        annotated = deepcopy(RESULTS)
+        utils.ValidationComparator(annotated).annotate_results(HASH)
+
+        # The two annotations for this file should be applied.
+        assert annotated['messages'][0]['ignore_duplicates'] == False
+        assert annotated['messages'][1]['ignore_duplicates'] == True
+        # The annotation for the wrong file should not be applied, and
+        # `ignore_duplicates` should be set to the default for the messge
+        # severity (false).
+        assert annotated['messages'][2]['ignore_duplicates'] == False
+
+    def test_is_ignorable(self):
+        """Test that is_ignorable returns the correct value in all relevant
+        circumstances."""
+
+        MESSAGE = {'id': ['foo', 'bar', 'baz'],
+                   'message': 'Foo',
+                   'description': 'Foo',
+                   'context': ['foo', 'bar', 'baz'],
+                   'file': 'foo.js', 'line': 1}
+
+        IGNORABLE_TYPES = ('notice', 'warning')
+        OTHER_TYPES = ('error',)
+
+        IGNORABLE_SEVERITIES = ('trivial', 'low')
+        OTHER_SEVERITIES = ('medium', 'high')
+
+        def is_ignorable(**kw):
+            """Return true if the base message with the given keyword overrides
+            is ignorable."""
+            msg = merge_dicts(MESSAGE, kw)
+            return utils.ValidationComparator.is_ignorable(msg)
+
+        # Non-ignorable types are not ignorable regardless of severity.
+        for type_ in OTHER_TYPES:
+            for severity in IGNORABLE_SEVERITIES + OTHER_SEVERITIES:
+                assert not is_ignorable(signing_severity=severity, type=type_)
+
+        # Non-ignorable severities are not ignorable regardless of type.
+        for severity in OTHER_SEVERITIES:
+            for type_ in IGNORABLE_TYPES + OTHER_TYPES:
+                assert not is_ignorable(signing_severity=severity, type=type_)
+
+        # Ignorable types with ignorable severities are ignorable.
+        for severity in IGNORABLE_SEVERITIES:
+            for type_ in IGNORABLE_TYPES:
+                assert is_ignorable(signing_severity=severity, type=type_)
+
 
 class TestValidationAnnotatorBase(amo.tests.TestCase):
 
@@ -349,17 +454,68 @@ class TestValidationAnnotatorBase(amo.tests.TestCase):
         self.validate_upload = self.patch(
             'devhub.tasks.validate_file_path').subtask
 
-    def tearDown(self):
-        for patcher in self.patchers:
-            patcher.stop()
-
     def patch(self, thing):
+        """Patch the given "thing", and revert the patch on test teardown."""
         patcher = mock.patch(thing)
-        self.patchers.append(patcher)
+        self.addCleanup(patcher.stop)
         return patcher.start()
+
+    def check_upload(self, file_, listed=None):
+        """Check that our file upload is matched to the given file."""
+
+        # Create an annotator, make sure it matches the expected older file.
+        va = utils.ValidationAnnotator(self.file_upload)
+        assert va.prev_file == file_
+
+        # Make sure we run the correct validation task for the matched file,
+        # if there is a match.
+        if file_:
+            self.validate_file.assert_called_once_with([
+                file_.pk, file_.original_hash])
+        else:
+            assert not self.validate_file.called
+
+        # Make sure we run the correct validation task for the upload.
+        self.validate_upload.assert_called_once_with(
+            [self.file_upload.path, self.file_upload.hash, listed])
+
+        # Make sure we run the correct save validation task, with a
+        # fallback error handler.
+        self.save_upload.assert_has_calls([
+            mock.call([mock.ANY, self.file_upload.pk], {'annotate': False},
+                      immutable=True),
+            mock.call([self.file_upload.pk], link_error=mock.ANY)])
+
+    def check_file(self, file_new, file_old):
+        """Check that the given new file is matched to the given old file."""
+
+        # Create an annotator, make sure it matches the expected older file.
+        va = utils.ValidationAnnotator(file_new)
+        assert va.prev_file == file_old
+
+        # We shouldn't be attempting to validate a bare upload.
+        assert not self.validate_upload.called
+
+        # Make sure we run the correct validation tasks for both files,
+        # or only one validation task if there's no match.
+        if file_old:
+            self.validate_file.assert_has_calls([
+                mock.call([file_new.pk, file_new.original_hash]),
+                mock.call([file_old.pk, file_old.original_hash])])
+        else:
+            self.validate_file.assert_called_once_with([
+                file_new.pk, file_new.original_hash])
+
+        # Make sure we run the correct save validation task, with a
+        # fallback error handler.
+        self.save_file.assert_has_calls([
+            mock.call([mock.ANY, self.file_1_1.pk], {'annotate': False},
+                      immutable=True),
+            mock.call([self.file_1_1.pk], link_error=mock.ANY)])
 
 
 class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
+
     def setUp(self):
         super(TestValidationAnnotatorUnlisted, self).setUp()
 
@@ -368,58 +524,83 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
     def test_find_fileupload_prev_version(self):
         """Test that the correct previous version is found for a new upload."""
 
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) == self.file
-
-        self.validate_file.assert_called_once_with([self.file.pk])
-
-        self.validate_upload.assert_called_once_with(
-            [self.file_upload.path, None])
-
-        self.save_upload.assert_called_with([self.file_upload.pk],
-                                            link_error=mock.ANY)
+        self.check_upload(self.file)
 
     def test_find_file_prev_version(self):
         """Test that the correct previous version is found for a File."""
 
-        va = utils.ValidationAnnotator(self.file_1_1)
-        assert va.find_previous_version(self.xpi_version) == self.file
-
-        assert not self.validate_upload.called
-        self.validate_file.assert_has_calls([mock.call([self.file_1_1.pk]),
-                                             mock.call([self.file.pk])])
-
-        self.save_file.assert_called_with([self.file_1_1.pk],
-                                          link_error=mock.ANY)
+        self.check_file(self.file_1_1, self.file)
 
     def test_find_future_fileupload_version(self):
         """Test that a future version will not be matched."""
 
         self.version.update(version='1.2')
 
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) is None
-
-        assert not self.validate_file.called
-        self.validate_upload.assert_called_once_with(
-            [self.file_upload.path, None])
-
-        self.save_upload.asserted_once_with([self.file_upload.pk],
-                                            link_error=mock.ANY)
+        self.check_upload(None)
 
     def test_find_future_file(self):
         """Test that a future version will not be matched."""
 
         self.version.update(version='1.2')
 
-        va = utils.ValidationAnnotator(self.file_1_1)
-        assert va.find_previous_version(self.xpi_version) is None
+        self.check_file(self.file_1_1, None)
 
-        assert not self.validate_upload.called
-        self.validate_file.assert_called_once_with([self.file_1_1.pk])
+    def test_update_annotations(self):
+        """Test that annotations are correctly copied from an old file to a new
+        one."""
 
-        self.save_file.assert_called_with([self.file_1_1.pk],
-                                          link_error=mock.ANY)
+        HASH_0 = 'xxx'
+        HASH_1 = 'yyy'
+
+        RESULTS = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        RESULTS['messages'] = [
+            {'id': ['foo'],
+             'context': ['foo'],
+             'file': 'foo'},
+
+            {'id': ['baz'],
+             'context': ['baz'],
+             'file': 'baz'},
+        ]
+
+        self.file.update(original_hash=HASH_0)
+        self.file_1_1.update(original_hash=HASH_1)
+
+        # Attach the validation results to our previous version's file,
+        # and update the object's cached foreign key value.
+        self.file.validation = FileValidation.objects.create(
+            file=self.file_1_1, validation=json.dumps(RESULTS))
+
+        def annotation(hash_, key, **kw):
+            return ValidationAnnotation(file_hash=hash_, message_key=key, **kw)
+
+        def key(metasyntatic_variable):
+            """Return an arbitrary, but valid, message key for the given
+            arbitrary string."""
+            return '[["{0}"], ["{0}"], "{0}", null, false]'.format(
+                metasyntatic_variable)
+
+        # Create two annotations which match the above messages, and
+        # one which does not.
+        ValidationAnnotation.objects.bulk_create((
+            annotation(HASH_0, key('foo'), ignore_duplicates=True),
+            annotation(HASH_0, key('bar'), ignore_duplicates=True),
+            annotation(HASH_0, key('baz'), ignore_duplicates=False),
+        ))
+
+        # Create the annotator and make sure it links our target
+        # file to the previous version.
+        annotator = utils.ValidationAnnotator(self.file_1_1)
+        assert annotator.prev_file == self.file
+
+        annotator.update_annotations()
+
+        # The two annotations which match messages in the above
+        # validation results should be duplicated for this version.
+        # The third annotation should not.
+        assert (set(ValidationAnnotation.objects.filter(file_hash=HASH_1)
+                    .values_list('message_key', 'ignore_duplicates')) ==
+                set(((key('foo'), True), (key('baz'), False))))
 
 
 class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
@@ -429,30 +610,16 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         full reviewed version."""
 
         self.version_1_1.update(version='1.0.1')
-
         self.file_1_1.update(status=amo.STATUS_PUBLIC)
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) == self.file_1_1
 
-        self.validate_file.assert_called_once_with([self.file_1_1.pk])
-        self.validate_upload.assert_called_once_with(
-            [self.file_upload.path, None])
-        self.save_upload.assert_called_with([self.file_upload.pk],
-                                            link_error=mock.ANY)
+        self.check_upload(self.file_1_1)
 
     def test_full_to_unreviewed(self):
         """Test that a full reviewed version is not matched to an unreviewed
         version."""
 
         self.file_1_1.update(status=amo.STATUS_UNREVIEWED)
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) == self.file
-
-        self.validate_file.assert_called_once_with([self.file.pk])
-        self.validate_upload.assert_called_once_with(
-            [self.file_upload.path, None])
-        self.save_upload.assert_called_with([self.file_upload.pk],
-                                            link_error=mock.ANY)
+        self.check_upload(self.file)
 
         # We can't prevent matching against prelim or beta versions
         # until we change the file upload process to allow flagging
@@ -464,30 +631,17 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
         self.file_1_1.update(status=amo.STATUS_PUBLIC)
 
-        va = utils.ValidationAnnotator(self.file_1_1)
-        assert va.find_previous_version(self.xpi_version) == self.file
-
-        self.validate_file.assert_has_calls([mock.call([self.file_1_1.pk]),
-                                             mock.call([self.file.pk])])
-        self.save_file.assert_called_with([self.file_1_1.pk],
-                                          link_error=mock.ANY)
+        self.check_file(self.file_1_1, self.file)
 
         for status in amo.STATUS_UNREVIEWED, amo.STATUS_LITE, amo.STATUS_BETA:
             self.validate_file.reset_mock()
             self.save_file.reset_mock()
 
             self.file.update(status=status)
-
-            va = utils.ValidationAnnotator(self.file_1_1)
-            assert va.find_previous_version(self.xpi_version) is None
-
-            self.validate_file.assert_called_once_with([self.file_1_1.pk])
-            self.save_file.assert_called_with([self.file_1_1.pk],
-                                              link_error=mock.ANY)
+            self.check_file(self.file_1_1, None)
 
 
 class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
-
     def setUp(self):
         super(TestValidationAnnotatorBeta, self).setUp()
 
@@ -501,10 +655,7 @@ class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
         """Test that a beta submission is matched to the latest approved
         release version."""
 
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) == self.file
-
-        self.validate_file.assert_called_once_with([self.file.pk])
+        self.check_upload(self.file)
 
     def test_match_beta_to_signed_beta(self):
         """Test that a beta submission is matched to a prior signed beta
@@ -513,10 +664,7 @@ class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
         self.file_1_1.update(status=amo.STATUS_BETA, is_signed=True)
         self.version_1_1.update(version='1.1b0')
 
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) == self.file_1_1
-
-        self.validate_file.assert_called_once_with([self.file_1_1.pk])
+        self.check_upload(self.file_1_1)
 
     def test_match_beta_to_unsigned_beta(self):
         """Test that a beta submission is not matched to a prior unsigned beta
@@ -525,10 +673,7 @@ class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
         self.file_1_1.update(status=amo.STATUS_BETA)
         self.version_1_1.update(version='1.1b0')
 
-        va = utils.ValidationAnnotator(self.file_upload)
-        assert va.find_previous_version(self.xpi_version) == self.file
-
-        self.validate_file.assert_called_once_with([self.file.pk])
+        self.check_upload(self.file)
 
 
 # This is technically in tasks at the moment, but may make more sense as a
