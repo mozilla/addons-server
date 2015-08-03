@@ -2167,6 +2167,11 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform], is_listed=False)
         assert not addon.is_listed
 
+    def test_is_not_listed_not_unique_name_bug_1173607(self):
+        """An unlisted add-on should be able to choose any name."""
+        Addon.from_upload(self.get_upload('extension.xpi'),
+                          [self.platform], is_listed=False)
+
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 

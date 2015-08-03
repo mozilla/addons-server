@@ -527,7 +527,9 @@ class NewAddonForm(AddonUploadForm):
         if not self.errors:
             self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'])
-            addons.forms.clean_name(xpi['name'])
+            # We don't enforce name uniqueness for unlisted add-ons.
+            if not self.cleaned_data.get('is_unlisted', False):
+                addons.forms.clean_name(xpi['name'])
         return self.cleaned_data
 
 

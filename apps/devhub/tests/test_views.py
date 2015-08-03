@@ -1262,6 +1262,13 @@ class TestSubmitStep3(TestSubmitBase):
         error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
+    def test_submit_unlisted_name_not_unique(self):
+        # Make sure name is accepted even if not unique for unlisted.
+        Addon.objects.get(pk=3615).update(is_listed=False)
+        data = self.get_dict(name='Cooliris', is_unlisted=True)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+
     def test_submit_name_unique_strip(self):
         # Make sure we can't sneak in a name by adding a space or two.
         r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
@@ -2993,9 +3000,21 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     def test_unique_name(self):
         addon_factory(name='xpi name')
-        r = self.post(expect_errors=True)
-        eq_(r.context['new_addon_form'].non_field_errors(),
+        response = self.post(expect_errors=True)
+        assert response.context['new_addon_form'].non_field_errors() == (
             ['This name is already in use. Please choose another.'])
+
+    def test_unlisted_name_not_unique(self):
+        """We don't enforce name uniqueness for unlisted add-ons."""
+        addon_factory(name='xpi name', is_listed=False)
+        # We're not passing `expected_errors=True`, so if there was any errors
+        # like "This name is already in use. Please choose another one", the
+        # test would fail.
+        response = self.post()
+        # Kind of redundant with the `self.post()` above: we just want to make
+        # really sure there's no errors raised by posting an add-on with a name
+        # that is already used by an unlisted add-on.
+        assert 'new_addon_form' not in response.context
 
     def test_success_listed(self):
         eq_(Addon.objects.count(), 0)
