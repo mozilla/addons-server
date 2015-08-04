@@ -119,17 +119,15 @@ def sign_file(file_obj, server):
             .format(file_obj.version.pk))
         return
 
-    guid = file_obj.version.addon.guid
-
     if file_obj.is_multi_package:
         # We need to sign all the internal extensions, if any.
-        cert_serial_num = sign_multi(file_obj.file_path, endpoint, guid)
+        cert_serial_num = sign_multi(file_obj.file_path, endpoint)
         if not cert_serial_num:  # There was no internal extensions to sign.
             return
     else:
         # Sign the file. If there's any exception, we skip the rest.
         cert_serial_num = unicode(call_signing(
-            file_obj.file_path, endpoint, guid))
+            file_obj.file_path, endpoint, file_obj.version.addon.guid))
 
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
@@ -140,7 +138,7 @@ def sign_file(file_obj, server):
     return file_obj
 
 
-def sign_multi(file_path, endpoint, guid):
+def sign_multi(file_path, endpoint):
     """Sign the internal extensions from a multi-package XPI (if any)."""
     log.info('Signing multi-package file {0}'.format(file_path))
     # Extract the multi-package to a temp folder.
@@ -153,7 +151,8 @@ def sign_multi(file_path, endpoint, guid):
             xpi_info = parse_xpi(xpi, check=False)
             if xpi_info['type'] == amo.ADDON_EXTENSION:
                 # Sign the internal extensions in place.
-                cert_serial_nums.append(call_signing(xpi, endpoint, guid))
+                cert_serial_nums.append(
+                    call_signing(xpi, endpoint, xpi_info['guid']))
         # Repackage (re-zip) the multi-package.
         # We only want the (unique) temporary file name.
         with tempfile.NamedTemporaryFile() as temp_file:
