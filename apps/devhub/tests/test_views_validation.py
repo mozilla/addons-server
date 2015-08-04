@@ -11,7 +11,7 @@ import waffle
 
 import amo
 import amo.tests
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from applications.models import AppVersion
@@ -164,26 +164,37 @@ class TestFileValidation(amo.tests.TestCase):
         validate.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
 
         self.file.validation.delete()
+        # Not `file.reload()`. It won't update the `validation` foreign key.
         self.file = File.objects.get(pk=self.file.pk)
         assert not self.file.has_been_validated
 
-        eq_(self.client.post(self.json_url).status_code, 200)
+        assert self.client.post(self.json_url).status_code == 200
         assert validate.called
 
     @mock.patch('devhub.tasks.validate')
     def test_json_results_post_cached(self, validate):
         assert self.file.has_been_validated
 
-        eq_(self.client.post(self.json_url).status_code, 200)
+        assert self.client.post(self.json_url).status_code == 200
 
         assert not validate.called
 
-    @mock.patch('files.models.File.has_been_validated')
-    def test_json_results_get(self, has_been_validated):
-        has_been_validated.__nonzero__.return_value = True
-        eq_(self.client.get(self.json_url).status_code, 200)
-        has_been_validated.__nonzero__.return_value = False
-        eq_(self.client.get(self.json_url).status_code, 405)
+    def test_json_results_get_cached(self):
+        """Tests that GET requests return results when they've already been
+        cached."""
+        assert self.file.has_been_validated
+        assert self.client.get(self.json_url).status_code == 200
+
+    def test_json_results_get_not_cached(self):
+        """Tests that GET requests return a Method Not Allowed error when
+        retults have not been cached."""
+
+        self.file.validation.delete()
+        # Not `file.reload()`. It won't update the `validation` foreign key.
+        self.file = File.objects.get(pk=self.file.pk)
+        assert not self.file.has_been_validated
+
+        assert self.client.get(self.json_url).status_code == 405
 
 
 class TestValidateAddon(amo.tests.TestCase):
@@ -246,6 +257,93 @@ class TestValidateAddon(amo.tests.TestCase):
         assert not validate_mock.call_args[1]['listed']
         # No automated signing for sideload add-ons.
         assert FileUpload.objects.get().automated_signing is False
+
+
+class TestUploadURLs(amo.tests.TestCase):
+    fixtures = ('base/users',)
+
+    def setUp(self):
+        super(TestUploadURLs, self).setUp()
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.login(username='regular@mozilla.com',
+                          password='password')
+
+        self.addon = Addon.objects.create(guid='thing@stuff',
+                                          slug='thing-stuff',
+                                          status=amo.STATUS_PUBLIC)
+        AddonUser.objects.create(addon=self.addon, user=user)
+
+        self.run_validator = self.patch('devhub.tasks.run_validator')
+        self.run_validator.return_value = '{"errors": 0}'
+        self.parse_addon = self.patch('devhub.utils.parse_addon')
+        self.parse_addon.return_value = {'guid': self.addon.guid,
+                                         'version': '1.0'}
+
+    def patch(self, *args, **kw):
+        patcher = mock.patch(*args, **kw)
+        self.addCleanup(patcher.stop)
+        return patcher.start()
+
+    def expect_validation(self, listed, automated_signing):
+        call_keywords = self.run_validator.call_args[1]
+
+        assert call_keywords['listed'] == listed
+        assert self.file_upload.automated_signing == automated_signing
+
+    def upload(self, view, **kw):
+        """Send an upload request to the given view, and save the FileUpload
+        object to self.file_upload."""
+        FileUpload.objects.all().delete()
+        self.run_validator.reset_mock()
+
+        with open('apps/files/fixtures/files/validation-error.xpi') as file_:
+            resp = self.client.post(reverse(view, kwargs=kw),
+                                    {'upload': file_})
+            assert resp.status_code == 302
+        self.file_upload = FileUpload.objects.get()
+
+    def upload_addon(self, status=amo.STATUS_PUBLIC, listed=True):
+        """Update the test add-on with the given flags and send an upload
+        request for it."""
+        self.addon.update(status=status, is_listed=listed)
+        return self.upload('devhub.upload_for_addon', addon_id=self.addon.slug)
+
+    def test_upload_standalone(self):
+        """Test that the standalone upload URLs result in file uploads with
+        the correct flags."""
+        self.upload('devhub.standalone_upload')
+        self.expect_validation(listed=True, automated_signing=False)
+
+        self.upload('devhub.standalone_upload_unlisted'),
+        self.expect_validation(listed=False, automated_signing=True)
+
+        self.upload('devhub.standalone_upload_sideload'),
+        self.expect_validation(listed=False, automated_signing=False)
+
+    def test_upload_submit(self):
+        """Test that the add-on creation upload URLs result in file uploads
+        with the correct flags."""
+        self.upload('devhub.upload')
+        self.expect_validation(listed=True, automated_signing=False)
+
+        self.upload('devhub.upload_unlisted'),
+        self.expect_validation(listed=False, automated_signing=True)
+
+        self.upload('devhub.upload_sideload'),
+        self.expect_validation(listed=False, automated_signing=False)
+
+    def test_upload_addon_version(self):
+        """Test that the add-on update upload URLs result in file uploads
+        with the correct flags."""
+        for status in amo.VALID_STATUSES:
+            self.upload_addon(listed=True, status=status)
+            self.expect_validation(listed=True, automated_signing=False)
+
+        self.upload_addon(listed=False, status=amo.STATUS_LITE)
+        self.expect_validation(listed=False, automated_signing=True)
+
+        self.upload_addon(listed=False, status=amo.STATUS_PUBLIC)
+        self.expect_validation(listed=False, automated_signing=False)
 
 
 class TestValidateFile(BaseUploadTest):

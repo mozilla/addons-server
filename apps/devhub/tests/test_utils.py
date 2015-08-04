@@ -376,7 +376,8 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
         self.validate_upload.assert_called_once_with(
             [self.file_upload.path, None])
 
-        self.save_upload.assert_called_once_with([self.file_upload.pk])
+        self.save_upload.assert_called_with([self.file_upload.pk],
+                                            link_error=mock.ANY)
 
     def test_find_file_prev_version(self):
         """Test that the correct previous version is found for a File."""
@@ -388,7 +389,8 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
         self.validate_file.assert_has_calls([mock.call([self.file_1_1.pk]),
                                              mock.call([self.file.pk])])
 
-        self.save_file.assert_called_once_with([self.file_1_1.pk])
+        self.save_file.assert_called_with([self.file_1_1.pk],
+                                          link_error=mock.ANY)
 
     def test_find_future_fileupload_version(self):
         """Test that a future version will not be matched."""
@@ -402,7 +404,8 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
         self.validate_upload.assert_called_once_with(
             [self.file_upload.path, None])
 
-        self.save_upload.assert_called_once_with([self.file_upload.pk])
+        self.save_upload.asserted_once_with([self.file_upload.pk],
+                                            link_error=mock.ANY)
 
     def test_find_future_file(self):
         """Test that a future version will not be matched."""
@@ -415,7 +418,8 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
         assert not self.validate_upload.called
         self.validate_file.assert_called_once_with([self.file_1_1.pk])
 
-        self.save_file.assert_called_once_with([self.file_1_1.pk])
+        self.save_file.assert_called_with([self.file_1_1.pk],
+                                          link_error=mock.ANY)
 
 
 class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
@@ -433,7 +437,8 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         self.validate_file.assert_called_once_with([self.file_1_1.pk])
         self.validate_upload.assert_called_once_with(
             [self.file_upload.path, None])
-        self.save_upload.assert_called_once_with([self.file_upload.pk])
+        self.save_upload.assert_called_with([self.file_upload.pk],
+                                            link_error=mock.ANY)
 
     def test_full_to_unreviewed(self):
         """Test that a full reviewed version is not matched to an unreviewed
@@ -446,7 +451,8 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         self.validate_file.assert_called_once_with([self.file.pk])
         self.validate_upload.assert_called_once_with(
             [self.file_upload.path, None])
-        self.save_upload.assert_called_once_with([self.file_upload.pk])
+        self.save_upload.assert_called_with([self.file_upload.pk],
+                                            link_error=mock.ANY)
 
         # We can't prevent matching against prelim or beta versions
         # until we change the file upload process to allow flagging
@@ -463,7 +469,8 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
         self.validate_file.assert_has_calls([mock.call([self.file_1_1.pk]),
                                              mock.call([self.file.pk])])
-        self.save_file.assert_called_once_with([self.file_1_1.pk])
+        self.save_file.assert_called_with([self.file_1_1.pk],
+                                          link_error=mock.ANY)
 
         for status in amo.STATUS_UNREVIEWED, amo.STATUS_LITE, amo.STATUS_BETA:
             self.validate_file.reset_mock()
@@ -475,7 +482,8 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
             assert va.find_previous_version(self.xpi_version) is None
 
             self.validate_file.assert_called_once_with([self.file_1_1.pk])
-            self.save_file.assert_called_once_with([self.file_1_1.pk])
+            self.save_file.assert_called_with([self.file_1_1.pk],
+                                              link_error=mock.ANY)
 
 
 class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):

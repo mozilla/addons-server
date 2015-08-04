@@ -45,7 +45,7 @@ from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
 from devhub.utils import ValidationAnnotator, process_validation
 from editors.helpers import get_position, ReviewHelper
-from files.models import File, FileUpload
+from files.models import File, FileUpload, FileValidation
 from files.utils import is_beta, parse_addon
 from lib.crypto.packaged import sign_file
 from search.views import BaseAjaxSearch
@@ -749,15 +749,15 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 @dev_required(allow_editors=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
-    if not file.has_been_validated:
+    try:
+        v_result = file.validation
+    except FileValidation.DoesNotExist:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
         # This API is, unfortunately, synchronous, so wait for the
         # task to complete and return the result directly.
         v_result = tasks.validate(file).get()
-    else:
-        v_result = file.validation
 
     return {'validation': v_result.processed_validation, 'error': None}
 
