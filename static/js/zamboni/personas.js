@@ -24,6 +24,8 @@ function initPreviewTheme(mktTheme) {
         dispatchPersonaEvent(
             'SelectPersona',
             $(this).closest('.persona').find('.persona-preview a')[0]);
+        var name = $(this).closest('.persona-preview a').data('browsertheme').name;
+        _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'theme', name]);
     }));
 
     if (mktTheme === true) {
@@ -108,6 +110,7 @@ $.fn.personasButton = function(trigger, callback) {
     });
     persona_wrapper.click(function(e) {
         dispatchPersonaEvent('SelectPersona', e.currentTarget, callback);
+        _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'theme', $(this).data('name')]);
         return false;
     });
 };
