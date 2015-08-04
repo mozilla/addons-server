@@ -1,4 +1,3 @@
-import glob
 import json
 import os
 import shutil
@@ -15,7 +14,6 @@ from django_statsd.clients import statsd
 from signing_clients.apps import get_signature_serial_number, JarExtractor
 
 import amo
-from files.utils import extract_xpi, parse_xpi
 from versions.compare import version_int
 
 log = commonware.log.getLogger('z.crypto')
@@ -53,14 +51,14 @@ def get_endpoint(server):
     return u'{server}/1.0/sign_addon'.format(server=server)
 
 
-def call_signing(file_path, endpoint, guid):
+def call_signing(file_obj, endpoint):
     """Get the jar signature and send it to the signing server to be signed."""
     # We only want the (unique) temporary file name.
     with tempfile.NamedTemporaryFile() as temp_file:
         temp_filename = temp_file.name
 
     # Extract jar signature.
-    jar = JarExtractor(path=storage.open(file_path),
+    jar = JarExtractor(path=storage.open(file_obj.file_path),
                        outpath=temp_filename,
                        omit_signature_sections=True,
                        extra_newlines=True)
@@ -69,11 +67,11 @@ def call_signing(file_path, endpoint, guid):
 
     log.debug(u'Calling signing service: {0}'.format(endpoint))
     with statsd.timer('services.sign.addon'):
-        response = requests.post(endpoint,
-                                 timeout=settings.SIGNING_SERVER_TIMEOUT,
-                                 data={'addon_id': guid},
-                                 files={'file': (u'mozilla.sf',
-                                                 unicode(jar.signatures))})
+        response = requests.post(
+            endpoint,
+            timeout=settings.SIGNING_SERVER_TIMEOUT,
+            data={'addon_id': file_obj.version.addon.guid},
+            files={'file': (u'mozilla.sf', unicode(jar.signatures))})
     if response.status_code != 200:
         msg = u'Posting to add-on signing failed: {0}'.format(response.reason)
         log.error(msg)
@@ -82,7 +80,7 @@ def call_signing(file_path, endpoint, guid):
     pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
     cert_serial_num = get_signature_serial_number(pkcs7)
     jar.make_signed(pkcs7, sigpath=u'mozilla')
-    shutil.move(temp_filename, file_path)
+    shutil.move(temp_filename, file_obj.file_path)
     return cert_serial_num
 
 
@@ -112,6 +110,12 @@ def sign_file(file_obj, server):
             file_obj.pk))
         return
 
+    # Don't sign multi-package XPIs. Their inner add-ons need to be signed.
+    if file_obj.is_multi_package:
+        log.info(u'Not signing file {0}: multi-package XPI'.format(
+            file_obj.pk))
+        return
+
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         log.info(
@@ -119,17 +123,8 @@ def sign_file(file_obj, server):
             .format(file_obj.version.pk))
         return
 
-    guid = file_obj.version.addon.guid
-
-    if file_obj.is_multi_package:
-        # We need to sign all the internal extensions, if any.
-        cert_serial_num = sign_multi(file_obj.file_path, endpoint, guid)
-        if not cert_serial_num:  # There was no internal extensions to sign.
-            return
-    else:
-        # Sign the file. If there's any exception, we skip the rest.
-        cert_serial_num = unicode(call_signing(
-            file_obj.file_path, endpoint, guid))
+    # Sign the file. If there's any exception, we skip the rest.
+    cert_serial_num = unicode(call_signing(file_obj, endpoint))
 
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
@@ -138,34 +133,6 @@ def sign_file(file_obj, server):
                     is_signed=True)
     log.info(u'Signing complete for file {0}'.format(file_obj.pk))
     return file_obj
-
-
-def sign_multi(file_path, endpoint, guid):
-    """Sign the internal extensions from a multi-package XPI (if any)."""
-    log.info('Signing multi-package file {0}'.format(file_path))
-    # Extract the multi-package to a temp folder.
-    folder = tempfile.mkdtemp()
-    try:
-        extract_xpi(file_path, folder)
-        xpis = glob.glob(os.path.join(folder, u'*.xpi'))
-        cert_serial_nums = []  # The certificate serial numbers for the XPIs.
-        for xpi in xpis:
-            xpi_info = parse_xpi(xpi, check=False)
-            if xpi_info['type'] == amo.ADDON_EXTENSION:
-                # Sign the internal extensions in place.
-                cert_serial_nums.append(call_signing(xpi, endpoint, guid))
-        # Repackage (re-zip) the multi-package.
-        # We only want the (unique) temporary file name.
-        with tempfile.NamedTemporaryFile() as temp_file:
-            temp_filename = temp_file.name
-        shutil.make_archive(temp_filename, format='zip', root_dir=folder)
-        # Now overwrite the current multi-package xpi with the repackaged one.
-        # Note that shutil.make_archive automatically added a '.zip' to the end
-        # of the base_name provided as first argument.
-        shutil.move(u'{0}.zip'.format(temp_filename), file_path)
-        return u'\n'.join([unicode(num) for num in cert_serial_nums])
-    finally:
-        amo.utils.rm_local_tmp_dir(folder)
 
 
 def is_signed(file_path):

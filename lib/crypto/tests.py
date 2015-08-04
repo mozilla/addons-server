@@ -184,34 +184,22 @@ class TestPackaged(amo.tests.TestCase):
 
     def test_sign_file_multi_package(self):
         with amo.tests.copy_file('apps/files/fixtures/files/multi-package.xpi',
-                                 self.file_.file_path,
-                                 overwrite=True):
+                                 self.file_.file_path, overwrite=True):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
-            # Make sure the internal XPIs aren't signed either.
-            folder = tempfile.mkdtemp()
-            try:
-                extract_xpi(self.file_.file_path, folder)
-                assert not packaged.is_signed(
-                    os.path.join(folder, 'random_extension.xpi'))
-                assert not packaged.is_signed(
-                    os.path.join(folder, 'random_theme.xpi'))
-            finally:
-                amo.utils.rm_local_tmp_dir(folder)
 
             packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-            assert self.file_.is_signed
-            assert self.file_.cert_serial_num
-            assert self.file_.hash
-            # It's not the multi-package itself that is signed.
+            self.assert_not_signed()
+            # The multi-package itself isn't signed.
             assert not packaged.is_signed(self.file_.file_path)
-            # It's the internal xpi.
+            # The internal extensions aren't either.
             folder = tempfile.mkdtemp()
             try:
                 extract_xpi(self.file_.file_path, folder)
-                assert packaged.is_signed(
+                # The extension isn't.
+                assert not packaged.is_signed(
                     os.path.join(folder, 'random_extension.xpi'))
-                # And only the one that is an extension.
+                # And the theme isn't either.
                 assert not packaged.is_signed(
                     os.path.join(folder, 'random_theme.xpi'))
             finally:
