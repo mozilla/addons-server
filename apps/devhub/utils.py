@@ -162,9 +162,15 @@ class ValidationAnnotator(object):
                 validate = group((validate,
                                   self.validate_file(self.prev_file)))
 
+        # Fallback error handler to save a set of exception results, in case
+        # anything unexpected happens during processing.
+        on_error = save.subtask([amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk],
+                                {'annotate': False}, immutable=True)
+
         # When the validation jobs complete, pass the results to the
         # appropriate annotate/save task for the object type.
-        self.task = chain(validate, save.subtask([file_.pk]))
+        self.task = chain(validate, save.subtask([file_.pk],
+                                                 link_error=on_error))
 
     @staticmethod
     def validate_file(file):

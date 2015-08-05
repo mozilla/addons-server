@@ -49,6 +49,7 @@ $.fn.previewPersona = function(o) {
 $.fn.personasButton = function(trigger, callback) {
     $(this).closest('.persona').click(function(e) {
         dispatchPersonaEvent('SelectPersona', e.currentTarget, callback);
+        _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'theme', $(this).data('name')]);
         return false;
     });
 };

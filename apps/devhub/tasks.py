@@ -84,26 +84,28 @@ def validate_file(file_id, **kw):
 
 @task
 @write
-def handle_upload_validation_result(results, upload_id):
-    """Annotates a set of validation results and saves them to the given
-    FileUpload instance."""
-    result = annotate_validation_results(results)
+def handle_upload_validation_result(results, upload_id, annotate=True):
+    """Annotates a set of validation results, unless `annotate` is false, and
+    saves them to the given FileUpload instance."""
+    if annotate:
+        results = annotate_validation_results(results)
 
     upload = FileUpload.objects.get(pk=upload_id)
-    upload.validation = json.dumps(result)
+    upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
     return upload
 
 
 @task
 @write
-def handle_file_validation_result(results, file_id):
-    """Annotates a set of validation results and saves them to the given
-    File instance."""
-    result = annotate_validation_results(results)
+def handle_file_validation_result(results, file_id, annotate=True):
+    """Annotates a set of validation results, unless `annotate is false, and
+    saves them to the given File instance."""
+    if annotate:
+        results = annotate_validation_results(results)
 
     file_ = File.objects.get(pk=file_id)
-    return FileValidation.from_json(file_, result)
+    return FileValidation.from_json(file_, results)
 
 
 @task
@@ -122,8 +124,8 @@ def annotate_validation_results(results):
                       .compare_results(results[0]))
 
     summary = validation.setdefault('signing_summary',
-                                    {"trivial": 0, "low": 0,
-                                     "medium": 0, "high": 0})
+                                    {'trivial': 0, 'low': 0,
+                                     'medium': 0, 'high': 0})
 
     validation['passed_auto_validation'] = (summary['low'] +
                                             summary['medium'] +

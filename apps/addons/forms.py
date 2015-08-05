@@ -41,6 +41,10 @@ def clean_name(name, instance=None):
     if not instance:
         log.debug('clean_name called without an instance: %s' % name)
 
+    # We don't enforce uniqueness for unlsited addons.
+    if instance and not instance.is_listed:
+        return name
+
     id = reverse_name_lookup(name)
 
     # If we get an id and either there's no instance or the instance.id != id.
