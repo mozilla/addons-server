@@ -9,10 +9,12 @@ from functools import wraps
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
 from celery.exceptions import SoftTimeLimitExceeded
+from celery.result import AsyncResult
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
@@ -34,14 +36,22 @@ from PIL import Image
 log = logging.getLogger('z.devhub.task')
 
 
-# Simple wrapper for the sake of tests.
 def validate(file_, listed=None):
     """Run the validator on the given File or FileUpload object, and annotate
-    the results using the ValidationAnnotator."""
+    the results using the ValidationAnnotator. If a task has already begun
+    for this file, instead return an AsyncResult object for that task."""
 
     # Import loop.
     from .utils import ValidationAnnotator
-    return ValidationAnnotator(file_, listed=listed).task.delay()
+    annotator = ValidationAnnotator(file_, listed=listed)
+
+    task_id = cache.get(annotator.cache_key)
+    if task_id:
+        return AsyncResult(task_id)
+    else:
+        result = annotator.task.delay()
+        cache.set(annotator.cache_key, result.task_id, 5 * 60)
+        return result
 
 
 # Override the validator's stock timeout exception so that it can

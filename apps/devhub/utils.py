@@ -180,6 +180,12 @@ class ValidationAnnotator(object):
         self.task = chain(validate, save.subtask([file_.pk],
                                                  link_error=on_error))
 
+        # Create a cache key for the task, so multiple requests to
+        # validate the same object do not result in duplicate tasks.
+        opts = file_._meta
+        self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
+            opts.app_label, opts.object_name, file_.pk, listed)
+
     @write
     def update_annotations(self):
         """Update the annotations for our file with the annotations for any

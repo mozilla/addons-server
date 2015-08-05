@@ -214,7 +214,13 @@ class TestValidator(amo.tests.TestCase):
         validation = json.loads(self.get_upload().validation)
         assert validation['passed_auto_validation']
 
-        result['signing_summary']['low'] = 1
+    @mock.patch('devhub.tasks.run_validator')
+    def test_annotate_failed_auto_validation(self, _mock):
+        """Set passed_auto_validation on reception of the results."""
+        result = {'signing_summary': {'trivial': 0, 'low': 1, 'medium': 0,
+                                      'high': 0},
+                  'errors': 0}
+
         _mock.return_value = json.dumps(result)
         tasks.validate(self.upload)
         validation = json.loads(self.get_upload().validation)
