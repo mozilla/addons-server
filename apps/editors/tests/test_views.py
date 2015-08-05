@@ -11,6 +11,7 @@ from django.core.files.base import File as DjangoFile
 from django.utils.datastructures import SortedDict
 from django.test.utils import override_settings
 
+import mock
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -25,7 +26,7 @@ from amo.tests import check_links, formset, initial
 from amo.urlresolvers import reverse
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, ReviewerScore
-from files.models import File
+from files.models import File, FileValidation
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, AppVersion, Version
@@ -1769,6 +1770,7 @@ class ReviewBase(QueueTest):
 
         self.addon = self.generate_file('Public')
         self.version = self.addon.current_version
+        self.file = self.version.files.get()
         self.editor = UserProfile.objects.get(username='editor')
         self.editor.update(display_name='An editor')
         self.url = reverse('editors.review', args=[self.addon.slug])
@@ -2453,6 +2455,39 @@ class TestReview(ReviewBase):
         assert '(Owner) added to ' in user_changes[0].text
         assert 'role changed to Owner for ' in user_changes[1].text
         assert '(Owner) removed from ' in user_changes[2].text
+
+    @override_settings(CELERY_ALWAYS_EAGER=True)
+    @mock.patch('devhub.tasks.validate')
+    def test_validation_not_run_eagerly(self, validate):
+        """Tests that validation is not run in eager mode."""
+        assert not self.file.has_been_validated
+
+        self.client.get(self.url)
+
+        assert not validate.called
+
+    @override_settings(CELERY_ALWAYS_EAGER=False)
+    @mock.patch('devhub.tasks.validate')
+    def test_validation_run(self, validate):
+        """Tests that validation is run if necessary."""
+        assert not self.file.has_been_validated
+
+        self.client.get(self.url)
+
+        validate.assert_called_once_with(self.file)
+
+    @override_settings(CELERY_ALWAYS_EAGER=False)
+    @mock.patch('devhub.tasks.validate')
+    def test_validation_not_run_again(self, validate):
+        """Tests that validation is not run for files which have cached
+        results."""
+
+        FileValidation.objects.create(file=self.file, validation=json.dumps(
+            amo.VALIDATOR_SKELETON_RESULTS))
+
+        self.client.get(self.url)
+
+        assert not validate.called
 
 
 class TestReviewPreliminary(ReviewBase):
