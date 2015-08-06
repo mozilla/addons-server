@@ -6,10 +6,6 @@ $(document).ready(function(){
     $('.install').installButton();
     $(window).trigger('buttons_loaded');
 
-    if ($('.backup-button').length) {
-        $('.backup-button').showBackupButton();
-    }
-
     // Initialize any tabbed interfaces.  See: tabs.js
     if ($.fn.tabify) {
         $('.tab-wrapper').tabify();

@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django.shortcuts import render
-from django.utils.safestring import mark_safe
 from django.views.decorators.cache import cache_page
 
 import jingo
@@ -14,9 +13,10 @@ from addons.models import Addon
 from translations.models import Translation
 
 
-def _install_button(context, addon, version=None, show_contrib=True,
-                    show_warning=True, src='', collection=None, size='',
-                    detailed=False, mobile=False, impala=False):
+@jinja2.contextfunction
+def install_button(context, addon, version=None, show_contrib=True,
+                   show_warning=True, src='', collection=None, size='',
+                   detailed=False, mobile=False, impala=False):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
@@ -45,44 +45,23 @@ def _install_button(context, addon, version=None, show_contrib=True,
 
 
 @jinja2.contextfunction
-def install_button(context, addon, **kwargs):
-    backup = kwargs.pop('show_backup', True)
-    base = _install_button(context, addon, **kwargs)
-    if backup and addon.backup_version:
-        kwargs['version'] = addon.backup_version
-        backup = _install_button(context, addon, **kwargs)
-        return mark_safe('%s\n<div class="backup-button hidden '
-                         'install-wrapper">%s</div>' % (base, backup))
-    return base
-
-
-@jinja2.contextfunction
 def big_install_button(context, addon, **kwargs):
     from addons.helpers import statusflags
-    backup = kwargs.pop('show_backup', True)
     flags = jinja2.escape(statusflags(context, addon))
-    base = _install_button(context, addon, detailed=True, size='prominent',
-                           **kwargs)
-    params = [flags, base]
-    wrap = u'<div class="install-wrapper %s">%s</div>'
-    if backup and addon.backup_version:
-        params.append(flags)
-        params.append(_install_button(context, addon,
-                                      version=addon.backup_version,
-                                      detailed=True, size='prominent',
-                                      **kwargs))
-        wrap += '<div class="backup-button hidden install-wrapper %s">%s</div>'
-    return jinja2.Markup(wrap % (tuple(params)))
+    button = install_button(context, addon, detailed=True, size='prominent',
+                            **kwargs)
+    markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
+    return jinja2.Markup(markup)
 
 
 @jinja2.contextfunction
 def mobile_install_button(context, addon, **kwargs):
     from addons.helpers import statusflags
-    b = _install_button(context, addon, detailed=True, size='prominent',
-                        mobile=True, **kwargs)
+    button = install_button(context, addon, detailed=True, size='prominent',
+                            mobile=True, **kwargs)
     flags = jinja2.escape(statusflags(context, addon))
-    s = u'<div class="install-wrapper %s">%s</div>'
-    return jinja2.Markup(s % (flags, b))
+    markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
+    return jinja2.Markup(markup)
 
 
 def install_button_factory(*args, **kwargs):

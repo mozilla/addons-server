@@ -800,16 +800,6 @@ class TestDetailPage(amo.tests.TestCase):
         r = self.client.get(self.url)
         self.assertContains(r, no_restart)
 
-    def test_no_backup(self):
-        res = self.client.get(self.url)
-        eq_(len(pq(res.content)('.backup-button')), 0)
-
-    def test_backup(self):
-        self.addon._backup_version = self.addon.versions.all()[0]
-        self.addon.save()
-        res = self.client.get(self.url)
-        eq_(len(pq(res.content)('.backup-button')), 1)
-
     def test_disabled_user_message(self):
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
