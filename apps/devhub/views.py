@@ -695,8 +695,6 @@ def file_validation(request, addon_id, addon, file_id):
 
     validate_url = reverse('devhub.json_file_validation',
                            args=[addon.slug, file_.id])
-    automated_signing = (addon.automated_signing or
-                         file_.status == amo.STATUS_BETA)
 
     prev_file = ValidationAnnotator(file_).prev_file
     if prev_file:
@@ -708,15 +706,14 @@ def file_validation(request, addon_id, addon, file_id):
     context = {'validate_url': validate_url, 'file_url': file_url,
                'file': file_, 'filename': file_.filename,
                'timestamp': file_.created, 'addon': addon,
-               'automated_signing': automated_signing}
+               'automated_signing': file_.automated_signing}
 
     if acl.check_addons_reviewer(request):
         context['annotate_url'] = reverse('devhub.annotate_file_validation',
                                           args=[addon.slug, file_id])
 
     if file_.has_been_validated:
-        context['validation_data'] = json.dumps(
-            file_.validation.processed_validation)
+        context['validation_data'] = file_.validation.processed_validation
 
     return render(request, 'devhub/validation.html', context)
 
@@ -900,7 +897,7 @@ def upload_detail(request, uuid, format='html'):
                'timestamp': upload.created}
 
     if upload.validation:
-        context['validation_data'] = json.dumps(upload.processed_validation)
+        context['validation_data'] = upload.processed_validation
 
     return render(request, 'devhub/validation.html', context)
 

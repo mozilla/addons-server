@@ -68,7 +68,11 @@
     overflow: auto;
 }
 
-#content-wrapper, #messages, #thinking {
+#validation-options {
+    margin-bottom: .5em;
+}
+
+#content-wrapper, #messages, #thinking, #validation-options {
     padding-left: 23em;
 }
 
@@ -84,7 +88,10 @@
     width: 2em;
 }
 
-.collapsed-files #content-wrapper, .collapsed-files #messages, .collapsed-collapsed #thinking {
+.collapsed-files #content-wrapper,
+.collapsed-files #messages,
+.collapsed-collapsed #thinking,
+.collapsed-collapsed #validation-options {
     padding-left: 3em;
 }
 
@@ -140,13 +147,30 @@ body.file-viewer div.section {
     min-width: 90em;
 }
 
-.syntaxhighlighter .line {
+.syntaxhighlighter .line-code {
     display: block;
-    white-space: pre;
+    white-space: pre-wrap;
     max-width: 54em;
 }
 
-.collapsed-files .syntaxhighlighter .line {
+#file-viewer .syntaxhighlighter .td-line-code {
+    padding: 0;
+}
+#file-viewer .syntaxhighlighter .td-line-number {
+    text-align: right;
+    border-right: 1px solid black;
+    padding: 0 .2em .1em 0;
+}
+
+.syntaxhighlighter .td-line-number > .line-number[data-linenumber]::before {
+    content: attr(data-linenumber);
+}
+
+.syntaxhighlighter .line-code {
+    padding-left: .4em;
+}
+
+.collapsed-files .syntaxhighlighter .line-code {
     max-width: 73em;
 }
 
@@ -166,19 +190,28 @@ span.number {
     display: block;
 }
 
-div.code div.line:hover {
+.tr-line:hover {
     background-color: #ffffcc;
 }
 
-div.diff-bar .add, #diff td.code div.add, #diff td.code div.add .content {
+div.diff-bar .add,
+#diff .td-line-code.add,
+#diff .td-line-code.add .content {
     background-color: #99ff99;
 }
 
-div.diff-bar .delete, #diff td.code div.delete, #diff td.code div.delete .content {
+div.diff-bar .delete,
+#diff .td-line-code.delete,
+#diff .td-line-code.delete .content {
     background-color: #ffd8d8;
 }
 
-#diff .string, #diff .string a, #diff .comments, #diff .comments a, #diff .color1, #diff .color1 a{
+#diff .string,
+#diff .string a,
+#diff .comments,
+#diff .comments a,
+#diff .color1,
+#diff .color1 a{
     color: #444444;
 }
 
@@ -198,7 +231,7 @@ a.open {
     background: url('../../img/icons/minus.gif') 0 no-repeat;
 }
 
-#files a > span {
+#files-tree a > span {
     -moz-boder-radius: 4px;
     border-radius: 4px;
     padding: 3px;
@@ -216,12 +249,53 @@ a.known > span {
     display: none !important;
 }
 
-#files a.notice, #files a.warning, #files a.error {
+div.message-notice,
+div.message-notice-ignored,
+div.message-warning,
+div.message-warning-ignored,
+div.message-error-ignored {
+    display: none;
+}
+
+/* Notices. */
+#file-viewer.messages-all div.message-notice,
+#file-viewer.messages-signing div.message-notice-signing,
+#file-viewer.messages-ignored div.message-notice-ignored,
+/* Warnings. */
+#file-viewer.messages-all div.message-warning,
+#file-viewer.messages-signing div.message-warning-signing,
+#file-viewer.messages-ignored div.message-warning-ignored,
+/* Errors. */
+#file-viewer.messages-ignored div.message-error-ignored {
+    display: block;
+}
+
+/* Notice. */
+#file-viewer.messages-duplicate #files a.notice-duplicate,
+#file-viewer.messages-signing #files a.notice-signing,
+#file-viewer.messages-all #files a.notice,
+/* Warning. */
+#file-viewer.messages-duplicate #files a.warning-duplicate,
+#file-viewer.messages-signing #files a.warning-signing,
+#file-viewer.messages-all #files a.warning,
+/* Error. */
+#file-viewer.messages-duplicate #files a.error-duplicate,
+#files a.error-signing,
+#files a.error {
     font-weight: bold;
 }
 
-#files a.notice > span:after,
-#files a.warning > span:after,
+/* Notice. */
+#file-viewer.messages-duplicate #files a.notice-duplicate > span:after,
+#file-viewer.messages-signing #files a.notice-signing > span:after,
+#file-viewer.messages-all #files a.notice > span:after,
+/* Warning. */
+#file-viewer.messages-duplicate #files a.warning-duplicate > span:after,
+#file-viewer.messages-signing #files a.warning-signing > span:after,
+#file-viewer.messages-all #files a.warning > span:after,
+/* Error. */
+#file-viewer.messages-duplicate #files a.error-duplicate > span:after,
+#files a.error-signing > span:after,
 #files a.error > span:after {
     display: inline-block;
     background: url(../../img/zamboni/notifications.png) no-repeat;
@@ -232,16 +306,22 @@ a.known > span {
     content: "\00a0";
 }
 
-#files a.notice > span:after {
+#file-viewer.messages-duplicate #files a.notice-duplicate > span:after,
+#file-viewer.messages-signing #files a.notice-signing > span:after,
+#file-viewer.messages-all #files a.notice > span:after {
     background-position: 0px -516px;
     width: 18px;
     margin-left: 8px;
 }
 
-#files a.warning > span:after {
+#file-viewer.messages-duplicate #files a.warning-duplicate > span:after,
+#file-viewer.messages-signing #files a.warning-signing > span:after,
+#file-viewer.messages-all #files a.warning > span:after {
     background-position: 2px -304px;
 }
 
+#file-viewer.messages-duplicate #files a.error-duplicate > span:after,
+#files a.error-signing > span:after,
 #files a.error > span:after {
     background-position: 2px -162px;
 }
@@ -251,39 +331,68 @@ a.selected > span {
     color: white;
 }
 
-.gutter a.notice, .gutter a.warning, .gutter a.error {
+.td-line-number > .line-number {
+    padding: .2em .4em .1em;
+}
+
+/* Notice. */
+#file-viewer.messages-duplicate .td-line-number > .line-number.notice-duplicate,
+#file-viewer.messages-signing .td-line-number > .line-number.notice-signing,
+#file-viewer.messages-all .td-line-number > .line-number.notice,
+/* Warning. */
+#file-viewer.messages-duplicate .td-line-number > .line-number.warning-duplicate,
+#file-viewer.messages-signing .td-line-number > .line-number.warning-signing,
+#file-viewer.messages-all .td-line-number > .line-number.warning,
+/* Error. */
+#file-viewer.messages-duplicate .td-line-number > .line-number.error-duplicate,
+.line-number.error-signing,
+.line-number.error {
     margin: -1px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid #000;
     font-weight: bold;
 }
-.code .notice, .code .warning, .code .error {
-    margin: -1px;
-}
 
-.gutter a.notice, .diff-bar .notice {
+/* Notice. */
+/* Duplicate. */
+#file-viewer.messages-duplicate .line-number.notice-duplicate,
+#file-viewer.messages-duplicate .diff-bar .notice-duplicate,
+/* Signing. */
+#file-viewer.messages-signing .line-number.notice-signing,
+#file-viewer.messages-signing .diff-bar .notice-signing,
+/* All. */
+#file-viewer.messages-all .line-number.notice,
+#file-viewer.messages-all .diff-bar .notice {
     background-color: #1A81FE;
     color: white;
 }
-.code .notice {
-    border: 1px dotted #1A81FE;
-}
 
-.gutter a.warning, .diff-bar .warning {
+/* Warning. */
+/* Duplicate. */
+#file-viewer.messages-duplicate .line-number.warning-duplicate,
+#file-viewer.messages-duplicate .diff-bar .warning-duplicate,
+/* Signing. */
+#file-viewer.messages-signing .line-number.warning-signing,
+#file-viewer.messages-signing .diff-bar .warning-signing,
+/* All. */
+#file-viewer.messages-all .line-number.warning,
+#file-viewer.messages-all .diff-bar .warning {
     background-color: #F0B500;
     color: white;
 }
-.code .warning {
-    border: 1px dotted #F0B500;
-}
 
-.gutter a.error, .diff-bar .error {
+/* Error. */
+/* Duplicate. */
+#file-viewer.messages-duplicate .line-number.error-duplicate,
+#file-viewer.messages-duplicate .diff-bar .error-duplicate,
+/* Signing. */
+.line-number.error-signing,
+.diff-bar .error-signing,
+/* All. */
+.line-number.error,
+.diff-bar .error {
     background-color: #D81E00;
     color: white;
-}
-.code .error {
-    border: 1px dotted #D81E00;
 }
 
 div.diff-bar {
@@ -328,11 +437,6 @@ div.diff-bar {
 
 #diff-wrapper {
     position: relative;
-}
-
-td.gutter, td.code {
-    padding-top: 0;
-    padding-bottom: 0;
 }
 
 .diff-bar {
@@ -450,7 +554,18 @@ td.gutter, td.code {
     overflow: visible !important;
 }
 
-.message-container:hover > .message {
+/* Notices. */
+#file-viewer.messages-all .message-container.message-notice:hover > .message,
+#file-viewer.messages-signing .message-container.message-notice-signing:hover > .message,
+#file-viewer.messages-ignored .message-container.message-notice-ignored:hover > .message,
+/* Warnings. */
+#file-viewer.messages-all .message-container.message-warning:hover > .message,
+#file-viewer.messages-signing .message-container.message-warning-signing:hover > .message,
+#file-viewer.messages-ignored .message-container.message-warning-ignored:hover > .message,
+/* Errors. */
+.message-container.message-error:hover > .message,
+.message-container.message-error-signing:hover > .message,
+#file-viewer.messages-ignored .message-container.message-error-ignored:hover > .message {
     display: block;
 }
 
