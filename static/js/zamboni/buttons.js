@@ -403,10 +403,12 @@ var installButton = function() {
         var opts = search ? {addPopup: false, addWarning: false} : {};
         versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
+        $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
+        $('#downloadAnyway').show();
         $button.addClass('concealed');
         versionsAndPlatforms({addPopup: false});
         $button.addClass('CTA');
-        $button.text('Only with Firefox -- Get Firefox Now!');
+        $button.text('Only with Firefox \u2014 Get Firefox Now!');
         $button.attr('href', 'https://www.mozilla.org/firefox/new/?scene=2&utm_source=addons.mozilla.org&utm_medium=referral&utm_campaign=non-fx-button#download-fx');
         $('#site-nonfx').hide();
     } else if (z.app == 'thunderbird') {
