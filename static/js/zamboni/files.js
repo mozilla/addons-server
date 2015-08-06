@@ -22,13 +22,13 @@ if (typeof diff_match_patch !== 'undefined') {
                     /* The syntax highlighter needs an extra space
                        to do it's work. */
                     case DIFF_INSERT:
-                        html.push('+ ' + lines[t] + '\n');
+                        html.push('+' + lines[t] + '\n');
                         break;
                     case DIFF_DELETE:
-                        html.push('- ' + lines[t] + '\n');
+                        html.push('-' + lines[t] + '\n');
                         break;
                     case DIFF_EQUAL:
-                        html.push('  ' + lines[t] + '\n');
+                        html.push(' ' + lines[t] + '\n');
                         break;
                 }
             }
@@ -91,8 +91,15 @@ if (typeof SyntaxHighlighter !== 'undefined') {
                 td_classes.push('delete');
                 line_classes.push('delete');
             } else {
+                var lines = vars.highlighted_lines || [];
+
                 vars.left_line += 1;
                 line_id = 'L' + vars.left_line;
+
+                var new_line;
+                if (vars.left_line in lines) {
+                    new_line = lines[vars.left_line];
+                }
 
                 line_attrs.push('data-linenumber="' + vars.left_line + '"')
 
@@ -100,13 +107,22 @@ if (typeof SyntaxHighlighter !== 'undefined') {
                     // Line addition.
                     td_classes.push('add');
                     line_classes.push('add');
+                    if (new_line) {
+                        code = '<code class="xml plain">+</code>' + new_line;
+                    }
                 } else {
                     // Common line.
                     vars.right_line += 1;
+                    if (new_line) {
+                        code = '<code class="xml plain">\u00a0</code>' + new_line;  // Non-breaking space.
+                    }
                 }
             }
         } else {
             line_attrs.push('data-linenumber="' + lineNumber + '"');
+            if (vars.lines) {
+                vars.lines[lineNumber] = code;
+            }
         }
 
         line_attrs.push('id="' + line_id + '"',
@@ -164,6 +180,12 @@ if (typeof SyntaxHighlighter !== 'undefined') {
 
         var line_order = Math.ceil(Math.log(lineNumbers.length) / Math.log(10)) + 1;
         var lines_width = 1.2 * line_order + 4;  // 1.2 ex width per digit, just to be safe, + 4 for padding.
+
+        if (SyntaxHighlighter.amo_vars.lines) {
+            // Just generating HTML for the diff highlighter.
+            // Bail early.
+            return '';
+        }
 
         html =
             '<div id="highlighter_' + this.id + '" class="' + classes.join(' ') + '">'
@@ -260,25 +282,38 @@ function bind_viewer(nodes) {
             var $diff = node.find('#diff'),
                 $content = node.find('#content');
 
-            if ($content && !$diff.length) {
+            if ($diff.length) {
+                var dmp = new diff_match_patch();
+
+                // Line diffs http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
+                var a = dmp.diff_linesToChars_($diff.siblings('.right').text(),
+                                               $diff.siblings('.left').text());
+                var diffs = dmp.diff_main(a[0], a[1], false);
+
+                dmp.diff_charsToLines_(diffs, a[2]);
+
+                $diff.text(dmp.diff_prettyHtml(diffs)).show();
+
+                var highlighted_lines = []
+                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': false,
+                                              'lines': highlighted_lines};
+
+
+                var $left = $diff.siblings('.left');
+                $('<div>').hide().append($left).insertAfter($diff);
+                SyntaxHighlighter.highlight({}, $left[0]);
+
+                /* Reset the syntax highlighter variables. */
+                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': true,
+                                              'highlighted_lines': highlighted_lines};
+                SyntaxHighlighter.highlight({}, $diff[0]);
+                // Note SyntaxHighlighter has nuked the node and replaced it.
+                $diff = node.find('#diff');
+            } else if ($content) {
                 SyntaxHighlighter.highlight({}, $content[0]);
                 // Note SyntaxHighlighter has nuked the node and replaced it.
             }
 
-            if ($diff.length) {
-                var dmp = new diff_match_patch();
-                // Line diffs http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
-                var a = dmp.diff_linesToChars_($diff.siblings('.right').text(), $diff.siblings('.left').text());
-                var diffs = dmp.diff_main(a[0], a[1], false);
-                dmp.diff_charsToLines_(diffs, a[2]);
-                $diff.text(dmp.diff_prettyHtml(diffs)).show();
-
-                /* Reset the syntax highlighter variables. */
-                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': true};
-                SyntaxHighlighter.highlight({}, $diff[0]);
-                // Note SyntaxHighlighter has nuked the node and replaced it.
-                $diff = node.find('#diff');
-            }
 
             this.compute_messages(node);
 
