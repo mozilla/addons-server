@@ -761,6 +761,7 @@ MINIFY_BUNDLES = {
             'js/impala/capabilities.js',
             'js/lib/format.js',
             'js/impala/carousel.js',
+            'js/zamboni/analytics.js',
 
             # Add-ons details
             'js/lib/jquery.cookie.js',
