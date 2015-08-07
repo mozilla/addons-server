@@ -37,6 +37,7 @@ tags
 vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
 node_modules
+.npm/
 commonplace_projects
 media/fireplace
 media/rocketfuel
