@@ -1,0 +1,5 @@
+--no-index
+--find-links https://pyrepo.addons.mozilla.org/
+--find-links https://pyrepo.addons.mozilla.org/wheelhouse/
+
+-r dev.txt

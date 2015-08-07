@@ -20,9 +20,7 @@ few easy steps::
     cd olympia
     pip install docker-compose
     docker-compose build  # Can be very long depending on your internet bandwidth.
-    docker-compose run web npm install  # Install the npm dependencies.
-    docker-compose run web make update_assets  # Compile the css files.
-    docker-compose run web make initialize_db  # Answer yes, and create your superuser when asked.
+    docker-compose run web make initialize_docker  # Answer yes, and create your superuser when asked.
     docker-compose up
     # Once it's all loaded, go to http://localhost:8000 and enjoy!
 
@@ -47,6 +45,12 @@ prefix, eg::
               export DOCKER_PREFIX="docker-compose run --rm web"
 
           The `make` command will then automatically add the prefix for you!
+
+Any time you update Olympia (e.g., running `git pull`), you should make sure to
+update your Docker image and database with any new requirements or migrations::
+
+    docker-compose build  # Installs any new Python requirements in `requirements/*.txt`
+    docker-compose run make update_docker  # Runs database migrations, installs npm modules, rebuilds assets.
 
 Please note that any command that would result in files added or modified
 outside of the `olympia` folder (eg modifying pip or npm dependencies) won't be

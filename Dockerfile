@@ -11,22 +11,22 @@ RUN yum update -y \
         curl \
         libjpeg-devel \
         cyrus-sasl-devel \
-        m2crypto \
         libxml2-devel \
         libxslt-devel \
         nodejs \
         zlib-devel \
-        mysql-community-libs-compat-5.6.14-3.el6.x86_64
+        mysql-community-libs-compat-5.6.14-3.el6.x86_64 \
+    && yum clean all
 
-ADD . /code
+# The version in the above image is ancient, and does not support the
+# --no-binary flag used in our requirements files.
+RUN pip install -U pip
+
+COPY requirements /pip/requirements/
+RUN cd /pip && \
+    pip install --build ./build --cache-dir ./cache \
+	--no-deps -r requirements/docker.txt && \
+    rm -r build cache
+
+RUN mkdir /code
 WORKDIR /code
-
-RUN mkdir -p /pip/{cache,build}
-
-ADD requirements /pip/requirements
-
-# Remove some compiled deps so we just use the packaged versions already installed.
-RUN sed -i 's/m2crypto.*$/# Removed in favour of packaged version/' /pip/requirements/compiled.txt
-
-# This cd into /pip ensures egg-links for git installed deps are created in /pip/src
-RUN cd /pip && pip install -b /pip/build --no-deps --download-cache /pip/cache -r /pip/requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/

@@ -5,7 +5,6 @@ web:
     - "8000:8000"
   volumes:
     - .:/code
-    - /pip-src  # To store editable pip packages' source.
   links:
     - memcached:memcached
     - mysqld:mysqld
