@@ -85,8 +85,8 @@ urlpatterns = patterns(
     ('^search/', include('search.urls')),
 
     # Javascript translations.
-    url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
-        {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
+    url('^jsi18n.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
+        {'domain': 'javascript', 'packages': []}, name='jsi18n'),
 
     # SAMO/API
     ('^api/', include('api.urls')),
