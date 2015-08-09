@@ -1,4 +1,4 @@
-.PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8
+.PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8 update_docker initialize_docker update_npm_deps
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -19,7 +19,10 @@ help:
 	@echo "  populate_data     to populate a new database"
 	@echo "  update_code       to update the git repository"
 	@echo "  update_deps       to update the python and npm dependencies"
+	@echo "  update_npm_deps   to update only the npm dependencies"
 	@echo "  update_db         to run the database migrations"
+	@echo "  initialize_docker to initialize a docker image"
+	@echo "  update_docker     to update a docker image"
 	@echo "  full_init         to init the code, the dependencies and the database"
 	@echo "  full_update       to update the code, the dependencies and the database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
@@ -67,16 +70,23 @@ populate_data:
 update_code:
 	$(DOCKER_PREFIX) git checkout master && git pull
 
-update_deps:
+update_deps: update_npm_deps
 	$(DOCKER_PREFIX) pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
+
+update_npm_deps:
 	$(DOCKER_PREFIX) npm install
 
 update_db:
 	$(DOCKER_PREFIX) schematic migrations
 
-update_assets:
+update_assets: update_npm_deps
 	$(DOCKER_PREFIX) python manage.py compress_assets
 	$(DOCKER_PREFIX) python manage.py collectstatic --noinput
+
+initialize_docker: initialize_db update_assets
+	$(MAKE) populate_data
+
+update_docker: update_db update_assets
 
 full_init: update_deps initialize_db populate_data update_assets
 
