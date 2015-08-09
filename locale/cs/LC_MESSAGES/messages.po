@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-08-03 17:30+0000\n"
+"PO-Revision-Date: 2015-08-09 09:35+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438623029.0\n"
+"X-POOTLE-MTIME: 1439112909.0\n"
 
 #: apps/addons/buttons.py:185
 msgid "Download Now"
@@ -4554,6 +4554,8 @@ msgstr "Příznaky doplňku"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:69
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
+"Tyto příznaky jsou použity k zařazení doplňku. Relevantní pouze pro "
+"zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -4570,6 +4572,8 @@ msgstr "Zobrazit zdrojový kód?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:90
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Určuje, zda může být zdrojový k doplňku zobrazen v našem online prohlížeči. "
+"Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -4586,6 +4590,8 @@ msgstr "Veřejné statistiky?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:102
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Určuje, zda mohou být statistiky použití zobrazeny v našem online "
+"prohlížeči. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -4602,6 +4608,8 @@ msgstr "Aktualizovat SDK?"
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"Je-li vybráno, pokusíme se automaticky aktualizovat jakmile budou vydány "
+"novější verze SDK. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4656,6 +4664,9 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, "
+"kde je váš doplněk. Nahrané obrázky musí mít některou z následujících "
+"přípon: .png, .jpg. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -4978,6 +4989,7 @@ msgstr "Staňte se redaktorem na AMO ještě dnes a pomozte s rychlejší kontro
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"Váš doplněk byl podepsán a je připraven k použití. Můžete jej stáhnout zde:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
@@ -4998,6 +5010,8 @@ msgstr "Váš doplněk nebude na tomto serveru veřejně dostupný."
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
 msgstr ""
+"Nové verze vašeho doplňku můžete nahrát na <a href=\"{0}\">stránkách pro "
+"vývojáře doplňků</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6165,6 +6179,9 @@ msgstr "Aktuální verze:"
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 msgstr ""
+"Toto je verze doplňku, která bude nainstalována, když někdo klikne na "
+"tlačítko Nainstalovat na stránkách addons.mozilla.org. Relevantní pouze pro "
+"zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:121
 msgid "Created:"
@@ -6258,6 +6275,8 @@ msgstr "Zobrazit blog &#9658;"
 #: apps/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+"Vyberte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke "
+"svému zdrojovému kódu. Relevantní pouze pro zveřejněné doplňky."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -6347,7 +6366,7 @@ msgstr "Dostávat příspěvky na svůj účet na PayPal či je zasílat organiz
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "Příspěvky jsou dostupné pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
@@ -6851,6 +6870,8 @@ msgstr "Nazařezený:"
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
 msgstr ""
+"Není distribuováno na {0}. Vývojáři budou nahrávat nové verze k podepsání a "
+"budou distribuovat doplněk sami. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
