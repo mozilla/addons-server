@@ -276,7 +276,21 @@ class TestOtherStuff(amo.tests.TestCase):
         response = client.get(url_with_build, follow=True)
         fmt = '%a, %d %b %Y %H:%M:%S GMT'
         expires = datetime.strptime(response['Expires'], fmt)
-        assert (expires - datetime.now()).days >= 365
+        assert (expires - datetime.now()).days >= 7
+
+    def test_jsi18n(self):
+        """Test that the jsi18n library has an actual catalog of translations
+        rather than just identity functions."""
+
+        en = self.client.get(reverse('jsi18n')).content
+        with self.activate('fr'):
+            fr = self.client.get(reverse('jsi18n')).content
+
+        assert en != fr
+
+        for content in (en, fr):
+            assert 'django.catalog = {' in content
+            assert '/* gettext identity library */' not in content
 
     def test_dictionaries_link(self):
         doc = pq(test.Client().get('/', follow=True).content)
