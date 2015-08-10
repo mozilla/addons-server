@@ -12,8 +12,7 @@ import amo
 import amo.models
 import amo.tests
 from amo.urlresolvers import reverse
-from addons.buttons import install_button, _install_button, big_install_button
-from addons.models import Addon
+from addons.buttons import install_button, big_install_button
 
 
 def setup():
@@ -33,7 +32,6 @@ class ButtonTest(amo.tests.TestCase):
         self.addon.slug = 'slug'
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
-        self.addon.backup_version = None
 
         self.version = v = Mock()
         v.is_compatible = False
@@ -68,14 +66,12 @@ class ButtonTest(amo.tests.TestCase):
         """Proxy for calling install_button."""
         template_mock = Mock()
         t_mock.return_value = template_mock
-        if 'show_backup' not in kwargs:
-            kwargs['show_backup'] = True
         install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
         return template_mock.render.call_args[0][0]['button']
 
     def render(self, **kwargs):
-        return PyQuery(_install_button(self.context, self.addon, **kwargs))
+        return PyQuery(install_button(self.context, self.addon, **kwargs))
 
     def get_file(self, platform):
         file = Mock()
@@ -459,7 +455,7 @@ class TestButtonHtml(ButtonTest):
         doc = self.render()
         eq_(doc('.contrib .os').text(), '')
 
-    @patch('addons.buttons._install_button')
+    @patch('addons.buttons.install_button')
     @patch('addons.helpers.statusflags')
     def test_big_install_button_xss(self, flags_mock, button_mock):
         # Make sure there's no xss in statusflags.
@@ -526,50 +522,6 @@ class TestButtonHtml(ButtonTest):
         eq_(install_shell.find('.d2c-reasons-popup ul li').length, 2)
 
 
-class TestBackup(ButtonTest):
-
-    def setUp(self):
-        super(TestBackup, self).setUp()
-        self.backup_version = Mock()
-        self.backup_version.is_unreviewed = False
-        self.backup_version.is_beta = False
-        self.backup_version.is_lite = False
-        self.backup_file = self.get_backup_file()
-        self.backup_version.all_files = [self.backup_file]
-        self.addon.backup_version = self.backup_version
-
-    def get_backup_file(self):
-        file = Mock()
-        file.platform = amo.PLATFORM_ALL.id
-        file.latest_xpi_url.return_value = 'xpi.backup'
-        file.get_url_path.return_value = 'xpi.backup.url'
-        file.status = amo.STATUS_PUBLIC
-        return file
-
-    def test_backup_appears(self):
-        doc = PyQuery(install_button(self.context, self.addon))
-        eq_(len(doc('.install-shell')), 2)
-        eq_(len(doc('.backup-button')), 1)
-
-    def test_backup_not_appears(self):
-        doc = PyQuery(install_button(self.context, self.addon,
-                                     show_backup=False))
-        eq_(len(doc('.install-shell')), 1)
-
-    def test_backup_version(self):
-        doc = PyQuery(install_button(self.context, self.addon))
-        eq_(doc('a')[1].get('href'), 'xpi.backup.url')
-
-    def test_big_install_button(self):
-        doc = PyQuery(big_install_button(self.context, self.addon))
-        eq_(len(doc('.install-shell')), 2)
-        eq_(len(doc('.backup-button')), 1)
-
-    def test_big_install_button_backup_version(self):
-        doc = PyQuery(big_install_button(self.context, self.addon))
-        eq_(doc('.backup-button a.download')[0].get('href'), 'xpi.backup.url')
-
-
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
@@ -578,23 +530,3 @@ class TestViews(amo.tests.TestCase):
         response = self.client.get(url, follow=True)
         doc = PyQuery(response.content)
         eq_(doc('[data-search]').attr('class'), 'install ')
-
-    def test_versions_no_backup(self):
-        url = reverse('addons.versions', args=['a11730'])
-        response = self.client.get(url)
-        doc = PyQuery(response.content)
-        eq_(len(doc('.backup-button')), 0)
-
-    def test_details_no_backup(self):
-        url = reverse('addons.detail', args=['a11730'])
-        response = self.client.get(url)
-        doc = PyQuery(response.content)
-        eq_(len(doc('.backup-button')), 0)
-
-    def test_details_backup(self):
-        addon = Addon.objects.get(id=11730)
-        addon.update(_backup_version=addon._current_version)
-        url = reverse('addons.detail', args=['a11730'])
-        response = self.client.get(url)
-        doc = PyQuery(response.content)
-        eq_(len(doc('.backup-button')), 1)

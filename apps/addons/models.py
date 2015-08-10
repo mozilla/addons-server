@@ -340,10 +340,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
-    # This is for Firefox only.
-    _backup_version = models.ForeignKey(
-        Version, related_name='___backup', db_column='backup_version',
-        null=True, on_delete=models.SET_NULL)
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
@@ -652,12 +648,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         return amo.VALID_STATUSES
 
-    def get_version(self, backup_version=False):
-        """
-        Retrieves the latest public version of an addon.
-        backup_version: if specified the highest file up to but *not* including
-                        this version will be found.
-        """
+    def get_version(self):
+        """Retrieve the latest public version of an addon."""
         if self.type == amo.ADDON_PERSONA:
             return
         try:
@@ -665,9 +657,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
             status_list = ','.join(map(str, status))
             fltr = {'files__status__in': status}
-            if backup_version:
-                fltr['apps__application'] = amo.FIREFOX.id
-                fltr['apps__min__version_int__lt'] = amo.FIREFOX.backup_version
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
@@ -701,13 +690,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 return True
             return False
 
-        backup = None
         current = self.get_version()
-        if current:
-            firefox_min = current.compatible_apps.get(amo.FIREFOX)
-            if (firefox_min and
-                    firefox_min.min.version_int > amo.FIREFOX.backup_version):
-                backup = self.get_version(backup_version=True)
 
         try:
             latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
@@ -718,7 +701,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             latest = None
         latest_id = latest and latest.id
 
-        diff = [self._backup_version, backup, self._current_version, current]
+        diff = [self._current_version, current]
 
         # Sometimes the DB is in an inconsistent state when this
         # signal is dispatched.
@@ -734,9 +717,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         updated = {}
         send_signal = False
-        if self._backup_version != backup:
-            updated.update({'_backup_version': backup})
-            send_signal = True
         if self._current_version != current:
             updated.update({'_current_version': current})
             send_signal = True
@@ -762,13 +742,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 self.update(**updated)
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
-                log.info(u'Version changed from backup: %s to %s, '
-                         u'current: %s to %s, latest: %s to %s for addon %s'
+                log.info(u'Version changed from current: %s to %s, '
+                         u'latest: %s to %s for addon %s'
                          % tuple(diff + [self]))
             except Exception, e:
-                log.error(u'Could not save version changes backup: %s to %s, '
-                          u'current: %s to %s, latest: %s to %s '
-                          u'for addon %s (%s)' %
+                log.error(u'Could not save version changes current: %s to %s, '
+                          u'latest: %s to %s for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
         return bool(updated)
@@ -944,13 +923,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return version.files.filter(binary_components=True).exists()
         return False
 
-    @property
-    def backup_version(self):
-        """Returns the backup version."""
-        if not self.current_version:
-            return
-        return self._backup_version
-
     def get_icon_dir(self):
         return os.path.join(helpers.user_media_path('addon_icons'),
                             '%s' % (self.id / 1000))
@@ -1058,8 +1030,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         current_ids = filter(None, (a._current_version_id for a in addons))
         latest_ids = filter(None, (a._latest_version_id for a in addons))
-        backup_ids = filter(None, (a._backup_version_id for a in addons))
-        all_ids = set(current_ids) | set(backup_ids) | set(latest_ids)
+        all_ids = set(current_ids) | set(latest_ids)
 
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
@@ -1070,8 +1041,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version
-            if addon._backup_version_id == version.id:
-                addon._backup_version = version
             if addon._latest_version_id == version.id:
                 addon._latest_version = version
 
@@ -1116,7 +1085,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        # Set _backup_version, _latest_version, _current_version
+        # Set _latest_version, _current_version
         Addon.attach_related_versions(addons, addon_dict=addon_dict)
 
         # Attach listed authors.

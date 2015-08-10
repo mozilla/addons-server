@@ -434,31 +434,6 @@ jQuery.fn.installButton = function() {
     return this.each(installButton);
 };
 
-jQuery.fn.showBackupButton = function() {
-    this.each(function() {
-        var $src, $dest,
-            $this = $(this),
-            $current = $this.parent().find('.install'),
-            attr = 'data-version-supported';
-        if ($this.find('.install').attr(attr) == 'true' &&
-            $current.attr(attr) == 'false') {
-            $current.closest('.install-shell').first().addClass('hidden');
-            $this.removeClass('hidden').show();
-            // Alter other elements of the page, if they exist.
-            $dest = $('#addon-summary table');
-            if ($dest.exists()) {
-                $src = $this.find('div.install');
-                $dest.find('.addon-compatible td')
-                     .text($src.attr('data-compatible-apps'));
-                $dest.find('.addon-updated time')
-                     .attr('datetime', $src.attr('data-lastupdated-isotime'))
-                     .text($src.attr('data-lastupdated-datetime'));
-                $('h2.addon span.version').text($src.attr('data-version'));
-            }
-        }
-    });
-};
-
 jQuery.fn.addPaypal = function(html, allowClick) {
     function checkForAddon(el) {
         var $this = $(el);

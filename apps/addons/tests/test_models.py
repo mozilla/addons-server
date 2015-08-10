@@ -493,7 +493,6 @@ class TestAddonModels(amo.tests.TestCase):
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
             addon._current_version
-            addon._backup_version
             addon.latest_version
 
     def _delete(self, addon_id):
@@ -1765,45 +1764,26 @@ class TestBackupVersion(amo.tests.TestCase):
             appversion.min = AppVersion.objects.get(version='4.0b1')
             appversion.save()
 
-    def test_no_backup_version(self):
-        self.addon.update_version()
-        eq_(self.addon.backup_version, None)
-        eq_(self.addon.current_version.version, '1.2.2')
-
     def test_no_current_version(self):
         for v in Version.objects.all():
             v.delete()
         self.addon.update(_current_version=None)
-        eq_(self.addon.backup_version, None)
         eq_(self.addon.current_version, None)
-
-    def test_has_backup_version(self):
-        self.setup_new_version()
-        assert self.addon.update_version()
-        eq_(self.addon.backup_version.version, '1.1.3')
-        eq_(self.addon.current_version.version, '1.2.2')
-
-    def test_backup_version(self):
-        self.setup_new_version()
-        assert self.addon.update_version()
-        eq_(self.addon.backup_version.version, '1.1.3')
 
     def test_firefox_versions(self):
         self.setup_new_version()
         assert self.addon.update_version()
-        backup = self.addon.backup_version.compatible_apps[amo.FIREFOX]
-        eq_(backup.max.version, '3.7a5pre')
-        eq_(backup.min.version, '3.0.12')
         current = self.addon.current_version.compatible_apps[amo.FIREFOX]
         eq_(current.max.version, '4.0b8pre')
         eq_(current.min.version, '3.0.12')
 
     def test_version_signals(self):
+        self.addon.update(_current_version=None)
         self.setup_new_version()
         version = self.addon.versions.all()[0]
-        assert not self.addon.backup_version
+        assert not self.addon.current_version
         version.save()
-        assert Addon.objects.get(pk=1865).backup_version
+        assert Addon.objects.get(pk=1865).current_version
 
     def test_update_version_theme(self):
         # Test versions do not get deleted when calling with theme.
