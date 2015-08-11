@@ -1,3 +1,6 @@
+import json
+from json.decoder import JSONArray
+
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
@@ -7,15 +10,16 @@ from tower import ugettext as _
 
 import amo
 from addons.models import Addon
+from amo.decorators import write
 from amo.urlresolvers import linkify_escape
-from files.models import File, FileUpload
+from files.models import File, FileUpload, ValidationAnnotation
 from files.utils import parse_addon
 from validator.constants import SIGNING_SEVERITIES
 from validator.version import Version
 from . import tasks
 
 
-def process_validation(validation, is_compatibility=False):
+def process_validation(validation, is_compatibility=False, file_hash=None):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
@@ -30,6 +34,9 @@ def process_validation(validation, is_compatibility=False):
     if not validation['ending_tier'] and validation['messages']:
         validation['ending_tier'] = max(msg.get('tier', -1)
                                         for msg in validation['messages'])
+
+    if file_hash:
+        ValidationComparator(validation).annotate_results(file_hash)
 
     limit_validation_results(validation)
 
@@ -88,6 +95,7 @@ def limit_validation_results(validation):
                          'warnings so %s messages were truncated. '
                          'After addressing the visible messages, '
                          "you'll be able to see the others.") % leftover_count,
+            'description': [],
             'compatibility_type': compat_type})
 
 
@@ -172,17 +180,46 @@ class ValidationAnnotator(object):
         self.task = chain(validate, save.subtask([file_.pk],
                                                  link_error=on_error))
 
+    @write
+    def update_annotations(self):
+        """Update the annotations for our file with the annotations for any
+        previous matching file, if it exists."""
+
+        if not (self.file and self.prev_file):
+            # We don't have two Files to work with. Nothing to do.
+            return
+
+        hash_ = self.file.original_hash
+        if ValidationAnnotation.objects.filter(file_hash=hash_).exists():
+            # We already have annotations for this file hash.
+            # Don't add any more.
+            return
+
+        comparator = ValidationComparator(
+            json.loads(self.file.validation.validation))
+
+        keys = [json.dumps(key) for key in comparator.messages.iterkeys()]
+
+        annos = ValidationAnnotation.objects.filter(
+            file_hash=self.prev_file.original_hash, message_key__in=keys)
+
+        ValidationAnnotation.objects.bulk_create(
+            ValidationAnnotation(file_hash=hash_, message_key=anno.message_key,
+                                 ignore_duplicates=anno.ignore_duplicates)
+            for anno in annos)
+
     @staticmethod
     def validate_file(file):
         """Return a subtask to validate a File instance."""
-        return tasks.validate_file.subtask([file.pk])
+        return tasks.validate_file.subtask([file.pk, file.original_hash])
 
     @staticmethod
     def validate_upload(upload, is_listed):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        return tasks.validate_file_path.subtask([upload.path, is_listed])
+        return tasks.validate_file_path.subtask([upload.path, upload.hash,
+                                                 is_listed])
 
     def find_previous_version(self, version):
         """Find the most recent previous version of this add-on, prior to
@@ -232,6 +269,24 @@ class ValidationAnnotator(object):
             # Only accept versions which come before the one we're validating.
             if Version(file_.version.version) < version:
                 return file_
+
+
+def JSONTuple(*args, **kw):
+    """Parse a JSON array, and return it in tuple form, along with the
+    character position where we stopped parsing. Simple wrapper around
+    the stock JSONArray parser."""
+    values, end = JSONArray(*args, **kw)
+    return tuple(values), end
+
+
+class HashableJSONDecoder(json.JSONDecoder):
+    """A JSON decoder which deserializes arrays as tuples rather than lists."""
+    def __init__(self, *args, **kwargs):
+        super(HashableJSONDecoder, self).__init__()
+        self.parse_array = JSONTuple
+        self.scan_once = json.scanner.py_make_scanner(self)
+
+json_decode = HashableJSONDecoder().decode
 
 
 class ValidationComparator(object):
@@ -305,7 +360,8 @@ class ValidationComparator(object):
         # The `ignore_duplicates` flag will be set by editors, to overrule
         # the basic signing severity heuristic. If it's present, it takes
         # precedence.
-        low_severity = message.get('signing_severity') in ('trivial', 'low')
+        low_severity = (message.get('type') != 'error' and
+                        message.get('signing_severity') in ('trivial', 'low'))
         return message.get('ignore_duplicates', low_severity)
 
     def compare_results(self, validation):
@@ -336,6 +392,8 @@ class ValidationComparator(object):
                     msg['ignored'] = self.is_ignorable(prev_msg)
 
             if severity:
+                if 'ignore_duplicates' not in msg and self.message_key(msg):
+                    msg['ignore_duplicates'] = self.is_ignorable(msg)
                 if msg.get('ignored'):
                     ignored_summary[severity] += 1
                 else:
@@ -344,3 +402,22 @@ class ValidationComparator(object):
         validation['signing_summary'] = signing_summary
         validation['signing_ignored_summary'] = ignored_summary
         return validation
+
+    def annotate_results(self, file_hash):
+        """Annotate our `validation` result set with any stored annotations
+        for a file with `file_hash`."""
+
+        annotations = (ValidationAnnotation.objects
+                       .filter(file_hash=file_hash,
+                               ignore_duplicates__isnull=False)
+                       .values_list('message_key', 'ignore_duplicates'))
+
+        for message_key, ignore_duplicates in annotations:
+            key = json_decode(message_key)
+            msg = self.messages.get(key)
+            if msg:
+                msg['ignore_duplicates'] = ignore_duplicates
+
+        for msg in self.messages.itervalues():
+            if 'ignore_duplicates' not in msg and 'signing_severity' in msg:
+                msg['ignore_duplicates'] = self.is_ignorable(msg)

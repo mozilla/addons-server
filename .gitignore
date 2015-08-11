@@ -4,7 +4,7 @@ settings_local_*.py
 local_settings.py
 shellng_local.py
 *.py[co]
-*.sw[po]
+.*.sw?
 .coverage
 .vagrant
 pip-log.txt
@@ -33,6 +33,8 @@ media/external/*
 vendor
 .nose*
 tmp/*
+cache/*
+dist/*
 tags
 vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
