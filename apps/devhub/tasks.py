@@ -5,12 +5,14 @@ import os
 import socket
 import urllib2
 from copy import deepcopy
+from functools import wraps
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
+from celery.worker.job import Request
 from celery.exceptions import SoftTimeLimitExceeded
 from celeryutils import task
 from django_statsd.clients import statsd
@@ -49,8 +51,45 @@ def validate(file_, listed=None):
 validator.ValidationTimeout = SoftTimeLimitExceeded
 
 
-validation_task = task(ignore_result=False,  # Required for groups/chains.
-                       soft_time_limit=settings.VALIDATOR_TIMEOUT)
+# This shouldn't be necessary, but we currently use an ancient version of
+# Celery, and the wrapper in celeryutils is full of cruft, so we need
+# to go to extraordinary lengths to avoid storing errors.
+# TODO: Upgrade celery and cleanup/remove celeryutils so this can be removed.
+def task_strategy(task, app, consumer):
+    """A slightly modified version of celery.worker.strategy.default
+    which uses a Request that does not store errors."""
+    hostname = consumer.hostname
+    eventer = consumer.event_dispatcher
+    handle = consumer.on_task
+    connection_errors = consumer.connection_errors
+
+    class Req(Request):
+        # Prevent celery from storing a SoftTimeLimitExceeded exception as the
+        # task result even if we've handled it.
+        store_errors = False
+
+    def task_message_handler(message, body, ack):
+        handle(Req(body, on_ack=ack, app=app, hostname=hostname,
+                   eventer=eventer, task=task,
+                   connection_errors=connection_errors,
+                   delivery_info=message.delivery_info))
+    return task_message_handler
+
+
+def validation_task(fn):
+    """Wrap a validation task so that it runs with the correct flags."""
+
+    @task(Strategy='devhub.tasks:task_strategy',
+          ignore_result=False,  # Required for groups/chains.
+          soft_time_limit=settings.VALIDATOR_TIMEOUT)
+    @wraps(fn)
+    def wrapper(*args, **kw):
+        try:
+            return fn(*args, **kw)
+        except Exception, e:
+            log.exception('Unhandled error during validation: %r' % e)
+            return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION)
+    return wrapper
 
 
 @validation_task
