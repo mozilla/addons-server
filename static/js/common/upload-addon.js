@@ -260,14 +260,96 @@
                 }
             });
 
+            $('#id_admin_override_validation').addClass('addon-upload-failure-dependant')
+                .change(function () {
+                    if ($(this).attr('checked')) {
+                        // TODO: Disable these when unchecked, or bounce
+                        // between upload_errors and upload_success
+                        // handlers? I think the latter would mostly be a
+                        // bad idea, since failed validation might give us
+                        // the wrong results, and admins overriding
+                        // validation might need some additional leeway.
+                        $('.platform:hidden').show();
+                        $('.platform label').removeClass('platform-disabled');
+                        $('.addon-upload-dependant').attr('disabled', false);
+                    } else {
+                        $('.addon-upload-dependant').attr('disabled', true);
+                    }
+                });
+            $('.addon-upload-failure-dependant').attr('disabled', true);
+
+            var $newForm = $('.new-addon-file');
+            var unlistedAddons = $newForm.data('unlisted-addons');
+            var $isUnlistedCheckbox = $('#id_is_unlisted');
+            var $isSideloadCheckbox = $('#id_is_sideload');
+
+            function isUnlisted() {
+              // True if there's a '#id_is_unlisted' checkbox that is checked, or a
+              // 'addon-is-listed' data on the new file form that is true.
+              return (($isUnlistedCheckbox.length && $isUnlistedCheckbox.is(':checked')) ||
+                      (typeof($newForm.data('addon-is-listed')) != 'undefined' && !$newForm.data('addon-is-listed')));
+            }
+
+            function isSideload() {
+              // True if there's a '#id_is_sideload' checkbox that is checked, or a
+              // 'addon-is-sideload' data on the new file form that is true.
+              return (($isSideloadCheckbox.length && $isSideloadCheckbox.is(':checked')) ||
+                      (typeof($newForm.data('addon-is-sideload')) != 'undefined' && $newForm.data('addon-is-sideload')));
+            }
+
+            if (unlistedAddons) {
+              // is_unlisted checkbox: should the add-on be listed on AMO? If not,
+              // change the addon upload button's data-upload-url.
+              // If this add-on is unlisted, then tell the upload view so
+              // it'll run the validator with the "listed=False"
+              // parameter.
+              var $betaWarningLabel = $('span.beta-warning');
+              var $isSideloadLabel = $('label[for=id_is_sideload]');
+              var $isManualReview = $('#manual-review');
+              var $submitAddonProgress = $('.submit-addon-progress');
+              function updateListedStatus() {
+                if (!isUnlisted()) {  // It's a listed add-on.
+                  // /!\ For some reason, $upload_field.data('upload-url', val)
+                  // doesn't correctly set the value for the code that uses it
+                  // (in upload-base.js), at least in this context, so it
+                  // doesn't upload to the correct url. Using
+                  // .attr('data-upload-url', val) instead fixes that.
+                  $upload_field.attr('data-upload-url', $upload_field.data('upload-url-listed'));
+                  $betaWarningLabel.hide();
+                  $isSideloadLabel.hide();
+                  $isSideloadCheckbox.attr('checked', false);
+                  $submitAddonProgress.removeClass('unlisted');
+                } else {  // It's an unlisted add-on.
+                  if (isSideload()) {  // It's a sideload add-on, not eligible for automated signing.
+                    $upload_field.attr('data-upload-url', $upload_field.data('upload-url-sideload'));
+                  } else {
+                    $upload_field.attr('data-upload-url', $upload_field.data('upload-url-unlisted'));
+                  }
+                  $betaWarningLabel.show();
+                  $isSideloadLabel.show();
+                  $submitAddonProgress.addClass('unlisted');
+                }
+                /* Don't allow submitting, need to reupload/revalidate the file. */
+                $('.addon-upload-dependant').attr('disabled', true);
+                $('.addon-upload-failure-dependant').attr({'disabled': true,
+                                                           'checked': false});
+                $('.upload-status').remove();
+                $isManualReview.hide();
+              }
+              $isUnlistedCheckbox.bind('change', updateListedStatus);
+              $isSideloadCheckbox.bind('change', updateListedStatus);
+              updateListedStatus();
+            }
+
+            $('#id_is_manual_review').bind('change', function() {
+                $('.addon-upload-dependant').attr('disabled', !($(this).is(':checked')));
+            });
 
             $upload_field.bind("upload_success_results", function(e, file, results) {
                 // If the addon is detected as beta, automatically check
                 // the "beta" input, but only if the addon is listed.
-                var $new_form = $('.new-addon-file');
-                var isUnlisted = ($('#id_is_unlisted').length && $('#id_is_unlisted').is(':checked')) || !$new_form.data('addon-is-listed')
                 var $beta = $('#id_beta');
-                if (results.beta && !isUnlisted) {
+                if (results.beta && !isUnlisted()) {
                   $beta.prop('checked', true);
                   $('.beta-status').show();
                 } else {
@@ -337,11 +419,11 @@
 
                     $("<strong>").text(message).appendTo(upload_results);
 
-                    if ($new_form.data('unlisted-addons')) {
+                    if (unlistedAddons) {
                       // Specific messages for unlisted addons.
-                      var isSideload = $('#id_is_sideload').is(':checked') || $new_form.data('addon-is-sideload');
-                      var automaticValidation = $('#create-addon').data('automatic-validation') || $new_form.data('automatic-validation');
-                      if (isUnlisted) {
+                      var isSideload = $('#id_is_sideload').is(':checked') || $newForm.data('addon-is-sideload');
+                      var automaticValidation = $('#create-addon').data('automatic-validation') || $newForm.data('automatic-validation');
+                      if (isUnlisted()) {
                         if (isSideload) {
                           $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
                         } else {
