@@ -4,12 +4,13 @@ from copy import deepcopy
 
 import mock
 
+from celery.result import AsyncResult
 from django.conf import settings
 
 import amo
 import amo.tests
 from addons.models import Addon
-from devhub import utils
+from devhub import tasks, utils
 from devhub.tasks import annotate_validation_results
 from files.models import File, FileUpload, FileValidation, ValidationAnnotation
 from versions.models import Version
@@ -639,6 +640,47 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
             self.file.update(status=status)
             self.check_file(self.file_1_1, None)
+
+    @mock.patch('devhub.utils.chain')
+    def test_run_once_file(self, chain):
+        """Tests that only a single validation task is run for a given file."""
+        task = mock.Mock()
+        chain.return_value = task
+        task.delay.return_value = mock.Mock(task_id='42')
+
+        assert isinstance(tasks.validate(self.file), mock.Mock)
+        assert task.delay.call_count == 1
+
+        assert isinstance(tasks.validate(self.file), AsyncResult)
+        assert task.delay.call_count == 1
+
+        assert isinstance(tasks.validate(self.file_1_1), mock.Mock)
+        assert task.delay.call_count == 2
+
+    @mock.patch('devhub.utils.chain')
+    def test_run_once_file_upload(self, chain):
+        """Tests that only a single validation task is run for a given file
+        upload."""
+        task = mock.Mock()
+        chain.return_value = task
+        task.delay.return_value = mock.Mock(task_id='42')
+
+        assert isinstance(tasks.validate(self.file_upload), mock.Mock)
+        assert task.delay.call_count == 1
+
+        assert isinstance(tasks.validate(self.file_upload), AsyncResult)
+        assert task.delay.call_count == 1
+
+    def test_cache_key(self):
+        """Tests that the correct cache key is generated for a given object."""
+
+        assert (utils.ValidationAnnotator(self.file).cache_key ==
+                'validation-task:files.File:{0}:None'.format(self.file.pk))
+
+        assert (utils.ValidationAnnotator(self.file_upload, listed=False)
+                .cache_key ==
+                'validation-task:files.FileUpload:{0}:False'.format(
+                    self.file_upload.pk))
 
 
 class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):

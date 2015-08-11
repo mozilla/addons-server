@@ -39,7 +39,7 @@
         data-annotate-url="{{ annotate_url }}"
      {% endif %}
      {% if validation_data %}
-        data-validation="{{ validation_data }}"
+        data-validation="{{ validation_data|json }}"
      {% endif %}
      data-validateurl="{{ validate_url }}">
   {% if result_type == 'compat' %}

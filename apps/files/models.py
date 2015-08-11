@@ -104,6 +104,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         else:
             return True
 
+    @property
+    def automated_signing(self):
+        """True if this file is eligible for automated signing. This currently
+        means that either its add-on is eligible for automated signing, or
+        this file is a beta version."""
+        return (self.version.addon.automated_signing or
+                self.status == amo.STATUS_BETA)
+
     def is_mirrorable(self):
         return self.status in amo.MIRROR_STATUSES
 

@@ -15,6 +15,7 @@ from django.views.decorators.cache import never_cache
 from tower import ugettext as _
 
 import amo
+import devhub.tasks
 from abuse.models import AbuseReport
 from access import acl
 from addons.decorators import addon_view, addon_view_factory
@@ -531,6 +532,15 @@ def review(request, addon):
             addon.update(admin_review=False)
         amo.messages.success(request, _('Review successfully processed.'))
         return redirect(redirect_url)
+
+    # Kick off validation tasks for any files in this version which don't have
+    # cached validation, since editors will almost certainly need to access
+    # them. But only if we're not running in eager mode, since that could mean
+    # blocking page load for several minutes.
+    if not settings.CELERY_ALWAYS_EAGER:
+        for file_ in version.files.all():
+            if not file_.has_been_validated:
+                devhub.tasks.validate(file_)
 
     canned = AddonCannedResponse.objects.all()
     actions = form.helper.actions.items()
