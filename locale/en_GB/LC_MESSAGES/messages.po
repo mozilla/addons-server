@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 13:03-0700\n"
-"PO-Revision-Date: 2015-08-04 09:55:34.896392\n"
+"PO-Revision-Date: 2015-08-10 23:46:25.469849\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -361,6 +361,9 @@ msgid ""
 "make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you "
+"make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
+"through <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
@@ -369,37 +372,40 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a> through <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you "
+"make a small donation to <a href=\"%(charity_url)s\">%(charity_name)s</a> "
+"through <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "How much would you like to donate?"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "The maximum donation amount is {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "The minimum donation amount is {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Donation amount must be a number."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "A one-time suggested donation of {0}"
 
 #. {0} is a currency symbol (e.g., $),
 #.                    {1} is an amount input field
 #: apps/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "A one-time donation of {0} {1}"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Leave a comment or request with your donation ."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:74
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:20
@@ -407,34 +413,34 @@ msgstr ""
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 #: templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(optional)"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
-msgstr ""
+msgstr "Make Donation"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "Contacting PayPal"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
-msgstr ""
+msgstr "No Thanks"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Donation made, thank you."
 
 #: apps/addons/templates/addons/details_box.html:10
 #: apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
-msgstr ""
+msgstr "No restart required"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:30
 #: apps/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Add-on Information for {0}"
 
 #: apps/addons/templates/addons/details_box.html:34
 #: apps/addons/templates/addons/persona_detail_table.html:3
@@ -442,14 +448,14 @@ msgstr ""
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:450 apps/devhub/views.py:75
 msgid "Updated"
-msgstr ""
+msgstr "Updated"
 
 #: apps/addons/templates/addons/details_box.html:42
 #: apps/addons/templates/addons/mobile/details.html:71
 #: apps/devhub/templates/devhub/addons/edit/support.html:43
 #: apps/discovery/templates/discovery/addons/detail.html:87
 msgid "Website"
-msgstr ""
+msgstr "Web Site"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51
@@ -457,28 +463,28 @@ msgstr ""
 #: apps/search/templates/search/results.html:72
 #: apps/versions/templates/versions/version.html:21
 msgid "Works with"
-msgstr ""
+msgstr "Works with"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Visibility"
 
 #: apps/addons/templates/addons/details_box.html:61
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
-msgstr ""
+msgstr "Hidden"
 
 #: apps/addons/templates/addons/details_box.html:63
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Unlisted"
-msgstr ""
+msgstr "Unlisted"
 
 #: apps/addons/templates/addons/details_box.html:71
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Required Add-ons"
 
 #: apps/addons/templates/addons/details_box.html:85
 #: apps/addons/templates/addons/persona_detail_table.html:15
@@ -496,15 +502,15 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:24
 #: apps/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
-msgstr ""
+msgstr "View Statistics"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Average Daily Users"
 
 #: apps/addons/templates/addons/details_box.html:113
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Abuse Reports"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125
@@ -515,25 +521,25 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/policy_form.html:20
 #: templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privacy Policy"
 
 #: apps/addons/templates/addons/details_box.html:128
 #: apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "View Privacy Policy"
 
 #: apps/addons/templates/addons/details_box.html:134
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 #: apps/addons/templates/addons/details_box.html:175
 #: apps/addons/templates/addons/details_box.html:235
 msgid "More about this add-on"
-msgstr ""
+msgstr "More about this add-on"
 
 #: apps/addons/templates/addons/details_box.html:184
 msgid "Image Gallery"
-msgstr ""
+msgstr "Image Gallery"
 
 #: apps/addons/templates/addons/details_box.html:194
 msgctxt "addons_display_developer_comments"
@@ -543,7 +549,7 @@ msgstr ""
 #: apps/addons/templates/addons/details_box.html:203
 #: apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
-msgstr ""
+msgstr "Development Channel"
 
 #: apps/addons/templates/addons/details_box.html:206
 #: apps/addons/templates/addons/mobile/details.html:124
@@ -552,11 +558,14 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
+"The Development Channel lets you test an experimental new version of this "
+"add-on before it's released to the general public. Once you install the "
+"development version, you will continue to get updates from this channel."
 
 #: apps/addons/templates/addons/details_box.html:211
 #: apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
-msgstr ""
+msgstr "Install development version"
 
 #: apps/addons/templates/addons/details_box.html:215
 msgid ""
@@ -566,15 +575,20 @@ msgid ""
 "receiving development updates, reinstall the default version from the link "
 "above."
 msgstr ""
+"<strong>Caution:</strong> Development versions of this add-on have not been "
+"reviewed by Mozilla. Once you install a development version you will "
+"continue to receive development updates from this developer. To stop "
+"receiving development updates, reinstall the default version from the link "
+"above."
 
 #: apps/addons/templates/addons/details_box.html:224
 #: apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
-msgstr ""
+msgstr "Version {0}:"
 
 #: apps/addons/templates/addons/details_box.html:238
 msgid "Nothing to see here! The developer did not include any details."
-msgstr ""
+msgstr "Nothing to see here! The developer did not include any details."
 
 #: apps/addons/templates/addons/details_box.html:255
 msgctxt "addons_display_release_notes"
@@ -586,7 +600,7 @@ msgstr ""
 #: apps/addons/templates/addons/eula.html:6
 #: apps/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "End-User Licence Agreement for {0}"
 
 #: apps/addons/templates/addons/eula.html:17
 #: apps/addons/templates/addons/eula.html:21
@@ -595,7 +609,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "End-User Licence Agreement"
 
 #: apps/addons/templates/addons/eula.html:23
 #: apps/discovery/templates/discovery/addons/eula.html:13
@@ -603,26 +617,28 @@ msgid ""
 "%(addon_name)s requires that you accept the following End-User License "
 "Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s requires that you accept the following End-User Licence "
+"Agreement before installation can proceed:"
 
 #: apps/addons/templates/addons/eula.html:34
 #: apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Back to {0}…"
 
 #: apps/addons/templates/addons/home.html:3
 #: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:228
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Add-ons for {0}"
 
 #: apps/addons/templates/addons/home.html:10
 #: apps/addons/templates/addons/home.html:51
 #: apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Featured Extensions"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Popular Extensions"
 
 #: apps/addons/templates/addons/home.html:42
 #: apps/amo/templates/amo/side_nav.html:3
@@ -631,11 +647,11 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232
 #: apps/browse/views.py:275 apps/browse/views.py:472
 msgid "Most Popular"
-msgstr ""
+msgstr "Most Popular"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "All »"
 
 #: apps/addons/templates/addons/home.html:52
 #: apps/addons/templates/addons/home.html:61
@@ -643,29 +659,29 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "See all »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Up &amp; Coming Extensions"
 
 #: apps/addons/templates/addons/home.html:69
 #: apps/browse/templates/browse/personas/category_landing.html:61
 #: apps/discovery/templates/discovery/pane.html:97
 msgid "Featured Themes"
-msgstr ""
+msgstr "Featured Themes"
 
 #: apps/addons/templates/addons/home.html:77
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr ""
+msgstr "Featured Collections"
 
 #: apps/addons/templates/addons/listing_header.html:3
 #: apps/addons/templates/addons/impala/listing/sorter.html:2
 #: apps/amo/templates/amo/mobile/sort_by.html:2
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:126
 msgid "Sort by:"
-msgstr ""
+msgstr "Sort by:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -677,7 +693,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "Updated {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10
@@ -688,27 +704,27 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
-msgstr ""
+msgstr "Added {0}"
 
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s weekly download"
+msgstr[1] "%(num)s weekly downloads"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s user"
+msgstr[1] "%(num)s users"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
 #: apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} weekly download"
+msgstr[1] "{0} weekly downloads"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61
@@ -717,32 +733,32 @@ msgstr[1] ""
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} user"
+msgstr[1] "{0} users"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Payment cancelled"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Payment completed"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
-msgstr ""
+msgstr "Return to the addon."
 
 #: apps/addons/templates/addons/performance_note.html:4
 #: apps/addons/templates/addons/performance_note.html:22
 #: apps/addons/templates/addons/impala/performance_note.html:4
 #: apps/addons/templates/addons/impala/performance_note.html:20
 msgid "This add-on can slow down Firefox."
-msgstr ""
+msgstr "This add-on can slow down Firefox."
 
 #: apps/addons/templates/addons/performance_note.html:5
 #: apps/amo/templates/amo/site_nav.html:76
 msgid "More&hellip;"
-msgstr ""
+msgstr "More&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:8
 #: apps/addons/templates/addons/impala/performance_note.html:8
@@ -750,13 +766,15 @@ msgid ""
 "<b>Performance warning:</b> Installing this add-on can slow down Firefox's "
 "start-up by <b>%(amount)s%%</b>."
 msgstr ""
+"<b>Performance warning:</b> Installing this add-on can slow down Firefox's "
+"start-up by <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14
 #: apps/addons/templates/addons/performance_note.html:27
 #: apps/addons/templates/addons/impala/performance_note.html:14
 #: apps/addons/templates/addons/impala/performance_note.html:26
 msgid "Learn more&hellip;"
-msgstr ""
+msgstr "Learn more&hellip;"
 
 #: apps/addons/templates/addons/performance_note.html:23
 #: apps/addons/templates/addons/impala/performance_note.html:22
@@ -764,6 +782,8 @@ msgid ""
 "Installing this add-on can slow down Firefox's start-up by "
 "<b>%(amount)s%%</b>."
 msgstr ""
+"Installing this add-on can slow down Firefox's start-up by "
+"<b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/persona_detail.html:19
 #: apps/addons/templates/addons/impala/details.html:109
@@ -773,27 +793,27 @@ msgstr ""
 #: apps/editors/templates/editors/review.html:31
 #: apps/perf/templates/perf/index.html:78
 msgid "by"
-msgstr ""
+msgstr "by"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:34
 msgid "More {0} Themes"
-msgstr ""
+msgstr "More {0} Themes"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "See all {0} Themes"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
-msgstr ""
+msgstr "More by this Artist"
 
 #: apps/addons/templates/addons/persona_detail.html:54
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "See all Themes by this Artist"
 
 #: apps/addons/templates/addons/persona_detail.html:73
 #: apps/addons/templates/addons/mobile/home.html:38
@@ -805,20 +825,20 @@ msgstr ""
 #: apps/localizers/templates/localizers/sidebar.html:24
 #: templates/categories.html:7
 msgid "Categories"
-msgstr ""
+msgstr "Categories"
 
 #: apps/addons/templates/addons/persona_detail_table.html:10
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:3
 #: apps/editors/templates/editors/themes/deleted.html:19
 #: apps/editors/templates/editors/themes/themes.html:25
 msgid "Artist"
-msgstr ""
+msgstr "Artist"
 
 #: apps/addons/templates/addons/persona_detail_table.html:19
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:14
 #: apps/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr ""
+msgstr "Daily Users"
 
 #. The License for this add-on.
 #: apps/addons/templates/addons/persona_detail_table.html:26
@@ -828,21 +848,21 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/edit.html:89
 #: apps/editors/templates/editors/themes/themes.html:41
 msgid "License"
-msgstr ""
+msgstr "Licence"
 
 #: apps/addons/templates/addons/persona_preview.html:12
 #: apps/constants/base.py:49
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Awaiting Review"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176
 #: apps/constants/base.py:43 apps/editors/helpers.py:56
 msgid "Rejected"
-msgstr ""
+msgstr "Rejected"
 
 #: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:155
 msgid "Approved"
-msgstr ""
+msgstr "Approved"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/persona_preview.html:26
@@ -850,18 +870,18 @@ msgstr ""
 #: apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> user"
+msgstr[1] "<strong>{0}</strong> users"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Hover to Preview"
 
 #: apps/addons/templates/addons/persona_preview.html:46
 #: apps/addons/templates/addons/persona_preview.html:48
 #: apps/reviews/templates/reviews/add.html:15
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: apps/addons/templates/addons/persona_preview.html:57
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:16
@@ -876,17 +896,17 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/describe.html:29
 #: apps/editors/templates/editors/review.html:256
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: apps/addons/templates/addons/persona_preview.html:66
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "by {0} on {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75
 #: apps/reviews/helpers.py:16
@@ -894,26 +914,28 @@ msgstr ""
 #: apps/reviews/templates/reviews/reviews_link.html:21
 #: apps/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr ""
+msgstr "Not yet rated"
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> users"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"To install this add-on and thousands more, <b>get Firefox</b>, a free and "
+"open web browser from Mozilla."
 
 #: apps/addons/templates/addons/popups.html:21
 #: apps/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Learn more about Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
@@ -923,63 +945,78 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the "
 "downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save "
+"the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons "
+"from the Tools menu.</li> <li>From the options button next to the add-on "
+"search field, select \"Install Add-on From File...\" and locate the "
+"downloaded add-on.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"To install this Theme, <b>get Thunderbird</b>, a free and open source email "
+"client from Mozilla Messaging and install the Personas Plus add-on."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Learn more about Thunderbird"
 
 #: apps/addons/templates/addons/popups.html:48
 msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"To install this Theme and thousands more, <b>get Firefox</b>, a free and "
+"open web browser from Mozilla."
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
+"This add-on has not been updated to work with your version of %(app)s."
 
 #: apps/addons/templates/addons/popups.html:63
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
-msgstr ""
+msgstr "Install Anyway"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
 msgstr ""
+"This add-on requires a version of Firefox that has not been released yet."
 
 #: apps/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Help test new Firefox Versions"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid ""
 "This add-on requires %(app)s {new_version}. You are currently using %(app)s "
 "{old_version}."
 msgstr ""
+"This add-on requires %(app)s {new_version}. You are currently using %(app)s "
+"{old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82
 #: apps/addons/templates/addons/popups.html:102
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "Upgrade {0}"
 
 #: apps/addons/templates/addons/popups.html:85
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "or view <a href=\"%(href)s\">older versions of this add-on</a>."
 
 #: apps/addons/templates/addons/popups.html:97
 msgid ""
 "This Persona requires %(app)s %(new_version)s. You are currently using "
 "%(app)s {old_version}."
 msgstr ""
+"This Persona requires %(app)s %(new_version)s. You are currently using "
+"%(app)s {old_version}."
 
 #: apps/addons/templates/addons/popups.html:109
 msgid ""
@@ -987,12 +1024,17 @@ msgid ""
 "can't be installed on release versions of Firefox. Be careful when "
 "installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and "
+"can't be installed on release versions of Firefox. Be careful when "
+"installing third-party software that might harm your computer."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
 "<strong>Please note:</strong> This add-on is not compatible with your "
 "operating system."
 msgstr ""
+"<strong>Please note:</strong> This add-on is not compatible with your "
+"operating system."
 
 #: apps/addons/templates/addons/popups.html:137
 #: apps/addons/templates/addons/impala/button.html:70
@@ -1000,24 +1042,26 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
+"This add-on is not compatible with your version of %(app)s because of the "
+"following:"
 
 #: apps/addons/templates/addons/popups.html:142
 #: apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
-msgstr ""
+msgstr "View other versions"
 
 #: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "This add-on is not compatible with your version of %(app)s."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Privacy Policy for {0}"
 
 #: apps/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "QR code for add-on"
 
 #: apps/addons/templates/addons/qr_code.html:6
 msgid ""
@@ -1025,13 +1069,16 @@ msgid ""
 "your phone. (You'll need a QR reader. Search your phone's marketplace if "
 "don't have one.)"
 msgstr ""
+"Want {0} on your mobile Firefox? Scan this QR code to install directly to "
+"your phone. (You'll need a QR reader. Search your phone's marketplace if "
+"don't have one.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
 #: apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:332
 msgid "Report Abuse"
-msgstr ""
+msgstr "Report Abuse"
 
 #: apps/addons/templates/addons/report_abuse.html:10
 msgid ""
@@ -1039,11 +1086,14 @@ msgid ""
 "has security or privacy issues, please use the form below to describe your "
 "concerns. Please do not use this form for any other reason."
 msgstr ""
+"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or "
+"has security or privacy issues, please use the form below to describe your "
+"concerns. Please do not use this form for any other reason."
 
 #: apps/addons/templates/addons/report_abuse.html:23
 #: apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
-msgstr ""
+msgstr "Send Report"
 
 #: apps/addons/templates/addons/report_abuse.html:25
 #: apps/addons/templates/addons/mobile/eula.html:16
@@ -1069,29 +1119,29 @@ msgstr ""
 #: apps/translations/templates/translations/trans-menu.html:62
 #: apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: apps/addons/templates/addons/review_add_box.html:4
 #: apps/addons/templates/addons/impala/review_add_box.html:6
 msgid "What do you think?"
-msgstr ""
+msgstr "What do you think?"
 
 #: apps/addons/templates/addons/review_add_box.html:8
 #: apps/addons/templates/addons/impala/review_add_box.html:10
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Please <a href=\"%(login)s\">log in</a> to submit a review"
 
 #: apps/addons/templates/addons/review_add_box.html:17
 #: apps/addons/templates/addons/impala/review_add_box.html:19
 #: apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr ""
+msgstr "Review:"
 
 #: apps/addons/templates/addons/review_add_box.html:18
 #: apps/addons/templates/addons/impala/review_add_box.html:20
 #: apps/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
-msgstr ""
+msgstr "Rating:"
 
 #: apps/addons/templates/addons/review_add_box.html:19
 #: apps/addons/templates/addons/impala/review_add_box.html:21
@@ -1099,7 +1149,7 @@ msgstr ""
 #: apps/reviews/templates/reviews/edit_review.html:15
 #: apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr ""
+msgstr "Submit review"
 
 #: apps/addons/templates/addons/review_add_box.html:24
 #: apps/addons/templates/addons/impala/review_add_box.html:26
@@ -1108,6 +1158,9 @@ msgid ""
 " available to add-on developers and they may need to contact you to help "
 "resolve your issue."
 msgstr ""
+"Please do not post bug reports in reviews. We do not make your email address"
+" available to add-on developers and they may need to contact you to help "
+"resolve your issue."
 
 #: apps/addons/templates/addons/review_add_box.html:32
 #: apps/addons/templates/addons/impala/review_add_box.html:35
@@ -1115,18 +1168,20 @@ msgid ""
 "See the <a href=\"%(support)s\">support section</a> to find out where to get"
 " assistance for this add-on."
 msgstr ""
+"See the <a href=\"%(support)s\">support section</a> to find out where to get"
+" assistance for this add-on."
 
 #: apps/addons/templates/addons/review_add_box.html:38
 #: apps/addons/templates/addons/impala/review_add_box.html:42
 #: apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Review Guidelines"
 
 #: apps/addons/templates/addons/review_add_box.html:41
 #: apps/addons/templates/addons/impala/review_add_box.html:45
 msgid "Detailed Review"
-msgstr ""
+msgstr "Detailed Review"
 
 #: apps/addons/templates/addons/review_list_box.html:5
 #: apps/addons/templates/addons/impala/details-more.html:27
@@ -1135,24 +1190,24 @@ msgstr ""
 #: apps/reviews/templates/reviews/review_list.html:19
 #: apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr ""
+msgstr "Reviews"
 
 #: apps/addons/templates/addons/review_list_box.html:14
 #: apps/addons/templates/addons/impala/review_list_box.html:14
 #: apps/reviews/templates/reviews/review.html:30
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "by %(user)s on %(date)s"
 
 #: apps/addons/templates/addons/review_list_box.html:19
 #: apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Show the developer's reply to this review"
 
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "See all reviews of this add-on"
+msgstr[1] "See all %(cnt)s reviews of this add-on"
 
 #: apps/addons/templates/addons/tags_box.html:3
 msgctxt "tags_header_tags_title"
@@ -1165,21 +1220,23 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31
 #: apps/users/templates/users/helpers/addon_users_list.html:7
 msgid "by %(users)s"
-msgstr ""
+msgstr "by %(users)s"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> suggested"
 
 #: apps/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Enjoy this add-on?"
 
 #: apps/addons/templates/addons/impala/contribution.html:43
 msgid ""
 "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help"
 " support its continued development by making a small contribution."
 msgstr ""
+"The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help"
+" support its continued development by making a small donation."
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid ""
@@ -1187,6 +1244,9 @@ msgid ""
 " your support by making a donation to the <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show"
+" your support by making a donation to the <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:53
 msgid ""
@@ -1194,87 +1254,90 @@ msgid ""
 " your support by making a small contribution to <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show"
+" your support by making a small donation to <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "This add-on requires the following add-ons to work properly:"
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "Average"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "Write a review"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Related Categories"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Often used with&hellip;"
-msgstr ""
+msgstr "Often used with&hellip;"
 
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Part of these Collections"
 
 #: apps/addons/templates/addons/impala/details-more.html:72
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Other add-ons by %(author)s"
+msgstr[1] "Other add-ons by these authors"
 
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> user review"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
-msgstr ""
+msgstr "View statistics"
 
 #: apps/addons/templates/addons/impala/details.html:87
 msgid "Manage"
-msgstr ""
+msgstr "Manage"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Icon of {0}"
 
 #: apps/addons/templates/addons/impala/details.html:106
 #: apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "No Restart"
 
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Meet the Developers</a>"
 
 #: apps/addons/templates/addons/impala/details.html:144
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgstr "Learn why {0} was created and find out what's next for this add-on."
 
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Add-on screenshot #{0}"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
-msgstr ""
+msgstr "Add-on home page"
 
 #: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
-msgstr ""
+msgstr "Support site"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
-msgstr ""
+msgstr "Support E-mail"
 
 #: apps/addons/templates/addons/impala/details.html:201
 #: apps/devhub/models.py:381
@@ -1283,11 +1346,11 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:208
 #: apps/addons/templates/addons/impala/details.html:213
@@ -1295,27 +1358,27 @@ msgstr ""
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
-msgstr ""
+msgstr "Custom Licence"
 
 #: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Released under <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
-msgstr ""
+msgstr "About this Add-on"
 
 #: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Developer’s Comments"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
-msgstr ""
+msgstr "Version Information"
 
 #: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
-msgstr ""
+msgstr "See complete version history"
 
 #: apps/addons/templates/addons/impala/details.html:269
 msgid ""
@@ -1325,12 +1388,19 @@ msgid ""
 "stop receiving development updates, reinstall the default version from the "
 "link above."
 msgstr ""
+"The Development Channel lets you test an experimental new version of this "
+"add-on before it's released to the general public. Once you install the "
+"development version, you will continue to get updates from this channel. To "
+"stop receiving development updates, reinstall the default version from the "
+"link above."
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Caution:</strong> Development versions of this add-on have not been "
+"reviewed by Mozilla and can't be installed on release versions of Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:310
 #: apps/addons/templates/addons/impala/details.html:319
@@ -1341,68 +1411,70 @@ msgstr ""
 #: apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
-msgstr ""
+msgstr "close"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:9
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "Thank you for installing {0}"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:12
 msgid "Meet the {0} Developer"
-msgstr ""
+msgstr "Meet the {0} Developer"
 
 #: apps/addons/templates/addons/impala/developers.html:41
 msgid ""
 "Before downloading this add-on, please consider supporting the development "
 "of this add-on by making a small contribution."
 msgstr ""
+"Before downloading this add-on, please consider supporting the development "
+"of this add-on by making a small donation."
 
 #: apps/addons/templates/addons/impala/developers.html:80
 msgid "Why was {0} created?"
-msgstr ""
+msgstr "Why was {0} created?"
 
 #: apps/addons/templates/addons/impala/developers.html:84
 msgid "What's next for {0}"
-msgstr ""
+msgstr "What's next for {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "About the Developer"
+msgstr[1] "About the Developers"
 
 #: apps/addons/templates/addons/impala/developers.html:96
 #: apps/users/templates/users/edit.html:116
 #: apps/users/templates/users/profile.html:29
 msgid "No Photo"
-msgstr ""
+msgstr "No Photo"
 
 #: apps/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Who is {0}?"
 
 #: apps/addons/templates/addons/impala/disabled.html:17
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "This add-on has been removed by its author."
 
 #: apps/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "This add-on has been disabled by an administrator."
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Source Code Licence for {addon}"
 
 #: apps/addons/templates/addons/impala/license.html:21
 #: apps/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
-msgstr ""
+msgstr "Source Code Licence"
 
 #: apps/addons/templates/addons/impala/performance_note.html:5
 msgid "Explain&hellip;"
-msgstr ""
+msgstr "Explain&hellip;"
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16
 #: apps/addons/templates/addons/impala/toplist.html:6
