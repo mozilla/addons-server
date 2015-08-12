@@ -43,9 +43,11 @@ from devhub import perf
 from devhub.decorators import dev_required
 from devhub.forms import CheckCompatibilityForm
 from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from devhub.utils import ValidationAnnotator, process_validation
+from devhub.utils import (ValidationAnnotator, ValidationComparator,
+                          process_validation)
+from editors.decorators import addons_reviewer_required
 from editors.helpers import get_position, ReviewHelper
-from files.models import File, FileUpload, FileValidation
+from files.models import File, FileUpload, FileValidation, ValidationAnnotation
 from files.utils import is_beta, parse_addon
 from lib.crypto.packaged import sign_file
 from search.views import BaseAjaxSearch
@@ -689,24 +691,57 @@ def upload_detail_for_addon(request, addon_id, addon, uuid):
 
 @dev_required(allow_editors=True)
 def file_validation(request, addon_id, addon, file_id):
-    file = get_object_or_404(File, id=file_id)
+    file_ = get_object_or_404(File, id=file_id)
 
     validate_url = reverse('devhub.json_file_validation',
-                           args=[addon.slug, file.id])
-    automated_signing = (addon.automated_signing or
-                         file.status == amo.STATUS_BETA)
+                           args=[addon.slug, file_.id])
 
-    prev_file = ValidationAnnotator(file).prev_file
+    prev_file = ValidationAnnotator(file_).prev_file
     if prev_file:
-        file_url = reverse('files.compare', args=[file.id, prev_file.id,
+        file_url = reverse('files.compare', args=[file_.id, prev_file.id,
                                                   'file', ''])
     else:
-        file_url = reverse('files.list', args=[file.id, 'file', ''])
+        file_url = reverse('files.list', args=[file_.id, 'file', ''])
 
-    return render(request, 'devhub/validation.html',
-                  dict(validate_url=validate_url, file_url=file_url, file=file,
-                       filename=file.filename, timestamp=file.created,
-                       automated_signing=automated_signing, addon=addon))
+    context = {'validate_url': validate_url, 'file_url': file_url,
+               'file': file_, 'filename': file_.filename,
+               'timestamp': file_.created, 'addon': addon,
+               'automated_signing': file_.automated_signing}
+
+    if acl.check_addons_reviewer(request):
+        context['annotate_url'] = reverse('devhub.annotate_file_validation',
+                                          args=[addon.slug, file_id])
+
+    if file_.has_been_validated:
+        context['validation_data'] = file_.validation.processed_validation
+
+    return render(request, 'devhub/validation.html', context)
+
+
+@post_required
+@addons_reviewer_required
+@json_view
+def annotate_file_validation(request, addon_id, file_id):
+    file_ = get_object_or_404(File, pk=file_id)
+
+    form = forms.AnnotateFileForm(request.POST)
+    if not form.is_valid():
+        return {'status': 'fail',
+                'errors': dict(form.errors.items())}
+
+    message_key = ValidationComparator.message_key(
+        form.cleaned_data['message'])
+
+    updates = {'ignore_duplicates': form.cleaned_data['ignore_duplicates']}
+
+    annotation, created = ValidationAnnotation.objects.get_or_create(
+        file_hash=file_.original_hash, message_key=json.dumps(message_key),
+        defaults=updates)
+
+    if not created:
+        annotation.update(**updates)
+
+    return {'status': 'ok'}
 
 
 @dev_required(allow_editors=True)
@@ -856,10 +891,15 @@ def upload_detail(request, uuid, format='html'):
         return _compat_result(request, validate_url,
                               upload.compat_with_app,
                               upload.compat_with_appver)
-    return render(request, 'devhub/validation.html',
-                  dict(validate_url=validate_url, filename=upload.name,
-                       automated_signing=upload.automated_signing,
-                       timestamp=upload.created))
+
+    context = {'validate_url': validate_url, 'filename': upload.name,
+               'automated_signing': upload.automated_signing,
+               'timestamp': upload.created}
+
+    if upload.validation:
+        context['validation_data'] = upload.processed_validation
+
+    return render(request, 'devhub/validation.html', context)
 
 
 class AddonDependencySearch(BaseAjaxSearch):
@@ -1629,12 +1669,6 @@ def request_review(request, addon_id, addon, status):
     messages.success(request, msg[status_req])
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
-
-
-# TODO(kumar): Remove when the editor tools are in zamboni.
-def validator_redirect(request, version_id):
-    v = get_object_or_404(Version, id=version_id)
-    return redirect('devhub.addons.versions', v.addon_id, permanent=True)
 
 
 @post_required

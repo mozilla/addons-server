@@ -5,13 +5,16 @@ import os
 import socket
 import urllib2
 from copy import deepcopy
+from functools import wraps
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
 from celery.exceptions import SoftTimeLimitExceeded
+from celery.result import AsyncResult
 from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
@@ -33,15 +36,22 @@ from PIL import Image
 log = logging.getLogger('z.devhub.task')
 
 
-# Simple wrapper for the sake of tests.
 def validate(file_, listed=None):
     """Run the validator on the given File or FileUpload object, and annotate
-    the results using the ValidationAnnotator."""
+    the results using the ValidationAnnotator. If a task has already begun
+    for this file, instead return an AsyncResult object for that task."""
 
     # Import loop.
     from .utils import ValidationAnnotator
+    annotator = ValidationAnnotator(file_, listed=listed)
 
-    return ValidationAnnotator(file_, listed=listed).task.delay()
+    task_id = cache.get(annotator.cache_key)
+    if task_id:
+        return AsyncResult(task_id)
+    else:
+        result = annotator.task.delay()
+        cache.set(annotator.cache_key, result.task_id, 5 * 60)
+        return result
 
 
 # Override the validator's stock timeout exception so that it can
@@ -49,24 +59,38 @@ def validate(file_, listed=None):
 validator.ValidationTimeout = SoftTimeLimitExceeded
 
 
-validation_task = task(ignore_result=False,  # Required for groups/chains.
-                       soft_time_limit=settings.VALIDATOR_TIMEOUT)
+def validation_task(fn):
+    """Wrap a validation task so that it runs with the correct flags, then
+    parse and annotate the results before returning."""
+
+    @task(ignore_result=False,  # Required for groups/chains.
+          soft_time_limit=settings.VALIDATOR_TIMEOUT)
+    @wraps(fn)
+    def wrapper(id_, hash_, *args, **kw):
+        data = fn(id_, hash_, *args, **kw)
+        result = json.loads(data)
+
+        if hash_:
+            # Import loop.
+            from .utils import ValidationComparator
+            ValidationComparator(result).annotate_results(hash_)
+
+        return result
+    return wrapper
 
 
 @validation_task
-def validate_file_path(path, listed, **kw):
+def validate_file_path(path, hash_, listed, **kw):
     """Run the validator against a file at the given path, and return the
     results.
 
     Should only be called directly by ValidationAnnotator."""
 
-    result = run_validator(path, listed=listed)
-    # FIXME: Have validator return native Python datastructure.
-    return json.loads(result)
+    return run_validator(path, listed=listed)
 
 
 @validation_task
-def validate_file(file_id, **kw):
+def validate_file(file_id, hash_, **kw):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
 
@@ -74,12 +98,10 @@ def validate_file(file_id, **kw):
 
     file_ = File.objects.get(pk=file_id)
     try:
-        return json.loads(file_.validation.validation)
+        return file_.validation.validation
     except FileValidation.DoesNotExist:
-        result = run_validator(file_.current_file_path,
-                               listed=file_.version.addon.is_listed)
-        # FIXME: Have validator return native Python datastructure.
-        return json.loads(result)
+        return run_validator(file_.current_file_path,
+                             listed=file_.version.addon.is_listed)
 
 
 @task

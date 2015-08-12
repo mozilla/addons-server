@@ -34,9 +34,20 @@ def setup_viewer(request, file_obj):
     if (acl.check_addons_reviewer(request) or
         acl.check_addon_ownership(request, file_obj.version.addon,
                                   viewer=True, ignore_disabled=True)):
+
+        addon = file_obj.version.addon
+
         data['validate_url'] = reverse('devhub.json_file_validation',
-                                       args=[file_obj.version.addon.slug,
-                                             file_obj.id])
+                                       args=[addon.slug, file_obj.id])
+
+        if acl.check_addons_reviewer(request):
+            data['annotate_url'] = reverse('devhub.annotate_file_validation',
+                                           args=[addon.slug, file_obj.id])
+
+        data['automated_signing'] = file_obj.automated_signing
+
+        if file_obj.has_been_validated:
+            data['validation_data'] = file_obj.validation.processed_validation
 
     if acl.check_addons_reviewer(request):
         data['file_link'] = {'text': _('Back to review'),

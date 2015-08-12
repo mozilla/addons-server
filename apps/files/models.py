@@ -53,6 +53,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
+    # The original hash of the file, before we sign it, or repackage it in
+    # any other way.
+    original_hash = models.CharField(max_length=255, default='')
     # TODO: delete this column
     codereview = models.BooleanField(default=False)
     jetpack_version = models.CharField(max_length=10, null=True)
@@ -100,6 +103,14 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return False
         else:
             return True
+
+    @property
+    def automated_signing(self):
+        """True if this file is eligible for automated signing. This currently
+        means that either its add-on is eligible for automated signing, or
+        this file is a beta version."""
+        return (self.version.addon.automated_signing or
+                self.status == amo.STATUS_BETA)
 
     def is_mirrorable(self):
         return self.status in amo.MIRROR_STATUSES
@@ -169,6 +180,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                 file_.status = amo.STATUS_LITE
 
         file_.hash = file_.generate_hash(upload.path)
+        file_.original_hash = file_.hash
 
         if upload.validation:
             validation = json.loads(upload.validation)
@@ -189,9 +201,13 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         if upload.validation:
             # Import loop.
             from devhub.tasks import annotate_validation_results
+            from devhub.utils import ValidationAnnotator
 
             validation = annotate_validation_results(validation)
             FileValidation.from_json(file_, validation)
+
+            # Copy annotations from any previously approved file.
+            ValidationAnnotator(file_).update_annotations()
 
         return file_
 
@@ -464,6 +480,13 @@ def cleanup_file(sender, instance, **kw):
                      % (filename, instance.pk))
             storage.delete(filename)
 
+    if not (File.objects.filter(original_hash=instance.original_hash)
+            .exclude(pk=instance.pk).exists()):
+        # This is the last remaining file with this hash.
+        # Delete any validation annotations keyed to it.
+        ValidationAnnotation.objects.filter(
+            file_hash=instance.original_hash).delete()
+
 
 @File.on_change
 def check_file(old_attr, new_attr, instance, sender, **kw):
@@ -587,7 +610,7 @@ class FileUpload(amo.models.ModelBase):
             validation = json.loads(self.validation)
             is_compatibility = self.compat_with_app is not None
 
-            return process_validation(validation, is_compatibility)
+            return process_validation(validation, is_compatibility, self.hash)
 
 
 class FileValidation(amo.models.ModelBase):
@@ -646,7 +669,17 @@ class FileValidation(amo.models.ModelBase):
         """Return processed validation results as expected by the frontend."""
         # Import loop.
         from devhub.utils import process_validation
-        return process_validation(json.loads(self.validation))
+        return process_validation(json.loads(self.validation),
+                                  file_hash=self.file.original_hash)
+
+
+class ValidationAnnotation(amo.models.ModelBase):
+    file_hash = models.CharField(max_length=255, db_index=True)
+    message_key = models.CharField(max_length=1024)
+    ignore_duplicates = models.NullBooleanField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'validation_annotations'
 
 
 def nfd_str(u):

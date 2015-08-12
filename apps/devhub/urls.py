@@ -90,6 +90,10 @@ detail_patterns = patterns(
         views.json_file_validation,
         name='devhub.json_file_validation'),
 
+    url('^file/(?P<file_id>[^/]+)/validation/annotate$',
+        views.annotate_file_validation,
+        name='devhub.annotate_file_validation'),
+
     url('^validation-result/(?P<result_id>\d+)$',
         views.bulk_compat_result,
         name='devhub.bulk_compat_result'),
@@ -131,7 +135,6 @@ redirect_patterns = patterns(
      lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
     ('^versions/(\d+)',
      lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
-    ('^versions/validate/(\d+)', views.validator_redirect),
 )
 
 

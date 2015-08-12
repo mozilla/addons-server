@@ -1988,7 +1988,7 @@ class TestUpload(BaseUploadTest):
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self hosted" addons."""
-        validate_mock.return_value = '{"errors": 0}'
+        validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload_unlisted')
         self.post()
         # Make sure it was called with listed=False.

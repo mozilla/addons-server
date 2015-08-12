@@ -23,7 +23,6 @@ class FIREFOX(App):
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
     exclude_versions = (3.1, 3.7, 4.2)
-    backup_version = vint('3.7.*')
     user_agent_string = 'Firefox'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 

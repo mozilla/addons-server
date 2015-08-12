@@ -12,7 +12,7 @@
             {% if diff %}
                 {% if left or right %}
                     <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
-                    <pre class="left js-hidden">{{ left }}</pre>
+                    <pre class="left js-hidden brush: {{ diff.left.selected['syntax'] }}; toolbar: false">{{ left }}</pre>
                     <pre class="right js-hidden">{{ right }}</pre>
                 {% endif %}
             {% endif %}

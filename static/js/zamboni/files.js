@@ -22,13 +22,13 @@ if (typeof diff_match_patch !== 'undefined') {
                     /* The syntax highlighter needs an extra space
                        to do it's work. */
                     case DIFF_INSERT:
-                        html.push('+ ' + lines[t] + '\n');
+                        html.push('+' + lines[t] + '\n');
                         break;
                     case DIFF_DELETE:
-                        html.push('- ' + lines[t] + '\n');
+                        html.push('-' + lines[t] + '\n');
                         break;
                     case DIFF_EQUAL:
-                        html.push('  ' + lines[t] + '\n');
+                        html.push(' ' + lines[t] + '\n');
                         break;
                 }
             }
@@ -46,30 +46,10 @@ if (typeof SyntaxHighlighter !== 'undefined') {
     /* Turn off double click on the syntax highlighter. */
     SyntaxHighlighter.defaults['quick-code'] = false;
     SyntaxHighlighter.defaults['auto-links'] = false;
-    SyntaxHighlighter.amo_vars = {'deletions': {}, 'additions': {}, 'is_diff': false};
+    SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': false};
 
     SyntaxHighlighter.Highlighter.prototype.getLineNumbersHtml = function(code, lineNumbers) {
-        /* Make syntax highlighter produce line numbers with links and
-         * classes in  them. */
-        var html = '',
-            count = code.split('\n').length,
-            normal_count = 1,
-            deleted_count = 1;
-        /* The line numbers get tricky, but we set to add or delete and track
-         * those so that the diff bar will work */
-        for (var i = 0; i < count; i++) {
-            var classes = '';
-            if (SyntaxHighlighter.amo_vars.deletions['index'+i] !== undefined) {
-                classes = 'delete';
-                html += this.getLineHtml(i, i+1, format('<a id="D{0}" class="{1}" href="#D{0}"> </a>', deleted_count++, classes));
-            } else {
-                if (SyntaxHighlighter.amo_vars.additions['index'+i] !== undefined) {
-                    classes = 'add';
-                }
-                html += this.getLineHtml(i, i+1, format('<a id="L{0}" class="{1}" href="#L{0}">{0}</a>', normal_count++, classes));
-            }
-        }
-        return html;
+        return '';
     };
 
     SyntaxHighlighter.Highlighter.prototype.getLineHtml = function(lineIndex, lineNumber, code) {
@@ -78,8 +58,16 @@ if (typeof SyntaxHighlighter !== 'undefined') {
             'line',
             'number' + lineNumber,
             'index' + lineIndex,
-            'alt' + (lineNumber % 2 === 0 ? 1 : 2).toString()
         ];
+        var td_classes = [
+            'td-line-code',
+            'alt' + (lineNumber % 2 + 1)
+        ];
+        var line_classes = classes.slice();
+        var line_attrs = [];
+
+        classes.push('line-code');
+        line_classes.push('line-number');
 
         if (this.isLineHighlighted(lineNumber)) {
             classes.push('highlighted');
@@ -89,33 +77,130 @@ if (typeof SyntaxHighlighter !== 'undefined') {
             classes.push('break');
         }
 
-        /* HTML parsing with regex warning disclaimer. This lib writes out
-         * well formed lines with <code> and <a>. We want a hint
-         * of the line length without all the syntax highlighting in it.
-         * We also need to expand tab characters to the long end of
-         * likely values to make sure long tab-indented lines are
-         * processed. */
-        var raw = code.replace(/<.*?>/g, '').replace(/&.*?;/g, ' ').replace(/\t/g, '        ');
-        if (raw.length > 80) {
-            classes.push('longline');
-        }
-
         /* For diffs we have to do more work to make the line numbers
          * do what we'd like. */
-        if (SyntaxHighlighter.amo_vars.is_diff) {
-            /* Spot delete alter class and add to object */
+        var vars = SyntaxHighlighter.amo_vars;
+        var line_id = 'L' + lineNumber;
+        if (vars.is_diff) {
+            // Wow. This is terrible.
             if (code.match(/<code class=".*?comments.*?">/)) {
-                SyntaxHighlighter.amo_vars.deletions['index'+lineIndex] = true;
-                classes.push('delete');
-            }
+                // Line deletion.
+                vars.right_line += 1;
+                line_id = 'D' + vars.right_line;
 
-            /* Spot add, alter class and add to object */
-            if (code.match(/<code class=".*?string.*?">/)) {
-                SyntaxHighlighter.amo_vars.additions['index'+lineIndex] = true;
-                classes.push('add');
+                td_classes.push('delete');
+                line_classes.push('delete');
+            } else {
+                var lines = vars.highlighted_lines || [];
+
+                vars.left_line += 1;
+                line_id = 'L' + vars.left_line;
+
+                var new_line;
+                if (vars.left_line in lines) {
+                    new_line = lines[vars.left_line];
+                }
+
+                line_attrs.push('data-linenumber="' + vars.left_line + '"')
+
+                if (code.match(/<code class=".*?string.*?">/)) {
+                    // Line addition.
+                    td_classes.push('add');
+                    line_classes.push('add');
+                    if (new_line) {
+                        code = '<code class="xml plain">+</code>' + new_line;
+                    }
+                } else {
+                    // Common line.
+                    vars.right_line += 1;
+                    if (new_line) {
+                        code = '<code class="xml plain">\u00a0</code>' + new_line;  // Non-breaking space.
+                    }
+                }
+            }
+        } else {
+            line_attrs.push('data-linenumber="' + lineNumber + '"');
+            if (vars.lines) {
+                vars.lines[lineNumber] = code;
             }
         }
-        return '<div class="' + classes.join(' ') + '">' + code + '</div>';
+
+        line_attrs.push('id="' + line_id + '"',
+                        'href="#' + line_id + '"',
+                        'class="' + line_classes.join(' ') + '"');
+
+        return '<tr class="tr-line">' +
+                    '<td class="td-line-number"><a ' + line_attrs.join(' ') + '></a></td>' +
+                    '<td class="' + td_classes.join(' ') + '"><span class="' + classes.join(' ') + '">' + code + '</span></td>' +
+               '</tr>';
+    };
+
+    SyntaxHighlighter.Highlighter.prototype.getHtml = function(code) {
+        // Copied from shCore.js with slight modifications, to output
+        // code and line numbers as a table, rather than parallel divs.
+        //
+        // Original:
+        //   https://github.com/mozilla/olympia/blob/a35ab083/static/js/lib/syntaxhighlighter/shCore.js#L1552
+        var html = '',
+            classes = [ 'syntaxhighlighter' ],
+            tabSize,
+            matches,
+            lineNumbers;
+
+        // process light mode
+        if (this.getParam('light') == true)
+            this.params.toolbar = this.params.gutter = false;
+
+        if (this.getParam('collapse') == true)
+            classes.push('collapsed');
+
+        classes.push('nogutter');
+
+        // add custom user style name
+        classes.push(this.getParam('class-name'));
+
+        // add brush alias to the class name for custom CSS
+        classes.push(this.getParam('brush'));
+
+        lineNumbers = this.figureOutLineNumbers(code);
+
+        // find matches in the code using brushes regex list
+        matches = this.findMatches(this.regexList, code);
+        // processes found matches into the html
+        html = this.getMatchesHtml(code, matches);
+        // finally, split all lines so that they wrap well
+        html = this.getCodeLinesHtml(html, lineNumbers);
+
+        // finally, process the links
+        if (this.getParam('auto-links'))
+            html = processUrls(html);
+
+        if (typeof(navigator) != 'undefined' && navigator.userAgent && navigator.userAgent.match(/MSIE/))
+            classes.push('ie');
+
+        var line_order = Math.ceil(Math.log(lineNumbers.length) / Math.log(10)) + 1;
+        var lines_width = 1.2 * line_order + 4;  // 1.2 ex width per digit, just to be safe, + 4 for padding.
+
+        if (SyntaxHighlighter.amo_vars.lines) {
+            // Just generating HTML for the diff highlighter.
+            // Bail early.
+            return '';
+        }
+
+        html =
+            '<div id="highlighter_' + this.id + '" class="' + classes.join(' ') + '">'
+                + (this.getParam('toolbar') ? sh.toolbar.getHtml(this) : '')
+                    + '<table border="0" cellpadding="0" cellspacing="0">'
+                        + this.getTitleHtml(this.getParam('title'))
+                            + '<colgroup><col class="highlighter-column-line-numbers" style="width: ' + lines_width + 'ex;"/>'
+                                      + '<col class="highlighter-column-code"/></colgroup>'
+                            + '<tbody>'
+                                + html
+                            + '</tbody>'
+                    + '</table>'
+            + '</div>';
+
+        return html;
     };
 }
 
@@ -187,60 +272,48 @@ function bind_viewer(nodes) {
         nodes['$'+x] = $(nodes[x]);
     });
     function Viewer() {
+        var self = this;
         this.nodes = nodes;
         this.wrapped = true;
         this.hidden = false;
         this.top = null;
         this.last = null;
-        this.size_line_numbers = function($node, deleted) {
-            /* We need to re-size the line numbers correctly depending upon
-               the wrapping. */
-
-            $node.each(function() {
-                /* Be sure to make all size calculations before modifying
-                 * the DOM so that we don't force unnecessary reflows. */
-
-                var $self = $(this),
-                    long_lines = $(this).find('td.code div.longline'),
-                    changes = [];
-                /* Use the longline hint to guess at long lines and
-                 * see what needs resizing. */
-                $.each(long_lines, function() {
-                    var $this = $(this),
-                        k = parseInt($this.attr('class').match(/index(\d+)/)[1], 10);
-                    changes.push(['td.gutter div.index' + k + ':eq(0)', $this.height() + 'px']);
-                });
-                $.each(changes, function(i, change) {
-                    $self.find(change[0]).css('height', change[1]);
-                });
-            });
-            this.update_viewport(true);
-        };
         this.compute = function(node) {
             var $diff = node.find('#diff'),
                 $content = node.find('#content');
 
-            if ($content && !$diff.length) {
-                SyntaxHighlighter.highlight({}, $content[0]);
-                // Note SyntaxHighlighter has nuked the node and replaced it.
-                this.size_line_numbers(node.find('#content'), false);
-            }
-
             if ($diff.length) {
                 var dmp = new diff_match_patch();
+
                 // Line diffs http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
-                var a = dmp.diff_linesToChars_($diff.siblings('.right').text(), $diff.siblings('.left').text());
+                var a = dmp.diff_linesToChars_($diff.siblings('.right').text(),
+                                               $diff.siblings('.left').text());
                 var diffs = dmp.diff_main(a[0], a[1], false);
+
                 dmp.diff_charsToLines_(diffs, a[2]);
+
                 $diff.text(dmp.diff_prettyHtml(diffs)).show();
 
+                var highlighted_lines = []
+                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': false,
+                                              'lines': highlighted_lines};
+
+
+                var $left = $diff.siblings('.left');
+                $('<div>').hide().append($left).insertAfter($diff);
+                SyntaxHighlighter.highlight({}, $left[0]);
+
                 /* Reset the syntax highlighter variables. */
-                SyntaxHighlighter.amo_vars = {'deletions': {}, 'additions': {}, 'is_diff': true};
+                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': true,
+                                              'highlighted_lines': highlighted_lines};
                 SyntaxHighlighter.highlight({}, $diff[0]);
                 // Note SyntaxHighlighter has nuked the node and replaced it.
                 $diff = node.find('#diff');
-                this.size_line_numbers($diff, true);
+            } else if ($content) {
+                SyntaxHighlighter.highlight({}, $content[0]);
+                // Note SyntaxHighlighter has nuked the node and replaced it.
             }
+
 
             this.compute_messages(node);
 
@@ -250,15 +323,51 @@ function bind_viewer(nodes) {
 
             this.show_selected();
         };
+        this.update_message_filters = function() {
+            if (file_metadata.automatedSigning) {
+                this.hideNonSigning = $('#signing-hide-unnecessary').prop('checked');
+
+                // Hiding ignored messages only makes sense if we're only
+                // showing signing-related messages.
+                $('#signing-hide-ignored-container input').prop('disabled', !this.hideNonSigning);
+                if (!this.hideNonSigning) {
+                    $('#signing-hide-ignored').prop('checked', false);
+                }
+
+                this.hideIgnored = $('#signing-hide-ignored').prop('checked');
+            }
+
+            var $root = this.nodes.$root;
+            $root.addClass('messages-signing');
+            $root.toggleClass('messages-duplicate', !this.hideIgnored);
+            $root.toggleClass('messages-all', !this.hideNonSigning);
+
+            $("#signing-hide-ignored-container").toggle(!!this.validation.signing_ignored_summary);
+        };
         this.message_type_map = {
             'error': 'error',
             'warning': 'warning',
             'notice': 'info'
         };
+        this.message_classes = function(message, base_class) {
+            base_class = base_class || '';
+            var classes = [''];
+            if (message.signing_severity || message.type == "error") {
+                // For the moment, we only ignore messages in signing
+                // validation.
+                if (message.ignored) {
+                    classes.push('-ignored');
+                } else {
+                    classes.push('-signing');
+                }
+            }
+            return classes.map(function(cls) { return [base_class, message.type, cls].join(""); });
+        };
         this.compute_messages = function(node) {
             var $diff = node.find('#diff'),
                 path = this.nodes.$files.find('a.file.selected').attr('data-short'),
-                messages = [];
+                messages = [],
+                self = this;
 
             if (this.messages) {
                 if (this.messages.hasOwnProperty(''))
@@ -276,23 +385,39 @@ function bind_viewer(nodes) {
                                    message.type.substr(1),
                                    message.message)];
 
-                $.each([].concat(message.description), function(i, msg) {
+                if (message.ignore_duplicates != null && file_metadata.annotateUrl) {
+                    var checked = message.ignore_duplicates ? 'checked="checked" ' : '';
+
+                    html.push('<p><label>',
+                              format('<input type="checkbox" class="ignore-duplicates-checkbox"' +
+                                     ' {0}name="{1}">', [checked, _.escape(JSON.stringify(message))]),
+                              ' ', gettext('Ignore this message in future updates'), '</label></p>');
+                }
+
+                if (message.signing_severity && file_metadata.automatedSigning) {
+                    html.push(format(
+                        '<p><label>{0}</label> {1}</p>',
+                        [gettext('Severity for automated signing:'),
+                         message.signing_severity]));
+                }
+
+                $.each(message.description, function(i, msg) {
                     html.push('<p>', msg, '</p>');
                 });
 
                 html.push('</div>');
+                var message_class = this.message_classes(message, 'message-').join(' ');
                 var $dom = $(html.join(''));
 
                 if (message.line != null && $line.length) {
-                    $line.addClass(message.type)
-                         .parent().appendMessage($dom);
-
-                    $('.code .' + $line.parent().attr('class').match(/number\d+/)[0] + ':eq(0)')
-                         .addClass(message.type);
+                    $line.addClass(this.message_classes(message).join(' '))
+                         .parent().addClass(message_class)
+                         .appendMessage($dom.addClass(message_class));
                 } else {
                     $('#diff-wrapper').before(
                         $('<div>', { 'class': 'notification-box' })
                             .addClass(this.message_type_map[message.type])
+                            .addClass(message_class)
                             .append($dom));
                 }
             }, this);
@@ -300,8 +425,8 @@ function bind_viewer(nodes) {
             if ($diff.length || messages) {
                 /* Build out the diff bar based on the line numbers. */
                 var $sb = $('.diff-bar'),
-                    $gutter = $('td.gutter'),
-                    $lines = $gutter.find('div.line > a');
+                    $gutter = $('.syntaxhighlighter tbody'),
+                    $lines = $gutter.find('.line-number');
 
                 $sb.empty();
 
@@ -362,12 +487,13 @@ function bind_viewer(nodes) {
                 }
             }
         };
-        this.update_validation = function(data) {
+        this.update_validation = function(data, skip_compute) {
             var viewer = this;
 
             $('#validating').hide();
             if (data.validation) {
                 this.validation = data.validation;
+                this.update_message_filters();
 
                 this.messages = {};
                 _.each(data.validation.messages, function(message) {
@@ -428,15 +554,13 @@ function bind_viewer(nodes) {
                              .addClass('tooltip');
                     }
 
-                    var messages = viewer.messages[$self.attr('data-short')];
+                    var messages = self.messages[$self.attr('data-short')];
                     if (messages) {
-                        var types = {};
-                        $.each(messages, function(i, message) {
-                            types[message.type] = true;
-                        });
-                        for (var type in types) {
-                            $self.addClass(type);
-                        }
+                        var classes = _.uniq(_.flatten(messages.map(function(msg) {
+                            return viewer.message_classes(msg);
+                        })));
+
+                        $self.addClass(classes.join(' '));
                     }
                 });
 
@@ -454,14 +578,15 @@ function bind_viewer(nodes) {
                     }
                 });
 
-                this.compute_messages($('#content-wrapper'));
+                if (!skip_compute) {
+                    this.compute_messages($('#content-wrapper'));
+                }
             }
 
             if (data.error) {
                 $('#validating').after(
                     $('<div>', { 'class': 'notification-box error',
-                                 'text': format('{0} {1}',
-                                                $("#metadata").attr('data-validation-failed'),
+                                 'text': format('{0} {1}', file_metadata.validationFailed,
                                                 data.error) }));
             }
         };
@@ -757,11 +882,34 @@ function bind_viewer(nodes) {
         });
     }));
 
-    if ($('body').attr('data-validate-url')) {
+    var file_metadata = $('#metadata').data();
+
+    if (file_metadata.annotateUrl) {
+        $('#file-viewer').delegate('.ignore-duplicates-checkbox', 'change',
+                                   function(event) {
+            var $target = $(event.target);
+            $.ajax({type: 'POST',
+                    url: file_metadata.annotateUrl,
+                    data: { message: $target.attr('name'),
+                            ignore_duplicates: $target.prop('checked') || undefined },
+                    dataType: 'json'})
+        });
+    }
+
+    if (file_metadata.automatedSigning) {
+        $('#signing-hide-unnecessary, #signing-hide-ignored').change(function() {
+            viewer.update_message_filters();
+        });
+    }
+
+    if (file_metadata.validation) {
+        viewer.update_validation({validation: file_metadata.validation,
+                                  error: null}, true);
+    } else if (file_metadata.validateUrl) {
         $('#validating').css('display', 'block');
 
         $.ajax({type: 'POST',
-                url: $('body').attr('data-validate-url'),
+                url: file_metadata.validateUrl,
                 data: {},
                 success: function(data) {
                     if (typeof data != "object")
@@ -850,7 +998,7 @@ function bind_viewer(nodes) {
 
 var viewer = null;
 $(document).ready(function() {
-    var nodes = { files: '#files', thinking: '#thinking', commands: '#commands' };
+    var nodes = { root: '#file-viewer', files: '#files', thinking: '#thinking', commands: '#commands' };
     function poll_file_extraction() {
         $.getJSON($('#extracting').attr('data-url'), function(json) {
             if (json && json.status) {
