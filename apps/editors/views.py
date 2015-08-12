@@ -537,7 +537,7 @@ def review(request, addon):
     # cached validation, since editors will almost certainly need to access
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
-    if not settings.CELERY_ALWAYS_EAGER:
+    if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
         for file_ in version.files.all():
             if not file_.has_been_validated:
                 devhub.tasks.validate(file_)
