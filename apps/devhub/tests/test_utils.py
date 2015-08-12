@@ -10,6 +10,7 @@ from django.conf import settings
 import amo
 import amo.tests
 from addons.models import Addon
+from amo.tests import addon_factory, version_factory
 from devhub import tasks, utils
 from devhub.tasks import annotate_validation_results
 from files.models import File, FileUpload, FileValidation, ValidationAnnotation
@@ -510,9 +511,9 @@ class TestValidationAnnotatorBase(amo.tests.TestCase):
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
         self.save_file.assert_has_calls([
-            mock.call([mock.ANY, self.file_1_1.pk], {'annotate': False},
+            mock.call([mock.ANY, file_new.pk], {'annotate': False},
                       immutable=True),
-            mock.call([self.file_1_1.pk], link_error=mock.ANY)])
+            mock.call([file_new.pk], link_error=mock.ANY)])
 
 
 class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
@@ -642,7 +643,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
             self.check_file(self.file_1_1, None)
 
     @mock.patch('devhub.utils.chain')
-    def test_run_once_file(self, chain):
+    def test_run_once_per_file(self, chain):
         """Tests that only a single validation task is run for a given file."""
         task = mock.Mock()
         chain.return_value = task
@@ -681,6 +682,24 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
                 .cache_key ==
                 'validation-task:files.FileUpload:{0}:False'.format(
                     self.file_upload.pk))
+
+    @mock.patch('devhub.utils.parse_addon')
+    def test_search_plugin(self, parse_addon):
+        """Test that search plugins are handled correctly."""
+
+        parse_addon.return_value = {'guid': None, 'version': '20140103'}
+
+        addon = addon_factory(type=amo.ADDON_SEARCH,
+                              version_kw={'version': '20140101'})
+
+        assert addon.guid is None
+        self.check_upload(None)
+
+        self.validate_upload.reset_mock()
+        self.save_file.reset_mock()
+
+        version = version_factory(addon=addon, version='20140102')
+        self.check_file(version.files.get(), None)
 
 
 class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
