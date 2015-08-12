@@ -746,7 +746,7 @@ def version_factory(file_kw={}, **kw):
     v = Version.objects.create(version=version, **kw)
     v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
     v.save()
-    if kw.get('addon').type != amo.ADDON_PERSONA:
+    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_SEARCH):
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,

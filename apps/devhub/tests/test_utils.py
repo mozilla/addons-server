@@ -8,6 +8,7 @@ from django.conf import settings
 import amo
 import amo.tests
 from addons.models import Addon
+from amo.tests import addon_factory, version_factory
 from devhub import utils
 from devhub.tasks import annotate_validation_results
 from files.models import File, FileUpload
@@ -358,6 +359,59 @@ class TestValidationAnnotatorBase(amo.tests.TestCase):
         self.patchers.append(patcher)
         return patcher.start()
 
+    def check_upload(self, file_, listed=None):
+        """Check that our file upload is matched to the given file."""
+
+        # Create an annotator, make sure it matches the expected older file.
+        va = utils.ValidationAnnotator(self.file_upload)
+        assert va.prev_file == file_
+
+        # Make sure we run the correct validation task for the matched file,
+        # if there is a match.
+        if file_:
+            self.validate_file.assert_called_once_with([
+                file_.pk])
+        else:
+            assert not self.validate_file.called
+
+        # Make sure we run the correct validation task for the upload.
+        self.validate_upload.assert_called_once_with(
+            [self.file_upload.path, listed])
+
+        # Make sure we run the correct save validation task, with a
+        # fallback error handler.
+        self.save_upload.assert_has_calls([
+            mock.call([mock.ANY, self.file_upload.pk], {'annotate': False},
+                      immutable=True),
+            mock.call([self.file_upload.pk], link_error=mock.ANY)])
+
+    def check_file(self, file_new, file_old):
+        """Check that the given new file is matched to the given old file."""
+
+        # Create an annotator, make sure it matches the expected older file.
+        va = utils.ValidationAnnotator(file_new)
+        assert va.prev_file == file_old
+
+        # We shouldn't be attempting to validate a bare upload.
+        assert not self.validate_upload.called
+
+        # Make sure we run the correct validation tasks for both files,
+        # or only one validation task if there's no match.
+        if file_old:
+            self.validate_file.assert_has_calls([
+                mock.call([file_new.pk]),
+                mock.call([file_old.pk])])
+        else:
+            self.validate_file.assert_called_once_with([
+                file_new.pk])
+
+        # Make sure we run the correct save validation task, with a
+        # fallback error handler.
+        self.save_file.assert_has_calls([
+            mock.call([mock.ANY, file_new.pk], {'annotate': False},
+                      immutable=True),
+            mock.call([file_new.pk], link_error=mock.ANY)])
+
 
 class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
     def setUp(self):
@@ -484,6 +538,24 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
             self.validate_file.assert_called_once_with([self.file_1_1.pk])
             self.save_file.assert_called_with([self.file_1_1.pk],
                                               link_error=mock.ANY)
+
+    @mock.patch('devhub.utils.parse_addon')
+    def test_search_plugin(self, parse_addon):
+        """Test that search plugins are handled correctly."""
+
+        parse_addon.return_value = {'guid': None, 'version': '20140103'}
+
+        addon = addon_factory(type=amo.ADDON_SEARCH,
+                              version_kw={'version': '20140101'})
+
+        assert addon.guid is None
+        self.check_upload(None)
+
+        self.validate_upload.reset_mock()
+        self.save_file.reset_mock()
+
+        version = version_factory(addon=addon, version='20140102')
+        self.check_file(version.files.get(), None)
 
 
 class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
