@@ -206,12 +206,12 @@ div.diff-bar .delete,
     background-color: #ffd8d8;
 }
 
-#diff .string,
-#diff .string a,
-#diff .comments,
-#diff .comments a,
-#diff .color1,
-#diff .color1 a{
+#diff .delete .string,
+#diff .delete .string a,
+#diff .delete .comments,
+#diff .delete .comments a,
+#diff .delete .color1,
+#diff .delete .color1 a{
     color: #444444;
 }
 
