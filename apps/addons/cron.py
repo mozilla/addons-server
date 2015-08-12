@@ -252,6 +252,7 @@ def update_addon_appsupport():
     ids = (Addon.objects.valid().distinct()
            .filter(newish, good).values_list('id', flat=True))
 
+    task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
     ts = [_update_appsupport.subtask(args=[chunk])
           for chunk in chunked(ids, 20)]
     TaskSet(ts).apply_async()
@@ -270,9 +271,9 @@ def update_all_appsupport():
 
 
 @task
-@transaction.commit_manually
 def _update_appsupport(ids, **kw):
     from .tasks import update_appsupport
+    task_log.info('Updating appsupport for %d of new-ish addons.' % len(ids))
     update_appsupport(ids)
 
 
