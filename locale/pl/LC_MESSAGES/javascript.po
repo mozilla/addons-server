@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:03-0700\n"
+"POT-Creation-Date: 2015-08-12 08:26-0700\n"
 "PO-Revision-Date: 2015-05-04 10:33+0200\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -70,7 +70,7 @@ msgstr[0] "&hellip;i {0} więcej"
 msgstr[1] "&hellip;i {0} więcej"
 msgstr[2] "&hellip;i {0} więcej"
 
-#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:427
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:509
 msgid "See full validation report"
 msgstr "Zobacz pełny raport"
 
@@ -83,58 +83,58 @@ msgstr "Weryfikowanie {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Otrzymano pustą odpowiedź z serwera; status: {0}"
 
-#: static/js/common/upload-addon.js:279
+#: static/js/common/upload-addon.js:361
 msgid "Unexpected server error while validating."
 msgstr "W czasie weryfikacji wystąpił nieoczekiwany błąd serwera."
 
-#: static/js/common/upload-addon.js:317
+#: static/js/common/upload-addon.js:399
 msgid "Finished validating {0}"
 msgstr "Zakończono sprawdzanie {0}"
 
-#: static/js/common/upload-addon.js:323
+#: static/js/common/upload-addon.js:405
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:328
+#: static/js/common/upload-addon.js:410
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:346
+#: static/js/common/upload-addon.js:428
 msgid "Your submission will go through a manual review."
 msgstr "Twoje zgłoszenie przejdzie ręczne sprawdzenie."
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:432
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "Twoje sprawdzenie przeszło weryfikację i zostanie automatycznie oznaczone."
 
-#: static/js/common/upload-addon.js:352
+#: static/js/common/upload-addon.js:434
 msgid "Your submission passed validation and will go through a manual review."
 msgstr "Twoje zgłoszenie przeszło weryfikację i będzie ręcznie sprawdzone."
 
-#: static/js/common/upload-addon.js:380
+#: static/js/common/upload-addon.js:462
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Dołącz szczegółowe informacje o wersji dodatku (można zrobić to w kolejnym kroku)."
 
-#: static/js/common/upload-addon.js:381
+#: static/js/common/upload-addon.js:463
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Jeśli dodatek wymaga konta na stronie w celu pełnego przetestowania, podaj testową nazwę użytkownika i hasło w informacjach dla recenzenta (można to zrobić w kolejnym kroku)."
 
-#: static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:464
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Jeśli dodatek przeznaczony jest dla ograniczonej grupy odbiorców, należy wybrać wstępne sprawdzenie zamiast pełnego sprawdzenia."
 
-#: static/js/common/upload-addon.js:395
+#: static/js/common/upload-addon.js:477
 msgid "Add-on submission checklist"
 msgstr "Lista kontrolna zgłaszania dodatku"
 
-#: static/js/common/upload-addon.js:396
+#: static/js/common/upload-addon.js:478
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Sprawdź następujące punkty przed zakończeniem zgłoszenia. Pozwoli to zminimalizować opóźnienia i nieporozumienia podczas sprawdzania: "
 
-#: static/js/common/upload-addon.js:398
+#: static/js/common/upload-addon.js:480
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -142,19 +142,19 @@ msgstr ""
 "Skompilowane pliki binarne oraz zminimalizowane i zaciemnione skrypty (z wyłączeniem znanych bibliotek) wymagają oddzielnie przesłanych kodów źródłowych do sprawdzenia. Upewnij się, że używasz pola "
 "do załadowania kodu źródłowego, aby uniknąć odrzucenia zgłoszenia."
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:498
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Podczas weryfikacji znaleziono poniższe problemy, które mogą prowadzić do odrzucenia dodatku:"
 
-#: static/js/common/upload-addon.js:433
+#: static/js/common/upload-addon.js:515
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Jeśli nie wiesz, na czym polega proces oceniania dodatków, możesz przeczytać o tym tutaj."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:551
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Niektóre systemy nie są dostępne dla tego typu dodatku."
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:553
 msgid "Sorry, no supported platform has been found."
 msgstr "Przepraszamy, nie znaleziono obsługiwanego systemu."
 
@@ -777,7 +777,7 @@ msgstr "Data"
 msgid "Other"
 msgstr "Inny"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1315 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Wybierz najpierw program"
 
@@ -886,7 +886,7 @@ msgstr "Działa z {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Zobacz inne wersje"
 
-#: static/js/zamboni/buttons.js:578 static/js/zamboni/mobile/buttons.js:39
+#: static/js/zamboni/buttons.js:557 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli – taka jak np. Firefox."
 
@@ -958,61 +958,61 @@ msgstr "Usuń z ulubionych"
 msgid "Stop following"
 msgstr "Zaprzestań obserwacji"
 
-#: static/js/zamboni/devhub.js:174
+#: static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
 msgstr "Twoja przeglądarka nie obsługuje znacznika video"
 
-#: static/js/zamboni/devhub.js:431
+#: static/js/zamboni/devhub.js:368
 msgid "Changes Saved"
 msgstr "Zmiany zostały zapisane"
 
-#: static/js/zamboni/devhub.js:447
+#: static/js/zamboni/devhub.js:384
 msgid "Enter a new author's email address"
 msgstr "Podaj nowy adres e-mail autora"
 
-#: static/js/zamboni/devhub.js:594
+#: static/js/zamboni/devhub.js:531
 msgid "There was an error uploading your file."
 msgstr "Wystąpił problem z przesłaniem twojego pliku."
 
-#: static/js/zamboni/devhub.js:739
+#: static/js/zamboni/devhub.js:676
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} plik"
 msgstr[1] "{files} pliki"
 msgstr[2] "{files} plików"
 
-#: static/js/zamboni/devhub.js:742
+#: static/js/zamboni/devhub.js:679
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} opinia użytkownika"
 msgstr[1] "{reviews} opinie użytkowników"
 msgstr[2] "{reviews} opinii użytkowników"
 
-#: static/js/zamboni/devhub.js:854
+#: static/js/zamboni/devhub.js:791
 msgid "Learn more"
 msgstr "Dowiedz się więcej"
 
-#: static/js/zamboni/devhub.js:858
+#: static/js/zamboni/devhub.js:795
 msgid "Example"
 msgstr "Przykład"
 
-#: static/js/zamboni/devhub.js:1216
+#: static/js/zamboni/devhub.js:1153
 msgid "Image changes being processed"
 msgstr "Przetwarzanie zmian obrazka…"
 
-#: static/js/zamboni/devhub.js:1343
+#: static/js/zamboni/devhub.js:1280
 msgid "Starting tests..."
 msgstr "Uruchamianie testów…"
 
-#: static/js/zamboni/devhub.js:1350
+#: static/js/zamboni/devhub.js:1287
 msgid "Waiting for test results..."
 msgstr "Oczekiwanie na wyniki testów…"
 
-#: static/js/zamboni/devhub.js:1352 static/js/zamboni/devhub.js:1357
+#: static/js/zamboni/devhub.js:1289 static/js/zamboni/devhub.js:1294
 msgid "Internal Server Error"
 msgstr "Wewnętrzny błąd serwera"
 
-#: static/js/zamboni/devhub.js:1392
+#: static/js/zamboni/devhub.js:1329
 msgid "Must be a valid e-mail address."
 msgstr "Prawidłowy adres e-mail musi zostać wprowadzony."
 
@@ -1076,6 +1076,14 @@ msgstr "Liczba sprawdzeń"
 msgid "Error loading translation"
 msgstr "Błąd wczytywania tłumaczenia"
 
+#: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
+msgid "Ignore this message in future updates"
+msgstr ""
+
+#: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
+msgid "Severity for automated signing:"
+msgstr ""
+
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
 msgstr "Wczytywanie…"
@@ -1088,7 +1096,7 @@ msgstr[0] "Pozostał <b>{0}</b> znak."
 msgstr[1] "Pozostały <b>{0}</b> znaki."
 msgstr[2] "Pozostało <b>{0}</b> znaków."
 
-#: static/js/zamboni/init.js:32
+#: static/js/zamboni/init.js:28
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. Sprawdź ponownie nieco później."
 
@@ -1135,7 +1143,7 @@ msgstr "Zaakceptowano"
 msgid "All tests passed successfully."
 msgstr "Wszystkie testy zostały zaliczone."
 
-#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:451
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:470
 msgid "These tests were not run."
 msgstr "Testy te nie zostały uruchomione."
 
@@ -1143,104 +1151,100 @@ msgstr "Testy te nie zostały uruchomione."
 msgid "Tests"
 msgstr "Testy"
 
-#: static/js/zamboni/validator.js:244 static/js/zamboni/validator.js:531 static/js/zamboni/validator.js:550
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
 msgid "Error"
 msgstr "Błąd"
 
-#: static/js/zamboni/validator.js:245
+#: static/js/zamboni/validator.js:247
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
-#: static/js/zamboni/validator.js:273
-msgid "Severity for automated signing:"
-msgstr ""
-
-#: static/js/zamboni/validator.js:288
+#: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
 msgstr ""
 
-#: static/js/zamboni/validator.js:376
+#: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
 msgstr "Testy kompatybilności"
 
-#: static/js/zamboni/validator.js:439
+#: static/js/zamboni/validator.js:458
 msgid "Add-on failed validation."
 msgstr "Dodatek nie przeszedł weryfikacji."
 
-#: static/js/zamboni/validator.js:441
+#: static/js/zamboni/validator.js:460
 msgid "Add-on passed validation."
 msgstr "Dodatek przeszedł weryfikację."
 
-#: static/js/zamboni/validator.js:454
+#: static/js/zamboni/validator.js:473
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} błąd"
 msgstr[1] "{0} błędy"
 msgstr[2] "{0} błędów"
 
-#: static/js/zamboni/validator.js:456
+#: static/js/zamboni/validator.js:475
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
 msgstr[2] "{0} ostrzeżeń"
 
-#: static/js/zamboni/validator.js:458
+#: static/js/zamboni/validator.js:477
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} informacja"
 msgstr[1] "{0} informacje"
 msgstr[2] "{0} informacji"
 
-#: static/js/zamboni/validator.js:533
+#: static/js/zamboni/validator.js:569
 msgid "Validation task could not complete or completed with errors"
 msgstr "Nie można dokończyć weryfikacji lub zadanie zostało zakończone z błędami"
 
-#: static/js/zamboni/validator.js:551
+#: static/js/zamboni/validator.js:587
 msgid "Internal server error"
 msgstr "Wewnętrzny błąd serwera"
 
-#: static/js/zamboni/mobile/buttons.js:75
+#: static/js/zamboni/mobile/buttons.js:77
 msgid "Not Updated for {0} {1}"
 msgstr "Niezaktualizowany dla {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:76
+#: static/js/zamboni/mobile/buttons.js:78
 msgid "Requires Newer Version of {0}"
 msgstr "Wymaga najnowszej wersji {0}"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:79
 msgid "Unreviewed"
 msgstr "Niesprawdzony"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:80
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Eksperymentalny <span>(Dowiedz się więcej)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "Niedostępny dla {0}"
 
-#: static/js/zamboni/mobile/buttons.js:81
+#: static/js/zamboni/mobile/buttons.js:83
 msgid "Experimental"
 msgstr "Eksperymentalny"
 
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:84
 msgid "Themes Require Newer Version of {0}"
 msgstr "Motyw wymaga nowszej wersji: {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:85
 msgid "Themes Require {0}"
 msgstr "Motyw wymaga: {0}"
 
-#: static/js/zamboni/mobile/buttons.js:128
+#: static/js/zamboni/mobile/buttons.js:130
 msgid "Installing..."
 msgstr "Instalacja…"
 
-#: static/js/zamboni/mobile/buttons.js:148
+#: static/js/zamboni/mobile/buttons.js:150
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Ten dodatek został wstępnie sprawdzony przez Mozillę."
 
-#: static/js/zamboni/mobile/buttons.js:275
+#: static/js/zamboni/mobile/buttons.js:277
 msgid "Keep it"
 msgstr "Zatrzymaj"
 

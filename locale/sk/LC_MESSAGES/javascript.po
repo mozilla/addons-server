@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-29 13:03-0700\n"
+"POT-Creation-Date: 2015-08-12 08:26-0700\n"
 "PO-Revision-Date: 2015-04-08 21:13+0000\n"
 "Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -69,7 +69,7 @@ msgstr[0] "&hellip; a jedna ďalšia"
 msgstr[1] "&hellip; a {0} ďalšie"
 msgstr[2] "&hellip; a {0} ďalších"
 
-#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:427
+#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:509
 msgid "See full validation report"
 msgstr "Zobraziť celú správu o overení"
 
@@ -82,58 +82,58 @@ msgstr "Overuje sa {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prijatá prázdna odpoveď zo servera. Stav: {0}"
 
-#: static/js/common/upload-addon.js:279
+#: static/js/common/upload-addon.js:361
 msgid "Unexpected server error while validating."
 msgstr "Počas overovania sa vyskytla neočakávaná chyba."
 
-#: static/js/common/upload-addon.js:317
+#: static/js/common/upload-addon.js:399
 msgid "Finished validating {0}"
 msgstr "Ukončené overovanie {0}"
 
-#: static/js/common/upload-addon.js:323
+#: static/js/common/upload-addon.js:405
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:328
+#: static/js/common/upload-addon.js:410
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:346
+#: static/js/common/upload-addon.js:428
 msgid "Your submission will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:350
+#: static/js/common/upload-addon.js:432
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:352
+#: static/js/common/upload-addon.js:434
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:380
+#: static/js/common/upload-addon.js:462
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
-#: static/js/common/upload-addon.js:381
+#: static/js/common/upload-addon.js:463
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, zadajte prosím používateľské meno a heslo do poznámky pre redaktora (možno vykonať v ďalšom kroku)."
 
-#: static/js/common/upload-addon.js:382
+#: static/js/common/upload-addon.js:464
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:395
+#: static/js/common/upload-addon.js:477
 msgid "Add-on submission checklist"
 msgstr "Zoznam doplnkov odoslaných na kontrolu"
 
-#: static/js/common/upload-addon.js:396
+#: static/js/common/upload-addon.js:478
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Skontrolujte prosím nasledujúce body pred odoslaním doplnku na kontrolu. Pomôžete tým kontrolu zrýchliť a predísť prípadnému nedorozumeniu pri procese kontroly:"
 
-#: static/js/common/upload-addon.js:398
+#: static/js/common/upload-addon.js:480
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -141,19 +141,19 @@ msgstr ""
 "Skompilované binárne súčasti rovnako ako obfuscované skripty (okrem známych knižníc) musia mať predložené zdrojové súbory na kontrolu oddelene. Uistite sa, že ste použili pole pre nahranie "
 "zdrojových kódov, aby nedošlo k zamietnutiu kontroly."
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:498
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k zamietnutiu kontroly:"
 
-#: static/js/common/upload-addon.js:433
+#: static/js/common/upload-addon.js:515
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ak ešte neviete, ako prebieha proces kontroly, môžete si o ňom prečítať tu."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:551
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Niektoré platformy nie sú pre tento typ doplnku dostupné."
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:553
 msgid "Sorry, no supported platform has been found."
 msgstr "Ospravedlňujeme sa, ale nebola nájdená podporovaná platforma."
 
@@ -776,7 +776,7 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Iný"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1315 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
 
@@ -885,7 +885,7 @@ msgstr "Funguje s {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Zobraziť ďalšie verzie"
 
-#: static/js/zamboni/buttons.js:578 static/js/zamboni/mobile/buttons.js:39
+#: static/js/zamboni/buttons.js:557 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."
 
@@ -957,61 +957,61 @@ msgstr "Odstrániť z obľúbených"
 msgid "Stop following"
 msgstr "Zastaviť odber"
 
-#: static/js/zamboni/devhub.js:174
+#: static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
 msgstr "Váš prehliadač nepodporuje HTML značku video"
 
-#: static/js/zamboni/devhub.js:431
+#: static/js/zamboni/devhub.js:368
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: static/js/zamboni/devhub.js:447
+#: static/js/zamboni/devhub.js:384
 msgid "Enter a new author's email address"
 msgstr "Zadajte e-mailovú adresu nového autora"
 
-#: static/js/zamboni/devhub.js:594
+#: static/js/zamboni/devhub.js:531
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: static/js/zamboni/devhub.js:739
+#: static/js/zamboni/devhub.js:676
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} súbor"
 msgstr[1] "{files} súbory"
 msgstr[2] "{files} súborov"
 
-#: static/js/zamboni/devhub.js:742
+#: static/js/zamboni/devhub.js:679
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recenzia používateľa"
 msgstr[1] "{reviews} recenzie používateľa"
 msgstr[2] "{reviews} recenzií používateľa"
 
-#: static/js/zamboni/devhub.js:854
+#: static/js/zamboni/devhub.js:791
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
-#: static/js/zamboni/devhub.js:858
+#: static/js/zamboni/devhub.js:795
 msgid "Example"
 msgstr "Príklad"
 
-#: static/js/zamboni/devhub.js:1216
+#: static/js/zamboni/devhub.js:1153
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
-#: static/js/zamboni/devhub.js:1343
+#: static/js/zamboni/devhub.js:1280
 msgid "Starting tests..."
 msgstr "Spúšťajú sa testy..."
 
-#: static/js/zamboni/devhub.js:1350
+#: static/js/zamboni/devhub.js:1287
 msgid "Waiting for test results..."
 msgstr "Čaká sa na výsledky testov..."
 
-#: static/js/zamboni/devhub.js:1352 static/js/zamboni/devhub.js:1357
+#: static/js/zamboni/devhub.js:1289 static/js/zamboni/devhub.js:1294
 msgid "Internal Server Error"
 msgstr "Vnútorná chyba servera"
 
-#: static/js/zamboni/devhub.js:1392
+#: static/js/zamboni/devhub.js:1329
 msgid "Must be a valid e-mail address."
 msgstr "Musí to byť platná e-mailová adresa."
 
@@ -1075,6 +1075,14 @@ msgstr "Počet recenzií"
 msgid "Error loading translation"
 msgstr "Chyba pri načítaní prekladu"
 
+#: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
+msgid "Ignore this message in future updates"
+msgstr ""
+
+#: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
+msgid "Severity for automated signing:"
+msgstr ""
+
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
 msgstr "Načítava sa..."
@@ -1087,7 +1095,7 @@ msgstr[0] "Zostáva <b>{0}</b> znak."
 msgstr[1] "Zostávajú <b>{0}</b> znaky."
 msgstr[2] "Zostáva <b>{0}</b> znakov."
 
-#: static/js/zamboni/init.js:32
+#: static/js/zamboni/init.js:28
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
 
@@ -1134,7 +1142,7 @@ msgstr "Schválené"
 msgid "All tests passed successfully."
 msgstr "Všetky testy ukončené úspešne."
 
-#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:451
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:470
 msgid "These tests were not run."
 msgstr "Tieto testy neboli spustené."
 
@@ -1142,104 +1150,100 @@ msgstr "Tieto testy neboli spustené."
 msgid "Tests"
 msgstr "Testy"
 
-#: static/js/zamboni/validator.js:244 static/js/zamboni/validator.js:531 static/js/zamboni/validator.js:550
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
 msgid "Error"
 msgstr "Chyba"
 
-#: static/js/zamboni/validator.js:245
+#: static/js/zamboni/validator.js:247
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: static/js/zamboni/validator.js:273
-msgid "Severity for automated signing:"
-msgstr ""
-
-#: static/js/zamboni/validator.js:288
+#: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
 msgstr ""
 
-#: static/js/zamboni/validator.js:376
+#: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
 msgstr "Testy kompatibility"
 
-#: static/js/zamboni/validator.js:439
+#: static/js/zamboni/validator.js:458
 msgid "Add-on failed validation."
 msgstr "Doplnok neprešiel overením."
 
-#: static/js/zamboni/validator.js:441
+#: static/js/zamboni/validator.js:460
 msgid "Add-on passed validation."
 msgstr "Doplnok prešiel overením."
 
-#: static/js/zamboni/validator.js:454
+#: static/js/zamboni/validator.js:473
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chýb"
 
-#: static/js/zamboni/validator.js:456
+#: static/js/zamboni/validator.js:475
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#: static/js/zamboni/validator.js:458
+#: static/js/zamboni/validator.js:477
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#: static/js/zamboni/validator.js:533
+#: static/js/zamboni/validator.js:569
 msgid "Validation task could not complete or completed with errors"
 msgstr "Úloha overenia nemohla byť dokončená alebo bola ukončená s chybami"
 
-#: static/js/zamboni/validator.js:551
+#: static/js/zamboni/validator.js:587
 msgid "Internal server error"
 msgstr "Vnútorná chyba servera"
 
-#: static/js/zamboni/mobile/buttons.js:75
+#: static/js/zamboni/mobile/buttons.js:77
 msgid "Not Updated for {0} {1}"
 msgstr "Neaktualizované pre {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:76
+#: static/js/zamboni/mobile/buttons.js:78
 msgid "Requires Newer Version of {0}"
 msgstr "Vyžaduje novšiu verziu {0}u"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:79
 msgid "Unreviewed"
 msgstr "Neskontrolované"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:80
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimentálne <span>(Ďalšie informácie)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:79 static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "Nie je dostupné pre {0}"
 
-#: static/js/zamboni/mobile/buttons.js:81
+#: static/js/zamboni/mobile/buttons.js:83
 msgid "Experimental"
 msgstr "Experimentálne"
 
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:84
 msgid "Themes Require Newer Version of {0}"
 msgstr "Témy požadujú novšiu verziu {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:85
 msgid "Themes Require {0}"
 msgstr "Témy požadujú {0}"
 
-#: static/js/zamboni/mobile/buttons.js:128
+#: static/js/zamboni/mobile/buttons.js:130
 msgid "Installing..."
 msgstr "Inštaluje sa..."
 
-#: static/js/zamboni/mobile/buttons.js:148
+#: static/js/zamboni/mobile/buttons.js:150
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Tento doplnok bol predbežne skontrolovaný Mozillou."
 
-#: static/js/zamboni/mobile/buttons.js:275
+#: static/js/zamboni/mobile/buttons.js:277
 msgid "Keep it"
 msgstr "Ponechať"
 
