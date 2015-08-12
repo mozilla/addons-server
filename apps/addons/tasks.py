@@ -61,6 +61,7 @@ def update_last_updated(addon_id):
         Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
+@write
 def update_appsupport(ids):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
