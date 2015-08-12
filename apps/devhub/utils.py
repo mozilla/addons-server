@@ -126,6 +126,7 @@ class ValidationAnnotator(object):
     def __init__(self, file_, addon=None, listed=None):
         self.addon = addon
         self.file = None
+        self.prev_file = None
 
         if isinstance(file_, FileUpload):
             save = tasks.handle_upload_validation_result
@@ -149,12 +150,12 @@ class ValidationAnnotator(object):
 
             self.file = file_
             self.addon = self.file.version.addon
-            addon_data = {'guid': self.addon.id,
+            addon_data = {'guid': self.addon.guid,
                           'version': self.file.version.version}
         else:
             raise ValueError
 
-        if addon_data:
+        if addon_data and addon_data['guid']:
             # If we have a valid file, try to find an associated Addon
             # object, and a valid former submission to compare against.
             try:
