@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-13 08:05:00.811509\n"
+"PO-Revision-Date: 2015-08-13 08:14:11.772941\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -9222,388 +9222,397 @@ msgid ""
 " personalize your browser anytime, anywhere. Easily discover and install "
 "add-ons from the mobile Add-ons Manager."
 msgstr ""
+"Visit <a href=\"%(url)s\">firefox.com/m</a> to get Firefox on your phone and"
+" personalise your browser anytime, anywhere. Easily discover and install "
+"add-ons from the mobile Add-ons Manager."
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
-msgstr ""
+msgstr "Get Mobile Add-ons"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Shop smart this holiday season"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
-msgstr ""
+msgstr "Find great add-ons to help you with all your holiday shopping needs."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid ""
 "Install the Amazon Browser Apps and receive special Amazon features right at"
 " your fingertips."
 msgstr ""
+"Install the Amazon Browser Apps and receive special Amazon features right at"
+" your fingertips."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid ""
 "Keep an eye on your eBay activity wherever you are on the web when you "
 "install the eBay Sidebar for Firefox."
 msgstr ""
+"Keep an eye on your eBay activity wherever you are on the web when you "
+"install the eBay Sidebar for Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr ""
+msgstr "See the entire holiday shopping add-on collection."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla&rsquo;s Pick of the Month!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
-msgstr ""
+msgstr "Customize Firefox<br>with your nation's flag"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Join us in celebrating the global spirit of community."
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
-msgstr ""
+msgstr "Show your support"
 
 #: apps/editors/forms.py:31
 msgid "Approved reviews"
-msgstr ""
+msgstr "Approved reviews"
 
 #: apps/editors/forms.py:32
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Deleted reviews"
 
 #: apps/editors/forms.py:40 apps/editors/forms.py:70
 msgid "View entries between"
-msgstr ""
+msgstr "View entries between"
 
 #: apps/editors/forms.py:42 apps/editors/forms.py:71
 msgid "and"
-msgstr ""
+msgstr "and"
 
 #: apps/editors/forms.py:44
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filter by type/action"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Passed automatic validation"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Failed automatic validation"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filter by automatic validation"
 
 #: apps/editors/forms.py:72
 msgid "containing"
-msgstr ""
+msgstr "containing"
 
 #. L10n: start, as in "start date"
 #: apps/editors/forms.py:78
 msgid "start"
-msgstr ""
+msgstr "start"
 
 #. L10n: end, as in "end date"
 #: apps/editors/forms.py:82
 msgid "end"
-msgstr ""
+msgstr "end"
 
 #. L10n: Description of what can be searched for
 #: apps/editors/forms.py:85
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "add-on, editor or comment"
 
 #: apps/editors/forms.py:101
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Search by add-on name / author email"
 
 #: apps/editors/forms.py:106
 msgid "yes"
-msgstr ""
+msgstr "yes"
 
 #: apps/editors/forms.py:107
 msgid "no"
-msgstr ""
+msgstr "no"
 
 #: apps/editors/forms.py:108
 msgid "Admin Flag"
-msgstr ""
+msgstr "Admin Flag"
 
 #: apps/editors/forms.py:116
 msgid "Max. Version"
-msgstr ""
+msgstr "Max. Version"
 
 #: apps/editors/forms.py:120
 msgid "Days Since Submission"
-msgstr ""
+msgstr "Days Since Submission"
 
 #: apps/editors/forms.py:125
 msgid "Add-on Types"
-msgstr ""
+msgstr "Add-on Types"
 
 #: apps/editors/forms.py:129 apps/editors/helpers.py:263
 msgid "Platforms"
-msgstr ""
+msgstr "Platforms"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: apps/editors/forms.py:241
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: apps/editors/forms.py:256 apps/files/templates/files/viewer.html:54
 msgid "Files:"
-msgstr ""
+msgstr "Files:"
 
 #: apps/editors/forms.py:259
 msgid "Comments:"
-msgstr ""
+msgstr "Comments:"
 
 #: apps/editors/forms.py:263
 msgid "Operating systems:"
-msgstr ""
+msgstr "Operating systems:"
 
 #: apps/editors/forms.py:265
 msgid "Applications:"
-msgstr ""
+msgstr "Applications:"
 
 #: apps/editors/forms.py:267
 msgid ""
 "Notify me the next time this add-on is updated. (Subsequent updates will not"
 " generate an email)"
 msgstr ""
+"Notify me the next time this add-on is updated. (Subsequent updates will not"
+" generate an email)"
 
 #: apps/editors/forms.py:272
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Clear Admin Review Flag"
 
 #: apps/editors/forms.py:292
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Choose a canned response..."
 
 #: apps/editors/forms.py:321
 msgid "You must select some files."
-msgstr ""
+msgstr "You must select some files."
 
 #: apps/editors/forms.py:327
 msgid "File %s is not pending review."
-msgstr ""
+msgstr "File %s is not pending review."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:349
 msgid "theme name"
-msgstr ""
+msgstr "theme name"
 
 #: apps/editors/forms.py:375
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Someone else is reviewing this theme."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:472
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "app, reviewer, or comment"
 
 #: apps/editors/helpers.py:49
 msgid "Pending Preliminary Review"
-msgstr ""
+msgstr "Pending Preliminary Review"
 
 #: apps/editors/helpers.py:53
 msgid "Pending Full Review"
-msgstr ""
+msgstr "Pending Full Review"
 
 #: apps/editors/helpers.py:60
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Rejected or Unreviewed"
 
 #: apps/editors/helpers.py:117 apps/editors/helpers.py:130
 msgid "Queue"
-msgstr ""
+msgstr "Queue"
 
 #: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:50
 #: apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
-msgstr ""
+msgstr "Pending Updates"
 
 #: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:48
 #: apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
-msgstr ""
+msgstr "Full Reviews"
 
 #: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:52
 #: apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
-msgstr ""
+msgstr "Preliminary Reviews"
 
 #: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Moderated Reviews"
 
 #: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
-msgstr ""
+msgstr "Fast Track"
 
 #: apps/editors/helpers.py:124
 msgid "Pending Themes"
-msgstr ""
+msgstr "Pending Themes"
 
 #: apps/editors/helpers.py:125
 #: apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Flagged Themes"
 
 #: apps/editors/helpers.py:126
 msgid "Update Themes"
-msgstr ""
+msgstr "Update Themes"
 
 #: apps/editors/helpers.py:131
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Unlisted Pending Updates"
 
 #: apps/editors/helpers.py:132
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Unlisted Full Reviews"
 
 #: apps/editors/helpers.py:133
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Unlisted Preliminary Reviews"
 
 #: apps/editors/helpers.py:166
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fast Track ({0})"
+msgstr[1] "Fast Track ({0})"
 
 #: apps/editors/helpers.py:171
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Full Review ({0})"
+msgstr[1] "Full Reviews ({0})"
 
 #: apps/editors/helpers.py:176
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pending Update ({0})"
+msgstr[1] "Pending Updates ({0})"
 
 #: apps/editors/helpers.py:181
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Preliminary Review ({0})"
+msgstr[1] "Preliminary Reviews ({0})"
 
 #: apps/editors/helpers.py:186
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Moderated Review ({0})"
+msgstr[1] "Moderated Reviews ({0})"
 
 #: apps/editors/helpers.py:192
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unlisted Full Review ({0})"
+msgstr[1] "Unlisted Full Reviews ({0})"
 
 #: apps/editors/helpers.py:197
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unlisted Pending Update ({0})"
+msgstr[1] "Unlisted Pending Updates ({0})"
 
 #: apps/editors/helpers.py:202
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unlisted Preliminary Review ({0})"
+msgstr[1] "Unlisted Preliminary Reviews ({0})"
 
 #: apps/editors/helpers.py:257
 msgid "Addon"
-msgstr ""
+msgstr "Add-on"
 
 #: apps/editors/helpers.py:258
 #: apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: apps/editors/helpers.py:259
 msgid "Waiting Time"
-msgstr ""
+msgstr "Waiting Time"
 
 #: apps/editors/helpers.py:260 apps/editors/templates/editors/review.html:284
 msgid "Flags"
-msgstr ""
+msgstr "Flags"
 
 #: apps/editors/helpers.py:261
 msgid "Applications"
-msgstr ""
+msgstr "Applications"
 
 #: apps/editors/helpers.py:266
 msgid "Additional"
-msgstr ""
+msgstr "Additional"
 
 #: apps/editors/helpers.py:281
 msgid "Site Specific"
-msgstr ""
+msgstr "Site Specific"
 
 #: apps/editors/helpers.py:283
 msgid "Requires External Software"
-msgstr ""
+msgstr "Requires External Software"
 
 #: apps/editors/helpers.py:285
 msgid "Binary Components"
-msgstr ""
+msgstr "Binary Components"
 
 #: apps/editors/helpers.py:309
 msgid "moments ago"
-msgstr ""
+msgstr "moments ago"
 
 #. L10n: first argument is number of minutes
 #: apps/editors/helpers.py:312
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} minute"
+msgstr[1] "{0} minutes"
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:316
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} hour"
+msgstr[1] "{0} hours"
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:320
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} day"
+msgstr[1] "{0} days"
 
 #: apps/editors/helpers.py:480
 msgid "Push to public"
-msgstr ""
+msgstr "Push to public"
 
 #: apps/editors/helpers.py:482
 msgid "Grant full review"
-msgstr ""
+msgstr "Grant full review"
 
 #: apps/editors/helpers.py:497
 msgid "Request more information"
-msgstr ""
+msgstr "Request more information"
 
 #: apps/editors/helpers.py:500
 msgid "Request super-review"
-msgstr ""
+msgstr "Request super-review"
 
 #: apps/editors/helpers.py:511
 msgid "Grant preliminary review"
-msgstr ""
+msgstr "Grant preliminary review"
 
 #: apps/editors/helpers.py:512
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "This will mark the files as preliminarily reviewed."
 
 #: apps/editors/helpers.py:514
 msgid ""
@@ -9611,6 +9620,9 @@ msgid ""
 " an email and be able to answer here. You will be notified by email when "
 "they reply."
 msgstr ""
+"Use this form to request more information from the author. They will receive"
+" an email and be able to answer here. You will be notified by email when "
+"they reply."
 
 #: apps/editors/helpers.py:518
 msgid ""
@@ -9618,51 +9630,63 @@ msgid ""
 "other concerns that an administrator should look into, enter your comments "
 "in the area below. They will be sent to administrators, not the author."
 msgstr ""
+"If you have concerns about this add-on's security, copyright issues, or "
+"other concerns that an administrator should look into, enter your comments "
+"in the area below. They will be sent to administrators, not the author."
 
 #: apps/editors/helpers.py:524
 msgid "This will reject the add-on and remove it from the review queue."
-msgstr ""
+msgstr "This will reject the add-on and remove it from the review queue."
 
 #: apps/editors/helpers.py:526
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr ""
+msgstr "Make a comment on this version. The author won't be able to see this."
 
 #: apps/editors/helpers.py:530
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "This will reject the files and remove them from the review queue."
 
 #: apps/editors/helpers.py:534
 msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"This will mark the add-on as preliminarily reviewed. Future versions will "
+"undergo preliminary review."
 
 #: apps/editors/helpers.py:539
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"This will mark the files as preliminarily reviewed. Future versions will "
+"undergo preliminary review."
 
 #: apps/editors/helpers.py:544
 msgid "Retain preliminary review"
-msgstr ""
+msgstr "Retain preliminary review"
 
 #: apps/editors/helpers.py:545
 msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"This will retain the add-on as preliminarily reviewed. Future versions will "
+"undergo preliminary review."
 
 #: apps/editors/helpers.py:550
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
 msgstr ""
+"This will approve a sandboxed version of a public add-on to appear on the "
+"public side."
 
 #: apps/editors/helpers.py:553
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
+"This will reject a version of a public add-on and remove it from the queue."
 
 #: apps/editors/helpers.py:556
 msgid ""
@@ -9670,94 +9694,97 @@ msgid ""
 "Future versions will go into the sandbox until they are reviewed by an "
 "editor."
 msgstr ""
+"This will mark the add-on and its most recent version and files as public. "
+"Future versions will go into the sandbox until they are reviewed by an "
+"editor."
 
 #: apps/editors/helpers.py:629
 msgid "add-on"
-msgstr ""
+msgstr "add-on"
 
 #: apps/editors/helpers.py:923 apps/editors/helpers.py:943
 msgid "Flagged"
-msgstr ""
+msgstr "Flagged"
 
 #: apps/editors/helpers.py:927 apps/editors/helpers.py:946
 msgid "Updates"
-msgstr ""
+msgstr "Updates"
 
 #: apps/editors/models.py:182
 msgid "Admin Review"
-msgstr ""
+msgstr "Admin Review"
 
 #: apps/editors/models.py:183
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack Add-on"
 
 #: apps/editors/models.py:185
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Restartless Add-on"
 
 #: apps/editors/models.py:186
 msgid "More Information Requested"
-msgstr ""
+msgstr "More Information Requested"
 
 #: apps/editors/models.py:187
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Contains Editor Comment"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "Sources provided"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Duplicate Submission"
 
 #: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Thanks for submitting your Theme"
 
 #: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "A problem with your Theme submission"
 
 #: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Theme submission flagged for review"
 
 #: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "A question about your Theme submission"
 
 #: apps/editors/views.py:130
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "New Add-ons (Under 5 days)"
 
 #: apps/editors/views.py:131
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Passable (5 to 10 days)"
 
 #: apps/editors/views.py:132
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Overdue (Over 10 days)"
 
 #: apps/editors/views.py:459
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "An unknown error occurred"
 
 #: apps/editors/views.py:511
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Self-reviews are not allowed."
 
 #: apps/editors/views.py:533
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Review successfully processed."
 
 #: apps/editors/views.py:733
 msgid "was approved"
-msgstr ""
+msgstr "was approved"
 
 #: apps/editors/views.py:734
 msgid "given preliminary review"
-msgstr ""
+msgstr "given preliminary review"
 
 #: apps/editors/views.py:735
 msgid "rejected"
@@ -10413,231 +10440,237 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue.html:68
 msgid "Previous Theme"
-msgstr ""
+msgstr "Previous Theme"
 
 #: apps/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Your Review History"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Commit Review"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Commit Reviews"
 
 #: apps/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} out of {1} reviewed"
 
 #: apps/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "There are currently no Themes to review."
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Clear Search"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Release My Theme Locks"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Interactive Theme Queue"
 
 #: apps/editors/templates/editors/themes/queue_list.html:79
 msgid "There are currently no items of this type to review."
-msgstr ""
+msgstr "There are currently no items of this type to review."
 
 #: apps/editors/templates/editors/themes/queue_list.html:92
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Reviewers' Guide"
 
 #: apps/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Theme Review for {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Probable Duplicate Submission)"
 
 #: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Past Review Notes"
 
 #. {previous review action taken on theme}: {comment about review action}
 #: apps/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "More Info Requested: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Flagged: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
-msgstr ""
+msgstr "Approve Theme"
 
 #: apps/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
-msgstr ""
+msgstr "Field required"
 
 #: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Enter the ID or URL of the duplicate"
 
 #: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Select a reason for rejection"
 
 #: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Describe your reason for rejection"
 
 #: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Ask a question to the artist"
 
 #: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Describe your reason for flagging"
 
 #: apps/files/forms.py:87
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Cannot diff a version against itself"
 
 #: apps/files/helpers.py:153
 msgid "That file no longer exists."
-msgstr ""
+msgstr "That file no longer exists."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: apps/files/helpers.py:162
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "File size is over the limit of {0}."
 
 #: apps/files/helpers.py:176
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problems decoding {0}."
 
 #: apps/files/helpers.py:186
 msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
+"This file is not viewable online. Please download the file to view the "
+"contents."
 
 #: apps/files/helpers.py:194
 msgid "This file is a directory."
-msgstr ""
+msgstr "This file is a directory."
 
 #: apps/files/tasks.py:50
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "There was an error accessing file %s. %s."
 
 #: apps/files/tasks.py:53
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "There was an error accessing file %s."
 
 #: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Could not parse uploaded file."
 
 #: apps/files/utils.py:296
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Invalid file name in archive: {0}"
 
 #: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "File exceeding size limit in archive: {0}"
 
 #: apps/files/utils.py:354
 msgid "Invalid archive."
-msgstr ""
+msgstr "Invalid archive."
 
 #: apps/files/utils.py:444 apps/files/utils.py:447
 msgid "Could not parse install.rdf."
-msgstr ""
+msgstr "Could not parse install.rdf."
 
 #: apps/files/utils.py:460
 msgid "Could not find a UUID."
-msgstr ""
+msgstr "Could not find a UUID."
 
 #: apps/files/utils.py:462
 msgid "UUID doesn't match add-on."
-msgstr ""
+msgstr "UUID doesn't match add-on."
 
 #: apps/files/utils.py:466
 msgid "Duplicate UUID found."
-msgstr ""
+msgstr "Duplicate UUID found."
 
 #: apps/files/utils.py:469
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Version numbers should have fewer than 32 characters."
 
 #: apps/files/utils.py:472
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
+"Version numbers should only contain letters, numbers, and these punctuation "
+"characters: +*.-_."
 
 #: apps/files/utils.py:489
 msgid "<em:type> doesn't match add-on"
-msgstr ""
+msgstr "<em:type> doesn't match add-on"
 
 #: apps/files/views.py:53
 msgid "Back to review"
-msgstr ""
+msgstr "Back to review"
 
 #: apps/files/views.py:57
 msgid "Back to addon"
-msgstr ""
+msgstr "Back to add-on"
 
 #: apps/files/templates/files/file.html:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Download {0}"
 
 #: apps/files/templates/files/file.html:4
 msgid ""
 "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
 "Mimetype: %(mimetype)s"
 msgstr ""
+"Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
+"Mimetype: %(mimetype)s"
 
 #: apps/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "File Compare :: Editor tools"
 
 #: apps/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "File Viewer :: Editor tools"
 
 #: apps/files/templates/files/viewer.html:19
 msgid "Validation failed:"
-msgstr ""
+msgstr "Validation failed:"
 
 #: apps/files/templates/files/viewer.html:42
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Add-on file being processed, please wait."
 
 #: apps/files/templates/files/viewer.html:46
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Fetching validation results..."
 
 #: apps/files/templates/files/viewer.html:57
 msgid "Deleted files:"
-msgstr ""
+msgstr "Deleted files:"
 
 #: apps/files/templates/files/viewer.html:66
 msgid "Hide known files"
-msgstr ""
+msgstr "Hide known files"
 
 #: apps/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Add-on SDK Version:"
 
 #: apps/files/templates/files/viewer.html:73
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tab stops:"
 
 #: apps/files/templates/files/viewer.html:79
 #: apps/files/templates/files/viewer.html:80
