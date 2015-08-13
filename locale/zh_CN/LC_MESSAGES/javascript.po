@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-07-29 21:49+0000\n"
+"PO-Revision-Date: 2015-08-13 09:26+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438206597.0\n"
+"X-POOTLE-MTIME: 1439457998.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1059,7 +1059,7 @@ msgstr "载入翻译出错"
 
 #: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "在未来的更新中忽略此消息"
 
 #: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
