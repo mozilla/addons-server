@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-07-16 05:26+0000\n"
-"Last-Translator: Artem <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-08-13 06:18:11.253387\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -4512,11 +4512,11 @@ msgstr "Неправильний пароль."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Невірний об'єкт JSON"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Повідомлення немає права на анотації"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
@@ -5832,12 +5832,13 @@ msgstr "Тести сумісності"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: apps/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Приховати повідомлення, які необов'язкові для автоматичного входу"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 #: apps/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
+"Приховати повідомлення, які присутні у попередніх версіях та ігноруються"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -6329,6 +6330,9 @@ msgid ""
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
+"Перед початком, будь ласка, прочитайте та погодьтеся з умовами нашої угоди "
+"розповсюдження додатків Firefox. Вона також посилається на наше повідомлення"
+" про приватність, в якому пояснюється як ми обробляємо вашу інформацію."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
@@ -8098,6 +8102,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code. It is only relevant for listed add-ons."
 msgstr ""
+"Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для "
+"свого програмного коду. Це стосується лише додатків, які є в списку."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -14569,45 +14575,45 @@ msgstr "Користувач з"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Час останнього входу"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP адреса останнього входу"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Кількість розроблених додатків"
 
 #: apps/users/templates/users/vcard.html:58
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} додатків"
 
 #: apps/users/templates/users/vcard.html:62
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s тема"
+msgstr[1] "%(num)s теми"
+msgstr[2] "%(num)s тем"
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s додаток"
+msgstr[1] "%(num)s додатка"
+msgstr[2] "%(num)s додатків"
 
 #: apps/users/templates/users/vcard.html:81
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Середня оцінка додатків розробника"
 
 #: apps/users/templates/users/mobile/login.html:31
 msgid "Log in with BrowserID"
-msgstr ""
+msgstr "Увійдіть використовуючи BrowserID"
 
 #: apps/versions/feeds.py:61
 msgid "%s Version History"
-msgstr ""
+msgstr "%s Історія версій"
 
 #: apps/versions/feeds.py:69
 msgid "Version History with Changelogs"
@@ -14615,11 +14621,11 @@ msgstr "Історія версій з протоколом змін"
 
 #: apps/versions/models.py:302
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Додаток використовує бінарні компоненти."
 
 #: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Додаток включено до суворої перевірки сумісності."
 
 #: apps/versions/models.py:682
 msgid "{app} {min} and later"
@@ -14637,10 +14643,12 @@ msgstr "Випущено {0}"
 #: apps/versions/templates/versions/version.html:39
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr ""
+"Програмний код випущено на умовах <a target=\"_blank\" "
+"href=\"%(url)s\">%(name)s</a>"
 
 #: apps/versions/templates/versions/version.html:44
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Програмний код випущено на умовах <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
@@ -14693,7 +14701,7 @@ msgstr "Історія версій"
 
 #: apps/zadmin/forms.py:50
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Поточна максимальна версія"
 
 #: apps/zadmin/forms.py:53
 msgid "Target Version"
