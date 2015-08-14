@@ -86,7 +86,7 @@ def robots(request):
     else:
         template = render(request, 'amo/robots.html', {'apps': amo.APP_USAGE})
 
-    return HttpResponse(template, mimetype="text/plain")
+    return HttpResponse(template, content_type="text/plain")
 
 
 def contribute(request):

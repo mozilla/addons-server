@@ -82,8 +82,8 @@ def render_xml(request, template, context={}, **kwargs):
     """Safely renders xml, stripping out nasty control characters."""
     rendered = render_xml_to_string(request, template, context)
 
-    if 'mimetype' not in kwargs:
-        kwargs['mimetype'] = 'text/xml'
+    if 'content_type' not in kwargs:
+        kwargs['content_type'] = 'text/xml'
 
     return HttpResponse(rendered, **kwargs)
 
@@ -219,13 +219,13 @@ class APIView(object):
 
         self.version = float(api_version)
         self.format = request.REQUEST.get('format', 'xml')
-        self.mimetype = ('text/xml' if self.format == 'xml'
-                         else 'application/json')
+        self.content_type = ('text/xml' if self.format == 'xml'
+                             else 'application/json')
         self.request = request
         if not validate_api_version(api_version):
             msg = OUT_OF_DATE.format(self.version, api.CURRENT_VERSION)
             return self.render_msg(msg, ERROR, status=403,
-                                   mimetype=self.mimetype)
+                                   content_type=self.content_type)
 
         return self.process_request(*args, **kwargs)
 
@@ -247,10 +247,10 @@ class APIView(object):
 
         if self.format == 'xml':
             return render_xml(self.request, template, context,
-                              mimetype=self.mimetype)
+                              content_type=self.content_type)
         else:
             return HttpResponse(self.render_json(context),
-                                mimetype=self.mimetype)
+                                content_type=self.content_type)
 
     def render_json(self, context):
         return json.dumps({'msg': _('Not implemented yet.')})
@@ -264,11 +264,13 @@ class AddonDetailView(APIView):
             addon = Addon.objects.id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
             return self.render_msg(
-                'Add-on not found!', ERROR, status=404, mimetype=self.mimetype)
+                'Add-on not found!', ERROR, status=404,
+                content_type=self.content_type
+            )
 
         if addon.is_disabled:
             return self.render_msg('Add-on disabled.', ERROR, status=404,
-                                   mimetype=self.mimetype)
+                                   content_type=self.content_type)
         return self.render_addon(addon)
 
     def render_addon(self, addon):

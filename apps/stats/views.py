@@ -708,7 +708,7 @@ def render_csv(request, addon, stats, fields,
 @allow_cross_site_request
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
-    response = http.HttpResponse(mimetype='text/json')
+    response = http.HttpResponse(content_type='text/json')
 
     # XXX: Subclass DjangoJSONEncoder to handle generators.
     if isinstance(stats, GeneratorType):

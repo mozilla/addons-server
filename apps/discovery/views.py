@@ -127,11 +127,12 @@ def get_featured_personas(request, category=None, num_personas=6):
 
 
 def api_view(request, platform, version, list_type, api_version=1.5,
-             format='json', mimetype='application/json', compat_mode='strict'):
+             format='json', content_type='application/json',
+             compat_mode='strict'):
     """Wrapper for calling an API view."""
     view = api.views.ListView()
     view.request, view.version = request, api_version
-    view.format, view.mimetype = format, mimetype
+    view.format, view.content_type = format, content_type
     r = view.process_request(list_type, platform=platform, version=version,
                              compat_mode=compat_mode)
     return json.loads(r.content)
